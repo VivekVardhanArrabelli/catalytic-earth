@@ -18728,6 +18728,162 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(source_records["m_csa:104"]["exists"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_electron_flow_pqq_current_split_sidecar_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_pqq_current_split_"
+                "sidecar_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_pqq_current_split_sidecar_"
+                "readout_research_only_direct_pqq_sidecar_operating_point_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_direct_pqq_sidecar_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["smoke_sidecar_rows"], 35)
+        self.assertEqual(
+            readout["counts"]["smoke_complete_direct_electron_flow_rows"], 35
+        )
+        self.assertEqual(readout["counts"]["smoke_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(readout["counts"]["full_current_split_sidecar_rows"], 74)
+        self.assertEqual(
+            readout["counts"][
+                "full_current_split_complete_direct_electron_flow_rows"
+            ],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_current_split_incomplete_direct_electron_flow_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_primary_rows"], 34
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_rows"], 40
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_positive_rows"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_primary_retain_recall"], 1.0
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_abstain_recall"],
+            0.025,
+        )
+        self.assertEqual(readout["counts"]["current_geometry_fold_oos_rows"], 75)
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(readout["counts"]["union_or_gate_oos_abstain_recall"], 0.48)
+        self.assertEqual(
+            readout["counts"]["projection_electron_flow_oos_recall_delta"],
+            0.142857,
+        )
+        self.assertEqual(
+            readout["counts"]["projection_rerun_train_overlap_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["projection_rerun_calibration_overlap_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["projection_rerun_missing_train_rows"], 10
+        )
+        self.assertEqual(
+            readout["counts"]["projection_rerun_missing_calibration_rows"], 32
+        )
+        self.assertEqual(readout["counts"]["projection_row_scout_rows"], 43)
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_complete_rows"], 43
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_incomplete_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_positive_rows"], 0
+        )
+        gate = readout["measured_readout"][
+            "full_retained_oos_current_split_tranche"
+        ]["fixed_gate_readout"]
+        self.assertEqual(gate["retained_oos_positive_entry_ids"], ["m_csa:104"])
+        positive_rows = [
+            row
+            for row in readout["measured_readout"][
+                "full_retained_oos_current_split_tranche"
+            ]["sidecar_rows"]
+            if row["row_specific_event_features"][
+                "has_electron_transfer_event"
+            ]
+        ]
+        self.assertEqual([row["entry_id"] for row in positive_rows], ["m_csa:104"])
+        self.assertEqual(
+            positive_rows[0]["row_specific_event_features"][
+                "electron_transfer_count"
+            ],
+            1,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_split_direct_electron_flow_sidecar_complete"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_pqq_fields_preserve_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_pqq_fields_add_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["source_free_pqq_redox_center_contract_approved"]
+        )
+        self.assertTrue(
+            readout["decision"]["model_style_projection_rerun_ready_now"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "pqq_projection_rows_have_positive_train_cal_signal"
+            ]
+        )
+        scout = readout["measured_readout"]["projection_model_pqq_row_scout"]
+        self.assertEqual(scout["incomplete_rows_detail"], [])
+        self.assertEqual(
+            scout["field_status_counts"][
+                "complete_negative_from_geometry_ligand_inventory"
+            ],
+            1,
+        )
+        self.assertEqual(scout["positive_entry_ids"], [])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_source_free_axis_acquisition_ranking_readout_current_counts(
         self,
     ) -> None:

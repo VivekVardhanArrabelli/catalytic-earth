@@ -17,6 +17,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     build_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     build_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     build_lever2_source_free_electron_flow_split_alignment_readout,
     build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
@@ -2849,6 +2850,155 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             positive_row["min_pqq_redox_center_distance_to_active_site_atom"],
             2.8,
         )
+
+    def test_electron_flow_pqq_current_split_sidecar_readout_maps_direct_fields(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pqq_audit_path = root / "pqq_audit.json"
+            projection_path = root / "projection.json"
+            rows = [
+                {
+                    "entry_id": "m_csa:10",
+                    "tranche_role": "current_retained_oos",
+                    "source_free_pqq_redox_center_field_complete": True,
+                    "has_source_free_pqq_redox_center_contact": True,
+                    "source_free_pqq_redox_center_contact_count": 1,
+                    "field_status": "ok",
+                    "geometry_status": "ok",
+                    "coordinate_path": "artifacts/pdb_1AAA.cif",
+                    "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+                    "pqq_redox_center_atom_names": ["C4", "C5", "O4", "O5"],
+                },
+                {
+                    "entry_id": "m_csa:11",
+                    "tranche_role": "current_retained_oos",
+                    "source_free_pqq_redox_center_field_complete": True,
+                    "has_source_free_pqq_redox_center_contact": False,
+                    "source_free_pqq_redox_center_contact_count": 0,
+                    "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+                    "geometry_status": "ok",
+                    "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+                    "pqq_redox_center_atom_names": ["C4", "C5", "O4", "O5"],
+                },
+                {
+                    "entry_id": "m_csa:20",
+                    "tranche_role": "current_primary_retention_gate",
+                    "source_free_pqq_redox_center_field_complete": True,
+                    "has_source_free_pqq_redox_center_contact": False,
+                    "source_free_pqq_redox_center_contact_count": 0,
+                    "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+                    "geometry_status": "ok",
+                    "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+                    "pqq_redox_center_atom_names": ["C4", "C5", "O4", "O5"],
+                },
+                {
+                    "entry_id": "m_csa:30",
+                    "tranche_role": "current_primary_retention_gate",
+                    "source_free_pqq_redox_center_field_complete": True,
+                    "has_source_free_pqq_redox_center_contact": False,
+                    "source_free_pqq_redox_center_contact_count": 0,
+                    "field_status": "complete_negative_from_gap_cif_inventory",
+                    "geometry_status": "missing_geometry_row",
+                    "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+                    "pqq_redox_center_atom_names": ["C4", "C5", "O4", "O5"],
+                },
+            ]
+            pqq_audit_path.write_text(
+                json.dumps(
+                    {
+                        "measured_readout": {
+                            "smallest_source_free_smoke_tranche": {
+                                "rows": [rows[0], rows[2], rows[3]],
+                            },
+                            "full_retained_oos_current_split_tranche": {
+                                "rows": rows,
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            projection_path.write_text(
+                json.dumps(
+                    {
+                        "measured_readout": {
+                            "axis_repair_ceiling_rows": [
+                                {
+                                    "variant": "current_source_free_projected_subset",
+                                    "oos_abstain_recall": 0.5,
+                                },
+                                {
+                                    "variant": "current_plus_missing_electron_flow",
+                                    "oos_abstain_recall": 0.75,
+                                    "primary_retain_recall": 1.0,
+                                },
+                            ],
+                            "split_alignment_context": {
+                                "current_geometry_fold_calibration_oos_rows": 4,
+                                "current_geometry_fold_calibration_primary_rows": 2,
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout(
+                    pqq_primitive_axis_audit_path=pqq_audit_path,
+                    projection_readout_path=projection_path,
+                    artifact_id="test_pqq_current_split_sidecar",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_pqq_current_split_sidecar")
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_direct_pqq_sidecar_operating_point_signal",
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_complete_direct_electron_flow_rows"],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_positive_rows"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.25,
+        )
+        self.assertEqual(
+            readout["counts"]["projection_electron_flow_oos_recall_delta"],
+            0.25,
+        )
+        sidecar_row = readout["measured_readout"][
+            "full_retained_oos_current_split_tranche"
+        ]["sidecar_rows"][0]
+        self.assertTrue(
+            sidecar_row["row_specific_event_features"][
+                "has_electron_transfer_event"
+            ]
+        )
+        self.assertEqual(
+            sidecar_row["row_specific_event_features"][
+                "electron_transfer_count"
+            ],
+            1,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_pqq_fields_add_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,

@@ -189,6 +189,36 @@ class CliTests(unittest.TestCase):
         )
         self.assertIsNone(args.coordinate_cif)
 
+    def test_lever2_electron_flow_pqq_current_split_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-pqq-current-split-sidecar-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_current_split_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_primitive_axis_audit",
+            args.pqq_primitive_axis_audit,
+        )
+        self.assertIn(
+            "source_free_train_cal_projection_readout",
+            args.projection_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertEqual(
+            args.geometry_features,
+            "artifacts/v3_geometry_features_1025.json",
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

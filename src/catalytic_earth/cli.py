@@ -55,6 +55,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
@@ -13859,6 +13860,37 @@ def cmd_build_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
         "full PQQ-redox primary/OOS positives: "
         f"{counts.get('full_pqq_redox_center_primary_positive_rows')}/"
         f"{counts.get('full_pqq_redox_center_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout(
+            pqq_primitive_axis_audit_path=Path(args.pqq_primitive_axis_audit),
+            projection_readout_path=Path(args.projection_readout),
+            train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+            geometry_features_path=Path(args.geometry_features),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow PQQ current-split "
+        f"sidecar readout to {args.out} (complete rows: "
+        f"{counts.get('full_current_split_complete_direct_electron_flow_rows')}/"
+        f"{counts.get('full_current_split_sidecar_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('full_current_split_primary_positive_rows')}/"
+        f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -33079,6 +33111,65 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_electron_flow_pqq_primitive_axis_audit.set_defaults(
         func=cmd_build_lever2_source_free_electron_flow_pqq_primitive_axis_audit
+    )
+
+    lever2_electron_flow_pqq_current_split_sidecar_readout = (
+        subparsers.add_parser(
+            "build-lever2-source-free-electron-flow-pqq-current-split-sidecar-readout",
+            help=(
+                "materialize a research-only PQQ redox-center current-split "
+                "sidecar view and measure its fixed operating-point value"
+            ),
+        )
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--pqq-primitive-axis-audit",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_primitive_axis_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_current_split_"
+            "sidecar_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_pqq_current_split_"
+            "sidecar_readout_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout
+        )
     )
 
     lever2_axis_acquisition_ranking_readout = subparsers.add_parser(

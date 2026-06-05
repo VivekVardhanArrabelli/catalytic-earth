@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T04:31:57Z`
-- STARTED_AT_LOCAL: `2026-06-04T23:31:57-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T05:27:38Z`
-- ENDED_AT_LOCAL: `2026-06-05T00:27:38-0500 CDT`
-- ELAPSED_MINUTES: `55.68`
+- STARTED_AT_UTC: `2026-06-05T05:34:30Z`
+- STARTED_AT_LOCAL: `2026-06-05T00:34:30-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T06:29:33Z`
+- ENDED_AT_LOCAL: `2026-06-05T01:29:33-0500 CDT`
+- ELAPSED_MINUTES: `55.05`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,145 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 16
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T05:34:30Z`
+- STARTED_LOCAL: `2026-06-05T00:34:30-0500 CDT`
+- ENDED_AT: `2026-06-05T06:29:33Z`
+- ENDED_LOCAL: `2026-06-05T01:29:33-0500 CDT`
+- ELAPSED_MINUTES: `55.05`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the prior direct PQQ redox-center candidate and test whether it can
+be materialized as a source-free current-split sidecar with measurable
+operating-point value beyond the current geometry/fold surface.
+
+#### Work log
+
+- Continued in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from the active Lever 3 worktree.
+- Fetched `origin` and rebased `lever-2-research-track` onto current
+  `origin/main` without conflicts. This rewrote the local branch relative to
+  the previous pushed Lever 2 history, so the implementation push needs
+  `--force-with-lease`.
+- Added
+  `build-lever2-source-free-electron-flow-pqq-current-split-sidecar-readout`.
+  The readout consumes the PQQ primitive-axis audit, maps complete PQQ
+  redox-center contact rows to direct electron-flow fields
+  `has_electron_transfer_event` and `electron_transfer_count`, and evaluates a
+  fixed binary OR gate on the 34 current primary rows plus 40 current-retained
+  OOS rows.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout_current702_20260604.json`
+  and
+  `work/lever2_source_free_electron_flow_pqq_current_split_sidecar_readout_current702_20260604.md`.
+- Added a projection-row scout inside the same readout to test whether the
+  narrow PQQ primitive can reproduce the prior train/cal model-style
+  electron-flow projection ceiling on the existing 43 train/cal feature-sidecar
+  rows. The non-`ok` `m_csa:318` projection row is closed as a complete
+  source-free PQQ-negative row using committed geometry ligand inventory
+  (`ATP`, `MG`, `GLU`) with no PQQ.
+- Kept the run open through a 55.05-minute wall-clock block before final
+  handoff/commit/push wrap-up.
+
+#### Measured results
+
+- PQQ current-split sidecar readout status:
+  `lever2_source_free_electron_flow_pqq_current_split_sidecar_readout_research_only_direct_pqq_sidecar_operating_point_signal`.
+  Result class: `research_only_direct_pqq_sidecar_operating_point_signal`.
+- Direct source-free current-split electron-flow rows are complete: 35/35 smoke
+  rows and 74/74 full current-split rows.
+- Fixed current-split operating point: 0/34 current primary positives and
+  1/40 current-retained OOS positive (`m_csa:104`), preserving primary retain
+  recall 1.0 and adding retained-OOS abstain recall 0.025. Relative to all 75
+  current geometry/fold calibration OOS rows, this is an incremental OOS recall
+  of 0.013333 and union-or-gate OOS recall 0.48.
+- Positive source-free evidence remains the atom-level PQQ redox-center contact
+  in committed local `artifacts/v3_foldseek_coordinates_1000/pdb_1C9U.cif`,
+  with PQQ contact count 1.
+- Projection-row scout: all 43 existing train/cal projection rows are now
+  materializable with the narrow PQQ primitive, but they are 0/43 PQQ-positive.
+  This means the narrow PQQ primitive can support the fixed current-split gate,
+  but it would not reproduce the prior train/cal electron-flow projection
+  ceiling by itself.
+- Classification: measured direct source-free PQQ current-split sidecar signal
+  exists and adds primary-safe operating-point value beyond the current
+  geometry/fold retained surface, but remains research-only. It is not
+  deployable because the PQQ/quinone redox-center primitive contract is still
+  unapproved/unimported, and the train/cal projection-row scout shows no
+  positive PQQ train/cal signal.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever 3
+  files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  or provenance were used as predictive features. Entry IDs and coordinate
+  paths were used only for tranche accounting, source-artifact lookup, and
+  missing-evidence accounting.
+- The new readout uses fixed PQQ ligand atom names, fixed atom-contact cutoff,
+  committed geometry/CIF evidence, and train/cal-only row accounting; it
+  performs no downloads/provider calls and no threshold tuning.
+- `critical_violation_total=0`; `deployable_now=false`;
+  `candidate_direct_electron_flow_sidecar_materialized_by_this_artifact=true`;
+  `approved_direct_electron_flow_axis_materialized_by_this_artifact=false`.
+
+#### Validation
+
+- Generated PQQ current-split sidecar readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-pqq-current-split-sidecar-readout`.
+- Focused parser/builder/artifact tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_pqq_current_split_sidecar_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_pqq_current_split_sidecar_readout_maps_direct_fields tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_pqq_current_split_sidecar_readout_current_counts -q`:
+  3 passed.
+- Broader touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  455 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1532 passed, 212 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1487 tests OK, with
+  the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3581 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact regeneration comparison passed after normalizing `created_utc`.
+- New artifact guardrail/source-record audit passed: 0 guardrail violations and
+  all source records present.
+- `git diff --check`: passed.
+- Disk remained above the guardrail at about 14 GiB free.
+
+#### Commit/push status
+
+- Pending during this handoff edit. Expected sequence: implementation/readout
+  commit, `--force-with-lease` push after the rebase, final handoff-only sync
+  commit, push, then fetch verification.
+
+#### Exact next action
+
+- If the PQQ/quinone redox-center contract is approved, promote it only as a
+  narrow fixed current-split operating-point gate candidate first: it is
+  measured source-free and primary-safe, but sparse (1/40 current-retained OOS).
+  Do not expect it to reproduce the prior model-style train/cal electron-flow
+  projection ceiling because the 43 projection rows are complete but
+  PQQ-negative. The next electron-flow experiment should therefore be an
+  atom-level donor/acceptor contact primitive that separates electron-flow
+  topology from generic cofactor/redox-center contact.
 
 ### 2026-06-04 Lever 2 Research Run 15
 

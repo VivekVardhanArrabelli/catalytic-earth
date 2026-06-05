@@ -47,6 +47,10 @@ DEFAULT_ELECTRON_FLOW_PQQ_PRIMITIVE_AXIS_AUDIT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_pqq_primitive_axis_audit_"
     "current702_20260604"
 )
+DEFAULT_ELECTRON_FLOW_PQQ_CURRENT_SPLIT_SIDECAR_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout_"
+    "current702_20260604"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -5582,6 +5586,887 @@ def write_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_pqq_primitive_axis_audit_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _pqq_current_split_sidecar_rows(
+    pqq_tranche: dict[str, Any],
+) -> list[dict[str, Any]]:
+    sidecar_rows: list[dict[str, Any]] = []
+    for row in pqq_tranche.get("rows") or []:
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        complete = bool(row.get("source_free_pqq_redox_center_field_complete"))
+        contact_count = (
+            int(row.get("source_free_pqq_redox_center_contact_count") or 0)
+            if complete
+            else None
+        )
+        contact_positive = bool(
+            complete and row.get("has_source_free_pqq_redox_center_contact")
+        )
+        sidecar_rows.append(
+            {
+                "entry_id": str(row["entry_id"]),
+                "assigned_embedding_split": "calibration",
+                "current_split_role": row.get("tranche_role"),
+                "source_free_electron_flow_field_complete": complete,
+                "row_specific_event_features": {
+                    "has_electron_transfer_event": (
+                        contact_positive if complete else None
+                    ),
+                    "electron_transfer_count": contact_count,
+                    "has_source_free_pqq_redox_center_contact": (
+                        contact_positive if complete else None
+                    ),
+                    "source_free_pqq_redox_center_contact_count": (
+                        contact_count
+                    ),
+                },
+                "pqq_redox_center_evidence": {
+                    "field_status": row.get("field_status"),
+                    "geometry_status": row.get("geometry_status"),
+                    "coordinate_path": row.get("coordinate_path"),
+                    "pqq_redox_center_contact_cutoff_angstrom": row.get(
+                        "pqq_redox_center_contact_cutoff_angstrom"
+                    ),
+                    "pqq_redox_center_atom_names": row.get(
+                        "pqq_redox_center_atom_names", []
+                    ),
+                    "min_pqq_redox_center_distance_to_active_site_atom": row.get(
+                        "min_pqq_redox_center_distance_to_active_site_atom"
+                    ),
+                    "contact_count": contact_count,
+                    "missing_source_free_evidence": row.get(
+                        "missing_source_free_evidence", []
+                    ),
+                },
+                "feature_guardrails": {
+                    "mechanism_text_excluded_from_features": True,
+                    "ec_rhea_ids_excluded_from_features": True,
+                    "labels_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "accessions_excluded_from_features": True,
+                    "heldout_row": False,
+                    "fixed_atom_contact_cutoff_used": True,
+                },
+            }
+        )
+    return sidecar_rows
+
+
+def _pqq_sidecar_gate_readout(
+    sidecar_rows: list[dict[str, Any]],
+    *,
+    split_oos_rows: int | None = None,
+) -> dict[str, Any]:
+    primary_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("current_split_role") == "current_primary_retention_gate"
+    ]
+    retained_oos_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("current_split_role") == "current_retained_oos"
+    ]
+    complete_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("source_free_electron_flow_field_complete")
+    ]
+
+    def _positive(row: dict[str, Any]) -> bool:
+        features = row.get("row_specific_event_features") or {}
+        return bool(features.get("has_electron_transfer_event"))
+
+    primary_positive_rows = [row for row in primary_rows if _positive(row)]
+    retained_oos_positive_rows = [
+        row for row in retained_oos_rows if _positive(row)
+    ]
+    complete_now = len(complete_rows) == len(sidecar_rows)
+    primary_retain = _recall(
+        len(primary_rows) - len(primary_positive_rows), len(primary_rows)
+    )
+    retained_oos_recall = _recall(
+        len(retained_oos_positive_rows), len(retained_oos_rows)
+    )
+    baseline_current_abstained_oos_rows = None
+    union_oos_abstained_rows = None
+    union_oos_abstain_recall = None
+    incremental_oos_abstain_recall_vs_current_geometry_fold = None
+    if split_oos_rows is not None and split_oos_rows >= len(retained_oos_rows):
+        baseline_current_abstained_oos_rows = split_oos_rows - len(
+            retained_oos_rows
+        )
+        union_oos_abstained_rows = (
+            baseline_current_abstained_oos_rows
+            + len(retained_oos_positive_rows)
+        )
+        union_oos_abstain_recall = _recall(
+            union_oos_abstained_rows,
+            split_oos_rows,
+        )
+        incremental_oos_abstain_recall_vs_current_geometry_fold = _recall(
+            len(retained_oos_positive_rows),
+            split_oos_rows,
+        )
+    return {
+        "gate_id": "fixed_binary_pqq_redox_center_contact_or_current_surface",
+        "feature_fields": [
+            "has_electron_transfer_event",
+            "electron_transfer_count",
+            "has_source_free_pqq_redox_center_contact",
+            "source_free_pqq_redox_center_contact_count",
+        ],
+        "gate_rule": (
+            "At the current operating point, abstain a currently retained "
+            "OOS row when the complete source-free PQQ redox-center contact "
+            "field is positive; retain a primary row unless that same field "
+            "is positive. No threshold is selected or tuned by this readout."
+        ),
+        "rows": len(sidecar_rows),
+        "complete_rows": len(complete_rows),
+        "incomplete_rows": len(sidecar_rows) - len(complete_rows),
+        "primary_rows": len(primary_rows),
+        "retained_oos_rows": len(retained_oos_rows),
+        "primary_positive_rows": len(primary_positive_rows),
+        "retained_oos_positive_rows": len(retained_oos_positive_rows),
+        "primary_positive_entry_ids": _entry_ids(primary_positive_rows),
+        "retained_oos_positive_entry_ids": _entry_ids(
+            retained_oos_positive_rows
+        ),
+        "primary_retain_recall_if_abstain_positive": primary_retain,
+        "retained_oos_abstain_recall_if_abstain_positive": retained_oos_recall,
+        "operating_point_measurable_now": complete_now,
+        "preserves_primary_retention": bool(
+            complete_now and not primary_positive_rows and primary_rows
+        ),
+        "adds_incremental_oos_abstention": bool(
+            complete_now and retained_oos_positive_rows
+        ),
+        "current_geometry_fold_oos_rows": split_oos_rows,
+        "baseline_current_geometry_fold_abstained_oos_rows": (
+            baseline_current_abstained_oos_rows
+        ),
+        "union_or_gate_oos_abstained_rows": union_oos_abstained_rows,
+        "union_or_gate_oos_abstain_recall": union_oos_abstain_recall,
+        "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+            incremental_oos_abstain_recall_vs_current_geometry_fold
+        ),
+    }
+
+
+def _pqq_sidecar_projection_context(
+    projection_readout: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if projection_readout is None:
+        return {"available": False}
+    baseline = _variant_by_name(
+        projection_readout, "current_source_free_projected_subset"
+    )
+    electron_flow = _variant_by_name(
+        projection_readout, "current_plus_missing_electron_flow"
+    )
+    split_context = (
+        (projection_readout.get("measured_readout") or {}).get(
+            "split_alignment_context"
+        )
+        or {}
+    )
+    delta = None
+    if baseline is not None and electron_flow is not None:
+        delta = round(
+            float(electron_flow.get("oos_abstain_recall") or 0.0)
+            - float(baseline.get("oos_abstain_recall") or 0.0),
+            6,
+        )
+    return {
+        "available": True,
+        "current_source_free_projected_subset": baseline,
+        "current_plus_missing_electron_flow": electron_flow,
+        "electron_flow_oos_abstain_recall_delta_vs_current_projected": delta,
+        "split_alignment_context": split_context,
+    }
+
+
+def _pqq_projection_rerun_readiness(
+    *,
+    train_cal_feature_sidecar_path: Path | None,
+    pqq_sidecar_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    if (
+        train_cal_feature_sidecar_path is None
+        or not Path(train_cal_feature_sidecar_path).exists()
+    ):
+        return {
+            "available": False,
+            "projection_rerun_ready_now": False,
+            "required_evidence": (
+                "existing train/cal feature sidecar plus direct PQQ/electron-flow "
+                "fields for every train and calibration row used by the projection"
+            ),
+        }
+    sidecar = _read_json(train_cal_feature_sidecar_path)
+    feature_rows = [
+        row
+        for row in sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    pqq_ids = {str(row.get("entry_id")) for row in pqq_sidecar_rows}
+    train_ids = sorted(
+        {
+            str(row["entry_id"])
+            for row in feature_rows
+            if row.get("assigned_embedding_split") == "train"
+        },
+        key=_entry_sort_key,
+    )
+    calibration_ids = sorted(
+        {
+            str(row["entry_id"])
+            for row in feature_rows
+            if row.get("assigned_embedding_split") == "calibration"
+        },
+        key=_entry_sort_key,
+    )
+    train_overlap = [entry_id for entry_id in train_ids if entry_id in pqq_ids]
+    calibration_overlap = [
+        entry_id for entry_id in calibration_ids if entry_id in pqq_ids
+    ]
+    missing_train = [entry_id for entry_id in train_ids if entry_id not in pqq_ids]
+    missing_calibration = [
+        entry_id for entry_id in calibration_ids if entry_id not in pqq_ids
+    ]
+    return {
+        "available": True,
+        "projection_rerun_ready_now": bool(
+            train_ids
+            and calibration_ids
+            and not missing_train
+            and not missing_calibration
+        ),
+        "existing_train_cal_feature_sidecar_rows": len(feature_rows),
+        "existing_train_rows": len(train_ids),
+        "existing_calibration_rows": len(calibration_ids),
+        "pqq_current_split_sidecar_rows": len(pqq_sidecar_rows),
+        "train_overlap_rows": len(train_overlap),
+        "calibration_overlap_rows": len(calibration_overlap),
+        "missing_train_rows": len(missing_train),
+        "missing_calibration_rows": len(missing_calibration),
+        "train_overlap_entry_ids": train_overlap,
+        "calibration_overlap_entry_ids": calibration_overlap,
+        "missing_train_entry_ids": missing_train,
+        "missing_calibration_entry_ids": missing_calibration,
+        "required_evidence": (
+            "direct source-free PQQ/electron-flow fields for every existing "
+            "train/cal feature-sidecar row before rerunning the model-style "
+            "source-free projection path"
+        ),
+    }
+
+
+def _pqq_projection_row_scout(
+    *,
+    train_cal_feature_sidecar_path: Path | None,
+    geometry_features_path: Path | None,
+) -> dict[str, Any]:
+    if (
+        train_cal_feature_sidecar_path is None
+        or geometry_features_path is None
+        or not Path(train_cal_feature_sidecar_path).exists()
+        or not Path(geometry_features_path).exists()
+    ):
+        return {
+            "available": False,
+            "projection_row_pqq_materialization_complete_now": False,
+            "required_evidence": (
+                "existing train/cal feature sidecar and geometry features for "
+                "the model-style projection rows"
+            ),
+        }
+    train_cal_sidecar = _read_json(train_cal_feature_sidecar_path)
+    geometry = _read_json(geometry_features_path)
+    geometry_by_entry = _geometry_feature_rows_by_entry(geometry)
+    rows: list[dict[str, Any]] = []
+    for source_row in train_cal_sidecar.get("feature_rows", []) or []:
+        if not isinstance(source_row, dict) or not source_row.get("entry_id"):
+            continue
+        entry_id = str(source_row["entry_id"])
+        split = str(source_row.get("assigned_embedding_split") or "unknown")
+        geometry_row = geometry_by_entry.get(entry_id)
+        coordinate_features = _source_free_coordinate_electron_flow_features(
+            entry_id=entry_id,
+            geometry_row=geometry_row,
+        )
+        gap_probe_by_entry: dict[str, dict[str, Any]] = {}
+        used_geometry_inventory_for_negative_closure = False
+        if (
+            geometry_row is not None
+            and not coordinate_features.get("source_free_coordinate_features_available")
+        ):
+            structure_ligand_codes = sorted(
+                {
+                    str(code).upper()
+                    for code in (
+                        (geometry_row.get("ligand_context") or {}).get(
+                            "structure_ligand_codes"
+                        )
+                        or []
+                    )
+                    if code
+                }
+            )
+            if structure_ligand_codes:
+                pqq_codes = sorted(
+                    set(structure_ligand_codes)
+                    & COORDINATE_QUINONE_REDOX_LIGAND_CODES
+                )
+                default_cif = _default_pdb_cif_path_for_geometry_row(geometry_row)
+                gap_probe_by_entry[entry_id] = {
+                    "entry_id": entry_id,
+                    "sidecar_available": True,
+                    "sidecar_status": "geometry_ligand_inventory",
+                    "coordinate_path": str(default_cif) if default_cif else None,
+                    "structure_ligand_codes": structure_ligand_codes,
+                    "structure_quinone_redox_ligand_codes": pqq_codes,
+                }
+                used_geometry_inventory_for_negative_closure = not bool(pqq_codes)
+        pqq_row = _pqq_primitive_axis_row(
+            proxy_row={
+                "entry_id": entry_id,
+                "tranche_role": f"projection_{split}",
+                "coordinate_evidence": coordinate_features,
+            },
+            geometry_row=geometry_row,
+            gap_probe_by_entry=gap_probe_by_entry,
+            coordinate_cif_paths={},
+        )
+        if (
+            used_geometry_inventory_for_negative_closure
+            and pqq_row.get("field_status")
+            == "complete_negative_from_gap_cif_inventory"
+        ):
+            pqq_row["field_status"] = (
+                "complete_negative_from_geometry_ligand_inventory"
+            )
+        pqq_row["assigned_embedding_split"] = split
+        rows.append(pqq_row)
+    complete_rows = [
+        row for row in rows if row["source_free_pqq_redox_center_field_complete"]
+    ]
+    positive_rows = [
+        row for row in rows if row["has_source_free_pqq_redox_center_contact"]
+    ]
+    incomplete_rows = [
+        row for row in rows if not row["source_free_pqq_redox_center_field_complete"]
+    ]
+    status_counts: dict[str, int] = {}
+    for row in rows:
+        status = str(row.get("field_status") or "unknown")
+        status_counts[status] = status_counts.get(status, 0) + 1
+    return {
+        "available": True,
+        "projection_row_pqq_materialization_complete_now": (
+            len(complete_rows) == len(rows)
+        ),
+        "projection_rows": len(rows),
+        "complete_rows": len(complete_rows),
+        "incomplete_rows": len(incomplete_rows),
+        "positive_rows": len(positive_rows),
+        "positive_entry_ids": _entry_ids(positive_rows),
+        "train_rows": sum(
+            1 for row in rows if row.get("assigned_embedding_split") == "train"
+        ),
+        "calibration_rows": sum(
+            1
+            for row in rows
+            if row.get("assigned_embedding_split") == "calibration"
+        ),
+        "train_complete_rows": sum(
+            1
+            for row in complete_rows
+            if row.get("assigned_embedding_split") == "train"
+        ),
+        "calibration_complete_rows": sum(
+            1
+            for row in complete_rows
+            if row.get("assigned_embedding_split") == "calibration"
+        ),
+        "field_status_counts": dict(sorted(status_counts.items())),
+        "incomplete_rows_detail": [
+            {
+                "entry_id": row["entry_id"],
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "field_status": row.get("field_status"),
+                "missing_source_free_evidence": row.get(
+                    "missing_source_free_evidence", []
+                ),
+            }
+            for row in incomplete_rows
+        ],
+        "interpretation": (
+            (
+                "The same PQQ primitive is fully materialized for the existing "
+                "projection rows, but those rows carry no positive PQQ "
+                "redox-center contact signal."
+            )
+            if rows and len(complete_rows) == len(rows) and not positive_rows
+            else (
+                "The same PQQ primitive is nearly materializable for the existing "
+                "projection rows, but the complete rows carry no positive PQQ "
+                "redox-center contact signal."
+                if rows and not positive_rows
+                else "Projection-row PQQ scout measured candidate positives."
+            )
+        ),
+    }
+
+
+def build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout(
+    *,
+    pqq_primitive_axis_audit_path: Path,
+    projection_readout_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    geometry_features_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_PQQ_CURRENT_SPLIT_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    pqq_audit = _read_json(pqq_primitive_axis_audit_path)
+    projection = (
+        _read_json(projection_readout_path)
+        if projection_readout_path is not None
+        and Path(projection_readout_path).exists()
+        else None
+    )
+    projection_context = _pqq_sidecar_projection_context(projection)
+    split_context = projection_context.get("split_alignment_context") or {}
+    split_oos_rows = (
+        int(split_context["current_geometry_fold_calibration_oos_rows"])
+        if split_context.get("current_geometry_fold_calibration_oos_rows")
+        is not None
+        else None
+    )
+    measured = pqq_audit.get("measured_readout") or {}
+    smoke = measured.get("smallest_source_free_smoke_tranche") or {}
+    full = measured.get("full_retained_oos_current_split_tranche") or {}
+    smoke_sidecar_rows = _pqq_current_split_sidecar_rows(smoke)
+    full_sidecar_rows = _pqq_current_split_sidecar_rows(full)
+    smoke_gate = _pqq_sidecar_gate_readout(smoke_sidecar_rows)
+    full_gate = _pqq_sidecar_gate_readout(
+        full_sidecar_rows,
+        split_oos_rows=split_oos_rows,
+    )
+    projection_rerun_readiness = _pqq_projection_rerun_readiness(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        pqq_sidecar_rows=full_sidecar_rows,
+    )
+    projection_row_scout = _pqq_projection_row_scout(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        geometry_features_path=geometry_features_path,
+    )
+    sidecar_complete = bool(
+        full_gate["rows"] and full_gate["complete_rows"] == full_gate["rows"]
+    )
+    measured_positive = bool(
+        full_gate["operating_point_measurable_now"]
+        and full_gate["preserves_primary_retention"]
+        and full_gate["adds_incremental_oos_abstention"]
+    )
+    result_class = (
+        "research_only_direct_pqq_sidecar_operating_point_signal"
+        if measured_positive
+        else "research_only_direct_pqq_sidecar_incomplete_or_negative"
+    )
+    status = (
+        "lever2_source_free_electron_flow_pqq_current_split_sidecar_readout_"
+        f"{result_class}"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_pqq_current_split_"
+            "sidecar_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined operating-point readout for a "
+            "research-only source-free PQQ/quinone redox-center current-split "
+            "sidecar. It maps the prior atom-level PQQ redox-center contact "
+            "audit into direct electron-flow fields for the 34 current "
+            "primary rows and 40 current-retained OOS rows, then evaluates a "
+            "fixed binary OR gate beyond the current geometry/fold surface. "
+            "It does not train, tune thresholds, read heldout, or promote a "
+            "registry/import contract."
+        ),
+        "measured_readout": {
+            "projection_context": projection_context,
+            "candidate_sidecar_contract": {
+                "axis_id": "source_free_pqq_redox_center_contact",
+                "mapped_direct_electron_flow_fields": [
+                    "has_electron_transfer_event",
+                    "electron_transfer_count",
+                ],
+                "supporting_pqq_fields": [
+                    "has_source_free_pqq_redox_center_contact",
+                    "source_free_pqq_redox_center_contact_count",
+                ],
+                "source_contract_status": "research_only_unapproved_primitive_axis",
+                "field_mapping_note": (
+                    "A complete PQQ redox-center contact row maps to "
+                    "has_electron_transfer_event=true and "
+                    "electron_transfer_count equal to the contact-instance "
+                    "count. Complete negatives map to false/0."
+                ),
+            },
+            "smallest_source_free_smoke_tranche": {
+                "sidecar_rows": smoke_sidecar_rows,
+                "fixed_gate_readout": smoke_gate,
+            },
+            "full_retained_oos_current_split_tranche": {
+                "sidecar_rows": full_sidecar_rows,
+                "fixed_gate_readout": full_gate,
+            },
+            "projection_model_rerun_readiness": projection_rerun_readiness,
+            "projection_model_pqq_row_scout": projection_row_scout,
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "smoke_sidecar_rows": smoke_gate["rows"],
+            "smoke_complete_direct_electron_flow_rows": smoke_gate[
+                "complete_rows"
+            ],
+            "smoke_primary_positive_rows": smoke_gate[
+                "primary_positive_rows"
+            ],
+            "smoke_retained_oos_positive_rows": smoke_gate[
+                "retained_oos_positive_rows"
+            ],
+            "full_current_split_sidecar_rows": full_gate["rows"],
+            "full_current_split_complete_direct_electron_flow_rows": (
+                full_gate["complete_rows"]
+            ),
+            "full_current_split_incomplete_direct_electron_flow_rows": (
+                full_gate["incomplete_rows"]
+            ),
+            "full_current_split_primary_rows": full_gate["primary_rows"],
+            "full_current_split_retained_oos_rows": full_gate[
+                "retained_oos_rows"
+            ],
+            "full_current_split_primary_positive_rows": full_gate[
+                "primary_positive_rows"
+            ],
+            "full_current_split_retained_oos_positive_rows": full_gate[
+                "retained_oos_positive_rows"
+            ],
+            "full_current_split_primary_retain_recall": full_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "full_current_split_retained_oos_abstain_recall": full_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "current_geometry_fold_oos_rows": full_gate[
+                "current_geometry_fold_oos_rows"
+            ],
+            "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "union_or_gate_oos_abstain_recall": full_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "projection_electron_flow_oos_recall_delta": projection_context.get(
+                "electron_flow_oos_abstain_recall_delta_vs_current_projected"
+            ),
+            "projection_rerun_train_overlap_rows": (
+                projection_rerun_readiness.get("train_overlap_rows")
+            ),
+            "projection_rerun_calibration_overlap_rows": (
+                projection_rerun_readiness.get("calibration_overlap_rows")
+            ),
+            "projection_rerun_missing_train_rows": (
+                projection_rerun_readiness.get("missing_train_rows")
+            ),
+            "projection_rerun_missing_calibration_rows": (
+                projection_rerun_readiness.get("missing_calibration_rows")
+            ),
+            "projection_row_scout_rows": projection_row_scout.get(
+                "projection_rows"
+            ),
+            "projection_row_scout_complete_rows": projection_row_scout.get(
+                "complete_rows"
+            ),
+            "projection_row_scout_incomplete_rows": projection_row_scout.get(
+                "incomplete_rows"
+            ),
+            "projection_row_scout_positive_rows": projection_row_scout.get(
+                "positive_rows"
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "current_split_direct_electron_flow_sidecar_complete": sidecar_complete,
+            "direct_source_free_pqq_fields_preserve_primary_retention": (
+                full_gate["preserves_primary_retention"]
+            ),
+            "direct_source_free_pqq_fields_add_current_retained_oos_abstention": (
+                full_gate["adds_incremental_oos_abstention"]
+            ),
+            "direct_source_free_pqq_fields_add_operating_point_value_beyond_current_geometry_fold": (
+                measured_positive
+            ),
+            "maps_to_direct_electron_flow_fields": True,
+            "source_free_pqq_redox_center_contract_approved": False,
+            "model_style_projection_rerun_ready_now": (
+                projection_row_scout.get(
+                    "projection_row_pqq_materialization_complete_now",
+                    False,
+                )
+            ),
+            "pqq_projection_rows_have_positive_train_cal_signal": bool(
+                projection_row_scout.get("positive_rows")
+            ),
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "candidate_direct_electron_flow_sidecar_materialized_by_this_artifact": (
+                True
+            ),
+            "deployable_now": False,
+            "research_only": True,
+            "negative": False,
+            "apply_or_promote_now": False,
+            "remaining_deployability_gap": (
+                "The PQQ/quinone redox-center contact contract is measured and "
+                "source-free on the current split, but it remains unapproved "
+                "as a primitive electron-flow axis and has not been imported "
+                "through the normal source-free feature materialization path."
+            ),
+            "smallest_next_experiment": (
+                "Approve this narrow PQQ/quinone redox-center primitive only "
+                "for the fixed current-split operating-point gate; the existing "
+                "43 projection rows are complete but PQQ-negative, so this "
+                "narrow primitive would not reproduce the train/cal "
+                "electron-flow projection ceiling. Otherwise run an atom-level "
+                "donor/acceptor contact primitive that separates electron-flow "
+                "topology from generic cofactor contact."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_this_artifact": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "pqq_primitive_axis_audit": _source_path_record(
+                pqq_primitive_axis_audit_path
+            ),
+            "projection_readout": (
+                _source_path_record(projection_readout_path)
+                if projection_readout_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "geometry_features": (
+                _source_path_record(geometry_features_path)
+                if geometry_features_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Direct source-free PQQ redox-center fields are complete on "
+                f"{full_gate['complete_rows']}/{full_gate['rows']} current-split "
+                "rows, preserve all current primary rows, and catch "
+                f"{full_gate['retained_oos_positive_rows']}/"
+                f"{full_gate['retained_oos_rows']} current-retained OOS rows."
+                if measured_positive
+                else (
+                    "The PQQ current-split sidecar does not yet provide a "
+                    "complete primary-safe incremental OOS signal."
+                )
+            ),
+            "next_action": (
+                "Resolve the primitive-axis contract: approve the PQQ/quinone "
+                "redox-center field for normal source-free materialization, or "
+                "test the smallest donor/acceptor contact primitive next."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_pqq_current_split_sidecar_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    smoke_gate = measured["smallest_source_free_smoke_tranche"][
+        "fixed_gate_readout"
+    ]
+    full_gate = measured["full_retained_oos_current_split_tranche"][
+        "fixed_gate_readout"
+    ]
+    full_rows = measured["full_retained_oos_current_split_tranche"][
+        "sidecar_rows"
+    ]
+    positive_rows = [
+        row
+        for row in full_rows
+        if (
+            row.get("row_specific_event_features") or {}
+        ).get("has_electron_transfer_event")
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow PQQ Current-Split Sidecar Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Projection electron-flow OOS recall delta: "
+        f"{counts['projection_electron_flow_oos_recall_delta']}",
+        "- Full current-split direct rows complete: "
+        f"{counts['full_current_split_complete_direct_electron_flow_rows']}/"
+        f"{counts['full_current_split_sidecar_rows']}",
+        "- Full current-split positives primary/OOS: "
+        f"{counts['full_current_split_primary_positive_rows']}/"
+        f"{counts['full_current_split_retained_oos_positive_rows']}",
+        "- Primary retain recall: "
+        f"{counts['full_current_split_primary_retain_recall']}",
+        "- Retained-OOS abstain recall: "
+        f"{counts['full_current_split_retained_oos_abstain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold OOS: "
+        f"{counts['incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Current-split sidecar overlap missing train/calibration rows: "
+        f"{counts['projection_rerun_missing_train_rows']}/"
+        f"{counts['projection_rerun_missing_calibration_rows']}",
+        "- Projection-row PQQ scout complete/positive rows: "
+        f"{counts['projection_row_scout_complete_rows']}/"
+        f"{counts['projection_row_scout_positive_rows']}",
+        "",
+        "## Fixed Gate Readouts",
+        "",
+        "| tranche | rows complete | primary positives | retained-OOS positives | primary retain | retained-OOS recall |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+        f"| smoke | {smoke_gate['complete_rows']}/{smoke_gate['rows']} | "
+        f"{smoke_gate['primary_positive_rows']} | "
+        f"{smoke_gate['retained_oos_positive_rows']} | "
+        f"{smoke_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{smoke_gate['retained_oos_abstain_recall_if_abstain_positive']} |",
+        f"| full current split | {full_gate['complete_rows']}/{full_gate['rows']} | "
+        f"{full_gate['primary_positive_rows']} | "
+        f"{full_gate['retained_oos_positive_rows']} | "
+        f"{full_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{full_gate['retained_oos_abstain_recall_if_abstain_positive']} |",
+        "",
+        "## Positive Direct Sidecar Rows",
+        "",
+        "| row | role | contact count | coordinate path |",
+        "| --- | --- | ---: | --- |",
+    ]
+    if not positive_rows:
+        lines.append("| none | none | 0 | none |")
+    for row in positive_rows:
+        evidence = row["pqq_redox_center_evidence"]
+        features = row["row_specific_event_features"]
+        lines.append(
+            f"| {row['entry_id']} | {row['current_split_role']} | "
+            f"{features['electron_transfer_count']} | "
+            f"{evidence.get('coordinate_path') or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Current-split sidecar complete: "
+        f"{decision['current_split_direct_electron_flow_sidecar_complete']}",
+        "- Preserves primary retention: "
+        f"{decision['direct_source_free_pqq_fields_preserve_primary_retention']}",
+        "- Adds retained-OOS abstention: "
+        f"{decision['direct_source_free_pqq_fields_add_current_retained_oos_abstention']}",
+        "- Adds value beyond current geometry/fold: "
+        f"{decision['direct_source_free_pqq_fields_add_operating_point_value_beyond_current_geometry_fold']}",
+        "- Deployable now: False",
+        "- Model-style projection rerun ready now: "
+        f"{decision['model_style_projection_rerun_ready_now']}",
+        "- Projection rows have positive PQQ train/cal signal: "
+        f"{decision['pqq_projection_rows_have_positive_train_cal_signal']}",
+        f"- Remaining gap: {decision['remaining_deployability_gap']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout(
+    *,
+    pqq_primitive_axis_audit_path: Path,
+    out_path: Path,
+    projection_readout_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    geometry_features_path: Path | None = None,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_PQQ_CURRENT_SPLIT_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = (
+        build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout(
+            pqq_primitive_axis_audit_path=pqq_primitive_axis_audit_path,
+            projection_readout_path=projection_readout_path,
+            train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+            geometry_features_path=geometry_features_path,
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_pqq_current_split_sidecar_report(
                 readout
             ),
             encoding="utf-8",
