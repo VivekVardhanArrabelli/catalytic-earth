@@ -6,9 +6,9 @@
 - Branch: `lever-2-research-track`
 - STARTED_AT_UTC: `2026-06-05T08:38:48Z`
 - STARTED_AT_LOCAL: `2026-06-05T03:38:48-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T09:34:08Z`
-- ENDED_AT_LOCAL: `2026-06-05T04:34:08-0500 CDT`
-- ELAPSED_MINUTES: `55.33`
+- ENDED_AT_UTC: `2026-06-05T09:36:52Z`
+- ENDED_AT_LOCAL: `2026-06-05T04:36:52-0500 CDT`
+- ELAPSED_MINUTES: `58.07`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -23,9 +23,9 @@
 
 - STARTED_AT: `2026-06-05T08:38:48Z`
 - STARTED_LOCAL: `2026-06-05T03:38:48-0500 CDT`
-- ENDED_AT: `2026-06-05T09:34:08Z`
-- ENDED_LOCAL: `2026-06-05T04:34:08-0500 CDT`
-- ELAPSED_MINUTES: `55.33`
+- ENDED_AT: `2026-06-05T09:36:52Z`
+- ENDED_LOCAL: `2026-06-05T04:36:52-0500 CDT`
+- ELAPSED_MINUTES: `58.07`
 
 #### Intent
 
@@ -141,7 +141,7 @@ distance readout that can preserve the 34 current primary retention-gate rows.
 - `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
   2 passed.
 - `git diff --check`: passed.
-- Repo JSON/JSONL parse sweep passed: 3582 JSON files and 27 JSONL files parsed
+- Repo JSON/JSONL parse sweep passed: 3586 JSON files and 27 JSONL files parsed
   with 0 errors.
 - New artifact exact feature-key/source/regeneration audit passed for both
   relaxed non-PQQ and combined direct electron-flow artifacts after normalizing
