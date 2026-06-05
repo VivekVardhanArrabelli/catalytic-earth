@@ -6,9 +6,9 @@
 - Branch: `lever-2-research-track`
 - STARTED_AT_UTC: `2026-06-04T23:33:05Z`
 - STARTED_AT_LOCAL: `2026-06-04T18:33:05-0500 CDT`
-- ENDED_AT_UTC: `in_progress`
-- ENDED_AT_LOCAL: `in_progress`
-- ELAPSED_MINUTES: `in_progress`
+- ENDED_AT_UTC: `2026-06-05T00:28:35Z`
+- ENDED_AT_LOCAL: `2026-06-04T19:28:35-0500 CDT`
+- ELAPSED_MINUTES: `55.50`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -23,9 +23,9 @@
 
 - STARTED_AT: `2026-06-04T23:33:05Z`
 - STARTED_LOCAL: `2026-06-04T18:33:05-0500 CDT`
-- ENDED_AT: `in_progress`
-- ENDED_LOCAL: `in_progress`
-- ELAPSED_MINUTES: `in_progress`
+- ENDED_AT: `2026-06-05T00:28:35Z`
+- ENDED_LOCAL: `2026-06-04T19:28:35-0500 CDT`
+- ELAPSED_MINUTES: `55.50`
 
 #### Intent
 
@@ -159,7 +159,16 @@ null control rather than only another neighboring-signature exclusion.
 
 #### Commit/push status
 
-- Pending wrap-up commit and push.
+- Implementation/readout commit
+  `9af1748bc587c2c462c1d36a9df374adf5a39f35` was pushed to
+  `origin/lever-2-research-track` with `--force-with-lease` after rebasing the
+  dedicated branch onto current `origin/main`.
+- Verified after `git fetch origin lever-2-research-track` that local `HEAD`
+  matched `origin/lever-2-research-track` at
+  `9af1748bc587c2c462c1d36a9df374adf5a39f35`.
+- This final handoff verification update is committed and pushed as the
+  follow-up bookkeeping commit; the exact final branch hash is recorded in
+  automation memory and the final response.
 
 #### Exact next action
 
