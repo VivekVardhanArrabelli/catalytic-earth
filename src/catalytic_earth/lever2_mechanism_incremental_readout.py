@@ -83,6 +83,10 @@ DEFAULT_ELECTRON_FLOW_IRON_SULFUR_APPROVAL_QUALIFIED_UNION_READOUT_ARTIFACT_ID =
     "v3_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_"
     "union_readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_IRON_SULFUR_TINY_TRANCHE_APPROVAL_READINESS_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_"
+    "approval_readiness_readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -13415,6 +13419,1127 @@ def write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _records_by_entry(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    return {
+        str(row.get("entry_id")): row
+        for row in rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _read_optional_json(path: Path | None) -> dict[str, Any]:
+    if path is None or not Path(path).exists():
+        return {}
+    return _read_json(Path(path))
+
+
+def _tiny_tranche_missing_import_requirements(
+    *,
+    source_free_positive: bool,
+    in_distribution: bool,
+    minimal_bundle_ready: bool | None,
+    predictive_use_allowed: bool,
+    present_in_train_cal_feature_sidecar: bool,
+    accession_compatible_sequence_positions: bool | None = None,
+) -> list[str]:
+    missing: list[str] = []
+    if not source_free_positive:
+        missing.append("source_free_iron_sulfur_feature_positive")
+    if not in_distribution:
+        missing.append("nonheldout_in_distribution_partition")
+    if minimal_bundle_ready is not True:
+        missing.append("minimal_train_cal_feature_bundle_ready")
+    if accession_compatible_sequence_positions is False:
+        missing.append("accession_compatible_sequence_positions_true")
+    if not predictive_use_allowed:
+        missing.append("predictive_use_allowed_true")
+    if not present_in_train_cal_feature_sidecar:
+        missing.append("approved_train_cal_feature_sidecar_row")
+    return missing
+
+
+def _role_graph_sequence_position_accession_counts(
+    role_graph_row: dict[str, Any],
+) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for residue in role_graph_row.get("residues") or []:
+        if not isinstance(residue, dict):
+            continue
+        for position in residue.get("sequence_positions") or []:
+            if not isinstance(position, dict) or not position.get("uniprot_id"):
+                continue
+            accession = str(position["uniprot_id"])
+            counts[accession] = counts.get(accession, 0) + 1
+    return dict(sorted(counts.items()))
+
+
+def build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+    *,
+    iron_sulfur_projection_support_readout_path: Path,
+    approval_qualified_union_readout_path: Path,
+    iron_sulfur_locus_sidecar_path: Path,
+    train_cal_input_manifest_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    role_graph_sidecar_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_IRON_SULFUR_TINY_TRANCHE_APPROVAL_READINESS_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    iron_support = _read_json(iron_sulfur_projection_support_readout_path)
+    approval_union = _read_json(approval_qualified_union_readout_path)
+    locus_sidecar = _read_json(iron_sulfur_locus_sidecar_path)
+    train_cal_input_manifest = _read_optional_json(train_cal_input_manifest_path)
+    train_cal_feature_sidecar = _read_optional_json(train_cal_feature_sidecar_path)
+    role_graph_sidecar = _read_optional_json(role_graph_sidecar_path)
+
+    measured = iron_support.get("measured_readout") or {}
+    support_scan = measured.get("review_only_iron_sulfur_locus_support_scan") or {}
+    tiny = measured.get("tiny_iron_sulfur_projection_materialization_attempt") or {}
+    tiny_entry_ids = [
+        str(entry_id)
+        for entry_id in tiny.get("candidate_entry_ids")
+        or support_scan.get("smallest_noncurrent_projection_tranche_entry_ids")
+        or tiny.get("positive_entry_ids")
+        or []
+    ]
+    feature_rows_by_entry = _records_by_entry(tiny.get("feature_rows") or [])
+    locus_by_entry = _records_by_entry(locus_sidecar.get("rows") or [])
+    manifest_by_entry = _records_by_entry(
+        train_cal_input_manifest.get("row_records") or []
+    )
+    role_graph_by_entry = _records_by_entry(role_graph_sidecar.get("rows") or [])
+    train_cal_sidecar_entry_ids = {
+        str(row.get("entry_id"))
+        for row in train_cal_feature_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    candidate_rows: list[dict[str, Any]] = []
+    readiness_rows: list[dict[str, Any]] = []
+    for entry_id in tiny_entry_ids:
+        feature_row = feature_rows_by_entry.get(entry_id, {})
+        features = feature_row.get("row_specific_event_features") or {}
+        source_free_complete = bool(
+            feature_row.get("source_free_electron_flow_field_complete")
+        )
+        electron_count = _count_feature(
+            features,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count",
+        )
+        source_free_positive = bool(
+            source_free_complete
+            and features.get("has_electron_transfer_event")
+            and electron_count > 0
+        )
+        locus_row = locus_by_entry.get(entry_id, {})
+        manifest_row = manifest_by_entry.get(entry_id, {})
+        role_graph_row = role_graph_by_entry.get(entry_id, {})
+        split_assignment = (
+            locus_row.get("split_assignment")
+            or manifest_row.get("split_assignment")
+            or manifest_row.get("partition")
+        )
+        in_distribution = split_assignment == "in_distribution"
+        minimal_bundle_ready = manifest_row.get(
+            "minimal_train_cal_feature_bundle_ready"
+        )
+        if minimal_bundle_ready is not None:
+            minimal_bundle_ready = bool(minimal_bundle_ready)
+        accession_compatible = role_graph_row.get(
+            "accession_compatible_sequence_positions"
+        )
+        if accession_compatible is not None:
+            accession_compatible = bool(accession_compatible)
+        role_graph_accession_counts = _role_graph_sequence_position_accession_counts(
+            role_graph_row
+        )
+        predictive_use_allowed = bool(locus_row.get("predictive_use_allowed"))
+        present_in_sidecar = entry_id in train_cal_sidecar_entry_ids
+        missing_requirements = _tiny_tranche_missing_import_requirements(
+            source_free_positive=source_free_positive,
+            in_distribution=in_distribution,
+            minimal_bundle_ready=minimal_bundle_ready,
+            predictive_use_allowed=predictive_use_allowed,
+            present_in_train_cal_feature_sidecar=present_in_sidecar,
+            accession_compatible_sequence_positions=accession_compatible,
+        )
+        candidate_rows.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": feature_row.get(
+                    "assigned_embedding_split"
+                ),
+                "source_free_electron_flow_field_complete": source_free_complete,
+                "row_specific_event_features": {
+                    "has_electron_transfer_event": source_free_positive,
+                    "electron_transfer_count": electron_count
+                    if source_free_complete
+                    else None,
+                    "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": (
+                        source_free_positive
+                    ),
+                    "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": (
+                        electron_count if source_free_complete else None
+                    ),
+                },
+                "approval_readiness_evidence": {
+                    "split_assignment": split_assignment,
+                    "source_feature_status": locus_row.get("source_feature_status"),
+                    "sidecar_status": locus_row.get("sidecar_status"),
+                    "minimal_train_cal_feature_bundle_ready": (
+                        minimal_bundle_ready
+                    ),
+                    "role_graph_status": manifest_row.get("role_graph_status"),
+                    "role_graph_accession": role_graph_row.get("accession"),
+                    "role_graph_sequence_position_accession_counts": (
+                        role_graph_accession_counts
+                    ),
+                    "accession_compatible_sequence_positions": (
+                        accession_compatible
+                    ),
+                    "predictive_use_allowed_now": predictive_use_allowed,
+                    "present_in_current_train_cal_feature_sidecar": (
+                        present_in_sidecar
+                    ),
+                    "missing_import_requirements": missing_requirements,
+                    "source_free_positive_before_import": source_free_positive,
+                    "source_free_feature_evidence": feature_row.get(
+                        "relaxed_non_pqq_donor_acceptor_evidence"
+                    ),
+                },
+            }
+        )
+        readiness_rows.append(
+            {
+                "entry_id": entry_id,
+                "source_free_complete": source_free_complete,
+                "source_free_positive": source_free_positive,
+                "split_assignment": split_assignment,
+                "in_distribution": in_distribution,
+                "minimal_train_cal_feature_bundle_ready": minimal_bundle_ready,
+                "role_graph_status": manifest_row.get("role_graph_status"),
+                "role_graph_accession": role_graph_row.get("accession"),
+                "role_graph_sequence_position_accession_counts": (
+                    role_graph_accession_counts
+                ),
+                "accession_compatible_sequence_positions": accession_compatible,
+                "predictive_use_allowed_now": predictive_use_allowed,
+                "present_in_current_train_cal_feature_sidecar": present_in_sidecar,
+                "missing_import_requirements": missing_requirements,
+            }
+        )
+
+    def _materialization_readiness(
+        materialization: dict[str, Any],
+    ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+        materialization_entry_ids = [
+            str(entry_id)
+            for entry_id in materialization.get("candidate_entry_ids")
+            or materialization.get("positive_entry_ids")
+            or []
+        ]
+        materialization_rows_by_entry = _records_by_entry(
+            materialization.get("feature_rows") or []
+        )
+        materialized_candidate_rows: list[dict[str, Any]] = []
+        materialized_readiness_rows: list[dict[str, Any]] = []
+        for materialized_entry_id in materialization_entry_ids:
+            materialized_feature_row = materialization_rows_by_entry.get(
+                materialized_entry_id, {}
+            )
+            materialized_features = (
+                materialized_feature_row.get("row_specific_event_features") or {}
+            )
+            materialized_complete = bool(
+                materialized_feature_row.get(
+                    "source_free_electron_flow_field_complete"
+                )
+            )
+            materialized_count = _count_feature(
+                materialized_features,
+                "source_free_relaxed_non_pqq_donor_acceptor_contact_count",
+            )
+            materialized_positive = bool(
+                materialized_complete
+                and materialized_features.get("has_electron_transfer_event")
+                and materialized_count > 0
+            )
+            materialized_locus = locus_by_entry.get(materialized_entry_id, {})
+            materialized_manifest = manifest_by_entry.get(materialized_entry_id, {})
+            materialized_role_graph = role_graph_by_entry.get(
+                materialized_entry_id, {}
+            )
+            materialized_split = (
+                materialized_locus.get("split_assignment")
+                or materialized_manifest.get("split_assignment")
+                or materialized_manifest.get("partition")
+            )
+            materialized_in_distribution = materialized_split == "in_distribution"
+            materialized_bundle_ready = materialized_manifest.get(
+                "minimal_train_cal_feature_bundle_ready"
+            )
+            if materialized_bundle_ready is not None:
+                materialized_bundle_ready = bool(materialized_bundle_ready)
+            materialized_accession_compatible = materialized_role_graph.get(
+                "accession_compatible_sequence_positions"
+            )
+            if materialized_accession_compatible is not None:
+                materialized_accession_compatible = bool(
+                    materialized_accession_compatible
+                )
+            materialized_accession_counts = (
+                _role_graph_sequence_position_accession_counts(
+                    materialized_role_graph
+                )
+            )
+            materialized_predictive_allowed = bool(
+                materialized_locus.get("predictive_use_allowed")
+            )
+            materialized_present = materialized_entry_id in train_cal_sidecar_entry_ids
+            materialized_missing = _tiny_tranche_missing_import_requirements(
+                source_free_positive=materialized_positive,
+                in_distribution=materialized_in_distribution,
+                minimal_bundle_ready=materialized_bundle_ready,
+                predictive_use_allowed=materialized_predictive_allowed,
+                present_in_train_cal_feature_sidecar=materialized_present,
+                accession_compatible_sequence_positions=(
+                    materialized_accession_compatible
+                ),
+            )
+            materialized_candidate_rows.append(
+                {
+                    "entry_id": materialized_entry_id,
+                    "assigned_embedding_split": materialized_feature_row.get(
+                        "assigned_embedding_split"
+                    ),
+                    "source_free_electron_flow_field_complete": materialized_complete,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": materialized_positive,
+                        "electron_transfer_count": materialized_count
+                        if materialized_complete
+                        else None,
+                        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": (
+                            materialized_positive
+                        ),
+                        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": (
+                            materialized_count if materialized_complete else None
+                        ),
+                    },
+                    "approval_readiness_evidence": {
+                        "split_assignment": materialized_split,
+                        "source_feature_status": materialized_locus.get(
+                            "source_feature_status"
+                        ),
+                        "sidecar_status": materialized_locus.get("sidecar_status"),
+                        "minimal_train_cal_feature_bundle_ready": (
+                            materialized_bundle_ready
+                        ),
+                        "role_graph_status": materialized_manifest.get(
+                            "role_graph_status"
+                        ),
+                        "role_graph_accession": materialized_role_graph.get(
+                            "accession"
+                        ),
+                        "role_graph_sequence_position_accession_counts": (
+                            materialized_accession_counts
+                        ),
+                        "accession_compatible_sequence_positions": (
+                            materialized_accession_compatible
+                        ),
+                        "predictive_use_allowed_now": (
+                            materialized_predictive_allowed
+                        ),
+                        "present_in_current_train_cal_feature_sidecar": (
+                            materialized_present
+                        ),
+                        "missing_import_requirements": materialized_missing,
+                        "source_free_positive_before_import": (
+                            materialized_positive
+                        ),
+                        "source_free_feature_evidence": (
+                            materialized_feature_row.get(
+                                "relaxed_non_pqq_donor_acceptor_evidence"
+                            )
+                        ),
+                    },
+                }
+            )
+            materialized_readiness_rows.append(
+                {
+                    "entry_id": materialized_entry_id,
+                    "source_free_complete": materialized_complete,
+                    "source_free_positive": materialized_positive,
+                    "split_assignment": materialized_split,
+                    "in_distribution": materialized_in_distribution,
+                    "minimal_train_cal_feature_bundle_ready": (
+                        materialized_bundle_ready
+                    ),
+                    "role_graph_status": materialized_manifest.get(
+                        "role_graph_status"
+                    ),
+                    "role_graph_accession": materialized_role_graph.get(
+                        "accession"
+                    ),
+                    "role_graph_sequence_position_accession_counts": (
+                        materialized_accession_counts
+                    ),
+                    "accession_compatible_sequence_positions": (
+                        materialized_accession_compatible
+                    ),
+                    "predictive_use_allowed_now": materialized_predictive_allowed,
+                    "present_in_current_train_cal_feature_sidecar": (
+                        materialized_present
+                    ),
+                    "missing_import_requirements": materialized_missing,
+                }
+            )
+        return materialized_candidate_rows, materialized_readiness_rows
+
+    expanded = measured.get("expanded_iron_sulfur_projection_materialization_attempt") or {}
+    expanded_candidate_rows, expanded_readiness_rows = _materialization_readiness(
+        expanded
+    )
+    expanded_forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(
+        expanded_candidate_rows
+    )
+    expanded_source_free_positive_entry_ids = [
+        row["entry_id"]
+        for row in expanded_readiness_rows
+        if row["source_free_positive"]
+    ]
+    expanded_bundle_ready_entry_ids = [
+        row["entry_id"]
+        for row in expanded_readiness_rows
+        if (
+            row["source_free_positive"]
+            and row["in_distribution"]
+            and row["minimal_train_cal_feature_bundle_ready"] is True
+        )
+    ]
+    expanded_blocked_by_bundle_entry_ids = [
+        row["entry_id"]
+        for row in expanded_readiness_rows
+        if row["minimal_train_cal_feature_bundle_ready"] is not True
+    ]
+    expanded_blocked_only_by_predictive_gate_and_import_entry_ids = [
+        row["entry_id"]
+        for row in expanded_readiness_rows
+        if set(row["missing_import_requirements"])
+        == {"predictive_use_allowed_true", "approved_train_cal_feature_sidecar_row"}
+    ]
+
+    candidate_forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(
+        candidate_rows
+    )
+    source_free_positive_entry_ids = [
+        row["entry_id"] for row in readiness_rows if row["source_free_positive"]
+    ]
+    bundle_ready_entry_ids = [
+        row["entry_id"]
+        for row in readiness_rows
+        if (
+            row["source_free_positive"]
+            and row["in_distribution"]
+            and row["minimal_train_cal_feature_bundle_ready"] is True
+        )
+    ]
+    blocked_by_bundle_entry_ids = [
+        row["entry_id"]
+        for row in readiness_rows
+        if row["minimal_train_cal_feature_bundle_ready"] is not True
+    ]
+    blocked_only_by_predictive_gate_and_import_entry_ids = [
+        row["entry_id"]
+        for row in readiness_rows
+        if set(row["missing_import_requirements"])
+        == {"predictive_use_allowed_true", "approved_train_cal_feature_sidecar_row"}
+    ]
+
+    approval_counts = approval_union.get("counts") or {}
+    approval_decision = approval_union.get("decision") or {}
+    supported_now_oos = int(
+        approval_counts.get("supported_now_current_retained_oos_positive_rows")
+        or 0
+    )
+    approval_oos = int(
+        approval_counts.get("approval_qualified_current_retained_oos_positive_rows")
+        or 0
+    )
+    fe_s_incremental_rows = int(
+        approval_counts.get(
+            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+        )
+        or max(0, approval_oos - supported_now_oos)
+    )
+    approval_union_adds_value = bool(
+        approval_decision.get(
+            "approval_qualified_union_adds_operating_point_value_beyond_current_geometry_fold"
+        )
+        and approval_decision.get("approval_qualified_union_preserves_primary_retention")
+        and fe_s_incremental_rows > 0
+    )
+    approval_positive_entry_ids = {
+        str(entry_id)
+        for entry_id in approval_counts.get(
+            "approval_qualified_current_retained_oos_positive_entry_ids"
+        )
+        or []
+    }
+    candidate_rows_count = len(tiny_entry_ids)
+    expanded_candidate_rows_count = len(expanded_readiness_rows)
+    source_free_evidence_complete = bool(
+        candidate_rows_count
+        and len(source_free_positive_entry_ids) == candidate_rows_count
+        and not candidate_forbidden_feature_key_hits
+    )
+    expanded_source_free_evidence_complete = bool(
+        expanded_candidate_rows_count
+        and len(expanded_source_free_positive_entry_ids)
+        == expanded_candidate_rows_count
+        and not expanded_forbidden_feature_key_hits
+    )
+    bundle_ready_subset_available = bool(bundle_ready_entry_ids)
+    expanded_bundle_ready_subset_available = bool(expanded_bundle_ready_entry_ids)
+    all_bundle_ready = bool(
+        source_free_evidence_complete
+        and len(bundle_ready_entry_ids) == candidate_rows_count
+    )
+    consumable_now = bool(
+        candidate_rows_count
+        and all(not row["missing_import_requirements"] for row in readiness_rows)
+    )
+    result_class = (
+        "research_only_tiny_tranche_import_ready_and_consumable"
+        if consumable_now and approval_union_adds_value
+        else (
+            "research_only_tiny_tranche_source_free_ready_pending_predictive_gate"
+            if all_bundle_ready and approval_union_adds_value
+            else (
+                "research_only_tiny_tranche_source_free_positive_partial_bundle_ready_pending_predictive_gate"
+                if source_free_evidence_complete
+                and bundle_ready_subset_available
+                and approval_union_adds_value
+                else "research_only_tiny_tranche_incomplete_or_no_incremental_signal"
+            )
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_"
+        f"approval_readiness_readout_{result_class}"
+    )
+    missing_evidence = []
+    if not source_free_evidence_complete:
+        missing_evidence.append(
+            "complete source-free Fe-S/iron donor/acceptor feature rows for the tiny tranche"
+        )
+    if blocked_by_bundle_entry_ids:
+        missing_evidence.append(
+            "minimal train/cal feature-bundle readiness for "
+            + ", ".join(blocked_by_bundle_entry_ids)
+        )
+    if not consumable_now:
+        missing_evidence.append(
+            "predictive_use_allowed=true plus approved train/cal feature-sidecar rows"
+        )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_iron_sulfur_"
+            "tiny_tranche_approval_readiness_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 source-free Fe-S/iron tiny-tranche approval-readiness "
+            "readout. It consumes the measured Fe-S/iron projection-support "
+            "artifact, the approval-qualified union artifact, the review-only "
+            "iron-sulfur locus sidecar, and the train/cal input manifest to "
+            "measure whether the smallest source-free support tranche can make "
+            "the Fe-S/iron current-split OOS catch consumable. It does not "
+            "approve, import, tune, train, score heldout, edit registries, or "
+            "promote any feature."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": (
+                "source_free_iron_sulfur_or_iron_tiny_projection_support_"
+                "candidate_sidecar"
+            ),
+            "axis_id": "source_free_iron_sulfur_or_iron_donor_acceptor_distance_8A",
+            "contract_status": "research_only_approval_readiness_unimported",
+            "candidate_entry_ids": tiny_entry_ids,
+            "bundle_ready_source_free_positive_subset_entry_ids": (
+                bundle_ready_entry_ids
+            ),
+            "expanded_bundle_ready_source_free_positive_subset_entry_ids": (
+                expanded_bundle_ready_entry_ids
+            ),
+            "feature_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+                "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+            ],
+            "direct_electron_flow_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+            ],
+            "approval_condition_before_predictive_use": (
+                "Rows must be explicitly approved/imported into the train/cal "
+                "source-free feature sidecar with predictive_use_allowed=true "
+                "and a concrete train/cal split assignment. This readout only "
+                "measures readiness."
+            ),
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "candidate_feature_sidecar_rows": candidate_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "approval_readiness_evidence",
+            "split_assignment",
+            "role_graph_status",
+            "role_graph_accession",
+            "accession_compatible_sequence_positions",
+            "source_feature_status",
+            "sidecar_status",
+            "predictive_use_allowed",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "tiny_tranche_candidate_rows": readiness_rows,
+            "bundle_ready_source_free_positive_subset_entry_ids": (
+                bundle_ready_entry_ids
+            ),
+            "blocked_only_by_predictive_gate_and_import_entry_ids": (
+                blocked_only_by_predictive_gate_and_import_entry_ids
+            ),
+            "blocked_by_minimal_feature_bundle_entry_ids": (
+                blocked_by_bundle_entry_ids
+            ),
+            "expanded_tranche_candidate_rows": expanded_readiness_rows,
+            "expanded_bundle_ready_source_free_positive_subset_entry_ids": (
+                expanded_bundle_ready_entry_ids
+            ),
+            "expanded_blocked_only_by_predictive_gate_and_import_entry_ids": (
+                expanded_blocked_only_by_predictive_gate_and_import_entry_ids
+            ),
+            "expanded_blocked_by_minimal_feature_bundle_entry_ids": (
+                expanded_blocked_by_bundle_entry_ids
+            ),
+            "approval_qualified_union_summary": {
+                "supported_now_current_retained_oos_positive_rows": (
+                    supported_now_oos
+                ),
+                "supported_now_current_retained_oos_positive_entry_ids": (
+                    approval_counts.get(
+                        "supported_now_current_retained_oos_positive_entry_ids"
+                    )
+                    or []
+                ),
+                "approval_qualified_current_primary_positive_rows": (
+                    approval_counts.get(
+                        "approval_qualified_current_primary_positive_rows"
+                    )
+                ),
+                "approval_qualified_current_primary_retain_recall": (
+                    approval_counts.get(
+                        "approval_qualified_current_primary_retain_recall"
+                    )
+                ),
+                "approval_qualified_current_retained_oos_positive_rows": (
+                    approval_oos
+                ),
+                "approval_qualified_current_retained_oos_positive_entry_ids": (
+                    approval_counts.get(
+                        "approval_qualified_current_retained_oos_positive_entry_ids"
+                    )
+                    or []
+                ),
+                "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": (
+                    fe_s_incremental_rows
+                ),
+                "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad": (
+                    approval_counts.get(
+                        "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad"
+                    )
+                ),
+                "approval_qualified_union_adds_value_if_fe_s_approved": (
+                    approval_union_adds_value
+                ),
+            },
+            "forbidden_feature_key_hits": candidate_forbidden_feature_key_hits,
+            "expanded_forbidden_feature_key_hits": (
+                expanded_forbidden_feature_key_hits
+            ),
+            "missing_source_free_or_import_evidence": missing_evidence,
+        },
+        "counts": {
+            "critical_violation_total": len(candidate_forbidden_feature_key_hits),
+            "tiny_tranche_candidate_rows": candidate_rows_count,
+            "tiny_tranche_source_free_complete_rows": sum(
+                1 for row in readiness_rows if row["source_free_complete"]
+            ),
+            "tiny_tranche_source_free_positive_rows": len(
+                source_free_positive_entry_ids
+            ),
+            "tiny_tranche_source_free_positive_entry_ids": sorted(
+                source_free_positive_entry_ids,
+                key=_entry_sort_key,
+            ),
+            "tiny_tranche_in_distribution_rows": sum(
+                1 for row in readiness_rows if row["in_distribution"]
+            ),
+            "tiny_tranche_predictive_use_allowed_rows": sum(
+                1 for row in readiness_rows if row["predictive_use_allowed_now"]
+            ),
+            "tiny_tranche_present_in_current_train_cal_feature_sidecar_rows": sum(
+                1
+                for row in readiness_rows
+                if row["present_in_current_train_cal_feature_sidecar"]
+            ),
+            "tiny_tranche_minimal_train_cal_feature_bundle_ready_rows": len(
+                bundle_ready_entry_ids
+            ),
+            "tiny_tranche_minimal_train_cal_feature_bundle_ready_entry_ids": (
+                bundle_ready_entry_ids
+            ),
+            "tiny_tranche_accession_compatible_sequence_position_rows": sum(
+                1
+                for row in readiness_rows
+                if row.get("accession_compatible_sequence_positions") is True
+            ),
+            "tiny_tranche_accession_incompatible_sequence_position_entry_ids": [
+                row["entry_id"]
+                for row in readiness_rows
+                if row.get("accession_compatible_sequence_positions") is False
+            ],
+            "tiny_tranche_blocked_by_minimal_feature_bundle_rows": len(
+                blocked_by_bundle_entry_ids
+            ),
+            "tiny_tranche_blocked_by_minimal_feature_bundle_entry_ids": (
+                blocked_by_bundle_entry_ids
+            ),
+            "tiny_tranche_blocked_only_by_predictive_gate_and_import_rows": len(
+                blocked_only_by_predictive_gate_and_import_entry_ids
+            ),
+            "tiny_tranche_blocked_only_by_predictive_gate_and_import_entry_ids": (
+                blocked_only_by_predictive_gate_and_import_entry_ids
+            ),
+            "expanded_tranche_candidate_rows": expanded_candidate_rows_count,
+            "expanded_tranche_source_free_complete_rows": sum(
+                1 for row in expanded_readiness_rows if row["source_free_complete"]
+            ),
+            "expanded_tranche_source_free_positive_rows": len(
+                expanded_source_free_positive_entry_ids
+            ),
+            "expanded_tranche_source_free_positive_entry_ids": sorted(
+                expanded_source_free_positive_entry_ids,
+                key=_entry_sort_key,
+            ),
+            "expanded_tranche_in_distribution_rows": sum(
+                1 for row in expanded_readiness_rows if row["in_distribution"]
+            ),
+            "expanded_tranche_predictive_use_allowed_rows": sum(
+                1
+                for row in expanded_readiness_rows
+                if row["predictive_use_allowed_now"]
+            ),
+            "expanded_tranche_present_in_current_train_cal_feature_sidecar_rows": sum(
+                1
+                for row in expanded_readiness_rows
+                if row["present_in_current_train_cal_feature_sidecar"]
+            ),
+            "expanded_tranche_minimal_train_cal_feature_bundle_ready_rows": len(
+                expanded_bundle_ready_entry_ids
+            ),
+            "expanded_tranche_minimal_train_cal_feature_bundle_ready_entry_ids": (
+                expanded_bundle_ready_entry_ids
+            ),
+            "expanded_tranche_accession_compatible_sequence_position_rows": sum(
+                1
+                for row in expanded_readiness_rows
+                if row.get("accession_compatible_sequence_positions") is True
+            ),
+            "expanded_tranche_accession_incompatible_sequence_position_entry_ids": [
+                row["entry_id"]
+                for row in expanded_readiness_rows
+                if row.get("accession_compatible_sequence_positions") is False
+            ],
+            "expanded_tranche_blocked_by_minimal_feature_bundle_rows": len(
+                expanded_blocked_by_bundle_entry_ids
+            ),
+            "expanded_tranche_blocked_by_minimal_feature_bundle_entry_ids": (
+                expanded_blocked_by_bundle_entry_ids
+            ),
+            "expanded_tranche_blocked_only_by_predictive_gate_and_import_rows": len(
+                expanded_blocked_only_by_predictive_gate_and_import_entry_ids
+            ),
+            "expanded_tranche_blocked_only_by_predictive_gate_and_import_entry_ids": (
+                expanded_blocked_only_by_predictive_gate_and_import_entry_ids
+            ),
+            "supported_now_current_retained_oos_positive_rows": (
+                supported_now_oos
+            ),
+            "approval_qualified_current_retained_oos_positive_rows": (
+                approval_oos
+            ),
+            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": (
+                fe_s_incremental_rows
+            ),
+            "forbidden_row_feature_key_hits": len(
+                candidate_forbidden_feature_key_hits
+            ),
+            "expanded_forbidden_row_feature_key_hits": len(
+                expanded_forbidden_feature_key_hits
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "tiny_tranche_source_free_evidence_complete_and_positive": (
+                source_free_evidence_complete
+            ),
+            "tiny_tranche_all_rows_nonheldout_in_distribution": bool(
+                candidate_rows_count
+                and all(row["in_distribution"] for row in readiness_rows)
+            ),
+            "tiny_tranche_all_rows_minimal_train_cal_feature_bundle_ready": (
+                all_bundle_ready
+            ),
+            "bundle_ready_source_free_positive_subset_available": (
+                bundle_ready_subset_available
+            ),
+            "expanded_tranche_source_free_evidence_complete_and_positive": (
+                expanded_source_free_evidence_complete
+            ),
+            "expanded_bundle_ready_source_free_positive_subset_available": (
+                expanded_bundle_ready_subset_available
+            ),
+            "tiny_tranche_predictive_use_allowed_now": bool(
+                candidate_rows_count
+                and all(row["predictive_use_allowed_now"] for row in readiness_rows)
+            ),
+            "tiny_tranche_present_in_current_train_cal_feature_sidecar_now": bool(
+                candidate_rows_count
+                and all(
+                    row["present_in_current_train_cal_feature_sidecar"]
+                    for row in readiness_rows
+                )
+            ),
+            "approval_qualified_union_adds_value_if_fe_s_approved": (
+                approval_union_adds_value
+            ),
+            "m_csa119_can_join_supported_route_after_bundle_ready_subset_approval": (
+                approval_union_adds_value
+                and bundle_ready_subset_available
+                and "m_csa:119" in approval_positive_entry_ids
+            ),
+            "approval_readiness_blocked_only_by_predictive_gate_and_import": (
+                source_free_evidence_complete
+                and all_bundle_ready
+                and approval_union_adds_value
+                and not consumable_now
+            ),
+            "approval_readiness_has_minimal_feature_bundle_gap": bool(
+                blocked_by_bundle_entry_ids
+            ),
+            "train_cal_supported_now": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not (
+                source_free_evidence_complete and approval_union_adds_value
+            ),
+            "apply_or_promote_now": False,
+            "remaining_gap": (
+                "The tiny Fe-S/iron support tranche is source-free positive, "
+                "but it is not consumable now: no tiny support rows have "
+                "predictive_use_allowed=true or an approved train/cal feature "
+                "sidecar row, and the full three-row tranche has a minimal "
+                "train/cal feature-bundle readiness gap for "
+                f"{', '.join(blocked_by_bundle_entry_ids) or 'none'}. The "
+                "expanded non-current tranche provides a larger bundle-ready "
+                "source-free positive pool of "
+                f"{len(expanded_bundle_ready_entry_ids)} rows, but those rows "
+                "also remain unapproved and absent from the train/cal feature "
+                "sidecar."
+            ),
+            "smallest_next_experiment": (
+                "Approve/import the bundle-ready source-free Fe-S/iron support "
+                f"subset ({', '.join(bundle_ready_entry_ids) or 'none'}) with "
+                "predictive_use_allowed=true and explicit train/cal split "
+                "assignment, or first repair the minimal feature-bundle gap for "
+                f"{', '.join(blocked_by_bundle_entry_ids) or 'none'} to import "
+                "the original three-row tiny tranche. If a broader support "
+                "pool is required, use the expanded bundle-ready subset "
+                f"({', '.join(expanded_bundle_ready_entry_ids) or 'none'}). "
+                "Then rerun the fixed approval-qualified union without "
+                "threshold changes or heldout use."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "heldout_rows_excluded_from_support_scan": True,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_source_artifacts": True,
+            "candidate_feature_rows_imported_or_promoted": False,
+            "review_only_locus_sidecar_imported_or_promoted": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "iron_sulfur_projection_support_readout": _source_path_record(
+                iron_sulfur_projection_support_readout_path
+            ),
+            "approval_qualified_union_readout": _source_path_record(
+                approval_qualified_union_readout_path
+            ),
+            "iron_sulfur_locus_sidecar": _source_path_record(
+                iron_sulfur_locus_sidecar_path
+            ),
+            "train_cal_input_manifest": (
+                _source_path_record(train_cal_input_manifest_path)
+                if train_cal_input_manifest_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "role_graph_sidecar": (
+                _source_path_record(role_graph_sidecar_path)
+                if role_graph_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The tiny Fe-S/iron support tranche is source-free complete and "
+                "positive on 3/3 rows, and the approval-qualified union would "
+                "add m_csa:119 beyond the supported PQQ+NAD route while "
+                "preserving current primary retention. It still cannot be "
+                "counted as train/cal support now because predictive-use and "
+                "feature-sidecar approval are absent, with a full-tranche "
+                "bundle-readiness gap for m_csa:443. The expanded non-current "
+                "tranche offers an 8-row bundle-ready source-free positive "
+                "support pool."
+            )
+            if source_free_evidence_complete and approval_union_adds_value
+            else (
+                "The tiny Fe-S/iron tranche does not yet provide complete "
+                "source-free support evidence for the approval-qualified union."
+            ),
+            "next_action": (
+                "Use the bundle-ready source-free subset as the smallest "
+                "approval/import experiment, or repair m_csa:443 before "
+                "importing all three tiny-tranche rows; use the expanded "
+                "bundle-ready subset only if the approval contract requires "
+                "more support rows."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    union = readout["measured_readout"]["approval_qualified_union_summary"]
+    rows = readout["measured_readout"]["tiny_tranche_candidate_rows"]
+    expanded_rows = readout["measured_readout"]["expanded_tranche_candidate_rows"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Fe-S/Iron Tiny-Tranche Approval Readiness Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Tiny tranche source-free positives: "
+        f"{counts['tiny_tranche_source_free_positive_rows']}/"
+        f"{counts['tiny_tranche_candidate_rows']}",
+        "- Bundle-ready source-free positive rows: "
+        f"{counts['tiny_tranche_minimal_train_cal_feature_bundle_ready_rows']}/"
+        f"{counts['tiny_tranche_candidate_rows']}",
+        "- Accession-compatible role-graph rows: "
+        f"{counts['tiny_tranche_accession_compatible_sequence_position_rows']}/"
+        f"{counts['tiny_tranche_candidate_rows']}",
+        "- Expanded bundle-ready source-free positive rows: "
+        f"{counts['expanded_tranche_minimal_train_cal_feature_bundle_ready_rows']}/"
+        f"{counts['expanded_tranche_candidate_rows']}",
+        "- Predictive-use-allowed rows now: "
+        f"{counts['tiny_tranche_predictive_use_allowed_rows']}",
+        "- Rows already present in current train/cal feature sidecar: "
+        f"{counts['tiny_tranche_present_in_current_train_cal_feature_sidecar_rows']}",
+        "- Fe-S incremental current-retained OOS rows beyond PQQ+NAD: "
+        f"{counts['iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad']}",
+        "- Forbidden row-feature key hits: "
+        f"{counts['forbidden_row_feature_key_hits']}",
+        "",
+        "## Tiny Tranche",
+        "",
+        "| row | source-free positive | split | bundle ready | role graph | accession | accession position counts | accession-compatible | predictive use now | in current sidecar | missing import requirements |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    if not rows:
+        lines.append(
+            "| none | False | none | False | none | none | none | none | False | False | none |"
+        )
+    for row in rows:
+        accession_counts = (
+            row.get("role_graph_sequence_position_accession_counts") or {}
+        )
+        accession_count_text = (
+            ", ".join(f"{key}:{value}" for key, value in accession_counts.items())
+            or "none"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['source_free_positive']} | "
+            f"{row.get('split_assignment') or 'none'} | "
+            f"{row.get('minimal_train_cal_feature_bundle_ready')} | "
+            f"{row.get('role_graph_status') or 'none'} | "
+            f"{row.get('role_graph_accession') or 'none'} | "
+            f"{accession_count_text} | "
+            f"{row.get('accession_compatible_sequence_positions')} | "
+            f"{row.get('predictive_use_allowed_now')} | "
+            f"{row.get('present_in_current_train_cal_feature_sidecar')} | "
+            f"{', '.join(row.get('missing_import_requirements') or []) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Expanded Non-Current Tranche",
+        "",
+        "| rows | source-free positives | bundle-ready positives | blocked by bundle | blocked only by predictive gate/import |",
+        "| ---: | ---: | ---: | --- | --- |",
+        f"| {counts['expanded_tranche_candidate_rows']} | "
+        f"{counts['expanded_tranche_source_free_positive_rows']} | "
+        f"{counts['expanded_tranche_minimal_train_cal_feature_bundle_ready_rows']} | "
+        f"{', '.join(counts['expanded_tranche_blocked_by_minimal_feature_bundle_entry_ids']) or 'none'} | "
+        f"{', '.join(counts['expanded_tranche_blocked_only_by_predictive_gate_and_import_entry_ids']) or 'none'} |",
+        "",
+        "- Expanded bundle-ready entry IDs: "
+        f"{', '.join(counts['expanded_tranche_minimal_train_cal_feature_bundle_ready_entry_ids']) or 'none'}",
+        "- Expanded tranche row order: "
+        f"{', '.join(row['entry_id'] for row in expanded_rows) or 'none'}",
+        "",
+        "## Approval-Qualified Union Context",
+        "",
+        "- Supported-now current-retained OOS positives: "
+        f"{union['supported_now_current_retained_oos_positive_rows']}",
+        "- Approval-qualified current-retained OOS positives: "
+        f"{union['approval_qualified_current_retained_oos_positive_rows']}",
+        "- Approval-qualified current primary positives: "
+        f"{union['approval_qualified_current_primary_positive_rows']}",
+        "- Approval-qualified current primary retain recall: "
+        f"{union['approval_qualified_current_primary_retain_recall']}",
+        "- Fe-S incremental OOS recall beyond PQQ+NAD: "
+        f"{union['iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad']}",
+        "- Approval-qualified union adds value if Fe-S approved: "
+        f"{union['approval_qualified_union_adds_value_if_fe_s_approved']}",
+        "",
+        "## Decision",
+        "",
+        "- Tiny tranche source-free evidence complete and positive: "
+        f"{decision['tiny_tranche_source_free_evidence_complete_and_positive']}",
+        "- All rows minimal bundle ready: "
+        f"{decision['tiny_tranche_all_rows_minimal_train_cal_feature_bundle_ready']}",
+        "- Bundle-ready subset available: "
+        f"{decision['bundle_ready_source_free_positive_subset_available']}",
+        "- Expanded bundle-ready subset available: "
+        f"{decision['expanded_bundle_ready_source_free_positive_subset_available']}",
+        "- m_csa:119 can join after bundle-ready subset approval: "
+        f"{decision['m_csa119_can_join_supported_route_after_bundle_ready_subset_approval']}",
+        "- Predictive use allowed now: "
+        f"{decision['tiny_tranche_predictive_use_allowed_now']}",
+        "- Present in current train/cal sidecar now: "
+        f"{decision['tiny_tranche_present_in_current_train_cal_feature_sidecar_now']}",
+        "- Train/cal supported now: False",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+    *,
+    iron_sulfur_projection_support_readout_path: Path,
+    approval_qualified_union_readout_path: Path,
+    iron_sulfur_locus_sidecar_path: Path,
+    out_path: Path,
+    train_cal_input_manifest_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    role_graph_sidecar_path: Path | None = None,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_IRON_SULFUR_TINY_TRANCHE_APPROVAL_READINESS_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+        iron_sulfur_projection_support_readout_path=(
+            iron_sulfur_projection_support_readout_path
+        ),
+        approval_qualified_union_readout_path=approval_qualified_union_readout_path,
+        iron_sulfur_locus_sidecar_path=iron_sulfur_locus_sidecar_path,
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        role_graph_sidecar_path=role_graph_sidecar_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_report(
                 readout
             ),
             encoding="utf-8",

@@ -59,6 +59,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout,
     write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout,
+    write_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout,
     write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
@@ -14170,6 +14171,43 @@ def cmd_build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_un
         f"{counts.get('supported_now_current_retained_oos_positive_rows')}, "
         "approval-qualified OOS positives: "
         f"{counts.get('approval_qualified_current_retained_oos_positive_rows')}, "
+        "Fe-S incremental rows: "
+        f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+        iron_sulfur_projection_support_readout_path=Path(
+            args.iron_sulfur_projection_support_readout
+        ),
+        approval_qualified_union_readout_path=Path(
+            args.approval_qualified_union_readout
+        ),
+        iron_sulfur_locus_sidecar_path=Path(args.iron_sulfur_locus_sidecar),
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        role_graph_sidecar_path=Path(args.role_graph_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow Fe-S/iron tiny-tranche "
+        f"approval-readiness readout to {args.out} "
+        "source-free positives: "
+        f"{counts.get('tiny_tranche_source_free_positive_rows')}/"
+        f"{counts.get('tiny_tranche_candidate_rows')}, "
+        "bundle-ready rows: "
+        f"{counts.get('tiny_tranche_minimal_train_cal_feature_bundle_ready_rows')}, "
         "Fe-S incremental rows: "
         f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
         f"result: {readout.get('result_class')})"
@@ -33881,6 +33919,84 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_iron_sulfur_approval_qualified_union.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout
+        )
+    )
+
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-iron-sulfur-"
+                "tiny-tranche-approval-readiness-readout"
+            ),
+            help=(
+                "measure whether the tiny Fe-S/iron source-free support "
+                "tranche is ready for train/cal feature-sidecar approval"
+            ),
+        )
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--iron-sulfur-projection-support-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "projection_support_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--approval-qualified-union-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--iron-sulfur-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "tiny_tranche_approval_readiness_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_"
+            "approval_readiness_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout
         )
     )
 

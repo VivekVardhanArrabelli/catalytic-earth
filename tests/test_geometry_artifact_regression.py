@@ -20148,6 +20148,191 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]["exists"]
         )
 
+    def test_lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_"
+                "approval_readiness_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_"
+                "approval_readiness_readout_research_only_tiny_tranche_"
+                "source_free_positive_partial_bundle_ready_pending_predictive_gate"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_tiny_tranche_source_free_positive_partial_bundle_ready_pending_predictive_gate",
+        )
+        self.assertEqual(readout["counts"]["tiny_tranche_candidate_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["tiny_tranche_source_free_complete_rows"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["tiny_tranche_source_free_positive_rows"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["tiny_tranche_source_free_positive_entry_ids"],
+            ["m_csa:127", "m_csa:281", "m_csa:443"],
+        )
+        self.assertEqual(readout["counts"]["tiny_tranche_in_distribution_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["tiny_tranche_predictive_use_allowed_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_present_in_current_train_cal_feature_sidecar_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_minimal_train_cal_feature_bundle_ready_entry_ids"
+            ],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_accession_compatible_sequence_position_rows"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_accession_incompatible_sequence_position_entry_ids"
+            ],
+            ["m_csa:443"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_blocked_by_minimal_feature_bundle_entry_ids"
+            ],
+            ["m_csa:443"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_blocked_only_by_predictive_gate_and_import_entry_ids"
+            ],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(readout["counts"]["expanded_tranche_candidate_rows"], 12)
+        self.assertEqual(
+            readout["counts"]["expanded_tranche_source_free_positive_rows"],
+            12,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "expanded_tranche_minimal_train_cal_feature_bundle_ready_rows"
+            ],
+            8,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "expanded_tranche_minimal_train_cal_feature_bundle_ready_entry_ids"
+            ],
+            [
+                "m_csa:127",
+                "m_csa:281",
+                "m_csa:130",
+                "m_csa:398",
+                "m_csa:358",
+                "m_csa:108",
+                "m_csa:562",
+                "m_csa:276",
+            ],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "expanded_tranche_blocked_by_minimal_feature_bundle_entry_ids"
+            ],
+            ["m_csa:443", "m_csa:208", "m_csa:123", "m_csa:212"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "expanded_tranche_accession_compatible_sequence_position_rows"
+            ],
+            8,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "expanded_tranche_accession_incompatible_sequence_position_entry_ids"
+            ],
+            ["m_csa:443", "m_csa:208", "m_csa:123", "m_csa:212"],
+        )
+        self.assertEqual(
+            readout["counts"]["supported_now_current_retained_oos_positive_rows"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_current_retained_oos_positive_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+            ],
+            1,
+        )
+        self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
+        rows = readout["measured_readout"]["tiny_tranche_candidate_rows"]
+        self.assertEqual(
+            [row["entry_id"] for row in rows],
+            ["m_csa:443", "m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            rows[0]["role_graph_status"],
+            "missing_accession_compatible_sequence_positions",
+        )
+        self.assertFalse(rows[0]["accession_compatible_sequence_positions"])
+        self.assertEqual(rows[0]["role_graph_accession"], "P13063")
+        self.assertEqual(
+            rows[0]["role_graph_sequence_position_accession_counts"],
+            {"P13063": 12, "P13065": 7},
+        )
+        self.assertTrue(
+            readout["decision"][
+                "tiny_tranche_source_free_evidence_complete_and_positive"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "tiny_tranche_all_rows_minimal_train_cal_feature_bundle_ready"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "bundle_ready_source_free_positive_subset_available"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "expanded_bundle_ready_source_free_positive_subset_available"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "m_csa119_can_join_supported_route_after_bundle_ready_subset_approval"
+            ]
+        )
+        self.assertFalse(readout["decision"]["train_cal_supported_now"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(
+            readout["source_artifacts"]["approval_qualified_union_readout"][
+                "exists"
+            ]
+        )
+        self.assertTrue(readout["source_artifacts"]["role_graph_sidecar"]["exists"])
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:

@@ -421,6 +421,47 @@ class CliTests(unittest.TestCase):
             args.iron_sulfur_projection_support_readout,
         )
 
+    def test_lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-iron-sulfur-"
+                    "tiny-tranche-approval-readiness-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_projection_support_readout",
+            args.iron_sulfur_projection_support_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout",
+            args.approval_qualified_union_readout,
+        )
+        self.assertIn(
+            "mechanism_feature_iron_sulfur_locus_sidecar",
+            args.iron_sulfur_locus_sidecar,
+        )
+        self.assertIn(
+            "mechanism_feature_embedding_train_cal_input_manifest",
+            args.train_cal_input_manifest,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertIn(
+            "mechanism_feature_active_site_role_graph_sidecar",
+            args.role_graph_sidecar,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

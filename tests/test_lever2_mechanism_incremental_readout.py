@@ -21,6 +21,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout,
     build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout,
+    build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout,
     build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
@@ -4624,6 +4625,275 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
         )
         self.assertFalse(readout["decision"]["train_cal_supported_now"])
         self.assertFalse(readout["decision"]["deployable_now"])
+
+    def test_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            iron_support_path = root / "iron_support.json"
+            approval_path = root / "approval.json"
+            locus_path = root / "locus.json"
+            manifest_path = root / "manifest.json"
+            feature_sidecar_path = root / "sidecar.json"
+            role_graph_path = root / "role_graph.json"
+
+            def tiny_feature_row(entry_id: str) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "research_only_projection_tranche",
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": True,
+                        "electron_transfer_count": 1,
+                        "has_source_free_relaxed_non_pqq_donor_acceptor_contact": True,
+                        "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1,
+                    },
+                    "relaxed_non_pqq_donor_acceptor_evidence": {
+                        "positive_contact_examples": [
+                            {"reported_family": "iron_sulfur_or_iron"}
+                        ]
+                    },
+                }
+
+            iron_support_path.write_text(
+                json.dumps(
+                    {
+                        "measured_readout": {
+                            "review_only_iron_sulfur_locus_support_scan": {
+                                "smallest_noncurrent_projection_tranche_entry_ids": [
+                                    "m_csa:443",
+                                    "m_csa:127",
+                                    "m_csa:281",
+                                ]
+                            },
+                            "tiny_iron_sulfur_projection_materialization_attempt": {
+                                "candidate_entry_ids": [
+                                    "m_csa:443",
+                                    "m_csa:127",
+                                    "m_csa:281",
+                                ],
+                                "candidate_rows": 3,
+                                "complete_rows": 3,
+                                "positive_rows": 3,
+                                "feature_rows": [
+                                    tiny_feature_row("m_csa:443"),
+                                    tiny_feature_row("m_csa:127"),
+                                    tiny_feature_row("m_csa:281"),
+                                ],
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            approval_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "approval_qualified_current_primary_positive_rows": 0,
+                            "approval_qualified_current_primary_retain_recall": 1.0,
+                            "approval_qualified_current_retained_oos_positive_entry_ids": [
+                                "m_csa:104",
+                                "m_csa:119",
+                                "m_csa:464",
+                            ],
+                            "approval_qualified_current_retained_oos_positive_rows": 3,
+                            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": 1,
+                            "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad": 0.013333,
+                            "supported_now_current_retained_oos_positive_entry_ids": [
+                                "m_csa:104",
+                                "m_csa:464",
+                            ],
+                            "supported_now_current_retained_oos_positive_rows": 2,
+                        },
+                        "decision": {
+                            "approval_qualified_union_adds_operating_point_value_beyond_current_geometry_fold": True,
+                            "approval_qualified_union_preserves_primary_retention": True,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            def locus_row(entry_id: str) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "predictive_use_allowed": False,
+                    "sidecar_status": "proximal_iron_sulfur_context_available",
+                    "source_feature_status": "ok",
+                    "split_assignment": "in_distribution",
+                }
+
+            locus_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            locus_row("m_csa:443"),
+                            locus_row("m_csa:127"),
+                            locus_row("m_csa:281"),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "m_csa:443",
+                                "minimal_train_cal_feature_bundle_ready": False,
+                                "role_graph_status": (
+                                    "missing_accession_compatible_sequence_positions"
+                                ),
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:127",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "role_graph_status": "ok",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:281",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "role_graph_status": "ok",
+                                "split_assignment": "in_distribution",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            feature_sidecar_path.write_text(
+                json.dumps({"feature_rows": []}), encoding="utf-8"
+            )
+            role_graph_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:443",
+                                "accession": "P13063",
+                                "accession_compatible_sequence_positions": False,
+                                "residues": [
+                                    {
+                                        "sequence_positions": [
+                                            {"uniprot_id": "P13063"},
+                                            {"uniprot_id": "P13065"},
+                                        ]
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:127",
+                                "accession": "P07598",
+                                "accession_compatible_sequence_positions": True,
+                            },
+                            {
+                                "entry_id": "m_csa:281",
+                                "accession": "P55931",
+                                "accession_compatible_sequence_positions": True,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+                iron_sulfur_projection_support_readout_path=iron_support_path,
+                approval_qualified_union_readout_path=approval_path,
+                iron_sulfur_locus_sidecar_path=locus_path,
+                train_cal_input_manifest_path=manifest_path,
+                train_cal_feature_sidecar_path=feature_sidecar_path,
+                role_graph_sidecar_path=role_graph_path,
+                artifact_id="test_tiny_tranche_readiness",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_tiny_tranche_readiness")
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_tiny_tranche_source_free_positive_partial_bundle_ready_pending_predictive_gate",
+        )
+        self.assertEqual(readout["counts"]["tiny_tranche_candidate_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["tiny_tranche_source_free_positive_rows"], 3
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_minimal_train_cal_feature_bundle_ready_entry_ids"
+            ],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_blocked_by_minimal_feature_bundle_entry_ids"
+            ],
+            ["m_csa:443"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_accession_compatible_sequence_position_rows"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_accession_incompatible_sequence_position_entry_ids"
+            ],
+            ["m_csa:443"],
+        )
+        self.assertEqual(
+            readout["measured_readout"]["tiny_tranche_candidate_rows"][0][
+                "role_graph_sequence_position_accession_counts"
+            ],
+            {"P13063": 1, "P13065": 1},
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_blocked_only_by_predictive_gate_and_import_entry_ids"
+            ],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+            ],
+            1,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "tiny_tranche_source_free_evidence_complete_and_positive"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "tiny_tranche_all_rows_minimal_train_cal_feature_bundle_ready"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "bundle_ready_source_free_positive_subset_available"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "approval_qualified_union_adds_value_if_fe_s_approved"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "m_csa119_can_join_supported_route_after_bundle_ready_subset_approval"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["approval_readiness_has_minimal_feature_bundle_gap"]
+        )
+        self.assertFalse(readout["decision"]["train_cal_supported_now"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,
