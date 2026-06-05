@@ -590,6 +590,35 @@ class CliTests(unittest.TestCase):
             args.train_cal_feature_sidecar,
         )
 
+    def test_lever2_electron_flow_approval_import_dry_run_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-"
+                    "import-dry-run-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_dry_run_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout",
+            args.train_cal_sidecar_candidate_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertIn(
+            "mechanism_feature_embedding_train_cal_input_manifest",
+            args.train_cal_input_manifest,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

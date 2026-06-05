@@ -21077,6 +21077,225 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
         )
 
+    def test_lever2_electron_flow_approval_import_dry_run_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_approval_import_"
+                "dry_run_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_approval_import_dry_run_"
+                "readout_research_only_approval_import_dry_run_closes_"
+                "measurability_gap"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_approval_import_dry_run_closes_measurability_gap",
+        )
+        self.assertEqual(readout["counts"]["dry_run_import_rows"], 78)
+        self.assertEqual(readout["counts"]["dry_run_overlay_total_rows"], 118)
+        self.assertEqual(
+            readout["counts"]["dry_run_rows_new_to_approved_sidecar"], 75
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_rows_updating_existing_approved_sidecar_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_current_split_rows_present_before_dry_run"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_current_split_direct_component_complete_rows_before_dry_run"
+            ],
+            0,
+        )
+        self.assertEqual(readout["counts"]["dry_run_current_split_rows"], 74)
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_current_split_direct_component_complete_rows"
+            ],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_current_split_direct_component_incomplete_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["dry_run_explicit_train_cal_split_rows"], 78
+        )
+        self.assertEqual(readout["counts"]["dry_run_current_primary_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["dry_run_current_retained_oos_rows"], 40
+        )
+        self.assertEqual(
+            readout["counts"]["dry_run_current_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["dry_run_current_retained_oos_positive_rows"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["dry_run_current_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"]["dry_run_current_primary_retain_recall"], 1.0
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"]["dry_run_union_or_gate_oos_abstain_recall"],
+            0.506667,
+        )
+        self.assertEqual(
+            readout["counts"]["dry_run_selected_fe_s_support_entry_ids"],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_selected_fe_s_support_proposed_split_assignments"
+            ],
+            {"m_csa:127": "calibration", "m_csa:281": "calibration"},
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_fe_s_support_manifest_in_distribution_entry_ids"
+            ],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_fe_s_support_manifest_role_graph_ok_entry_ids"
+            ],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_current_positive_entry_ids_added_to_approved_sidecar"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_selected_fe_s_split_policy_sensitivity_policy_ids"
+            ],
+            ["all_selected_fe_s_calibration", "all_selected_fe_s_train"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_selected_fe_s_split_policies_matching_primary_gate"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["dry_run_component_ablation_ids"],
+            [
+                "pqq_only",
+                "nad_family_only",
+                "iron_sulfur_only",
+                "pqq_plus_nad_family",
+                "pqq_plus_nad_family_plus_iron_sulfur",
+            ],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_pqq_only_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_nad_family_only_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_iron_sulfur_only_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:119"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_pqq_plus_nad_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_iron_sulfur_incremental_current_retained_oos_positive_entry_ids_beyond_pqq_nad"
+            ],
+            ["m_csa:119"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "dry_run_iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+            ],
+            1,
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertTrue(
+            readout["decision"][
+                "approval_import_dry_run_closes_approved_sidecar_current_split_direct_component_gap"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["approval_import_dry_run_closes_explicit_split_gap"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_after_dry_run_import"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "approved_sidecar_only_route_measurable_after_dry_run_import"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "selected_fe_s_support_split_policy_not_operating_point_sensitive"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "iron_sulfur_component_adds_incremental_row_beyond_pqq_nad_after_dry_run"
+            ]
+        )
+        self.assertFalse(readout["decision"]["protected_surfaces_modified"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(
+            readout["source_artifacts"]["train_cal_sidecar_candidate_readout"][
+                "exists"
+            ]
+        )
+        self.assertTrue(
+            readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
+        )
+        self.assertTrue(
+            readout["source_artifacts"]["train_cal_input_manifest"]["exists"]
+        )
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:

@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T16:31:49Z`
-- STARTED_AT_LOCAL: `2026-06-05T11:31:49-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T17:22:09Z`
-- ENDED_AT_LOCAL: `2026-06-05T12:22:09-0500 CDT`
-- ELAPSED_MINUTES: `50.33`
+- STARTED_AT_UTC: `2026-06-05T17:32:54Z`
+- STARTED_AT_LOCAL: `2026-06-05T12:32:54-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T18:21:54Z`
+- ENDED_AT_LOCAL: `2026-06-05T13:21:54-0500 CDT`
+- ELAPSED_MINUTES: `49.02`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,151 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 27
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T17:32:54Z`
+- STARTED_LOCAL: `2026-06-05T12:32:54-0500 CDT`
+- ENDED_AT: `2026-06-05T18:21:54Z`
+- ENDED_LOCAL: `2026-06-05T13:21:54-0500 CDT`
+- ELAPSED_MINUTES: `49.02`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Use the measured train/cal sidecar-candidate readout as the baseline, then
+attempt the smallest train/cal-disciplined approval/import preflight that can
+test whether the direct source-free PQQ/NAD/Fe-S component fields can be made
+measurable from approved-sidecar-shaped evidence without touching protected
+labels, registries, ontologies, imports, production thresholds, or heldout
+splits.
+
+#### Work log
+
+- Run opened from automation checkout
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/6664/catalytic-earth`, which
+  was a clean detached duplicate and not the dedicated Lever 2 branch
+  worktree.
+- Switched substantive work to the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial disk was below the 10 GiB guardrail at 9.4 GiB free. The clean
+  detached duplicate checkout was removed with `git worktree remove`,
+  restoring disk to 13 GiB free before research writes continued.
+- Added
+  `build-lever2-source-free-electron-flow-approval-import-dry-run-readout`.
+  This consumes the measured train/cal sidecar-candidate readout, the current
+  approved train/cal feature sidecar, and the train/cal input manifest, then
+  overlays the candidate direct PQQ/NAD/Fe-S rows onto the approved-sidecar
+  shape in memory. It proposes explicit calibration splits for selected Fe-S
+  support rows `m_csa:127` and `m_csa:281`, reruns the fixed current-split
+  gate, and reports split-policy sensitivity plus component ablations without
+  editing protected approved sidecars, imports, predictive-use flags, labels,
+  registries, ontologies, thresholds, or heldout splits.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_approval_import_dry_run_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_approval_import_dry_run_readout_current702_20260605.md`.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_approval_import_dry_run_readout_research_only_approval_import_dry_run_closes_measurability_gap`.
+  Result class:
+  `research_only_approval_import_dry_run_closes_measurability_gap`.
+- Approved-sidecar route before dry run: 43 approved sidecar rows, only 1/74
+  current-split rows present, and 0/74 current-split rows with the direct
+  PQQ/NAD/Fe-S component fields complete.
+- Dry-run approved-sidecar overlay: 78/78 proposed import rows are source-free
+  complete with direct component fields, 78/78 have explicit train/cal splits,
+  and 74/74 current-split rows become direct-component complete. The overlay
+  would add 75 rows new to the approved sidecar and update 3 existing approved
+  rows; it would add 73 current-split rows and all current positive rows
+  `m_csa:104`, `m_csa:119`, and `m_csa:464`.
+- Fixed gate after dry run: 0/34 current primary positives, primary retain
+  recall `1.0`, 3/40 current-retained OOS positives
+  (`m_csa:104`, `m_csa:119`, `m_csa:464`), retained-OOS abstain recall
+  `0.075`, incremental OOS abstain recall vs the current geometry/fold
+  denominator `0.04`, and union OOS recall `0.506667`.
+- Selected Fe-S split sensitivity: assigning both selected Fe-S support rows
+  to `calibration` or both to `train` leaves the fixed current-split gate
+  unchanged; 2/2 tested policies matched the primary dry-run gate.
+- Component ablation after dry run: PQQ-only catches `m_csa:104`; NAD-only
+  catches `m_csa:464`; Fe-S-only catches `m_csa:119`; PQQ+NAD catches
+  `m_csa:104` and `m_csa:464`; PQQ+NAD+Fe-S catches all three rows. Fe-S
+  therefore adds exactly `m_csa:119` beyond the PQQ+NAD dry-run surface.
+- Interpretation: the approved-sidecar-only route is not intrinsically
+  source-free or operating-point blocked. It becomes measurable in this
+  research-only dry run once the exact protected import/approval/split steps
+  are applied, while preserving primary retention.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Split, manifest, row ID, and dry-run provenance metadata
+  remain outside `row_specific_event_features`.
+- The dry-run remains research-only and does not approve, import, promote,
+  write approved sidecars, or set `predictive_use_allowed=true`.
+- Disk guardrail recovered from the initial detached-worktree low-disk state
+  and remained above 10 GiB; final pre-wrap check showed 12 GiB free.
+
+#### Validation
+
+- Focused new tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_approval_import_dry_run_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_approval_import_dry_run_readout tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_approval_import_dry_run_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  498 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1575 passed, 212 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1530 tests OK,
+  with the same existing warning.
+- Hash-seed stability: `PYTHONHASHSEED=1` through `PYTHONHASHSEED=12` full
+  pytest and full unittest discovery all passed with the same existing warning
+  where applicable.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep passed: 3595 JSON files and 27 JSONL files
+  parsed with 0 errors.
+- New dry-run artifact audit passed: source hashes current, normalized
+  regeneration matched after normalizing `created_utc`, all 78 dry-run rows
+  carried complete direct component fields, 0 forbidden row-feature key hits,
+  row-specific feature payloads contained no coordinate paths, accessions,
+  source IDs, target names, mechanism text, or label-type tokens, guardrails
+  kept protected surfaces unmodified, and the Markdown report contained the
+  status, fixed-gate result, split sensitivity, and component ablation.
+- Protected changed-path audit passed.
+
+#### Commit/push status
+
+- Commit and push are pending for this wrap-up block.
+
+#### Exact next action
+
+- Run the protected sidecar materialization/review step using the 78 dry-run
+  rows and exact direct component fields from the new artifact. Assign
+  `m_csa:127` and `m_csa:281` to an explicit train/cal split (the dry-run gate
+  is insensitive to all-calibration vs all-train for those support rows), set
+  `predictive_use_allowed=true` for those two Fe-S support rows, then rerun the
+  approved-sidecar-only gate unchanged. If protected materialization is not
+  authorized, the smallest negative is now the protected approval/import gate,
+  not missing source-free electron-flow evidence or operating-point failure.
 
 ### 2026-06-05 Lever 2 Research Run 26
 

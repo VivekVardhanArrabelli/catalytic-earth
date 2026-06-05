@@ -103,6 +103,10 @@ DEFAULT_ELECTRON_FLOW_TRAIN_CAL_SIDECAR_CANDIDATE_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_train_cal_sidecar_candidate_"
     "readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_DRY_RUN_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_approval_import_dry_run_"
+    "readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -17715,6 +17719,954 @@ def write_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_train_cal_sidecar_candidate_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _approval_import_dry_run_split(row: dict[str, Any]) -> str:
+    assigned = row.get("assigned_embedding_split")
+    if assigned in {"train", "calibration"}:
+        return str(assigned)
+    candidate_split = row.get("candidate_split_assignment")
+    if candidate_split in {"train", "calibration"}:
+        return str(candidate_split)
+    if row.get("candidate_bundle_role") == "selected_fe_s_support_row":
+        return "calibration"
+    return str(assigned or "calibration")
+
+
+def _approval_import_dry_run_row(
+    row: dict[str, Any],
+    *,
+    approved_rows_by_entry: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    entry_id = str(row.get("entry_id") or "")
+    existing = approved_rows_by_entry.get(entry_id) or {}
+    direct_features = _direct_electron_flow_component_features(
+        row.get("row_specific_event_features") or {}
+    )
+    merged_features = {
+        **(existing.get("row_specific_event_features") or {}),
+        **direct_features,
+    }
+    proposed_split = _approval_import_dry_run_split(row)
+    overwritten_keys = sorted(
+        {
+            key
+            for key in direct_features
+            if key in (existing.get("row_specific_event_features") or {})
+            and (existing.get("row_specific_event_features") or {}).get(key)
+            != direct_features[key]
+        }
+    )
+    return {
+        "entry_id": entry_id,
+        "assigned_embedding_split": proposed_split,
+        "existing_approved_sidecar_row": bool(existing),
+        "current_split_role": row.get("current_split_role"),
+        "candidate_bundle_role": row.get("candidate_bundle_role"),
+        "candidate_split_assignment": row.get("candidate_split_assignment"),
+        "source_free_electron_flow_field_complete": bool(
+            row.get("source_free_electron_flow_field_complete")
+        ),
+        "row_specific_event_features": merged_features,
+        "dry_run_import": {
+            "direct_component_fields_added": sorted(direct_features),
+            "existing_feature_keys_overwritten_by_direct_contract": overwritten_keys,
+            "split_assignment_policy": (
+                "retain explicit train/cal split when present; assign selected "
+                "Fe-S support rows to calibration as the minimal explicit "
+                "train/cal support split; do not write protected sidecars"
+            ),
+            "source_candidate_bundle_role": row.get("candidate_bundle_role"),
+            "protected_surface_written": False,
+        },
+        "feature_guardrails": {
+            "mechanism_text_excluded_from_features": True,
+            "ec_rhea_ids_excluded_from_features": True,
+            "labels_excluded_from_features": True,
+            "source_ids_excluded_from_features": True,
+            "target_names_excluded_from_features": True,
+            "accessions_excluded_from_features": True,
+            "pdb_ids_or_coordinate_paths_excluded_from_features": True,
+            "heldout_row": False,
+            "dry_run_only_no_protected_import_written": True,
+        },
+    }
+
+
+def build_lever2_source_free_electron_flow_approval_import_dry_run_readout(
+    *,
+    train_cal_sidecar_candidate_readout_path: Path,
+    train_cal_feature_sidecar_path: Path | None = None,
+    train_cal_input_manifest_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_DRY_RUN_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    candidate = _read_json(train_cal_sidecar_candidate_readout_path)
+    approved_sidecar = _read_optional_json(train_cal_feature_sidecar_path)
+    train_cal_manifest = _read_optional_json(train_cal_input_manifest_path)
+    candidate_counts = candidate.get("counts") or {}
+    candidate_decision = candidate.get("decision") or {}
+    candidate_measured = candidate.get("measured_readout") or {}
+    candidate_gate = candidate_measured.get("fixed_operating_point") or {}
+    candidate_sidecar = candidate.get("candidate_feature_sidecar") or {}
+    source_rows = [
+        row
+        for row in candidate_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    approved_rows = [
+        row
+        for row in approved_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    approved_rows_by_entry = _records_by_entry(approved_rows)
+    approved_entry_ids = set(approved_rows_by_entry)
+    manifest_rows_by_entry = _records_by_entry(
+        [
+            row
+            for row in train_cal_manifest.get("row_records", [])
+            if isinstance(row, dict) and row.get("entry_id")
+        ]
+    )
+    feature_fields = [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+    ]
+    component_fields = feature_fields[2:]
+
+    dry_run_rows = sorted(
+        [
+            _approval_import_dry_run_row(
+                row, approved_rows_by_entry=approved_rows_by_entry
+            )
+            for row in source_rows
+        ],
+        key=lambda row: (
+            0
+            if row.get("candidate_bundle_role")
+            == "current_split_operating_point_row"
+            else 1,
+            _entry_sort_key(str(row.get("entry_id") or "")),
+        ),
+    )
+    dry_run_rows_by_entry = _records_by_entry(dry_run_rows)
+    overlay_entry_ids = set(approved_entry_ids) | set(dry_run_rows_by_entry)
+    current_rows = [
+        row
+        for row in dry_run_rows
+        if row.get("candidate_bundle_role") == "current_split_operating_point_row"
+    ]
+    support_rows = [
+        row
+        for row in dry_run_rows
+        if row.get("candidate_bundle_role") != "current_split_operating_point_row"
+    ]
+    selected_fe_s_support_rows = [
+        row
+        for row in support_rows
+        if row.get("candidate_bundle_role") == "selected_fe_s_support_row"
+    ]
+    explicit_split_rows = [
+        row
+        for row in dry_run_rows
+        if row.get("assigned_embedding_split") in {"train", "calibration"}
+    ]
+    complete_component_rows = [
+        row
+        for row in dry_run_rows
+        if all(
+            field in (row.get("row_specific_event_features") or {})
+            for field in component_fields
+        )
+        and row.get("source_free_electron_flow_field_complete")
+    ]
+    split_oos_rows = candidate_gate.get("current_geometry_fold_oos_rows")
+    if split_oos_rows is not None:
+        try:
+            split_oos_rows = int(split_oos_rows)
+        except (TypeError, ValueError):
+            split_oos_rows = None
+    fixed_gate = _donor_acceptor_gate_readout(
+        current_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id="fixed_binary_approval_import_dry_run_pqq_nad_fe_s_direct_electron_flow",
+        feature_fields=feature_fields,
+        gate_rule=(
+            "Approval/import dry-run gate: abstain on complete direct "
+            "source-free PQQ, NAD-family, or Fe-S/iron component fields after "
+            "overlaying the candidate rows onto the approved train/cal sidecar "
+            "shape in memory. This dry run does not write protected sidecars, "
+            "approve predictive use, select thresholds, or score heldout."
+        ),
+    )
+
+    def _gate_signature(gate: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "complete_rows": gate.get("complete_rows"),
+            "primary_positive_rows": gate.get("primary_positive_rows"),
+            "retained_oos_positive_entry_ids": gate.get(
+                "retained_oos_positive_entry_ids"
+            ),
+            "primary_retain_recall_if_abstain_positive": gate.get(
+                "primary_retain_recall_if_abstain_positive"
+            ),
+            "incremental_oos_abstain_recall_vs_current_geometry_fold": gate.get(
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ),
+            "union_or_gate_oos_abstain_recall": gate.get(
+                "union_or_gate_oos_abstain_recall"
+            ),
+        }
+
+    primary_gate_signature = _gate_signature(fixed_gate)
+    selected_fe_s_entry_ids = _entry_ids(selected_fe_s_support_rows)
+    split_policy_sensitivity = []
+    for policy_id, proposed_split in (
+        ("all_selected_fe_s_calibration", "calibration"),
+        ("all_selected_fe_s_train", "train"),
+    ):
+        policy_rows = []
+        for row in dry_run_rows:
+            if row.get("candidate_bundle_role") == "selected_fe_s_support_row":
+                policy_rows.append({**row, "assigned_embedding_split": proposed_split})
+            else:
+                policy_rows.append(row)
+        policy_current_rows = [
+            row
+            for row in policy_rows
+            if row.get("candidate_bundle_role")
+            == "current_split_operating_point_row"
+        ]
+        policy_gate = _donor_acceptor_gate_readout(
+            policy_current_rows,
+            split_oos_rows=split_oos_rows,
+            gate_id=f"fixed_binary_{policy_id}_approval_import_dry_run",
+            feature_fields=feature_fields,
+            gate_rule=(
+                "Split-policy sensitivity check for selected Fe-S support "
+                "rows only. Current-split gate rows are unchanged; the check "
+                "confirms whether explicit support split choice changes the "
+                "fixed operating-point readout."
+            ),
+        )
+        split_policy_sensitivity.append(
+            {
+                "policy_id": policy_id,
+                "selected_fe_s_support_proposed_split_assignments": {
+                    entry_id: proposed_split for entry_id in selected_fe_s_entry_ids
+                },
+                "explicit_train_cal_split_rows": sum(
+                    1
+                    for row in policy_rows
+                    if row.get("assigned_embedding_split") in {"train", "calibration"}
+                ),
+                "fixed_gate_signature": _gate_signature(policy_gate),
+                "fixed_gate_matches_primary_dry_run": (
+                    _gate_signature(policy_gate) == primary_gate_signature
+                ),
+            }
+        )
+
+    def _component_ablation_rows(
+        rows: list[dict[str, Any]], *, include_components: set[str]
+    ) -> list[dict[str, Any]]:
+        ablated_rows = []
+        for row in rows:
+            source_features = row.get("row_specific_event_features") or {}
+            ablated_source = {
+                "has_source_free_pqq_donor_acceptor_contact": bool(
+                    "pqq" in include_components
+                    and source_features.get(
+                        "has_source_free_pqq_donor_acceptor_contact"
+                    )
+                ),
+                "source_free_pqq_donor_acceptor_contact_count": int(
+                    source_features.get(
+                        "source_free_pqq_donor_acceptor_contact_count"
+                    )
+                    or 0
+                )
+                if "pqq" in include_components
+                else 0,
+                "has_source_free_nad_family_donor_acceptor_distance": bool(
+                    "nad" in include_components
+                    and source_features.get(
+                        "has_source_free_nad_family_donor_acceptor_distance"
+                    )
+                ),
+                "source_free_nad_family_donor_acceptor_distance_count": int(
+                    source_features.get(
+                        "source_free_nad_family_donor_acceptor_distance_count"
+                    )
+                    or 0
+                )
+                if "nad" in include_components
+                else 0,
+                "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": bool(
+                    "iron_sulfur" in include_components
+                    and source_features.get(
+                        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance"
+                    )
+                ),
+                "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": int(
+                    source_features.get(
+                        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+                    )
+                    or 0
+                )
+                if "iron_sulfur" in include_components
+                else 0,
+            }
+            ablated_rows.append(
+                {
+                    **row,
+                    "row_specific_event_features": {
+                        **source_features,
+                        **_direct_electron_flow_component_features(ablated_source),
+                    },
+                }
+            )
+        return ablated_rows
+
+    component_ablation_specs = [
+        ("pqq_only", {"pqq"}),
+        ("nad_family_only", {"nad"}),
+        ("iron_sulfur_only", {"iron_sulfur"}),
+        ("pqq_plus_nad_family", {"pqq", "nad"}),
+        ("pqq_plus_nad_family_plus_iron_sulfur", {"pqq", "nad", "iron_sulfur"}),
+    ]
+    component_ablation_after_dry_run = []
+    for ablation_id, included_components in component_ablation_specs:
+        ablation_rows = _component_ablation_rows(
+            current_rows,
+            include_components=included_components,
+        )
+        ablation_gate = _donor_acceptor_gate_readout(
+            ablation_rows,
+            split_oos_rows=split_oos_rows,
+            gate_id=f"fixed_binary_{ablation_id}_approval_import_dry_run_ablation",
+            feature_fields=feature_fields,
+            gate_rule=(
+                "Dry-run component ablation at the fixed operating point. "
+                "Only the named direct source-free electron-flow component "
+                "fields are allowed to contribute to the binary gate; no "
+                "threshold is selected or tuned."
+            ),
+        )
+        component_ablation_after_dry_run.append(
+            {
+                "ablation_id": ablation_id,
+                "included_components": sorted(included_components),
+                "fixed_gate_readout": ablation_gate,
+            }
+        )
+    ablation_by_id = {
+        row["ablation_id"]: row for row in component_ablation_after_dry_run
+    }
+    pqq_nad_positive_ids = set(
+        (
+            ablation_by_id.get("pqq_plus_nad_family", {})
+            .get("fixed_gate_readout", {})
+            .get("retained_oos_positive_entry_ids", [])
+        )
+    )
+    all_component_positive_ids = set(
+        (
+            ablation_by_id.get("pqq_plus_nad_family_plus_iron_sulfur", {})
+            .get("fixed_gate_readout", {})
+            .get("retained_oos_positive_entry_ids", [])
+        )
+    )
+    iron_sulfur_incremental_ids = sorted(
+        all_component_positive_ids - pqq_nad_positive_ids,
+        key=_entry_sort_key,
+    )
+    approved_direct_complete_before = candidate_counts.get(
+        "approved_sidecar_current_split_direct_component_complete_rows", 0
+    )
+    approved_current_split_present_before = candidate_counts.get(
+        "approved_sidecar_current_split_rows_present", 0
+    )
+    current_entry_ids = _entry_ids(current_rows)
+    current_positive_entry_ids = fixed_gate["retained_oos_positive_entry_ids"]
+    added_current_entry_ids = [
+        entry_id for entry_id in current_entry_ids if entry_id not in approved_entry_ids
+    ]
+    added_current_positive_entry_ids = [
+        entry_id
+        for entry_id in current_positive_entry_ids
+        if entry_id not in approved_entry_ids
+    ]
+    selected_fe_s_manifest_entry_ids = [
+        str(row.get("entry_id"))
+        for row in selected_fe_s_support_rows
+        if str(row.get("entry_id") or "") in manifest_rows_by_entry
+    ]
+    selected_fe_s_in_distribution_entry_ids = [
+        entry_id
+        for entry_id in selected_fe_s_manifest_entry_ids
+        if manifest_rows_by_entry[entry_id].get("split_assignment")
+        == "in_distribution"
+    ]
+    selected_fe_s_role_graph_ok_entry_ids = [
+        entry_id
+        for entry_id in selected_fe_s_manifest_entry_ids
+        if manifest_rows_by_entry[entry_id].get("role_graph_status") == "ok"
+    ]
+    proposed_fe_s_split_assignments = {
+        str(row["entry_id"]): row["assigned_embedding_split"]
+        for row in selected_fe_s_support_rows
+    }
+    forbidden_hits = _feature_row_exact_forbidden_key_hits(dry_run_rows)
+    dry_run_complete = bool(
+        dry_run_rows
+        and len(complete_component_rows) == len(dry_run_rows)
+        and len(explicit_split_rows) == len(dry_run_rows)
+        and not forbidden_hits
+        and fixed_gate["operating_point_measurable_now"]
+    )
+    measured_positive = bool(
+        dry_run_complete
+        and fixed_gate["preserves_primary_retention"]
+        and fixed_gate["adds_incremental_oos_abstention"]
+    )
+    result_class = (
+        "research_only_approval_import_dry_run_closes_measurability_gap"
+        if measured_positive
+        else (
+            "research_only_approval_import_dry_run_operating_point_negative"
+            if dry_run_complete
+            else "research_only_approval_import_dry_run_incomplete"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_approval_import_dry_run_readout_"
+        f"{result_class}"
+    )
+    remaining_protected_steps = [
+        "human_or_protected approval of direct source-free component field contract",
+        "protected import/materialization of the 78 dry-run feature rows",
+        "predictive_use_allowed=true for selected Fe-S support rows m_csa:127 and m_csa:281",
+        "explicit train/cal split assignment for selected Fe-S support rows m_csa:127 and m_csa:281",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_approval_import_"
+            "dry_run_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured approval/import dry-run for direct source-free "
+            "electron-flow fields. It overlays the train/cal sidecar candidate "
+            "onto the approved sidecar shape in memory, assigns the selected "
+            "Fe-S support rows an explicit calibration split for measurement, "
+            "and reruns the fixed current-split operating point. It does not "
+            "edit labels, registries, ontologies, imports, production "
+            "thresholds, approved sidecars, predictive-use flags, model "
+            "weights, or heldout splits."
+        ),
+        "dry_run_feature_sidecar": {
+            "sidecar_id": "dry_run_source_free_pqq_nad_fe_s_direct_electron_flow_train_cal_sidecar",
+            "contract_status": "research_only_dry_run_unapproved_unimported",
+            "axis_id": "source_free_pqq_nad_fe_s_direct_electron_flow",
+            "feature_fields": feature_fields,
+            "feature_rows": dry_run_rows,
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "measured_readout": {
+            "approved_sidecar_before_dry_run": {
+                "approved_sidecar_rows": len(approved_rows),
+                "current_split_rows_present": approved_current_split_present_before,
+                "current_split_direct_component_complete_rows": (
+                    approved_direct_complete_before
+                ),
+                "direct_component_fields_missing": candidate_counts.get(
+                    "approved_sidecar_direct_component_fields_missing", []
+                ),
+            },
+            "approval_import_dry_run_overlay": {
+                "dry_run_rows": dry_run_rows,
+                "overlay_total_entry_ids_after_dry_run": sorted(
+                    overlay_entry_ids, key=_entry_sort_key
+                ),
+                "new_candidate_entry_ids_added_by_dry_run": [
+                    entry_id
+                    for entry_id in _entry_ids(dry_run_rows)
+                    if entry_id not in approved_entry_ids
+                ],
+                "existing_approved_entry_ids_updated_by_dry_run": [
+                    entry_id
+                    for entry_id in _entry_ids(dry_run_rows)
+                    if entry_id in approved_entry_ids
+                ],
+                "selected_fe_s_support_proposed_split_assignments": (
+                    proposed_fe_s_split_assignments
+                ),
+                "selected_fe_s_support_manifest_entry_ids_present": (
+                    selected_fe_s_manifest_entry_ids
+                ),
+                "selected_fe_s_support_manifest_in_distribution_entry_ids": (
+                    selected_fe_s_in_distribution_entry_ids
+                ),
+                "selected_fe_s_support_manifest_role_graph_ok_entry_ids": (
+                    selected_fe_s_role_graph_ok_entry_ids
+                ),
+                "forbidden_feature_key_hits": forbidden_hits,
+            },
+            "selected_fe_s_split_policy_sensitivity": split_policy_sensitivity,
+            "component_ablation_after_dry_run": component_ablation_after_dry_run,
+            "fixed_operating_point_after_dry_run": fixed_gate,
+            "protected_step_ledger": {
+                "protected_steps_remaining": remaining_protected_steps,
+                "protected_surfaces_modified_by_this_readout": False,
+                "candidate_remaining_gap_before_dry_run": (
+                    candidate_decision.get("remaining_gap")
+                ),
+                "candidate_smallest_next_experiment_before_dry_run": (
+                    candidate_decision.get("smallest_next_experiment")
+                ),
+            },
+        },
+        "counts": {
+            "critical_violation_total": len(forbidden_hits),
+            "approved_sidecar_rows_before_dry_run": len(approved_rows),
+            "approved_sidecar_current_split_rows_present_before_dry_run": (
+                approved_current_split_present_before
+            ),
+            "approved_sidecar_current_split_direct_component_complete_rows_before_dry_run": (
+                approved_direct_complete_before
+            ),
+            "dry_run_import_rows": len(dry_run_rows),
+            "dry_run_overlay_total_rows": len(overlay_entry_ids),
+            "dry_run_rows_new_to_approved_sidecar": len(
+                [
+                    entry_id
+                    for entry_id in _entry_ids(dry_run_rows)
+                    if entry_id not in approved_entry_ids
+                ]
+            ),
+            "dry_run_rows_updating_existing_approved_sidecar_rows": len(
+                [
+                    entry_id
+                    for entry_id in _entry_ids(dry_run_rows)
+                    if entry_id in approved_entry_ids
+                ]
+            ),
+            "dry_run_current_split_rows": len(current_rows),
+            "dry_run_support_rows": len(support_rows),
+            "dry_run_selected_fe_s_support_rows": len(selected_fe_s_support_rows),
+            "dry_run_selected_fe_s_support_entry_ids": _entry_ids(
+                selected_fe_s_support_rows
+            ),
+            "dry_run_selected_fe_s_support_proposed_split_assignments": (
+                proposed_fe_s_split_assignments
+            ),
+            "dry_run_explicit_train_cal_split_rows": len(explicit_split_rows),
+            "dry_run_complete_direct_component_rows": len(complete_component_rows),
+            "dry_run_current_split_direct_component_complete_rows": (
+                fixed_gate["complete_rows"]
+            ),
+            "dry_run_current_split_direct_component_incomplete_rows": (
+                fixed_gate["incomplete_rows"]
+            ),
+            "dry_run_current_primary_rows": fixed_gate["primary_rows"],
+            "dry_run_current_retained_oos_rows": fixed_gate["retained_oos_rows"],
+            "dry_run_current_primary_positive_rows": fixed_gate[
+                "primary_positive_rows"
+            ],
+            "dry_run_current_retained_oos_positive_rows": fixed_gate[
+                "retained_oos_positive_rows"
+            ],
+            "dry_run_current_retained_oos_positive_entry_ids": (
+                current_positive_entry_ids
+            ),
+            "dry_run_current_primary_retain_recall": fixed_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "dry_run_current_retained_oos_abstain_recall": fixed_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "dry_run_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                fixed_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "dry_run_union_or_gate_oos_abstain_recall": fixed_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "dry_run_current_split_rows_added_to_approved_sidecar": len(
+                added_current_entry_ids
+            ),
+            "dry_run_current_split_entry_ids_added_to_approved_sidecar": (
+                added_current_entry_ids
+            ),
+            "dry_run_current_positive_entry_ids_added_to_approved_sidecar": (
+                added_current_positive_entry_ids
+            ),
+            "selected_fe_s_support_manifest_entry_ids_present": (
+                selected_fe_s_manifest_entry_ids
+            ),
+            "selected_fe_s_support_manifest_in_distribution_entry_ids": (
+                selected_fe_s_in_distribution_entry_ids
+            ),
+            "selected_fe_s_support_manifest_role_graph_ok_entry_ids": (
+                selected_fe_s_role_graph_ok_entry_ids
+            ),
+            "dry_run_selected_fe_s_split_policy_sensitivity_policy_ids": [
+                row["policy_id"] for row in split_policy_sensitivity
+            ],
+            "dry_run_selected_fe_s_split_policies_matching_primary_gate": sum(
+                1
+                for row in split_policy_sensitivity
+                if row["fixed_gate_matches_primary_dry_run"]
+            ),
+            "dry_run_component_ablation_ids": [
+                row["ablation_id"] for row in component_ablation_after_dry_run
+            ],
+            "dry_run_pqq_only_current_retained_oos_positive_entry_ids": (
+                (
+                    ablation_by_id.get("pqq_only", {})
+                    .get("fixed_gate_readout", {})
+                    .get("retained_oos_positive_entry_ids", [])
+                )
+            ),
+            "dry_run_nad_family_only_current_retained_oos_positive_entry_ids": (
+                (
+                    ablation_by_id.get("nad_family_only", {})
+                    .get("fixed_gate_readout", {})
+                    .get("retained_oos_positive_entry_ids", [])
+                )
+            ),
+            "dry_run_iron_sulfur_only_current_retained_oos_positive_entry_ids": (
+                (
+                    ablation_by_id.get("iron_sulfur_only", {})
+                    .get("fixed_gate_readout", {})
+                    .get("retained_oos_positive_entry_ids", [])
+                )
+            ),
+            "dry_run_pqq_plus_nad_current_retained_oos_positive_entry_ids": (
+                (
+                    ablation_by_id.get("pqq_plus_nad_family", {})
+                    .get("fixed_gate_readout", {})
+                    .get("retained_oos_positive_entry_ids", [])
+                )
+            ),
+            "dry_run_iron_sulfur_incremental_current_retained_oos_positive_entry_ids_beyond_pqq_nad": (
+                iron_sulfur_incremental_ids
+            ),
+            "dry_run_iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": (
+                len(iron_sulfur_incremental_ids)
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "approval_import_dry_run_complete": dry_run_complete,
+            "approval_import_dry_run_closes_approved_sidecar_current_split_direct_component_gap": bool(
+                fixed_gate["complete_rows"] == len(current_rows)
+                and len(current_rows) > 0
+            ),
+            "approval_import_dry_run_closes_explicit_split_gap": bool(
+                dry_run_rows and len(explicit_split_rows) == len(dry_run_rows)
+            ),
+            "approval_import_dry_run_preserves_primary_retention": fixed_gate[
+                "preserves_primary_retention"
+            ],
+            "approval_import_dry_run_adds_incremental_oos_abstention": fixed_gate[
+                "adds_incremental_oos_abstention"
+            ],
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_after_dry_run_import": (
+                measured_positive
+            ),
+            "approved_sidecar_only_route_measurable_after_dry_run_import": (
+                dry_run_complete
+            ),
+            "selected_fe_s_support_rows_have_proposed_explicit_train_cal_split": bool(
+                selected_fe_s_support_rows
+                and len(proposed_fe_s_split_assignments)
+                == len(selected_fe_s_support_rows)
+            ),
+            "selected_fe_s_support_rows_confirmed_in_distribution_by_manifest": bool(
+                selected_fe_s_support_rows
+                and len(selected_fe_s_in_distribution_entry_ids)
+                == len(selected_fe_s_support_rows)
+            ),
+            "selected_fe_s_support_rows_confirmed_role_graph_ok_by_manifest": bool(
+                selected_fe_s_support_rows
+                and len(selected_fe_s_role_graph_ok_entry_ids)
+                == len(selected_fe_s_support_rows)
+            ),
+            "selected_fe_s_support_split_policy_not_operating_point_sensitive": bool(
+                split_policy_sensitivity
+                and all(
+                    row["fixed_gate_matches_primary_dry_run"]
+                    for row in split_policy_sensitivity
+                )
+            ),
+            "iron_sulfur_component_adds_incremental_row_beyond_pqq_nad_after_dry_run": bool(
+                iron_sulfur_incremental_ids
+            ),
+            "protected_surfaces_modified": False,
+            "train_cal_supported_now": False,
+            "deployable_now": False,
+            "research_only": True,
+            "apply_or_promote_now": False,
+            "negative": not measured_positive,
+            "operating_point_failure": not fixed_gate["adds_incremental_oos_abstention"],
+            "remaining_gap": "; ".join(remaining_protected_steps),
+            "smallest_next_experiment": (
+                "Run the protected sidecar materialization/review step using "
+                "the 78 dry-run rows, assign m_csa:127 and m_csa:281 to the "
+                "explicit calibration split, set predictive_use_allowed=true "
+                "for those two Fe-S support rows, then rerun the approved "
+                "sidecar-only gate unchanged."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_this_artifact": True,
+            "candidate_feature_rows_imported_or_promoted": False,
+            "predictive_use_allowed_modified": False,
+            "approved_sidecar_written": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "train_cal_sidecar_candidate_readout": _source_path_record(
+                train_cal_sidecar_candidate_readout_path
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "train_cal_input_manifest": (
+                _source_path_record(train_cal_input_manifest_path)
+                if train_cal_input_manifest_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The dry-run approved-sidecar overlay closes the 74-row direct "
+                "component measurability gap, preserves current primary "
+                "retention, and catches m_csa:104, m_csa:119, and m_csa:464 "
+                "at the fixed current-split gate."
+            )
+            if measured_positive
+            else (
+                "The dry-run approved-sidecar overlay is incomplete or does "
+                "not provide a primary-safe current-split OOS signal."
+            ),
+            "next_action": (
+                "The remaining work is the protected materialization/review "
+                "step. This artifact supplies the exact row set, component "
+                "fields, proposed Fe-S split assignments, and fixed-gate "
+                "readout to rerun after approval."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_approval_import_dry_run_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    before = readout["measured_readout"]["approved_sidecar_before_dry_run"]
+    gate = readout["measured_readout"]["fixed_operating_point_after_dry_run"]
+    overlay = readout["measured_readout"]["approval_import_dry_run_overlay"]
+    split_policy_sensitivity = readout["measured_readout"][
+        "selected_fe_s_split_policy_sensitivity"
+    ]
+    component_ablation = readout["measured_readout"][
+        "component_ablation_after_dry_run"
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Approval Import Dry-Run Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Approved current-split direct rows before dry run: "
+        f"{before['current_split_direct_component_complete_rows']}/"
+        f"{counts['dry_run_current_split_rows']}",
+        "- Dry-run current-split direct rows complete: "
+        f"{counts['dry_run_current_split_direct_component_complete_rows']}/"
+        f"{counts['dry_run_current_split_rows']}",
+        "- Dry-run explicit train/cal split rows: "
+        f"{counts['dry_run_explicit_train_cal_split_rows']}/"
+        f"{counts['dry_run_import_rows']}",
+        "- Dry-run primary/OOS positives: "
+        f"{counts['dry_run_current_primary_positive_rows']}/"
+        f"{counts['dry_run_current_retained_oos_positive_rows']}",
+        "- Primary retain recall: "
+        f"{counts['dry_run_current_primary_retain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold: "
+        f"{counts['dry_run_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Union OOS recall: "
+        f"{counts['dry_run_union_or_gate_oos_abstain_recall']}",
+        "- Forbidden row-feature key hits: "
+        f"{counts['critical_violation_total']}",
+        "",
+        "## Fixed Operating Point After Dry Run",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | retained-OOS IDs | union OOS recall |",
+        "| ---: | ---: | ---: | --- | ---: |",
+        f"| {gate['complete_rows']}/{gate['rows']} | "
+        f"{gate['primary_positive_rows']} | "
+        f"{gate['retained_oos_positive_rows']} | "
+        f"{', '.join(gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{gate['union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Dry-Run Overlay",
+        "",
+        "- Rows imported by dry run: "
+        f"{counts['dry_run_import_rows']}",
+        "- Rows new to approved sidecar: "
+        f"{counts['dry_run_rows_new_to_approved_sidecar']}",
+        "- Existing approved rows updated by dry run: "
+        f"{counts['dry_run_rows_updating_existing_approved_sidecar_rows']}",
+        "- Current-split rows added to approved sidecar: "
+        f"{counts['dry_run_current_split_rows_added_to_approved_sidecar']}",
+        "- Current positive rows added: "
+        f"{', '.join(counts['dry_run_current_positive_entry_ids_added_to_approved_sidecar']) or 'none'}",
+        "- Selected Fe-S proposed splits: "
+        f"{overlay['selected_fe_s_support_proposed_split_assignments']}",
+        "- Selected Fe-S manifest in-distribution rows: "
+        f"{', '.join(counts['selected_fe_s_support_manifest_in_distribution_entry_ids']) or 'none'}",
+        "- Selected Fe-S role-graph-ok rows: "
+        f"{', '.join(counts['selected_fe_s_support_manifest_role_graph_ok_entry_ids']) or 'none'}",
+        "",
+        "## Fe-S Split Sensitivity",
+        "",
+        "| policy | proposed splits | explicit rows | fixed gate matches primary dry run |",
+        "| --- | --- | ---: | --- |",
+    ]
+    for row in split_policy_sensitivity:
+        lines.append(
+            f"| {row['policy_id']} | "
+            f"{row['selected_fe_s_support_proposed_split_assignments']} | "
+            f"{row['explicit_train_cal_split_rows']} | "
+            f"{row['fixed_gate_matches_primary_dry_run']} |"
+        )
+    lines += [
+        "",
+        "## Component Ablation",
+        "",
+        "| ablation | components | retained-OOS positives | primary positives | incremental OOS recall |",
+        "| --- | --- | --- | ---: | ---: |",
+    ]
+    for row in component_ablation:
+        ablation_gate = row["fixed_gate_readout"]
+        lines.append(
+            f"| {row['ablation_id']} | "
+            f"{', '.join(row['included_components'])} | "
+            f"{', '.join(ablation_gate['retained_oos_positive_entry_ids']) or 'none'} | "
+            f"{ablation_gate['primary_positive_rows']} | "
+            f"{ablation_gate['incremental_oos_abstain_recall_vs_current_geometry_fold']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Dry-run closes approved-sidecar direct component gap: "
+        f"{decision['approval_import_dry_run_closes_approved_sidecar_current_split_direct_component_gap']}",
+        "- Dry-run closes explicit split gap: "
+        f"{decision['approval_import_dry_run_closes_explicit_split_gap']}",
+        "- Dry-run preserves primary retention: "
+        f"{decision['approval_import_dry_run_preserves_primary_retention']}",
+        "- Dry-run adds OOS abstention: "
+        f"{decision['approval_import_dry_run_adds_incremental_oos_abstention']}",
+        "- Approved-sidecar route measurable after dry run: "
+        f"{decision['approved_sidecar_only_route_measurable_after_dry_run_import']}",
+        "- Selected Fe-S split policy affects operating point: "
+        f"{not decision['selected_fe_s_support_split_policy_not_operating_point_sensitive']}",
+        "- Fe-S adds a row beyond PQQ+NAD after dry-run import: "
+        f"{decision['iron_sulfur_component_adds_incremental_row_beyond_pqq_nad_after_dry_run']}",
+        "- Protected surfaces modified: False",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_approval_import_dry_run_readout(
+    *,
+    train_cal_sidecar_candidate_readout_path: Path,
+    out_path: Path,
+    train_cal_feature_sidecar_path: Path | None = None,
+    train_cal_input_manifest_path: Path | None = None,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_DRY_RUN_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_approval_import_dry_run_readout(
+        train_cal_sidecar_candidate_readout_path=(
+            train_cal_sidecar_candidate_readout_path
+        ),
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_approval_import_dry_run_report(
                 readout
             ),
             encoding="utf-8",
