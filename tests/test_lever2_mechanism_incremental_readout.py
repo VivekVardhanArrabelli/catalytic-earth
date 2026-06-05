@@ -16,6 +16,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_event_axis_signature_excluded_frontier_readout,
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
+    build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout,
     build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_coordinate_proxy_readout,
     build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout,
@@ -5389,6 +5390,412 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             ],
             0,
         )
+
+    def test_electron_flow_candidate_train_cal_bundle_readout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            approval_path = root / "approval.json"
+            support_path = root / "support.json"
+            relaxed_path = root / "relaxed.json"
+            train_cal_sidecar_path = root / "train_cal_sidecar.json"
+            train_cal_manifest_path = root / "train_cal_manifest.json"
+
+            def current_row(
+                entry_id: str,
+                role: str,
+                *,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "calibration",
+                    "current_split_role": role,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": bool(pqq or nad or fe_s),
+                        "electron_transfer_count": pqq + nad + fe_s,
+                        "has_source_free_pqq_donor_acceptor_contact": pqq > 0,
+                        "source_free_pqq_donor_acceptor_contact_count": pqq,
+                        "has_source_free_nad_family_donor_acceptor_distance": nad > 0,
+                        "source_free_nad_family_donor_acceptor_distance_count": nad,
+                        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": fe_s > 0,
+                        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": fe_s,
+                    },
+                }
+
+            def relaxed_projection_row(entry_id: str) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "calibration",
+                    "current_split_role": "projection_calibration",
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": True,
+                        "electron_transfer_count": 1,
+                        "has_source_free_relaxed_non_pqq_donor_acceptor_contact": True,
+                        "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1,
+                    },
+                    "relaxed_non_pqq_donor_acceptor_evidence": {
+                        "positive_contact_examples": [
+                            {"reported_family": "nad"}
+                        ]
+                    },
+                }
+
+            def fe_s_support_row(entry_id: str) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "research_only_projection_tranche",
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": True,
+                        "electron_transfer_count": 1,
+                        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": True,
+                        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 1,
+                    },
+                    "approval_readiness_evidence": {
+                        "split_assignment": "in_distribution",
+                        "minimal_train_cal_feature_bundle_ready": True,
+                        "accession_compatible_sequence_positions": True,
+                        "predictive_use_allowed_now": False,
+                        "present_in_current_train_cal_feature_sidecar": False,
+                        "missing_import_requirements": [
+                            "predictive_use_allowed_true",
+                            "approved_train_cal_feature_sidecar_row",
+                        ],
+                    },
+                }
+
+            approval_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"current_geometry_fold_oos_rows": 5},
+                        "feature_rows": [
+                            current_row(
+                                "p1", "current_primary_retention_gate"
+                            ),
+                            current_row(
+                                "p2", "current_primary_retention_gate"
+                            ),
+                            current_row("o1", "current_retained_oos", pqq=1),
+                            current_row("o2", "current_retained_oos", nad=1),
+                            current_row("o3", "current_retained_oos", fe_s=1),
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            support_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "approved_train_cal_sidecar_projection_support_entry_ids_present": [
+                                "s_nad1",
+                                "s_nad2",
+                            ],
+                            "tiny_bundle_ready_support_subset_entry_ids": [
+                                "s_fe1",
+                                "s_fe2",
+                            ],
+                            "tiny_support_subset_blocked_only_by_predictive_gate_and_import_entry_ids": [
+                                "s_fe1",
+                                "s_fe2",
+                            ],
+                        },
+                        "decision": {
+                            "support_contract_gap_only": True,
+                            "direct_source_free_electron_flow_adds_operating_point_value_after_selected_support_import": True,
+                        },
+                        "selected_support_feature_rows": [
+                            fe_s_support_row("s_fe1"),
+                            fe_s_support_row("s_fe2"),
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            relaxed_path.write_text(
+                json.dumps(
+                    {
+                        "measured_readout": {
+                            "projection_model_relaxed_non_pqq_distance_row_scout": {
+                                "positive_entry_ids": ["s_nad1", "s_nad2"],
+                                "feature_rows": [
+                                    relaxed_projection_row("s_nad1"),
+                                    relaxed_projection_row("s_nad2"),
+                                ],
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            train_cal_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "s_nad1",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 1,
+                                },
+                            },
+                            {
+                                "entry_id": "s_nad2",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 1,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            train_cal_manifest_path.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "s_fe1",
+                                "split_assignment": "in_distribution",
+                                "role_graph_status": "ok",
+                            },
+                            {
+                                "entry_id": "s_fe2",
+                                "split_assignment": "in_distribution",
+                                "role_graph_status": "ok",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+                approval_qualified_union_readout_path=approval_path,
+                support_subset_preflight_readout_path=support_path,
+                relaxed_non_pqq_feature_sidecar_readout_path=relaxed_path,
+                train_cal_feature_sidecar_path=train_cal_sidecar_path,
+                train_cal_input_manifest_path=train_cal_manifest_path,
+                artifact_id="test_candidate_train_cal_bundle",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_candidate_train_cal_bundle")
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_candidate_train_cal_bundle_materialized_pending_approval_import",
+        )
+        self.assertEqual(readout["counts"]["candidate_current_split_rows"], 5)
+        self.assertEqual(
+            readout["counts"]["candidate_current_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_current_retained_oos_positive_entry_ids"],
+            ["o1", "o2", "o3"],
+        )
+        self.assertEqual(readout["counts"]["candidate_support_rows"], 4)
+        self.assertEqual(readout["counts"]["candidate_expected_support_rows"], 4)
+        self.assertEqual(
+            readout["counts"]["candidate_support_missing_entry_ids"], []
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_pqq_nad_projection_support_entry_ids"],
+            ["s_nad1", "s_nad2"],
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_selected_fe_s_support_entry_ids"],
+            ["s_fe1", "s_fe2"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "candidate_selected_fe_s_support_missing_explicit_train_cal_split_entry_ids"
+            ],
+            ["s_fe1", "s_fe2"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "train_cal_manifest_selected_fe_s_support_entry_ids_present"
+            ],
+            ["s_fe1", "s_fe2"],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "train_cal_manifest_confirms_selected_fe_s_rows_in_distribution"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "train_cal_manifest_confirms_selected_fe_s_role_graph_ok"
+            ]
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_direct_component_fields_present"],
+            [],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_in_candidate_bundle"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["candidate_expected_support_rows_materialized"]
+        )
+        self.assertTrue(readout["decision"]["support_contract_gap_only"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertEqual(
+            readout["counts"]["candidate_forbidden_row_feature_key_hits"], 0
+        )
+
+    def test_electron_flow_candidate_train_cal_bundle_requires_expected_support_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            approval_path = root / "approval.json"
+            support_path = root / "support.json"
+            relaxed_path = root / "relaxed.json"
+            train_cal_sidecar_path = root / "train_cal_sidecar.json"
+            train_cal_manifest_path = root / "train_cal_manifest.json"
+
+            approval_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"current_geometry_fold_oos_rows": 2},
+                        "feature_rows": [
+                            {
+                                "entry_id": "p1",
+                                "assigned_embedding_split": "calibration",
+                                "current_split_role": (
+                                    "current_primary_retention_gate"
+                                ),
+                                "source_free_electron_flow_field_complete": True,
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": False,
+                                    "electron_transfer_count": 0,
+                                },
+                            },
+                            {
+                                "entry_id": "o1",
+                                "assigned_embedding_split": "calibration",
+                                "current_split_role": "current_retained_oos",
+                                "source_free_electron_flow_field_complete": True,
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 1,
+                                    "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": True,
+                                    "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 1,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            support_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "approved_train_cal_sidecar_projection_support_entry_ids_present": [
+                                "missing_nad_support"
+                            ],
+                            "tiny_bundle_ready_support_subset_entry_ids": [
+                                "s_fe1"
+                            ],
+                            "tiny_support_subset_blocked_only_by_predictive_gate_and_import_entry_ids": [
+                                "s_fe1"
+                            ],
+                        },
+                        "decision": {
+                            "support_contract_gap_only": True,
+                        },
+                        "selected_support_feature_rows": [
+                            {
+                                "entry_id": "s_fe1",
+                                "assigned_embedding_split": (
+                                    "research_only_projection_tranche"
+                                ),
+                                "source_free_electron_flow_field_complete": True,
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 1,
+                                    "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": True,
+                                    "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 1,
+                                },
+                                "approval_readiness_evidence": {
+                                    "split_assignment": "in_distribution",
+                                    "missing_import_requirements": [
+                                        "predictive_use_allowed_true",
+                                        "approved_train_cal_feature_sidecar_row",
+                                    ],
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            relaxed_path.write_text(
+                json.dumps(
+                    {
+                        "measured_readout": {
+                            "projection_model_relaxed_non_pqq_distance_row_scout": {
+                                "positive_entry_ids": [],
+                                "feature_rows": [],
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            train_cal_sidecar_path.write_text(
+                json.dumps({"feature_rows": []}),
+                encoding="utf-8",
+            )
+            train_cal_manifest_path.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "s_fe1",
+                                "split_assignment": "in_distribution",
+                                "role_graph_status": "ok",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+                approval_qualified_union_readout_path=approval_path,
+                support_subset_preflight_readout_path=support_path,
+                relaxed_non_pqq_feature_sidecar_readout_path=relaxed_path,
+                train_cal_feature_sidecar_path=train_cal_sidecar_path,
+                train_cal_input_manifest_path=train_cal_manifest_path,
+                artifact_id="test_candidate_train_cal_bundle_missing_support",
+            )
+
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_candidate_train_cal_bundle_incomplete",
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_support_missing_entry_ids"],
+            ["missing_nad_support"],
+        )
+        self.assertFalse(
+            readout["decision"]["candidate_expected_support_rows_materialized"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_in_candidate_bundle"
+            ]
+        )
+        self.assertFalse(readout["decision"]["support_contract_gap_only"])
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,

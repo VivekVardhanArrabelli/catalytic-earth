@@ -95,6 +95,10 @@ DEFAULT_ELECTRON_FLOW_IRON_SULFUR_SUPPORT_SUBSET_PREFLIGHT_READOUT_ARTIFACT_ID =
     "v3_lever2_source_free_electron_flow_iron_sulfur_support_subset_"
     "preflight_readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_CANDIDATE_TRAIN_CAL_BUNDLE_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_candidate_train_cal_bundle_"
+    "readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -16097,6 +16101,936 @@ def write_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _direct_electron_flow_component_features(
+    source_features: dict[str, Any],
+) -> dict[str, Any]:
+    def _component_count(count_key: str, bool_key: str) -> int:
+        value = source_features.get(count_key)
+        if isinstance(value, bool):
+            return int(value)
+        if isinstance(value, (int, float)):
+            return int(value)
+        if value is not None:
+            try:
+                return int(value)
+            except (TypeError, ValueError):
+                pass
+        return 1 if source_features.get(bool_key) else 0
+
+    pqq_count = _component_count(
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+    )
+    nad_count = _component_count(
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+    )
+    iron_sulfur_count = _component_count(
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+    )
+    total_count = pqq_count + nad_count + iron_sulfur_count
+    return {
+        "has_electron_transfer_event": total_count > 0,
+        "electron_transfer_count": total_count,
+        "has_source_free_pqq_donor_acceptor_contact": pqq_count > 0,
+        "source_free_pqq_donor_acceptor_contact_count": pqq_count,
+        "has_source_free_nad_family_donor_acceptor_distance": nad_count > 0,
+        "source_free_nad_family_donor_acceptor_distance_count": nad_count,
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": (
+            iron_sulfur_count > 0
+        ),
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": (
+            iron_sulfur_count
+        ),
+    }
+
+
+def _candidate_current_electron_flow_row(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "entry_id": str(row.get("entry_id") or ""),
+        "assigned_embedding_split": row.get("assigned_embedding_split"),
+        "current_split_role": row.get("current_split_role"),
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "source_free_electron_flow_field_complete": bool(
+            row.get("source_free_electron_flow_field_complete")
+        ),
+        "row_specific_event_features": _direct_electron_flow_component_features(
+            row.get("row_specific_event_features") or {}
+        ),
+    }
+
+
+def _candidate_nad_projection_support_row(
+    row: dict[str, Any],
+) -> dict[str, Any] | None:
+    features = row.get("row_specific_event_features") or {}
+    evidence = row.get("relaxed_non_pqq_donor_acceptor_evidence") or {}
+    positive_examples = [
+        example
+        for example in evidence.get("positive_contact_examples", [])
+        if isinstance(example, dict)
+    ]
+    positive_families = sorted(
+        {str(example.get("reported_family") or "") for example in positive_examples}
+    )
+    if "nad" not in positive_families:
+        return None
+    relaxed_count = features.get(
+        "source_free_relaxed_non_pqq_donor_acceptor_contact_count"
+    )
+    if not isinstance(relaxed_count, int):
+        relaxed_count = 1 if features.get(
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact"
+        ) else 0
+    direct_features = _direct_electron_flow_component_features(
+        {
+            "has_source_free_nad_family_donor_acceptor_distance": relaxed_count > 0,
+            "source_free_nad_family_donor_acceptor_distance_count": relaxed_count,
+        }
+    )
+    return {
+        "entry_id": str(row.get("entry_id") or ""),
+        "assigned_embedding_split": row.get("assigned_embedding_split"),
+        "current_split_role": row.get("current_split_role"),
+        "candidate_bundle_role": "projection_backed_pqq_nad_support_row",
+        "source_free_electron_flow_field_complete": bool(
+            row.get("source_free_electron_flow_field_complete")
+        ),
+        "row_specific_event_features": direct_features,
+        "support_evidence_summary": {
+            "reported_families": positive_families,
+            "positive_contact_count": relaxed_count,
+            "source_field": "has_source_free_relaxed_non_pqq_donor_acceptor_contact",
+            "normalized_candidate_field": (
+                "has_source_free_nad_family_donor_acceptor_distance"
+            ),
+        },
+    }
+
+
+def _candidate_iron_sulfur_support_row(row: dict[str, Any]) -> dict[str, Any]:
+    readiness = row.get("approval_readiness_evidence") or {}
+    return {
+        "entry_id": str(row.get("entry_id") or ""),
+        "assigned_embedding_split": row.get("assigned_embedding_split"),
+        "candidate_split_assignment": readiness.get("split_assignment"),
+        "current_split_role": "candidate_fe_s_support_projection",
+        "candidate_bundle_role": "selected_fe_s_support_row",
+        "source_free_electron_flow_field_complete": bool(
+            row.get("source_free_electron_flow_field_complete")
+        ),
+        "row_specific_event_features": _direct_electron_flow_component_features(
+            row.get("row_specific_event_features") or {}
+        ),
+        "support_evidence_summary": {
+            "minimal_train_cal_feature_bundle_ready": readiness.get(
+                "minimal_train_cal_feature_bundle_ready"
+            ),
+            "accession_compatible_sequence_positions": readiness.get(
+                "accession_compatible_sequence_positions"
+            ),
+            "predictive_use_allowed_now": readiness.get(
+                "predictive_use_allowed_now"
+            ),
+            "present_in_current_train_cal_feature_sidecar": readiness.get(
+                "present_in_current_train_cal_feature_sidecar"
+            ),
+            "missing_import_requirements": readiness.get(
+                "missing_import_requirements", []
+            ),
+        },
+    }
+
+
+def build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+    *,
+    approval_qualified_union_readout_path: Path,
+    support_subset_preflight_readout_path: Path,
+    relaxed_non_pqq_feature_sidecar_readout_path: Path,
+    train_cal_feature_sidecar_path: Path | None = None,
+    train_cal_input_manifest_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CANDIDATE_TRAIN_CAL_BUNDLE_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    approval = _read_json(approval_qualified_union_readout_path)
+    support_preflight = _read_json(support_subset_preflight_readout_path)
+    relaxed_non_pqq = _read_json(relaxed_non_pqq_feature_sidecar_readout_path)
+    train_cal_sidecar = _read_optional_json(train_cal_feature_sidecar_path)
+    train_cal_manifest = _read_optional_json(train_cal_input_manifest_path)
+
+    approval_counts = approval.get("counts") or {}
+    support_counts = support_preflight.get("counts") or {}
+    support_decision = support_preflight.get("decision") or {}
+    relaxed_measured = relaxed_non_pqq.get("measured_readout") or {}
+    projection_scout = (
+        relaxed_measured.get("projection_model_relaxed_non_pqq_distance_row_scout")
+        or {}
+    )
+    projection_feature_rows = [
+        row
+        for row in projection_scout.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    projection_rows_by_entry = _records_by_entry(projection_feature_rows)
+    pqq_nad_support_entry_ids = [
+        str(entry_id)
+        for entry_id in support_counts.get(
+            "approved_train_cal_sidecar_projection_support_entry_ids_present"
+        )
+        or projection_scout.get("positive_entry_ids")
+        or []
+    ]
+    pqq_nad_support_rows = [
+        normalized
+        for entry_id in pqq_nad_support_entry_ids
+        for normalized in [
+            _candidate_nad_projection_support_row(
+                projection_rows_by_entry.get(entry_id, {})
+            )
+        ]
+        if normalized is not None
+    ]
+
+    selected_fe_s_support_entry_ids = [
+        str(entry_id)
+        for entry_id in support_counts.get(
+            "tiny_bundle_ready_support_subset_entry_ids"
+        )
+        or []
+    ]
+    selected_support_rows_by_entry = _records_by_entry(
+        [
+            row
+            for row in support_preflight.get("selected_support_feature_rows", [])
+            if isinstance(row, dict) and row.get("entry_id")
+        ]
+    )
+    fe_s_support_rows = [
+        _candidate_iron_sulfur_support_row(selected_support_rows_by_entry[entry_id])
+        for entry_id in selected_fe_s_support_entry_ids
+        if entry_id in selected_support_rows_by_entry
+    ]
+
+    current_rows = [
+        _candidate_current_electron_flow_row(row)
+        for row in approval.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    split_oos_rows = approval_counts.get("current_geometry_fold_oos_rows")
+    if split_oos_rows is not None:
+        try:
+            split_oos_rows = int(split_oos_rows)
+        except (TypeError, ValueError):
+            split_oos_rows = None
+    fixed_gate = _donor_acceptor_gate_readout(
+        current_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id="fixed_binary_candidate_pqq_nad_fe_s_direct_electron_flow_bundle",
+        feature_fields=[
+            "has_electron_transfer_event",
+            "electron_transfer_count",
+            "has_source_free_pqq_donor_acceptor_contact",
+            "source_free_pqq_donor_acceptor_contact_count",
+            "has_source_free_nad_family_donor_acceptor_distance",
+            "source_free_nad_family_donor_acceptor_distance_count",
+            "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+            "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+        ],
+        gate_rule=(
+            "Candidate train/cal bundle gate: abstain on complete direct "
+            "source-free PQQ, NAD-family, or Fe-S/iron component fields across "
+            "the 74-row current split. The gate is fixed from prior measured "
+            "component contracts; this readout does not select thresholds, "
+            "approve imports, or score heldout."
+        ),
+    )
+    candidate_support_rows = sorted(
+        [*pqq_nad_support_rows, *fe_s_support_rows],
+        key=lambda row: _entry_sort_key(str(row.get("entry_id") or "")),
+    )
+    expected_support_entry_ids = sorted(
+        {
+            *pqq_nad_support_entry_ids,
+            *selected_fe_s_support_entry_ids,
+        },
+        key=_entry_sort_key,
+    )
+    materialized_support_entry_ids = _entry_ids(candidate_support_rows)
+    missing_support_entry_ids = [
+        entry_id
+        for entry_id in expected_support_entry_ids
+        if entry_id not in set(materialized_support_entry_ids)
+    ]
+    candidate_bundle_rows = sorted(
+        [*current_rows, *candidate_support_rows],
+        key=lambda row: (
+            0 if row.get("candidate_bundle_role") == "current_split_operating_point_row" else 1,
+            _entry_sort_key(str(row.get("entry_id") or "")),
+        ),
+    )
+    candidate_forbidden_hits = _feature_row_exact_forbidden_key_hits(
+        candidate_bundle_rows
+    )
+    support_forbidden_hits = _feature_row_exact_forbidden_key_hits(
+        candidate_support_rows
+    )
+    support_complete_rows = [
+        row
+        for row in candidate_support_rows
+        if row.get("source_free_electron_flow_field_complete")
+    ]
+    candidate_support_rows_complete = bool(
+        not missing_support_entry_ids
+        and len(support_complete_rows) == len(candidate_support_rows)
+    )
+    explicit_train_cal_splits = {"train", "calibration"}
+    support_rows_with_explicit_split = [
+        row
+        for row in candidate_support_rows
+        if row.get("assigned_embedding_split") in explicit_train_cal_splits
+    ]
+    fe_s_support_missing_explicit_split = [
+        str(row["entry_id"])
+        for row in fe_s_support_rows
+        if row.get("assigned_embedding_split") not in explicit_train_cal_splits
+    ]
+    manifest_rows_by_entry = _records_by_entry(
+        [
+            row
+            for row in train_cal_manifest.get("row_records", [])
+            if isinstance(row, dict) and row.get("entry_id")
+        ]
+    )
+    selected_fe_s_manifest_rows = [
+        manifest_rows_by_entry[entry_id]
+        for entry_id in selected_fe_s_support_entry_ids
+        if entry_id in manifest_rows_by_entry
+    ]
+    selected_fe_s_manifest_entry_ids = _entry_ids(selected_fe_s_manifest_rows)
+    selected_fe_s_manifest_in_distribution_entry_ids = [
+        str(row["entry_id"])
+        for row in selected_fe_s_manifest_rows
+        if row.get("split_assignment") == "in_distribution"
+    ]
+    selected_fe_s_manifest_role_graph_ok_entry_ids = [
+        str(row["entry_id"])
+        for row in selected_fe_s_manifest_rows
+        if row.get("role_graph_status") == "ok"
+    ]
+    train_cal_sidecar_rows = [
+        row
+        for row in train_cal_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    approved_sidecar_entry_ids = {
+        str(row["entry_id"]) for row in train_cal_sidecar_rows
+    }
+    approved_sidecar_feature_keys = sorted(
+        {
+            str(key)
+            for row in train_cal_sidecar_rows
+            for key in (row.get("row_specific_event_features") or {})
+        }
+    )
+    component_fields = [
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+    ]
+    candidate_feature_keys = sorted(
+        {
+            str(key)
+            for row in candidate_bundle_rows
+            for key in (row.get("row_specific_event_features") or {})
+        }
+    )
+    candidate_component_fields_present = [
+        field for field in component_fields if field in candidate_feature_keys
+    ]
+    approved_component_fields_present = [
+        field for field in component_fields if field in approved_sidecar_feature_keys
+    ]
+    current_positive_entry_ids = fixed_gate["retained_oos_positive_entry_ids"]
+    support_entry_ids = _entry_ids(candidate_support_rows)
+    support_present_in_approved = [
+        entry_id for entry_id in support_entry_ids if entry_id in approved_sidecar_entry_ids
+    ]
+    current_positive_present_in_approved = [
+        entry_id
+        for entry_id in current_positive_entry_ids
+        if entry_id in approved_sidecar_entry_ids
+    ]
+    candidate_bundle_complete = bool(
+        fixed_gate["operating_point_measurable_now"]
+        and candidate_support_rows_complete
+        and len(candidate_component_fields_present) == len(component_fields)
+        and not candidate_forbidden_hits
+    )
+    candidate_operating_point_positive = bool(
+        candidate_bundle_complete
+        and fixed_gate["preserves_primary_retention"]
+        and fixed_gate["adds_incremental_oos_abstention"]
+    )
+    selected_fe_s_blocked_by_gate_import = [
+        str(entry_id)
+        for entry_id in support_counts.get(
+            "tiny_support_subset_blocked_only_by_predictive_gate_and_import_entry_ids"
+        )
+        or []
+    ]
+    remaining_gaps = []
+    if not approved_component_fields_present:
+        remaining_gaps.append(
+            "approved train/cal sidecar lacks direct source-free PQQ/NAD/Fe-S component fields"
+        )
+    if selected_fe_s_blocked_by_gate_import:
+        remaining_gaps.append(
+            "selected Fe-S support rows need predictive_use_allowed=true plus approved sidecar rows: "
+            + ", ".join(selected_fe_s_blocked_by_gate_import)
+        )
+    if fe_s_support_missing_explicit_split:
+        remaining_gaps.append(
+            "selected Fe-S support rows need explicit train/cal split assignment: "
+            + ", ".join(fe_s_support_missing_explicit_split)
+        )
+    if selected_fe_s_support_entry_ids and (
+        len(selected_fe_s_manifest_entry_ids) < len(selected_fe_s_support_entry_ids)
+    ):
+        missing_manifest_ids = [
+            entry_id
+            for entry_id in selected_fe_s_support_entry_ids
+            if entry_id not in set(selected_fe_s_manifest_entry_ids)
+        ]
+        remaining_gaps.append(
+            "selected Fe-S support rows missing from train/cal input manifest: "
+            + ", ".join(missing_manifest_ids)
+        )
+    if current_positive_entry_ids and not current_positive_present_in_approved:
+        remaining_gaps.append(
+            "current positive direct electron-flow rows are not present in the approved sidecar: "
+            + ", ".join(current_positive_entry_ids)
+        )
+    result_class = (
+        "research_only_candidate_train_cal_bundle_materialized_pending_approval_import"
+        if candidate_operating_point_positive
+        else (
+            "research_only_candidate_train_cal_bundle_materialized_but_operating_point_negative"
+            if candidate_bundle_complete
+            else "research_only_candidate_train_cal_bundle_incomplete"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_candidate_train_cal_bundle_"
+        f"readout_{result_class}"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_candidate_train_cal_"
+            "bundle_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined candidate bundle readout for direct "
+            "source-free electron-flow fields. It materializes, as a research-only "
+            "artifact, the current-split PQQ+NAD+Fe-S component rows plus the "
+            "smallest measured NAD and Fe-S support rows needed to audit the "
+            "approved train/cal sidecar gap. It does not approve, import, tune, "
+            "train, score heldout, edit registries, or promote any feature."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": "candidate_source_free_pqq_nad_fe_s_direct_electron_flow_train_cal_bundle",
+            "axis_id": "source_free_pqq_nad_fe_s_direct_electron_flow",
+            "contract_status": "research_only_candidate_unapproved_unimported",
+            "current_split_row_scope": (
+                "74 current split rows: 34 primary retention-gate rows plus "
+                "40 current-retained OOS rows"
+            ),
+            "candidate_support_entry_ids": expected_support_entry_ids,
+            "feature_fields": fixed_gate["feature_fields"],
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "feature_rows": candidate_bundle_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "assigned_embedding_split",
+            "current_split_role",
+            "candidate_bundle_role",
+            "candidate_split_assignment",
+            "support_evidence_summary",
+            "approval_readiness_evidence",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "candidate_current_split_operating_point": {
+                "feature_rows": current_rows,
+                "fixed_gate_readout": fixed_gate,
+            },
+            "candidate_support_bundle": {
+                "feature_rows": candidate_support_rows,
+                "expected_support_entry_ids": expected_support_entry_ids,
+                "materialized_support_entry_ids": materialized_support_entry_ids,
+                "missing_support_entry_ids": missing_support_entry_ids,
+                "pqq_nad_projection_support_entry_ids": _entry_ids(
+                    pqq_nad_support_rows
+                ),
+                "selected_fe_s_support_entry_ids": _entry_ids(fe_s_support_rows),
+                "support_rows_with_explicit_train_cal_split_entry_ids": _entry_ids(
+                    support_rows_with_explicit_split
+                ),
+                "selected_fe_s_support_missing_explicit_split_entry_ids": (
+                    fe_s_support_missing_explicit_split
+                ),
+                "forbidden_feature_key_hits": support_forbidden_hits,
+            },
+            "train_cal_input_manifest_preflight": {
+                "manifest_rows": len(train_cal_manifest.get("row_records", [])),
+                "selected_fe_s_support_entry_ids_present": (
+                    selected_fe_s_manifest_entry_ids
+                ),
+                "selected_fe_s_support_in_distribution_entry_ids": (
+                    selected_fe_s_manifest_in_distribution_entry_ids
+                ),
+                "selected_fe_s_support_role_graph_ok_entry_ids": (
+                    selected_fe_s_manifest_role_graph_ok_entry_ids
+                ),
+                "selected_fe_s_support_rows": selected_fe_s_manifest_rows,
+            },
+            "approved_train_cal_sidecar_gap": {
+                "approved_sidecar_rows": len(train_cal_sidecar_rows),
+                "support_entry_ids_present": support_present_in_approved,
+                "current_positive_entry_ids_present": (
+                    current_positive_present_in_approved
+                ),
+                "direct_source_free_component_fields_present": (
+                    approved_component_fields_present
+                ),
+                "direct_source_free_component_fields_missing": [
+                    field
+                    for field in component_fields
+                    if field not in approved_component_fields_present
+                ],
+            },
+            "candidate_vs_approved_component_field_audit": {
+                "candidate_component_fields_present": (
+                    candidate_component_fields_present
+                ),
+                "approved_component_fields_present": (
+                    approved_component_fields_present
+                ),
+                "remaining_gaps": remaining_gaps,
+            },
+            "source_preflight_decision": {
+                "support_contract_gap_only": support_decision.get(
+                    "support_contract_gap_only"
+                ),
+                "direct_source_free_electron_flow_adds_operating_point_value_after_selected_support_import": (
+                    support_decision.get(
+                        "direct_source_free_electron_flow_adds_operating_point_value_after_selected_support_import"
+                    )
+                ),
+            },
+            "forbidden_feature_key_hits": candidate_forbidden_hits,
+        },
+        "counts": {
+            "critical_violation_total": len(candidate_forbidden_hits),
+            "candidate_bundle_rows": len(candidate_bundle_rows),
+            "candidate_current_split_rows": fixed_gate["rows"],
+            "candidate_current_split_complete_rows": fixed_gate["complete_rows"],
+            "candidate_current_split_incomplete_rows": fixed_gate["incomplete_rows"],
+            "candidate_current_primary_rows": fixed_gate["primary_rows"],
+            "candidate_current_retained_oos_rows": fixed_gate["retained_oos_rows"],
+            "candidate_current_primary_positive_rows": fixed_gate[
+                "primary_positive_rows"
+            ],
+            "candidate_current_retained_oos_positive_rows": fixed_gate[
+                "retained_oos_positive_rows"
+            ],
+            "candidate_current_retained_oos_positive_entry_ids": (
+                current_positive_entry_ids
+            ),
+            "candidate_current_primary_retain_recall": fixed_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "candidate_current_retained_oos_abstain_recall": fixed_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "candidate_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                fixed_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "candidate_union_or_gate_oos_abstain_recall": fixed_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "candidate_support_rows": len(candidate_support_rows),
+            "candidate_expected_support_rows": len(expected_support_entry_ids),
+            "candidate_support_complete_rows": len(support_complete_rows),
+            "candidate_support_missing_entry_ids": missing_support_entry_ids,
+            "candidate_pqq_nad_projection_support_rows": len(pqq_nad_support_rows),
+            "candidate_pqq_nad_projection_support_entry_ids": _entry_ids(
+                pqq_nad_support_rows
+            ),
+            "candidate_selected_fe_s_support_rows": len(fe_s_support_rows),
+            "candidate_selected_fe_s_support_entry_ids": _entry_ids(
+                fe_s_support_rows
+            ),
+            "candidate_support_rows_with_explicit_train_cal_split": len(
+                support_rows_with_explicit_split
+            ),
+            "candidate_selected_fe_s_support_rows_missing_explicit_train_cal_split": len(
+                fe_s_support_missing_explicit_split
+            ),
+            "candidate_selected_fe_s_support_missing_explicit_train_cal_split_entry_ids": (
+                fe_s_support_missing_explicit_split
+            ),
+            "train_cal_manifest_selected_fe_s_support_rows_present": len(
+                selected_fe_s_manifest_entry_ids
+            ),
+            "train_cal_manifest_selected_fe_s_support_entry_ids_present": (
+                selected_fe_s_manifest_entry_ids
+            ),
+            "train_cal_manifest_selected_fe_s_support_in_distribution_entry_ids": (
+                selected_fe_s_manifest_in_distribution_entry_ids
+            ),
+            "train_cal_manifest_selected_fe_s_support_role_graph_ok_entry_ids": (
+                selected_fe_s_manifest_role_graph_ok_entry_ids
+            ),
+            "selected_fe_s_support_blocked_only_by_predictive_gate_and_import_entry_ids": (
+                selected_fe_s_blocked_by_gate_import
+            ),
+            "candidate_direct_component_fields_present": (
+                candidate_component_fields_present
+            ),
+            "approved_sidecar_direct_component_fields_present": (
+                approved_component_fields_present
+            ),
+            "approved_sidecar_direct_component_fields_missing": [
+                field
+                for field in component_fields
+                if field not in approved_component_fields_present
+            ],
+            "approved_sidecar_support_entry_ids_present": support_present_in_approved,
+            "approved_sidecar_current_positive_entry_ids_present": (
+                current_positive_present_in_approved
+            ),
+            "candidate_forbidden_row_feature_key_hits": len(candidate_forbidden_hits),
+            "candidate_support_forbidden_row_feature_key_hits": len(
+                support_forbidden_hits
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "candidate_bundle_materialized_source_free_component_rows": (
+                candidate_bundle_complete
+            ),
+            "candidate_bundle_preserves_primary_retention": fixed_gate[
+                "preserves_primary_retention"
+            ],
+            "candidate_bundle_adds_incremental_oos_abstention": fixed_gate[
+                "adds_incremental_oos_abstention"
+            ],
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_in_candidate_bundle": (
+                candidate_operating_point_positive
+            ),
+            "candidate_bundle_closes_direct_component_field_gap": bool(
+                len(candidate_component_fields_present) == len(component_fields)
+            ),
+            "candidate_expected_support_rows_materialized": (
+                not missing_support_entry_ids
+            ),
+            "approved_train_cal_sidecar_still_missing_direct_component_fields": bool(
+                len(approved_component_fields_present) < len(component_fields)
+            ),
+            "candidate_pqq_nad_projection_support_materialized": bool(
+                pqq_nad_support_rows
+            ),
+            "candidate_selected_fe_s_support_materialized": bool(fe_s_support_rows),
+            "train_cal_manifest_confirms_selected_fe_s_rows_in_distribution": bool(
+                selected_fe_s_support_entry_ids
+                and len(selected_fe_s_manifest_in_distribution_entry_ids)
+                == len(selected_fe_s_support_entry_ids)
+            ),
+            "train_cal_manifest_confirms_selected_fe_s_role_graph_ok": bool(
+                selected_fe_s_support_entry_ids
+                and len(selected_fe_s_manifest_role_graph_ok_entry_ids)
+                == len(selected_fe_s_support_entry_ids)
+            ),
+            "selected_fe_s_support_still_missing_predictive_approval_import": bool(
+                selected_fe_s_blocked_by_gate_import
+            ),
+            "selected_fe_s_support_still_missing_explicit_train_cal_split_assignment": bool(
+                fe_s_support_missing_explicit_split
+            ),
+            "operating_point_failure": not fixed_gate["adds_incremental_oos_abstention"],
+            "support_contract_gap_only": bool(
+                candidate_operating_point_positive
+                and (
+                    selected_fe_s_blocked_by_gate_import
+                    or fe_s_support_missing_explicit_split
+                    or len(approved_component_fields_present) < len(component_fields)
+                )
+            ),
+            "train_cal_supported_now": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not candidate_operating_point_positive,
+            "apply_or_promote_now": False,
+            "remaining_gap": "; ".join(remaining_gaps) if remaining_gaps else "none",
+            "smallest_next_experiment": (
+                "Approve/import the candidate direct component fields into the "
+                "train/cal feature sidecar, set predictive_use_allowed=true for "
+                "m_csa:127 and m_csa:281, and assign those Fe-S support rows to "
+                "an explicit train/cal split before rerunning this fixed bundle."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_this_artifact": True,
+            "candidate_feature_rows_imported_or_promoted": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "approval_qualified_union_readout": _source_path_record(
+                approval_qualified_union_readout_path
+            ),
+            "support_subset_preflight_readout": _source_path_record(
+                support_subset_preflight_readout_path
+            ),
+            "relaxed_non_pqq_feature_sidecar_readout": _source_path_record(
+                relaxed_non_pqq_feature_sidecar_readout_path
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "train_cal_input_manifest": (
+                _source_path_record(train_cal_input_manifest_path)
+                if train_cal_input_manifest_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The research-only candidate bundle has complete direct "
+                "source-free PQQ, NAD-family, and Fe-S/iron component fields "
+                f"on {fixed_gate['complete_rows']}/{fixed_gate['rows']} "
+                "current-split rows, preserves primary retention, and catches "
+                f"{fixed_gate['retained_oos_positive_rows']} current-retained "
+                "OOS rows."
+            )
+            if candidate_operating_point_positive
+            else (
+                "The candidate direct electron-flow bundle is incomplete or "
+                "does not add a primary-safe current-split OOS signal."
+            ),
+            "next_action": (
+                "Use the candidate bundle as the minimal import target; the "
+                "remaining blockers are approval/import and explicit split "
+                "assignment, not an operating-point failure."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_candidate_train_cal_bundle_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    gate = readout["measured_readout"]["candidate_current_split_operating_point"][
+        "fixed_gate_readout"
+    ]
+    support = readout["measured_readout"]["candidate_support_bundle"]
+    manifest = readout["measured_readout"]["train_cal_input_manifest_preflight"]
+    sidecar = readout["measured_readout"]["approved_train_cal_sidecar_gap"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Candidate Train/Cal Bundle Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Candidate bundle rows: "
+        f"{counts['candidate_bundle_rows']}",
+        "- Current split complete rows: "
+        f"{counts['candidate_current_split_complete_rows']}/"
+        f"{counts['candidate_current_split_rows']}",
+        "- Current primary/OOS positives: "
+        f"{counts['candidate_current_primary_positive_rows']}/"
+        f"{counts['candidate_current_retained_oos_positive_rows']}",
+        "- Primary retain recall: "
+        f"{counts['candidate_current_primary_retain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold: "
+        f"{counts['candidate_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Union OOS recall: "
+        f"{counts['candidate_union_or_gate_oos_abstain_recall']}",
+        "- Support rows complete: "
+        f"{counts['candidate_support_complete_rows']}/"
+        f"{counts['candidate_expected_support_rows']}",
+        "- Forbidden row-feature key hits: "
+        f"{counts['candidate_forbidden_row_feature_key_hits']}",
+        "",
+        "## Fixed Operating Point",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | retained-OOS IDs | union OOS recall |",
+        "| ---: | ---: | ---: | --- | ---: |",
+        f"| {gate['complete_rows']}/{gate['rows']} | "
+        f"{gate['primary_positive_rows']} | "
+        f"{gate['retained_oos_positive_rows']} | "
+        f"{', '.join(gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{gate['union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Candidate Support Rows",
+        "",
+        "- PQQ+NAD projection support rows: "
+        f"{', '.join(support['pqq_nad_projection_support_entry_ids']) or 'none'}",
+        "- Selected Fe-S support rows: "
+        f"{', '.join(support['selected_fe_s_support_entry_ids']) or 'none'}",
+        "- Support rows with explicit train/cal split: "
+        f"{', '.join(support['support_rows_with_explicit_train_cal_split_entry_ids']) or 'none'}",
+        "- Expected support rows missing from candidate bundle: "
+        f"{', '.join(support['missing_support_entry_ids']) or 'none'}",
+        "- Selected Fe-S support rows missing explicit train/cal split: "
+        f"{', '.join(support['selected_fe_s_support_missing_explicit_split_entry_ids']) or 'none'}",
+        "- Selected Fe-S support rows present in train/cal manifest: "
+        f"{', '.join(manifest['selected_fe_s_support_entry_ids_present']) or 'none'}",
+        "- Selected Fe-S support rows in distribution: "
+        f"{', '.join(manifest['selected_fe_s_support_in_distribution_entry_ids']) or 'none'}",
+        "- Selected Fe-S support rows with role graph ok: "
+        f"{', '.join(manifest['selected_fe_s_support_role_graph_ok_entry_ids']) or 'none'}",
+        "",
+        "## Approved Sidecar Gap",
+        "",
+        "- Approved sidecar rows: "
+        f"{sidecar['approved_sidecar_rows']}",
+        "- Candidate support rows present: "
+        f"{', '.join(sidecar['support_entry_ids_present']) or 'none'}",
+        "- Candidate current positive rows present: "
+        f"{', '.join(sidecar['current_positive_entry_ids_present']) or 'none'}",
+        "- Direct component fields present: "
+        f"{', '.join(sidecar['direct_source_free_component_fields_present']) or 'none'}",
+        "- Direct component fields missing: "
+        f"{', '.join(sidecar['direct_source_free_component_fields_missing']) or 'none'}",
+        "",
+        "## Decision",
+        "",
+        "- Candidate bundle materialized: "
+        f"{decision['candidate_bundle_materialized_source_free_component_rows']}",
+        "- Candidate bundle preserves primary retention: "
+        f"{decision['candidate_bundle_preserves_primary_retention']}",
+        "- Candidate bundle adds OOS abstention: "
+        f"{decision['candidate_bundle_adds_incremental_oos_abstention']}",
+        "- Candidate bundle closes component-field gap: "
+        f"{decision['candidate_bundle_closes_direct_component_field_gap']}",
+        "- Candidate expected support rows materialized: "
+        f"{decision['candidate_expected_support_rows_materialized']}",
+        "- Train/cal manifest confirms selected Fe-S rows in distribution: "
+        f"{decision['train_cal_manifest_confirms_selected_fe_s_rows_in_distribution']}",
+        "- Train/cal manifest confirms selected Fe-S role graph ok: "
+        f"{decision['train_cal_manifest_confirms_selected_fe_s_role_graph_ok']}",
+        "- Approved sidecar still missing component fields: "
+        f"{decision['approved_train_cal_sidecar_still_missing_direct_component_fields']}",
+        "- Selected Fe-S still missing approval/import: "
+        f"{decision['selected_fe_s_support_still_missing_predictive_approval_import']}",
+        "- Selected Fe-S still missing explicit split assignment: "
+        f"{decision['selected_fe_s_support_still_missing_explicit_train_cal_split_assignment']}",
+        "- Support-contract gap only: "
+        f"{decision['support_contract_gap_only']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+    *,
+    approval_qualified_union_readout_path: Path,
+    support_subset_preflight_readout_path: Path,
+    relaxed_non_pqq_feature_sidecar_readout_path: Path,
+    out_path: Path,
+    train_cal_feature_sidecar_path: Path | None = None,
+    train_cal_input_manifest_path: Path | None = None,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CANDIDATE_TRAIN_CAL_BUNDLE_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+        approval_qualified_union_readout_path=approval_qualified_union_readout_path,
+        support_subset_preflight_readout_path=support_subset_preflight_readout_path,
+        relaxed_non_pqq_feature_sidecar_readout_path=(
+            relaxed_non_pqq_feature_sidecar_readout_path
+        ),
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_candidate_train_cal_bundle_report(
                 readout
             ),
             encoding="utf-8",

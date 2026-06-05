@@ -54,6 +54,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_event_motif_interaction_null_readout,
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
+    write_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout,
     write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
     write_lever2_source_free_electron_flow_current_split_smoke_materialization_readout,
@@ -14288,6 +14289,42 @@ def cmd_build_lever2_source_free_electron_flow_iron_sulfur_support_subset_prefli
         f"{counts.get('approval_qualified_current_retained_oos_positive_rows')}, "
         "Fe-S incremental rows: "
         f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+        approval_qualified_union_readout_path=Path(
+            args.approval_qualified_union_readout
+        ),
+        support_subset_preflight_readout_path=Path(
+            args.support_subset_preflight_readout
+        ),
+        relaxed_non_pqq_feature_sidecar_readout_path=Path(
+            args.relaxed_non_pqq_feature_sidecar_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow candidate train/cal "
+        f"bundle readout to {args.out} "
+        "current primary/OOS positives: "
+        f"{counts.get('candidate_current_primary_positive_rows')}/"
+        f"{counts.get('candidate_current_retained_oos_positive_rows')}, "
+        "support rows: "
+        f"{counts.get('candidate_support_rows')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -34202,6 +34239,72 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_iron_sulfur_support_subset_preflight.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout
+        )
+    )
+
+    lever2_electron_flow_candidate_train_cal_bundle = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-candidate-train-cal-bundle-readout",
+        help=(
+            "materialize a research-only candidate train/cal bundle for direct "
+            "source-free PQQ+NAD+Fe-S electron-flow component fields"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--approval-qualified-union-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--support-subset-preflight-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "support_subset_preflight_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--relaxed-non-pqq-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_candidate_train_cal_"
+            "bundle_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_candidate_train_cal_"
+            "bundle_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout
         )
     )
 
