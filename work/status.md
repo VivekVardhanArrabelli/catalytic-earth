@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 370
-- Measured elapsed time: 11400.2 minutes (190.00 hours)
+- Entries: 371
+- Measured elapsed time: 11403.5 minutes (190.06 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 1232.7 measured minutes (20.55 hours)
+- northstar-lever3: 1236.0 measured minutes (20.60 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3889
-- Evidence references logged: 3211
+- Artifact references logged: 3893
+- Evidence references logged: 3218
 
 ## Recent Entries
-
-### 2026-06-05T08:53:14.250032+00:00 - northstar-lever3
-
-- Task: Lever 3 retained pocket chemistry and geometry mismatch counteraxis readouts
-- Time mode: measured
-- Measured minutes: 50.3
-- Started: 2026-06-05T08:01:49Z
-- Ended: 2026-06-05T08:52:07Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.json, work/fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.md, artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605.json, work/fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: pocket chemistry sulfur count routed m_csa:468 with zero retained calibration fires, geometry mismatch rule routed m_csa:308 with zero retained calibration fires, retained residual rows after all Lever 3 counteraxes 0, calibration retention 31 of 34 and train cal OOS abstention 167 of 204, full pytest 1487 passed 215 subtests with existing sklearn warning, unittest discovery 1442 passed, validate compileall diff-check JSON parse normalized reproducibility and disk checks passed
-- Notes: Measured readout artifacts first; no blocker packet produced; fixed threshold 0.44155 unchanged and fixed-threshold scoring closure remains fail-closed pending exact P07658 coordinate provenance.
 
 ### 2026-06-05T09:52:04.608209+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
 - Evidence: final reusable Lever 3 gate documented, current hard residual operator rows 21 of 21 safe abstain route, mechanism transfer allowed rows 0 and forced labels 0, P07658 frozen FASTA 715 aa with U140 preserved, P07658 remains fail closed pending exact coordinate provenance, current environment has no credentialed provider route local predictor runtime or coordinate, source hash audit 8 of 8 current, new JSON parsed git diff check validate and unittest discovery 1495 passed
 - Notes: Lever 3 stop condition reached; fixed-threshold scoring closure remains fail-closed only on exact P07658 coordinate/provenance plus acceptance preflight.
+
+### 2026-06-05T16:06:56.986922+00:00 - northstar-lever3
+
+- Task: Lever 3 finalization stop verification
+- Time mode: measured
+- Measured minutes: 3.317
+- Started: 2026-06-05T16:03:25Z
+- Ended: 2026-06-05T16:06:44Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
+- Evidence: finalization artifact already pushed at d40e34a7, HEAD matched origin main before handoff update, P07658 FASTA 715 aa with U140 preserved, no P07658 exact coordinate or filled provenance found, no provider credentials or local predictor runtime present, source hash audit 8 of 8 current, git diff check validate and unittest discovery 1495 passed
+- Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
 
 ## Expectation Updates
 
@@ -631,3 +631,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T13:51:57.851542+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions provider calls secret values or experimental-PDB deployment shortcuts changed.
 - 2026-06-05T14:36:17.881700+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions provider calls secret values or experimental-PDB deployment shortcuts changed.
 - 2026-06-05T15:08:04.783030+00:00: Lever 3 finalization only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
+- 2026-06-05T16:06:56.986922+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
