@@ -79,6 +79,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_p07658_local_input_inventory_audit,
     build_fold_augmented_lever3_p07658_sequence_compatibility_readout,
     build_fold_augmented_lever3_confounded_safe_abstention_readout,
+    build_fold_augmented_lever3_deployment_action_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -5997,6 +5998,201 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(
             readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
         )
+
+    def test_lever3_deployment_action_readout_exposes_row_actions(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            residual_path = root / "residual.json"
+            cofactor_path = root / "cofactor.json"
+            contract_path = root / "contract.json"
+            abstention_path = root / "abstention.json"
+            residual_path.write_text(
+                json.dumps(
+                    {
+                        "residual_readout": {
+                            "rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "A1",
+                                    "axis_memberships": ["same_family"],
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "retained_by_all_current_channels": True,
+                                    "closest_current_channel": "cofactor_max_score",
+                                    "closest_current_channel_margin": 0.1,
+                                    "evidence_need": "same_family_counteraxis",
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "A2",
+                                    "axis_memberships": [
+                                        "high_cofactor",
+                                        "same_family",
+                                    ],
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "retained_by_all_current_channels": True,
+                                    "closest_current_channel": (
+                                        "combined_min_geometry_fold"
+                                    ),
+                                    "closest_current_channel_margin": 0.02,
+                                    "evidence_need": (
+                                        "cofactor_role_and_same_family_counteraxis"
+                                    ),
+                                },
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "accession": "A3",
+                                    "axis_memberships": ["same_family"],
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "retained_by_all_current_channels": True,
+                                    "closest_current_channel": (
+                                        "combined_mean_geometry_fold"
+                                    ),
+                                    "closest_current_channel_margin": 0.03,
+                                    "evidence_need": "same_family_counteraxis",
+                                },
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "route_readouts": {
+                            "fixed_baseline_plus_counteraxis": {
+                                "residual_all": {
+                                    "counteraxis_rows": [
+                                        {
+                                            "entry_id": "m_csa:2",
+                                            "accession": "A2",
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "contract": {
+                            "selected_on_train_cal_only": True,
+                            "feature_rule": "fold/geometry bandpass",
+                            "bounds": {
+                                "fold_nearest_atlas_tm_score": {
+                                    "min": 0.6,
+                                    "max": 0.7,
+                                }
+                            },
+                            "remaining_same_family_residual_entry_ids_fired": [
+                                "m_csa:3"
+                            ],
+                        },
+                        "selected_same_family_residual_rows": [
+                            {"entry_id": "m_csa:3", "accession": "A3"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            abstention_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {
+                            "route_id": "fixed_route",
+                            "baseline_threshold": 0.44155,
+                            "threshold_selection_source": (
+                                "train_calibration_only"
+                            ),
+                        },
+                        "p07658_fail_closed_gate": {
+                            "forced_abstention_required_now": True,
+                            "failed_gate_ids": [
+                                "preferred_full_length_coordinate_present"
+                            ],
+                            "sequence_contract_valid": True,
+                        },
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "hard_confounded_train_cal_routing_ready": True,
+                            "true_in_scope_retention_floor_met": True,
+                            "current_evidence_sufficient_for_safe_abstention_routing": True,
+                            "current_evidence_sufficient_for_fixed_threshold_scoring_closure": False,
+                            "exact_missing_evidence_for_scoring_closure": [
+                                "P07658 provenance"
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_deployment_action_readout(
+                residual_safety_readout_path=residual_path,
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                same_family_bandpass_counteraxis_contract_path=contract_path,
+                confounded_safe_abstention_readout_path=abstention_path,
+                artifact_id="custom_deployment_action_readout",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_deployment_action_readout")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_deployment_action_readout_ready_fail_closed_p07658",
+        )
+        self.assertEqual(readout["counts"]["residual_rows"], 3)
+        self.assertEqual(
+            readout["counts"][
+                "unique_residual_rows_abstained_by_accepted_counteraxes"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_retained_after_accepted_counteraxes"],
+            1,
+        )
+        self.assertEqual(readout["counts"]["p07658_forced_abstention_rows"], 1)
+        by_id = {row["entry_id"]: row for row in readout["residual_action_rows"]}
+        self.assertEqual(
+            by_id["m_csa:2"]["accepted_counteraxis_action_sources"],
+            ["cofactor_context_counteraxis"],
+        )
+        self.assertEqual(
+            by_id["m_csa:3"]["accepted_counteraxis_action_sources"],
+            ["same_family_numeric_bandpass_counteraxis"],
+        )
+        self.assertEqual(
+            by_id["m_csa:1"]["deployment_action_now"],
+            "retain_at_fixed_operating_point_not_scoring_closure",
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_evidence_sufficient_for_safe_abstention_routing"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_fixed_threshold_scoring_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
+        )
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

@@ -8832,6 +8832,148 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
+    def test_fold_augmented_lever3_deployment_action_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_action_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_deployment_action_readout_ready_fail_closed_p07658",
+        )
+        self.assertEqual(readout["operating_point"]["baseline_threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["residual_rows"], 21)
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_retained_by_all_current_channels_before_counteraxes"
+            ],
+            21,
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_abstained_by_cofactor_context_counteraxis"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_abstained_by_same_family_bandpass_counteraxis"],
+            9,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "unique_residual_rows_abstained_by_accepted_counteraxes"
+            ],
+            10,
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_retained_after_accepted_counteraxes"],
+            11,
+        )
+        self.assertEqual(readout["counts"]["retained_residual_evidence_queue_rows"], 11)
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_with_pocket_descriptor"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_missing_pocket_descriptor"],
+            9,
+        )
+        self.assertEqual(readout["counts"]["p07658_forced_abstention_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["same_family_bandpass_top_candidate_rules_checked"],
+            10,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "same_family_bandpass_retention_preserving_top_candidate_rules_checked"
+            ],
+            10,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "same_family_bandpass_best_retention_preserving_residual_rows_fired"
+            ],
+            9,
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_rows"], 204)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            readout["accepted_counteraxis_contracts"][
+                "cofactor_context_counteraxis_entry_ids"
+            ],
+            ["m_csa:289"],
+        )
+        self.assertEqual(
+            readout["accepted_counteraxis_contracts"][
+                "same_family_bandpass_counteraxis_entry_ids"
+            ],
+            [
+                "m_csa:135",
+                "m_csa:223",
+                "m_csa:451",
+                "m_csa:463",
+                "m_csa:464",
+                "m_csa:488",
+                "m_csa:502",
+                "m_csa:503",
+                "m_csa:646",
+            ],
+        )
+        self.assertEqual(
+            [
+                row["entry_id"]
+                for row in readout["retained_residual_evidence_queue"][0:5]
+            ],
+            ["m_csa:229", "m_csa:89", "m_csa:74", "m_csa:256", "m_csa:638"],
+        )
+        self.assertEqual(
+            readout["retained_residual_evidence_queue"][0][
+                "same_family_pocket_descriptor_status"
+            ],
+            "pocket_descriptor_missing",
+        )
+        self.assertEqual(
+            readout["retained_residual_evidence_queue"][7][
+                "same_family_pocket_descriptor_status"
+            ],
+            "pocket_descriptor_present",
+        )
+        self.assertFalse(
+            readout["decision"]["full_residual_row_abstention_coverage"]
+        )
+        self.assertTrue(
+            readout["decision"]["hard_confounded_residual_target_covered"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "retention_preserving_bandpass_grid_improves_selected_same_family_residual_coverage"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_evidence_sufficient_for_safe_abstention_routing"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_fixed_threshold_scoring_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -8932,6 +9074,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_confounded_safe_abstention_"
                 "readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_action_readout_"
+                "current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

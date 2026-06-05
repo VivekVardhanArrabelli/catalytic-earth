@@ -348,6 +348,9 @@ FOLD_AUGMENTED_LEVER3_P07658_SEQUENCE_COMPATIBILITY_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_CONFOUNDED_SAFE_ABSTENTION_READOUT_ID = (
     "v3_fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_ACTION_READOUT_ID = (
+    "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -44012,6 +44015,636 @@ def write_fold_augmented_lever3_confounded_safe_abstention_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_confounded_safe_abstention_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _lever3_entry_ids_from_rows(rows: Any) -> set[str]:
+    entry_ids: set[str] = set()
+    for row in rows or []:
+        if isinstance(row, dict) and row.get("entry_id"):
+            entry_ids.add(str(row["entry_id"]))
+        elif isinstance(row, str):
+            entry_ids.add(row)
+    return entry_ids
+
+
+def build_fold_augmented_lever3_deployment_action_readout(
+    *,
+    residual_safety_readout_path: Path,
+    cofactor_context_counteraxis_readout_path: Path,
+    same_family_bandpass_counteraxis_contract_path: Path,
+    confounded_safe_abstention_readout_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_DEPLOYMENT_ACTION_READOUT_ID,
+) -> dict[str, Any]:
+    residual = _read_json(residual_safety_readout_path)
+    cofactor = _read_json(cofactor_context_counteraxis_readout_path)
+    contract = _read_json(same_family_bandpass_counteraxis_contract_path)
+    abstention = _read_json(confounded_safe_abstention_readout_path)
+    residual_rows = list((residual.get("residual_readout") or {}).get("rows") or [])
+    cofactor_routes = cofactor.get("route_readouts") or {}
+    cofactor_route = cofactor_routes.get("fixed_baseline_plus_counteraxis") or {}
+    cofactor_counteraxis_ids: set[str] = set()
+    for section_id in (
+        "residual_all",
+        "residual_high_cofactor",
+        "residual_same_family",
+    ):
+        cofactor_counteraxis_ids.update(
+            _lever3_entry_ids_from_rows(
+                (cofactor_route.get(section_id) or {}).get("counteraxis_rows")
+            )
+        )
+    same_family_descriptor_probe = cofactor.get("same_family_descriptor_probe") or {}
+    pocket_descriptor_covered_ids = _lever3_entry_ids_from_rows(
+        same_family_descriptor_probe.get("covered_same_family_residual_entry_ids")
+    )
+    pocket_descriptor_missing_ids = _lever3_entry_ids_from_rows(
+        same_family_descriptor_probe.get("missing_same_family_residual_entry_ids")
+    )
+    same_family_contract = contract.get("contract") or {}
+    same_family_scout_rule = (
+        (cofactor.get("same_family_numeric_bandpass_scout") or {}).get(
+            "selected_rule"
+        )
+        or {}
+    )
+    same_family_top_rules = list(
+        (cofactor.get("same_family_numeric_bandpass_scout") or {}).get(
+            "top_candidate_rules"
+        )
+        or []
+    )
+    same_family_retention_rules = [
+        rule
+        for rule in same_family_top_rules
+        if isinstance(rule, dict) and bool(rule.get("retention_floor_met"))
+    ]
+    best_same_family_retention_rule = max(
+        same_family_retention_rules,
+        key=lambda rule: int(rule.get("remaining_same_family_residual_rows_fired") or 0),
+        default={},
+    )
+    same_family_rule = same_family_contract or same_family_scout_rule
+    same_family_counteraxis_ids = _lever3_entry_ids_from_rows(
+        contract.get("selected_same_family_residual_rows")
+    )
+    same_family_counteraxis_ids.update(
+        _lever3_entry_ids_from_rows(
+            same_family_rule.get("remaining_same_family_residual_entry_ids_fired")
+        )
+    )
+    residual_action_rows: list[dict[str, Any]] = []
+    for row in residual_rows:
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        cofactor_fires = entry_id in cofactor_counteraxis_ids
+        bandpass_fires = entry_id in same_family_counteraxis_ids
+        action_sources: list[str] = []
+        if cofactor_fires:
+            action_sources.append("cofactor_context_counteraxis")
+        if bandpass_fires:
+            action_sources.append("same_family_numeric_bandpass_counteraxis")
+        pocket_descriptor_status = (
+            "pocket_descriptor_present"
+            if entry_id in pocket_descriptor_covered_ids
+            else "pocket_descriptor_missing"
+            if entry_id in pocket_descriptor_missing_ids
+            else "not_applicable_or_unknown"
+        )
+        deployment_action = (
+            "abstain_or_route_novel_oos"
+            if action_sources
+            else "retain_at_fixed_operating_point_not_scoring_closure"
+        )
+        residual_action_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "axis_memberships": list(row.get("axis_memberships") or []),
+                "label_type": row.get("label_type"),
+                "oos_tier": row.get("oos_tier"),
+                "retained_by_all_current_channels_before_counteraxes": bool(
+                    row.get("retained_by_all_current_channels")
+                ),
+                "cofactor_context_counteraxis_fires": cofactor_fires,
+                "same_family_bandpass_counteraxis_fires": bandpass_fires,
+                "accepted_counteraxis_action_sources": action_sources,
+                "deployment_action_now": deployment_action,
+                "same_family_pocket_descriptor_status": pocket_descriptor_status,
+                "closest_current_channel": row.get("closest_current_channel"),
+                "closest_current_channel_margin": row.get(
+                    "closest_current_channel_margin"
+                ),
+                "evidence_need_if_retained": (
+                    row.get("evidence_need") if not action_sources else None
+                ),
+            }
+        )
+    residual_abstained_ids = {
+        row["entry_id"]
+        for row in residual_action_rows
+        if row["deployment_action_now"] == "abstain_or_route_novel_oos"
+    }
+    residual_retained_rows = [
+        row
+        for row in residual_action_rows
+        if row["deployment_action_now"]
+        == "retain_at_fixed_operating_point_not_scoring_closure"
+    ]
+    retained_residual_evidence_queue = [
+        {
+            "rank": rank,
+            "entry_id": row["entry_id"],
+            "accession": row.get("accession"),
+            "axis_memberships": row.get("axis_memberships") or [],
+            "closest_current_channel": row.get("closest_current_channel"),
+            "closest_current_channel_margin": row.get(
+                "closest_current_channel_margin"
+            ),
+            "same_family_pocket_descriptor_status": row.get(
+                "same_family_pocket_descriptor_status"
+            ),
+            "evidence_need": row.get("evidence_need_if_retained"),
+            "candidate_rows_scored_now": False,
+            "count_as_abstained_evidence_now": False,
+        }
+        for rank, row in enumerate(
+            sorted(
+                residual_retained_rows,
+                key=lambda item: (
+                    item.get("closest_current_channel_margin")
+                    if item.get("closest_current_channel_margin") is not None
+                    else float("inf"),
+                    item["entry_id"],
+                ),
+            ),
+            start=1,
+        )
+    ]
+    abstention_counts = abstention.get("counts") or {}
+    abstention_decision = abstention.get("decision") or {}
+    abstention_operating = abstention.get("operating_point") or {}
+    p07658_gate = abstention.get("p07658_fail_closed_gate") or {}
+    p07658_forced = bool(p07658_gate.get("forced_abstention_required_now"))
+    incomplete_input_action_rows: list[dict[str, Any]] = []
+    if p07658_forced:
+        incomplete_input_action_rows.append(
+            {
+                "entry_id": "m_csa:562",
+                "accession": "P07658",
+                "deployment_action_now": "abstain_or_route_novel_oos",
+                "action_reason": (
+                    "accepted full-length predicted coordinate/provenance is "
+                    "missing, so mechanism transfer is not allowed"
+                ),
+                "failed_gate_ids": list(p07658_gate.get("failed_gate_ids") or []),
+                "sequence_contract_valid": bool(
+                    p07658_gate.get("sequence_contract_valid")
+                ),
+            }
+        )
+    residual_target_covered = bool(
+        abstention_decision.get("hard_confounded_train_cal_routing_ready")
+    )
+    retention_floor_met = bool(
+        abstention_decision.get("true_in_scope_retention_floor_met")
+    )
+    safe_abstention_available = bool(
+        abstention_decision.get(
+            "current_evidence_sufficient_for_safe_abstention_routing"
+        )
+    )
+    scoring_closure = bool(
+        abstention_decision.get(
+            "current_evidence_sufficient_for_fixed_threshold_scoring_closure"
+        )
+    )
+    full_residual_coverage = bool(
+        residual_action_rows and len(residual_abstained_ids) == len(residual_action_rows)
+    )
+    status = (
+        "fold_augmented_lever3_deployment_action_readout_ready_for_scoring_closure"
+        if scoring_closure and full_residual_coverage
+        else (
+            "fold_augmented_lever3_deployment_action_readout_ready_fail_closed_p07658"
+            if safe_abstention_available and p07658_forced
+            else "fold_augmented_lever3_deployment_action_readout_ready_residual_actions_measured"
+        )
+    )
+    missing_evidence = list(
+        abstention_decision.get("exact_missing_evidence_for_scoring_closure") or []
+    )
+    best_same_family_rule_residual_rows = int(
+        best_same_family_retention_rule.get(
+            "remaining_same_family_residual_rows_fired"
+        )
+        or 0
+    )
+    selected_same_family_residual_rows = len(same_family_counteraxis_ids)
+    stronger_bandpass_found = bool(
+        best_same_family_rule_residual_rows > selected_same_family_residual_rows
+    )
+    if residual_retained_rows:
+        retained_missing_descriptor_rows = sum(
+            1
+            for row in residual_retained_rows
+            if row.get("same_family_pocket_descriptor_status")
+            == "pocket_descriptor_missing"
+        )
+        retained_with_descriptor_rows = sum(
+            1
+            for row in residual_retained_rows
+            if row.get("same_family_pocket_descriptor_status")
+            == "pocket_descriptor_present"
+        )
+        missing_evidence.append(
+            "source-free chemistry or pocket counteraxis evidence for the "
+            f"{len(residual_retained_rows)} retained residual same-family rows "
+            f"if zero residual retained-transfer risk is required; "
+            f"{retained_missing_descriptor_rows} still lack same-family pocket "
+            f"descriptors and {retained_with_descriptor_rows} have descriptors "
+            "but no accepted counteraxis"
+        )
+    else:
+        retained_missing_descriptor_rows = 0
+        retained_with_descriptor_rows = 0
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_action_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured deployment-action readout. It composes the "
+            "residual-safety rows, accepted cofactor-context counteraxis, "
+            "accepted same-family numeric bandpass contract, and fail-closed "
+            "P07658 abstention policy into row-level deployment actions. It "
+            "scores no rows, stages no coordinates, changes no thresholds, and "
+            "uses no heldout rows for threshold selection."
+        ),
+        "operating_point": {
+            "route_id": abstention_operating.get("route_id"),
+            "baseline_threshold": abstention_operating.get("baseline_threshold"),
+            "threshold_selection_source": abstention_operating.get(
+                "threshold_selection_source", "train_calibration_only"
+            ),
+            "calibration_in_scope_rows": int(
+                abstention_counts.get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                abstention_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                abstention_counts.get("all_train_cal_oos_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                abstention_counts.get("all_train_cal_oos_abstained") or 0
+            ),
+            "hard_confounded_residual_target_covered": residual_target_covered,
+            "full_residual_row_abstention_coverage": full_residual_coverage,
+            "threshold_or_value_changed_now": False,
+        },
+        "accepted_counteraxis_contracts": {
+            "cofactor_context_counteraxis_entry_ids": sorted(
+                cofactor_counteraxis_ids
+            ),
+            "same_family_bandpass_counteraxis_entry_ids": sorted(
+                same_family_counteraxis_ids
+            ),
+            "same_family_bandpass_rule": {
+                "feature_rule": same_family_rule.get("feature_rule"),
+                "bounds": same_family_rule.get("bounds")
+                or same_family_scout_rule.get("bounds"),
+                "selected_on_train_cal_only": bool(
+                    same_family_contract.get("selected_on_train_cal_only")
+                ),
+            },
+            "same_family_bandpass_limit": {
+                "top_candidate_rules_checked": len(same_family_top_rules),
+                "retention_preserving_top_candidate_rules_checked": len(
+                    same_family_retention_rules
+                ),
+                "selected_rule_remaining_same_family_residual_rows_fired": (
+                    selected_same_family_residual_rows
+                ),
+                "best_retention_preserving_top_rule_remaining_same_family_residual_rows_fired": (
+                    best_same_family_rule_residual_rows
+                ),
+                "stronger_retention_preserving_bandpass_found_in_top_rules": (
+                    stronger_bandpass_found
+                ),
+            },
+            "same_family_pocket_descriptor_probe": {
+                "covered_same_family_residual_entry_ids": sorted(
+                    pocket_descriptor_covered_ids
+                ),
+                "missing_same_family_residual_entry_ids": sorted(
+                    pocket_descriptor_missing_ids
+                ),
+                "retained_residual_rows_with_pocket_descriptor": (
+                    retained_with_descriptor_rows
+                ),
+                "retained_residual_rows_missing_pocket_descriptor": (
+                    retained_missing_descriptor_rows
+                ),
+            },
+        },
+        "residual_action_rows": residual_action_rows,
+        "retained_residual_evidence_queue": retained_residual_evidence_queue,
+        "incomplete_input_action_rows": incomplete_input_action_rows,
+        "counts": {
+            "residual_rows": len(residual_action_rows),
+            "residual_rows_retained_by_all_current_channels_before_counteraxes": sum(
+                1
+                for row in residual_action_rows
+                if row["retained_by_all_current_channels_before_counteraxes"]
+            ),
+            "residual_rows_abstained_by_cofactor_context_counteraxis": sum(
+                1
+                for row in residual_action_rows
+                if row["cofactor_context_counteraxis_fires"]
+            ),
+            "residual_rows_abstained_by_same_family_bandpass_counteraxis": sum(
+                1
+                for row in residual_action_rows
+                if row["same_family_bandpass_counteraxis_fires"]
+            ),
+            "unique_residual_rows_abstained_by_accepted_counteraxes": len(
+                residual_abstained_ids
+            ),
+            "residual_rows_retained_after_accepted_counteraxes": len(
+                residual_retained_rows
+            ),
+            "retained_residual_evidence_queue_rows": len(
+                retained_residual_evidence_queue
+            ),
+            "retained_residual_rows_with_pocket_descriptor": (
+                retained_with_descriptor_rows
+            ),
+            "retained_residual_rows_missing_pocket_descriptor": (
+                retained_missing_descriptor_rows
+            ),
+            "p07658_forced_abstention_rows": len(incomplete_input_action_rows),
+            "same_family_bandpass_top_candidate_rules_checked": len(
+                same_family_top_rules
+            ),
+            "same_family_bandpass_retention_preserving_top_candidate_rules_checked": len(
+                same_family_retention_rules
+            ),
+            "same_family_bandpass_best_retention_preserving_residual_rows_fired": (
+                best_same_family_rule_residual_rows
+            ),
+            "calibration_in_scope_rows": int(
+                abstention_counts.get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                abstention_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                abstention_counts.get("all_train_cal_oos_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                abstention_counts.get("all_train_cal_oos_abstained") or 0
+            ),
+            "critical_violation_total": int(
+                abstention_counts.get("critical_violation_total") or 0
+            ),
+        },
+        "decision": {
+            "deployment_valid_action_readout_available": True,
+            "hard_confounded_residual_target_covered": residual_target_covered,
+            "full_residual_row_abstention_coverage": full_residual_coverage,
+            "true_in_scope_retention_floor_met": retention_floor_met,
+            "fail_closed_abstention_contract_available": safe_abstention_available,
+            "retention_preserving_bandpass_grid_improves_selected_same_family_residual_coverage": (
+                stronger_bandpass_found
+            ),
+            "current_evidence_sufficient_for_safe_abstention_routing": (
+                safe_abstention_available
+            ),
+            "current_evidence_sufficient_for_fixed_threshold_scoring_closure": (
+                scoring_closure
+            ),
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_rows_with_missing_coordinate_or_provenance_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure_or_zero_residual_risk": (
+                missing_evidence
+            ),
+            "next_gate": (
+                "Use the fail-closed P07658 action now; for scoring closure, "
+                "provision one exact full-length P07658 predictor route with "
+                "coordinate/provenance and rerun acceptance preflight."
+                if not scoring_closure
+                else "Run fixed-threshold surface rerun with threshold 0.44155 unchanged."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "score_rows_with_missing_coordinate_or_provenance_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "residual_safety_readout": _source_path_record(
+                residual_safety_readout_path
+            ),
+            "cofactor_context_counteraxis_readout": _source_path_record(
+                cofactor_context_counteraxis_readout_path
+            ),
+            "same_family_bandpass_counteraxis_contract": _source_path_record(
+                same_family_bandpass_counteraxis_contract_path
+            ),
+            "confounded_safe_abstention_readout": _source_path_record(
+                confounded_safe_abstention_readout_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 has a row-level fail-closed action surface, but "
+                "fixed-threshold scoring closure still waits on P07658."
+                if safe_abstention_available and not scoring_closure
+                else "Lever 3 action surface is ready for fixed-threshold scoring closure."
+                if scoring_closure
+                else "Lever 3 action surface is measured but incomplete."
+            ),
+            "result": (
+                f"Accepted counteraxes abstain {len(residual_abstained_ids)}/"
+                f"{len(residual_action_rows)} residual hard-confounded rows, "
+                f"retain {int(abstention_counts.get('calibration_in_scope_retained') or 0)}/"
+                f"{int(abstention_counts.get('calibration_in_scope_rows') or 0)} "
+                "calibration in-scope rows, abstain "
+                f"{int(abstention_counts.get('all_train_cal_oos_abstained') or 0)}/"
+                f"{int(abstention_counts.get('all_train_cal_oos_rows') or 0)} "
+                "train/cal OOS rows, and force P07658 to abstain while "
+                "coordinate/provenance is missing."
+            ),
+            "next_action": (
+                "Provision one exact full-length P07658 predictor route with "
+                "provenance before any fixed-threshold scoring rerun."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_action_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    operating = readout["operating_point"]
+    counteraxes = readout["accepted_counteraxis_contracts"]
+    bandpass_limit = counteraxes["same_family_bandpass_limit"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Action Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Safe abstention routing available: "
+        f"{decision['current_evidence_sufficient_for_safe_abstention_routing']}",
+        "- Fixed-threshold scoring closure available: "
+        f"{decision['current_evidence_sufficient_for_fixed_threshold_scoring_closure']}",
+        "- Full residual row abstention coverage: "
+        f"{decision['full_residual_row_abstention_coverage']}",
+        "",
+        "## Operating Point",
+        "",
+        f"- Route: {operating['route_id']}",
+        f"- Baseline threshold: {operating['baseline_threshold']}",
+        "- Calibration retained: "
+        f"{operating['calibration_in_scope_retained']}/"
+        f"{operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{operating['all_train_cal_oos_abstained']}/"
+        f"{operating['all_train_cal_oos_rows']}",
+        "- Hard-confounded residual target covered: "
+        f"{operating['hard_confounded_residual_target_covered']}",
+        "",
+        "## Residual Actions",
+        "",
+        "- Residual rows abstained by accepted counteraxes: "
+        f"{counts['unique_residual_rows_abstained_by_accepted_counteraxes']}/"
+        f"{counts['residual_rows']}",
+        "- Residual rows retained after accepted counteraxes: "
+        f"{counts['residual_rows_retained_after_accepted_counteraxes']}",
+        "- Retained residual rows with/missing pocket descriptors: "
+        f"{counts['retained_residual_rows_with_pocket_descriptor']}/"
+        f"{counts['retained_residual_rows_missing_pocket_descriptor']}",
+        "- Best retention-preserving top bandpass rule residual rows fired: "
+        f"{bandpass_limit['best_retention_preserving_top_rule_remaining_same_family_residual_rows_fired']}",
+        "- Stronger retention-preserving top bandpass rule found: "
+        f"{bandpass_limit['stronger_retention_preserving_bandpass_found_in_top_rules']}",
+        "",
+        "| row | axes | action | sources | retained evidence need |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in readout.get("residual_action_rows", []):
+        axes = ",".join(row.get("axis_memberships") or [])
+        sources = ",".join(row.get("accepted_counteraxis_action_sources") or [])
+        lines.append(
+            f"| {row['entry_id']} | {axes} | {row['deployment_action_now']} | "
+            f"{sources or 'none'} | {row.get('evidence_need_if_retained') or ''} |"
+        )
+    lines += [
+        "",
+        "## Retained Residual Evidence Queue",
+        "",
+        "| rank | row | axes | closest channel | margin | pocket descriptor | evidence need |",
+        "| ---: | --- | --- | --- | ---: | --- | --- |",
+    ]
+    for row in readout.get("retained_residual_evidence_queue", []):
+        axes = ",".join(row.get("axis_memberships") or [])
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | {axes} | "
+            f"{row.get('closest_current_channel') or ''} | "
+            f"{row.get('closest_current_channel_margin')} | "
+            f"{row.get('same_family_pocket_descriptor_status') or ''} | "
+            f"{row.get('evidence_need') or ''} |"
+        )
+    lines += [
+        "",
+        "## Incomplete Inputs",
+        "",
+        f"- P07658 forced abstention rows: {counts['p07658_forced_abstention_rows']}",
+        "",
+        "## Decision",
+        "",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Score rows with missing coordinate/provenance now: "
+        f"{decision['score_rows_with_missing_coordinate_or_provenance_now']}",
+        "- Missing evidence for scoring closure or zero residual risk: "
+        f"{decision['exact_missing_evidence_for_scoring_closure_or_zero_residual_risk']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_action_readout(
+    *,
+    residual_safety_readout_path: Path,
+    cofactor_context_counteraxis_readout_path: Path,
+    same_family_bandpass_counteraxis_contract_path: Path,
+    confounded_safe_abstention_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_DEPLOYMENT_ACTION_READOUT_ID,
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_deployment_action_readout(
+        residual_safety_readout_path=residual_safety_readout_path,
+        cofactor_context_counteraxis_readout_path=(
+            cofactor_context_counteraxis_readout_path
+        ),
+        same_family_bandpass_counteraxis_contract_path=(
+            same_family_bandpass_counteraxis_contract_path
+        ),
+        confounded_safe_abstention_readout_path=(
+            confounded_safe_abstention_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_action_readout_report(
                 readout
             ),
             encoding="utf-8",

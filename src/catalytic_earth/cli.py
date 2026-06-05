@@ -164,6 +164,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_p07658_local_input_inventory_audit,
     write_fold_augmented_lever3_p07658_sequence_compatibility_readout,
     write_fold_augmented_lever3_confounded_safe_abstention_readout,
+    write_fold_augmented_lever3_deployment_action_readout,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -13692,6 +13693,40 @@ def cmd_build_fold_augmented_lever3_confounded_safe_abstention_readout(
         f"{decision.get('current_evidence_sufficient_for_fixed_threshold_scoring_closure')}, "
         "P07658 forced abstentions: "
         f"{counts.get('p07658_forced_abstention_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_action_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_deployment_action_readout(
+        residual_safety_readout_path=Path(args.residual_safety_readout),
+        cofactor_context_counteraxis_readout_path=Path(
+            args.cofactor_context_counteraxis_readout
+        ),
+        same_family_bandpass_counteraxis_contract_path=Path(
+            args.same_family_bandpass_counteraxis_contract
+        ),
+        confounded_safe_abstention_readout_path=Path(
+            args.confounded_safe_abstention_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment-action readout to "
+        f"{args.out} (residual actions: "
+        f"{counts.get('unique_residual_rows_abstained_by_accepted_counteraxes')}/"
+        f"{counts.get('residual_rows')}, P07658 forced abstentions: "
+        f"{counts.get('p07658_forced_abstention_rows')}, scoring closure: "
+        f"{decision.get('current_evidence_sufficient_for_fixed_threshold_scoring_closure')})"
     )
     return 0
 
@@ -32786,6 +32821,63 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_confounded_safe_abstention_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_confounded_safe_abstention_readout
+    )
+
+    lever3_deployment_action_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-action-readout",
+        help=(
+            "compose Lever 3 residual, counteraxis, and P07658 fail-closed "
+            "evidence into row-level deployment actions"
+        ),
+    )
+    lever3_deployment_action_readout.add_argument(
+        "--residual-safety-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_residual_safety_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_deployment_action_readout.add_argument(
+        "--cofactor-context-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_deployment_action_readout.add_argument(
+        "--same-family-bandpass-counteraxis-contract",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_same_family_bandpass_"
+            "counteraxis_contract_current702_20260604.json"
+        ),
+    )
+    lever3_deployment_action_readout.add_argument(
+        "--confounded-safe-abstention-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_confounded_safe_"
+            "abstention_readout_current702_20260604.json"
+        ),
+    )
+    lever3_deployment_action_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_action_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_action_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_deployment_action_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_action_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_deployment_action_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_action_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

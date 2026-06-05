@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 357
-- Measured elapsed time: 10935.9 minutes (182.27 hours)
+- Entries: 358
+- Measured elapsed time: 10968.3 minutes (182.81 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 768.4 measured minutes (12.81 hours)
+- northstar-lever3: 800.9 measured minutes (13.35 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3747
-- Evidence references logged: 3082
+- Artifact references logged: 3756
+- Evidence references logged: 3093
 
 ## Recent Entries
-
-### 2026-06-04T19:49:04.756605+00:00 - northstar-lever3
-
-- Task: Lever 3 residual safety readout
-- Time mode: measured
-- Measured minutes: 45.883
-- Started: 2026-06-04T19:02:47Z
-- Ended: 2026-06-04T19:48:40Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json, work/fold_augmented_lever3_residual_safety_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, tests/test_northstar_next_levers.py, work/handoff.md, work/status.md
-- Evidence: residual safety readout 21 unique residual hard-confounded rows all retained by all current source-free channels; closest-channel and any-channel diagnostic shifts preserve the 31/34 in-scope floor for 0/21 residual rows; m_csa:289/P07342 high-cofactor residual best shift retains only 25/34 in-scope; live P07658 checks still show AFDB 404 and 3D-Beacons experimental-only, UniProt sequence hash matches frozen 715-aa U140 input; full pytest 1427 passed 193 subtests one existing sklearn warning; unittest 1382 passed; affected tests 555 passed 174 subtests; validate 702 labels; compileall diff-check JSON parse docs-ref and active source hashes passed
-- Notes: Lever 3 only. No labels registries ontologies imports thresholds heldout tuning scoring coordinate staging model fitting or experimental PDB deployment shortcuts changed. Implementation commit 91c501581671165b23935d9277bfe6afee6cb078 pushed to main and verified before final handoff bookkeeping.
 
 ### 2026-06-04T20:51:00.471108+00:00 - northstar-lever3
 
@@ -123,6 +112,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-06-05T02:26:48Z
 - Artifacts: artifacts/v3_fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604.json, work/fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: safe abstention routing true with scoring closure false, P07658 forced abstention rows 1, calibration retention 31 of 34, train-cal OOS abstention 105 of 204, full pytest 1460 passed and 206 subtests with existing sklearn warning, unittest discovery 1415 passed, validate passed 702 labels, JSON parse sweep 3554 JSON and 27 JSONL zero errors
+- Notes: Measured readout artifact first; no blocker packet produced. Fixed threshold 0.44155 remains unchanged.
+
+### 2026-06-05T03:33:38.753039+00:00 - northstar-lever3
+
+- Task: Lever 3 deployment-action row readout
+- Time mode: measured
+- Measured minutes: 32.417
+- Started: 2026-06-05T03:01:13Z
+- Ended: 2026-06-05T03:33:38Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_deployment_action_readout_current702_20260604.json, work/fold_augmented_lever3_deployment_action_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: deployment-action readout ready fail-closed P07658, residual hard-confounded rows abstained by accepted counteraxes 10 of 21, residual rows retained for evidence queue 11, calibration retention 31 of 34, train-cal OOS abstention 105 of 204, P07658 forced abstention rows 1, fixed-threshold scoring closure false, full pytest 1463 passed 207 subtests with existing sklearn warning, unittest discovery 1418 passed, validate passed 702 labels, compileall diff-check JSON parse docs-reference and reproducibility checks passed
 - Notes: Measured readout artifact first; no blocker packet produced. Fixed threshold 0.44155 remains unchanged.
 
 ## Expectation Updates
@@ -403,6 +403,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T00:25:15.243472+00:00: Lever 3 operating-point evidence remains deployment-valid for hard-confounded train-cal routing while the only unsatisfied evidence family is exact full-length P07658 predicted-coordinate provenance and no local coordinate candidate is already present.
 - 2026-06-05T01:33:57.855493+00:00: Lever 3 operating-point evidence remains deployment-valid for train-cal hard-confounded routing but P07658 closure must fail closed until one exact full-length credentialed or local predictor route returns coordinate plus filled provenance.
 - 2026-06-05T02:27:05.027678+00:00: Lever 3 current evidence is enough for fail-closed safe abstention routing on the remaining P07658 gap but not enough for fixed-threshold scoring closure until exact full-length coordinate provenance exists.
+- 2026-06-05T03:33:38.753039+00:00: Lever 3 now has a deployment-valid row-action readout that applies accepted counteraxes and fail-closed P07658 abstention; fixed-threshold scoring closure still needs exact full-length P07658 coordinate provenance and zero-residual-risk closure would need source-free counteraxis evidence for 11 retained same-family rows.
 
 ## Scope Adjustments
 
@@ -618,3 +619,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T00:25:15.243472+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.
 - 2026-06-05T01:33:57.855493+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.
 - 2026-06-05T02:27:05.027678+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.
+- 2026-06-05T03:33:38.753039+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.

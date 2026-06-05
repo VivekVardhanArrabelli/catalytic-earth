@@ -498,6 +498,44 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_deployment_action_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-action-"
+                "readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_action_"
+                "readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_residual_safety_readout",
+            args.residual_safety_readout,
+        )
+        self.assertIn(
+            "lever3_cofactor_context_counteraxis_readout",
+            args.cofactor_context_counteraxis_readout,
+        )
+        self.assertIn(
+            "lever3_same_family_bandpass_counteraxis_contract",
+            args.same_family_bandpass_counteraxis_contract,
+        )
+        self.assertIn(
+            "lever3_confounded_safe_abstention_readout",
+            args.confounded_safe_abstention_readout,
+        )
+        self.assertIn(
+            "lever3_deployment_action_readout",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:
