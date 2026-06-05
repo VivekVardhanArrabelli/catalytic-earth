@@ -219,6 +219,59 @@ class CliTests(unittest.TestCase):
             "artifacts/v3_geometry_features_1025.json",
         )
 
+    def test_lever2_electron_flow_donor_acceptor_contact_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-donor-acceptor-contact-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_donor_acceptor_contact_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_coordinate_proxy_readout",
+            args.coordinate_proxy_readout,
+        )
+        self.assertEqual(
+            args.geometry_features,
+            "artifacts/v3_geometry_features_1025.json",
+        )
+        self.assertIn(
+            "source_free_train_cal_projection_readout",
+            args.projection_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertIsNone(args.coordinate_cif)
+
+    def test_lever2_electron_flow_pqq_donor_acceptor_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-pqq-donor-acceptor-contact-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_primitive_axis_audit",
+            args.pqq_primitive_axis_audit,
+        )
+        self.assertIn(
+            "source_free_train_cal_projection_readout",
+            args.projection_readout,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

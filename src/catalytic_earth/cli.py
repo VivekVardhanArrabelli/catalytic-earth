@@ -55,7 +55,9 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
+    write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
@@ -13888,6 +13890,75 @@ def cmd_build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout
         f"sidecar readout to {args.out} (complete rows: "
         f"{counts.get('full_current_split_complete_direct_electron_flow_rows')}/"
         f"{counts.get('full_current_split_sidecar_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('full_current_split_primary_positive_rows')}/"
+        f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_donor_acceptor_contact_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_cif", None):
+        coordinate_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_cif:
+            if "=" not in item:
+                raise ValueError("--coordinate-cif values must use ENTRY_ID=PATH")
+            entry_id, path = item.split("=", 1)
+            coordinate_cif_paths[entry_id] = Path(path)
+        writer_kwargs["coordinate_cif_paths"] = coordinate_cif_paths
+    readout = write_lever2_source_free_electron_flow_donor_acceptor_contact_readout(
+        coordinate_proxy_readout_path=Path(args.coordinate_proxy_readout),
+        geometry_features_path=Path(args.geometry_features),
+        projection_readout_path=Path(args.projection_readout),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow donor/acceptor "
+        f"contact readout to {args.out} (complete rows: "
+        f"{counts.get('full_complete_pqq_donor_acceptor_rows')}/"
+        f"{counts.get('full_current_split_rows')}, "
+        "PQQ primary/OOS positives: "
+        f"{counts.get('full_pqq_donor_acceptor_primary_positive_rows')}/"
+        f"{counts.get('full_pqq_donor_acceptor_retained_oos_positive_rows')}, "
+        "broad-control primary/OOS positives: "
+        f"{counts.get('broad_control_full_primary_positive_rows')}/"
+        f"{counts.get('broad_control_full_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout(
+            pqq_primitive_axis_audit_path=Path(args.pqq_primitive_axis_audit),
+            projection_readout_path=Path(args.projection_readout),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow PQQ donor/acceptor "
+        f"contact readout to {args.out} (complete rows: "
+        f"{counts.get('full_current_split_complete_donor_acceptor_rows')}/"
+        f"{counts.get('full_current_split_donor_acceptor_sidecar_rows')}, "
         "primary/OOS positives: "
         f"{counts.get('full_current_split_primary_positive_rows')}/"
         f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
@@ -33169,6 +33240,121 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_pqq_current_split_sidecar_readout.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_donor_acceptor_contact_readout = (
+        subparsers.add_parser(
+            "build-lever2-source-free-electron-flow-donor-acceptor-contact-readout",
+            help=(
+                "measure a source-free PQQ donor/acceptor contact primitive "
+                "and a broad redox-center control on the current split"
+            ),
+        )
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--coordinate-proxy-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_coordinate_proxy_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--coordinate-cif",
+        action="append",
+        default=None,
+        help=(
+            "optional committed CIF sidecar override for atom-level contact "
+            "checks, as ENTRY_ID=PATH"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_donor_acceptor_"
+            "contact_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_donor_acceptor_"
+            "contact_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_donor_acceptor_contact_readout
+        )
+    )
+
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout = (
+        subparsers.add_parser(
+            "build-lever2-source-free-electron-flow-pqq-donor-acceptor-contact-readout",
+            help=(
+                "measure a fixed PQQ O4/O5 to active-site N/O/S donor/acceptor "
+                "contact sidecar against the current primary/OOS split"
+            ),
+        )
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--pqq-primitive-axis-audit",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_primitive_axis_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "contact_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "contact_readout_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout
         )
     )
 

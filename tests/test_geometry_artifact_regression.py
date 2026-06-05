@@ -18884,6 +18884,430 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_electron_flow_donor_acceptor_contact_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_donor_acceptor_"
+                "contact_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_donor_acceptor_contact_"
+                "readout_research_only_direct_pqq_donor_acceptor_operating_point_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_direct_pqq_donor_acceptor_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["smoke_tranche_rows"], 35)
+        self.assertEqual(
+            readout["counts"]["smoke_complete_pqq_donor_acceptor_rows"], 35
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_pqq_donor_acceptor_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_pqq_donor_acceptor_retained_oos_positive_rows"
+            ],
+            1,
+        )
+        self.assertEqual(readout["counts"]["full_current_split_rows"], 74)
+        self.assertEqual(
+            readout["counts"]["full_complete_pqq_donor_acceptor_rows"], 74
+        )
+        self.assertEqual(
+            readout["counts"]["full_incomplete_pqq_donor_acceptor_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["full_pqq_donor_acceptor_primary_rows"], 34
+        )
+        self.assertEqual(
+            readout["counts"]["full_pqq_donor_acceptor_retained_oos_rows"], 40
+        )
+        self.assertEqual(
+            readout["counts"]["full_pqq_donor_acceptor_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_pqq_donor_acceptor_retained_oos_positive_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["full_pqq_donor_acceptor_primary_retain_recall"],
+            1.0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_pqq_donor_acceptor_retained_oos_abstain_recall"
+            ],
+            0.025,
+        )
+        self.assertEqual(readout["counts"]["current_geometry_fold_oos_rows"], 75)
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(readout["counts"]["union_or_gate_oos_abstain_recall"], 0.48)
+        self.assertEqual(
+            readout["counts"]["broad_control_full_complete_rows"], 74
+        )
+        self.assertEqual(
+            readout["counts"]["broad_control_full_primary_positive_rows"], 6
+        )
+        self.assertEqual(
+            readout["counts"]["broad_control_full_retained_oos_positive_rows"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["broad_control_full_primary_retain_recall"],
+            0.823529,
+        )
+        broad_family_summary = readout["counts"][
+            "broad_control_full_positive_family_summary"
+        ]
+        self.assertEqual(
+            broad_family_summary["family_positive_row_counts"],
+            {"flavin": 3, "heme": 3, "pqq": 1},
+        )
+        self.assertEqual(
+            broad_family_summary["split_or_role_family_positive_row_counts"],
+            {
+                "current_primary_retention_gate": {"flavin": 3, "heme": 3},
+                "current_retained_oos": {"pqq": 1},
+            },
+        )
+        family_summary = readout["counts"][
+            "organic_redox_family_subcontrol_summary"
+        ]
+        self.assertEqual(
+            family_summary["pqq_or_nad_family_center"][
+                "retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            family_summary["pqq_or_nad_family_center"]["primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            family_summary["nad_family_center_only"][
+                "retained_oos_positive_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            family_summary["pqq_or_organic_nonheme_center"][
+                "primary_positive_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"]["coordinate_cif_source_rows_used_for_field_completion"],
+            16,
+        )
+        self.assertEqual(readout["counts"]["projection_row_scout_rows"], 43)
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_pqq_complete_rows"], 43
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_pqq_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_broad_complete_rows"], 43
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_broad_positive_rows"], 6
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_broad_train_positive_rows"],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "projection_row_scout_broad_calibration_positive_rows"
+            ],
+            3,
+        )
+        projection_family_summary = readout["counts"][
+            "projection_row_scout_broad_positive_family_summary"
+        ]
+        self.assertEqual(
+            projection_family_summary["family_positive_row_counts"],
+            {"flavin": 2, "heme": 3, "nad": 1},
+        )
+        self.assertEqual(
+            projection_family_summary["split_or_role_family_positive_row_counts"],
+            {
+                "calibration": {"flavin": 1, "heme": 1, "nad": 1},
+                "train": {"flavin": 1, "heme": 2},
+            },
+        )
+        self.assertEqual(
+            readout["counts"]["pqq_cutoff_scout_finite_distance_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["pqq_cutoff_scout_finite_primary_distance_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"][
+                "pqq_cutoff_scout_finite_retained_oos_distance_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["pqq_cutoff_scout_cutoffs_checked"], 10
+        )
+        self.assertFalse(
+            readout["counts"][
+                "pqq_cutoff_scout_any_primary_safe_cutoff_adds_rows_beyond_fixed_3p2"
+            ]
+        )
+        full = readout["measured_readout"][
+            "full_retained_oos_current_split_tranche"
+        ]
+        gate = full["fixed_gate_readout"]
+        self.assertEqual(gate["retained_oos_positive_entry_ids"], ["m_csa:104"])
+        self.assertEqual(gate["primary_positive_entry_ids"], [])
+        broad_gate = full["broad_redox_center_donor_acceptor_control"][
+            "fixed_gate_readout"
+        ]
+        self.assertEqual(
+            broad_gate["primary_positive_entry_ids"],
+            [
+                "m_csa:319",
+                "m_csa:399",
+                "m_csa:473",
+                "m_csa:694",
+                "m_csa:800",
+                "m_csa:973",
+            ],
+        )
+        positive_rows = [
+            row
+            for row in full["pqq_donor_acceptor_sidecar_rows"]
+            if row["row_specific_event_features"][
+                "has_electron_transfer_event"
+            ]
+        ]
+        self.assertEqual(
+            [row["entry_id"] for row in positive_rows], ["m_csa:104"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_split_pqq_donor_acceptor_fields_complete"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pqq_donor_acceptor_fields_preserve_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pqq_donor_acceptor_fields_add_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "broad_redox_center_control_preserves_primary_retention"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["pqq_or_nad_family_center_adds_rows_beyond_pqq"]
+        )
+        self.assertFalse(readout["decision"]["nad_family_center_only_has_signal"])
+        self.assertFalse(
+            readout["decision"][
+                "pqq_or_organic_nonheme_center_preserves_primary_retention"
+            ]
+        )
+        scout = readout["measured_readout"][
+            "projection_model_donor_acceptor_row_scout"
+        ]
+        self.assertEqual(scout["pqq_positive_entry_ids"], [])
+        self.assertEqual(
+            scout["broad_positive_entry_ids"],
+            [
+                "m_csa:6",
+                "m_csa:37",
+                "m_csa:59",
+                "m_csa:68",
+                "m_csa:124",
+                "m_csa:133",
+            ],
+        )
+        self.assertFalse(
+            readout["decision"]["pqq_projection_rows_have_positive_train_cal_signal"]
+        )
+        self.assertTrue(
+            readout["decision"]["broad_projection_rows_have_positive_train_cal_signal"]
+        )
+        self.assertFalse(
+            readout["decision"]["broad_projection_signal_is_current_split_primary_safe"]
+        )
+        cutoff_scout = readout["measured_readout"][
+            "pqq_donor_acceptor_cutoff_sensitivity_scout"
+        ]
+        self.assertEqual(
+            cutoff_scout["finite_distance_row_details"][0]["entry_id"],
+            "m_csa:104",
+        )
+        self.assertEqual(
+            cutoff_scout["closest_retained_oos_distance_angstrom"], 2.768
+        )
+        self.assertFalse(
+            readout["decision"]["pqq_cutoff_scout_found_primary_safe_expansion"]
+        )
+        self.assertTrue(readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
+    def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_pqq_donor_acceptor_"
+                "contact_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_pqq_donor_acceptor_contact_"
+                "readout_research_only_pqq_donor_acceptor_contact_operating_point_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_pqq_donor_acceptor_contact_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["smoke_donor_acceptor_sidecar_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_complete_donor_acceptor_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_donor_acceptor_sidecar_rows"],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_complete_donor_acceptor_rows"],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_incomplete_donor_acceptor_rows"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["full_current_split_primary_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_rows"], 40
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_positive_rows"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_primary_retain_recall"], 1.0
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_abstain_recall"],
+            0.025,
+        )
+        self.assertEqual(readout["counts"]["current_geometry_fold_oos_rows"], 75)
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(readout["counts"]["union_or_gate_oos_abstain_recall"], 0.48)
+        self.assertEqual(
+            readout["counts"]["projection_electron_flow_oos_recall_delta"],
+            0.142857,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "donor_acceptor_positive_rows_beyond_pqq_redox_center_contact"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["pqq_redox_center_positive_rows_not_donor_acceptor"],
+            0,
+        )
+        full = readout["measured_readout"][
+            "full_retained_oos_current_split_tranche"
+        ]
+        gate = full["fixed_gate_readout"]
+        self.assertEqual(gate["retained_oos_positive_entry_ids"], ["m_csa:104"])
+        comparison = full["comparison_to_pqq_redox_center_contact"]
+        self.assertEqual(
+            comparison["pqq_donor_acceptor_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertTrue(comparison["same_positive_ids_as_pqq_redox_center_contact"])
+        positive_rows = [
+            row
+            for row in full["sidecar_rows"]
+            if row["row_specific_event_features"][
+                "has_electron_transfer_event"
+            ]
+        ]
+        self.assertEqual([row["entry_id"] for row in positive_rows], ["m_csa:104"])
+        contacts = positive_rows[0]["pqq_donor_acceptor_evidence"]["contacts"]
+        positive_contacts = [
+            contact
+            for contact in contacts
+            if contact["has_source_free_pqq_donor_acceptor_contact"]
+        ]
+        self.assertEqual(positive_contacts[0]["pqq_atom"], "O5")
+        self.assertEqual(positive_contacts[0]["active_atom"], "NH1")
+        self.assertEqual(positive_contacts[0]["active_atom_prefix"], "N")
+        self.assertTrue(
+            readout["decision"][
+                "current_split_donor_acceptor_sidecar_complete"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_donor_acceptor_fields_preserve_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_donor_acceptor_fields_add_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "donor_acceptor_contact_adds_incremental_value_beyond_pqq_redox_center_contact"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_source_free_axis_acquisition_ranking_readout_current_counts(
         self,
     ) -> None:
