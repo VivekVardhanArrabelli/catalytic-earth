@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T19:31:39Z`
-- STARTED_AT_LOCAL: `2026-06-05T14:31:39-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T20:21:00Z`
-- ENDED_AT_LOCAL: `2026-06-05T15:21:00-0500 CDT`
-- ELAPSED_MINUTES: `49.35`
+- STARTED_AT_UTC: `2026-06-05T20:32:40Z`
+- STARTED_AT_LOCAL: `2026-06-05T15:32:40-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T20:51:45Z`
+- ENDED_AT_LOCAL: `2026-06-05T15:51:45-0500 CDT`
+- ELAPSED_MINUTES: `19.08`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,163 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 30
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T20:32:40Z`
+- STARTED_LOCAL: `2026-06-05T15:32:40-0500 CDT`
+- ENDED_AT: `2026-06-05T20:51:45Z`
+- ENDED_LOCAL: `2026-06-05T15:51:45-0500 CDT`
+- ELAPSED_MINUTES: `19.08`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Execute the next train/cal-disciplined measured route after the positive
+source-free approval/import smoke materialization readout: protected
+namespaced smoke import, written approved-sidecar-only smoke gate, then expand
+toward the remaining current-split rows only if primary retention remains
+preserved.
+
+#### Work log
+
+- Run opened from automation checkout
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/58c8/catalytic-earth`, which
+  was a clean detached duplicate and not the dedicated Lever 2 branch worktree.
+- Switched substantive work to the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial disk was below the 10 GiB guardrail at 8.0 GiB free. The clean
+  detached duplicate checkout
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/6814/catalytic-earth` was
+  removed with `git worktree remove`, restoring disk to 12 GiB free before
+  research writes continued.
+- Added
+  `build-lever2-source-free-electron-flow-approval-import-candidate-sidecar-readout`.
+  This consumes the prior smoke materialization readout and the current
+  approved train/cal feature sidecar, overlays only the collision-safe
+  namespaced direct electron-flow fields into a research-only candidate sidecar
+  for the 35-row smoke tranche, reruns the written-sidecar-only smoke gate,
+  then expands the same candidate sidecar to the remaining 39 current-split rows
+  and reruns the full 74-row fixed gate.
+- Added candidate-sidecar component ablations in the written-sidecar shape for
+  PQQ-only, NAD-family-only, Fe-S-only, PQQ+NAD, and PQQ+NAD+Fe-S direct
+  source-free electron-flow components.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout_current702_20260605.md`.
+  SHA-256:
+  `e075997a85fbc46442438bd64b4ca9f656669177b53acb6a8fb5d35c633ab90c`
+  for the JSON and
+  `3d7dea6086d062aef6498d21ba36ac1c5e0c74014fc8102af73301c4983bac4a`
+  for the Markdown report.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout_research_only_candidate_sidecar_smoke_written_gate_positive_full_expansion_positive`.
+  Result class:
+  `research_only_candidate_sidecar_smoke_written_gate_positive_full_expansion_positive`.
+- The research-only candidate sidecar has 77 rows after smoke import
+  simulation: 43 canonical approved sidecar rows plus 34 new smoke rows and
+  one existing-row update. The canonical approved sidecar was not edited.
+- Candidate written-sidecar-only smoke gate: 35/35 complete, 34 current primary
+  rows, 0 current-primary positives, primary retain recall `1.0`, retained-OOS
+  positives `m_csa:104`, incremental OOS abstain recall `0.013333`, union OOS
+  recall `0.48`, and exact match to the prior smoke materialization gate.
+- Candidate written-sidecar-only full current-split gate after expanding the
+  remaining 39 rows: 74/74 complete, 34 current primary rows, 40 retained-OOS
+  rows, 0 current-primary positives, primary retain recall `1.0`, retained-OOS
+  positives `m_csa:104`, `m_csa:119`, and `m_csa:464`, incremental OOS abstain
+  recall `0.04`, union OOS recall `0.506667`, and exact match to the prior
+  full materialization gate.
+- Component ablation in candidate written-sidecar shape confirms the direct
+  source-free component split: PQQ-only catches `m_csa:104`, NAD-family-only
+  catches `m_csa:464`, Fe-S-only catches `m_csa:119`, PQQ+NAD catches
+  `m_csa:104` and `m_csa:464`, and Fe-S adds `m_csa:119` as the incremental
+  row beyond PQQ+NAD.
+- Interpretation: direct source-free electron-flow features now have a
+  written-sidecar-shaped train/cal readout in a candidate artifact that
+  preserves primary retention and adds operating-point value beyond the current
+  geometry/fold surface. No source-free electron-flow evidence blocker remains
+  for the current train/cal split; the remaining gap is policy/authorization to
+  edit the canonical approved sidecar/import surface.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Entry IDs are used only for tranche membership, merge
+  accounting, and missing-evidence accounting.
+- The selected gate uses only direct source-free electron-flow fields:
+  `has_source_free_direct_electron_transfer_event`,
+  `source_free_direct_electron_transfer_count`,
+  `has_source_free_pqq_donor_acceptor_contact`,
+  `source_free_pqq_donor_acceptor_contact_count`,
+  `has_source_free_nad_family_donor_acceptor_distance`,
+  `source_free_nad_family_donor_acceptor_distance_count`,
+  `has_source_free_iron_sulfur_or_iron_donor_acceptor_distance`, and
+  `source_free_iron_sulfur_or_iron_donor_acceptor_distance_count`.
+- The readout remains research-only: it writes a candidate artifact, not a
+  canonical approved sidecar; `approved_sidecar_written=false`,
+  `imports_or_promotions_performed=false`, and
+  `predictive_use_allowed_modified=false`.
+- Final pre-handoff disk check showed 11 GiB free, above the 10 GiB guardrail.
+
+#### Validation
+
+- Focused new tests:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_approval_import_candidate_sidecar_readout tests/test_cli.py::CliTests::test_lever2_electron_flow_approval_import_candidate_sidecar_parser_defaults -q`:
+  2 passed.
+- Current artifact regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_approval_import_candidate_sidecar_current_counts -q`:
+  1 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  507 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1584 passed, 212 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1539 tests OK,
+  with the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- Normalized regeneration matched after deleting `created_utc`; direct-field
+  integrity check found only the eight allowed source-free namespaced
+  electron-flow keys in the candidate smoke/full gate rows; critical violation
+  total is 0.
+- Hash-seed focused stability:
+  `PYTHONHASHSEED=1` through `PYTHONHASHSEED=4` new unit/regression/parser slice
+  passed.
+
+#### Commit/push status
+
+- Commit and push completed in this wrap-up; branch sync verified before
+  returning.
+
+#### Exact next action
+
+- If import edits are explicitly allowed in a future Lever 2 run, apply exactly
+  the candidate 35-row namespaced smoke sidecar delta to the protected approved
+  sidecar, rerun the written-sidecar-only smoke gate, then apply the remaining
+  39 current-split rows. If import edits remain disallowed, treat the mechanism
+  evidence as measured-positive and route the remaining work as an
+  approval/policy decision, not a missing source-free electron-flow evidence
+  blocker.
 
 ### 2026-06-05 Lever 2 Research Run 29
 

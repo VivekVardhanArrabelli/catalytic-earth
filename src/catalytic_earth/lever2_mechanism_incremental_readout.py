@@ -11,6 +11,7 @@ names the smallest missing evidence needed to make Lever 2 measurable.
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import math
@@ -114,6 +115,10 @@ DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_SMOKE_REVIEW_READOUT_ARTIFACT_ID = (
 DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_SMOKE_MATERIALIZATION_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_approval_import_smoke_"
     "materialization_readout_current702_20260605"
+)
+DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_CANDIDATE_SIDECAR_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_approval_import_candidate_"
+    "sidecar_readout_current702_20260605"
 )
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
@@ -20599,6 +20604,922 @@ def write_lever2_source_free_electron_flow_approval_import_smoke_materialization
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_approval_import_smoke_materialization_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _namespaced_electron_flow_features_from_row(
+    row: dict[str, Any],
+    *,
+    feature_fields: list[str],
+) -> dict[str, Any]:
+    source_features = row.get("row_specific_event_features") or {}
+    features = {
+        field: source_features[field]
+        for field in feature_fields
+        if field in source_features
+    }
+    if (
+        "has_source_free_direct_electron_transfer_event" not in features
+        and "has_electron_transfer_event" in source_features
+    ):
+        features["has_source_free_direct_electron_transfer_event"] = (
+            source_features.get("has_electron_transfer_event")
+        )
+    if (
+        "source_free_direct_electron_transfer_count" not in features
+        and "electron_transfer_count" in source_features
+    ):
+        features["source_free_direct_electron_transfer_count"] = (
+            source_features.get("electron_transfer_count")
+        )
+    return features
+
+
+def _overlay_namespaced_electron_flow_candidate_sidecar(
+    *,
+    base_rows: list[dict[str, Any]],
+    import_rows: list[dict[str, Any]],
+    feature_fields: list[str],
+    import_stage: str,
+) -> dict[str, Any]:
+    rows_by_id = {
+        str(row["entry_id"]): copy.deepcopy(row)
+        for row in base_rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    new_entry_ids: list[str] = []
+    updated_entry_ids: list[str] = []
+    conflicts: list[dict[str, Any]] = []
+    existing_keys_added = 0
+    existing_keys_already_matching = 0
+    existing_keys_conflicting = 0
+    imported_entry_ids: list[str] = []
+    imported_rows: list[dict[str, Any]] = []
+
+    for source_row in import_rows:
+        if not isinstance(source_row, dict) or not source_row.get("entry_id"):
+            continue
+        entry_id = str(source_row["entry_id"])
+        imported_entry_ids.append(entry_id)
+        candidate_features = _namespaced_electron_flow_features_from_row(
+            source_row,
+            feature_fields=feature_fields,
+        )
+        existing_row = rows_by_id.get(entry_id)
+        if existing_row is None:
+            target_row: dict[str, Any] = {
+                "entry_id": entry_id,
+                "assigned_embedding_split": source_row.get(
+                    "assigned_embedding_split"
+                ),
+                "row_specific_event_features": {},
+            }
+            rows_by_id[entry_id] = target_row
+            new_entry_ids.append(entry_id)
+        else:
+            target_row = existing_row
+            updated_entry_ids.append(entry_id)
+
+        target_features = dict(target_row.get("row_specific_event_features") or {})
+        for field, value in candidate_features.items():
+            if field not in target_features:
+                existing_keys_added += 1
+            elif target_features[field] == value:
+                existing_keys_already_matching += 1
+            else:
+                existing_keys_conflicting += 1
+                conflicts.append(
+                    {
+                        "entry_id": entry_id,
+                        "feature_key": field,
+                        "existing_value": target_features[field],
+                        "candidate_value": value,
+                    }
+                )
+            target_features[field] = value
+
+        target_row["row_specific_event_features"] = target_features
+        for field in (
+            "assigned_embedding_split",
+            "candidate_bundle_role",
+            "current_split_role",
+        ):
+            if source_row.get(field) is not None:
+                target_row[field] = source_row.get(field)
+        target_row["source_free_electron_flow_field_complete"] = all(
+            field in target_features for field in feature_fields
+        )
+        feature_guardrails = dict(target_row.get("feature_guardrails") or {})
+        feature_guardrails.update(
+            {
+                "mechanism_text_excluded_from_features": True,
+                "ec_rhea_ids_excluded_from_features": True,
+                "labels_excluded_from_features": True,
+                "source_ids_excluded_from_features": True,
+                "target_names_excluded_from_features": True,
+                "accessions_excluded_from_features": True,
+                "pdb_ids_or_coordinate_paths_excluded_from_features": True,
+                "heldout_row": False,
+                "candidate_sidecar_import_simulated_only": True,
+                "generic_event_fields_not_overwritten": True,
+            }
+        )
+        target_row["feature_guardrails"] = feature_guardrails
+        target_row["candidate_import_stage"] = {
+            "stage": import_stage,
+            "protected_surface_written": False,
+            "collision_safe_namespaced_direct_event_fields": True,
+            "feature_fields_imported": sorted(candidate_features),
+        }
+        imported_rows.append(copy.deepcopy(target_row))
+
+    rows = sorted(
+        rows_by_id.values(),
+        key=lambda row: _entry_sort_key(str(row.get("entry_id") or "")),
+    )
+    return {
+        "feature_rows": rows,
+        "imported_feature_rows": sorted(
+            imported_rows,
+            key=lambda row: _entry_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "new_entry_ids": sorted(new_entry_ids, key=_entry_sort_key),
+        "updated_entry_ids": sorted(updated_entry_ids, key=_entry_sort_key),
+        "imported_entry_ids": sorted(imported_entry_ids, key=_entry_sort_key),
+        "existing_row_direct_feature_keys_added": existing_keys_added,
+        "existing_row_direct_feature_keys_already_matching": (
+            existing_keys_already_matching
+        ),
+        "existing_row_direct_feature_key_conflicts": existing_keys_conflicting,
+        "direct_feature_conflicts": conflicts,
+    }
+
+
+def _candidate_sidecar_rows_for_entry_ids(
+    feature_rows: list[dict[str, Any]],
+    entry_ids: list[str],
+) -> list[dict[str, Any]]:
+    rows_by_id = {
+        str(row["entry_id"]): row
+        for row in feature_rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    return [
+        copy.deepcopy(rows_by_id[entry_id])
+        for entry_id in sorted(set(entry_ids), key=_entry_sort_key)
+        if entry_id in rows_by_id
+    ]
+
+
+def build_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout(
+    *,
+    approval_import_smoke_materialization_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_CANDIDATE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    materialization = _read_json(approval_import_smoke_materialization_readout_path)
+    approved_sidecar = _read_json(train_cal_feature_sidecar_path)
+    materialization_contract = materialization.get("materialization_contract") or {}
+    feature_fields = list(
+        materialization_contract.get("collision_safe_namespaced_feature_fields")
+        or [
+            "has_source_free_direct_electron_transfer_event",
+            "source_free_direct_electron_transfer_count",
+            "has_source_free_pqq_donor_acceptor_contact",
+            "source_free_pqq_donor_acceptor_contact_count",
+            "has_source_free_nad_family_donor_acceptor_distance",
+            "source_free_nad_family_donor_acceptor_distance_count",
+            "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+            "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+        ]
+    )
+    measured = materialization.get("measured_readout") or {}
+    smoke_source = measured.get("collision_safe_namespaced_smoke_gate") or {}
+    full_source = (
+        measured.get("collision_safe_namespaced_full_74row_expansion_gate")
+        or {}
+    )
+    smoke_import_rows = [
+        row
+        for row in smoke_source.get("materialized_feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    full_import_rows = [
+        row
+        for row in full_source.get("materialized_feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    smoke_entry_ids = _entry_ids(smoke_import_rows)
+    full_entry_ids = _entry_ids(full_import_rows)
+    remaining_import_rows = [
+        row
+        for row in full_import_rows
+        if str(row.get("entry_id")) not in set(smoke_entry_ids)
+    ]
+    approved_rows = [
+        row
+        for row in approved_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    split_oos_rows = (
+        (smoke_source.get("fixed_gate_readout") or {}).get(
+            "current_geometry_fold_oos_rows"
+        )
+    )
+    if split_oos_rows is not None:
+        try:
+            split_oos_rows = int(split_oos_rows)
+        except (TypeError, ValueError):
+            split_oos_rows = None
+    full_retained_oos_rows = [
+        row
+        for row in full_import_rows
+        if row.get("current_split_role") == "current_retained_oos"
+    ]
+    smoke_overlay = _overlay_namespaced_electron_flow_candidate_sidecar(
+        base_rows=approved_rows,
+        import_rows=smoke_import_rows,
+        feature_fields=feature_fields,
+        import_stage="candidate_smoke_tranche",
+    )
+    candidate_smoke_rows = _candidate_sidecar_rows_for_entry_ids(
+        smoke_overlay["feature_rows"],
+        smoke_entry_ids,
+    )
+    smoke_gate = _electron_flow_event_gate_readout(
+        candidate_smoke_rows,
+        split_oos_rows=split_oos_rows,
+        baseline_retained_oos_rows=len(full_retained_oos_rows),
+        gate_id=(
+            "fixed_binary_candidate_written_sidecar_smoke_gate_m_csa104_plus_"
+            "primary_retention"
+        ),
+        feature_fields=feature_fields,
+        event_flag_field="has_source_free_direct_electron_transfer_event",
+        gate_rule=(
+            "Candidate written-sidecar-only smoke gate: after the 35-row "
+            "collision-safe namespaced smoke import is materialized inside this "
+            "research artifact, abstain a currently retained OOS row only when "
+            "the namespaced direct source-free electron-transfer event field is "
+            "complete and positive. Primary rows retain unless that same field "
+            "is positive. No canonical approved sidecar is edited."
+        ),
+    )
+    remaining_overlay = _overlay_namespaced_electron_flow_candidate_sidecar(
+        base_rows=smoke_overlay["feature_rows"],
+        import_rows=remaining_import_rows,
+        feature_fields=feature_fields,
+        import_stage="candidate_remaining_current_split_expansion",
+    )
+    candidate_full_rows = _candidate_sidecar_rows_for_entry_ids(
+        remaining_overlay["feature_rows"],
+        full_entry_ids,
+    )
+    full_gate = _electron_flow_event_gate_readout(
+        candidate_full_rows,
+        split_oos_rows=split_oos_rows,
+        baseline_retained_oos_rows=len(full_retained_oos_rows),
+        gate_id="fixed_binary_candidate_written_sidecar_full_74row_gate",
+        feature_fields=feature_fields,
+        event_flag_field="has_source_free_direct_electron_transfer_event",
+        gate_rule=(
+            "Candidate written-sidecar-only full gate: after the smoke gate "
+            "passes, expand the same namespaced direct source-free electron-"
+            "transfer event fields to the remaining current-split rows inside "
+            "this research artifact. A currently retained OOS row abstains when "
+            "the namespaced direct event field is complete and positive; "
+            "primary rows retain unless that same field is positive."
+        ),
+    )
+    component_fields = {
+        "pqq": (
+            "has_source_free_pqq_donor_acceptor_contact",
+            "source_free_pqq_donor_acceptor_contact_count",
+        ),
+        "nad_family": (
+            "has_source_free_nad_family_donor_acceptor_distance",
+            "source_free_nad_family_donor_acceptor_distance_count",
+        ),
+        "iron_sulfur": (
+            "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+            "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+        ),
+    }
+
+    def _candidate_component_ablation_rows(
+        included_components: set[str],
+    ) -> list[dict[str, Any]]:
+        ablation_rows: list[dict[str, Any]] = []
+        for row in candidate_full_rows:
+            ablation_row = copy.deepcopy(row)
+            features = dict(ablation_row.get("row_specific_event_features") or {})
+            event_count = 0
+            for component_id, (flag_field, count_field) in component_fields.items():
+                source_count = int(features.get(count_field) or 0)
+                if component_id in included_components:
+                    features[flag_field] = bool(source_count)
+                    features[count_field] = source_count
+                    event_count += source_count
+                else:
+                    features[flag_field] = False
+                    features[count_field] = 0
+            features["has_source_free_direct_electron_transfer_event"] = bool(
+                event_count
+            )
+            features["source_free_direct_electron_transfer_count"] = event_count
+            ablation_row["row_specific_event_features"] = features
+            ablation_row["source_free_electron_flow_field_complete"] = all(
+                field in features for field in feature_fields
+            )
+            ablation_rows.append(ablation_row)
+        return ablation_rows
+
+    component_ablation_specs = [
+        ("pqq_only", {"pqq"}),
+        ("nad_family_only", {"nad_family"}),
+        ("iron_sulfur_only", {"iron_sulfur"}),
+        ("pqq_plus_nad_family", {"pqq", "nad_family"}),
+        (
+            "pqq_plus_nad_family_plus_iron_sulfur",
+            {"pqq", "nad_family", "iron_sulfur"},
+        ),
+    ]
+    component_ablation = []
+    for ablation_id, included_components in component_ablation_specs:
+        ablation_rows = _candidate_component_ablation_rows(included_components)
+        ablation_gate = _electron_flow_event_gate_readout(
+            ablation_rows,
+            split_oos_rows=split_oos_rows,
+            baseline_retained_oos_rows=len(full_retained_oos_rows),
+            gate_id=f"fixed_binary_candidate_sidecar_component_ablation_{ablation_id}",
+            feature_fields=feature_fields,
+            event_flag_field="has_source_free_direct_electron_transfer_event",
+            gate_rule=(
+                "Candidate sidecar component ablation: recompute the "
+                "namespaced direct electron-transfer event field from only the "
+                "included source-free electron-flow components, then rerun the "
+                "same fixed full current-split gate."
+            ),
+        )
+        component_ablation.append(
+            {
+                "ablation_id": ablation_id,
+                "included_components": sorted(included_components),
+                "fixed_gate_readout": ablation_gate,
+            }
+        )
+    ablation_by_id = {
+        row["ablation_id"]: row["fixed_gate_readout"]
+        for row in component_ablation
+    }
+    pqq_nad_positive_ids = set(
+        ablation_by_id["pqq_plus_nad_family"][
+            "retained_oos_positive_entry_ids"
+        ]
+    )
+    all_component_positive_ids = set(
+        ablation_by_id["pqq_plus_nad_family_plus_iron_sulfur"][
+            "retained_oos_positive_entry_ids"
+        ]
+    )
+    iron_sulfur_incremental_ids = sorted(
+        all_component_positive_ids - pqq_nad_positive_ids,
+        key=_entry_sort_key,
+    )
+    smoke_forbidden_hits = _feature_row_exact_forbidden_key_hits(
+        candidate_smoke_rows
+    )
+    full_forbidden_hits = _feature_row_exact_forbidden_key_hits(candidate_full_rows)
+    prior_smoke_gate = smoke_source.get("fixed_gate_readout") or {}
+    prior_full_gate = full_source.get("fixed_gate_readout") or {}
+    comparable_gate_keys = [
+        "rows",
+        "complete_rows",
+        "primary_rows",
+        "retained_oos_rows",
+        "primary_positive_rows",
+        "retained_oos_positive_rows",
+        "primary_positive_entry_ids",
+        "retained_oos_positive_entry_ids",
+        "primary_retain_recall_if_abstain_positive",
+        "incremental_oos_abstain_recall_vs_current_geometry_fold",
+        "union_or_gate_oos_abstain_recall",
+    ]
+    smoke_gate_matches_prior = bool(
+        prior_smoke_gate
+        and all(
+            smoke_gate.get(key) == prior_smoke_gate.get(key)
+            for key in comparable_gate_keys
+        )
+    )
+    full_gate_matches_prior = bool(
+        prior_full_gate
+        and all(
+            full_gate.get(key) == prior_full_gate.get(key)
+            for key in comparable_gate_keys
+        )
+    )
+    smoke_positive = bool(
+        smoke_gate["operating_point_measurable_now"]
+        and smoke_gate["preserves_primary_retention"]
+        and "m_csa:104" in smoke_gate["retained_oos_positive_entry_ids"]
+        and smoke_gate_matches_prior
+        and not smoke_overlay["direct_feature_conflicts"]
+        and not smoke_forbidden_hits
+    )
+    full_positive = bool(
+        smoke_positive
+        and full_gate["operating_point_measurable_now"]
+        and full_gate["preserves_primary_retention"]
+        and full_gate["adds_incremental_oos_abstention"]
+        and full_gate_matches_prior
+        and not remaining_overlay["direct_feature_conflicts"]
+        and not full_forbidden_hits
+    )
+    result_class = (
+        "research_only_candidate_sidecar_smoke_written_gate_positive_full_expansion_positive"
+        if full_positive
+        else (
+            "research_only_candidate_sidecar_smoke_written_gate_positive_full_expansion_incomplete_or_negative"
+            if smoke_positive
+            else "research_only_candidate_sidecar_smoke_written_gate_incomplete_or_negative"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_approval_import_candidate_sidecar_"
+        f"readout_{result_class}"
+    )
+    smoke_sidecar = {
+        "sidecar_id": (
+            "research_only_candidate_source_free_electron_flow_namespaced_"
+            "smoke_sidecar"
+        ),
+        "contract_status": "research_only_candidate_not_imported",
+        "source_approved_sidecar_rows": len(approved_rows),
+        "feature_fields": feature_fields,
+        "feature_rows": smoke_overlay["feature_rows"],
+    }
+    full_sidecar = {
+        "sidecar_id": (
+            "research_only_candidate_source_free_electron_flow_namespaced_"
+            "current_split_sidecar"
+        ),
+        "contract_status": "research_only_candidate_not_imported",
+        "source_approved_sidecar_rows": len(approved_rows),
+        "feature_fields": feature_fields,
+        "feature_rows": remaining_overlay["feature_rows"],
+    }
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_approval_import_"
+            "candidate_sidecar_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured readout for the collision-safe namespaced "
+            "electron-flow candidate sidecar route. It materializes the 35-row "
+            "smoke tranche and then the remaining current-split rows inside "
+            "this research artifact only, reruns fixed written-sidecar-only "
+            "gates, and leaves the canonical approved train/cal sidecar and all "
+            "imports unchanged."
+        ),
+        "candidate_sidecar_contract": {
+            "contract_id": (
+                "source_free_pqq_nad_fe_s_direct_electron_flow_candidate_"
+                "sidecar_import"
+            ),
+            "contract_status": "research_only_candidate_not_imported",
+            "source_materialization_contract": materialization_contract.get(
+                "contract_id"
+            ),
+            "feature_fields": feature_fields,
+            "event_flag_field": "has_source_free_direct_electron_transfer_event",
+            "selected_import_route": (
+                "collision_safe_namespaced_direct_event_fields"
+            ),
+            "canonical_approved_sidecar_written": False,
+            "protected_surface_written": False,
+        },
+        "candidate_feature_sidecars": {
+            "after_smoke": smoke_sidecar,
+            "after_full_current_split_expansion": full_sidecar,
+        },
+        "measured_readout": {
+            "candidate_smoke_import_delta": smoke_overlay,
+            "candidate_written_sidecar_smoke_gate": {
+                "entry_ids": smoke_entry_ids,
+                "feature_rows": candidate_smoke_rows,
+                "fixed_gate_readout": smoke_gate,
+                "matches_prior_materialization_smoke_gate": (
+                    smoke_gate_matches_prior
+                ),
+                "forbidden_feature_key_hits": smoke_forbidden_hits,
+            },
+            "candidate_remaining_current_split_expansion_delta": (
+                remaining_overlay
+            ),
+            "candidate_written_sidecar_full_74row_gate": {
+                "entry_ids": full_entry_ids,
+                "feature_rows": candidate_full_rows,
+                "fixed_gate_readout": full_gate,
+                "matches_prior_materialization_full_gate": full_gate_matches_prior,
+                "forbidden_feature_key_hits": full_forbidden_hits,
+            },
+            "component_ablation_after_candidate_sidecar_import": (
+                component_ablation
+            ),
+        },
+        "counts": {
+            "critical_violation_total": (
+                len(smoke_overlay["direct_feature_conflicts"])
+                + len(remaining_overlay["direct_feature_conflicts"])
+                + len(smoke_forbidden_hits)
+                + len(full_forbidden_hits)
+            ),
+            "canonical_approved_sidecar_rows_before": len(approved_rows),
+            "candidate_sidecar_rows_after_smoke": len(
+                smoke_overlay["feature_rows"]
+            ),
+            "candidate_sidecar_rows_after_full_current_split_expansion": len(
+                remaining_overlay["feature_rows"]
+            ),
+            "candidate_smoke_import_rows": len(smoke_import_rows),
+            "candidate_smoke_import_new_rows": len(smoke_overlay["new_entry_ids"]),
+            "candidate_smoke_import_updated_existing_rows": len(
+                smoke_overlay["updated_entry_ids"]
+            ),
+            "candidate_smoke_import_existing_direct_feature_key_conflicts": (
+                smoke_overlay["existing_row_direct_feature_key_conflicts"]
+            ),
+            "candidate_smoke_written_gate_rows": smoke_gate["rows"],
+            "candidate_smoke_written_gate_complete_rows": smoke_gate[
+                "complete_rows"
+            ],
+            "candidate_smoke_written_gate_primary_rows": smoke_gate[
+                "primary_rows"
+            ],
+            "candidate_smoke_written_gate_retained_oos_rows": smoke_gate[
+                "retained_oos_rows"
+            ],
+            "candidate_smoke_written_gate_primary_positive_rows": smoke_gate[
+                "primary_positive_rows"
+            ],
+            "candidate_smoke_written_gate_primary_retain_recall": smoke_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "candidate_smoke_written_gate_retained_oos_positive_rows": smoke_gate[
+                "retained_oos_positive_rows"
+            ],
+            "candidate_smoke_written_gate_retained_oos_positive_entry_ids": (
+                smoke_gate["retained_oos_positive_entry_ids"]
+            ),
+            "candidate_smoke_written_gate_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                smoke_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "candidate_smoke_written_gate_union_or_gate_oos_abstain_recall": (
+                smoke_gate["union_or_gate_oos_abstain_recall"]
+            ),
+            "candidate_smoke_written_gate_matches_prior_materialization": (
+                smoke_gate_matches_prior
+            ),
+            "remaining_current_split_import_rows_after_smoke": len(
+                remaining_import_rows
+            ),
+            "remaining_current_split_import_new_rows_after_smoke": len(
+                remaining_overlay["new_entry_ids"]
+            ),
+            "remaining_current_split_import_updated_existing_rows_after_smoke": len(
+                remaining_overlay["updated_entry_ids"]
+            ),
+            "remaining_current_split_import_existing_direct_feature_key_conflicts_after_smoke": (
+                remaining_overlay["existing_row_direct_feature_key_conflicts"]
+            ),
+            "candidate_full_74row_gate_rows": full_gate["rows"],
+            "candidate_full_74row_gate_complete_rows": full_gate["complete_rows"],
+            "candidate_full_74row_gate_primary_rows": full_gate["primary_rows"],
+            "candidate_full_74row_gate_retained_oos_rows": full_gate[
+                "retained_oos_rows"
+            ],
+            "candidate_full_74row_gate_primary_positive_rows": full_gate[
+                "primary_positive_rows"
+            ],
+            "candidate_full_74row_gate_primary_retain_recall": full_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "candidate_full_74row_gate_retained_oos_positive_rows": full_gate[
+                "retained_oos_positive_rows"
+            ],
+            "candidate_full_74row_gate_retained_oos_positive_entry_ids": (
+                full_gate["retained_oos_positive_entry_ids"]
+            ),
+            "candidate_full_74row_gate_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "candidate_full_74row_gate_union_or_gate_oos_abstain_recall": (
+                full_gate["union_or_gate_oos_abstain_recall"]
+            ),
+            "candidate_full_74row_gate_matches_prior_materialization": (
+                full_gate_matches_prior
+            ),
+            "candidate_component_ablation_ids": [
+                row["ablation_id"] for row in component_ablation
+            ],
+            "candidate_pqq_only_retained_oos_positive_entry_ids": (
+                ablation_by_id["pqq_only"]["retained_oos_positive_entry_ids"]
+            ),
+            "candidate_nad_family_only_retained_oos_positive_entry_ids": (
+                ablation_by_id["nad_family_only"][
+                    "retained_oos_positive_entry_ids"
+                ]
+            ),
+            "candidate_iron_sulfur_only_retained_oos_positive_entry_ids": (
+                ablation_by_id["iron_sulfur_only"][
+                    "retained_oos_positive_entry_ids"
+                ]
+            ),
+            "candidate_pqq_plus_nad_retained_oos_positive_entry_ids": (
+                ablation_by_id["pqq_plus_nad_family"][
+                    "retained_oos_positive_entry_ids"
+                ]
+            ),
+            "candidate_iron_sulfur_incremental_retained_oos_positive_entry_ids_beyond_pqq_nad": (
+                iron_sulfur_incremental_ids
+            ),
+            "candidate_iron_sulfur_incremental_retained_oos_positive_rows_beyond_pqq_nad": (
+                len(iron_sulfur_incremental_ids)
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "candidate_smoke_sidecar_materialized_inside_artifact": True,
+            "candidate_smoke_written_sidecar_gate_complete": (
+                smoke_gate["operating_point_measurable_now"]
+            ),
+            "candidate_smoke_written_sidecar_gate_preserves_primary_retention": (
+                smoke_gate["preserves_primary_retention"]
+            ),
+            "candidate_smoke_written_sidecar_gate_adds_m_csa104_retained_oos_abstention": (
+                "m_csa:104" in smoke_gate["retained_oos_positive_entry_ids"]
+            ),
+            "candidate_smoke_written_sidecar_gate_matches_prior_materialization": (
+                smoke_gate_matches_prior
+            ),
+            "candidate_full_current_split_expanded_after_smoke": smoke_positive,
+            "candidate_full_74row_gate_complete": full_gate[
+                "operating_point_measurable_now"
+            ],
+            "candidate_full_74row_gate_preserves_primary_retention": full_gate[
+                "preserves_primary_retention"
+            ],
+            "candidate_full_74row_gate_adds_current_retained_oos_abstention": (
+                full_gate["adds_incremental_oos_abstention"]
+            ),
+            "candidate_full_74row_gate_matches_prior_materialization": (
+                full_gate_matches_prior
+            ),
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_after_candidate_sidecar_import": (
+                full_positive
+            ),
+            "candidate_component_ablation_confirms_pqq_nad_fe_s_direct_signal": (
+                ablation_by_id["pqq_only"]["retained_oos_positive_entry_ids"]
+                == ["m_csa:104"]
+                and ablation_by_id["nad_family_only"][
+                    "retained_oos_positive_entry_ids"
+                ]
+                == ["m_csa:464"]
+                and ablation_by_id["iron_sulfur_only"][
+                    "retained_oos_positive_entry_ids"
+                ]
+                == ["m_csa:119"]
+            ),
+            "candidate_iron_sulfur_component_adds_incremental_row_beyond_pqq_nad": (
+                bool(iron_sulfur_incremental_ids)
+            ),
+            "canonical_approved_sidecar_modified": False,
+            "protected_surfaces_modified": False,
+            "train_cal_supported_in_candidate_sidecar": full_positive,
+            "deployable_now": False,
+            "research_only": True,
+            "apply_or_promote_now": False,
+            "negative": not full_positive,
+            "remaining_gap": (
+                "The source-free namespaced electron-flow fields now have a "
+                "written-sidecar-shaped train/cal readout in a candidate "
+                "artifact. Canonical approved-sidecar import/promotion remains "
+                "unexecuted because this run does not edit imports or protected "
+                "surfaces."
+            ),
+            "smallest_next_experiment": (
+                "If import edits are explicitly allowed in a future Lever 2 "
+                "run, apply exactly this candidate smoke sidecar delta to the "
+                "protected approved sidecar, rerun the written-sidecar-only "
+                "smoke gate, then apply the remaining 39 current-split rows."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "gate_uses_only_direct_source_free_electron_flow_fields": True,
+            "selected_route_avoids_overwriting_existing_generic_event_fields": True,
+            "candidate_sidecar_artifact_written": True,
+            "approved_sidecar_written": False,
+            "canonical_imports_or_promotions_performed": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "approval_import_smoke_materialization_readout": _source_path_record(
+                approval_import_smoke_materialization_readout_path
+            ),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The candidate written-sidecar smoke gate preserves all current "
+                "primary rows and abstains m_csa:104; the expanded candidate "
+                "current-split gate preserves primary retention and abstains "
+                "m_csa:104, m_csa:119, and m_csa:464 beyond the current "
+                "geometry/fold surface."
+                if full_positive
+                else (
+                    "The candidate written-sidecar route is incomplete or does "
+                    "not preserve primary retention with incremental retained-"
+                    "OOS abstention."
+                )
+            ),
+            "next_action": (
+                "No blocker packet is needed: the remaining issue is policy, "
+                "not missing source-free evidence. The exact candidate deltas "
+                "are included for a future protected import-authorized run."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_approval_import_candidate_sidecar_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    smoke_gate = readout["measured_readout"][
+        "candidate_written_sidecar_smoke_gate"
+    ]["fixed_gate_readout"]
+    full_gate = readout["measured_readout"][
+        "candidate_written_sidecar_full_74row_gate"
+    ]["fixed_gate_readout"]
+    component_ablation = readout["measured_readout"][
+        "component_ablation_after_candidate_sidecar_import"
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Approval Import Candidate Sidecar Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Candidate sidecar rows after smoke: "
+        f"{counts['candidate_sidecar_rows_after_smoke']}",
+        "- Candidate sidecar rows after full current-split expansion: "
+        f"{counts['candidate_sidecar_rows_after_full_current_split_expansion']}",
+        "- Smoke add/update rows: "
+        f"{counts['candidate_smoke_import_new_rows']}/"
+        f"{counts['candidate_smoke_import_updated_existing_rows']}",
+        "- Remaining expansion rows after smoke: "
+        f"{counts['remaining_current_split_import_rows_after_smoke']}",
+        "- Critical violations: "
+        f"{counts['critical_violation_total']}",
+        "",
+        "## Candidate Smoke Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | retained-OOS IDs | union OOS recall | matches prior |",
+        "| ---: | ---: | ---: | --- | ---: | --- |",
+        f"| {smoke_gate['complete_rows']}/{smoke_gate['rows']} | "
+        f"{smoke_gate['primary_positive_rows']} | "
+        f"{smoke_gate['retained_oos_positive_rows']} | "
+        f"{', '.join(smoke_gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{smoke_gate['union_or_gate_oos_abstain_recall']} | "
+        f"{counts['candidate_smoke_written_gate_matches_prior_materialization']} |",
+        "",
+        "## Candidate Full Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | retained-OOS IDs | union OOS recall | matches prior |",
+        "| ---: | ---: | ---: | --- | ---: | --- |",
+        f"| {full_gate['complete_rows']}/{full_gate['rows']} | "
+        f"{full_gate['primary_positive_rows']} | "
+        f"{full_gate['retained_oos_positive_rows']} | "
+        f"{', '.join(full_gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{full_gate['union_or_gate_oos_abstain_recall']} | "
+        f"{counts['candidate_full_74row_gate_matches_prior_materialization']} |",
+        "",
+        "## Candidate Component Ablation",
+        "",
+        "| ablation | components | retained-OOS IDs | primary positives | incremental OOS recall |",
+        "| --- | --- | --- | ---: | ---: |",
+    ]
+    for row in component_ablation:
+        gate = row["fixed_gate_readout"]
+        lines.append(
+            f"| {row['ablation_id']} | "
+            f"{', '.join(row['included_components'])} | "
+            f"{', '.join(gate['retained_oos_positive_entry_ids']) or 'none'} | "
+            f"{gate['primary_positive_rows']} | "
+            f"{gate['incremental_oos_abstain_recall_vs_current_geometry_fold']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Candidate smoke sidecar materialized inside artifact: "
+        f"{decision['candidate_smoke_sidecar_materialized_inside_artifact']}",
+        "- Smoke preserves primary retention: "
+        f"{decision['candidate_smoke_written_sidecar_gate_preserves_primary_retention']}",
+        "- Smoke catches m_csa:104: "
+        f"{decision['candidate_smoke_written_sidecar_gate_adds_m_csa104_retained_oos_abstention']}",
+        "- Full gate preserves primary retention: "
+        f"{decision['candidate_full_74row_gate_preserves_primary_retention']}",
+        "- Full gate catches retained OOS: "
+        f"{decision['candidate_full_74row_gate_adds_current_retained_oos_abstention']}",
+        "- Direct electron-flow adds operating-point value after candidate sidecar import: "
+        f"{decision['direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_after_candidate_sidecar_import']}",
+        "- Component ablation confirms PQQ/NAD/Fe-S direct signal: "
+        f"{decision['candidate_component_ablation_confirms_pqq_nad_fe_s_direct_signal']}",
+        "- Fe-S adds an incremental row beyond PQQ+NAD: "
+        f"{decision['candidate_iron_sulfur_component_adds_incremental_row_beyond_pqq_nad']}",
+        "- Canonical approved sidecar modified: False",
+        "- Protected surfaces modified: False",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout(
+    *,
+    approval_import_smoke_materialization_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_CANDIDATE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = (
+        build_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout(
+            approval_import_smoke_materialization_readout_path=(
+                approval_import_smoke_materialization_readout_path
+            ),
+            train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_approval_import_candidate_sidecar_report(
                 readout
             ),
             encoding="utf-8",

@@ -54,6 +54,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_event_motif_interaction_null_readout,
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
+    write_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout,
     write_lever2_source_free_electron_flow_approval_import_dry_run_readout,
     write_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout,
     write_lever2_source_free_electron_flow_approval_import_smoke_review_readout,
@@ -14448,6 +14449,35 @@ def cmd_build_lever2_source_free_electron_flow_approval_import_smoke_materializa
         "smoke primary/OOS positives: "
         f"{counts.get('approved_sidecar_only_smoke_primary_positive_rows')}/"
         f"{counts.get('approved_sidecar_only_smoke_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout(
+        approval_import_smoke_materialization_readout_path=Path(
+            args.approval_import_smoke_materialization_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow approval/import candidate "
+        f"sidecar readout to {args.out} "
+        "smoke primary/OOS positives: "
+        f"{counts.get('candidate_smoke_written_gate_primary_positive_rows')}/"
+        f"{counts.get('candidate_smoke_written_gate_retained_oos_positive_rows')}, "
+        "full OOS positives: "
+        f"{counts.get('candidate_full_74row_gate_retained_oos_positive_rows')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -34613,6 +34643,54 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_approval_import_smoke_materialization.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout
+        )
+    )
+
+    lever2_electron_flow_approval_import_candidate_sidecar = subparsers.add_parser(
+        (
+            "build-lever2-source-free-electron-flow-approval-import-"
+            "candidate-sidecar-readout"
+        ),
+        help=(
+            "materialize a research-only collision-safe candidate sidecar for "
+            "the direct source-free electron-flow smoke and current-split gates"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--approval-import-smoke-materialization-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "smoke_materialization_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "candidate_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_approval_import_"
+            "candidate_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout
         )
     )
 
