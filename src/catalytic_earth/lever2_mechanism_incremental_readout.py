@@ -13,11 +13,16 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from .structure import parse_atom_site_loop, structure_ligand_inventory_from_atoms
+from .structure import (
+    parse_atom_site_loop,
+    select_residue_atoms,
+    structure_ligand_inventory_from_atoms,
+)
 
 SCHEMA_VERSION = "lever2_mechanism_feature_incremental_readout.v0"
 DEFAULT_ARTIFACT_ID = (
@@ -36,6 +41,10 @@ DEFAULT_ELECTRON_FLOW_SMOKE_TRANCHE_SCAN_ARTIFACT_ID = (
 )
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_coordinate_proxy_readout_"
+    "current702_20260604"
+)
+DEFAULT_ELECTRON_FLOW_PQQ_PRIMITIVE_AXIS_AUDIT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_pqq_primitive_axis_audit_"
     "current702_20260604"
 )
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
@@ -107,6 +116,8 @@ COORDINATE_REDOX_LIGAND_CODES = {
 COORDINATE_QUINONE_REDOX_LIGAND_CODES = {"PQQ"}
 COORDINATE_ELECTRON_PATH_RESIDUE_CODES = {"CYS", "HIS", "PHE", "TRP", "TYR"}
 COORDINATE_ELECTRON_PATH_CUTOFF_ANGSTROM = 5.0
+PQQ_REDOX_CENTER_ATOM_NAMES = {"C4", "C5", "O4", "O5"}
+PQQ_REDOX_CENTER_CONTACT_CUTOFF_ANGSTROM = 4.0
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -4673,6 +4684,904 @@ def write_lever2_source_free_electron_flow_coordinate_proxy_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_coordinate_proxy_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _atom_distance_angstrom(left: dict[str, Any], right: dict[str, Any]) -> float:
+    return math.dist(
+        (float(left["Cartn_x"]), float(left["Cartn_y"]), float(left["Cartn_z"])),
+        (float(right["Cartn_x"]), float(right["Cartn_y"]), float(right["Cartn_z"])),
+    )
+
+
+def _pqq_redox_center_atoms(atoms: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [
+        atom
+        for atom in atoms
+        if (atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        in COORDINATE_QUINONE_REDOX_LIGAND_CODES
+        and (atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+        in PQQ_REDOX_CENTER_ATOM_NAMES
+    ]
+
+
+def _pqq_redox_center_instance_contacts(
+    *,
+    pqq_center_atoms: list[dict[str, Any]],
+    active_site_atoms: list[dict[str, Any]],
+) -> dict[str, Any]:
+    by_instance: dict[tuple[str, str, str], list[dict[str, Any]]] = {}
+    for atom in pqq_center_atoms:
+        code = str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "")
+        chain = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+        resid = str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
+        by_instance.setdefault((code.upper(), chain, resid), []).append(atom)
+
+    instances: list[dict[str, Any]] = []
+    min_distance: float | None = None
+    for (code, chain, resid), instance_atoms in sorted(by_instance.items()):
+        best: tuple[float, dict[str, Any], dict[str, Any]] | None = None
+        for pqq_atom in instance_atoms:
+            for active_atom in active_site_atoms:
+                distance = _atom_distance_angstrom(pqq_atom, active_atom)
+                if best is None or distance < best[0]:
+                    best = (distance, pqq_atom, active_atom)
+        if best is None:
+            continue
+        distance, pqq_atom, active_atom = best
+        min_distance = distance if min_distance is None else min(min_distance, distance)
+        instance = {
+            "ligand_code": code,
+            "ligand_chain": chain or None,
+            "ligand_resid": resid or None,
+            "observed_redox_center_atom_names": sorted(
+                {
+                    str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "")
+                    for atom in instance_atoms
+                }
+            ),
+            "redox_center_atom_count": len(instance_atoms),
+            "min_distance_to_active_site_atom": round(distance, 3),
+            "closest_contact": {
+                "pqq_atom": str(
+                    pqq_atom.get("auth_atom_id") or pqq_atom.get("label_atom_id")
+                ),
+                "active_residue_code": str(
+                    active_atom.get("auth_comp_id")
+                    or active_atom.get("label_comp_id")
+                    or ""
+                ).upper(),
+                "active_chain": active_atom.get("auth_asym_id")
+                or active_atom.get("label_asym_id"),
+                "active_resid": active_atom.get("auth_seq_id")
+                or active_atom.get("label_seq_id"),
+                "active_atom": active_atom.get("auth_atom_id")
+                or active_atom.get("label_atom_id"),
+                "distance_angstrom": round(distance, 3),
+            },
+            "has_redox_center_contact": (
+                distance <= PQQ_REDOX_CENTER_CONTACT_CUTOFF_ANGSTROM
+            ),
+        }
+        instances.append(instance)
+    contact_instances = [
+        instance for instance in instances if instance["has_redox_center_contact"]
+    ]
+    return {
+        "instances": instances,
+        "contact_instances": contact_instances,
+        "min_distance_to_active_site_atom": (
+            round(min_distance, 3) if min_distance is not None else None
+        ),
+    }
+
+
+def _default_pdb_cif_path_for_geometry_row(
+    geometry_row: dict[str, Any] | None,
+) -> Path | None:
+    if geometry_row is None:
+        return None
+    pdb_id = str(geometry_row.get("pdb_id") or "").strip().upper()
+    if not pdb_id:
+        return None
+    return Path(f"artifacts/v3_foldseek_coordinates_1000/pdb_{pdb_id}.cif")
+
+
+def _select_active_site_atoms_for_geometry_row(
+    *,
+    atoms: list[dict[str, Any]],
+    geometry_row: dict[str, Any],
+) -> list[dict[str, Any]]:
+    active_atoms: list[dict[str, Any]] = []
+    for residue in geometry_row.get("residues") or []:
+        if not isinstance(residue, dict):
+            continue
+        active_atoms.extend(
+            select_residue_atoms(
+                atoms,
+                residue.get("chain_name"),
+                residue.get("resid"),
+                residue.get("code"),
+            )
+        )
+    return active_atoms
+
+
+def _pqq_primitive_axis_row(
+    *,
+    proxy_row: dict[str, Any],
+    geometry_row: dict[str, Any] | None,
+    gap_probe_by_entry: dict[str, dict[str, Any]],
+    coordinate_cif_paths: dict[str, Path],
+) -> dict[str, Any]:
+    entry_id = str(proxy_row.get("entry_id") or "")
+    evidence = proxy_row.get("coordinate_evidence") or {}
+    base = {
+        "entry_id": entry_id,
+        "tranche_role": proxy_row.get("tranche_role"),
+        "geometry_status": evidence.get("geometry_status"),
+        "source_free_pqq_redox_center_field_complete": False,
+        "has_source_free_pqq_redox_center_contact": False,
+        "source_free_pqq_redox_center_contact_count": 0,
+        "pqq_redox_center_contact_cutoff_angstrom": (
+            PQQ_REDOX_CENTER_CONTACT_CUTOFF_ANGSTROM
+        ),
+        "pqq_redox_center_atom_names": sorted(PQQ_REDOX_CENTER_ATOM_NAMES),
+    }
+    if not evidence.get("source_free_coordinate_features_available"):
+        gap_probe = gap_probe_by_entry.get(entry_id)
+        if gap_probe and gap_probe.get("sidecar_available"):
+            pqq_codes = gap_probe.get("structure_quinone_redox_ligand_codes") or []
+            return {
+                **base,
+                "source_free_pqq_redox_center_field_complete": not bool(pqq_codes),
+                "field_status": (
+                    "complete_negative_from_gap_cif_inventory"
+                    if not pqq_codes
+                    else "incomplete_gap_pqq_inventory_positive_without_proximity"
+                ),
+                "coordinate_path": gap_probe.get("coordinate_path"),
+                "structure_quinone_redox_ligand_codes": pqq_codes,
+                "missing_source_free_evidence": []
+                if not pqq_codes
+                else [
+                    "active_site_residue_geometry_for_gap_row",
+                    "pqq_redox_center_contact_distance_for_gap_row",
+                ],
+            }
+        return {
+            **base,
+            "field_status": "incomplete_missing_coordinate_or_gap_inventory",
+            "missing_source_free_evidence": [
+                "parseable_coordinate_or_gap_cif_inventory"
+            ],
+        }
+
+    proximal_pqq_codes = evidence.get("proximal_quinone_redox_ligand_codes") or []
+    if not proximal_pqq_codes:
+        return {
+            **base,
+            "source_free_pqq_redox_center_field_complete": True,
+            "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+            "proximal_quinone_redox_ligand_codes": [],
+            "missing_source_free_evidence": [],
+        }
+
+    cif_path = coordinate_cif_paths.get(entry_id)
+    if cif_path is None:
+        cif_path = _default_pdb_cif_path_for_geometry_row(geometry_row)
+    if cif_path is None or not cif_path.exists():
+        return {
+            **base,
+            "field_status": "incomplete_missing_committed_coordinate_cif",
+            "coordinate_path": str(cif_path) if cif_path is not None else None,
+            "proximal_quinone_redox_ligand_codes": proximal_pqq_codes,
+            "missing_source_free_evidence": [
+                "committed_coordinate_cif_for_pqq_positive_row"
+            ],
+        }
+
+    try:
+        atoms = parse_atom_site_loop(cif_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return {
+            **base,
+            "field_status": "incomplete_coordinate_cif_parse_failed",
+            "coordinate_path": str(cif_path),
+            "error": str(exc),
+            "proximal_quinone_redox_ligand_codes": proximal_pqq_codes,
+            "missing_source_free_evidence": ["parseable_coordinate_cif"],
+        }
+    if geometry_row is None:
+        return {
+            **base,
+            "field_status": "incomplete_missing_geometry_row_for_pqq_positive",
+            "coordinate_path": str(cif_path),
+            "proximal_quinone_redox_ligand_codes": proximal_pqq_codes,
+            "missing_source_free_evidence": [
+                "active_site_residue_geometry_for_pqq_positive_row"
+            ],
+        }
+    pqq_center_atoms = _pqq_redox_center_atoms(atoms)
+    active_site_atoms = _select_active_site_atoms_for_geometry_row(
+        atoms=atoms,
+        geometry_row=geometry_row,
+    )
+    if not pqq_center_atoms or not active_site_atoms:
+        missing = []
+        if not pqq_center_atoms:
+            missing.append("pqq_redox_center_atoms_c4_c5_o4_o5")
+        if not active_site_atoms:
+            missing.append("active_site_residue_atoms")
+        return {
+            **base,
+            "field_status": "incomplete_missing_atom_level_contact_inputs",
+            "coordinate_path": str(cif_path),
+            "proximal_quinone_redox_ligand_codes": proximal_pqq_codes,
+            "pqq_redox_center_atom_count": len(pqq_center_atoms),
+            "active_site_atom_count": len(active_site_atoms),
+            "missing_source_free_evidence": missing,
+        }
+    contacts = _pqq_redox_center_instance_contacts(
+        pqq_center_atoms=pqq_center_atoms,
+        active_site_atoms=active_site_atoms,
+    )
+    contact_instances = contacts["contact_instances"]
+    return {
+        **base,
+        "source_free_pqq_redox_center_field_complete": True,
+        "field_status": "ok",
+        "coordinate_path": str(cif_path),
+        "proximal_quinone_redox_ligand_codes": proximal_pqq_codes,
+        "pqq_redox_center_atom_count": len(pqq_center_atoms),
+        "active_site_atom_count": len(active_site_atoms),
+        "min_pqq_redox_center_distance_to_active_site_atom": contacts[
+            "min_distance_to_active_site_atom"
+        ],
+        "pqq_redox_center_instances": contacts["instances"],
+        "has_source_free_pqq_redox_center_contact": bool(contact_instances),
+        "source_free_pqq_redox_center_contact_count": len(contact_instances),
+        "missing_source_free_evidence": [],
+    }
+
+
+def _pqq_primitive_axis_variant_readout(
+    rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    primary_rows = [
+        row for row in rows if row["tranche_role"] == "current_primary_retention_gate"
+    ]
+    retained_oos_rows = [
+        row for row in rows if row["tranche_role"] == "current_retained_oos"
+    ]
+    complete_rows = [
+        row for row in rows if row["source_free_pqq_redox_center_field_complete"]
+    ]
+    incomplete_rows = [
+        row for row in rows if not row["source_free_pqq_redox_center_field_complete"]
+    ]
+    primary_positive_rows = [
+        row
+        for row in primary_rows
+        if row["has_source_free_pqq_redox_center_contact"]
+    ]
+    retained_oos_positive_rows = [
+        row
+        for row in retained_oos_rows
+        if row["has_source_free_pqq_redox_center_contact"]
+    ]
+    return {
+        "variant_id": "source_free_pqq_redox_center_contact_binary",
+        "positive_field": "has_source_free_pqq_redox_center_contact",
+        "count_field": "source_free_pqq_redox_center_contact_count",
+        "rows": len(rows),
+        "complete_rows": len(complete_rows),
+        "incomplete_rows": len(incomplete_rows),
+        "incomplete_entry_ids": _entry_ids(incomplete_rows),
+        "primary_positive_rows": len(primary_positive_rows),
+        "retained_oos_positive_rows": len(retained_oos_positive_rows),
+        "primary_positive_entry_ids": _entry_ids(primary_positive_rows),
+        "retained_oos_positive_entry_ids": _entry_ids(retained_oos_positive_rows),
+        "primary_retain_recall_if_abstain_positive": _recall(
+            len(primary_rows) - len(primary_positive_rows),
+            len(primary_rows),
+        ),
+        "retained_oos_abstain_recall_if_abstain_positive": _recall(
+            len(retained_oos_positive_rows),
+            len(retained_oos_rows),
+        ),
+        "adds_incremental_oos_at_primary_retain_1": bool(
+            retained_oos_positive_rows and not primary_positive_rows
+        ),
+        "operating_point_measurable_now": len(complete_rows) == len(rows),
+    }
+
+
+def _pqq_primitive_axis_tranche_readout(
+    *,
+    tranche_id: str,
+    coordinate_proxy_tranche: dict[str, Any],
+    geometry_by_entry: dict[str, dict[str, Any]],
+    gap_probe_by_entry: dict[str, dict[str, Any]],
+    coordinate_cif_paths: dict[str, Path],
+) -> dict[str, Any]:
+    rows = [
+        _pqq_primitive_axis_row(
+            proxy_row=row,
+            geometry_row=geometry_by_entry.get(str(row.get("entry_id") or "")),
+            gap_probe_by_entry=gap_probe_by_entry,
+            coordinate_cif_paths=coordinate_cif_paths,
+        )
+        for row in coordinate_proxy_tranche.get("rows") or []
+    ]
+    variant = _pqq_primitive_axis_variant_readout(rows)
+    status_counts: dict[str, int] = {}
+    for row in rows:
+        status = str(row.get("field_status") or "unknown")
+        status_counts[status] = status_counts.get(status, 0) + 1
+    return {
+        "tranche_id": tranche_id,
+        "rows": rows,
+        "variant_readout": variant,
+        "counts": {
+            "rows": len(rows),
+            "primary_rows": sum(
+                1
+                for row in rows
+                if row["tranche_role"] == "current_primary_retention_gate"
+            ),
+            "retained_oos_rows": sum(
+                1 for row in rows if row["tranche_role"] == "current_retained_oos"
+            ),
+            "complete_source_free_pqq_redox_center_rows": variant[
+                "complete_rows"
+            ],
+            "incomplete_source_free_pqq_redox_center_rows": variant[
+                "incomplete_rows"
+            ],
+            "primary_positive_rows": variant["primary_positive_rows"],
+            "retained_oos_positive_rows": variant[
+                "retained_oos_positive_rows"
+            ],
+            "field_status_counts": dict(sorted(status_counts.items())),
+        },
+        "incomplete_rows": [
+            {
+                "entry_id": row["entry_id"],
+                "tranche_role": row["tranche_role"],
+                "field_status": row["field_status"],
+                "missing_source_free_evidence": row.get(
+                    "missing_source_free_evidence", []
+                ),
+            }
+            for row in rows
+            if not row["source_free_pqq_redox_center_field_complete"]
+        ],
+    }
+
+
+def _pqq_plus_primary_safe_generic_count_control(
+    *,
+    pqq_tranche: dict[str, Any],
+    coordinate_proxy_tranche: dict[str, Any],
+) -> dict[str, Any]:
+    threshold_variant = (
+        (coordinate_proxy_tranche.get("variant_readouts") or {}).get(
+            "coordinate_redox_contact_primary_safe_count_threshold"
+        )
+        or {}
+    )
+    threshold = threshold_variant.get("primary_safe_integer_threshold")
+    proxy_rows = coordinate_proxy_tranche.get("rows") or []
+    generic_positive_rows: list[dict[str, Any]] = []
+    if threshold is not None:
+        for row in proxy_rows:
+            evidence = row.get("coordinate_evidence") or {}
+            count = int(evidence.get("coordinate_redox_electron_flow_count") or 0)
+            if count >= int(threshold):
+                generic_positive_rows.append(row)
+    role_by_entry = {
+        str(row.get("entry_id")): row.get("tranche_role")
+        for row in proxy_rows
+        if row.get("entry_id")
+    }
+    pqq_variant = pqq_tranche["variant_readout"]
+    pqq_primary_ids = set(pqq_variant["primary_positive_entry_ids"])
+    pqq_retained_ids = set(pqq_variant["retained_oos_positive_entry_ids"])
+    generic_primary_ids = {
+        str(row.get("entry_id"))
+        for row in generic_positive_rows
+        if row.get("tranche_role") == "current_primary_retention_gate"
+    }
+    generic_retained_ids = {
+        str(row.get("entry_id"))
+        for row in generic_positive_rows
+        if row.get("tranche_role") == "current_retained_oos"
+    }
+    combined_primary_ids = sorted(
+        pqq_primary_ids | generic_primary_ids,
+        key=_entry_sort_key,
+    )
+    combined_retained_ids = sorted(
+        pqq_retained_ids | generic_retained_ids,
+        key=_entry_sort_key,
+    )
+    primary_rows = sum(
+        1 for role in role_by_entry.values() if role == "current_primary_retention_gate"
+    )
+    retained_rows = sum(
+        1 for role in role_by_entry.values() if role == "current_retained_oos"
+    )
+    return {
+        "control_id": "pqq_redox_center_or_primary_safe_generic_redox_count_control",
+        "control_not_a_primitive_axis": True,
+        "generic_count_threshold": threshold,
+        "pqq_redox_center_retained_oos_positive_entry_ids": sorted(
+            pqq_retained_ids, key=_entry_sort_key
+        ),
+        "generic_count_retained_oos_positive_entry_ids": sorted(
+            generic_retained_ids, key=_entry_sort_key
+        ),
+        "combined_primary_positive_entry_ids": combined_primary_ids,
+        "combined_retained_oos_positive_entry_ids": combined_retained_ids,
+        "combined_primary_positive_rows": len(combined_primary_ids),
+        "combined_retained_oos_positive_rows": len(combined_retained_ids),
+        "combined_primary_retain_recall_if_abstain_positive": _recall(
+            primary_rows - len(combined_primary_ids),
+            primary_rows,
+        ),
+        "combined_retained_oos_abstain_recall_if_abstain_positive": _recall(
+            len(combined_retained_ids),
+            retained_rows,
+        ),
+        "adds_incremental_oos_at_primary_retain_1": bool(
+            combined_retained_ids and not combined_primary_ids
+        ),
+    }
+
+
+def _coordinate_cif_source_records_from_rows(
+    rows: list[dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    records: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        path = row.get("coordinate_path")
+        if path:
+            records[str(row["entry_id"])] = _source_path_record(Path(path))
+    return dict(sorted(records.items(), key=lambda item: _entry_sort_key(item[0])))
+
+
+def build_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
+    *,
+    coordinate_proxy_readout_path: Path,
+    geometry_features_path: Path,
+    coordinate_cif_paths: dict[str, Path] | None = None,
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_PQQ_PRIMITIVE_AXIS_AUDIT_ARTIFACT_ID,
+) -> dict[str, Any]:
+    coordinate_proxy = _read_json(coordinate_proxy_readout_path)
+    geometry = _read_json(geometry_features_path)
+    geometry_by_entry = _geometry_feature_rows_by_entry(geometry)
+    if coordinate_cif_paths is None:
+        coordinate_cif_paths = {}
+    measured_proxy = coordinate_proxy.get("measured_readout") or {}
+    gap_probe = (
+        measured_proxy.get("full_retained_oos_current_split_gap_cif_probe")
+        or {}
+    )
+    gap_probe_by_entry = {
+        str(row.get("entry_id")): row
+        for row in gap_probe.get("rows") or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    smoke_proxy_tranche = (
+        measured_proxy.get("smallest_source_free_smoke_tranche") or {}
+    )
+    full_proxy_tranche = (
+        measured_proxy.get("full_retained_oos_current_split_tranche") or {}
+    )
+    smoke = _pqq_primitive_axis_tranche_readout(
+        tranche_id="smallest_source_free_smoke_tranche",
+        coordinate_proxy_tranche=smoke_proxy_tranche,
+        geometry_by_entry=geometry_by_entry,
+        gap_probe_by_entry=gap_probe_by_entry,
+        coordinate_cif_paths=coordinate_cif_paths,
+    )
+    full = _pqq_primitive_axis_tranche_readout(
+        tranche_id="full_retained_oos_current_split_tranche",
+        coordinate_proxy_tranche=full_proxy_tranche,
+        geometry_by_entry=geometry_by_entry,
+        gap_probe_by_entry=gap_probe_by_entry,
+        coordinate_cif_paths=coordinate_cif_paths,
+    )
+    smoke_combined_control = _pqq_plus_primary_safe_generic_count_control(
+        pqq_tranche=smoke,
+        coordinate_proxy_tranche=smoke_proxy_tranche,
+    )
+    full_combined_control = _pqq_plus_primary_safe_generic_count_control(
+        pqq_tranche=full,
+        coordinate_proxy_tranche=full_proxy_tranche,
+    )
+    smoke_variant = smoke["variant_readout"]
+    full_variant = full["variant_readout"]
+    smoke_signal = bool(
+        smoke_variant["operating_point_measurable_now"]
+        and smoke_variant["adds_incremental_oos_at_primary_retain_1"]
+    )
+    full_signal = bool(
+        full_variant["operating_point_measurable_now"]
+        and full_variant["adds_incremental_oos_at_primary_retain_1"]
+    )
+    result_class = (
+        "research_only_pqq_redox_center_candidate_axis_signal"
+        if smoke_signal and full_signal
+        else "research_only_pqq_redox_center_candidate_axis_incomplete_or_negative"
+    )
+    all_rows = list(smoke["rows"]) + list(full["rows"])
+    coordinate_cifs_used = _coordinate_cif_source_records_from_rows(all_rows)
+    train_cal_delta = (coordinate_proxy.get("measured_readout") or {}).get(
+        "train_cal_electron_flow_oos_recall_delta"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_pqq_primitive_axis_"
+            "audit.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "lever2_source_free_electron_flow_pqq_primitive_axis_audit_"
+            f"{result_class}"
+        ),
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined measured audit of a candidate "
+            "source-free PQQ/quinone redox-center electron-flow field. The "
+            "field uses only local coordinate ligand chemistry, fixed PQQ "
+            "redox-center atom names, active-site atom contacts, and committed "
+            "CIF sidecars; it does not use mechanism text, labels, EC/Rhea IDs, "
+            "accessions, source IDs, target names, heldout rows, or threshold "
+            "tuning."
+        ),
+        "measured_readout": {
+            "train_cal_electron_flow_oos_recall_delta": train_cal_delta,
+            "candidate_primitive_axis_contract": {
+                "axis_id": "source_free_pqq_redox_center_contact",
+                "allowed_source_free_inputs": [
+                    "geometry_features.active_site_residue_coordinates",
+                    "geometry_features.proximal_ligand_codes",
+                    "committed_local_coordinate_cif_atom_sites",
+                    "fixed_pqq_redox_center_atom_names",
+                ],
+                "forbidden_inputs": [
+                    "mechanism_text",
+                    "labels",
+                    "EC_or_Rhea_ids",
+                    "source_ids",
+                    "target_names",
+                    "accessions_as_predictive_features",
+                    "heldout_rows",
+                ],
+                "pqq_redox_center_atom_names": sorted(PQQ_REDOX_CENTER_ATOM_NAMES),
+                "atom_contact_cutoff_angstrom": (
+                    PQQ_REDOX_CENTER_CONTACT_CUTOFF_ANGSTROM
+                ),
+                "field_mapping": {
+                    "has_source_free_pqq_redox_center_contact": (
+                        "True when a committed coordinate sidecar contains PQQ "
+                        "C4/C5/O4/O5 atoms within the fixed atom-contact cutoff "
+                        "of an active-site residue atom."
+                    ),
+                    "source_free_pqq_redox_center_contact_count": (
+                        "Number of PQQ ligand instances satisfying the fixed "
+                        "redox-center atom-contact criterion."
+                    ),
+                },
+            },
+            "smallest_source_free_smoke_tranche": smoke,
+            "full_retained_oos_current_split_tranche": full,
+            "pqq_plus_primary_safe_generic_count_control": {
+                "scope": (
+                    "Research-only control that unions the atom-level PQQ "
+                    "redox-center candidate with the prior primary-safe generic "
+                    "coordinate redox-contact count threshold. This is not an "
+                    "approved primitive axis because the generic count side is a "
+                    "coordinate proxy control."
+                ),
+                "smallest_source_free_smoke_tranche": smoke_combined_control,
+                "full_retained_oos_current_split_tranche": full_combined_control,
+            },
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "smoke_tranche_rows": smoke["counts"]["rows"],
+            "smoke_complete_pqq_redox_center_rows": smoke["counts"][
+                "complete_source_free_pqq_redox_center_rows"
+            ],
+            "smoke_pqq_redox_center_primary_positive_rows": smoke_variant[
+                "primary_positive_rows"
+            ],
+            "smoke_pqq_redox_center_retained_oos_positive_rows": smoke_variant[
+                "retained_oos_positive_rows"
+            ],
+            "full_retained_current_split_rows": full["counts"]["rows"],
+            "full_complete_pqq_redox_center_rows": full["counts"][
+                "complete_source_free_pqq_redox_center_rows"
+            ],
+            "full_pqq_redox_center_primary_positive_rows": full_variant[
+                "primary_positive_rows"
+            ],
+            "full_pqq_redox_center_retained_oos_positive_rows": full_variant[
+                "retained_oos_positive_rows"
+            ],
+            "full_combined_control_retained_oos_positive_rows": (
+                full_combined_control["combined_retained_oos_positive_rows"]
+            ),
+            "full_combined_control_primary_positive_rows": (
+                full_combined_control["combined_primary_positive_rows"]
+            ),
+            "full_incomplete_pqq_redox_center_rows": full_variant[
+                "incomplete_rows"
+            ],
+            "coordinate_cif_source_rows_used_for_field_completion": len(
+                coordinate_cifs_used
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "source_free_pqq_redox_center_fields_complete_on_smoke": (
+                smoke_variant["operating_point_measurable_now"]
+            ),
+            "source_free_pqq_redox_center_fields_complete_on_full_current_split": (
+                full_variant["operating_point_measurable_now"]
+            ),
+            "pqq_redox_center_axis_preserves_primary_retention": (
+                full_variant["primary_positive_rows"] == 0
+            ),
+            "pqq_redox_center_axis_adds_smoke_oos_abstention": smoke_signal,
+            "pqq_redox_center_axis_adds_full_current_split_oos_abstention": (
+                full_signal
+            ),
+            "combined_control_expands_full_current_split_oos_abstention": (
+                full_combined_control[
+                    "combined_retained_oos_positive_rows"
+                ]
+                > full_variant["retained_oos_positive_rows"]
+                and full_combined_control["combined_primary_positive_rows"] == 0
+            ),
+            "combined_control_is_approved_primitive_axis": False,
+            "adds_operating_point_value_beyond_current_surface": full_signal,
+            "candidate_direct_source_free_electron_flow_fields_materialized": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not full_signal,
+            "apply_or_promote_now": False,
+            "promotion_gate": (
+                "The atom-level PQQ redox-center contact field is a measured "
+                "candidate source-free electron-flow subaxis. It should remain "
+                "research-only until this narrow PQQ/quinone chemistry contract "
+                "is explicitly approved as a primitive axis and imported through "
+                "the normal source-free feature materialization path."
+            ),
+            "next_gate": (
+                "If PQQ/quinone redox-center contact is approved as a primitive "
+                "electron-flow subaxis, materialize these two fields in the "
+                "train/cal source-free feature sidecar for the 74-row current "
+                "split and rerun the fixed train/cal readouts. If not approved, "
+                "the smallest next experiment is an atom-level donor/acceptor "
+                "contact primitive that distinguishes redox-center contact from "
+                "generic cofactor presence."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "ligand_codes_used_as_source_free_coordinate_features": True,
+            "pqq_atom_names_used_as_fixed_ligand_chemistry": True,
+            "active_site_atom_contacts_used_as_source_free_coordinate_features": (
+                True
+            ),
+            "candidate_direct_electron_flow_fields_materialized_by_this_artifact": (
+                True
+            ),
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "coordinate_proxy_readout": _source_path_record(
+                coordinate_proxy_readout_path
+            ),
+            "geometry_features": _source_path_record(geometry_features_path),
+            "coordinate_cifs_used_for_field_completion": coordinate_cifs_used,
+        },
+        "interpretation": {
+            "result": (
+                "A fixed atom-level PQQ redox-center contact field is complete "
+                "for the smoke tranche and the 74-row retained-OOS current split. "
+                "It preserves all primary rows and catches the smoke retained-OOS "
+                "row, yielding a sparse 1/40 retained-OOS full-split increment "
+                "beyond the current geometry/fold surface. A research-only union "
+                "with the prior primary-safe generic redox-contact count control "
+                f"would catch {full_combined_control['combined_retained_oos_positive_rows']}/"
+                "40 retained-OOS rows at primary retain 1.0, but that control is "
+                "not an approved primitive axis."
+            )
+            if full_signal
+            else (
+                "The candidate atom-level PQQ redox-center field could not yet "
+                "produce a complete primary-safe retained-OOS increment from "
+                "the current source-free coordinate evidence."
+            ),
+            "next_action": (
+                "Approve or reject the PQQ/quinone redox-center contact contract "
+                "as a primitive source-free electron-flow subaxis; approval would "
+                "make the next measurable step a fixed train/cal sidecar rerun, "
+                "while rejection points to a donor/acceptor contact primitive."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_pqq_primitive_axis_audit_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    smoke = readout["measured_readout"]["smallest_source_free_smoke_tranche"]
+    full = readout["measured_readout"]["full_retained_oos_current_split_tranche"]
+    control = readout["measured_readout"][
+        "pqq_plus_primary_safe_generic_count_control"
+    ]["full_retained_oos_current_split_tranche"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow PQQ Primitive Axis Audit - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Train/cal electron-flow OOS recall delta: "
+        f"{readout['measured_readout']['train_cal_electron_flow_oos_recall_delta']}",
+        "- Smoke PQQ redox-center rows complete: "
+        f"{counts['smoke_complete_pqq_redox_center_rows']}/"
+        f"{counts['smoke_tranche_rows']}",
+        "- Smoke PQQ redox-center positives primary/OOS: "
+        f"{counts['smoke_pqq_redox_center_primary_positive_rows']}/"
+        f"{counts['smoke_pqq_redox_center_retained_oos_positive_rows']}",
+        "- Full current-split PQQ redox-center rows complete: "
+        f"{counts['full_complete_pqq_redox_center_rows']}/"
+        f"{counts['full_retained_current_split_rows']}",
+        "- Full current-split PQQ redox-center positives primary/OOS: "
+        f"{counts['full_pqq_redox_center_primary_positive_rows']}/"
+        f"{counts['full_pqq_redox_center_retained_oos_positive_rows']}",
+        "- Full current-split union control positives primary/OOS: "
+        f"{counts['full_combined_control_primary_positive_rows']}/"
+        f"{counts['full_combined_control_retained_oos_positive_rows']}",
+        "",
+        "## Variant Readouts",
+        "",
+        "| tranche | primary positives | retained-OOS positives | primary retain | OOS recall | complete rows |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for tranche_name, tranche in (("smoke", smoke), ("full", full)):
+        variant = tranche["variant_readout"]
+        lines.append(
+            f"| {tranche_name} | {variant['primary_positive_rows']} | "
+            f"{variant['retained_oos_positive_rows']} | "
+            f"{variant['primary_retain_recall_if_abstain_positive']} | "
+            f"{variant['retained_oos_abstain_recall_if_abstain_positive']} | "
+            f"{variant['complete_rows']}/{variant['rows']} |"
+        )
+    positive_rows = [
+        row
+        for row in full["rows"]
+        if row["has_source_free_pqq_redox_center_contact"]
+    ]
+    lines += [
+        "",
+        "## Positive Atom-Level Evidence",
+        "",
+        "| row | role | coordinate path | min PQQ-center distance | contact count |",
+        "| --- | --- | --- | ---: | ---: |",
+    ]
+    if not positive_rows:
+        lines.append("| none | none | none | none | 0 |")
+    for row in positive_rows:
+        lines.append(
+            f"| {row['entry_id']} | {row['tranche_role']} | "
+            f"{row.get('coordinate_path') or 'none'} | "
+            f"{row.get('min_pqq_redox_center_distance_to_active_site_atom')} | "
+            f"{row['source_free_pqq_redox_center_contact_count']} |"
+        )
+    lines += [
+        "",
+        "## Research-Only Union Control",
+        "",
+        "This control unions the atom-level PQQ candidate with the prior "
+        "primary-safe generic coordinate redox-contact count threshold. It is "
+        "not an approved primitive axis.",
+        "",
+        "| threshold | primary positives | retained-OOS positives | retained-OOS rows |",
+        "| ---: | ---: | ---: | --- |",
+        f"| {control['generic_count_threshold']} | "
+        f"{control['combined_primary_positive_rows']} | "
+        f"{control['combined_retained_oos_positive_rows']} | "
+        f"{', '.join(control['combined_retained_oos_positive_entry_ids']) or 'none'} |",
+        "",
+        "## Field Status Counts",
+        "",
+        "| tranche | status | rows |",
+        "| --- | --- | ---: |",
+    ]
+    for tranche_name, tranche in (("smoke", smoke), ("full", full)):
+        for status, count in tranche["counts"]["field_status_counts"].items():
+            lines.append(f"| {tranche_name} | {status} | {count} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Full current-split fields complete: "
+        f"{decision['source_free_pqq_redox_center_fields_complete_on_full_current_split']}",
+        "- Preserves primary retention: "
+        f"{decision['pqq_redox_center_axis_preserves_primary_retention']}",
+        "- Adds full current-split OOS abstention: "
+        f"{decision['pqq_redox_center_axis_adds_full_current_split_oos_abstention']}",
+        "- Deployable now: False",
+        f"- Promotion gate: {decision['promotion_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
+    *,
+    coordinate_proxy_readout_path: Path,
+    geometry_features_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    coordinate_cif_paths: dict[str, Path] | None = None,
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_PQQ_PRIMITIVE_AXIS_AUDIT_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
+        coordinate_proxy_readout_path=coordinate_proxy_readout_path,
+        geometry_features_path=geometry_features_path,
+        coordinate_cif_paths=coordinate_cif_paths,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_pqq_primitive_axis_audit_report(
                 readout
             ),
             encoding="utf-8",

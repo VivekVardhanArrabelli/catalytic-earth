@@ -18628,6 +18628,106 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_electron_flow_pqq_primitive_axis_audit_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_pqq_primitive_axis_"
+                "audit_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_pqq_primitive_axis_audit_"
+                "research_only_pqq_redox_center_candidate_axis_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_pqq_redox_center_candidate_axis_signal",
+        )
+        self.assertEqual(readout["counts"]["smoke_tranche_rows"], 35)
+        self.assertEqual(
+            readout["counts"]["smoke_complete_pqq_redox_center_rows"], 35
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_pqq_redox_center_primary_positive_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_pqq_redox_center_retained_oos_positive_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["full_retained_current_split_rows"], 74
+        )
+        self.assertEqual(
+            readout["counts"]["full_complete_pqq_redox_center_rows"], 74
+        )
+        self.assertEqual(
+            readout["counts"]["full_incomplete_pqq_redox_center_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["full_pqq_redox_center_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_pqq_redox_center_retained_oos_positive_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["full_combined_control_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_combined_control_retained_oos_positive_rows"
+            ],
+            3,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "source_free_pqq_redox_center_fields_complete_on_full_current_split"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pqq_redox_center_axis_adds_full_current_split_oos_abstention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "combined_control_expands_full_current_split_oos_abstention"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        positive_ids = readout["measured_readout"][
+            "full_retained_oos_current_split_tranche"
+        ]["variant_readout"]["retained_oos_positive_entry_ids"]
+        self.assertEqual(positive_ids, ["m_csa:104"])
+        control_ids = readout["measured_readout"][
+            "pqq_plus_primary_safe_generic_count_control"
+        ]["full_retained_oos_current_split_tranche"][
+            "combined_retained_oos_positive_entry_ids"
+        ]
+        self.assertEqual(control_ids, ["m_csa:104", "m_csa:368", "m_csa:464"])
+        source_records = readout["source_artifacts"][
+            "coordinate_cifs_used_for_field_completion"
+        ]
+        self.assertTrue(source_records["m_csa:104"]["exists"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_source_free_axis_acquisition_ranking_readout_current_counts(
         self,
     ) -> None:

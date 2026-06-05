@@ -166,6 +166,29 @@ class CliTests(unittest.TestCase):
         )
         self.assertIsNone(args.coordinate_gap_cif)
 
+    def test_lever2_electron_flow_pqq_primitive_axis_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-pqq-primitive-axis-audit"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_primitive_axis_audit",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_coordinate_proxy_readout",
+            args.coordinate_proxy_readout,
+        )
+        self.assertEqual(
+            args.geometry_features,
+            "artifacts/v3_geometry_features_1025.json",
+        )
+        self.assertIsNone(args.coordinate_cif)
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

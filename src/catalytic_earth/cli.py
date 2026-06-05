@@ -55,6 +55,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
     write_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
@@ -13823,6 +13824,41 @@ def cmd_build_lever2_source_free_electron_flow_coordinate_proxy_readout(
         "full PQQ primary/OOS positives: "
         f"{counts.get('full_pqq_primary_positive_rows')}/"
         f"{counts.get('full_pqq_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_cif", None):
+        coordinate_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_cif:
+            if "=" not in item:
+                raise ValueError("--coordinate-cif values must use ENTRY_ID=PATH")
+            entry_id, path = item.split("=", 1)
+            coordinate_cif_paths[entry_id] = Path(path)
+        writer_kwargs["coordinate_cif_paths"] = coordinate_cif_paths
+    readout = write_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
+        coordinate_proxy_readout_path=Path(args.coordinate_proxy_readout),
+        geometry_features_path=Path(args.geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow PQQ primitive-axis audit "
+        f"to {args.out} (smoke PQQ-redox primary/OOS positives: "
+        f"{counts.get('smoke_pqq_redox_center_primary_positive_rows')}/"
+        f"{counts.get('smoke_pqq_redox_center_retained_oos_positive_rows')}, "
+        "full PQQ-redox primary/OOS positives: "
+        f"{counts.get('full_pqq_redox_center_primary_positive_rows')}/"
+        f"{counts.get('full_pqq_redox_center_retained_oos_positive_rows')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -32995,6 +33031,54 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_electron_flow_coordinate_proxy_readout.set_defaults(
         func=cmd_build_lever2_source_free_electron_flow_coordinate_proxy_readout
+    )
+
+    lever2_electron_flow_pqq_primitive_axis_audit = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-pqq-primitive-axis-audit",
+        help=(
+            "audit an atom-level PQQ/quinone redox-center contact field as a "
+            "candidate source-free electron-flow primitive"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--coordinate-proxy-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_coordinate_proxy_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--coordinate-cif",
+        action="append",
+        default=None,
+        help=(
+            "optional committed CIF sidecar override for atom-level contact "
+            "checks, as ENTRY_ID=PATH"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_primitive_axis_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_pqq_primitive_axis_"
+            "audit_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_pqq_primitive_axis_audit
     )
 
     lever2_axis_acquisition_ranking_readout = subparsers.add_parser(

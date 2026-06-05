@@ -17,6 +17,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     build_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    build_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     build_lever2_source_free_electron_flow_split_alignment_readout,
     build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
     build_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
@@ -2669,6 +2670,185 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             ]
         )
         self.assertFalse(readout["decision"]["deployable_now"])
+
+    def test_electron_flow_pqq_primitive_axis_audit_tracks_atom_contact(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            proxy_path = root / "coordinate_proxy.json"
+            geometry_path = root / "geometry.json"
+            pqq_cif_path = root / "pqq.cif"
+            gap_cif_path = root / "gap.cif"
+            proxy_rows = [
+                {
+                    "entry_id": "m_csa:10",
+                    "tranche_role": "current_retained_oos",
+                    "coordinate_evidence": {
+                        "geometry_status": "ok",
+                        "source_free_coordinate_features_available": True,
+                        "proximal_quinone_redox_ligand_codes": ["PQQ"],
+                    },
+                },
+                {
+                    "entry_id": "m_csa:20",
+                    "tranche_role": "current_primary_retention_gate",
+                    "coordinate_evidence": {
+                        "geometry_status": "ok",
+                        "source_free_coordinate_features_available": True,
+                        "proximal_quinone_redox_ligand_codes": [],
+                    },
+                },
+                {
+                    "entry_id": "m_csa:30",
+                    "tranche_role": "current_primary_retention_gate",
+                    "coordinate_evidence": {
+                        "geometry_status": "missing_geometry_row",
+                        "source_free_coordinate_features_available": False,
+                        "proximal_quinone_redox_ligand_codes": [],
+                    },
+                },
+            ]
+            proxy_path.write_text(
+                json.dumps(
+                    {
+                        "measured_readout": {
+                            "train_cal_electron_flow_oos_recall_delta": 0.142857,
+                            "smallest_source_free_smoke_tranche": {
+                                "rows": proxy_rows,
+                            },
+                            "full_retained_oos_current_split_tranche": {
+                                "rows": proxy_rows,
+                            },
+                            "full_retained_oos_current_split_gap_cif_probe": {
+                                "rows": [
+                                    {
+                                        "entry_id": "m_csa:30",
+                                        "tranche_role": (
+                                            "current_primary_retention_gate"
+                                        ),
+                                        "sidecar_available": True,
+                                        "sidecar_status": "ok",
+                                        "coordinate_path": str(gap_cif_path),
+                                        "structure_quinone_redox_ligand_codes": [],
+                                    }
+                                ]
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry_path.write_text(
+                json.dumps(
+                    {
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "status": "ok",
+                                "pdb_id": "1AAA",
+                                "residues": [
+                                    {
+                                        "chain_name": "A",
+                                        "resid": 10,
+                                        "code": "Arg",
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:20",
+                                "status": "ok",
+                                "pdb_id": "2BBB",
+                                "residues": [
+                                    {
+                                        "chain_name": "A",
+                                        "resid": 20,
+                                        "code": "His",
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pqq_cif_path.write_text(
+                "\n".join(
+                    [
+                        "data_pqq",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "ATOM 1 N NH1 ARG A 10 0 0 0 NH1 ARG A 10",
+                        "HETATM 2 O O5 PQQ F 1004 0 0 2.8 O5 PQQ A 1004",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            gap_cif_path.write_text("data_gap\n", encoding="utf-8")
+
+            readout = (
+                build_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
+                    coordinate_proxy_readout_path=proxy_path,
+                    geometry_features_path=geometry_path,
+                    coordinate_cif_paths={"m_csa:10": pqq_cif_path},
+                    artifact_id="test_pqq_primitive_axis",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_pqq_primitive_axis")
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_pqq_redox_center_candidate_axis_signal",
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_complete_pqq_redox_center_rows"], 3
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_pqq_redox_center_retained_oos_positive_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_pqq_redox_center_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["full_complete_pqq_redox_center_rows"], 3
+        )
+        self.assertTrue(
+            readout["decision"][
+                "source_free_pqq_redox_center_fields_complete_on_full_current_split"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pqq_redox_center_axis_adds_full_current_split_oos_abstention"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        positive_row = readout["measured_readout"][
+            "smallest_source_free_smoke_tranche"
+        ]["rows"][0]
+        self.assertEqual(positive_row["field_status"], "ok")
+        self.assertEqual(
+            positive_row["min_pqq_redox_center_distance_to_active_site_atom"],
+            2.8,
+        )
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,

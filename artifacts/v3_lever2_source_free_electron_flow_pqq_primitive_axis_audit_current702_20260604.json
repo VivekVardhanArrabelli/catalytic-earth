@@ -1,0 +1,2316 @@
+{
+  "artifact_id": "v3_lever2_source_free_electron_flow_pqq_primitive_axis_audit_current702_20260604",
+  "counts": {
+    "coordinate_cif_source_rows_used_for_field_completion": 3,
+    "critical_violation_total": 0,
+    "full_combined_control_primary_positive_rows": 0,
+    "full_combined_control_retained_oos_positive_rows": 3,
+    "full_complete_pqq_redox_center_rows": 74,
+    "full_incomplete_pqq_redox_center_rows": 0,
+    "full_pqq_redox_center_primary_positive_rows": 0,
+    "full_pqq_redox_center_retained_oos_positive_rows": 1,
+    "full_retained_current_split_rows": 74,
+    "smoke_complete_pqq_redox_center_rows": 35,
+    "smoke_pqq_redox_center_primary_positive_rows": 0,
+    "smoke_pqq_redox_center_retained_oos_positive_rows": 1,
+    "smoke_tranche_rows": 35
+  },
+  "created_utc": "2026-06-05T04:48:58Z",
+  "decision": {
+    "adds_operating_point_value_beyond_current_surface": true,
+    "apply_or_promote_now": false,
+    "approved_direct_electron_flow_axis_materialized_by_this_artifact": false,
+    "candidate_direct_source_free_electron_flow_fields_materialized": true,
+    "combined_control_expands_full_current_split_oos_abstention": true,
+    "combined_control_is_approved_primitive_axis": false,
+    "deployable_now": false,
+    "measured_readout_available": true,
+    "negative": false,
+    "next_gate": "If PQQ/quinone redox-center contact is approved as a primitive electron-flow subaxis, materialize these two fields in the train/cal source-free feature sidecar for the 74-row current split and rerun the fixed train/cal readouts. If not approved, the smallest next experiment is an atom-level donor/acceptor contact primitive that distinguishes redox-center contact from generic cofactor presence.",
+    "pqq_redox_center_axis_adds_full_current_split_oos_abstention": true,
+    "pqq_redox_center_axis_adds_smoke_oos_abstention": true,
+    "pqq_redox_center_axis_preserves_primary_retention": true,
+    "promotion_gate": "The atom-level PQQ redox-center contact field is a measured candidate source-free electron-flow subaxis. It should remain research-only until this narrow PQQ/quinone chemistry contract is explicitly approved as a primitive axis and imported through the normal source-free feature materialization path.",
+    "research_only": true,
+    "source_free_pqq_redox_center_fields_complete_on_full_current_split": true,
+    "source_free_pqq_redox_center_fields_complete_on_smoke": true
+  },
+  "guardrails": {
+    "accessions_or_pdb_ids_used_as_predictive_features": false,
+    "active_site_atom_contacts_used_as_source_free_coordinate_features": true,
+    "approved_direct_electron_flow_axis_materialized_by_this_artifact": false,
+    "candidate_direct_electron_flow_fields_materialized_by_this_artifact": true,
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "ligand_codes_used_as_source_free_coordinate_features": true,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "pqq_atom_names_used_as_fixed_ligand_chemistry": true,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Approve or reject the PQQ/quinone redox-center contact contract as a primitive source-free electron-flow subaxis; approval would make the next measurable step a fixed train/cal sidecar rerun, while rejection points to a donor/acceptor contact primitive.",
+    "result": "A fixed atom-level PQQ redox-center contact field is complete for the smoke tranche and the 74-row retained-OOS current split. It preserves all primary rows and catches the smoke retained-OOS row, yielding a sparse 1/40 retained-OOS full-split increment beyond the current geometry/fold surface. A research-only union with the prior primary-safe generic redox-contact count control would catch 3/40 retained-OOS rows at primary retain 1.0, but that control is not an approved primitive axis."
+  },
+  "measured_readout": {
+    "candidate_primitive_axis_contract": {
+      "allowed_source_free_inputs": [
+        "geometry_features.active_site_residue_coordinates",
+        "geometry_features.proximal_ligand_codes",
+        "committed_local_coordinate_cif_atom_sites",
+        "fixed_pqq_redox_center_atom_names"
+      ],
+      "atom_contact_cutoff_angstrom": 4.0,
+      "axis_id": "source_free_pqq_redox_center_contact",
+      "field_mapping": {
+        "has_source_free_pqq_redox_center_contact": "True when a committed coordinate sidecar contains PQQ C4/C5/O4/O5 atoms within the fixed atom-contact cutoff of an active-site residue atom.",
+        "source_free_pqq_redox_center_contact_count": "Number of PQQ ligand instances satisfying the fixed redox-center atom-contact criterion."
+      },
+      "forbidden_inputs": [
+        "mechanism_text",
+        "labels",
+        "EC_or_Rhea_ids",
+        "source_ids",
+        "target_names",
+        "accessions_as_predictive_features",
+        "heldout_rows"
+      ],
+      "pqq_redox_center_atom_names": [
+        "C4",
+        "C5",
+        "O4",
+        "O5"
+      ]
+    },
+    "full_retained_oos_current_split_tranche": {
+      "counts": {
+        "complete_source_free_pqq_redox_center_rows": 74,
+        "field_status_counts": {
+          "complete_negative_from_gap_cif_inventory": 2,
+          "complete_negative_no_proximal_pqq_coordinate_evidence": 71,
+          "ok": 1
+        },
+        "incomplete_source_free_pqq_redox_center_rows": 0,
+        "primary_positive_rows": 0,
+        "primary_rows": 34,
+        "retained_oos_positive_rows": 1,
+        "retained_oos_rows": 40,
+        "rows": 74
+      },
+      "incomplete_rows": [],
+      "rows": [
+        {
+          "active_site_atom_count": 63,
+          "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C9U.cif",
+          "entry_id": "m_csa:104",
+          "field_status": "ok",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": true,
+          "min_pqq_redox_center_distance_to_active_site_atom": 2.768,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_count": 8,
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "pqq_redox_center_instances": [
+            {
+              "closest_contact": {
+                "active_atom": "NH1",
+                "active_chain": "A",
+                "active_resid": "228",
+                "active_residue_code": "ARG",
+                "distance_angstrom": 2.768,
+                "pqq_atom": "O5"
+              },
+              "has_redox_center_contact": true,
+              "ligand_chain": "A",
+              "ligand_code": "PQQ",
+              "ligand_resid": "1004",
+              "min_distance_to_active_site_atom": 2.768,
+              "observed_redox_center_atom_names": [
+                "C4",
+                "C5",
+                "O4",
+                "O5"
+              ],
+              "redox_center_atom_count": 4
+            },
+            {
+              "closest_contact": {
+                "active_atom": "CB",
+                "active_chain": "A",
+                "active_resid": "273",
+                "active_residue_code": "ASP",
+                "distance_angstrom": 20.757,
+                "pqq_atom": "O5"
+              },
+              "has_redox_center_contact": false,
+              "ligand_chain": "B",
+              "ligand_code": "PQQ",
+              "ligand_resid": "1004",
+              "min_distance_to_active_site_atom": 20.757,
+              "observed_redox_center_atom_names": [
+                "C4",
+                "C5",
+                "O4",
+                "O5"
+              ],
+              "redox_center_atom_count": 4
+            }
+          ],
+          "proximal_quinone_redox_ligand_codes": [
+            "PQQ"
+          ],
+          "source_free_pqq_redox_center_contact_count": 1,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:483",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:52",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:464",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:415",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:471",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:39",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:271",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:622",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:54",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:503",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:65",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:646",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:542",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:243",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:36",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:136",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:126",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:285",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:106",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:35",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:390",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:325",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:537",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:61",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:462",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif",
+          "entry_id": "m_csa:531",
+          "field_status": "complete_negative_from_gap_cif_inventory",
+          "geometry_status": "insufficient_resolved_residues",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "structure_quinone_redox_ligand_codes": [],
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:82",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:422",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:244",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:299",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:565",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:547",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:490",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:368",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:284",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:499",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "coordinate_path": "artifacts/v3_external_hard_negative_next_candidate_structural_coordinates_1025/afdb_Q3LXA3.cif",
+          "entry_id": "uniprot:Q3LXA3",
+          "field_status": "complete_negative_from_gap_cif_inventory",
+          "geometry_status": "missing_geometry_row",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "structure_quinone_redox_ligand_codes": [],
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:119",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:295",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:973",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:165",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:399",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:233",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:216",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:837",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:338",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:754",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:38",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:320",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:41",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:160",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:410",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:800",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:277",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:865",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:933",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:879",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:988",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:319",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:482",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:102",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:630",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:305",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:694",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:87",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:27",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:912",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:473",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:556",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:387",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:900",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:922",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:173",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        }
+      ],
+      "tranche_id": "full_retained_oos_current_split_tranche",
+      "variant_readout": {
+        "adds_incremental_oos_at_primary_retain_1": true,
+        "complete_rows": 74,
+        "count_field": "source_free_pqq_redox_center_contact_count",
+        "incomplete_entry_ids": [],
+        "incomplete_rows": 0,
+        "operating_point_measurable_now": true,
+        "positive_field": "has_source_free_pqq_redox_center_contact",
+        "primary_positive_entry_ids": [],
+        "primary_positive_rows": 0,
+        "primary_retain_recall_if_abstain_positive": 1.0,
+        "retained_oos_abstain_recall_if_abstain_positive": 0.025,
+        "retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "retained_oos_positive_rows": 1,
+        "rows": 74,
+        "variant_id": "source_free_pqq_redox_center_contact_binary"
+      }
+    },
+    "pqq_plus_primary_safe_generic_count_control": {
+      "full_retained_oos_current_split_tranche": {
+        "adds_incremental_oos_at_primary_retain_1": true,
+        "combined_primary_positive_entry_ids": [],
+        "combined_primary_positive_rows": 0,
+        "combined_primary_retain_recall_if_abstain_positive": 1.0,
+        "combined_retained_oos_abstain_recall_if_abstain_positive": 0.075,
+        "combined_retained_oos_positive_entry_ids": [
+          "m_csa:104",
+          "m_csa:368",
+          "m_csa:464"
+        ],
+        "combined_retained_oos_positive_rows": 3,
+        "control_id": "pqq_redox_center_or_primary_safe_generic_redox_count_control",
+        "control_not_a_primitive_axis": true,
+        "generic_count_retained_oos_positive_entry_ids": [
+          "m_csa:368",
+          "m_csa:464"
+        ],
+        "generic_count_threshold": 12,
+        "pqq_redox_center_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ]
+      },
+      "scope": "Research-only control that unions the atom-level PQQ redox-center candidate with the prior primary-safe generic coordinate redox-contact count threshold. This is not an approved primitive axis because the generic count side is a coordinate proxy control.",
+      "smallest_source_free_smoke_tranche": {
+        "adds_incremental_oos_at_primary_retain_1": true,
+        "combined_primary_positive_entry_ids": [],
+        "combined_primary_positive_rows": 0,
+        "combined_primary_retain_recall_if_abstain_positive": 1.0,
+        "combined_retained_oos_abstain_recall_if_abstain_positive": 1.0,
+        "combined_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "combined_retained_oos_positive_rows": 1,
+        "control_id": "pqq_redox_center_or_primary_safe_generic_redox_count_control",
+        "control_not_a_primitive_axis": true,
+        "generic_count_retained_oos_positive_entry_ids": [],
+        "generic_count_threshold": 12,
+        "pqq_redox_center_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ]
+      }
+    },
+    "smallest_source_free_smoke_tranche": {
+      "counts": {
+        "complete_source_free_pqq_redox_center_rows": 35,
+        "field_status_counts": {
+          "complete_negative_no_proximal_pqq_coordinate_evidence": 34,
+          "ok": 1
+        },
+        "incomplete_source_free_pqq_redox_center_rows": 0,
+        "primary_positive_rows": 0,
+        "primary_rows": 34,
+        "retained_oos_positive_rows": 1,
+        "retained_oos_rows": 1,
+        "rows": 35
+      },
+      "incomplete_rows": [],
+      "rows": [
+        {
+          "active_site_atom_count": 63,
+          "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C9U.cif",
+          "entry_id": "m_csa:104",
+          "field_status": "ok",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": true,
+          "min_pqq_redox_center_distance_to_active_site_atom": 2.768,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_count": 8,
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "pqq_redox_center_instances": [
+            {
+              "closest_contact": {
+                "active_atom": "NH1",
+                "active_chain": "A",
+                "active_resid": "228",
+                "active_residue_code": "ARG",
+                "distance_angstrom": 2.768,
+                "pqq_atom": "O5"
+              },
+              "has_redox_center_contact": true,
+              "ligand_chain": "A",
+              "ligand_code": "PQQ",
+              "ligand_resid": "1004",
+              "min_distance_to_active_site_atom": 2.768,
+              "observed_redox_center_atom_names": [
+                "C4",
+                "C5",
+                "O4",
+                "O5"
+              ],
+              "redox_center_atom_count": 4
+            },
+            {
+              "closest_contact": {
+                "active_atom": "CB",
+                "active_chain": "A",
+                "active_resid": "273",
+                "active_residue_code": "ASP",
+                "distance_angstrom": 20.757,
+                "pqq_atom": "O5"
+              },
+              "has_redox_center_contact": false,
+              "ligand_chain": "B",
+              "ligand_code": "PQQ",
+              "ligand_resid": "1004",
+              "min_distance_to_active_site_atom": 20.757,
+              "observed_redox_center_atom_names": [
+                "C4",
+                "C5",
+                "O4",
+                "O5"
+              ],
+              "redox_center_atom_count": 4
+            }
+          ],
+          "proximal_quinone_redox_ligand_codes": [
+            "PQQ"
+          ],
+          "source_free_pqq_redox_center_contact_count": 1,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_retained_oos"
+        },
+        {
+          "entry_id": "m_csa:973",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:165",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:399",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:233",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:216",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:837",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:338",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:754",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:38",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:320",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:41",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:160",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:410",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:800",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:277",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:865",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:933",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:879",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:988",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:319",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:482",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:102",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:630",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:305",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:694",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:87",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:27",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:912",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:473",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:556",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:387",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:900",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:922",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        },
+        {
+          "entry_id": "m_csa:173",
+          "field_status": "complete_negative_no_proximal_pqq_coordinate_evidence",
+          "geometry_status": "ok",
+          "has_source_free_pqq_redox_center_contact": false,
+          "missing_source_free_evidence": [],
+          "pqq_redox_center_atom_names": [
+            "C4",
+            "C5",
+            "O4",
+            "O5"
+          ],
+          "pqq_redox_center_contact_cutoff_angstrom": 4.0,
+          "proximal_quinone_redox_ligand_codes": [],
+          "source_free_pqq_redox_center_contact_count": 0,
+          "source_free_pqq_redox_center_field_complete": true,
+          "tranche_role": "current_primary_retention_gate"
+        }
+      ],
+      "tranche_id": "smallest_source_free_smoke_tranche",
+      "variant_readout": {
+        "adds_incremental_oos_at_primary_retain_1": true,
+        "complete_rows": 35,
+        "count_field": "source_free_pqq_redox_center_contact_count",
+        "incomplete_entry_ids": [],
+        "incomplete_rows": 0,
+        "operating_point_measurable_now": true,
+        "positive_field": "has_source_free_pqq_redox_center_contact",
+        "primary_positive_entry_ids": [],
+        "primary_positive_rows": 0,
+        "primary_retain_recall_if_abstain_positive": 1.0,
+        "retained_oos_abstain_recall_if_abstain_positive": 1.0,
+        "retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "retained_oos_positive_rows": 1,
+        "rows": 35,
+        "variant_id": "source_free_pqq_redox_center_contact_binary"
+      }
+    },
+    "train_cal_electron_flow_oos_recall_delta": 0.142857
+  },
+  "result_class": "research_only_pqq_redox_center_candidate_axis_signal",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_pqq_primitive_axis_audit.v0",
+  "scope": "Lever 2 train/cal-disciplined measured audit of a candidate source-free PQQ/quinone redox-center electron-flow field. The field uses only local coordinate ligand chemistry, fixed PQQ redox-center atom names, active-site atom contacts, and committed CIF sidecars; it does not use mechanism text, labels, EC/Rhea IDs, accessions, source IDs, target names, heldout rows, or threshold tuning.",
+  "source_artifacts": {
+    "coordinate_cifs_used_for_field_completion": {
+      "m_csa:104": {
+        "exists": true,
+        "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C9U.cif",
+        "sha256": "271ac28089dbb7d5169c43332435ccdeba0c4383ef04254f2d14d38a7a0d913f"
+      },
+      "m_csa:531": {
+        "exists": true,
+        "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif",
+        "sha256": "dbb1574feb6ad7b82912e1af90b960bcb7ac9992d9dd404852464f13fa54e207"
+      },
+      "uniprot:Q3LXA3": {
+        "exists": true,
+        "path": "artifacts/v3_external_hard_negative_next_candidate_structural_coordinates_1025/afdb_Q3LXA3.cif",
+        "sha256": "35cf0f3c48fe76b0889ea0271dd11e68c03208f07e7605fe75fd62b8b21b5690"
+      }
+    },
+    "coordinate_proxy_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_coordinate_proxy_readout_current702_20260604.json",
+      "sha256": "130a67e7d7cf9d5d95d5cd119cce3a0cfdb220e6319a7c49b2ddc37ac57456b3"
+    },
+    "geometry_features": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_pqq_primitive_axis_audit_research_only_pqq_redox_center_candidate_axis_signal"
+}

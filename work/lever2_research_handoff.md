@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T03:31:31Z`
-- STARTED_AT_LOCAL: `2026-06-04T22:31:31-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T04:26:54Z`
-- ENDED_AT_LOCAL: `2026-06-04T23:26:54-0500 CDT`
-- ELAPSED_MINUTES: `55.38`
+- STARTED_AT_UTC: `2026-06-05T04:31:57Z`
+- STARTED_AT_LOCAL: `2026-06-04T23:31:57-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T05:27:38Z`
+- ENDED_AT_LOCAL: `2026-06-05T00:27:38-0500 CDT`
+- ELAPSED_MINUTES: `55.68`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,156 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 15
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T04:31:57Z`
+- STARTED_LOCAL: `2026-06-04T23:31:57-0500 CDT`
+- ENDED_AT: `2026-06-05T05:27:38Z`
+- ENDED_LOCAL: `2026-06-05T00:27:38-0500 CDT`
+- ELAPSED_MINUTES: `55.68`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured coordinate-only PQQ smoke signal and test whether the
+PQQ/quinone coordinate subfield can be promoted from proxy evidence to a
+source-free primitive electron-flow axis while preserving primary retention.
+
+#### Work log
+
+- Continued in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from the active Lever 3 worktree. Fetched
+  `origin`, found `origin/main` had advanced by two Lever 3 commits, and
+  rebased the Lever 2 branch onto current `origin/main` without conflicts.
+- Added
+  `build-lever2-source-free-electron-flow-pqq-primitive-axis-audit`. The readout
+  consumes the coordinate-proxy readout and `artifacts/v3_geometry_features_1025.json`,
+  materializes a candidate direct source-free PQQ/quinone redox-center contact
+  field using fixed PQQ atom names (`C4`, `C5`, `O4`, `O5`), committed local
+  CIF atom sites, active-site atom contacts, and a fixed 4.0 A atom-contact
+  cutoff.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_pqq_primitive_axis_audit_current702_20260604.json`
+  and
+  `work/lever2_source_free_electron_flow_pqq_primitive_axis_audit_current702_20260604.md`.
+- Expanded the 74-row retained-OOS current split inside the readout. The two
+  non-`ok` coordinate rows from the prior run remain closed as source-free
+  PQQ-negative rows through the committed CIF gap inventory; rows without
+  proximal PQQ are carried as complete source-free negatives.
+- Added a research-only union control that combines the direct PQQ redox-center
+  contact field with the prior primary-safe generic coordinate redox-contact
+  count threshold. This control is explicitly not treated as a primitive axis.
+- Tried an alternate broader direct atom-level redox-center route using fixed
+  redox-center atom sets for PQQ, FAD/FMN, NAD-family ligands, heme, and Fe-S
+  clusters on the generic redox positives. At a fixed 4.0 A contact cutoff it
+  hit 8/34 primary retention-gate rows and only `m_csa:104` among retained OOS,
+  so it was not promoted or committed as a feature route.
+- Kept the run open to a 55.68-minute wall-clock block before wrap, then
+  rechecked disk and branch status.
+
+#### Measured results
+
+- PQQ primitive-axis audit status:
+  `lever2_source_free_electron_flow_pqq_primitive_axis_audit_research_only_pqq_redox_center_candidate_axis_signal`.
+  Result class: `research_only_pqq_redox_center_candidate_axis_signal`.
+- The candidate direct PQQ redox-center fields are complete on the smoke tranche
+  and the full 74-row retained-OOS current split: 35/35 smoke rows and 74/74
+  full current-split rows complete.
+- Smoke operating point: 0/34 primary positives and 1/1 retained-OOS positive
+  (`m_csa:104`), preserving primary retain recall 1.0 and yielding smoke OOS
+  abstain recall 1.0.
+- Full retained-OOS current split: 0/34 primary positives and 1/40 retained-OOS
+  positives (`m_csa:104`), preserving primary retain recall 1.0 and adding a
+  sparse OOS abstain recall 0.025 beyond the current geometry/fold surface.
+- Atom-level evidence for the positive row: committed local
+  `artifacts/v3_foldseek_coordinates_1000/pdb_1C9U.cif` contains PQQ redox-center
+  atoms with a minimum PQQ-center-to-active-site atom distance of 2.768 A
+  (`O5` to `ARG 228 NH1`).
+- Research-only union control: PQQ redox-center contact OR the prior
+  primary-safe generic redox-contact count threshold catches 3/40 retained-OOS
+  rows (`m_csa:104`, `m_csa:368`, `m_csa:464`) with 0 primary positives, OOS
+  recall 0.075. This is not an approved primitive axis because the generic-count
+  side remains a coordinate proxy control.
+- Broader direct atomset alternate probe was negative for preservation: fixed
+  broad redox-center atom contacts hit 8/34 primary retention-gate rows
+  (`m_csa:973`, `m_csa:399`, `m_csa:800`, `m_csa:277`, `m_csa:879`, `m_csa:319`,
+  `m_csa:694`, `m_csa:473`) and only `m_csa:104` among retained OOS.
+- Classification: measured source-free direct PQQ redox-center candidate signal
+  exists and adds primary-safe operating-point value, but remains research-only.
+  It is not deployable yet because the PQQ/quinone redox-center contract has not
+  been explicitly approved/imported as a primitive source-free electron-flow
+  axis.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever 3
+  files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  or provenance were used as predictive features. Entry IDs and coordinate paths
+  were used only for tranche accounting, source-artifact lookup, and missing
+  evidence accounting.
+- The new readout uses fixed PQQ ligand atom names and active-site atom
+  contacts from committed local CIF sidecars; it performs no downloads/provider
+  calls and no threshold tuning.
+- `critical_violation_total=0`; `deployable_now=false`;
+  `approved_direct_electron_flow_axis_materialized_by_this_artifact=false`;
+  `candidate_direct_electron_flow_fields_materialized_by_this_artifact=true`.
+
+#### Validation
+
+- Generated PQQ primitive-axis audit:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-pqq-primitive-axis-audit`.
+- Focused parser/builder/artifact tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_pqq_primitive_axis_audit_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_pqq_primitive_axis_audit_tracks_atom_contact tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_pqq_primitive_axis_audit_current_counts -q`:
+  3 passed.
+- Broader touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  448 passed, 191 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1523 passed, 210 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1478 tests OK, with
+  the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3578 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact regeneration comparison passed after normalizing `created_utc`.
+- New artifact guardrail/source-record audit passed: 0 guardrail violations and
+  3 source CIF records present.
+- The prior coordinate-proxy readout was regenerated to a temporary path to
+  verify the shared renderer path still works.
+- `git diff --check`: passed.
+- Disk remained above the guardrail at about 17 GiB free.
+
+#### Commit/push status
+
+- Pending implementation commit and push at wrap.
+
+#### Exact next action
+
+- Decide whether to approve the PQQ/quinone redox-center contact contract as a
+  primitive source-free electron-flow subaxis. If yes, materialize
+  `has_source_free_pqq_redox_center_contact` and
+  `source_free_pqq_redox_center_contact_count` in the train/cal source-free
+  feature sidecar for the 74-row current split and rerun fixed train/cal
+  readouts without heldout scoring. If no, the smallest next experiment is a
+  donor/acceptor contact primitive that distinguishes true electron-flow
+  topology from generic cofactor active-site contact, because the broad
+  atomset-contact route was not primary-safe.
 
 ### 2026-06-04 Lever 2 Research Run 14
 
