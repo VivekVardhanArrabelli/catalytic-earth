@@ -141,8 +141,15 @@ editing labels, registries, imports, production thresholds, or heldout splits.
 
 #### Commit/push status
 
-- Pending during this handoff edit; the final handoff status update will record
-  the pushed commit hash and sync verification after push.
+- Primary research commit
+  `0ab17f087570112191bf1441ceaaa4082780f7e1`
+  (`Add Lever 2 Fe-S electron-flow union readout`) was pushed to
+  `origin/lever-2-research-track`.
+- Fetch/sync verification after the push matched local `HEAD` and
+  `origin/lever-2-research-track` at
+  `0ab17f087570112191bf1441ceaaa4082780f7e1`.
+- This final handoff status update is being committed and pushed separately as
+  a handoff-only wrap-up change.
 
 #### Exact next action
 
