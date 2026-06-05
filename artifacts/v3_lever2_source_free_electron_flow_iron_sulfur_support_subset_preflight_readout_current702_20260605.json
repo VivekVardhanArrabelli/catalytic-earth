@@ -1,0 +1,815 @@
+{
+  "artifact_id": "v3_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout_current702_20260605",
+  "counts": {
+    "approval_qualified_current_primary_positive_rows": 0,
+    "approval_qualified_current_primary_retain_recall": 1.0,
+    "approval_qualified_current_retained_oos_positive_entry_ids": [
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:464"
+    ],
+    "approval_qualified_current_retained_oos_positive_rows": 3,
+    "approval_qualified_union_or_gate_oos_abstain_recall": 0.506667,
+    "approved_train_cal_feature_sidecar_rows": 43,
+    "approved_train_cal_sidecar_current_positive_entry_ids_present": [],
+    "approved_train_cal_sidecar_current_positive_rows_present": 0,
+    "approved_train_cal_sidecar_generic_electron_fields_present": [
+      "has_electron_transfer_event",
+      "electron_transfer_count"
+    ],
+    "approved_train_cal_sidecar_projection_support_entry_ids_present": [
+      "m_csa:59",
+      "m_csa:256"
+    ],
+    "approved_train_cal_sidecar_projection_support_rows_present": 2,
+    "approved_train_cal_sidecar_selected_fe_s_support_entry_ids_present": [],
+    "approved_train_cal_sidecar_selected_fe_s_support_rows_present": 0,
+    "approved_train_cal_sidecar_source_free_component_fields_missing": [
+      "has_source_free_pqq_donor_acceptor_contact",
+      "source_free_pqq_donor_acceptor_contact_count",
+      "has_source_free_nad_family_donor_acceptor_distance",
+      "source_free_nad_family_donor_acceptor_distance_count",
+      "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+      "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+    ],
+    "approved_train_cal_sidecar_source_free_component_fields_present": [],
+    "critical_violation_total": 0,
+    "current_primary_rows": 34,
+    "current_retained_oos_rows": 40,
+    "current_split_complete_source_free_electron_flow_rows": 74,
+    "current_split_rows": 74,
+    "expanded_bundle_ready_support_subset_entry_ids": [
+      "m_csa:127",
+      "m_csa:281",
+      "m_csa:130",
+      "m_csa:398",
+      "m_csa:358",
+      "m_csa:108",
+      "m_csa:562",
+      "m_csa:276"
+    ],
+    "expanded_bundle_ready_support_subset_rows": 8,
+    "expanded_support_subset_blocked_only_by_predictive_gate_and_import_rows": 8,
+    "expanded_tranche_blocked_by_minimal_feature_bundle_entry_ids": [
+      "m_csa:443",
+      "m_csa:208",
+      "m_csa:123",
+      "m_csa:212"
+    ],
+    "iron_sulfur_incremental_current_retained_oos_entry_ids": [
+      "m_csa:119"
+    ],
+    "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": 1,
+    "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad": 0.013333,
+    "selected_support_feature_forbidden_row_feature_key_hits": 0,
+    "supported_now_current_retained_oos_positive_entry_ids": [
+      "m_csa:104",
+      "m_csa:464"
+    ],
+    "supported_now_current_retained_oos_positive_rows": 2,
+    "supported_now_union_or_gate_oos_abstain_recall": 0.493333,
+    "tiny_bundle_ready_support_subset_entry_ids": [
+      "m_csa:127",
+      "m_csa:281"
+    ],
+    "tiny_bundle_ready_support_subset_rows": 2,
+    "tiny_support_subset_blocked_only_by_predictive_gate_and_import_entry_ids": [
+      "m_csa:127",
+      "m_csa:281"
+    ],
+    "tiny_support_subset_blocked_only_by_predictive_gate_and_import_rows": 2,
+    "tiny_tranche_blocked_by_minimal_feature_bundle_entry_ids": [
+      "m_csa:443"
+    ]
+  },
+  "created_utc": "2026-06-05T14:53:00Z",
+  "decision": {
+    "apply_or_promote_now": false,
+    "approval_qualified_union_adds_incremental_oos_abstention_if_imported": true,
+    "approval_qualified_union_preserves_primary_retention_if_imported": true,
+    "approved_train_cal_sidecar_has_projection_support_rows": true,
+    "approved_train_cal_sidecar_missing_current_positive_rows": true,
+    "approved_train_cal_sidecar_missing_direct_source_free_component_fields": true,
+    "approved_train_cal_sidecar_missing_selected_fe_s_support_rows": true,
+    "base_pqq_nad_contract_approval_still_required": true,
+    "base_projection_backed_pqq_nad_contract_approved": false,
+    "deployable_now": false,
+    "direct_source_free_electron_flow_adds_operating_point_value_after_selected_support_import": true,
+    "expanded_bundle_ready_support_subset_available": true,
+    "m_csa119_supported_by_fe_s_after_subset_import": true,
+    "measured_readout_available": true,
+    "negative": false,
+    "operating_point_failure": false,
+    "remaining_gap": "The 74-row current-split electron-flow operating point is measured and the fixed PQQ+NAD+Fe-S/iron union would preserve primary retention while adding m_csa:119. The selected bundle-ready Fe-S/iron support rows remain unapproved: they need predictive_use_allowed=true plus approved train/cal feature-sidecar rows before the m_csa:119 increment can be counted as supported. For full deployability, the base projection-backed PQQ+NAD component contracts also remain research-only/unapproved. The approved train/cal feature sidecar contains the projection-support rows but lacks the direct source-free PQQ/NAD/Fe-S component fields and current positive rows; this preflight only isolates the Fe-S support gap for the m_csa:119 increment.",
+    "research_only": true,
+    "selected_support_subset_blocked_only_by_predictive_gate_and_import": true,
+    "smallest_next_experiment": "Approve/import the selected bundle-ready Fe-S/iron support subset (m_csa:127, m_csa:281) with predictive_use_allowed=true and explicit train/cal split assignment, then rerun the fixed PQQ+NAD+Fe-S/iron union. Do not change thresholds or use heldout rows.",
+    "source_free_current_split_operating_point_measured": true,
+    "support_contract_gap_only": true,
+    "tiny_bundle_ready_support_subset_available": true,
+    "train_cal_supported_now": false
+  },
+  "excluded_fields_as_features": [
+    "entry_id",
+    "approval_readiness_evidence",
+    "split_assignment",
+    "role_graph_status",
+    "role_graph_accession",
+    "accession_compatible_sequence_positions",
+    "source_feature_status",
+    "sidecar_status",
+    "predictive_use_allowed",
+    "coordinate_path",
+    "mechanism_text",
+    "labels",
+    "accessions",
+    "source_ids",
+    "target_names",
+    "EC_or_Rhea_ids"
+  ],
+  "feature_sidecar_contract": {
+    "approval_condition_before_predictive_use": "Selected rows must be explicitly approved/imported into the train/cal source-free feature sidecar with predictive_use_allowed=true and concrete train/cal split assignment. This artifact only measures the preflight.",
+    "axis_id": "source_free_iron_sulfur_or_iron_donor_acceptor_distance_8A",
+    "contract_status": "research_only_preflight_unapproved_unimported",
+    "expanded_support_subset_entry_ids": [
+      "m_csa:127",
+      "m_csa:281",
+      "m_csa:130",
+      "m_csa:398",
+      "m_csa:358",
+      "m_csa:108",
+      "m_csa:562",
+      "m_csa:276"
+    ],
+    "feature_fields": [
+      "has_electron_transfer_event",
+      "electron_transfer_count",
+      "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+      "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+    ],
+    "forbidden_feature_inputs": [
+      "mechanism_text",
+      "labels",
+      "EC_or_Rhea_ids",
+      "source_ids",
+      "target_names",
+      "accessions",
+      "PDB_or_coordinate_paths_as_feature_values",
+      "heldout_rows"
+    ],
+    "incremental_current_retained_oos_entry_ids_if_imported": [
+      "m_csa:119"
+    ],
+    "selected_support_option": "tiny_bundle_ready_subset",
+    "selected_support_subset_entry_ids": [
+      "m_csa:127",
+      "m_csa:281"
+    ],
+    "sidecar_id": "source_free_iron_sulfur_or_iron_support_subset_preflight"
+  },
+  "guardrails": {
+    "accessions_or_pdb_ids_used_as_predictive_features": false,
+    "candidate_feature_rows_imported_or_promoted": false,
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "pdb_ids_or_coordinate_paths_used_as_predictive_features": false,
+    "predictive_use_allowed_modified": false,
+    "production_thresholds_changed": false,
+    "review_only_locus_sidecar_imported_or_promoted": false,
+    "source_free_electron_flow_fields_materialized_by_source_artifacts": true,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Use this preflight as the import contract target for the bundle-ready support subset; repair the larger tiny-tranche bundle gap only if the approval contract requires all three tiny support rows.",
+    "result": "The pending Fe-S/iron increment is not an operating-point failure. The selected bundle-ready source-free support subset (m_csa:127, m_csa:281) is blocked only by predictive-use approval/import, while the fixed approval-qualified union catches m_csa:119 with 0 current-primary positives. Full direct electron-flow deployability still needs approval/import of the base PQQ+NAD component contracts."
+  },
+  "measured_readout": {
+    "approved_train_cal_feature_sidecar_preflight": {
+      "current_positive_entry_ids_present": [],
+      "generic_electron_fields_present": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "projection_support_entry_ids": [
+        "m_csa:59",
+        "m_csa:256"
+      ],
+      "projection_support_entry_ids_present": [
+        "m_csa:59",
+        "m_csa:256"
+      ],
+      "rows": 43,
+      "selected_fe_s_support_subset_entry_ids_present": [],
+      "source_free_component_fields_missing": [
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+      ],
+      "source_free_component_fields_present": []
+    },
+    "current_split_baseline": {
+      "complete_source_free_electron_flow_rows": 74,
+      "current_primary_rows": 34,
+      "current_retained_oos_rows": 40,
+      "full_current_split_rows": 74,
+      "supported_now_current_retained_oos_positive_entry_ids": [
+        "m_csa:104",
+        "m_csa:464"
+      ],
+      "supported_now_union_or_gate_oos_abstain_recall": 0.493333
+    },
+    "expanded_support_subset_preflight": {
+      "blocked_by_minimal_feature_bundle_entry_ids": [
+        "m_csa:443",
+        "m_csa:208",
+        "m_csa:123",
+        "m_csa:212"
+      ],
+      "blocked_only_by_predictive_gate_and_import_entry_ids": [
+        "m_csa:127",
+        "m_csa:281",
+        "m_csa:130",
+        "m_csa:398",
+        "m_csa:358",
+        "m_csa:108",
+        "m_csa:562",
+        "m_csa:276"
+      ],
+      "entry_ids": [
+        "m_csa:127",
+        "m_csa:281",
+        "m_csa:130",
+        "m_csa:398",
+        "m_csa:358",
+        "m_csa:108",
+        "m_csa:562",
+        "m_csa:276"
+      ],
+      "rows": [
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:127",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "P07598",
+          "role_graph_sequence_position_accession_counts": {
+            "P07598": 8
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        },
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:281",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "P55931",
+          "role_graph_sequence_position_accession_counts": {
+            "P55931": 8
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        },
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:130",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "P0A110",
+          "role_graph_sequence_position_accession_counts": {
+            "P0A110": 5
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        },
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:398",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "P17846",
+          "role_graph_sequence_position_accession_counts": {
+            "P17846": 8
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        },
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:358",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "Q9XBQ8",
+          "role_graph_sequence_position_accession_counts": {
+            "Q9XBQ8": 10
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        },
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:108",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "P42593",
+          "role_graph_sequence_position_accession_counts": {
+            "P42593": 5
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        },
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:562",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "P07658",
+          "role_graph_sequence_position_accession_counts": {
+            "P07658": 4
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        },
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:276",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "Q53176",
+          "role_graph_sequence_position_accession_counts": {
+            "Q53176": 6
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        }
+      ]
+    },
+    "if_support_subset_imported_fixed_union_readout": {
+      "approval_qualified_current_primary_positive_rows": 0,
+      "approval_qualified_current_primary_retain_recall": 1.0,
+      "approval_qualified_current_retained_oos_positive_entry_ids": [
+        "m_csa:104",
+        "m_csa:119",
+        "m_csa:464"
+      ],
+      "approval_qualified_union_or_gate_oos_abstain_recall": 0.506667,
+      "iron_sulfur_incremental_current_retained_oos_entry_ids": [
+        "m_csa:119"
+      ],
+      "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": 1,
+      "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad": 0.013333
+    },
+    "missing_source_free_or_import_evidence": [
+      "predictive_use_allowed=true plus approved train/cal feature-sidecar rows for m_csa:127, m_csa:281",
+      "approval/import of the projection-backed PQQ+NAD direct electron-flow component contracts",
+      "optional full tiny-tranche repair: minimal bundle/accession-compatible evidence for m_csa:443"
+    ],
+    "selected_support_subset_preflight": {
+      "blocked_only_by_predictive_gate_and_import_entry_ids": [
+        "m_csa:127",
+        "m_csa:281"
+      ],
+      "entry_ids": [
+        "m_csa:127",
+        "m_csa:281"
+      ],
+      "forbidden_feature_key_hits": [],
+      "rows": [
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:127",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "P07598",
+          "role_graph_sequence_position_accession_counts": {
+            "P07598": 8
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        },
+        {
+          "accession_compatible_sequence_positions": true,
+          "entry_id": "m_csa:281",
+          "in_distribution": true,
+          "minimal_train_cal_feature_bundle_ready": true,
+          "missing_import_requirements": [
+            "predictive_use_allowed_true",
+            "approved_train_cal_feature_sidecar_row"
+          ],
+          "predictive_use_allowed_now": false,
+          "present_in_current_train_cal_feature_sidecar": false,
+          "role_graph_accession": "P55931",
+          "role_graph_sequence_position_accession_counts": {
+            "P55931": 8
+          },
+          "role_graph_status": "ok",
+          "source_free_complete": true,
+          "source_free_positive": true,
+          "split_assignment": "in_distribution"
+        }
+      ],
+      "support_option": "tiny_bundle_ready_subset"
+    }
+  },
+  "result_class": "research_only_fe_s_support_subset_preflight_positive_pending_predictive_import",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_iron_sulfur_support_subset_preflight_readout.v0",
+  "scope": "Lever 2 train/cal-disciplined source-free Fe-S/iron support-subset preflight for the direct electron-flow route. It consumes the measured tiny-tranche approval-readiness readout, the measured current-split smoke materialization readout, and the fixed approval-qualified union readout to decide whether the remaining m_csa:119 increment is an operating-point failure or only an unapproved support-contract gap. It does not approve, import, tune, train, score heldout, edit registries, or promote any feature.",
+  "selected_support_feature_rows": [
+    {
+      "approval_readiness_evidence": {
+        "accession_compatible_sequence_positions": true,
+        "minimal_train_cal_feature_bundle_ready": true,
+        "missing_import_requirements": [
+          "predictive_use_allowed_true",
+          "approved_train_cal_feature_sidecar_row"
+        ],
+        "predictive_use_allowed_now": false,
+        "present_in_current_train_cal_feature_sidecar": false,
+        "role_graph_accession": "P07598",
+        "role_graph_sequence_position_accession_counts": {
+          "P07598": 8
+        },
+        "role_graph_status": "ok",
+        "sidecar_status": "proximal_iron_sulfur_context_available",
+        "source_feature_status": "ok",
+        "source_free_feature_evidence": {
+          "contact_count": 1,
+          "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HFE.cif",
+          "donor_acceptor_active_atom_elements": [
+            "N",
+            "O",
+            "S"
+          ],
+          "excluded_redox_families": [
+            "flavin",
+            "heme",
+            "pqq"
+          ],
+          "family_distance_examples": [
+            {
+              "closest_contact": {
+                "active_atom": "SG",
+                "active_atom_element": "S",
+                "active_chain": "L",
+                "active_resid": "382",
+                "active_residue_code": "CYS",
+                "distance_angstrom": 2.32,
+                "ligand_atom": "FE2",
+                "ligand_atom_element": "FE"
+              },
+              "ligand_chain": "L",
+              "ligand_code": "SF4",
+              "ligand_resid": "424",
+              "min_distance_to_active_site_donor_acceptor_atom": 2.32,
+              "reported_family": "iron_sulfur_or_iron"
+            },
+            {
+              "closest_contact": {
+                "active_atom": "N",
+                "active_atom_element": "N",
+                "active_chain": "L",
+                "active_resid": "237",
+                "active_residue_code": "LYS",
+                "distance_angstrom": 10.332,
+                "ligand_atom": "S1",
+                "ligand_atom_element": "S"
+              },
+              "ligand_chain": "L",
+              "ligand_code": "SF4",
+              "ligand_resid": "423",
+              "min_distance_to_active_site_donor_acceptor_atom": 10.332,
+              "reported_family": "iron_sulfur_or_iron"
+            },
+            {
+              "closest_contact": {
+                "active_atom": "O",
+                "active_atom_element": "O",
+                "active_chain": "L",
+                "active_resid": "382",
+                "active_residue_code": "CYS",
+                "distance_angstrom": 19.418,
+                "ligand_atom": "S3",
+                "ligand_atom_element": "S"
+              },
+              "ligand_chain": "L",
+              "ligand_code": "SF4",
+              "ligand_resid": "422",
+              "min_distance_to_active_site_donor_acceptor_atom": 19.418,
+              "reported_family": "iron_sulfur_or_iron"
+            },
+            {
+              "closest_contact": {
+                "active_atom": "O",
+                "active_atom_element": "O",
+                "active_chain": "L",
+                "active_resid": "245",
+                "active_residue_code": "GLU",
+                "distance_angstrom": 35.657,
+                "ligand_atom": "S3",
+                "ligand_atom_element": "S"
+              },
+              "ligand_chain": "M",
+              "ligand_code": "SF4",
+              "ligand_resid": "424",
+              "min_distance_to_active_site_donor_acceptor_atom": 35.657,
+              "reported_family": "iron_sulfur_or_iron"
+            },
+            {
+              "closest_contact": {
+                "active_atom": "O",
+                "active_atom_element": "O",
+                "active_chain": "L",
+                "active_resid": "245",
+                "active_residue_code": "GLU",
+                "distance_angstrom": 43.437,
+                "ligand_atom": "S1",
+                "ligand_atom_element": "S"
+              },
+              "ligand_chain": "M",
+              "ligand_code": "SF4",
+              "ligand_resid": "423",
+              "min_distance_to_active_site_donor_acceptor_atom": 43.437,
+              "reported_family": "iron_sulfur_or_iron"
+            },
+            {
+              "closest_contact": {
+                "active_atom": "O",
+                "active_atom_element": "O",
+                "active_chain": "L",
+                "active_resid": "245",
+                "active_residue_code": "GLU",
+                "distance_angstrom": 53.233,
+                "ligand_atom": "S2",
+                "ligand_atom_element": "S"
+              },
+              "ligand_chain": "M",
+              "ligand_code": "SF4",
+              "ligand_resid": "422",
+              "min_distance_to_active_site_donor_acceptor_atom": 53.233,
+              "reported_family": "iron_sulfur_or_iron"
+            }
+          ],
+          "field_status": "ok",
+          "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+          "geometry_status": "ok",
+          "included_redox_families": [
+            "iron_sulfur_or_iron"
+          ],
+          "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.32,
+          "missing_source_free_evidence": [],
+          "positive_contact_examples": [
+            {
+              "closest_contact": {
+                "active_atom": "SG",
+                "active_atom_element": "S",
+                "active_chain": "L",
+                "active_resid": "382",
+                "active_residue_code": "CYS",
+                "distance_angstrom": 2.32,
+                "ligand_atom": "FE2",
+                "ligand_atom_element": "FE"
+              },
+              "ligand_chain": "L",
+              "ligand_code": "SF4",
+              "ligand_resid": "424",
+              "min_distance_to_active_site_donor_acceptor_atom": 2.32,
+              "reported_family": "iron_sulfur_or_iron"
+            }
+          ],
+          "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+        },
+        "source_free_positive_before_import": true,
+        "split_assignment": "in_distribution"
+      },
+      "assigned_embedding_split": "research_only_projection_tranche",
+      "entry_id": "m_csa:127",
+      "row_specific_event_features": {
+        "electron_transfer_count": 1,
+        "has_electron_transfer_event": true,
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": true,
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 1
+      },
+      "source_free_electron_flow_field_complete": true
+    },
+    {
+      "approval_readiness_evidence": {
+        "accession_compatible_sequence_positions": true,
+        "minimal_train_cal_feature_bundle_ready": true,
+        "missing_import_requirements": [
+          "predictive_use_allowed_true",
+          "approved_train_cal_feature_sidecar_row"
+        ],
+        "predictive_use_allowed_now": false,
+        "present_in_current_train_cal_feature_sidecar": false,
+        "role_graph_accession": "P55931",
+        "role_graph_sequence_position_accession_counts": {
+          "P55931": 8
+        },
+        "role_graph_status": "ok",
+        "sidecar_status": "proximal_iron_sulfur_context_available",
+        "source_feature_status": "ok",
+        "source_free_feature_evidence": {
+          "contact_count": 1,
+          "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2GMH.cif",
+          "donor_acceptor_active_atom_elements": [
+            "N",
+            "O",
+            "S"
+          ],
+          "excluded_redox_families": [
+            "flavin",
+            "heme",
+            "pqq"
+          ],
+          "family_distance_examples": [
+            {
+              "closest_contact": {
+                "active_atom": "SG",
+                "active_atom_element": "S",
+                "active_chain": "A",
+                "active_resid": "556",
+                "active_residue_code": "CYS",
+                "distance_angstrom": 2.213,
+                "ligand_atom": "FE3",
+                "ligand_atom_element": "FE"
+              },
+              "ligand_chain": "A",
+              "ligand_code": "SF4",
+              "ligand_resid": "610",
+              "min_distance_to_active_site_donor_acceptor_atom": 2.213,
+              "reported_family": "iron_sulfur_or_iron"
+            },
+            {
+              "closest_contact": {
+                "active_atom": "O",
+                "active_atom_element": "O",
+                "active_chain": "A",
+                "active_resid": "82",
+                "active_residue_code": "SER",
+                "distance_angstrom": 58.039,
+                "ligand_atom": "S4",
+                "ligand_atom_element": "S"
+              },
+              "ligand_chain": "B",
+              "ligand_code": "SF4",
+              "ligand_resid": "613",
+              "min_distance_to_active_site_donor_acceptor_atom": 58.039,
+              "reported_family": "iron_sulfur_or_iron"
+            }
+          ],
+          "field_status": "ok",
+          "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+          "geometry_status": "ok",
+          "included_redox_families": [
+            "iron_sulfur_or_iron"
+          ],
+          "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.213,
+          "missing_source_free_evidence": [],
+          "positive_contact_examples": [
+            {
+              "closest_contact": {
+                "active_atom": "SG",
+                "active_atom_element": "S",
+                "active_chain": "A",
+                "active_resid": "556",
+                "active_residue_code": "CYS",
+                "distance_angstrom": 2.213,
+                "ligand_atom": "FE3",
+                "ligand_atom_element": "FE"
+              },
+              "ligand_chain": "A",
+              "ligand_code": "SF4",
+              "ligand_resid": "610",
+              "min_distance_to_active_site_donor_acceptor_atom": 2.213,
+              "reported_family": "iron_sulfur_or_iron"
+            }
+          ],
+          "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+        },
+        "source_free_positive_before_import": true,
+        "split_assignment": "in_distribution"
+      },
+      "assigned_embedding_split": "research_only_projection_tranche",
+      "entry_id": "m_csa:281",
+      "row_specific_event_features": {
+        "electron_transfer_count": 1,
+        "has_electron_transfer_event": true,
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": true,
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 1
+      },
+      "source_free_electron_flow_field_complete": true
+    }
+  ],
+  "source_artifacts": {
+    "approval_qualified_union_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout_current702_20260605.json",
+      "sha256": "65938b20a53d5d52a517e4174175851522d58cf882cadbdc5698cf59586b40d3"
+    },
+    "current_split_smoke_materialization_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_current_split_smoke_materialization_readout_current702_20260605.json",
+      "sha256": "33c99c55bf9b3d1e3d85d4a0bc27f3d1a92cd802f460de18b1e34f12e58886c3"
+    },
+    "projection_backed_pqq_nad_feature_sidecar_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout_current702_20260605.json",
+      "sha256": "f0f218565786ef40be743eaf62736703b34bb169e0e62dd68eb782311528343e"
+    },
+    "tiny_tranche_approval_readiness_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout_current702_20260605.json",
+      "sha256": "36384e6039cc8bfdf324bac0a421ccc9545c22ff2c80142ed53c82af88628ddf"
+    },
+    "train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout_research_only_fe_s_support_subset_preflight_positive_pending_predictive_import"
+}

@@ -91,6 +91,10 @@ DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_SMOKE_MATERIALIZATION_READOUT_ARTIFACT_ID = 
     "v3_lever2_source_free_electron_flow_current_split_smoke_"
     "materialization_readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_IRON_SULFUR_SUPPORT_SUBSET_PREFLIGHT_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_iron_sulfur_support_subset_"
+    "preflight_readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -15227,6 +15231,872 @@ def write_lever2_source_free_electron_flow_current_split_smoke_materialization_r
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_current_split_smoke_materialization_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _subset_rows_by_entry(
+    rows: list[dict[str, Any]],
+    entry_ids: list[str],
+) -> list[dict[str, Any]]:
+    rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    return [rows_by_entry[entry_id] for entry_id in entry_ids if entry_id in rows_by_entry]
+
+
+def _rows_blocked_only_by_predictive_gate_and_import(
+    rows: list[dict[str, Any]],
+) -> list[str]:
+    return [
+        str(row["entry_id"])
+        for row in rows
+        if row.get("entry_id")
+        and set(row.get("missing_import_requirements") or [])
+        == {"predictive_use_allowed_true", "approved_train_cal_feature_sidecar_row"}
+    ]
+
+
+def build_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout(
+    *,
+    tiny_tranche_approval_readiness_readout_path: Path,
+    current_split_smoke_materialization_readout_path: Path,
+    approval_qualified_union_readout_path: Path,
+    projection_backed_pqq_nad_feature_sidecar_readout_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_IRON_SULFUR_SUPPORT_SUBSET_PREFLIGHT_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readiness = _read_json(tiny_tranche_approval_readiness_readout_path)
+    smoke = _read_json(current_split_smoke_materialization_readout_path)
+    approval = _read_json(approval_qualified_union_readout_path)
+    pqq_nad = _read_optional_json(projection_backed_pqq_nad_feature_sidecar_readout_path)
+    train_cal_feature_sidecar = _read_optional_json(train_cal_feature_sidecar_path)
+    readiness_counts = readiness.get("counts") or {}
+    readiness_decision = readiness.get("decision") or {}
+    readiness_measured = readiness.get("measured_readout") or {}
+    smoke_counts = smoke.get("counts") or {}
+    smoke_decision = smoke.get("decision") or {}
+    approval_counts = approval.get("counts") or {}
+    approval_decision = approval.get("decision") or {}
+
+    tiny_rows = [
+        row
+        for row in readiness_measured.get("tiny_tranche_candidate_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    expanded_rows = [
+        row
+        for row in readiness_measured.get("expanded_tranche_candidate_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    tiny_bundle_ready_entry_ids = [
+        str(entry_id)
+        for entry_id in readiness_counts.get(
+            "tiny_tranche_minimal_train_cal_feature_bundle_ready_entry_ids"
+        )
+        or readiness_measured.get(
+            "bundle_ready_source_free_positive_subset_entry_ids"
+        )
+        or []
+    ]
+    expanded_bundle_ready_entry_ids = [
+        str(entry_id)
+        for entry_id in readiness_counts.get(
+            "expanded_tranche_minimal_train_cal_feature_bundle_ready_entry_ids"
+        )
+        or readiness_measured.get(
+            "expanded_bundle_ready_source_free_positive_subset_entry_ids"
+        )
+        or []
+    ]
+    tiny_bundle_ready_rows = _subset_rows_by_entry(
+        tiny_rows, tiny_bundle_ready_entry_ids
+    )
+    expanded_bundle_ready_rows = _subset_rows_by_entry(
+        expanded_rows, expanded_bundle_ready_entry_ids
+    )
+    candidate_feature_rows = [
+        row
+        for row in readiness.get("candidate_feature_sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    selected_candidate_feature_rows = _subset_rows_by_entry(
+        candidate_feature_rows, tiny_bundle_ready_entry_ids
+    )
+    selected_forbidden_hits = _feature_row_exact_forbidden_key_hits(
+        selected_candidate_feature_rows
+    )
+    tiny_blocked_by_bundle_entry_ids = [
+        str(entry_id)
+        for entry_id in readiness_counts.get(
+            "tiny_tranche_blocked_by_minimal_feature_bundle_entry_ids"
+        )
+        or []
+    ]
+    expanded_blocked_by_bundle_entry_ids = [
+        str(entry_id)
+        for entry_id in readiness_counts.get(
+            "expanded_tranche_blocked_by_minimal_feature_bundle_entry_ids"
+        )
+        or []
+    ]
+    selected_blocked_only_by_gate_import = (
+        _rows_blocked_only_by_predictive_gate_and_import(tiny_bundle_ready_rows)
+    )
+    expanded_blocked_only_by_gate_import = (
+        _rows_blocked_only_by_predictive_gate_and_import(expanded_bundle_ready_rows)
+    )
+
+    supported_now_positive_entry_ids = [
+        str(entry_id)
+        for entry_id in approval_counts.get(
+            "supported_now_current_retained_oos_positive_entry_ids"
+        )
+        or smoke_counts.get("full_current_split_retained_oos_positive_entry_ids")
+        or []
+    ]
+    approval_positive_entry_ids = [
+        str(entry_id)
+        for entry_id in approval_counts.get(
+            "approval_qualified_current_retained_oos_positive_entry_ids"
+        )
+        or smoke_counts.get("approval_qualified_current_retained_oos_positive_entry_ids")
+        or []
+    ]
+    iron_sulfur_incremental_entry_ids = [
+        entry_id
+        for entry_id in approval_positive_entry_ids
+        if entry_id not in set(supported_now_positive_entry_ids)
+    ]
+    fe_s_incremental_rows = int(
+        approval_counts.get(
+            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+        )
+        or smoke_counts.get(
+            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+        )
+        or len(iron_sulfur_incremental_entry_ids)
+    )
+    primary_safe_after_import = bool(
+        approval_counts.get("approval_qualified_current_primary_positive_rows") == 0
+        and approval_counts.get("approval_qualified_current_primary_retain_recall")
+        == 1.0
+    )
+    current_split_measured = bool(
+        smoke_decision.get(
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold"
+        )
+        and smoke_decision.get("full_74row_expansion_preserves_primary_retention")
+        and smoke_counts.get("full_current_split_incomplete_source_free_electron_flow_rows")
+        == 0
+    )
+    base_pqq_nad_contract_approved = bool(
+        smoke_decision.get("projection_backed_pqq_nad_contract_approved")
+    )
+    approval_union_adds_value = bool(
+        approval_decision.get(
+            "approval_qualified_union_adds_operating_point_value_beyond_current_geometry_fold"
+        )
+        and approval_decision.get("approval_qualified_union_preserves_primary_retention")
+        and fe_s_incremental_rows > 0
+    )
+    selected_support_subset_ready = bool(
+        tiny_bundle_ready_entry_ids
+        and len(selected_blocked_only_by_gate_import)
+        == len(tiny_bundle_ready_entry_ids)
+        and not selected_forbidden_hits
+    )
+    selected_support_option = (
+        "tiny_bundle_ready_subset"
+        if selected_support_subset_ready
+        else (
+            "expanded_bundle_ready_subset"
+            if expanded_bundle_ready_entry_ids
+            else "none"
+        )
+    )
+    if_support_imported_operating_point_positive = bool(
+        current_split_measured
+        and selected_support_subset_ready
+        and approval_union_adds_value
+        and primary_safe_after_import
+        and "m_csa:119" in iron_sulfur_incremental_entry_ids
+    )
+    result_class = (
+        "research_only_fe_s_support_subset_preflight_positive_pending_predictive_import"
+        if if_support_imported_operating_point_positive
+        else (
+            "research_only_fe_s_support_subset_available_but_current_split_negative"
+            if selected_support_subset_ready
+            else "research_only_fe_s_support_subset_not_ready"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_iron_sulfur_support_subset_"
+        f"preflight_readout_{result_class}"
+    )
+    missing_evidence = []
+    if not current_split_measured:
+        missing_evidence.append(
+            "measured source-free 74-row current-split operating-point signal"
+        )
+    if not selected_support_subset_ready:
+        missing_evidence.append(
+            "bundle-ready Fe-S/iron support rows blocked only by predictive gate and import"
+        )
+    if not approval_union_adds_value:
+        missing_evidence.append(
+            "approval-qualified Fe-S/iron union incremental OOS signal"
+        )
+    if selected_support_subset_ready:
+        missing_evidence.append(
+            "predictive_use_allowed=true plus approved train/cal feature-sidecar rows for "
+            + ", ".join(tiny_bundle_ready_entry_ids)
+        )
+    if not base_pqq_nad_contract_approved:
+        missing_evidence.append(
+            "approval/import of the projection-backed PQQ+NAD direct electron-flow component contracts"
+        )
+    if tiny_blocked_by_bundle_entry_ids:
+        missing_evidence.append(
+            "optional full tiny-tranche repair: minimal bundle/accession-compatible evidence for "
+            + ", ".join(tiny_blocked_by_bundle_entry_ids)
+        )
+
+    supported_now_union_recall = (
+        approval_counts.get("supported_now_union_or_gate_oos_abstain_recall")
+        or smoke_counts.get("full_current_split_union_or_gate_oos_abstain_recall")
+    )
+    approval_union_recall = approval_counts.get(
+        "approval_qualified_union_or_gate_oos_abstain_recall"
+    )
+    train_cal_sidecar_rows = [
+        row
+        for row in train_cal_feature_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    approved_sidecar_entry_ids = {str(row["entry_id"]) for row in train_cal_sidecar_rows}
+    approved_sidecar_feature_keys = sorted(
+        {
+            str(key)
+            for row in train_cal_sidecar_rows
+            for key in (row.get("row_specific_event_features") or {})
+        }
+    )
+    source_free_component_fields = [
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+    ]
+    generic_electron_fields = [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+    ]
+    source_free_component_fields_present = [
+        field for field in source_free_component_fields if field in approved_sidecar_feature_keys
+    ]
+    generic_electron_fields_present = [
+        field for field in generic_electron_fields if field in approved_sidecar_feature_keys
+    ]
+    pqq_nad_counts = pqq_nad.get("counts") or {}
+    projection_support_entry_ids = [
+        str(entry_id)
+        for entry_id in pqq_nad_counts.get("combined_projection_positive_entry_ids")
+        or []
+    ]
+    projection_support_present_entry_ids = [
+        entry_id
+        for entry_id in projection_support_entry_ids
+        if entry_id in approved_sidecar_entry_ids
+    ]
+    selected_support_present_entry_ids = [
+        entry_id
+        for entry_id in tiny_bundle_ready_entry_ids
+        if entry_id in approved_sidecar_entry_ids
+    ]
+    current_positive_present_entry_ids = [
+        entry_id
+        for entry_id in approval_positive_entry_ids
+        if entry_id in approved_sidecar_entry_ids
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_iron_sulfur_"
+            "support_subset_preflight_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined source-free Fe-S/iron support-subset "
+            "preflight for the direct electron-flow route. It consumes the "
+            "measured tiny-tranche approval-readiness readout, the measured "
+            "current-split smoke materialization readout, and the fixed "
+            "approval-qualified union readout to decide whether the remaining "
+            "m_csa:119 increment is an operating-point failure or only an "
+            "unapproved support-contract gap. It does not approve, import, "
+            "tune, train, score heldout, edit registries, or promote any feature."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": (
+                "source_free_iron_sulfur_or_iron_support_subset_preflight"
+            ),
+            "axis_id": "source_free_iron_sulfur_or_iron_donor_acceptor_distance_8A",
+            "contract_status": "research_only_preflight_unapproved_unimported",
+            "selected_support_option": selected_support_option,
+            "selected_support_subset_entry_ids": tiny_bundle_ready_entry_ids,
+            "expanded_support_subset_entry_ids": expanded_bundle_ready_entry_ids,
+            "incremental_current_retained_oos_entry_ids_if_imported": (
+                iron_sulfur_incremental_entry_ids
+            ),
+            "feature_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+                "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+            ],
+            "approval_condition_before_predictive_use": (
+                "Selected rows must be explicitly approved/imported into the "
+                "train/cal source-free feature sidecar with "
+                "predictive_use_allowed=true and concrete train/cal split "
+                "assignment. This artifact only measures the preflight."
+            ),
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "selected_support_feature_rows": selected_candidate_feature_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "approval_readiness_evidence",
+            "split_assignment",
+            "role_graph_status",
+            "role_graph_accession",
+            "accession_compatible_sequence_positions",
+            "source_feature_status",
+            "sidecar_status",
+            "predictive_use_allowed",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "current_split_baseline": {
+                "full_current_split_rows": smoke_counts.get(
+                    "full_current_split_rows"
+                ),
+                "complete_source_free_electron_flow_rows": smoke_counts.get(
+                    "full_current_split_complete_source_free_electron_flow_rows"
+                ),
+                "current_primary_rows": smoke_counts.get(
+                    "full_current_split_primary_rows"
+                ),
+                "current_retained_oos_rows": smoke_counts.get(
+                    "full_current_split_retained_oos_rows"
+                ),
+                "supported_now_current_retained_oos_positive_entry_ids": (
+                    supported_now_positive_entry_ids
+                ),
+                "supported_now_union_or_gate_oos_abstain_recall": (
+                    supported_now_union_recall
+                ),
+            },
+            "selected_support_subset_preflight": {
+                "support_option": selected_support_option,
+                "entry_ids": tiny_bundle_ready_entry_ids,
+                "rows": tiny_bundle_ready_rows,
+                "blocked_only_by_predictive_gate_and_import_entry_ids": (
+                    selected_blocked_only_by_gate_import
+                ),
+                "forbidden_feature_key_hits": selected_forbidden_hits,
+            },
+            "expanded_support_subset_preflight": {
+                "entry_ids": expanded_bundle_ready_entry_ids,
+                "rows": expanded_bundle_ready_rows,
+                "blocked_only_by_predictive_gate_and_import_entry_ids": (
+                    expanded_blocked_only_by_gate_import
+                ),
+                "blocked_by_minimal_feature_bundle_entry_ids": (
+                    expanded_blocked_by_bundle_entry_ids
+                ),
+            },
+            "if_support_subset_imported_fixed_union_readout": {
+                "approval_qualified_current_primary_positive_rows": (
+                    approval_counts.get(
+                        "approval_qualified_current_primary_positive_rows"
+                    )
+                ),
+                "approval_qualified_current_primary_retain_recall": (
+                    approval_counts.get(
+                        "approval_qualified_current_primary_retain_recall"
+                    )
+                ),
+                "approval_qualified_current_retained_oos_positive_entry_ids": (
+                    approval_positive_entry_ids
+                ),
+                "iron_sulfur_incremental_current_retained_oos_entry_ids": (
+                    iron_sulfur_incremental_entry_ids
+                ),
+                "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": (
+                    fe_s_incremental_rows
+                ),
+                "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad": (
+                    approval_counts.get(
+                        "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad"
+                    )
+                ),
+                "approval_qualified_union_or_gate_oos_abstain_recall": (
+                    approval_union_recall
+                ),
+            },
+            "missing_source_free_or_import_evidence": missing_evidence,
+            "approved_train_cal_feature_sidecar_preflight": {
+                "rows": len(train_cal_sidecar_rows),
+                "projection_support_entry_ids": projection_support_entry_ids,
+                "projection_support_entry_ids_present": (
+                    projection_support_present_entry_ids
+                ),
+                "selected_fe_s_support_subset_entry_ids_present": (
+                    selected_support_present_entry_ids
+                ),
+                "current_positive_entry_ids_present": (
+                    current_positive_present_entry_ids
+                ),
+                "generic_electron_fields_present": generic_electron_fields_present,
+                "source_free_component_fields_present": (
+                    source_free_component_fields_present
+                ),
+                "source_free_component_fields_missing": [
+                    field
+                    for field in source_free_component_fields
+                    if field not in source_free_component_fields_present
+                ],
+            },
+        },
+        "counts": {
+            "critical_violation_total": len(selected_forbidden_hits),
+            "current_split_rows": smoke_counts.get("full_current_split_rows"),
+            "current_split_complete_source_free_electron_flow_rows": (
+                smoke_counts.get(
+                    "full_current_split_complete_source_free_electron_flow_rows"
+                )
+            ),
+            "current_primary_rows": smoke_counts.get("full_current_split_primary_rows"),
+            "current_retained_oos_rows": smoke_counts.get(
+                "full_current_split_retained_oos_rows"
+            ),
+            "supported_now_current_retained_oos_positive_rows": len(
+                supported_now_positive_entry_ids
+            ),
+            "supported_now_current_retained_oos_positive_entry_ids": (
+                supported_now_positive_entry_ids
+            ),
+            "approval_qualified_current_primary_positive_rows": approval_counts.get(
+                "approval_qualified_current_primary_positive_rows"
+            ),
+            "approval_qualified_current_primary_retain_recall": approval_counts.get(
+                "approval_qualified_current_primary_retain_recall"
+            ),
+            "approval_qualified_current_retained_oos_positive_rows": len(
+                approval_positive_entry_ids
+            ),
+            "approval_qualified_current_retained_oos_positive_entry_ids": (
+                approval_positive_entry_ids
+            ),
+            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": (
+                fe_s_incremental_rows
+            ),
+            "iron_sulfur_incremental_current_retained_oos_entry_ids": (
+                iron_sulfur_incremental_entry_ids
+            ),
+            "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad": (
+                approval_counts.get(
+                    "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad"
+                )
+            ),
+            "supported_now_union_or_gate_oos_abstain_recall": (
+                supported_now_union_recall
+            ),
+            "approval_qualified_union_or_gate_oos_abstain_recall": (
+                approval_union_recall
+            ),
+            "tiny_bundle_ready_support_subset_rows": len(
+                tiny_bundle_ready_entry_ids
+            ),
+            "tiny_bundle_ready_support_subset_entry_ids": (
+                tiny_bundle_ready_entry_ids
+            ),
+            "tiny_support_subset_blocked_only_by_predictive_gate_and_import_rows": len(
+                selected_blocked_only_by_gate_import
+            ),
+            "tiny_support_subset_blocked_only_by_predictive_gate_and_import_entry_ids": (
+                selected_blocked_only_by_gate_import
+            ),
+            "tiny_tranche_blocked_by_minimal_feature_bundle_entry_ids": (
+                tiny_blocked_by_bundle_entry_ids
+            ),
+            "expanded_bundle_ready_support_subset_rows": len(
+                expanded_bundle_ready_entry_ids
+            ),
+            "expanded_bundle_ready_support_subset_entry_ids": (
+                expanded_bundle_ready_entry_ids
+            ),
+            "expanded_support_subset_blocked_only_by_predictive_gate_and_import_rows": len(
+                expanded_blocked_only_by_gate_import
+            ),
+            "expanded_tranche_blocked_by_minimal_feature_bundle_entry_ids": (
+                expanded_blocked_by_bundle_entry_ids
+            ),
+            "selected_support_feature_forbidden_row_feature_key_hits": len(
+                selected_forbidden_hits
+            ),
+            "approved_train_cal_feature_sidecar_rows": len(train_cal_sidecar_rows),
+            "approved_train_cal_sidecar_projection_support_rows_present": len(
+                projection_support_present_entry_ids
+            ),
+            "approved_train_cal_sidecar_projection_support_entry_ids_present": (
+                projection_support_present_entry_ids
+            ),
+            "approved_train_cal_sidecar_selected_fe_s_support_rows_present": len(
+                selected_support_present_entry_ids
+            ),
+            "approved_train_cal_sidecar_selected_fe_s_support_entry_ids_present": (
+                selected_support_present_entry_ids
+            ),
+            "approved_train_cal_sidecar_current_positive_rows_present": len(
+                current_positive_present_entry_ids
+            ),
+            "approved_train_cal_sidecar_current_positive_entry_ids_present": (
+                current_positive_present_entry_ids
+            ),
+            "approved_train_cal_sidecar_generic_electron_fields_present": (
+                generic_electron_fields_present
+            ),
+            "approved_train_cal_sidecar_source_free_component_fields_present": (
+                source_free_component_fields_present
+            ),
+            "approved_train_cal_sidecar_source_free_component_fields_missing": [
+                field
+                for field in source_free_component_fields
+                if field not in source_free_component_fields_present
+            ],
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "source_free_current_split_operating_point_measured": current_split_measured,
+            "tiny_bundle_ready_support_subset_available": bool(
+                tiny_bundle_ready_entry_ids
+            ),
+            "selected_support_subset_blocked_only_by_predictive_gate_and_import": (
+                selected_support_subset_ready
+            ),
+            "expanded_bundle_ready_support_subset_available": bool(
+                expanded_bundle_ready_entry_ids
+            ),
+            "approval_qualified_union_preserves_primary_retention_if_imported": (
+                primary_safe_after_import
+            ),
+            "approval_qualified_union_adds_incremental_oos_abstention_if_imported": (
+                approval_union_adds_value
+            ),
+            "base_projection_backed_pqq_nad_contract_approved": (
+                base_pqq_nad_contract_approved
+            ),
+            "base_pqq_nad_contract_approval_still_required": (
+                not base_pqq_nad_contract_approved
+            ),
+            "approved_train_cal_sidecar_has_projection_support_rows": bool(
+                projection_support_entry_ids
+                and len(projection_support_present_entry_ids)
+                == len(projection_support_entry_ids)
+            ),
+            "approved_train_cal_sidecar_missing_current_positive_rows": bool(
+                approval_positive_entry_ids and not current_positive_present_entry_ids
+            ),
+            "approved_train_cal_sidecar_missing_selected_fe_s_support_rows": bool(
+                tiny_bundle_ready_entry_ids and not selected_support_present_entry_ids
+            ),
+            "approved_train_cal_sidecar_missing_direct_source_free_component_fields": bool(
+                not source_free_component_fields_present
+            ),
+            "m_csa119_supported_by_fe_s_after_subset_import": (
+                "m_csa:119" in iron_sulfur_incremental_entry_ids
+            ),
+            "direct_source_free_electron_flow_adds_operating_point_value_after_selected_support_import": (
+                if_support_imported_operating_point_positive
+            ),
+            "operating_point_failure": not approval_union_adds_value,
+            "support_contract_gap_only": bool(
+                if_support_imported_operating_point_positive
+                and not readiness_decision.get("train_cal_supported_now")
+            ),
+            "train_cal_supported_now": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not if_support_imported_operating_point_positive,
+            "apply_or_promote_now": False,
+            "remaining_gap": (
+                "The 74-row current-split electron-flow operating point is "
+                "measured and the fixed PQQ+NAD+Fe-S/iron union would preserve "
+                "primary retention while adding m_csa:119. The selected "
+                "bundle-ready Fe-S/iron support rows remain unapproved: they "
+                "need predictive_use_allowed=true plus approved train/cal "
+                "feature-sidecar rows before the m_csa:119 increment can be "
+                "counted as supported. For full deployability, the base "
+                "projection-backed PQQ+NAD component contracts also remain "
+                "research-only/unapproved. The approved train/cal feature "
+                "sidecar contains the projection-support rows but lacks the "
+                "direct source-free PQQ/NAD/Fe-S component fields and current "
+                "positive rows; this preflight only isolates the Fe-S support "
+                "gap for the m_csa:119 increment."
+            ),
+            "smallest_next_experiment": (
+                "Approve/import the selected bundle-ready Fe-S/iron support "
+                f"subset ({', '.join(tiny_bundle_ready_entry_ids) or 'none'}) "
+                "with predictive_use_allowed=true and explicit train/cal split "
+                "assignment, then rerun the fixed PQQ+NAD+Fe-S/iron union. "
+                "Do not change thresholds or use heldout rows."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_source_artifacts": True,
+            "candidate_feature_rows_imported_or_promoted": False,
+            "review_only_locus_sidecar_imported_or_promoted": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "tiny_tranche_approval_readiness_readout": _source_path_record(
+                tiny_tranche_approval_readiness_readout_path
+            ),
+            "current_split_smoke_materialization_readout": _source_path_record(
+                current_split_smoke_materialization_readout_path
+            ),
+            "approval_qualified_union_readout": _source_path_record(
+                approval_qualified_union_readout_path
+            ),
+            "projection_backed_pqq_nad_feature_sidecar_readout": (
+                _source_path_record(projection_backed_pqq_nad_feature_sidecar_readout_path)
+                if projection_backed_pqq_nad_feature_sidecar_readout_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The pending Fe-S/iron increment is not an operating-point "
+                "failure. The selected bundle-ready source-free support subset "
+                f"({', '.join(tiny_bundle_ready_entry_ids) or 'none'}) is "
+                "blocked only by predictive-use approval/import, while the "
+                "fixed approval-qualified union catches m_csa:119 with 0 "
+                "current-primary positives. Full direct electron-flow "
+                "deployability still needs approval/import of the base "
+                "PQQ+NAD component contracts."
+            )
+            if if_support_imported_operating_point_positive
+            else (
+                "The selected Fe-S/iron support subset does not yet support a "
+                "positive current-split operating-point preflight."
+            ),
+            "next_action": (
+                "Use this preflight as the import contract target for the "
+                "bundle-ready support subset; repair the larger tiny-tranche "
+                "bundle gap only if the approval contract requires all three "
+                "tiny support rows."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    selected = readout["measured_readout"]["selected_support_subset_preflight"]
+    expanded = readout["measured_readout"]["expanded_support_subset_preflight"]
+    union = readout["measured_readout"][
+        "if_support_subset_imported_fixed_union_readout"
+    ]
+    sidecar = readout["measured_readout"]["approved_train_cal_feature_sidecar_preflight"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Fe-S/Iron Support-Subset Preflight Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Current split complete source-free rows: "
+        f"{counts['current_split_complete_source_free_electron_flow_rows']}/"
+        f"{counts['current_split_rows']}",
+        "- Tiny bundle-ready support subset rows: "
+        f"{counts['tiny_bundle_ready_support_subset_rows']}",
+        "- Expanded bundle-ready support subset rows: "
+        f"{counts['expanded_bundle_ready_support_subset_rows']}",
+        "- Supported-now retained-OOS positives: "
+        f"{counts['supported_now_current_retained_oos_positive_rows']}",
+        "- Approval-qualified retained-OOS positives: "
+        f"{counts['approval_qualified_current_retained_oos_positive_rows']}",
+        "- Fe-S incremental retained-OOS rows beyond PQQ+NAD: "
+        f"{counts['iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad']}",
+        "- Forbidden row-feature key hits: "
+        f"{counts['selected_support_feature_forbidden_row_feature_key_hits']}",
+        "",
+        "## Support Options",
+        "",
+        "| option | rows | entry IDs | blocked only by gate/import | bundle blockers |",
+        "| --- | ---: | --- | --- | --- |",
+        f"| selected tiny bundle-ready | {len(selected['entry_ids'])} | "
+        f"{', '.join(selected['entry_ids']) or 'none'} | "
+        f"{', '.join(selected['blocked_only_by_predictive_gate_and_import_entry_ids']) or 'none'} | "
+        f"{', '.join(counts['tiny_tranche_blocked_by_minimal_feature_bundle_entry_ids']) or 'none'} |",
+        f"| expanded bundle-ready | {len(expanded['entry_ids'])} | "
+        f"{', '.join(expanded['entry_ids']) or 'none'} | "
+        f"{', '.join(expanded['blocked_only_by_predictive_gate_and_import_entry_ids']) or 'none'} | "
+        f"{', '.join(expanded['blocked_by_minimal_feature_bundle_entry_ids']) or 'none'} |",
+        "",
+        "## Fixed Operating Point",
+        "",
+        "| route | primary positives | retained-OOS positives | union OOS recall |",
+        "| --- | ---: | ---: | ---: |",
+        f"| supported PQQ+NAD now | 0 | "
+        f"{counts['supported_now_current_retained_oos_positive_rows']} | "
+        f"{counts['supported_now_union_or_gate_oos_abstain_recall']} |",
+        f"| approval-qualified PQQ+NAD+Fe-S | "
+        f"{union['approval_qualified_current_primary_positive_rows']} | "
+        f"{counts['approval_qualified_current_retained_oos_positive_rows']} | "
+        f"{counts['approval_qualified_union_or_gate_oos_abstain_recall']} |",
+        "",
+        "- Incremental Fe-S rows if imported: "
+        f"{', '.join(counts['iron_sulfur_incremental_current_retained_oos_entry_ids']) or 'none'}",
+        "- Incremental OOS recall beyond PQQ+NAD: "
+        f"{counts['iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad']}",
+        "",
+        "## Approved Sidecar Preflight",
+        "",
+        "- Approved train/cal sidecar rows: "
+        f"{counts['approved_train_cal_feature_sidecar_rows']}",
+        "- Projection support rows present: "
+        f"{', '.join(sidecar['projection_support_entry_ids_present']) or 'none'}",
+        "- Selected Fe-S support rows present: "
+        f"{', '.join(sidecar['selected_fe_s_support_subset_entry_ids_present']) or 'none'}",
+        "- Current positive rows present: "
+        f"{', '.join(sidecar['current_positive_entry_ids_present']) or 'none'}",
+        "- Generic electron fields present: "
+        f"{', '.join(sidecar['generic_electron_fields_present']) or 'none'}",
+        "- Direct source-free component fields present: "
+        f"{', '.join(sidecar['source_free_component_fields_present']) or 'none'}",
+        "",
+        "## Decision",
+        "",
+        "- Current split operating point measured: "
+        f"{decision['source_free_current_split_operating_point_measured']}",
+        "- Selected support subset blocked only by predictive gate/import: "
+        f"{decision['selected_support_subset_blocked_only_by_predictive_gate_and_import']}",
+        "- Approval-qualified union preserves primary retention if imported: "
+        f"{decision['approval_qualified_union_preserves_primary_retention_if_imported']}",
+        "- Approval-qualified union adds incremental OOS abstention if imported: "
+        f"{decision['approval_qualified_union_adds_incremental_oos_abstention_if_imported']}",
+        "- Base PQQ+NAD contract approved: "
+        f"{decision['base_projection_backed_pqq_nad_contract_approved']}",
+        "- Approved sidecar missing direct source-free component fields: "
+        f"{decision['approved_train_cal_sidecar_missing_direct_source_free_component_fields']}",
+        "- Support-contract gap only: "
+        f"{decision['support_contract_gap_only']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout(
+    *,
+    tiny_tranche_approval_readiness_readout_path: Path,
+    current_split_smoke_materialization_readout_path: Path,
+    approval_qualified_union_readout_path: Path,
+    out_path: Path,
+    projection_backed_pqq_nad_feature_sidecar_readout_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_IRON_SULFUR_SUPPORT_SUBSET_PREFLIGHT_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout(
+        tiny_tranche_approval_readiness_readout_path=(
+            tiny_tranche_approval_readiness_readout_path
+        ),
+        current_split_smoke_materialization_readout_path=(
+            current_split_smoke_materialization_readout_path
+        ),
+        approval_qualified_union_readout_path=approval_qualified_union_readout_path,
+        projection_backed_pqq_nad_feature_sidecar_readout_path=(
+            projection_backed_pqq_nad_feature_sidecar_readout_path
+        ),
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_report(
                 readout
             ),
             encoding="utf-8",

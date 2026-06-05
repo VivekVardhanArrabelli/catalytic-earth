@@ -20549,6 +20549,189 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]["exists"]
         )
 
+    def test_lever2_electron_flow_iron_sulfur_support_subset_preflight_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_iron_sulfur_"
+                "support_subset_preflight_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_iron_sulfur_support_subset_"
+                "preflight_readout_research_only_fe_s_support_subset_preflight_"
+                "positive_pending_predictive_import"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_fe_s_support_subset_preflight_positive_pending_predictive_import",
+        )
+        self.assertEqual(readout["counts"]["current_split_rows"], 74)
+        self.assertEqual(
+            readout["counts"][
+                "current_split_complete_source_free_electron_flow_rows"
+            ],
+            74,
+        )
+        self.assertEqual(readout["counts"]["current_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["current_retained_oos_rows"], 40)
+        self.assertEqual(
+            readout["counts"]["supported_now_current_retained_oos_positive_rows"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "supported_now_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_current_retained_oos_positive_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_incremental_current_retained_oos_entry_ids"
+            ],
+            ["m_csa:119"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"]["tiny_bundle_ready_support_subset_entry_ids"],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_support_subset_blocked_only_by_predictive_gate_and_import_entry_ids"
+            ],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "tiny_tranche_blocked_by_minimal_feature_bundle_entry_ids"
+            ],
+            ["m_csa:443"],
+        )
+        self.assertEqual(
+            readout["counts"]["expanded_bundle_ready_support_subset_rows"],
+            8,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "expanded_tranche_blocked_by_minimal_feature_bundle_entry_ids"
+            ],
+            ["m_csa:443", "m_csa:208", "m_csa:123", "m_csa:212"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_support_feature_forbidden_row_feature_key_hits"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["approved_train_cal_feature_sidecar_rows"],
+            43,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_train_cal_sidecar_projection_support_entry_ids_present"
+            ],
+            ["m_csa:59", "m_csa:256"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_train_cal_sidecar_selected_fe_s_support_entry_ids_present"
+            ],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_train_cal_sidecar_current_positive_entry_ids_present"
+            ],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_train_cal_sidecar_source_free_component_fields_present"
+            ],
+            [],
+        )
+        feature_text = json.dumps(
+            [
+                row["row_specific_event_features"]
+                for row in readout["selected_support_feature_rows"]
+            ]
+        )
+        self.assertNotIn("coordinate_path", feature_text)
+        self.assertTrue(
+            readout["decision"]["source_free_current_split_operating_point_measured"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "selected_support_subset_blocked_only_by_predictive_gate_and_import"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_adds_operating_point_value_after_selected_support_import"
+            ]
+        )
+        self.assertTrue(readout["decision"]["support_contract_gap_only"])
+        self.assertTrue(
+            readout["decision"]["base_pqq_nad_contract_approval_still_required"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "approved_train_cal_sidecar_has_projection_support_rows"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "approved_train_cal_sidecar_missing_current_positive_rows"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "approved_train_cal_sidecar_missing_selected_fe_s_support_rows"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+        self.assertTrue(
+            readout["source_artifacts"][
+                "tiny_tranche_approval_readiness_readout"
+            ]["exists"]
+        )
+        self.assertTrue(
+            readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
+        )
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:

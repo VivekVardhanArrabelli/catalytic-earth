@@ -60,6 +60,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout,
     write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout,
+    write_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout,
     write_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout,
     write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
@@ -14248,6 +14249,45 @@ def cmd_build_lever2_source_free_electron_flow_current_split_smoke_materializati
         f"{counts.get('smoke_retained_oos_positive_rows')}, "
         "full OOS positives: "
         f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout(
+        tiny_tranche_approval_readiness_readout_path=Path(
+            args.tiny_tranche_approval_readiness_readout
+        ),
+        current_split_smoke_materialization_readout_path=Path(
+            args.current_split_smoke_materialization_readout
+        ),
+        approval_qualified_union_readout_path=Path(
+            args.approval_qualified_union_readout
+        ),
+        projection_backed_pqq_nad_feature_sidecar_readout_path=Path(
+            args.projection_backed_pqq_nad_feature_sidecar_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow Fe-S/iron support-subset "
+        f"preflight readout to {args.out} "
+        "tiny support rows: "
+        f"{counts.get('tiny_bundle_ready_support_subset_rows')}, "
+        "approval-qualified OOS positives: "
+        f"{counts.get('approval_qualified_current_retained_oos_positive_rows')}, "
+        "Fe-S incremental rows: "
+        f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -34091,6 +34131,77 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_current_split_smoke_materialization.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout
+        )
+    )
+
+    lever2_electron_flow_iron_sulfur_support_subset_preflight = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-iron-sulfur-"
+                "support-subset-preflight-readout"
+            ),
+            help=(
+                "measure whether the bundle-ready Fe-S/iron support subset "
+                "can make the m_csa:119 current-split OOS catch supportable"
+            ),
+        )
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--tiny-tranche-approval-readiness-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "tiny_tranche_approval_readiness_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--current-split-smoke-materialization-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_"
+            "smoke_materialization_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--approval-qualified-union-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--projection-backed-pqq-nad-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "support_subset_preflight_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_iron_sulfur_"
+            "support_subset_preflight_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout
         )
     )
 
