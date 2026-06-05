@@ -151,9 +151,12 @@ importing, or promoting the primitive.
 
 #### Commit/push status
 
-- Pending at this ledger edit: commit and push the implementation, generated
-  artifact/report, and handoff update to `origin/lever-2-research-track`, then
-  fetch-verify local `HEAD == origin/lever-2-research-track`.
+- Implementation/readout commit
+  `896389c16ee32706242249e164523e0464b8495d` was pushed to
+  `origin/lever-2-research-track`. Fetch verification after that push showed
+  local `HEAD == origin/lever-2-research-track` at the same hash before this
+  final handoff status edit. Final handoff status commit is to be pushed after
+  this update.
 
 #### Exact next action
 
