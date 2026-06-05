@@ -6,9 +6,9 @@
 - Branch: `lever-2-research-track`
 - STARTED_AT_UTC: `2026-06-05T16:31:49Z`
 - STARTED_AT_LOCAL: `2026-06-05T11:31:49-0500 CDT`
-- ENDED_AT_UTC: `in_progress`
-- ENDED_AT_LOCAL: `in_progress`
-- ELAPSED_MINUTES: `in_progress`
+- ENDED_AT_UTC: `2026-06-05T17:22:09Z`
+- ENDED_AT_LOCAL: `2026-06-05T12:22:09-0500 CDT`
+- ELAPSED_MINUTES: `50.33`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -23,9 +23,9 @@
 
 - STARTED_AT: `2026-06-05T16:31:49Z`
 - STARTED_LOCAL: `2026-06-05T11:31:49-0500 CDT`
-- ENDED_AT: `in_progress`
-- ENDED_LOCAL: `in_progress`
-- ELAPSED_MINUTES: `in_progress`
+- ENDED_AT: `2026-06-05T17:22:09Z`
+- ENDED_LOCAL: `2026-06-05T12:22:09-0500 CDT`
+- ELAPSED_MINUTES: `50.33`
 
 #### Intent
 
@@ -48,6 +48,128 @@ or heldout splits.
 - Initial disk was below the 10 GiB guardrail at 9.5 GiB free. The clean
   detached duplicate checkout was removed with `git worktree remove`,
   restoring disk to 13 GiB free before research writes continued.
+- Added
+  `build-lever2-source-free-electron-flow-train-cal-sidecar-candidate-readout`.
+  This consumes the measured candidate train/cal bundle and the currently
+  approved train/cal feature sidecar, remaps the candidate bundle into
+  sidecar-shaped row-specific direct electron-flow rows, reruns the fixed
+  operating point, and separately attempts the approved-sidecar-only current
+  split route without editing approved sidecars, imports, splits, labels,
+  thresholds, registries, or ontologies.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout_current702_20260605.md`.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout_research_only_train_cal_sidecar_candidate_measured_pending_protected_import`.
+  Result class:
+  `research_only_train_cal_sidecar_candidate_measured_pending_protected_import`.
+- Candidate sidecar readout: 78/78 rows have complete sidecar-shaped direct
+  source-free electron-flow fields and 0 forbidden predictive feature-key hits.
+  All 78/78 rows are manifest-contained or explicitly train/cal split; 76/78
+  rows have explicit `train`/`calibration` splits.
+- Fixed current-split gate: 74/74 current rows are complete, 0/34 current
+  primary rows are positive, primary retain recall is `1.0`, and 3/40
+  current-retained OOS rows are positive: `m_csa:104`, `m_csa:119`, and
+  `m_csa:464`. Incremental OOS abstain recall vs the current geometry/fold
+  denominator is `0.04`, and union OOS recall is `0.506667`.
+- Approved-sidecar-only attempt: the current approved train/cal feature
+  sidecar contains only 1/74 current-split rows (`m_csa:102`) and 0/74
+  current-split rows with the required direct PQQ/NAD/Fe-S component fields
+  complete. It contains no current positive direct electron-flow rows and
+  still contains only the two projection support rows `m_csa:59` and
+  `m_csa:256`.
+- Remaining protected gaps are exact: import/approve the six direct component
+  fields, set `predictive_use_allowed=true` for selected Fe-S support rows
+  `m_csa:127` and `m_csa:281`, assign those Fe-S rows explicit train/cal
+  splits, and add approved sidecar rows for current positive direct
+  electron-flow rows `m_csa:104`, `m_csa:119`, and `m_csa:464`.
+- Interpretation: direct source-free electron-flow fields now have a measured
+  train/cal-disciplined candidate readout that adds operating-point value
+  beyond the current geometry/fold surface while preserving primary retention.
+  Deployability remains false only because the protected import/approval/split
+  steps are not yet performed and are outside this run's guardrails.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Split and manifest metadata remain outside
+  `row_specific_event_features`.
+- The sidecar candidate remains research-only and does not approve, import,
+  promote, or set `predictive_use_allowed=true` for any row.
+- Disk guardrail recovered from the initial detached-worktree low-disk state
+  and remained at 13 GiB free during wrap.
+
+#### Validation
+
+- Focused new tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_train_cal_sidecar_candidate_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_train_cal_sidecar_candidate_readout tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_train_cal_sidecar_candidate_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  495 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1572 passed, 212 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1527 tests OK,
+  with the same existing warning.
+- Hash-seed stability: `PYTHONHASHSEED=1` through `PYTHONHASHSEED=11` full
+  pytest and full unittest discovery all passed with the same existing warning
+  where applicable.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3594 JSON files and 27 JSONL files
+  parsed with 0 errors.
+- New sidecar-candidate artifact targeted audit passed: source hashes current,
+  normalized regeneration matched after normalizing `created_utc`, all 78
+  feature rows carried the expected direct electron-flow schema, 0 forbidden
+  predictive-key hits, 78/78 manifest-or-explicit train/cal containment, the
+  approved-sidecar-only overlap was exactly `m_csa:102`, and 0 approved
+  current-split rows had direct component fields complete.
+- Report consistency audit passed for the generated Markdown report.
+- Protected-surface changed-path audit passed.
+- Broad electron-flow source file-hash audit found one older pre-existing
+  stale source hash in
+  `artifacts/v3_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout_current702_20260605.json`
+  pointing at the relaxed non-PQQ readout. This was not used as a pass/fail
+  gate for the new sidecar-candidate artifact, whose direct source hashes
+  passed.
+
+#### Commit/push status
+
+- Primary research commit:
+  `63d8278193aea0a11d8c507780e64f7e794e141c`
+  (`Add Lever 2 electron-flow sidecar candidate readout`).
+- Primary commit was pushed to `origin/lever-2-research-track`.
+- Fetch/sync verification after the primary push matched local `HEAD` and
+  `origin/lever-2-research-track` at
+  `63d8278193aea0a11d8c507780e64f7e794e141c`.
+- This final handoff status update is being committed and pushed separately as
+  a handoff-only wrap-up change.
+
+#### Exact next action
+
+- Perform the protected approval/import step for the candidate direct
+  source-free PQQ/NAD/Fe-S component fields, set `predictive_use_allowed=true`
+  for `m_csa:127` and `m_csa:281`, assign those Fe-S support rows to explicit
+  train/cal splits, add approved sidecar rows for `m_csa:104`, `m_csa:119`,
+  and `m_csa:464`, then rerun the fixed train/cal sidecar-candidate gate
+  without threshold changes or heldout use.
 
 ### 2026-06-05 Lever 2 Research Run 25
 
