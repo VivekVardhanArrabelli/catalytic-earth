@@ -30,6 +30,10 @@ from .active_site_encoder_cache import write_active_site_encoder_cache
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .bin_targeted_expansion import write_bin_targeted_expansion_plan
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
+from .cofactor_presence_calibration import write_cofactor_presence_calibration
+from .predicted_geometry_recovery import (
+    write_in_distribution_predicted_geometry_recovery,
+)
 from .doc_reference_check import write_current_docs_artifact_reference_check
 from .embedding_sidecar import write_sequence_embedding_sidecar
 from .fingerprints import build_mechanism_demo, load_fingerprints
@@ -2478,6 +2482,63 @@ def cmd_build_sequence_cofactor_channel_probe(args: argparse.Namespace) -> int:
         f"{args.out} ({audit.get('status')}; "
         f"label_readiness={answer.get('label_readiness')}; "
         f"heme_presence={support.get('heme')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_presence_calibration(args: argparse.Namespace) -> int:
+    audit = write_cofactor_presence_calibration(
+        label_manifest_path=Path(args.label_manifest),
+        geometry_features_path=Path(args.geometry_features),
+        split_manifest_path=Path(args.split_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        sequence_manifest_path=(
+            Path(args.sequence_manifest) if args.sequence_manifest else None
+        ),
+        fasta_path=Path(args.fasta) if args.fasta else None,
+        use_motif_features=args.use_motif_features,
+        min_calibration_positive=args.min_calibration_positive,
+        random_state=args.random_state,
+    )
+    selected = audit.get("selected_sources", {})
+    summary = ", ".join(
+        f"{cofactor_class}={info.get('calibration_roc_auc')}"
+        for cofactor_class, info in selected.items()
+    )
+    print(
+        "Wrote cofactor presence calibration to "
+        f"{args.out} ({audit.get('status')}; "
+        f"heldout_labels_read={audit['guardrails']['heldout_labels_read']}; "
+        f"cal_auc[{summary}])"
+    )
+    return 0
+
+
+def cmd_build_in_distribution_predicted_geometry_recovery(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_in_distribution_predicted_geometry_recovery(
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        split_manifest_path=Path(args.split_manifest),
+        reconstruction_channel_path=Path(args.reconstruction_channel),
+        staged_atlas_dir=Path(args.staged_atlas_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        context_label=args.context_label,
+        threshold=args.threshold,
+        alphafold_version=args.alphafold_version,
+    )
+    cal = audit.get("readouts_by_split", {}).get("calibration", {})
+    print(
+        "Wrote in-distribution predicted-geometry recovery to "
+        f"{args.out} ({audit.get('status')}; calibration out-of-sample: "
+        f"exp {cal.get('experimental_correct')} -> apo {cal.get('apo_correct')} "
+        f"-> fused {cal.get('fused_correct')}; "
+        f"recovered {cal.get('fused_recovered_rows')}/{cal.get('apo_lost_primary_rows')}, "
+        f"regressed {cal.get('fused_regressed_rows')})"
     )
     return 0
 
@@ -19798,6 +19859,131 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/sequence_cofactor_channel_probe_current702_20260529.md",
     )
     cofactor_channel_probe.set_defaults(func=cmd_build_sequence_cofactor_channel_probe)
+
+    cofactor_presence_calibration = subparsers.add_parser(
+        "build-cofactor-presence-calibration",
+        help=(
+            "leakage-safe train/cal cofactor-presence channel: fit heads on train, "
+            "select thresholds and backend on calibration, never read heldout"
+        ),
+    )
+    cofactor_presence_calibration.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--split-manifest",
+        default=(
+            "artifacts/"
+            "v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json"
+        ),
+    )
+    cofactor_presence_calibration.add_argument(
+        "--min-calibration-positive", type=int, default=5
+    )
+    cofactor_presence_calibration.add_argument("--random-state", type=int, default=702)
+    cofactor_presence_calibration.add_argument(
+        "--use-motif-features",
+        action="store_true",
+        help=(
+            "append leakage-safe cofactor-binding sequence motifs (Rossmann, "
+            "c-type heme, zinc-hydrolase) to the embedding before fitting"
+        ),
+    )
+    cofactor_presence_calibration.add_argument(
+        "--sequence-manifest",
+        default="artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+        help="sequence manifest (only used with --use-motif-features)",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--fasta",
+        default=(
+            "artifacts/"
+            "v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta"
+        ),
+        help="FASTA for motif extraction (only used with --use-motif-features)",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--out",
+        default="artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--report",
+        default="work/cofactor_presence_calibration_current702_20260604.md",
+    )
+    cofactor_presence_calibration.set_defaults(
+        func=cmd_build_cofactor_presence_calibration
+    )
+
+    in_distribution_recovery = subparsers.add_parser(
+        "build-in-distribution-predicted-geometry-recovery",
+        help=(
+            "leakage-safe in-distribution analog of the 45->23 predicted-apo drop: "
+            "score the router on experimental vs predicted-apo vs cofactor-fused "
+            "geometry and measure the cofactor-channel recovery (no heldout read)"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    in_distribution_recovery.add_argument(
+        "--graph", default="artifacts/v1_graph_1025.json"
+    )
+    in_distribution_recovery.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    in_distribution_recovery.add_argument(
+        "--split-manifest",
+        default=(
+            "artifacts/"
+            "v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--reconstruction-channel",
+        default="artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+        help=(
+            "sequence -> active-site-context channel artifact (channel_predictions "
+            "schema); defaults to the cofactor-presence calibration"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--context-label",
+        default="cofactor",
+        help="name of the reconstructed active-site context (e.g. cofactor, substrate)",
+    )
+    in_distribution_recovery.add_argument(
+        "--staged-atlas-dir",
+        default=(
+            "artifacts/"
+            "v3_predicted_structure_fold_channel_current702_20260601_coordinates/"
+            "atlas_in_distribution"
+        ),
+    )
+    in_distribution_recovery.add_argument("--threshold", type=float, default=0.4115)
+    in_distribution_recovery.add_argument("--alphafold-version", default="6")
+    in_distribution_recovery.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_in_distribution_predicted_geometry_recovery_current702_20260604.json"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--report",
+        default=(
+            "work/in_distribution_predicted_geometry_recovery_current702_20260604.md"
+        ),
+    )
+    in_distribution_recovery.set_defaults(
+        func=cmd_build_in_distribution_predicted_geometry_recovery
+    )
 
     embedding_sidecar = subparsers.add_parser(
         "build-sequence-embedding-sidecar",
