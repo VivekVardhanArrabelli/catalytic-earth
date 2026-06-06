@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-06T03:31:51Z`
-- STARTED_AT_LOCAL: `2026-06-05T22:31:51-0500 CDT`
-- ENDED_AT_UTC: `2026-06-06T03:49:41Z`
-- ENDED_AT_LOCAL: `2026-06-05T22:49:41-0500 CDT`
-- ELAPSED_MINUTES: `17.83`
+- STARTED_AT_UTC: `2026-06-06T04:34:18Z`
+- STARTED_AT_LOCAL: `2026-06-05T23:34:18-0500 CDT`
+- ENDED_AT_UTC: `2026-06-06T05:10:21Z`
+- ENDED_AT_LOCAL: `2026-06-06T00:10:21-0500 CDT`
+- ELAPSED_MINUTES: `36.05`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,79 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 36
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-06T04:34:18Z`
+- STARTED_LOCAL: `2026-06-05T23:34:18-0500 CDT`
+- ENDED_AT: `2026-06-06T05:10:21Z`
+- ENDED_LOCAL: `2026-06-06T00:10:21-0500 CDT`
+- ELAPSED_MINUTES: `36.05`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured direct source-free operating-point readout and produce
+the next measured train/cal-disciplined electron-flow readout without editing
+protected imports, labels, registries, ontologies, production thresholds,
+heldout splits, or Lever 3 surfaces.
+
+#### Work log
+
+- Produced two follow-up sensitivity readouts for the direct source-free
+  electron-flow operating point:
+  `artifacts/v3_lever2_source_free_electron_flow_current_split_sensitivity_readout_current702_20260606.json`
+  with report
+  `work/lever2_source_free_electron_flow_current_split_sensitivity_readout_current702_20260606.md`,
+  and
+  `artifacts/v3_lever2_source_free_electron_flow_current_split_field_sensitivity_readout_current702_20260606.json`
+  with report
+  `work/lever2_source_free_electron_flow_current_split_field_sensitivity_readout_current702_20260606.md`.
+- Added CLI builders for the sensitivity and field-sensitivity readouts.
+- Added focused parser, unit, and artifact-regression coverage for both
+  readouts.
+- Did not edit protected imports, approved sidecars, labels, registries,
+  ontologies, production thresholds, heldout splits, or Lever 3 surfaces.
+
+#### Measured results
+
+- Sensitivity readout status:
+  `lever2_source_free_electron_flow_current_split_sensitivity_readout_research_only_direct_source_free_electron_flow_sensitivity_signal`.
+- Field-sensitivity readout status:
+  `lever2_source_free_electron_flow_current_split_field_sensitivity_readout_research_only_direct_source_free_electron_flow_field_sensitivity_signal`.
+- Full positive retained-OOS rows remain
+  `m_csa:104`, `m_csa:119`, and `m_csa:464`.
+- Baseline current geometry/fold OOS recall remains `0.466667`.
+- Full direct electron-flow overlay OOS recall remains `0.506667`, delta
+  `0.04`, with zero primary-positive rows.
+- Leave-one-component sensitivity: all three variants remain primary-safe and
+  retain positive value; minimum delta is `0.026667`.
+- Leave-one-positive-row sensitivity: all three variants remain primary-safe
+  and retain positive value; minimum delta is `0.026667`.
+- Field sensitivity: all eight direct source-free electron-flow field variants
+  are primary-safe, and the generic direct event flag/count each recover the
+  full 3-row operating-point signal.
+- Deployable now remains `false`; remaining gap is explicit protected import
+  authorization plus approved-sidecar rerun, not missing source-free
+  electron-flow evidence.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_current_split_sensitivity_readout_scores_ablations tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_current_split_field_sensitivity_scores_fields tests/test_cli.py::CliTests::test_lever2_electron_flow_current_split_sensitivity_parser_defaults tests/test_cli.py::CliTests::test_lever2_electron_flow_current_split_field_sensitivity_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_current_split_sensitivity_current_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_current_split_field_sensitivity_current_counts -q`:
+  6 passed.
+- `python -m json.tool` parsed both new JSON artifacts.
+- `git diff --check` passed.
+
+#### Exact next action
+
+- User has now explicitly authorized the protected train/cal-only
+  electron-flow sidecar import test. Next run should apply the 35-row smoke
+  tranche only, rerun the approved-sidecar operating-point readout, and expand
+  to the remaining 39 rows only if primary positives remain zero. No heldout,
+  label, registry, ontology, production threshold, or Lever 3 changes are
+  authorized.
 
 ### 2026-06-05 Lever 2 Research Run 35
 

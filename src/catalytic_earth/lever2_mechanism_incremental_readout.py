@@ -140,6 +140,14 @@ DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_OPERATING_POINT_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_current_split_operating_point_"
     "readout_current702_20260606"
 )
+DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_SENSITIVITY_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_current_split_sensitivity_"
+    "readout_current702_20260606"
+)
+DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_FIELD_SENSITIVITY_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_current_split_field_sensitivity_"
+    "readout_current702_20260606"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -25054,6 +25062,1226 @@ def write_lever2_source_free_electron_flow_current_split_operating_point_readout
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_current_split_operating_point_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_lever2_source_free_electron_flow_current_split_sensitivity_readout(
+    *,
+    current_split_operating_point_readout_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_SENSITIVITY_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    operating_path = Path(current_split_operating_point_readout_path)
+    operating = _read_json(operating_path)
+    counts = operating.get("counts") or {}
+    decision = operating.get("decision") or {}
+    measured = operating.get("measured_readout") or {}
+    component_variants = measured.get("component_operating_point_variants") or []
+    baseline_recall = _optional_float(
+        counts.get("current_geometry_fold_oos_abstain_recall_baseline")
+    )
+    full_delta = _optional_float(
+        counts.get(
+            "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold"
+        )
+    )
+    full_union = _optional_float(
+        counts.get("full_current_split_union_or_gate_oos_abstain_recall")
+    )
+    oos_denominator = int(counts.get("estimated_calibration_oos_rows") or 0)
+    full_primary_rows = int(counts.get("full_current_split_primary_rows") or 0)
+    smoke_primary_rows = int(counts.get("smoke_primary_rows") or 0)
+    full_positive_ids = sorted(
+        {
+            str(entry_id)
+            for entry_id in (
+                counts.get("full_current_split_retained_oos_positive_entry_ids")
+                or []
+            )
+        },
+        key=_entry_sort_key,
+    )
+    smoke_positive_ids = sorted(
+        {
+            str(entry_id)
+            for entry_id in (
+                counts.get("smoke_retained_oos_positive_entry_ids") or []
+            )
+        },
+        key=_entry_sort_key,
+    )
+    component_positive_ids: dict[str, list[str]] = {}
+    component_primary_positive_ids: dict[str, list[str]] = {}
+    component_deltas: dict[str, float | None] = {}
+    for variant in component_variants:
+        if not isinstance(variant, dict):
+            continue
+        component_id = str(variant.get("component_id") or "")
+        if not component_id:
+            continue
+        component_positive_ids[component_id] = sorted(
+            {
+                str(entry_id)
+                for entry_id in (
+                    variant.get("positive_retained_oos_entry_ids") or []
+                )
+            },
+            key=_entry_sort_key,
+        )
+        component_primary_positive_ids[component_id] = sorted(
+            {
+                str(entry_id)
+                for entry_id in (variant.get("primary_positive_entry_ids") or [])
+            },
+            key=_entry_sort_key,
+        )
+        component_deltas[component_id] = _optional_float(
+            variant.get("incremental_oos_abstain_recall_vs_current_geometry_fold")
+        )
+    ordered_component_ids = [
+        label
+        for label, _, _ in _ELECTRON_FLOW_COMPONENT_FIELD_SPECS
+        if label in component_positive_ids
+    ]
+
+    def _sensitivity_variant(
+        *,
+        variant_id: str,
+        variant_type: str,
+        positive_entry_ids: list[str],
+        removed_entry_ids: list[str] | None = None,
+        removed_component_ids: list[str] | None = None,
+        primary_positive_entry_ids: list[str] | None = None,
+        primary_rows: int | None = None,
+    ) -> dict[str, Any]:
+        unique_positive_ids = sorted(set(positive_entry_ids), key=_entry_sort_key)
+        unique_primary_positive_ids = sorted(
+            set(primary_positive_entry_ids or []),
+            key=_entry_sort_key,
+        )
+        delta = (
+            round(len(unique_positive_ids) / oos_denominator, 6)
+            if oos_denominator
+            else None
+        )
+        union = (
+            round(baseline_recall + delta, 6)
+            if baseline_recall is not None and delta is not None
+            else None
+        )
+        primary_total = primary_rows if primary_rows is not None else full_primary_rows
+        primary_retain = (
+            round(
+                (
+                    primary_total
+                    - len(unique_primary_positive_ids)
+                )
+                / primary_total,
+                6,
+            )
+            if primary_total
+            else None
+        )
+        return {
+            "variant_id": variant_id,
+            "variant_type": variant_type,
+            "removed_component_ids": removed_component_ids or [],
+            "removed_retained_oos_entry_ids": removed_entry_ids or [],
+            "positive_retained_oos_entry_ids": unique_positive_ids,
+            "positive_retained_oos_rows": len(unique_positive_ids),
+            "calibration_oos_abstain_recall": union,
+            "incremental_oos_abstain_recall_vs_current_geometry_fold": delta,
+            "estimated_calibration_oos_abstained_rows": (
+                _estimated_count_from_recall(union, oos_denominator)
+            ),
+            "primary_positive_entry_ids": unique_primary_positive_ids,
+            "primary_positive_rows": len(unique_primary_positive_ids),
+            "primary_retain_recall": primary_retain,
+            "operating_point_value_added": bool(
+                delta and delta > 0 and not unique_primary_positive_ids
+            ),
+        }
+
+    leave_one_component_variants = []
+    for component_id in ordered_component_ids:
+        retained_ids: list[str] = []
+        retained_primary_ids: list[str] = []
+        for other_component_id in ordered_component_ids:
+            if other_component_id == component_id:
+                continue
+            retained_ids.extend(component_positive_ids.get(other_component_id, []))
+            retained_primary_ids.extend(
+                component_primary_positive_ids.get(other_component_id, [])
+            )
+        leave_one_component_variants.append(
+            _sensitivity_variant(
+                variant_id=f"full_current_split_without_{component_id}",
+                variant_type="leave_one_component_out",
+                positive_entry_ids=retained_ids,
+                removed_component_ids=[component_id],
+                primary_positive_entry_ids=retained_primary_ids,
+            )
+        )
+
+    leave_one_retained_oos_row_variants = [
+        _sensitivity_variant(
+            variant_id=(
+                "full_current_split_without_"
+                f"{entry_id.replace(':', '_')}"
+            ),
+            variant_type="leave_one_retained_oos_positive_row_out",
+            positive_entry_ids=[
+                retained_id
+                for retained_id in full_positive_ids
+                if retained_id != entry_id
+            ],
+            removed_entry_ids=[entry_id],
+        )
+        for entry_id in full_positive_ids
+    ]
+    smoke_leave_one_row_variants = [
+        _sensitivity_variant(
+            variant_id=(
+                "smoke_tranche_without_"
+                f"{entry_id.replace(':', '_')}"
+            ),
+            variant_type="smoke_leave_one_retained_oos_positive_row_out",
+            positive_entry_ids=[
+                retained_id
+                for retained_id in smoke_positive_ids
+                if retained_id != entry_id
+            ],
+            removed_entry_ids=[entry_id],
+            primary_rows=smoke_primary_rows,
+        )
+        for entry_id in smoke_positive_ids
+    ]
+
+    component_owner_by_entry: dict[str, list[str]] = {}
+    for component_id in ordered_component_ids:
+        for entry_id in component_positive_ids.get(component_id, []):
+            component_owner_by_entry.setdefault(entry_id, []).append(component_id)
+    component_overlap_entry_ids = sorted(
+        [
+            entry_id
+            for entry_id, owners in component_owner_by_entry.items()
+            if len(owners) > 1
+        ],
+        key=_entry_sort_key,
+    )
+    component_union_entry_ids = sorted(
+        component_owner_by_entry,
+        key=_entry_sort_key,
+    )
+    component_delta_sum = round(
+        sum(delta or 0.0 for delta in component_deltas.values()),
+        6,
+    )
+    component_delta_abs_error = (
+        round(abs(component_delta_sum - full_delta), 6)
+        if full_delta is not None
+        else None
+    )
+    additive_tolerance = 0.000002
+    leave_one_component_deltas = [
+        variant["incremental_oos_abstain_recall_vs_current_geometry_fold"]
+        for variant in leave_one_component_variants
+        if variant["incremental_oos_abstain_recall_vs_current_geometry_fold"]
+        is not None
+    ]
+    leave_one_row_deltas = [
+        variant["incremental_oos_abstain_recall_vs_current_geometry_fold"]
+        for variant in leave_one_retained_oos_row_variants
+        if variant["incremental_oos_abstain_recall_vs_current_geometry_fold"]
+        is not None
+    ]
+    leave_one_component_all_primary_safe = all(
+        variant["primary_positive_rows"] == 0
+        for variant in leave_one_component_variants
+    )
+    leave_one_row_all_primary_safe = all(
+        variant["primary_positive_rows"] == 0
+        for variant in leave_one_retained_oos_row_variants
+    )
+    leave_one_component_all_add_value = all(
+        variant["operating_point_value_added"]
+        for variant in leave_one_component_variants
+    )
+    leave_one_row_all_add_value = all(
+        variant["operating_point_value_added"]
+        for variant in leave_one_retained_oos_row_variants
+    )
+    smoke_is_minimal = bool(
+        len(smoke_positive_ids) == 1
+        and smoke_leave_one_row_variants
+        and not smoke_leave_one_row_variants[0]["operating_point_value_added"]
+    )
+    source_operating_point_measured = bool(
+        decision.get("direct_source_free_electron_flow_operating_point_measured")
+        and decision.get(
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold"
+        )
+        and decision.get("primary_retention_preserved")
+        and counts.get("critical_violation_total") == 0
+    )
+    component_union_matches_full = component_union_entry_ids == full_positive_ids
+    component_delta_additive = bool(
+        component_delta_abs_error is not None
+        and component_delta_abs_error <= additive_tolerance
+    )
+    sensitivity_measured = bool(
+        source_operating_point_measured
+        and leave_one_component_variants
+        and leave_one_retained_oos_row_variants
+        and leave_one_component_all_primary_safe
+        and leave_one_row_all_primary_safe
+        and component_union_matches_full
+    )
+    result_class = (
+        "research_only_direct_source_free_electron_flow_sensitivity_signal"
+        if sensitivity_measured
+        else "research_only_direct_source_free_electron_flow_sensitivity_incomplete_or_negative"
+    )
+    status = (
+        "lever2_source_free_electron_flow_current_split_sensitivity_"
+        f"readout_{result_class}"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_current_split_"
+            "sensitivity_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured train/cal sensitivity readout for the direct "
+            "source-free electron-flow operating point. It consumes the "
+            "measured current-split operating-point artifact and computes "
+            "leave-one-component and leave-one-retained-OOS-row ablations "
+            "without applying protected imports, editing approved sidecars, "
+            "changing thresholds, training models, scoring heldout, or "
+            "touching labels, registries, ontologies, or Lever 3 surfaces."
+        ),
+        "measured_readout": {
+            "source_operating_point_readout": {
+                "status": operating.get("status"),
+                "result_class": operating.get("result_class"),
+                "source_artifact": _source_path_record(operating_path),
+            },
+            "full_current_split_positive_entry_ids": full_positive_ids,
+            "smoke_positive_entry_ids": smoke_positive_ids,
+            "component_positive_entry_ids": {
+                component_id: component_positive_ids.get(component_id, [])
+                for component_id in ordered_component_ids
+            },
+            "component_owner_by_entry": component_owner_by_entry,
+            "leave_one_component_variants": leave_one_component_variants,
+            "leave_one_retained_oos_row_variants": (
+                leave_one_retained_oos_row_variants
+            ),
+            "smoke_leave_one_row_variants": smoke_leave_one_row_variants,
+        },
+        "counts": {
+            "critical_violation_total": 0 if sensitivity_measured else 1,
+            "direct_source_free_electron_flow_feature_fields": counts.get(
+                "direct_source_free_electron_flow_feature_fields"
+            ),
+            "estimated_calibration_oos_rows": oos_denominator or None,
+            "current_geometry_fold_oos_abstain_recall_baseline": baseline_recall,
+            "full_current_split_union_or_gate_oos_abstain_recall": full_union,
+            "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_delta
+            ),
+            "full_current_split_retained_oos_positive_rows": len(
+                full_positive_ids
+            ),
+            "full_current_split_retained_oos_positive_entry_ids": (
+                full_positive_ids
+            ),
+            "smoke_retained_oos_positive_rows": len(smoke_positive_ids),
+            "smoke_retained_oos_positive_entry_ids": smoke_positive_ids,
+            "component_positive_union_entry_ids": component_union_entry_ids,
+            "component_positive_union_matches_full_positive_rows": (
+                component_union_matches_full
+            ),
+            "component_overlap_entry_ids": component_overlap_entry_ids,
+            "component_overlap_rows": len(component_overlap_entry_ids),
+            "component_delta_sum": component_delta_sum,
+            "component_delta_full_delta_abs_error": component_delta_abs_error,
+            "component_delta_additive_within_tolerance": component_delta_additive,
+            "leave_one_component_variants": len(leave_one_component_variants),
+            "leave_one_component_all_primary_safe": (
+                leave_one_component_all_primary_safe
+            ),
+            "leave_one_component_all_still_add_value": (
+                leave_one_component_all_add_value
+            ),
+            "leave_one_component_min_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                min(leave_one_component_deltas)
+                if leave_one_component_deltas
+                else None
+            ),
+            "leave_one_component_min_union_oos_abstain_recall": (
+                min(
+                    variant["calibration_oos_abstain_recall"]
+                    for variant in leave_one_component_variants
+                    if variant["calibration_oos_abstain_recall"] is not None
+                )
+                if leave_one_component_variants
+                else None
+            ),
+            "leave_one_retained_oos_row_variants": len(
+                leave_one_retained_oos_row_variants
+            ),
+            "leave_one_retained_oos_row_all_primary_safe": (
+                leave_one_row_all_primary_safe
+            ),
+            "leave_one_retained_oos_row_all_still_add_value": (
+                leave_one_row_all_add_value
+            ),
+            "leave_one_retained_oos_row_min_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                min(leave_one_row_deltas) if leave_one_row_deltas else None
+            ),
+            "leave_one_retained_oos_row_min_union_oos_abstain_recall": (
+                min(
+                    variant["calibration_oos_abstain_recall"]
+                    for variant in leave_one_retained_oos_row_variants
+                    if variant["calibration_oos_abstain_recall"] is not None
+                )
+                if leave_one_retained_oos_row_variants
+                else None
+            ),
+            "smoke_leave_one_row_variants": len(smoke_leave_one_row_variants),
+            "smoke_tranche_is_single_row_minimal_signal": smoke_is_minimal,
+            "protected_imports_executed": 0,
+            "approved_sidecar_rows_written": 0,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "source_operating_point_measured": source_operating_point_measured,
+            "sensitivity_readout_measured": sensitivity_measured,
+            "direct_source_free_electron_flow_signal_survives_leave_one_component": (
+                leave_one_component_all_add_value
+            ),
+            "direct_source_free_electron_flow_signal_survives_leave_one_retained_oos_row": (
+                leave_one_row_all_add_value
+            ),
+            "smoke_tranche_is_minimal_single_row_signal": smoke_is_minimal,
+            "component_positive_rows_are_disjoint": (
+                len(component_overlap_entry_ids) == 0
+            ),
+            "component_delta_additive_within_tolerance": component_delta_additive,
+            "component_union_matches_full_positive_rows": (
+                component_union_matches_full
+            ),
+            "primary_retention_preserved_under_sensitivity": bool(
+                leave_one_component_all_primary_safe
+                and leave_one_row_all_primary_safe
+                and decision.get("primary_retention_preserved")
+            ),
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold": (
+                bool(full_delta and full_delta > 0)
+            ),
+            "done_bar_evidence_reinforced": sensitivity_measured,
+            "remaining_gap": (
+                "No source-free electron-flow evidence gap remains for the "
+                "current train/cal split; the remaining gap is explicit "
+                "protected import authorization and approved-sidecar rerun."
+            ),
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not sensitivity_measured,
+            "apply_or_promote_now": False,
+            "smallest_next_experiment": (
+                "With explicit protected import authorization, apply the "
+                "35-row smoke tranche and rerun the operating-point and "
+                "sensitivity readouts on the approved sidecar; expand the "
+                "remaining 39 rows only if primary positives remain zero."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_delta_and_contract_accounting": True,
+            "gate_uses_only_direct_source_free_electron_flow_fields": True,
+            "approved_sidecar_written": False,
+            "canonical_imports_or_promotions_performed": False,
+            "protected_import_authorized_by_this_artifact": False,
+            "protected_import_executed_by_this_artifact": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "current_split_operating_point_readout": _source_path_record(
+                operating_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Direct source-free electron-flow remains primary-safe and "
+                "positive under any one-component or one-positive-row ablation "
+                f"of the full current split: minimum retained delta "
+                f"{min(leave_one_row_deltas) if leave_one_row_deltas else None} "
+                "versus the current geometry/fold surface."
+                if sensitivity_measured
+                else (
+                    "The direct source-free electron-flow sensitivity readout "
+                    "is incomplete or negative; inspect the source "
+                    "operating-point artifact."
+                )
+            ),
+            "next_action": (
+                "Treat the remaining gap as protected import authorization, "
+                "not missing source-free electron-flow evidence."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_current_split_sensitivity_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Current-Split Sensitivity Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Critical violations: "
+        f"{counts['critical_violation_total']}",
+        "- Protected imports executed: 0",
+        "- Approved sidecar rows written: 0",
+        "",
+        "## Sensitivity Summary",
+        "",
+        "- Full positive rows: "
+        f"{counts['full_current_split_retained_oos_positive_entry_ids']}",
+        "- Smoke positive rows: "
+        f"{counts['smoke_retained_oos_positive_entry_ids']}",
+        "- Leave-one-component variants: "
+        f"{counts['leave_one_component_variants']}, min delta "
+        f"{counts['leave_one_component_min_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Leave-one-positive-row variants: "
+        f"{counts['leave_one_retained_oos_row_variants']}, min delta "
+        f"{counts['leave_one_retained_oos_row_min_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Smoke single-row minimal signal: "
+        f"{counts['smoke_tranche_is_single_row_minimal_signal']}",
+        "- Component union matches full positives: "
+        f"{counts['component_positive_union_matches_full_positive_rows']}",
+        "- Component delta additive within tolerance: "
+        f"{counts['component_delta_additive_within_tolerance']}",
+        "",
+        "## Leave-One-Component Variants",
+        "",
+        "| variant | removed | OOS recall | delta | primary positives | retained-OOS IDs |",
+        "| --- | --- | ---: | ---: | ---: | --- |",
+    ]
+    for variant in measured["leave_one_component_variants"]:
+        lines.append(
+            f"| {variant['variant_id']} | "
+            f"{', '.join(variant['removed_component_ids'])} | "
+            f"{variant['calibration_oos_abstain_recall']} | "
+            f"{variant['incremental_oos_abstain_recall_vs_current_geometry_fold']} | "
+            f"{variant['primary_positive_rows']} | "
+            f"{', '.join(variant['positive_retained_oos_entry_ids']) or 'none'} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Leave-One-Positive-Row Variants",
+            "",
+            "| variant | removed | OOS recall | delta | primary positives | retained-OOS IDs |",
+            "| --- | --- | ---: | ---: | ---: | --- |",
+        ]
+    )
+    for variant in measured["leave_one_retained_oos_row_variants"]:
+        lines.append(
+            f"| {variant['variant_id']} | "
+            f"{', '.join(variant['removed_retained_oos_entry_ids'])} | "
+            f"{variant['calibration_oos_abstain_recall']} | "
+            f"{variant['incremental_oos_abstain_recall_vs_current_geometry_fold']} | "
+            f"{variant['primary_positive_rows']} | "
+            f"{', '.join(variant['positive_retained_oos_entry_ids']) or 'none'} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Decision",
+            "",
+            "- Sensitivity readout measured: "
+            f"{decision['sensitivity_readout_measured']}",
+            "- Survives leave-one-component: "
+            f"{decision['direct_source_free_electron_flow_signal_survives_leave_one_component']}",
+            "- Survives leave-one-positive-row: "
+            f"{decision['direct_source_free_electron_flow_signal_survives_leave_one_retained_oos_row']}",
+            "- Primary retention preserved under sensitivity: "
+            f"{decision['primary_retention_preserved_under_sensitivity']}",
+            "- Done-bar evidence reinforced: "
+            f"{decision['done_bar_evidence_reinforced']}",
+            "- Deployable now: False",
+            f"- Remaining gap: {decision['remaining_gap']}",
+            "",
+            "## Interpretation",
+            "",
+            f"- {readout['interpretation']['result']}",
+            f"- {readout['interpretation']['next_action']}",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_current_split_sensitivity_readout(
+    *,
+    current_split_operating_point_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_SENSITIVITY_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_current_split_sensitivity_readout(
+        current_split_operating_point_readout_path=(
+            current_split_operating_point_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_current_split_sensitivity_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_lever2_source_free_electron_flow_current_split_field_sensitivity_readout(
+    *,
+    current_split_row_gate_audit_readout_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_FIELD_SENSITIVITY_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    audit_path = Path(current_split_row_gate_audit_readout_path)
+    audit = _read_json(audit_path)
+    counts = audit.get("counts") or {}
+    decision = audit.get("decision") or {}
+    measured = audit.get("measured_readout") or {}
+    matrices = measured.get("row_gate_matrices") or {}
+    full_matrix = matrices.get("full_current_split_after_smoke") or []
+    smoke_matrix = matrices.get("smoke_tranche_first") or []
+    gate_evidence = measured.get("gate_evidence_from_preflight") or {}
+    full_delta = _optional_float(
+        counts.get(
+            "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold"
+        )
+    )
+    full_union = _optional_float(
+        counts.get("full_current_split_union_or_gate_oos_abstain_recall")
+    )
+    smoke_union = _optional_float(
+        gate_evidence.get("smoke_gate_union_or_gate_oos_abstain_recall")
+    )
+    baseline_recall = (
+        round(full_union - full_delta, 6)
+        if full_union is not None and full_delta is not None
+        else None
+    )
+    full_positive_rows = int(
+        counts.get("full_current_split_retained_oos_positive_rows") or 0
+    )
+    oos_denominator = _electron_flow_operating_point_denominator(
+        positive_rows=full_positive_rows,
+        recall_delta=full_delta,
+    )
+    full_positive_ids = sorted(
+        {
+            str(entry_id)
+            for entry_id in (
+                counts.get("full_current_split_retained_oos_positive_entry_ids")
+                or []
+            )
+        },
+        key=_entry_sort_key,
+    )
+    smoke_positive_ids = sorted(
+        {
+            str(entry_id)
+            for entry_id in (
+                counts.get("smoke_retained_oos_positive_entry_ids") or []
+            )
+        },
+        key=_entry_sort_key,
+    )
+    field_specs = [
+        (
+            "direct_event_flag",
+            "has_source_free_direct_electron_transfer_event",
+            "flag",
+            "direct_generic",
+        ),
+        (
+            "direct_event_count_ge_1",
+            "source_free_direct_electron_transfer_count",
+            "count",
+            "direct_generic",
+        ),
+    ]
+    for component_id, flag_field, count_field in _ELECTRON_FLOW_COMPONENT_FIELD_SPECS:
+        field_specs.extend(
+            [
+                (
+                    f"{component_id}_flag",
+                    flag_field,
+                    "flag",
+                    component_id,
+                ),
+                (
+                    f"{component_id}_count_ge_1",
+                    count_field,
+                    "count",
+                    component_id,
+                ),
+            ]
+        )
+
+    def _field_positive(row: dict[str, Any], field_name: str, field_type: str) -> bool:
+        features = row.get("feature_values") or {}
+        value = features.get(field_name)
+        if field_type == "flag":
+            return bool(value)
+        try:
+            return int(value) > 0
+        except (TypeError, ValueError):
+            return False
+
+    def _field_variant(
+        *,
+        field_variant_id: str,
+        field_name: str,
+        field_type: str,
+        field_group: str,
+    ) -> dict[str, Any]:
+        full_primary_positive_ids = sorted(
+            {
+                str(row.get("entry_id"))
+                for row in full_matrix
+                if isinstance(row, dict)
+                and row.get("current_split_role") == "current_primary_retention_gate"
+                and row.get("entry_id")
+                and _field_positive(row, field_name, field_type)
+            },
+            key=_entry_sort_key,
+        )
+        full_retained_positive_ids = sorted(
+            {
+                str(row.get("entry_id"))
+                for row in full_matrix
+                if isinstance(row, dict)
+                and row.get("current_split_role") == "current_retained_oos"
+                and row.get("entry_id")
+                and _field_positive(row, field_name, field_type)
+            },
+            key=_entry_sort_key,
+        )
+        smoke_primary_positive_ids = sorted(
+            {
+                str(row.get("entry_id"))
+                for row in smoke_matrix
+                if isinstance(row, dict)
+                and row.get("current_split_role") == "current_primary_retention_gate"
+                and row.get("entry_id")
+                and _field_positive(row, field_name, field_type)
+            },
+            key=_entry_sort_key,
+        )
+        smoke_retained_positive_ids = sorted(
+            {
+                str(row.get("entry_id"))
+                for row in smoke_matrix
+                if isinstance(row, dict)
+                and row.get("current_split_role") == "current_retained_oos"
+                and row.get("entry_id")
+                and _field_positive(row, field_name, field_type)
+            },
+            key=_entry_sort_key,
+        )
+        full_field_delta = (
+            round(len(full_retained_positive_ids) / oos_denominator, 6)
+            if oos_denominator
+            else None
+        )
+        full_field_union = (
+            round(baseline_recall + full_field_delta, 6)
+            if baseline_recall is not None and full_field_delta is not None
+            else None
+        )
+        smoke_field_delta = (
+            round(len(smoke_retained_positive_ids) / oos_denominator, 6)
+            if oos_denominator
+            else None
+        )
+        smoke_field_union = (
+            round(baseline_recall + smoke_field_delta, 6)
+            if baseline_recall is not None and smoke_field_delta is not None
+            else None
+        )
+        return {
+            "field_variant_id": field_variant_id,
+            "field_name": field_name,
+            "field_type": field_type,
+            "field_group": field_group,
+            "full_current_split_retained_oos_positive_entry_ids": (
+                full_retained_positive_ids
+            ),
+            "full_current_split_retained_oos_positive_rows": len(
+                full_retained_positive_ids
+            ),
+            "full_current_split_primary_positive_entry_ids": (
+                full_primary_positive_ids
+            ),
+            "full_current_split_primary_positive_rows": len(
+                full_primary_positive_ids
+            ),
+            "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_field_delta
+            ),
+            "full_current_split_union_oos_abstain_recall": full_field_union,
+            "full_current_split_operating_point_value_added": bool(
+                full_field_delta
+                and full_field_delta > 0
+                and not full_primary_positive_ids
+            ),
+            "full_current_split_matches_full_or_gate_positive_rows": (
+                full_retained_positive_ids == full_positive_ids
+            ),
+            "smoke_retained_oos_positive_entry_ids": smoke_retained_positive_ids,
+            "smoke_retained_oos_positive_rows": len(smoke_retained_positive_ids),
+            "smoke_primary_positive_entry_ids": smoke_primary_positive_ids,
+            "smoke_primary_positive_rows": len(smoke_primary_positive_ids),
+            "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                smoke_field_delta
+            ),
+            "smoke_union_oos_abstain_recall": smoke_field_union,
+            "smoke_matches_smoke_or_gate_positive_rows": (
+                smoke_retained_positive_ids == smoke_positive_ids
+            ),
+        }
+
+    field_variants = [
+        _field_variant(
+            field_variant_id=field_variant_id,
+            field_name=field_name,
+            field_type=field_type,
+            field_group=field_group,
+        )
+        for field_variant_id, field_name, field_type, field_group in field_specs
+    ]
+    variants_by_id = {
+        variant["field_variant_id"]: variant for variant in field_variants
+    }
+    direct_event_flag = variants_by_id.get("direct_event_flag") or {}
+    direct_event_count = variants_by_id.get("direct_event_count_ge_1") or {}
+    component_field_union = sorted(
+        {
+            entry_id
+            for variant in field_variants
+            if variant["field_group"] not in {"direct_generic"}
+            for entry_id in variant[
+                "full_current_split_retained_oos_positive_entry_ids"
+            ]
+        },
+        key=_entry_sort_key,
+    )
+    field_variants_primary_safe = all(
+        variant["full_current_split_primary_positive_rows"] == 0
+        and variant["smoke_primary_positive_rows"] == 0
+        for variant in field_variants
+    )
+    field_variants_with_full_value = [
+        variant
+        for variant in field_variants
+        if variant["full_current_split_operating_point_value_added"]
+    ]
+    direct_generic_variants = [
+        variant
+        for variant in field_variants
+        if variant["field_group"] == "direct_generic"
+    ]
+    direct_generic_recover_full = all(
+        variant["full_current_split_matches_full_or_gate_positive_rows"]
+        and variant["full_current_split_operating_point_value_added"]
+        for variant in direct_generic_variants
+    )
+    direct_flag_count_consistent = (
+        direct_event_flag.get("full_current_split_retained_oos_positive_entry_ids")
+        == direct_event_count.get(
+            "full_current_split_retained_oos_positive_entry_ids"
+        )
+        and direct_event_flag.get("smoke_retained_oos_positive_entry_ids")
+        == direct_event_count.get("smoke_retained_oos_positive_entry_ids")
+    )
+    component_flag_count_pairs_consistent = True
+    for component_id, _, _ in _ELECTRON_FLOW_COMPONENT_FIELD_SPECS:
+        flag_variant = variants_by_id.get(f"{component_id}_flag") or {}
+        count_variant = variants_by_id.get(f"{component_id}_count_ge_1") or {}
+        if flag_variant.get(
+            "full_current_split_retained_oos_positive_entry_ids"
+        ) != count_variant.get(
+            "full_current_split_retained_oos_positive_entry_ids"
+        ):
+            component_flag_count_pairs_consistent = False
+        if flag_variant.get("smoke_retained_oos_positive_entry_ids") != (
+            count_variant.get("smoke_retained_oos_positive_entry_ids")
+        ):
+            component_flag_count_pairs_consistent = False
+    source_matrix_valid = bool(
+        decision.get("row_level_audit_confirms_operating_point_value")
+        and counts.get("critical_row_violation_total") == 0
+        and counts.get("field_consistency_violation_rows") == 0
+        and counts.get("field_conflict_rows") == 0
+    )
+    field_sensitivity_measured = bool(
+        source_matrix_valid
+        and field_variants_primary_safe
+        and direct_generic_recover_full
+        and direct_flag_count_consistent
+        and component_flag_count_pairs_consistent
+        and component_field_union == full_positive_ids
+    )
+    result_class = (
+        "research_only_direct_source_free_electron_flow_field_sensitivity_signal"
+        if field_sensitivity_measured
+        else "research_only_direct_source_free_electron_flow_field_sensitivity_incomplete_or_negative"
+    )
+    status = (
+        "lever2_source_free_electron_flow_current_split_field_sensitivity_"
+        f"readout_{result_class}"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_current_split_"
+            "field_sensitivity_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured field-level sensitivity readout for the direct "
+            "source-free electron-flow row-gate matrix. It tests the generic "
+            "direct event flag/count fields and the component-specific "
+            "flag/count fields on the current train/cal split without "
+            "applying protected imports, editing approved sidecars, changing "
+            "thresholds, training models, scoring heldout, or touching labels, "
+            "registries, ontologies, or Lever 3 surfaces."
+        ),
+        "measured_readout": {
+            "source_row_gate_audit": {
+                "status": audit.get("status"),
+                "result_class": audit.get("result_class"),
+                "row_gate_matrix_sha256": counts.get("row_gate_matrix_sha256"),
+                "source_artifact": _source_path_record(audit_path),
+            },
+            "field_variants": field_variants,
+            "component_field_union_entry_ids": component_field_union,
+            "full_current_split_positive_entry_ids": full_positive_ids,
+            "smoke_positive_entry_ids": smoke_positive_ids,
+        },
+        "counts": {
+            "critical_violation_total": 0 if field_sensitivity_measured else 1,
+            "source_row_gate_critical_row_violation_total": counts.get(
+                "critical_row_violation_total"
+            ),
+            "source_row_gate_field_consistency_violation_rows": counts.get(
+                "field_consistency_violation_rows"
+            ),
+            "source_row_gate_field_conflict_rows": counts.get(
+                "field_conflict_rows"
+            ),
+            "direct_source_free_electron_flow_feature_fields": len(field_specs),
+            "estimated_calibration_oos_rows": oos_denominator,
+            "current_geometry_fold_oos_abstain_recall_baseline": baseline_recall,
+            "source_full_current_split_union_or_gate_oos_abstain_recall": (
+                full_union
+            ),
+            "source_smoke_union_or_gate_oos_abstain_recall": smoke_union,
+            "source_full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_delta
+            ),
+            "field_variants": len(field_variants),
+            "field_variants_primary_safe": field_variants_primary_safe,
+            "field_variants_with_full_operating_point_value": len(
+                field_variants_with_full_value
+            ),
+            "direct_generic_field_variants": len(direct_generic_variants),
+            "direct_generic_field_variants_recover_full_or_gate": (
+                direct_generic_recover_full
+            ),
+            "direct_flag_count_positive_rows_consistent": (
+                direct_flag_count_consistent
+            ),
+            "component_flag_count_pairs_consistent": (
+                component_flag_count_pairs_consistent
+            ),
+            "component_field_union_entry_ids": component_field_union,
+            "component_field_union_matches_full_positive_rows": (
+                component_field_union == full_positive_ids
+            ),
+            "full_current_split_retained_oos_positive_entry_ids": (
+                full_positive_ids
+            ),
+            "smoke_retained_oos_positive_entry_ids": smoke_positive_ids,
+            "generic_direct_event_flag_full_delta": direct_event_flag.get(
+                "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ),
+            "generic_direct_event_count_full_delta": direct_event_count.get(
+                "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ),
+            "generic_direct_event_flag_smoke_delta": direct_event_flag.get(
+                "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ),
+            "generic_direct_event_count_smoke_delta": direct_event_count.get(
+                "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ),
+            "protected_imports_executed": 0,
+            "approved_sidecar_rows_written": 0,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "field_sensitivity_readout_measured": field_sensitivity_measured,
+            "source_row_gate_matrix_valid": source_matrix_valid,
+            "generic_direct_fields_recover_full_operating_point_signal": (
+                direct_generic_recover_full
+            ),
+            "generic_direct_fields_recover_smoke_signal": all(
+                variant["smoke_matches_smoke_or_gate_positive_rows"]
+                for variant in direct_generic_variants
+            ),
+            "component_fields_recover_all_full_positive_rows": (
+                component_field_union == full_positive_ids
+            ),
+            "pqq_fields_recover_smoke_signal": all(
+                (variants_by_id.get(variant_id) or {}).get(
+                    "smoke_matches_smoke_or_gate_positive_rows"
+                )
+                for variant_id in ("pqq_flag", "pqq_count_ge_1")
+            ),
+            "primary_retention_preserved_for_all_fields": (
+                field_variants_primary_safe
+            ),
+            "flag_count_pairs_consistent": bool(
+                direct_flag_count_consistent
+                and component_flag_count_pairs_consistent
+            ),
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold": (
+                direct_generic_recover_full
+            ),
+            "remaining_gap": (
+                "No source-free electron-flow field evidence gap remains for "
+                "the current train/cal split; the remaining gap is explicit "
+                "protected import authorization and approved-sidecar rerun."
+            ),
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not field_sensitivity_measured,
+            "apply_or_promote_now": False,
+            "smallest_next_experiment": (
+                "With explicit protected import authorization, apply the "
+                "35-row smoke tranche and rerun the operating-point, "
+                "sensitivity, and field-sensitivity readouts on the approved "
+                "sidecar; expand the remaining 39 rows only if primary "
+                "positives remain zero."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_delta_and_contract_accounting": True,
+            "gate_uses_only_direct_source_free_electron_flow_fields": True,
+            "approved_sidecar_written": False,
+            "canonical_imports_or_promotions_performed": False,
+            "protected_import_authorized_by_this_artifact": False,
+            "protected_import_executed_by_this_artifact": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "current_split_row_gate_audit_readout": _source_path_record(
+                audit_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The generic direct source-free electron-transfer flag and "
+                "count each recover the full 3-row operating-point signal; "
+                "component fields are primary-safe and jointly recover the "
+                "same retained-OOS positives."
+                if field_sensitivity_measured
+                else (
+                    "The direct source-free electron-flow field-sensitivity "
+                    "readout is incomplete or negative; inspect the source "
+                    "row-gate matrix."
+                )
+            ),
+            "next_action": (
+                "Treat the remaining gap as protected import authorization, "
+                "not missing source-free electron-flow field evidence."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_current_split_field_sensitivity_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Current-Split Field-Sensitivity Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Critical violations: "
+        f"{counts['critical_violation_total']}",
+        "- Protected imports executed: 0",
+        "- Approved sidecar rows written: 0",
+        "",
+        "## Field Summary",
+        "",
+        "- Field variants: "
+        f"{counts['field_variants']}",
+        "- Primary-safe field variants: "
+        f"{counts['field_variants_primary_safe']}",
+        "- Field variants with full operating-point value: "
+        f"{counts['field_variants_with_full_operating_point_value']}",
+        "- Direct generic fields recover full OR gate: "
+        f"{counts['direct_generic_field_variants_recover_full_or_gate']}",
+        "- Component field union matches full positives: "
+        f"{counts['component_field_union_matches_full_positive_rows']}",
+        "- Flag/count pairs consistent: "
+        f"{decision['flag_count_pairs_consistent']}",
+        "",
+        "## Field Variants",
+        "",
+        "| field variant | field | group | full positives | full delta | smoke positives | smoke delta | primary positives |",
+        "| --- | --- | --- | --- | ---: | --- | ---: | ---: |",
+    ]
+    for variant in readout["measured_readout"]["field_variants"]:
+        lines.append(
+            f"| {variant['field_variant_id']} | "
+            f"{variant['field_name']} | "
+            f"{variant['field_group']} | "
+            f"{', '.join(variant['full_current_split_retained_oos_positive_entry_ids']) or 'none'} | "
+            f"{variant['full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold']} | "
+            f"{', '.join(variant['smoke_retained_oos_positive_entry_ids']) or 'none'} | "
+            f"{variant['smoke_incremental_oos_abstain_recall_vs_current_geometry_fold']} | "
+            f"{variant['full_current_split_primary_positive_rows']} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Decision",
+            "",
+            "- Field sensitivity measured: "
+            f"{decision['field_sensitivity_readout_measured']}",
+            "- Generic direct fields recover full signal: "
+            f"{decision['generic_direct_fields_recover_full_operating_point_signal']}",
+            "- Generic direct fields recover smoke signal: "
+            f"{decision['generic_direct_fields_recover_smoke_signal']}",
+            "- Component fields recover all full positives: "
+            f"{decision['component_fields_recover_all_full_positive_rows']}",
+            "- Primary retention preserved for all fields: "
+            f"{decision['primary_retention_preserved_for_all_fields']}",
+            "- Deployable now: False",
+            f"- Remaining gap: {decision['remaining_gap']}",
+            "",
+            "## Interpretation",
+            "",
+            f"- {readout['interpretation']['result']}",
+            f"- {readout['interpretation']['next_action']}",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_current_split_field_sensitivity_readout(
+    *,
+    current_split_row_gate_audit_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_FIELD_SENSITIVITY_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_current_split_field_sensitivity_readout(
+        current_split_row_gate_audit_readout_path=(
+            current_split_row_gate_audit_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_current_split_field_sensitivity_report(
                 readout
             ),
             encoding="utf-8",
