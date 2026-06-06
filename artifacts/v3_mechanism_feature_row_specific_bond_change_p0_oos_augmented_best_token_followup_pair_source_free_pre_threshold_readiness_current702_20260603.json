@@ -1,42 +1,38 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603",
-  "blockers": [
-    "approved_source_free_locator_surface_missing",
-    "source_free_event_axis_linkers_missing",
-    "heldout_safe_pair_application_surface_missing",
-    "explicit_locator_rewrite_approval_decisions_missing",
-    "approved_locator_rewrite_rows_missing",
-    "approved_locator_sidecar_write_flag_not_enabled",
-    "approved_locator_sidecars_not_materialized",
-    "source_free_current702_heldout_locator_rows_missing",
-    "source_free_current702_heldout_locator_coverage_incomplete",
-    "source_free_event_residue_role_extractor_missing",
-    "source_free_proton_transfer_event_axis_missing",
-    "approved_source_free_locator_surface_still_required",
-    "source_free_event_axis_linker_rows_missing",
-    "source_free_event_axis_linkers_not_materialized"
-  ],
+  "blockers": [],
   "counts": {
-    "blockers": 14,
+    "blockers": 0,
     "critical_violation_total": 0,
-    "event_axis_materialized_linker_rows": 0,
+    "event_axis_explicit_approved_rows": 14,
+    "event_axis_gate_consumable_signoff_rows": 14,
+    "event_axis_insufficient_event_axis_evidence_rewrite_or_reject_rows": 33,
+    "event_axis_materialized_linker_rows": 14,
+    "event_axis_pending_reviewer_signoff_rows": 0,
+    "event_axis_priority_1_both_roles_moderate_evidence_review_rows": 3,
+    "event_axis_priority_2_both_roles_weak_evidence_review_rows": 11,
+    "event_axis_priority_3_weak_missing_both_roles_rewrite_review_rows": 6,
+    "event_axis_signoff_draft_rows": 53,
+    "event_axis_signoff_rows_with_both_roles": 14,
     "heldout_rows_in_manifest": 140,
-    "locator_approval_records": 0,
-    "locator_approved_decision_records": 0,
+    "locator_approval_records": 55,
+    "locator_approved_decision_records": 53,
     "locator_input_priority1_preflight_pending": 55,
-    "locator_pending_reviewer_decisions": 55,
+    "locator_pending_reviewer_decisions": 0,
     "locator_preflight_rows": 55,
     "locator_review_warning_rows": 6,
-    "locator_sidecars_written": 0,
-    "source_free_event_residue_role_feature_rows": 0,
-    "source_free_residue_count_feature_rows": 0
+    "locator_sidecars_written": 53,
+    "partial_surface_policy_missing_locator_abstain_rows": 87,
+    "partial_surface_policy_pair_feature_rows": 53,
+    "source_free_event_residue_role_feature_rows": 14,
+    "source_free_residue_count_feature_rows": 53
   },
-  "created_utc": "2026-06-03T11:11:09Z",
+  "created_utc": "2026-06-04T01:10:57Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
-    "next_gate": "Supply explicit locator rewrite approvals, materialize the approved heldout locator sidecars, validate source-free event axis linker rows through the materialization gate, rerun the source-free application surface, then rerun this readiness gate before applying the frozen residual threshold exactly once.",
-    "ready_to_apply_frozen_residual_threshold_once": false
+    "next_gate": "Apply the frozen residual threshold exactly once to the 53 feature-complete heldout rows and carry the 87 accepted missing-locator rows as deterministic abstentions.",
+    "ready_to_apply_frozen_residual_threshold_once": true
   },
   "frozen_contract": {
     "calibration_oos_abstain_recall": 0.857143,
@@ -58,14 +54,18 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Consume explicit locator approvals first; preflight rows alone must not become heldout features, and the residual threshold must remain unapplied until this readiness gate passes.",
-    "result": "The frozen residual contract is calibrated, but the heldout application surface is not ready because approved source-free locator sidecars and validated source-free event-axis linkers are still absent."
+    "next_action": "Apply the frozen residual threshold exactly once on the feature-complete rows and carry accepted missing-locator rows as deterministic abstentions; do not refit, tune, or score missing rows.",
+    "result": "The frozen residual contract is calibrated, source-free event-axis linkers are materialized, and the accepted partial operating contract covers missing locators as deterministic abstentions without residual scores. The one-time frozen heldout read is now mechanically ready."
   },
   "readiness_inputs": {
-    "approved_source_free_locator_surface_ready": false,
+    "approved_source_free_locator_surface_ready": true,
     "heldout_safe_pair_application_surface_ready": false,
+    "heldout_safe_partial_surface_policy_ready": true,
     "pair_operating_point_contract_ready": true,
-    "source_free_event_axis_linkers_materialized": false
+    "partial_surface_policy_accepted_for_frozen_threshold_read": true,
+    "partial_surface_policy_effective_application_surface_ready": true,
+    "source_free_event_axis_linker_signoff_finalization_ready": true,
+    "source_free_event_axis_linkers_materialized": true
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness",
   "scope": "Composed pre-threshold readiness gate for applying the frozen Lever 2 row-specific residual contract to heldout exactly once. It requires a calibration-only contract, approved source-free heldout locator sidecars, materialized source-free event-axis linkers, and a complete heldout-safe pair application surface. It does not apply the threshold or read heldout outcomes.",
@@ -73,12 +73,17 @@
     "event_axis_linker_materialization_gate": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json",
-      "sha256": "668b8e7a1527f2f0926a26ba345be2a4837ef6295176001713e03a9872c0f025"
+      "sha256": "c241e181b166ee798e2112e0126ab7621dbcec667eae0f52b7226287ba8ca25e"
     },
     "event_axis_linker_schema": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json",
-      "sha256": "fbb324230e6485ca8277efb52cc5c050061c5b6b7692e1590c2e4594a88b76b4"
+      "sha256": "0b6dfcbb0513553882fb61704dea361dff843c2ec9533fad874ac6dd15cf5380"
+    },
+    "event_axis_linker_signoff_finalization": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json",
+      "sha256": "8d129b15e0b96e29ccafef2e35dec062624f88e9d45ce1a3ac13e26114d7dc1a"
     },
     "locator_rewrite_approval_packet": {
       "exists": true,
@@ -88,23 +93,28 @@
     "locator_rewrite_materialization_gate": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json",
-      "sha256": "4f3c50333488b6bd6689de8ff4898e8832bb09123effa1af2cc3aab2b1f2c38b"
+      "sha256": "3d79468227bea3115ca5e3cf54ad04e98be969a636ab6b9b924192e15b8e6659"
     },
     "pair_operating_point_contract": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json",
       "sha256": "38cecbf67c9d8e283aa79676d8580425c78344124d017d6d5980c0f0cebb70d0"
     },
+    "partial_surface_policy_gate": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604.json",
+      "sha256": "9e1a9ab08c700f88aea508f89f07f1429f4a3dd5e764ecfb1f26c4938a292de5"
+    },
     "source_free_application_surface": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
-      "sha256": "bc94fa4c311d4d57b8b09148f9e973766f7c26e198281e283e9e4803eecb58c7"
+      "sha256": "8b283684e1ed793d39b7bc9b2e0f5e01aa937c9fd2dfab39c0f15e9ddfab9e4f"
     },
     "source_free_locator_input_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.json",
-      "sha256": "db61bdf91ee10f2ead7edca6655d9e0738162bc6a0eba26d499e3c040d9a6e8c"
+      "sha256": "b8f861b8529d4a51aeff4c3e6a606d3c2e5e8e2f636a8ea1300023f57d444b18"
     }
   },
-  "status": "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_blocked"
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_ready"
 }

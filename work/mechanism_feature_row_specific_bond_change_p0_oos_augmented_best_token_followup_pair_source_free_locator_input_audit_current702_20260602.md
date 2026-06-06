@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Locator Input Audit - current702
 
-Run: 2026-06-02T15:33:18Z
+Run: 2026-06-03T20:06:48Z
 
 Input audit for priority-1 source-free locator queue rows. It checks whether the predicted-geometry artifact already contains source-free local ligand/cofactor anchors, and whether the selected-PDB coordinate anchor candidate audit has staged coordinate-local ligand/metal contact anchors, without M-CSA heldout mechanism text, heldout labels, source IDs, target names, or EC/Rhea IDs.
 

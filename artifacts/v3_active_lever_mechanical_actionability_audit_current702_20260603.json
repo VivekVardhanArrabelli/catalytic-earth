@@ -1,8 +1,6 @@
 {
   "artifact_id": "v3_active_lever_mechanical_actionability_audit_current702_20260603",
   "blockers": [
-    "no_active_lever_mechanical_gate_ready",
-    "source_decision_intake_preflight_not_ready",
     "p10746_policy_decision_missing",
     "lever3_confounded_structural_proxy_calibration_gap",
     "lever3_confounded_proxy_threshold_stress_retention_cost",
@@ -10,22 +8,44 @@
     "lever3_confounded_proxy_acquisition_shortfall",
     "lever3_confounded_proxy_train_cal_scoring_tranche_not_run",
     "lever3_confounded_proxy_background_axis_exhausted",
+    "lever3_confounded_proxy_unsupported_geometry_locus_scan_no_axis",
     "family_panel_expert_import_decisions_missing",
-    "source_free_locator_rewrite_approvals_missing",
-    "source_free_event_axis_linker_gate_blocked",
-    "source_free_event_axis_linkers_missing",
-    "family_panel_label_factory_gate_inputs_missing",
-    "lever2_pre_threshold_readiness_not_ready"
+    "family_panel_label_factory_gate_inputs_missing"
   ],
   "counts": {
     "automation_action_allowed_now_items": 0,
-    "blockers": 15,
-    "decision_items": 78,
-    "external_decision_required_items": 78,
+    "blockers": 10,
+    "decision_items": 131,
+    "external_decision_required_items": 23,
     "lever2_clean_locator_rewrite_items": 49,
-    "lever2_event_axis_materialized_linker_rows": 0,
-    "lever2_locator_sidecars_written": 0,
-    "lever2_pending_locator_approvals": 55,
+    "lever2_event_axis_explicit_approved_rows": 14,
+    "lever2_event_axis_gate_consumable_signoff_rows": 14,
+    "lever2_event_axis_insufficient_signoff_rows": 33,
+    "lever2_event_axis_materialized_linker_rows": 14,
+    "lever2_event_axis_pending_reviewer_signoff_rows": 0,
+    "lever2_event_axis_priority1_signoff_rows": 3,
+    "lever2_event_axis_priority2_signoff_rows": 11,
+    "lever2_event_axis_signoff_draft_rows": 53,
+    "lever2_event_axis_signoff_rows_with_both_roles": 14,
+    "lever2_heldout_threshold_feature_complete_oos_abstain_recall": 1.0,
+    "lever2_heldout_threshold_feature_complete_primary_retain_recall": 0.0,
+    "lever2_heldout_threshold_overall_oos_abstain_recall": 1.0,
+    "lever2_heldout_threshold_overall_primary_retain_recall": 0.0,
+    "lever2_heldout_threshold_read_once_performed": true,
+    "lever2_locator_sidecars_written": 53,
+    "lever2_partial_surface_operating_contract_blockers": 0,
+    "lever2_partial_surface_operating_contract_decision_required": false,
+    "lever2_partial_surface_policy_missing_locator_abstain_rows": 87,
+    "lever2_partial_surface_policy_pair_feature_rows": 53,
+    "lever2_partial_surface_policy_ready": true,
+    "lever2_partial_surface_policy_threshold_read_accepted": true,
+    "lever2_pending_event_axis_signoffs": 0,
+    "lever2_pending_locator_approvals": 0,
+    "lever2_post_readout_coverage_repair_alone_sufficient": false,
+    "lever2_post_readout_feature_complete_primary_abstentions": 32,
+    "lever2_post_readout_oos_missing_locator_abstentions": 71,
+    "lever2_post_readout_primary_missing_locator_abstentions": 16,
+    "lever2_post_readout_recovery_queue_rows": 119,
     "lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct": 16,
     "lever3_confounded_high_cofactor_proxy_rows": 4,
     "lever3_confounded_proxy_acquisition_blockers": 6,
@@ -37,7 +57,7 @@
     "lever3_confounded_proxy_background_axis_exhausted": true,
     "lever3_confounded_proxy_background_axis_scout_axes": 3,
     "lever3_confounded_proxy_background_axis_scout_ready_axes": 0,
-    "lever3_confounded_proxy_background_only_rows": 160,
+    "lever3_confounded_proxy_background_only_rows": 170,
     "lever3_confounded_proxy_candidate_pool_blockers": 3,
     "lever3_confounded_proxy_candidate_pool_high_axis_rows": 0,
     "lever3_confounded_proxy_candidate_pool_structural_axis_rows": 0,
@@ -45,8 +65,8 @@
     "lever3_confounded_proxy_evidence_extension_blockers": 6,
     "lever3_confounded_proxy_evidence_request_rows": 48,
     "lever3_confounded_proxy_new_axis_contract_blockers": 0,
-    "lever3_confounded_proxy_new_axis_contracted_rows": 4,
-    "lever3_confounded_proxy_new_axis_full_channel_rows": 4,
+    "lever3_confounded_proxy_new_axis_contracted_rows": 6,
+    "lever3_confounded_proxy_new_axis_full_channel_rows": 6,
     "lever3_confounded_proxy_new_axis_missing_full_score_rows": 0,
     "lever3_confounded_proxy_new_axis_registered": true,
     "lever3_confounded_proxy_new_axis_scored_extension_blockers": 0,
@@ -57,6 +77,14 @@
     "lever3_confounded_proxy_scoring_tranche_rows": 0,
     "lever3_confounded_proxy_scoring_tranche_structural_rows": 0,
     "lever3_confounded_proxy_threshold_stress_blockers": 2,
+    "lever3_confounded_proxy_unsupported_geometry_coordinate_files_missing": 0,
+    "lever3_confounded_proxy_unsupported_geometry_coordinate_files_observed": 8,
+    "lever3_confounded_proxy_unsupported_geometry_locus_blockers": 2,
+    "lever3_confounded_proxy_unsupported_geometry_locus_evidence_files": 0,
+    "lever3_confounded_proxy_unsupported_geometry_locus_files_scanned": 8,
+    "lever3_confounded_proxy_unsupported_geometry_locus_protein_only_files": 8,
+    "lever3_confounded_proxy_unsupported_geometry_locus_ready_to_score_rows": 0,
+    "lever3_confounded_proxy_unsupported_geometry_repair_rows": 8,
     "lever3_confounded_structural_min_new_abstained_rows_for_80pct": 170,
     "lever3_confounded_structural_proxy_abstained": 10,
     "lever3_confounded_structural_proxy_rows": 55,
@@ -66,29 +94,30 @@
     "lever4_label_factory_candidates_if_all_scenario_rows_accepted": 6,
     "lever4_label_factory_gate_input_rows": 0,
     "lever4_pending_expert_import_decisions": 22,
-    "mechanical_gates_ready_now": 0,
+    "mechanical_gates_ready_now": 1,
     "p10746_pending_policy_decisions": 1,
     "source_decision_follow_on_gate_ready_rows": 0,
     "source_decision_intake_invalid_rows": 0,
-    "source_decision_intake_pending_rows": 78
+    "source_decision_intake_pending_rows": 23
   },
-  "created_utc": "2026-06-03T18:15:50Z",
+  "created_utc": "2026-06-04T01:33:40Z",
   "decision": {
     "apply_any_decision_gate_now": false,
     "apply_frozen_residual_threshold_now": false,
     "copy_locator_sidecars_now": false,
     "deployment_closure_claim_ready_now": false,
-    "next_gate": "Record explicit decisions in the source packets with hashes unchanged. Then rerun only the matching application or materialization gates; do not read heldout or apply the frozen Lever 2 threshold until pre-threshold readiness passes.",
+    "next_gate": "Lever 2 heldout readout is already applied once and the post-readout recovery queue blocks deployment; do not rerun or retune. Continue with train/cal-safe feature repair for feature-complete primary abstentions, then source-free locator coverage recovery.",
     "run_label_factory_gate_now": false
   },
   "decision_class_counts": {
     "family_panel_expert_import_decision": 22,
     "p10746_fold_only_deployment_caveat": 1,
+    "source_free_event_axis_linker_signoff": 53,
     "source_free_locator_rewrite_approval": 55
   },
   "gate_checks": [
     {
-      "blocking_reason": "source_decision_intake_preflight_not_ready",
+      "blocking_reason": "source_decision_follow_on_rows_already_consumed",
       "gate": "source_decision_intake_preflight",
       "lever": "Lever 2/3/4",
       "next_command_after_decision": "build-active-lever-source-decision-intake-preflight",
@@ -151,6 +180,13 @@
       "ready_now": false
     },
     {
+      "blocking_reason": "unsupported_geometry_afdb_coordinates_protein_only_no_locus_evidence",
+      "gate": "confounded_proxy_train_cal_unsupported_geometry_locus_scan",
+      "lever": "Lever 3",
+      "next_command_after_decision": "scan-fold-augmented-confounded-proxy-train-cal-unsupported-geometry-coordinate-loci",
+      "ready_now": false
+    },
+    {
       "blocking_reason": "contracted_proxy_axis_fully_scored_surface_still_blocked",
       "gate": "confounded_proxy_train_cal_new_proxy_axis_contract",
       "lever": "Lever 3",
@@ -165,18 +201,25 @@
       "ready_now": false
     },
     {
-      "blocking_reason": "source_free_locator_rewrite_approvals_missing",
+      "blocking_reason": "partial_surface_operating_contract_accepted",
+      "gate": "source_free_partial_surface_operating_contract",
+      "lever": "Lever 2",
+      "next_command_after_decision": "build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-partial-surface-operating-contract-preflight",
+      "ready_now": false
+    },
+    {
+      "blocking_reason": "source_free_heldout_threshold_readout_applied_once",
       "gate": "source_free_locator_materialization_and_pre_threshold_readiness",
       "lever": "Lever 2",
       "next_command_after_decision": "build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate",
       "ready_now": false
     },
     {
-      "blocking_reason": "source_free_event_axis_linker_gate_blocked",
+      "blocking_reason": "source_free_event_axis_linkers_materialized",
       "gate": "source_free_event_axis_linkers",
       "lever": "Lever 2",
       "next_command_after_decision": "build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-materialization-gate",
-      "ready_now": false
+      "ready_now": true
     }
   ],
   "guardrails": {
@@ -194,9 +237,9 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "No active Lever 2/3/4 gate is mechanically runnable on the current decision state.",
-    "next_action": "Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first.",
-    "result": "Lever 3 has a pre-registered source-free proxy-axis contract with 4 train/cal rows and 4 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers."
+    "headline": "1 active Lever 2/3/4 gate mechanically ready on the current decision state.",
+    "next_action": "Review the next queued pending rows: P10746 policy decision; 6 Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first. Do not score or register the unsupported-geometry proxy from those AFDB files; use a different source-free protein-only structural proxy or reviewed P10746/Lever 4 decisions.",
+    "result": "Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. The unsupported-geometry coordinate repair path scanned 8 AFDB-v6 train/cal files and found zero source-free inorganic/cofactor locus evidence. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 locator approvals and event-axis signoffs are cleared. The heldout readout has been applied once and the post-readout recovery queue blocks a deployable claim: 32 feature-complete primaries abstain by residual, 16 primaries abstain from missing source-free locators, and coverage repair alone is not sufficient."
   },
   "next_review_items": [
     {
@@ -326,88 +369,93 @@
     },
     {
       "allowed_decisions": [
-        "explicit_approve_locator_rewrite",
-        "reject_locator_rewrite"
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
       ],
-      "approved_boolean_field_to_update": "approved",
-      "candidate_sha256": "42ff54f4954c5eab5c379368bad9975644a773d6d5c503804b39313aa2054587",
-      "decision_class": "source_free_locator_rewrite_approval",
-      "decision_context_sha256": null,
-      "decision_field_to_update": "reviewer_decision",
-      "entry_id": "m_csa:3",
-      "lever": "Lever 2",
-      "planned_locator_payload_sha256": "a0a60195fe080d4369111b9b6f33645b8c0d0b772a7b4deed1038f3075be7634",
-      "priority": 3,
-      "review_status": "pending_reviewer_decision",
-      "review_status_field_to_update": null
+      "approved_boolean_field_to_update": null,
+      "candidate_sha256": null,
+      "decision_class": "family_panel_expert_import_decision",
+      "decision_context_sha256": "cea2ee2a21808597353a13885eec7e17421b794e84826900b8b770aedd19a978",
+      "decision_field_to_update": "decision",
+      "entry_id": "m_csa:116",
+      "lever": "Lever 4",
+      "planned_locator_payload_sha256": null,
+      "priority": 4,
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
-        "explicit_approve_locator_rewrite",
-        "reject_locator_rewrite"
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
       ],
-      "approved_boolean_field_to_update": "approved",
-      "candidate_sha256": "790bbeacd166d2944c29b1d57e79636d25702a5aa58c8d81fe508f7c9a910cb0",
-      "decision_class": "source_free_locator_rewrite_approval",
-      "decision_context_sha256": null,
-      "decision_field_to_update": "reviewer_decision",
-      "entry_id": "m_csa:9",
-      "lever": "Lever 2",
-      "planned_locator_payload_sha256": "a4674a271c4a0eb7934aa31940409fe24e2051342c97e8fc07745e7e388c7e41",
-      "priority": 3,
-      "review_status": "pending_reviewer_decision",
-      "review_status_field_to_update": null
+      "approved_boolean_field_to_update": null,
+      "candidate_sha256": null,
+      "decision_class": "family_panel_expert_import_decision",
+      "decision_context_sha256": "2df2367c794c10e8d9b1a1e25a7fb752bd5b69a86538ba8d2d1ae6617d7d2b4f",
+      "decision_field_to_update": "decision",
+      "entry_id": "m_csa:131",
+      "lever": "Lever 4",
+      "planned_locator_payload_sha256": null,
+      "priority": 4,
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
-        "explicit_approve_locator_rewrite",
-        "reject_locator_rewrite"
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
       ],
-      "approved_boolean_field_to_update": "approved",
-      "candidate_sha256": "c9e6611728bff41d09141a148f4c4ea45ccf0a9d908a33440ba27c8164f4deea",
-      "decision_class": "source_free_locator_rewrite_approval",
-      "decision_context_sha256": null,
-      "decision_field_to_update": "reviewer_decision",
-      "entry_id": "m_csa:32",
-      "lever": "Lever 2",
-      "planned_locator_payload_sha256": "3b92532aa5bf121756507d287ad02207a715a966aaddfcfc73c080243c3e9d3f",
-      "priority": 3,
-      "review_status": "pending_reviewer_decision",
-      "review_status_field_to_update": null
+      "approved_boolean_field_to_update": null,
+      "candidate_sha256": null,
+      "decision_class": "family_panel_expert_import_decision",
+      "decision_context_sha256": "bf6fd180920d46c6d6528d640046eb910f7b9d97de62a8bda1849ce3e1ec219c",
+      "decision_field_to_update": "decision",
+      "entry_id": "m_csa:132",
+      "lever": "Lever 4",
+      "planned_locator_payload_sha256": null,
+      "priority": 4,
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
-        "explicit_approve_locator_rewrite",
-        "reject_locator_rewrite"
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
       ],
-      "approved_boolean_field_to_update": "approved",
-      "candidate_sha256": "ebea185c65639b7b2a5ccfa9d30522ccb031205eb42ed31ef599346f6c8bb0f1",
-      "decision_class": "source_free_locator_rewrite_approval",
-      "decision_context_sha256": null,
-      "decision_field_to_update": "reviewer_decision",
-      "entry_id": "m_csa:43",
-      "lever": "Lever 2",
-      "planned_locator_payload_sha256": "2d6ac9b66074ca73a0a7052be7764d3ec197e68bad3932b48321572ec5644493",
-      "priority": 3,
-      "review_status": "pending_reviewer_decision",
-      "review_status_field_to_update": null
+      "approved_boolean_field_to_update": null,
+      "candidate_sha256": null,
+      "decision_class": "family_panel_expert_import_decision",
+      "decision_context_sha256": "3192416248745cf2bdb7051facaf00959424f2363960caa899104f09d4930de5",
+      "decision_field_to_update": "decision",
+      "entry_id": "m_csa:267",
+      "lever": "Lever 4",
+      "planned_locator_payload_sha256": null,
+      "priority": 4,
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
-        "explicit_approve_locator_rewrite",
-        "reject_locator_rewrite"
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
       ],
-      "approved_boolean_field_to_update": "approved",
-      "candidate_sha256": "e13bc109a4374aa55e6747ae63505b48ab35ab277140dcea964c27fa6ffb98b0",
-      "decision_class": "source_free_locator_rewrite_approval",
-      "decision_context_sha256": null,
-      "decision_field_to_update": "reviewer_decision",
-      "entry_id": "m_csa:44",
-      "lever": "Lever 2",
-      "planned_locator_payload_sha256": "e9ad66fe5b44ca8d6a4830ed34a035d7a2897a5af1897c5094243c889c459551",
-      "priority": 3,
-      "review_status": "pending_reviewer_decision",
-      "review_status_field_to_update": null
+      "approved_boolean_field_to_update": null,
+      "candidate_sha256": null,
+      "decision_class": "family_panel_expert_import_decision",
+      "decision_context_sha256": "8652136523d52c0716ebcf47e211f7354182fc04639c783d39b12c4ede968f47",
+      "decision_field_to_update": "decision",
+      "entry_id": "m_csa:551",
+      "lever": "Lever 4",
+      "planned_locator_payload_sha256": null,
+      "priority": 4,
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     }
   ],
   "schema_version": "northstar_next_levers.v0.active_lever_mechanical_actionability_audit",
@@ -416,12 +464,12 @@
     "active_lever_reviewer_decision_queue": {
       "exists": true,
       "path": "artifacts/v3_active_lever_reviewer_decision_queue_current702_20260603.json",
-      "sha256": "712f301ecbfb774266396a4abf45056e1b2906a2c78a6098df5becd2b3bac1c2"
+      "sha256": "93345a977f56e2ce3606380f1ad24d3089261ec7f3ba82f98c916b9cd102e1bd"
     },
     "active_lever_source_decision_intake_preflight": {
       "exists": true,
       "path": "artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json",
-      "sha256": "bbebcaa785fe7545fd2cda7d7b85b7512bb15505081e22d024c1aaac495a8bc9"
+      "sha256": "858e153741ffe6ed907b246467f20442b8e7b57aa67c4286926d7dbc23724b54"
     },
     "family_panel_label_factory_gate_readiness": {
       "exists": true,
@@ -431,17 +479,32 @@
     "lever2_event_axis_linker_materialization_gate": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json",
-      "sha256": "668b8e7a1527f2f0926a26ba345be2a4837ef6295176001713e03a9872c0f025"
+      "sha256": "c241e181b166ee798e2112e0126ab7621dbcec667eae0f52b7226287ba8ca25e"
     },
     "lever2_event_axis_linker_schema": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json",
-      "sha256": "fbb324230e6485ca8277efb52cc5c050061c5b6b7692e1590c2e4594a88b76b4"
+      "sha256": "0b6dfcbb0513553882fb61704dea361dff843c2ec9533fad874ac6dd15cf5380"
+    },
+    "lever2_partial_surface_operating_contract_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604.json",
+      "sha256": "5c62f2e5eea15f3ff8d1e6cd708735a62431c28aea891e1ad6fb9f634c98f9e2"
     },
     "lever2_pre_threshold_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json",
-      "sha256": "85628054c8b0e425f021ccd236db1378d957ae2c5962822e46c53de4b70e683f"
+      "sha256": "11e0840bbaa28f36f7382c7d1a2339bd549350a3711e3360f27322e7fbe6d6e3"
+    },
+    "lever2_source_free_heldout_threshold_readout": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json",
+      "sha256": "719fb1d1181b427bcbbf007f43c4f5db69c974788a5c2f575aa99c1abb5291e7"
+    },
+    "lever2_source_free_post_readout_recovery_queue": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.json",
+      "sha256": "27141f32ae442faf3a92fbd4e72d576f4c646dd3ddb88774768b22dce1ea900c"
     },
     "lever3_confounded_proxy_acquisition_queue": {
       "exists": true,
@@ -470,13 +533,13 @@
     },
     "lever3_confounded_proxy_train_cal_background_axis_blocker": {
       "exists": true,
-      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_blocker_current702_20260603.json",
-      "sha256": "06c67e38d5425ce38caea0378657c2e3a88c203ab9727bc7bcd3daaa58c014e4"
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_current702_20260603.json",
+      "sha256": "05d7727da612f1472f25ec4f15e20c5660ea72d8f143d731522457ad34a33090"
     },
     "lever3_confounded_proxy_train_cal_background_axis_scout": {
       "exists": true,
-      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_scout_current702_20260603.json",
-      "sha256": "aa103db87518d0b9469fd83bcf6d3e8828c741a2e6fcd7a913be9eb9bbf13907"
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603.json",
+      "sha256": "8ebe3e64b0d62393a81025f49a7ab859b4283dc4bf9d4782e80577f373cccbdd"
     },
     "lever3_confounded_proxy_train_cal_candidate_pool": {
       "exists": true,
@@ -485,18 +548,28 @@
     },
     "lever3_confounded_proxy_train_cal_new_proxy_axis_contract": {
       "exists": true,
-      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_contract_current702_20260603.json",
-      "sha256": "be08ba4e6e78495c2063a02055cf7ef57014d1d2d63e401f3aff3305267819b0"
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json",
+      "sha256": "c092a571fe31ce657407372828bc5945f6ee63f13c1ee22bf92ce2f4ccd5c35b"
     },
     "lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension": {
       "exists": true,
-      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_scored_extension_current702_20260603.json",
-      "sha256": "ebf9d205098d6daeb0380a3da2e6cddd5536405df7dd6f5ac5cf0f245557d899"
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json",
+      "sha256": "3f267b63a05f931ce3f921465d9b722c1e1b4a8245e88e076252b541abc76705"
     },
     "lever3_confounded_proxy_train_cal_scoring_tranche_plan": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603.json",
       "sha256": "b89fc505d129a2701a8fe07f1bd953b8ed67b36e6f94a23aa9b691fc0697db3d"
+    },
+    "lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_acquisition_manifest_current702_20260603.json",
+      "sha256": "9aa6b63191b17e31b14d17d15ee745ed8dc8a89e1d90e8c2c4fa933311ac9243"
+    },
+    "lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_locus_scan_current702_20260603.json",
+      "sha256": "3cd94b263c5d99eba12dc2ddcf0bdc937065d46be125e40a404e97f47aa2be0f"
     },
     "lever3_post_decision_deployment_closure_status": {
       "exists": true,

@@ -1,0 +1,839 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604",
+  "counts": {
+    "contract_same_family_minimum_new_abstained_rows_for_80pct": 170,
+    "critical_violation_total": 0,
+    "current_strict_theoretical_new_all_abstained_rows_for_80pct": 181,
+    "frozen_dispatch_same_family_slots_required": 170,
+    "loose_same_family_diagnostic_abstained_at_fixed_threshold": 15,
+    "loose_same_family_diagnostic_rows": 21,
+    "overlap_rows_removed": 0,
+    "strict_plus_loose_diagnostic_abstained_at_fixed_threshold": 26,
+    "strict_plus_loose_diagnostic_retained_at_fixed_threshold": 54,
+    "strict_plus_loose_diagnostic_rows": 80,
+    "strict_plus_loose_theoretical_new_all_abstained_rows_for_80pct": 190,
+    "strict_same_family_abstained_at_fixed_threshold": 11,
+    "strict_same_family_rows_from_refreshed_readout": 59
+  },
+  "created_utc": "2026-06-04T16:40:20Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployable_closure_after_this_readout": false,
+    "deployment_valid_readout_available": true,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "loose_same_family_evidence_sufficient_for_contract_closure": false,
+    "measured_readout_available": true,
+    "next_gate": "Do not relax same-family structural membership from this diagnostic. Even strict plus loose current-surface rows abstain only 26/80 at fixed threshold 0.44155, so the same-family structural axis still needs new non-heldout train/cal OOS acquisition evidence."
+  },
+  "fixed_threshold": 0.44155,
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_now": false,
+    "diagnostic_not_contract_closure": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "source_free_score_channels_only": true,
+    "strict_membership_relaxed_now": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "result": "The relaxed diagnostic pressure set abstains 26/80 at the unchanged fixed threshold, far below the 80% target.",
+    "smallest_next_experiment": "Acquire new non-heldout train/cal same-family structural OOS rows with deployment-valid predicted structures and source-free membership evidence, then score them at threshold 0.44155 under the frozen contract.",
+    "why_not_contract_closure": "The loose rows were already marked diagnostic-only because their membership relaxes the strict fold plus geometry component gate; counting them would change the proxy definition after seeing the gap."
+  },
+  "readout": {
+    "loose_same_family_current_surface_diagnostic": {
+      "abstain_recall": 0.714286,
+      "abstained": 15,
+      "retained": 6,
+      "rows": 21
+    },
+    "strict_plus_loose_diagnostic_if_relaxed": {
+      "abstain_recall": 0.325,
+      "abstained": 26,
+      "retained": 54,
+      "rows": 80
+    },
+    "strict_same_family_structural_current": {
+      "abstain_recall": 0.186441,
+      "abstained": 11,
+      "retained": 48,
+      "rows": 59
+    }
+  },
+  "row_readouts": [
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.3729,
+      "entry_id": "m_csa:4",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.06865
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.42405,
+      "entry_id": "m_csa:22",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.0175
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.6241,
+      "entry_id": "m_csa:25",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.18255
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.51785,
+      "entry_id": "m_csa:36",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.0763
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.4314,
+      "entry_id": "m_csa:51",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.01015
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.6154,
+      "entry_id": "m_csa:52",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.17385
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.60775,
+      "entry_id": "m_csa:59",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1662
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.61305,
+      "entry_id": "m_csa:74",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1715
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.4054,
+      "entry_id": "m_csa:78",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.03615
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.56755,
+      "entry_id": "m_csa:84",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.126
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.41345,
+      "entry_id": "m_csa:88",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0281
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.45,
+      "entry_id": "m_csa:89",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.00845
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.45895,
+      "entry_id": "m_csa:91",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "threshold_margin": 0.0174
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.6498,
+      "entry_id": "m_csa:104",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.20825
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.40305,
+      "entry_id": "m_csa:105",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.0385
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4463,
+      "entry_id": "m_csa:119",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.00475
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.5127,
+      "entry_id": "m_csa:126",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": 0.07115
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.41015,
+      "entry_id": "m_csa:130",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0314
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.40925,
+      "entry_id": "m_csa:134",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0323
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.5317,
+      "entry_id": "m_csa:135",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.09015
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.40385,
+      "entry_id": "m_csa:145",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0377
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.43465,
+      "entry_id": "m_csa:146",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.0069
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.3993,
+      "entry_id": "m_csa:177",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.04225
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.42145,
+      "entry_id": "m_csa:179",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.0201
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.65175,
+      "entry_id": "m_csa:187",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.2102
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.4103,
+      "entry_id": "m_csa:189",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.03125
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.6365,
+      "entry_id": "m_csa:190",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.19495
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.63845,
+      "entry_id": "m_csa:206",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1969
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.4348,
+      "entry_id": "m_csa:209",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.00675
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.5078,
+      "entry_id": "m_csa:223",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.06625
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.4011,
+      "entry_id": "m_csa:224",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.04045
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.5438,
+      "entry_id": "m_csa:229",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.10225
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.45495,
+      "entry_id": "m_csa:234",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.0134
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4716,
+      "entry_id": "m_csa:240",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.03005
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4724,
+      "entry_id": "m_csa:244",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.03085
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.5158,
+      "entry_id": "m_csa:253",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.07425
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.61925,
+      "entry_id": "m_csa:256",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1777
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.65065,
+      "entry_id": "m_csa:269",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.2091
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.44705,
+      "entry_id": "m_csa:280",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "threshold_margin": 0.0055
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.38295,
+      "entry_id": "m_csa:282",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0586
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.45095,
+      "entry_id": "m_csa:284",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": 0.0094
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.6398,
+      "entry_id": "m_csa:289",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "threshold_margin": 0.19825
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4712,
+      "entry_id": "m_csa:299",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.02965
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.68115,
+      "entry_id": "m_csa:308",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.2396
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.53375,
+      "entry_id": "m_csa:322",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.0922
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4878,
+      "entry_id": "m_csa:325",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": 0.04625
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.43935,
+      "entry_id": "m_csa:342",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.0022
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.649,
+      "entry_id": "m_csa:348",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.20745
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.3817,
+      "entry_id": "m_csa:350",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.05985
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.48795,
+      "entry_id": "m_csa:390",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": 0.0464
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4837,
+      "entry_id": "m_csa:405",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.04215
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.47265,
+      "entry_id": "m_csa:422",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.0311
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.3933,
+      "entry_id": "m_csa:439",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.04825
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.41695,
+      "entry_id": "m_csa:441",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.0246
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.38735,
+      "entry_id": "m_csa:450",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0542
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.588,
+      "entry_id": "m_csa:451",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.14645
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.54765,
+      "entry_id": "m_csa:463",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1061
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.60295,
+      "entry_id": "m_csa:464",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1614
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.64225,
+      "entry_id": "m_csa:468",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.2007
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.6341,
+      "entry_id": "m_csa:483",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.19255
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.64045,
+      "entry_id": "m_csa:488",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1989
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4466,
+      "entry_id": "m_csa:498",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.00505
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.61935,
+      "entry_id": "m_csa:500",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1778
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.601,
+      "entry_id": "m_csa:501",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.15945
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.5957,
+      "entry_id": "m_csa:502",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.15415
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.55265,
+      "entry_id": "m_csa:503",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1111
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.42915,
+      "entry_id": "m_csa:508",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": -0.0124
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.37455,
+      "entry_id": "m_csa:525",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.067
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.5423,
+      "entry_id": "m_csa:533",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.10075
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4835,
+      "entry_id": "m_csa:537",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": 0.04195
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.37695,
+      "entry_id": "m_csa:539",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0646
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.40915,
+      "entry_id": "m_csa:540",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0324
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.46725,
+      "entry_id": "m_csa:547",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": 0.0257
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.46835,
+      "entry_id": "m_csa:565",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.0268
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4867,
+      "entry_id": "m_csa:585",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.04515
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4602,
+      "entry_id": "m_csa:621",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.01865
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.5862,
+      "entry_id": "m_csa:638",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.14465
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.50615,
+      "entry_id": "m_csa:645",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.0646
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.54185,
+      "entry_id": "m_csa:646",
+      "membership": "strict_same_family_structural_proxy_current_readout",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "threshold_margin": 0.1003
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.3987,
+      "entry_id": "m_csa:648",
+      "membership": "loose_same_family_current_surface_diagnostic_not_contract",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.04285
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_loose_same_family_pressure_readout",
+  "scope": "Train/cal-only diagnostic fixed-threshold readout for the loose same-family current-surface rows named by the acquisition queue. It de-duplicates against the refreshed strict same-family rows and does not relax membership, close the contract, tune thresholds, read heldout rows, or change labels.",
+  "source_artifacts": {
+    "acquisition_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json",
+      "sha256": "05fd9dc0d1c94abf07b3eb5ef61204947a638572a9693a3dc31c0e7ed39159aa"
+    },
+    "current_measured_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
+      "sha256": "4c25cacd420898f5ab8694b378214a50f92004467a7fff12fcb4c2cca9b0a2b4"
+    },
+    "lever3_dispatch_readiness_summary": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json",
+      "sha256": "44c1279cc0966e77a2cb424c92caed1bca54a68d120a6d6c85e386b0d3a5fd8b"
+    },
+    "same_family_structural_acquisition_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_current702_20260604.json",
+      "sha256": "68539fdfc55f9d739edae4768aa9d5da45d7c8c70225b7e60808c4b352999ecf"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_loose_same_family_pressure_readout_ready_diagnostic_not_contract"
+}

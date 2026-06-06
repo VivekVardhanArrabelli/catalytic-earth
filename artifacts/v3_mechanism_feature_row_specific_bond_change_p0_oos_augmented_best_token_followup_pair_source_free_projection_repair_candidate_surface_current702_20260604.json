@@ -1,0 +1,2172 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604",
+  "blockers": [
+    "projection_candidate_surface_partial_missing_new_source_free_axes",
+    "heldout_read_already_spent_no_threshold_application_authorized"
+  ],
+  "candidate_projection_rows": [
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:3",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:3",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "37961107999df3509841a38c0fa1b7cf350a214e0359f880bc4dac488f956e58",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:9",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:32",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:43",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:44",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:45",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:46",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:56",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:97",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:109",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:115",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:115",
+        "event_residue_linker_count": 4,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "5f51c54da694584530a5db7b88ced9ff466d2b48db08d0f0173c179fb8509d29",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": true,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:121",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:121",
+        "event_residue_linker_count": 1,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "6f406f1b6667dc9d73f3bfcca9abbaf3e509803c0c9dfdf0316b2382239f3ae0",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:131",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:159",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:163",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:171",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:180",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:188",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:199",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:211",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:211",
+        "event_residue_linker_count": 6,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "7f96a719c0fd46961d32d1e5fb5018e825afe34439da2839ea6599b300c039c1",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:220",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:239",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:239",
+        "event_residue_linker_count": 4,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "6c9156516cad1371f3b0dad8ad0087f3952b224784ef899949dd3cc044074368",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:242",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:250",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:250",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "3592a5ed8e28bb84d75e6acc41a8f50fe09c3781c7fea2c1eb859d91f7a12653",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:311",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:321",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:323",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:333",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:352",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:356",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:370",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:384",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:392",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:397",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": true
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:403",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:418",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:418",
+        "event_residue_linker_count": 4,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "0a28e81a402d8e08c0e6549e51663bc280c1580957d4fa69feb29f0a22623f09",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:419",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:419",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "3c8207f10967323dfb54df9bb8206a17cc00c1c0b7747fea230a743fe6b0e21b",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:480",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:497",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:517",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:526",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:541",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:545",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:545",
+        "event_residue_linker_count": 3,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "734eb3074c15ae03e88c91ae2b3c7a6fd1d3a40ec40b6b66741e73d1d4f1867f",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:551",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:709",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:709",
+        "event_residue_linker_count": 4,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "ebfc96ee53e7706d553e25069764e7e7382bd83b6719549660ce474f3973911f",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": true
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:710",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": true,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:714",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:714",
+        "event_residue_linker_count": 1,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "2e41492f49e44419b537fa0f4e3ccefc8f3016c9a8f1b482a27508188319a447",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:750",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:750",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "4980737e4abb2d762d711c9c2c1f2d1408b81ae6969b5fa3b562afd5753e6ff6",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:853",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:854",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:854",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "fbbb7138af70b87ac4563a862f377444a372acc0ab41d21a7fbfa4f415e30c9b",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:916",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": true,
+        "expanded_residue_code_count__residue_code_count_his_3": false,
+        "has_proton_transfer_event": true,
+        "proton_transfer_count": 1
+      },
+      "direct_existing_source_free_projection_fields": [
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "entry_id": "m_csa:990",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:990",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "bf7cda20352292749c98b5d18d1d8c6cb320b34876ec886ed27f3b3ad4bb2e9a",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "partial_direct_proton_projection",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    },
+    {
+      "candidate_projected_event_features": {
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": false,
+        "expanded_residue_code_count__residue_code_count_his_3": false
+      },
+      "direct_existing_source_free_projection_fields": [],
+      "entry_id": "m_csa:994",
+      "event_axis_materialization_reference": null,
+      "full_frozen_projection_ready": false,
+      "missing_frozen_feature_fields_after_candidate_projection": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "projection_status": "pair_only_projection_missing_priority_fields",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      },
+      "threshold_scoring_authorized": false
+    }
+  ],
+  "counts": {
+    "blockers": 2,
+    "candidate_projection_rows": 53,
+    "critical_violation_total": 0,
+    "direct_existing_source_free_projection_fields": 2,
+    "frozen_feature_fields": 19,
+    "full_frozen_projection_ready_rows": 0,
+    "missing_field_counts": {
+      "bond_broken_count": 53,
+      "bond_change_event_count": 53,
+      "bond_formed_count": 53,
+      "bond_order_changed_count": 53,
+      "electron_transfer_count": 53,
+      "event_count": 53,
+      "has_bond_change_event": 53,
+      "has_electron_transfer_event": 53,
+      "has_proton_transfer_event": 39,
+      "high_confidence_event_count": 53,
+      "low_confidence_event_count": 53,
+      "mapped_active_site_residue_count": 53,
+      "medium_confidence_event_count": 53,
+      "multi_event_mechanism_flag": 53,
+      "proton_transfer_count": 39,
+      "unique_mapped_active_site_residue_count": 53,
+      "unknown_confidence_event_count": 53
+    },
+    "new_source_free_axis_required_fields": 9,
+    "pair_projected_feature_fields": 2,
+    "rows_pair_only_no_direct_projection": 39,
+    "rows_with_direct_proton_transfer_projection": 14,
+    "surface_rows": 53,
+    "threshold_scoring_ready_rows": 0
+  },
+  "created_utc": "2026-06-04T02:14:40Z",
+  "decision": {
+    "candidate_surface_ready_for_threshold_scoring": false,
+    "coverage_repair_alone_sufficient_for_deployment": false,
+    "new_source_free_axis_review_packet_required": true,
+    "next_gate": "Use this partial candidate only as repair evidence. Build a source-free bond-change/electron-flow/event-topology axis review packet for the 9 priority fields still lacking direct source-free support; do not score or rerun heldout from this partial projection.",
+    "rerun_or_retune_heldout_authorized": false,
+    "source_free_direct_proton_projection_materialized": true
+  },
+  "direct_existing_source_free_projection_fields": [
+    "has_proton_transfer_event",
+    "proton_transfer_count"
+  ],
+  "guardrails": {
+    "frozen_residual_threshold_applied": false,
+    "frozen_residual_threshold_changed": false,
+    "heldout_rows_rescored": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_or_target_names_used_as_predictive_features": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "rerun_or_retune_heldout_authorized": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Create the missing source-free bond/electron/event-topology axis packet before any scoring surface or deployable Lever 2 claim is considered.",
+    "result": "Existing approved source-free event-axis evidence can fill the direct proton-transfer projection for 14 rows, but no row has the full frozen 19-field projection."
+  },
+  "new_source_free_axis_required_fields": [
+    "bond_broken_count",
+    "bond_change_event_count",
+    "bond_formed_count",
+    "bond_order_changed_count",
+    "electron_transfer_count",
+    "event_count",
+    "has_bond_change_event",
+    "has_electron_transfer_event",
+    "multi_event_mechanism_flag"
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface",
+  "scope": "Partial candidate projection surface for the source-free pair feature repair path. It materializes only direct fields supported by already-approved source-free event-axis linkers, keeps missing bond-change/electron/event-topology axes explicit, and does not apply the frozen residual threshold or rescore heldout rows.",
+  "source_artifacts": {
+    "event_axis_linker_materialization_gate": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json",
+      "sha256": "c241e181b166ee798e2112e0126ab7621dbcec667eae0f52b7226287ba8ca25e"
+    },
+    "feature_repair_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_current702_20260604.json",
+      "sha256": "1602706e05cfef980a68c2fdfa36f03dea669848323b6210fb7cec6315977a30"
+    },
+    "no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun_current702_20260602.json",
+      "sha256": "959c3da8f18bfb02d5fac18768cb3c270441054ab2d545d85f350a6295840178"
+    },
+    "source_free_application_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
+      "sha256": "8b283684e1ed793d39b7bc9b2e0f5e01aa937c9fd2dfab39c0f15e9ddfab9e4f"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_partial_not_scoreable"
+}

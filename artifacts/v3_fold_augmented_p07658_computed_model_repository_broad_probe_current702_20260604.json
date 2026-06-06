@@ -1,0 +1,186 @@
+{
+  "affected_row": {
+    "accession": "P07658",
+    "entry_id": "m_csa:562",
+    "missing_evidence_type": "full-length deployment-valid predicted structure for exact 715-residue sequence including selenocysteine",
+    "noncanonical_residues": [
+      {
+        "code": "U",
+        "position": 140
+      }
+    ],
+    "remaining_blocker_class": "predicted_structure_unavailable",
+    "sequence_length": 715
+  },
+  "artifact_id": "v3_fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604",
+  "blockers": [
+    "public_computed_model_repository_no_p07658_hit",
+    "p07658_full_length_predicted_coordinate_missing",
+    "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "blockers": 4,
+    "coordinates_downloaded_or_staged": 0,
+    "critical_violation_total": 0,
+    "deployment_valid_predicted_coordinate_rows_ready_now": 0,
+    "direct_computed_model_coordinate_hits": 0,
+    "direct_computed_model_endpoint_404_rows": 4,
+    "modelarchive_machine_readable_coordinate_rows": 0,
+    "rcsb_computed_model_rows": 0,
+    "rcsb_experimental_control_rows": 5,
+    "remaining_coordinate_source_blocker_rows": 1,
+    "repositories_or_aggregators_probed": 3
+  },
+  "created_utc": "2026-06-04T11:17:06Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "broad_public_repository_probe_clears_p07658_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not use RCSB/PDBe experimental control rows or ModelArchive web-shell responses as deployment shortcuts. P07658 remains blocked until a predicted coordinate is staged.",
+    "smallest_next_experiment": "Provision or run an approved full-length predictor/provider that supports the exact 715-residue P07658 sequence including selenocysteine; stage provider/model/version/path/checksum provenance after a coordinate is actually returned."
+  },
+  "endpoint_probes": [
+    {
+      "deployment_valid_predicted_input_rows": 0,
+      "endpoint": "https://search.rcsb.org/rcsbsearch/v2/query",
+      "http_status": 204,
+      "probe_id": "rcsb_search_computed_models_by_uniprot_accession",
+      "request": {
+        "query": {
+          "parameters": {
+            "attribute": "rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers.database_accession",
+            "operator": "exact_match",
+            "value": "P07658"
+          },
+          "service": "text",
+          "type": "terminal"
+        },
+        "request_options": {
+          "paginate": {
+            "rows": 25,
+            "start": 0
+          },
+          "results_content_type": [
+            "computational"
+          ]
+        },
+        "return_type": "polymer_entity"
+      },
+      "result": "no_content_no_computed_model_hits",
+      "result_count": 0,
+      "result_identifiers": [],
+      "results_content_type": "computational"
+    },
+    {
+      "deployment_valid_predicted_input_rows": 0,
+      "endpoint": "https://search.rcsb.org/rcsbsearch/v2/query",
+      "http_status": 200,
+      "probe_id": "rcsb_search_experimental_control_by_uniprot_accession",
+      "request": {
+        "query": {
+          "parameters": {
+            "attribute": "rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers.database_accession",
+            "operator": "exact_match",
+            "value": "P07658"
+          },
+          "service": "text",
+          "type": "terminal"
+        },
+        "request_options": {
+          "paginate": {
+            "rows": 25,
+            "start": 0
+          },
+          "results_content_type": [
+            "experimental"
+          ]
+        },
+        "return_type": "polymer_entity"
+      },
+      "result_count": 5,
+      "result_identifiers": [
+        "1AA6_1",
+        "1FDI_1",
+        "1FDO_1",
+        "2IV2_1",
+        "7Z0T_7"
+      ],
+      "results_content_type": "experimental",
+      "why_not_deployment_valid": "experimental content type is a control only; these rows are not predicted-structure inputs"
+    },
+    {
+      "content_type": "text/html; charset=utf-8",
+      "deployment_valid_predicted_input_rows": 0,
+      "endpoint": "https://modelarchive.org/search?query=P07658",
+      "http_status": 200,
+      "machine_readable_coordinate_rows": 0,
+      "probe_id": "modelarchive_web_search_endpoint_smoke",
+      "result": "web_app_shell_returned_no_coordinate_record_for_staging"
+    },
+    {
+      "deployment_valid_predicted_input_rows": 0,
+      "endpoint": "https://models.rcsb.org/v1/AF_P07658F1/model?encoding=cif",
+      "http_status": 404,
+      "probe_id": "rcsb_modelserver_af_underscore_id_direct_cif",
+      "result": "direct_computed_model_coordinate_endpoint_not_found",
+      "result_count": 0
+    },
+    {
+      "deployment_valid_predicted_input_rows": 0,
+      "endpoint": "https://models.rcsb.org/v1/AF-P07658-F1/model?encoding=cif",
+      "http_status": 404,
+      "probe_id": "rcsb_modelserver_af_hyphen_id_direct_cif",
+      "result": "direct_computed_model_coordinate_endpoint_not_found",
+      "result_count": 0
+    },
+    {
+      "deployment_valid_predicted_input_rows": 0,
+      "endpoint": "https://alphafold.ebi.ac.uk/files/AF-P07658-F1-model_v6.cif",
+      "http_status": 404,
+      "probe_id": "alphafold_db_v6_direct_cif",
+      "result": "direct_computed_model_coordinate_endpoint_not_found",
+      "result_count": 0
+    },
+    {
+      "deployment_valid_predicted_input_rows": 0,
+      "endpoint": "https://alphafold.ebi.ac.uk/files/AF-P07658-F1-model_v5.cif",
+      "http_status": 404,
+      "probe_id": "alphafold_db_v5_direct_cif",
+      "result": "direct_computed_model_coordinate_endpoint_not_found",
+      "result_count": 0
+    }
+  ],
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_downloaded_or_staged": false,
+    "experimental_coordinates_used_as_deployment_inputs": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "The smallest concrete next experiment is no longer another public-repository search; it is a credentialed or local full-length predictor run with exact-sequence provenance.",
+    "result": "A broader public repository check still cannot clear P07658: RCSB has no computational model hit for the accession, direct RCSB ModelServer/AlphaFold-style coordinate URLs return 404, and the experimental control returns the same five non-deployment-valid PDB entities."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p07658_computed_model_repository_broad_probe",
+  "scope": "Review-only broad public computed-model repository probe for the remaining P07658 Lever 3 coordinate blocker after Q43088 locator approval. It checks whether RCSB exposes any computational polymer entity for the exact UniProt accession and records ModelArchive web-search endpoint behavior. It stages no coordinates, scores no rows, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "current_evidence_after_q43088_locator_approval": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_current702_20260604.json"
+    },
+    "p07658_3dbeacons_predicted_structure_probe": {
+      "path": "artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json"
+    },
+    "p07658_local_predictor_runtime_scan": {
+      "path": "artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.json"
+    }
+  },
+  "status": "fold_augmented_p07658_computed_model_repository_broad_probe_blocked_no_public_computed_model"
+}

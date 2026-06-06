@@ -1,9 +1,8 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602",
   "blockers": [
-    "source_free_current702_heldout_locator_surface_missing",
-    "source_free_residue_count_surface_missing",
-    "source_free_locator_rewrite_explicit_approval_pending",
+    "source_free_current702_heldout_locator_coverage_incomplete",
+    "source_free_residue_count_surface_incomplete",
     "source_free_residue_count_fallback_lower_recall_requires_explicit_acceptance"
   ],
   "calibration_contract": {
@@ -16,19 +15,19 @@
     "token_hit_rows": 6
   },
   "counts": {
-    "blockers": 4,
+    "blockers": 3,
     "critical_violation_total": 0,
-    "current702_heldout_locator_sidecars": 0,
+    "current702_heldout_locator_sidecars": 53,
     "fallback_token_scored": 1,
     "heldout_rows_in_manifest": 140,
     "source_free_locator_input_auto_create_allowed_rows": 0,
     "source_free_locator_input_priority1_approved_rewrites": 0,
     "source_free_locator_input_priority1_preflight_passed_pending_explicit_approval": 55,
     "source_free_locator_input_priority1_preflight_rows_with_warnings": 6,
-    "source_free_locator_sidecars_total": 5,
-    "source_free_residue_count_feature_rows": 0
+    "source_free_locator_sidecars_total": 58,
+    "source_free_residue_count_feature_rows": 53
   },
-  "created_utc": "2026-06-02T20:15:42Z",
+  "created_utc": "2026-06-03T20:30:46Z",
   "decision": {
     "apply_frozen_fallback_threshold_now": false,
     "explicit_acceptance_required_before_heldout_read": true,
@@ -37,7 +36,7 @@
     "fallback_contract_calibrated_train_cal_only": true,
     "heldout_read_once_performed": false,
     "heldout_safe_fallback_application_surface_ready": false,
-    "next_gate": "Use this fallback only if the lower calibration OOS abstention is explicitly accepted. Otherwise build the source-free event linker for the stronger pair. In either case, materialize approved current702 heldout locator sidecars before any heldout threshold application."
+    "next_gate": "Use this fallback only if the lower calibration OOS abstention is explicitly accepted. Otherwise build the source-free event linker for the stronger pair. In either case, complete approved current702 heldout locator coverage before any heldout threshold application."
   },
   "fallback_feature": {
     "event_axis_required": false,
@@ -65,7 +64,7 @@
   },
   "interpretation": {
     "next_action": "Either explicitly accept this lower-recall fallback contract or continue building the source-free event linker for the stronger pair; do not read heldout until the selected surface is source-free and complete.",
-    "result": "The His-count-only fallback is calibration-scored and avoids the missing event axis, but it is a lower-recall alternative to the calibrated pair and still needs approved current702 heldout locators before a heldout-safe application surface exists."
+    "result": "The His-count-only fallback is calibration-scored and avoids the missing event axis, but it is a lower-recall alternative to the calibrated pair and still needs approved current702 heldout locator coverage before a heldout-safe application surface exists."
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract",
   "scope": "Calibration-only fallback contract for the source-free-compatible residue-count token in the row-specific feature surface. It formalizes the lower-recall His-count-only option without requiring the event/residue-role linker and without applying the heldout threshold.",
@@ -73,7 +72,7 @@
     "event_linker_blocker_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602.json",
-      "sha256": "979a9e5149649074e263747bec577e7c8505ccf8007a203d9c5cc8054f946e85"
+      "sha256": "89219661ef1a29369df7f9a4ede5af3fd0b1749114ce7380115d36cc21793d20"
     },
     "expanded_token_ablation": {
       "exists": true,
@@ -88,12 +87,12 @@
     "source_free_application_surface": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
-      "sha256": "bc94fa4c311d4d57b8b09148f9e973766f7c26e198281e283e9e4803eecb58c7"
+      "sha256": "646141f097c4e6c21382c21b0895c8d06c776b498795025d7e7ef5db158bb430"
     },
     "source_free_locator_input_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.json",
-      "sha256": "db61bdf91ee10f2ead7edca6655d9e0738162bc6a0eba26d499e3c040d9a6e8c"
+      "sha256": "b8f861b8529d4a51aeff4c3e6a606d3c2e5e8e2f636a8ea1300023f57d444b18"
     }
   },
   "status": "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_ready_calibration_only_surface_blocked"

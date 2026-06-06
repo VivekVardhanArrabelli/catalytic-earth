@@ -1,0 +1,112 @@
+{
+  "accession": "Q43088",
+  "approved_new_locator_positions": [
+    288,
+    286
+  ],
+  "artifact_id": "v3_fold_augmented_q43088_source_free_locator_sidecar_current702_20260604",
+  "coordinate_provenance": {
+    "checksum_sha256": "e2cf9b4137bbd80ed6bc710b9de3a7666b5f828870be2e6a0c7ae2701e256bd9",
+    "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q43088_v6.cif",
+    "model_version": "v6",
+    "provider": "AlphaFoldDB",
+    "source_free_evidence_contract": "Use residue positions, predicted-coordinate geometry, residue codes, and pLDDT only. Do not use mechanism text, EC/Rhea IDs, labels, source IDs, target names, or experimental PDB metadata as predictive features."
+  },
+  "created_utc": "2026-06-04T11:42:27Z",
+  "entry_id": "m_csa:604",
+  "guardrails": {
+    "experimental_pdb_metadata_used_as_predictive_feature": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "row_rescored_now": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "minimum_locator_positions_required_for_geometry_channel": 3,
+  "ready_for_predicted_geometry_scoring": true,
+  "schema_version": "northstar_next_levers.v0.fold_augmented_q43088_source_free_locator_sidecar",
+  "scope": "Review-only source-free locator sidecar for Q43088. It uses the local predicted coordinate, the existing Tyr287 source-free anchor, and two approved neighboring residue locators. It does not score the row or change threshold 0.44155.",
+  "source_free_locators": [
+    {
+      "approval_status": "preexisting_anchor_not_new_approval",
+      "ca": {
+        "x": -16.063,
+        "y": 2.876,
+        "z": -2.772
+      },
+      "centroid": {
+        "x": -16.356,
+        "y": 1.235,
+        "z": -1.171
+      },
+      "chain_name": "A",
+      "locator_role": "existing_source_free_anchor",
+      "mean_plddt": 95.19,
+      "residue_code": "TYR",
+      "roles": [
+        "activator",
+        "proton_acceptor",
+        "proton_donor"
+      ],
+      "sequence_position": 287
+    },
+    {
+      "approval_basis": [
+        "local_predicted_coordinate_mapping_present",
+        "mean_plddt_at_least_80",
+        "polar_or_charged_residue_code",
+        "within_6a_of_existing_tyr287_anchor_ca",
+        "no_mechanism_text_ec_rhea_label_source_id_or_target_name_feature"
+      ],
+      "approval_status": "explicitly_approved_source_free_locator",
+      "ca": {
+        "x": -13.731,
+        "y": 4.092,
+        "z": -5.548
+      },
+      "centroid": {
+        "x": -12.745,
+        "y": 4.238,
+        "z": -5.78
+      },
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 3.824,
+      "locator_role": "approved_source_free_predicted_coordinate_neighbor",
+      "mean_plddt": 93.69,
+      "residue_code": "ASP",
+      "sequence_position": 288
+    },
+    {
+      "approval_basis": [
+        "local_predicted_coordinate_mapping_present",
+        "mean_plddt_at_least_80",
+        "polar_or_charged_residue_code",
+        "within_6a_of_existing_tyr287_anchor_ca",
+        "no_mechanism_text_ec_rhea_label_source_id_or_target_name_feature"
+      ],
+      "approval_status": "explicitly_approved_source_free_locator",
+      "ca": {
+        "x": -19.285,
+        "y": 2.897,
+        "z": -4.861
+      },
+      "centroid": {
+        "x": -18.467,
+        "y": 2.927,
+        "z": -5.721
+      },
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 3.84,
+      "locator_role": "approved_source_free_predicted_coordinate_neighbor",
+      "mean_plddt": 96.0,
+      "residue_code": "GLN",
+      "sequence_position": 286
+    }
+  ],
+  "status": "q43088_source_free_locator_sidecar_ready_review_only"
+}

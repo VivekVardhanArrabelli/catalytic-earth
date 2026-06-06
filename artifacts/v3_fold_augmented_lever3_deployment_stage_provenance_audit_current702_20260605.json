@@ -1,0 +1,190 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605",
+  "counts": {
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "direct_source_records_checked": 2,
+    "direct_source_records_hash_current": 2,
+    "forbidden_manifest_field_rows": 0,
+    "forced_mechanism_label_rows": 0,
+    "lineage_source_records_checked": 43,
+    "lineage_source_records_hash_current": 43,
+    "manifest_action_rows": 21,
+    "manifest_action_rows_abstain_or_route_novel_oos": 21,
+    "missing_stage_source_artifacts": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "stage_provenance_violation_total": 0,
+    "stage_source_artifacts_covered_by_lineage": 5,
+    "stage_source_artifacts_guardrail_clean": 5,
+    "stage_source_artifacts_with_guardrail_violations": 0,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204,
+    "unique_stage_source_artifacts": 5,
+    "unsafe_action_rows": 0
+  },
+  "created_utc": "2026-06-05T12:18:38Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_stage_provenance_clean": true,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Use the operator manifest with its lineage-covered stage sources for abstain/route actions only; keep fixed-threshold scoring closure fail-closed pending exact P07658 evidence.",
+    "operator_manifest_stage_sources_covered": true,
+    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": false,
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "safe_abstention_route_remains_current": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "direct_source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "2129546e994e6ad6f9ec96406ccf44c24a974594ad93024558305a2647ca4816",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "2129546e994e6ad6f9ec96406ccf44c24a974594ad93024558305a2647ca4816",
+      "source_hash_current": true,
+      "source_key": "deployment_contract_lineage_audit"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8",
+      "source_hash_current": true,
+      "source_key": "deployment_operator_manifest_audit"
+    }
+  ],
+  "guardrail_violation_stage_rows": [],
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "new_rule_selected_now": false,
+    "production_thresholds_changed": false,
+    "provider_calls_performed": false,
+    "stage_provenance_audit_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 manifest stage provenance is lineage-covered.",
+    "next_action": "Use the manifest only for abstain/route actions; stage sources are covered by clean lineage.",
+    "result": "5 unique stage-source artifacts cover 21 manifest rows with 0 missing lineage artifacts."
+  },
+  "missing_stage_source_rows": [],
+  "operating_point": {
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "operator_manifest_rows": 21,
+    "operator_manifest_rows_abstain_or_route_novel_oos": 21,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_deployment_stage_provenance_audit",
+  "scope": "Stage-provenance audit for the current Lever 3 operator manifest. It verifies that every row-level stage source artifact referenced by the manifest is present in the bounded, guardrail-clean deployment-contract lineage.",
+  "source_artifacts": {
+    "deployment_contract_lineage_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.json",
+      "sha256": "2129546e994e6ad6f9ec96406ccf44c24a974594ad93024558305a2647ca4816"
+    },
+    "deployment_operator_manifest_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json",
+      "sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8"
+    }
+  },
+  "stage_provenance_checks": {
+    "all_manifest_stage_sources_guardrail_clean": true,
+    "all_manifest_stage_sources_present": true,
+    "deployment_contract_lineage_audit_passed": true,
+    "direct_source_hashes_current": true,
+    "fixed_threshold_scoring_fail_closed": true,
+    "lineage_source_hashes_current": true,
+    "manifest_has_no_forbidden_fields_or_rule_selection_rows": true,
+    "manifest_has_no_unsafe_actions": true,
+    "operating_point_metrics_match_lineage": true,
+    "operator_manifest_audit_passed": true,
+    "stage_source_row_counts_match_manifest": true
+  },
+  "stage_provenance_violations": [],
+  "stage_source_rows": [
+    {
+      "guardrail_violations": [],
+      "lineage_covered": true,
+      "lineage_depth": 3,
+      "lineage_path": "artifacts/v3_fold_augmented_lever3_deployment_action_readout_current702_20260604.json",
+      "lineage_status": "fold_augmented_lever3_deployment_action_readout_ready_fail_closed_p07658",
+      "manifest_rows": 10,
+      "source_records_checked": 4,
+      "source_records_hash_current": 4,
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604"
+    },
+    {
+      "guardrail_violations": [],
+      "lineage_covered": true,
+      "lineage_depth": 3,
+      "lineage_path": "artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json",
+      "lineage_status": "fold_augmented_lever3_retained_channel_margin_counteraxis_readout_partial_application",
+      "manifest_rows": 7,
+      "source_records_checked": 6,
+      "source_records_hash_current": 6,
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604"
+    },
+    {
+      "guardrail_violations": [],
+      "lineage_covered": true,
+      "lineage_depth": 3,
+      "lineage_path": "artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605.json",
+      "lineage_status": "fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_closed",
+      "manifest_rows": 1,
+      "source_records_checked": 7,
+      "source_records_hash_current": 7,
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605"
+    },
+    {
+      "guardrail_violations": [],
+      "lineage_covered": true,
+      "lineage_depth": 3,
+      "lineage_path": "artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json",
+      "lineage_status": "fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_partial_application",
+      "manifest_rows": 2,
+      "source_records_checked": 8,
+      "source_records_hash_current": 8,
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604"
+    },
+    {
+      "guardrail_violations": [],
+      "lineage_covered": true,
+      "lineage_depth": 3,
+      "lineage_path": "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.json",
+      "lineage_status": "fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_partial_application",
+      "manifest_rows": 1,
+      "source_records_checked": 9,
+      "source_records_hash_current": 9,
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605"
+    }
+  ],
+  "status": "fold_augmented_lever3_deployment_stage_provenance_audit_passed"
+}

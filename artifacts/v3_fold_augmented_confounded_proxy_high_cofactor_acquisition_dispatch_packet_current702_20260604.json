@@ -1,0 +1,775 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604",
+  "blockers": [
+    "high_cofactor_acquisition_slots_unfilled",
+    "candidate_rows_not_registered_or_scored",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "blockers": 3,
+    "candidate_rows_registered_now": 0,
+    "candidate_rows_scored_now": 0,
+    "critical_violation_total": 0,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "intake_slots_filled_now": 0,
+    "intake_slots_ready_to_score_now": 0,
+    "intake_slots_required": 16,
+    "near_miss_rows_not_countable": 16
+  },
+  "created_utc": "2026-06-04T16:39:57Z",
+  "decision": {
+    "acquisition_dispatch_ready_for_row_intake": true,
+    "apply_or_change_threshold_now": false,
+    "candidate_rows_ready_to_score_now": false,
+    "current_evidence_can_solve_high_cofactor_gap": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not rerun the fixed-threshold audit until all filled slots pass intake checks and have real predicted-structure-vs-atlas scores.",
+    "smallest_next_experiment": "Fill these 16 intake slots with new non-heldout train/cal OOS rows that satisfy source-free high-cofactor membership and deployment-valid predicted-structure provenance, then score only accepted rows at the unchanged fixed threshold."
+  },
+  "gap_target": {
+    "fixed_threshold": 0.44155,
+    "proxy_axis": "high_cofactor_signature_proxy",
+    "required_new_nonheldout_train_cal_oos_rows": 16,
+    "required_outcome": "all acquired rows must abstain at fixed threshold 0.44155 to close only the high-cofactor 80% lower-bound target"
+  },
+  "guardrails": {
+    "candidate_rows_registered_now": false,
+    "candidate_rows_scored_now": false,
+    "dispatch_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "intake_acceptance_checks": [
+    "row is non-heldout train/cal OOS under the frozen split",
+    "row is not already in the scored train/cal OOS surface",
+    "source-free high-cofactor membership is satisfied without relaxing the axis",
+    "deployment-valid predicted coordinate and provenance are present",
+    "experimental PDB metadata is not used as a deployment input",
+    "row is scored only after intake acceptance passes",
+    "fixed threshold remains 0.44155"
+  ],
+  "intake_slots": [
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_01",
+      "slot_index": 1,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_02",
+      "slot_index": 2,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_03",
+      "slot_index": 3,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_04",
+      "slot_index": 4,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_05",
+      "slot_index": 5,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_06",
+      "slot_index": 6,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_07",
+      "slot_index": 7,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_08",
+      "slot_index": 8,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_09",
+      "slot_index": 9,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_10",
+      "slot_index": 10,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_11",
+      "slot_index": 11,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_12",
+      "slot_index": 12,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_13",
+      "slot_index": 13,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_14",
+      "slot_index": 14,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_15",
+      "slot_index": 15,
+      "status": "unfilled"
+    },
+    {
+      "count_as_abstained_evidence_now": false,
+      "forbidden_predictive_features": [
+        "mechanism text",
+        "EC or Rhea identifiers",
+        "source IDs",
+        "target names",
+        "curated labels or family names",
+        "heldout M-CSA rows"
+      ],
+      "required_label_role": "nonheldout_train_cal_oos_negative",
+      "required_membership_evidence": [
+        "source-free high organic-cofactor signature at or above the frozen axis threshold",
+        "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs"
+      ],
+      "required_prediction_inputs": [
+        "predicted coordinate path",
+        "provider/model/version/checksum provenance",
+        "no experimental-PDB metadata shortcut as deployment input"
+      ],
+      "score_now": false,
+      "slot_id": "high_cofactor_train_cal_oos_slot_16",
+      "slot_index": 16,
+      "status": "unfilled"
+    }
+  ],
+  "interpretation": {
+    "next_action": "Fill the intake slots with source-free high-cofactor train/cal OOS evidence; keep near misses non-countable.",
+    "result": "The high-cofactor acquisition experiment is dispatch-ready as 16 unfilled intake slots, but no new rows are registered or scoreable now."
+  },
+  "near_miss_policy": {
+    "affected_near_miss_rows": 16,
+    "near_misses_countable_now": false,
+    "reason": "Near-miss organic-cofactor scores do not satisfy the frozen high-cofactor axis and cannot be used to close the 16-row calibration gap."
+  },
+  "queue_step": {
+    "affected_row_count": 16,
+    "affected_rows": [
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:288",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "heme",
+        "organic_cofactor_max_score": 0.407563,
+        "rank": 1,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:89",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "heme",
+        "organic_cofactor_max_score": 0.398339,
+        "rank": 2,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:214",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "plp",
+        "organic_cofactor_max_score": 0.353171,
+        "rank": 3,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:75",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "heme",
+        "organic_cofactor_max_score": 0.34378,
+        "rank": 4,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:60",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "plp",
+        "organic_cofactor_max_score": 0.337092,
+        "rank": 5,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:583",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "heme",
+        "organic_cofactor_max_score": 0.296056,
+        "rank": 6,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:64",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "plp",
+        "organic_cofactor_max_score": 0.246623,
+        "rank": 7,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:607",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "heme",
+        "organic_cofactor_max_score": 0.236789,
+        "rank": 8,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:610",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "plp",
+        "organic_cofactor_max_score": 0.222226,
+        "rank": 9,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:618",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "flavin",
+        "organic_cofactor_max_score": 0.215006,
+        "rank": 10,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:555",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "flavin",
+        "organic_cofactor_max_score": 0.213904,
+        "rank": 11,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:404",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "heme",
+        "organic_cofactor_max_score": 0.193581,
+        "rank": 12,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:26",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "plp",
+        "organic_cofactor_max_score": 0.177608,
+        "rank": 13,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:515",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "plp",
+        "organic_cofactor_max_score": 0.150245,
+        "rank": 14,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:232",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "plp",
+        "organic_cofactor_max_score": 0.147019,
+        "rank": 15,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "any_inorganic_locus_context": false,
+        "countable_for_high_cofactor_probe_now": false,
+        "entry_id": "m_csa:351",
+        "high_inorganic_cofactor_locus": false,
+        "high_organic_cofactor_signature": false,
+        "label_type": "out_of_scope",
+        "missing_evidence_type": "source-free high-cofactor proxy membership evidence: either a frozen high organic-cofactor signature or a frozen high inorganic cofactor locus, plus deployment-valid predicted-structure inputs",
+        "organic_cofactor_max_class": "plp",
+        "organic_cofactor_max_score": 0.144021,
+        "rank": 16,
+        "recommended_proxy_axes_after_scoring": [
+          "background_train_cal_oos_structural_pool"
+        ],
+        "smallest_row_experiment": "Do not count this near miss. Acquire a new non-heldout train/cal OOS row whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis before fixed-threshold scoring.",
+        "split_assignment": "in_distribution"
+      }
+    ],
+    "blocked_now": true,
+    "current_eligible_rows": 0,
+    "eligible_rows_missing_for_minimum": 16,
+    "experiment_id": "high_cofactor_train_cal_oos_acquisition",
+    "gate": "confounded_safe_high_cofactor_calibration",
+    "minimum_new_abstained_rows_for_80pct": 16,
+    "missing_evidence_type": "new non-heldout train/cal OOS rows with source-free high-cofactor membership and deployment-valid predicted-structure inputs; near-miss organic-cofactor scores alone are insufficient",
+    "priority": 2,
+    "smallest_next_experiment": "Acquire exactly 16 new non-heldout train/cal OOS rows whose source-free cofactor/locus evidence satisfies the frozen high-cofactor axis, stage deployment-valid predicted structures, then score those rows at unchanged threshold 0.44155.",
+    "source_artifact_id": "v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604",
+    "source_artifact_path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.json",
+    "source_status": "fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_blocked_zero_eligible_rows"
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet",
+  "scope": "Dispatch-ready intake packet for the 16-row high-cofactor train/cal OOS acquisition experiment. It creates unfilled slots and acceptance criteria only; it does not source rows, register candidates, score candidates, tune thresholds, or read heldout.",
+  "source_artifacts": {
+    "high_cofactor_acquisition_blocker_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.json",
+      "sha256": "d4b561d337be590ae31d13d44c3e9d8153f61402f3fc04d571998b36c2ea5f5f"
+    },
+    "lever3_minimum_next_experiment_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json",
+      "sha256": "6ecbcb7772ceb3ce2a3b8a90a756c750e6136fb64882b99d30b88f8ae8f9e709"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_ready_unfilled"
+}

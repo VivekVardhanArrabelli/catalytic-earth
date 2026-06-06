@@ -1,0 +1,348 @@
+{
+  "affected_row": {
+    "accession": "Q43088",
+    "blocker_class_before_approval": "approved_geometry_feature_missing",
+    "blocker_cleared_now": true,
+    "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q43088_v6.cif",
+    "coordinate_sha256": "e2cf9b4137bbd80ed6bc710b9de3a7666b5f828870be2e6a0c7ae2701e256bd9",
+    "entry_id": "m_csa:604",
+    "local_predicted_coordinate_available": true
+  },
+  "approval_records": [
+    {
+      "accession": "Q43088",
+      "approval_basis": [
+        "local_predicted_coordinate_mapping_present",
+        "mean_plddt_at_least_80",
+        "polar_or_charged_residue_code",
+        "within_6a_of_existing_tyr287_anchor_ca",
+        "no_mechanism_text_ec_rhea_label_source_id_or_target_name_feature"
+      ],
+      "approval_status": "explicitly_approved_source_free_locator",
+      "approved_now": true,
+      "ca": {
+        "x": -13.731,
+        "y": 4.092,
+        "z": -5.548
+      },
+      "centroid": {
+        "x": -12.745,
+        "y": 4.238,
+        "z": -5.78
+      },
+      "chain_name": "A",
+      "critical_violations": [],
+      "distance_to_anchor_ca_angstrom": 3.824,
+      "entry_id": "m_csa:604",
+      "mean_plddt": 93.69,
+      "residue_code": "ASP",
+      "reviewed_utc": "2026-06-04T11:42:27Z",
+      "reviewer": "codex_automation_policy_review",
+      "sequence_position": 288,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 12.113,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why": "Approved from predicted-coordinate proximity to the existing Tyr287 source-free anchor, high pLDDT, and polar/charged residue chemistry."
+    },
+    {
+      "accession": "Q43088",
+      "approval_basis": [
+        "local_predicted_coordinate_mapping_present",
+        "mean_plddt_at_least_80",
+        "polar_or_charged_residue_code",
+        "within_6a_of_existing_tyr287_anchor_ca",
+        "no_mechanism_text_ec_rhea_label_source_id_or_target_name_feature"
+      ],
+      "approval_status": "explicitly_approved_source_free_locator",
+      "approved_now": true,
+      "ca": {
+        "x": -19.285,
+        "y": 2.897,
+        "z": -4.861
+      },
+      "centroid": {
+        "x": -18.467,
+        "y": 2.927,
+        "z": -5.721
+      },
+      "chain_name": "A",
+      "critical_violations": [],
+      "distance_to_anchor_ca_angstrom": 3.84,
+      "entry_id": "m_csa:604",
+      "mean_plddt": 96.0,
+      "residue_code": "GLN",
+      "reviewed_utc": "2026-06-04T11:42:27Z",
+      "reviewer": "codex_automation_policy_review",
+      "sequence_position": 286,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 11.12,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why": "Approved from predicted-coordinate proximity to the existing Tyr287 source-free anchor, high pLDDT, and polar/charged residue chemistry."
+    },
+    {
+      "accession": "Q43088",
+      "approval_basis": [],
+      "approval_status": "reviewed_not_selected_minimum_already_met",
+      "approved_now": false,
+      "ca": {
+        "x": -19.578,
+        "y": -1.849,
+        "z": -2.19
+      },
+      "centroid": {
+        "x": -18.648,
+        "y": -2.244,
+        "z": -3.687
+      },
+      "chain_name": "A",
+      "critical_violations": [],
+      "distance_to_anchor_ca_angstrom": 5.918,
+      "entry_id": "m_csa:604",
+      "mean_plddt": 97.12,
+      "residue_code": "HIS",
+      "reviewed_utc": "2026-06-04T11:42:27Z",
+      "reviewer": "codex_automation_policy_review",
+      "sequence_position": 243,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 10.053,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why": "Reviewed in priority order but not selected because positions 288 and 286 satisfy the two-new-locator minimum."
+    },
+    {
+      "accession": "Q43088",
+      "approval_basis": [],
+      "approval_status": "reviewed_not_selected_minimum_already_met",
+      "approved_now": false,
+      "ca": {
+        "x": -19.092,
+        "y": 8.278,
+        "z": -6.399
+      },
+      "centroid": {
+        "x": -17.55,
+        "y": 8.201,
+        "z": -6.767
+      },
+      "chain_name": "A",
+      "critical_violations": [],
+      "distance_to_anchor_ca_angstrom": 7.177,
+      "entry_id": "m_csa:604",
+      "mean_plddt": 80.44,
+      "residue_code": "GLU",
+      "reviewed_utc": "2026-06-04T11:42:27Z",
+      "reviewer": "codex_automation_policy_review",
+      "sequence_position": 250,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 7.627,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": true
+      },
+      "why": "Reviewed in priority order but not selected because positions 288 and 286 satisfy the two-new-locator minimum."
+    }
+  ],
+  "approved_locator_sidecar": {
+    "path": "artifacts/v3_fold_augmented_q43088_source_free_locator_sidecar_current702_20260604.json",
+    "payload": {
+      "accession": "Q43088",
+      "approved_new_locator_positions": [
+        288,
+        286
+      ],
+      "artifact_id": "v3_fold_augmented_q43088_source_free_locator_sidecar_current702_20260604",
+      "coordinate_provenance": {
+        "checksum_sha256": "e2cf9b4137bbd80ed6bc710b9de3a7666b5f828870be2e6a0c7ae2701e256bd9",
+        "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q43088_v6.cif",
+        "model_version": "v6",
+        "provider": "AlphaFoldDB",
+        "source_free_evidence_contract": "Use residue positions, predicted-coordinate geometry, residue codes, and pLDDT only. Do not use mechanism text, EC/Rhea IDs, labels, source IDs, target names, or experimental PDB metadata as predictive features."
+      },
+      "created_utc": "2026-06-04T11:42:27Z",
+      "entry_id": "m_csa:604",
+      "guardrails": {
+        "experimental_pdb_metadata_used_as_predictive_feature": false,
+        "fixed_threshold_audit_rerun": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "mechanism_text_or_source_ids_used_as_features": false,
+        "production_thresholds_changed": false,
+        "review_only": true,
+        "row_rescored_now": false,
+        "threshold_selected_or_tuned": false,
+        "threshold_values_changed": false
+      },
+      "minimum_locator_positions_required_for_geometry_channel": 3,
+      "ready_for_predicted_geometry_scoring": true,
+      "schema_version": "northstar_next_levers.v0.fold_augmented_q43088_source_free_locator_sidecar",
+      "scope": "Review-only source-free locator sidecar for Q43088. It uses the local predicted coordinate, the existing Tyr287 source-free anchor, and two approved neighboring residue locators. It does not score the row or change threshold 0.44155.",
+      "source_free_locators": [
+        {
+          "approval_status": "preexisting_anchor_not_new_approval",
+          "ca": {
+            "x": -16.063,
+            "y": 2.876,
+            "z": -2.772
+          },
+          "centroid": {
+            "x": -16.356,
+            "y": 1.235,
+            "z": -1.171
+          },
+          "chain_name": "A",
+          "locator_role": "existing_source_free_anchor",
+          "mean_plddt": 95.19,
+          "residue_code": "TYR",
+          "roles": [
+            "activator",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_position": 287
+        },
+        {
+          "approval_basis": [
+            "local_predicted_coordinate_mapping_present",
+            "mean_plddt_at_least_80",
+            "polar_or_charged_residue_code",
+            "within_6a_of_existing_tyr287_anchor_ca",
+            "no_mechanism_text_ec_rhea_label_source_id_or_target_name_feature"
+          ],
+          "approval_status": "explicitly_approved_source_free_locator",
+          "ca": {
+            "x": -13.731,
+            "y": 4.092,
+            "z": -5.548
+          },
+          "centroid": {
+            "x": -12.745,
+            "y": 4.238,
+            "z": -5.78
+          },
+          "chain_name": "A",
+          "distance_to_anchor_ca_angstrom": 3.824,
+          "locator_role": "approved_source_free_predicted_coordinate_neighbor",
+          "mean_plddt": 93.69,
+          "residue_code": "ASP",
+          "sequence_position": 288
+        },
+        {
+          "approval_basis": [
+            "local_predicted_coordinate_mapping_present",
+            "mean_plddt_at_least_80",
+            "polar_or_charged_residue_code",
+            "within_6a_of_existing_tyr287_anchor_ca",
+            "no_mechanism_text_ec_rhea_label_source_id_or_target_name_feature"
+          ],
+          "approval_status": "explicitly_approved_source_free_locator",
+          "ca": {
+            "x": -19.285,
+            "y": 2.897,
+            "z": -4.861
+          },
+          "centroid": {
+            "x": -18.467,
+            "y": 2.927,
+            "z": -5.721
+          },
+          "chain_name": "A",
+          "distance_to_anchor_ca_angstrom": 3.84,
+          "locator_role": "approved_source_free_predicted_coordinate_neighbor",
+          "mean_plddt": 96.0,
+          "residue_code": "GLN",
+          "sequence_position": 286
+        }
+      ],
+      "status": "q43088_source_free_locator_sidecar_ready_review_only"
+    },
+    "payload_sha256": "67a70b904cf685344c6b38de3020a192242ea841da193cca21669cf921565157",
+    "will_write_with_packet": true
+  },
+  "artifact_id": "v3_fold_augmented_q43088_locator_approval_packet_current702_20260604",
+  "blockers": [
+    "p07658_full_length_predicted_coordinate_missing",
+    "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+    "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "active_site_residue_count_after_approval": 3,
+    "active_site_residue_count_before_review": 1,
+    "approved_locator_positions": 2,
+    "approved_new_locator_positions": 2,
+    "blockers": 4,
+    "critical_violation_total": 0,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "minimum_additional_locator_positions_needed": 2,
+    "minimum_locator_positions_required_for_geometry_channel": 3,
+    "q43088_locator_contract_cleared_now": 1,
+    "q43088_ready_for_row_rescore_now": 1,
+    "reviewed_priority_positions": 4
+  },
+  "created_utc": "2026-06-04T11:42:27Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_closure_valid_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Keep the Q43088 source-free locator sidecar staged for row-level scoring input. Do not rerun the fixed-threshold audit until P07658 has an approved full-length predicted coordinate; calibration closure still needs the 16-row high-cofactor probe and 170-row structural acquisition.",
+    "q43088_locator_contract_cleared_now": true,
+    "q43088_ready_for_row_rescore_now": true
+  },
+  "guardrails": {
+    "experimental_pdb_metadata_used_as_predictive_feature": false,
+    "fixed_threshold_audit_rerun": false,
+    "geometry_sidecar_approved_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_positions_approved_now": true,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "row_rescored_now": false,
+    "source_free_locator_sidecar_written": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Use this sidecar as Q43088's row-level geometry input only after the P07658 coordinate blocker is cleared; do not change threshold 0.44155.",
+    "result": "Q43088's locator blocker is cleared for review-only staging: positions 288 and 286 are approved as source-free locators from the local predicted coordinate, while 243 and 250 were reviewed but not needed for the minimum."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_q43088_locator_approval_packet",
+  "scope": "Explicit Q43088 source-free locator approval packet for Lever 3. It reviews positions 288, 286, 243, and 250 in priority order, approves the two positions that pass the conservative source-free predicted-coordinate checks, prepares a review-only locator sidecar, and does not rescore rows or change threshold 0.44155.",
+  "source_artifacts": {
+    "q43088_coordinate": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q43088_v6.cif",
+      "sha256": "e2cf9b4137bbd80ed6bc710b9de3a7666b5f828870be2e6a0c7ae2701e256bd9"
+    },
+    "q43088_locator_review_priority_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_q43088_locator_review_priority_packet_current702_20260604.json",
+      "sha256": "65b0cab6c85882ff75ecbd7f39451848796a790e06492d27af33dbb834369e95"
+    },
+    "q43088_source_free_locator_approval_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604.json",
+      "sha256": "a070b2f394cf29676bdce5cbcaed974102d6cc93a04d1a8d9e6b66d44c23f2d3"
+    }
+  },
+  "status": "fold_augmented_q43088_locator_approval_packet_cleared_review_only"
+}

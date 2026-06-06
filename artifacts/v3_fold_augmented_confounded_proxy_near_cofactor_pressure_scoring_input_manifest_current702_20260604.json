@@ -1,0 +1,3586 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_input_manifest_current702_20260604",
+  "commands": {
+    "run_near_cofactor_foldseek": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic_near_cofactor_pressure_foldseek/queries /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/near_cofactor_pressure_vs_train_atlas.tsv artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/tmp_near_cofactor_pressure_vs_train_atlas --format-output query,target,qtmscore,ttmscore,alntmscore,prob,bits --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --threads 4 -v 1"
+  },
+  "counts": {
+    "foldseek_tsv_rows": 1208,
+    "query_coordinate_files_missing": 0,
+    "query_coordinate_files_observed": 16,
+    "query_requests": 16,
+    "train_atlas_target_requests": 133
+  },
+  "created_utc": "2026-06-04T15:17:43Z",
+  "foldseek_input_manifest": {
+    "coordinate_request_groups": {
+      "confounded_proxy_train_cal_tranche_queries": [
+        {
+          "accession": "P07662",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:288"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P07662_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P07662-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P07662-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:288",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P07662-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q55012",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:89"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q55012_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q55012-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-Q55012-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:89",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q55012-F1-model_v6.cif"
+        },
+        {
+          "accession": "P0AG16",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:214"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P0AG16_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P0AG16-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P0AG16-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:214",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P0AG16-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00963",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:75"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P00963_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00963-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P00963-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:75",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00963-F1-model_v6.cif"
+        },
+        {
+          "accession": "P0A759",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:60"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P0A759_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P0A759-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P0A759-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:60",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P0A759-F1-model_v6.cif"
+        },
+        {
+          "accession": "P09186",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:583"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P09186_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P09186-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P09186-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:583",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P09186-F1-model_v6.cif"
+        },
+        {
+          "accession": "P14294",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:64"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P14294_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P14294-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P14294-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:64",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P14294-F1-model_v6.cif"
+        },
+        {
+          "accession": "P29241",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:607"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P29241_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P29241-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P29241-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:607",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P29241-F1-model_v6.cif"
+        },
+        {
+          "accession": "P15807",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:610"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P15807-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P15807-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:610",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P15807-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9P4R4",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:618"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9P4R4-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-Q9P4R4-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:618",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9P4R4-F1-model_v6.cif"
+        },
+        {
+          "accession": "P81382",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:555"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P81382_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P81382-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P81382-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:555",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P81382-F1-model_v6.cif"
+        },
+        {
+          "accession": "P04802",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:404"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P04802_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P04802-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P04802-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:404",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P04802-F1-model_v6.cif"
+        },
+        {
+          "accession": "P14262",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:26"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P14262_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P14262-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-P14262-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:26",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P14262-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q00267",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:515"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q00267_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q00267-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-Q00267-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:515",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q00267-F1-model_v6.cif"
+        },
+        {
+          "accession": "P68698",
+          "alphafold_version": 1,
+          "entry_ids": [
+            "m_csa:232"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/AF-0000000365772455-model_v1.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-0000000365772455-model_v1",
+          "provider": {
+            "model_entity_id": "AF-0000000365772455-model_v1",
+            "model_version": 1,
+            "provider": "AlphaFoldDB Viro3D",
+            "provider_id": "VR3D",
+            "tool_used": "ColabFold v1.5.2"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:232",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-0000000365772455-model_v1.cif"
+        },
+        {
+          "accession": "Q96C23",
+          "alphafold_version": 6,
+          "entry_ids": [
+            "m_csa:351"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q96C23_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q96C23-F1-model_v6",
+          "provider": {
+            "model_entity_id": "AF-Q96C23-F1-model_v6",
+            "model_version": 6,
+            "provider": "AlphaFoldDB",
+            "provider_id": "AFDB",
+            "tool_used": "AlphaFoldDB canonical monomer"
+          },
+          "role": "near_cofactor_pressure_train_cal_oos_query",
+          "rows": [
+            {
+              "benchmark_role": "oos_tier::unknown_oos",
+              "entry_id": "m_csa:351",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q96C23-F1-model_v6.cif"
+        }
+      ],
+      "threshold_contract_train_atlas_targets": [
+        {
+          "accession": "A5JUY8",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-A5JUY8-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_A5JUY8_v6.cif",
+          "entry_ids": [
+            "m_csa:944"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_A5JUY8_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-A5JUY8-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:944",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-A5JUY8-F1-model_v6.cif"
+        },
+        {
+          "accession": "F8W4B7",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-F8W4B7-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_F8W4B7_v6.cif",
+          "entry_ids": [
+            "m_csa:998"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_F8W4B7_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-F8W4B7-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:998",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-F8W4B7-F1-model_v6.cif"
+        },
+        {
+          "accession": "O13297",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-O13297-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O13297_v6.cif",
+          "entry_ids": [
+            "m_csa:486"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O13297_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-O13297-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:486",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-O13297-F1-model_v6.cif"
+        },
+        {
+          "accession": "O16025",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-O16025-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O16025_v6.cif",
+          "entry_ids": [
+            "m_csa:758"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O16025_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-O16025-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:758",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-O16025-F1-model_v6.cif"
+        },
+        {
+          "accession": "O31156",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-O31156-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O31156_v6.cif",
+          "entry_ids": [
+            "m_csa:181"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O31156_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-O31156-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:181",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-O31156-F1-model_v6.cif"
+        },
+        {
+          "accession": "O33199",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-O33199-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O33199_v6.cif",
+          "entry_ids": [
+            "m_csa:823"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O33199_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-O33199-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:823",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-O33199-F1-model_v6.cif"
+        },
+        {
+          "accession": "O58727",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-O58727-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O58727_v6.cif",
+          "entry_ids": [
+            "m_csa:716"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O58727_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-O58727-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:716",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-O58727-F1-model_v6.cif"
+        },
+        {
+          "accession": "O59791",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-O59791-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O59791_v6.cif",
+          "entry_ids": [
+            "m_csa:330",
+            "m_csa:956"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O59791_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-O59791-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:330",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "plp_dependent_enzyme",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            },
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:956",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "plp_dependent_enzyme",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-O59791-F1-model_v6.cif"
+        },
+        {
+          "accession": "O68557",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-O68557-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O68557_v6.cif",
+          "entry_ids": [
+            "m_csa:495"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_O68557_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-O68557-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:495",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-O68557-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00183",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00183-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00183_v6.cif",
+          "entry_ids": [
+            "m_csa:133"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00183_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00183-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:133",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00183-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00388",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00388-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00388_v6.cif",
+          "entry_ids": [
+            "m_csa:117"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00388_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00388-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:117",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00388-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00390",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00390-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00390_v6.cif",
+          "entry_ids": [
+            "m_csa:6"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00390_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00390-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:6",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00390-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00396",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00396-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00396_v6.cif",
+          "entry_ids": [
+            "m_csa:124"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00396_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00396-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:124",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00396-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00455",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00455-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00455_v6.cif",
+          "entry_ids": [
+            "m_csa:506"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00455_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00455-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:506",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00455-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00489",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00489-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00489_v6.cif",
+          "entry_ids": [
+            "m_csa:205"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00489_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00489-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:205",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00489-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00590",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00590-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00590_v6.cif",
+          "entry_ids": [
+            "m_csa:631"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00590_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00590-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:631",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00590-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00592",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00592-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00592_v6.cif",
+          "entry_ids": [
+            "m_csa:83"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00592_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00592-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:83",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00592-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00636",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00636-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00636_v6.cif",
+          "entry_ids": [
+            "m_csa:546"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00636_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00636-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:546",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00636-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00747",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00747-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00747_v6.cif",
+          "entry_ids": [
+            "m_csa:425"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00747_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00747-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:425",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00747-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00750",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00750-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00750_v6.cif",
+          "entry_ids": [
+            "m_csa:798"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00750_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00750-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:798",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00750-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00777",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00777-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00777_v6.cif",
+          "entry_ids": [
+            "m_csa:608"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00777_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00777-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:608",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00777-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00800",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00800-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00800_v6.cif",
+          "entry_ids": [
+            "m_csa:176"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00800_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00800-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:176",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00800-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00860",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00860-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00860_v6.cif",
+          "entry_ids": [
+            "m_csa:937"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00860_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00860-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:937",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00860-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00914",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00914-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00914_v6.cif",
+          "entry_ids": [
+            "m_csa:183"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00914_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00914-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:183",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00914-F1-model_v6.cif"
+        },
+        {
+          "accession": "P00935",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P00935-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00935_v6.cif",
+          "entry_ids": [
+            "m_csa:759"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P00935_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P00935-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:759",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P00935-F1-model_v6.cif"
+        },
+        {
+          "accession": "P03958",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P03958-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P03958_v6.cif",
+          "entry_ids": [
+            "m_csa:376"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P03958_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P03958-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:376",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P03958-F1-model_v6.cif"
+        },
+        {
+          "accession": "P04042",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P04042-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P04042_v6.cif",
+          "entry_ids": [
+            "m_csa:337"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P04042_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P04042-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:337",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P04042-F1-model_v6.cif"
+        },
+        {
+          "accession": "P04190",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P04190-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P04190_v6.cif",
+          "entry_ids": [
+            "m_csa:16"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P04190_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P04190-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:16",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P04190-F1-model_v6.cif"
+        },
+        {
+          "accession": "P05414",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P05414-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P05414_v6.cif",
+          "entry_ids": [
+            "m_csa:852"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P05414_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P05414-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:852",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P05414-F1-model_v6.cif"
+        },
+        {
+          "accession": "P05521",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P05521-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P05521_v6.cif",
+          "entry_ids": [
+            "m_csa:728"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P05521_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P05521-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:728",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P05521-F1-model_v6.cif"
+        },
+        {
+          "accession": "P06621",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P06621-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P06621_v6.cif",
+          "entry_ids": [
+            "m_csa:447"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P06621_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P06621-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:447",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P06621-F1-model_v6.cif"
+        },
+        {
+          "accession": "P06721",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P06721-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P06721_v6.cif",
+          "entry_ids": [
+            "m_csa:449"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P06721_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P06721-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:449",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P06721-F1-model_v6.cif"
+        },
+        {
+          "accession": "P07003",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P07003-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P07003_v6.cif",
+          "entry_ids": [
+            "m_csa:275"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P07003_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P07003-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:275",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P07003-F1-model_v6.cif"
+        },
+        {
+          "accession": "P07511",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P07511-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P07511_v6.cif",
+          "entry_ids": [
+            "m_csa:147"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P07511_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P07511-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:147",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P07511-F1-model_v6.cif"
+        },
+        {
+          "accession": "P08148",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P08148-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08148_v6.cif",
+          "entry_ids": [
+            "m_csa:668"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08148_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P08148-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:668",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P08148-F1-model_v6.cif"
+        },
+        {
+          "accession": "P08165",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P08165-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08165_v6.cif",
+          "entry_ids": [
+            "m_csa:142"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08165_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P08165-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:142",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P08165-F1-model_v6.cif"
+        },
+        {
+          "accession": "P08373",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P08373-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08373_v6.cif",
+          "entry_ids": [
+            "m_csa:353"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08373_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P08373-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:353",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P08373-F1-model_v6.cif"
+        },
+        {
+          "accession": "P08473",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P08473-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08473_v6.cif",
+          "entry_ids": [
+            "m_csa:623"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08473_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P08473-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:623",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P08473-F1-model_v6.cif"
+        },
+        {
+          "accession": "P08819",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P08819-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08819_v6.cif",
+          "entry_ids": [
+            "m_csa:5"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P08819_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P08819-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:5",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P08819-F1-model_v6.cif"
+        },
+        {
+          "accession": "P09184",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P09184-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P09184_v6.cif",
+          "entry_ids": [
+            "m_csa:839"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P09184_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P09184-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:839",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P09184-F1-model_v6.cif"
+        },
+        {
+          "accession": "P09367",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P09367-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P09367_v6.cif",
+          "entry_ids": [
+            "m_csa:186"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P09367_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P09367-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:186",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P09367-F1-model_v6.cif"
+        },
+        {
+          "accession": "P09883",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P09883-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P09883_v6.cif",
+          "entry_ids": [
+            "m_csa:791"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P09883_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P09883-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:791",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P09883-F1-model_v6.cif"
+        },
+        {
+          "accession": "P09960",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P09960-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P09960_v6.cif",
+          "entry_ids": [
+            "m_csa:166"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P09960_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P09960-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:166",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P09960-F1-model_v6.cif"
+        },
+        {
+          "accession": "P0A6C1",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P0A6C1-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0A6C1_v6.cif",
+          "entry_ids": [
+            "m_csa:11"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0A6C1_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P0A6C1-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:11",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P0A6C1-F1-model_v6.cif"
+        },
+        {
+          "accession": "P0A6K3",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P0A6K3-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0A6K3_v6.cif",
+          "entry_ids": [
+            "m_csa:98"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0A6K3_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P0A6K3-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:98",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P0A6K3-F1-model_v6.cif"
+        },
+        {
+          "accession": "P0A9P4",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P0A9P4-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0A9P4_v6.cif",
+          "entry_ids": [
+            "m_csa:381"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0A9P4_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P0A9P4-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:381",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P0A9P4-F1-model_v6.cif"
+        },
+        {
+          "accession": "P0AB77",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P0AB77-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0AB77_v6.cif",
+          "entry_ids": [
+            "m_csa:762"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0AB77_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P0AB77-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:762",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "plp_dependent_enzyme",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P0AB77-F1-model_v6.cif"
+        },
+        {
+          "accession": "P0AEZ1",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P0AEZ1-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0AEZ1_v6.cif",
+          "entry_ids": [
+            "m_csa:120"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0AEZ1_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P0AEZ1-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:120",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P0AEZ1-F1-model_v6.cif"
+        },
+        {
+          "accession": "P0CE47",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P0CE47-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0CE47_v6.cif",
+          "entry_ids": [
+            "m_csa:535"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P0CE47_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P0CE47-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:535",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P0CE47-F1-model_v6.cif"
+        },
+        {
+          "accession": "P10688",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P10688-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P10688_v6.cif",
+          "entry_ids": [
+            "m_csa:28"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P10688_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P10688-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:28",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P10688-F1-model_v6.cif"
+        },
+        {
+          "accession": "P10844",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P10844-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P10844_v6.cif",
+          "entry_ids": [
+            "m_csa:626"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P10844_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P10844-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:626",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P10844-F1-model_v6.cif"
+        },
+        {
+          "accession": "P10902",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P10902-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P10902_v6.cif",
+          "entry_ids": [
+            "m_csa:739"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P10902_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P10902-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:739",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P10902-F1-model_v6.cif"
+        },
+        {
+          "accession": "P12821",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P12821-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P12821_v6.cif",
+          "entry_ids": [
+            "m_csa:170"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P12821_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P12821-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:170",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P12821-F1-model_v6.cif"
+        },
+        {
+          "accession": "P12995",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P12995-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P12995_v6.cif",
+          "entry_ids": [
+            "m_csa:249"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P12995_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P12995-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:249",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P12995-F1-model_v6.cif"
+        },
+        {
+          "accession": "P12998",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P12998-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P12998_v6.cif",
+          "entry_ids": [
+            "m_csa:430"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P12998_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P12998-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:430",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P12998-F1-model_v6.cif"
+        },
+        {
+          "accession": "P13717",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P13717-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P13717_v6.cif",
+          "entry_ids": [
+            "m_csa:42"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P13717_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P13717-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:42",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P13717-F1-model_v6.cif"
+        },
+        {
+          "accession": "P14779",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P14779-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P14779_v6.cif",
+          "entry_ids": [
+            "m_csa:699"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P14779_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P14779-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:699",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P14779-F1-model_v6.cif"
+        },
+        {
+          "accession": "P15034",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P15034-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P15034_v6.cif",
+          "entry_ids": [
+            "m_csa:379"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P15034_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P15034-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:379",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P15034-F1-model_v6.cif"
+        },
+        {
+          "accession": "P15289",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P15289-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P15289_v6.cif",
+          "entry_ids": [
+            "m_csa:158"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P15289_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P15289-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:158",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P15289-F1-model_v6.cif"
+        },
+        {
+          "accession": "P15917",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P15917-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P15917_v6.cif",
+          "entry_ids": [
+            "m_csa:641"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P15917_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P15917-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:641",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P15917-F1-model_v6.cif"
+        },
+        {
+          "accession": "P16099",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P16099-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P16099_v6.cif",
+          "entry_ids": [
+            "m_csa:114"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P16099_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P16099-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:114",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P16099-F1-model_v6.cif"
+        },
+        {
+          "accession": "P16444",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P16444-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P16444_v6.cif",
+          "entry_ids": [
+            "m_csa:168"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P16444_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P16444-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:168",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P16444-F1-model_v6.cif"
+        },
+        {
+          "accession": "P19938",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P19938-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P19938_v6.cif",
+          "entry_ids": [
+            "m_csa:66"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P19938_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P19938-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:66",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P19938-F1-model_v6.cif"
+        },
+        {
+          "accession": "P21179",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P21179-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P21179_v6.cif",
+          "entry_ids": [
+            "m_csa:573"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P21179_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P21179-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:573",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P21179-F1-model_v6.cif"
+        },
+        {
+          "accession": "P21327",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P21327-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P21327_v6.cif",
+          "entry_ids": [
+            "m_csa:856"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P21327_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P21327-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:856",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P21327-F1-model_v6.cif"
+        },
+        {
+          "accession": "P22394",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P22394-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P22394_v6.cif",
+          "entry_ids": [
+            "m_csa:520"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P22394_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P22394-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:520",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P22394-F1-model_v6.cif"
+        },
+        {
+          "accession": "P22637",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P22637-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P22637_v6.cif",
+          "entry_ids": [
+            "m_csa:354"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P22637_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P22637-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:354",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P22637-F1-model_v6.cif"
+        },
+        {
+          "accession": "P23687",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P23687-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P23687_v6.cif",
+          "entry_ids": [
+            "m_csa:901"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P23687_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P23687-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:901",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P23687-F1-model_v6.cif"
+        },
+        {
+          "accession": "P24289",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P24289-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P24289_v6.cif",
+          "entry_ids": [
+            "m_csa:395"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P24289_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P24289-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:395",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P24289-F1-model_v6.cif"
+        },
+        {
+          "accession": "P24474",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P24474-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P24474_v6.cif",
+          "entry_ids": [
+            "m_csa:903"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P24474_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P24474-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:903",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P24474-F1-model_v6.cif"
+        },
+        {
+          "accession": "P24630",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P24630-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P24630_v6.cif",
+          "entry_ids": [
+            "m_csa:195"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P24630_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P24630-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:195",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P24630-F1-model_v6.cif"
+        },
+        {
+          "accession": "P25910",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P25910-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P25910_v6.cif",
+          "entry_ids": [
+            "m_csa:15"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P25910_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P25910-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:15",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P25910-F1-model_v6.cif"
+        },
+        {
+          "accession": "P27170",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P27170-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P27170_v6.cif",
+          "entry_ids": [
+            "m_csa:740"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P27170_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P27170-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:740",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P27170-F1-model_v6.cif"
+        },
+        {
+          "accession": "P27487",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P27487-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P27487_v6.cif",
+          "entry_ids": [
+            "m_csa:169"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P27487_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P27487-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:169",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P27487-F1-model_v6.cif"
+        },
+        {
+          "accession": "P29183",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P29183-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P29183_v6.cif",
+          "entry_ids": [
+            "m_csa:218"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P29183_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P29183-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:218",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P29183-F1-model_v6.cif"
+        },
+        {
+          "accession": "P29474",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P29474-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P29474_v6.cif",
+          "entry_ids": [
+            "m_csa:935"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P29474_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P29474-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:935",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P29474-F1-model_v6.cif"
+        },
+        {
+          "accession": "P30122",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P30122-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P30122_v6.cif",
+          "entry_ids": [
+            "m_csa:401"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P30122_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P30122-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:401",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P30122-F1-model_v6.cif"
+        },
+        {
+          "accession": "P37062",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P37062-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P37062_v6.cif",
+          "entry_ids": [
+            "m_csa:895"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P37062_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P37062-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:895",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P37062-F1-model_v6.cif"
+        },
+        {
+          "accession": "P37063",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P37063-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P37063_v6.cif",
+          "entry_ids": [
+            "m_csa:274"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P37063_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P37063-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:274",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P37063-F1-model_v6.cif"
+        },
+        {
+          "accession": "P37957",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P37957-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P37957_v6.cif",
+          "entry_ids": [
+            "m_csa:518"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P37957_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P37957-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:518",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P37957-F1-model_v6.cif"
+        },
+        {
+          "accession": "P39377",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P39377-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P39377_v6.cif",
+          "entry_ids": [
+            "m_csa:172"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P39377_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P39377-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:172",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P39377-F1-model_v6.cif"
+        },
+        {
+          "accession": "P40859",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P40859-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P40859_v6.cif",
+          "entry_ids": [
+            "m_csa:113"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P40859_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P40859-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:113",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P40859-F1-model_v6.cif"
+        },
+        {
+          "accession": "P40881",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P40881-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P40881_v6.cif",
+          "entry_ids": [
+            "m_csa:516"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P40881_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P40881-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:516",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P40881-F1-model_v6.cif"
+        },
+        {
+          "accession": "P42593",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P42593-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P42593_v6.cif",
+          "entry_ids": [
+            "m_csa:108"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P42593_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P42593-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:108",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P42593-F1-model_v6.cif"
+        },
+        {
+          "accession": "P43099",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P43099-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P43099_v6.cif",
+          "entry_ids": [
+            "m_csa:860"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P43099_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P43099-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:860",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P43099-F1-model_v6.cif"
+        },
+        {
+          "accession": "P45478",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P45478-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P45478_v6.cif",
+          "entry_ids": [
+            "m_csa:522"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P45478_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P45478-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:522",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P45478-F1-model_v6.cif"
+        },
+        {
+          "accession": "P46076",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P46076-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P46076_v6.cif",
+          "entry_ids": [
+            "m_csa:596"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P46076_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P46076-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:596",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P46076-F1-model_v6.cif"
+        },
+        {
+          "accession": "P52279",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P52279-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P52279_v6.cif",
+          "entry_ids": [
+            "m_csa:412"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P52279_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P52279-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:412",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P52279-F1-model_v6.cif"
+        },
+        {
+          "accession": "P52700",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P52700-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P52700_v6.cif",
+          "entry_ids": [
+            "m_csa:258"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P52700_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P52700-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:258",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P52700-F1-model_v6.cif"
+        },
+        {
+          "accession": "P53041",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P53041-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P53041_v6.cif",
+          "entry_ids": [
+            "m_csa:472"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P53041_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P53041-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:472",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P53041-F1-model_v6.cif"
+        },
+        {
+          "accession": "P53608",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P53608-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P53608_v6.cif",
+          "entry_ids": [
+            "m_csa:445"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P53608_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P53608-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:445",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P53608-F1-model_v6.cif"
+        },
+        {
+          "accession": "P55038",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P55038-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P55038_v6.cif",
+          "entry_ids": [
+            "m_csa:111"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P55038_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P55038-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:111",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P55038-F1-model_v6.cif"
+        },
+        {
+          "accession": "P55931",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P55931-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P55931_v6.cif",
+          "entry_ids": [
+            "m_csa:281"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P55931_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P55931-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:281",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P55931-F1-model_v6.cif"
+        },
+        {
+          "accession": "P56200",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P56200-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P56200_v6.cif",
+          "entry_ids": [
+            "m_csa:446"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P56200_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P56200-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:446",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P56200-F1-model_v6.cif"
+        },
+        {
+          "accession": "P56216",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P56216-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P56216_v6.cif",
+          "entry_ids": [
+            "m_csa:103"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P56216_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P56216-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:103",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P56216-F1-model_v6.cif"
+        },
+        {
+          "accession": "P56218",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P56218-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P56218_v6.cif",
+          "entry_ids": [
+            "m_csa:917"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P56218_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P56218-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:917",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P56218-F1-model_v6.cif"
+        },
+        {
+          "accession": "P71119",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P71119-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P71119_v6.cif",
+          "entry_ids": [
+            "m_csa:795"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P71119_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P71119-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:795",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P71119-F1-model_v6.cif"
+        },
+        {
+          "accession": "P77444",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P77444-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P77444_v6.cif",
+          "entry_ids": [
+            "m_csa:855"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P77444_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P77444-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:855",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P77444-F1-model_v6.cif"
+        },
+        {
+          "accession": "P80324",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P80324-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P80324_v6.cif",
+          "entry_ids": [
+            "m_csa:110"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P80324_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P80324-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:110",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_monooxygenase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P80324-F1-model_v6.cif"
+        },
+        {
+          "accession": "P81054",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P81054-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P81054_v6.cif",
+          "entry_ids": [
+            "m_csa:786"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P81054_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P81054-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:786",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P81054-F1-model_v6.cif"
+        },
+        {
+          "accession": "P83686",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P83686-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P83686_v6.cif",
+          "entry_ids": [
+            "m_csa:862"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P83686_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P83686-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:862",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P83686-F1-model_v6.cif"
+        },
+        {
+          "accession": "P83772",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P83772-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P83772_v6.cif",
+          "entry_ids": [
+            "m_csa:720"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P83772_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P83772-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:720",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P83772-F1-model_v6.cif"
+        },
+        {
+          "accession": "P83788",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P83788-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P83788_v6.cif",
+          "entry_ids": [
+            "m_csa:742"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P83788_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P83788-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:742",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "heme_peroxidase_oxidase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P83788-F1-model_v6.cif"
+        },
+        {
+          "accession": "P95468",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P95468-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P95468_v6.cif",
+          "entry_ids": [
+            "m_csa:411"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P95468_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P95468-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:411",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P95468-F1-model_v6.cif"
+        },
+        {
+          "accession": "P96086",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P96086-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P96086_v6.cif",
+          "entry_ids": [
+            "m_csa:808"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P96086_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P96086-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:808",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P96086-F1-model_v6.cif"
+        },
+        {
+          "accession": "P96965",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P96965-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P96965_v6.cif",
+          "entry_ids": [
+            "m_csa:771"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_P96965_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-P96965-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:771",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P96965-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q00017",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q00017-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q00017_v6.cif",
+          "entry_ids": [
+            "m_csa:705"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q00017_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q00017-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:705",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q00017-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q01693",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q01693-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q01693_v6.cif",
+          "entry_ids": [
+            "m_csa:167"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q01693_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q01693-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:167",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q01693-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q05755",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q05755-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q05755_v6.cif",
+          "entry_ids": [
+            "m_csa:304"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q05755_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q05755-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:304",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q05755-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q05769",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q05769-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q05769_v6.cif",
+          "entry_ids": [
+            "m_csa:37"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q05769_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q05769-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:37",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q05769-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q06241",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q06241-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q06241_v6.cif",
+          "entry_ids": [
+            "m_csa:706"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q06241_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q06241-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:706",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q06241-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q12178",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q12178-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q12178_v6.cif",
+          "entry_ids": [
+            "m_csa:636"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q12178_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q12178-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:636",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q12178-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q16775",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q16775-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q16775_v6.cif",
+          "entry_ids": [
+            "m_csa:157"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q16775_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q16775-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:157",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q16775-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q29460",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q29460-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q29460_v6.cif",
+          "entry_ids": [
+            "m_csa:94"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q29460_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q29460-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:94",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q29460-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q3HWU8",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q3HWU8-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q3HWU8_v6.cif",
+          "entry_ids": [
+            "m_csa:733"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q3HWU8_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q3HWU8-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:733",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q3HWU8-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q50925",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q50925-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q50925_v6.cif",
+          "entry_ids": [
+            "m_csa:581"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q50925_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q50925-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+              "entry_id": "m_csa:581",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "heme_peroxidase_oxidase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q50925-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q56839",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q56839-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q56839_v6.cif",
+          "entry_ids": [
+            "m_csa:378"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q56839_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q56839-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:378",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q56839-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q58989",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q58989-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q58989_v6.cif",
+          "entry_ids": [
+            "m_csa:727"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q58989_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q58989-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:727",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q58989-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q6LZM9",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q6LZM9-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q6LZM9_v6.cif",
+          "entry_ids": [
+            "m_csa:286"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q6LZM9_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q6LZM9-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:286",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "plp_dependent_enzyme",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q6LZM9-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q6UV28",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q6UV28-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q6UV28_v6.cif",
+          "entry_ids": [
+            "m_csa:528"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q6UV28_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q6UV28-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:528",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q6UV28-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q6YBS3",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q6YBS3-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q6YBS3_v6.cif",
+          "entry_ids": [
+            "m_csa:666"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q6YBS3_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q6YBS3-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:666",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q6YBS3-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q75WN8",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q75WN8-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q75WN8_v6.cif",
+          "entry_ids": [
+            "m_csa:437"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q75WN8_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q75WN8-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:437",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q75WN8-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q7SID9",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q7SID9-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q7SID9_v6.cif",
+          "entry_ids": [
+            "m_csa:822"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q7SID9_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q7SID9-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:822",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q7SID9-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q8RB32",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q8RB32-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q8RB32_v6.cif",
+          "entry_ids": [
+            "m_csa:300"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q8RB32_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q8RB32-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:300",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q8RB32-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q945K2",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q945K2-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q945K2_v6.cif",
+          "entry_ids": [
+            "m_csa:941"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q945K2_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q945K2-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:941",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q945K2-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9FEW9",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9FEW9-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9FEW9_v6.cif",
+          "entry_ids": [
+            "m_csa:697"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9FEW9_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9FEW9-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:697",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9FEW9-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9HXE3",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9HXE3-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9HXE3_v6.cif",
+          "entry_ids": [
+            "m_csa:978"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9HXE3_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9HXE3-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:978",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9HXE3-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9L9D7",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9L9D7-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9L9D7_v6.cif",
+          "entry_ids": [
+            "m_csa:465"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9L9D7_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9L9D7-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:465",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9L9D7-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9NPB1",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9NPB1-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9NPB1_v6.cif",
+          "entry_ids": [
+            "m_csa:812"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9NPB1_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9NPB1-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+              "entry_id": "m_csa:812",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "metal_dependent_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9NPB1-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9UMR5",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9UMR5-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9UMR5_v6.cif",
+          "entry_ids": [
+            "m_csa:523"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9UMR5_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9UMR5-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+              "entry_id": "m_csa:523",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "ser_his_acid_hydrolase",
+              "true_fingerprint_id": "ser_his_acid_hydrolase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9UMR5-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9X9P9",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9X9P9-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9X9P9_v6.cif",
+          "entry_ids": [
+            "m_csa:942"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9X9P9_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9X9P9-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:942",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9X9P9-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9XBQ8",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9XBQ8-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9XBQ8_v6.cif",
+          "entry_ids": [
+            "m_csa:358"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9XBQ8_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9XBQ8-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+              "entry_id": "m_csa:358",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "plp_dependent_enzyme"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9XBQ8-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9YHT1",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9YHT1-F1-model_v6.cif -o /private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9YHT1_v6.cif",
+          "entry_ids": [
+            "m_csa:294"
+          ],
+          "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/train_targets/afdb_Q9YHT1_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": "AF-Q9YHT1-F1-model_v6",
+          "role": "threshold_contract_train_atlas_target",
+          "rows": [
+            {
+              "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+              "entry_id": "m_csa:294",
+              "split_assignment": "in_distribution",
+              "top1_fingerprint_id": "metal_dependent_hydrolase",
+              "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9YHT1-F1-model_v6.cif"
+        }
+      ]
+    },
+    "result_tsv": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/near_cofactor_pressure_vs_train_atlas.tsv"
+  },
+  "guardrails": {
+    "diagnostic_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "high_cofactor_contract_relaxed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false,
+    "train_cal_only": true
+  },
+  "runtime": {
+    "foldseek_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_threads": 4,
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "result_tsv": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/near_cofactor_pressure_vs_train_atlas.tsv"
+  },
+  "schema_version": "v3.fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_input_manifest",
+  "scope": "Foldseek input manifest for the near-cofactor train/cal diagnostic pressure readout. Query rows are non-heldout OOS near misses; targets reuse the existing threshold-contract train atlas.",
+  "source_artifacts": {
+    "base_train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json",
+      "sha256": "05d4a70aada32d883b275de9d135d7650213d11c6ecfe7e61f570d023db7769e"
+    },
+    "scoring_plan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_plan_current702_20260604.json",
+      "sha256": "25684fcfb252cdf052f11be8722f98079fbb224fe876b6a705de8b59c73d890b"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_input_manifest_ready_full"
+}

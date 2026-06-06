@@ -1,0 +1,118 @@
+# Fold-Augmented Lever 3 Deployment Contract Lineage Audit - current702
+
+Run: 2026-06-05T11:14:11Z
+
+Source-lineage guardrail audit for the current Lever 3 deployment contract. It walks the bounded contract-to-application-to-closure artifact chain through depth 3 and verifies source hashes plus guardrail flags for blocker packets, threshold changes, heldout shortcuts, metadata shortcuts, row scoring, provider calls, coordinate staging, and label/import changes.
+
+## Status
+
+- fold_augmented_lever3_deployment_contract_lineage_audit_passed
+- Deployment contract lineage clean: True
+- Deployment contract ready: True
+- Fixed-threshold scoring closure available now: False
+- Lineage violations: []
+
+## Counts
+
+- Lineage artifacts checked: 9
+- Lineage artifacts with guardrail violations: 0
+- Source hashes current: 43/43
+- Load errors: 0
+- Application rows abstain/route: 21/21
+- Retained residual rows after all counteraxes: 0
+
+## Lineage Checks
+
+| check | passed |
+| --- | ---: |
+| contract_readiness_audit_passed | True |
+| lineage_artifacts_loaded_without_errors | True |
+| lineage_source_hashes_current | True |
+| lineage_artifacts_all_measured_readouts | True |
+| lineage_artifacts_no_blocker_packets | True |
+| lineage_artifacts_no_candidate_row_scoring | True |
+| lineage_artifacts_no_threshold_changes_or_tuning | True |
+| lineage_artifacts_no_provider_or_coordinate_changes | True |
+| lineage_artifacts_no_heldout_or_metadata_shortcuts | True |
+| lineage_artifacts_no_forbidden_predictive_features | True |
+| lineage_artifacts_no_label_registry_import_changes | True |
+
+## Artifact Guardrails
+
+| depth | artifact | status | violations |
+| ---: | --- | --- | --- |
+| 0 | v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605 | fold_augmented_lever3_deployment_contract_readiness_audit_passed | [] |
+| 1 | v3_fold_augmented_lever3_operating_point_application_audit_current702_20260605 | fold_augmented_lever3_operating_point_application_audit_passed | [] |
+| 2 | v3_fold_augmented_lever3_closure_reproducibility_audit_current702_20260605 | fold_augmented_lever3_closure_reproducibility_audit_passed | [] |
+| 2 | v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605 | fold_augmented_lever3_operating_point_closure_readout_closed | [] |
+| 3 | v3_fold_augmented_lever3_deployment_action_readout_current702_20260604 | fold_augmented_lever3_deployment_action_readout_ready_fail_closed_p07658 | [] |
+| 3 | v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604 | fold_augmented_lever3_retained_channel_margin_counteraxis_readout_partial_application | [] |
+| 3 | v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605 | fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_closed | [] |
+| 3 | v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_partial_application | [] |
+| 3 | v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_partial_application | [] |
+
+## Source Hashes
+
+| parent | source | hash current | path |
+| --- | --- | ---: | --- |
+| v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605 | operating_point_application_audit | True | artifacts/v3_fold_augmented_lever3_operating_point_application_audit_current702_20260605.json |
+| v3_fold_augmented_lever3_operating_point_application_audit_current702_20260605 | closure_reproducibility_audit | True | artifacts/v3_fold_augmented_lever3_closure_reproducibility_audit_current702_20260605.json |
+| v3_fold_augmented_lever3_operating_point_application_audit_current702_20260605 | operating_point_closure_readout | True | artifacts/v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605.json |
+| v3_fold_augmented_lever3_closure_reproducibility_audit_current702_20260605 | operating_point_closure_readout | True | artifacts/v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605.json |
+| v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605 | deployment_action_readout | True | artifacts/v3_fold_augmented_lever3_deployment_action_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605 | retained_channel_margin_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605 | retained_geometry_mismatch_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605.json |
+| v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605 | retained_pairwise_descriptor_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605 | retained_pocket_chemistry_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.json |
+| v3_fold_augmented_lever3_deployment_action_readout_current702_20260604 | cofactor_context_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_deployment_action_readout_current702_20260604 | confounded_safe_abstention_readout | True | artifacts/v3_fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_deployment_action_readout_current702_20260604 | residual_safety_readout | True | artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_deployment_action_readout_current702_20260604 | same_family_bandpass_counteraxis_contract | True | artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604 | channel_veto_readout | True | artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604 | cofactor_context_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604 | latest_train_cal_oos_surface | True | artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json |
+| v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604 | residual_safety_readout | True | artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604 | retained_pairwise_descriptor_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604 | threshold_contract | True | artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json |
+| v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605 | channel_veto_readout | True | artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605 | cofactor_context_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605 | latest_train_cal_oos_surface | True | artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json |
+| v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605 | retained_channel_margin_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605 | retained_pairwise_descriptor_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605 | retained_pocket_chemistry_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.json |
+| v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605 | threshold_contract | True | artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json |
+| v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | channel_veto_readout | True | artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | descriptor_generalization_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | descriptor_present_counteraxis_preflight | True | artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | latest_train_cal_oos_surface | True | artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json |
+| v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | predicted_geometry_atlas_retrieval | True | artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json |
+| v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | retained_descriptor_rescue_readout | True | artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | retained_residual_risk_readout | True | artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604 | threshold_contract | True | artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | channel_veto_readout | True | artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | cofactor_context_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | descriptor_present_counteraxis_preflight | True | artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | latest_train_cal_oos_surface | True | artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | predicted_geometry_atlas_retrieval | True | artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | retained_channel_margin_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | retained_descriptor_rescue_readout | True | artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | retained_pairwise_descriptor_counteraxis_readout | True | artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json |
+| v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605 | threshold_contract | True | artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json |
+
+## Decision
+
+- Predicted/source-free evidence enough for safe abstention: True
+- Predicted/source-free evidence enough for fixed-threshold scoring closure: False
+- Unsafe forced mechanism transfer allowed: False
+- Exact missing evidence for scoring closure: ['one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA', 'returned full-length coordinate file at the preferred staging path', 'filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling', 'P07658 acceptance preflight with all required checks passing']
+- Next gate: Use the deployment contract as the current Lever 3 abstain/route readout; keep scoring closure fail-closed pending the separate exact P07658 coordinate/provenance route.
+
+## Guardrails
+
+- Measured readout only. Bounded existing-artifact lineage audit only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.
+
+## Interpretation
+
+- Lever 3 deployment contract lineage is guardrail-clean.
+- Checked 9 lineage artifacts and 43 source records with 0 artifact guardrail violation rows.
+- Treat the current contract as the deployable abstain/route readout; scoring closure still waits on exact P07658 evidence.

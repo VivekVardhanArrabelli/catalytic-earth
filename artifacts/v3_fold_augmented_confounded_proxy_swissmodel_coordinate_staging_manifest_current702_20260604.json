@@ -1,0 +1,215 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604",
+  "blockers": [
+    "p07658_has_only_experimental_pdb_repository_mappings",
+    "q43088_locator_or_geometry_sidecar_still_missing",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "affected_coordinate_source_blocker_rows": 4,
+    "blockers": 3,
+    "coordinate_rows_rescore_input_ready_now": 3,
+    "critical_violation_total": 0,
+    "fixed_threshold": 0.44155,
+    "pdb_provider_only_rows": 1,
+    "remaining_coordinate_source_blocker_rows": 1,
+    "staged_predicted_coordinate_rows": 3,
+    "swissmodel_predicted_model_rows": 3
+  },
+  "created_utc": "2026-06-04T10:12:34Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "coordinate_source_surface_fully_clear_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Keep P07071, P00806, and P04531 staged as review-only SWISS-MODEL predicted-coordinate inputs. Do not use P07658 provider=PDB repository mappings; obtain a true predicted coordinate for P07658, and clear Q43088 locator evidence before any fixed-threshold audit rerun.",
+    "partial_coordinate_source_clearance_rows": 3,
+    "remaining_coordinate_source_blocker_rows": 1
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_review_only": true,
+    "experimental_pdb_repository_mappings_used_as_inputs": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "provider_pdb_rows_rejected": true,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Run the smallest next coordinate experiment for P07658: obtain or generate a deployment-valid predicted structure with provider/model/version/path/checksum provenance. In parallel, continue the Q43088 source-free locator review.",
+    "result": "The non-AFDB coordinate blocker is partially clearable with current source-free predicted-structure evidence: three rows have staged SWISS-MODEL homology models, while P07658 remains blocked because the repository exposes only experimental PDB mappings for that accession."
+  },
+  "rows": [
+    {
+      "accession": "P07071",
+      "coordinate_rescore_input_ready": true,
+      "entry_id": "m_csa:416",
+      "local_status": "swissmodel_predicted_coordinate_staged_review_only",
+      "pdb_provider_structure_rows": 5,
+      "provider_model_version_path_checksum_provenance": {
+        "accession_or_isoform_mapping_review": "query_accession_matches_contract_row",
+        "checksum_sha256": "5fa0de774dadf94092282d5c4bdb7744283e7099a8ff166f02e1190acd83c2fe",
+        "coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P07071_9d3x_1_A_range_6_605.pdb",
+        "model_name_or_id": "P07071:9d3x.1.A",
+        "model_version": "2026-06-03T14:09:28.514000+00:00",
+        "provider": "SWISSMODEL",
+        "source_free_evidence_contract": "Use only the staged predicted coordinates and their source-free geometry/cofactor evidence as channel inputs; SWISS-MODEL templates, descriptions, source IDs, EC/Rhea IDs, labels, and target names are provenance only and are not predictive features."
+      },
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "row_blockers": [],
+      "selected_swissmodel_model": {
+        "coordinates_url": "https://swissmodel.expasy.org/repository/uniprot/P07071.pdb?range=6-605&template=9d3x.1.A&provider=swissmodel",
+        "coverage": 0.992,
+        "created_date": "2026-06-03T14:09:28.514000+00:00",
+        "gmqe": 0.833,
+        "identity": 52.951,
+        "method": "HOMOLOGY MODELLING",
+        "modelcif_url": "https://swissmodel.expasy.org/repository/uniprot/P07071.cif?range=6-605&template=9d3x.1.A&provider=swissmodel",
+        "oligo_state": "homo-2-mer",
+        "provider": "SWISSMODEL",
+        "qmean6_norm_score": 0.742,
+        "range": {
+          "from": 6,
+          "to": 605
+        },
+        "staged_coordinate_exists": true,
+        "staged_coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P07071_9d3x_1_A_range_6_605.pdb",
+        "staged_coordinate_sha256": "5fa0de774dadf94092282d5c4bdb7744283e7099a8ff166f02e1190acd83c2fe",
+        "staged_coordinate_size_bytes": 758194,
+        "template": "9d3x.1.A"
+      },
+      "swissmodel_structure_rows": 3,
+      "why_not_rescored_now": "Coordinate input is staged, but the full fixed-threshold audit remains blocked until all four coordinate rows and Q43088 locator evidence clear."
+    },
+    {
+      "accession": "P07658",
+      "coordinate_rescore_input_ready": false,
+      "entry_id": "m_csa:562",
+      "local_status": "swissmodel_repository_pdb_only_disallowed",
+      "pdb_provider_structure_rows": 5,
+      "provider_model_version_path_checksum_provenance": {
+        "accession_or_isoform_mapping_review": "not_available",
+        "checksum_sha256": null,
+        "coordinate_path": null,
+        "model_name_or_id": null,
+        "model_version": null,
+        "provider": null,
+        "source_free_evidence_contract": null
+      },
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "row_blockers": [
+        "swissmodel_repository_only_experimental_pdb_mappings",
+        "approved_predicted_structure_coordinate_missing"
+      ],
+      "selected_swissmodel_model": null,
+      "swissmodel_structure_rows": 0,
+      "why_not_rescored_now": "No approved predicted coordinate input is staged for this row."
+    },
+    {
+      "accession": "P00806",
+      "coordinate_rescore_input_ready": true,
+      "entry_id": "m_csa:586",
+      "local_status": "swissmodel_predicted_coordinate_staged_review_only",
+      "pdb_provider_structure_rows": 2,
+      "provider_model_version_path_checksum_provenance": {
+        "accession_or_isoform_mapping_review": "query_accession_matches_contract_row",
+        "checksum_sha256": "3c472c38660864956b83a65fd7e37aeeb9bd9f52eea67b259411732ec5170412",
+        "coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P00806_1lba_1_A_range_7_151.pdb",
+        "model_name_or_id": "P00806:1lba.1.A",
+        "model_version": "2026-06-03T05:14:31.879000+00:00",
+        "provider": "SWISSMODEL",
+        "source_free_evidence_contract": "Use only the staged predicted coordinates and their source-free geometry/cofactor evidence as channel inputs; SWISS-MODEL templates, descriptions, source IDs, EC/Rhea IDs, labels, and target names are provenance only and are not predictive features."
+      },
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "row_blockers": [],
+      "selected_swissmodel_model": {
+        "coordinates_url": "https://swissmodel.expasy.org/repository/uniprot/P00806.pdb?range=7-151&template=1lba.1.A&provider=swissmodel",
+        "coverage": 0.96,
+        "created_date": "2026-06-03T05:14:31.879000+00:00",
+        "gmqe": 0.923,
+        "identity": 100.0,
+        "method": "HOMOLOGY MODELLING",
+        "modelcif_url": "https://swissmodel.expasy.org/repository/uniprot/P00806.cif?range=7-151&template=1lba.1.A&provider=swissmodel",
+        "oligo_state": "monomer",
+        "provider": "SWISSMODEL",
+        "qmean6_norm_score": 0.818,
+        "range": {
+          "from": 7,
+          "to": 151
+        },
+        "staged_coordinate_exists": true,
+        "staged_coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P00806_1lba_1_A_range_7_151.pdb",
+        "staged_coordinate_sha256": "3c472c38660864956b83a65fd7e37aeeb9bd9f52eea67b259411732ec5170412",
+        "staged_coordinate_size_bytes": 99792,
+        "template": "1lba.1.A"
+      },
+      "swissmodel_structure_rows": 1,
+      "why_not_rescored_now": "Coordinate input is staged, but the full fixed-threshold audit remains blocked until all four coordinate rows and Q43088 locator evidence clear."
+    },
+    {
+      "accession": "P04531",
+      "coordinate_rescore_input_ready": true,
+      "entry_id": "m_csa:637",
+      "local_status": "swissmodel_predicted_coordinate_staged_review_only",
+      "pdb_provider_structure_rows": 2,
+      "provider_model_version_path_checksum_provenance": {
+        "accession_or_isoform_mapping_review": "query_accession_matches_contract_row",
+        "checksum_sha256": "0bb9e3d4badbe1ca31d926c411a29047e1894c563363b0df3add0de253118518",
+        "coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P04531_1del_1_A_range_1_241.pdb",
+        "model_name_or_id": "P04531:1del.1.A",
+        "model_version": "2026-06-02T00:44:24.643000+00:00",
+        "provider": "SWISSMODEL",
+        "source_free_evidence_contract": "Use only the staged predicted coordinates and their source-free geometry/cofactor evidence as channel inputs; SWISS-MODEL templates, descriptions, source IDs, EC/Rhea IDs, labels, and target names are provenance only and are not predictive features."
+      },
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "row_blockers": [],
+      "selected_swissmodel_model": {
+        "coordinates_url": "https://swissmodel.expasy.org/repository/uniprot/P04531.pdb?range=1-241&template=1del.1.A&provider=swissmodel",
+        "coverage": 1.0,
+        "created_date": "2026-06-02T00:44:24.643000+00:00",
+        "gmqe": 0.959,
+        "identity": 100.0,
+        "method": "HOMOLOGY MODELLING",
+        "modelcif_url": "https://swissmodel.expasy.org/repository/uniprot/P04531.cif?range=1-241&template=1del.1.A&provider=swissmodel",
+        "oligo_state": "homo-2-mer",
+        "provider": "SWISSMODEL",
+        "qmean6_norm_score": 0.8,
+        "range": {
+          "from": 1,
+          "to": 241
+        },
+        "staged_coordinate_exists": true,
+        "staged_coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P04531_1del_1_A_range_1_241.pdb",
+        "staged_coordinate_sha256": "0bb9e3d4badbe1ca31d926c411a29047e1894c563363b0df3add0de253118518",
+        "staged_coordinate_size_bytes": 328479,
+        "template": "1del.1.A"
+      },
+      "swissmodel_structure_rows": 1,
+      "why_not_rescored_now": "Coordinate input is staged, but the full fixed-threshold audit remains blocked until all four coordinate rows and Q43088 locator evidence clear."
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest",
+  "scope": "Review-only Lever 3 staging manifest for non-AFDB predicted coordinates from the SWISS-MODEL Repository. It accepts only provider=SWISSMODEL, method=HOMOLOGY MODELLING coordinate records as predicted-structure inputs, rejects provider=PDB experimental mappings, records provider/model/version/path/checksum provenance, scores no rows, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "alternate_structure_source_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_alternate_structure_source_contract_current702_20260604.json",
+      "sha256": "ee31703e311a7718be71c83bd5afc4ea8bc54f9dac3c2f31e48c3c9742845bdf"
+    },
+    "swissmodel_repository_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.json",
+      "sha256": "d5d167b20594a354a6b7fe7c5960eab2882e3240bd81622e066ad1f3dfedb76e"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_partial_3_of_4"
+}

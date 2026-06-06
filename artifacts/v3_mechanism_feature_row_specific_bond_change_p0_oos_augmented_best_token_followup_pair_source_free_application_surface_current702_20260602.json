@@ -1,32 +1,30 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602",
   "blockers": [
-    "source_free_current702_heldout_locator_rows_missing",
-    "source_free_current702_heldout_locator_coverage_incomplete",
-    "source_free_event_residue_role_extractor_missing",
-    "source_free_proton_transfer_event_axis_missing"
+    "source_free_current702_heldout_locator_coverage_incomplete"
   ],
   "counts": {
-    "blockers": 4,
+    "blockers": 1,
     "critical_violation_total": 0,
-    "current702_heldout_locator_sidecars": 0,
+    "current702_heldout_locator_sidecars": 53,
     "heldout_rows_in_manifest": 140,
-    "source_free_event_residue_role_feature_rows": 0,
+    "source_free_event_axis_materialized_rows": 14,
+    "source_free_event_residue_role_feature_rows": 14,
     "source_free_locator_guardrail_violation_rows": 0,
-    "source_free_locator_sidecars_total": 5,
+    "source_free_locator_sidecars_total": 58,
     "source_free_predicted_geometry_ready_rows": 5,
-    "source_free_residue_count_feature_rows": 0,
-    "source_free_residue_count_his3_hit_rows": 0,
-    "surface_feature_tokens_ready": 0,
+    "source_free_residue_count_feature_rows": 53,
+    "source_free_residue_count_his3_hit_rows": 4,
+    "surface_feature_tokens_ready": 1,
     "surface_feature_tokens_required": 2
   },
-  "created_utc": "2026-06-02T20:04:49Z",
+  "created_utc": "2026-06-04T00:14:12Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
     "heldout_safe_pair_application_surface_ready": false,
     "next_gate": "Create approved source-free current702 heldout active-site locator sidecars and a source-free proton-transfer event axis for the selected event/residue-role token; rerun this audit and the surface plan before applying the frozen threshold once.",
-    "source_free_event_residue_role_surface_ready": false,
+    "source_free_event_residue_role_surface_ready": true,
     "source_free_residue_count_surface_ready": false
   },
   "frozen_contract": {
@@ -52,16 +50,21 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Materialize approved source-free locator sidecars for the current702 heldout rows first; the His-count token can then be computed, but the event/residue-role token still needs a source-free event linker before any heldout read.",
-    "result": "The selected pair is still not deployable on current702 heldout: approved source-free locators do not cover the heldout rows, and the event/residue-role token still lacks a source-free proton-transfer event axis."
+    "next_action": "Materialize the remaining approved source-free locator sidecars or define a heldout-safe partial-surface policy before any heldout read.",
+    "result": "The selected pair is still not deployable on current702 heldout: approved source-free locators do not cover the heldout rows."
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface",
-  "scope": "Source-free heldout application-surface materialization audit for the calibrated best-token follow-up pair. It computes the residue-code count token only from approved source-free locator sidecars, keeps the event/residue-role token blocked until a source-free event axis exists, and does not apply the frozen residual threshold.",
+  "scope": "Source-free heldout application-surface materialization audit for the calibrated best-token follow-up pair. It computes the residue-code count token only from approved source-free locator sidecars and the event/residue-role token only from approved source-free event-axis materialization rows. It does not apply the frozen residual threshold.",
   "selected_feature_pair": {
     "event_residue_role_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
     "residue_count_token": "residue_code_count:his=3"
   },
   "source_artifacts": {
+    "event_axis_linker_materialization_gate": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json",
+      "sha256": "c241e181b166ee798e2112e0126ab7621dbcec667eae0f52b7226287ba8ca25e"
+    },
     "label_manifest": {
       "exists": true,
       "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
@@ -75,11 +78,11 @@
     "pair_surface_plan": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json",
-      "sha256": "faed81ef71ec320ef7ce243d982fba2b1bee7f1e263d507881d4d6760e724e48"
+      "sha256": "ab1efa620d400c0f741370817ed0bc5c769032e235031c405258a32076b03d61"
     },
     "source_free_locator_dir": {
       "exists": true,
-      "json_file_count": 5,
+      "json_file_count": 58,
       "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601"
     },
     "source_free_predicted_geometry_manifest": {
@@ -89,5 +92,1337 @@
     }
   },
   "status": "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_blocked",
-  "surface_rows": []
+  "surface_rows": [
+    {
+      "entry_id": "m_csa:3",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:3",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "37961107999df3509841a38c0fa1b7cf350a214e0359f880bc4dac488f956e58",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_3_P15559.json",
+      "locator_sha256": "698438ac9121f7ffbf11972d6a88b8ae2ab654e499e47f047588e00171cacca5",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:9",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_9_P31153.json",
+      "locator_sha256": "6b623740a78b411ede62b80e690e6fdf27b38f768ceb8524964a1abf3e6f9a38",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:32",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_32_Q04760.json",
+      "locator_sha256": "456ccef7e3c14038dddf2044da65532cb813a7dd911c5f758e47c39bc4bfa8e9",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:43",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_43_P80366.json",
+      "locator_sha256": "63349e81aab7b25df8bac1a64f9ff8dc52efb8b6e8d635e0b541dd8519063bb7",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:44",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_44_P00634.json",
+      "locator_sha256": "d3edb58e610965457ed3f48a8abc79af9c727a0e6cec3b17989406de13de1cb4",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:45",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_45_P43379.json",
+      "locator_sha256": "e7aeebc883eaee9aa6e512fe7243c73f47fa170c602d8bfacc08614f1a422667",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:46",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_46_P14385.json",
+      "locator_sha256": "7130e7a7725e7da120ef859dba79c3250717b7a983de330ffa4279e79c62ac09",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:56",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_56_Q9WZW0.json",
+      "locator_sha256": "232efc8335820f7f8b5a791db728cf79a75a018ce2d13411e654855601ce9d1a",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:97",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_97_P0ABF6.json",
+      "locator_sha256": "401a8a91c00e89941ccab8159ed34168ad5767b81425ca185178ed4b425a9a5a",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:109",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_109_Q02127.json",
+      "locator_sha256": "b3c955817dc0e512184d8822bc288c3d60356a61684c0d8fc79977a2d767696d",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:115",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:115",
+        "event_residue_linker_count": 4,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "5f51c54da694584530a5db7b88ced9ff466d2b48db08d0f0173c179fb8509d29",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_115_Q9T0N8.json",
+      "locator_sha256": "be471f76baa045f0fc7cf641ad209bc84fba23134532fff2effa9092c418b29c",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:121",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:121",
+        "event_residue_linker_count": 1,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "6f406f1b6667dc9d73f3bfcca9abbaf3e509803c0c9dfdf0316b2382239f3ae0",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_121_P07850.json",
+      "locator_sha256": "1dc77b03e49bac9a7439d9da7f81ad1a1bd51db4d35cd17d4a41332ca1e46734",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      }
+    },
+    {
+      "entry_id": "m_csa:131",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_131_P20586.json",
+      "locator_sha256": "fad059ddbaee95ec897b82a530d5a36e7624df3de4b5c907c1648be766a4c1d3",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:159",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_159_P0A434.json",
+      "locator_sha256": "1beb7e9f313a54f422ae637ddb5e1c6a5831e9e7148b052347e752245381a364",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:163",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_163_P0A7Y4.json",
+      "locator_sha256": "c9be20906bd48c8e0e4655073031a500362719e156229160853f8b638fadf89f",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:171",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_171_P00730.json",
+      "locator_sha256": "160891dfcf6a9fe0710e3bff62ef60adee6d834c54d3e531945cd60674b1774e",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:180",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_180_P35505.json",
+      "locator_sha256": "6c78a6b22cfdbafe7dbec38c2a4b286ce045f6cbc896573b20788e9cecba2e0e",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:188",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_188_P09147.json",
+      "locator_sha256": "01679b0dba1c170083e1cd7ba01997db4d7b5e3bed095e69244324873705a8e9",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:199",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_199_P04425.json",
+      "locator_sha256": "6903302354687d9f4f67c97d6283cf28aeed57d0a7136c52a722e6fe3651caff",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:211",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:211",
+        "event_residue_linker_count": 6,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "7f96a719c0fd46961d32d1e5fb5018e825afe34439da2839ea6599b300c039c1",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_211_P38489.json",
+      "locator_sha256": "beffd1ee86d08b7f9d07ad548f7872f4203feb5a9a6e5c1984bc6c12e13690b3",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:220",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_220_P20906.json",
+      "locator_sha256": "a914ef00809a25d818295b0178852964911a91ffa00ca08945c450b355163fd7",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:239",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:239",
+        "event_residue_linker_count": 4,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "6c9156516cad1371f3b0dad8ad0087f3952b224784ef899949dd3cc044074368",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_239_P00433.json",
+      "locator_sha256": "fedb1a41695d6ddc541b772aaaf1760c3a5f9d97410d504ddedc8e9b2b8af522",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:242",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_242_Q8I914.json",
+      "locator_sha256": "71ed941691071c467e9c5b333ae830c46f23b5ac18b0bfe27fcd516fc3254ca6",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:250",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:250",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "3592a5ed8e28bb84d75e6acc41a8f50fe09c3781c7fea2c1eb859d91f7a12653",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_250_P04963.json",
+      "locator_sha256": "6696f5887e2538751e280ccb412796e0f07dfa191aad3b401a109580edf6ab04",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:311",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_311_P00924.json",
+      "locator_sha256": "602acc57eca15106244fe2511791f71beabe144c624737a243789e5679b13e0b",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:321",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_321_P09155.json",
+      "locator_sha256": "957697e3a026258a39323d2b658a640d40065e9d812bab8142ef9f1edb901966",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:323",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_323_P05314.json",
+      "locator_sha256": "fadf074eb559aace9587e43994b69c75727374c2f621b09386e84b970aefd4fd",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:333",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_333_Q9RUB5.json",
+      "locator_sha256": "d5dca2ed91593c9823b2b33ada92b313f9e598358610b9f1f8bfb077b4ae4b0c",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:352",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_352_P00949.json",
+      "locator_sha256": "e9ac8c4ca7640435ba5999ce97fcc0ce7b3924767d7f86ab1e427f79d0ada870",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:356",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_356_P14769.json",
+      "locator_sha256": "be03d276f886453c7b27dd39510275980d6c5a6aaf4dfe691a996b7a6d80ea47",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:370",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_370_O75164.json",
+      "locator_sha256": "953983e5b806b548ade9154f8f4f8733ed887fc5fce109177d1a2c6c27c82790",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:384",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_384_P23395.json",
+      "locator_sha256": "7a177280748aa74f33a6d736ce3074cf5c33057a511f0a41f48e4c4ef03d2b4c",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:392",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_392_P07801.json",
+      "locator_sha256": "a7f6bdf52f9ee09f86a09b5315270543425a6236672fc8f88d3db8107495db34",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:397",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_397_P04063.json",
+      "locator_sha256": "506508552b42f54553bd84ed541e58066218c981d058062c20e173fb14745a2a",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:403",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_403_P07584.json",
+      "locator_sha256": "cac0fc5510571d249ef67d1a3ece086bd83f0646a4f4796ece2c3a2fe3063f35",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      }
+    },
+    {
+      "entry_id": "m_csa:418",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:418",
+        "event_residue_linker_count": 4,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "0a28e81a402d8e08c0e6549e51663bc280c1580957d4fa69feb29f0a22623f09",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_418_P37821.json",
+      "locator_sha256": "fcfbc877c840da52ba103eaaef551c867fd2d6a37ccf8a4df8065561525ba300",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:419",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:419",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "3c8207f10967323dfb54df9bb8206a17cc00c1c0b7747fea230a743fe6b0e21b",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_419_O52552.json",
+      "locator_sha256": "1954125fec672a3d6017c51e74376d07401ccf49a61ebdcf38af21bd872f7c6c",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:480",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_480_P26214.json",
+      "locator_sha256": "5c81b00960eea769fee04ca45136a07fd4b49e3acb0e2ef2b1b0435220bc349f",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:497",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_497_Q9FDN7.json",
+      "locator_sha256": "f67e037088cb3996c90e0030732dfd1364f4e3f7a62de0f89a5ede0865cd1711",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:517",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_517_P61517.json",
+      "locator_sha256": "b0eeee0572c0f7cf0444670010917f5e633873082f7dd44c14bb882596c9f2ca",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:526",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_526_P11708.json",
+      "locator_sha256": "b64a929022be999e2923ca68417da9d8037347bccbbb4deb17c183b8e28c096f",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:541",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_541_P75430.json",
+      "locator_sha256": "37ebaeee18b07ded3f1a3cf01e597d6abb75878efcecaa0ba6321ced0ae0e890",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:545",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:545",
+        "event_residue_linker_count": 3,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "734eb3074c15ae03e88c91ae2b3c7a6fd1d3a40ec40b6b66741e73d1d4f1867f",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_545_Q7M523.json",
+      "locator_sha256": "5d1f3394f9bb06bb9d7305f8b9dc2bf9785ad564e9418990a0381d5a35c48dba",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:551",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_551_P15245.json",
+      "locator_sha256": "4082cdcfc41c847594c00bb6fe4f4196444657806cf92440e285b7a47dc41ed2",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:709",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:709",
+        "event_residue_linker_count": 4,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "ebfc96ee53e7706d553e25069764e7e7382bd83b6719549660ce474f3973911f",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_709_P00431.json",
+      "locator_sha256": "fe47a69bbe61939113403bb100749d69452df89bae59548ebdc967e4158a1c17",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:710",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_710_P25524.json",
+      "locator_sha256": "0807ad66e32ecb5e7021ce4c21cae89b2240cae02ce618ef98bb921eb0fb1cd5",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      }
+    },
+    {
+      "entry_id": "m_csa:714",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:714",
+        "event_residue_linker_count": 1,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "2e41492f49e44419b537fa0f4e3ccefc8f3016c9a8f1b482a27508188319a447",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_714_P0ABI8.json",
+      "locator_sha256": "2ba4a850ce61161a177d4c73adfd1db2fa7edfd8829aaeb1879bc4e9f17d1d45",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      }
+    },
+    {
+      "entry_id": "m_csa:750",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:750",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "4980737e4abb2d762d711c9c2c1f2d1408b81ae6969b5fa3b562afd5753e6ff6",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_750_P55792.json",
+      "locator_sha256": "619a89abc36f20c85aaa3d8a9412770facf15e1443cf796257a8b0d26bfccfce",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:853",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_853_P31570.json",
+      "locator_sha256": "ee283ef29d6bc5e2ead59879065eec8b1fe3653cc06817ddf68b3679a5f3e9ca",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:854",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:854",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "fbbb7138af70b87ac4563a862f377444a372acc0ab41d21a7fbfa4f415e30c9b",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_854_P80147.json",
+      "locator_sha256": "5339f1db9ac460d2097cde1273372caa31134bd0d730008c263034e79d339ea6",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:916",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_916_P9WI55.json",
+      "locator_sha256": "1e127a1dffcd38c513bb9b401de9868fae207ad0abcaadf022e896a31061bd11",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:990",
+      "event_axis_materialization_reference": {
+        "decision": "materialized_event_axis_linker_review_only",
+        "entry_id": "m_csa:990",
+        "event_residue_linker_count": 2,
+        "event_type": "proton_transfer",
+        "materialization_row_sha256": "bf7cda20352292749c98b5d18d1d8c6cb320b34876ec886ed27f3b3ad4bb2e9a",
+        "residue_role": "electrostatic_stabiliser",
+        "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+      },
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "ready_from_approved_source_free_event_axis_linker",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_990_Q8GS60.json",
+      "locator_sha256": "e913b3f7fe95947a65d0beca15e7baa153843011335e26603379ad1db967ae0d",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": true,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:994",
+      "event_axis_materialization_reference": null,
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "not_observed_in_approved_source_free_event_axis_linkers",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_994_Q9Y3Z3.json",
+      "locator_sha256": "584bcb2922bb1d740b415d25d97840dd76876e10a49b87ec9774efc5cad5cd08",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": false,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    }
+  ]
 }

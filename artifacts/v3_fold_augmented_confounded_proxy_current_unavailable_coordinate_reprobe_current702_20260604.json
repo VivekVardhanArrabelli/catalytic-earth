@@ -1,0 +1,167 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_current_unavailable_coordinate_reprobe_current702_20260604",
+  "blockers": [
+    "four_current_remaining_rows_still_afdb_v6_unavailable",
+    "no_coordinate_reprobe_rows_cleared",
+    "fixed_threshold_audit_still_blocked"
+  ],
+  "counts": {
+    "afdb_v6_coordinate_available_rows": 0,
+    "afdb_v6_coordinate_unavailable_rows": 4,
+    "blockers": 3,
+    "coordinate_imports_performed": 0,
+    "fixed_threshold_audit_cleared_rows": 0,
+    "probe_rows": 4,
+    "secondary_accession_afdb_v6_available_rows": 0,
+    "secondary_accession_probe_count": 6,
+    "uniprot_records_with_alphafolddb_xref": 0,
+    "uniprot_records_with_secondary_accessions": 3
+  },
+  "created_utc": "2026-06-04T06:43:22Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "coordinate_import_authorized_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "rows_cleared_by_reprobe": 0,
+    "smallest_next_gate": "Use an approved alternate deployment-valid predicted-structure source for each unavailable accession, or keep these rows outside the fixed-threshold audit surface."
+  },
+  "guardrails": {
+    "coordinate_downloads_performed": false,
+    "coordinates_imported_or_cached": false,
+    "deployment_valid_predicted_structure_probe_only": true,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "The four current predicted-structure-unavailable Lever 3 blocker rows remain unavailable from direct AFDB-v6 CIF URLs.",
+    "next_action": "Find approved alternate predicted-structure evidence for P07071, P07658, P00806, and P04531, or keep those rows as disclosed full-channel blockers.",
+    "result": "Direct HEAD probes on 2026-06-04 returned HTTP 404 for all four AFDB-v6 CIF URLs; no coordinate files were downloaded and no rows were cleared."
+  },
+  "probe_commands": [
+    "curl -fIsS https://alphafold.ebi.ac.uk/files/AF-P07071-F1-model_v6.cif",
+    "curl -fIsS https://alphafold.ebi.ac.uk/files/AF-P07658-F1-model_v6.cif",
+    "curl -fIsS https://alphafold.ebi.ac.uk/files/AF-P00806-F1-model_v6.cif",
+    "curl -fIsS https://alphafold.ebi.ac.uk/files/AF-P04531-F1-model_v6.cif",
+    "curl -fsS --max-time 20 https://rest.uniprot.org/uniprotkb/P07071.json",
+    "curl -fsS --max-time 20 https://rest.uniprot.org/uniprotkb/P07658.json",
+    "curl -fsS --max-time 20 https://rest.uniprot.org/uniprotkb/P00806.json",
+    "curl -fsS --max-time 20 https://rest.uniprot.org/uniprotkb/P04531.json"
+  ],
+  "rows": [
+    {
+      "accession": "P07071",
+      "afdb_v6_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P07071-F1-model_v6.cif",
+      "blocker_cleared_by_reprobe": false,
+      "entry_id": "m_csa:416",
+      "http_status": 404,
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "next_gate": "approve an alternate predicted-structure source or keep row blocked",
+      "uniprot_current_record_probe": {
+        "alphafold_db_cross_references": [],
+        "entry_version": 145,
+        "last_annotation_update_date": "2026-01-28",
+        "primary_accession": "P07071",
+        "secondary_accessions": [
+          "P07073",
+          "Q38428",
+          "Q9T0V5"
+        ],
+        "secondary_accession_afdb_v6_statuses": {
+          "P07073": 404,
+          "Q38428": 404,
+          "Q9T0V5": 404
+        },
+        "sequence_length": 605,
+        "sequence_version": 4,
+        "uniprotkb_id": "NRDD_BPT4"
+      }
+    },
+    {
+      "accession": "P07658",
+      "afdb_v6_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P07658-F1-model_v6.cif",
+      "blocker_cleared_by_reprobe": false,
+      "entry_id": "m_csa:562",
+      "http_status": 404,
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "next_gate": "approve an alternate predicted-structure source or keep row blocked",
+      "uniprot_current_record_probe": {
+        "alphafold_db_cross_references": [],
+        "entry_version": 226,
+        "last_annotation_update_date": "2026-01-28",
+        "primary_accession": "P07658",
+        "secondary_accessions": [
+          "P78137",
+          "Q2M6M5"
+        ],
+        "secondary_accession_afdb_v6_statuses": {
+          "P78137": 404,
+          "Q2M6M5": 404
+        },
+        "sequence_length": 715,
+        "sequence_version": 2,
+        "uniprotkb_id": "FDHF_ECOLI"
+      }
+    },
+    {
+      "accession": "P00806",
+      "afdb_v6_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P00806-F1-model_v6.cif",
+      "blocker_cleared_by_reprobe": false,
+      "entry_id": "m_csa:586",
+      "http_status": 404,
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "next_gate": "approve an alternate predicted-structure source or keep row blocked",
+      "uniprot_current_record_probe": {
+        "alphafold_db_cross_references": [],
+        "entry_version": 150,
+        "last_annotation_update_date": "2026-01-28",
+        "primary_accession": "P00806",
+        "secondary_accessions": [
+          "Q38567"
+        ],
+        "secondary_accession_afdb_v6_statuses": {
+          "Q38567": 404
+        },
+        "sequence_length": 151,
+        "sequence_version": 4,
+        "uniprotkb_id": "ENLYS_BPT7"
+      }
+    },
+    {
+      "accession": "P04531",
+      "afdb_v6_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P04531-F1-model_v6.cif",
+      "blocker_cleared_by_reprobe": false,
+      "entry_id": "m_csa:637",
+      "http_status": 404,
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "next_gate": "approve an alternate predicted-structure source or keep row blocked",
+      "uniprot_current_record_probe": {
+        "alphafold_db_cross_references": [],
+        "entry_version": 123,
+        "last_annotation_update_date": "2026-01-28",
+        "primary_accession": "P04531",
+        "secondary_accessions": [],
+        "secondary_accession_afdb_v6_statuses": {},
+        "sequence_length": 241,
+        "sequence_version": 1,
+        "uniprotkb_id": "DNMK_BPT4"
+      }
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_current_unavailable_coordinate_reprobe",
+  "scope": "Current-run live AFDB-v6 coordinate availability reprobe for the four predicted-structure-unavailable rows in the Lever 3 protein-only-extended remaining combined-score blocker set. It records availability only and does not download coordinates, score rows, tune thresholds, or alter the audit surface.",
+  "source_artifacts": {
+    "deployment_validity_blocker_packet": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604.json"
+    },
+    "remaining_combined_score_blocker_classification": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603.json"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_current_unavailable_coordinate_reprobe_no_rows_cleared"
+}

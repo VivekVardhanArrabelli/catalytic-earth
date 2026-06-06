@@ -1,0 +1,427 @@
+{
+  "application_checks": {
+    "all_application_rows_abstain_or_route_novel_oos": true,
+    "all_application_rows_have_stage_source": true,
+    "application_row_count_matches_closure": true,
+    "application_rows_not_used_for_rule_selection": true,
+    "closure_readout_closed": true,
+    "closure_rebuild_hash_matches_stored": true,
+    "closure_reproducibility_audit_passed": true,
+    "closure_source_hashes_current": true,
+    "deployment_valid_safe_route_available": true,
+    "fixed_threshold_scoring_fail_closed": true,
+    "no_forced_mechanism_labels": true,
+    "no_heldout_metadata_label_or_import_shortcuts": true,
+    "no_row_scoring_provider_or_coordinate_changes": true,
+    "stage_counts_match_closure": true,
+    "threshold_not_changed": true,
+    "train_cal_oos_operating_point_present": true,
+    "true_in_scope_retention_above_90_percent": true,
+    "zero_residual_rows_without_final_route": true,
+    "zero_retained_residual_rows": true
+  },
+  "application_rows": [
+    {
+      "accession": "P32400",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:25",
+      "final_lever3_route_stage": "descriptor_generalization_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "descriptor_generalization_and_pairwise",
+      "source_artifact": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P0AB71",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:52",
+      "final_lever3_route_stage": "fold_tm_bandpass_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "channel_margin_fold_bandpass_and_fold_cofactor_pressure",
+      "source_artifact": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P13000",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:74",
+      "final_lever3_route_stage": "fold_tm_bandpass_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "channel_margin_fold_bandpass_and_fold_cofactor_pressure",
+      "source_artifact": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P27213",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:84",
+      "final_lever3_route_stage": "pairwise_descriptor_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "descriptor_generalization_and_pairwise",
+      "source_artifact": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q55012",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:89",
+      "final_lever3_route_stage": "channel_margin_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "channel_margin_fold_bandpass_and_fold_cofactor_pressure",
+      "source_artifact": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P14925",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:135",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q46822",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:190",
+      "final_lever3_route_stage": "fold_tm_bandpass_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "channel_margin_fold_bandpass_and_fold_cofactor_pressure",
+      "source_artifact": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q2K340",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:223",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P9WIL5",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:229",
+      "final_lever3_route_stage": "channel_margin_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "channel_margin_fold_bandpass_and_fold_cofactor_pressure",
+      "source_artifact": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P00327",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:256",
+      "final_lever3_route_stage": "fold_tm_bandpass_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "channel_margin_fold_bandpass_and_fold_cofactor_pressure",
+      "source_artifact": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P07342",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:289",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P12070",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:308",
+      "final_lever3_route_stage": "geometry_mismatch_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "geometry_mismatch",
+      "source_artifact": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P0AES2",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:451",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q89FH0",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:463",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P11766",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:464",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q05514",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:468",
+      "final_lever3_route_stage": "pocket_chemistry_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "pocket_chemistry",
+      "source_artifact": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P32170",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:488",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q8EMJ9",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:502",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "B9JNP7",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:503",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P42676",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:638",
+      "final_lever3_route_stage": "fold_cofactor_pressure_counteraxis",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "channel_margin_fold_bandpass_and_fold_cofactor_pressure",
+      "source_artifact": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P31939",
+      "application_contract_action": "abstain_or_route_novel_oos",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:646",
+      "final_lever3_route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "force_mechanism_label_now": false,
+      "label_type": "out_of_scope",
+      "operating_stage": "accepted_cofactor_or_same_family_bandpass",
+      "source_artifact": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    }
+  ],
+  "application_violations": [],
+  "artifact_id": "v3_fold_augmented_lever3_operating_point_application_audit_current702_20260605",
+  "counts": {
+    "application_rows": 21,
+    "application_rows_abstain_or_route_novel_oos": 21,
+    "application_rows_used_for_rule_selection": 0,
+    "application_rows_with_stage_source": 21,
+    "application_stage_count_mismatches": 0,
+    "application_violation_total": 0,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "forced_mechanism_label_rows": 0,
+    "reproducibility_direct_source_records_checked": 5,
+    "reproducibility_direct_source_records_hash_current": 5,
+    "reproducibility_nested_source_records_checked": 34,
+    "reproducibility_nested_source_records_hash_current": 34,
+    "residual_rows_entering_closure": 21,
+    "residual_rows_without_final_route": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204,
+    "unsafe_non_abstain_residual_action_rows": 0
+  },
+  "created_utc": "2026-06-05T10:22:46Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Use this application audit as the row-level contract for the current Lever 3 abstain/route operating point; keep threshold 0.44155 unchanged and fixed-threshold scoring fail-closed pending the separate exact P07658 coordinate/provenance route.",
+    "operating_point_application_contract_ready": true,
+    "operator_action": "apply row-level abstain_or_route_novel_oos actions for hard confounded residual rows; do not force mechanism labels",
+    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": false,
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "safe_abstention_route_remains_current": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "true_in_scope_retention_floor_met": true,
+    "unsafe_forced_mechanism_transfer_allowed": false,
+    "zero_residual_retained_transfer_risk_available_now": true
+  },
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "new_rule_selected_now": false,
+    "production_thresholds_changed": false,
+    "provider_calls_performed": false,
+    "source_free_counteraxis_artifacts_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 operating-point application contract is ready.",
+    "next_action": "Apply the current closure as an abstain/route gate only; keep fixed-threshold scoring closure fail-closed.",
+    "result": "21 hard residual rows have row-level abstain/route actions, 0 forced mechanism labels, 0 missing stage sources, and 0 retained hard residual rows after all counteraxes."
+  },
+  "operating_point": {
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "calibration_retention_fraction": 0.911765,
+    "residual_rows_without_final_route": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "route_id": "fixed_baseline_plus_accepted_counteraxes_plus_descriptor_plus_channel_margin_fold_pressure_plus_pocket_chemistry_plus_geometry_mismatch",
+    "threshold_or_value_changed_now": false,
+    "threshold_selection_source": "train_calibration_only",
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_abstention_fraction": 0.818627,
+    "train_cal_oos_rows": 204
+  },
+  "route_stage_count_rows": [
+    {
+      "expected_rows": 10,
+      "matches_closure": true,
+      "observed_rows": 10,
+      "route_stage": "accepted_cofactor_or_same_family_bandpass"
+    },
+    {
+      "expected_rows": 1,
+      "matches_closure": true,
+      "observed_rows": 1,
+      "route_stage": "descriptor_generalization_counteraxis"
+    },
+    {
+      "expected_rows": 1,
+      "matches_closure": true,
+      "observed_rows": 1,
+      "route_stage": "pairwise_descriptor_counteraxis"
+    },
+    {
+      "expected_rows": 2,
+      "matches_closure": true,
+      "observed_rows": 2,
+      "route_stage": "channel_margin_counteraxis"
+    },
+    {
+      "expected_rows": 4,
+      "matches_closure": true,
+      "observed_rows": 4,
+      "route_stage": "fold_tm_bandpass_counteraxis"
+    },
+    {
+      "expected_rows": 1,
+      "matches_closure": true,
+      "observed_rows": 1,
+      "route_stage": "fold_cofactor_pressure_counteraxis"
+    },
+    {
+      "expected_rows": 1,
+      "matches_closure": true,
+      "observed_rows": 1,
+      "route_stage": "pocket_chemistry_counteraxis"
+    },
+    {
+      "expected_rows": 1,
+      "matches_closure": true,
+      "observed_rows": 1,
+      "route_stage": "geometry_mismatch_counteraxis"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_operating_point_application_audit",
+  "scope": "Row-level application audit for the current Lever 3 abstain/route operating point. It consumes the closure readout and the closure reproducibility audit, then verifies that each hard confounded residual row has an evidence-backed abstain/route action and no forced mechanism label.",
+  "source_artifacts": {
+    "closure_reproducibility_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_closure_reproducibility_audit_current702_20260605.json",
+      "sha256": "41c488aa22c5c8f7a0dc4f3ad7fe81fd3382fe4f29d9f00d59ddffaab316f066"
+    },
+    "operating_point_closure_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605.json",
+      "sha256": "c3be45451e7716b501aa0b89ee4159f1ed1a333c71da25b2f9ce340f49837d2e"
+    }
+  },
+  "status": "fold_augmented_lever3_operating_point_application_audit_passed"
+}

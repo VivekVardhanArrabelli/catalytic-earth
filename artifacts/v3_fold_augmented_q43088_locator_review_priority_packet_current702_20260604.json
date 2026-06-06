@@ -1,0 +1,409 @@
+{
+  "affected_row": {
+    "accession": "Q43088",
+    "entry_id": "m_csa:604",
+    "remaining_blocker_class": "approved_geometry_feature_missing"
+  },
+  "all_candidate_rows_ranked": [
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 3.824,
+      "mean_plddt": 93.69,
+      "residue_code": "ASP",
+      "sequence_position": 288,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 12.113,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 3.84,
+      "mean_plddt": 96.0,
+      "residue_code": "GLN",
+      "sequence_position": 286,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 11.12,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 5.918,
+      "mean_plddt": 97.12,
+      "residue_code": "HIS",
+      "sequence_position": 243,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 10.053,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 7.177,
+      "mean_plddt": 80.44,
+      "residue_code": "GLU",
+      "sequence_position": 250,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 7.627,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 6.267,
+      "mean_plddt": 96.94,
+      "residue_code": "ILE",
+      "sequence_position": 285,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": false,
+        "review_priority_score": 5.702,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 8.699,
+      "mean_plddt": 96.88,
+      "residue_code": "LYS",
+      "sequence_position": 291,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 5.27,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": false
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 7.069,
+      "mean_plddt": 94.56,
+      "residue_code": "LEU",
+      "sequence_position": 289,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": false,
+        "review_priority_score": 4.877,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 8.154,
+      "mean_plddt": 96.44,
+      "residue_code": "SER",
+      "sequence_position": 244,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 4.81,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": false
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 8.316,
+      "mean_plddt": 97.94,
+      "residue_code": "ASN",
+      "sequence_position": 242,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 4.663,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": false
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 9.004,
+      "mean_plddt": 98.44,
+      "residue_code": "LEU",
+      "sequence_position": 296,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": false,
+        "review_priority_score": 1.98,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": false
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 9.0,
+      "mean_plddt": 93.44,
+      "residue_code": "PHE",
+      "sequence_position": 224,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": false,
+        "review_priority_score": 1.934,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": false
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 9.143,
+      "mean_plddt": 94.12,
+      "residue_code": "VAL",
+      "sequence_position": 247,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": false,
+        "review_priority_score": 1.798,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": false
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    }
+  ],
+  "anchor_locators": [
+    {
+      "ca": {
+        "x": -16.063,
+        "y": 2.876,
+        "z": -2.772
+      },
+      "centroid": {
+        "x": -16.356,
+        "y": 1.235,
+        "z": -1.171
+      },
+      "chain_name": "A",
+      "mean_plddt": 95.19,
+      "residue_code": "TYR",
+      "residue_node_id": "m_csa:604:residue:1",
+      "roles": [
+        "activator",
+        "proton_acceptor",
+        "proton_donor"
+      ],
+      "sequence_position": 287
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_q43088_locator_review_priority_packet_current702_20260604",
+  "blockers": [
+    "q43088_priority_candidates_pending_human_or_policy_review",
+    "q43088_two_additional_source_free_locator_positions_not_approved",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "anchor_locator_rows": 1,
+    "blockers": 3,
+    "candidate_locator_rows": 12,
+    "critical_violation_total": 0,
+    "locator_positions_approved_now": 0,
+    "minimum_additional_locator_positions_needed": 2,
+    "priority_candidate_rows": 4,
+    "q43088_ready_for_rescore_now": 0,
+    "recommended_positions_to_review": 4
+  },
+  "created_utc": "2026-06-04T10:28:45Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not rescore Q43088 until two additional positions or an equivalent geometry sidecar are approved.",
+    "priority_packet_clears_locator_contract": false,
+    "q43088_ready_for_rescore_now": false,
+    "smallest_next_experiment": "Review the priority positions in order and explicitly approve or reject at least two source-free locators; if none pass, approve an equivalent source-free geometry sidecar or leave Q43088 blocked."
+  },
+  "guardrails": {
+    "fixed_threshold_audit_rerun": false,
+    "geometry_sidecar_approved_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_positions_approved_now": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "row_rescored_now": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Reviewer or policy step: approve/reject at least two of the priority positions, then materialize the locator/geometry sidecar and rerun fixed-threshold scoring only after P07658 also clears.",
+    "result": "Q43088 now has a smaller source-free review queue: four high-priority positions should be adjudicated before the other eight candidates, but none are approved by this packet."
+  },
+  "priority_candidate_rows": [
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 3.824,
+      "mean_plddt": 93.69,
+      "residue_code": "ASP",
+      "sequence_position": 288,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 12.113,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 3.84,
+      "mean_plddt": 96.0,
+      "residue_code": "GLN",
+      "sequence_position": 286,
+      "source_free_review_features": {
+        "charged_residue_code": false,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 11.12,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 5.918,
+      "mean_plddt": 97.12,
+      "residue_code": "HIS",
+      "sequence_position": 243,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 10.053,
+        "within_6a_of_anchor_ca": true,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 7.177,
+      "mean_plddt": 80.44,
+      "residue_code": "GLU",
+      "sequence_position": 250,
+      "source_free_review_features": {
+        "charged_residue_code": true,
+        "mean_plddt_at_least_80": true,
+        "polar_or_charged_residue_code": true,
+        "review_priority_score": 7.627,
+        "within_6a_of_anchor_ca": false,
+        "within_8a_of_anchor_ca": true
+      },
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    }
+  ],
+  "review_rule": {
+    "fail_condition": "No two candidates can be source-free approved or mapped to the local predicted coordinate frame.",
+    "minimum_review_positions_needed": 2,
+    "pass_condition": "A reviewer explicitly approves at least two additional source-free locator positions, or approves an equivalent source-free geometry sidecar. This packet alone cannot approve any position.",
+    "recommended_review_order": [
+      288,
+      286,
+      243,
+      250
+    ]
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_q43088_locator_review_priority_packet",
+  "scope": "Review-priority packet for the remaining Q43088 Lever 3 locator/geometry blocker. It uses only source-free predicted-structure proximity, residue code, and pLDDT from the prior candidate scout to narrow manual adjudication. It approves no locator, writes no sidecar, scores no row, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "q43088_source_free_locator_approval_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604.json",
+      "sha256": "a070b2f394cf29676bdce5cbcaed974102d6cc93a04d1a8d9e6b66d44c23f2d3"
+    },
+    "q43088_source_free_locator_candidate_scout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.json",
+      "sha256": "9b9d7978f9d12ec1b5313499dc524a6988c542986d5aa4b0ce8dc282e1acf56b"
+    }
+  },
+  "status": "fold_augmented_q43088_locator_review_priority_packet_ready_no_approvals"
+}

@@ -1,0 +1,141 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight_current702_20260603",
+  "blockers": [
+    "unsupported_geometry_afdb_coordinates_protein_only_no_locus_evidence",
+    "protein_only_proxy_contract_not_selected"
+  ],
+  "counts": {
+    "background_axis_scout_candidate_axis_tests": 3,
+    "background_axis_scout_rows": 170,
+    "blockers": 2,
+    "coordinate_files_missing": 0,
+    "coordinate_files_scanned": 8,
+    "design_contract_candidate_options": 2,
+    "design_options": 4,
+    "existing_scored_new_proxy_axis_rows": 6,
+    "files_with_source_free_inorganic_locus_evidence": 0,
+    "protein_only_afdb_coordinate_files": 8,
+    "ready_to_score_now_rows": 0,
+    "unsupported_geometry_repair_rows": 8,
+    "unsupported_geometry_unique_entry_ids": 8
+  },
+  "created_utc": "2026-06-03T19:28:08Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "design_preflight_ready_for_contract_selection": true,
+    "next_gate": "Choose exactly one source-free protein-only proxy axis, preferably the fold-topology residual, and write a train/cal-only pre-registration contract before any scoring. Do not score or register the unsupported inorganic-locus axis from the protein-only AFDB files.",
+    "preferred_next_axis_id": "protein_only_fold_topology_residual",
+    "register_new_proxy_axis_now": false,
+    "run_fixed_threshold_audit_now": false,
+    "score_any_rows_now": false
+  },
+  "design_options": [
+    {
+      "axis_id": "unsupported_inorganic_locus_from_afdb_components",
+      "reason": "AFDB-v6 query coordinates are protein-only and contain zero HETATM/source-free inorganic or cofactor locus evidence.",
+      "register_axis_now": false,
+      "rows_or_files_available": 8,
+      "score_now": false,
+      "status": "rejected_by_coordinate_locus_scan"
+    },
+    {
+      "axis_id": "protein_only_fold_topology_residual",
+      "register_axis_now": false,
+      "required_next_artifact": "pre-registered train/cal-only source-free fold-topology residual contract",
+      "rows_or_files_available": 8,
+      "score_now": false,
+      "source_free_inputs": [
+        "AFDB-v6 query protein coordinates",
+        "train-atlas coordinates",
+        "Foldseek/TM-score nearest-neighbor residuals"
+      ],
+      "status": "design_contract_candidate"
+    },
+    {
+      "axis_id": "protein_only_global_shape_confidence_residual",
+      "register_axis_now": false,
+      "required_next_artifact": "explicit feature contract and train/cal-only calibration plan",
+      "rows_or_files_available": 8,
+      "score_now": false,
+      "source_free_inputs": [
+        "AFDB-v6 protein-only atom coordinates",
+        "coordinate-derived size/contact-density summaries",
+        "coordinate confidence fields when present"
+      ],
+      "status": "design_contract_candidate"
+    },
+    {
+      "axis_id": "mcsa_row_specific_active_site_or_source_locator_residual",
+      "reason": "M-CSA row-specific active-site locations are train/cal-only and source locators are not available for deployment queries; do not use them to define the deployable confounded-safe axis.",
+      "register_axis_now": false,
+      "rows_or_files_available": 8,
+      "score_now": false,
+      "status": "not_deployment_closed_for_new_axis"
+    }
+  ],
+  "guardrails": {
+    "coordinate_downloads_performed": false,
+    "design_only": true,
+    "fixed_threshold_audit_rerun": false,
+    "foldseek_or_tmsearch_run_now": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "new_proxy_axis_registered": false,
+    "production_thresholds_changed": false,
+    "rows_scored_now": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "headline": "The unsupported inorganic-locus coordinate path is exhausted, but a protein-only proxy-axis design gate is available.",
+    "next_action": "Pre-register one train/cal-only protein-only proxy contract before scoring; fold-topology residual is the preferred first contract because it matches the deployment-valid predicted-structure-vs-atlas channel.",
+    "result": "8 AFDB-v6 coordinate files were protein-only with 0 source-free inorganic/cofactor locus-evidence files; do not convert that locus axis into a scoreable proxy."
+  },
+  "scan_accessions": [
+    "P15807",
+    "P18548",
+    "P27000",
+    "P68175",
+    "Q46509",
+    "Q56310",
+    "Q7SIE1",
+    "Q9P4R4"
+  ],
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_train_cal_protein_only_proxy_design_preflight",
+  "scope": "Fail-closed design preflight for the protein-only path after the unsupported inorganic-locus AFDB coordinate repair attempt. It does not score rows, register a new proxy axis, tune thresholds, or read heldout.",
+  "source_artifacts": {
+    "background_axis_scout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603.json",
+      "sha256": "8ebe3e64b0d62393a81025f49a7ab859b4283dc4bf9d4782e80577f373cccbdd"
+    },
+    "coordinate_locus_scan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_locus_scan_current702_20260603.json",
+      "sha256": "3cd94b263c5d99eba12dc2ddcf0bdc937065d46be125e40a404e97f47aa2be0f"
+    },
+    "new_proxy_axis_scored_extension": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json",
+      "sha256": "3f267b63a05f931ce3f921465d9b722c1e1b4a8245e88e076252b541abc76705"
+    },
+    "unsupported_geometry_repair_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603.json",
+      "sha256": "0185a19e280562fec9c9a8e1edee53d531987967503039329dfc32cc441dcf7e"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight_ready_contract_selection",
+  "unsupported_geometry_entry_ids": [
+    "m_csa:105",
+    "m_csa:137",
+    "m_csa:318",
+    "m_csa:327",
+    "m_csa:360",
+    "m_csa:610",
+    "m_csa:618",
+    "m_csa:649"
+  ]
+}

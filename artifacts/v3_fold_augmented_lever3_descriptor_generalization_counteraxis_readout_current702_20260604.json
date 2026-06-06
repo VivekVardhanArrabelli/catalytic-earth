@@ -1,0 +1,450 @@
+{
+  "application_row_actions": [
+    {
+      "accession": "P32400",
+      "deployment_action_delta": "abstain_or_route_novel_oos",
+      "descriptor_values_present": true,
+      "entry_id": "m_csa:25",
+      "selected_counteraxis_fires_after_train_cal_selection": true,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P0AB71",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_values_present": true,
+      "entry_id": "m_csa:52",
+      "selected_counteraxis_fires_after_train_cal_selection": false,
+      "used_for_rule_selection": false
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604",
+  "counts": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_descriptor_rows": 34,
+    "calibration_in_scope_descriptor_rows_missing": 0,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "calibration_in_scope_rows_expected": 34,
+    "candidate_rules_checked": 16,
+    "design_same_family_descriptor_rows": 14,
+    "design_same_family_rows_missing_descriptor": 43,
+    "retained_descriptor_present_application_rows": 2,
+    "retained_descriptor_present_rows_missing_descriptor": 0,
+    "retained_residual_rows_after_descriptor_counteraxis": 10,
+    "retained_residual_rows_before_descriptor_counteraxis": 11,
+    "retained_residual_rows_missing_pocket_descriptor": 9,
+    "retained_residual_rows_reduced_by_descriptor_counteraxis": 1,
+    "same_family_proxy_rows": 59,
+    "selected_rule_all_train_cal_oos_rows_fired": 7,
+    "selected_rule_application_rows_fired_after_selection": 1,
+    "selected_rule_calibration_in_scope_fired": 0,
+    "selected_rule_design_same_family_rows_fired": 3,
+    "top_candidate_rules_reported": 10,
+    "train_cal_oos_descriptor_rows": 71
+  },
+  "created_utc": "2026-06-05T05:12:02Z",
+  "decision": {
+    "application_rows_used_for_rule_selection": false,
+    "apply_or_change_threshold_now": false,
+    "descriptor_counteraxis_ready_for_partial_application_now": true,
+    "descriptor_counteraxis_selected_now": true,
+    "exact_remaining_evidence_for_zero_residual_risk": [
+      "source-free pocket descriptor acquisition for retained same-family rows still missing descriptors",
+      "a train/cal-selected source-free descriptor or chemistry counteraxis that fires m_csa:52 while preserving calibration in-scope retention"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Apply the descriptor counteraxis only as partial abstention evidence for fired retained rows; keep m_csa:52 and the descriptor-missing retained rows fail-open to the evidence queue, not scoring closure.",
+    "retained_descriptor_present_rows_abstained_by_selected_rule": 1,
+    "safe_abstention_routing_available_now": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false,
+    "zero_residual_retained_transfer_risk_available_now": false
+  },
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "rule_selected_on_train_cal_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "The descriptor counteraxis abstains 1/2 descriptor-present retained residual rows after train/cal-only selection.",
+    "next_action": "Treat this as partial fail-closed evidence and continue with source-free descriptor acquisition for the missing rows plus a separate m_csa:52 counteraxis search.",
+    "result": "The selected rule is residue_count.LEU <= 1.0; retained residual rows fall from 11 to 10, but zero residual risk is not closed."
+  },
+  "missing_descriptor_entry_ids": {
+    "application_rows": [],
+    "calibration_in_scope": [],
+    "design_same_family": [
+      "m_csa:51",
+      "m_csa:59",
+      "m_csa:74",
+      "m_csa:78",
+      "m_csa:84",
+      "m_csa:89",
+      "m_csa:91",
+      "m_csa:105",
+      "m_csa:135",
+      "m_csa:146",
+      "m_csa:179",
+      "m_csa:187",
+      "m_csa:190",
+      "m_csa:206",
+      "m_csa:223",
+      "m_csa:224",
+      "m_csa:229",
+      "m_csa:234",
+      "m_csa:240",
+      "m_csa:253",
+      "m_csa:256",
+      "m_csa:269",
+      "m_csa:280",
+      "m_csa:289",
+      "m_csa:308",
+      "m_csa:322",
+      "m_csa:348",
+      "m_csa:405",
+      "m_csa:441",
+      "m_csa:451",
+      "m_csa:463",
+      "m_csa:468",
+      "m_csa:488",
+      "m_csa:498",
+      "m_csa:500",
+      "m_csa:501",
+      "m_csa:502",
+      "m_csa:508",
+      "m_csa:533",
+      "m_csa:585",
+      "m_csa:621",
+      "m_csa:638",
+      "m_csa:645"
+    ]
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_descriptor_generalization_counteraxis_readout",
+  "scope": "Lever 3 measured descriptor-generalization counteraxis readout. It selects a source-free pocket descriptor/count rule on train/cal same-family OOS design rows while explicitly excluding the retained descriptor-present application rows, then applies the selected rule to those excluded rows. It changes no thresholds, scores no new rows, stages no coordinates, and uses no heldout rows for selection or threshold tuning.",
+  "selected_counteraxis_rule": {
+    "all_train_cal_oos_entry_ids_fired": [
+      "m_csa:25",
+      "m_csa:57",
+      "m_csa:104",
+      "m_csa:106",
+      "m_csa:244",
+      "m_csa:295",
+      "m_csa:646"
+    ],
+    "all_train_cal_oos_rows_fired": 7,
+    "application_entry_ids_fired_after_selection": [
+      "m_csa:25"
+    ],
+    "application_rows_fired_after_selection": 1,
+    "calibration_in_scope_entry_ids_fired": [],
+    "calibration_in_scope_fired": 0,
+    "design_same_family_entry_ids_fired": [
+      "m_csa:104",
+      "m_csa:244",
+      "m_csa:646"
+    ],
+    "design_same_family_rows_fired": 3,
+    "feature_kind": "residue_count",
+    "feature_name": "LEU",
+    "feature_rule": "residue_count.LEU <= 1.0",
+    "operator": "<=",
+    "retention_floor_met": true,
+    "rule_id": "residue_count:LEU:<=:1.0",
+    "threshold": 1.0
+  },
+  "selection_policy": {
+    "application_rows_excluded_from_selection": [
+      "m_csa:25",
+      "m_csa:52"
+    ],
+    "calibration_guard": "candidate rule must fire zero calibration in-scope rows with descriptor values",
+    "feature_source": "source-free pocket descriptors and residue-code counts from the frozen descriptor-present contract",
+    "selection_objective": "maximize design same-family OOS rows fired, then minimize all train/cal OOS descriptor rows fired, then deterministic rule order",
+    "selection_rows": "train/cal same-family structural proxy OOS rows with pocket descriptors, excluding retained descriptor-present rows",
+    "threshold_grid_source": "unique train/cal design-row feature values"
+  },
+  "source_artifacts": {
+    "channel_veto_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+      "sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be"
+    },
+    "descriptor_present_counteraxis_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json",
+      "sha256": "04cf7fe0886a101f32b1103b3671f4e71d2519e18e82d28eb65f5b6dfc27fefe"
+    },
+    "latest_train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "predicted_geometry_atlas_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "retained_residual_risk_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json",
+      "sha256": "f706a0cba7dd108cdd4f545408075f5238d04f0b85c7b2dbbd01a66a73c484b3"
+    },
+    "threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    }
+  },
+  "status": "fold_augmented_lever3_descriptor_generalization_counteraxis_readout_partial_application",
+  "top_candidate_rules": [
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 7,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 3,
+      "feature_kind": "residue_count",
+      "feature_name": "LEU",
+      "feature_rule": "residue_count.LEU <= 1.0",
+      "operator": "<=",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:LEU:<=:1.0",
+      "threshold": 1.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:184",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 3,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 2,
+      "feature_kind": "descriptor",
+      "feature_name": "hydrophobic_fraction",
+      "feature_rule": "descriptor.hydrophobic_fraction <= 0.2093",
+      "operator": "<=",
+      "retention_floor_met": true,
+      "rule_id": "descriptor:hydrophobic_fraction:<=:0.2093",
+      "threshold": 0.2093
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:22",
+        "m_csa:184",
+        "m_csa:246",
+        "m_csa:285",
+        "m_csa:295",
+        "m_csa:325",
+        "m_csa:462",
+        "m_csa:496",
+        "m_csa:525",
+        "m_csa:565"
+      ],
+      "all_train_cal_oos_rows_fired": 10,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:22",
+        "m_csa:565"
+      ],
+      "design_same_family_rows_fired": 2,
+      "feature_kind": "residue_count",
+      "feature_name": "THR",
+      "feature_rule": "residue_count.THR <= 0.0",
+      "operator": "<=",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:THR:<=:0.0",
+      "threshold": 0.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "residue_count",
+      "feature_name": "ASN",
+      "feature_rule": "residue_count.ASN >= 8.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:ASN:>=:8.0",
+      "threshold": 8.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "residue_count",
+      "feature_name": "ASP",
+      "feature_rule": "residue_count.ASP >= 11.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:ASP:>=:11.0",
+      "threshold": 11.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:464"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:464"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "residue_count",
+      "feature_name": "CYS",
+      "feature_rule": "residue_count.CYS >= 7.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:CYS:>=:7.0",
+      "threshold": 7.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "residue_count",
+      "feature_name": "GLN",
+      "feature_rule": "residue_count.GLN >= 8.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:GLN:>=:8.0",
+      "threshold": 8.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:22"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:22"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "residue_count",
+      "feature_name": "LEU",
+      "feature_rule": "residue_count.LEU >= 15.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:LEU:>=:15.0",
+      "threshold": 15.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "residue_count",
+      "feature_name": "MET",
+      "feature_rule": "residue_count.MET >= 7.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:MET:>=:7.0",
+      "threshold": 7.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:295",
+        "m_csa:565"
+      ],
+      "all_train_cal_oos_rows_fired": 2,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:565"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "descriptor",
+      "feature_name": "charge_balance",
+      "feature_rule": "descriptor.charge_balance >= 0.1818",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "descriptor:charge_balance:>=:0.1818",
+      "threshold": 0.1818
+    }
+  ]
+}

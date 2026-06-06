@@ -1,0 +1,170 @@
+{
+  "affected_rows": [
+    {
+      "accession": "P07071",
+      "afdb_model_version_statuses": {
+        "1": 404,
+        "2": 404,
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "any_afdb_model_available": false,
+      "entry_id": "m_csa:416",
+      "missing_evidence_type": "approved non-AFDB deployment-valid predicted-structure coordinate source",
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "smallest_next_experiment": "approve a provider-neutral predicted-structure coordinate source and stage one local predicted coordinate for this accession"
+    },
+    {
+      "accession": "P07658",
+      "afdb_model_version_statuses": {
+        "1": 404,
+        "2": 404,
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "any_afdb_model_available": false,
+      "entry_id": "m_csa:562",
+      "missing_evidence_type": "approved non-AFDB deployment-valid predicted-structure coordinate source",
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "smallest_next_experiment": "approve a provider-neutral predicted-structure coordinate source and stage one local predicted coordinate for this accession"
+    },
+    {
+      "accession": "P00806",
+      "afdb_model_version_statuses": {
+        "1": 404,
+        "2": 404,
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "any_afdb_model_available": false,
+      "entry_id": "m_csa:586",
+      "missing_evidence_type": "approved non-AFDB deployment-valid predicted-structure coordinate source",
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "smallest_next_experiment": "approve a provider-neutral predicted-structure coordinate source and stage one local predicted coordinate for this accession"
+    },
+    {
+      "accession": "P04531",
+      "afdb_model_version_statuses": {
+        "1": 404,
+        "2": 404,
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "any_afdb_model_available": false,
+      "entry_id": "m_csa:637",
+      "missing_evidence_type": "approved non-AFDB deployment-valid predicted-structure coordinate source",
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "smallest_next_experiment": "approve a provider-neutral predicted-structure coordinate source and stage one local predicted coordinate for this accession"
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_confounded_proxy_alternate_structure_source_contract_current702_20260604",
+  "blockers": [
+    "alternate_predicted_structure_provider_not_approved",
+    "row_level_predicted_coordinates_not_staged",
+    "fold_geometry_rescore_inputs_missing",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "afdb_all_versions_404_rows": 4,
+    "afdb_http_200_rows": 0,
+    "afdb_versions_checked_per_row": 6,
+    "affected_coordinate_source_blocker_rows": 4,
+    "approved_alternate_structure_rows_now": 0,
+    "blockers": 4,
+    "coordinate_downloads_performed": 0,
+    "critical_violation_total": 0,
+    "remaining_non_coordinate_full_channel_blocker_rows": 1,
+    "required_alternate_structure_rows": 4,
+    "residual_coordinate_source_blocker_rows": 4
+  },
+  "created_utc": "2026-06-04T08:48:47Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "approved_alternate_structure_rows_ready_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Approve or stage provider-neutral predicted structures for P07071, P07658, P00806, and P04531. After those four rows and Q43088 locator evidence are source-free and approved, rerun only the fixed-threshold fold/geometry channel; do not retune threshold 0.44155.",
+    "surface_completeness_ready_after_contract_alone": false
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinate_downloads_performed": false,
+    "coordinates_downloaded_or_imported": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "provider_approved_now": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Create an approval packet for a provider-neutral predicted structure source, stage four local query coordinates with checksums, then rescore those rows only after Q43088's locator gate is also cleared.",
+    "result": "AFDB auto-version fallback cannot clear any of the four remaining coordinate-source blockers. The next evidence type is not another AFDB retry; it is an approved non-AFDB deployment-valid predicted-structure source with source-free provenance."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_alternate_structure_source_contract",
+  "scope": "Review-only Lever 3 contract for clearing the four residual predicted-structure-unavailable rows after AFDB v1-v6 exhausted. It approves no provider, downloads no coordinates, imports no files, scores no rows, and does not rerun or tune the fixed threshold.",
+  "source_artifacts": {
+    "afdb_version_sweep": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_afdb_version_sweep_current702_20260604.json",
+      "sha256": "9e37bbac51e55abb56e9b9bbf3ffe938be5eef4d5ec8d96cb9f1df26dbf58e9e"
+    },
+    "residual_queue_after_p10746_q43088": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_current702_20260604.json",
+      "sha256": "fd9fee2e7f42f1543f47797ea59461690991b197deee680917f326028e49db5b"
+    }
+  },
+  "source_contract": {
+    "acceptance_criteria": [
+      "Coordinate source must be predicted-structure evidence, not experimental PDB metadata, source labels, target names, mechanism text, EC/Rhea IDs, or curated label state.",
+      "Provider/model/version/path/checksum provenance must be recorded without using atlas-family or mechanism assignment metadata as predictive features.",
+      "Each staged coordinate must map to the row accession or an explicitly reviewed accession/isoform equivalence decision before scoring.",
+      "Coordinates must be staged as review-only query inputs first; no registry, ontology, import, sidecar, or production threshold change is allowed by this contract.",
+      "Rows must be rescored only through the existing predicted-structure-vs-train-atlas fold/geometry/cofactor channel at unchanged fixed threshold 0.44155.",
+      "The final fixed-threshold audit cannot rerun until these four rows have approved coordinates and Q43088 has approved locator/geometry evidence."
+    ],
+    "expected_next_artifacts": [
+      "alternate predicted-structure source approval packet",
+      "four-row coordinate staging manifest with checksums",
+      "query-vs-train-atlas fold/geometry rescore manifest"
+    ],
+    "minimum_row_set": [
+      "m_csa:416",
+      "m_csa:562",
+      "m_csa:586",
+      "m_csa:637"
+    ],
+    "pass_fail_rule": {
+      "fail_conditions": [
+        "Any row still lacks an approved predicted coordinate source.",
+        "Any row uses experimental-PDB metadata, mechanism text, EC/Rhea IDs, labels, source IDs, or target names as predictive evidence.",
+        "Any coordinate is staged without provider/model/version/path/checksum provenance.",
+        "Any threshold, split, label, registry, ontology, or import is changed under this contract."
+      ],
+      "pass_condition": "All four coordinate-source blocker rows receive approved deployment-valid predicted coordinates with source-free provenance and are ready for fold/geometry rescore at unchanged threshold 0.44155."
+    },
+    "required_accessions": [
+      "P07071",
+      "P07658",
+      "P00806",
+      "P04531"
+    ]
+  },
+  "status": "fold_augmented_confounded_proxy_alternate_structure_source_contract_ready_for_source_approval"
+}

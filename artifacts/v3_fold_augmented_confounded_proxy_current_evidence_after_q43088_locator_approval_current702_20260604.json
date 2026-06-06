@@ -1,0 +1,148 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_current702_20260604",
+  "blockers": [
+    "p07658_full_length_predicted_coordinate_missing",
+    "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+    "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "calibration_blockers": [
+    {
+      "axis": "high_cofactor_signature_proxy",
+      "minimum_new_abstained_rows_for_80pct": 16,
+      "smallest_next_experiment": "Acquire exactly 16 new non-heldout train/cal OOS rows with source-free high-cofactor signatures and deployment-valid predicted structures, then score them at unchanged threshold 0.44155. All 16 must abstain to close only the high-cofactor 80% lower-bound target."
+    },
+    {
+      "axis": "same_family_structural_proxy",
+      "minimum_new_abstained_rows_for_80pct": 170,
+      "smallest_next_experiment": "Acquire a large new non-heldout train/cal same-family structural OOS surface with deployment-valid predicted structures and source-free membership evidence. Under the current lower bound, 170 additional rows must abstain at unchanged threshold 0.44155 to reach 80% structural-proxy abstain recall."
+    }
+  ],
+  "counts": {
+    "blockers": 4,
+    "coordinate_rows_rescore_input_ready_now": 3,
+    "coordinate_source_blocker_rows": 1,
+    "critical_violation_total": 0,
+    "fixed_threshold": 0.44155,
+    "fixed_threshold_score_rows_ready_to_rerun_now": 0,
+    "high_cofactor_min_new_abstained_rows_for_80pct": 16,
+    "locator_or_geometry_sidecar_blocker_rows": 0,
+    "partial_surface_rescore_input_ready_rows": 4,
+    "q43088_approved_locator_positions": 2,
+    "q43088_locator_contract_cleared_now": 1,
+    "same_family_structural_min_new_abstained_rows_for_80pct": 170,
+    "staged_predicted_coordinate_rows": 3,
+    "surface_completeness_blocker_rows": 1
+  },
+  "created_utc": "2026-06-04T11:42:32Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_can_solve_confounded_safe_calibration": false,
+    "current_evidence_can_solve_surface_completeness": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not rerun or retune threshold 0.44155. Q43088 is staged; P07658 remains the only surface-completeness blocker before fixed-threshold scoring can be rerun.",
+    "q43088_locator_gate_cleared_now": true,
+    "smallest_calibration_experiment": "Run the frozen 16-row high-cofactor train/cal OOS acquisition first; the 170-row same-family structural acquisition remains after it.",
+    "smallest_surface_completeness_experiment": "Clear P07658 with an exact full-length predicted coordinate from an approved runtime/provider, then run row scoring at unchanged threshold 0.44155."
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_review_only": true,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "q43088_locator_sidecar_staged_review_only": true,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Provision or run a full-length P07658 predictor/provider. Do not use experimental PDBe/PDB/3D-Beacons rows as deployment shortcuts, and do not tune the fixed threshold.",
+    "result": "Q43088's source-free locator blocker is cleared and staged review-only. Surface completeness is now blocked only by P07658's exact full-length predicted coordinate; calibration shortfalls remain unchanged."
+  },
+  "q43088_locator_approval": {
+    "accession": "Q43088",
+    "approved_locator_positions": [
+      288,
+      286
+    ],
+    "approved_locator_sidecar": {
+      "path": "artifacts/v3_fold_augmented_q43088_source_free_locator_sidecar_current702_20260604.json",
+      "payload_sha256": "67a70b904cf685344c6b38de3020a192242ea841da193cca21669cf921565157"
+    },
+    "entry_id": "m_csa:604",
+    "rescore_ready_from_locator_gate": true
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval",
+  "scope": "Updated Lever 3 current-evidence packet after Q43088 source-free locator approval. It composes the prior SWISS-MODEL staging state with the Q43088 locator sidecar, keeps P07658 as the only surface completeness blocker, and does not score rows or change threshold 0.44155.",
+  "source_artifacts": {
+    "current_evidence_after_swissmodel_staging": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_swissmodel_staging_current702_20260604.json",
+      "sha256": "5b6ed63050906b0b1356b121518f21fb8c4d9ef3dcc3a75d90ddde240bc94dd9"
+    },
+    "q43088_locator_approval_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_q43088_locator_approval_packet_current702_20260604.json",
+      "sha256": "f43d0b936664640aed64a108c7404a26fab19d505275f32961d97588e173ce7a"
+    }
+  },
+  "staged_coordinate_rows": [
+    {
+      "accession": "P07071",
+      "checksum_sha256": "5fa0de774dadf94092282d5c4bdb7744283e7099a8ff166f02e1190acd83c2fe",
+      "coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P07071_9d3x_1_A_range_6_605.pdb",
+      "entry_id": "m_csa:416",
+      "method": "HOMOLOGY MODELLING",
+      "provider": "SWISSMODEL",
+      "rescore_ready_from_coordinate_gate": true,
+      "template": "9d3x.1.A"
+    },
+    {
+      "accession": "P00806",
+      "checksum_sha256": "3c472c38660864956b83a65fd7e37aeeb9bd9f52eea67b259411732ec5170412",
+      "coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P00806_1lba_1_A_range_7_151.pdb",
+      "entry_id": "m_csa:586",
+      "method": "HOMOLOGY MODELLING",
+      "provider": "SWISSMODEL",
+      "rescore_ready_from_coordinate_gate": true,
+      "template": "1lba.1.A"
+    },
+    {
+      "accession": "P04531",
+      "checksum_sha256": "0bb9e3d4badbe1ca31d926c411a29047e1894c563363b0df3add0de253118518",
+      "coordinate_path": "artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P04531_1del_1_A_range_1_241.pdb",
+      "entry_id": "m_csa:637",
+      "method": "HOMOLOGY MODELLING",
+      "provider": "SWISSMODEL",
+      "rescore_ready_from_coordinate_gate": true,
+      "template": "1del.1.A"
+    }
+  ],
+  "status": "fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_blocked_p07658",
+  "surface_completeness_blocker_rows": {
+    "coordinate_source_rows": [
+      {
+        "accession": "P07658",
+        "blocker_class": "predicted_structure_unavailable",
+        "entry_id": "m_csa:562",
+        "failed_rescue_paths": [
+          "SWISS-MODEL primary accession has only provider=PDB rows",
+          "SWISS-MODEL secondary accessions P78137/Q2M6M5 resolve to same PDB-only surface",
+          "AlphaFoldDB v6 direct and secondary accessions are 404",
+          "public ESMFold API rejects sequence length >400",
+          "credential-free BioLM/OpenProtein provider probes require credentials/access",
+          "local PATH, conda env, and shallow filesystem runtime scan found no full-length predictor",
+          "3D-Beacons summary returns only experimentally determined PDBe rows"
+        ],
+        "missing_evidence_type": "full-length deployment-valid predicted structure for exact 715-residue sequence including selenocysteine",
+        "rescore_ready_now": false,
+        "smallest_next_experiment": "Install or provision an approved full-length predictor/runtime that supports the exact 715-residue P07658 sequence including selenocysteine, or use a credentialed provider; then stage provider/model/version/path/checksum provenance."
+      }
+    ],
+    "locator_or_geometry_sidecar_rows": []
+  }
+}

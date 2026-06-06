@@ -1,0 +1,179 @@
+{
+  "acceptance_check_results": [
+    {
+      "check_id": "coordinate_file_exists",
+      "expected": true,
+      "failure_reason_if_any": "candidate coordinate file must exist before P07658 can be staged",
+      "observed": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif",
+      "passed": false,
+      "required": true
+    },
+    {
+      "check_id": "coordinate_sha256_recorded",
+      "expected": null,
+      "failure_reason_if_any": "coordinate checksum must be recorded in provenance and match the file",
+      "observed": null,
+      "passed": false,
+      "required": true
+    },
+    {
+      "check_id": "provider_model_version_recorded",
+      "expected": "provider/model/version all present",
+      "failure_reason_if_any": "provider, model name or id, and model version are required",
+      "observed": {
+        "model_name_or_id": null,
+        "model_version": null,
+        "provider": null
+      },
+      "passed": false,
+      "required": true
+    },
+    {
+      "check_id": "input_sequence_sha256_matches_manifest",
+      "expected": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+      "failure_reason_if_any": "prediction input sequence hash must match the frozen manifest",
+      "observed": null,
+      "passed": false,
+      "required": true
+    },
+    {
+      "check_id": "sequence_length_is_715",
+      "expected": 715,
+      "failure_reason_if_any": "prediction input length must match the frozen full-length sequence",
+      "observed": null,
+      "passed": false,
+      "required": true
+    },
+    {
+      "check_id": "selenocysteine_handling_documented",
+      "expected": {
+        "handling_documented": true,
+        "selenocysteine_count": 1,
+        "selenocysteine_positions": [
+          140
+        ]
+      },
+      "failure_reason_if_any": "selenocysteine handling must be explicit and position-preserving",
+      "observed": {
+        "selenocysteine_count": null,
+        "selenocysteine_handling": null,
+        "selenocysteine_positions": []
+      },
+      "passed": false,
+      "required": true
+    },
+    {
+      "check_id": "experimental_pdb_metadata_not_used_as_deployment_input",
+      "expected": false,
+      "failure_reason_if_any": "experimental PDB metadata cannot be a deployment input shortcut",
+      "observed": null,
+      "passed": false,
+      "required": true
+    },
+    {
+      "check_id": "row_not_scored_until_coordinate_staged",
+      "expected": true,
+      "failure_reason_if_any": null,
+      "observed": true,
+      "passed": true,
+      "required": true
+    }
+  ],
+  "affected_row": {
+    "accession": "P07658",
+    "entry_id": "m_csa:562",
+    "missing_evidence_type": "accepted full-length predicted coordinate with provider/model/version/path/checksum provenance for the exact P07658 sequence",
+    "selenocysteine_count": 1,
+    "selenocysteine_positions": [
+      140
+    ],
+    "sequence_length": 715,
+    "sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa"
+  },
+  "artifact_id": "v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604",
+  "blockers": [
+    "p07658_candidate_coordinate_file_missing",
+    "p07658_candidate_prediction_provenance_missing",
+    "p07658_acceptance_checks_not_all_passing",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "candidate_coordinate": {
+    "exists": false,
+    "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif",
+    "sha256": null,
+    "size_bytes": 0
+  },
+  "candidate_provenance": {
+    "coordinate_sha256": null,
+    "exists": false,
+    "experimental_pdb_metadata_used_as_deployment_input": null,
+    "input_sequence_length": null,
+    "input_sequence_sha256": null,
+    "model_name_or_id": null,
+    "model_version": null,
+    "path": null,
+    "provider": null,
+    "selenocysteine_count": null,
+    "selenocysteine_handling": null,
+    "selenocysteine_positions": []
+  },
+  "counts": {
+    "acceptance_checks_failed": 7,
+    "acceptance_checks_passed": 1,
+    "acceptance_checks_total": 8,
+    "blockers": 4,
+    "candidate_coordinate_exists": 0,
+    "candidate_provenance_exists": 0,
+    "coordinates_staged_now": 0,
+    "critical_violation_total": 0,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "rows_scored_now": 0
+  },
+  "created_utc": "2026-06-04T16:36:02Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Stage P07658 only after every acceptance check passes; then score only the staged surface rows at unchanged threshold 0.44155.",
+    "p07658_acceptance_preflight_passes_now": false,
+    "p07658_coordinate_blocker_cleared_now": false,
+    "smallest_next_experiment": "Run or provision an approved full-length predictor/provider on the frozen P07658 sequence, write coordinate provenance with provider/model/version/path/checksum and sequence hash, then rerun this acceptance preflight."
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Produce one deployment-valid full-length prediction for the exact sequence, including documented selenocysteine handling, then rerun this preflight before any fixed-threshold readout.",
+    "result": "P07658 cannot be staged from the current repo state because the exact full-length predicted coordinate and provenance are not both present."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p07658_prediction_acceptance_preflight",
+  "scope": "Fail-closed acceptance preflight for the P07658 full-length prediction request manifest. It verifies whether an exact deployment-valid predicted coordinate plus provider provenance exists, stages no coordinate, scores no row, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "candidate_coordinate": {
+      "exists": false,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif",
+      "sha256": null
+    },
+    "candidate_provenance": {
+      "exists": false,
+      "path": null,
+      "sha256": null
+    },
+    "prediction_request_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json",
+      "sha256": "5583e04607b31d4a0a2d42708e8c943ad63045451b0589f1cc5ba1e23df68d73"
+    }
+  },
+  "status": "fold_augmented_p07658_prediction_acceptance_preflight_blocked"
+}

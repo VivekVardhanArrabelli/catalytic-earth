@@ -1,0 +1,188 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604",
+  "blockers": [
+    "no_approved_predicted_coordinate_hits_for_residual_rows",
+    "experimental_pdb_coordinate_shortcuts_disallowed_for_deployment",
+    "provider_model_version_path_checksum_provenance_missing",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "affected_rows": 4,
+    "approved_predicted_cif_files_scanned": 429,
+    "approved_predicted_coordinate_hits": 0,
+    "approved_predicted_coordinate_roots_scanned": 1,
+    "blockers": 4,
+    "critical_violation_total": 0,
+    "deployment_valid_coordinate_rows_ready_now": 0,
+    "disallowed_experimental_cif_files_scanned": 692,
+    "disallowed_experimental_coordinate_hits": 3,
+    "disallowed_experimental_coordinate_roots_scanned": 1,
+    "remaining_coordinate_source_blocker_rows": 4,
+    "rows_with_approved_predicted_hits": 0,
+    "rows_with_disallowed_experimental_hits": 3,
+    "rows_with_no_local_coordinate_hit": 1
+  },
+  "created_utc": "2026-06-04T09:13:34Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "approved_predicted_structure_rows_ready_now": false,
+    "experimental_coordinate_shortcuts_blocked": true,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "local_repo_can_clear_coordinate_source_blockers_now": false,
+    "next_gate": "Approve and stage deployment-valid predicted coordinates with provider/model/version/path/checksum provenance for P07071, P07658, P00806, and P04531. Do not use the local experimental PDB CIFs as deployment shortcuts, and do not retune threshold 0.44155."
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_or_imported": false,
+    "downloads_performed": false,
+    "experimental_coordinates_used_as_deployment_inputs": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Create a provider-neutral predicted-coordinate approval and staging manifest with checksums; P07071 is the smallest first row because it has no local CIF hit at all.",
+    "result": "No approved predicted coordinates are locally staged for the four residual coordinate-source blockers. Three accessions have local experimental CIF shortcuts, but those shortcuts are deployment-invalid for Lever 3."
+  },
+  "local_scans": {
+    "approved_predicted_coordinate_roots": {
+      "cif_files_scanned": 429,
+      "missing_roots": [],
+      "roots_requested": [
+        "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
+      ],
+      "roots_scanned": [
+        "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
+      ]
+    },
+    "disallowed_experimental_coordinate_roots": {
+      "cif_files_scanned": 692,
+      "missing_roots": [],
+      "roots_requested": [
+        "artifacts/v3_foldseek_coordinates_1000"
+      ],
+      "roots_scanned": [
+        "artifacts/v3_foldseek_coordinates_1000"
+      ]
+    }
+  },
+  "rows": [
+    {
+      "accession": "P07071",
+      "approved_predicted_coordinate_hits": [],
+      "blocked_shortcut": "Experimental PDB-derived coordinates may not satisfy this deployment input gate, even when they map to the accession.",
+      "disallowed_experimental_coordinate_hits": [],
+      "entry_id": "m_csa:416",
+      "local_status": "no_local_coordinate_hit_observed",
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate with provider/model/version/path/checksum provenance",
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "row_blockers": [
+        "approved_predicted_structure_coordinate_missing"
+      ],
+      "smallest_row_experiment": "approve a provider-neutral predicted-structure coordinate source and stage one local predicted coordinate for this accession"
+    },
+    {
+      "accession": "P07658",
+      "approved_predicted_coordinate_hits": [],
+      "blocked_shortcut": "Experimental PDB-derived coordinates may not satisfy this deployment input gate, even when they map to the accession.",
+      "disallowed_experimental_coordinate_hits": [
+        {
+          "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AA6.cif",
+          "sha256": "b8e485de1d3221d30ab0cc70f027fc159b95f7b88b1a37b55586ff6e1c659de3",
+          "size_bytes": 639365
+        }
+      ],
+      "entry_id": "m_csa:562",
+      "local_status": "experimental_only_disallowed_for_deployment",
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate with provider/model/version/path/checksum provenance",
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "row_blockers": [
+        "experimental_pdb_coordinate_shortcut_disallowed",
+        "approved_predicted_structure_coordinate_missing"
+      ],
+      "smallest_row_experiment": "approve a provider-neutral predicted-structure coordinate source and stage one local predicted coordinate for this accession"
+    },
+    {
+      "accession": "P00806",
+      "approved_predicted_coordinate_hits": [],
+      "blocked_shortcut": "Experimental PDB-derived coordinates may not satisfy this deployment input gate, even when they map to the accession.",
+      "disallowed_experimental_coordinate_hits": [
+        {
+          "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBA.cif",
+          "sha256": "284036ad5fcfee0259192956485fd6e82f0d05683953cc26a8e848875aa8888e",
+          "size_bytes": 164319
+        }
+      ],
+      "entry_id": "m_csa:586",
+      "local_status": "experimental_only_disallowed_for_deployment",
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate with provider/model/version/path/checksum provenance",
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "row_blockers": [
+        "experimental_pdb_coordinate_shortcut_disallowed",
+        "approved_predicted_structure_coordinate_missing"
+      ],
+      "smallest_row_experiment": "approve a provider-neutral predicted-structure coordinate source and stage one local predicted coordinate for this accession"
+    },
+    {
+      "accession": "P04531",
+      "approved_predicted_coordinate_hits": [],
+      "blocked_shortcut": "Experimental PDB-derived coordinates may not satisfy this deployment input gate, even when they map to the accession.",
+      "disallowed_experimental_coordinate_hits": [
+        {
+          "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DEK.cif",
+          "sha256": "6d979a48b429ca1b624c2b5c4b609c76962e9809000e76c5c1bd9387a4123562",
+          "size_bytes": 487194
+        }
+      ],
+      "entry_id": "m_csa:637",
+      "local_status": "experimental_only_disallowed_for_deployment",
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate with provider/model/version/path/checksum provenance",
+      "rescore_ready_now": false,
+      "residual_blocker_class": "predicted_structure_unavailable",
+      "row_blockers": [
+        "experimental_pdb_coordinate_shortcut_disallowed",
+        "approved_predicted_structure_coordinate_missing"
+      ],
+      "smallest_row_experiment": "approve a provider-neutral predicted-structure coordinate source and stage one local predicted coordinate for this accession"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_deployment_input_preflight",
+  "scope": "Deployment-input preflight for the four residual Lever 3 AFDB-unavailable coordinate-source blockers. It checks whether repo-local CIFs can satisfy the alternate predicted-structure source contract, explicitly rejects experimental-coordinate shortcuts, downloads no files, stages no coordinates, scores no rows, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "alternate_structure_source_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_alternate_structure_source_contract_current702_20260604.json",
+      "sha256": "ee31703e311a7718be71c83bd5afc4ea8bc54f9dac3c2f31e48c3c9742845bdf"
+    }
+  },
+  "source_requirements": {
+    "disallowed_inputs": [
+      "experimental PDB coordinate metadata as a deployment shortcut",
+      "mechanism text",
+      "EC/Rhea identifiers",
+      "labels or registry state",
+      "source IDs or target names as predictive features"
+    ],
+    "required_fields_before_rescore": [
+      "provider",
+      "model_name_or_id",
+      "model_version",
+      "coordinate_path",
+      "checksum_sha256",
+      "accession_or_isoform_mapping_review",
+      "source_free_evidence_contract"
+    ],
+    "smallest_complete_experiment": "Approve a provider-neutral predicted-structure source and stage predicted coordinates with checksums for all four residual accessions before the fixed-threshold audit can rerun.",
+    "smallest_incremental_experiment": "Stage one approved predicted coordinate, preferably the P07071 row because no local CIF shortcut was observed at all, then repeat the same provenance check for the other three rows."
+  },
+  "status": "fold_augmented_confounded_proxy_deployment_input_preflight_blocked_no_approved_predicted_coordinates"
+}

@@ -1,0 +1,131 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604",
+  "blockers": [
+    "repo_wide_scan_finds_no_additional_approved_predicted_coordinates",
+    "experimental_pdb_coordinate_shortcuts_remain_disallowed",
+    "provider_model_version_path_checksum_provenance_missing",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "affected_rows": 4,
+    "blockers": 4,
+    "critical_violation_total": 0,
+    "deployment_valid_coordinate_rows_ready_now": 0,
+    "remaining_coordinate_source_blocker_rows": 4,
+    "repo_wide_cif_accession_hits": 3,
+    "repo_wide_cif_files_scanned": 1636,
+    "repo_wide_unclassified_cif_hits": 0,
+    "rows_with_any_repo_wide_cif_hit": 3,
+    "rows_with_approved_predicted_hits_ready_now": 0,
+    "rows_with_no_repo_wide_cif_hit": 1,
+    "rows_with_only_disallowed_experimental_hits": 3
+  },
+  "created_utc": "2026-06-04T09:45:56Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "approved_predicted_structure_rows_ready_now": false,
+    "experimental_coordinate_shortcuts_blocked": true,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Approve and stage deployment-valid predicted coordinates for P07071, P07658, P00806, and P04531 with provider/model/version/path/checksum provenance. The repo-wide local CIF scan found no additional approved predicted-coordinate inputs.",
+    "repo_wide_scan_changes_deployment_input_preflight_blocker": false
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_or_imported": false,
+    "downloads_performed": false,
+    "experimental_coordinates_used_as_deployment_inputs": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "sources_approved_now": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Stage a provider-neutral predicted-coordinate approval manifest with checksums; do not use the local experimental PDB CIF hits as deployment shortcuts.",
+    "result": "The repo-wide CIF sanity scan agrees with the deployment-input preflight: no approved deployment-valid predicted coordinates are locally discoverable for the four coordinate-source blockers."
+  },
+  "local_scan": {
+    "cif_files_scanned": 1636,
+    "missing_roots": [],
+    "roots_requested": [
+      "artifacts"
+    ],
+    "roots_scanned": [
+      "artifacts"
+    ]
+  },
+  "rows": [
+    {
+      "accession": "P07071",
+      "approved_predicted_coordinate_hits_ready_now": [],
+      "entry_id": "m_csa:416",
+      "preflight_local_status": "no_local_coordinate_hit_observed",
+      "repo_wide_cif_hits": [],
+      "repo_wide_local_status": "no_local_cif_accession_hit_observed",
+      "rescore_ready_now": false
+    },
+    {
+      "accession": "P07658",
+      "approved_predicted_coordinate_hits_ready_now": [],
+      "entry_id": "m_csa:562",
+      "preflight_local_status": "experimental_only_disallowed_for_deployment",
+      "repo_wide_cif_hits": [
+        {
+          "hit_class": "disallowed_experimental_coordinate_shortcut_recorded_in_preflight",
+          "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AA6.cif",
+          "sha256": "b8e485de1d3221d30ab0cc70f027fc159b95f7b88b1a37b55586ff6e1c659de3",
+          "size_bytes": 639365
+        }
+      ],
+      "repo_wide_local_status": "only_disallowed_experimental_shortcut_hits_observed",
+      "rescore_ready_now": false
+    },
+    {
+      "accession": "P00806",
+      "approved_predicted_coordinate_hits_ready_now": [],
+      "entry_id": "m_csa:586",
+      "preflight_local_status": "experimental_only_disallowed_for_deployment",
+      "repo_wide_cif_hits": [
+        {
+          "hit_class": "disallowed_experimental_coordinate_shortcut_recorded_in_preflight",
+          "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBA.cif",
+          "sha256": "284036ad5fcfee0259192956485fd6e82f0d05683953cc26a8e848875aa8888e",
+          "size_bytes": 164319
+        }
+      ],
+      "repo_wide_local_status": "only_disallowed_experimental_shortcut_hits_observed",
+      "rescore_ready_now": false
+    },
+    {
+      "accession": "P04531",
+      "approved_predicted_coordinate_hits_ready_now": [],
+      "entry_id": "m_csa:637",
+      "preflight_local_status": "experimental_only_disallowed_for_deployment",
+      "repo_wide_cif_hits": [
+        {
+          "hit_class": "disallowed_experimental_coordinate_shortcut_recorded_in_preflight",
+          "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DEK.cif",
+          "sha256": "6d979a48b429ca1b624c2b5c4b609c76962e9809000e76c5c1bd9387a4123562",
+          "size_bytes": 487194
+        }
+      ],
+      "repo_wide_local_status": "only_disallowed_experimental_shortcut_hits_observed",
+      "rescore_ready_now": false
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan",
+  "scope": "Review-only repo-wide sanity scan for the four residual Lever 3 coordinate-source blockers. It scans local CIF accession hits under requested roots, classifies them against the deployment preflight, downloads no files, stages no coordinates, scores no rows, approves no source, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "deployment_input_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.json",
+      "sha256": "5610bd4d21b738be9c5d1b868f7bbade3329aee0a12596a69ed78c289b4acbe9"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_no_additional_approved_predicted_coordinates"
+}

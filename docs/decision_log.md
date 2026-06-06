@@ -3,6 +3,226 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: HELDOUT ONE-SHOT SPENT — Cofactor Fusion 23 -> 37/45 Primary (OOS FP 12.3% -> 25.9%)
+
+Event: the one-shot heldout read was authorized as a single blind pass and is now
+spent. The FROZEN leakage-safe cofactor-presence channel (heads fit on train,
+thresholds/backend on calibration) was applied to heldout via raw cofactor fusion
+at the frozen router threshold 0.4115. Per the authorization, **nothing was
+refit, retuned, or changed in response to the result.**
+
+Result (canonical 45-primary mask):
+- Baseline predicted-apo (no channel): 23/45 primary, 17 abstained, 5 wrong,
+  OOS/sec FP 0.1235 -- reproduces the known baseline exactly.
+- Raw cofactor fusion (frozen channel): 37/45 primary, 2 abstained, 6 wrong,
+  OOS/sec FP 0.2593.
+- Net: +14 primaries recovered (14 of the 22 apo-lost = 63.6%), abstentions
+  17 -> 2, at a precision cost of roughly doubled OOS/secondary false positives
+  and +1 wrong primary.
+
+Interpretation: the leakage-safe development methodology held -- the out-of-sample
+calibration recovery (70.6%) accurately predicted heldout (63.6%); the projected
+~38/45 landed at 37/45. The in-distribution out-of-sample surface was a faithful
+proxy. Raw fusion buys large primary recovery at a genuine precision cost (OOS
+over-opening) that the in-distribution surface could not measure (no OOS rows
+there).
+
+Discipline / consequence: this is a RECORDED result only. The one-shot is spent;
+do not re-run it or tune any threshold/policy against it. Any operating point that
+trades recovery for precision (the pre-built sequence-supported suppression dial,
+or a recalibrated abstention threshold) is a SEPARATE decision requiring its own
+separately authorized evaluation -- it must not be selected by peeking at this
+result.
+
+References:
+
+- `artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json`
+- `work/heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.md`
+
+## 2026-06-04: Cofactor Recovery Is Channel-Recall-Limited; Hard Misses Are Not Sequence-Recoverable
+
+Decision: the in-distribution cofactor recovery (12/17 apo-lost primaries, 70.6%
+out-of-sample) is at a presence-channel ceiling. The remaining 5 misses are not
+recoverable by channel tuning; the next lever for them is cofactor localization
+or transplant, not more presence-channel work.
+
+Rationale (diagnosis of the 5 unrecovered calibration rows): all 5 are
+channel-misses, not geometry-floor. The geometry put each near the 0.4115
+threshold, but the channel failed to supply the right cofactor:
+- m_csa:120 (flavin): flavin head 0.12 / 0.01 across backends; no Rossmann motif.
+- m_csa:181 (metal): metal head 0.57 (< 0.86 threshold); apo score 0.3974, a hair
+  under threshold -- the only threshold-fixable row, but lowering the metal
+  threshold amplifies the spurious metal calls below.
+- m_csa:274 / m_csa:275 (flavin): flavin head ~0.05-0.10, metal head 0.99 (wrong);
+  pure single-cofactor rows, so the metal prediction is a false positive.
+- m_csa:935 (heme): heme head 0.04, metal head 0.99 (wrong) -> harmful, boosted a
+  wrong metal_dependent_hydrolase call. b-type peroxidase, so no c-type CxxCH motif.
+The flavin/heme heads score true-flavin/heme rows near zero, and the larger ESM-2
+model does not fix it. These enzymes' sequences do not look like cofactor binders
+to ESM-2 or to motifs.
+
+Result: added leakage-safe cofactor-binding sequence-motif features (Rossmann
+G.G..G, c-type heme C..CH, zinc-hydrolase HE..H / close His pair) appended to the
+embedding before fitting (opt-in `--use-motif-features`, baseline artifact
+unchanged). Motifs improved channel calibration AUC -- heme 0.88 -> 0.93, flavin
+0.9263 -> 0.9355 -- with zero regressions, but in-distribution recovery is
+unchanged at 12/17: the motif-augmented flavin/heme scores for the hard rows
+stayed ~0.10 (e.g. m_csa:274 flavin 0.054 -> 0.101), far below any non-degenerate
+threshold. The motif channel is therefore a better-ranked channel to carry to the
+eventual heldout one-shot, but it does not move this surface's recovery count.
+
+Consequence / next gate: do not chase the 5 hard misses with more presence-channel
+tuning. The genuinely different levers are (a) cofactor **localization** (predict
+the binding residues so geometry is evaluated with the cofactor's position) and
+(b) cofactor **transplant** (graft a sequence/fold-found holo template's cofactor
+onto the predicted backbone; numpy is available). The metal head (cal AUC ~0.77,
+spurious 0.99 on flavin/heme rows) is the systemic weak point and the main driver
+of OOS over-opening risk, so improving it is the highest-leverage channel work.
+
+References:
+
+- `artifacts/v3_cofactor_presence_calibration_motif_current702_20260604.json`
+- `artifacts/v3_in_distribution_predicted_geometry_recovery_motif_current702_20260604.json`
+- `work/cofactor_presence_calibration_motif_current702_20260604.md`
+- `work/in_distribution_predicted_geometry_recovery_motif_current702_20260604.md`
+
+## 2026-06-04: Cofactor Channel Recovers ~70% of the Apo Drop (in-distribution, out-of-sample)
+
+Decision: the sequence cofactor-presence channel is the right lever for the
+predicted-apo primary drop, validated leakage-safe on in-distribution rows
+before any heldout read is spent.
+
+Rationale: the headline 45/45 -> predicted 23/45 drop is a heldout number and
+the heldout read is one-shot. The new in-distribution recovery harness
+reproduces the same question on in-distribution rows, which are never the
+benchmark. The router classifies active-site geometry against the eight
+mechanism fingerprint templates (no per-row self-match), so the
+experimental-minus-apo and fused-minus-apo deltas are meaningful. The cofactor
+channel was fit on the train split, so the headline is reported on the
+calibration rows (out-of-sample for the channel); train is an in-sample
+reference only.
+
+Result (calibration, out-of-sample, 35 rows, threshold 0.4115): experimental
+holo geometry 34/35 correct, predicted-apo 17/35 (a ~50% drop mirroring the
+heldout 45->23), and predicted-apo + injected sequence cofactor presence
+30/35 -- recovering 12 of the 17 apo-lost primaries (70.6%) with **0**
+regressions. Train (in-sample reference) recovers 56/59 (94.9%); the
+in-sample/out-of-sample gap is why the calibration number is the one to trust.
+The router consumes the injected `ligand_context.cofactor_families` through the
+0.18-weight `cofactor_context_score` term, which is enough to un-abstain a
+cofactor-dependent primary at 0.4115. Sequence-supported suppression lowers
+recall on this all-in-scope surface (it protects the OOS-FP side, which is not
+measured here).
+
+Consequence / next gate: this projects to roughly 23 -> ~38/45 on heldout if the
+out-of-sample recovery rate holds, but that is a PROJECTION; the heldout read
+stays one-shot and authorization-gated. Next levers to push recovery further and
+cut the residual FP: cofactor localization (which residues), pLDDT active-site
+abstention, and a real Kabsch cofactor transplant (numpy is now available).
+
+References:
+
+- `artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json`
+- `work/in_distribution_predicted_geometry_recovery_current702_20260604.md`
+- `src/catalytic_earth/predicted_geometry_recovery.py`
+- `tests/test_predicted_geometry_recovery.py`
+
+## 2026-06-04: Leakage-Safe Cofactor-Presence Channel (train/cal only)
+
+Decision: the sequence -> cofactor-presence channel must select its per-class
+operating thresholds and per-class embedding backend on a held-in calibration
+split, never on heldout. The original `sequence_cofactor_channel` fits the
+presence heads on `in_distribution` but reads the heldout cofactor labels both
+to report ROC-AUC/AP and to pick the best backend per class; even though the
+cofactor-presence label is structural (ligand context, not the mechanism
+target), reading heldout to score and to choose sources entangles the one-shot
+heldout surface with channel design. Per the active instruction to abstain on
+the heldout, the channel is rebuilt train/cal-only.
+
+Result: new `cofactor_presence_calibration` module fits one-vs-rest presence
+heads (metal_ion/flavin/plp/heme) on the 410 train rows of the frozen
+mechanism-feature embedding split, selects max-F1 thresholds and the per-class
+backend on the 103 calibration rows, and emits per-entry predictions for all
+702 rows (heldout included) without ever reading heldout labels. Calibration
+ROC-AUC: metal_ion 0.7707, flavin 0.9263, plp 0.9924, heme 0.88; plp (4
+calibration positives) and heme (3) are flagged `low_calibration_support` and
+are report-only operating points. A unit test flips every heldout label and
+asserts the fitted heads, selected sources, and predictions are byte-identical,
+proving heldout is never read. These calibration-honest numbers are
+deliberately more conservative than the prior heldout-evaluated channel.
+
+Consequence / next gate: the per-entry predictions are drop-in compatible with
+the router `ligand_context` injection (`_fused_geometry_features`). Applying them
+to the heldout mechanism router (the cofactor-restoration recovery ceiling) reads
+the one-shot heldout mechanism labels and is NOT run here; it stays explicitly
+authorization-gated. Built on isolated worktree branch
+`claude/cofactor-presence-channel`.
+
+References:
+
+- `artifacts/v3_cofactor_presence_calibration_current702_20260604.json`
+- `work/cofactor_presence_calibration_current702_20260604.md`
+- `src/catalytic_earth/cofactor_presence_calibration.py`
+- `tests/test_cofactor_presence_calibration.py`
+
+## 2026-06-04: Lever 3 Current Evidence Still Blocks Deployment Closure
+
+Decision: keep Lever 3 fail-closed. Do not rerun or retune threshold `0.44155`
+from the current residual surface. The local repository does not contain
+approved deployment-valid predicted coordinates for the four AFDB-unavailable
+coordinate-source blockers, and Q43088 still lacks two approved source-free
+locator positions or an equivalent geometry sidecar.
+
+Result: local deployment-input preflight found 0 approved predicted-coordinate
+hits for `m_csa:416`/P07071, `m_csa:562`/P07658, `m_csa:586`/P00806, and
+`m_csa:637`/P04531. Experimental CIF shortcuts exist for P07658, P00806, and
+P04531, but they are explicitly disallowed as deployment inputs. P07071 has no
+local CIF hit. Q43088 has a local predicted structure and one Tyr287 anchor; a
+review-only neighbor scout generated 12 candidate positions, all pending
+review, with 0 locator approvals and 0 rescore readiness. An additional
+repo-wide CIF sanity scan over 1,636 local CIFs found only those same three
+experimental shortcuts and no P07071 local CIF hit.
+
+Consequence / next gate: the smallest surface-completeness experiment is an
+approval/staging manifest for predicted coordinates for P07071, P07658, P00806,
+and P04531 with provider/model/version/path/checksum provenance, plus explicit
+approval of two Q43088 locator positions or an equivalent geometry sidecar. The
+smallest calibration experiment remains the frozen 16-row high-cofactor
+train/cal OOS probe; the 170-row same-family structural acquisition remains the
+larger calibration blocker.
+
+Artifacts:
+`artifacts/v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.json`,
+`artifacts/v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.json`,
+`artifacts/v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.json`,
+`artifacts/v3_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.json`.
+
+## 2026-06-04: Lever 2 Partial Surface Read Once, Not Deployable
+
+Decision: accept the deterministic missing-locator abstention operating contract
+only as a fail-closed readout contract, spend the frozen heldout read exactly
+once, and reject the resulting partial-surface Lever 2 channel as deployable.
+Do not rerun, retune, lower the threshold, refit the model, or treat the 87
+missing-locator rows as feature values.
+
+Result: the accepted partial source-free surface scored 53 feature-complete
+heldout rows and carried 87 missing-locator rows as deterministic abstentions.
+At the frozen residual threshold, OOS abstain recall is **1.0** but primary
+retain recall is **0.0**. The post-readout recovery queue has 119 rows: 32
+feature-complete primaries abstain by residual, 16 additional primaries abstain
+because their source-free locators are missing, and 71 OOS rows remain
+missing-locator coverage rows.
+
+Consequence / next gate: coverage repair alone is not sufficient. Continue Lever
+2 with train/cal-safe feature or materialization repair for feature-complete
+primary abstentions, then recover primary source-free locator coverage. Treat the
+heldout readout as final evidence for this surface.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_current702_20260604.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_current702_20260604.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.json`.
 ## 2026-06-04: Problem 2 Solution Architecture — Reconstruct Deploy-Missing Context From Sequence
 
 Decision (planning, not a result): adopt a generalized solution architecture for

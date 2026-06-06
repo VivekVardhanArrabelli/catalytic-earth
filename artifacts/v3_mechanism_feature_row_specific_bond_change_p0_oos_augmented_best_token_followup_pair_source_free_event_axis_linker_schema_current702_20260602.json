@@ -8,7 +8,7 @@
   ],
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602",
   "blockers_to_clear": [
-    "source_free_current702_heldout_locator_surface_missing",
+    "source_free_current702_heldout_locator_coverage_incomplete",
     "source_free_proton_transfer_event_axis_missing",
     "source_free_event_residue_role_linker_missing"
   ],
@@ -21,7 +21,7 @@
     "required_event_types": 1,
     "required_residue_roles": 1
   },
-  "created_utc": "2026-06-02T20:20:12Z",
+  "created_utc": "2026-06-03T20:30:51Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "event_axis_linker_schema_ready": true,
@@ -54,7 +54,7 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Approve/copy current702 heldout locator sidecars or provide another source-free locator path, then fill this schema for the proton-transfer/electrostatic-stabiliser token.",
+    "next_action": "Complete current702 heldout locator coverage where needed, but fill this schema now for approved locator rows on the proton-transfer/electrostatic-stabiliser token.",
     "result": "The missing event-axis linker now has an explicit source-free schema and acceptance contract. No linker rows are materialized yet because current702 heldout locators and source-free event axis evidence remain blocked."
   },
   "row_schema": {
@@ -89,12 +89,12 @@
     "event_linker_blocker_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602.json",
-      "sha256": "979a9e5149649074e263747bec577e7c8505ccf8007a203d9c5cc8054f946e85"
+      "sha256": "89219661ef1a29369df7f9a4ede5af3fd0b1749114ce7380115d36cc21793d20"
     },
     "residue_count_fallback_contract": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.json",
-      "sha256": "f9d09599a37c788d237654206eaccf4d6ce6e7cf08f7ccda1a41891a5fc87c84"
+      "sha256": "b6bf5590833d244c797507647a849238b7420441d2c5626afc0721f899f01ed1"
     }
   },
   "status": "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_ready_no_linkers_materialized",

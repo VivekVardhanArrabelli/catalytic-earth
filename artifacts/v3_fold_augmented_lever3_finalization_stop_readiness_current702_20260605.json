@@ -1,0 +1,236 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605",
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_finalization_stop_readiness",
+  "created_utc": "2026-06-05T15:03:53Z",
+  "scope": "Final Lever 3 stop/readiness artifact. It generalizes the reusable deployment-safety gate, records the final P07658 fixed-threshold scoring closure status, and stops current-family Lever 3 optimization until new family panels or exact P07658 coordinate/provenance arrive.",
+  "status": "fold_augmented_lever3_finalization_stop_condition_reached_p07658_fail_closed",
+  "counts": {
+    "hard_residual_operator_rows": 21,
+    "hard_residual_operator_rows_safe_to_abstain_or_route": 21,
+    "mechanism_transfer_allowed_rows": 0,
+    "score_or_force_mechanism_label_allowed_rows": 0,
+    "forced_mechanism_label_rows": 0,
+    "unsafe_action_rows": 0,
+    "rule_selection_rows_in_final_application": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204,
+    "route_classes_with_current_family_rows": 5,
+    "p07658_sequence_length": 715,
+    "p07658_selenocysteine_count": 1,
+    "p07658_candidate_coordinate_files_present_now": 0,
+    "p07658_filled_provenance_files_present_now": 0,
+    "p07658_deployment_valid_predicted_coordinates_present_now": 0,
+    "p07658_current_provider_credentials_present": 0,
+    "p07658_current_local_predictor_runtimes_present": 0,
+    "coordinates_generated_now": 0,
+    "coordinates_staged_now": 0,
+    "rows_scored_now": 0,
+    "threshold_changes_now": 0,
+    "label_registry_ontology_import_changes_now": 0
+  },
+  "reusable_gate_generalization": {
+    "reusable_parts": [
+      "Use predicted-structure/source-free evidence only for deployment safety decisions.",
+      "Select counteraxes only on train/calibration evidence; never tune on heldout or application rows.",
+      "Keep threshold 0.44155 locked unless a separate authorized threshold process exists.",
+      "Route hard confounded lookalikes to abstain_or_route_novel_oos instead of forcing mechanism labels.",
+      "Disallow mechanism transfer until the target family has exact coordinate/provenance, source-free features, calibrated negative controls, and reproducibility/source-hash audits.",
+      "Record provenance for every source artifact, coordinate path, checksum, provider/model/version, and input sequence hash.",
+      "Fail closed whenever exact evidence is missing, stale, source-derived, label-derived, or not reproducible."
+    ],
+    "family_specific_parts_not_universal": [
+      "The five current route classes and their row counts are current702 evidence, not universal family rules.",
+      "The current cofactor/same-family, fold-similarity, pocket-geometry, pocket-chemistry, and protein-descriptor counteraxes are not assumed to transfer to new families.",
+      "Current family-specific hard residual rows are safely routed but not converted into mechanism-transfer permissions.",
+      "P07658 is a current-family fixed-threshold scoring closure blocker, not a general blocker for future family expansion gates."
+    ],
+    "new_family_gate_steps": [
+      "Freeze the family panel, source boundaries, train/cal/heldout split, and admissible source-free feature set before fitting or selection.",
+      "Materialize predicted structure inputs and coordinate/provenance sidecars with exact sequence hashes and documented nonstandard residue handling.",
+      "Run train/cal-only counteraxis selection against family-appropriate confounders and hard negatives.",
+      "Verify calibration retention and OOS abstain/route behavior at the locked operating point without heldout tuning.",
+      "Apply the gate to application rows only as an operator action: retain if supported, otherwise abstain_or_route_novel_oos.",
+      "Build source-hash, lineage, and normalized rebuild audits before any operator use.",
+      "Allow mechanism transfer only after family-specific evidence passes provenance, reproducibility, calibration, confounder, and leakage audits."
+    ],
+    "evidence_required_before_mechanism_transfer": [
+      "Exact target sequence and predicted coordinate/provenance, including path and checksum.",
+      "Provider/model/version or local predictor/runtime provenance.",
+      "Input sequence hash match to the frozen family manifest.",
+      "Documented treatment of nonstandard residues such as P07658 U140.",
+      "Train/cal-selected source-free counteraxis evidence with heldout and application rows excluded from selection.",
+      "Family-specific hard-negative and unsafe-lookalike evidence showing safe abstain/route behavior.",
+      "No use of mechanism text, labels, EC/Rhea IDs, source IDs, target names, or experimental-PDB metadata as predictive features.",
+      "Reproducibility audit with source hashes current and zero normalized rebuild differences for operator-facing artifacts."
+    ]
+  },
+  "current_lever3_operator_contract": {
+    "operator_action": "apply_reproducible_transfer_safety_gate_for_abstain_or_route_only",
+    "safe_abstention_route_available": true,
+    "safe_abstention_route_reproducible": true,
+    "hard_confounded_rows_are_safely_routed_not_force_labeled": true,
+    "current_hard_confounded_row_route": "abstain_or_route_novel_oos",
+    "mechanism_transfer_disallowed_for_current_hard_residual_rows": true,
+    "fixed_threshold_scoring_closure_available_now": false,
+    "threshold": 0.44155,
+    "threshold_changed": false,
+    "route_class_counts_current_family_only": {
+      "cofactor_or_same_family_confound": 11,
+      "fold_similarity_confound": 4,
+      "pocket_geometry_confound": 3,
+      "protein_descriptor_counteraxis": 2,
+      "pocket_chemistry_confound": 1
+    },
+    "canonical_operator_artifact": "artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605.json"
+  },
+  "p07658_final_closure_status": {
+    "entry_id": "m_csa:562",
+    "accession": "P07658",
+    "status": "fail_closed_abstain_or_route_novel_oos",
+    "fixed_threshold_scoring_closure_attempt_status": "blocked_only_by_exact_coordinate_and_provenance_requirement",
+    "fixed_threshold_scoring_closure_available_now": false,
+    "p07658_acceptance_preflight_passes_now": false,
+    "sequence_contract": {
+      "fasta_path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta",
+      "sequence_length": 715,
+      "sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+      "fasta_file_sha256": "c85b09c0de2c63e644481d8ada0eb242e439b720c70a73f2b5964b4b5875a081",
+      "selenocysteine_positions": [
+        140
+      ],
+      "u140_preserved": true
+    },
+    "current_environment_probe": {
+      "provider_credentials_present": {
+        "HF_TOKEN": false,
+        "HUGGINGFACEHUB_API_TOKEN": false,
+        "HUGGINGFACE_API_TOKEN": false,
+        "NVIDIA_API_KEY": false,
+        "NGC_API_KEY": false,
+        "BIOLM_API_KEY": false,
+        "OPENAI_API_KEY": false
+      },
+      "local_predictor_modules_present": {
+        "esm": false,
+        "openfold": false,
+        "colabfold": false,
+        "alphafold": false,
+        "biotite": false,
+        "Bio": false
+      },
+      "local_predictor_executables_present": {
+        "esmfold": false,
+        "colabfold_batch": false,
+        "run_alphafold.py": false,
+        "foldseek": false
+      },
+      "preferred_coordinate_path_exists_now": false,
+      "repo_p07658_coordinate_glob_matches_now": 0,
+      "provider_calls_performed_this_run": false,
+      "equivalent_no_credential_route_retries_performed_this_run": false
+    },
+    "exact_missing_evidence": [
+      "Exact full-length P07658 predicted coordinate for the frozen 715-aa sequence.",
+      "Filled provenance with provider/model/version/path/checksum and input sequence hash.",
+      "Explicit U140 selenocysteine preservation or handling documentation in the provenance.",
+      "Passing P07658 acceptance preflight before any fixed-threshold scoring rerun."
+    ],
+    "routes_not_retried_this_run_because_equivalent_no_credential_failures_are_already_recorded": [
+      "ESM Atlas public Fold API rejected the exact full-length sequence by length limit.",
+      "Hugging Face router/legacy routes lacked usable unauthenticated access.",
+      "BioLM and NVIDIA routes required credentials not present in the environment.",
+      "SWISS-MODEL repository returned PDB-provider rows rather than a deployment-valid predicted coordinate."
+    ]
+  },
+  "final_stop_readiness": {
+    "lever3_stop_condition_reached": true,
+    "safe_abstain_route_operator_contract_reproducible_and_current": true,
+    "current_hard_confounded_rows_safely_routed_not_force_labeled": true,
+    "p07658_fully_accepted_and_scored": false,
+    "p07658_explicitly_fail_closed_with_missing_evidence": true,
+    "reusable_family_expansion_gate_documented": true,
+    "no_more_current_family_lever3_optimization_should_run_without_new_data": true,
+    "allowed_future_inputs_to_resume": [
+      "A new frozen family panel for Lever 4/family expansion processed through this gate.",
+      "An exact full-length P07658 predicted coordinate plus filled provenance that passes acceptance preflight."
+    ],
+    "disallowed_future_work_until_allowed_input_arrives": [
+      "Open-ended current-family counteraxis hunting.",
+      "Heldout tuning or production-threshold changes.",
+      "Forced mechanism transfer for unsafe lookalikes.",
+      "P07658 scoring without exact coordinate/provenance and passing acceptance preflight."
+    ]
+  },
+  "source_artifacts": {
+    "operator_transfer_safety_application_reproducibility_audit": {
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605.json",
+      "exists": true,
+      "sha256": "f4b3e0cf1a938f692729e836b12399a03fca07a87f9a7a4f7eac055f512cc205"
+    },
+    "operator_transfer_safety_application_audit": {
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_current702_20260605.json",
+      "exists": true,
+      "sha256": "fb2654cf22c6306e8d41f3cc7da850029c6ed9673419ae354710257f58a051ab"
+    },
+    "operating_point_closure_readout": {
+      "path": "artifacts/v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605.json",
+      "exists": true,
+      "sha256": "c3be45451e7716b501aa0b89ee4159f1ed1a333c71da25b2f9ce340f49837d2e"
+    },
+    "p07658_full_length_prediction_request_manifest": {
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json",
+      "exists": true,
+      "sha256": "5583e04607b31d4a0a2d42708e8c943ad63045451b0589f1cc5ba1e23df68d73"
+    },
+    "p07658_prediction_acceptance_preflight": {
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
+      "exists": true,
+      "sha256": "3e0433dbea445404d5005e025afc06f542cddfd952626c7d7491d73d3b9e4abe"
+    },
+    "p07658_local_input_inventory_audit": {
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_local_input_inventory_audit_current702_20260604.json",
+      "exists": true,
+      "sha256": "b7dd06b917ef4d01ff4ac97009f42ac37d13331f3f30c9d4d3ecbd592a35df5a"
+    },
+    "p07658_exact_route_attempt_readout": {
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.json",
+      "exists": true,
+      "sha256": "575c9ae0ea097fe8b40164000ec439be4bee84fe41e278c58edec9612d81a71e"
+    },
+    "p07658_frozen_fasta": {
+      "path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta",
+      "exists": true,
+      "sha256": "c85b09c0de2c63e644481d8ada0eb242e439b720c70a73f2b5964b4b5875a081"
+    }
+  },
+  "guardrails": {
+    "lever3_only": true,
+    "blocker_packet": false,
+    "measured_finalization_artifact": true,
+    "existing_artifacts_only_for_operator_metrics": true,
+    "provider_calls_performed": false,
+    "equivalent_no_credential_route_retries_performed": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "candidate_rows_scored_now": false,
+    "labels_registries_ontologies_changed": false,
+    "imports_or_promotions_performed": false,
+    "production_thresholds_changed": false,
+    "threshold_values_changed": false,
+    "threshold_selected_or_tuned_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "application_rows_used_for_rule_selection": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "mechanism_transfer_for_current_hard_rows_allowed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 is finalized as a reusable deployment-safety gate, not a current-family forever project.",
+    "result": "Safe abstain/route operator use is current and reproducible; fixed-threshold scoring closure remains fail-closed only because P07658 lacks exact full-length predicted coordinate/provenance.",
+    "next_action": "Stop current-family Lever 3 optimization. Resume only with a new family panel processed through the gate or exact P07658 coordinate/provenance that passes acceptance preflight."
+  }
+}

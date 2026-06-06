@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-03
+Last refreshed: 2026-06-04
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -213,6 +213,22 @@ artifacts first.
   accessions and required coordinate/locus gates; 0/8 expected AFDB-v6
   coordinate files are local and 0 are ready to score. This remains a measured
   tranche readout rather than a deployable operating-point closure.
+- The post-P10746/Q43088 Lever 3 residual surface is now narrowed to exact
+  current-evidence blockers. P10746's prior human keep-fold-only caveat has
+  been reconciled, but deployment closure is still blocked. Four rows
+  (`m_csa:416`/P07071, `m_csa:562`/P07658, `m_csa:586`/P00806, and
+  `m_csa:637`/P04531) still lack approved deployment-valid predicted
+  coordinates after AFDB v1-v6 exhaustion; local experimental CIF shortcuts
+  exist for P07658/P00806/P04531 but are explicitly deployment-invalid, and a
+  repo-wide sanity scan across 1,636 local CIFs found no other local CIF
+  accession hit. Q43088 has a local AFDB-v6 predicted structure and one Tyr287
+  role-graph anchor; a review-only nearest-neighbor scout now lists 12
+  candidate locator positions, but 0 additional locators are approved and two
+  are still required before any rescore. The fixed threshold remains `0.44155`
+  and must not be rerun or retuned until those five surface-completeness rows
+  clear. Confounded-safe calibration is also still blocked: the high-cofactor
+  proxy needs 16 new fixed-threshold abstained train/cal rows and the
+  same-family structural proxy needs 170.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel
