@@ -128,6 +128,10 @@ DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_DELTA_PACKAGE_CONTRACT_READOUT_ARTIFACT_ID
     "v3_lever2_source_free_electron_flow_approval_import_delta_package_"
     "contract_readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_PROTECTED_IMPORT_SEQUENCE_PREFLIGHT_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_protected_import_sequence_"
+    "preflight_readout_current702_20260606"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -22970,6 +22974,679 @@ def write_lever2_source_free_electron_flow_approval_import_delta_package_contrac
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_approval_import_delta_package_contract_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _resolve_contract_source_path(
+    record: dict[str, Any],
+    *,
+    contract_path: Path,
+) -> Path | None:
+    raw_path = record.get("path")
+    if not raw_path:
+        return None
+    path = Path(str(raw_path))
+    if path.is_absolute():
+        return path
+    candidate_roots = [
+        Path.cwd(),
+        Path(contract_path).parent.parent,
+        Path(contract_path).parent,
+    ]
+    for root in candidate_roots:
+        candidate = root / path
+        if candidate.exists():
+            return candidate
+    return candidate_roots[0] / path
+
+
+def build_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout(
+    *,
+    approval_import_delta_package_contract_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_PROTECTED_IMPORT_SEQUENCE_PREFLIGHT_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    contract_readout_path = Path(approval_import_delta_package_contract_readout_path)
+    contract_readout = _read_json(contract_readout_path)
+    approved_sidecar = _read_json(train_cal_feature_sidecar_path)
+    acceptance_contract = contract_readout.get("acceptance_contract") or {}
+    source_artifacts = contract_readout.get("source_artifacts") or {}
+    package_path = _resolve_contract_source_path(
+        source_artifacts.get("approval_import_delta_package_readout") or {},
+        contract_path=contract_readout_path,
+    )
+    candidate_path = _resolve_contract_source_path(
+        source_artifacts.get("approval_import_candidate_sidecar_readout") or {},
+        contract_path=contract_readout_path,
+    )
+    package = _read_json(package_path) if package_path and package_path.exists() else {}
+    delta_rows = package.get("protected_delta_rows") or {}
+    smoke_rows = list(delta_rows.get("smoke_tranche") or [])
+    remaining_rows = list(delta_rows.get("remaining_current_split_expansion") or [])
+    full_rows = list(delta_rows.get("full_current_split_after_smoke") or [])
+    feature_fields = list(acceptance_contract.get("feature_fields") or [])
+    smoke_audit = _electron_flow_delta_field_contract_audit(
+        smoke_rows,
+        feature_fields=feature_fields,
+    )
+    remaining_audit = _electron_flow_delta_field_contract_audit(
+        remaining_rows,
+        feature_fields=feature_fields,
+    )
+    full_audit = _electron_flow_delta_field_contract_audit(
+        full_rows,
+        feature_fields=feature_fields,
+    )
+    approved_rows = [
+        row
+        for row in approved_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    package_record = (
+        _source_path_record(package_path)
+        if package_path is not None
+        else {"exists": False, "path": None, "sha256": None}
+    )
+    candidate_record = (
+        _source_path_record(candidate_path)
+        if candidate_path is not None
+        else {"exists": False, "path": None, "sha256": None}
+    )
+    sidecar_record = _source_path_record(Path(train_cal_feature_sidecar_path))
+    contract_record = _source_path_record(contract_readout_path)
+    package_normalized_sha256 = (
+        _canonical_json_sha256(_copy_without_created_utc(package))
+        if package
+        else None
+    )
+    smoke_rows_sha256 = _canonical_json_sha256(smoke_rows)
+    remaining_rows_sha256 = _canonical_json_sha256(remaining_rows)
+    full_rows_sha256 = _canonical_json_sha256(full_rows)
+    expected_package_file_sha256 = acceptance_contract.get(
+        "source_delta_package_file_sha256"
+    )
+    source_freshness = {
+        "current_contract_readout": contract_record,
+        "current_train_cal_feature_sidecar": sidecar_record,
+        "source_delta_package_readout": package_record,
+        "source_candidate_sidecar_readout": candidate_record,
+        "current_sidecar_sha256_matches_contract": (
+            sidecar_record.get("sha256")
+            == acceptance_contract.get("expected_base_sidecar_sha256")
+        ),
+        "source_delta_package_file_sha256_matches_contract": (
+            package_record.get("sha256") == expected_package_file_sha256
+        ),
+        "source_delta_package_normalized_sha256_matches_contract": (
+            package_normalized_sha256
+            == acceptance_contract.get(
+                "source_delta_package_normalized_sha256_without_created_utc"
+            )
+        ),
+        "source_candidate_sha256_matches_contract": (
+            candidate_record.get("sha256")
+            == acceptance_contract.get("expected_source_candidate_sha256")
+        ),
+    }
+    hash_preflight = {
+        "smoke_delta_rows_sha256": smoke_rows_sha256,
+        "smoke_delta_rows_sha256_matches_contract": (
+            smoke_rows_sha256 == acceptance_contract.get("smoke_delta_rows_sha256")
+        ),
+        "remaining_current_split_delta_rows_sha256": remaining_rows_sha256,
+        "remaining_current_split_delta_rows_sha256_matches_contract": (
+            remaining_rows_sha256
+            == acceptance_contract.get("remaining_current_split_delta_rows_sha256")
+        ),
+        "full_current_split_delta_rows_sha256": full_rows_sha256,
+        "full_current_split_delta_rows_sha256_matches_contract": (
+            full_rows_sha256
+            == acceptance_contract.get("full_current_split_delta_rows_sha256")
+        ),
+    }
+    counts = contract_readout.get("counts") or {}
+    gate_evidence = {
+        "smoke_gate_primary_positive_rows": counts.get(
+            "smoke_gate_primary_positive_rows"
+        ),
+        "smoke_gate_retained_oos_positive_entry_ids": counts.get(
+            "smoke_gate_retained_oos_positive_entry_ids"
+        )
+        or [],
+        "smoke_gate_primary_retain_recall": counts.get(
+            "smoke_gate_primary_retain_recall"
+        ),
+        "smoke_gate_union_or_gate_oos_abstain_recall": counts.get(
+            "smoke_gate_union_or_gate_oos_abstain_recall"
+        ),
+        "full_gate_primary_positive_rows": counts.get(
+            "full_gate_primary_positive_rows"
+        ),
+        "full_gate_retained_oos_positive_entry_ids": counts.get(
+            "full_gate_retained_oos_positive_entry_ids"
+        )
+        or [],
+        "full_gate_primary_retain_recall": counts.get(
+            "full_gate_primary_retain_recall"
+        ),
+        "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+            counts.get(
+                "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            )
+        ),
+        "full_gate_union_or_gate_oos_abstain_recall": counts.get(
+            "full_gate_union_or_gate_oos_abstain_recall"
+        ),
+    }
+    smoke_stage_ready = bool(
+        contract_readout.get("decision", {}).get("acceptance_contract_verified")
+        and source_freshness["current_sidecar_sha256_matches_contract"]
+        and source_freshness["source_delta_package_file_sha256_matches_contract"]
+        and source_freshness[
+            "source_delta_package_normalized_sha256_matches_contract"
+        ]
+        and source_freshness["source_candidate_sha256_matches_contract"]
+        and hash_preflight["smoke_delta_rows_sha256_matches_contract"]
+        and smoke_audit["complete_rows"] == len(smoke_rows) == 35
+        and smoke_audit["row_action_counts"].get("add_new_approved_row", 0) == 34
+        and smoke_audit["row_action_counts"].get(
+            "update_existing_approved_row", 0
+        )
+        == 1
+        and not smoke_audit["forbidden_field_hits"]
+        and not smoke_audit["missing_field_hits"]
+        and gate_evidence["smoke_gate_primary_positive_rows"] == 0
+        and gate_evidence["smoke_gate_primary_retain_recall"] == 1.0
+        and gate_evidence["smoke_gate_retained_oos_positive_entry_ids"]
+        == ["m_csa:104"]
+    )
+    remaining_stage_ready = bool(
+        smoke_stage_ready
+        and hash_preflight[
+            "remaining_current_split_delta_rows_sha256_matches_contract"
+        ]
+        and hash_preflight["full_current_split_delta_rows_sha256_matches_contract"]
+        and remaining_audit["complete_rows"] == len(remaining_rows) == 39
+        and full_audit["complete_rows"] == len(full_rows) == 74
+        and full_audit["row_action_counts"].get("add_new_approved_row", 0) == 73
+        and full_audit["row_action_counts"].get(
+            "update_existing_approved_row", 0
+        )
+        == 1
+        and not remaining_audit["forbidden_field_hits"]
+        and not remaining_audit["missing_field_hits"]
+        and not full_audit["forbidden_field_hits"]
+        and not full_audit["missing_field_hits"]
+        and gate_evidence["full_gate_primary_positive_rows"] == 0
+        and gate_evidence["full_gate_primary_retain_recall"] == 1.0
+        and gate_evidence["full_gate_retained_oos_positive_entry_ids"]
+        == ["m_csa:104", "m_csa:119", "m_csa:464"]
+        and bool(
+            gate_evidence[
+                "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ]
+        )
+    )
+    failures: list[str] = []
+    if not contract_readout.get("decision", {}).get("acceptance_contract_verified"):
+        failures.append("source contract is not verified")
+    if not source_freshness["current_sidecar_sha256_matches_contract"]:
+        failures.append("current approved sidecar SHA-256 differs from contract")
+    if not source_freshness["source_delta_package_file_sha256_matches_contract"]:
+        failures.append("source delta package file SHA-256 differs from contract")
+    if not source_freshness[
+        "source_delta_package_normalized_sha256_matches_contract"
+    ]:
+        failures.append("source delta package normalized SHA-256 differs from contract")
+    if not source_freshness["source_candidate_sha256_matches_contract"]:
+        failures.append("source candidate sidecar readout SHA-256 differs from contract")
+    for key, label in [
+        ("smoke_delta_rows_sha256_matches_contract", "smoke delta rows"),
+        (
+            "remaining_current_split_delta_rows_sha256_matches_contract",
+            "remaining current-split delta rows",
+        ),
+        ("full_current_split_delta_rows_sha256_matches_contract", "full delta rows"),
+    ]:
+        if not hash_preflight[key]:
+            failures.append(f"{label} SHA-256 differs from contract")
+    if not smoke_stage_ready:
+        failures.append("smoke stage gate is not ready")
+    if smoke_stage_ready and not remaining_stage_ready:
+        failures.append("remaining 74-row expansion gate is not ready")
+    sequence_ready = bool(smoke_stage_ready and remaining_stage_ready and not failures)
+    result_class = (
+        "research_only_protected_import_sequence_preflight_ready"
+        if sequence_ready
+        else "research_only_protected_import_sequence_preflight_not_ready"
+    )
+    status = (
+        "lever2_source_free_electron_flow_protected_import_sequence_"
+        f"preflight_readout_{result_class}"
+    )
+    staged_import_sequence = [
+        {
+            "stage": "smoke_tranche_first",
+            "authorization_required_before_execution": True,
+            "preflight_ready": smoke_stage_ready,
+            "rows": len(smoke_rows),
+            "complete_rows": smoke_audit["complete_rows"],
+            "row_action_counts": smoke_audit["row_action_counts"],
+            "delta_rows_sha256": smoke_rows_sha256,
+            "entry_ids": [row["entry_id"] for row in smoke_rows],
+            "required_gate_before_next_stage": (
+                "m_csa:104 plus 34 current primary rows must preserve primary "
+                "retention before expansion"
+            ),
+            "measured_gate": {
+                "primary_positive_rows": (
+                    gate_evidence["smoke_gate_primary_positive_rows"]
+                ),
+                "primary_retain_recall": (
+                    gate_evidence["smoke_gate_primary_retain_recall"]
+                ),
+                "retained_oos_positive_entry_ids": (
+                    gate_evidence["smoke_gate_retained_oos_positive_entry_ids"]
+                ),
+                "union_or_gate_oos_abstain_recall": (
+                    gate_evidence["smoke_gate_union_or_gate_oos_abstain_recall"]
+                ),
+            },
+        },
+        {
+            "stage": "remaining_current_split_after_smoke",
+            "authorization_required_before_execution": True,
+            "requires_prior_smoke_gate_pass": True,
+            "preflight_ready": remaining_stage_ready,
+            "rows": len(remaining_rows),
+            "complete_rows": remaining_audit["complete_rows"],
+            "row_action_counts": remaining_audit["row_action_counts"],
+            "delta_rows_sha256": remaining_rows_sha256,
+            "entry_ids": [row["entry_id"] for row in remaining_rows],
+            "required_gate_after_stage": (
+                "74-row current split must preserve primary retention and add "
+                "retained-OOS abstention beyond current geometry/fold"
+            ),
+            "measured_full_gate_after_smoke_plus_remaining": {
+                "full_rows": len(full_rows),
+                "full_delta_rows_sha256": full_rows_sha256,
+                "primary_positive_rows": (
+                    gate_evidence["full_gate_primary_positive_rows"]
+                ),
+                "primary_retain_recall": (
+                    gate_evidence["full_gate_primary_retain_recall"]
+                ),
+                "retained_oos_positive_entry_ids": (
+                    gate_evidence["full_gate_retained_oos_positive_entry_ids"]
+                ),
+                "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                    gate_evidence[
+                        "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+                    ]
+                ),
+                "union_or_gate_oos_abstain_recall": (
+                    gate_evidence["full_gate_union_or_gate_oos_abstain_recall"]
+                ),
+            },
+        },
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_protected_import_"
+            "sequence_preflight_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured source-free electron-flow protected-import "
+            "sequence preflight. It consumes the verified delta-package "
+            "acceptance contract, rechecks the current approved sidecar and "
+            "source package hashes, stages the smoke-first then remaining "
+            "current-split expansion sequence in memory, and reports gate "
+            "readiness. It does not apply imports, edit approved sidecars, "
+            "change thresholds, train models, read heldout, or touch labels, "
+            "registries, ontologies, or Lever 3 surfaces."
+        ),
+        "preflight_contract": {
+            "contract_id": (
+                "source_free_direct_electron_flow_protected_import_sequence_"
+                "preflight"
+            ),
+            "contract_status": (
+                "ready_pending_explicit_protected_import_authorization"
+                if sequence_ready
+                else "not_ready"
+            ),
+            "source_acceptance_contract": acceptance_contract.get("contract_id"),
+            "feature_fields": feature_fields,
+            "protected_import_authorized_by_this_artifact": False,
+            "protected_import_executed_by_this_artifact": False,
+            "staged_import_sequence": staged_import_sequence,
+        },
+        "measured_readout": {
+            "source_freshness": source_freshness,
+            "hash_preflight": hash_preflight,
+            "gate_evidence": gate_evidence,
+            "delta_field_contract_audit": {
+                "smoke_tranche": smoke_audit,
+                "remaining_current_split_expansion": remaining_audit,
+                "full_current_split_after_smoke": full_audit,
+            },
+            "component_positive_retained_oos_entry_ids": (
+                contract_readout.get("measured_readout", {}).get(
+                    "component_positive_retained_oos_entry_ids"
+                )
+                or {}
+            ),
+            "preflight_failures": failures,
+        },
+        "counts": {
+            "critical_preflight_failure_total": len(failures),
+            "approved_sidecar_rows_current": len(approved_rows),
+            "direct_source_free_electron_flow_feature_fields": len(feature_fields),
+            "staged_import_sequence_steps": len(staged_import_sequence),
+            "smoke_stage_rows": len(smoke_rows),
+            "smoke_stage_complete_rows": smoke_audit["complete_rows"],
+            "smoke_stage_add_new_rows": smoke_audit["row_action_counts"].get(
+                "add_new_approved_row", 0
+            ),
+            "smoke_stage_update_existing_rows": (
+                smoke_audit["row_action_counts"].get(
+                    "update_existing_approved_row", 0
+                )
+            ),
+            "smoke_stage_primary_positive_rows": (
+                gate_evidence["smoke_gate_primary_positive_rows"]
+            ),
+            "smoke_stage_retained_oos_positive_entry_ids": (
+                gate_evidence["smoke_gate_retained_oos_positive_entry_ids"]
+            ),
+            "smoke_stage_primary_retain_recall": (
+                gate_evidence["smoke_gate_primary_retain_recall"]
+            ),
+            "remaining_stage_rows_after_smoke": len(remaining_rows),
+            "remaining_stage_complete_rows_after_smoke": (
+                remaining_audit["complete_rows"]
+            ),
+            "full_current_split_rows_after_smoke": len(full_rows),
+            "full_current_split_complete_rows_after_smoke": (
+                full_audit["complete_rows"]
+            ),
+            "full_current_split_add_new_rows": full_audit[
+                "row_action_counts"
+            ].get("add_new_approved_row", 0),
+            "full_current_split_update_existing_rows": full_audit[
+                "row_action_counts"
+            ].get("update_existing_approved_row", 0),
+            "full_current_split_primary_positive_rows": (
+                gate_evidence["full_gate_primary_positive_rows"]
+            ),
+            "full_current_split_primary_retain_recall": (
+                gate_evidence["full_gate_primary_retain_recall"]
+            ),
+            "full_current_split_retained_oos_positive_entry_ids": (
+                gate_evidence["full_gate_retained_oos_positive_entry_ids"]
+            ),
+            "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                gate_evidence[
+                    "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "full_current_split_union_or_gate_oos_abstain_recall": (
+                gate_evidence["full_gate_union_or_gate_oos_abstain_recall"]
+            ),
+            "current_sidecar_sha256_matches_contract": (
+                source_freshness["current_sidecar_sha256_matches_contract"]
+            ),
+            "source_delta_package_file_sha256_matches_contract": (
+                source_freshness[
+                    "source_delta_package_file_sha256_matches_contract"
+                ]
+            ),
+            "source_delta_package_normalized_sha256_matches_contract": (
+                source_freshness[
+                    "source_delta_package_normalized_sha256_matches_contract"
+                ]
+            ),
+            "source_candidate_sha256_matches_contract": (
+                source_freshness["source_candidate_sha256_matches_contract"]
+            ),
+            "smoke_delta_rows_sha256_matches_contract": (
+                hash_preflight["smoke_delta_rows_sha256_matches_contract"]
+            ),
+            "remaining_current_split_delta_rows_sha256_matches_contract": (
+                hash_preflight[
+                    "remaining_current_split_delta_rows_sha256_matches_contract"
+                ]
+            ),
+            "full_current_split_delta_rows_sha256_matches_contract": (
+                hash_preflight["full_current_split_delta_rows_sha256_matches_contract"]
+            ),
+            "protected_imports_executed": 0,
+            "approved_sidecar_rows_written": 0,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "source_free_electron_flow_current_split_measured": True,
+            "smoke_first_preflight_ready": smoke_stage_ready,
+            "remaining_current_split_expansion_preflight_ready": (
+                remaining_stage_ready
+            ),
+            "protected_import_sequence_ready": sequence_ready,
+            "ready_for_explicit_protected_import_authorization": sequence_ready,
+            "smoke_gate_preserves_primary_retention": (
+                gate_evidence["smoke_gate_primary_retain_recall"] == 1.0
+            ),
+            "smoke_gate_adds_m_csa104_retained_oos_abstention": (
+                gate_evidence["smoke_gate_retained_oos_positive_entry_ids"]
+                == ["m_csa:104"]
+            ),
+            "full_gate_preserves_primary_retention": (
+                gate_evidence["full_gate_primary_retain_recall"] == 1.0
+            ),
+            "full_gate_adds_operating_point_value_beyond_current_geometry_fold": (
+                bool(
+                    gate_evidence[
+                        "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+                    ]
+                )
+            ),
+            "full_gate_retained_oos_signal_components": (
+                ["pqq", "iron_sulfur_or_iron", "nad_family"]
+            ),
+            "protected_surfaces_modified": False,
+            "approved_sidecar_written": False,
+            "imports_or_promotions_performed": False,
+            "deployable_now": False,
+            "research_only": True,
+            "remaining_gap": (
+                "The measured source-free electron-flow package is ready for "
+                "the smoke-first protected import sequence, but this artifact "
+                "does not authorize or execute protected imports."
+                if sequence_ready
+                else (
+                    "The protected import sequence preflight failed; inspect "
+                    "preflight_failures before any import."
+                )
+            ),
+            "smallest_next_experiment": (
+                "With explicit protected import authorization, apply only the "
+                "35-row smoke tranche, rerun the smoke gate, then apply the "
+                "remaining 39 rows only if the smoke gate preserves primary "
+                "retention."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_delta_and_contract_accounting": True,
+            "gate_uses_only_direct_source_free_electron_flow_fields": True,
+            "approved_sidecar_written": False,
+            "canonical_imports_or_promotions_performed": False,
+            "protected_import_authorized_by_this_artifact": False,
+            "protected_import_executed_by_this_artifact": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "approval_import_delta_package_contract_readout": contract_record,
+            "approval_import_delta_package_readout": package_record,
+            "approval_import_candidate_sidecar_readout": candidate_record,
+            "train_cal_feature_sidecar": sidecar_record,
+        },
+        "interpretation": {
+            "result": (
+                "The exact smoke-first source-free electron-flow import "
+                "sequence is hash-fresh and preflight-ready. The measured "
+                "readout still stays research-only because protected import "
+                "authorization is absent."
+                if sequence_ready
+                else (
+                    "The source-free electron-flow import sequence is not "
+                    "preflight-ready; do not apply protected deltas until the "
+                    "reported failures are resolved."
+                )
+            ),
+            "next_action": (
+                "Protected import authorization, then smoke-only application "
+                "and gate rerun, remains the smallest next experiment."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_protected_import_sequence_preflight_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Protected Import Sequence Preflight - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Protected import sequence ready: "
+        f"{decision['protected_import_sequence_ready']}",
+        "- Critical preflight failures: "
+        f"{counts['critical_preflight_failure_total']}",
+        "- Protected imports executed: 0",
+        "- Approved sidecar rows written: 0",
+        "",
+        "## Hash Preflight",
+        "",
+        "- Current sidecar matches contract: "
+        f"{counts['current_sidecar_sha256_matches_contract']}",
+        "- Source package file matches contract: "
+        f"{counts['source_delta_package_file_sha256_matches_contract']}",
+        "- Source package normalized hash matches contract: "
+        f"{counts['source_delta_package_normalized_sha256_matches_contract']}",
+        "- Source candidate matches contract: "
+        f"{counts['source_candidate_sha256_matches_contract']}",
+        "- Smoke delta rows match contract: "
+        f"{counts['smoke_delta_rows_sha256_matches_contract']}",
+        "- Remaining rows match contract: "
+        f"{counts['remaining_current_split_delta_rows_sha256_matches_contract']}",
+        "- Full delta rows match contract: "
+        f"{counts['full_current_split_delta_rows_sha256_matches_contract']}",
+        "",
+        "## Staged Gates",
+        "",
+        "| stage | rows | complete | new rows | updated rows | primary positives | retained-OOS IDs | primary retain | union OOS recall |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: |",
+        f"| smoke | {counts['smoke_stage_rows']} | "
+        f"{counts['smoke_stage_complete_rows']} | "
+        f"{counts['smoke_stage_add_new_rows']} | "
+        f"{counts['smoke_stage_update_existing_rows']} | "
+        f"{counts['smoke_stage_primary_positive_rows']} | "
+        f"{', '.join(counts['smoke_stage_retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{counts['smoke_stage_primary_retain_recall']} | "
+        f"{readout['measured_readout']['gate_evidence']['smoke_gate_union_or_gate_oos_abstain_recall']} |",
+        f"| full after smoke | {counts['full_current_split_rows_after_smoke']} | "
+        f"{counts['full_current_split_complete_rows_after_smoke']} | "
+        f"{counts['full_current_split_add_new_rows']} | "
+        f"{counts['full_current_split_update_existing_rows']} | "
+        f"{counts['full_current_split_primary_positive_rows']} | "
+        f"{', '.join(counts['full_current_split_retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{counts['full_current_split_primary_retain_recall']} | "
+        f"{counts['full_current_split_union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Decision",
+        "",
+        "- Smoke-first preflight ready: "
+        f"{decision['smoke_first_preflight_ready']}",
+        "- Remaining current-split expansion preflight ready: "
+        f"{decision['remaining_current_split_expansion_preflight_ready']}",
+        "- Full gate adds value beyond geometry/fold: "
+        f"{decision['full_gate_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    failures = readout["measured_readout"].get("preflight_failures") or []
+    if failures:
+        lines.extend(["", "## Failures", ""])
+        lines.extend(f"- {failure}" for failure in failures)
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout(
+    *,
+    approval_import_delta_package_contract_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_PROTECTED_IMPORT_SEQUENCE_PREFLIGHT_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout(
+        approval_import_delta_package_contract_readout_path=(
+            approval_import_delta_package_contract_readout_path
+        ),
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_protected_import_sequence_preflight_report(
                 readout
             ),
             encoding="utf-8",

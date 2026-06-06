@@ -74,6 +74,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     write_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout,
+    write_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout,
     write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
@@ -14538,6 +14539,36 @@ def cmd_build_lever2_source_free_electron_flow_approval_import_delta_package_con
         f"{counts.get('contract_full_delta_rows_after_smoke')}, "
         "sidecar fresh: "
         f"{counts.get('current_sidecar_sha256_matches_source_package')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout(
+        approval_import_delta_package_contract_readout_path=Path(
+            args.approval_import_delta_package_contract_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow protected import "
+        f"sequence preflight readout to {args.out} "
+        "smoke rows: "
+        f"{counts.get('smoke_stage_rows')}, "
+        "full rows: "
+        f"{counts.get('full_current_split_rows_after_smoke')}, "
+        "failures: "
+        f"{counts.get('critical_preflight_failure_total')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -34849,6 +34880,56 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_approval_import_delta_package_contract.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_approval_import_delta_package_contract_readout
+        )
+    )
+
+    lever2_electron_flow_protected_import_sequence_preflight = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-protected-import-"
+                "sequence-preflight-readout"
+            ),
+            help=(
+                "preflight the hash-pinned smoke-first protected import "
+                "sequence for source-free electron-flow without applying it"
+            ),
+        )
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--approval-import-delta-package-contract-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "delta_package_contract_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_protected_import_"
+            "sequence_preflight_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_protected_import_sequence_"
+            "preflight_readout_current702_20260606.md"
+        ),
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout
         )
     )
 

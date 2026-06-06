@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-06T00:33:31Z`
-- STARTED_AT_LOCAL: `2026-06-05T19:33:31-0500 CDT`
-- ENDED_AT_UTC: `2026-06-06T01:25:52Z`
-- ENDED_AT_LOCAL: `2026-06-05T20:25:52-0500 CDT`
-- ELAPSED_MINUTES: `52.35`
+- STARTED_AT_UTC: `2026-06-06T01:31:45Z`
+- STARTED_AT_LOCAL: `2026-06-05T20:31:45-0500 CDT`
+- ENDED_AT_UTC: `2026-06-06T01:55:02Z`
+- ENDED_AT_LOCAL: `2026-06-05T20:55:02-0500 CDT`
+- ELAPSED_MINUTES: `23.28`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,140 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 33
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-06T01:31:45Z`
+- STARTED_LOCAL: `2026-06-05T20:31:45-0500 CDT`
+- ENDED_AT: `2026-06-06T01:55:02Z`
+- ENDED_LOCAL: `2026-06-05T20:55:02-0500 CDT`
+- ELAPSED_MINUTES: `23.28`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured source-free electron-flow approval-import delta
+contract and pursue the next train/cal-disciplined measured readout without
+editing protected imports, labels, registries, ontologies, production
+thresholds, heldout splits, or Lever 3 surfaces.
+
+#### Work log
+
+- Continued in the dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Read the automation memory and prior Lever 2 handoff before new work.
+- The detached automation checkout lacked the Lever 2 handoff because it was
+  on detached `main`; the run moved to the existing Lever 2 branch worktree.
+- Initial disk was 11 GiB free, just above the 10 GiB guardrail. Removed the
+  clean detached duplicate worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/deb1/catalytic-earth`,
+  restoring disk to 14 GiB free before extended validation.
+- Added
+  `build-lever2-source-free-electron-flow-protected-import-sequence-preflight-readout`.
+  This consumes the verified delta-package acceptance contract, rechecks the
+  current approved sidecar, source delta package, and candidate readout hashes,
+  stages the smoke-first then remaining current-split import sequence in
+  memory, and reports gate readiness without applying any protected import.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout_current702_20260606.json`
+  and
+  `work/lever2_source_free_electron_flow_protected_import_sequence_preflight_readout_current702_20260606.md`.
+- No canonical approved sidecar, import file, production threshold, registry,
+  ontology, label, heldout split, or Lever 3 surface was edited.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_protected_import_sequence_preflight_readout_research_only_protected_import_sequence_preflight_ready`.
+  Result class:
+  `research_only_protected_import_sequence_preflight_ready`.
+- Preflight contract status:
+  `ready_pending_explicit_protected_import_authorization`.
+- Critical preflight failures: 0.
+- Current approved sidecar SHA-256, source delta package file SHA-256,
+  source delta package normalized SHA-256, source candidate SHA-256, smoke
+  delta rows SHA-256, remaining current-split delta rows SHA-256, and full
+  current-split delta rows SHA-256 all match the prior verified contract.
+- Smoke-first stage: 35/35 complete rows, 34 new approved-sidecar rows, 1
+  existing-row update, 0 primary positives, primary retain recall `1.0`,
+  retained-OOS positive `m_csa:104`, and union OOS recall `0.48`.
+- Remaining expansion stage: 39/39 complete rows after smoke.
+- Full 74-row current-split stage after smoke: 74/74 complete rows, 73 new
+  approved-sidecar rows, 1 existing-row update, 0 primary positives, primary
+  retain recall `1.0`, retained-OOS positives `m_csa:104`, `m_csa:119`, and
+  `m_csa:464`, incremental OOS abstain recall versus current geometry/fold
+  `0.04`, and union OOS recall `0.506667`.
+- The readout reports zero protected imports executed and zero approved
+  sidecar rows written. Interpretation: direct source-free electron-flow is
+  measured and hash-fresh for the current train/cal split; the remaining gap is
+  explicit protected import authorization, not missing source-free evidence.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Entry IDs are used only for tranche, delta, sequence, and
+  contract accounting.
+- The preflight uses only the eight direct source-free electron-flow fields
+  from the verified contract.
+- The run did not apply the protected import because this prompt explicitly
+  bars import/protected-surface edits; the measured preflight is the smallest
+  safe next artifact under that guardrail.
+- Final disk check showed 14 GiB free, above the 10 GiB guardrail.
+
+#### Validation
+
+- New CLI artifact generation:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-protected-import-sequence-preflight-readout`:
+  wrote 35 smoke rows, 74 full rows, 0 failures.
+- Focused parser/regression slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_protected_import_sequence_preflight_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_protected_import_sequence_preflight_current_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_approval_import_delta_package_contract_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_geometry_artifact_regression.py -q`:
+  479 passed, 193 subtests passed.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `python -m json.tool` parsed the new preflight JSON.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`: 2
+  passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1592 passed, 212 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1547 tests OK,
+  with the same existing warning.
+- Hash-seed stability: focused new parser/regression slice passed for
+  `PYTHONHASHSEED=1` through `5`; full pytest passed for
+  `PYTHONHASHSEED=1` through `6`; full unittest discovery passed for
+  `PYTHONHASHSEED=1` through `4`.
+- `git diff --check`: passed.
+- Guardrail scan against the new artifact found no true flags for protected
+  import execution, approved sidecar writes, protected-surface modification,
+  heldout evaluation, production threshold changes, or label/registry/ontology
+  changes.
+
+#### Commit/push status
+
+- Commit and push completed in wrap-up; branch sync verified before returning.
+
+#### Exact next action
+
+- With explicit protected import authorization only: apply the 35-row smoke
+  tranche, rerun the smoke gate, and apply the remaining 39 rows only if the
+  smoke gate preserves primary retention. Without that authorization, do not
+  edit the approved sidecar/import surfaces; the remaining gap is policy, not
+  source-free electron-flow evidence.
 
 ### 2026-06-05 Lever 2 Research Run 32
 
