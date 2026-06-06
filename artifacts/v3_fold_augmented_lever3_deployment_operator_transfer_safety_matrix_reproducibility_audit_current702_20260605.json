@@ -1,0 +1,145 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_current702_20260605",
+  "counts": {
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "forced_mechanism_label_rows": 0,
+    "mechanism_transfer_allowed_rows": 0,
+    "operator_action_rows": 21,
+    "operator_action_rows_abstain_or_route_novel_oos": 21,
+    "rebuild_difference_count": 0,
+    "reproducibility_violation_total": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "route_class_counts": {
+      "cofactor_or_same_family_confound": 11,
+      "fold_similarity_confound": 4,
+      "pocket_chemistry_confound": 1,
+      "pocket_geometry_confound": 3,
+      "protein_descriptor_counteraxis": 2
+    },
+    "route_class_stage_source_links": 7,
+    "route_class_stage_source_links_guardrail_clean": 7,
+    "route_class_stage_source_links_hash_current": 7,
+    "route_class_stage_source_links_lineage_covered": 7,
+    "row_safety_records": 21,
+    "row_safety_records_safe_to_abstain_or_route": 21,
+    "rule_selection_rows": 0,
+    "score_or_force_mechanism_label_allowed_rows": 0,
+    "source_records_checked": 3,
+    "source_records_hash_current": 3,
+    "threshold_change_allowed_rows": 0,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204,
+    "transfer_safety_matrix_rows": 5,
+    "unsafe_action_rows": 0
+  },
+  "created_utc": "2026-06-05T14:15:56Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_operator_transfer_safety_matrix_ready": true,
+    "deployment_operator_transfer_safety_matrix_reproducible": true,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "mechanism_transfer_disallowed_for_all_rows": true,
+    "next_gate": "Use the reproducible transfer-safety matrix for abstain/route operator decisions only; keep mechanism transfer and fixed-threshold scoring closure fail-closed pending exact P07658 evidence.",
+    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": false,
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "safe_abstention_route_remains_current": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "new_rule_selected_now": false,
+    "operator_transfer_safety_matrix_reproducibility_only": true,
+    "production_thresholds_changed": false,
+    "provider_calls_performed": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 transfer-safety matrix is reproducible.",
+    "next_action": "Use the reproducible matrix only for abstain/route decisions.",
+    "result": "Transfer-safety matrix rebuilds after created_utc normalization with 0 reproducibility violations."
+  },
+  "operator_transfer_safety_matrix_artifact": {
+    "artifact_id": "v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605",
+    "normalized_rebuild_matches_stored": true,
+    "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605.json",
+    "rebuild_error": null,
+    "rebuilt_created_utc": "2026-06-05T14:15:56Z",
+    "rebuilt_normalized_sha256": "8b602152effa238842465c1e21173b21a31ced3cddbd4d33ed2831de154c9f59",
+    "stored_created_utc": "2026-06-05T14:11:21Z",
+    "stored_normalized_sha256": "8b602152effa238842465c1e21173b21a31ced3cddbd4d33ed2831de154c9f59"
+  },
+  "reproducibility_checks": {
+    "fixed_threshold_scoring_fail_closed": true,
+    "mechanism_transfer_remains_disallowed": true,
+    "operating_point_metrics_stable": true,
+    "transfer_safety_matrix_metrics_stable": true,
+    "transfer_safety_matrix_readout_passed": true,
+    "transfer_safety_matrix_rebuild_matches_stored_after_created_utc_normalization": true,
+    "transfer_safety_matrix_source_hashes_current": true
+  },
+  "reproducibility_violations": [],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit",
+  "scope": "Reproducibility audit for the Lever 3 operator transfer-safety matrix. It rebuilds the matrix from recorded route-class, provenance, and provenance-reproducibility sources, normalizes only created_utc, and checks source-hash and metric stability.",
+  "source_artifacts": {
+    "deployment_operator_transfer_safety_matrix_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605.json",
+      "sha256": "75848b10ae607c95b1901e2157063b2f016912c80056ea1f2c95d519debe4554"
+    }
+  },
+  "source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "6db56bcf53beaafc442a055210420b7182d2be5f44ff5c52c7efcea5b4acdf79",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_provenance_readout_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "6db56bcf53beaafc442a055210420b7182d2be5f44ff5c52c7efcea5b4acdf79",
+      "source_hash_current": true,
+      "source_key": "deployment_operator_route_class_provenance_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "999cde84660309f4e899135fb6362a01fd824f1ce6ca98f991f9139f5e4fc106",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "999cde84660309f4e899135fb6362a01fd824f1ce6ca98f991f9139f5e4fc106",
+      "source_hash_current": true,
+      "source_key": "deployment_operator_route_class_provenance_reproducibility_audit"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "08d3f16e96714eb221b35726373fef1530f72d22380ac3d3738fbed77aeed0ee",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "08d3f16e96714eb221b35726373fef1530f72d22380ac3d3738fbed77aeed0ee",
+      "source_hash_current": true,
+      "source_key": "deployment_operator_route_class_readout"
+    }
+  ],
+  "status": "fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_passed"
+}

@@ -1,0 +1,424 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605",
+  "counts": {
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "forbidden_manifest_field_rows": 0,
+    "forced_mechanism_label_rows": 0,
+    "manifest_operator_action_rows": 21,
+    "missing_entry_id_rows": 0,
+    "missing_stage_source_rows": 0,
+    "operator_action_rows": 21,
+    "operator_action_rows_abstain_or_route_novel_oos": 21,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "route_class_counts": {
+      "cofactor_or_same_family_confound": 11,
+      "fold_similarity_confound": 4,
+      "pocket_chemistry_confound": 1,
+      "pocket_geometry_confound": 3,
+      "protein_descriptor_counteraxis": 2
+    },
+    "route_class_violation_total": 0,
+    "route_classes_with_rows": 5,
+    "route_stage_counts": {
+      "accepted_cofactor_or_same_family_bandpass": 10,
+      "channel_margin_counteraxis": 2,
+      "descriptor_generalization_counteraxis": 1,
+      "fold_cofactor_pressure_counteraxis": 1,
+      "fold_tm_bandpass_counteraxis": 4,
+      "geometry_mismatch_counteraxis": 1,
+      "pairwise_descriptor_counteraxis": 1,
+      "pocket_chemistry_counteraxis": 1
+    },
+    "rule_selection_rows": 0,
+    "source_records_checked": 2,
+    "source_records_hash_current": 2,
+    "stage_provenance_manifest_action_rows": 21,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204,
+    "unclassified_route_stage_rows": 0,
+    "unexpected_manifest_field_rows": 0,
+    "unsafe_action_rows": 0
+  },
+  "created_utc": "2026-06-05T13:12:36Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployable_abstain_route_action_classes_available": true,
+    "deployment_operator_route_class_readout_ready": true,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Use this route-class readout as the operator-facing explanation layer for abstain/route actions only; keep fixed-threshold scoring closure fail-closed pending exact P07658 coordinate/provenance evidence.",
+    "operator_action": "use_route_classified_manifest_rows_to_abstain_or_route_novel_oos",
+    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": false,
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "safe_abstention_route_remains_current": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "new_rule_selected_now": false,
+    "operator_route_classification_only": true,
+    "production_thresholds_changed": false,
+    "provider_calls_performed": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 operator route classes are ready.",
+    "next_action": "Use the route-classified manifest for abstain/route explanations only; do not score or force mechanism labels.",
+    "result": "21/21 operator rows abstain or route novel/OOS across 5 confounder classes, with 31/34 calibration in-scope rows retained and 167/204 train/cal OOS rows abstained or routed."
+  },
+  "operator_route_class_rows": [
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:25",
+      "force_mechanism_label_now": false,
+      "route_class": "protein_descriptor_counteraxis",
+      "route_stage": "descriptor_generalization_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:52",
+      "force_mechanism_label_now": false,
+      "route_class": "fold_similarity_confound",
+      "route_stage": "fold_tm_bandpass_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:74",
+      "force_mechanism_label_now": false,
+      "route_class": "fold_similarity_confound",
+      "route_stage": "fold_tm_bandpass_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:84",
+      "force_mechanism_label_now": false,
+      "route_class": "protein_descriptor_counteraxis",
+      "route_stage": "pairwise_descriptor_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:89",
+      "force_mechanism_label_now": false,
+      "route_class": "pocket_geometry_confound",
+      "route_stage": "channel_margin_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:135",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:190",
+      "force_mechanism_label_now": false,
+      "route_class": "fold_similarity_confound",
+      "route_stage": "fold_tm_bandpass_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:223",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:229",
+      "force_mechanism_label_now": false,
+      "route_class": "pocket_geometry_confound",
+      "route_stage": "channel_margin_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:256",
+      "force_mechanism_label_now": false,
+      "route_class": "fold_similarity_confound",
+      "route_stage": "fold_tm_bandpass_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:289",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:308",
+      "force_mechanism_label_now": false,
+      "route_class": "pocket_geometry_confound",
+      "route_stage": "geometry_mismatch_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:451",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:463",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:464",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:468",
+      "force_mechanism_label_now": false,
+      "route_class": "pocket_chemistry_confound",
+      "route_stage": "pocket_chemistry_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:488",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:502",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:503",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:638",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "fold_cofactor_pressure_counteraxis",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "used_for_rule_selection": false
+    },
+    {
+      "action": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:646",
+      "force_mechanism_label_now": false,
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stage": "accepted_cofactor_or_same_family_bandpass",
+      "stage_source_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "used_for_rule_selection": false
+    }
+  ],
+  "route_class_checks": {
+    "all_manifest_rows_abstain_or_route_novel_oos": true,
+    "all_manifest_rows_classified": true,
+    "all_rows_have_entry_id": true,
+    "all_rows_have_stage_source": true,
+    "deployment_operator_manifest_audit_passed": true,
+    "direct_source_hashes_current": true,
+    "fixed_threshold_scoring_fail_closed": true,
+    "manifest_row_count_matches_stage_provenance": true,
+    "no_forced_mechanism_labels": true,
+    "no_rule_selection_rows": true,
+    "operating_point_metrics_available": true,
+    "operator_manifest_has_no_forbidden_fields": true,
+    "safe_abstention_evidence_sufficient": true,
+    "stage_provenance_reproducibility_audit_passed": true,
+    "zero_retained_residual_rows_after_all_counteraxes": true
+  },
+  "route_class_rows": [
+    {
+      "entry_ids": [
+        "m_csa:135",
+        "m_csa:223",
+        "m_csa:289",
+        "m_csa:451",
+        "m_csa:463",
+        "m_csa:464",
+        "m_csa:488",
+        "m_csa:502",
+        "m_csa:503",
+        "m_csa:638",
+        "m_csa:646"
+      ],
+      "route_class": "cofactor_or_same_family_confound",
+      "route_stages": [
+        "accepted_cofactor_or_same_family_bandpass",
+        "fold_cofactor_pressure_counteraxis"
+      ],
+      "rows": 11,
+      "stage_source_artifact_ids": [
+        "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+        "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604"
+      ]
+    },
+    {
+      "entry_ids": [
+        "m_csa:52",
+        "m_csa:74",
+        "m_csa:190",
+        "m_csa:256"
+      ],
+      "route_class": "fold_similarity_confound",
+      "route_stages": [
+        "fold_tm_bandpass_counteraxis"
+      ],
+      "rows": 4,
+      "stage_source_artifact_ids": [
+        "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604"
+      ]
+    },
+    {
+      "entry_ids": [
+        "m_csa:468"
+      ],
+      "route_class": "pocket_chemistry_confound",
+      "route_stages": [
+        "pocket_chemistry_counteraxis"
+      ],
+      "rows": 1,
+      "stage_source_artifact_ids": [
+        "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605"
+      ]
+    },
+    {
+      "entry_ids": [
+        "m_csa:89",
+        "m_csa:229",
+        "m_csa:308"
+      ],
+      "route_class": "pocket_geometry_confound",
+      "route_stages": [
+        "channel_margin_counteraxis",
+        "geometry_mismatch_counteraxis"
+      ],
+      "rows": 3,
+      "stage_source_artifact_ids": [
+        "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+        "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605"
+      ]
+    },
+    {
+      "entry_ids": [
+        "m_csa:25",
+        "m_csa:84"
+      ],
+      "route_class": "protein_descriptor_counteraxis",
+      "route_stages": [
+        "descriptor_generalization_counteraxis",
+        "pairwise_descriptor_counteraxis"
+      ],
+      "rows": 2,
+      "stage_source_artifact_ids": [
+        "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604"
+      ]
+    }
+  ],
+  "route_class_violations": [],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_deployment_operator_route_class_readout",
+  "scope": "Operator-facing route-class readout for the current Lever 3 abstain/route manifest. It classifies already-approved hard confounded OOS operator actions by confounder class and verifies that the action surface remains source-current, guardrail-clean, threshold-unchanged, and fail-closed for fixed-threshold scoring.",
+  "source_artifacts": {
+    "deployment_operator_manifest_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json",
+      "sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8"
+    },
+    "deployment_stage_provenance_reproducibility_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.json",
+      "sha256": "56df910f65c91d63d56de84ba11079c0cdc3f5a62dd2d0ba33668ebd533b4599"
+    }
+  },
+  "source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8",
+      "source_hash_current": true,
+      "source_key": "deployment_operator_manifest_audit"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "56df910f65c91d63d56de84ba11079c0cdc3f5a62dd2d0ba33668ebd533b4599",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "56df910f65c91d63d56de84ba11079c0cdc3f5a62dd2d0ba33668ebd533b4599",
+      "source_hash_current": true,
+      "source_key": "deployment_stage_provenance_reproducibility_audit"
+    }
+  ],
+  "status": "fold_augmented_lever3_deployment_operator_route_class_readout_passed"
+}

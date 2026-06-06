@@ -1,0 +1,742 @@
+{
+  "accepted_counteraxis_contracts": {
+    "cofactor_context_counteraxis_entry_ids": [
+      "m_csa:289"
+    ],
+    "same_family_bandpass_counteraxis_entry_ids": [
+      "m_csa:135",
+      "m_csa:223",
+      "m_csa:451",
+      "m_csa:463",
+      "m_csa:464",
+      "m_csa:488",
+      "m_csa:502",
+      "m_csa:503",
+      "m_csa:646"
+    ],
+    "same_family_bandpass_limit": {
+      "best_retention_preserving_top_rule_remaining_same_family_residual_rows_fired": 9,
+      "retention_preserving_top_candidate_rules_checked": 10,
+      "selected_rule_remaining_same_family_residual_rows_fired": 9,
+      "stronger_retention_preserving_bandpass_found_in_top_rules": false,
+      "top_candidate_rules_checked": 10
+    },
+    "same_family_bandpass_rule": {
+      "bounds": {
+        "fold_nearest_atlas_tm_score": {
+          "max": 0.7357,
+          "min": 0.6257
+        },
+        "geometry_top1_score": {
+          "max": 0.5757
+        }
+      },
+      "feature_rule": "fold_nearest_atlas_tm_score between selected lower and upper quantile-grid bounds AND geometry_top1_score <= selected quantile-grid upper bound",
+      "selected_on_train_cal_only": true
+    },
+    "same_family_pocket_descriptor_probe": {
+      "covered_same_family_residual_entry_ids": [
+        "m_csa:25",
+        "m_csa:464",
+        "m_csa:503",
+        "m_csa:52",
+        "m_csa:646"
+      ],
+      "missing_same_family_residual_entry_ids": [
+        "m_csa:135",
+        "m_csa:190",
+        "m_csa:223",
+        "m_csa:229",
+        "m_csa:256",
+        "m_csa:289",
+        "m_csa:308",
+        "m_csa:451",
+        "m_csa:463",
+        "m_csa:468",
+        "m_csa:488",
+        "m_csa:502",
+        "m_csa:638",
+        "m_csa:74",
+        "m_csa:84",
+        "m_csa:89"
+      ],
+      "retained_residual_rows_missing_pocket_descriptor": 9,
+      "retained_residual_rows_with_pocket_descriptor": 2
+    }
+  },
+  "artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+  "counts": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "critical_violation_total": 0,
+    "p07658_forced_abstention_rows": 1,
+    "residual_rows": 21,
+    "residual_rows_abstained_by_cofactor_context_counteraxis": 1,
+    "residual_rows_abstained_by_same_family_bandpass_counteraxis": 9,
+    "residual_rows_retained_after_accepted_counteraxes": 11,
+    "residual_rows_retained_by_all_current_channels_before_counteraxes": 21,
+    "retained_residual_evidence_queue_rows": 11,
+    "retained_residual_rows_missing_pocket_descriptor": 9,
+    "retained_residual_rows_with_pocket_descriptor": 2,
+    "same_family_bandpass_best_retention_preserving_residual_rows_fired": 9,
+    "same_family_bandpass_retention_preserving_top_candidate_rules_checked": 10,
+    "same_family_bandpass_top_candidate_rules_checked": 10,
+    "unique_residual_rows_abstained_by_accepted_counteraxes": 10
+  },
+  "created_utc": "2026-06-05T03:25:13Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_sufficient_for_fixed_threshold_scoring_closure": false,
+    "current_evidence_sufficient_for_safe_abstention_routing": true,
+    "deployment_valid_action_readout_available": true,
+    "exact_missing_evidence_for_scoring_closure_or_zero_residual_risk": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing",
+      "source-free chemistry or pocket counteraxis evidence for the 11 retained residual same-family rows if zero residual retained-transfer risk is required; 9 still lack same-family pocket descriptors and 2 have descriptors but no accepted counteraxis"
+    ],
+    "fail_closed_abstention_contract_available": true,
+    "full_residual_row_abstention_coverage": false,
+    "hard_confounded_residual_target_covered": true,
+    "next_gate": "Use the fail-closed P07658 action now; for scoring closure, provision one exact full-length P07658 predictor route with coordinate/provenance and rerun acceptance preflight.",
+    "retention_preserving_bandpass_grid_improves_selected_same_family_residual_coverage": false,
+    "score_rows_with_missing_coordinate_or_provenance_now": false,
+    "true_in_scope_retention_floor_met": true,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "score_rows_with_missing_coordinate_or_provenance_now": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "incomplete_input_action_rows": [
+    {
+      "accession": "P07658",
+      "action_reason": "accepted full-length predicted coordinate/provenance is missing, so mechanism transfer is not allowed",
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:562",
+      "failed_gate_ids": [
+        "credentialed_or_local_exact_prediction_route_available",
+        "preferred_full_length_coordinate_present",
+        "filled_prediction_provenance_present",
+        "local_inventory_ready_for_acceptance_preflight"
+      ],
+      "sequence_contract_valid": true
+    }
+  ],
+  "interpretation": {
+    "headline": "Lever 3 has a row-level fail-closed action surface, but fixed-threshold scoring closure still waits on P07658.",
+    "next_action": "Provision one exact full-length P07658 predictor route with provenance before any fixed-threshold scoring rerun.",
+    "result": "Accepted counteraxes abstain 10/21 residual hard-confounded rows, retain 31/34 calibration in-scope rows, abstain 105/204 train/cal OOS rows, and force P07658 to abstain while coordinate/provenance is missing."
+  },
+  "operating_point": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "full_residual_row_abstention_coverage": false,
+    "hard_confounded_residual_target_covered": true,
+    "route_id": "fixed_baseline_plus_cofactor_context_counteraxis_plus_same_family_numeric_bandpass_counteraxis_contract",
+    "threshold_or_value_changed_now": false,
+    "threshold_selection_source": "train_calibration_only"
+  },
+  "residual_action_rows": [
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "P32400",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_min_geometry_fold",
+      "closest_current_channel_margin": 0.0398,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:25",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "P0AB71",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.062269,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:52",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "P13000",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.011125,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:74",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "P27213",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.026454,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:84",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "Q55012",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_fold",
+      "closest_current_channel_margin": 0.00845,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:89",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "P14925",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.048023,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:135",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "Q46822",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.025247,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:190",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "Q2K340",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.003929,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:223",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "P9WIL5",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.004742,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:229",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "P00327",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.015781,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:256",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "cofactor_context_counteraxis"
+      ],
+      "accession": "P07342",
+      "axis_memberships": [
+        "high_cofactor",
+        "same_family"
+      ],
+      "closest_current_channel": "combined_min_geometry_fold",
+      "closest_current_channel_margin": 0.0287,
+      "cofactor_context_counteraxis_fires": true,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:289",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "P12070",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.19385,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:308",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "P0AES2",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.042344,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:451",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "Q89FH0",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.023826,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:463",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "P11766",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.006482,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:464",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "Q05514",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.131121,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:468",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "P32170",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.061709,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:488",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "Q8EMJ9",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.108381,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:502",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "B9JNP7",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.021129,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:503",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present"
+    },
+    {
+      "accepted_counteraxis_action_sources": [],
+      "accession": "P42676",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.019535,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:638",
+      "evidence_need_if_retained": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": false,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accepted_counteraxis_action_sources": [
+        "same_family_numeric_bandpass_counteraxis"
+      ],
+      "accession": "P31939",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_min_geometry_fold",
+      "closest_current_channel_margin": 0.0287,
+      "cofactor_context_counteraxis_fires": false,
+      "deployment_action_now": "abstain_or_route_novel_oos",
+      "entry_id": "m_csa:646",
+      "evidence_need_if_retained": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "retained_by_all_current_channels_before_counteraxes": true,
+      "same_family_bandpass_counteraxis_fires": true,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present"
+    }
+  ],
+  "retained_residual_evidence_queue": [
+    {
+      "accession": "P9WIL5",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.004742,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:229",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 1,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accession": "Q55012",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "combined_mean_geometry_fold",
+      "closest_current_channel_margin": 0.00845,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:89",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 2,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accession": "P13000",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.011125,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:74",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 3,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accession": "P00327",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.015781,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:256",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 4,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accession": "P42676",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.019535,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:638",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 5,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accession": "Q46822",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.025247,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:190",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 6,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accession": "P27213",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.026454,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:84",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 7,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accession": "P32400",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "combined_min_geometry_fold",
+      "closest_current_channel_margin": 0.0398,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:25",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 8,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present"
+    },
+    {
+      "accession": "P0AB71",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.062269,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:52",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 9,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present"
+    },
+    {
+      "accession": "Q05514",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.131121,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:468",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 10,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    },
+    {
+      "accession": "P12070",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "candidate_rows_scored_now": false,
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.19385,
+      "count_as_abstained_evidence_now": false,
+      "entry_id": "m_csa:308",
+      "evidence_need": "new_source_free_same_family_chemistry_or_pocket_counteraxis_required",
+      "rank": 11,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_deployment_action_readout",
+  "scope": "Lever 3 measured deployment-action readout. It composes the residual-safety rows, accepted cofactor-context counteraxis, accepted same-family numeric bandpass contract, and fail-closed P07658 abstention policy into row-level deployment actions. It scores no rows, stages no coordinates, changes no thresholds, and uses no heldout rows for threshold selection.",
+  "source_artifacts": {
+    "cofactor_context_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072"
+    },
+    "confounded_safe_abstention_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604.json",
+      "sha256": "f623506f959746bfd087af6dd1c11a4f64fb59d42269395249db2847171b71b7"
+    },
+    "residual_safety_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json",
+      "sha256": "857479dd0549a7b5fd266c13fdb87497ed82dc0fe345c197dad80af1c783e4e6"
+    },
+    "same_family_bandpass_counteraxis_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json",
+      "sha256": "bfbf332a71e4d86864717805af679afd1606be304ecb8daaa0dacc898861de18"
+    }
+  },
+  "status": "fold_augmented_lever3_deployment_action_readout_ready_fail_closed_p07658"
+}

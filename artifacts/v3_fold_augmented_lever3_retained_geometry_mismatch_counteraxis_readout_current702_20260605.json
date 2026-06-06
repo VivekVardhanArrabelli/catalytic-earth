@@ -1,0 +1,669 @@
+{
+  "application_row_actions": [
+    {
+      "accession": "P32400",
+      "combined_min_geometry_fold": 0.3778,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:25",
+      "geometry_top1_score": 0.3778,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P0AB71",
+      "combined_min_geometry_fold": 0.5977,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:52",
+      "geometry_top1_score": 0.5977,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P13000",
+      "combined_min_geometry_fold": 0.5864,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:74",
+      "geometry_top1_score": 0.5864,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P27213",
+      "combined_min_geometry_fold": 0.538,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:84",
+      "geometry_top1_score": 0.5971,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q55012",
+      "combined_min_geometry_fold": 0.409,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:89",
+      "geometry_top1_score": 0.409,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q46822",
+      "combined_min_geometry_fold": 0.5886,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:190",
+      "geometry_top1_score": 0.5886,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P9WIL5",
+      "combined_min_geometry_fold": 0.5047,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:229",
+      "geometry_top1_score": 0.5829,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P00327",
+      "combined_min_geometry_fold": 0.5974,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:256",
+      "geometry_top1_score": 0.5974,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P12070",
+      "combined_min_geometry_fold": 0.5788,
+      "deployment_action_delta": "abstain_or_route_novel_oos_by_channel_geometry_mismatch",
+      "entry_id": "m_csa:308",
+      "geometry_top1_score": 0.5788,
+      "new_abstention_from_geometry_mismatch_counteraxis": true,
+      "prior_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "retained_after_pocket_chemistry_counteraxis": true,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": true,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q05514",
+      "combined_min_geometry_fold": 0.591,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:468",
+      "geometry_top1_score": 0.591,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "abstain_or_route_novel_oos_by_pocket_chemistry",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P42676",
+      "combined_min_geometry_fold": 0.3756,
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "entry_id": "m_csa:638",
+      "geometry_top1_score": 0.3756,
+      "new_abstention_from_geometry_mismatch_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "retained_after_pocket_chemistry_counteraxis": false,
+      "selected_geometry_mismatch_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+  "counts": {
+    "application_rows": 11,
+    "application_rows_missing_full_channels": 0,
+    "application_rows_with_full_channels": 11,
+    "calibration_in_scope_full_channel_rows": 34,
+    "calibration_in_scope_retained_full_channel_rows": 31,
+    "candidate_geometry_mismatch_rules_within_support_bounds": 45,
+    "combined_all_train_cal_oos_abstained_after_geometry_mismatch": 167,
+    "design_same_family_full_channel_rows": 48,
+    "design_same_family_rows_missing_full_channels": 0,
+    "geometry_mismatch_rules_evaluated": 2025,
+    "new_geometry_mismatch_application_rows_fired_after_pocket_chemistry": 1,
+    "retained_application_rows_before_geometry_mismatch": 1,
+    "retained_residual_rows_after_geometry_mismatch_counteraxis": 0,
+    "same_family_proxy_rows": 59,
+    "selected_geometry_mismatch_new_train_cal_oos_abstentions": 2,
+    "selected_rule_all_train_cal_oos_rows_fired": 5,
+    "selected_rule_application_rows_fired_after_selection": 1,
+    "selected_rule_calibration_in_scope_retained_fired": 0,
+    "selected_rule_design_same_family_rows_fired": 2,
+    "train_cal_oos_full_channel_rows": 204
+  },
+  "created_utc": "2026-06-05T08:44:06Z",
+  "decision": {
+    "application_rows_used_for_rule_selection": false,
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_scoring_closure_available_now": false,
+    "geometry_mismatch_counteraxis_ready_for_application_now": true,
+    "geometry_mismatch_counteraxis_selected_now": true,
+    "next_gate": "Treat the selected geometry-mismatch rule as fail-closed evidence for newly fired retained rows. Do not change threshold 0.44155 or force a mechanism label; fixed-threshold scoring closure still requires the separate exact P07658 coordinate/provenance route.",
+    "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis": [
+      "m_csa:308"
+    ],
+    "retained_rows_remaining_after_geometry_mismatch_counteraxis": [],
+    "safe_abstention_routing_available_now": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false,
+    "zero_residual_retained_transfer_risk_available_now": true
+  },
+  "guardrails": {
+    "all_train_cal_oos_breadth_cap_applied": true,
+    "application_row_outcomes_used_in_selection_objective": false,
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "rule_selected_on_train_cal_only": true,
+    "source_free_channel_geometry_features_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false,
+    "train_cal_oos_support_floor_applied": true
+  },
+  "interpretation": {
+    "headline": "The channel-geometry mismatch counteraxis adds 1 retained-row abstention after pocket chemistry.",
+    "next_action": "Use this readout as the current Lever 3 zero-residual retained-transfer operating point, while keeping scoring closure fail-closed until exact P07658 coordinate provenance exists.",
+    "result": "The selected rule is geometry_top1_score <= 0.582200 AND combined_min_geometry_fold >= 0.578200; retained residual rows after this stage are []."
+  },
+  "missing_full_channel_entry_ids": {
+    "application_rows": [],
+    "design_same_family": []
+  },
+  "operating_point_after_geometry_mismatch": {
+    "all_train_cal_oos_full_channel_rows": 204,
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained_after_geometry_mismatch": 31,
+    "calibration_in_scope_retained_after_pocket_chemistry": 31,
+    "calibration_in_scope_rows": 34,
+    "combined_all_train_cal_oos_abstained_after_geometry_mismatch": 167,
+    "combined_all_train_cal_oos_abstained_before_geometry_mismatch": 165,
+    "combined_all_train_cal_oos_retained_after_geometry_mismatch": 37,
+    "geometry_mismatch_counteraxis_all_train_cal_oos_fired": 5,
+    "geometry_mismatch_counteraxis_new_train_cal_oos_abstentions": 2,
+    "production_threshold_change": false
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout",
+  "scope": "Lever 3 measured retained channel-geometry mismatch counteraxis readout. It selects a two-threshold source-free channel rule over frozen train/cal predicted-geometry scores: low top-1 active-site geometry score with high combined minimum geometry/fold score. Selection uses train/cal same-family OOS design rows only under zero retained-calibration fires and bounded train/cal OOS support, then applies the selected rule to retained application rows only after selection. It changes no thresholds, scores no rows, stages no coordinates, and uses no heldout rows.",
+  "selected_geometry_mismatch_counteraxis_rule": {
+    "all_train_cal_oos_entry_ids_fired": [
+      "m_csa:104",
+      "m_csa:21",
+      "m_csa:308",
+      "m_csa:272",
+      "m_csa:269"
+    ],
+    "all_train_cal_oos_rows_fired": 5,
+    "application_entry_ids_fired_after_selection": [
+      "m_csa:308"
+    ],
+    "application_rows_fired_after_selection": 1,
+    "calibration_in_scope_entry_ids_fired": [],
+    "calibration_in_scope_retained_fired": 0,
+    "design_same_family_entry_ids_fired": [
+      "m_csa:104",
+      "m_csa:269"
+    ],
+    "design_same_family_rows_fired": 2,
+    "feature_names": [
+      "geometry_top1_score",
+      "combined_min_geometry_fold"
+    ],
+    "feature_rule": "geometry_top1_score <= 0.582200 AND combined_min_geometry_fold >= 0.578200",
+    "high_channel_name": "combined_min_geometry_fold",
+    "high_lower_threshold": 0.5782,
+    "low_channel_name": "geometry_top1_score",
+    "low_upper_threshold": 0.5822,
+    "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+    "retention_floor_met": true,
+    "rule_id": "geometry_top1_score<=0.582200 AND combined_min_geometry_fold>=0.578200"
+  },
+  "selection_policy": {
+    "application_row_outcomes_used_in_selection_objective": false,
+    "application_rows_excluded_from_selection": [
+      "m_csa:25",
+      "m_csa:52",
+      "m_csa:74",
+      "m_csa:84",
+      "m_csa:89",
+      "m_csa:190",
+      "m_csa:229",
+      "m_csa:256",
+      "m_csa:308",
+      "m_csa:468",
+      "m_csa:638"
+    ],
+    "application_rows_used_for_rule_selection": false,
+    "calibration_guard": "candidate rule must fire zero retained calibration in-scope rows with full channel scores",
+    "feature_source": "source-free frozen predicted-geometry channel scores from the train/cal OOS surface",
+    "high_channel": "combined_min_geometry_fold",
+    "low_channel": "geometry_top1_score",
+    "max_all_train_cal_oos_rows_fired": 8,
+    "min_all_train_cal_oos_rows_fired": 5,
+    "min_design_same_family_rows_fired": 2,
+    "rule_family": "geometry_top1_score_less_equal_and_combined_min_geometry_fold_greater_equal",
+    "selection_objective": "maximize high-channel lower threshold, then minimize low-channel upper threshold, then maximize design support, then minimize train/cal OOS breadth",
+    "selection_rows": "train/cal same-family structural proxy OOS design rows with full channel scores, excluding every retained application row",
+    "threshold_grid_source": "unique train/cal design-row channel-score values"
+  },
+  "source_artifacts": {
+    "channel_veto_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+      "sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be"
+    },
+    "cofactor_context_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072"
+    },
+    "latest_train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "retained_channel_margin_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json",
+      "sha256": "596186a545349861a469994d813f82298347a050a2f5343737ef00c10234a89a"
+    },
+    "retained_pairwise_descriptor_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json",
+      "sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a"
+    },
+    "retained_pocket_chemistry_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.json",
+      "sha256": "5af607552a6b4902307e250eaddff6097ddb2a844edfc03a92913b3e966628f8"
+    },
+    "threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    }
+  },
+  "status": "fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_closed",
+  "top_candidate_geometry_mismatch_rules": [
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:21",
+        "m_csa:308",
+        "m_csa:272",
+        "m_csa:269"
+      ],
+      "all_train_cal_oos_rows_fired": 5,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:308"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:269"
+      ],
+      "design_same_family_rows_fired": 2,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.582200 AND combined_min_geometry_fold >= 0.578200",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5782,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5822,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.582200 AND combined_min_geometry_fold>=0.578200"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:21",
+        "m_csa:308",
+        "m_csa:272",
+        "m_csa:187",
+        "m_csa:269"
+      ],
+      "all_train_cal_oos_rows_fired": 6,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:308"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:187",
+        "m_csa:269"
+      ],
+      "design_same_family_rows_fired": 3,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.585100 AND combined_min_geometry_fold >= 0.578200",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5782,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5851,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.585100 AND combined_min_geometry_fold>=0.578200"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:483",
+        "m_csa:21",
+        "m_csa:308",
+        "m_csa:272",
+        "m_csa:269"
+      ],
+      "all_train_cal_oos_rows_fired": 6,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:308"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:269",
+        "m_csa:483"
+      ],
+      "design_same_family_rows_fired": 3,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.582200 AND combined_min_geometry_fold >= 0.577500",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5775,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5822,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.582200 AND combined_min_geometry_fold>=0.577500"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:483",
+        "m_csa:21",
+        "m_csa:308",
+        "m_csa:272",
+        "m_csa:187",
+        "m_csa:269"
+      ],
+      "all_train_cal_oos_rows_fired": 7,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:308"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:187",
+        "m_csa:269",
+        "m_csa:483"
+      ],
+      "design_same_family_rows_fired": 4,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.585100 AND combined_min_geometry_fold >= 0.577500",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5775,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5851,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.585100 AND combined_min_geometry_fold>=0.577500"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:483",
+        "m_csa:367",
+        "m_csa:421",
+        "m_csa:59",
+        "m_csa:269"
+      ],
+      "all_train_cal_oos_rows_fired": 5,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:59",
+        "m_csa:269",
+        "m_csa:483"
+      ],
+      "design_same_family_rows_fired": 3,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.578200 AND combined_min_geometry_fold >= 0.565800",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5658,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5782,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.578200 AND combined_min_geometry_fold>=0.565800"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:483",
+        "m_csa:367",
+        "m_csa:421",
+        "m_csa:59",
+        "m_csa:501"
+      ],
+      "all_train_cal_oos_rows_fired": 5,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:59",
+        "m_csa:483",
+        "m_csa:501"
+      ],
+      "design_same_family_rows_fired": 3,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.577500 AND combined_min_geometry_fold >= 0.565100",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5651,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5775,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.577500 AND combined_min_geometry_fold>=0.565100"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:483",
+        "m_csa:367",
+        "m_csa:421",
+        "m_csa:59",
+        "m_csa:269",
+        "m_csa:501"
+      ],
+      "all_train_cal_oos_rows_fired": 6,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:59",
+        "m_csa:269",
+        "m_csa:483",
+        "m_csa:501"
+      ],
+      "design_same_family_rows_fired": 4,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.578200 AND combined_min_geometry_fold >= 0.565100",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5651,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5782,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.578200 AND combined_min_geometry_fold>=0.565100"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:464",
+        "m_csa:483",
+        "m_csa:367",
+        "m_csa:421",
+        "m_csa:59",
+        "m_csa:501"
+      ],
+      "all_train_cal_oos_rows_fired": 6,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:59",
+        "m_csa:464",
+        "m_csa:483",
+        "m_csa:501"
+      ],
+      "design_same_family_rows_fired": 4,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.577500 AND combined_min_geometry_fold >= 0.563800",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5638,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5775,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.577500 AND combined_min_geometry_fold>=0.563800"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:464",
+        "m_csa:483",
+        "m_csa:367",
+        "m_csa:421",
+        "m_csa:59",
+        "m_csa:269",
+        "m_csa:501"
+      ],
+      "all_train_cal_oos_rows_fired": 7,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:59",
+        "m_csa:269",
+        "m_csa:464",
+        "m_csa:483",
+        "m_csa:501"
+      ],
+      "design_same_family_rows_fired": 5,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.578200 AND combined_min_geometry_fold >= 0.563800",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5638,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5782,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.578200 AND combined_min_geometry_fold>=0.563800"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:464",
+        "m_csa:483",
+        "m_csa:367",
+        "m_csa:488",
+        "m_csa:421",
+        "m_csa:59",
+        "m_csa:501"
+      ],
+      "all_train_cal_oos_rows_fired": 7,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_retained_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:59",
+        "m_csa:464",
+        "m_csa:483",
+        "m_csa:488",
+        "m_csa:501"
+      ],
+      "design_same_family_rows_fired": 5,
+      "feature_names": [
+        "geometry_top1_score",
+        "combined_min_geometry_fold"
+      ],
+      "feature_rule": "geometry_top1_score <= 0.577500 AND combined_min_geometry_fold >= 0.550300",
+      "high_channel_name": "combined_min_geometry_fold",
+      "high_lower_threshold": 0.5503,
+      "low_channel_name": "geometry_top1_score",
+      "low_upper_threshold": 0.5775,
+      "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+      "retention_floor_met": true,
+      "rule_id": "geometry_top1_score<=0.577500 AND combined_min_geometry_fold>=0.550300"
+    }
+  ]
+}

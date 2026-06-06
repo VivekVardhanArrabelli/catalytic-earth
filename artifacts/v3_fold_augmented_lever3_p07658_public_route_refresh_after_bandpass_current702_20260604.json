@@ -1,0 +1,130 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_current702_20260604",
+  "blockers": [
+    "p07658_no_public_deployment_valid_predicted_coordinate_after_bandpass_contract"
+  ],
+  "counts": {
+    "alphafold_api_p07658_models_returned": 0,
+    "alphafold_api_p68698_control_models_returned": 1,
+    "alphafold_direct_p07658_cif_head_404_rows": 2,
+    "coordinates_staged_now": 0,
+    "critical_violation_total": 0,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "p07658_3dbeacons_detail_predicted_rows": 0,
+    "p07658_3dbeacons_detail_rows": 5,
+    "p07658_3dbeacons_experimental_rows": 5,
+    "p07658_3dbeacons_summary_predicted_rows": 0,
+    "p07658_3dbeacons_summary_rows": 5,
+    "p68698_alphafold_api_predicted_rows": 1,
+    "p68698_3dbeacons_summary_ab_initio_rows": 2,
+    "p68698_3dbeacons_summary_rows": 5,
+    "rcsb_computed_model_p07658_rows": 0,
+    "rcsb_computed_model_search_http_204_rows": 1,
+    "rows_scored_now": 0
+  },
+  "created_utc": "2026-06-04T21:22:38Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_sufficient_for_deployment_closure": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "p07658_public_route_refresh_clears_coordinate_gap_now": false,
+    "remaining_missing_evidence": [
+      "accepted full-length P07658 predicted coordinate provenance before fixed-threshold surface rerun"
+    ],
+    "smallest_next_experiment": "Run or provision one approved exact full-length P07658 prediction route, then fill coordinate path/checksum/provider/model/version and U140 handling provenance before rerunning acceptance preflight."
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_downloaded_or_staged": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Fresh public-route refresh after accepting the bandpass contract did not clear P07658.",
+    "next_action": "Do not rerun the fixed-threshold surface until P07658 acceptance preflight passes with an actual coordinate and filled provenance.",
+    "result": "P07658 still has no AlphaFold API model, no direct AFDB v6/v4 CIF, and 3D-Beacons exposes only 5 experimental PDBe rows; P68698 remains a contrast with one AlphaFold API model and predicted 3D-Beacons rows."
+  },
+  "probe_rows": [
+    {
+      "deployment_valid_for_p07658": false,
+      "http_status": 404,
+      "models_returned": 0,
+      "route": "alphafold_api_prediction",
+      "url": "https://alphafold.ebi.ac.uk/api/prediction/P07658"
+    },
+    {
+      "deployment_valid_for_p07658": false,
+      "http_status": 200,
+      "models_returned": 1,
+      "provider": "VR3D",
+      "route": "alphafold_api_prediction_control",
+      "tool_used": "ColabFold v1.5.2",
+      "url": "https://alphafold.ebi.ac.uk/api/prediction/P68698"
+    },
+    {
+      "deployment_valid_for_p07658": false,
+      "http_status": 404,
+      "route": "alphafold_direct_cif_head",
+      "url": "https://alphafold.ebi.ac.uk/files/AF-P07658-F1-model_v6.cif"
+    },
+    {
+      "deployment_valid_for_p07658": false,
+      "http_status": 404,
+      "route": "alphafold_direct_cif_head",
+      "url": "https://alphafold.ebi.ac.uk/files/AF-P07658-F1-model_v4.cif"
+    },
+    {
+      "deployment_valid_for_p07658": false,
+      "experimental_rows": 5,
+      "http_status": 200,
+      "predicted_rows": 0,
+      "route": "three_d_beacons_summary",
+      "url": "https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/summary/P07658.json"
+    },
+    {
+      "ab_initio_rows": 2,
+      "deployment_valid_for_p07658": false,
+      "http_status": 200,
+      "route": "three_d_beacons_summary_control",
+      "total_rows": 5,
+      "url": "https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/summary/P68698.json"
+    },
+    {
+      "deployment_valid_for_p07658": false,
+      "experimental_rows": 5,
+      "http_status": 200,
+      "predicted_rows": 0,
+      "route": "three_d_beacons_detail",
+      "url": "https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/P07658.json"
+    },
+    {
+      "deployment_valid_for_p07658": false,
+      "http_status": 204,
+      "returned_rows": 0,
+      "route": "rcsb_computed_model_search",
+      "url": "https://search.rcsb.org/rcsbsearch/v2/query"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_p07658_public_route_refresh_after_bandpass",
+  "source_artifacts": {
+    "live_probe_note": {
+      "exists": true,
+      "path": "work/fold_augmented_lever3_post_bandpass_p07658_live_probe_current702_20260604.md",
+      "sha256": "0e8ebe5c058fccad5c100af3d307b149a444339c150f4a0018d96ea570d658ae"
+    },
+    "post_bandpass_deployment_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.json",
+      "sha256": "7d2c2bb4761a6e7c7f12427e01c4d6834a73ea05d5874abbb14d8956e81b86e1"
+    }
+  },
+  "status": "fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_no_public_predicted_coordinate"
+}

@@ -1,0 +1,285 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604",
+  "counts": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "deployment_action_residual_rows": 21,
+    "deployment_action_residual_rows_abstained": 10,
+    "p07658_forced_abstention_rows": 1,
+    "retained_residual_rows": 11,
+    "retained_residual_rows_missing_pocket_descriptor": 9,
+    "retained_residual_rows_unknown_descriptor_status": 0,
+    "retained_residual_rows_with_pocket_descriptor": 2
+  },
+  "created_utc": "2026-06-05T04:08:34Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_valid_action_readout_available": true,
+    "descriptor_missing_acquisition_ready_now": false,
+    "descriptor_present_counteraxis_ready_now": false,
+    "exact_missing_evidence_for_zero_residual_risk": [
+      "train/cal-only source-free pocket or chemistry counteraxis for 2 descriptor-present retained residual rows",
+      "source-free pocket descriptor acquisition for 9 descriptor-missing retained residual rows"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "First run a train/cal-only source-free pocket/chemistry counteraxis design for the descriptor-present retained rows; then acquire source-free pocket descriptors for the remaining descriptor-missing retained rows. Keep threshold 0.44155 unchanged and keep retained rows non-closure evidence until a counteraxis is accepted.",
+    "safe_abstention_routing_available_now": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false,
+    "zero_residual_retained_transfer_risk_available_now": false
+  },
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Safe fail-closed routing is available, but zero residual same-family transfer risk is not yet evidence-complete.",
+    "next_action": "Use the deployment-action readout for routing now; do not treat retained residual rows as scoring closure until a train/cal-selected source-free counteraxis exists.",
+    "result": "11 retained residual rows remain after accepted counteraxes; 2 have pocket descriptors and 9 still need descriptor acquisition."
+  },
+  "operating_point": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "fixed_threshold_scoring_closure_available": false,
+    "route_id": "fixed_baseline_plus_cofactor_context_counteraxis_plus_same_family_numeric_bandpass_counteraxis_contract",
+    "safe_abstention_routing_available": true,
+    "threshold_or_value_changed_now": false,
+    "threshold_selection_source": "train_calibration_only"
+  },
+  "retained_residual_risk_rows": [
+    {
+      "accession": "P9WIL5",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.004742,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:229",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 1,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "Q55012",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_fold",
+      "closest_current_channel_margin": 0.00845,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:89",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 2,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "P13000",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.011125,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:74",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 3,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "P00327",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.015781,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:256",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 4,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "P42676",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.019535,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:638",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 5,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "Q46822",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.025247,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:190",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 6,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "P27213",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.026454,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:84",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 7,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "P32400",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_min_geometry_fold",
+      "closest_current_channel_margin": 0.0398,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:25",
+      "next_evidence_gate": "train_cal_only_same_family_pocket_counteraxis_design_required",
+      "rank": 8,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "P0AB71",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.062269,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:52",
+      "next_evidence_gate": "train_cal_only_same_family_pocket_counteraxis_design_required",
+      "rank": 9,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_present",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "Q05514",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.131121,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:468",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 10,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    },
+    {
+      "accession": "P12070",
+      "axis_memberships": [
+        "same_family"
+      ],
+      "closest_current_channel": "combined_mean_geometry_cofactor_fold",
+      "closest_current_channel_margin": 0.19385,
+      "count_as_abstained_evidence_now": false,
+      "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+      "entry_id": "m_csa:308",
+      "next_evidence_gate": "source_free_pocket_descriptor_acquisition_required",
+      "rank": 11,
+      "same_family_pocket_descriptor_status": "pocket_descriptor_missing",
+      "score_or_force_label_now": false,
+      "unsafe_mechanism_transfer_allowed_now": false
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_retained_residual_risk_readout",
+  "scope": "Lever 3 measured retained-residual risk readout downstream of the deployment-action surface. It quantifies retained same-family residual rows, pocket-descriptor coverage, and the smallest source-free evidence gates needed before any zero-residual-risk claim. It scores no rows, stages no coordinates, changes no thresholds, and uses no heldout rows for training or threshold selection.",
+  "smallest_next_experiments": [
+    {
+      "action_now": "calibrate_or_validate a source-free pocket/chemistry counteraxis on train/cal evidence only before applying it to these retained rows",
+      "countable_abstention_evidence_now": false,
+      "current_evidence_state": "source_free_pocket_descriptors_present_but_no_accepted_train_cal_selected_counteraxis",
+      "entry_ids": [
+        "m_csa:25",
+        "m_csa:52"
+      ],
+      "experiment_id": "retained_descriptor_present_counteraxis_design",
+      "row_count": 2
+    },
+    {
+      "action_now": "acquire source-free pocket descriptors without experimental-PDB deployment shortcuts or heldout tuning",
+      "countable_abstention_evidence_now": false,
+      "current_evidence_state": "source_free_same_family_pocket_descriptors_missing",
+      "entry_ids": [
+        "m_csa:229",
+        "m_csa:89",
+        "m_csa:74",
+        "m_csa:256",
+        "m_csa:638",
+        "m_csa:190",
+        "m_csa:84",
+        "m_csa:468",
+        "m_csa:308"
+      ],
+      "experiment_id": "retained_descriptor_missing_acquisition",
+      "row_count": 9
+    }
+  ],
+  "source_artifacts": {
+    "deployment_action_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_action_readout_current702_20260604.json",
+      "sha256": "5d26a2960780c3037e0922015ca10a0beeb894cc512daf48cd65ad73a87607e0"
+    }
+  },
+  "status": "fold_augmented_lever3_retained_residual_risk_readout_descriptor_present_actionable"
+}

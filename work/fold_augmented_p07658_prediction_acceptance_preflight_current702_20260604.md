@@ -1,6 +1,6 @@
 # Fold-Augmented P07658 Prediction Acceptance Preflight - current702
 
-Run: 2026-06-04T12:20:41Z
+Run: 2026-06-04T16:36:02Z
 
 Fail-closed acceptance preflight for the P07658 full-length prediction request manifest. It verifies whether an exact deployment-valid predicted coordinate plus provider provenance exists, stages no coordinate, scores no row, and does not change threshold 0.44155.
 

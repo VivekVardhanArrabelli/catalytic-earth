@@ -1,0 +1,836 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scored_readout_current702_20260604",
+  "coordinate_staging_rows": [
+    {
+      "accession": "P07662",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P07662_v6.cif",
+      "coordinate_sha256": "f2622514dbf75bae965663bf68e05cae14e5e37f250ea89ccbd3d207b75a5383",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P07662-F1-model_v6.cif",
+      "entry_id": "m_csa:288",
+      "provider": {
+        "model_entity_id": "AF-P07662-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "Q55012",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q55012_v6.cif",
+      "coordinate_sha256": "8bebf9aa805bcc95d1a8f0bae620e337c39d052a03735ab1766ba7d83197b80c",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-Q55012-F1-model_v6.cif",
+      "entry_id": "m_csa:89",
+      "provider": {
+        "model_entity_id": "AF-Q55012-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P0AG16",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P0AG16_v6.cif",
+      "coordinate_sha256": "a725607f48a7a25975b98e1f224f2fcfee6ed720847dc0d96288acf3ab4b9362",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P0AG16-F1-model_v6.cif",
+      "entry_id": "m_csa:214",
+      "provider": {
+        "model_entity_id": "AF-P0AG16-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P00963",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P00963_v6.cif",
+      "coordinate_sha256": "f5a0c07ea5b1b9074bd6cbe21483cf238420686d7583f7769e9f7b615baf8e57",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P00963-F1-model_v6.cif",
+      "entry_id": "m_csa:75",
+      "provider": {
+        "model_entity_id": "AF-P00963-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P0A759",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P0A759_v6.cif",
+      "coordinate_sha256": "6b49e302dfe7d7f5d905e2c3b017b74beba4ed343eaa71b3e7c988435f830ffb",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P0A759-F1-model_v6.cif",
+      "entry_id": "m_csa:60",
+      "provider": {
+        "model_entity_id": "AF-P0A759-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P09186",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P09186_v6.cif",
+      "coordinate_sha256": "3d3cbf373cbb27a215c41568ce3074092b8e747c6b1433ebc7b74bd28c2137fd",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P09186-F1-model_v6.cif",
+      "entry_id": "m_csa:583",
+      "provider": {
+        "model_entity_id": "AF-P09186-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P14294",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P14294_v6.cif",
+      "coordinate_sha256": "69aed89398f436a15188432e5d9546bf756b363f04b693ef15224054569fe90a",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P14294-F1-model_v6.cif",
+      "entry_id": "m_csa:64",
+      "provider": {
+        "model_entity_id": "AF-P14294-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P29241",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P29241_v6.cif",
+      "coordinate_sha256": "2ac18302f7f1781928b329b9e29d546919f24a6a96900f717353e35aec2d7808",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P29241-F1-model_v6.cif",
+      "entry_id": "m_csa:607",
+      "provider": {
+        "model_entity_id": "AF-P29241-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P15807",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+      "coordinate_sha256": "ed97eba4a8a1f0111b8a8a8bb0af6bbcdbff04b20cad69d711e698e00ee34df6",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P15807-F1-model_v6.cif",
+      "entry_id": "m_csa:610",
+      "provider": {
+        "model_entity_id": "AF-P15807-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "Q9P4R4",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+      "coordinate_sha256": "90bf1ee5a4877e8df367e10a7f4f5fff8d149119f04576950e39b6e35b12841c",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-Q9P4R4-F1-model_v6.cif",
+      "entry_id": "m_csa:618",
+      "provider": {
+        "model_entity_id": "AF-Q9P4R4-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P81382",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P81382_v6.cif",
+      "coordinate_sha256": "4f7953ec2e8481d57ecdfa69847e15fb15ba4452a4bcdc629e325040f0a1c8cf",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P81382-F1-model_v6.cif",
+      "entry_id": "m_csa:555",
+      "provider": {
+        "model_entity_id": "AF-P81382-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P04802",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P04802_v6.cif",
+      "coordinate_sha256": "fb778ff13a2392f5cdfa70b4effbcd15d7fe9cad592dfa57db98a92593c46f23",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P04802-F1-model_v6.cif",
+      "entry_id": "m_csa:404",
+      "provider": {
+        "model_entity_id": "AF-P04802-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P14262",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P14262_v6.cif",
+      "coordinate_sha256": "f963a1fe917d347a12019eadf906b219254993ad5a1d7b35ea7386ca087896bc",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P14262-F1-model_v6.cif",
+      "entry_id": "m_csa:26",
+      "provider": {
+        "model_entity_id": "AF-P14262-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "Q00267",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q00267_v6.cif",
+      "coordinate_sha256": "f0e003f3f7b1325407d565a5c25b11d4f7de8258eee4f8d19fc79f114aea81c5",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-Q00267-F1-model_v6.cif",
+      "entry_id": "m_csa:515",
+      "provider": {
+        "model_entity_id": "AF-Q00267-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P68698",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/AF-0000000365772455-model_v1.cif",
+      "coordinate_sha256": "69ddfeb30f9a65003636151190227bb4fd068efcd662f8e3ec3b5f0572f84716",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-0000000365772455-model_v1.cif",
+      "entry_id": "m_csa:232",
+      "provider": {
+        "model_entity_id": "AF-0000000365772455-model_v1",
+        "model_version": 1,
+        "provider": "AlphaFoldDB Viro3D",
+        "provider_id": "VR3D",
+        "tool_used": "ColabFold v1.5.2"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "Q96C23",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q96C23_v6.cif",
+      "coordinate_sha256": "7990c68e3ff921f3b827e2a95949f082dec05bbf390b66de2eb3ae73c0e64e67",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-Q96C23-F1-model_v6.cif",
+      "entry_id": "m_csa:351",
+      "provider": {
+        "model_entity_id": "AF-Q96C23-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    }
+  ],
+  "counts": {
+    "coordinate_rows_available": 16,
+    "coordinate_rows_missing": 0,
+    "coordinates_staged_this_run": 9,
+    "critical_violation_total": 0,
+    "foldseek_rows_with_nearest_train_hits": 16,
+    "near_cofactor_pressure_rows": 16,
+    "p07658_gap_remaining_rows": 1,
+    "rows_abstained_at_fixed_threshold": 8,
+    "rows_missing_full_channel_scores": 0,
+    "rows_retained_at_fixed_threshold": 8,
+    "rows_with_full_channel_scores": 16,
+    "same_family_structural_gap_remaining_rows": 170,
+    "strict_high_cofactor_contract_rows_added": 0,
+    "strict_high_cofactor_gap_remaining_rows": 16
+  },
+  "created_utc": "2026-06-04T15:17:43Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_near_cofactor_evidence_sufficient_for_high_cofactor_contract": false,
+    "deployable_closure_after_this_readout": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "measured_readout_available": true,
+    "next_gate": "Do not count this as high-cofactor contract closure. The complete near-cofactor pressure readout shows weak source-free cofactor scores alone are insufficient: fill 16 true high-cofactor source-free/locus rows, keep P07658 coordinate/provenance as the single surface-completeness blocker, and keep the 170-row same-family structural acquisition separate."
+  },
+  "fixed_operating_point": {
+    "apply_or_change_threshold_now": false,
+    "calibration_in_scope_retained_context": 31,
+    "calibration_in_scope_total_context": 34,
+    "channel": "combined_mean_geometry_fold",
+    "threshold": 0.44155,
+    "threshold_source": "existing train/cal-selected Lever 3 threshold; unchanged in this run"
+  },
+  "guardrails": {
+    "critical_violation_total": 0,
+    "deployment_valid_predicted_coordinates_only": true,
+    "diagnostic_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "high_cofactor_contract_relaxed": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": false,
+    "production_thresholds_changed": false,
+    "row_scores_fabricated": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "result": "Near-cofactor pressure rows scored at the unchanged threshold abstain 8/16 with 0 rows missing full scores; this is a complete diagnostic readout but does not clear the strict high-cofactor axis.",
+    "smallest_next_experiment": "Acquire 16 non-heldout train/cal OOS rows with true source-free high organic-cofactor or inorganic-locus signatures and deployment-valid predicted structures, then score them at threshold 0.44155.",
+    "why_not_contract_closure": "All 16 rows were selected as near misses below the frozen source-free high-cofactor/locus membership axis; counting them would relax the contract after seeing the gap."
+  },
+  "row_readouts": [
+    {
+      "abstains_at_fixed_threshold": true,
+      "accession": "P07662",
+      "combined_mean_geometry_fold": 0.41995,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P07662-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": false,
+      "entry_id": "m_csa:288",
+      "fold_nearest_atlas_tm_score": 0.4127,
+      "geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "geometry_top1_score": 0.4272,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:83",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.407563,
+      "predicted_geometry_status": "ok",
+      "rank": 1,
+      "split_assignment": "in_distribution",
+      "threshold_margin": -0.0216,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "accession": "Q55012",
+      "combined_mean_geometry_fold": 0.45,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-Q55012-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": false,
+      "entry_id": "m_csa:89",
+      "fold_nearest_atlas_tm_score": 0.491,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.409,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:83",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.398339,
+      "predicted_geometry_status": "ok",
+      "rank": 2,
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.00845,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "accession": "P0AG16",
+      "combined_mean_geometry_fold": 0.4598,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P0AG16-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": false,
+      "entry_id": "m_csa:214",
+      "fold_nearest_atlas_tm_score": 0.5637,
+      "geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "geometry_top1_score": 0.3559,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:111",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.353171,
+      "predicted_geometry_status": "ok",
+      "rank": 3,
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.01825,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "accession": "P00963",
+      "combined_mean_geometry_fold": 0.4884,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P00963-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": false,
+      "entry_id": "m_csa:75",
+      "fold_nearest_atlas_tm_score": 0.4011,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.5757,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:94",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.34378,
+      "predicted_geometry_status": "ok",
+      "rank": 4,
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.04685,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "accession": "P0A759",
+      "combined_mean_geometry_fold": 0.4709,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P0A759-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": false,
+      "entry_id": "m_csa:60",
+      "fold_nearest_atlas_tm_score": 0.5714,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3704,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:430",
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.337092,
+      "predicted_geometry_status": "ok",
+      "rank": 5,
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.02935,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "accession": "P09186",
+      "combined_mean_geometry_fold": 0.63125,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P09186-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:583",
+      "fold_nearest_atlas_tm_score": 0.8819,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3806,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:758",
+      "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.296056,
+      "predicted_geometry_status": "ok",
+      "rank": 6,
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.1897,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "accession": "P14294",
+      "combined_mean_geometry_fold": 0.4492,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P14294-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:64",
+      "fold_nearest_atlas_tm_score": 0.497,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.4014,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:705",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.246623,
+      "predicted_geometry_status": "ok",
+      "rank": 7,
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.00765,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "accession": "P29241",
+      "combined_mean_geometry_fold": 0.4249,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P29241-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:607",
+      "fold_nearest_atlas_tm_score": 0.5035,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3463,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:94",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.236789,
+      "predicted_geometry_status": "ok",
+      "rank": 8,
+      "split_assignment": "in_distribution",
+      "threshold_margin": -0.01665,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "accession": "P15807",
+      "combined_mean_geometry_fold": 0.43915,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P15807-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": false,
+      "entry_id": "m_csa:610",
+      "fold_nearest_atlas_tm_score": 0.572,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3063,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:205",
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.222226,
+      "predicted_geometry_status": "insufficient_resolved_residues",
+      "rank": 9,
+      "split_assignment": "in_distribution",
+      "threshold_margin": -0.0024,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "accession": "Q9P4R4",
+      "combined_mean_geometry_fold": 0.43035,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-Q9P4R4-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": false,
+      "entry_id": "m_csa:618",
+      "fold_nearest_atlas_tm_score": 0.5606,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3001,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:94",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.215006,
+      "predicted_geometry_status": "insufficient_resolved_residues",
+      "rank": 10,
+      "split_assignment": "in_distribution",
+      "threshold_margin": -0.0112,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "accession": "P81382",
+      "combined_mean_geometry_fold": 0.51255,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P81382-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:555",
+      "fold_nearest_atlas_tm_score": 0.7023,
+      "geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "geometry_top1_score": 0.3228,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:281",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.213904,
+      "predicted_geometry_status": "ok",
+      "rank": 11,
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.071,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "accession": "P04802",
+      "combined_mean_geometry_fold": 0.42235,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P04802-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:404",
+      "fold_nearest_atlas_tm_score": 0.4267,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.418,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:249",
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.193581,
+      "predicted_geometry_status": "ok",
+      "rank": 12,
+      "split_assignment": "in_distribution",
+      "threshold_margin": -0.0192,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "accession": "P14262",
+      "combined_mean_geometry_fold": 0.5146,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-P14262-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:26",
+      "fold_nearest_atlas_tm_score": 0.6533,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3759,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:28",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.177608,
+      "predicted_geometry_status": "ok",
+      "rank": 13,
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.07305,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "accession": "Q00267",
+      "combined_mean_geometry_fold": 0.39885,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-Q00267-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:515",
+      "fold_nearest_atlas_tm_score": 0.4506,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3471,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:546",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.150245,
+      "predicted_geometry_status": "ok",
+      "rank": 14,
+      "split_assignment": "in_distribution",
+      "threshold_margin": -0.0427,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "accession": "P68698",
+      "combined_mean_geometry_fold": 0.3886,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-0000000365772455-model_v1",
+        "model_version": 1,
+        "provider": "AlphaFoldDB Viro3D",
+        "provider_id": "VR3D",
+        "tool_used": "ColabFold v1.5.2"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:232",
+      "fold_nearest_atlas_tm_score": 0.4238,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3534,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:699",
+      "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.147019,
+      "predicted_geometry_status": "ok",
+      "rank": 15,
+      "split_assignment": "in_distribution",
+      "threshold_margin": -0.05295,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "accession": "Q96C23",
+      "combined_mean_geometry_fold": 0.39725,
+      "coordinate_exists": true,
+      "coordinate_provider": {
+        "model_entity_id": "AF-Q96C23-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_staged_this_run": true,
+      "entry_id": "m_csa:351",
+      "fold_nearest_atlas_tm_score": 0.4251,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3694,
+      "label_type": "out_of_scope",
+      "nearest_train_atlas_entry_id": "m_csa:823",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.144021,
+      "predicted_geometry_status": "ok",
+      "rank": 16,
+      "split_assignment": "in_distribution",
+      "threshold_margin": -0.0443,
+      "why_not_high_cofactor_contract_evidence": "source-free cofactor/locus axes do not mark this row as a high-cofactor candidate"
+    }
+  ],
+  "schema_version": "v3.fold_augmented_confounded_proxy_near_cofactor_pressure_scored_readout",
+  "scope": "Deployment-valid train/cal-only pressure readout over the 16 strict high-cofactor near-miss rows. It uses predicted AFDB/AFDB-Viro3D coordinates, source-free predicted geometry, existing source-free cofactor scores, and Foldseek/TM nearest-train-atlas scores at the unchanged 0.44155 operating point. It does not relax or satisfy the high-cofactor acquisition contract.",
+  "source_artifacts": {
+    "current_measured_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
+      "sha256": "9b75e3a85d64b817353b2edcd0aba94309c04d4929deaacb39aa537a7d101879"
+    },
+    "experimental_geometry_features": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6"
+    },
+    "foldseek_tsv": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/near_cofactor_pressure_vs_train_atlas.tsv",
+      "sha256": "f9e9a72e291e96c60a0da712c1d6dcd7864f184b65c6a73ee6904e356a175ae5"
+    },
+    "graph": {
+      "exists": true,
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "near_miss_triage": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_current702_20260604.json",
+      "sha256": "40425043d8a8f4838822d8dfe591d844d2c0edd22c0423f1a35dc3625d1dec05"
+    },
+    "scored_extension": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scored_extension_current702_20260604.json",
+      "sha256": "53e1230d699d314260afa71fedbfad5f41ae156090c614f56280d40a23ce1a67"
+    },
+    "scoring_input_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_input_manifest_current702_20260604.json",
+      "sha256": "e8f0a5f8eca6461590afe46560866831bf226d6755d3eca82ab91ce2ca3753c6"
+    },
+    "scoring_plan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_plan_current702_20260604.json",
+      "sha256": "945acaaecadd0bc4bdf830d9d1ddefc1296ad4301f1c7d223f7025bf2e68af58"
+    },
+    "selected_organic_cofactor_sidecars": {
+      "exists": true,
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_near_cofactor_pressure_readout_ready_complete_diagnostic_not_contract"
+}

@@ -1,0 +1,240 @@
+{
+  "acceptance_gate_rows": [
+    {
+      "deployment_action_if_failed": "abstain_or_route_novel_oos",
+      "evidence": "A train/cal-selected operating point must be available before any fixed-threshold rerun can be interpreted.",
+      "gate_id": "train_cal_operating_point_context_available",
+      "passed": true,
+      "required": true
+    },
+    {
+      "deployment_action_if_failed": "abstain_or_route_novel_oos",
+      "evidence": "The submitted FASTA must match the frozen 715-aa P07658 input hash and U140 position.",
+      "gate_id": "p07658_sequence_contract_preserved",
+      "passed": true,
+      "required": true
+    },
+    {
+      "deployment_action_if_failed": "abstain_or_route_novel_oos",
+      "evidence": "The provider-neutral dispatch packet must have all required operator inputs before a coordinate run is requested.",
+      "gate_id": "provider_dispatch_packet_ready",
+      "passed": true,
+      "required": true
+    },
+    {
+      "deployment_action_if_failed": "abstain_or_route_novel_oos",
+      "evidence": "At least one credentialed provider route or local predictor must accept the exact full-length sequence.",
+      "gate_id": "credentialed_or_local_exact_prediction_route_available",
+      "passed": false,
+      "required": true
+    },
+    {
+      "deployment_action_if_failed": "abstain_or_route_novel_oos",
+      "evidence": "The returned full-length coordinate must exist at the preferred staging path before row scoring.",
+      "gate_id": "preferred_full_length_coordinate_present",
+      "passed": false,
+      "required": true
+    },
+    {
+      "deployment_action_if_failed": "abstain_or_route_novel_oos",
+      "evidence": "Provider/model/version/path/checksum/input-sequence/U140 provenance must be filled before acceptance.",
+      "gate_id": "filled_prediction_provenance_present",
+      "passed": false,
+      "required": true
+    },
+    {
+      "deployment_action_if_failed": "abstain_or_route_novel_oos",
+      "evidence": "Coordinate and provenance files must both be present before the P07658 acceptance preflight is rerun.",
+      "gate_id": "local_inventory_ready_for_acceptance_preflight",
+      "passed": false,
+      "required": true
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604",
+  "counts": {
+    "acceptance_gates_failed": 4,
+    "acceptance_gates_passed": 3,
+    "acceptance_gates_total": 7,
+    "accepted_sequence_policy_rows": 2,
+    "accepted_sequence_policy_rows_ready_now": 0,
+    "coordinates_generated_now": 0,
+    "coordinates_staged_now": 0,
+    "credential_or_auth_denial_routes": 3,
+    "critical_violation_total": 0,
+    "exact_sequence_submitted_routes": 5,
+    "fail_closed_missing_coordinate_policy_rows": 1,
+    "local_coordinate_candidate_files": 0,
+    "local_filled_provenance_candidate_files": 0,
+    "local_predictor_modules_present": 0,
+    "provider_routes_with_credentials": 0,
+    "rejected_shortcut_policy_rows": 3,
+    "required_acceptance_gates_failed": 4,
+    "routes_attempted": 6,
+    "rows_scored_now": 0,
+    "selenocysteine_count": 1,
+    "sequence_contract_checks": 2,
+    "sequence_contract_checks_passed": 2,
+    "sequence_length": 715,
+    "sequence_modified_or_truncated_routes": 0
+  },
+  "created_utc": "2026-06-05T01:25:07Z",
+  "decision": {
+    "all_required_acceptance_gates_pass_now": false,
+    "apply_or_change_threshold_now": false,
+    "credentialed_or_local_exact_route_available_now": false,
+    "current_evidence_sufficient_for_deployment_closure": false,
+    "exact_missing_evidence_needed": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "missing_coordinate_abstention_safe_but_not_closure": true,
+    "next_gate": "Do not mutate or truncate U140 and do not use experimental PDB shortcuts. Run exactly one credentialed/local full-length prediction route, fill provenance, and rerun acceptance preflight.",
+    "p07658_all_or_abstain_gate_action_now": "abstain_or_route_novel_oos_until_coordinate_provenance_exists",
+    "p07658_sequence_contract_valid": true,
+    "required_acceptance_gate_ids_failed": [
+      "credentialed_or_local_exact_prediction_route_available",
+      "preferred_full_length_coordinate_present",
+      "filled_prediction_provenance_present",
+      "local_inventory_ready_for_acceptance_preflight"
+    ],
+    "sequence_mutation_or_truncation_allowed_now": false,
+    "unsafe_sequence_shortcuts_rejected": true
+  },
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "sequence_policy_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "The frozen P07658 sequence contract is valid, but no compatible exact full-length prediction route is available now.",
+    "next_action": "Provision exactly one full-length predictor route; if the provider internally handles U140, record that handling in provenance while keeping the submitted sequence hash fixed.",
+    "result": "The manifest and dispatch FASTA preserve the 715-aa sequence with U140, 0 credentialed/local routes are available, 0 local coordinate/provenance candidates are present, and mutation, truncation, split prediction, or experimental-PDB shortcuts remain rejected. The all-or-abstain gate fails until an exact route, coordinate, and filled provenance are present."
+  },
+  "operating_point_context": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "deployment_valid_operating_point_readout_available": true
+  },
+  "route_evidence": {
+    "credential_or_auth_denial_routes": 3,
+    "credential_provider_routes_checked": 3,
+    "deployment_valid_predicted_coordinate_rows": 0,
+    "esm_atlas_length_rejection_rows": 1,
+    "exact_sequence_submitted_routes": 5,
+    "local_coordinate_candidate_files": 0,
+    "local_filled_provenance_candidate_files": 0,
+    "local_predictor_modules_checked": 6,
+    "local_predictor_modules_present": 0,
+    "pdb_provider_rows_rejected": 5,
+    "provider_routes_with_credentials": 0,
+    "routes_attempted": 6,
+    "sequence_modified_or_truncated_routes": 0
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_p07658_sequence_compatibility_readout",
+  "scope": "Lever 3 measured P07658 sequence-compatibility readout. It checks the frozen full-length sequence contract, classifies allowed versus rejected U140 handling policies, and composes the credential/local route and local inventory evidence without generating coordinates, scoring rows, or changing threshold 0.44155.",
+  "sequence_contract": {
+    "accession": "P07658",
+    "dispatch_fasta_matches_manifest_sequence": true,
+    "dispatch_fasta_path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta",
+    "dispatch_selenocysteine_positions": [
+      140
+    ],
+    "dispatch_sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+    "entry_id": "m_csa:562",
+    "expected_selenocysteine_positions": [
+      140
+    ],
+    "expected_sequence_length": 715,
+    "expected_sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+    "manifest_matches_expected_sequence_contract": true,
+    "manifest_sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa"
+  },
+  "sequence_policy_rows": [
+    {
+      "acceptable_for_deployment_closure": true,
+      "available_now": false,
+      "policy_id": "submit_exact_full_length_u_preserved_sequence",
+      "reason": "The manifest and dispatch FASTA preserve the exact 715-aa P07658 sequence with U140; closure still needs a route that returns a coordinate and filled provenance."
+    },
+    {
+      "acceptable_for_deployment_closure": true,
+      "available_now": false,
+      "policy_id": "provider_internal_u140_handling_documented",
+      "reason": "A provider may internally normalize or model selenocysteine only if the submitted input hash still matches the frozen manifest and provenance documents U140 handling."
+    },
+    {
+      "acceptable_for_deployment_closure": false,
+      "available_now": false,
+      "policy_id": "submit_u140_mutated_sequence",
+      "reason": "Submitting a mutated sequence would fail the frozen input sequence-hash and U140-position acceptance checks."
+    },
+    {
+      "acceptable_for_deployment_closure": false,
+      "available_now": false,
+      "policy_id": "truncate_or_split_715aa_sequence",
+      "reason": "Truncation or fragment stitching would no longer measure the full-length deployment row and is rejected by the sequence length/hash contract."
+    },
+    {
+      "acceptable_for_deployment_closure": false,
+      "available_now": false,
+      "policy_id": "use_experimental_pdb_or_pdb_provider_mapping",
+      "reason": "Experimental PDB shortcuts and provider=PDB repository rows are explicitly disallowed deployment inputs for this gate."
+    },
+    {
+      "acceptable_for_deployment_closure": false,
+      "available_now": true,
+      "policy_id": "deterministic_missing_coordinate_abstention",
+      "reason": "Fail-closed abstention is operationally safe when no predicted coordinate exists, but it cannot prove fold/chemistry confounded separation or authorize the fixed-threshold rerun."
+    }
+  ],
+  "source_artifacts": {
+    "p07658_credential_route_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.json",
+      "sha256": "f151c4f4022c15e2fcbe8c6ecfa320cfd96a36e192934b86053bcad79b54001d"
+    },
+    "p07658_exact_route_attempts": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempts_current702_20260604.json",
+      "sha256": "e805f07c9a7c7ef4ec1c051e3579276dbc2d4e0e80f889c7eadcfd432cbcc63f"
+    },
+    "p07658_local_input_inventory_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_local_input_inventory_audit_current702_20260604.json",
+      "sha256": "b7dd06b917ef4d01ff4ac97009f42ac37d13331f3f30c9d4d3ecbd592a35df5a"
+    },
+    "p07658_prediction_dispatch_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json",
+      "sha256": "53e9fefb136970d09484a34c4e805f9247bb0622b07c550916657145d8d687e2"
+    },
+    "prediction_request_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json",
+      "sha256": "5583e04607b31d4a0a2d42708e8c943ad63045451b0589f1cc5ba1e23df68d73"
+    },
+    "provider_ready_fasta": {
+      "exists": true,
+      "path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta",
+      "sha256": "c85b09c0de2c63e644481d8ada0eb242e439b720c70a73f2b5964b4b5875a081"
+    }
+  },
+  "status": "fold_augmented_lever3_p07658_sequence_compatibility_readout_no_compatible_route"
+}

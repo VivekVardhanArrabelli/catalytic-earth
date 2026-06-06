@@ -5,6 +5,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Any
 
 from catalytic_earth.northstar_next_levers import (
     _predicted_model_parts,
@@ -58,11 +59,58 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval,
     build_fold_augmented_p07658_full_length_prediction_request_manifest,
     build_fold_augmented_p07658_prediction_acceptance_preflight,
+    build_fold_augmented_p07658_prediction_dispatch_packet,
     build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage,
     build_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet,
+    build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet,
     build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
+    build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
+    build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout,
     build_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    build_fold_augmented_lever3_channel_veto_readout,
+    build_fold_augmented_lever3_cofactor_context_counteraxis_readout,
+    build_fold_augmented_lever3_current_measured_readout,
+    build_fold_augmented_lever3_deployment_input_gap_audit,
+    build_fold_augmented_lever3_dispatch_readiness_summary,
+    build_fold_augmented_lever3_evidence_sufficiency_readout,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
+    build_fold_augmented_lever3_operating_point_deployment_readout,
+    build_fold_augmented_lever3_p07658_exact_route_attempt_readout,
+    build_fold_augmented_lever3_p07658_credential_route_preflight,
+    build_fold_augmented_lever3_p07658_local_input_inventory_audit,
+    build_fold_augmented_lever3_p07658_sequence_compatibility_readout,
+    build_fold_augmented_lever3_confounded_safe_abstention_readout,
+    build_fold_augmented_lever3_deployment_action_readout,
+    build_fold_augmented_lever3_retained_residual_risk_readout,
+    build_fold_augmented_lever3_descriptor_present_counteraxis_preflight,
+    build_fold_augmented_lever3_descriptor_generalization_counteraxis_readout,
+    build_fold_augmented_lever3_retained_descriptor_rescue_readout,
+    build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout,
+    build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout,
+    build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout,
+    build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout,
+    build_fold_augmented_lever3_operating_point_closure_readout,
+    build_fold_augmented_lever3_closure_reproducibility_audit,
+    build_fold_augmented_lever3_operating_point_application_audit,
+    build_fold_augmented_lever3_deployment_contract_readiness_audit,
+    build_fold_augmented_lever3_deployment_contract_lineage_audit,
+    build_fold_augmented_lever3_deployment_contract_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_manifest_audit,
+    build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_stage_provenance_audit,
+    build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_route_class_readout,
+    build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout,
+    build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout,
+    build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit,
+    build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit,
+    build_fold_augmented_lever3_post_bandpass_deployment_readout,
+    build_fold_augmented_lever3_retention_frontier_readout,
+    build_fold_augmented_lever3_residual_safety_readout,
+    build_fold_augmented_lever3_same_family_bandpass_counteraxis_contract,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
     build_fold_augmented_p10746_prior_human_decision_reviewed_stub,
@@ -2763,6 +2811,79 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_high_cofactor_acquisition_dispatch_packet_creates_unfilled_slots(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            blocker_path = root / "high_blocker.json"
+            queue_path = root / "queue.json"
+            blocker_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "eligible_rows_missing_for_minimum": 2,
+                            "affected_near_miss_rows": 1,
+                        },
+                        "gap_target": {
+                            "proxy_axis": "high_cofactor_signature_proxy",
+                            "fixed_threshold": 0.44155,
+                            "required_new_nonheldout_train_cal_oos_rows": 2,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "experiment_queue": [
+                            {
+                                "experiment_id": (
+                                    "high_cofactor_train_cal_oos_acquisition"
+                                ),
+                                "priority": 2,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet(
+                high_cofactor_acquisition_blocker_packet_path=blocker_path,
+                lever3_minimum_next_experiment_queue_path=queue_path,
+                artifact_id="custom_high_cofactor_dispatch",
+            )
+
+        self.assertEqual(packet["artifact_id"], "custom_high_cofactor_dispatch")
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_high_cofactor_acquisition_"
+                "dispatch_packet_ready_unfilled"
+            ),
+        )
+        self.assertEqual(packet["counts"]["intake_slots_required"], 2)
+        self.assertEqual(packet["counts"]["intake_slots_filled_now"], 0)
+        self.assertEqual(packet["counts"]["intake_slots_ready_to_score_now"], 0)
+        self.assertEqual(len(packet["intake_slots"]), 2)
+        self.assertFalse(packet["intake_slots"][0]["score_now"])
+        self.assertFalse(
+            packet["intake_slots"][0]["count_as_abstained_evidence_now"]
+        )
+        self.assertIn(
+            "high_cofactor_acquisition_slots_unfilled", packet["blockers"]
+        )
+        self.assertTrue(
+            packet["decision"]["acquisition_dispatch_ready_for_row_intake"]
+        )
+        self.assertFalse(
+            packet["decision"]["candidate_rows_ready_to_score_now"]
+        )
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
     def test_same_family_structural_acquisition_blocker_packet_names_background_rows(
         self,
     ) -> None:
@@ -2863,6 +2984,86 @@ class NorthstarNextLeversTests(unittest.TestCase):
             packet["decision"][
                 "current_evidence_can_solve_same_family_structural_gap"
             ]
+        )
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_same_family_structural_acquisition_dispatch_packet_creates_unfilled_slots(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            blocker_path = root / "same_family_blocker.json"
+            queue_path = root / "queue.json"
+            blocker_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "eligible_rows_missing_for_minimum": 3,
+                            "affected_background_candidate_rows": 2,
+                        },
+                        "gap_target": {
+                            "proxy_axis": "same_family_structural_proxy",
+                            "fixed_threshold": 0.44155,
+                            "required_new_nonheldout_train_cal_oos_rows": 3,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "experiment_queue": [
+                            {
+                                "experiment_id": (
+                                    "same_family_structural_train_cal_oos_acquisition"
+                                ),
+                                "priority": 3,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet(
+                same_family_structural_acquisition_blocker_packet_path=(
+                    blocker_path
+                ),
+                lever3_minimum_next_experiment_queue_path=queue_path,
+                artifact_id="custom_same_family_dispatch",
+            )
+
+        self.assertEqual(packet["artifact_id"], "custom_same_family_dispatch")
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_dispatch_packet_ready_unfilled"
+            ),
+        )
+        self.assertEqual(packet["counts"]["intake_slots_required"], 3)
+        self.assertEqual(packet["counts"]["intake_slots_filled_now"], 0)
+        self.assertEqual(packet["counts"]["intake_slots_ready_to_score_now"], 0)
+        self.assertEqual(len(packet["intake_slots"]), 3)
+        self.assertEqual(
+            packet["intake_slots"][0]["slot_id"],
+            "same_family_structural_train_cal_oos_slot_001",
+        )
+        self.assertFalse(packet["intake_slots"][0]["score_now"])
+        self.assertFalse(
+            packet["intake_slots"][0]["count_as_abstained_evidence_now"]
+        )
+        self.assertIn(
+            "same_family_structural_acquisition_slots_unfilled",
+            packet["blockers"],
+        )
+        self.assertTrue(
+            packet["decision"]["acquisition_dispatch_ready_for_row_intake"]
+        )
+        self.assertFalse(
+            packet["decision"]["candidate_rows_ready_to_score_now"]
         )
         self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
@@ -3054,6 +3255,7667 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(queue["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(queue["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_dispatch_readiness_summary_composes_dispatch_packets(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            p07658_path = root / "p07658_dispatch.json"
+            high_path = root / "high_dispatch.json"
+            same_path = root / "same_dispatch.json"
+            queue_path = root / "queue.json"
+            audit_path = root / "audit.json"
+            p07658_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "p07658_dispatch",
+                        "status": "blocked",
+                        "counts": {
+                            "provider_routes_returning_coordinate_now": 0,
+                            "acceptance_checks_failed": 7,
+                        },
+                        "decision": {
+                            "dispatch_packet_ready_for_provider_run": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            high_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "high_dispatch",
+                        "status": "ready_unfilled",
+                        "counts": {
+                            "intake_slots_required": 2,
+                            "intake_slots_filled_now": 0,
+                            "intake_slots_ready_to_score_now": 0,
+                        },
+                        "decision": {
+                            "acquisition_dispatch_ready_for_row_intake": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            same_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "same_dispatch",
+                        "status": "ready_unfilled",
+                        "counts": {
+                            "intake_slots_required": 3,
+                            "intake_slots_filled_now": 0,
+                            "intake_slots_ready_to_score_now": 0,
+                        },
+                        "decision": {
+                            "acquisition_dispatch_ready_for_row_intake": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps({"status": "queue_blocked"}),
+                encoding="utf-8",
+            )
+            audit_path.write_text(
+                json.dumps(
+                    {
+                        "status": "audit_passed",
+                        "counts": {
+                            "guardrail_violation_artifacts": 0,
+                            "critical_violation_total": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            summary = build_fold_augmented_lever3_dispatch_readiness_summary(
+                p07658_prediction_dispatch_packet_path=p07658_path,
+                high_cofactor_acquisition_dispatch_packet_path=high_path,
+                same_family_structural_acquisition_dispatch_packet_path=same_path,
+                lever3_minimum_next_experiment_queue_path=queue_path,
+                queue_and_template_guardrail_audit_path=audit_path,
+                artifact_id="custom_dispatch_summary",
+            )
+
+        self.assertEqual(summary["artifact_id"], "custom_dispatch_summary")
+        self.assertEqual(
+            summary["status"],
+            "fold_augmented_lever3_dispatch_readiness_summary_blocked",
+        )
+        self.assertEqual(summary["counts"]["dispatch_packets_checked"], 3)
+        self.assertEqual(
+            summary["counts"]["dispatch_packets_ready_for_external_action"], 3
+        )
+        self.assertEqual(summary["counts"]["blocked_dispatch_packets"], 3)
+        self.assertEqual(
+            summary["counts"]["total_train_cal_oos_intake_slots_required"], 5
+        )
+        self.assertEqual(
+            summary["counts"]["train_cal_oos_intake_slots_ready_to_score_now"], 0
+        )
+        self.assertIn(
+            "p07658_prediction_dispatch_blocked_no_coordinate",
+            summary["blockers"],
+        )
+        self.assertFalse(
+            summary["decision"]["current_evidence_can_clear_lever3_done_bar_now"]
+        )
+        self.assertFalse(summary["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(summary["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_current_measured_readout_reports_partial_operating_point(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            threshold_path = root / "threshold.json"
+            surface_path = root / "surface.json"
+            evidence_path = root / "current_evidence.json"
+            dispatch_path = root / "dispatch.json"
+
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "primary_channel_readout": {
+                            "channel": "combined_mean_geometry_fold",
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "calibration_in_scope_retain_recall": 0.91,
+                                "calibration_in_scope_retained": 91,
+                                "calibration_in_scope_total": 100,
+                                "threshold": 0.44155,
+                            },
+                            "heldout_final_eval_at_90pct_oos_calibrated_threshold": {
+                                "heldout_confounded_oos_abstain_recall": 0.83,
+                                "heldout_confounded_oos_abstained": 5,
+                                "heldout_confounded_oos_total": 6,
+                                "threshold": 0.44155,
+                            },
+                        },
+                        "threshold_contract": {
+                            "fold_nearest_atlas_tm_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.4
+                                }
+                            },
+                            "geometry_top1_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.3
+                                }
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "label_type": "out_of_scope",
+                                "oos_tier": "unknown_oos",
+                                "split_assignment": "in_distribution",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.5,
+                                    "cofactor_max_score": 0.9,
+                                    "fold_nearest_atlas_tm_score": 0.5,
+                                    "geometry_top1_score": 0.35,
+                                },
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:10",
+                                    "nearest_train_atlas_true_fingerprint_id": "fp_a",
+                                },
+                                "predicted_geometry_top1": {"fingerprint_id": "fp_a"},
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "label_type": "out_of_scope",
+                                "oos_tier": "unknown_oos",
+                                "split_assignment": "in_distribution",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.3,
+                                    "cofactor_max_score": 0.1,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                    "geometry_top1_score": 0.4,
+                                },
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:11",
+                                    "nearest_train_atlas_true_fingerprint_id": "fp_b",
+                                },
+                                "predicted_geometry_top1": {"fingerprint_id": "fp_b"},
+                            },
+                            {"entry_id": "m_csa:3", "accession": "P00003"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            evidence_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "surface_completeness_blocker_rows": 1,
+                        },
+                        "decision": {
+                            "fixed_threshold_audit_ready_to_rerun_now": False,
+                            "smallest_surface_completeness_experiment": "clear P07658",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "high_cofactor_intake_slots_required": 16,
+                            "same_family_structural_intake_slots_required": 170,
+                        },
+                        "decision": {
+                            "fixed_threshold_audit_ready_to_rerun_now": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_current_measured_readout(
+                expanded_oos_calibrated_threshold_contract_path=threshold_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                current_evidence_after_q43088_locator_approval_path=evidence_path,
+                lever3_dispatch_readiness_summary_path=dispatch_path,
+                artifact_id="lever3_measured_readout_test",
+            )
+
+        self.assertEqual(readout["artifact_id"], "lever3_measured_readout_test")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_current_measured_readout_ready_evidence_insufficient",
+        )
+        self.assertEqual(readout["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["scored_train_cal_oos_rows"], 2)
+        self.assertEqual(readout["counts"]["missing_full_channel_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["all_train_cal_oos_abstained_at_fixed_threshold"],
+            1,
+        )
+        self.assertEqual(readout["counts"]["high_cofactor_proxy_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["high_cofactor_proxy_abstained_at_fixed_threshold"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["same_family_structural_proxy_rows"], 2)
+        self.assertEqual(
+            readout["counts"][
+                "same_family_structural_proxy_abstained_at_fixed_threshold"
+            ],
+            1,
+        )
+        self.assertTrue(readout["decision"]["measured_readout_available"])
+        self.assertTrue(readout["decision"]["deployment_valid_readout_available"])
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["train_cal_high_cofactor_proxy_target_met"]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_loose_same_family_pressure_readout_is_diagnostic_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            current_path = root / "current.json"
+            queue_path = root / "queue.json"
+            contract_path = root / "contract.json"
+            dispatch_path = root / "dispatch.json"
+
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {"threshold": 0.44155},
+                        "row_readouts": {
+                            "same_family_structural_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "combined_mean_geometry_fold": 0.3,
+                                    "threshold_margin": -0.14155,
+                                    "abstains_at_fixed_threshold": True,
+                                    "nearest_train_atlas_true_fingerprint_id": "fp_a",
+                                    "predicted_geometry_top1_fingerprint_id": "fp_a",
+                                },
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "combined_mean_geometry_fold": 0.5,
+                                    "threshold_margin": 0.05845,
+                                    "abstains_at_fixed_threshold": False,
+                                    "nearest_train_atlas_true_fingerprint_id": "fp_b",
+                                    "predicted_geometry_top1_fingerprint_id": "fp_b",
+                                },
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "loose_same_family_current_surface_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "combined_score": 0.2,
+                                "threshold_margin": -0.24155,
+                                "abstained": True,
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "combined_score": 0.2,
+                                "threshold_margin": -0.24155,
+                                "abstained": True,
+                                "nearest_train_atlas_true_fingerprint_id": "fp_c",
+                                "predicted_geometry_top1_fingerprint_id": "fp_c",
+                                "queue_role": "diagnostic",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {"counts": {"minimum_new_abstained_rows_for_80pct": 170}}
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "same_family_structural_intake_slots_required": 170,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout(
+                    current_measured_readout_path=current_path,
+                    acquisition_queue_path=queue_path,
+                    same_family_structural_acquisition_contract_path=contract_path,
+                    lever3_dispatch_readiness_summary_path=dispatch_path,
+                    artifact_id="loose_same_family_pressure_test",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "loose_same_family_pressure_test")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_confounded_proxy_loose_same_family_pressure_readout_"
+                "ready_diagnostic_not_contract"
+            ),
+        )
+        self.assertEqual(
+            readout["counts"]["strict_same_family_rows_from_refreshed_readout"],
+            2,
+        )
+        self.assertEqual(readout["counts"]["loose_same_family_diagnostic_rows"], 1)
+        self.assertEqual(readout["counts"]["overlap_rows_removed"], 1)
+        self.assertEqual(
+            readout["counts"][
+                "strict_plus_loose_diagnostic_abstained_at_fixed_threshold"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "strict_plus_loose_theoretical_new_all_abstained_rows_for_80pct"
+            ],
+            2,
+        )
+        self.assertFalse(
+            readout["decision"][
+                "loose_same_family_evidence_sufficient_for_contract_closure"
+            ]
+        )
+        self.assertFalse(readout["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(readout["guardrails"]["strict_membership_relaxed_now"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_evidence_sufficiency_readout_keeps_diagnostics_non_closing(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            current_path = root / "current.json"
+            near_path = root / "near.json"
+            loose_path = root / "loose.json"
+            protein_path = root / "protein.json"
+            p07658_preflight_path = root / "p07658_preflight.json"
+            p07658_api_path = root / "p07658_api.json"
+            p07658_runtime_path = root / "p07658_runtime.json"
+            p07658_provider_path = root / "p07658_provider.json"
+            p07658_beacons_path = root / "p07658_beacons.json"
+            p07658_broad_path = root / "p07658_broad.json"
+
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "channel": "combined_mean_geometry_fold",
+                            "threshold": 0.44155,
+                            "fold_proxy_component_threshold": 0.4325,
+                        },
+                        "counts": {
+                            "scored_train_cal_oos_rows": 10,
+                            "all_train_cal_oos_abstained_at_fixed_threshold": 4,
+                            "calibration_in_scope_retained": 9,
+                            "calibration_in_scope_total": 10,
+                            "high_cofactor_proxy_rows": 2,
+                            "high_cofactor_proxy_abstained_at_fixed_threshold": 0,
+                            "same_family_structural_proxy_rows": 3,
+                            "same_family_structural_proxy_abstained_at_fixed_threshold": 1,
+                            "p07658_surface_completeness_blocker_rows": 1,
+                            "high_cofactor_intake_slots_required": 16,
+                            "same_family_structural_intake_slots_required": 170,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "measured_readout_available": True,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                            "true_in_scope_retention_ok_at_train_cal_selected_threshold": True,
+                            "train_cal_high_cofactor_proxy_target_met": False,
+                            "train_cal_same_family_structural_proxy_target_met": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            near_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "near_cofactor_pressure_rows": 4,
+                            "rows_abstained_at_fixed_threshold": 2,
+                            "strict_high_cofactor_contract_rows_added": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "current_near_cofactor_evidence_sufficient_for_high_cofactor_contract": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            loose_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "strict_plus_loose_diagnostic_rows": 5,
+                            "strict_plus_loose_diagnostic_abstained_at_fixed_threshold": 3,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "loose_same_family_evidence_sufficient_for_contract_closure": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            protein_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"candidate_predicted_geometry_ok_rows": 1},
+                        "blockers": ["some_tranche_rows_missing_predicted_geometry"],
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.3,
+                                    "fold_nearest_atlas_tm_score": 0.3,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p07658_preflight_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "acceptance_checks_passed": 1,
+                            "acceptance_checks_failed": 7,
+                            "acceptance_checks_total": 8,
+                        },
+                        "decision": {
+                            "p07658_acceptance_preflight_passes_now": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p07658_api_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "p07658_api_models_returned": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {"p07658_coordinate_blocker_cleared_now": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p07658_runtime_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "path_commands_available": 0,
+                            "path_commands_checked": 5,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {"local_runtime_clears_p07658_now": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p07658_provider_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "coordinates_returned": 0,
+                            "credentialed_or_denied_providers": 2,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "credential_free_full_length_provider_clears_p07658_now": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p07658_beacons_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "deployment_valid_predicted_coordinate_rows_ready_now": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {"three_d_beacons_clears_p07658_now": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p07658_broad_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "deployment_valid_predicted_coordinate_rows_ready_now": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "broad_public_repository_probe_clears_p07658_now": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_evidence_sufficiency_readout(
+                current_measured_readout_path=current_path,
+                near_cofactor_pressure_readout_path=near_path,
+                loose_same_family_pressure_readout_path=loose_path,
+                protein_only_topology_scored_readout_path=protein_path,
+                p07658_prediction_acceptance_preflight_path=p07658_preflight_path,
+                p07658_alphafold_prediction_api_probe_path=p07658_api_path,
+                p07658_local_predictor_runtime_scan_path=p07658_runtime_path,
+                p07658_full_length_predictor_provider_probe_path=p07658_provider_path,
+                p07658_three_d_beacons_predicted_structure_probe_path=(
+                    p07658_beacons_path
+                ),
+                p07658_computed_model_repository_broad_probe_path=p07658_broad_path,
+                artifact_id="lever3_evidence_sufficiency_test",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "lever3_evidence_sufficiency_test"
+        )
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_evidence_sufficiency_readout_ready_"
+                "evidence_insufficient"
+            ),
+        )
+        self.assertEqual(readout["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["measured_routes"], 5)
+        self.assertEqual(readout["counts"]["strict_high_cofactor_abstained"], 0)
+        self.assertEqual(readout["counts"]["near_cofactor_diagnostic_abstained"], 2)
+        self.assertEqual(
+            readout["counts"]["strict_high_cofactor_contract_rows_added"], 0
+        )
+        self.assertEqual(readout["counts"]["protein_only_topology_abstained"], 1)
+        self.assertEqual(
+            readout["counts"]["protein_only_topology_fold_only_abstained"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["protein_only_topology_predicted_geometry_ok_rows"],
+            1,
+        )
+        self.assertEqual(readout["counts"]["p07658_local_path_commands_available"], 0)
+        self.assertEqual(readout["counts"]["p07658_local_path_commands_checked"], 5)
+        self.assertEqual(readout["counts"]["p07658_provider_coordinates_returned"], 0)
+        self.assertEqual(
+            readout["counts"]["p07658_3dbeacons_deployment_valid_predicted_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "p07658_public_repository_deployment_valid_predicted_rows"
+            ],
+            0,
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "near_cofactor_pressure_can_count_for_strict_high_cofactor_contract"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["loose_same_family_pressure_can_count_for_strict_contract"]
+        )
+        self.assertFalse(readout["decision"]["p07658_prediction_path_cleared_now"])
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_channel_veto_readout_keeps_unions_non_closing(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            in_scope_path = root / "in_scope.json"
+            expanded_path = root / "expanded.json"
+            surface_path = root / "surface.json"
+            current_path = root / "current.json"
+
+            expanded_path.write_text(
+                json.dumps(
+                    {
+                        "threshold_contract": {
+                            "cofactor_max_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                            "combined_mean_geometry_fold": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                            "fold_nearest_atlas_tm_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            in_scope_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "cal:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:4",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:5",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:6",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:7",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:8",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:9",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:10",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.4,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.4,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "scored_train_cal_oos_rows": 4,
+                            "all_train_cal_oos_abstained_at_fixed_threshold": 2,
+                            "calibration_in_scope_retained": 3,
+                            "calibration_in_scope_total": 4,
+                            "high_cofactor_proxy_rows": 2,
+                            "high_cofactor_proxy_abstained_at_fixed_threshold": 1,
+                            "same_family_structural_proxy_rows": 2,
+                            "same_family_structural_proxy_abstained_at_fixed_threshold": 1,
+                        },
+                        "row_readouts": {
+                            "high_cofactor_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                            ],
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_channel_veto_readout(
+                in_scope_threshold_contract_path=in_scope_path,
+                expanded_oos_calibrated_threshold_contract_path=expanded_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                current_measured_readout_path=current_path,
+                artifact_id="lever3_channel_veto_test",
+            )
+
+        self.assertEqual(readout["artifact_id"], "lever3_channel_veto_test")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_channel_veto_readout_ready_no_closure",
+        )
+        self.assertEqual(readout["counts"]["channels_evaluated"], 3)
+        self.assertEqual(readout["counts"]["channel_unions_evaluated"], 4)
+        self.assertEqual(readout["counts"]["calibration_retention_floor_rows"], 9)
+        self.assertEqual(readout["counts"]["missing_full_channel_rows"], 0)
+        self.assertEqual(readout["counts"]["high_cofactor_proxy_row_diagnostics"], 2)
+        self.assertEqual(readout["counts"]["same_family_proxy_row_diagnostics"], 2)
+        self.assertEqual(readout["counts"]["baseline_high_cofactor_abstained"], 1)
+        self.assertEqual(readout["counts"]["baseline_same_family_abstained"], 1)
+        self.assertEqual(
+            readout["counts"]["best_single_channel_high_cofactor_abstained"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["best_single_channel_same_family_abstained"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["best_retention_preserving_union_high_cofactor_abstained"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["best_retention_preserving_union_same_family_abstained"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["best_overblock_union_high_cofactor_abstained"], 2
+        )
+        self.assertEqual(
+            readout["counts"]["best_overblock_union_same_family_abstained"], 2
+        )
+        self.assertFalse(
+            readout["decision"]["best_retention_preserving_union_closes_both_axes"]
+        )
+        self.assertFalse(
+            readout["decision"]["missing_full_channel_tail_hides_proxy_closure"]
+        )
+        self.assertTrue(
+            readout["decision"]["stronger_abstention_requires_overblocking_in_scope"]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+        self.assertEqual(
+            len(readout["proxy_axis_row_diagnostics"]["high_cofactor_proxy_rows"]),
+            2,
+        )
+        self.assertEqual(
+            len(
+                readout["proxy_axis_row_diagnostics"][
+                    "same_family_structural_proxy_rows"
+                ]
+            ),
+            2,
+        )
+
+    def test_lever3_retention_frontier_readout_reports_operating_point_cost(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            in_scope_path = root / "in_scope.json"
+            expanded_path = root / "expanded.json"
+            surface_path = root / "surface.json"
+            current_path = root / "current.json"
+            provider_path = root / "provider_attempt.json"
+
+            expanded_path.write_text(
+                json.dumps(
+                    {
+                        "threshold_contract": {
+                            "cofactor_max_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                            "combined_mean_geometry_fold": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                            "fold_nearest_atlas_tm_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            in_scope_rows = []
+            for idx in range(1, 9):
+                in_scope_rows.append(
+                    {
+                        "entry_id": f"cal:{idx}",
+                        "channel_scores": {
+                            "cofactor_max_score": 0.6,
+                            "combined_mean_geometry_fold": 0.6,
+                            "fold_nearest_atlas_tm_score": 0.6,
+                        },
+                    }
+                )
+            in_scope_rows.extend(
+                [
+                    {
+                        "entry_id": "cal:9",
+                        "channel_scores": {
+                            "cofactor_max_score": 0.6,
+                            "combined_mean_geometry_fold": 0.6,
+                            "fold_nearest_atlas_tm_score": 0.4,
+                        },
+                    },
+                    {
+                        "entry_id": "cal:10",
+                        "channel_scores": {
+                            "cofactor_max_score": 0.4,
+                            "combined_mean_geometry_fold": 0.4,
+                            "fold_nearest_atlas_tm_score": 0.6,
+                        },
+                    },
+                ]
+            )
+            in_scope_path.write_text(
+                json.dumps({"calibration_row_scores": in_scope_rows}),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.4,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "row_readouts": {
+                            "high_cofactor_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                            ],
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            provider_path.write_text(
+                json.dumps(
+                    {
+                        "status": "p07658_provider_attempt_auth_required",
+                        "provider": "BioLM ESMFold",
+                        "endpoint": "https://biolm.ai/api/v3/esmfold/predict/",
+                        "http_status": 401,
+                        "coordinate_returned": False,
+                        "response_summary": "Authentication credentials were not provided.",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retention_frontier_readout(
+                in_scope_threshold_contract_path=in_scope_path,
+                expanded_oos_calibrated_threshold_contract_path=expanded_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                current_measured_readout_path=current_path,
+                p07658_provider_attempt_path=provider_path,
+                artifact_id="lever3_retention_frontier_test",
+            )
+
+        self.assertEqual(readout["artifact_id"], "lever3_retention_frontier_test")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_retention_frontier_readout_ready_no_closure",
+        )
+        self.assertEqual(readout["counts"]["routes_evaluated"], 7)
+        self.assertEqual(
+            readout["counts"]["routes_closing_both_proxy_axes_at_90pct_floor"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["routes_closing_both_proxy_axes_at_any_retention"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["minimum_retention_loss_rows_for_both_proxy_axes"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["best_any_retention_proxy_shortfall_rows"], 0
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_source_free_channels_close_both_proxy_axes_at_90pct_floor"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_source_free_channels_close_both_proxy_axes_at_any_retention"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["fresh_p07658_provider_attempt_returned_coordinate"]
+        )
+        self.assertEqual(
+            readout["p07658_provider_attempt"]["provider"], "BioLM ESMFold"
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_residual_safety_readout_reports_shift_overblock(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            retention_path = root / "retention.json"
+            channel_veto_path = root / "channel_veto.json"
+            in_scope_path = root / "in_scope.json"
+
+            retention_path.write_text(
+                json.dumps(
+                    {
+                        "best_routes": {
+                            "best_route_any_retention_by_proxy_shortfall": {
+                                "route_id": "channel_union::channel_a",
+                                "channels": ["channel_a"],
+                                "calibration_in_scope_retained": 2,
+                                "calibration_in_scope_retention_loss": 1,
+                            }
+                        },
+                        "shortfall_diagnostics": {
+                            "additional_high_cofactor_abstentions_needed": 1,
+                            "additional_same_family_abstentions_needed": 1,
+                            "best_route_unabstained_high_cofactor_rows": [
+                                {"entry_id": "m_csa:1"}
+                            ],
+                            "best_route_unabstained_same_family_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                            ],
+                        },
+                        "fixed_operating_point": {"baseline_threshold": 0.5},
+                        "decision": {
+                            "current_source_free_channels_close_both_proxy_axes_at_90pct_floor": False,
+                            "current_source_free_channels_close_both_proxy_axes_at_any_retention": False,
+                            "exact_missing_evidence": [
+                                "accepted full-length P07658 predicted coordinate provenance"
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_veto_path.write_text(
+                json.dumps(
+                    {
+                        "proxy_axis_row_diagnostics": {
+                            "high_cofactor_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "P11111",
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "abstaining_channels": [],
+                                    "channel_results": [
+                                        {
+                                            "channel": "channel_a",
+                                            "score": 0.55,
+                                            "threshold": 0.5,
+                                            "margin": 0.05,
+                                            "abstains": False,
+                                        }
+                                    ],
+                                }
+                            ],
+                            "same_family_structural_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "P11111",
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "abstaining_channels": [],
+                                    "channel_results": [
+                                        {
+                                            "channel": "channel_a",
+                                            "score": 0.55,
+                                            "threshold": 0.5,
+                                            "margin": 0.05,
+                                            "abstains": False,
+                                        }
+                                    ],
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "P22222",
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "abstaining_channels": [],
+                                    "channel_results": [
+                                        {
+                                            "channel": "channel_a",
+                                            "score": 0.65,
+                                            "threshold": 0.5,
+                                            "margin": 0.15,
+                                            "abstains": False,
+                                        }
+                                    ],
+                                },
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            in_scope_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "cal:1",
+                                "channel_scores": {"channel_a": 0.7},
+                            },
+                            {
+                                "entry_id": "cal:2",
+                                "channel_scores": {"channel_a": 0.6},
+                            },
+                            {
+                                "entry_id": "cal:3",
+                                "channel_scores": {"channel_a": 0.5},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_residual_safety_readout(
+                retention_frontier_readout_path=retention_path,
+                channel_veto_readout_path=channel_veto_path,
+                in_scope_threshold_contract_path=in_scope_path,
+                artifact_id="lever3_residual_safety_test",
+            )
+
+        self.assertEqual(readout["artifact_id"], "lever3_residual_safety_test")
+        self.assertEqual(readout["counts"]["unique_residual_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["residual_rows_retained_by_all_current_channels"], 2
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_closest_channel_threshold_shift_diagnostic"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_closest_channel_shift_preserving_in_scope_floor"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "minimum_in_scope_loss_to_catch_any_residual_by_closest_channel_shift"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_any_channel_threshold_shift_diagnostic"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_any_channel_shift_preserving_in_scope_floor"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "minimum_in_scope_loss_to_catch_any_residual_by_any_channel_shift"
+            ],
+            1,
+        )
+        row_1 = readout["residual_readout"]["rows"][0]
+        self.assertEqual(
+            row_1["axis_memberships"], ["high_cofactor", "same_family"]
+        )
+        self.assertEqual(
+            row_1["evidence_need"],
+            "new_source_free_cofactor_role_and_same_family_counteraxis_required",
+        )
+        shift_rows = readout["residual_readout"][
+            "closest_channel_threshold_shift_diagnostics"
+        ]
+        self.assertFalse(
+            any(row["retention_floor_met_if_shifted"] for row in shift_rows)
+        )
+        any_channel_shift_rows = readout["residual_readout"][
+            "all_channel_threshold_shift_diagnostics"
+        ]
+        self.assertFalse(
+            any(
+                row["any_channel_shift_preserves_in_scope_floor"]
+                for row in any_channel_shift_rows
+            )
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_source_free_channels_can_resolve_residual_rows"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_cofactor_context_counteraxis_selects_safe_train_cal_rule(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            in_scope_path = root / "in_scope.json"
+            surface_path = root / "surface.json"
+            current_path = root / "current.json"
+            channel_veto_path = root / "channel_veto.json"
+            residual_path = root / "residual.json"
+            predicted_geometry_path = root / "predicted_geometry.json"
+
+            in_scope_path.write_text(
+                json.dumps(
+                    {
+                        "primary_channel_readout": {
+                            "channel": "combined_mean_geometry_fold",
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.5,
+                            },
+                        },
+                        "threshold_contract": {
+                            "geometry_top1_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.3,
+                                }
+                            }
+                        },
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "cal:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.93,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.9,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.1,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.7,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.1,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.7,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:4",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.1,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.7,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "oos:1",
+                                "accession": "P11111",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.96,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.9,
+                                    "geometry_top1_score": 0.4,
+                                },
+                                "predicted_geometry_top1": {
+                                    "cofactor_context_score": 0.0,
+                                    "role_match_fraction": 0.6,
+                                    "score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "oos:2",
+                                "accession": "P22222",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.1,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.9,
+                                    "geometry_top1_score": 0.2,
+                                },
+                                "predicted_geometry_top1": {
+                                    "cofactor_context_score": 1.0,
+                                    "role_match_fraction": 0.6,
+                                    "score": 0.4,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "row_readouts": {
+                            "high_cofactor_proxy_rows": [{"entry_id": "oos:1"}],
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "oos:1"},
+                                {"entry_id": "oos:2"},
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_veto_path.write_text(
+                json.dumps(
+                    {
+                        "best_routes": {
+                            "best_retention_preserving_channel_union": {
+                                "route_id": "channel_union::geometry_top1_score",
+                                "channels": ["geometry_top1_score"],
+                                "thresholds": {"geometry_top1_score": 0.3},
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            residual_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "additional_same_family_abstentions_needed": 2,
+                        },
+                        "decision": {"exact_missing_evidence": []},
+                        "residual_readout": {
+                            "rows": [
+                                {
+                                    "entry_id": "oos:1",
+                                    "axis_memberships": [
+                                        "high_cofactor",
+                                        "same_family",
+                                    ],
+                                },
+                                {
+                                    "entry_id": "oos:2",
+                                    "axis_memberships": ["same_family"],
+                                },
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            predicted_geometry_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "cal:1",
+                                "top1_cofactor_context_score": 0.0,
+                                "top1_role_match_fraction": 0.6,
+                                "top1_score": 0.4,
+                            },
+                            {
+                                "entry_id": "cal:2",
+                                "top1_cofactor_context_score": 1.0,
+                            },
+                            {
+                                "entry_id": "cal:3",
+                                "top1_cofactor_context_score": 1.0,
+                            },
+                            {
+                                "entry_id": "cal:4",
+                                "top1_cofactor_context_score": 1.0,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_fold_augmented_lever3_cofactor_context_counteraxis_readout(
+                    in_scope_threshold_contract_path=in_scope_path,
+                    latest_train_cal_oos_surface_path=surface_path,
+                    current_measured_readout_path=current_path,
+                    channel_veto_readout_path=channel_veto_path,
+                    residual_safety_readout_path=residual_path,
+                    predicted_geometry_atlas_retrieval_path=predicted_geometry_path,
+                    artifact_id="lever3_cofactor_context_counteraxis_test",
+                )
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "lever3_cofactor_context_counteraxis_test"
+        )
+        self.assertEqual(
+            readout["counteraxis"]["selected"]["cofactor_threshold"], 0.95
+        )
+        self.assertEqual(
+            readout["counts"][
+                "calibration_in_scope_retained_fixed_baseline_plus_counteraxis"
+            ],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"]["counteraxis_calibration_in_scope_fired"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["residual_high_cofactor_counteraxis_fired"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["residual_same_family_counteraxis_fired"], 1
+        )
+        self.assertEqual(
+            readout["counts"][
+                "additional_same_family_abstentions_needed_after_bandpass_scout"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "same_family_numeric_bandpass_scout_selected_calibration_fired"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "bandpass_scout_operating_point_calibration_in_scope_retained"
+            ],
+            4,
+        )
+        self.assertTrue(
+            readout["bandpass_scout_operating_point"][
+                "calibration_in_scope_retention_floor_met"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "cofactor_context_counteraxis_resolves_high_cofactor_residual"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "same_family_numeric_bandpass_scout_closes_required_shortfall"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_deployment_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["guardrails"][
+                "labels_source_ids_target_names_or_mechanism_text_used_as_features"
+            ]
+        )
+
+    def test_lever3_same_family_bandpass_counteraxis_contract_accepts_rule(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            readout_path = root / "cofactor_context_readout.json"
+            readout_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "additional_same_family_abstentions_needed_after_counteraxis": 2,
+                            "additional_same_family_abstentions_needed_after_bandpass_scout": 0,
+                            "residual_high_cofactor_rows": 1,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "exact_missing_evidence": [
+                                (
+                                    "accepted deployment counteraxis contract for "
+                                    "the measured same-family numeric bandpass "
+                                    "scout before production use"
+                                ),
+                                (
+                                    "accepted full-length P07658 predicted "
+                                    "coordinate provenance before fixed-threshold "
+                                    "surface rerun"
+                                ),
+                            ]
+                        },
+                        "fixed_operating_point": {
+                            "baseline_channel": "combined_mean_geometry_fold",
+                            "baseline_threshold": 0.44155,
+                            "geometry_top1_threshold": 0.338,
+                            "retention_floor_rows": 4,
+                        },
+                        "guardrails": {
+                            "measured_readout": True,
+                            "source_free_numeric_features_only": True,
+                            "threshold_selected_on_train_cal_only": True,
+                            "heldout_rows_read_for_training_or_threshold_tuning": False,
+                            "heldout_rows_used_for_training_or_threshold_tuning": False,
+                            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                            "production_thresholds_changed": False,
+                            "threshold_values_changed": False,
+                            "candidate_rows_scored_now": False,
+                            "coordinates_staged_now": False,
+                            "labels_registries_ontologies_changed": False,
+                            "imports_or_promotions_performed": False,
+                        },
+                        "same_family_numeric_bandpass_scout": {
+                            "feature_source": "source-free numeric channel scores only",
+                            "selection_method": "train/cal quantile-grid selection",
+                            "required_additional_same_family_abstentions": 2,
+                            "shortfall_after_selected_rule": 0,
+                            "eligible_rules": 3,
+                            "closing_rules": 1,
+                            "selected_remaining_same_family_rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "fold_nearest_atlas_tm_score": 0.7,
+                                    "geometry_top1_score": 0.4,
+                                    "bandpass_fires": True,
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "fold_nearest_atlas_tm_score": 0.71,
+                                    "geometry_top1_score": 0.5,
+                                    "bandpass_fires": True,
+                                },
+                            ],
+                            "selected_rule": {
+                                "feature_rule": (
+                                    "fold_nearest_atlas_tm_score between selected "
+                                    "bounds AND geometry_top1_score <= selected "
+                                    "max"
+                                ),
+                                "bounds": {
+                                    "fold_nearest_atlas_tm_score": {
+                                        "min": 0.6257,
+                                        "max": 0.7357,
+                                    },
+                                    "geometry_top1_score": {"max": 0.5757},
+                                },
+                                "calibration_in_scope_fired": 0,
+                                "remaining_same_family_residual_rows_fired": 2,
+                                "all_train_cal_oos_fired": 5,
+                                "closes_required_same_family_shortfall": True,
+                            },
+                        },
+                        "bandpass_scout_operating_point": {
+                            "route_id": "fixed_plus_counteraxes",
+                            "production_threshold_change": False,
+                            "calibration_in_scope_rows": 4,
+                            "calibration_in_scope_retained": 4,
+                            "calibration_in_scope_abstained": 0,
+                            "calibration_in_scope_retention_floor_met": True,
+                            "all_train_cal_oos_rows": 10,
+                            "all_train_cal_oos_abstained": 5,
+                            "all_train_cal_oos_retained": 5,
+                            "strict_high_cofactor_proxy_abstained": 1,
+                            "strict_same_family_structural_proxy_abstained": 3,
+                            "residual_high_cofactor_abstained": 1,
+                            "residual_same_family_abstained": 2,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            contract = (
+                build_fold_augmented_lever3_same_family_bandpass_counteraxis_contract(
+                    cofactor_context_counteraxis_readout_path=readout_path,
+                    artifact_id="custom_same_family_bandpass_contract",
+                )
+            )
+
+        self.assertEqual(
+            contract["artifact_id"], "custom_same_family_bandpass_contract"
+        )
+        self.assertEqual(
+            contract["status"],
+            (
+                "fold_augmented_lever3_same_family_bandpass_"
+                "counteraxis_contract_accepted"
+            ),
+        )
+        self.assertTrue(
+            contract["decision"][
+                "same_family_bandpass_counteraxis_contract_accepted"
+            ]
+        )
+        self.assertFalse(
+            contract["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertEqual(contract["counts"]["validation_checks_failed"], 0)
+        self.assertEqual(
+            contract["counts"]["same_family_shortfall_before_contract"], 2
+        )
+        self.assertEqual(contract["counts"]["same_family_shortfall_after_contract"], 0)
+        self.assertEqual(
+            contract["decision"]["remaining_missing_evidence"],
+            [
+                (
+                    "accepted full-length P07658 predicted coordinate provenance "
+                    "before fixed-threshold surface rerun"
+                )
+            ],
+        )
+
+    def test_lever3_post_bandpass_deployment_readout_keeps_p07658_gate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cofactor_path = root / "cofactor.json"
+            contract_path = root / "contract.json"
+            preflight_path = root / "preflight.json"
+            dispatch_path = root / "dispatch.json"
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "strict_high_cofactor_proxy_rows": 4,
+                            "strict_same_family_proxy_rows": 59,
+                        },
+                        "decision": {
+                            "cofactor_context_counteraxis_resolves_high_cofactor_residual": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {"baseline_threshold": 0.44155},
+                        "counts": {
+                            "validation_checks_failed": 0,
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "combined_operating_point_all_train_cal_oos_rows": 204,
+                            "combined_operating_point_all_train_cal_oos_abstained": 105,
+                            "combined_operating_point_strict_high_cofactor_abstained": 1,
+                            "combined_operating_point_strict_same_family_abstained": 26,
+                        },
+                        "decision": {
+                            "same_family_bandpass_counteraxis_contract_accepted": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "status": "preflight_blocked",
+                        "counts": {
+                            "acceptance_checks_total": 8,
+                            "acceptance_checks_passed": 1,
+                            "acceptance_checks_failed": 7,
+                            "candidate_coordinate_exists": 0,
+                            "candidate_provenance_exists": 0,
+                        },
+                        "decision": {
+                            "p07658_acceptance_preflight_passes_now": False,
+                            "p07658_coordinate_blocker_cleared_now": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "provider_routes_checked": 6,
+                            "provider_routes_returning_coordinate_now": 0,
+                        },
+                        "decision": {
+                            "dispatch_packet_ready_for_provider_run": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_post_bandpass_deployment_readout(
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                same_family_bandpass_counteraxis_contract_path=contract_path,
+                p07658_prediction_acceptance_preflight_path=preflight_path,
+                p07658_prediction_dispatch_packet_path=dispatch_path,
+                artifact_id="custom_post_bandpass",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_post_bandpass")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_post_bandpass_deployment_readout_blocked_p07658",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_counteraxis_contracts_ready"]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertEqual(readout["counts"]["p07658_acceptance_checks_failed"], 7)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(
+            readout["decision"]["remaining_missing_evidence"],
+            [
+                (
+                    "accepted full-length P07658 predicted coordinate provenance "
+                    "before fixed-threshold surface rerun"
+                )
+            ],
+        )
+
+    def test_lever3_p07658_exact_route_attempt_readout_keeps_no_credential_gap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            post_path = root / "post.json"
+            attempts_path = root / "attempts.json"
+            post_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {"baseline_threshold": 0.44155},
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                        },
+                        "decision": {
+                            "deployment_valid_counteraxis_contracts_ready": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            attempts_path.write_text(
+                json.dumps(
+                    {
+                        "sequence_contract": {
+                            "sequence_sha256_matches_manifest": True
+                        },
+                        "route_attempts": [
+                            {
+                                "route_id": "esm_atlas",
+                                "http_status": 413,
+                                "exact_sequence_submitted": True,
+                                "sequence_modified_or_truncated": False,
+                                "coordinate_returned": False,
+                                "deployment_valid_for_p07658": False,
+                                "rejection_reason": "sequence_too_long",
+                            },
+                            {
+                                "route_id": "swissmodel",
+                                "http_status": 200,
+                                "exact_sequence_submitted": False,
+                                "sequence_modified_or_truncated": False,
+                                "coordinate_returned": False,
+                                "deployment_valid_for_p07658": False,
+                                "pdb_provider_rows": 5,
+                                "swissmodel_predicted_model_rows": 0,
+                                "rejection_reason": "pdb_provider_only",
+                            },
+                        ],
+                        "counts": {
+                            "routes_attempted": 2,
+                            "exact_sequence_submitted_routes": 1,
+                            "sequence_modified_or_truncated_routes": 0,
+                            "coordinates_returned": 0,
+                            "deployment_valid_predicted_coordinate_rows": 0,
+                            "full_length_sequence_sha256_matches_manifest": 1,
+                            "pdb_provider_rows_rejected": 5,
+                            "swissmodel_predicted_model_rows": 0,
+                            "esm_atlas_length_rejection_rows": 1,
+                        },
+                        "decision": {
+                            "accepted_coordinate_provenance_ready_now": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_p07658_exact_route_attempt_readout(
+                post_bandpass_deployment_readout_path=post_path,
+                exact_route_attempts_path=attempts_path,
+                artifact_id="custom_p07658_exact_route_readout",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_p07658_exact_route_readout")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_p07658_exact_route_attempt_readout_no_coordinate",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_counteraxis_contracts_ready"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "p07658_exact_route_attempt_clears_coordinate_gap_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["counts"]["routes_attempted"], 2)
+        self.assertEqual(readout["counts"]["coordinates_returned"], 0)
+        self.assertEqual(readout["counts"]["pdb_provider_rows_rejected"], 5)
+        self.assertEqual(
+            readout["operating_point_context"]["calibration_in_scope_retained"],
+            31,
+        )
+        self.assertEqual(
+            readout["decision"]["remaining_missing_evidence"],
+            [
+                (
+                    "credentialed or local exact full-length P07658 predicted "
+                    "coordinate with provider/model/version/path/checksum and "
+                    "U140 provenance"
+                )
+            ],
+        )
+
+    def test_lever3_operating_point_deployment_readout_separates_p07658_gap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cofactor_path = root / "cofactor.json"
+            contract_path = root / "contract.json"
+            post_path = root / "post.json"
+            p07658_path = root / "p07658.json"
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "strict_high_cofactor_proxy_rows": 4,
+                            "strict_same_family_proxy_rows": 59,
+                            "residual_high_cofactor_rows": 1,
+                            "residual_high_cofactor_counteraxis_fired": 1,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "cofactor_context_counteraxis_resolves_high_cofactor_residual": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "baseline_threshold": 0.44155
+                        },
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "calibration_retention_floor_rows": 31,
+                            "combined_operating_point_all_train_cal_oos_rows": 204,
+                            "combined_operating_point_all_train_cal_oos_abstained": 105,
+                            "combined_operating_point_strict_high_cofactor_abstained": 1,
+                            "combined_operating_point_strict_same_family_abstained": 26,
+                            "same_family_shortfall_before_contract": 9,
+                            "same_family_residual_rows_fired_by_contract": 9,
+                            "same_family_shortfall_after_contract": 0,
+                            "validation_checks_failed": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "same_family_bandpass_counteraxis_contract_accepted": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            post_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {"baseline_threshold": 0.44155},
+                        "counts": {
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "deployment_valid_counteraxis_contracts_ready": True,
+                            "remaining_missing_evidence": [
+                                (
+                                    "accepted full-length P07658 predicted "
+                                    "coordinate provenance before fixed-threshold "
+                                    "surface rerun"
+                                )
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p07658_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "routes_attempted": 6,
+                            "coordinates_returned": 0,
+                            "deployment_valid_predicted_coordinate_rows": 0,
+                            "exact_sequence_submitted_routes": 5,
+                            "sequence_modified_or_truncated_routes": 0,
+                            "full_length_sequence_sha256_matches_manifest": 1,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "p07658_exact_route_attempt_clears_coordinate_gap_now": False,
+                            "remaining_missing_evidence": [
+                                (
+                                    "credentialed or local exact full-length "
+                                    "P07658 predicted coordinate with "
+                                    "provider/model/version/path/checksum and "
+                                    "U140 provenance"
+                                )
+                            ],
+                            "smallest_next_experiment": (
+                                "Provision a credentialed or local full-length "
+                                "predictor route that accepts P07658."
+                            ),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_fold_augmented_lever3_operating_point_deployment_readout(
+                    cofactor_context_counteraxis_readout_path=cofactor_path,
+                    same_family_bandpass_counteraxis_contract_path=contract_path,
+                    post_bandpass_deployment_readout_path=post_path,
+                    p07658_exact_route_attempt_readout_path=p07658_path,
+                    artifact_id="custom_operating_point_readout",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_operating_point_readout")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_operating_point_deployment_readout_"
+                "ready_p07658_gap"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_operating_point_readout_available"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "hard_confounded_residuals_closed_at_operating_point"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(readout["counts"]["same_family_shortfall_after_contract"], 0)
+        self.assertEqual(readout["counts"]["p07658_routes_attempted"], 6)
+        self.assertEqual(
+            readout["counts"]["p07658_deployment_valid_predicted_coordinate_rows"],
+            0,
+        )
+
+    def test_lever3_p07658_credential_route_preflight_keeps_route_gap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            operating_path = root / "operating.json"
+            operating_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                        },
+                        "decision": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "p07658_coordinate_gap_cleared_now": False,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                            "remaining_missing_evidence": [
+                                (
+                                    "credentialed or local exact full-length "
+                                    "P07658 predicted coordinate"
+                                )
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = build_fold_augmented_lever3_p07658_credential_route_preflight(
+                operating_point_deployment_readout_path=operating_path,
+                env_presence={},
+                module_presence={"torch": True},
+                disk_free_gib=12.5,
+                artifact_id="custom_p07658_credential_preflight",
+            )
+
+        self.assertEqual(
+            preflight["artifact_id"], "custom_p07658_credential_preflight"
+        )
+        self.assertEqual(
+            preflight["status"],
+            "fold_augmented_lever3_p07658_credential_route_preflight_no_route",
+        )
+        self.assertFalse(
+            preflight["decision"][
+                "credentialed_or_local_exact_route_available_now"
+            ]
+        )
+        self.assertFalse(
+            preflight["decision"]["ready_to_run_exact_p07658_prediction_now"]
+        )
+        self.assertFalse(preflight["decision"]["secret_values_recorded"])
+        self.assertEqual(preflight["counts"]["credential_env_vars_checked"], 7)
+        self.assertEqual(preflight["counts"]["credential_env_vars_present"], 0)
+        self.assertEqual(preflight["counts"]["provider_routes_with_credentials"], 0)
+        self.assertEqual(preflight["counts"]["local_predictor_modules_present"], 0)
+        self.assertEqual(preflight["counts"]["torch_available"], 1)
+        self.assertTrue(preflight["counts"]["disk_guardrail_above_10_gib"])
+        self.assertEqual(preflight["counts"]["coordinates_generated_now"], 0)
+        self.assertEqual(preflight["counts"]["coordinates_staged_now"], 0)
+        self.assertEqual(preflight["counts"]["rows_scored_now"], 0)
+
+    def test_lever3_deployment_input_gap_audit_isolates_p07658_inputs(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            operating_path = root / "operating.json"
+            credential_path = root / "credential.json"
+            acceptance_path = root / "acceptance.json"
+            dispatch_path = root / "dispatch.json"
+            operating_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "hard_confounded_residuals_closed_at_operating_point": True,
+                            "true_in_scope_retention_floor_met": True,
+                            "p07658_coordinate_gap_cleared_now": False,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            credential_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "credential_provider_routes_checked": 3,
+                            "provider_routes_with_credentials": 0,
+                            "local_predictor_modules_checked": 6,
+                            "local_predictor_modules_present": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "credentialed_or_local_exact_route_available_now": False,
+                            "smallest_next_experiment": (
+                                "Provision exactly one credentialed provider "
+                                "route or one local predictor runtime."
+                            ),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            acceptance_path.write_text(
+                json.dumps(
+                    {
+                        "acceptance_check_results": [
+                            {
+                                "check_id": "coordinate_file_exists",
+                                "required": True,
+                                "passed": False,
+                            },
+                            {
+                                "check_id": "row_not_scored_until_coordinate_staged",
+                                "required": True,
+                                "passed": True,
+                            },
+                        ],
+                        "counts": {
+                            "acceptance_checks_total": 2,
+                            "acceptance_checks_passed": 1,
+                            "acceptance_checks_failed": 1,
+                            "candidate_coordinate_exists": 0,
+                            "candidate_provenance_exists": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "p07658_acceptance_preflight_passes_now": False,
+                            "p07658_coordinate_blocker_cleared_now": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "dispatch_inputs_present": 4,
+                            "dispatch_inputs_total": 4,
+                            "provider_routes_returning_coordinate_now": 0,
+                            "candidate_coordinate_exists": 0,
+                            "candidate_provenance_exists": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "dispatch_packet_ready_for_provider_run": True,
+                            "provider_or_local_runtime_returns_coordinate_now": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_lever3_deployment_input_gap_audit(
+                operating_point_deployment_readout_path=operating_path,
+                p07658_credential_route_preflight_path=credential_path,
+                p07658_prediction_acceptance_preflight_path=acceptance_path,
+                p07658_prediction_dispatch_packet_path=dispatch_path,
+                artifact_id="custom_deployment_input_gap",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_deployment_input_gap")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_input_gap_audit_ready_p07658_inputs_only",
+        )
+        self.assertTrue(
+            audit["decision"][
+                "operating_point_usable_for_hard_confounded_train_cal_routing"
+            ]
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_input_gap_isolated_to_p07658"]
+        )
+        self.assertFalse(
+            audit["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertTrue(
+            audit["decision"]["route_equivalent_no_credential_retries_should_stop"]
+        )
+        self.assertEqual(audit["counts"]["input_gates_total"], 6)
+        self.assertEqual(audit["counts"]["input_gates_satisfied"], 2)
+        self.assertEqual(audit["counts"]["input_gates_missing"], 4)
+        self.assertEqual(audit["counts"]["acceptance_checks_failed"], 1)
+        self.assertEqual(audit["counts"]["required_acceptance_checks_failed"], 1)
+        self.assertEqual(audit["counts"]["provider_routes_with_credentials"], 0)
+        self.assertEqual(audit["counts"]["local_predictor_modules_present"], 0)
+        self.assertIn(
+            "p07658_exact_prediction_route",
+            audit["decision"]["missing_input_gate_ids"],
+        )
+        self.assertIn(
+            "coordinate_file_exists",
+            audit["acceptance_failure_check_ids"],
+        )
+
+    def test_lever3_p07658_local_input_inventory_audit_finds_no_coordinate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            artifacts_root = root / "artifacts"
+            work_root = root / "work"
+            artifacts_root.mkdir()
+            work_root.mkdir()
+            gap_path = root / "gap.json"
+            dispatch_path = root / "dispatch.json"
+            fasta_path = work_root / "fold_augmented_p07658_input.fasta"
+            template_path = artifacts_root / "p07658_prediction_provenance_template.json"
+            coordinate_path = artifacts_root / "p07658_full_length.cif"
+            filled_provenance_path = artifacts_root / "p07658_provenance_filled.json"
+            fasta_path.write_text(">p07658\nUUU\n", encoding="utf-8")
+            template_path.write_text(
+                json.dumps({"provider": "FILL_ME"}),
+                encoding="utf-8",
+            )
+            gap_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"critical_violation_total": 0},
+                        "decision": {
+                            "deployment_input_gap_isolated_to_p07658": True,
+                            "route_equivalent_no_credential_retries_should_stop": True,
+                            "smallest_next_experiment": (
+                                "Provision exactly one credentialed route."
+                            ),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"critical_violation_total": 0},
+                        "operator_fill_targets": {
+                            "preferred_coordinate_path": str(coordinate_path),
+                            "filled_provenance_path": str(filled_provenance_path),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_lever3_p07658_local_input_inventory_audit(
+                deployment_input_gap_audit_path=gap_path,
+                p07658_prediction_dispatch_packet_path=dispatch_path,
+                search_roots=[artifacts_root, work_root],
+                artifact_id="custom_p07658_local_inventory",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_p07658_local_inventory")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_p07658_local_input_inventory_audit_"
+                "no_local_candidate"
+            ),
+        )
+        self.assertEqual(audit["counts"]["search_roots_checked"], 2)
+        self.assertEqual(audit["counts"]["p07658_matched_files"], 2)
+        self.assertEqual(audit["counts"]["coordinate_candidate_files"], 0)
+        self.assertEqual(audit["counts"]["filled_provenance_candidate_files"], 0)
+        self.assertEqual(audit["counts"]["provenance_template_files"], 1)
+        self.assertEqual(audit["counts"]["dispatch_fasta_files"], 1)
+        self.assertEqual(
+            audit["counts"]["acceptance_preflight_ready_from_local_inventory"], 0
+        )
+        self.assertFalse(
+            audit["decision"]["acceptance_preflight_ready_from_local_inventory"]
+        )
+        self.assertFalse(audit["decision"]["local_inventory_clears_p07658_gap_now"])
+        self.assertTrue(
+            audit["decision"]["route_equivalent_no_credential_retries_should_stop"]
+        )
+
+    def test_lever3_p07658_sequence_compatibility_readout_rejects_shortcuts(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            dispatch_path = root / "dispatch.json"
+            attempts_path = root / "attempts.json"
+            credential_path = root / "credential.json"
+            inventory_path = root / "inventory.json"
+            fasta_path = root / "p07658.fasta"
+            sequence = "MAUAA"
+            sequence_sha = hashlib.sha256(sequence.encode("utf-8")).hexdigest()
+            fasta_path.write_text(">p07658\nMAUAA\n", encoding="utf-8")
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "affected_row": {
+                            "entry_id": "m_csa:562",
+                            "accession": "P07658",
+                            "sequence_length": len(sequence),
+                            "sequence_sha256": sequence_sha,
+                            "selenocysteine_positions": [3],
+                        },
+                        "prediction_request": {"sequence": sequence},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(json.dumps({"counts": {}}), encoding="utf-8")
+            attempts_path.write_text(
+                json.dumps(
+                    {
+                        "route_attempts": [
+                            {
+                                "route_id": "hf_router",
+                                "rejection_reason": "authentication_required",
+                            }
+                        ],
+                        "counts": {
+                            "routes_attempted": 2,
+                            "exact_sequence_submitted_routes": 1,
+                            "sequence_modified_or_truncated_routes": 0,
+                            "deployment_valid_predicted_coordinate_rows": 0,
+                            "esm_atlas_length_rejection_rows": 1,
+                            "pdb_provider_rows_rejected": 5,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            credential_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "credential_provider_routes_checked": 3,
+                            "provider_routes_with_credentials": 0,
+                            "local_predictor_modules_checked": 6,
+                            "local_predictor_modules_present": 0,
+                        },
+                        "operating_point_context": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "calibration_in_scope_retained": 31,
+                            "calibration_in_scope_rows": 34,
+                            "all_train_cal_oos_abstained": 105,
+                            "all_train_cal_oos_rows": 204,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            inventory_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "coordinate_candidate_files": 0,
+                            "filled_provenance_candidate_files": 0,
+                            "preferred_coordinate_path_exists": 0,
+                            "filled_provenance_path_exists": 0,
+                            "acceptance_preflight_ready_from_local_inventory": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_p07658_sequence_compatibility_readout(
+                prediction_request_manifest_path=manifest_path,
+                p07658_prediction_dispatch_packet_path=dispatch_path,
+                p07658_exact_route_attempts_path=attempts_path,
+                p07658_credential_route_preflight_path=credential_path,
+                p07658_local_input_inventory_audit_path=inventory_path,
+                provider_ready_fasta_path=fasta_path,
+                artifact_id="custom_p07658_sequence_compatibility",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "custom_p07658_sequence_compatibility"
+        )
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_p07658_sequence_compatibility_"
+                "readout_no_compatible_route"
+            ),
+        )
+        self.assertTrue(readout["decision"]["p07658_sequence_contract_valid"])
+        self.assertFalse(
+            readout["decision"]["sequence_mutation_or_truncation_allowed_now"]
+        )
+        self.assertTrue(
+            readout["decision"]["missing_coordinate_abstention_safe_but_not_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["credentialed_or_local_exact_route_available_now"]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertEqual(
+            readout["counts"]["accepted_sequence_policy_rows_ready_now"], 0
+        )
+        self.assertEqual(readout["counts"]["rejected_shortcut_policy_rows"], 3)
+        self.assertEqual(readout["counts"]["acceptance_gates_total"], 7)
+        self.assertEqual(readout["counts"]["acceptance_gates_passed"], 2)
+        self.assertEqual(readout["counts"]["required_acceptance_gates_failed"], 5)
+        self.assertEqual(
+            readout["decision"]["required_acceptance_gate_ids_failed"],
+            [
+                "provider_dispatch_packet_ready",
+                "credentialed_or_local_exact_prediction_route_available",
+                "preferred_full_length_coordinate_present",
+                "filled_prediction_provenance_present",
+                "local_inventory_ready_for_acceptance_preflight",
+            ],
+        )
+        self.assertEqual(
+            readout["decision"]["p07658_all_or_abstain_gate_action_now"],
+            "abstain_or_route_novel_oos_until_coordinate_provenance_exists",
+        )
+        self.assertTrue(readout["decision"]["unsafe_sequence_shortcuts_rejected"])
+        self.assertEqual(readout["counts"]["credential_or_auth_denial_routes"], 1)
+        self.assertEqual(readout["counts"]["sequence_modified_or_truncated_routes"], 0)
+        self.assertEqual(readout["counts"]["local_coordinate_candidate_files"], 0)
+        self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
+    def test_lever3_confounded_safe_abstention_readout_routes_p07658_gap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            operating_path = root / "operating.json"
+            sequence_path = root / "sequence.json"
+            gap_path = root / "gap.json"
+            operating_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {
+                            "route_id": (
+                                "fixed_baseline_plus_counteraxis_contracts"
+                            ),
+                            "baseline_threshold": 0.44155,
+                            "threshold_selection_source": "train_calibration_only",
+                            "calibration_retention_floor_met": True,
+                        },
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "calibration_retention_floor_rows": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "strict_high_cofactor_proxy_rows": 4,
+                            "strict_high_cofactor_proxy_abstained": 1,
+                            "strict_same_family_proxy_rows": 59,
+                            "strict_same_family_proxy_abstained": 26,
+                            "same_family_shortfall_after_contract": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "hard_confounded_residuals_closed_at_operating_point": True,
+                            "true_in_scope_retention_floor_met": True,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sequence_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "required_acceptance_gates_failed": 4,
+                            "rejected_shortcut_policy_rows": 3,
+                            "local_coordinate_candidate_files": 0,
+                            "local_filled_provenance_candidate_files": 0,
+                            "coordinates_generated_now": 0,
+                            "coordinates_staged_now": 0,
+                            "rows_scored_now": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "p07658_sequence_contract_valid": True,
+                            "missing_coordinate_abstention_safe_but_not_closure": True,
+                            "p07658_all_or_abstain_gate_action_now": (
+                                "abstain_or_route_novel_oos_until_"
+                                "coordinate_provenance_exists"
+                            ),
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                            "required_acceptance_gate_ids_failed": [
+                                "credentialed_or_local_exact_prediction_route_available",
+                                "preferred_full_length_coordinate_present",
+                            ],
+                            "exact_missing_evidence_needed": [
+                                "one credentialed provider route",
+                                "returned full-length coordinate file",
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gap_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "input_gates_total": 6,
+                            "input_gates_satisfied": 2,
+                            "input_gates_missing": 4,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                            "smallest_next_experiment": (
+                                "Provision exactly one credentialed route."
+                            ),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_confounded_safe_abstention_readout(
+                operating_point_deployment_readout_path=operating_path,
+                p07658_sequence_compatibility_readout_path=sequence_path,
+                deployment_input_gap_audit_path=gap_path,
+                artifact_id="custom_confounded_safe_abstention",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_confounded_safe_abstention")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_confounded_safe_abstention_readout_"
+                "ready_fail_closed_p07658"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_evidence_sufficient_for_safe_abstention_routing"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_fixed_threshold_scoring_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(readout["counts"]["p07658_forced_abstention_rows"], 1)
+        self.assertEqual(
+            readout["decision"]["p07658_route_if_incomplete_now"],
+            "abstain_or_route_novel_oos",
+        )
+        self.assertEqual(
+            readout["decision"]["exact_missing_evidence_for_scoring_closure"],
+            [
+                "one credentialed provider route",
+                "returned full-length coordinate file",
+            ],
+        )
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
+
+    def test_lever3_confounded_safe_abstention_requires_valid_sequence_contract(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            operating_path = root / "operating.json"
+            sequence_path = root / "sequence.json"
+            gap_path = root / "gap.json"
+            operating_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {
+                            "baseline_threshold": 0.44155,
+                            "calibration_retention_floor_met": True,
+                        },
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "hard_confounded_residuals_closed_at_operating_point": True,
+                            "true_in_scope_retention_floor_met": True,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sequence_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "required_acceptance_gates_failed": 5,
+                            "rejected_shortcut_policy_rows": 3,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "p07658_sequence_contract_valid": False,
+                            "missing_coordinate_abstention_safe_but_not_closure": True,
+                            "p07658_all_or_abstain_gate_action_now": (
+                                "abstain_or_route_novel_oos_until_"
+                                "coordinate_provenance_exists"
+                            ),
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gap_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "input_gates_total": 6,
+                            "input_gates_satisfied": 1,
+                            "input_gates_missing": 5,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "current_evidence_sufficient_for_deployment_closure": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_confounded_safe_abstention_readout(
+                operating_point_deployment_readout_path=operating_path,
+                p07658_sequence_compatibility_readout_path=sequence_path,
+                deployment_input_gap_audit_path=gap_path,
+                artifact_id="custom_confounded_safe_abstention_invalid_sequence",
+            )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_confounded_safe_abstention_readout_blocked",
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_safe_abstention_routing"
+            ]
+        )
+        self.assertEqual(readout["counts"]["p07658_forced_abstention_rows"], 0)
+        self.assertEqual(
+            readout["decision"]["p07658_route_if_incomplete_now"],
+            "no_safe_route_available",
+        )
+        self.assertFalse(
+            readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
+        )
+
+    def test_lever3_deployment_action_readout_exposes_row_actions(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            residual_path = root / "residual.json"
+            cofactor_path = root / "cofactor.json"
+            contract_path = root / "contract.json"
+            abstention_path = root / "abstention.json"
+            residual_path.write_text(
+                json.dumps(
+                    {
+                        "residual_readout": {
+                            "rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "A1",
+                                    "axis_memberships": ["same_family"],
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "retained_by_all_current_channels": True,
+                                    "closest_current_channel": "cofactor_max_score",
+                                    "closest_current_channel_margin": 0.1,
+                                    "evidence_need": "same_family_counteraxis",
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "A2",
+                                    "axis_memberships": [
+                                        "high_cofactor",
+                                        "same_family",
+                                    ],
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "retained_by_all_current_channels": True,
+                                    "closest_current_channel": (
+                                        "combined_min_geometry_fold"
+                                    ),
+                                    "closest_current_channel_margin": 0.02,
+                                    "evidence_need": (
+                                        "cofactor_role_and_same_family_counteraxis"
+                                    ),
+                                },
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "accession": "A3",
+                                    "axis_memberships": ["same_family"],
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "retained_by_all_current_channels": True,
+                                    "closest_current_channel": (
+                                        "combined_mean_geometry_fold"
+                                    ),
+                                    "closest_current_channel_margin": 0.03,
+                                    "evidence_need": "same_family_counteraxis",
+                                },
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "route_readouts": {
+                            "fixed_baseline_plus_counteraxis": {
+                                "residual_all": {
+                                    "counteraxis_rows": [
+                                        {
+                                            "entry_id": "m_csa:2",
+                                            "accession": "A2",
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "contract": {
+                            "selected_on_train_cal_only": True,
+                            "feature_rule": "fold/geometry bandpass",
+                            "bounds": {
+                                "fold_nearest_atlas_tm_score": {
+                                    "min": 0.6,
+                                    "max": 0.7,
+                                }
+                            },
+                            "remaining_same_family_residual_entry_ids_fired": [
+                                "m_csa:3"
+                            ],
+                        },
+                        "selected_same_family_residual_rows": [
+                            {"entry_id": "m_csa:3", "accession": "A3"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            abstention_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {
+                            "route_id": "fixed_route",
+                            "baseline_threshold": 0.44155,
+                            "threshold_selection_source": (
+                                "train_calibration_only"
+                            ),
+                        },
+                        "p07658_fail_closed_gate": {
+                            "forced_abstention_required_now": True,
+                            "failed_gate_ids": [
+                                "preferred_full_length_coordinate_present"
+                            ],
+                            "sequence_contract_valid": True,
+                        },
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "hard_confounded_train_cal_routing_ready": True,
+                            "true_in_scope_retention_floor_met": True,
+                            "current_evidence_sufficient_for_safe_abstention_routing": True,
+                            "current_evidence_sufficient_for_fixed_threshold_scoring_closure": False,
+                            "exact_missing_evidence_for_scoring_closure": [
+                                "P07658 provenance"
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_deployment_action_readout(
+                residual_safety_readout_path=residual_path,
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                same_family_bandpass_counteraxis_contract_path=contract_path,
+                confounded_safe_abstention_readout_path=abstention_path,
+                artifact_id="custom_deployment_action_readout",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_deployment_action_readout")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_deployment_action_readout_ready_fail_closed_p07658",
+        )
+        self.assertEqual(readout["counts"]["residual_rows"], 3)
+        self.assertEqual(
+            readout["counts"][
+                "unique_residual_rows_abstained_by_accepted_counteraxes"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_retained_after_accepted_counteraxes"],
+            1,
+        )
+        self.assertEqual(readout["counts"]["p07658_forced_abstention_rows"], 1)
+        by_id = {row["entry_id"]: row for row in readout["residual_action_rows"]}
+        self.assertEqual(
+            by_id["m_csa:2"]["accepted_counteraxis_action_sources"],
+            ["cofactor_context_counteraxis"],
+        )
+        self.assertEqual(
+            by_id["m_csa:3"]["accepted_counteraxis_action_sources"],
+            ["same_family_numeric_bandpass_counteraxis"],
+        )
+        self.assertEqual(
+            by_id["m_csa:1"]["deployment_action_now"],
+            "retain_at_fixed_operating_point_not_scoring_closure",
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_evidence_sufficient_for_safe_abstention_routing"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_fixed_threshold_scoring_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
+        )
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
+    def test_lever3_retained_residual_risk_readout_splits_descriptor_gates(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            action_path = root / "deployment_action.json"
+            action_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "residual_rows": 4,
+                            "unique_residual_rows_abstained_by_accepted_counteraxes": 2,
+                            "p07658_forced_abstention_rows": 1,
+                        },
+                        "decision": {
+                            "deployment_valid_action_readout_available": True,
+                            "current_evidence_sufficient_for_safe_abstention_routing": True,
+                            "current_evidence_sufficient_for_fixed_threshold_scoring_closure": False,
+                        },
+                        "operating_point": {
+                            "route_id": "fixed_route",
+                            "baseline_threshold": 0.44155,
+                            "threshold_selection_source": "train_calibration_only",
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                        },
+                        "retained_residual_evidence_queue": [
+                            {
+                                "rank": 2,
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "axis_memberships": ["same_family"],
+                                "closest_current_channel": "cofactor_max_score",
+                                "closest_current_channel_margin": 0.03,
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_missing"
+                                ),
+                            },
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "axis_memberships": ["same_family"],
+                                "closest_current_channel": "geometry_top1_score",
+                                "closest_current_channel_margin": 0.01,
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_present"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_residual_risk_readout(
+                deployment_action_readout_path=action_path,
+                artifact_id="custom_retained_residual_risk",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_retained_residual_risk")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_residual_risk_readout_"
+                "descriptor_present_actionable"
+            ),
+        )
+        self.assertEqual(readout["counts"]["retained_residual_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_with_pocket_descriptor"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_missing_pocket_descriptor"],
+            1,
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["score_or_force_mechanism_label_for_retained_rows_now"]
+        )
+        self.assertEqual(
+            readout["retained_residual_risk_rows"][0]["entry_id"],
+            "m_csa:1",
+        )
+        self.assertEqual(
+            readout["retained_residual_risk_rows"][0]["next_evidence_gate"],
+            "train_cal_only_same_family_pocket_counteraxis_design_required",
+        )
+        self.assertEqual(
+            readout["retained_residual_risk_rows"][1]["next_evidence_gate"],
+            "source_free_pocket_descriptor_acquisition_required",
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(
+            readout["guardrails"][
+                "heldout_rows_used_for_training_or_threshold_tuning"
+            ]
+        )
+
+    def test_lever3_descriptor_present_counteraxis_preflight_freezes_fields(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            risk_path = root / "risk.json"
+            surface_path = root / "surface.json"
+            risk_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True,
+                        },
+                        "retained_residual_risk_rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_present"
+                                ),
+                                "closest_current_channel": "geometry_top1_score",
+                                "closest_current_channel_margin": 0.01,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "top1_score": 0.4,
+                                    "mechanism_text_count": 9,
+                                    "pocket_context": {
+                                        "distance_cutoff_angstrom": 8.0,
+                                        "nearby_residue_count": 2,
+                                        "descriptors": {
+                                            "hydrophobic_fraction": 0.5,
+                                            "polar_fraction": 0.25,
+                                        },
+                                        "residue_code_counts": {
+                                            "ASP": 1,
+                                            "HIS": 1,
+                                        },
+                                    },
+                                }
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = (
+                build_fold_augmented_lever3_descriptor_present_counteraxis_preflight(
+                    retained_residual_risk_readout_path=risk_path,
+                    latest_train_cal_oos_surface_path=surface_path,
+                    artifact_id="custom_descriptor_present_preflight",
+                )
+            )
+
+        self.assertEqual(
+            preflight["artifact_id"],
+            "custom_descriptor_present_preflight",
+        )
+        self.assertEqual(
+            preflight["status"],
+            (
+                "fold_augmented_lever3_descriptor_present_counteraxis_"
+                "preflight_ready_input_frozen"
+            ),
+        )
+        self.assertEqual(preflight["counts"]["descriptor_value_rows_found"], 1)
+        self.assertEqual(preflight["counts"]["descriptor_feature_fields"], 2)
+        self.assertEqual(
+            preflight["allowed_source_free_feature_contract"]["descriptor_fields"],
+            ["hydrophobic_fraction", "polar_fraction"],
+        )
+        self.assertIn(
+            "mechanism_text_count",
+            preflight["allowed_source_free_feature_contract"]["forbidden_fields"],
+        )
+        self.assertTrue(
+            preflight["allowed_source_free_feature_contract"][
+                "retained_rows_may_not_select_or_tune_rule"
+            ]
+        )
+        self.assertFalse(preflight["decision"]["counteraxis_selected_now"])
+        self.assertFalse(
+            preflight["descriptor_present_rows"][0][
+                "allowed_for_rule_selection_on_this_row"
+            ]
+        )
+        self.assertFalse(
+            preflight["guardrails"][
+                "heldout_rows_used_for_training_or_threshold_tuning"
+            ]
+        )
+
+    def test_lever3_descriptor_generalization_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def pocket(leu_count: int, hydrophobic: float = 0.4) -> dict[str, Any]:
+            return {
+                "pocket_context": {
+                    "descriptors": {"hydrophobic_fraction": hydrophobic},
+                    "residue_code_counts": {"LEU": leu_count},
+                }
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight_path = root / "preflight.json"
+            risk_path = root / "risk.json"
+            surface_path = root / "surface.json"
+            atlas_path = root / "atlas.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_source_free_feature_contract": {
+                            "descriptor_fields": ["hydrophobic_fraction"],
+                            "residue_code_count_fields": ["LEU"],
+                        },
+                        "descriptor_present_rows": [
+                            {"entry_id": "m_csa:1", "accession": "A1"},
+                            {"entry_id": "m_csa:2", "accession": "A2"},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            risk_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows": 4,
+                            "retained_residual_rows_missing_pocket_descriptor": 2,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 5,
+                            "all_train_cal_oos_abstained": 1,
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "A1",
+                                    **pocket(1),
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "A2",
+                                    **pocket(4),
+                                },
+                                {"entry_id": "m_csa:3", **pocket(0)},
+                                {"entry_id": "m_csa:4", **pocket(1)},
+                                {"entry_id": "m_csa:5", **pocket(3)},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            atlas_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {"entry_id": "m_csa:10", **pocket(2)},
+                            {"entry_id": "m_csa:11", **pocket(3)},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "train_cal_partition": {
+                            "calibration_entry_ids": ["m_csa:10", "m_csa:11"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                                {"entry_id": "m_csa:5"},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_fold_augmented_lever3_descriptor_generalization_counteraxis_readout(
+                    descriptor_present_counteraxis_preflight_path=preflight_path,
+                    retained_residual_risk_readout_path=risk_path,
+                    latest_train_cal_oos_surface_path=surface_path,
+                    predicted_geometry_atlas_retrieval_path=atlas_path,
+                    threshold_contract_path=threshold_path,
+                    channel_veto_readout_path=channel_path,
+                    artifact_id="custom_descriptor_generalization",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_descriptor_generalization")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_descriptor_generalization_"
+                "counteraxis_readout_partial_application"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"]["feature_rule"],
+            "residue_count.LEU <= 1.0",
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:3", "m_csa:4"],
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"][
+                "application_entry_ids_fired_after_selection"
+            ],
+            ["m_csa:1"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_descriptor_counteraxis"
+            ],
+            3,
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "descriptor_counteraxis_ready_for_partial_application_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(
+            readout["guardrails"][
+                "heldout_rows_used_for_training_or_threshold_tuning"
+            ]
+        )
+
+    def test_lever3_retained_descriptor_rescue_recovers_existing_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            risk_path = root / "risk.json"
+            generalization_path = root / "generalization.json"
+            source_path = root / "source.json"
+            risk_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows": 3,
+                            "retained_residual_rows_with_pocket_descriptor": 1,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 5,
+                            "all_train_cal_oos_abstained": 1,
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True,
+                        },
+                        "retained_residual_risk_rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_missing"
+                                ),
+                            },
+                            {
+                                "rank": 2,
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_missing"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            generalization_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "selected_rule_application_rows_fired_after_selection": 1
+                        },
+                        "selected_counteraxis_rule": {
+                            "feature_kind": "residue_count",
+                            "feature_name": "LEU",
+                            "operator": "<=",
+                            "threshold": 1.0,
+                            "feature_rule": "residue_count.LEU <= 1.0",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_path.write_text(
+                json.dumps(
+                    {
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "A1",
+                                    "pocket_context": {
+                                        "descriptors": {
+                                            "hydrophobic_fraction": 0.3
+                                        },
+                                        "residue_code_counts": {"LEU": 1},
+                                    },
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "A2",
+                                    "pocket_context": {
+                                        "descriptors": {
+                                            "hydrophobic_fraction": 0.4
+                                        },
+                                        "residue_code_counts": {"LEU": 4},
+                                    },
+                                },
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_descriptor_rescue_readout(
+                retained_residual_risk_readout_path=risk_path,
+                descriptor_generalization_counteraxis_readout_path=generalization_path,
+                descriptor_source_artifact_paths=[source_path],
+                artifact_id="custom_descriptor_rescue",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_descriptor_rescue")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_descriptor_rescue_"
+                "readout_all_recovered"
+            ),
+        )
+        self.assertEqual(readout["counts"]["recovered_descriptor_rows"], 2)
+        self.assertEqual(readout["counts"]["unrecovered_descriptor_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["retained_rows_with_descriptor_after_rescue"],
+            3,
+        )
+        self.assertEqual(readout["counts"]["selected_rule_recovered_rows_fired"], 1)
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_selected_descriptor_counteraxis"
+            ],
+            1,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "descriptor_missing_gap_cleared_by_existing_artifacts"
+            ]
+        )
+        self.assertFalse(readout["decision"]["new_counteraxis_selected_now"])
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertTrue(readout["guardrails"]["existing_artifacts_only"])
+
+    def test_lever3_retained_pairwise_descriptor_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def pocket(leu_count: int, asn_count: int) -> dict[str, Any]:
+            return {
+                "pocket_context": {
+                    "descriptors": {"hydrophobic_fraction": 0.4},
+                    "residue_code_counts": {
+                        "ASN": asn_count,
+                        "LEU": leu_count,
+                    },
+                }
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight_path = root / "preflight.json"
+            risk_path = root / "risk.json"
+            generalization_path = root / "generalization.json"
+            rescue_path = root / "rescue.json"
+            surface_path = root / "surface.json"
+            atlas_path = root / "atlas.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_source_free_feature_contract": {
+                            "descriptor_fields": ["hydrophobic_fraction"],
+                            "residue_code_count_fields": ["ASN", "LEU"],
+                        },
+                        "descriptor_present_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "descriptor_values": {
+                                    "hydrophobic_fraction": 0.4
+                                },
+                                "residue_code_counts": {"ASN": 2, "LEU": 1},
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "descriptor_values": {
+                                    "hydrophobic_fraction": 0.4
+                                },
+                                "residue_code_counts": {"ASN": 2, "LEU": 4},
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            risk_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows": 3,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 5,
+                            "all_train_cal_oos_abstained": 1,
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            generalization_path.write_text(
+                json.dumps(
+                    {
+                        "selected_counteraxis_rule": {
+                            "feature_kind": "residue_count",
+                            "feature_name": "LEU",
+                            "operator": "<=",
+                            "threshold": 1.0,
+                            "feature_rule": "residue_count.LEU <= 1.0",
+                            "application_entry_ids_fired_after_selection": [
+                                "m_csa:1"
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rescue_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows_after_selected_descriptor_counteraxis": 2
+                        },
+                        "recovered_descriptor_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "descriptor_values": {
+                                    "hydrophobic_fraction": 0.4
+                                },
+                                "residue_code_counts": {"ASN": 8, "LEU": 4},
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "A1",
+                                    **pocket(1, 2),
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "A2",
+                                    **pocket(4, 2),
+                                },
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "accession": "A3",
+                                    **pocket(4, 8),
+                                },
+                                {"entry_id": "m_csa:4", **pocket(1, 2)},
+                                {"entry_id": "m_csa:5", **pocket(1, 2)},
+                                {"entry_id": "m_csa:6", **pocket(4, 8)},
+                                {"entry_id": "m_csa:7", **pocket(4, 2)},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            atlas_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {"entry_id": "m_csa:10", **pocket(2, 2)},
+                            {"entry_id": "m_csa:11", **pocket(5, 3)},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "train_cal_partition": {
+                            "calibration_entry_ids": ["m_csa:10", "m_csa:11"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                                {"entry_id": "m_csa:5"},
+                                {"entry_id": "m_csa:6"},
+                                {"entry_id": "m_csa:7"},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout(
+                descriptor_present_counteraxis_preflight_path=preflight_path,
+                retained_residual_risk_readout_path=risk_path,
+                descriptor_generalization_counteraxis_readout_path=generalization_path,
+                retained_descriptor_rescue_readout_path=rescue_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                predicted_geometry_atlas_retrieval_path=atlas_path,
+                threshold_contract_path=threshold_path,
+                channel_veto_readout_path=channel_path,
+                artifact_id="custom_pairwise_descriptor_counteraxis",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "custom_pairwise_descriptor_counteraxis"
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"]["feature_rule"],
+            "residue_count.ASN >= 8.0 OR residue_count.LEU <= 1.0",
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:4", "m_csa:5", "m_csa:6"],
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"][
+                "application_entry_ids_fired_after_selection"
+            ],
+            ["m_csa:1", "m_csa:3"],
+        )
+        self.assertEqual(
+            readout["counts"]["new_pairwise_application_rows_fired_after_prior_rule"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_pairwise_counteraxis"],
+            1,
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pairwise_descriptor_counteraxis_ready_for_partial_application_now"
+            ]
+        )
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
+
+    def test_lever3_retained_channel_margin_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def score_row(
+            entry_id: str,
+            *,
+            primary: float,
+            cofactor: float,
+        ) -> dict[str, Any]:
+            return {
+                "entry_id": entry_id,
+                "channel_scores": {
+                    "combined_mean_geometry_fold": primary,
+                    "cofactor_max_score": cofactor,
+                },
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pairwise_path = root / "pairwise.json"
+            residual_path = root / "residual.json"
+            cofactor_path = root / "cofactor.json"
+            surface_path = root / "surface.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+            pairwise_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows_after_pairwise_counteraxis": 3
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True
+                        },
+                        "prior_descriptor_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                        "selected_pairwise_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                        "application_row_actions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "prior_descriptor_counteraxis_fires": True,
+                                "selected_pairwise_counteraxis_fires_after_selection": False,
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "prior_descriptor_counteraxis_fires": False,
+                                "selected_pairwise_counteraxis_fires_after_selection": False,
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "prior_descriptor_counteraxis_fires": False,
+                                "selected_pairwise_counteraxis_fires_after_selection": False,
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "accession": "A4",
+                                "prior_descriptor_counteraxis_fires": False,
+                                "selected_pairwise_counteraxis_fires_after_selection": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            residual_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "baseline_threshold": 0.5,
+                            "best_current_route_channels": [
+                                "combined_mean_geometry_fold",
+                                "cofactor_max_score",
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "bandpass_scout_operating_point": {
+                            "all_train_cal_oos_entry_ids_abstained": ["m_csa:0"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            score_row("m_csa:0", primary=0.4, cofactor=0.2),
+                            score_row("m_csa:1", primary=0.7, cofactor=0.2),
+                            score_row("m_csa:2", primary=0.511, cofactor=0.2),
+                            score_row("m_csa:3", primary=0.7, cofactor=0.103),
+                            score_row("m_csa:4", primary=0.57, cofactor=0.2),
+                            score_row("m_csa:10", primary=0.51, cofactor=0.2),
+                            score_row("m_csa:11", primary=0.7, cofactor=0.105),
+                            score_row("m_csa:12", primary=0.512, cofactor=0.2),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            score_row("cal:anchor", primary=0.5, cofactor=0.2),
+                            score_row("cal:retained", primary=0.53, cofactor=0.2),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "channel_readouts": [
+                            {
+                                "channels": ["combined_mean_geometry_fold"],
+                                "thresholds": {
+                                    "combined_mean_geometry_fold": 0.5
+                                },
+                            },
+                            {
+                                "channels": ["cofactor_max_score"],
+                                "thresholds": {"cofactor_max_score": 0.1},
+                            },
+                        ],
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                                {"entry_id": "m_csa:10"},
+                                {"entry_id": "m_csa:11"},
+                                {"entry_id": "m_csa:12"},
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                residual_safety_readout_path=residual_path,
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                threshold_contract_path=threshold_path,
+                channel_veto_readout_path=channel_path,
+                max_all_train_cal_oos_rows_fired=10,
+                artifact_id="custom_channel_margin_counteraxis",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_channel_margin_counteraxis")
+        self.assertEqual(
+            readout["selected_channel_margin_counteraxis_rule"]["feature_rule"],
+            (
+                "active_route_min_positive_margin in (0, 0.012000] OR "
+                "active_route_min_positive_margin in (0, 0.012000]"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_channel_margin_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:10", "m_csa:11", "m_csa:12"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_margin_counteraxis"
+            ],
+            ["m_csa:2", "m_csa:3"],
+        )
+        self.assertEqual(
+            readout["decision"]["retained_rows_remaining_after_margin_counteraxis"],
+            ["m_csa:4"],
+        )
+        self.assertEqual(
+            readout["counts"]["calibration_in_scope_retained_before_margin"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["calibration_in_scope_retained_after_margin"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_margin_counteraxis"],
+            1,
+        )
+        self.assertIsNone(readout["selected_fold_tm_bandpass_counteraxis_rule"])
+        self.assertIsNone(
+            readout["selected_fold_cofactor_pressure_counteraxis_rule"]
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_margin_and_fold_tm_bandpass_counteraxis"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_all_counteraxes"],
+            1,
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(
+            readout["selection_policy"]["strict_positive_margin_lower_bound_open"]
+        )
+        self.assertFalse(
+            readout["selection_policy"]["zero_margin_threshold_anchor_reclassified"]
+        )
+        self.assertTrue(
+            readout["guardrails"]["source_free_score_margin_features_only"]
+        )
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
+
+    def test_lever3_retained_pocket_chemistry_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def pocket_row(
+            entry_id: str,
+            *,
+            sulfur: int,
+            accession: str | None = None,
+        ) -> dict[str, Any]:
+            return {
+                "entry_id": entry_id,
+                "accession": accession or entry_id.upper(),
+                "pocket_context": {
+                    "descriptors": {"hydrophobic_fraction": 0.5},
+                    "residue_code_counts": {
+                        "CYS": sulfur,
+                        "MET": 0,
+                        "ASP": 0,
+                        "GLU": 0,
+                        "ARG": 0,
+                        "HIS": 0,
+                        "LYS": 0,
+                        "PHE": 0,
+                        "TRP": 0,
+                        "TYR": 0,
+                    },
+                },
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            retained_channel_path = root / "retained_channel.json"
+            pairwise_path = root / "pairwise.json"
+            cofactor_path = root / "cofactor.json"
+            preflight_path = root / "preflight.json"
+            rescue_path = root / "rescue.json"
+            surface_path = root / "surface.json"
+            atlas_path = root / "atlas.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+
+            retained_channel_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "retained_rows_remaining_after_all_counteraxes": [
+                                "m_csa:2",
+                                "m_csa:3",
+                            ],
+                            "safe_abstention_routing_available_now": True,
+                        },
+                        "application_row_actions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "deployment_action_delta": (
+                                    "already_abstain_or_route_novel_oos_by_descriptor_rule"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "deployment_action_delta": (
+                                    "retain_at_fixed_operating_point_not_scoring_closure"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "deployment_action_delta": (
+                                    "retain_at_fixed_operating_point_not_scoring_closure"
+                                ),
+                            },
+                        ],
+                        "operating_point_after_all_counteraxes": {
+                            "baseline_threshold": 0.5,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained_after_counteraxes": 2,
+                            "all_train_cal_oos_full_channel_rows": 6,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pairwise_path.write_text(
+                json.dumps(
+                    {
+                        "prior_descriptor_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                        "selected_pairwise_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "bandpass_scout_operating_point": {
+                            "all_train_cal_oos_entry_ids_abstained": ["m_csa:0"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_source_free_feature_contract": {
+                            "descriptor_fields": [],
+                            "residue_code_count_fields": [],
+                        },
+                        "descriptor_present_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "descriptor_values": {},
+                                "residue_code_counts": {"CYS": 0, "MET": 0},
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rescue_path.write_text(
+                json.dumps(
+                    {
+                        "recovered_descriptor_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "descriptor_values": {},
+                                "residue_code_counts": {"CYS": 9, "MET": 0},
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "descriptor_values": {},
+                                "residue_code_counts": {"CYS": 0, "MET": 0},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {"entry_id": f"m_csa:{index}"}
+                            for index in range(6)
+                        ],
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                pocket_row("m_csa:10", sulfur=9),
+                                pocket_row("m_csa:11", sulfur=10),
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            atlas_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            pocket_row("cal:1", sulfur=0),
+                            pocket_row("cal:2", sulfur=1),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "train_cal_partition": {
+                            "calibration_entry_ids": ["cal:1", "cal:2"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:10"},
+                                {"entry_id": "m_csa:11"},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout(
+                retained_channel_margin_counteraxis_readout_path=(
+                    retained_channel_path
+                ),
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                descriptor_present_counteraxis_preflight_path=preflight_path,
+                retained_descriptor_rescue_readout_path=rescue_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                predicted_geometry_atlas_retrieval_path=atlas_path,
+                threshold_contract_path=threshold_path,
+                channel_veto_readout_path=channel_path,
+                artifact_id="custom_pocket_chemistry_counteraxis",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_pocket_chemistry_counteraxis")
+        self.assertEqual(
+            readout["selected_pocket_chemistry_counteraxis_rule"]["feature_rule"],
+            "chemistry_count.sulfur_count >= 9.0",
+        )
+        self.assertEqual(
+            readout["selected_pocket_chemistry_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:10", "m_csa:11"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_pocket_chemistry_counteraxis"
+            ],
+            ["m_csa:2"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_remaining_after_pocket_chemistry_counteraxis"
+            ],
+            ["m_csa:3"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_pocket_chemistry_new_train_cal_oos_abstentions"
+            ],
+            2,
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
+
+    def test_lever3_retained_geometry_mismatch_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def score_row(
+            entry_id: str,
+            *,
+            geometry_top1: float,
+            combined_min: float,
+            primary: float = 0.7,
+            accession: str | None = None,
+        ) -> dict[str, Any]:
+            row: dict[str, Any] = {
+                "entry_id": entry_id,
+                "channel_scores": {
+                    "combined_mean_geometry_fold": primary,
+                    "combined_min_geometry_fold": combined_min,
+                    "geometry_top1_score": geometry_top1,
+                },
+            }
+            if accession is not None:
+                row["accession"] = accession
+            return row
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pocket_path = root / "pocket.json"
+            retained_channel_path = root / "retained_channel.json"
+            pairwise_path = root / "pairwise.json"
+            cofactor_path = root / "cofactor.json"
+            surface_path = root / "surface.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+
+            pocket_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "retained_rows_remaining_after_pocket_chemistry_counteraxis": [
+                                "m_csa:2"
+                            ],
+                            "safe_abstention_routing_available_now": True,
+                        },
+                        "selected_pocket_chemistry_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:3"]
+                        },
+                        "application_row_actions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "deployment_action_delta": (
+                                    "already_abstain_or_route_novel_oos_by_prior_counteraxis"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "deployment_action_delta": (
+                                    "retain_at_fixed_operating_point_not_scoring_closure"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "deployment_action_delta": (
+                                    "abstain_or_route_novel_oos_by_pocket_chemistry"
+                                ),
+                            },
+                        ],
+                        "operating_point_after_pocket_chemistry": {
+                            "baseline_threshold": 0.5,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained_after_pocket_chemistry": 2,
+                            "all_train_cal_oos_full_channel_rows": 8,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            retained_channel_path.write_text(
+                json.dumps(
+                    {
+                        "selected_channel_margin_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                        "selected_fold_tm_bandpass_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": []
+                        },
+                        "selected_fold_cofactor_pressure_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": []
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pairwise_path.write_text(
+                json.dumps(
+                    {
+                        "prior_descriptor_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": []
+                        },
+                        "selected_pairwise_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": []
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "bandpass_scout_operating_point": {
+                            "all_train_cal_oos_entry_ids_abstained": []
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            score_row(
+                                "m_csa:1",
+                                geometry_top1=0.9,
+                                combined_min=0.2,
+                                accession="A1",
+                            ),
+                            score_row(
+                                "m_csa:2",
+                                geometry_top1=0.5788,
+                                combined_min=0.5788,
+                                accession="A2",
+                            ),
+                            score_row(
+                                "m_csa:3",
+                                geometry_top1=0.9,
+                                combined_min=0.2,
+                                accession="A3",
+                            ),
+                            score_row("m_csa:10", geometry_top1=0.5822, combined_min=0.5782),
+                            score_row("m_csa:11", geometry_top1=0.59, combined_min=0.59),
+                            score_row("m_csa:12", geometry_top1=0.7, combined_min=0.7),
+                            score_row("m_csa:13", geometry_top1=0.58, combined_min=0.58),
+                            score_row("m_csa:20", geometry_top1=0.579, combined_min=0.579),
+                            score_row("m_csa:21", geometry_top1=0.581, combined_min=0.579),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            score_row("cal:1", geometry_top1=0.9, combined_min=0.9),
+                            score_row("cal:2", geometry_top1=0.8, combined_min=0.8),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "channel_readouts": [
+                            {
+                                "channels": ["combined_mean_geometry_fold"],
+                                "thresholds": {
+                                    "combined_mean_geometry_fold": 0.5
+                                },
+                            },
+                            {
+                                "channels": ["combined_min_geometry_fold"],
+                                "thresholds": {
+                                    "combined_min_geometry_fold": 0.5
+                                },
+                            },
+                            {
+                                "channels": ["geometry_top1_score"],
+                                "thresholds": {"geometry_top1_score": 0.5},
+                            },
+                        ],
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:10"},
+                                {"entry_id": "m_csa:11"},
+                                {"entry_id": "m_csa:12"},
+                                {"entry_id": "m_csa:13"},
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout(
+                retained_pocket_chemistry_counteraxis_readout_path=pocket_path,
+                retained_channel_margin_counteraxis_readout_path=(
+                    retained_channel_path
+                ),
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                threshold_contract_path=threshold_path,
+                channel_veto_readout_path=channel_path,
+                artifact_id="custom_geometry_mismatch_counteraxis",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "custom_geometry_mismatch_counteraxis"
+        )
+        self.assertEqual(
+            readout["selected_geometry_mismatch_counteraxis_rule"]["feature_rule"],
+            (
+                "geometry_top1_score <= 0.582200 AND "
+                "combined_min_geometry_fold >= 0.578200"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_geometry_mismatch_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:10", "m_csa:13"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis"
+            ],
+            ["m_csa:2"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_remaining_after_geometry_mismatch_counteraxis"
+            ],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_geometry_mismatch_new_train_cal_oos_abstentions"
+            ],
+            5,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
+
+    def test_lever3_operating_point_closure_composes_prior_counteraxes(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            deployment_path = root / "deployment.json"
+            pairwise_path = root / "pairwise.json"
+            channel_path = root / "channel.json"
+            pocket_path = root / "pocket.json"
+            geometry_path = root / "geometry.json"
+
+            deployment_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "deployment",
+                        "counts": {
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 10,
+                            "all_train_cal_oos_abstained": 3,
+                            "residual_rows": 6,
+                            "unique_residual_rows_abstained_by_accepted_counteraxes": 1,
+                            "residual_rows_retained_after_accepted_counteraxes": 5,
+                        },
+                        "decision": {
+                            "deployment_valid_action_readout_available": True,
+                        },
+                        "guardrails": {
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                        "operating_point": {"baseline_threshold": 0.5},
+                        "incomplete_input_action_rows": [
+                            {
+                                "entry_id": "m_csa:562",
+                                "deployment_action_now": "abstain_or_route_novel_oos",
+                            }
+                        ],
+                        "residual_action_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "abstain_or_route_novel_oos",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "accession": "A4",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:5",
+                                "accession": "A5",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "accession": "A6",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pairwise_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "pairwise",
+                        "counts": {
+                            "prior_descriptor_counteraxis_application_rows_fired": 1,
+                            "new_pairwise_application_rows_fired_after_prior_rule": 1,
+                            "retained_residual_rows_after_pairwise_counteraxis": 3
+                        },
+                        "decision": {
+                            "pairwise_descriptor_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                        "application_row_actions": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_descriptor_rule",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "deployment_action_delta": "abstain_or_route_novel_oos",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "channel",
+                        "counts": {
+                            "descriptor_plus_accepted_all_train_cal_oos_abstained": 4,
+                            "combined_all_train_cal_oos_abstained_after_all_counteraxes": 5,
+                            "new_counteraxis_application_rows_fired_after_descriptor_rules": 1,
+                            "retained_residual_rows_after_all_counteraxes": 2
+                        },
+                        "decision": {
+                            "channel_margin_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "retained_rows_newly_abstained_by_margin_counteraxis": [
+                                "m_csa:4"
+                            ],
+                            "retained_rows_newly_abstained_by_fold_tm_bandpass_counteraxis": [],
+                            "retained_rows_newly_abstained_by_fold_cofactor_pressure_counteraxis": [],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pocket_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "pocket",
+                        "counts": {
+                            "combined_all_train_cal_oos_abstained_after_pocket_chemistry": 6,
+                            "new_pocket_chemistry_application_rows_fired_after_prior_counteraxes": 1,
+                            "retained_residual_rows_after_pocket_chemistry_counteraxis": 1
+                        },
+                        "decision": {
+                            "pocket_chemistry_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "retained_rows_newly_abstained_by_pocket_chemistry_counteraxis": [
+                                "m_csa:5"
+                            ],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "geometry",
+                        "counts": {
+                            "combined_all_train_cal_oos_abstained_after_geometry_mismatch": 7,
+                            "new_geometry_mismatch_application_rows_fired_after_pocket_chemistry": 1,
+                            "retained_residual_rows_after_geometry_mismatch_counteraxis": 0
+                        },
+                        "decision": {
+                            "geometry_mismatch_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "safe_abstention_routing_available_now": True,
+                            "fixed_threshold_scoring_closure_available_now": False,
+                            "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis": [
+                                "m_csa:6"
+                            ],
+                            "retained_rows_remaining_after_geometry_mismatch_counteraxis": [],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                        "operating_point_after_geometry_mismatch": {
+                            "baseline_threshold": 0.5,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained_after_geometry_mismatch": 2,
+                            "all_train_cal_oos_full_channel_rows": 10,
+                            "combined_all_train_cal_oos_abstained_after_geometry_mismatch": 7,
+                            "production_threshold_change": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_operating_point_closure_readout(
+                deployment_action_readout_path=deployment_path,
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                retained_channel_margin_counteraxis_readout_path=channel_path,
+                retained_pocket_chemistry_counteraxis_readout_path=pocket_path,
+                retained_geometry_mismatch_counteraxis_readout_path=geometry_path,
+                artifact_id="custom_operating_point_closure",
+            )
+
+            pairwise_doc = json.loads(pairwise_path.read_text(encoding="utf-8"))
+            pairwise_doc["guardrails"]["blocker_packet"] = True
+            pairwise_path.write_text(json.dumps(pairwise_doc), encoding="utf-8")
+            blocked_readout = build_fold_augmented_lever3_operating_point_closure_readout(
+                deployment_action_readout_path=deployment_path,
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                retained_channel_margin_counteraxis_readout_path=channel_path,
+                retained_pocket_chemistry_counteraxis_readout_path=pocket_path,
+                retained_geometry_mismatch_counteraxis_readout_path=geometry_path,
+                artifact_id="blocked_operating_point_closure",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_operating_point_closure")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_operating_point_closure_readout_closed",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_safe_abstention_route_available_now"]
+        )
+        self.assertTrue(
+            readout["decision"]["zero_residual_retained_transfer_risk_available_now"]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_entering_closure"], 6
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_abstained_or_routed_after_all_counteraxes"
+            ],
+            6,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_all_counteraxes"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["train_cal_oos_abstained_or_routed"], 7
+        )
+        self.assertEqual(readout["guardrail_violations"], [])
+        self.assertTrue(
+            readout["guardrail_checks"]["closure_consistency_checks_pass"]
+        )
+        self.assertTrue(
+            readout["guardrails"]["composes_prior_train_cal_selected_rules"]
+        )
+        self.assertFalse(readout["guardrails"]["new_rule_selected_now"])
+
+        self.assertEqual(
+            blocked_readout["status"],
+            "fold_augmented_lever3_operating_point_closure_readout_needs_more_work",
+        )
+        self.assertFalse(
+            blocked_readout["source_status_checks"][
+                "source_artifacts_no_blocker_packets"
+            ]
+        )
+        self.assertFalse(
+            blocked_readout["guardrail_checks"]["closure_consistency_checks_pass"]
+        )
+        self.assertIn(
+            "closure_consistency_checks_pass",
+            blocked_readout["guardrail_violations"],
+        )
+
+    def test_lever3_closure_reproducibility_audit_detects_stale_sources(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            nested_path = root / "nested.json"
+            nested_path.write_text(
+                json.dumps({"artifact_id": "nested_basis"}),
+                encoding="utf-8",
+            )
+            nested_sha = hashlib.sha256(nested_path.read_bytes()).hexdigest()
+            deployment_path = root / "deployment.json"
+            pairwise_path = root / "pairwise.json"
+            channel_path = root / "channel.json"
+            pocket_path = root / "pocket.json"
+            geometry_path = root / "geometry.json"
+            closure_path = root / "closure.json"
+
+            deployment_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "deployment",
+                        "counts": {
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 10,
+                            "all_train_cal_oos_abstained": 3,
+                            "residual_rows": 6,
+                            "unique_residual_rows_abstained_by_accepted_counteraxes": 1,
+                            "residual_rows_retained_after_accepted_counteraxes": 5,
+                        },
+                        "decision": {
+                            "deployment_valid_action_readout_available": True,
+                        },
+                        "guardrails": {
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                        "source_artifacts": {
+                            "nested_basis": {
+                                "path": str(nested_path),
+                                "exists": True,
+                                "sha256": nested_sha,
+                            }
+                        },
+                        "operating_point": {"baseline_threshold": 0.5},
+                        "residual_action_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "abstain_or_route_novel_oos",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "accession": "A4",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:5",
+                                "accession": "A5",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "accession": "A6",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pairwise_doc = {
+                "artifact_id": "pairwise",
+                "counts": {
+                    "prior_descriptor_counteraxis_application_rows_fired": 1,
+                    "new_pairwise_application_rows_fired_after_prior_rule": 1,
+                    "retained_residual_rows_after_pairwise_counteraxis": 3,
+                },
+                "decision": {
+                    "pairwise_descriptor_counteraxis_selected_now": True,
+                    "application_rows_used_for_rule_selection": False,
+                },
+                "guardrails": {
+                    "rule_selected_on_train_cal_only": True,
+                    "measured_readout": True,
+                    "blocker_packet": False,
+                    "candidate_rows_scored_now": False,
+                    "threshold_values_changed": False,
+                    "production_thresholds_changed": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                },
+                "application_row_actions": [
+                    {
+                        "entry_id": "m_csa:2",
+                        "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_descriptor_rule",
+                    },
+                    {
+                        "entry_id": "m_csa:3",
+                        "deployment_action_delta": "abstain_or_route_novel_oos",
+                    },
+                ],
+            }
+            pairwise_path.write_text(json.dumps(pairwise_doc), encoding="utf-8")
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "channel",
+                        "counts": {
+                            "descriptor_plus_accepted_all_train_cal_oos_abstained": 4,
+                            "combined_all_train_cal_oos_abstained_after_all_counteraxes": 5,
+                            "new_counteraxis_application_rows_fired_after_descriptor_rules": 1,
+                            "retained_residual_rows_after_all_counteraxes": 2,
+                        },
+                        "decision": {
+                            "channel_margin_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "retained_rows_newly_abstained_by_margin_counteraxis": [
+                                "m_csa:4"
+                            ],
+                            "retained_rows_newly_abstained_by_fold_tm_bandpass_counteraxis": [],
+                            "retained_rows_newly_abstained_by_fold_cofactor_pressure_counteraxis": [],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pocket_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "pocket",
+                        "counts": {
+                            "combined_all_train_cal_oos_abstained_after_pocket_chemistry": 6,
+                            "new_pocket_chemistry_application_rows_fired_after_prior_counteraxes": 1,
+                            "retained_residual_rows_after_pocket_chemistry_counteraxis": 1,
+                        },
+                        "decision": {
+                            "pocket_chemistry_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "retained_rows_newly_abstained_by_pocket_chemistry_counteraxis": [
+                                "m_csa:5"
+                            ],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "geometry",
+                        "counts": {
+                            "combined_all_train_cal_oos_abstained_after_geometry_mismatch": 7,
+                            "new_geometry_mismatch_application_rows_fired_after_pocket_chemistry": 1,
+                            "retained_residual_rows_after_geometry_mismatch_counteraxis": 0,
+                        },
+                        "decision": {
+                            "geometry_mismatch_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "safe_abstention_routing_available_now": True,
+                            "fixed_threshold_scoring_closure_available_now": False,
+                            "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis": [
+                                "m_csa:6"
+                            ],
+                            "retained_rows_remaining_after_geometry_mismatch_counteraxis": [],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                        "operating_point_after_geometry_mismatch": {
+                            "baseline_threshold": 0.5,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained_after_geometry_mismatch": 2,
+                            "all_train_cal_oos_full_channel_rows": 10,
+                            "combined_all_train_cal_oos_abstained_after_geometry_mismatch": 7,
+                            "production_threshold_change": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            closure = build_fold_augmented_lever3_operating_point_closure_readout(
+                deployment_action_readout_path=deployment_path,
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                retained_channel_margin_counteraxis_readout_path=channel_path,
+                retained_pocket_chemistry_counteraxis_readout_path=pocket_path,
+                retained_geometry_mismatch_counteraxis_readout_path=geometry_path,
+                artifact_id="closure",
+            )
+            closure_path.write_text(
+                json.dumps(closure, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_closure_reproducibility_audit(
+                operating_point_closure_readout_path=closure_path,
+                artifact_id="closure_repro_audit",
+            )
+
+            pairwise_path.write_text(
+                json.dumps(pairwise_doc, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = build_fold_augmented_lever3_closure_reproducibility_audit(
+                operating_point_closure_readout_path=closure_path,
+                artifact_id="stale_closure_repro_audit",
+            )
+
+        self.assertEqual(audit["artifact_id"], "closure_repro_audit")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_closure_reproducibility_audit_passed",
+        )
+        self.assertTrue(
+            audit["decision"][
+                "deployment_valid_reproducible_operating_point_readout_available"
+            ]
+        )
+        self.assertTrue(audit["closure_artifact"]["normalized_rebuild_matches_stored"])
+        self.assertEqual(audit["counts"]["direct_source_records_checked"], 5)
+        self.assertEqual(audit["counts"]["direct_source_records_hash_current"], 5)
+        self.assertEqual(audit["counts"]["nested_source_records_checked"], 1)
+        self.assertEqual(audit["counts"]["nested_source_records_hash_current"], 1)
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(audit["audit_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            "fold_augmented_lever3_closure_reproducibility_audit_needs_more_work",
+        )
+        self.assertFalse(
+            stale_audit["closure_checks"]["closure_source_hashes_current"]
+        )
+        self.assertFalse(
+            stale_audit["closure_artifact"]["normalized_rebuild_matches_stored"]
+        )
+        self.assertIn(
+            "closure_source_hashes_current",
+            stale_audit["audit_violations"],
+        )
+        self.assertIn(
+            "closure_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["audit_violations"],
+        )
+
+    def test_lever3_operating_point_application_audit_requires_reproducible_closure(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            closure_path = root / "closure.json"
+            repro_path = root / "repro.json"
+            closure = {
+                "artifact_id": "closure",
+                "status": (
+                    "fold_augmented_lever3_operating_point_closure_readout_closed"
+                ),
+                "guardrail_violations": [],
+                "guardrail_checks": {"closure_consistency_checks_pass": True},
+                "source_status_checks": {"source_artifact_statuses_ready": True},
+                "counts": {
+                    "accepted_counteraxis_residual_rows_abstained": 1,
+                    "pocket_chemistry_residual_rows_abstained": 0,
+                    "geometry_mismatch_residual_rows_abstained": 0,
+                    "residual_rows_entering_closure": 2,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "residual_rows_without_final_route": 0,
+                    "calibration_in_scope_rows": 2,
+                    "calibration_in_scope_retained": 2,
+                    "train_cal_oos_rows": 10,
+                    "train_cal_oos_abstained_or_routed": 7,
+                },
+                "diagnostics": {
+                    "descriptor_prior_entry_ids": [],
+                    "descriptor_pairwise_entry_ids": ["m_csa:2"],
+                    "channel_margin_entry_ids": [],
+                    "fold_tm_bandpass_entry_ids": [],
+                    "fold_cofactor_pressure_entry_ids": [],
+                },
+                "decision": {
+                    "deployment_valid_safe_abstention_route_available_now": True,
+                    "true_in_scope_retention_floor_met": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": ["p07658"],
+                },
+                "guardrails": {
+                    "threshold_values_changed": False,
+                    "production_thresholds_changed": False,
+                    "candidate_rows_scored_now": False,
+                    "provider_calls_performed": False,
+                    "coordinates_generated_now": False,
+                    "coordinates_staged_now": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_registries_ontologies_changed": False,
+                    "imports_or_promotions_performed": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                },
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.5,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                    "stages": [
+                        {
+                            "stage_id": "accepted_cofactor_or_same_family_bandpass",
+                            "source_artifact": "deployment",
+                        },
+                        {
+                            "stage_id": "descriptor_generalization_and_pairwise",
+                            "source_artifact": "pairwise",
+                        },
+                    ],
+                },
+                "residual_route_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "accession": "A1",
+                        "label_type": "out_of_scope",
+                        "final_lever3_route_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "deployment_action_now": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                    {
+                        "entry_id": "m_csa:2",
+                        "accession": "A2",
+                        "label_type": "out_of_scope",
+                        "final_lever3_route_stage": (
+                            "pairwise_descriptor_counteraxis"
+                        ),
+                        "deployment_action_now": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                ],
+            }
+            repro = {
+                "artifact_id": "repro",
+                "status": (
+                    "fold_augmented_lever3_closure_reproducibility_audit_passed"
+                ),
+                "audit_violations": [],
+                "closure_artifact": {
+                    "normalized_rebuild_matches_stored": True,
+                },
+                "counts": {
+                    "direct_source_records_checked": 5,
+                    "direct_source_records_hash_current": 5,
+                    "nested_source_records_checked": 1,
+                    "nested_source_records_hash_current": 1,
+                },
+                "decision": {
+                    "deployment_valid_reproducible_operating_point_readout_available": True,
+                },
+            }
+            closure_path.write_text(
+                json.dumps(closure, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_operating_point_application_audit(
+                operating_point_closure_readout_path=closure_path,
+                closure_reproducibility_audit_path=repro_path,
+                artifact_id="application_audit",
+            )
+
+            repro["audit_violations"] = ["closure_source_hashes_current"]
+            repro["decision"][
+                "deployment_valid_reproducible_operating_point_readout_available"
+            ] = False
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = build_fold_augmented_lever3_operating_point_application_audit(
+                operating_point_closure_readout_path=closure_path,
+                closure_reproducibility_audit_path=repro_path,
+                artifact_id="blocked_application_audit",
+            )
+
+        self.assertEqual(audit["artifact_id"], "application_audit")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_operating_point_application_audit_passed",
+        )
+        self.assertTrue(
+            audit["decision"]["operating_point_application_contract_ready"]
+        )
+        self.assertEqual(audit["counts"]["application_rows"], 2)
+        self.assertEqual(
+            audit["counts"]["application_rows_abstain_or_route_novel_oos"], 2
+        )
+        self.assertEqual(audit["counts"]["application_rows_with_stage_source"], 2)
+        self.assertEqual(audit["counts"]["application_stage_count_mismatches"], 0)
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(audit["application_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            "fold_augmented_lever3_operating_point_application_audit_needs_more_work",
+        )
+        self.assertFalse(
+            blocked["application_checks"]["closure_reproducibility_audit_passed"]
+        )
+        self.assertIn(
+            "closure_reproducibility_audit_passed",
+            blocked["application_violations"],
+        )
+
+    def test_lever3_deployment_contract_readiness_audit_requires_current_sources(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            closure_source_path = root / "closure.json"
+            repro_source_path = root / "repro.json"
+            app_path = root / "application.json"
+            closure_source_path.write_text(
+                json.dumps({"artifact_id": "closure"}),
+                encoding="utf-8",
+            )
+            repro_source_path.write_text(
+                json.dumps({"artifact_id": "repro"}),
+                encoding="utf-8",
+            )
+            app = {
+                "artifact_id": "application",
+                "status": (
+                    "fold_augmented_lever3_operating_point_application_audit_passed"
+                ),
+                "application_violations": [],
+                "application_checks": {
+                    "closure_reproducibility_audit_passed": True,
+                    "closure_rebuild_hash_matches_stored": True,
+                    "closure_source_hashes_current": True,
+                    "closure_readout_closed": True,
+                    "deployment_valid_safe_route_available": True,
+                    "application_row_count_matches_closure": True,
+                    "all_application_rows_have_stage_source": True,
+                    "stage_counts_match_closure": True,
+                    "all_application_rows_abstain_or_route_novel_oos": True,
+                    "no_forced_mechanism_labels": True,
+                    "application_rows_not_used_for_rule_selection": True,
+                    "zero_retained_residual_rows": True,
+                    "zero_residual_rows_without_final_route": True,
+                    "true_in_scope_retention_above_90_percent": True,
+                    "train_cal_oos_operating_point_present": True,
+                    "fixed_threshold_scoring_fail_closed": True,
+                    "threshold_not_changed": True,
+                    "no_row_scoring_provider_or_coordinate_changes": True,
+                    "no_heldout_metadata_label_or_import_shortcuts": True,
+                },
+                "application_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "final_lever3_route_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "operating_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "source_artifact": "deployment",
+                        "deployment_action_now": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                    {
+                        "entry_id": "m_csa:2",
+                        "final_lever3_route_stage": (
+                            "pairwise_descriptor_counteraxis"
+                        ),
+                        "operating_stage": "descriptor_generalization_and_pairwise",
+                        "source_artifact": "pairwise",
+                        "deployment_action_now": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                ],
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                },
+                "counts": {
+                    "application_rows": 2,
+                    "application_rows_abstain_or_route_novel_oos": 2,
+                    "application_rows_with_stage_source": 2,
+                    "application_stage_count_mismatches": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "unsafe_non_abstain_residual_action_rows": 0,
+                    "application_rows_used_for_rule_selection": 0,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "residual_rows_without_final_route": 0,
+                    "calibration_in_scope_rows": 2,
+                    "calibration_in_scope_retained": 2,
+                    "train_cal_oos_rows": 5,
+                    "train_cal_oos_abstained_or_routed": 4,
+                },
+                "decision": {
+                    "operating_point_application_contract_ready": True,
+                    "true_in_scope_retention_floor_met": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "separate exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "guardrails": {
+                    "measured_readout": True,
+                    "blocker_packet": False,
+                    "new_rule_selected_now": False,
+                    "candidate_rows_scored_now": False,
+                    "coordinates_generated_now": False,
+                    "coordinates_staged_now": False,
+                    "provider_calls_performed": False,
+                    "production_thresholds_changed": False,
+                    "threshold_values_changed": False,
+                    "threshold_selected_or_tuned_now": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_registries_ontologies_changed": False,
+                    "imports_or_promotions_performed": False,
+                },
+                "source_artifacts": {
+                    "operating_point_closure_readout": {
+                        "path": str(closure_source_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            closure_source_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                    "closure_reproducibility_audit": {
+                        "path": str(repro_source_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            repro_source_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                },
+            }
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_contract_readiness_audit(
+                    operating_point_application_audit_path=app_path,
+                    artifact_id="contract_readiness",
+                )
+            )
+
+            closure_source_path.write_text(
+                json.dumps({"artifact_id": "closure", "stale": True}),
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_contract_readiness_audit(
+                    operating_point_application_audit_path=app_path,
+                    artifact_id="stale_contract_readiness",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "contract_readiness")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_contract_readiness_audit_passed",
+        )
+        self.assertTrue(audit["decision"]["deployment_contract_ready"])
+        self.assertEqual(audit["counts"]["application_rows"], 2)
+        self.assertEqual(
+            audit["counts"]["application_rows_abstain_or_route_novel_oos"], 2
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertTrue(
+            audit["readiness_checks"]["accepted_threshold_locked_to_0_44155"]
+        )
+        self.assertTrue(
+            audit["readiness_checks"]["exact_missing_scoring_evidence_named"]
+        )
+        self.assertEqual(audit["readiness_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_contract_readiness_audit_"
+                "needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["readiness_checks"]["application_source_hashes_current"]
+        )
+        self.assertIn(
+            "application_source_hashes_current",
+            stale_audit["readiness_violations"],
+        )
+
+    def test_lever3_deployment_contract_lineage_audit_flags_guardrails(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            app_path = root / "application.json"
+            contract_path = root / "contract.json"
+            common_guardrails = {
+                "measured_readout": True,
+                "blocker_packet": False,
+                "candidate_rows_scored_now": False,
+                "coordinates_generated_now": False,
+                "coordinates_staged_now": False,
+                "provider_calls_performed": False,
+                "production_thresholds_changed": False,
+                "threshold_values_changed": False,
+                "threshold_selected_or_tuned_now": False,
+                "heldout_rows_used_for_training_or_threshold_tuning": False,
+                "heldout_rows_used_for_rule_selection": False,
+                "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                "experimental_pdb_metadata_used_as_deployment_input": False,
+                "labels_registries_ontologies_changed": False,
+                "imports_or_promotions_performed": False,
+            }
+            app = {
+                "artifact_id": "application",
+                "status": "application_passed",
+                "guardrails": dict(common_guardrails),
+            }
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            contract = {
+                "artifact_id": "contract",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+                ),
+                "decision": {
+                    "deployment_contract_ready": True,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "P07658 coordinate/provenance route"
+                    ],
+                },
+                "counts": {
+                    "application_rows": 2,
+                    "application_rows_abstain_or_route_novel_oos": 2,
+                    "forced_mechanism_label_rows": 0,
+                    "unsafe_non_abstain_residual_action_rows": 0,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "operating_point": {
+                    "baseline_threshold": 0.44155,
+                    "accepted_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                },
+                "guardrails": dict(common_guardrails),
+                "source_artifacts": {
+                    "operating_point_application_audit": {
+                        "path": str(app_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            app_path.read_bytes()
+                        ).hexdigest(),
+                    }
+                },
+            }
+            contract_path.write_text(
+                json.dumps(contract, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_contract_lineage_audit(
+                deployment_contract_readiness_audit_path=contract_path,
+                artifact_id="lineage",
+            )
+
+            app["guardrails"]["blocker_packet"] = True
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            contract["source_artifacts"]["operating_point_application_audit"][
+                "sha256"
+            ] = hashlib.sha256(app_path.read_bytes()).hexdigest()
+            contract_path.write_text(
+                json.dumps(contract, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = build_fold_augmented_lever3_deployment_contract_lineage_audit(
+                deployment_contract_readiness_audit_path=contract_path,
+                artifact_id="blocked_lineage",
+            )
+
+        self.assertEqual(audit["artifact_id"], "lineage")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_contract_lineage_audit_passed",
+        )
+        self.assertTrue(audit["decision"]["deployment_contract_lineage_clean"])
+        self.assertEqual(audit["counts"]["lineage_artifacts_checked"], 2)
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 1)
+        self.assertEqual(audit["lineage_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            "fold_augmented_lever3_deployment_contract_lineage_audit_needs_more_work",
+        )
+        self.assertFalse(
+            blocked["lineage_checks"]["lineage_artifacts_no_blocker_packets"]
+        )
+        self.assertIn(
+            "lineage_artifacts_no_blocker_packets",
+            blocked["lineage_violations"],
+        )
+        self.assertEqual(
+            blocked["artifact_guardrail_violation_rows"][0]["artifact_id"],
+            "application",
+        )
+
+    def test_lever3_deployment_contract_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            app_path = root / "application.json"
+            app_source_path = root / "application-source.json"
+            readiness_path = root / "readiness.json"
+            lineage_path = root / "lineage.json"
+            app = {
+                "artifact_id": "application",
+                "status": (
+                    "fold_augmented_lever3_operating_point_application_audit_passed"
+                ),
+                "application_violations": [],
+                "application_checks": {"application_contract_clean": True},
+                "application_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "final_lever3_route_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "operating_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "source_artifact": "deployment",
+                        "deployment_action_now": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    }
+                ],
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                },
+                "counts": {
+                    "application_rows": 1,
+                    "application_rows_abstain_or_route_novel_oos": 1,
+                    "application_rows_with_stage_source": 1,
+                    "application_stage_count_mismatches": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "unsafe_non_abstain_residual_action_rows": 0,
+                    "application_rows_used_for_rule_selection": 0,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "residual_rows_without_final_route": 0,
+                    "calibration_in_scope_rows": 1,
+                    "calibration_in_scope_retained": 1,
+                    "train_cal_oos_rows": 2,
+                    "train_cal_oos_abstained_or_routed": 1,
+                },
+                "decision": {
+                    "operating_point_application_contract_ready": True,
+                    "true_in_scope_retention_floor_met": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "guardrails": {
+                    "measured_readout": True,
+                    "blocker_packet": False,
+                    "new_rule_selected_now": False,
+                    "candidate_rows_scored_now": False,
+                    "coordinates_generated_now": False,
+                    "coordinates_staged_now": False,
+                    "provider_calls_performed": False,
+                    "production_thresholds_changed": False,
+                    "threshold_values_changed": False,
+                    "threshold_selected_or_tuned_now": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_registries_ontologies_changed": False,
+                    "imports_or_promotions_performed": False,
+                },
+            }
+            app_source_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "application_source",
+                        "status": "application_source_ready",
+                        "guardrails": dict(app["guardrails"]),
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            app["source_artifacts"] = {
+                "application_source": {
+                    "path": str(app_source_path),
+                    "exists": True,
+                    "sha256": hashlib.sha256(
+                        app_source_path.read_bytes()
+                    ).hexdigest(),
+                }
+            }
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readiness = (
+                build_fold_augmented_lever3_deployment_contract_readiness_audit(
+                    operating_point_application_audit_path=app_path,
+                    artifact_id="readiness",
+                )
+            )
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            lineage = build_fold_augmented_lever3_deployment_contract_lineage_audit(
+                deployment_contract_readiness_audit_path=readiness_path,
+                artifact_id="lineage",
+            )
+            lineage_path.write_text(
+                json.dumps(lineage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+                    deployment_contract_readiness_audit_path=readiness_path,
+                    deployment_contract_lineage_audit_path=lineage_path,
+                    artifact_id="repro",
+                )
+            )
+
+            app["counts"]["train_cal_oos_abstained_or_routed"] = 2
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+                    deployment_contract_readiness_audit_path=readiness_path,
+                    deployment_contract_lineage_audit_path=lineage_path,
+                    artifact_id="stale_repro",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_contract_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(audit["decision"]["deployment_contract_reproducible"])
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["readiness_artifact"]["normalized_rebuild_matches_stored"]
+        )
+        self.assertTrue(
+            audit["lineage_artifact"]["normalized_rebuild_matches_stored"]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_contract_"
+                "reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "readiness_artifact_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "readiness_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "readiness_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_manifest_audit_strips_to_safe_actions(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            app_path = root / "application.json"
+            readiness_path = root / "readiness.json"
+            lineage_path = root / "lineage.json"
+            repro_path = root / "repro.json"
+            app_path.write_text(
+                json.dumps({"artifact_id": "application"}),
+                encoding="utf-8",
+            )
+            lineage_path.write_text(
+                json.dumps({"artifact_id": "lineage"}),
+                encoding="utf-8",
+            )
+            readiness = {
+                "artifact_id": "readiness",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+                ),
+                "readiness_violations": [],
+                "counts": {
+                    "application_rows": 2,
+                    "calibration_in_scope_retained": 2,
+                    "calibration_in_scope_rows": 2,
+                    "train_cal_oos_abstained_or_routed": 4,
+                    "train_cal_oos_rows": 5,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_contract_ready": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "guardrails": {
+                    "threshold_values_changed": False,
+                    "production_thresholds_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                },
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.44155,
+                    "accepted_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                },
+                "route_stage_rows": [
+                    {"route_stage": "fold_tm_bandpass_counteraxis", "rows": 1},
+                    {"route_stage": "geometry_mismatch_counteraxis", "rows": 1},
+                ],
+                "route_stage_source_rows": [
+                    {
+                        "entry_id": "m_csa:2",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "source_artifact": "geometry",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                        "accession": "P00002",
+                        "label_type": "out_of_scope",
+                    },
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_stage": "fold_tm_bandpass_counteraxis",
+                        "source_artifact": "bandpass",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                        "accession": "P00001",
+                        "label_type": "out_of_scope",
+                    },
+                ],
+                "source_artifacts": {
+                    "operating_point_application_audit": {
+                        "path": str(app_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            app_path.read_bytes()
+                        ).hexdigest(),
+                    }
+                },
+            }
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            repro = {
+                "artifact_id": "repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_"
+                    "reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "decision": {
+                    "deployment_contract_reproducible": True,
+                    "deployment_contract_ready": True,
+                },
+                "source_artifacts": {
+                    "deployment_contract_readiness_audit": {
+                        "path": str(readiness_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            readiness_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                    "deployment_contract_lineage_audit": {
+                        "path": str(lineage_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            lineage_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                },
+            }
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_operator_manifest_audit(
+                deployment_contract_reproducibility_audit_path=repro_path,
+                deployment_contract_readiness_audit_path=readiness_path,
+                artifact_id="operator",
+            )
+
+            readiness["route_stage_source_rows"][0]["action"] = "force_label"
+            readiness["route_stage_source_rows"][0][
+                "force_mechanism_label_now"
+            ] = True
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            repro["source_artifacts"]["deployment_contract_readiness_audit"][
+                "sha256"
+            ] = hashlib.sha256(readiness_path.read_bytes()).hexdigest()
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = (
+                build_fold_augmented_lever3_deployment_operator_manifest_audit(
+                    deployment_contract_reproducibility_audit_path=repro_path,
+                    deployment_contract_readiness_audit_path=readiness_path,
+                    artifact_id="operator_blocked",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "operator")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_operator_manifest_audit_passed",
+        )
+        self.assertTrue(audit["decision"]["deployment_operator_manifest_ready"])
+        self.assertEqual(audit["counts"]["operator_manifest_rows"], 2)
+        self.assertEqual(
+            audit["counts"]["operator_manifest_rows_abstain_or_route_novel_oos"],
+            2,
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 5)
+        self.assertEqual(audit["counts"]["forbidden_manifest_field_rows"], 0)
+        self.assertEqual(audit["operator_manifest_violations"], [])
+        self.assertEqual(
+            sorted(audit["operator_manifest"]["action_rows"][0]),
+            audit["operator_manifest"]["allowed_row_fields"],
+        )
+        self.assertNotIn(
+            "accession", audit["operator_manifest"]["action_rows"][0]
+        )
+        self.assertTrue(
+            audit["operator_manifest_checks"][
+                "manifest_strips_forbidden_predictive_fields"
+            ]
+        )
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_"
+                "manifest_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["operator_manifest_checks"][
+                "all_manifest_rows_abstain_or_route_novel_oos"
+            ]
+        )
+        self.assertFalse(
+            blocked["operator_manifest_checks"][
+                "no_manifest_rows_force_mechanism_labels"
+            ]
+        )
+        self.assertIn(
+            "all_manifest_rows_abstain_or_route_novel_oos",
+            blocked["operator_manifest_violations"],
+        )
+
+    def test_lever3_deployment_operator_manifest_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            app_path = root / "application.json"
+            readiness_path = root / "readiness.json"
+            lineage_path = root / "lineage.json"
+            repro_path = root / "repro.json"
+            manifest_path = root / "manifest.json"
+            app_path.write_text(
+                json.dumps({"artifact_id": "application"}),
+                encoding="utf-8",
+            )
+            lineage_path.write_text(
+                json.dumps({"artifact_id": "lineage"}),
+                encoding="utf-8",
+            )
+            readiness = {
+                "artifact_id": "readiness",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+                ),
+                "readiness_violations": [],
+                "counts": {
+                    "application_rows": 1,
+                    "calibration_in_scope_retained": 1,
+                    "calibration_in_scope_rows": 1,
+                    "train_cal_oos_abstained_or_routed": 1,
+                    "train_cal_oos_rows": 2,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_contract_ready": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "guardrails": {
+                    "threshold_values_changed": False,
+                    "production_thresholds_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                },
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.44155,
+                    "accepted_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                },
+                "route_stage_rows": [
+                    {"route_stage": "geometry_mismatch_counteraxis", "rows": 1}
+                ],
+                "route_stage_source_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "source_artifact": "geometry",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    }
+                ],
+                "source_artifacts": {
+                    "operating_point_application_audit": {
+                        "path": str(app_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            app_path.read_bytes()
+                        ).hexdigest(),
+                    }
+                },
+            }
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            repro = {
+                "artifact_id": "repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_"
+                    "reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "decision": {
+                    "deployment_contract_reproducible": True,
+                    "deployment_contract_ready": True,
+                },
+                "source_artifacts": {
+                    "deployment_contract_readiness_audit": {
+                        "path": str(readiness_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            readiness_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                    "deployment_contract_lineage_audit": {
+                        "path": str(lineage_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            lineage_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                },
+            }
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            manifest = (
+                build_fold_augmented_lever3_deployment_operator_manifest_audit(
+                    deployment_contract_reproducibility_audit_path=repro_path,
+                    deployment_contract_readiness_audit_path=readiness_path,
+                    artifact_id="manifest",
+                )
+            )
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+                    deployment_operator_manifest_audit_path=manifest_path,
+                    artifact_id="manifest_repro",
+                )
+            )
+
+            readiness["counts"]["train_cal_oos_abstained_or_routed"] = 2
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+                    deployment_operator_manifest_audit_path=manifest_path,
+                    artifact_id="manifest_repro_stale",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "manifest_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_manifest_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_operator_manifest_reproducible"]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["operator_manifest_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_manifest_"
+                "reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_manifest_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_manifest_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "operator_manifest_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_stage_provenance_audit_requires_lineage_coverage(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            lineage_path = root / "lineage.json"
+            manifest = {
+                "artifact_id": "manifest",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+                ),
+                "operator_manifest_violations": [],
+                "decision": {
+                    "deployment_operator_manifest_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "counts": {
+                    "operator_manifest_rows": 2,
+                    "operator_manifest_rows_abstain_or_route_novel_oos": 2,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "forbidden_manifest_field_rows": 0,
+                    "rule_selection_rows": 0,
+                    "unexpected_manifest_field_rows": 0,
+                    "calibration_in_scope_retained": 2,
+                    "calibration_in_scope_rows": 2,
+                    "train_cal_oos_abstained_or_routed": 4,
+                    "train_cal_oos_rows": 5,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "operator_manifest": {
+                    "action_rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "route_stage": "stage_a",
+                            "stage_source_artifact_id": "artifact_a",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "route_stage": "stage_b",
+                            "stage_source_artifact_id": "artifact_b",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        },
+                    ]
+                },
+            }
+            lineage = {
+                "artifact_id": "lineage",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_lineage_audit_passed"
+                ),
+                "lineage_violations": [],
+                "decision": {
+                    "deployment_contract_lineage_clean": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                },
+                "counts": {
+                    "application_rows": 2,
+                    "application_rows_abstain_or_route_novel_oos": 2,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "artifact_guardrail_rows": [
+                    {
+                        "artifact_id": "artifact_a",
+                        "depth": 3,
+                        "path": "artifact_a.json",
+                        "status": "passed",
+                        "guardrail_violations": [],
+                    },
+                    {
+                        "artifact_id": "artifact_b",
+                        "depth": 3,
+                        "path": "artifact_b.json",
+                        "status": "passed",
+                        "guardrail_violations": [],
+                    },
+                ],
+                "source_hash_audit_rows": [
+                    {
+                        "parent_artifact_id": "artifact_a",
+                        "source_hash_current": True,
+                    },
+                    {
+                        "parent_artifact_id": "artifact_b",
+                        "source_hash_current": True,
+                    },
+                ],
+            }
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            lineage_path.write_text(
+                json.dumps(lineage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_stage_provenance_audit(
+                deployment_operator_manifest_audit_path=manifest_path,
+                deployment_contract_lineage_audit_path=lineage_path,
+                artifact_id="stage_provenance",
+            )
+
+            lineage["artifact_guardrail_rows"] = [
+                lineage["artifact_guardrail_rows"][0]
+            ]
+            lineage_path.write_text(
+                json.dumps(lineage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = (
+                build_fold_augmented_lever3_deployment_stage_provenance_audit(
+                    deployment_operator_manifest_audit_path=manifest_path,
+                    deployment_contract_lineage_audit_path=lineage_path,
+                    artifact_id="stage_provenance_blocked",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "stage_provenance")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_stage_provenance_audit_passed",
+        )
+        self.assertTrue(audit["decision"]["deployment_stage_provenance_clean"])
+        self.assertEqual(audit["counts"]["unique_stage_source_artifacts"], 2)
+        self.assertEqual(
+            audit["counts"]["stage_source_artifacts_covered_by_lineage"], 2
+        )
+        self.assertEqual(
+            audit["counts"]["stage_source_artifacts_guardrail_clean"], 2
+        )
+        self.assertEqual(audit["stage_provenance_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_stage_"
+                "provenance_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["stage_provenance_checks"][
+                "all_manifest_stage_sources_present"
+            ]
+        )
+        self.assertEqual(blocked["counts"]["missing_stage_source_artifacts"], 1)
+        self.assertIn(
+            "all_manifest_stage_sources_present",
+            blocked["stage_provenance_violations"],
+        )
+
+    def test_lever3_deployment_stage_provenance_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            lineage_path = root / "lineage.json"
+            stage_path = root / "stage.json"
+            manifest = {
+                "artifact_id": "manifest",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+                ),
+                "operator_manifest_violations": [],
+                "decision": {
+                    "deployment_operator_manifest_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "counts": {
+                    "operator_manifest_rows": 1,
+                    "operator_manifest_rows_abstain_or_route_novel_oos": 1,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "forbidden_manifest_field_rows": 0,
+                    "rule_selection_rows": 0,
+                    "unexpected_manifest_field_rows": 0,
+                    "calibration_in_scope_retained": 1,
+                    "calibration_in_scope_rows": 1,
+                    "train_cal_oos_abstained_or_routed": 1,
+                    "train_cal_oos_rows": 2,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "operator_manifest": {
+                    "action_rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "route_stage": "stage_a",
+                            "stage_source_artifact_id": "artifact_a",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        }
+                    ]
+                },
+            }
+            lineage = {
+                "artifact_id": "lineage",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_lineage_audit_passed"
+                ),
+                "lineage_violations": [],
+                "decision": {
+                    "deployment_contract_lineage_clean": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                },
+                "counts": {
+                    "application_rows": 1,
+                    "application_rows_abstain_or_route_novel_oos": 1,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "artifact_guardrail_rows": [
+                    {
+                        "artifact_id": "artifact_a",
+                        "depth": 3,
+                        "path": "artifact_a.json",
+                        "status": "passed",
+                        "guardrail_violations": [],
+                    }
+                ],
+                "source_hash_audit_rows": [
+                    {
+                        "parent_artifact_id": "artifact_a",
+                        "source_hash_current": True,
+                    }
+                ],
+            }
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            lineage_path.write_text(
+                json.dumps(lineage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stage = build_fold_augmented_lever3_deployment_stage_provenance_audit(
+                deployment_operator_manifest_audit_path=manifest_path,
+                deployment_contract_lineage_audit_path=lineage_path,
+                artifact_id="stage",
+            )
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="stage_repro",
+                )
+            )
+
+            manifest["counts"]["train_cal_oos_abstained_or_routed"] = 2
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="stage_repro_stale",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "stage_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_stage_provenance_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_stage_provenance_reproducible"]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["stage_provenance_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_stage_provenance_"
+                "reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "stage_provenance_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "stage_provenance_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "stage_provenance_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_route_class_readout_classifies_manifest(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            stage_path = root / "stage_repro.json"
+            manifest_path = root / "manifest.json"
+            stage_repro = {
+                "artifact_id": "stage_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_stage_provenance_"
+                    "reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "counts": {
+                    "manifest_action_rows": 2,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_stage_provenance_reproducible": True,
+                    "deployment_stage_provenance_clean": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+            }
+            manifest = {
+                "artifact_id": "manifest",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+                ),
+                "operator_manifest_violations": [],
+                "counts": {
+                    "operator_manifest_rows": 2,
+                    "forbidden_manifest_field_rows": 0,
+                    "unexpected_manifest_field_rows": 0,
+                },
+                "decision": {
+                    "deployment_operator_manifest_ready": True,
+                },
+                "operator_manifest": {
+                    "action_rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "route_stage": "accepted_cofactor_or_same_family_bandpass",
+                            "stage_source_artifact_id": "artifact_a",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "route_stage": "geometry_mismatch_counteraxis",
+                            "stage_source_artifact_id": "artifact_b",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        },
+                    ]
+                },
+            }
+            stage_path.write_text(
+                json.dumps(stage_repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readout = build_fold_augmented_lever3_deployment_operator_route_class_readout(
+                deployment_stage_provenance_reproducibility_audit_path=stage_path,
+                deployment_operator_manifest_audit_path=manifest_path,
+                artifact_id="route_class",
+            )
+
+            manifest["operator_manifest"]["action_rows"][0][
+                "route_stage"
+            ] = "new_unreviewed_stage"
+            manifest["operator_manifest"]["action_rows"][0]["action"] = "force_label"
+            manifest["operator_manifest"]["action_rows"][0][
+                "force_mechanism_label_now"
+            ] = True
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = (
+                build_fold_augmented_lever3_deployment_operator_route_class_readout(
+                    deployment_stage_provenance_reproducibility_audit_path=stage_path,
+                    deployment_operator_manifest_audit_path=manifest_path,
+                    artifact_id="route_class_blocked",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "route_class")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_deployment_operator_route_class_readout_passed",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_operator_route_class_readout_ready"]
+        )
+        self.assertEqual(readout["counts"]["operator_action_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["operator_action_rows_abstain_or_route_novel_oos"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["route_class_counts"],
+            {
+                "cofactor_or_same_family_confound": 1,
+                "pocket_geometry_confound": 1,
+            },
+        )
+        self.assertEqual(readout["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(readout["counts"]["unclassified_route_stage_rows"], 0)
+        self.assertEqual(readout["route_class_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "readout_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["route_class_checks"][
+                "all_manifest_rows_abstain_or_route_novel_oos"
+            ]
+        )
+        self.assertFalse(blocked["route_class_checks"]["all_manifest_rows_classified"])
+        self.assertFalse(blocked["route_class_checks"]["no_forced_mechanism_labels"])
+        self.assertIn(
+            "all_manifest_rows_classified",
+            blocked["route_class_violations"],
+        )
+
+    def test_lever3_deployment_operator_route_class_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            stage_path = root / "stage_repro.json"
+            manifest_path = root / "manifest.json"
+            route_class_path = root / "route_class.json"
+            stage_repro = {
+                "artifact_id": "stage_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_stage_provenance_"
+                    "reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "counts": {
+                    "manifest_action_rows": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_stage_provenance_reproducible": True,
+                    "deployment_stage_provenance_clean": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+            }
+            manifest = {
+                "artifact_id": "manifest",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+                ),
+                "operator_manifest_violations": [],
+                "counts": {
+                    "operator_manifest_rows": 1,
+                    "forbidden_manifest_field_rows": 0,
+                    "unexpected_manifest_field_rows": 0,
+                },
+                "decision": {
+                    "deployment_operator_manifest_ready": True,
+                },
+                "operator_manifest": {
+                    "action_rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "route_stage": "pocket_chemistry_counteraxis",
+                            "stage_source_artifact_id": "artifact_a",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        }
+                    ]
+                },
+            }
+            stage_path.write_text(
+                json.dumps(stage_repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readout = build_fold_augmented_lever3_deployment_operator_route_class_readout(
+                deployment_stage_provenance_reproducibility_audit_path=stage_path,
+                deployment_operator_manifest_audit_path=manifest_path,
+                artifact_id="route_class",
+            )
+            route_class_path.write_text(
+                json.dumps(readout, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    artifact_id="route_class_repro",
+                )
+            )
+
+            manifest["operator_manifest"]["action_rows"][0][
+                "route_stage"
+            ] = "fold_tm_bandpass_counteraxis"
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    artifact_id="route_class_repro_stale",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "route_class_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_operator_route_class_reproducible"]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["operator_route_class_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_route_class_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_route_class_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "operator_route_class_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_route_class_provenance_requires_clean_stage_sources(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            route_class_path = root / "route_class.json"
+            stage_path = root / "stage.json"
+            route_class = {
+                "artifact_id": "route_class",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "readout_passed"
+                ),
+                "route_class_violations": [],
+                "counts": {
+                    "operator_action_rows": 2,
+                    "operator_action_rows_abstain_or_route_novel_oos": 2,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "rule_selection_rows": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_readout_ready": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "operator_route_class_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_class": "cofactor_or_same_family_confound",
+                        "route_stage": "accepted_cofactor_or_same_family_bandpass",
+                        "stage_source_artifact_id": "artifact_a",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                    {
+                        "entry_id": "m_csa:2",
+                        "route_class": "pocket_geometry_confound",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "stage_source_artifact_id": "artifact_b",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                ],
+            }
+            stage = {
+                "artifact_id": "stage",
+                "status": (
+                    "fold_augmented_lever3_deployment_stage_provenance_audit_passed"
+                ),
+                "stage_provenance_violations": [],
+                "counts": {
+                    "unique_stage_source_artifacts": 2,
+                    "stage_source_artifacts_guardrail_clean": 2,
+                    "lineage_source_records_checked": 4,
+                    "lineage_source_records_hash_current": 4,
+                },
+                "decision": {
+                    "deployment_stage_provenance_clean": True,
+                },
+                "stage_source_rows": [
+                    {
+                        "stage_source_artifact_id": "artifact_a",
+                        "lineage_covered": True,
+                        "lineage_depth": 1,
+                        "lineage_path": "artifact_a.json",
+                        "lineage_status": "passed",
+                        "guardrail_violations": [],
+                        "source_records_checked": 2,
+                        "source_records_hash_current": 2,
+                    },
+                    {
+                        "stage_source_artifact_id": "artifact_b",
+                        "lineage_covered": True,
+                        "lineage_depth": 1,
+                        "lineage_path": "artifact_b.json",
+                        "lineage_status": "passed",
+                        "guardrail_violations": [],
+                        "source_records_checked": 2,
+                        "source_records_hash_current": 2,
+                    },
+                ],
+            }
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readout = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="route_class_provenance",
+                )
+            )
+
+            stage["stage_source_rows"][1]["lineage_covered"] = False
+            stage["stage_source_rows"][1]["guardrail_violations"] = [
+                "candidate_rows_scored_now"
+            ]
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="route_class_provenance_blocked",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "route_class_provenance")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_readout_passed"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"][
+                "deployment_operator_route_class_provenance_ready"
+            ]
+        )
+        self.assertEqual(readout["counts"]["route_class_stage_source_links"], 2)
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_links_lineage_covered"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_links_guardrail_clean"],
+            2,
+        )
+        self.assertEqual(readout["provenance_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_readout_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["provenance_checks"][
+                "all_route_class_stage_sources_lineage_covered"
+            ]
+        )
+        self.assertFalse(
+            blocked["provenance_checks"][
+                "all_route_class_stage_sources_guardrail_clean"
+            ]
+        )
+        self.assertIn(
+            "all_route_class_stage_sources_lineage_covered",
+            blocked["provenance_violations"],
+        )
+
+    def test_lever3_deployment_operator_route_class_provenance_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            route_class_path = root / "route_class.json"
+            stage_path = root / "stage.json"
+            provenance_path = root / "provenance.json"
+            route_class = {
+                "artifact_id": "route_class",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "readout_passed"
+                ),
+                "route_class_violations": [],
+                "counts": {
+                    "operator_action_rows": 1,
+                    "operator_action_rows_abstain_or_route_novel_oos": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "rule_selection_rows": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_readout_ready": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "operator_route_class_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_class": "pocket_chemistry_confound",
+                        "route_stage": "pocket_chemistry_counteraxis",
+                        "stage_source_artifact_id": "artifact_a",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    }
+                ],
+            }
+            stage = {
+                "artifact_id": "stage",
+                "status": (
+                    "fold_augmented_lever3_deployment_stage_provenance_audit_passed"
+                ),
+                "stage_provenance_violations": [],
+                "counts": {
+                    "unique_stage_source_artifacts": 1,
+                    "stage_source_artifacts_guardrail_clean": 1,
+                    "lineage_source_records_checked": 2,
+                    "lineage_source_records_hash_current": 2,
+                },
+                "decision": {
+                    "deployment_stage_provenance_clean": True,
+                },
+                "stage_source_rows": [
+                    {
+                        "stage_source_artifact_id": "artifact_a",
+                        "lineage_covered": True,
+                        "lineage_depth": 1,
+                        "lineage_path": "artifact_a.json",
+                        "lineage_status": "passed",
+                        "guardrail_violations": [],
+                        "source_records_checked": 2,
+                        "source_records_hash_current": 2,
+                    }
+                ],
+            }
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            provenance = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="provenance",
+                )
+            )
+            provenance_path.write_text(
+                json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+                    deployment_operator_route_class_provenance_readout_path=(
+                        provenance_path
+                    ),
+                    artifact_id="provenance_repro",
+                )
+            )
+
+            stage["stage_source_rows"][0]["source_records_hash_current"] = 1
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+                    deployment_operator_route_class_provenance_readout_path=(
+                        provenance_path
+                    ),
+                    artifact_id="provenance_repro_stale",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "provenance_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"][
+                "deployment_operator_route_class_provenance_reproducible"
+            ]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["operator_route_class_provenance_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_route_class_provenance_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_route_class_provenance_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "operator_route_class_provenance_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_matrix_requires_safe_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            route_class_path = root / "route_class.json"
+            provenance_path = root / "provenance.json"
+            reproducibility_path = root / "provenance_repro.json"
+            route_class = {
+                "artifact_id": "route_class",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "readout_passed"
+                ),
+                "route_class_violations": [],
+                "counts": {
+                    "operator_action_rows": 2,
+                    "operator_action_rows_abstain_or_route_novel_oos": 2,
+                    "route_classes_with_rows": 2,
+                    "route_class_counts": {
+                        "cofactor_or_same_family_confound": 1,
+                        "pocket_geometry_confound": 1,
+                    },
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_readout_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "operator_route_class_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_class": "cofactor_or_same_family_confound",
+                        "route_stage": "accepted_cofactor_or_same_family_bandpass",
+                        "stage_source_artifact_id": "artifact_a",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                    {
+                        "entry_id": "m_csa:2",
+                        "route_class": "pocket_geometry_confound",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "stage_source_artifact_id": "artifact_b",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                ],
+                "guardrails": {
+                    "candidate_rows_scored_now": False,
+                    "threshold_values_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                },
+            }
+            provenance = {
+                "artifact_id": "provenance",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "provenance_readout_passed"
+                ),
+                "provenance_violations": [],
+                "counts": {
+                    "route_classes_with_stage_sources": 2,
+                    "route_class_stage_source_links": 2,
+                    "route_class_stage_source_links_lineage_covered": 2,
+                    "route_class_stage_source_links_guardrail_clean": 2,
+                    "route_class_stage_source_links_hash_current": 2,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_provenance_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "route_class_stage_source_rows": [
+                    {
+                        "route_class": "cofactor_or_same_family_confound",
+                        "stage_source_artifact_id": "artifact_a",
+                        "entry_ids": ["m_csa:1"],
+                        "route_stages": [
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ],
+                        "operator_rows": 1,
+                        "lineage_covered": True,
+                        "guardrail_clean": True,
+                        "stage_source_hashes_current": True,
+                    },
+                    {
+                        "route_class": "pocket_geometry_confound",
+                        "stage_source_artifact_id": "artifact_b",
+                        "entry_ids": ["m_csa:2"],
+                        "route_stages": ["geometry_mismatch_counteraxis"],
+                        "operator_rows": 1,
+                        "lineage_covered": True,
+                        "guardrail_clean": True,
+                        "stage_source_hashes_current": True,
+                    },
+                ],
+                "guardrails": {
+                    "candidate_rows_scored_now": False,
+                    "threshold_values_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                },
+            }
+            reproducibility = {
+                "artifact_id": "provenance_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "provenance_reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "counts": {
+                    "route_class_stage_source_links": 2,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_provenance_reproducible": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "guardrails": {
+                    "candidate_rows_scored_now": False,
+                    "threshold_values_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                },
+            }
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            provenance_path.write_text(
+                json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            reproducibility_path.write_text(
+                json.dumps(reproducibility, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readout = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+                deployment_operator_route_class_readout_path=route_class_path,
+                deployment_operator_route_class_provenance_readout_path=(
+                    provenance_path
+                ),
+                deployment_operator_route_class_provenance_reproducibility_audit_path=(
+                    reproducibility_path
+                ),
+                artifact_id="transfer_safety_matrix",
+            )
+
+            route_class["operator_route_class_rows"][0]["action"] = "force_label"
+            route_class["operator_route_class_rows"][0][
+                "force_mechanism_label_now"
+            ] = True
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+                deployment_operator_route_class_readout_path=route_class_path,
+                deployment_operator_route_class_provenance_readout_path=(
+                    provenance_path
+                ),
+                deployment_operator_route_class_provenance_reproducibility_audit_path=(
+                    reproducibility_path
+                ),
+                artifact_id="transfer_safety_matrix_blocked",
+            )
+
+        self.assertEqual(readout["artifact_id"], "transfer_safety_matrix")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "matrix_readout_passed"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"][
+                "deployment_operator_transfer_safety_matrix_ready"
+            ]
+        )
+        self.assertEqual(readout["counts"]["row_safety_records"], 2)
+        self.assertEqual(
+            readout["counts"]["row_safety_records_safe_to_abstain_or_route"],
+            2,
+        )
+        self.assertEqual(readout["counts"]["mechanism_transfer_allowed_rows"], 0)
+        self.assertEqual(readout["counts"]["source_records_hash_current"], 3)
+        self.assertEqual(readout["transfer_safety_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "matrix_readout_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["transfer_safety_checks"][
+                "all_operator_rows_abstain_or_route_novel_oos"
+            ]
+        )
+        self.assertFalse(
+            blocked["transfer_safety_checks"][
+                "no_operator_rows_allow_scoring_or_forced_labels"
+            ]
+        )
+        self.assertIn(
+            "all_operator_rows_abstain_or_route_novel_oos",
+            blocked["transfer_safety_violations"],
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            route_class_path = root / "route_class.json"
+            provenance_path = root / "provenance.json"
+            provenance_repro_path = root / "provenance_repro.json"
+            matrix_path = root / "matrix.json"
+            route_class = {
+                "artifact_id": "route_class",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "readout_passed"
+                ),
+                "route_class_violations": [],
+                "counts": {
+                    "operator_action_rows": 1,
+                    "operator_action_rows_abstain_or_route_novel_oos": 1,
+                    "route_classes_with_rows": 1,
+                    "route_class_counts": {"pocket_geometry_confound": 1},
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_readout_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "operator_route_class_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_class": "pocket_geometry_confound",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "stage_source_artifact_id": "artifact_a",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    }
+                ],
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            provenance = {
+                "artifact_id": "provenance",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "provenance_readout_passed"
+                ),
+                "provenance_violations": [],
+                "counts": {
+                    "route_classes_with_stage_sources": 1,
+                    "route_class_stage_source_links": 1,
+                    "route_class_stage_source_links_lineage_covered": 1,
+                    "route_class_stage_source_links_guardrail_clean": 1,
+                    "route_class_stage_source_links_hash_current": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_provenance_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "route_class_stage_source_rows": [
+                    {
+                        "route_class": "pocket_geometry_confound",
+                        "stage_source_artifact_id": "artifact_a",
+                        "entry_ids": ["m_csa:1"],
+                        "route_stages": ["geometry_mismatch_counteraxis"],
+                        "operator_rows": 1,
+                        "lineage_covered": True,
+                        "guardrail_clean": True,
+                        "stage_source_hashes_current": True,
+                    }
+                ],
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            provenance_repro = {
+                "artifact_id": "provenance_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "provenance_reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "counts": {
+                    "route_class_stage_source_links": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_provenance_reproducible": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            provenance_path.write_text(
+                json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            provenance_repro_path.write_text(
+                json.dumps(provenance_repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            matrix = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+                deployment_operator_route_class_readout_path=route_class_path,
+                deployment_operator_route_class_provenance_readout_path=(
+                    provenance_path
+                ),
+                deployment_operator_route_class_provenance_reproducibility_audit_path=(
+                    provenance_repro_path
+                ),
+                artifact_id="transfer_safety_matrix",
+            )
+            matrix_path.write_text(
+                json.dumps(matrix, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=(
+                    matrix_path
+                ),
+                artifact_id="transfer_safety_matrix_repro",
+            )
+
+            provenance["route_class_stage_source_rows"][0][
+                "stage_source_hashes_current"
+            ] = False
+            provenance_path.write_text(
+                json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=(
+                    matrix_path
+                ),
+                artifact_id="transfer_safety_matrix_repro_stale",
+            )
+
+        self.assertEqual(audit["artifact_id"], "transfer_safety_matrix_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "matrix_reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"][
+                "deployment_operator_transfer_safety_matrix_reproducible"
+            ]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 3)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["operator_transfer_safety_matrix_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "matrix_reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "transfer_safety_matrix_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "transfer_safety_matrix_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "transfer_safety_matrix_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_application_audit_checks_matrix_source(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            matrix_path = root / "matrix.json"
+            repro_path = root / "matrix_repro.json"
+            application_path = root / "application.json"
+            matrix = {
+                "artifact_id": "matrix",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                    "matrix_readout_passed"
+                ),
+                "transfer_safety_violations": [],
+                "transfer_safety_matrix": {"sha256": "abc123"},
+                "counts": {
+                    "operator_action_rows": 1,
+                    "row_safety_records": 1,
+                    "row_safety_records_safe_to_abstain_or_route": 1,
+                    "transfer_safety_matrix_rows": 1,
+                    "mechanism_transfer_allowed_rows": 0,
+                    "score_or_force_mechanism_label_allowed_rows": 0,
+                    "threshold_change_allowed_rows": 0,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "rule_selection_rows": 0,
+                    "route_class_counts": {"pocket_geometry_confound": 1},
+                    "route_class_stage_source_links": 1,
+                    "route_class_stage_source_links_hash_current": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_transfer_safety_matrix_ready": True,
+                    "mechanism_transfer_disallowed_for_all_rows": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "score_or_force_mechanism_label_for_retained_rows_now": False,
+                    "apply_or_change_threshold_now": False,
+                    "operator_action": "apply_transfer_safety_matrix_to_abstain_or_route_novel_oos",
+                },
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            matrix_path.write_text(
+                json.dumps(matrix, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            matrix_sha = hashlib.sha256(matrix_path.read_bytes()).hexdigest()
+            repro = {
+                "artifact_id": "matrix_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                    "matrix_reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "operator_transfer_safety_matrix_artifact": {
+                    "normalized_rebuild_matches_stored": True
+                },
+                "source_artifacts": {
+                    "deployment_operator_transfer_safety_matrix_readout": {
+                        "exists": True,
+                        "path": str(matrix_path),
+                        "sha256": matrix_sha,
+                    }
+                },
+                "counts": {
+                    "rebuild_difference_count": 0,
+                    "operator_action_rows": 1,
+                    "row_safety_records": 1,
+                    "row_safety_records_safe_to_abstain_or_route": 1,
+                    "mechanism_transfer_allowed_rows": 0,
+                    "route_class_counts": {"pocket_geometry_confound": 1},
+                    "route_class_stage_source_links": 1,
+                    "route_class_stage_source_links_hash_current": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_transfer_safety_matrix_reproducible": True,
+                    "mechanism_transfer_disallowed_for_all_rows": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=matrix_path,
+                deployment_operator_transfer_safety_matrix_reproducibility_audit_path=(
+                    repro_path
+                ),
+                artifact_id="transfer_safety_application",
+            )
+            application_path.write_text(
+                json.dumps(audit, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            reproducibility_audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+                deployment_operator_transfer_safety_application_audit_path=(
+                    application_path
+                ),
+                artifact_id="transfer_safety_application_repro",
+            )
+
+            repro["source_artifacts"][
+                "deployment_operator_transfer_safety_matrix_readout"
+            ]["path"] = str(root / "other_matrix.json")
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=matrix_path,
+                deployment_operator_transfer_safety_matrix_reproducibility_audit_path=(
+                    repro_path
+                ),
+                artifact_id="transfer_safety_application_blocked",
+            )
+
+        self.assertEqual(audit["artifact_id"], "transfer_safety_application")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "application_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"][
+                "deployment_operator_transfer_safety_application_ready"
+            ]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["application_operator_rows"], 1)
+        self.assertEqual(audit["application_violations"], [])
+        self.assertEqual(
+            reproducibility_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "application_reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            reproducibility_audit["decision"][
+                "deployment_operator_transfer_safety_application_reproducible"
+            ]
+        )
+        self.assertEqual(
+            reproducibility_audit["counts"]["rebuild_difference_count"],
+            0,
+        )
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "application_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["application_checks"][
+                "matrix_path_matches_reproducibility_source"
+            ]
+        )
+        self.assertIn(
+            "matrix_path_matches_reproducibility_source",
+            blocked["application_violations"],
+        )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,
@@ -6303,6 +14165,181 @@ ATOM 5 C CA . GLU A 1 250 ? 7.2 0.0 0.0 1.00 80.0 ? 250 GLU A CA 1
         )
         self.assertFalse(ready["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(ready["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_p07658_prediction_dispatch_packet_is_provider_ready_but_blocked(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            template_path = root / "template.json"
+            preflight_path = root / "preflight.json"
+            fasta_path = root / "p07658.fasta"
+            esmfold_path = root / "esmfold.json"
+            runtime_path = root / "runtime.json"
+            provider_path = root / "provider.json"
+            beacons_path = root / "beacons.json"
+            broad_path = root / "broad.json"
+
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "affected_row": {
+                            "entry_id": "m_csa:562",
+                            "accession": "P07658",
+                            "sequence_length": 715,
+                            "sequence_sha256": "sha",
+                            "selenocysteine_count": 1,
+                            "selenocysteine_positions": [140],
+                        },
+                        "prediction_request": {
+                            "preferred_staging_path": str(root / "p07658.cif")
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            template_path.write_text(
+                json.dumps(
+                    {
+                        "required_provider_fields_to_fill": {
+                            "provider": "FILL",
+                            "coordinate_sha256": "FILL",
+                        },
+                        "acceptance_preflight_contract": {
+                            "rerun_command_after_filling": "rerun me"
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "affected_row": {
+                            "entry_id": "m_csa:562",
+                            "accession": "P07658",
+                            "sequence_length": 715,
+                            "sequence_sha256": "sha",
+                            "selenocysteine_count": 1,
+                            "selenocysteine_positions": [140],
+                        },
+                        "candidate_coordinate": {"path": str(root / "p07658.cif")},
+                        "counts": {
+                            "acceptance_checks_failed": 2,
+                            "candidate_coordinate_exists": 0,
+                            "candidate_provenance_exists": 0,
+                        },
+                        "decision": {
+                            "p07658_acceptance_preflight_passes_now": False
+                        },
+                        "acceptance_check_results": [
+                            {
+                                "check_id": "coordinate_file_exists",
+                                "passed": False,
+                                "failure_reason_if_any": "missing coordinate",
+                                "observed": str(root / "p07658.cif"),
+                            },
+                            {
+                                "check_id": "row_not_scored_until_coordinate_staged",
+                                "passed": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fasta_path.write_text(">P07658\nMU\n", encoding="utf-8")
+            esmfold_path.write_text(
+                json.dumps(
+                    {
+                        "status": "blocked_length",
+                        "interpretation": {"result": "sequence too long"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            runtime_path.write_text(
+                json.dumps(
+                    {
+                        "status": "blocked_no_runtime",
+                        "counts": {"coordinates_returned": 0},
+                        "interpretation": {"result": "no runtime"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            provider_path.write_text(
+                json.dumps(
+                    {
+                        "provider_probes": [
+                            {
+                                "provider": "Provider A",
+                                "http_status": 401,
+                                "coordinate_returned": False,
+                                "response_summary": "auth required",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            beacons_path.write_text(
+                json.dumps(
+                    {
+                        "status": "experimental_only",
+                        "interpretation": {"result": "no prediction"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            broad_path.write_text(
+                json.dumps(
+                    {
+                        "status": "no_hit",
+                        "counts": {"coordinates_returned": 0},
+                        "interpretation": {"result": "no computed model"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_p07658_prediction_dispatch_packet(
+                prediction_request_manifest_path=manifest_path,
+                prediction_provenance_template_path=template_path,
+                prediction_acceptance_preflight_path=preflight_path,
+                provider_ready_fasta_path=fasta_path,
+                esmfold_api_preflight_path=esmfold_path,
+                local_predictor_runtime_scan_path=runtime_path,
+                full_length_predictor_provider_probe_path=provider_path,
+                three_d_beacons_predicted_structure_probe_path=beacons_path,
+                computed_model_repository_broad_probe_path=broad_path,
+                artifact_id="p07658_dispatch_test",
+            )
+
+        self.assertEqual(packet["artifact_id"], "p07658_dispatch_test")
+        self.assertEqual(
+            packet["status"],
+            "fold_augmented_p07658_prediction_dispatch_packet_ready_blocked_no_coordinate",
+        )
+        self.assertEqual(packet["counts"]["dispatch_inputs_present"], 4)
+        self.assertEqual(packet["counts"]["provider_routes_checked"], 5)
+        self.assertEqual(
+            packet["counts"]["provider_routes_returning_coordinate_now"], 0
+        )
+        self.assertEqual(packet["counts"]["required_provider_fields"], 2)
+        self.assertIn(
+            "no_current_provider_or_local_runtime_returns_p07658_coordinate",
+            packet["blockers"],
+        )
+        self.assertTrue(
+            packet["decision"]["dispatch_packet_ready_for_provider_run"]
+        )
+        self.assertFalse(
+            packet["decision"]["p07658_acceptance_preflight_passes_now"]
+        )
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
 
     def test_p10746_prior_human_decision_reconciles_to_current_impact(
         self,

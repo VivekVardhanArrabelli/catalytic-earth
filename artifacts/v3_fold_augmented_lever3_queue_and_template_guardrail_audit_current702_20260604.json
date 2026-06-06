@@ -37,6 +37,23 @@
     },
     {
       "any_guardrail_violation": false,
+      "artifact_id": "v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604",
+      "coordinate_stage_violation": false,
+      "critical_violation_total": 0,
+      "experimental_pdb_shortcut_violation": false,
+      "fixed_threshold_rerun_violation": false,
+      "heldout_training_or_tuning_violation": false,
+      "label_registry_import_violation": false,
+      "mechanism_text_or_source_feature_violation": false,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json",
+      "review_only": true,
+      "scoring_violation": false,
+      "sha256": "429b371df25daf88abf995c2d9a1693ee519bc8a82357e892dc2dc38f81fe484",
+      "status": "fold_augmented_p07658_prediction_dispatch_packet_ready_blocked_no_coordinate",
+      "threshold_change_violation": false
+    },
+    {
+      "any_guardrail_violation": false,
       "artifact_id": "v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604",
       "coordinate_stage_violation": false,
       "critical_violation_total": 0,
@@ -50,6 +67,23 @@
       "scoring_violation": false,
       "sha256": "d4b561d337be590ae31d13d44c3e9d8153f61402f3fc04d571998b36c2ea5f5f",
       "status": "fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_blocked_zero_eligible_rows",
+      "threshold_change_violation": false
+    },
+    {
+      "any_guardrail_violation": false,
+      "artifact_id": "v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604",
+      "coordinate_stage_violation": false,
+      "critical_violation_total": 0,
+      "experimental_pdb_shortcut_violation": false,
+      "fixed_threshold_rerun_violation": false,
+      "heldout_training_or_tuning_violation": false,
+      "label_registry_import_violation": false,
+      "mechanism_text_or_source_feature_violation": false,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604.json",
+      "review_only": true,
+      "scoring_violation": false,
+      "sha256": "86eb92583b94c462c6d0721a13f5b2ac57a4765d09ef9d7cdd4fd75797623af0",
+      "status": "fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_ready_unfilled",
       "threshold_change_violation": false
     },
     {
@@ -71,6 +105,23 @@
     },
     {
       "any_guardrail_violation": false,
+      "artifact_id": "v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604",
+      "coordinate_stage_violation": false,
+      "critical_violation_total": 0,
+      "experimental_pdb_shortcut_violation": false,
+      "fixed_threshold_rerun_violation": false,
+      "heldout_training_or_tuning_violation": false,
+      "label_registry_import_violation": false,
+      "mechanism_text_or_source_feature_violation": false,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604.json",
+      "review_only": true,
+      "scoring_violation": false,
+      "sha256": "c34d4e44aab01aa73ed1009ec74ef8f2f8b9e05e53f849976ea9bf2629454605",
+      "status": "fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_ready_unfilled",
+      "threshold_change_violation": false
+    },
+    {
+      "any_guardrail_violation": false,
       "artifact_id": "v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604",
       "coordinate_stage_violation": false,
       "critical_violation_total": 0,
@@ -82,7 +133,7 @@
       "path": "artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json",
       "review_only": true,
       "scoring_violation": false,
-      "sha256": "6a63138290bc4c878afdac9496eea1113023fa96d25a5a48aa5cbed8b7cccc4e",
+      "sha256": "4aea9589d312b6e7db491a5dd08b9ceba3e0e98285313468979679eaac74468d",
       "status": "fold_augmented_lever3_minimum_next_experiment_queue_blocked",
       "threshold_change_violation": false
     },
@@ -106,7 +157,7 @@
   ],
   "blockers": [],
   "counts": {
-    "artifacts_checked": 6,
+    "artifacts_checked": 9,
     "blockers": 0,
     "coordinate_stage_artifacts": 0,
     "critical_violation_total": 0,
@@ -119,7 +170,7 @@
     "scoring_artifacts": 0,
     "threshold_change_artifacts": 0
   },
-  "created_utc": "2026-06-04T12:41:24Z",
+  "created_utc": "2026-06-04T13:40:26Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "current_blocker_packets_guardrail_clean": true,
@@ -142,7 +193,7 @@
   },
   "interpretation": {
     "next_action": "Use these packets as blocker evidence only; do not treat them as permission to rerun or retune the fixed threshold.",
-    "result": "6 Lever 3 blocker packets were audited and 0 guardrail violations were detected."
+    "result": "9 Lever 3 blocker packets were audited and 0 guardrail violations were detected."
   },
   "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_blocker_packet_guardrail_audit",
   "scope": "Review-only guardrail audit for the current Lever 3 blocker packets. It verifies that the packets preserve threshold 0.44155, do not score rows, do not stage coordinates, do not tune on heldout rows, and do not use experimental PDB shortcuts.",

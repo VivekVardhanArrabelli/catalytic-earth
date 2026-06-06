@@ -1,0 +1,127 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_operating_point_deployment_readout_current702_20260604",
+  "confounded_axis_readout": {
+    "hard_confounded_residuals_closed_at_operating_point": true,
+    "residual_high_cofactor_rows": 1,
+    "residual_high_cofactor_rows_resolved": 1,
+    "same_family_bandpass_validation_failures": 0,
+    "same_family_residual_rows_resolved_by_contract": 9,
+    "same_family_shortfall_after_contract": 0,
+    "same_family_shortfall_before_contract": 9,
+    "strict_high_cofactor_proxy_abstained": 1,
+    "strict_high_cofactor_proxy_rows": 4,
+    "strict_same_family_proxy_abstained": 26,
+    "strict_same_family_proxy_rows": 59
+  },
+  "counts": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "calibration_retention_floor_rows": 31,
+    "counteraxis_contracts_ready": 1,
+    "critical_violation_total": 0,
+    "hard_confounded_residuals_closed_at_operating_point": 1,
+    "p07658_coordinates_returned": 0,
+    "p07658_deployment_valid_predicted_coordinate_rows": 0,
+    "p07658_routes_attempted": 6,
+    "remaining_missing_evidence_items": 2,
+    "residual_high_cofactor_rows": 1,
+    "residual_high_cofactor_rows_resolved": 1,
+    "same_family_residual_rows_resolved_by_contract": 9,
+    "same_family_shortfall_after_contract": 0,
+    "same_family_shortfall_before_contract": 9,
+    "strict_high_cofactor_proxy_abstained": 1,
+    "strict_high_cofactor_proxy_rows": 4,
+    "strict_same_family_proxy_abstained": 26,
+    "strict_same_family_proxy_rows": 59
+  },
+  "created_utc": "2026-06-04T23:09:39Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_sufficient_for_deployment_closure": false,
+    "deployment_valid_operating_point_readout_available": true,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "hard_confounded_residuals_closed_at_operating_point": true,
+    "next_gate": "Rerun fixed-threshold surface only after P07658 acceptance preflight passes with accepted coordinate/provenance.",
+    "operating_point_usable_for_hard_confounded_train_cal_routing": true,
+    "p07658_coordinate_gap_cleared_now": false,
+    "remaining_missing_evidence": [
+      "accepted full-length P07658 predicted coordinate provenance before fixed-threshold surface rerun",
+      "credentialed or local exact full-length P07658 predicted coordinate with provider/model/version/path/checksum and U140 provenance"
+    ],
+    "smallest_next_experiment": "Provision a credentialed or local full-length predictor route that accepts the frozen 715-residue P07658 sequence with U140 preserved or explicitly documented, then rerun acceptance preflight before any fixed-threshold scoring.",
+    "true_in_scope_retention_floor_met": true
+  },
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinate_downloaded_or_staged_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false,
+    "train_cal_thresholds_only": true
+  },
+  "interpretation": {
+    "headline": "Lever 3 has a measured fixed-threshold operating point for hard-confounded train/cal routing, but deployment closure still needs P07658 provenance.",
+    "next_action": "Stop route-equivalent no-credential retries; use a credentialed or local exact full-length predictor route, then rerun P07658 acceptance preflight before any scoring rerun.",
+    "p07658_result": "P07658 exact route attempts returned 0 coordinates and 0 deployment-valid predicted-coordinate rows.",
+    "result": "Retains 31/34 calibration in-scope rows and abstains 105/204 train/cal OOS rows; residual hard confounded closure is True."
+  },
+  "operating_point": {
+    "all_train_cal_oos_abstain_rate": 0.5147,
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "calibration_retention_floor_met": true,
+    "calibration_retention_floor_rows": 31,
+    "calibration_retention_rate": 0.9118,
+    "route_id": "fixed_baseline_plus_cofactor_context_counteraxis_plus_same_family_numeric_bandpass_counteraxis_contract",
+    "threshold_or_value_changed_now": false,
+    "threshold_selection_source": "train_calibration_only"
+  },
+  "p07658_coordinate_readout": {
+    "coordinate_gap_cleared_now": false,
+    "coordinates_returned": 0,
+    "deployment_valid_predicted_coordinate_rows": 0,
+    "exact_sequence_submitted_routes": 5,
+    "full_length_sequence_sha256_matches_manifest": 1,
+    "routes_attempted": 6,
+    "sequence_modified_or_truncated_routes": 0
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_operating_point_deployment_readout",
+  "scope": "Lever 3 measured operating-point deployment readout. It composes the accepted cofactor-context counteraxis, accepted same-family bandpass counteraxis contract, post-bandpass deployment readout, and exact P07658 route attempts. It confirms the train/cal hard-confounded residual separation at fixed threshold 0.44155 and separately reports whether the remaining P07658 predicted-coordinate provenance gate is closed.",
+  "source_artifacts": {
+    "cofactor_context_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072"
+    },
+    "p07658_exact_route_attempt_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.json",
+      "sha256": "575c9ae0ea097fe8b40164000ec439be4bee84fe41e278c58edec9612d81a71e"
+    },
+    "post_bandpass_deployment_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.json",
+      "sha256": "7d2c2bb4761a6e7c7f12427e01c4d6834a73ea05d5874abbb14d8956e81b86e1"
+    },
+    "same_family_bandpass_counteraxis_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json",
+      "sha256": "bfbf332a71e4d86864717805af679afd1606be304ecb8daaa0dacc898861de18"
+    }
+  },
+  "status": "fold_augmented_lever3_operating_point_deployment_readout_ready_p07658_gap"
+}

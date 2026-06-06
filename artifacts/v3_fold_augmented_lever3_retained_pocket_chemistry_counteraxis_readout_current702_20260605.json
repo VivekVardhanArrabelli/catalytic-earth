@@ -1,0 +1,592 @@
+{
+  "application_row_actions": [
+    {
+      "accession": "P32400",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "descriptor_present_preflight",
+      "entry_id": "m_csa:25",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_descriptor_rule",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 3.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P0AB71",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "descriptor_present_preflight",
+      "entry_id": "m_csa:52",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "abstain_or_route_novel_oos_by_fold_tm_bandpass",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 3.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P13000",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:74",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "abstain_or_route_novel_oos_by_fold_tm_bandpass",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 1.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P27213",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:84",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "already_abstain_or_route_novel_oos_by_descriptor_rule",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 2.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q55012",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:89",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "abstain_or_route_novel_oos_by_channel_margin",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 6.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q46822",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:190",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "abstain_or_route_novel_oos_by_fold_tm_bandpass",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 5.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P9WIL5",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:229",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "abstain_or_route_novel_oos_by_channel_margin",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 2.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P00327",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:256",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "abstain_or_route_novel_oos_by_fold_tm_bandpass",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 4.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P12070",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:308",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "retained_after_prior_counteraxes": true,
+      "selected_feature_value": 4.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q05514",
+      "deployment_action_delta": "abstain_or_route_novel_oos_by_pocket_chemistry",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:468",
+      "new_abstention_from_pocket_chemistry_counteraxis": true,
+      "prior_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "retained_after_prior_counteraxes": true,
+      "selected_feature_value": 9.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": true,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P42676",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_counteraxis",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:638",
+      "new_abstention_from_pocket_chemistry_counteraxis": false,
+      "prior_action_delta": "abstain_or_route_novel_oos_by_fold_cofactor_pressure",
+      "retained_after_prior_counteraxes": false,
+      "selected_feature_value": 3.0,
+      "selected_pocket_chemistry_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+  "counts": {
+    "application_rows": 11,
+    "application_rows_missing_pocket_descriptors": 0,
+    "application_rows_with_pocket_descriptors": 11,
+    "calibration_in_scope_descriptor_rows": 34,
+    "calibration_in_scope_descriptor_rows_missing": 0,
+    "calibration_in_scope_rows_expected": 34,
+    "candidate_pocket_chemistry_rules_hitting_remaining_retained_rows": 0,
+    "candidate_pocket_chemistry_rules_within_breadth_cap": 9,
+    "combined_all_train_cal_oos_abstained_after_pocket_chemistry": 165,
+    "design_same_family_descriptor_rows": 14,
+    "design_same_family_rows_missing_descriptor": 34,
+    "new_pocket_chemistry_application_rows_fired_after_prior_counteraxes": 1,
+    "pocket_chemistry_rules_evaluated": 310,
+    "remaining_retained_rows_with_any_candidate_pocket_chemistry_rule": 0,
+    "retained_application_rows_before_pocket_chemistry": 2,
+    "retained_residual_rows_after_pocket_chemistry_counteraxis": 1,
+    "same_family_proxy_rows": 59,
+    "selected_pocket_chemistry_new_train_cal_oos_abstentions": 0,
+    "selected_rule_all_train_cal_oos_rows_fired": 2,
+    "selected_rule_application_rows_fired_after_selection": 1,
+    "selected_rule_calibration_in_scope_fired": 0,
+    "selected_rule_design_same_family_rows_fired": 2,
+    "train_cal_oos_descriptor_rows": 71
+  },
+  "created_utc": "2026-06-05T08:20:54Z",
+  "decision": {
+    "application_rows_used_for_rule_selection": false,
+    "apply_or_change_threshold_now": false,
+    "current_pocket_chemistry_axis_exhausted_for_remaining_retained_rows": true,
+    "exact_remaining_evidence_for_zero_residual_risk": [
+      "a train/cal-selected source-free pocket chemistry, metal, cofactor-geometry, or ligand-neighborhood counteraxis that fires m_csa:308 while preserving zero retained calibration fires",
+      "the existing P07658 full-length predicted coordinate and provenance route before fixed-threshold scoring closure"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Treat the selected pocket sulfur-count rule as partial fail-closed evidence for newly fired retained rows only. Keep residual retained rows in the evidence queue; do not change threshold 0.44155 or force a mechanism label.",
+    "pocket_chemistry_counteraxis_ready_for_partial_application_now": true,
+    "pocket_chemistry_counteraxis_selected_now": true,
+    "retained_rows_newly_abstained_by_pocket_chemistry_counteraxis": [
+      "m_csa:468"
+    ],
+    "retained_rows_remaining_after_pocket_chemistry_counteraxis": [
+      "m_csa:308"
+    ],
+    "safe_abstention_routing_available_now": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false,
+    "zero_residual_retained_transfer_risk_available_now": false
+  },
+  "guardrails": {
+    "all_train_cal_oos_breadth_cap_applied": true,
+    "application_row_outcomes_used_in_selection_objective": false,
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "rule_selected_on_train_cal_only": true,
+    "source_free_pocket_chemistry_features_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "The pocket-chemistry counteraxis adds 1 retained-row abstention after descriptor, margin, fold-TM, and fold/cofactor pressure counteraxes.",
+    "next_action": "Current pocket chemistry class-count evidence separates m_csa:468 but not m_csa:308; design or acquire a richer source-free metal/cofactor or ligand-neighborhood axis for that remaining high-confidence lookalike.",
+    "result": "The selected rule is chemistry_count.sulfur_count >= 9.0; it fires 0 new train/cal OOS rows after prior counteraxes and leaves retained residual rows ['m_csa:308']."
+  },
+  "missing_descriptor_entry_ids": {
+    "application_rows": [],
+    "calibration_in_scope": [],
+    "design_same_family": [
+      "m_csa:51",
+      "m_csa:59",
+      "m_csa:78",
+      "m_csa:91",
+      "m_csa:105",
+      "m_csa:135",
+      "m_csa:146",
+      "m_csa:179",
+      "m_csa:187",
+      "m_csa:206",
+      "m_csa:223",
+      "m_csa:224",
+      "m_csa:234",
+      "m_csa:240",
+      "m_csa:253",
+      "m_csa:269",
+      "m_csa:280",
+      "m_csa:289",
+      "m_csa:322",
+      "m_csa:348",
+      "m_csa:405",
+      "m_csa:441",
+      "m_csa:451",
+      "m_csa:463",
+      "m_csa:488",
+      "m_csa:498",
+      "m_csa:500",
+      "m_csa:501",
+      "m_csa:502",
+      "m_csa:508",
+      "m_csa:533",
+      "m_csa:585",
+      "m_csa:621",
+      "m_csa:645"
+    ]
+  },
+  "operating_point_after_pocket_chemistry": {
+    "all_train_cal_oos_full_channel_rows": 204,
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained_after_pocket_chemistry": 31,
+    "calibration_in_scope_retained_after_prior_counteraxes": 31,
+    "calibration_in_scope_rows": 34,
+    "combined_all_train_cal_oos_abstained_after_pocket_chemistry": 165,
+    "combined_all_train_cal_oos_abstained_before_pocket_chemistry": 165,
+    "combined_all_train_cal_oos_retained_after_pocket_chemistry": 39,
+    "pocket_chemistry_counteraxis_all_train_cal_oos_fired": 2,
+    "pocket_chemistry_counteraxis_new_train_cal_oos_abstentions": 0,
+    "production_threshold_change": false
+  },
+  "pocket_chemistry_family_residual_pressure": {
+    "all_train_cal_oos_breadth_cap_rows": 8,
+    "eligible_single_rules_within_breadth_cap": 9,
+    "feature_family": "source-free chemistry class counts plus frozen scalar pocket descriptors",
+    "remaining_retained_hit_rules": []
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout",
+  "scope": "Lever 3 measured retained pocket-chemistry counteraxis readout. It derives source-free active-site chemistry class counts from frozen pocket residue-code counts, combines them with existing scalar pocket descriptors, selects one threshold rule on train/cal same-family OOS design rows under a zero-calibration-fire guard and an all-train/cal-OOS breadth cap, then applies the rule to retained application rows only after selection. It changes no thresholds, scores no rows, stages no coordinates, and uses no heldout rows for selection or tuning.",
+  "selected_pocket_chemistry_counteraxis_rule": {
+    "all_train_cal_oos_entry_ids_fired": [
+      "m_csa:422",
+      "m_csa:464"
+    ],
+    "all_train_cal_oos_rows_fired": 2,
+    "application_entry_ids_fired_after_selection": [
+      "m_csa:468"
+    ],
+    "application_rows_fired_after_selection": 1,
+    "calibration_in_scope_entry_ids_fired": [],
+    "calibration_in_scope_fired": 0,
+    "design_same_family_entry_ids_fired": [
+      "m_csa:422",
+      "m_csa:464"
+    ],
+    "design_same_family_rows_fired": 2,
+    "feature_kind": "chemistry_count",
+    "feature_name": "sulfur_count",
+    "feature_rule": "chemistry_count.sulfur_count >= 9.0",
+    "operator": ">=",
+    "retention_floor_met": true,
+    "rule_id": "chemistry_count:sulfur_count:>=:9.0",
+    "threshold": 9.0
+  },
+  "selection_policy": {
+    "all_train_cal_oos_breadth_cap_rows": 8,
+    "application_rows_excluded_from_selection": [
+      "m_csa:25",
+      "m_csa:52",
+      "m_csa:74",
+      "m_csa:84",
+      "m_csa:89",
+      "m_csa:190",
+      "m_csa:229",
+      "m_csa:256",
+      "m_csa:308",
+      "m_csa:468",
+      "m_csa:638"
+    ],
+    "application_rows_used_for_rule_selection": false,
+    "calibration_guard": "candidate rule must fire zero retained calibration in-scope rows with descriptor values",
+    "chemistry_count_features": [
+      "acidic_count",
+      "aromatic_count",
+      "basic_count",
+      "charged_count",
+      "sulfur_count"
+    ],
+    "descriptor_features": [
+      "aromatic_fraction",
+      "charge_balance",
+      "hydrophobic_fraction",
+      "mean_min_distance_to_active_site",
+      "negative_fraction",
+      "polar_fraction",
+      "positive_fraction",
+      "sulfur_fraction"
+    ],
+    "feature_source": "source-free predicted-pocket residue-code counts collapsed into chemistry class counts plus frozen scalar pocket descriptors",
+    "rule_family": "single_threshold_rule_over_pocket_chemistry_class_counts_or_scalar_descriptors",
+    "selection_objective": "maximize design same-family OOS rows fired, then minimize descriptor-covered train/cal OOS rows fired, then deterministic feature/operator/threshold order",
+    "selection_rows": "train/cal same-family structural proxy OOS rows with pocket descriptors, excluding every retained application row",
+    "threshold_grid_source": "unique train/cal design-row chemistry count and descriptor values"
+  },
+  "source_artifacts": {
+    "channel_veto_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+      "sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be"
+    },
+    "cofactor_context_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072"
+    },
+    "descriptor_present_counteraxis_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json",
+      "sha256": "04cf7fe0886a101f32b1103b3671f4e71d2519e18e82d28eb65f5b6dfc27fefe"
+    },
+    "latest_train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "predicted_geometry_atlas_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "retained_channel_margin_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json",
+      "sha256": "596186a545349861a469994d813f82298347a050a2f5343737ef00c10234a89a"
+    },
+    "retained_descriptor_rescue_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json",
+      "sha256": "ca3b9bbba54ab3acb875aac022a0883b99bf3484f4df29fef2a6050c43377b3d"
+    },
+    "retained_pairwise_descriptor_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json",
+      "sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a"
+    },
+    "threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    }
+  },
+  "status": "fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_partial_application",
+  "top_candidate_pocket_chemistry_rules": [
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:422",
+        "m_csa:464"
+      ],
+      "all_train_cal_oos_rows_fired": 2,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:468"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:422",
+        "m_csa:464"
+      ],
+      "design_same_family_rows_fired": 2,
+      "feature_kind": "chemistry_count",
+      "feature_name": "sulfur_count",
+      "feature_rule": "chemistry_count.sulfur_count >= 9.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "chemistry_count:sulfur_count:>=:9.0",
+      "threshold": 9.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:184",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 3,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 2,
+      "feature_kind": "descriptor",
+      "feature_name": "hydrophobic_fraction",
+      "feature_rule": "descriptor.hydrophobic_fraction <= 0.2093",
+      "operator": "<=",
+      "retention_floor_met": true,
+      "rule_id": "descriptor:hydrophobic_fraction:<=:0.2093",
+      "threshold": 0.2093
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "chemistry_count",
+      "feature_name": "acidic_count",
+      "feature_rule": "chemistry_count.acidic_count >= 19.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "chemistry_count:acidic_count:>=:19.0",
+      "threshold": 19.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "chemistry_count",
+      "feature_name": "charged_count",
+      "feature_rule": "chemistry_count.charged_count >= 34.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "chemistry_count:charged_count:>=:34.0",
+      "threshold": 34.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "all_train_cal_oos_rows_fired": 1,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:422"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "chemistry_count",
+      "feature_name": "sulfur_count",
+      "feature_rule": "chemistry_count.sulfur_count >= 11.0",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "chemistry_count:sulfur_count:>=:11.0",
+      "threshold": 11.0
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:295",
+        "m_csa:565"
+      ],
+      "all_train_cal_oos_rows_fired": 2,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:565"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "descriptor",
+      "feature_name": "charge_balance",
+      "feature_rule": "descriptor.charge_balance >= 0.1818",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "descriptor:charge_balance:>=:0.1818",
+      "threshold": 0.1818
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:184"
+      ],
+      "all_train_cal_oos_rows_fired": 2,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "descriptor",
+      "feature_name": "hydrophobic_fraction",
+      "feature_rule": "descriptor.hydrophobic_fraction <= 0.2055",
+      "operator": "<=",
+      "retention_floor_met": true,
+      "rule_id": "descriptor:hydrophobic_fraction:<=:0.2055",
+      "threshold": 0.2055
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:295",
+        "m_csa:565"
+      ],
+      "all_train_cal_oos_rows_fired": 2,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:565"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "descriptor",
+      "feature_name": "positive_fraction",
+      "feature_rule": "descriptor.positive_fraction >= 0.2727",
+      "operator": ">=",
+      "retention_floor_met": true,
+      "rule_id": "descriptor:positive_fraction:>=:0.2727",
+      "threshold": 0.2727
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:246",
+        "m_csa:415",
+        "m_csa:496",
+        "m_csa:565"
+      ],
+      "all_train_cal_oos_rows_fired": 4,
+      "application_entry_ids_fired_after_selection": [],
+      "application_rows_fired_after_selection": 0,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "design_same_family_entry_ids_fired": [
+        "m_csa:565"
+      ],
+      "design_same_family_rows_fired": 1,
+      "feature_kind": "descriptor",
+      "feature_name": "polar_fraction",
+      "feature_rule": "descriptor.polar_fraction <= 0.1515",
+      "operator": "<=",
+      "retention_floor_met": true,
+      "rule_id": "descriptor:polar_fraction:<=:0.1515",
+      "threshold": 0.1515
+    }
+  ]
+}

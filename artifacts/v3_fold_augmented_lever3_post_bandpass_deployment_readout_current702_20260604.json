@@ -1,0 +1,99 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604",
+  "counts": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "counteraxis_contracts_ready": 1,
+    "critical_violation_total": 0,
+    "high_cofactor_counteraxis_ready": 1,
+    "p07658_acceptance_checks_failed": 7,
+    "p07658_candidate_coordinate_exists": 0,
+    "p07658_candidate_provenance_exists": 0,
+    "p07658_provider_routes_returning_coordinate_now": 0,
+    "remaining_missing_evidence_items": 1,
+    "same_family_bandpass_contract_ready": 1,
+    "same_family_bandpass_contract_validation_failures": 0
+  },
+  "created_utc": "2026-06-04T21:15:57Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_sufficient_for_deployment_closure": false,
+    "deployment_valid_counteraxis_contracts_ready": true,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Counteraxis contracts are ready; obtain accepted P07658 full-length predicted-coordinate provenance before rerun.",
+    "p07658_prediction_acceptance_passes_now": false,
+    "remaining_missing_evidence": [
+      "accepted full-length P07658 predicted coordinate provenance before fixed-threshold surface rerun"
+    ]
+  },
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 counteraxis contracts are ready; deployment closure still waits on P07658.",
+    "next_action": "Provision or run one approved exact full-length P07658 prediction route and fill coordinate/provenance before rerun.",
+    "result": "The accepted operating point retains 31/34 calibration in-scope rows and abstains 105/204 train/cal OOS rows; P07658 acceptance still has 7 failed checks."
+  },
+  "operating_point": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "route_id": "fixed_baseline_plus_cofactor_context_counteraxis_plus_same_family_numeric_bandpass_counteraxis_contract",
+    "strict_high_cofactor_proxy_abstained": 1,
+    "strict_high_cofactor_proxy_rows": 4,
+    "strict_same_family_proxy_abstained": 26,
+    "strict_same_family_proxy_rows": 59
+  },
+  "p07658_acceptance_readout": {
+    "acceptance_checks_failed": 7,
+    "acceptance_checks_passed": 1,
+    "acceptance_checks_total": 8,
+    "candidate_coordinate_exists": 0,
+    "candidate_provenance_exists": 0,
+    "dispatch_ready_for_provider_run": true,
+    "provider_routes_checked": 6,
+    "provider_routes_returning_coordinate_now": 0,
+    "status": "fold_augmented_p07658_prediction_acceptance_preflight_blocked"
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_post_bandpass_deployment_readout",
+  "scope": "Lever 3 post-bandpass deployment readout. It composes the accepted cofactor-context high-cofactor counteraxis, the accepted same-family numeric bandpass counteraxis contract, and the P07658 prediction acceptance/dispatch evidence to state whether the fixed-threshold surface can be rerun. It scores no rows, stages no coordinates, and changes no thresholds.",
+  "source_artifacts": {
+    "cofactor_context_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072"
+    },
+    "p07658_prediction_acceptance_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
+      "sha256": "3e0433dbea445404d5005e025afc06f542cddfd952626c7d7491d73d3b9e4abe"
+    },
+    "p07658_prediction_dispatch_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json",
+      "sha256": "53e9fefb136970d09484a34c4e805f9247bb0622b07c550916657145d8d687e2"
+    },
+    "same_family_bandpass_counteraxis_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json",
+      "sha256": "bfbf332a71e4d86864717805af679afd1606be304ecb8daaa0dacc898861de18"
+    }
+  },
+  "status": "fold_augmented_lever3_post_bandpass_deployment_readout_blocked_p07658"
+}

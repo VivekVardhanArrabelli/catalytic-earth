@@ -1,0 +1,147 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604",
+  "counts": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "calibration_retention_floor_rows": 31,
+    "coordinates_generated_now": 0,
+    "coordinates_staged_now": 0,
+    "critical_violation_total": 0,
+    "deployment_input_gates_missing": 4,
+    "deployment_input_gates_satisfied": 2,
+    "deployment_input_gates_total": 6,
+    "p07658_forced_abstention_rows": 1,
+    "p07658_local_coordinate_candidate_files": 0,
+    "p07658_local_filled_provenance_candidate_files": 0,
+    "p07658_required_acceptance_gates_failed": 4,
+    "p07658_unsafe_shortcut_policy_rows_rejected": 3,
+    "rows_scored_now": 0,
+    "same_family_shortfall_after_contract": 0,
+    "strict_high_cofactor_proxy_abstained": 1,
+    "strict_high_cofactor_proxy_rows": 4,
+    "strict_same_family_proxy_abstained": 26,
+    "strict_same_family_proxy_rows": 59
+  },
+  "created_utc": "2026-06-05T02:10:53Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_sufficient_for_fixed_threshold_scoring_closure": false,
+    "current_evidence_sufficient_for_safe_abstention_routing": true,
+    "deployment_valid_measured_readout_available": true,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fail_closed_abstention_contract_available": true,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "hard_confounded_train_cal_routing_ready": true,
+    "next_gate": "Run exactly one credentialed or local full-length P07658 prediction route, fill provenance, and rerun acceptance preflight before any fixed-threshold scoring rerun.",
+    "p07658_route_if_incomplete_now": "abstain_or_route_novel_oos",
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "predicted_structure_source_free_evidence_enough_for_scoring_closure": false,
+    "score_rows_with_missing_coordinate_or_provenance_now": false,
+    "smallest_next_experiment": "Provision exactly one credentialed provider route (HF_TOKEN, NVIDIA_API_KEY, or BIOLM_API_KEY) or install one local predictor runtime that can handle the frozen 715-aa P07658 sequence with U140 provenance.",
+    "true_in_scope_retention_floor_met": true,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "deployment_policy_rows": [
+    {
+      "allowed_now": false,
+      "available_now": false,
+      "deployment_action": "score_with_fixed_threshold_and_counteraxis_contracts",
+      "policy_id": "accepted_complete_coordinate_provenance_rows",
+      "reason": "Only rows with accepted predicted-coordinate provenance may be scored by the fixed 0.44155 operating point."
+    },
+    {
+      "allowed_now": true,
+      "available_now": true,
+      "deployment_action": "abstain_or_route_novel_oos",
+      "policy_id": "missing_p07658_coordinate_or_provenance",
+      "reason": "The exact P07658 sequence contract is valid, but no accepted full-length coordinate/provenance exists; the safe action is not to force a mechanism transfer."
+    },
+    {
+      "allowed_now": false,
+      "available_now": false,
+      "deployment_action": "reject_as_deployment_closure_input",
+      "policy_id": "mutated_truncated_or_experimental_pdb_shortcut",
+      "reason": "Mutation, truncation, split prediction, and experimental-PDB shortcuts are rejected by the sequence compatibility readout."
+    }
+  ],
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "score_rows_with_missing_coordinate_or_provenance_now": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 is deployment-safe as an abstention router for the remaining P07658 gap, but not ready for fixed-threshold scoring closure.",
+    "next_action": "Use the fail-closed route for incomplete P07658 inputs now; for scoring closure, provision one exact full-length predictor route and rerun acceptance preflight with provenance.",
+    "result": "Retains 31/34 calibration in-scope rows, abstains 105/204 train/cal OOS rows, and forces 1 incomplete P07658 row to abstain instead of forcing a mechanism transfer."
+  },
+  "operating_point": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "calibration_retention_floor_met": true,
+    "calibration_retention_floor_rows": 31,
+    "hard_confounded_residuals_closed_at_operating_point": true,
+    "route_id": "fixed_baseline_plus_cofactor_context_counteraxis_plus_same_family_numeric_bandpass_counteraxis_contract",
+    "threshold_or_value_changed_now": false,
+    "threshold_selection_source": "train_calibration_only"
+  },
+  "p07658_fail_closed_gate": {
+    "all_or_abstain_action_now": "abstain_or_route_novel_oos_until_coordinate_provenance_exists",
+    "coordinates_generated_now": 0,
+    "coordinates_staged_now": 0,
+    "failed_gate_ids": [
+      "credentialed_or_local_exact_prediction_route_available",
+      "preferred_full_length_coordinate_present",
+      "filled_prediction_provenance_present",
+      "local_inventory_ready_for_acceptance_preflight"
+    ],
+    "forced_abstention_required_now": true,
+    "local_coordinate_candidate_files": 0,
+    "local_filled_provenance_candidate_files": 0,
+    "required_acceptance_gates_failed": 4,
+    "rows_scored_now": 0,
+    "sequence_contract_valid": true
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_confounded_safe_abstention_readout",
+  "scope": "Lever 3 measured confounded-safe abstention readout. It composes the accepted fixed-threshold operating-point readout, the P07658 sequence-compatibility all-or-abstain gate, and the deployment input gap audit. It reports the safe deployment action when P07658 lacks accepted predicted-coordinate provenance without scoring rows, staging coordinates, changing threshold 0.44155, or using heldout rows for threshold selection.",
+  "source_artifacts": {
+    "deployment_input_gap_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_input_gap_audit_current702_20260604.json",
+      "sha256": "e5deaf072372117f1ed4d4ad7ec91f38d887acb05f7dac3ed0227c4f1c76bdd4"
+    },
+    "operating_point_deployment_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_operating_point_deployment_readout_current702_20260604.json",
+      "sha256": "0d6e0d9f92b22fa71a53536b9ec5ba16828774b8da238ba1751098a7abbb0704"
+    },
+    "p07658_sequence_compatibility_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604.json",
+      "sha256": "77ddb7098d1389cd573ff22ddcfa3f3e2d8e1c31ffddc37252fce7a1ab551baf"
+    }
+  },
+  "status": "fold_augmented_lever3_confounded_safe_abstention_readout_ready_fail_closed_p07658"
+}

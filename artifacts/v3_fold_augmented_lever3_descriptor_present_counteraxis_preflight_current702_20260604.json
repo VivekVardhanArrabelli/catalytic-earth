@@ -1,0 +1,199 @@
+{
+  "allowed_source_free_feature_contract": {
+    "descriptor_fields": [
+      "aromatic_fraction",
+      "charge_balance",
+      "hydrophobic_fraction",
+      "mean_min_distance_to_active_site",
+      "negative_fraction",
+      "polar_fraction",
+      "positive_fraction",
+      "sulfur_fraction"
+    ],
+    "forbidden_fields": [
+      "mechanism_text_count",
+      "mechanism_text_snippets",
+      "true_fingerprint_id",
+      "top1_fingerprint_id",
+      "entry_name",
+      "experimental_pdb_id",
+      "pdb_id"
+    ],
+    "residue_code_count_fields": [
+      "ALA",
+      "ARG",
+      "ASN",
+      "ASP",
+      "CYS",
+      "GLN",
+      "GLU",
+      "GLY",
+      "HIS",
+      "ILE",
+      "LEU",
+      "LYS",
+      "MET",
+      "PHE",
+      "PRO",
+      "SER",
+      "THR",
+      "TRP",
+      "TYR",
+      "VAL"
+    ],
+    "retained_rows_may_not_select_or_tune_rule": true,
+    "rule_selection_rows": "train_cal_only_future_design_surface"
+  },
+  "artifact_id": "v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604",
+  "counts": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "descriptor_feature_fields": 8,
+    "descriptor_value_rows_found": 2,
+    "descriptor_value_rows_missing": 0,
+    "residue_code_count_fields": 20,
+    "retained_descriptor_present_rows_requested": 2
+  },
+  "created_utc": "2026-06-05T04:13:54Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "count_retained_rows_as_abstained_now": false,
+    "counteraxis_ready_for_deployment_now": false,
+    "counteraxis_selected_now": false,
+    "descriptor_input_values_frozen": true,
+    "next_gate": "Use these frozen descriptor fields only as a candidate input contract. Select any pocket/chemistry counteraxis on a train/cal-only surface, then rerun the retained-risk readout; do not tune on m_csa:25 or m_csa:52.",
+    "safe_abstention_routing_available_now": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "zero_residual_retained_transfer_risk_available_now": false
+  },
+  "descriptor_present_rows": [
+    {
+      "accession": "P32400",
+      "allowed_for_rule_selection_on_this_row": false,
+      "closest_current_channel": "combined_min_geometry_fold",
+      "closest_current_channel_margin": 0.0398,
+      "count_as_counteraxis_evidence_now": false,
+      "descriptor_values": {
+        "aromatic_fraction": 0.1455,
+        "charge_balance": 0.0546,
+        "hydrophobic_fraction": 0.4,
+        "mean_min_distance_to_active_site": 4.6796,
+        "negative_fraction": 0.0545,
+        "polar_fraction": 0.2909,
+        "positive_fraction": 0.1091,
+        "sulfur_fraction": 0.0545
+      },
+      "distance_cutoff_angstrom": 8.0,
+      "entry_id": "m_csa:25",
+      "nearby_residue_count": 55,
+      "next_gate": "train_cal_only_same_family_pocket_counteraxis_design_required",
+      "rank": 8,
+      "residue_code_counts": {
+        "ALA": 8,
+        "ARG": 3,
+        "ASN": 3,
+        "ASP": 2,
+        "CYS": 2,
+        "GLU": 1,
+        "GLY": 4,
+        "HIS": 2,
+        "ILE": 5,
+        "LEU": 1,
+        "LYS": 1,
+        "MET": 1,
+        "PHE": 2,
+        "PRO": 1,
+        "SER": 1,
+        "THR": 8,
+        "TRP": 2,
+        "TYR": 2,
+        "VAL": 6
+      },
+      "top1_score": 0.3778
+    },
+    {
+      "accession": "P0AB71",
+      "allowed_for_rule_selection_on_this_row": false,
+      "closest_current_channel": "cofactor_max_score",
+      "closest_current_channel_margin": 0.062269,
+      "count_as_counteraxis_evidence_now": false,
+      "descriptor_values": {
+        "aromatic_fraction": 0.1695,
+        "charge_balance": -0.0508,
+        "hydrophobic_fraction": 0.339,
+        "mean_min_distance_to_active_site": 4.5382,
+        "negative_fraction": 0.1525,
+        "polar_fraction": 0.3051,
+        "positive_fraction": 0.1017,
+        "sulfur_fraction": 0.0508
+      },
+      "distance_cutoff_angstrom": 8.0,
+      "entry_id": "m_csa:52",
+      "nearby_residue_count": 59,
+      "next_gate": "train_cal_only_same_family_pocket_counteraxis_design_required",
+      "rank": 9,
+      "residue_code_counts": {
+        "ALA": 4,
+        "ASN": 5,
+        "ASP": 5,
+        "CYS": 1,
+        "GLN": 1,
+        "GLU": 4,
+        "GLY": 6,
+        "HIS": 5,
+        "ILE": 4,
+        "LEU": 4,
+        "LYS": 1,
+        "MET": 2,
+        "PHE": 3,
+        "PRO": 1,
+        "SER": 3,
+        "THR": 3,
+        "TRP": 1,
+        "TYR": 1,
+        "VAL": 5
+      },
+      "top1_score": 0.5977
+    }
+  ],
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "counteraxis_selected_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "2/2 descriptor-present retained residual rows have frozen source-free pocket values.",
+    "next_action": "Design any same-family pocket counteraxis on train/cal-only evidence, then apply it through a new measured readout without changing threshold 0.44155.",
+    "result": "The candidate input contract exposes 8 numeric descriptor fields and 20 residue-count fields, but no counteraxis is selected now."
+  },
+  "missing_descriptor_rows": [],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_descriptor_present_counteraxis_preflight",
+  "scope": "Lever 3 measured preflight for descriptor-present retained same-family residual rows. It freezes the source-free pocket descriptor fields that can be used as input to a future train/cal-only counteraxis design, but it does not select a counteraxis, tune a threshold, score rows, stage coordinates, or use these retained rows as calibration evidence.",
+  "source_artifacts": {
+    "latest_train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "retained_residual_risk_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json",
+      "sha256": "f706a0cba7dd108cdd4f545408075f5238d04f0b85c7b2dbbd01a66a73c484b3"
+    }
+  },
+  "status": "fold_augmented_lever3_descriptor_present_counteraxis_preflight_ready_input_frozen"
+}

@@ -1,0 +1,853 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_plan_current702_20260604",
+  "coordinate_staging_rows": [
+    {
+      "accession": "P07662",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P07662_v6.cif",
+      "coordinate_sha256": "f2622514dbf75bae965663bf68e05cae14e5e37f250ea89ccbd3d207b75a5383",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P07662-F1-model_v6.cif",
+      "entry_id": "m_csa:288",
+      "provider": {
+        "model_entity_id": "AF-P07662-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "Q55012",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q55012_v6.cif",
+      "coordinate_sha256": "8bebf9aa805bcc95d1a8f0bae620e337c39d052a03735ab1766ba7d83197b80c",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-Q55012-F1-model_v6.cif",
+      "entry_id": "m_csa:89",
+      "provider": {
+        "model_entity_id": "AF-Q55012-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P0AG16",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P0AG16_v6.cif",
+      "coordinate_sha256": "a725607f48a7a25975b98e1f224f2fcfee6ed720847dc0d96288acf3ab4b9362",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P0AG16-F1-model_v6.cif",
+      "entry_id": "m_csa:214",
+      "provider": {
+        "model_entity_id": "AF-P0AG16-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P00963",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P00963_v6.cif",
+      "coordinate_sha256": "f5a0c07ea5b1b9074bd6cbe21483cf238420686d7583f7769e9f7b615baf8e57",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P00963-F1-model_v6.cif",
+      "entry_id": "m_csa:75",
+      "provider": {
+        "model_entity_id": "AF-P00963-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P0A759",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P0A759_v6.cif",
+      "coordinate_sha256": "6b49e302dfe7d7f5d905e2c3b017b74beba4ed343eaa71b3e7c988435f830ffb",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P0A759-F1-model_v6.cif",
+      "entry_id": "m_csa:60",
+      "provider": {
+        "model_entity_id": "AF-P0A759-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P09186",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P09186_v6.cif",
+      "coordinate_sha256": "3d3cbf373cbb27a215c41568ce3074092b8e747c6b1433ebc7b74bd28c2137fd",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P09186-F1-model_v6.cif",
+      "entry_id": "m_csa:583",
+      "provider": {
+        "model_entity_id": "AF-P09186-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P14294",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P14294_v6.cif",
+      "coordinate_sha256": "69aed89398f436a15188432e5d9546bf756b363f04b693ef15224054569fe90a",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P14294-F1-model_v6.cif",
+      "entry_id": "m_csa:64",
+      "provider": {
+        "model_entity_id": "AF-P14294-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P29241",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P29241_v6.cif",
+      "coordinate_sha256": "2ac18302f7f1781928b329b9e29d546919f24a6a96900f717353e35aec2d7808",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P29241-F1-model_v6.cif",
+      "entry_id": "m_csa:607",
+      "provider": {
+        "model_entity_id": "AF-P29241-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P15807",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+      "coordinate_sha256": "ed97eba4a8a1f0111b8a8a8bb0af6bbcdbff04b20cad69d711e698e00ee34df6",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P15807-F1-model_v6.cif",
+      "entry_id": "m_csa:610",
+      "provider": {
+        "model_entity_id": "AF-P15807-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "Q9P4R4",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+      "coordinate_sha256": "90bf1ee5a4877e8df367e10a7f4f5fff8d149119f04576950e39b6e35b12841c",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-Q9P4R4-F1-model_v6.cif",
+      "entry_id": "m_csa:618",
+      "provider": {
+        "model_entity_id": "AF-Q9P4R4-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": false
+    },
+    {
+      "accession": "P81382",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P81382_v6.cif",
+      "coordinate_sha256": "4f7953ec2e8481d57ecdfa69847e15fb15ba4452a4bcdc629e325040f0a1c8cf",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P81382-F1-model_v6.cif",
+      "entry_id": "m_csa:555",
+      "provider": {
+        "model_entity_id": "AF-P81382-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P04802",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P04802_v6.cif",
+      "coordinate_sha256": "fb778ff13a2392f5cdfa70b4effbcd15d7fe9cad592dfa57db98a92593c46f23",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P04802-F1-model_v6.cif",
+      "entry_id": "m_csa:404",
+      "provider": {
+        "model_entity_id": "AF-P04802-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P14262",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P14262_v6.cif",
+      "coordinate_sha256": "f963a1fe917d347a12019eadf906b219254993ad5a1d7b35ea7386ca087896bc",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-P14262-F1-model_v6.cif",
+      "entry_id": "m_csa:26",
+      "provider": {
+        "model_entity_id": "AF-P14262-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "Q00267",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q00267_v6.cif",
+      "coordinate_sha256": "f0e003f3f7b1325407d565a5c25b11d4f7de8258eee4f8d19fc79f114aea81c5",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-Q00267-F1-model_v6.cif",
+      "entry_id": "m_csa:515",
+      "provider": {
+        "model_entity_id": "AF-Q00267-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "P68698",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/AF-0000000365772455-model_v1.cif",
+      "coordinate_sha256": "69ddfeb30f9a65003636151190227bb4fd068efcd662f8e3ec3b5f0572f84716",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-0000000365772455-model_v1.cif",
+      "entry_id": "m_csa:232",
+      "provider": {
+        "model_entity_id": "AF-0000000365772455-model_v1",
+        "model_version": 1,
+        "provider": "AlphaFoldDB Viro3D",
+        "provider_id": "VR3D",
+        "tool_used": "ColabFold v1.5.2"
+      },
+      "staged_this_run": true
+    },
+    {
+      "accession": "Q96C23",
+      "afdb_model_available_now": true,
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q96C23_v6.cif",
+      "coordinate_sha256": "7990c68e3ff921f3b827e2a95949f082dec05bbf390b66de2eb3ae73c0e64e67",
+      "download_url": "https://alphafold.ebi.ac.uk/files/AF-Q96C23-F1-model_v6.cif",
+      "entry_id": "m_csa:351",
+      "provider": {
+        "model_entity_id": "AF-Q96C23-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "staged_this_run": true
+    }
+  ],
+  "counts": {
+    "coordinate_rows_available": 16,
+    "coordinate_rows_missing": 0,
+    "coordinates_staged_this_run": 9,
+    "near_cofactor_pressure_rows": 16,
+    "strict_high_cofactor_contract_members": 0
+  },
+  "created_utc": "2026-06-04T15:17:43Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "next_gate": "Use the fixed-threshold readout only to measure whether weak source-free cofactor evidence is enough. The strict high-cofactor gap still requires 16 accepted high-cofactor contract rows.",
+    "score_as_high_cofactor_contract_evidence": false,
+    "score_as_near_cofactor_pressure_diagnostic": true
+  },
+  "fixed_threshold": 0.44155,
+  "guardrails": {
+    "diagnostic_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "high_cofactor_contract_relaxed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false,
+    "train_cal_only": true
+  },
+  "schema_version": "v3.fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_plan",
+  "scope": "Train/cal-only diagnostic scoring plan for the 16 high-cofactor near-miss rows already reported by the strict acquisition blocker. This does not relax the high-cofactor contract or register the rows as high-cofactor members.",
+  "scoring_tranche_rows": [
+    {
+      "accession": "P07662",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P07662_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P07662-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "f2622514dbf75bae965663bf68e05cae14e5e37f250ea89ccbd3d207b75a5383",
+      "entry_id": "m_csa:288",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.407563,
+      "rank": 1,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "Q55012",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q55012_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-Q55012-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "8bebf9aa805bcc95d1a8f0bae620e337c39d052a03735ab1766ba7d83197b80c",
+      "entry_id": "m_csa:89",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.398339,
+      "rank": 2,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P0AG16",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P0AG16_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P0AG16-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "a725607f48a7a25975b98e1f224f2fcfee6ed720847dc0d96288acf3ab4b9362",
+      "entry_id": "m_csa:214",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.353171,
+      "rank": 3,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P00963",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P00963_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P00963-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "f5a0c07ea5b1b9074bd6cbe21483cf238420686d7583f7769e9f7b615baf8e57",
+      "entry_id": "m_csa:75",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.34378,
+      "rank": 4,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P0A759",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P0A759_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P0A759-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "6b49e302dfe7d7f5d905e2c3b017b74beba4ed343eaa71b3e7c988435f830ffb",
+      "entry_id": "m_csa:60",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.337092,
+      "rank": 5,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P09186",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P09186_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P09186-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "3d3cbf373cbb27a215c41568ce3074092b8e747c6b1433ebc7b74bd28c2137fd",
+      "entry_id": "m_csa:583",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.296056,
+      "rank": 6,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P14294",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P14294_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P14294-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "69aed89398f436a15188432e5d9546bf756b363f04b693ef15224054569fe90a",
+      "entry_id": "m_csa:64",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.246623,
+      "rank": 7,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P29241",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P29241_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P29241-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "2ac18302f7f1781928b329b9e29d546919f24a6a96900f717353e35aec2d7808",
+      "entry_id": "m_csa:607",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.236789,
+      "rank": 8,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P15807",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P15807-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "ed97eba4a8a1f0111b8a8a8bb0af6bbcdbff04b20cad69d711e698e00ee34df6",
+      "entry_id": "m_csa:610",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.222226,
+      "rank": 9,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": true,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "Q9P4R4",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-Q9P4R4-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "90bf1ee5a4877e8df367e10a7f4f5fff8d149119f04576950e39b6e35b12841c",
+      "entry_id": "m_csa:618",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.215006,
+      "rank": 10,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": true,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P81382",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P81382_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P81382-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "4f7953ec2e8481d57ecdfa69847e15fb15ba4452a4bcdc629e325040f0a1c8cf",
+      "entry_id": "m_csa:555",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.213904,
+      "rank": 11,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P04802",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P04802_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P04802-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "fb778ff13a2392f5cdfa70b4effbcd15d7fe9cad592dfa57db98a92593c46f23",
+      "entry_id": "m_csa:404",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.193581,
+      "rank": 12,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P14262",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P14262_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-P14262-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "f963a1fe917d347a12019eadf906b219254993ad5a1d7b35ea7386ca087896bc",
+      "entry_id": "m_csa:26",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.177608,
+      "rank": 13,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "Q00267",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q00267_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-Q00267-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "f0e003f3f7b1325407d565a5c25b11d4f7de8258eee4f8d19fc79f114aea81c5",
+      "entry_id": "m_csa:515",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.150245,
+      "rank": 14,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "P68698",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/AF-0000000365772455-model_v1.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-0000000365772455-model_v1",
+        "model_version": 1,
+        "provider": "AlphaFoldDB Viro3D",
+        "provider_id": "VR3D",
+        "tool_used": "ColabFold v1.5.2"
+      },
+      "coordinate_sha256": "69ddfeb30f9a65003636151190227bb4fd068efcd662f8e3ec3b5f0572f84716",
+      "entry_id": "m_csa:232",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.147019,
+      "rank": 15,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "accession": "Q96C23",
+      "any_inorganic_locus_context": false,
+      "axis_role": "source_free_near_cofactor_pressure_diagnostic_not_high_cofactor_contract",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "coordinate_exists": true,
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q96C23_v6.cif",
+      "coordinate_provider": {
+        "model_entity_id": "AF-Q96C23-F1-model_v6",
+        "model_version": 6,
+        "provider": "AlphaFoldDB",
+        "provider_id": "AFDB",
+        "tool_used": "AlphaFoldDB canonical monomer"
+      },
+      "coordinate_sha256": "7990c68e3ff921f3b827e2a95949f082dec05bbf390b66de2eb3ae73c0e64e67",
+      "entry_id": "m_csa:351",
+      "high_cofactor_contract_member": false,
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "near_cofactor_pressure_axis_member": true,
+      "oos_tier": "unknown_oos",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.144021,
+      "rank": 16,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    }
+  ],
+  "source_artifacts": {
+    "candidate_pool": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json",
+      "sha256": "d65d32fce6a49611fb9140685721b31023b00ee14b1ca6c2705f297db4c9edf3"
+    },
+    "current_measured_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
+      "sha256": "9b75e3a85d64b817353b2edcd0aba94309c04d4929deaacb39aa537a7d101879"
+    },
+    "near_miss_triage": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_current702_20260604.json",
+      "sha256": "40425043d8a8f4838822d8dfe591d844d2c0edd22c0423f1a35dc3625d1dec05"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_near_cofactor_pressure_plan_ready_full_coordinate_coverage"
+}
