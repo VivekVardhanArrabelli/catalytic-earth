@@ -3,6 +3,37 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-06: Lever 2 Electron-Flow Adds A Real, Primary-Safe OOS-Abstain Lift (research-grade) — Integrated
+
+Event: the Lever-2 electron-flow research track (formerly `lever-2-research-track`,
+now in main; also preserved at tag `archive/lever-2-research-track`) is unified into
+main. Earlier I mis-archived it as a concluded dead-end; it had in fact made real,
+recent (2026-06-06), leakage-safe train/cal progress that was never written to this
+log. This entry records that finding.
+
+Result (train/cal, source-free, fixed operating point vs the current geometry/fold
+surface; `lever2_mechanism_incremental_readout.py` +
+`build-lever2-*` CLI): a direct electron-flow OR overlay raises OOS abstain-recall
+0.4667 -> 0.5067 (**+0.04**) while holding **primary retention at 1.0**. Three
+independent components each add value: PQQ (`m_csa:104`), NAD-family (`m_csa:464`),
+Fe-S/iron (`m_csa:119`). Status: research-grade, **not deployable** — the only
+remaining gap is explicit protected-import authorization + an approved-sidecar
+rerun; no heldout was scored, no thresholds/labels/registries changed.
+
+Why it matters / how it composes: this is the **complement** to the cofactor
+channel. The cofactor one-shot (entry below) recovers primaries 23 -> 37/45 but at a
+precision cost (OOS FP 12.3% -> 25.9%); electron-flow adds OOS-abstention WITHOUT
+costing primary retention. It is exactly the kind of orthogonal, mechanism-
+discriminative feature the 2026-05-31 Northstar Pivot called for, and a candidate
+precision lever to offset the cofactor channel's over-opening. Treat it as a
+research signal pending its authorized import, not a deployed gate.
+
+References:
+
+- `src/catalytic_earth/lever2_mechanism_incremental_readout.py`
+- `work/lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.md`
+- tag `archive/lever-2-research-track` (full track history)
+
 ## 2026-06-04: HELDOUT ONE-SHOT SPENT — Cofactor Fusion 23 -> 37/45 Primary (OOS FP 12.3% -> 25.9%)
 
 Event: the one-shot heldout read was authorized as a single blind pass and is now
