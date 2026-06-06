@@ -808,6 +808,33 @@ class CliTests(unittest.TestCase):
             args.train_cal_feature_sidecar,
         )
 
+    def test_lever2_electron_flow_current_split_operating_point_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-current-split-"
+                    "operating-point-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_current_split_operating_"
+                "point_readout"
+            ),
+            args.out,
+        )
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_current_split_row_gate_"
+                "audit_readout"
+            ),
+            args.current_split_row_gate_audit_readout,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-06T02:33:19Z`
-- STARTED_AT_LOCAL: `2026-06-05T21:33:19-0500 CDT`
-- ENDED_AT_UTC: `2026-06-06T03:23:08Z`
-- ENDED_AT_LOCAL: `2026-06-05T22:23:08-0500 CDT`
-- ELAPSED_MINUTES: `49.83`
+- STARTED_AT_UTC: `2026-06-06T03:31:51Z`
+- STARTED_AT_LOCAL: `2026-06-05T22:31:51-0500 CDT`
+- ENDED_AT_UTC: `2026-06-06T03:49:41Z`
+- ENDED_AT_LOCAL: `2026-06-05T22:49:41-0500 CDT`
+- ELAPSED_MINUTES: `17.83`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,141 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 35
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-06T03:31:51Z`
+- STARTED_LOCAL: `2026-06-05T22:31:51-0500 CDT`
+- ENDED_AT: `2026-06-06T03:49:41Z`
+- ENDED_LOCAL: `2026-06-05T22:49:41-0500 CDT`
+- ELAPSED_MINUTES: `17.83`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Use the source-free row-gate audit from Run 34 as input and produce the next
+train/cal-disciplined measured readout: direct source-free electron-flow
+operating-point value beyond the current geometry/fold surface while preserving
+primary retention, without applying protected imports or editing protected
+surfaces.
+
+#### Work log
+
+- Continued in the dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial disk check in the detached automation checkout and then in the
+  branch worktree showed 11 GiB free, above the 10 GiB guardrail.
+- Read the prior Lever 2 handoff first. The automation memory file was absent
+  at start, so the handoff was the only available run memory.
+- Added
+  `build-lever2-source-free-electron-flow-current-split-operating-point-readout`.
+  It consumes the Run 34 row-gate audit, computes the current geometry/fold
+  baseline from the measured full-gate recall/delta, compares smoke and full
+  direct source-free electron-flow OR overlays, estimates the calibration-OOS
+  denominator/row counts, and decomposes the signal by PQQ, NAD-family, and
+  Fe-S/iron components.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json`
+  and
+  `work/lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.md`.
+- No canonical approved sidecar, protected import, production threshold,
+  registry, ontology, label, heldout split, or Lever 3 surface was edited.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_current_split_operating_point_readout_research_only_direct_source_free_operating_point_signal_pending_protected_import`.
+  Result class:
+  `research_only_direct_source_free_operating_point_signal_pending_protected_import`.
+- Source row-gate matrix SHA-256:
+  `98a5eb56d8c5cf28bba414f085fa4f3723ef65ce46c73007825b29acb3a8d5b1`.
+- Estimated calibration-OOS denominator: 75 rows.
+- Current geometry/fold baseline OOS abstain recall: `0.466667`
+  (estimated 35/75 OOS abstained).
+- Smoke tranche (`m_csa:104` plus 34 primary rows): 35/35 complete source-free
+  rows, 0 primary-positive rows, primary retain recall `1.0`, OOS abstain
+  recall `0.48`, incremental OOS abstain recall `0.013333`, and estimated
+  36/75 OOS abstained.
+- Full current split: 74/74 complete source-free rows, 34 current primary rows,
+  40 retained-OOS rows, 0 primary-positive rows, primary retain recall `1.0`,
+  retained-OOS positives `m_csa:104`, `m_csa:119`, and `m_csa:464`, OOS
+  abstain recall `0.506667`, incremental OOS abstain recall `0.04`, and
+  estimated 38/75 OOS abstained.
+- Component decomposition: PQQ (`m_csa:104`), NAD-family (`m_csa:464`), and
+  Fe-S/iron (`m_csa:119`) each add `0.013333` OOS abstain recall with zero
+  primary-positive rows.
+- Decision flags: direct source-free electron-flow operating point measured
+  `true`, adds operating-point value beyond current geometry/fold `true`,
+  primary retention preserved `true`, done-bar evidence measured `true`,
+  deployable now `false`.
+- Interpretation: no source-free electron-flow evidence gap remains for the
+  current train/cal split. The remaining gap is explicit protected import
+  authorization and approved-sidecar rerun, not missing source-free rows.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Entry IDs are used only for tranche, delta, row-gate, and
+  contract accounting.
+- The operating-point readout uses only the eight direct source-free
+  electron-flow fields already audited in the source row-gate matrix.
+- Protected imports executed: 0. Approved sidecar rows written: 0.
+- Final disk check showed 11079 MiB free, above the 10 GiB guardrail.
+
+#### Validation
+
+- New CLI artifact generation:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-current-split-operating-point-readout`:
+  wrote baseline/smoke/full OOS recall
+  `0.466667/0.48/0.506667` with result class
+  `research_only_direct_source_free_operating_point_signal_pending_protected_import`.
+- Focused new unit/parser/regression slice:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_current_split_operating_point_readout_scores_gate_overlay tests/test_cli.py::CliTests::test_lever2_electron_flow_current_split_operating_point_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_current_split_operating_point_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  521 passed, 193 subtests passed.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1598 passed, 212 subtests passed,
+  with the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1553 tests OK,
+  with the same existing warning.
+- Hash-seed stability: focused component-aware new slice passed for
+  `PYTHONHASHSEED=1` through `5`.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `python -m json.tool` parsed the new JSON artifact.
+- `git diff --check`: passed.
+- Guardrail scans found no changed label/registry/ontology/threshold/heldout,
+  protected import, or Lever 3 paths and no true guardrail flags in the new
+  artifact/report.
+
+#### Commit/push status
+
+- Commit and push completed in wrap-up; branch sync verified before returning.
+
+#### Exact next action
+
+- With explicit protected import authorization only: apply the 35-row smoke
+  tranche, rerun this operating-point readout on the approved sidecar, and
+  expand the remaining 39 rows only if primary positives remain zero. Without
+  that authorization, do not edit the approved sidecar/import surfaces; the
+  remaining gap is policy/authorization, not source-free electron-flow
+  evidence.
 
 ### 2026-06-05 Lever 2 Research Run 34
 

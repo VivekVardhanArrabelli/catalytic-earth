@@ -26,6 +26,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout,
     build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    build_lever2_source_free_electron_flow_current_split_operating_point_readout,
     build_lever2_source_free_electron_flow_current_split_row_gate_audit_readout,
     build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout,
     build_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
@@ -7619,6 +7620,157 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             ]
         )
         self.assertFalse(readout["decision"]["approved_sidecar_written"])
+
+    def test_electron_flow_current_split_operating_point_readout_scores_gate_overlay(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            audit_path = root / "row_gate_audit.json"
+            audit_path.write_text(
+                json.dumps(
+                    {
+                        "status": "row_gate_ok",
+                        "result_class": (
+                            "research_only_current_split_row_gate_audit_"
+                            "operating_point_signal"
+                        ),
+                        "decision": {
+                            "row_level_audit_confirms_operating_point_value": True,
+                            "source_free_electron_flow_current_split_measured": True,
+                        },
+                        "measured_readout": {
+                            "gate_evidence_from_preflight": {
+                                "smoke_gate_union_or_gate_oos_abstain_recall": 0.48
+                            },
+                            "row_gate_summaries": {
+                                "smoke_tranche_first": {
+                                    "rows": 35,
+                                    "complete_rows": 35,
+                                },
+                                "full_current_split_after_smoke": {
+                                    "rows": 74,
+                                    "complete_rows": 74,
+                                },
+                            },
+                        },
+                        "counts": {
+                            "critical_row_violation_total": 0,
+                            "field_consistency_violation_rows": 0,
+                            "field_conflict_rows": 0,
+                            "direct_source_free_electron_flow_feature_fields": 8,
+                            "smoke_rows": 35,
+                            "smoke_complete_rows": 35,
+                            "smoke_primary_rows": 34,
+                            "smoke_primary_positive_rows": 0,
+                            "smoke_primary_retain_recall": 1.0,
+                            "smoke_retained_oos_positive_entry_ids": ["m_csa:104"],
+                            "full_current_split_rows": 74,
+                            "full_current_split_complete_rows": 74,
+                            "full_current_split_primary_rows": 34,
+                            "full_current_split_primary_positive_rows": 0,
+                            "full_current_split_primary_retain_recall": 1.0,
+                            "full_current_split_retained_oos_rows": 40,
+                            "full_current_split_retained_oos_positive_rows": 3,
+                            "full_current_split_retained_oos_positive_entry_ids": [
+                                "m_csa:104",
+                                "m_csa:119",
+                                "m_csa:464",
+                            ],
+                            "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+                            "full_current_split_union_or_gate_oos_abstain_recall": 0.506667,
+                            "pqq_positive_retained_oos_entry_ids": ["m_csa:104"],
+                            "nad_family_positive_retained_oos_entry_ids": [
+                                "m_csa:464"
+                            ],
+                            "iron_sulfur_or_iron_positive_retained_oos_entry_ids": [
+                                "m_csa:119"
+                            ],
+                            "row_gate_matrix_sha256": "matrix-sha",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_current_split_operating_point_readout(
+                current_split_row_gate_audit_readout_path=audit_path,
+                artifact_id="test_operating_point",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_operating_point")
+        self.assertEqual(
+            readout["result_class"],
+            (
+                "research_only_direct_source_free_operating_point_signal_"
+                "pending_protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["counts"]["current_geometry_fold_oos_abstain_recall_baseline"],
+            0.466667,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(readout["counts"]["estimated_calibration_oos_rows"], 75)
+        self.assertEqual(
+            readout["counts"]["estimated_current_geometry_fold_oos_abstained_rows"],
+            35,
+        )
+        self.assertEqual(
+            readout["counts"]["estimated_smoke_union_oos_abstained_rows"],
+            36,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "estimated_full_current_split_union_oos_abstained_rows"
+            ],
+            38,
+        )
+        self.assertEqual(readout["counts"]["component_operating_point_variants"], 3)
+        self.assertEqual(
+            readout["counts"]["positive_component_operating_point_variants"],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "pqq_component_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "nad_family_component_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_or_iron_component_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(readout["decision"]["primary_retention_preserved"])
+        self.assertTrue(readout["decision"]["component_decomposition_primary_safe"])
+        self.assertTrue(
+            readout["decision"][
+                "component_decomposition_all_three_components_add_value"
+            ]
+        )
+        self.assertTrue(readout["decision"]["done_bar_evidence_measured"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(
+            readout["guardrails"]["protected_import_executed_by_this_artifact"]
+        )
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,

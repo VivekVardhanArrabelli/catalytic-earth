@@ -22344,6 +22344,144 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             readout["guardrails"]["protected_import_executed_by_this_artifact"]
         )
 
+    def test_lever2_electron_flow_current_split_operating_point_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_current_split_operating_"
+                "point_readout_current702_20260606.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_current_split_operating_"
+                "point_readout_research_only_direct_source_free_operating_"
+                "point_signal_pending_protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            (
+                "research_only_direct_source_free_operating_point_signal_"
+                "pending_protected_import"
+            ),
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            readout["counts"]["direct_source_free_electron_flow_feature_fields"],
+            8,
+        )
+        self.assertEqual(readout["counts"]["estimated_calibration_oos_rows"], 75)
+        self.assertEqual(
+            readout["counts"]["current_geometry_fold_oos_abstain_recall_baseline"],
+            0.466667,
+        )
+        self.assertEqual(
+            readout["counts"]["estimated_current_geometry_fold_oos_abstained_rows"],
+            35,
+        )
+        self.assertEqual(readout["counts"]["smoke_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_complete_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_primary_positive_rows"], 0)
+        self.assertEqual(readout["counts"]["smoke_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_union_or_gate_oos_abstain_recall"],
+            0.48,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"]["estimated_smoke_union_oos_abstained_rows"],
+            36,
+        )
+        self.assertEqual(readout["counts"]["full_current_split_rows"], 74)
+        self.assertEqual(readout["counts"]["full_current_split_complete_rows"], 74)
+        self.assertEqual(
+            readout["counts"]["full_current_split_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_primary_retain_recall"], 1.0
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_current_split_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_union_or_gate_oos_abstain_recall"],
+            0.506667,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "estimated_full_current_split_union_oos_abstained_rows"
+            ],
+            38,
+        )
+        self.assertEqual(readout["counts"]["component_operating_point_variants"], 3)
+        self.assertEqual(
+            readout["counts"]["positive_component_operating_point_variants"],
+            3,
+        )
+        self.assertTrue(
+            readout["counts"]["component_operating_point_variants_primary_safe"]
+        )
+        self.assertEqual(
+            readout["counts"][
+                "pqq_component_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "nad_family_component_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_or_iron_component_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_operating_point_measured"
+            ]
+        )
+        self.assertTrue(readout["decision"]["primary_retention_preserved"])
+        self.assertTrue(readout["decision"]["component_decomposition_primary_safe"])
+        self.assertTrue(
+            readout["decision"][
+                "component_decomposition_all_three_components_add_value"
+            ]
+        )
+        self.assertTrue(readout["decision"]["done_bar_evidence_measured"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["approved_sidecar_written"])
+        self.assertFalse(
+            readout["guardrails"]["protected_import_executed_by_this_artifact"]
+        )
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:

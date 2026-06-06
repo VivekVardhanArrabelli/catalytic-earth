@@ -63,6 +63,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout,
     write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    write_lever2_source_free_electron_flow_current_split_operating_point_readout,
     write_lever2_source_free_electron_flow_current_split_row_gate_audit_readout,
     write_lever2_source_free_electron_flow_current_split_smoke_materialization_readout,
     write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
@@ -14600,6 +14601,33 @@ def cmd_build_lever2_source_free_electron_flow_current_split_row_gate_audit_read
         "full primary/OOS positives: "
         f"{counts.get('full_current_split_primary_positive_rows')}/"
         f"{counts.get('full_current_split_retained_oos_positive_entry_ids')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_current_split_operating_point_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_current_split_operating_point_readout(
+        current_split_row_gate_audit_readout_path=Path(
+            args.current_split_row_gate_audit_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow current-split "
+        f"operating-point readout to {args.out} "
+        "baseline/smoke/full OOS recall: "
+        f"{counts.get('current_geometry_fold_oos_abstain_recall_baseline')}/"
+        f"{counts.get('smoke_union_or_gate_oos_abstain_recall')}/"
+        f"{counts.get('full_current_split_union_or_gate_oos_abstain_recall')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -35009,6 +35037,46 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_current_split_row_gate_audit.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_current_split_row_gate_audit_readout
+        )
+    )
+
+    lever2_electron_flow_current_split_operating_point = subparsers.add_parser(
+        (
+            "build-lever2-source-free-electron-flow-current-split-operating-"
+            "point-readout"
+        ),
+        help=(
+            "measure the fixed smoke/full source-free electron-flow OR overlay "
+            "against the current geometry/fold operating point"
+        ),
+    )
+    lever2_electron_flow_current_split_operating_point.add_argument(
+        "--current-split-row-gate-audit-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_row_"
+            "gate_audit_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_current_split_operating_point.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_current_split_operating_point.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_"
+            "operating_point_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_current_split_operating_point.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_current_split_operating_"
+            "point_readout_current702_20260606.md"
+        ),
+    )
+    lever2_electron_flow_current_split_operating_point.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_current_split_operating_point_readout
         )
     )
 
