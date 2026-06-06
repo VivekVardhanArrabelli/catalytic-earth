@@ -223,6 +223,222 @@ Artifacts:
 `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json`,
 `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_current702_20260604.json`,
 `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.json`.
+## 2026-06-04: Problem 2 Solution Architecture — Reconstruct Deploy-Missing Context From Sequence
+
+Decision (planning, not a result): adopt a generalized solution architecture for
+the predicted-geometry robustness problem, and make the next build the sequence
+cofactor-presence channel. The experimental-cofactor atom-level graft is demoted
+to an optional oracle and is NOT on the critical path.
+
+First-principles framing: the router was validated on experimental active-site
+geometry but deploys on sequence (-> predicted apo structure). The degradation is a
+train/deploy feature-shift — the router leans on active-site context that
+experimental structures contain and predicted apo ones lack. For the v1 families
+that context is the cofactor/metal; for future classes it will be substrate,
+metal, PTM, oligomeric interface, or ordered water. The general problem is therefore
+"reconstruct the deploy-missing active-site context from the only deploy-available
+signal (sequence), and abstain when you cannot."
+
+Generalized method (reusable for any future class):
+1. Diagnose which missing context drives the drop — `failure_decomposition`
+   (built, class/backend-agnostic).
+2. Bound the ceiling if that context were restored — `cofactor_restoration_probe`
+   plus the coordinate-free `cofactor_graft_fidelity_probe` (built, generic).
+3. Reconstruct the channel from sequence — train a sequence -> missing-context head
+   on train/cal only, supervised by STRUCTURAL observations (ligand context /
+   cofactor-locus sidecars), never by the mechanism fingerprint, EC, Rhea, or
+   mechanism text (else it is circular/leaky). This is the next build.
+4. Fuse + abstain — feed the reconstructed context into the router where the
+   experimental ligand_context used to plug in, and domain-adapt: calibrate the
+   threshold on the predicted-apo-plus-reconstruction regime (not the experimental
+   regime), using reconstruction confidence + pLDDT for principled abstention. The
+   3 distorted-backbone rows (`m_csa:213`, `m_csa:854`, `m_csa:714`) are abstention
+   cases and the ESMFold2 secondary-lever boundary.
+
+Two deploy paths for step 3/4: (A) feature-channel — predicted cofactor presence
+fed as a feature; lighter, most general, needs no atom placement. (B)
+structure-restoration — graft a CANONICAL/template cofactor (not the experimental
+one) into the predicted apo pocket and recompute real geometry; heavier, reuses the
+graft machinery with a de-circularized template. Default to (A); keep (B) and the
+graft machinery in reserve.
+
+Why the experimental-cofactor atom graft is not needed: it transplants the
+experimental cofactor, which is unavailable at deploy time (circular), so it can
+only be an oracle that (i) sharpens the 19-22/22 ceiling to one integer and (ii)
+one-time-validates the cheap coordinate-free proxy for future classes. Both are
+optional; neither blocks the channel. Revisit only if scaling the diagnostic to
+many classes (validate the proxy once) or if choosing deploy-path (B).
+
+Next step: build step 3 — the leakage-safe train/cal sequence -> cofactor-presence
+channel — starting from an audit of `sequence_cofactor_channel.py` and the
+materialized cofactor-locus sidecars, measured against the 19-22/22 ceiling.
+
+## 2026-06-04: Cofactor Graft Is Realistic For 19/22 (3 Need Better Predicted Geometry)
+
+Decision: the idealized 22/22 cofactor-restoration recovery holds up under a
+realistic rigid graft for **19/22** rows; the 3 exceptions are where the predicted
+backbone itself is distorted, which is the boundary where the ESMFold2 secondary
+lever (better predicted geometry) matters. This refines, and does not overturn,
+the cofactor-awareness conclusion.
+
+Method (coordinate-free fidelity proxy, no fit): the restoration probe assumed
+perfect cofactor placement. This probe measures whether the predicted active-site
+scaffold is preserved well enough that a real rigid graft keeps the cofactor
+proximal. It compares catalytic-residue internal pairwise distances (CA/centroid,
+rotation/translation invariant) between experimental and predicted structures, and
+flags a row graft-realistic when it recovered idealized AND the worst active-site
+distance distortion is within the cofactor's experimental proximity margin
+(6.0 A cutoff minus the cofactor's experimental min distance).
+
+Result: graft-realistic recovery **19/22**; active-site faithful (internal RMSD
+<= 1.5 A) 20/22 — most pockets are near-rigid (RMSD 0.12–0.6 A). The distorted
+rows are `m_csa:213` (RMSD 18.6 A) and `m_csa:854` (RMSD 8.2 A); `m_csa:714` is
+faithful by RMSD but fails the proximity-margin test on its worst pair. These 3
+are exactly the rows where cofactor restoration alone is insufficient and a better
+predicted backbone would help.
+
+Why coordinate-free: numpy is unavailable in this environment (no Kabsch SVD), and
+proximal-ligand atom coordinates are not stored in the geometry features, so a
+full atom-level superposition is not run here. The internal-distance metric is
+invariant to frame and needs no superposition. The true atom-level graft
+(superpose on catalytic residue atoms, transplant cofactor atoms, recompute
+proximity, re-score) is the documented next escalation; the predicted heldout CIFs
+are already staged locally under
+`artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/`.
+
+Artifacts:
+`artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json`,
+`work/cofactor_graft_fidelity_probe_current702_20260604.md`.
+
+## 2026-06-04: Cofactor Restoration Recovers 22/22 Lost Primaries (Backbone Is Faithful)
+
+Decision: cofactor-restoration is confirmed as the Problem-2 lever with a perfect
+ceiling. A no-fit counterfactual that restores the experimental cofactor onto the
+predicted apo backbone recovers **22/22 cofactor_apo_loss lost primary rows**
+(100%; Wave 1 readthrough 20/20). The predicted backbone is therefore faithful
+enough that the missing cofactor is the entire loss; a better apo folder
+(ESMFold2) is not needed for primary recovery and cannot supply the cofactor.
+
+Method (counterfactual, no fit, frozen threshold/fingerprints): for each
+cofactor_apo_loss lost primary row, inject the experimental proximal cofactor/metal
+`ligand_context` onto the predicted (apo) geometry entry, keep the predicted
+residue geometry, and re-score with the frozen `run_geometry_retrieval` and hand
+router at 0.4115. Recovered = restored call is non-abstained and matches the true
+fingerprint. An apo control rescore (no injection) **reproduces the audit exactly**
+(`apo_control_rescore_matches_audit: true`), validating the harness.
+
+Result: all 22 lost primaries recover; per-row score lifts are 0.08–0.41 and every
+row flips from abstain/`metal_dependent_hydrolase`-misroute to the correct
+fingerprint (flavin/PLP/heme/metal/Fe-S). This is an UPPER BOUND (perfect cofactor
+placement); real docking is imperfect.
+
+Implication: the next build is a real cofactor-restoration feature — graft/dock the
+cofactor into the predicted active site, or a sequence cofactor-presence channel
+(`sequence_cofactor_channel.py` / `cofactor_channel_probe.py`) — selected on
+train/cal, heldout one-shot. ESMFold2 stays scoped to its secondary value (OOS
+false-positive reduction + pLDDT abstention). The probe is backend-agnostic; re-run
+it on a future ESMFold2 audit to confirm the same pattern.
+
+Artifacts:
+`artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json`,
+`work/cofactor_restoration_recovery_probe_current702_20260604.md`.
+
+## 2026-06-03: Predicted-Geometry Degradation Is Cofactor-Loss-Dominated
+
+Decision: Problem 2's primary lever is **cofactor-awareness, not a better apo
+structure predictor**. A no-fit failure decomposition of the AlphaFoldDB-v6
+robustness audit shows the 45/45 -> 23/45 primary drop is driven entirely by
+missing cofactor geometry, so swapping AlphaFoldDB for ESMFold2 (also apo) cannot
+recover the lost primary rows. ESMFold2 is demoted from "expected primary-recovery
+lever" to a secondary role: OOS false-positive reduction and pLDDT-gated
+abstention only.
+
+Method (descriptive, no fit, no new heldout read): for each predicted-geometry
+hand-router row, compare experimental vs predicted proximal cofactor/metal context
+and missing residues, and classify each lost primary / OOS false positive as
+`cofactor_apo_loss` (cofactor/metal proximal experimentally, absent in the apo
+prediction), `fold_or_sidechain` (residues resolved, no experimental cofactor
+dependence), or `missing_residue`. This only categorizes outcomes the robustness
+audit already computed.
+
+Result: of 22 lost primary rows, **22/22 are `cofactor_apo_loss`** (flavin 10,
+PLP 6, metal 4, heme 4, Fe-S 2; all with `predicted_missing_positions == 0`) and
+**0 are `fold_or_sidechain`**. Wave 1 readthrough (excluding `m_csa:497`/`m_csa:750`)
+is 20/20 cofactor_apo_loss. The 10 OOS false positives are 7 cofactor_apo_loss + 3
+fold_or_sidechain (9/10 mis-called `metal_dependent_hydrolase`). Control: 13/23
+correctly-called primaries also had an experimental cofactor, proving apo geometry
+can suffice for some rows — the lost rows are exactly where stripping the cofactor
+breaks the signal.
+
+Implication: the ESMFold2 coordinate-swap primary-recovery upper bound is **0**
+(no fold/side-chain-limited row exists for a better apo folder to grab). The
+right Problem-2 lever is cofactor-aware (place/dock the cofactor into the
+predicted structure, or a sequence cofactor-presence channel — the repo already
+has `sequence_cofactor_channel.py` / `cofactor_channel_probe.py`). The staged
+ESMFold2 experiment remains worth running only for (a) OOS false-positive
+reduction via better apo pocket packing and (b) pLDDT-gated abstention — both
+selected on train/cal, heldout one-shot.
+
+Reusable: the decomposition is backend-agnostic and should be re-run on a future
+ESMFold2 robustness audit to confirm the same cofactor-loss-dominated pattern.
+
+Artifacts:
+`artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json`,
+`work/predicted_geometry_failure_decomposition_current702_20260603.md`.
+
+## 2026-06-03: ESMFold2 Robustness Experiment Staged (No-Fit), Backend Added
+
+Decision: address Problem 2 (robustness to predicted vs experimental active-site
+geometry degradation) by **staging the ESMFold2 experiment as a no-fit,
+leakage-safe contract** plus a runnable `esmfold2` coordinate-supplier backend.
+No ESMFold2 inference was run, no weights were downloaded, no threshold was
+changed, and no heldout row was read. ESMFold2 was verified real before building
+(Biohub / A. Rives, released 2026-05-27, MIT/open weights; corroborated by
+Nature, Scientific American, Axios, PR Newswire, GenEngNews).
+
+Why staged, not run: this environment cannot run the experiment. `torch`/`esm`
+are not installed, `foldseek` is absent, and every predicted-structure host is
+network-blocked (HTTP 403 for Hugging Face, ESM Atlas, and even
+`alphafold.ebi.ac.uk` — the source the existing `alphafold_db` backend uses).
+Only GitHub and the web-search proxy are reachable. This mirrors the prior
+`esmfold` backend, which has been a deliberate blocked stub since 2026-05-29.
+
+What was built (additive, AlphaFoldDB path byte-unchanged):
+- `predicted_geometry_robustness.py` now supports `backend="esmfold2"` in the
+  robustness, distillation, and in-distribution atlas builders. With no staged
+  coordinates it returns a precise `blocked` audit
+  (`esmfold2_runtime_or_staged_coordinates_unavailable`). Given a directory of
+  pre-staged ESMFold2 mmCIFs keyed by accession (`esmfold2_staged_dir=` or the
+  `CE_ESMFOLD2_STAGED_DIR` env var), the `make_esmfold2_staged_supplier` fetcher
+  feeds the frozen geometry router and Foldseek/TM fold channel unchanged.
+- A no-fit experiment contract that enumerates the exact prediction work list
+  (184 in-distribution+fingerprint atlas rows, 140 heldout rows, 323 unique
+  accessions), fixes the train/cal-selects-thresholds / heldout-final-only
+  discipline, records the AlphaFoldDB-v6 baseline to beat (hand router 23/45
+  primary, 12.3% OOS FP; fold/TM AUC 0.814; geometry+fold mean AUC 0.908), plans
+  six comparison metrics including pLDDT-gated abstention vs the fixed 0.44155
+  fold-augmented gate, and lists exact rerun commands.
+- New CLI: `build-esmfold2-robustness-experiment-contract`, plus `--backend
+  esmfold2` and `--esmfold2-staged-dir` on the three predicted-geometry commands.
+- Seven new unit tests (staged supplier, blocked-when-unstaged, contract
+  shape/counts/leakage flags, ready-when-staged).
+
+Apo caveat (kept front and center): ESMFold2, like every sequence folder,
+predicts apo structures. It will not place FAD/PLP/heme/Zn or substrate, and the
+active-site signal leans heavily on cofactor/metal coordination. ESMFold2 can
+improve the protein side-chain part and supply pLDDT confidence, but cannot
+supply cofactor geometry. Expect partial help; measure it on train/cal, do not
+assume it, and keep the heldout read one-shot.
+
+To run when coordinates can be staged: predict the 323 accessions with ESMFold2
+(open `esm` + weights, the Biohub platform, or the ESM Atlas), write them as
+mmCIF keyed by accession into a directory, then run the three commands with
+`--backend esmfold2 --esmfold2-staged-dir <DIR>`. Select all thresholds/models
+on the in-distribution train/cal split; read heldout once.
+
+Artifacts:
+`artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`,
+`work/esmfold2_predicted_geometry_robustness_experiment_contract_20260603.md`.
 
 ## 2026-06-03: Lever 2 Source-Free Token Re-Selection — No Token Clears The Bar
 

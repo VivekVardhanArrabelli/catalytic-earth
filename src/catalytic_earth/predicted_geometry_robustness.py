@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,6 +39,32 @@ ALPHAFOLD_VERSION_ORDER = (6, 5, 4, 3, 2, 1)
 USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
 HAND_ROUTER_THRESHOLD = 0.4115
 
+# ESMFold2 (Biohub / A. Rives, released 2026-05-27, MIT, open weights) is an
+# all-atom + pLDDT sequence-structure predictor. Like every sequence folder it
+# predicts apo structures (no cofactor/metal/substrate), so it can only address
+# the protein side-chain part of the predicted-geometry degradation, not the
+# cofactor geometry the active-site router leans on. This backend never runs
+# inference or downloads weights; it consumes ESMFold2 coordinates that have been
+# pre-staged as mmCIF, keyed by current702 accession, and then reuses the frozen
+# geometry+fold scoring stack unchanged.
+ESMFOLD2_STAGED_DIR_ENV = "CE_ESMFOLD2_STAGED_DIR"
+ESMFOLD2_CIF_SUFFIXES = (".cif", ".mmcif")
+ESMFOLD2_BLOCKER = "esmfold2_runtime_or_staged_coordinates_unavailable"
+ESMFOLD2_BLOCKER_DETAIL = (
+    "ESMFold2 inference is not run by this audit and no model weights are "
+    "downloaded. Stage ESMFold2 all-atom mmCIF files keyed by current702 "
+    "accession (file name 'ESMFOLD2-{accession}.cif' or '{accession}.cif'), then "
+    "pass the directory via esmfold2_staged_dir= or the "
+    f"{ESMFOLD2_STAGED_DIR_ENV} environment variable. Coordinates can be produced "
+    "with the open `esm` package plus ESMFold2 weights, the hosted Biohub "
+    "platform, or the ESM Atlas lookup. Once staged, this backend reuses the "
+    "frozen geometry router and Foldseek/TM fold channel without edits."
+)
+ESMFOLD2_SOURCE_LABEL = (
+    "Biohub ESMFold2 all-atom predicted mmCIF read from a locally staged "
+    "directory keyed by current702 accession"
+)
+
 
 def build_predicted_geometry_robustness_audit(
     *,
@@ -55,6 +82,7 @@ def build_predicted_geometry_robustness_audit(
     hidden_layer_size: int = 32,
     max_rows: int = 0,
     fetcher: Any | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     """Score the frozen geometry stack on predicted structures.
 
@@ -76,7 +104,18 @@ def build_predicted_geometry_robustness_audit(
             split_assignment=split_assignment,
             backend=backend,
         )
-    if backend != "alphafold_db":
+    if backend == "esmfold2":
+        staged_dir = resolve_esmfold2_staged_dir(esmfold2_staged_dir)
+        if staged_dir is None:
+            return _blocked_audit(
+                blocker=ESMFOLD2_BLOCKER,
+                detail=ESMFOLD2_BLOCKER_DETAIL,
+                label_manifest=label_manifest,
+                split_assignment=split_assignment,
+                backend=backend,
+            )
+        fetcher = fetcher or make_esmfold2_staged_supplier(staged_dir)
+    elif backend != "alphafold_db":
         return _blocked_audit(
             blocker="unsupported_predicted_structure_backend",
             detail=(
@@ -102,6 +141,7 @@ def build_predicted_geometry_robustness_audit(
         alphafold_version=alphafold_version,
         fetcher=fetcher,
     )
+    _tag_predicted_geometry_backend(predicted_geometry, backend)
     predicted_retrieval = run_geometry_retrieval(predicted_geometry)
     hand_rows = _hand_router_rows(
         target_rows=target_rows,
@@ -149,10 +189,7 @@ def build_predicted_geometry_robustness_audit(
             "global_threshold_changed": False,
             "heldout_labels_used_for_fit_or_threshold": False,
             "large_model_downloads_performed": False,
-            "coordinate_download_scope": (
-                "AlphaFoldDB mmCIF coordinate files fetched transiently by "
-                "UniProt accession; raw coordinates are not committed"
-            ),
+            "coordinate_download_scope": _coordinate_download_scope(backend),
         },
         "scope": {
             "split_assignment": split_assignment,
@@ -219,6 +256,7 @@ def build_predicted_geometry_distillation_audit(
     hidden_layer_size: int = 32,
     max_rows: int = 0,
     fetcher: Any | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     """Train/calibrate heads on predicted geometry and evaluate heldout once."""
     if backend == "esmfold":
@@ -235,7 +273,20 @@ def build_predicted_geometry_distillation_audit(
             artifact_id="v3_predicted_geometry_distillation_audit_current702_20260529",
             schema_version="predicted_geometry_distillation_audit.v1",
         )
-    if backend != "alphafold_db":
+    if backend == "esmfold2":
+        staged_dir = resolve_esmfold2_staged_dir(esmfold2_staged_dir)
+        if staged_dir is None:
+            return _blocked_audit(
+                blocker=ESMFOLD2_BLOCKER,
+                detail=ESMFOLD2_BLOCKER_DETAIL,
+                label_manifest=label_manifest,
+                split_assignment="all",
+                backend=backend,
+                artifact_id="v3_predicted_geometry_distillation_audit_current702_20260529",
+                schema_version="predicted_geometry_distillation_audit.v1",
+            )
+        fetcher = fetcher or make_esmfold2_staged_supplier(staged_dir)
+    elif backend != "alphafold_db":
         return _blocked_audit(
             blocker="unsupported_predicted_structure_backend",
             detail=f"backend={backend!r}; only alphafold_db is implemented",
@@ -260,6 +311,7 @@ def build_predicted_geometry_distillation_audit(
         alphafold_version=alphafold_version,
         fetcher=fetcher,
     )
+    _tag_predicted_geometry_backend(predicted_geometry, backend)
     predicted_retrieval = run_geometry_retrieval(predicted_geometry)
     heldout_target_rows = [
         row for row in target_rows if row.get("split_assignment") == "heldout"
@@ -295,10 +347,7 @@ def build_predicted_geometry_distillation_audit(
             "global_threshold_changed": False,
             "heldout_labels_used_for_fit_or_threshold": False,
             "large_model_downloads_performed": False,
-            "coordinate_download_scope": (
-                "AlphaFoldDB mmCIF coordinate files fetched transiently by "
-                "UniProt accession; raw coordinates are not committed"
-            ),
+            "coordinate_download_scope": _coordinate_download_scope(backend),
         },
         "scope": {
             "backend": backend,
@@ -516,6 +565,86 @@ def fetch_alphafold_cif(
     )
 
 
+def resolve_esmfold2_staged_dir(esmfold2_staged_dir: str | Path | None) -> Path | None:
+    """Return a staged ESMFold2 mmCIF directory that holds at least one .cif file.
+
+    Resolution order is the explicit argument, then the
+    ``CE_ESMFOLD2_STAGED_DIR`` environment variable. The directory must exist and
+    contain at least one mmCIF coordinate file; otherwise this returns ``None`` so
+    callers emit a precise ``blocked`` audit instead of a misleading empty result.
+    """
+    raw = esmfold2_staged_dir or os.environ.get(ESMFOLD2_STAGED_DIR_ENV)
+    if not raw:
+        return None
+    path = Path(raw)
+    if not path.is_dir():
+        return None
+    has_cif = any(
+        candidate.is_file() and candidate.suffix.lower() in ESMFOLD2_CIF_SUFFIXES
+        for candidate in path.iterdir()
+    )
+    return path if has_cif else None
+
+
+def make_esmfold2_staged_supplier(staged_dir: str | Path) -> Any:
+    """Build a ``fetcher(accession, version=...)`` over staged ESMFold2 mmCIFs.
+
+    The returned supplier matches the AlphaFoldDB fetcher contract so the frozen
+    geometry+fold scoring stack consumes it unchanged. It performs no network I/O
+    and downloads no weights; a missing coordinate raises so the per-row failure
+    becomes artifact evidence exactly like an AlphaFoldDB miss.
+    """
+    base = Path(staged_dir)
+
+    def _supplier(accession: str, *, version: str = "auto") -> tuple[str, dict[str, Any]]:
+        cleaned = accession.strip()
+        if not cleaned:
+            raise ValueError("accession is required")
+        candidates = [
+            base / f"ESMFOLD2-{cleaned}{suffix}" for suffix in ESMFOLD2_CIF_SUFFIXES
+        ] + [base / f"{cleaned}{suffix}" for suffix in ESMFOLD2_CIF_SUFFIXES]
+        for path in candidates:
+            if path.is_file():
+                text = path.read_text(encoding="utf-8", errors="replace")
+                return text, {
+                    "backend": "esmfold2",
+                    "model": "esmfold2",
+                    "accession": cleaned,
+                    "source": ESMFOLD2_SOURCE_LABEL,
+                    "path": str(path),
+                }
+        raise RuntimeError(
+            f"ESMFold2 staged mmCIF not found for {cleaned}; tried "
+            + ", ".join(path.name for path in candidates)
+        )
+
+    return _supplier
+
+
+def _coordinate_download_scope(backend: str) -> str:
+    if backend == "esmfold2":
+        return (
+            "Biohub ESMFold2 all-atom mmCIF coordinates read from a locally staged "
+            "directory keyed by accession; no ESMFold2 weights or inference are run "
+            "here and raw coordinates are not committed"
+        )
+    return (
+        "AlphaFoldDB mmCIF coordinate files fetched transiently by UniProt "
+        "accession; raw coordinates are not committed"
+    )
+
+
+def _tag_predicted_geometry_backend(
+    predicted_geometry: dict[str, Any], backend: str
+) -> None:
+    """Stamp predicted-geometry provenance for non-AlphaFoldDB coordinate sources."""
+    if backend == "esmfold2":
+        metadata = predicted_geometry.get("metadata")
+        if isinstance(metadata, dict):
+            metadata["backend"] = "esmfold2"
+            metadata["source"] = ESMFOLD2_SOURCE_LABEL
+
+
 def write_predicted_geometry_robustness_audit(
     *,
     label_manifest_path: Path,
@@ -533,6 +662,7 @@ def write_predicted_geometry_robustness_audit(
     cal_fraction: float = 0.2,
     hidden_layer_size: int = 32,
     max_rows: int = 0,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     with label_manifest_path.open("r", encoding="utf-8") as handle:
         label_manifest = json.load(handle)
@@ -558,6 +688,7 @@ def write_predicted_geometry_robustness_audit(
         cal_fraction=cal_fraction,
         hidden_layer_size=hidden_layer_size,
         max_rows=max_rows,
+        esmfold2_staged_dir=esmfold2_staged_dir,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -581,6 +712,7 @@ def write_predicted_geometry_distillation_audit(
     cal_fraction: float = 0.2,
     hidden_layer_size: int = 32,
     max_rows: int = 0,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     with label_manifest_path.open("r", encoding="utf-8") as handle:
         label_manifest = json.load(handle)
@@ -601,6 +733,7 @@ def write_predicted_geometry_distillation_audit(
         cal_fraction=cal_fraction,
         hidden_layer_size=hidden_layer_size,
         max_rows=max_rows,
+        esmfold2_staged_dir=esmfold2_staged_dir,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -620,6 +753,7 @@ def build_predicted_geometry_in_distribution_atlas_retrieval(
     alphafold_version: str = "auto",
     max_rows: int = 0,
     fetcher: Any | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     """Build predicted-geometry retrieval for current702 in-distribution atlas rows.
 
@@ -628,7 +762,22 @@ def build_predicted_geometry_in_distribution_atlas_retrieval(
     atlas-percentile novelty methods; heldout labels are not used for fitting or
     threshold selection.
     """
-    if backend != "alphafold_db":
+    if backend == "esmfold2":
+        staged_dir = resolve_esmfold2_staged_dir(esmfold2_staged_dir)
+        if staged_dir is None:
+            return _blocked_audit(
+                blocker=ESMFOLD2_BLOCKER,
+                detail=ESMFOLD2_BLOCKER_DETAIL,
+                label_manifest=label_manifest,
+                split_assignment="in_distribution",
+                backend=backend,
+                artifact_id=(
+                    "v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601"
+                ),
+                schema_version="predicted_geometry_atlas_retrieval.v1",
+            )
+        fetcher = fetcher or make_esmfold2_staged_supplier(staged_dir)
+    elif backend != "alphafold_db":
         return _blocked_audit(
             blocker="unsupported_predicted_structure_backend",
             detail=f"backend={backend!r}; only alphafold_db is implemented",
@@ -687,6 +836,7 @@ def build_predicted_geometry_in_distribution_atlas_retrieval(
         alphafold_version=alphafold_version,
         fetcher=fetcher,
     )
+    _tag_predicted_geometry_backend(predicted_geometry, backend)
     atlas_retrieval = run_geometry_retrieval(predicted_geometry)
     atlas_results = _enriched_predicted_retrieval_results(
         retrieval_results=atlas_retrieval.get("results", []),
@@ -813,6 +963,7 @@ def write_predicted_geometry_in_distribution_atlas_retrieval(
     backend: str = "alphafold_db",
     alphafold_version: str = "auto",
     max_rows: int = 0,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     with label_manifest_path.open("r", encoding="utf-8") as handle:
         label_manifest = json.load(handle)
@@ -832,6 +983,7 @@ def write_predicted_geometry_in_distribution_atlas_retrieval(
         backend=backend,
         alphafold_version=alphafold_version,
         max_rows=max_rows,
+        esmfold2_staged_dir=esmfold2_staged_dir,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -842,6 +994,1326 @@ def write_predicted_geometry_in_distribution_atlas_retrieval(
             encoding="utf-8",
         )
     return audit
+
+
+ESMFOLD2_EXPERIMENT_CONTRACT_ARTIFACT_ID = (
+    "v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603"
+)
+ESMFOLD2_EXPERIMENT_CONTRACT_SCHEMA = "esmfold2_robustness_experiment_contract.v1"
+
+
+def _experiment_inventory_row(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "entry_id": str(row.get("entry_id") or ""),
+        "accession": str(row.get("accession") or row.get("sequence_id") or ""),
+        "sequence_id": str(row.get("sequence_id") or ""),
+        "benchmark_role": row.get("benchmark_role"),
+        "fingerprint_id": row.get("fingerprint_id") or row.get("mechanism_fingerprint_id"),
+        "split_assignment": row.get("split_assignment"),
+    }
+
+
+def build_esmfold2_robustness_experiment_contract(
+    *,
+    label_manifest: dict[str, Any],
+    afdb_robustness_audit: dict[str, Any] | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    """Stage the no-fit, leakage-safe ESMFold2 predicted-geometry experiment.
+
+    This materializes the experiment design only. It runs no ESMFold2 inference,
+    downloads no weights, selects no threshold, and reads no heldout label. It
+    enumerates the exact atlas (in-distribution + fingerprint) and 140 heldout
+    accessions to re-predict, records the AlphaFoldDB-v6 baseline to beat, fixes
+    the train/cal-selects-thresholds / heldout-final-only discipline, and reports
+    whether ESMFold2 coordinates are staged yet.
+    """
+    rows = [row for row in label_manifest.get("rows", []) if isinstance(row, dict)]
+
+    def _fp(row: dict[str, Any]) -> Any:
+        return row.get("fingerprint_id") or row.get("mechanism_fingerprint_id")
+
+    atlas_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "in_distribution" and _fp(row)
+    ]
+    heldout_rows = [row for row in rows if row.get("split_assignment") == "heldout"]
+
+    atlas_inventory = [_experiment_inventory_row(row) for row in atlas_rows]
+    heldout_inventory = [_experiment_inventory_row(row) for row in heldout_rows]
+    needed_accessions = sorted(
+        {entry["accession"] for entry in atlas_inventory + heldout_inventory if entry["accession"]}
+    )
+
+    staged_dir = resolve_esmfold2_staged_dir(esmfold2_staged_dir)
+    staged_count = 0
+    if staged_dir is not None:
+        for accession in needed_accessions:
+            candidates = [
+                staged_dir / f"ESMFOLD2-{accession}{suffix}"
+                for suffix in ESMFOLD2_CIF_SUFFIXES
+            ] + [staged_dir / f"{accession}{suffix}" for suffix in ESMFOLD2_CIF_SUFFIXES]
+            if any(path.is_file() for path in candidates):
+                staged_count += 1
+
+    headline = (afdb_robustness_audit or {}).get("headline", {}) or {}
+    afdb_baseline = {
+        "predicted_hand_router_primary_correct": headline.get(
+            "predicted_hand_router_primary_correct_count"
+        ),
+        "predicted_hand_router_primary_support": headline.get(
+            "predicted_hand_router_primary_support_count"
+        ),
+        "predicted_hand_router_primary_abstention_count": headline.get(
+            "predicted_hand_router_primary_abstention_count"
+        ),
+        "predicted_hand_router_primary_wrong_nonabstained_count": headline.get(
+            "predicted_hand_router_primary_wrong_nonabstained_count"
+        ),
+        "predicted_hand_router_oos_or_secondary_false_positive_rate": headline.get(
+            "predicted_hand_router_oos_or_secondary_false_positive_rate_available"
+        ),
+        "experimental_hand_router_primary_accuracy": headline.get(
+            "experimental_hand_router_primary_accuracy_available"
+        ),
+        "source_artifact": (
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    }
+
+    metric_plan = [
+        {
+            "metric": "hand_router_primary_correct_over_support",
+            "split": "heldout (final-only)",
+            "clean_experimental_reference": "45/45",
+            "afdb_v6_predicted_baseline": "23/45",
+            "success_criterion": (
+                "recover lost primary rows toward 45/45 without spending more than "
+                "one heldout read"
+            ),
+        },
+        {
+            "metric": "hand_router_oos_or_secondary_false_positive_rate",
+            "split": "heldout (final-only)",
+            "clean_experimental_reference": 0.0,
+            "afdb_v6_predicted_baseline": 0.123457,
+            "success_criterion": "reduce below the 12.3% AlphaFoldDB-v6 predicted rate",
+        },
+        {
+            "metric": "geometry_feature_logistic_probe_primary_accuracy",
+            "split": "in_distribution train/cal selects, heldout final-only",
+            "afdb_v6_predicted_baseline": 0.667,
+            "success_criterion": "match or beat the AlphaFoldDB-v6 logistic probe",
+        },
+        {
+            "metric": "nearest_atlas_fold_tm_auc_in_vs_all_oos",
+            "split": "in_distribution atlas vs heldout (final-only readout)",
+            "afdb_v6_predicted_baseline": 0.814301,
+            "success_criterion": "match or beat AlphaFoldDB-v6 fold/TM separation",
+            "source_artifact": (
+                "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json"
+            ),
+        },
+        {
+            "metric": "combined_geometry_plus_fold_mean_auc",
+            "split": "in_distribution atlas vs heldout (final-only readout)",
+            "afdb_v6_predicted_baseline": 0.907622,
+            "afdb_v6_confounded_oos_baseline": 0.911348,
+            "success_criterion": (
+                "match or beat the AlphaFoldDB-v6 no-fit geometry+fold mean overall "
+                "and on the 6 cofactor-confounded OOS rows"
+            ),
+        },
+        {
+            "metric": "plddt_gated_abstention_vs_fixed_fold_augmented_gate",
+            "split": "in_distribution train/cal selects gate, heldout final-only",
+            "afdb_v6_fixed_gate_threshold": 0.44155,
+            "afdb_v6_fixed_gate_heldout_readout": (
+                "retains 45/47 in-scope, abstains 44/79 OOS, abstains 5/6 "
+                "cofactor-confounded OOS"
+            ),
+            "new_signal": (
+                "ESMFold2 per-residue pLDDT confidence (apo) as a principled "
+                "abstention input, selected on train/cal only"
+            ),
+            "success_criterion": (
+                "a pLDDT-gated abstention rule selected on train/cal beats the fixed "
+                "0.44155 fold-augmented gate on heldout OOS abstention at matched "
+                "in-scope retention"
+            ),
+            "source_artifact": (
+                "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+                "expanded_oos_calibrated_current702_20260603.json"
+            ),
+        },
+    ]
+
+    protocol = [
+        {
+            "step": 1,
+            "action": (
+                "Re-predict the in-distribution atlas and the 140 heldout "
+                "accessions with ESMFold2 (all-atom + pLDDT). Stage outputs as "
+                "mmCIF keyed by accession in the staged-coordinate directory."
+            ),
+            "touches_heldout_labels": False,
+            "coordinate_source": "ESMFold2 (esm package + weights, Biohub platform, or ESM Atlas)",
+        },
+        {
+            "step": 2,
+            "action": (
+                "Re-run the frozen active-site geometry router and the Foldseek/TM "
+                "fold channel on the ESMFold2 structures via backend=esmfold2."
+            ),
+            "touches_heldout_labels": False,
+            "command_key": "robustness_audit",
+        },
+        {
+            "step": 3,
+            "action": (
+                "Compare to the AlphaFoldDB-v6 baseline: does 23/45 recover, does "
+                "the 12.3% OOS false-positive rate drop, does a pLDDT-gated "
+                "abstention rule (selected on train/cal) beat the fixed 0.44155 "
+                "fold-augmented gate."
+            ),
+            "touches_heldout_labels": "final-only readout after train/cal selection",
+            "command_key": "atlas_retrieval + fold channel rerun",
+        },
+        {
+            "step": 4,
+            "action": (
+                "Decide whether ESMFold2 replaces or augments AlphaFoldDB-v6 as the "
+                "predicted-structure coordinate source for the deployment regime."
+            ),
+            "touches_heldout_labels": False,
+        },
+    ]
+
+    staged_ready = staged_dir is not None and staged_count == len(needed_accessions)
+    return {
+        "artifact_id": ESMFOLD2_EXPERIMENT_CONTRACT_ARTIFACT_ID,
+        "schema_version": ESMFOLD2_EXPERIMENT_CONTRACT_SCHEMA,
+        "created_utc": _utc_now_iso(),
+        "status": "ready_to_run" if staged_ready else "blocked_on_staged_coordinates",
+        "experiment": {
+            "title": "ESMFold2 predicted active-site geometry robustness",
+            "open_problem": (
+                "Make the mechanism router robust to predicted (vs experimental) "
+                "active-site geometry degradation: recover the clean 45/45 -> "
+                "AlphaFoldDB-v6 23/45 primary drop and cut the 12.3% OOS false "
+                "positive rate, as a learned-model job rather than a clean-M-CSA "
+                "accuracy contest."
+            ),
+            "hypothesis": (
+                "ESMFold2 all-atom side-chain placement plus pLDDT confidence "
+                "recovers part of the predicted-geometry degradation and improves "
+                "principled abstention versus AlphaFoldDB-v6."
+            ),
+            "apo_caveat": (
+                "ESMFold2, like every sequence folder, predicts apo structures. It "
+                "will not place FAD/PLP/heme/Zn or substrate. The active-site signal "
+                "leans heavily on cofactor/metal coordination, so ESMFold2 can only "
+                "improve the protein side-chain part, not supply cofactor geometry. "
+                "Expect partial help; measure it, do not assume it."
+            ),
+        },
+        "model_under_test": {
+            "name": "ESMFold2",
+            "provider": "Biohub (A. Rives)",
+            "release_date": "2026-05-27",
+            "license": "MIT (open weights)",
+            "all_atom": True,
+            "per_residue_confidence": "pLDDT",
+            "predicts_cofactor_or_substrate_geometry": False,
+        },
+        "afdb_v6_baseline_to_beat": afdb_baseline,
+        "protocol": protocol,
+        "split_discipline": {
+            "threshold_and_model_selection_split": "in_distribution train/cal",
+            "heldout_policy": "read once, after thresholds/models are fixed",
+            "clean_experimental_reference": "45/45 primary, 0/92 pure-OOS FP at 0.4115",
+            "leakage_rules": [
+                "no labels, fingerprints, M-CSA mechanism text/roles, source IDs, "
+                "target names, or EC/Rhea IDs as predictive inputs",
+                "no threshold tuning on heldout rows",
+                "ESMFold2 coordinates swap only the coordinate source; the geometry "
+                "router and fold channel are otherwise frozen",
+            ],
+        },
+        "metric_plan": metric_plan,
+        "accession_inventory": {
+            "atlas_definition": "in_distribution rows with a mechanism fingerprint",
+            "atlas_row_count": len(atlas_inventory),
+            "heldout_row_count": len(heldout_inventory),
+            "unique_accessions_to_predict": len(needed_accessions),
+            "atlas_rows": atlas_inventory,
+            "heldout_rows": heldout_inventory,
+        },
+        "staging_status": {
+            "esmfold2_staged_dir": str(staged_dir) if staged_dir is not None else None,
+            "staged_dir_env_var": ESMFOLD2_STAGED_DIR_ENV,
+            "accessions_with_staged_cif": staged_count,
+            "accessions_needed": len(needed_accessions),
+            "blocker": None if staged_ready else ESMFOLD2_BLOCKER,
+            "detail": None if staged_ready else ESMFOLD2_BLOCKER_DETAIL,
+        },
+        "rerun_commands": {
+            "robustness_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-predicted-geometry-robustness-audit --backend esmfold2 "
+                "--esmfold2-staged-dir <DIR> "
+                "--out artifacts/v3_predicted_geometry_robustness_audit_current702_esmfold2_<DATE>.json "
+                "--report work/predicted_geometry_robustness_audit_current702_esmfold2_<DATE>.md"
+            ),
+            "atlas_retrieval": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-predicted-geometry-in-distribution-atlas-retrieval "
+                "--backend esmfold2 --esmfold2-staged-dir <DIR> "
+                "--out artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_esmfold2_<DATE>.json"
+            ),
+            "distillation_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-predicted-geometry-distillation-audit --backend esmfold2 "
+                "--esmfold2-staged-dir <DIR> "
+                "--out artifacts/v3_predicted_geometry_distillation_audit_current702_esmfold2_<DATE>.json"
+            ),
+        },
+        "decision_gate": {
+            "replace_afdb_v6_if": (
+                "ESMFold2 beats AlphaFoldDB-v6 on heldout primary recovery and OOS "
+                "false-positive rate at matched in-scope retention, selected on "
+                "train/cal only"
+            ),
+            "augment_afdb_v6_if": (
+                "ESMFold2 helps only a subset (e.g. side-chain-limited rows) while "
+                "AlphaFoldDB-v6 remains better elsewhere"
+            ),
+            "reject_if": (
+                "no train/cal improvement over AlphaFoldDB-v6; do not spend a "
+                "heldout read"
+            ),
+        },
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "large_model_downloads_performed": False,
+            "esmfold2_inference_run": False,
+            "coordinate_download_scope": _coordinate_download_scope("esmfold2"),
+        },
+        "source_artifacts": {
+            "label_manifest": (
+                "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json"
+            ),
+            "afdb_v6_robustness_audit": afdb_baseline["source_artifact"],
+            "fold_channel": (
+                "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json"
+            ),
+            "fold_augmented_gate": (
+                "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+                "expanded_oos_calibrated_current702_20260603.json"
+            ),
+        },
+    }
+
+
+def write_esmfold2_robustness_experiment_contract(
+    *,
+    label_manifest_path: Path,
+    afdb_robustness_audit_path: Path | None,
+    out_path: Path,
+    report_path: Path | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    with label_manifest_path.open("r", encoding="utf-8") as handle:
+        label_manifest = json.load(handle)
+    afdb_audit = None
+    if afdb_robustness_audit_path is not None and Path(afdb_robustness_audit_path).is_file():
+        with Path(afdb_robustness_audit_path).open("r", encoding="utf-8") as handle:
+            afdb_audit = json.load(handle)
+    contract = build_esmfold2_robustness_experiment_contract(
+        label_manifest=label_manifest,
+        afdb_robustness_audit=afdb_audit,
+        esmfold2_staged_dir=esmfold2_staged_dir,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _esmfold2_experiment_contract_markdown_report(contract), encoding="utf-8"
+        )
+    return contract
+
+
+def _esmfold2_experiment_contract_markdown_report(contract: dict[str, Any]) -> str:
+    experiment = contract.get("experiment", {})
+    inventory = contract.get("accession_inventory", {})
+    staging = contract.get("staging_status", {})
+    baseline = contract.get("afdb_v6_baseline_to_beat", {})
+    lines = [
+        "# ESMFold2 Predicted Active-Site Geometry Robustness — Experiment Contract",
+        "",
+        f"Status: `{contract.get('status')}`",
+        "",
+        "## Open problem",
+        "",
+        experiment.get("open_problem", ""),
+        "",
+        "## Apo caveat (front and center)",
+        "",
+        experiment.get("apo_caveat", ""),
+        "",
+        "## AlphaFoldDB-v6 baseline to beat",
+        "",
+        f"- Predicted hand-router primary correct: "
+        f"{baseline.get('predicted_hand_router_primary_correct')}/"
+        f"{baseline.get('predicted_hand_router_primary_support')} "
+        "(clean experimental reference is 45/45)",
+        f"- Predicted OOS/secondary false-positive rate: "
+        f"{baseline.get('predicted_hand_router_oos_or_secondary_false_positive_rate')}",
+        "",
+        "## Prediction work list",
+        "",
+        f"- Atlas (in-distribution + fingerprint) rows: {inventory.get('atlas_row_count')}",
+        f"- Heldout rows (final-only): {inventory.get('heldout_row_count')}",
+        f"- Unique accessions to predict: {inventory.get('unique_accessions_to_predict')}",
+        "",
+        "## Staging status",
+        "",
+        f"- Staged dir: `{staging.get('esmfold2_staged_dir')}`",
+        f"- Accessions with staged mmCIF: {staging.get('accessions_with_staged_cif')}/"
+        f"{staging.get('accessions_needed')}",
+        f"- Blocker: `{staging.get('blocker')}`",
+        "",
+        "## Discipline",
+        "",
+        "- Thresholds/models selected on in-distribution train/cal; heldout read once.",
+        "- ESMFold2 swaps only the coordinate source; geometry router and fold "
+        "channel stay frozen.",
+        "- No labels/fingerprints/EC/Rhea/source text as predictive inputs.",
+        "",
+        "This contract runs no ESMFold2 inference, downloads no weights, selects no "
+        "threshold, and reads no heldout label.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_ARTIFACT_ID = (
+    "v3_predicted_geometry_failure_decomposition_current702_20260603"
+)
+PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_SCHEMA = (
+    "predicted_geometry_failure_decomposition.v1"
+)
+
+
+def _row_failure_mode(
+    *,
+    predicted_missing_positions: int,
+    experimental_cofactor_families: list[str],
+    predicted_cofactor_families: list[str],
+) -> str:
+    """Classify why a predicted-geometry call degraded for one row.
+
+    Priority: a residue that cannot be placed dominates; otherwise a cofactor or
+    metal that was proximal in the experimental site but absent in the predicted
+    (apo) structure dominates; otherwise the residual is pure fold/side-chain
+    pocket geometry. This separates the failures an apo sequence folder (e.g.
+    ESMFold2) physically cannot fix (cofactor loss) from the ones a better apo
+    structure could plausibly recover (fold/side-chain).
+    """
+    if predicted_missing_positions and predicted_missing_positions > 0:
+        return "missing_residue"
+    if experimental_cofactor_families and not predicted_cofactor_families:
+        return "cofactor_apo_loss"
+    return "fold_or_sidechain"
+
+
+def build_predicted_geometry_failure_decomposition(
+    *,
+    robustness_audit: dict[str, Any],
+    experimental_geometry_features: dict[str, Any],
+) -> dict[str, Any]:
+    """Decompose predicted-geometry router failures by mechanism (no fit).
+
+    Reads an existing predicted-geometry robustness audit and the experimental
+    geometry features, and partitions the lost primary calls and the OOS/secondary
+    false positives into failure modes. It trains nothing, selects no threshold,
+    and reads no new heldout label; it only categorizes outcomes already computed
+    by the robustness audit. The decomposition is backend-agnostic, so it applies
+    to an AlphaFoldDB-v6 audit or a future ESMFold2 audit unchanged.
+    """
+    if robustness_audit.get("status") != "complete":
+        return {
+            "artifact_id": PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_ARTIFACT_ID,
+            "schema_version": PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_SCHEMA,
+            "created_utc": _utc_now_iso(),
+            "status": "blocked",
+            "blocker": "robustness_audit_not_complete",
+            "detail": (
+                "the input robustness audit is not complete (status="
+                f"{robustness_audit.get('status')!r}); decomposition needs scored "
+                "predicted-geometry rows"
+            ),
+        }
+
+    backend = (robustness_audit.get("scope", {}) or {}).get("backend", "unknown")
+    hand = robustness_audit.get("hand_router_on_predicted_geometry", {}) or {}
+    rows = hand.get("rows", []) or []
+    predicted_entries = {
+        str(entry.get("entry_id")): entry
+        for entry in (
+            robustness_audit.get("predicted_geometry_features", {}) or {}
+        ).get("entries", [])
+        if isinstance(entry, dict)
+    }
+    experimental_by_entry = {
+        str(entry.get("entry_id")): entry
+        for entry in experimental_geometry_features.get("entries", [])
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+
+    def _exp_cof(entry_id: str) -> list[str]:
+        ctx = (experimental_by_entry.get(entry_id, {}) or {}).get("ligand_context", {}) or {}
+        return list(ctx.get("cofactor_families") or [])
+
+    def _pred_cof(entry_id: str) -> list[str]:
+        ctx = (predicted_entries.get(entry_id, {}) or {}).get("ligand_context", {}) or {}
+        return list(ctx.get("cofactor_families") or [])
+
+    lost_primary_rows: list[dict[str, Any]] = []
+    oos_false_positive_rows: list[dict[str, Any]] = []
+    correct_primary_with_experimental_cofactor = 0
+    correct_primary_total = 0
+    readthrough_excluded = {"m_csa:497", "m_csa:750"}
+
+    for row in rows:
+        entry_id = str(row.get("entry_id") or "")
+        is_primary = bool(row.get("canonical_primary_support_mask"))
+        is_oos = bool(row.get("pure_oos_support_mask")) or bool(
+            row.get("secondary_probe_support_mask")
+        )
+        abstained = bool(row.get("abstained"))
+        exp_cof = _exp_cof(entry_id)
+        pred_cof = _pred_cof(entry_id)
+        miss = int(row.get("predicted_missing_positions") or 0)
+        record = {
+            "entry_id": entry_id,
+            "true_fingerprint_id": row.get("true_fingerprint_id"),
+            "called_fingerprint_id": row.get("top1_fingerprint_id"),
+            "top1_score": row.get("top1_score"),
+            "predicted_missing_positions": miss,
+            "experimental_cofactor_families": exp_cof,
+            "predicted_cofactor_families": pred_cof,
+            "failure_mode": _row_failure_mode(
+                predicted_missing_positions=miss,
+                experimental_cofactor_families=exp_cof,
+                predicted_cofactor_families=pred_cof,
+            ),
+            "wave1_readthrough_excluded": entry_id in readthrough_excluded,
+        }
+        if is_primary:
+            correct = (not abstained) and bool(
+                row.get("primary_top1_correct_if_applicable")
+            )
+            if correct:
+                correct_primary_total += 1
+                if exp_cof:
+                    correct_primary_with_experimental_cofactor += 1
+            else:
+                record["outcome"] = "abstained" if abstained else "wrong_nonabstained"
+                lost_primary_rows.append(record)
+        elif is_oos and not abstained:
+            record["outcome"] = "false_positive"
+            oos_false_positive_rows.append(record)
+
+    def _mode_counts(records: list[dict[str, Any]]) -> dict[str, int]:
+        counts: Counter[str] = Counter(r["failure_mode"] for r in records)
+        return dict(sorted(counts.items()))
+
+    lost_modes = _mode_counts(lost_primary_rows)
+    oos_modes = _mode_counts(oos_false_positive_rows)
+    lost_readthrough = [r for r in lost_primary_rows if not r["wave1_readthrough_excluded"]]
+
+    esmfold2_primary_recoverable_upper_bound = lost_modes.get("fold_or_sidechain", 0)
+    cofactor_apo_loss_count = lost_modes.get("cofactor_apo_loss", 0)
+
+    return {
+        "artifact_id": PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_ARTIFACT_ID,
+        "schema_version": PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_SCHEMA,
+        "created_utc": _utc_now_iso(),
+        "status": "complete",
+        "scope": {
+            "backend": backend,
+            "source_robustness_audit": robustness_audit.get("artifact_id"),
+            "hand_router_threshold": hand.get("threshold"),
+            "split_assignment": (robustness_audit.get("scope", {}) or {}).get(
+                "split_assignment"
+            ),
+        },
+        "failure_mode_taxonomy": {
+            "missing_residue": (
+                "a catalytic residue could not be placed in the predicted "
+                "structure (predicted_missing_positions > 0)"
+            ),
+            "cofactor_apo_loss": (
+                "a cofactor/metal was proximal in the experimental site but absent "
+                "in the predicted apo structure; an apo sequence folder cannot fix "
+                "this"
+            ),
+            "fold_or_sidechain": (
+                "residues resolved and no experimental cofactor dependence; the "
+                "residual is fold/side-chain pocket geometry a better apo folder "
+                "could plausibly recover"
+            ),
+        },
+        "lost_primary": {
+            "total": len(lost_primary_rows),
+            "by_mode": lost_modes,
+            "wave1_readthrough_total": len(lost_readthrough),
+            "wave1_readthrough_by_mode": _mode_counts(lost_readthrough),
+            "rows": lost_primary_rows,
+        },
+        "oos_false_positives": {
+            "total": len(oos_false_positive_rows),
+            "by_mode": oos_modes,
+            "rows": oos_false_positive_rows,
+        },
+        "controls": {
+            "correct_primary_total": correct_primary_total,
+            "correct_primary_with_experimental_cofactor": (
+                correct_primary_with_experimental_cofactor
+            ),
+            "note": (
+                "correct calls that had an experimental cofactor prove apo geometry "
+                "alone can suffice for some rows; the lost rows are where stripping "
+                "the cofactor breaks the signal"
+            ),
+        },
+        "esmfold2_ceiling": {
+            "primary_recoverable_upper_bound_fold_or_sidechain": (
+                esmfold2_primary_recoverable_upper_bound
+            ),
+            "primary_unrecoverable_cofactor_apo_loss": cofactor_apo_loss_count,
+            "interpretation": (
+                "ESMFold2 is also apo, so it cannot supply the missing cofactor. "
+                f"{cofactor_apo_loss_count} of {len(lost_primary_rows)} lost primary "
+                "rows are cofactor_apo_loss and cannot be recovered by swapping in "
+                "ESMFold2 coordinates; only "
+                f"{esmfold2_primary_recoverable_upper_bound} are fold/side-chain "
+                "limited (the rows a better apo folder could plausibly recover). "
+                "The degradation is cofactor-loss-dominated, so the primary lever is "
+                "cofactor-awareness, not a better apo folder. ESMFold2's plausible "
+                "contributions are OOS false-positive reduction (better apo pocket "
+                "packing) and pLDDT-gated abstention, not primary recovery."
+            ),
+        },
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "trained_a_model": False,
+            "note": (
+                "descriptive readout: categorizes outcomes already computed by the "
+                "robustness audit; selects no threshold and fits no model"
+            ),
+        },
+        "source_artifacts": {
+            "robustness_audit": robustness_audit.get("artifact_id"),
+            "experimental_geometry_features": (
+                "artifacts/v3_geometry_features_1025.json"
+            ),
+        },
+    }
+
+
+def write_predicted_geometry_failure_decomposition(
+    *,
+    robustness_audit_path: Path,
+    experimental_geometry_features_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    with robustness_audit_path.open("r", encoding="utf-8") as handle:
+        robustness_audit = json.load(handle)
+    with experimental_geometry_features_path.open("r", encoding="utf-8") as handle:
+        experimental_geometry_features = json.load(handle)
+    decomposition = build_predicted_geometry_failure_decomposition(
+        robustness_audit=robustness_audit,
+        experimental_geometry_features=experimental_geometry_features,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(decomposition, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _predicted_geometry_failure_decomposition_markdown_report(decomposition),
+            encoding="utf-8",
+        )
+    return decomposition
+
+
+def _predicted_geometry_failure_decomposition_markdown_report(
+    decomposition: dict[str, Any],
+) -> str:
+    if decomposition.get("status") != "complete":
+        return (
+            "# Predicted Geometry Failure Decomposition\n\n"
+            f"Status: `{decomposition.get('status')}`\n\n"
+            f"Blocker: `{decomposition.get('blocker')}`\n"
+        )
+    scope = decomposition.get("scope", {})
+    lost = decomposition.get("lost_primary", {})
+    oos = decomposition.get("oos_false_positives", {})
+    controls = decomposition.get("controls", {})
+    ceiling = decomposition.get("esmfold2_ceiling", {})
+    lines = [
+        "# Predicted Geometry Failure Decomposition",
+        "",
+        f"Backend: `{scope.get('backend')}` | source audit: "
+        f"`{scope.get('source_robustness_audit')}`",
+        "",
+        "## Why do predicted-geometry primary calls degrade?",
+        "",
+        f"- Lost primary rows: {lost.get('total')} (by mode: {lost.get('by_mode')})",
+        f"- Wave 1 readthrough (excl. m_csa:497/750): "
+        f"{lost.get('wave1_readthrough_total')} "
+        f"(by mode: {lost.get('wave1_readthrough_by_mode')})",
+        f"- OOS/secondary false positives: {oos.get('total')} "
+        f"(by mode: {oos.get('by_mode')})",
+        "",
+        "## Control",
+        "",
+        f"- Correct primaries: {controls.get('correct_primary_total')}, of which "
+        f"{controls.get('correct_primary_with_experimental_cofactor')} had an "
+        "experimental cofactor (apo geometry can suffice for some rows).",
+        "",
+        "## ESMFold2 ceiling",
+        "",
+        f"- Fold/side-chain-limited (a better apo folder could plausibly recover): "
+        f"{ceiling.get('primary_recoverable_upper_bound_fold_or_sidechain')}",
+        f"- Cofactor-apo-loss (ESMFold2 cannot recover, it is also apo): "
+        f"{ceiling.get('primary_unrecoverable_cofactor_apo_loss')}",
+        "",
+        ceiling.get("interpretation", ""),
+        "",
+        "This is a descriptive readout: it categorizes outcomes already computed by "
+        "the robustness audit, selects no threshold, and fits no model.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+COFACTOR_RESTORATION_PROBE_ARTIFACT_ID = (
+    "v3_cofactor_restoration_recovery_probe_current702_20260604"
+)
+COFACTOR_RESTORATION_PROBE_SCHEMA = "cofactor_restoration_recovery_probe.v1"
+
+
+def build_cofactor_restoration_recovery_probe(
+    *,
+    robustness_audit: dict[str, Any],
+    experimental_geometry_features: dict[str, Any],
+    label_manifest: dict[str, Any],
+    wave1_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Counterfactual: restore the cofactor onto the predicted apo backbone.
+
+    For each cofactor_apo_loss lost primary row, inject the experimental proximal
+    cofactor/metal context into the predicted (apo) geometry entry while keeping
+    the predicted residue geometry, then re-score with the frozen geometry
+    retrieval and hand router at the existing 0.4115 threshold. This measures the
+    UPPER BOUND on how many lost rows perfect cofactor restoration could recover
+    on the predicted backbone. It trains nothing, selects no threshold (reuses the
+    frozen one), and reads no new heldout label; correctness is an evaluation
+    target only. An apo control rescore (no injection) confirms the audit is
+    reproduced.
+    """
+    if robustness_audit.get("status") != "complete":
+        return {
+            "artifact_id": COFACTOR_RESTORATION_PROBE_ARTIFACT_ID,
+            "schema_version": COFACTOR_RESTORATION_PROBE_SCHEMA,
+            "created_utc": _utc_now_iso(),
+            "status": "blocked",
+            "blocker": "robustness_audit_not_complete",
+        }
+
+    scope = robustness_audit.get("scope", {}) or {}
+    backend = scope.get("backend", "unknown")
+    hand = robustness_audit.get("hand_router_on_predicted_geometry", {}) or {}
+    threshold = float(hand.get("threshold") or HAND_ROUTER_THRESHOLD)
+    hand_rows = {
+        str(row.get("entry_id")): row
+        for row in hand.get("rows", [])
+        if isinstance(row, dict)
+    }
+    predicted_entries = {
+        str(entry.get("entry_id")): entry
+        for entry in (robustness_audit.get("predicted_geometry_features", {}) or {}).get(
+            "entries", []
+        )
+        if isinstance(entry, dict)
+    }
+    exp_by_entry = {
+        str(entry.get("entry_id")): entry
+        for entry in experimental_geometry_features.get("entries", [])
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+    manifest_by_entry = {
+        str(row.get("entry_id")): row
+        for row in label_manifest.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    def _cof(ctx: dict[str, Any] | None) -> list[str]:
+        return list((ctx or {}).get("cofactor_families") or [])
+
+    # Identify cofactor_apo_loss lost primary rows.
+    targets: list[str] = []
+    for entry_id, row in hand_rows.items():
+        if not row.get("canonical_primary_support_mask"):
+            continue
+        abstained = bool(row.get("abstained"))
+        correct = (not abstained) and bool(row.get("primary_top1_correct_if_applicable"))
+        if correct:
+            continue
+        exp_ctx = (exp_by_entry.get(entry_id, {}) or {}).get("ligand_context", {})
+        pred_ctx = (predicted_entries.get(entry_id, {}) or {}).get("ligand_context", {})
+        miss = int(row.get("predicted_missing_positions") or 0)
+        if _row_failure_mode(
+            predicted_missing_positions=miss,
+            experimental_cofactor_families=_cof(exp_ctx),
+            predicted_cofactor_families=_cof(pred_ctx),
+        ) == "cofactor_apo_loss":
+            targets.append(entry_id)
+    targets.sort(key=_entry_sort_key)
+
+    target_manifest_rows = [
+        manifest_by_entry[entry_id]
+        for entry_id in targets
+        if entry_id in manifest_by_entry
+    ]
+
+    # Apo control rescore (no injection) must reproduce the audit.
+    apo_entries = [dict(predicted_entries[entry_id]) for entry_id in targets]
+    apo_retrieval = run_geometry_retrieval({"entries": apo_entries})
+    apo_router = {
+        r["entry_id"]: r
+        for r in _hand_router_rows(
+            target_rows=target_manifest_rows,
+            predicted_geometry={"entries": apo_entries},
+            predicted_retrieval=apo_retrieval,
+            wave1_audit=wave1_audit,
+            threshold=threshold,
+        )
+    }
+
+    # Counterfactual: inject experimental cofactor context onto predicted backbone.
+    restored_entries = []
+    for entry_id in targets:
+        entry = dict(predicted_entries[entry_id])
+        entry["ligand_context"] = (exp_by_entry.get(entry_id, {}) or {}).get(
+            "ligand_context", {}
+        )
+        restored_entries.append(entry)
+    restored_retrieval = run_geometry_retrieval({"entries": restored_entries})
+    restored_router = {
+        r["entry_id"]: r
+        for r in _hand_router_rows(
+            target_rows=target_manifest_rows,
+            predicted_geometry={"entries": restored_entries},
+            predicted_retrieval=restored_retrieval,
+            wave1_audit=wave1_audit,
+            threshold=threshold,
+        )
+    }
+
+    rows: list[dict[str, Any]] = []
+    recovered = 0
+    apo_rescore_matches_audit = True
+    for entry_id in targets:
+        audit_row = hand_rows[entry_id]
+        apo = apo_router.get(entry_id, {})
+        restored = restored_router.get(entry_id, {})
+        audit_apo_score = round(float(audit_row.get("top1_score") or 0.0), 4)
+        rescored_apo_score = round(float(apo.get("top1_score") or 0.0), 4)
+        if abs(audit_apo_score - rescored_apo_score) > 1e-4:
+            apo_rescore_matches_audit = False
+        is_recovered = (not restored.get("abstained", True)) and bool(
+            restored.get("primary_top1_correct_if_applicable")
+        )
+        recovered += int(is_recovered)
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "true_fingerprint_id": audit_row.get("true_fingerprint_id"),
+                "experimental_cofactor_families": _cof(
+                    (exp_by_entry.get(entry_id, {}) or {}).get("ligand_context", {})
+                ),
+                "wave1_readthrough_excluded": entry_id in {"m_csa:497", "m_csa:750"},
+                "apo_top1_fingerprint_id": apo.get("top1_fingerprint_id"),
+                "apo_top1_score": rescored_apo_score,
+                "apo_abstained": bool(apo.get("abstained", True)),
+                "restored_top1_fingerprint_id": restored.get("top1_fingerprint_id"),
+                "restored_top1_score": round(float(restored.get("top1_score") or 0.0), 4),
+                "restored_abstained": bool(restored.get("abstained", True)),
+                "score_lift": round(
+                    float(restored.get("top1_score") or 0.0)
+                    - float(apo.get("top1_score") or 0.0),
+                    4,
+                ),
+                "recovered": is_recovered,
+            }
+        )
+
+    total = len(targets)
+    readthrough_rows = [r for r in rows if not r["wave1_readthrough_excluded"]]
+    readthrough_recovered = sum(1 for r in readthrough_rows if r["recovered"])
+
+    return {
+        "artifact_id": COFACTOR_RESTORATION_PROBE_ARTIFACT_ID,
+        "schema_version": COFACTOR_RESTORATION_PROBE_SCHEMA,
+        "created_utc": _utc_now_iso(),
+        "status": "complete",
+        "scope": {
+            "backend": backend,
+            "source_robustness_audit": robustness_audit.get("artifact_id"),
+            "hand_router_threshold": threshold,
+            "target_definition": (
+                "cofactor_apo_loss lost primary rows under the canonical mask"
+            ),
+        },
+        "method": (
+            "inject experimental proximal cofactor/metal ligand_context onto the "
+            "predicted apo geometry entry, keep predicted residue geometry, re-score "
+            "with frozen run_geometry_retrieval + hand router at the existing "
+            "threshold; recovered = restored call is non-abstained and matches the "
+            "true fingerprint"
+        ),
+        "upper_bound_caveat": (
+            "this assumes perfect cofactor placement relative to the predicted "
+            "active site, so the recovery count is an upper bound; real docking is "
+            "imperfect"
+        ),
+        "headline": {
+            "cofactor_apo_loss_targets": total,
+            "recovered_under_perfect_restoration": recovered,
+            "recovery_fraction": round(recovered / total, 4) if total else None,
+            "wave1_readthrough_targets": len(readthrough_rows),
+            "wave1_readthrough_recovered": readthrough_recovered,
+            "apo_control_rescore_matches_audit": apo_rescore_matches_audit,
+        },
+        "interpretation": (
+            f"Restoring the cofactor onto the predicted backbone recovers "
+            f"{recovered}/{total} cofactor_apo_loss lost primary rows (upper bound). "
+            + (
+                "A high fraction confirms the predicted backbone is faithful and the "
+                "missing cofactor is the load-bearing loss, so a cofactor-restoration "
+                "step (dock/graft the cofactor, or a cofactor-presence channel) is "
+                "the right Problem-2 lever. "
+                if total and recovered / total >= 0.6
+                else "A low fraction means the predicted apo backbone is also off, so "
+                "cofactor restoration alone is insufficient and the predicted "
+                "structure quality (or a learned predicted-geometry model) must also "
+                "improve. "
+            )
+            + "ESMFold2's better apo side-chains would help this residual backbone "
+            "term, but cannot supply the cofactor."
+        ),
+        "rows": rows,
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "trained_a_model": False,
+            "note": (
+                "counterfactual diagnostic on already-evaluated heldout rows; reuses "
+                "the frozen 0.4115 threshold and frozen fingerprints; correctness is "
+                "an evaluation target, not a predictive input"
+            ),
+        },
+        "source_artifacts": {
+            "robustness_audit": robustness_audit.get("artifact_id"),
+            "experimental_geometry_features": (
+                "artifacts/v3_geometry_features_1025.json"
+            ),
+            "label_manifest": (
+                "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json"
+            ),
+            "wave1_2_audit": (
+                "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+            ),
+        },
+    }
+
+
+def write_cofactor_restoration_recovery_probe(
+    *,
+    robustness_audit_path: Path,
+    experimental_geometry_features_path: Path,
+    label_manifest_path: Path,
+    wave1_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    with robustness_audit_path.open("r", encoding="utf-8") as handle:
+        robustness_audit = json.load(handle)
+    with experimental_geometry_features_path.open("r", encoding="utf-8") as handle:
+        experimental_geometry_features = json.load(handle)
+    with label_manifest_path.open("r", encoding="utf-8") as handle:
+        label_manifest = json.load(handle)
+    with wave1_audit_path.open("r", encoding="utf-8") as handle:
+        wave1_audit = json.load(handle)
+    probe = build_cofactor_restoration_recovery_probe(
+        robustness_audit=robustness_audit,
+        experimental_geometry_features=experimental_geometry_features,
+        label_manifest=label_manifest,
+        wave1_audit=wave1_audit,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(probe, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _cofactor_restoration_probe_markdown_report(probe), encoding="utf-8"
+        )
+    return probe
+
+
+def _cofactor_restoration_probe_markdown_report(probe: dict[str, Any]) -> str:
+    if probe.get("status") != "complete":
+        return (
+            "# Cofactor Restoration Recovery Probe\n\n"
+            f"Status: `{probe.get('status')}`\n\n"
+            f"Blocker: `{probe.get('blocker')}`\n"
+        )
+    head = probe.get("headline", {})
+    scope = probe.get("scope", {})
+    lines = [
+        "# Cofactor Restoration Recovery Probe",
+        "",
+        f"Backend: `{scope.get('backend')}` | source audit: "
+        f"`{scope.get('source_robustness_audit')}` | threshold: "
+        f"`{scope.get('hand_router_threshold')}`",
+        "",
+        "## Question",
+        "",
+        "Of the cofactor_apo_loss lost primary rows, how many recover if we restore "
+        "the cofactor onto the predicted apo backbone (upper bound)?",
+        "",
+        "## Result",
+        "",
+        f"- cofactor_apo_loss targets: {head.get('cofactor_apo_loss_targets')}",
+        f"- recovered under perfect restoration: "
+        f"{head.get('recovered_under_perfect_restoration')} "
+        f"(fraction {head.get('recovery_fraction')})",
+        f"- Wave 1 readthrough (excl. m_csa:497/750): "
+        f"{head.get('wave1_readthrough_recovered')}/"
+        f"{head.get('wave1_readthrough_targets')}",
+        f"- apo control rescore matches audit: "
+        f"{head.get('apo_control_rescore_matches_audit')}",
+        "",
+        "## Interpretation",
+        "",
+        probe.get("interpretation", ""),
+        "",
+        probe.get("upper_bound_caveat", ""),
+        "",
+        "This is a counterfactual diagnostic: it reuses the frozen threshold and "
+        "fingerprints, selects nothing, and trains nothing.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+COFACTOR_GRAFT_FIDELITY_PROBE_ARTIFACT_ID = (
+    "v3_cofactor_graft_fidelity_probe_current702_20260604"
+)
+COFACTOR_GRAFT_FIDELITY_PROBE_SCHEMA = "cofactor_graft_fidelity_probe.v1"
+COFACTOR_GRAFT_PROXIMITY_CUTOFF_ANGSTROM = 6.0
+COFACTOR_GRAFT_FAITHFUL_RMSD_ANGSTROM = 1.5
+
+
+def _internal_pairwise_by_residue_pair(entry: dict[str, Any]) -> dict[frozenset, float]:
+    out: dict[frozenset, float] = {}
+    for record in entry.get("pairwise_distances_angstrom", []) or []:
+        left = record.get("left")
+        right = record.get("right")
+        distance = record.get("distance")
+        if left and right and distance is not None:
+            out[frozenset((left, right))] = float(distance)
+    return out
+
+
+def _nearest_proximal_cofactor(entry: dict[str, Any]) -> tuple[float | None, str | None]:
+    proximal = (entry.get("ligand_context", {}) or {}).get("proximal_ligands", []) or []
+    if not proximal:
+        return None, None
+    best = min(
+        proximal,
+        key=lambda item: item.get("min_distance_to_active_site", float("inf")),
+    )
+    return best.get("min_distance_to_active_site"), best.get("code")
+
+
+def build_cofactor_graft_fidelity_probe(
+    *,
+    cofactor_restoration_probe: dict[str, Any],
+    robustness_audit: dict[str, Any],
+    experimental_geometry_features: dict[str, Any],
+    cutoff_angstrom: float = COFACTOR_GRAFT_PROXIMITY_CUTOFF_ANGSTROM,
+    faithful_rmsd_angstrom: float = COFACTOR_GRAFT_FAITHFUL_RMSD_ANGSTROM,
+) -> dict[str, Any]:
+    """Turn the idealized cofactor-restoration recovery into a realistic estimate.
+
+    The restoration probe assumed perfect cofactor placement. This probe measures
+    whether the predicted active-site scaffold is preserved well enough that a
+    *real* rigid cofactor graft would keep the cofactor within the proximity
+    cutoff. It compares the catalytic-residue internal pairwise distances
+    (rotation/translation invariant) between the experimental and predicted
+    structures, and checks the worst active-site distance distortion against each
+    cofactor's experimental proximity margin. No coordinates are superposed, no
+    model is fit, no threshold is selected, and no new heldout label is read.
+    """
+    if cofactor_restoration_probe.get("status") != "complete":
+        return {
+            "artifact_id": COFACTOR_GRAFT_FIDELITY_PROBE_ARTIFACT_ID,
+            "schema_version": COFACTOR_GRAFT_FIDELITY_PROBE_SCHEMA,
+            "created_utc": _utc_now_iso(),
+            "status": "blocked",
+            "blocker": "cofactor_restoration_probe_not_complete",
+        }
+
+    predicted_entries = {
+        str(entry.get("entry_id")): entry
+        for entry in (robustness_audit.get("predicted_geometry_features", {}) or {}).get(
+            "entries", []
+        )
+        if isinstance(entry, dict)
+    }
+    exp_by_entry = {
+        str(entry.get("entry_id")): entry
+        for entry in experimental_geometry_features.get("entries", [])
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+
+    rows: list[dict[str, Any]] = []
+    realistic = 0
+    faithful = 0
+    stays = 0
+    for target in cofactor_restoration_probe.get("rows", []):
+        entry_id = str(target.get("entry_id"))
+        recovered = bool(target.get("recovered"))
+        exp_entry = exp_by_entry.get(entry_id, {})
+        pred_entry = predicted_entries.get(entry_id, {})
+        exp_pairs = _internal_pairwise_by_residue_pair(exp_entry)
+        pred_pairs = _internal_pairwise_by_residue_pair(pred_entry)
+        shared = exp_pairs.keys() & pred_pairs.keys()
+        diffs = [exp_pairs[key] - pred_pairs[key] for key in shared]
+        if diffs:
+            rmsd = round((sum(d * d for d in diffs) / len(diffs)) ** 0.5, 4)
+            max_abs_diff = round(max(abs(d) for d in diffs), 4)
+        else:
+            rmsd = None
+            max_abs_diff = None
+        exp_min_distance, cofactor_code = _nearest_proximal_cofactor(exp_entry)
+        margin = (
+            round(cutoff_angstrom - exp_min_distance, 4)
+            if exp_min_distance is not None
+            else None
+        )
+        active_site_faithful = rmsd is not None and rmsd <= faithful_rmsd_angstrom
+        stays_proximal = (
+            max_abs_diff is not None and margin is not None and max_abs_diff <= margin
+        )
+        graft_realistic = recovered and stays_proximal
+        realistic += int(graft_realistic)
+        faithful += int(active_site_faithful)
+        stays += int(stays_proximal)
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "true_fingerprint_id": target.get("true_fingerprint_id"),
+                "recovered_idealized": recovered,
+                "matched_residue_pair_count": len(shared),
+                "active_site_internal_distance_rmsd_angstrom": rmsd,
+                "active_site_internal_distance_max_abs_diff_angstrom": max_abs_diff,
+                "active_site_faithful": active_site_faithful,
+                "nearest_proximal_cofactor_code": cofactor_code,
+                "experimental_cofactor_min_distance_angstrom": (
+                    round(exp_min_distance, 4) if exp_min_distance is not None else None
+                ),
+                "proximity_margin_angstrom": margin,
+                "graft_stays_within_cutoff": stays_proximal,
+                "graft_realistic_recovery": graft_realistic,
+                "wave1_readthrough_excluded": target.get("wave1_readthrough_excluded"),
+            }
+        )
+
+    total = len(rows)
+    distorted_rows = [
+        row["entry_id"] for row in rows if not row["active_site_faithful"]
+    ]
+    idealized = (cofactor_restoration_probe.get("headline", {}) or {}).get(
+        "recovered_under_perfect_restoration"
+    )
+    return {
+        "artifact_id": COFACTOR_GRAFT_FIDELITY_PROBE_ARTIFACT_ID,
+        "schema_version": COFACTOR_GRAFT_FIDELITY_PROBE_SCHEMA,
+        "created_utc": _utc_now_iso(),
+        "status": "complete",
+        "scope": {
+            "backend": (robustness_audit.get("scope", {}) or {}).get("backend"),
+            "source_cofactor_restoration_probe": cofactor_restoration_probe.get(
+                "artifact_id"
+            ),
+            "proximity_cutoff_angstrom": cutoff_angstrom,
+            "faithful_rmsd_threshold_angstrom": faithful_rmsd_angstrom,
+        },
+        "method": (
+            "compare catalytic-residue internal pairwise distances (CA/centroid, "
+            "rotation/translation invariant) between experimental and predicted "
+            "structures; a real rigid cofactor graft keeps the cofactor proximal "
+            "where the worst active-site distance distortion is within the "
+            "cofactor's experimental proximity margin (cutoff - min distance)"
+        ),
+        "approximation_caveat": (
+            "this is a coordinate-free fidelity proxy on CA/centroid internal "
+            "distances, not a full atom-level superposition; numpy is unavailable in "
+            "this environment, and proximal-ligand atom coordinates are not stored in "
+            "the geometry features. The true atom-level graft (superpose on catalytic "
+            "residue atoms, transplant cofactor atoms, recompute proximity) is the "
+            "next escalation; predicted heldout CIFs are already staged locally under "
+            "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/"
+        ),
+        "headline": {
+            "targets": total,
+            "idealized_recovered_upper_bound": idealized,
+            "graft_realistic_recovery": realistic,
+            "active_site_faithful": faithful,
+            "graft_stays_within_cutoff": stays,
+            "distorted_active_site_rows": distorted_rows,
+        },
+        "interpretation": (
+            f"A real rigid cofactor graft realistically recovers {realistic}/{total} "
+            f"rows (vs the {idealized}/{total} perfect-placement upper bound). "
+            f"{faithful}/{total} predicted active sites are faithful (internal "
+            f"distance RMSD <= {faithful_rmsd_angstrom} A), so most pockets hold the "
+            "grafted cofactor in a near-native pose. The "
+            f"{len(distorted_rows)} distorted rows ({', '.join(distorted_rows) or 'none'}) "
+            "are where the predicted backbone itself is off — exactly the rows where "
+            "a better structure predictor (the ESMFold2 secondary lever) could help, "
+            "since cofactor restoration alone is insufficient there."
+        ),
+        "rows": rows,
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "trained_a_model": False,
+            "coordinates_superposed": False,
+        },
+        "source_artifacts": {
+            "cofactor_restoration_probe": cofactor_restoration_probe.get("artifact_id"),
+            "robustness_audit": robustness_audit.get("artifact_id"),
+            "experimental_geometry_features": (
+                "artifacts/v3_geometry_features_1025.json"
+            ),
+        },
+    }
+
+
+def write_cofactor_graft_fidelity_probe(
+    *,
+    cofactor_restoration_probe_path: Path,
+    robustness_audit_path: Path,
+    experimental_geometry_features_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    with cofactor_restoration_probe_path.open("r", encoding="utf-8") as handle:
+        cofactor_restoration_probe = json.load(handle)
+    with robustness_audit_path.open("r", encoding="utf-8") as handle:
+        robustness_audit = json.load(handle)
+    with experimental_geometry_features_path.open("r", encoding="utf-8") as handle:
+        experimental_geometry_features = json.load(handle)
+    probe = build_cofactor_graft_fidelity_probe(
+        cofactor_restoration_probe=cofactor_restoration_probe,
+        robustness_audit=robustness_audit,
+        experimental_geometry_features=experimental_geometry_features,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(probe, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _cofactor_graft_fidelity_probe_markdown_report(probe), encoding="utf-8"
+        )
+    return probe
+
+
+def _cofactor_graft_fidelity_probe_markdown_report(probe: dict[str, Any]) -> str:
+    if probe.get("status") != "complete":
+        return (
+            "# Cofactor Graft Fidelity Probe\n\n"
+            f"Status: `{probe.get('status')}`\n\n"
+            f"Blocker: `{probe.get('blocker')}`\n"
+        )
+    head = probe.get("headline", {})
+    scope = probe.get("scope", {})
+    lines = [
+        "# Cofactor Graft Fidelity Probe",
+        "",
+        f"Backend: `{scope.get('backend')}` | source probe: "
+        f"`{scope.get('source_cofactor_restoration_probe')}`",
+        "",
+        "## Question",
+        "",
+        "Would a real rigid cofactor graft keep the cofactor proximal, or does the "
+        "predicted pocket distort it? (Refines the perfect-placement upper bound.)",
+        "",
+        "## Result",
+        "",
+        f"- targets: {head.get('targets')}",
+        f"- idealized recovered (upper bound): {head.get('idealized_recovered_upper_bound')}",
+        f"- graft-realistic recovery: {head.get('graft_realistic_recovery')}",
+        f"- active-site faithful (internal RMSD <= "
+        f"{scope.get('faithful_rmsd_threshold_angstrom')} A): {head.get('active_site_faithful')}",
+        f"- distorted active-site rows: {head.get('distorted_active_site_rows')}",
+        "",
+        "## Interpretation",
+        "",
+        probe.get("interpretation", ""),
+        "",
+        probe.get("approximation_caveat", ""),
+        "",
+        "Coordinate-free fidelity proxy: no superposition, no model fit, no "
+        "threshold selection, no new heldout read.",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 def _enriched_predicted_retrieval_results(

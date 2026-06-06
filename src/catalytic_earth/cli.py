@@ -316,6 +316,10 @@ from .northstar_next_levers import (
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
+    write_cofactor_graft_fidelity_probe,
+    write_cofactor_restoration_recovery_probe,
+    write_esmfold2_robustness_experiment_contract,
+    write_predicted_geometry_failure_decomposition,
     write_predicted_geometry_in_distribution_atlas_retrieval,
     write_predicted_geometry_distillation_audit,
     write_predicted_geometry_robustness_audit,
@@ -2375,6 +2379,7 @@ def cmd_build_predicted_geometry_robustness_audit(args: argparse.Namespace) -> i
         cal_fraction=args.cal_fraction,
         hidden_layer_size=args.hidden_layer_size,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     headline = audit.get("headline", {})
     print(
@@ -2400,6 +2405,7 @@ def cmd_build_predicted_geometry_distillation_audit(args: argparse.Namespace) ->
         cal_fraction=args.cal_fraction,
         hidden_layer_size=args.hidden_layer_size,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     answer = audit.get("distillation_answer", {})
     print(
@@ -2427,6 +2433,7 @@ def cmd_build_predicted_geometry_in_distribution_atlas_retrieval(
         backend=args.backend,
         alphafold_version=args.alphafold_version,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     counts = audit.get("counts", {})
     print(
@@ -2434,6 +2441,89 @@ def cmd_build_predicted_geometry_in_distribution_atlas_retrieval(
         f"{args.out} ({audit.get('status')}; "
         f"atlas_ok={counts.get('atlas_rows_scored_ok')}/"
         f"{counts.get('atlas_rows_expected')})"
+    )
+    return 0
+
+
+def cmd_build_esmfold2_robustness_experiment_contract(args: argparse.Namespace) -> int:
+    contract = write_esmfold2_robustness_experiment_contract(
+        label_manifest_path=Path(args.label_manifest),
+        afdb_robustness_audit_path=(
+            Path(args.afdb_robustness_audit) if args.afdb_robustness_audit else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
+    )
+    inventory = contract.get("accession_inventory", {})
+    staging = contract.get("staging_status", {})
+    print(
+        "Wrote ESMFold2 robustness experiment contract to "
+        f"{args.out} ({contract.get('status')}; "
+        f"atlas={inventory.get('atlas_row_count')}, "
+        f"heldout={inventory.get('heldout_row_count')}, "
+        f"staged={staging.get('accessions_with_staged_cif')}/"
+        f"{staging.get('accessions_needed')})"
+    )
+    return 0
+
+
+def cmd_build_predicted_geometry_failure_decomposition(
+    args: argparse.Namespace,
+) -> int:
+    decomposition = write_predicted_geometry_failure_decomposition(
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    lost = decomposition.get("lost_primary", {})
+    ceiling = decomposition.get("esmfold2_ceiling", {})
+    print(
+        "Wrote predicted geometry failure decomposition to "
+        f"{args.out} ({decomposition.get('status')}; "
+        f"lost_primary={lost.get('total')} by_mode={lost.get('by_mode')}; "
+        "fold_recoverable_upper_bound="
+        f"{ceiling.get('primary_recoverable_upper_bound_fold_or_sidechain')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_restoration_recovery_probe(args: argparse.Namespace) -> int:
+    probe = write_cofactor_restoration_recovery_probe(
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        label_manifest_path=Path(args.label_manifest),
+        wave1_audit_path=Path(args.wave1_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    head = probe.get("headline", {})
+    print(
+        "Wrote cofactor restoration recovery probe to "
+        f"{args.out} ({probe.get('status')}; "
+        f"recovered={head.get('recovered_under_perfect_restoration')}/"
+        f"{head.get('cofactor_apo_loss_targets')}; "
+        f"apo_control_matches_audit={head.get('apo_control_rescore_matches_audit')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_graft_fidelity_probe(args: argparse.Namespace) -> int:
+    probe = write_cofactor_graft_fidelity_probe(
+        cofactor_restoration_probe_path=Path(args.cofactor_restoration_probe),
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    head = probe.get("headline", {})
+    print(
+        "Wrote cofactor graft fidelity probe to "
+        f"{args.out} ({probe.get('status')}; "
+        f"graft_realistic={head.get('graft_realistic_recovery')}/"
+        f"{head.get('targets')}; "
+        f"faithful={head.get('active_site_faithful')})"
     )
     return 0
 
@@ -19645,7 +19735,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_robustness.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db", "esmfold"),
+        choices=("alphafold_db", "esmfold", "esmfold2"),
+    )
+    predicted_geometry_robustness.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_robustness.add_argument("--alphafold-version", default="auto")
     predicted_geometry_robustness.add_argument("--split-assignment", default="heldout")
@@ -19691,7 +19789,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_distillation.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db", "esmfold"),
+        choices=("alphafold_db", "esmfold", "esmfold2"),
+    )
+    predicted_geometry_distillation.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_distillation.add_argument("--alphafold-version", default="auto")
     predicted_geometry_distillation.add_argument("--random-state", type=int, default=702)
@@ -19739,7 +19845,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_atlas.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db",),
+        choices=("alphafold_db", "esmfold2"),
+    )
+    predicted_geometry_atlas.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_atlas.add_argument("--alphafold-version", default="auto")
     predicted_geometry_atlas.add_argument("--max-rows", type=int, default=0)
@@ -19759,6 +19873,159 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_geometry_atlas.set_defaults(
         func=cmd_build_predicted_geometry_in_distribution_atlas_retrieval
+    )
+
+    esmfold2_experiment_contract = subparsers.add_parser(
+        "build-esmfold2-robustness-experiment-contract",
+        help=(
+            "stage the no-fit, leakage-safe ESMFold2 predicted-geometry robustness "
+            "experiment (accession lists, baseline, discipline, rerun commands)"
+        ),
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--afdb-robustness-audit",
+        default="artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help="directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract"
+            "_current702_20260603.json"
+        ),
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--report",
+        default=(
+            "work/esmfold2_predicted_geometry_robustness_experiment_contract"
+            "_20260603.md"
+        ),
+    )
+    esmfold2_experiment_contract.set_defaults(
+        func=cmd_build_esmfold2_robustness_experiment_contract
+    )
+
+    predicted_geometry_failure_decomposition = subparsers.add_parser(
+        "build-predicted-geometry-failure-decomposition",
+        help=(
+            "decompose predicted-geometry router failures into cofactor-apo-loss "
+            "vs fold/side-chain vs missing-residue (backend-agnostic; runs on the "
+            "AlphaFoldDB-v6 or a future ESMFold2 audit)"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_geometry_failure_decomposition"
+            "_current702_20260603.json"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--report",
+        default=(
+            "work/predicted_geometry_failure_decomposition_current702_20260603.md"
+        ),
+    )
+    predicted_geometry_failure_decomposition.set_defaults(
+        func=cmd_build_predicted_geometry_failure_decomposition
+    )
+
+    cofactor_restoration_probe = subparsers.add_parser(
+        "build-cofactor-restoration-recovery-probe",
+        help=(
+            "counterfactual: restore the experimental cofactor onto the predicted "
+            "apo backbone and re-score to measure how many cofactor_apo_loss lost "
+            "primary rows recover (upper bound)"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--wave1-audit",
+        default="artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--report",
+        default=(
+            "work/cofactor_restoration_recovery_probe_current702_20260604.md"
+        ),
+    )
+    cofactor_restoration_probe.set_defaults(
+        func=cmd_build_cofactor_restoration_recovery_probe
+    )
+
+    cofactor_graft_fidelity_probe = subparsers.add_parser(
+        "build-cofactor-graft-fidelity-probe",
+        help=(
+            "refine the cofactor-restoration upper bound: measure whether a real "
+            "rigid cofactor graft keeps the cofactor proximal given the predicted "
+            "active-site internal-distance distortion"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--cofactor-restoration-probe",
+        default=(
+            "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--report",
+        default="work/cofactor_graft_fidelity_probe_current702_20260604.md",
+    )
+    cofactor_graft_fidelity_probe.set_defaults(
+        func=cmd_build_cofactor_graft_fidelity_probe
     )
 
     mechanism_relationship_eval = subparsers.add_parser(
