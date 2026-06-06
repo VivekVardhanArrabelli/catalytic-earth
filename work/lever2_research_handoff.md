@@ -6,9 +6,9 @@
 - Branch: `lever-2-research-track`
 - STARTED_AT_UTC: `2026-06-05T23:43:05Z`
 - STARTED_AT_LOCAL: `2026-06-05T18:43:05-0500 CDT`
-- ENDED_AT_UTC: `2026-06-06T00:01:20Z`
-- ENDED_AT_LOCAL: `2026-06-05T19:01:20-0500 CDT`
-- ELAPSED_MINUTES: `18.25`
+- ENDED_AT_UTC: `2026-06-06T00:34:10Z`
+- ENDED_AT_LOCAL: `2026-06-05T19:34:10-0500 CDT`
+- ELAPSED_MINUTES: `51.08`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -23,9 +23,9 @@
 
 - STARTED_AT: `2026-06-05T23:43:05Z`
 - STARTED_LOCAL: `2026-06-05T18:43:05-0500 CDT`
-- ENDED_AT: `2026-06-06T00:01:20Z`
-- ENDED_LOCAL: `2026-06-05T19:01:20-0500 CDT`
-- ELAPSED_MINUTES: `18.25`
+- ENDED_AT: `2026-06-06T00:34:10Z`
+- ENDED_LOCAL: `2026-06-05T19:34:10-0500 CDT`
+- ELAPSED_MINUTES: `51.08`
 
 #### Intent
 
@@ -39,6 +39,11 @@ approved imports or production thresholds.
 - Continued in the dedicated Lever 2 branch worktree
   `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
   `lever-2-research-track`, isolated from Lever 3.
+- Initial disk was below the 10 GiB guardrail at 4.6 GiB free. Removed clean
+  detached duplicate worktrees
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/41bb/catalytic-earth` and
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/58c8/catalytic-earth`, which
+  restored disk to 12 GiB free before research writes.
 - Added
   `build-lever2-source-free-electron-flow-approval-import-delta-package-readout`.
   This consumes the positive candidate-sidecar readout plus the current
@@ -52,6 +57,10 @@ approved imports or production thresholds.
   `work/lever2_source_free_electron_flow_approval_import_delta_package_readout_current702_20260605.md`.
 - No canonical approved sidecar, import file, production threshold, registry,
   ontology, label, heldout split, or Lever 3 surface was edited.
+- After extended hash-seed validation, disk briefly fell below the guardrail at
+  8.0 GiB free. Removed the clean detached duplicate worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/850b/catalytic-earth`, restoring
+  disk to 12 GiB free before wrap-up.
 
 #### Measured results
 
@@ -94,7 +103,7 @@ approved imports or production thresholds.
   accessions, PDB IDs, coordinate paths, or provenance were used as predictive
   feature values. Entry IDs are used only for tranche, delta, merge, and
   verification accounting.
-- Final pre-handoff disk check showed 11 GiB free, above the 10 GiB guardrail.
+- Final pre-handoff disk check showed 12 GiB free, above the 10 GiB guardrail.
 
 #### Validation
 
@@ -111,9 +120,11 @@ approved imports or production thresholds.
   `PYTHONPATH=src python -m unittest discover -s tests -q`: 1542 tests OK,
   with the same existing warning.
 - Hash-seed stability:
-  `PYTHONHASHSEED=1` and `PYTHONHASHSEED=2` full pytest passed; focused
-  new unit/parser/regression slice passed for `PYTHONHASHSEED=1` through
-  `PYTHONHASHSEED=4`; `PYTHONHASHSEED=1` full unittest discovery passed.
+  `PYTHONHASHSEED=1` through `PYTHONHASHSEED=17` full pytest passed with
+  identical counts (1587 passed, 212 subtests passed, existing sklearn/SciPy
+  warning only); `PYTHONHASHSEED=1` through `PYTHONHASHSEED=10` full unittest
+  discovery passed with 1542 tests OK; focused new unit/parser/regression
+  slice passed for `PYTHONHASHSEED=1` through `PYTHONHASHSEED=4`.
 - `PYTHONPATH=src python -m compileall -q src tests`: passed.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
   8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
