@@ -1,0 +1,520 @@
+{
+  "acceptance_contract": {
+    "allowed_import_sequence": [
+      {
+        "required_gate": "m_csa:104 plus 34 current primary rows must preserve primary retention before expansion",
+        "row_action_counts": {
+          "add_new_approved_row": 34,
+          "update_existing_approved_row": 1
+        },
+        "rows": 35,
+        "stage": "smoke_tranche_first"
+      },
+      {
+        "required_gate": "74-row full current split must preserve primary retention and add retained-OOS abstention",
+        "row_action_counts": {
+          "add_new_approved_row": 39
+        },
+        "rows": 39,
+        "stage": "remaining_current_split_after_smoke"
+      }
+    ],
+    "canonical_approved_sidecar_written": false,
+    "component_positive_matrix_sha256": "79e911cc7400a64fc75911056fe1ebd86c83abd5b3d1eca1e9a7729bccd1cdf2",
+    "contract_id": "source_free_direct_electron_flow_delta_package_acceptance_contract",
+    "contract_status": "verified_pending_protected_import",
+    "expected_base_sidecar_sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0",
+    "expected_source_candidate_sha256": "e075997a85fbc46442438bd64b4ca9f656669177b53acb6a8fb5d35c633ab90c",
+    "feature_fields": [
+      "has_source_free_direct_electron_transfer_event",
+      "source_free_direct_electron_transfer_count",
+      "has_source_free_pqq_donor_acceptor_contact",
+      "source_free_pqq_donor_acceptor_contact_count",
+      "has_source_free_nad_family_donor_acceptor_distance",
+      "source_free_nad_family_donor_acceptor_distance_count",
+      "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+      "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+    ],
+    "full_current_split_delta_rows_sha256": "ff39d9cce93b57333aca77a3a63a7fd6c56fbe89fd102198c297948725da5d74",
+    "protected_surface_written": false,
+    "remaining_current_split_delta_rows_sha256": "9d1781cbe5fa6451cd2f1c796833b75f0f65b211cff978def233bf1e6f9c6ff8",
+    "smoke_delta_rows_sha256": "5c11dec9df466c8956a9e96cc6d8f6ff33bff80e94c0f151c469009e25dd312e",
+    "source_delta_package_file_sha256": "2b3826e4a361cef86628a152fbd25664b7d5291fe4101ba77165527ac21bba77",
+    "source_delta_package_normalized_sha256_without_created_utc": "a254bef4f2f41c58a9f4e5f7a53df1efb4d726af2278dedd4fc7fa5618ac7c62"
+  },
+  "artifact_id": "v3_lever2_source_free_electron_flow_approval_import_delta_package_contract_readout_current702_20260605",
+  "counts": {
+    "approved_sidecar_rows_current": 43,
+    "contract_component_positive_retained_oos_rows": 3,
+    "contract_full_delta_add_new_rows": 73,
+    "contract_full_delta_complete_rows": 74,
+    "contract_full_delta_field_cell_writes": 592,
+    "contract_full_delta_rows_after_smoke": 74,
+    "contract_full_delta_update_existing_rows": 1,
+    "contract_iron_sulfur_or_iron_positive_retained_oos_entry_ids": [
+      "m_csa:119"
+    ],
+    "contract_nad_family_positive_retained_oos_entry_ids": [
+      "m_csa:464"
+    ],
+    "contract_pqq_positive_retained_oos_entry_ids": [
+      "m_csa:104"
+    ],
+    "contract_remaining_current_split_delta_complete_rows": 39,
+    "contract_remaining_current_split_delta_rows": 39,
+    "contract_smoke_delta_complete_rows": 35,
+    "contract_smoke_delta_field_cell_writes": 280,
+    "contract_smoke_delta_rows": 35,
+    "critical_violation_total": 0,
+    "current_candidate_sha256_matches_source_package": true,
+    "current_sidecar_sha256_matches_source_package": true,
+    "direct_source_free_electron_flow_feature_fields": 8,
+    "forbidden_field_hit_rows": 0,
+    "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+    "full_gate_primary_positive_rows": 0,
+    "full_gate_primary_retain_recall": 1.0,
+    "full_gate_retained_oos_positive_entry_ids": [
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:464"
+    ],
+    "full_gate_union_or_gate_oos_abstain_recall": 0.506667,
+    "missing_field_hit_rows": 0,
+    "row_counts_match_source_package": true,
+    "smoke_gate_primary_positive_rows": 0,
+    "smoke_gate_primary_retain_recall": 1.0,
+    "smoke_gate_retained_oos_positive_entry_ids": [
+      "m_csa:104"
+    ],
+    "smoke_gate_union_or_gate_oos_abstain_recall": 0.48,
+    "source_package_critical_violation_total": 0,
+    "source_package_full_delta_rows_after_smoke": 74,
+    "source_package_remaining_current_split_delta_rows": 39,
+    "source_package_smoke_delta_rows": 35
+  },
+  "created_utc": "2026-06-06T00:42:23Z",
+  "decision": {
+    "acceptance_contract_verified": true,
+    "approved_sidecar_written": false,
+    "component_attribution_matches_pqq_nad_fe_s_direct_signal": true,
+    "current_approved_sidecar_not_stale_against_source_package": true,
+    "current_candidate_readout_not_stale_against_source_package": true,
+    "delta_row_counts_match_source_package": true,
+    "delta_rows_use_only_direct_source_free_electron_flow_fields": true,
+    "deployable_now": false,
+    "full_gate_adds_operating_point_value_beyond_current_geometry_fold": true,
+    "full_gate_preserves_primary_retention": true,
+    "imports_or_promotions_performed": false,
+    "measured_readout_available": true,
+    "package_hash_ready_for_future_protected_import": true,
+    "protected_surfaces_modified": false,
+    "remaining_gap": "Source-free electron-flow evidence and exact delta package are measured; protected approved-sidecar import authorization is still intentionally absent.",
+    "research_only": true,
+    "smallest_next_experiment": "Under explicit protected import authorization, verify the base sidecar SHA-256 and delta-row hashes in this contract, apply the 35-row smoke tranche, rerun the smoke gate, then apply the remaining 39 rows and rerun the 74-row gate.",
+    "smoke_first_then_remaining_sequence_encoded": true,
+    "smoke_gate_adds_m_csa104_retained_oos_abstention": true,
+    "smoke_gate_preserves_primary_retention": true,
+    "source_delta_package_ready": true
+  },
+  "guardrails": {
+    "accessions_or_pdb_ids_used_as_predictive_features": false,
+    "approved_sidecar_written": false,
+    "canonical_imports_or_promotions_performed": false,
+    "delta_package_artifact_written": true,
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_tranche_delta_and_contract_accounting": true,
+    "gate_uses_only_direct_source_free_electron_flow_fields": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "pdb_ids_or_coordinate_paths_used_as_predictive_features": false,
+    "predictive_use_allowed_modified": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "No further source-free electron-flow evidence is missing for the current train/cal split; the next action is protected import authorization and smoke-first application.",
+    "result": "The current approved sidecar and source candidate readout match the measured delta package; the exact source-free electron-flow delta is hash-pinned, whitelist-clean, and ready for a future protected import."
+  },
+  "measured_readout": {
+    "component_positive_retained_oos_entry_ids": {
+      "iron_sulfur_or_iron": [
+        "m_csa:119"
+      ],
+      "nad_family": [
+        "m_csa:464"
+      ],
+      "pqq": [
+        "m_csa:104"
+      ]
+    },
+    "delta_field_contract_audit": {
+      "full_current_split_after_smoke": {
+        "complete_entry_ids": [
+          "m_csa:27",
+          "m_csa:35",
+          "m_csa:36",
+          "m_csa:38",
+          "m_csa:39",
+          "m_csa:41",
+          "m_csa:52",
+          "m_csa:54",
+          "m_csa:61",
+          "m_csa:65",
+          "m_csa:82",
+          "m_csa:87",
+          "m_csa:102",
+          "m_csa:104",
+          "m_csa:106",
+          "m_csa:119",
+          "m_csa:126",
+          "m_csa:136",
+          "m_csa:160",
+          "m_csa:165",
+          "m_csa:173",
+          "m_csa:216",
+          "m_csa:233",
+          "m_csa:243",
+          "m_csa:244",
+          "m_csa:271",
+          "m_csa:277",
+          "m_csa:284",
+          "m_csa:285",
+          "m_csa:295",
+          "m_csa:299",
+          "m_csa:305",
+          "m_csa:319",
+          "m_csa:320",
+          "m_csa:325",
+          "m_csa:338",
+          "m_csa:368",
+          "m_csa:387",
+          "m_csa:390",
+          "m_csa:399",
+          "m_csa:410",
+          "m_csa:415",
+          "m_csa:422",
+          "m_csa:462",
+          "m_csa:464",
+          "m_csa:471",
+          "m_csa:473",
+          "m_csa:482",
+          "m_csa:483",
+          "m_csa:490",
+          "m_csa:499",
+          "m_csa:503",
+          "m_csa:531",
+          "m_csa:537",
+          "m_csa:542",
+          "m_csa:547",
+          "m_csa:556",
+          "m_csa:565",
+          "m_csa:622",
+          "m_csa:630",
+          "m_csa:646",
+          "m_csa:694",
+          "m_csa:754",
+          "m_csa:800",
+          "m_csa:837",
+          "m_csa:865",
+          "m_csa:879",
+          "m_csa:900",
+          "m_csa:912",
+          "m_csa:922",
+          "m_csa:933",
+          "m_csa:973",
+          "m_csa:988",
+          "uniprot:Q3LXA3"
+        ],
+        "complete_rows": 74,
+        "field_cell_writes": 592,
+        "forbidden_field_hits": [],
+        "missing_field_hits": [],
+        "row_action_counts": {
+          "add_new_approved_row": 73,
+          "update_existing_approved_row": 1
+        },
+        "rows": 74
+      },
+      "remaining_current_split_expansion": {
+        "complete_entry_ids": [
+          "m_csa:35",
+          "m_csa:36",
+          "m_csa:39",
+          "m_csa:52",
+          "m_csa:54",
+          "m_csa:61",
+          "m_csa:65",
+          "m_csa:82",
+          "m_csa:106",
+          "m_csa:119",
+          "m_csa:126",
+          "m_csa:136",
+          "m_csa:243",
+          "m_csa:244",
+          "m_csa:271",
+          "m_csa:284",
+          "m_csa:285",
+          "m_csa:295",
+          "m_csa:299",
+          "m_csa:325",
+          "m_csa:368",
+          "m_csa:390",
+          "m_csa:415",
+          "m_csa:422",
+          "m_csa:462",
+          "m_csa:464",
+          "m_csa:471",
+          "m_csa:483",
+          "m_csa:490",
+          "m_csa:499",
+          "m_csa:503",
+          "m_csa:531",
+          "m_csa:537",
+          "m_csa:542",
+          "m_csa:547",
+          "m_csa:565",
+          "m_csa:622",
+          "m_csa:646",
+          "uniprot:Q3LXA3"
+        ],
+        "complete_rows": 39,
+        "field_cell_writes": 312,
+        "forbidden_field_hits": [],
+        "missing_field_hits": [],
+        "row_action_counts": {
+          "add_new_approved_row": 39
+        },
+        "rows": 39
+      },
+      "smoke_tranche": {
+        "complete_entry_ids": [
+          "m_csa:27",
+          "m_csa:38",
+          "m_csa:41",
+          "m_csa:87",
+          "m_csa:102",
+          "m_csa:104",
+          "m_csa:160",
+          "m_csa:165",
+          "m_csa:173",
+          "m_csa:216",
+          "m_csa:233",
+          "m_csa:277",
+          "m_csa:305",
+          "m_csa:319",
+          "m_csa:320",
+          "m_csa:338",
+          "m_csa:387",
+          "m_csa:399",
+          "m_csa:410",
+          "m_csa:473",
+          "m_csa:482",
+          "m_csa:556",
+          "m_csa:630",
+          "m_csa:694",
+          "m_csa:754",
+          "m_csa:800",
+          "m_csa:837",
+          "m_csa:865",
+          "m_csa:879",
+          "m_csa:900",
+          "m_csa:912",
+          "m_csa:922",
+          "m_csa:933",
+          "m_csa:973",
+          "m_csa:988"
+        ],
+        "complete_rows": 35,
+        "field_cell_writes": 280,
+        "forbidden_field_hits": [],
+        "missing_field_hits": [],
+        "row_action_counts": {
+          "add_new_approved_row": 34,
+          "update_existing_approved_row": 1
+        },
+        "rows": 35
+      }
+    },
+    "full_gate": {
+      "adds_incremental_oos_abstention": true,
+      "baseline_current_geometry_fold_abstained_oos_rows": 35,
+      "complete_rows": 74,
+      "current_geometry_fold_oos_rows": 75,
+      "event_flag_field": "has_source_free_direct_electron_transfer_event",
+      "feature_fields": [
+        "has_source_free_direct_electron_transfer_event",
+        "source_free_direct_electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+      ],
+      "gate_id": "fixed_binary_delta_package_full_74row_current_split",
+      "gate_rule": "Delta-package full gate: rerun the same fixed namespaced direct source-free electron-flow event gate on the full 74-row current split after the smoke delta and remaining expansion delta are applied inside this research artifact only.",
+      "incomplete_rows": 0,
+      "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+      "operating_point_measurable_now": true,
+      "preserves_primary_retention": true,
+      "primary_positive_entry_ids": [],
+      "primary_positive_rows": 0,
+      "primary_retain_recall_if_abstain_positive": 1.0,
+      "primary_rows": 34,
+      "retained_oos_abstain_recall_if_abstain_positive": 0.075,
+      "retained_oos_positive_entry_ids": [
+        "m_csa:104",
+        "m_csa:119",
+        "m_csa:464"
+      ],
+      "retained_oos_positive_rows": 3,
+      "retained_oos_rows": 40,
+      "rows": 74,
+      "union_or_gate_oos_abstain_recall": 0.506667,
+      "union_or_gate_oos_abstained_rows": 38
+    },
+    "gate_evidence_ready": true,
+    "smoke_gate": {
+      "adds_incremental_oos_abstention": true,
+      "baseline_current_geometry_fold_abstained_oos_rows": 35,
+      "complete_rows": 35,
+      "current_geometry_fold_oos_rows": 75,
+      "event_flag_field": "has_source_free_direct_electron_transfer_event",
+      "feature_fields": [
+        "has_source_free_direct_electron_transfer_event",
+        "source_free_direct_electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+      ],
+      "gate_id": "fixed_binary_delta_package_smoke_gate_m_csa104_plus_primary",
+      "gate_rule": "Delta-package smoke gate: rerun the fixed written-sidecar-only gate from the serialized protected smoke delta rows plus the candidate sidecar state. Positive namespaced direct source-free electron-flow events abstain retained OOS rows; complete negatives retain primary rows.",
+      "incomplete_rows": 0,
+      "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+      "operating_point_measurable_now": true,
+      "preserves_primary_retention": true,
+      "primary_positive_entry_ids": [],
+      "primary_positive_rows": 0,
+      "primary_retain_recall_if_abstain_positive": 1.0,
+      "primary_rows": 34,
+      "retained_oos_abstain_recall_if_abstain_positive": 1.0,
+      "retained_oos_positive_entry_ids": [
+        "m_csa:104"
+      ],
+      "retained_oos_positive_rows": 1,
+      "retained_oos_rows": 1,
+      "rows": 35,
+      "union_or_gate_oos_abstain_recall": 0.48,
+      "union_or_gate_oos_abstained_rows": 36
+    },
+    "source_freshness": {
+      "approved_sidecar_rows_current": 43,
+      "current_candidate_matches_source_package": true,
+      "current_candidate_sidecar_readout": {
+        "exists": true,
+        "path": "artifacts/v3_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout_current702_20260605.json",
+        "sha256": "e075997a85fbc46442438bd64b4ca9f656669177b53acb6a8fb5d35c633ab90c"
+      },
+      "current_sidecar_matches_source_package": true,
+      "current_train_cal_feature_sidecar": {
+        "exists": true,
+        "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+        "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+      },
+      "source_candidate_sidecar_readout": {
+        "exists": true,
+        "path": "artifacts/v3_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout_current702_20260605.json",
+        "sha256": "e075997a85fbc46442438bd64b4ca9f656669177b53acb6a8fb5d35c633ab90c"
+      },
+      "source_train_cal_feature_sidecar": {
+        "exists": true,
+        "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+        "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+      }
+    },
+    "source_package_counts": {
+      "approved_sidecar_current_split_direct_component_complete_rows_before_delta": 0,
+      "approved_sidecar_current_split_rows_present_before_delta": 1,
+      "approved_sidecar_direct_component_fields_present": [],
+      "approved_sidecar_rows_before_delta": 43,
+      "critical_violation_total": 0,
+      "full_delta_field_cell_writes": 592,
+      "full_delta_field_conflicts": 0,
+      "full_delta_new_rows": 73,
+      "full_delta_rows_after_smoke": 74,
+      "full_delta_updated_existing_rows": 1,
+      "full_gate_complete_rows": 74,
+      "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+      "full_gate_matches_candidate_sidecar_gate": true,
+      "full_gate_primary_positive_rows": 0,
+      "full_gate_primary_retain_recall": 1.0,
+      "full_gate_primary_rows": 34,
+      "full_gate_retained_oos_positive_entry_ids": [
+        "m_csa:104",
+        "m_csa:119",
+        "m_csa:464"
+      ],
+      "full_gate_retained_oos_rows": 40,
+      "full_gate_rows": 74,
+      "full_gate_union_or_gate_oos_abstain_recall": 0.506667,
+      "reconstructed_sidecar_rows_after_full_delta": 116,
+      "reconstructed_sidecar_rows_after_smoke_delta": 77,
+      "remaining_current_split_delta_rows": 39,
+      "retained_oos_delta_positive_entry_ids": [
+        "m_csa:104",
+        "m_csa:119",
+        "m_csa:464"
+      ],
+      "retained_oos_delta_rows": 40,
+      "smoke_delta_field_cell_writes": 280,
+      "smoke_delta_field_conflicts": 0,
+      "smoke_delta_new_rows": 34,
+      "smoke_delta_rows": 35,
+      "smoke_delta_updated_existing_rows": 1,
+      "smoke_gate_complete_rows": 35,
+      "smoke_gate_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+      "smoke_gate_matches_candidate_sidecar_gate": true,
+      "smoke_gate_primary_positive_rows": 0,
+      "smoke_gate_primary_retain_recall": 1.0,
+      "smoke_gate_primary_rows": 34,
+      "smoke_gate_retained_oos_positive_entry_ids": [
+        "m_csa:104"
+      ],
+      "smoke_gate_retained_oos_rows": 1,
+      "smoke_gate_rows": 35,
+      "smoke_gate_union_or_gate_oos_abstain_recall": 0.48
+    },
+    "source_package_ready": true
+  },
+  "result_class": "research_only_import_contract_verified_pending_protected_import",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_approval_import_delta_package_contract_readout.v0",
+  "scope": "Lever 2 measured acceptance contract for the direct source-free electron-flow delta package. It verifies the current approved train/cal sidecar and source candidate artifact still match the measured delta package, hashes the exact smoke and remaining current-split delta rows, checks the eight-field source-free electron-flow whitelist, and reports the fixed smoke/full gate evidence. It does not edit sidecars, imports, labels, registries, ontologies, thresholds, model weights, or heldout splits.",
+  "source_artifacts": {
+    "approval_import_candidate_sidecar_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout_current702_20260605.json",
+      "sha256": "e075997a85fbc46442438bd64b4ca9f656669177b53acb6a8fb5d35c633ab90c"
+    },
+    "approval_import_delta_package_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_approval_import_delta_package_readout_current702_20260605.json",
+      "sha256": "2b3826e4a361cef86628a152fbd25664b7d5291fe4101ba77165527ac21bba77"
+    },
+    "train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_approval_import_delta_package_contract_readout_research_only_import_contract_verified_pending_protected_import"
+}

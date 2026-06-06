@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T23:43:05Z`
-- STARTED_AT_LOCAL: `2026-06-05T18:43:05-0500 CDT`
-- ENDED_AT_UTC: `2026-06-06T00:34:10Z`
-- ENDED_AT_LOCAL: `2026-06-05T19:34:10-0500 CDT`
-- ELAPSED_MINUTES: `51.08`
+- STARTED_AT_UTC: `2026-06-06T00:33:31Z`
+- STARTED_AT_LOCAL: `2026-06-05T19:33:31-0500 CDT`
+- ENDED_AT_UTC: `2026-06-06T01:25:52Z`
+- ENDED_AT_LOCAL: `2026-06-05T20:25:52-0500 CDT`
+- ELAPSED_MINUTES: `52.35`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,160 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 32
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-06T00:33:31Z`
+- STARTED_LOCAL: `2026-06-05T19:33:31-0500 CDT`
+- ENDED_AT: `2026-06-06T01:25:52Z`
+- ENDED_LOCAL: `2026-06-05T20:25:52-0500 CDT`
+- ELAPSED_MINUTES: `52.35`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured source-free electron-flow delta package and pursue the
+next train/cal-disciplined measured readout without editing protected imports,
+labels, registries, ontologies, production thresholds, heldout splits, or Lever
+3 surfaces.
+
+#### Work log
+
+- Continued in the dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial disk was below the 10 GiB guardrail at 8 GiB free in the detached
+  automation checkout. Removed the clean detached duplicate worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/f708/catalytic-earth`,
+  restoring disk to 15 GiB free before research writes.
+- Added
+  `build-lever2-source-free-electron-flow-approval-import-delta-package-contract-readout`.
+  This consumes the measured protected delta-package readout plus the current
+  approved train/cal sidecar, verifies the current sidecar and candidate
+  source hashes still match the measured package, hash-pins the exact smoke and
+  remaining current-split delta rows, checks the eight direct source-free
+  electron-flow field whitelist, and reports the fixed smoke/full gate evidence
+  without applying any protected import.
+- Extended the measured contract with direct component attribution from the
+  namespaced source-free fields: PQQ catches `m_csa:104`, NAD-family catches
+  `m_csa:464`, and Fe-S/iron catches `m_csa:119`.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_approval_import_delta_package_contract_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_approval_import_delta_package_contract_readout_current702_20260605.md`.
+  SHA-256:
+  `0e6fa82c96d52836818d8b40540a8d1f9118779b87651f65b7aced9cd3fbb8ba`
+  for the JSON and
+  `fa46f2be74d35eb9d9eb2eb75edce15955c9aff23b8c1e3b11ba43defc364eb5`
+  for the Markdown report.
+- No canonical approved sidecar, import file, production threshold, registry,
+  ontology, label, heldout split, or Lever 3 surface was edited.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_approval_import_delta_package_contract_readout_research_only_import_contract_verified_pending_protected_import`.
+  Result class:
+  `research_only_import_contract_verified_pending_protected_import`.
+- Acceptance contract verified with `critical_violation_total=0`.
+- Current approved sidecar SHA-256 matches the measured source package, and
+  current candidate readout SHA-256 matches the measured source package.
+- Smoke contract: 35/35 complete delta rows, 34 new approved-sidecar rows, 1
+  existing-row update, 280 direct field-cell writes, 0 primary positives,
+  primary retain recall `1.0`, retained-OOS positive `m_csa:104`, and union OOS
+  recall `0.48`.
+- Full current-split contract: 74/74 complete delta rows, 73 new
+  approved-sidecar rows, 1 existing-row update, 592 direct field-cell writes, 0
+  primary positives, primary retain recall `1.0`, retained-OOS positives
+  `m_csa:104`, `m_csa:119`, and `m_csa:464`, incremental OOS recall `0.04`,
+  and union OOS recall `0.506667`.
+- Component attribution from direct fields matches the previously measured
+  PQQ/NAD/Fe-S signal: PQQ -> `m_csa:104`, NAD-family -> `m_csa:464`,
+  Fe-S/iron -> `m_csa:119`.
+- Contract hashes: base sidecar
+  `5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0`,
+  candidate readout
+  `e075997a85fbc46442438bd64b4ca9f656669177b53acb6a8fb5d35c633ab90c`,
+  normalized delta package
+  `a254bef4f2f41c58a9f4e5f7a53df1efb4d726af2278dedd4fc7fa5618ac7c62`,
+  smoke delta rows
+  `5c11dec9df466c8956a9e96cc6d8f6ff33bff80e94c0f151c469009e25dd312e`,
+  remaining current-split rows
+  `9d1781cbe5fa6451cd2f1c796833b75f0f65b211cff978def233bf1e6f9c6ff8`,
+  full current-split rows
+  `ff39d9cce93b57333aca77a3a63a7fd6c56fbe89fd102198c297948725da5d74`,
+  and component-positive matrix
+  `79e911cc7400a64fc75911056fe1ebd86c83abd5b3d1eca1e9a7729bccd1cdf2`.
+- Interpretation: no source-free electron-flow evidence blocker remains for
+  the current train/cal split. The exact source-free delta is measured,
+  hash-pinned, whitelist-clean, component-attributed, and ready for a future
+  protected import when explicitly authorized.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Entry IDs are used only for tranche, delta, component, and
+  contract accounting.
+- The contract uses only the eight allowed direct source-free electron-flow
+  fields.
+- Final pre-handoff disk check showed 14 GiB free, above the 10 GiB guardrail.
+
+#### Validation
+
+- Focused new unit/parser/regression slice:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_approval_import_delta_package_contract_detects_stale_sidecar tests/test_cli.py::CliTests::test_lever2_electron_flow_approval_import_delta_package_contract_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_approval_import_delta_package_contract_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  513 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1590 passed, 212 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1545 tests OK,
+  with the same existing warning.
+- Hash-seed stability: full pytest passed for `PYTHONHASHSEED=1` through
+  `PYTHONHASHSEED=17`; full unittest discovery passed for
+  `PYTHONHASHSEED=1` through `PYTHONHASHSEED=16`; focused new
+  unit/parser/regression slice passed for `PYTHONHASHSEED=1` through
+  `PYTHONHASHSEED=4`.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- Contract JSON parses with `python -m json.tool`.
+- Normalized regeneration matched after deleting `created_utc`.
+- Direct-field whitelist/integrity check found 8 allowed fields and no missing
+  or forbidden delta rows.
+- Strict predictive-field guardrail scan found no accession, PDB, Rhea, EC,
+  label, source-ID, target-name, mechanism-text, or coordinate-path feature
+  fields.
+- Protected-surface diff check found no data, label, registry, ontology,
+  import, production threshold, or heldout split file changes.
+
+#### Commit/push status
+
+- Commit and push completed in this wrap-up; branch sync verified before
+  returning.
+
+#### Exact next action
+
+- Under explicit protected import authorization, verify the base sidecar
+  SHA-256 and delta-row hashes in the contract artifact, apply the 35-row smoke
+  tranche first, rerun the smoke gate, then apply the remaining 39 current-split
+  rows and rerun the 74-row fixed gate. Without that authorization, treat the
+  remaining gap as policy, not missing source-free electron-flow evidence.
 
 ### 2026-06-05 Lever 2 Research Run 31
 

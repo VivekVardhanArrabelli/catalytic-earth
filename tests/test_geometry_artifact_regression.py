@@ -21947,6 +21947,159 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
         )
 
+    def test_lever2_electron_flow_approval_import_delta_package_contract_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_approval_import_"
+                "delta_package_contract_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_approval_import_delta_"
+                "package_contract_readout_research_only_import_contract_"
+                "verified_pending_protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_import_contract_verified_pending_protected_import",
+        )
+        self.assertEqual(
+            readout["acceptance_contract"]["contract_status"],
+            "verified_pending_protected_import",
+        )
+        self.assertEqual(readout["counts"]["approved_sidecar_rows_current"], 43)
+        self.assertEqual(readout["counts"]["contract_smoke_delta_rows"], 35)
+        self.assertEqual(readout["counts"]["contract_smoke_delta_complete_rows"], 35)
+        self.assertEqual(
+            readout["counts"]["contract_smoke_delta_field_cell_writes"], 280
+        )
+        self.assertEqual(
+            readout["counts"]["contract_remaining_current_split_delta_rows"], 39
+        )
+        self.assertEqual(
+            readout["counts"][
+                "contract_remaining_current_split_delta_complete_rows"
+            ],
+            39,
+        )
+        self.assertEqual(
+            readout["counts"]["contract_full_delta_rows_after_smoke"], 74
+        )
+        self.assertEqual(
+            readout["counts"]["contract_full_delta_complete_rows"], 74
+        )
+        self.assertEqual(
+            readout["counts"]["contract_full_delta_field_cell_writes"], 592
+        )
+        self.assertEqual(readout["counts"]["contract_full_delta_add_new_rows"], 73)
+        self.assertEqual(
+            readout["counts"]["contract_full_delta_update_existing_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["direct_source_free_electron_flow_feature_fields"],
+            8,
+        )
+        self.assertEqual(readout["counts"]["forbidden_field_hit_rows"], 0)
+        self.assertEqual(readout["counts"]["missing_field_hit_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["contract_component_positive_retained_oos_rows"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["contract_pqq_positive_retained_oos_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "contract_nad_family_positive_retained_oos_entry_ids"
+            ],
+            ["m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "contract_iron_sulfur_or_iron_positive_retained_oos_entry_ids"
+            ],
+            ["m_csa:119"],
+        )
+        self.assertTrue(readout["counts"]["row_counts_match_source_package"])
+        self.assertTrue(
+            readout["counts"]["current_sidecar_sha256_matches_source_package"]
+        )
+        self.assertTrue(
+            readout["counts"]["current_candidate_sha256_matches_source_package"]
+        )
+        self.assertEqual(readout["counts"]["smoke_gate_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_gate_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertEqual(readout["counts"]["smoke_gate_primary_retain_recall"], 1.0)
+        self.assertEqual(readout["counts"]["full_gate_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["full_gate_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(readout["counts"]["full_gate_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"][
+                "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"]["full_gate_union_or_gate_oos_abstain_recall"],
+            0.506667,
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertTrue(readout["decision"]["acceptance_contract_verified"])
+        self.assertTrue(
+            readout["decision"][
+                "package_hash_ready_for_future_protected_import"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "delta_rows_use_only_direct_source_free_electron_flow_fields"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "component_attribution_matches_pqq_nad_fe_s_direct_signal"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "full_gate_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertFalse(readout["decision"]["protected_surfaces_modified"])
+        self.assertFalse(readout["decision"]["approved_sidecar_written"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["approved_sidecar_written"])
+        self.assertFalse(
+            readout["guardrails"]["canonical_imports_or_promotions_performed"]
+        )
+        self.assertTrue(
+            readout["source_artifacts"][
+                "approval_import_delta_package_readout"
+            ]["exists"]
+        )
+        self.assertTrue(
+            readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
+        )
+        self.assertTrue(
+            readout["source_artifacts"][
+                "approval_import_candidate_sidecar_readout"
+            ]["exists"]
+        )
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:
