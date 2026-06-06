@@ -24590,6 +24590,132 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             readout["guardrails"]["protected_import_executed_by_this_artifact"]
         )
 
+    def test_lever2_electron_flow_protected_train_cal_approved_sidecar_import_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_protected_train_cal_"
+                "approved_sidecar_import_readout_current702_20260606.json"
+            )
+        )
+        smoke_sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_protected_train_cal_"
+                "approved_sidecar_smoke_current702_20260606.json"
+            )
+        )
+        full_sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_protected_train_cal_"
+                "approved_sidecar_full_current702_20260606.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_protected_train_cal_"
+                "approved_sidecar_import_readout_deployment_candidate_"
+                "protected_train_cal_approved_sidecar_electron_flow_import_signal"
+            ),
+        )
+        self.assertEqual(readout["classification"], "deployment-candidate")
+        self.assertEqual(readout["counts"]["critical_guardrail_violation_total"], 0)
+        self.assertEqual(readout["counts"]["approved_sidecar_rows_before_import"], 43)
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_rows_after_smoke_import"], 77
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_rows_after_full_import"], 116
+        )
+        self.assertEqual(readout["counts"]["smoke_delta_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_delta_new_rows"], 34)
+        self.assertEqual(readout["counts"]["smoke_delta_updated_existing_rows"], 1)
+        self.assertEqual(readout["counts"]["smoke_primary_positive_rows"], 0)
+        self.assertEqual(readout["counts"]["smoke_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertTrue(readout["counts"]["smoke_gate_matches_research_overlay"])
+        self.assertEqual(readout["counts"]["remaining_delta_rows"], 39)
+        self.assertTrue(readout["counts"]["remaining_delta_applied_after_smoke"])
+        self.assertEqual(readout["counts"]["full_delta_rows"], 74)
+        self.assertEqual(readout["counts"]["full_complete_rows"], 74)
+        self.assertEqual(readout["counts"]["full_primary_positive_rows"], 0)
+        self.assertEqual(readout["counts"]["full_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["full_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"]["current_geometry_fold_oos_abstain_recall_baseline"],
+            0.466667,
+        )
+        self.assertEqual(
+            readout["counts"]["full_union_or_gate_oos_abstain_recall"],
+            0.506667,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertTrue(readout["counts"]["full_gate_matches_research_overlay"])
+        self.assertEqual(
+            readout["counts"]["smoke_generic_electron_transfer_field_violations"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["full_generic_electron_transfer_field_violations"],
+            0,
+        )
+        self.assertTrue(readout["decision"]["deployment_candidate"])
+        self.assertFalse(readout["decision"]["research_only"])
+        self.assertFalse(readout["decision"]["rejected"])
+        self.assertFalse(
+            readout["decision"]["approved_sidecar_rerun_differs_from_research_overlay"]
+        )
+        self.assertIsNone(readout["decision"]["smallest_failing_tranche"])
+        self.assertFalse(readout["decision"]["production_thresholds_changed"])
+        self.assertFalse(readout["decision"]["heldout_splits_changed"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_evaluated"])
+        self.assertTrue(
+            readout["guardrails"][
+                "uses_only_namespaced_source_free_electron_flow_fields"
+            ]
+        )
+        self.assertFalse(
+            readout["guardrails"]["generic_electron_transfer_fields_overwritten"]
+        )
+        self.assertFalse(readout["guardrails"]["lever3_surfaces_modified"])
+        self.assertEqual(
+            smoke_sidecar["electron_flow_import_test_counts"]["import_rows"], 35
+        )
+        self.assertEqual(
+            smoke_sidecar["electron_flow_import_test_counts"][
+                "operating_point_primary_positive_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            full_sidecar["electron_flow_import_test_counts"]["import_rows"], 74
+        )
+        self.assertEqual(
+            full_sidecar["electron_flow_import_test_counts"][
+                "operating_point_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+
     def test_lever2_electron_flow_current_split_operating_point_current_counts(
         self,
     ) -> None:
@@ -24722,6 +24848,231 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]
         )
         self.assertTrue(readout["decision"]["done_bar_evidence_measured"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["approved_sidecar_written"])
+        self.assertFalse(
+            readout["guardrails"]["protected_import_executed_by_this_artifact"]
+        )
+
+    def test_lever2_electron_flow_current_split_sensitivity_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_current_split_"
+                "sensitivity_readout_current702_20260606.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_current_split_sensitivity_"
+                "readout_research_only_direct_source_free_electron_flow_"
+                "sensitivity_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_direct_source_free_electron_flow_sensitivity_signal",
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            readout["counts"]["direct_source_free_electron_flow_feature_fields"],
+            8,
+        )
+        self.assertEqual(readout["counts"]["estimated_calibration_oos_rows"], 75)
+        self.assertEqual(
+            readout["counts"]["current_geometry_fold_oos_abstain_recall_baseline"],
+            0.466667,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertEqual(readout["counts"]["leave_one_component_variants"], 3)
+        self.assertTrue(readout["counts"]["leave_one_component_all_primary_safe"])
+        self.assertTrue(
+            readout["counts"]["leave_one_component_all_still_add_value"]
+        )
+        self.assertEqual(
+            readout["counts"][
+                "leave_one_component_min_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.026667,
+        )
+        self.assertEqual(
+            readout["counts"]["leave_one_component_min_union_oos_abstain_recall"],
+            0.493334,
+        )
+        self.assertEqual(
+            readout["counts"]["leave_one_retained_oos_row_variants"],
+            3,
+        )
+        self.assertTrue(
+            readout["counts"]["leave_one_retained_oos_row_all_primary_safe"]
+        )
+        self.assertTrue(
+            readout["counts"]["leave_one_retained_oos_row_all_still_add_value"]
+        )
+        self.assertEqual(
+            readout["counts"][
+                "leave_one_retained_oos_row_min_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.026667,
+        )
+        self.assertEqual(readout["counts"]["smoke_leave_one_row_variants"], 1)
+        self.assertTrue(
+            readout["counts"]["smoke_tranche_is_single_row_minimal_signal"]
+        )
+        self.assertEqual(readout["counts"]["component_overlap_rows"], 0)
+        self.assertTrue(
+            readout["counts"][
+                "component_positive_union_matches_full_positive_rows"
+            ]
+        )
+        self.assertTrue(
+            readout["counts"]["component_delta_additive_within_tolerance"]
+        )
+        self.assertTrue(readout["decision"]["sensitivity_readout_measured"])
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_signal_survives_leave_one_component"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_signal_survives_leave_one_retained_oos_row"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["primary_retention_preserved_under_sensitivity"]
+        )
+        self.assertTrue(readout["decision"]["done_bar_evidence_reinforced"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["approved_sidecar_written"])
+        self.assertFalse(
+            readout["guardrails"]["protected_import_executed_by_this_artifact"]
+        )
+
+    def test_lever2_electron_flow_current_split_field_sensitivity_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_current_split_"
+                "field_sensitivity_readout_current702_20260606.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_current_split_field_"
+                "sensitivity_readout_research_only_direct_source_free_"
+                "electron_flow_field_sensitivity_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            (
+                "research_only_direct_source_free_electron_flow_"
+                "field_sensitivity_signal"
+            ),
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            readout["counts"]["source_row_gate_critical_row_violation_total"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["source_row_gate_field_consistency_violation_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["source_row_gate_field_conflict_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["direct_source_free_electron_flow_feature_fields"],
+            8,
+        )
+        self.assertEqual(readout["counts"]["estimated_calibration_oos_rows"], 75)
+        self.assertEqual(readout["counts"]["field_variants"], 8)
+        self.assertTrue(readout["counts"]["field_variants_primary_safe"])
+        self.assertEqual(
+            readout["counts"]["field_variants_with_full_operating_point_value"],
+            8,
+        )
+        self.assertEqual(readout["counts"]["direct_generic_field_variants"], 2)
+        self.assertTrue(
+            readout["counts"][
+                "direct_generic_field_variants_recover_full_or_gate"
+            ]
+        )
+        self.assertTrue(
+            readout["counts"]["direct_flag_count_positive_rows_consistent"]
+        )
+        self.assertTrue(readout["counts"]["component_flag_count_pairs_consistent"])
+        self.assertEqual(
+            readout["counts"]["component_field_union_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertTrue(
+            readout["counts"]["component_field_union_matches_full_positive_rows"]
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            readout["counts"]["generic_direct_event_flag_full_delta"], 0.04
+        )
+        self.assertEqual(
+            readout["counts"]["generic_direct_event_count_full_delta"], 0.04
+        )
+        self.assertEqual(
+            readout["counts"]["generic_direct_event_flag_smoke_delta"],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"]["generic_direct_event_count_smoke_delta"],
+            0.013333,
+        )
+        self.assertTrue(readout["decision"]["field_sensitivity_readout_measured"])
+        self.assertTrue(
+            readout["decision"][
+                "generic_direct_fields_recover_full_operating_point_signal"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["generic_direct_fields_recover_smoke_signal"]
+        )
+        self.assertTrue(
+            readout["decision"]["component_fields_recover_all_full_positive_rows"]
+        )
+        self.assertTrue(
+            readout["decision"]["primary_retention_preserved_for_all_fields"]
+        )
+        self.assertTrue(readout["decision"]["flag_count_pairs_consistent"])
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["approved_sidecar_written"])
         self.assertFalse(

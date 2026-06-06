@@ -1,0 +1,322 @@
+{
+  "artifact_id": "v3_lever2_source_free_electron_flow_current_split_field_sensitivity_readout_current702_20260606",
+  "counts": {
+    "approved_sidecar_rows_written": 0,
+    "component_field_union_entry_ids": [
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:464"
+    ],
+    "component_field_union_matches_full_positive_rows": true,
+    "component_flag_count_pairs_consistent": true,
+    "critical_violation_total": 0,
+    "current_geometry_fold_oos_abstain_recall_baseline": 0.466667,
+    "direct_flag_count_positive_rows_consistent": true,
+    "direct_generic_field_variants": 2,
+    "direct_generic_field_variants_recover_full_or_gate": true,
+    "direct_source_free_electron_flow_feature_fields": 8,
+    "estimated_calibration_oos_rows": 75,
+    "field_variants": 8,
+    "field_variants_primary_safe": true,
+    "field_variants_with_full_operating_point_value": 8,
+    "full_current_split_retained_oos_positive_entry_ids": [
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:464"
+    ],
+    "generic_direct_event_count_full_delta": 0.04,
+    "generic_direct_event_count_smoke_delta": 0.013333,
+    "generic_direct_event_flag_full_delta": 0.04,
+    "generic_direct_event_flag_smoke_delta": 0.013333,
+    "protected_imports_executed": 0,
+    "smoke_retained_oos_positive_entry_ids": [
+      "m_csa:104"
+    ],
+    "source_full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+    "source_full_current_split_union_or_gate_oos_abstain_recall": 0.506667,
+    "source_row_gate_critical_row_violation_total": 0,
+    "source_row_gate_field_conflict_rows": 0,
+    "source_row_gate_field_consistency_violation_rows": 0,
+    "source_smoke_union_or_gate_oos_abstain_recall": 0.48
+  },
+  "created_utc": "2026-06-06T04:45:06Z",
+  "decision": {
+    "apply_or_promote_now": false,
+    "component_fields_recover_all_full_positive_rows": true,
+    "deployable_now": false,
+    "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold": true,
+    "field_sensitivity_readout_measured": true,
+    "flag_count_pairs_consistent": true,
+    "generic_direct_fields_recover_full_operating_point_signal": true,
+    "generic_direct_fields_recover_smoke_signal": true,
+    "measured_readout_available": true,
+    "negative": false,
+    "pqq_fields_recover_smoke_signal": true,
+    "primary_retention_preserved_for_all_fields": true,
+    "remaining_gap": "No source-free electron-flow field evidence gap remains for the current train/cal split; the remaining gap is explicit protected import authorization and approved-sidecar rerun.",
+    "research_only": true,
+    "smallest_next_experiment": "With explicit protected import authorization, apply the 35-row smoke tranche and rerun the operating-point, sensitivity, and field-sensitivity readouts on the approved sidecar; expand the remaining 39 rows only if primary positives remain zero.",
+    "source_row_gate_matrix_valid": true
+  },
+  "guardrails": {
+    "accessions_or_pdb_ids_used_as_predictive_features": false,
+    "approved_sidecar_written": false,
+    "canonical_imports_or_promotions_performed": false,
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_tranche_delta_and_contract_accounting": true,
+    "gate_uses_only_direct_source_free_electron_flow_fields": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "pdb_ids_or_coordinate_paths_used_as_predictive_features": false,
+    "predictive_use_allowed_modified": false,
+    "production_thresholds_changed": false,
+    "protected_import_authorized_by_this_artifact": false,
+    "protected_import_executed_by_this_artifact": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Treat the remaining gap as protected import authorization, not missing source-free electron-flow field evidence.",
+    "result": "The generic direct source-free electron-transfer flag and count each recover the full 3-row operating-point signal; component fields are primary-safe and jointly recover the same retained-OOS positives."
+  },
+  "measured_readout": {
+    "component_field_union_entry_ids": [
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:464"
+    ],
+    "field_variants": [
+      {
+        "field_group": "direct_generic",
+        "field_name": "has_source_free_direct_electron_transfer_event",
+        "field_type": "flag",
+        "field_variant_id": "direct_event_flag",
+        "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+        "full_current_split_matches_full_or_gate_positive_rows": true,
+        "full_current_split_operating_point_value_added": true,
+        "full_current_split_primary_positive_entry_ids": [],
+        "full_current_split_primary_positive_rows": 0,
+        "full_current_split_retained_oos_positive_entry_ids": [
+          "m_csa:104",
+          "m_csa:119",
+          "m_csa:464"
+        ],
+        "full_current_split_retained_oos_positive_rows": 3,
+        "full_current_split_union_oos_abstain_recall": 0.506667,
+        "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "smoke_matches_smoke_or_gate_positive_rows": true,
+        "smoke_primary_positive_entry_ids": [],
+        "smoke_primary_positive_rows": 0,
+        "smoke_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "smoke_retained_oos_positive_rows": 1,
+        "smoke_union_oos_abstain_recall": 0.48
+      },
+      {
+        "field_group": "direct_generic",
+        "field_name": "source_free_direct_electron_transfer_count",
+        "field_type": "count",
+        "field_variant_id": "direct_event_count_ge_1",
+        "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+        "full_current_split_matches_full_or_gate_positive_rows": true,
+        "full_current_split_operating_point_value_added": true,
+        "full_current_split_primary_positive_entry_ids": [],
+        "full_current_split_primary_positive_rows": 0,
+        "full_current_split_retained_oos_positive_entry_ids": [
+          "m_csa:104",
+          "m_csa:119",
+          "m_csa:464"
+        ],
+        "full_current_split_retained_oos_positive_rows": 3,
+        "full_current_split_union_oos_abstain_recall": 0.506667,
+        "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "smoke_matches_smoke_or_gate_positive_rows": true,
+        "smoke_primary_positive_entry_ids": [],
+        "smoke_primary_positive_rows": 0,
+        "smoke_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "smoke_retained_oos_positive_rows": 1,
+        "smoke_union_oos_abstain_recall": 0.48
+      },
+      {
+        "field_group": "pqq",
+        "field_name": "has_source_free_pqq_donor_acceptor_contact",
+        "field_type": "flag",
+        "field_variant_id": "pqq_flag",
+        "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "full_current_split_matches_full_or_gate_positive_rows": false,
+        "full_current_split_operating_point_value_added": true,
+        "full_current_split_primary_positive_entry_ids": [],
+        "full_current_split_primary_positive_rows": 0,
+        "full_current_split_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "full_current_split_retained_oos_positive_rows": 1,
+        "full_current_split_union_oos_abstain_recall": 0.48,
+        "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "smoke_matches_smoke_or_gate_positive_rows": true,
+        "smoke_primary_positive_entry_ids": [],
+        "smoke_primary_positive_rows": 0,
+        "smoke_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "smoke_retained_oos_positive_rows": 1,
+        "smoke_union_oos_abstain_recall": 0.48
+      },
+      {
+        "field_group": "pqq",
+        "field_name": "source_free_pqq_donor_acceptor_contact_count",
+        "field_type": "count",
+        "field_variant_id": "pqq_count_ge_1",
+        "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "full_current_split_matches_full_or_gate_positive_rows": false,
+        "full_current_split_operating_point_value_added": true,
+        "full_current_split_primary_positive_entry_ids": [],
+        "full_current_split_primary_positive_rows": 0,
+        "full_current_split_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "full_current_split_retained_oos_positive_rows": 1,
+        "full_current_split_union_oos_abstain_recall": 0.48,
+        "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "smoke_matches_smoke_or_gate_positive_rows": true,
+        "smoke_primary_positive_entry_ids": [],
+        "smoke_primary_positive_rows": 0,
+        "smoke_retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "smoke_retained_oos_positive_rows": 1,
+        "smoke_union_oos_abstain_recall": 0.48
+      },
+      {
+        "field_group": "nad_family",
+        "field_name": "has_source_free_nad_family_donor_acceptor_distance",
+        "field_type": "flag",
+        "field_variant_id": "nad_family_flag",
+        "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "full_current_split_matches_full_or_gate_positive_rows": false,
+        "full_current_split_operating_point_value_added": true,
+        "full_current_split_primary_positive_entry_ids": [],
+        "full_current_split_primary_positive_rows": 0,
+        "full_current_split_retained_oos_positive_entry_ids": [
+          "m_csa:464"
+        ],
+        "full_current_split_retained_oos_positive_rows": 1,
+        "full_current_split_union_oos_abstain_recall": 0.48,
+        "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.0,
+        "smoke_matches_smoke_or_gate_positive_rows": false,
+        "smoke_primary_positive_entry_ids": [],
+        "smoke_primary_positive_rows": 0,
+        "smoke_retained_oos_positive_entry_ids": [],
+        "smoke_retained_oos_positive_rows": 0,
+        "smoke_union_oos_abstain_recall": 0.466667
+      },
+      {
+        "field_group": "nad_family",
+        "field_name": "source_free_nad_family_donor_acceptor_distance_count",
+        "field_type": "count",
+        "field_variant_id": "nad_family_count_ge_1",
+        "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "full_current_split_matches_full_or_gate_positive_rows": false,
+        "full_current_split_operating_point_value_added": true,
+        "full_current_split_primary_positive_entry_ids": [],
+        "full_current_split_primary_positive_rows": 0,
+        "full_current_split_retained_oos_positive_entry_ids": [
+          "m_csa:464"
+        ],
+        "full_current_split_retained_oos_positive_rows": 1,
+        "full_current_split_union_oos_abstain_recall": 0.48,
+        "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.0,
+        "smoke_matches_smoke_or_gate_positive_rows": false,
+        "smoke_primary_positive_entry_ids": [],
+        "smoke_primary_positive_rows": 0,
+        "smoke_retained_oos_positive_entry_ids": [],
+        "smoke_retained_oos_positive_rows": 0,
+        "smoke_union_oos_abstain_recall": 0.466667
+      },
+      {
+        "field_group": "iron_sulfur_or_iron",
+        "field_name": "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "field_type": "flag",
+        "field_variant_id": "iron_sulfur_or_iron_flag",
+        "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "full_current_split_matches_full_or_gate_positive_rows": false,
+        "full_current_split_operating_point_value_added": true,
+        "full_current_split_primary_positive_entry_ids": [],
+        "full_current_split_primary_positive_rows": 0,
+        "full_current_split_retained_oos_positive_entry_ids": [
+          "m_csa:119"
+        ],
+        "full_current_split_retained_oos_positive_rows": 1,
+        "full_current_split_union_oos_abstain_recall": 0.48,
+        "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.0,
+        "smoke_matches_smoke_or_gate_positive_rows": false,
+        "smoke_primary_positive_entry_ids": [],
+        "smoke_primary_positive_rows": 0,
+        "smoke_retained_oos_positive_entry_ids": [],
+        "smoke_retained_oos_positive_rows": 0,
+        "smoke_union_oos_abstain_recall": 0.466667
+      },
+      {
+        "field_group": "iron_sulfur_or_iron",
+        "field_name": "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+        "field_type": "count",
+        "field_variant_id": "iron_sulfur_or_iron_count_ge_1",
+        "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "full_current_split_matches_full_or_gate_positive_rows": false,
+        "full_current_split_operating_point_value_added": true,
+        "full_current_split_primary_positive_entry_ids": [],
+        "full_current_split_primary_positive_rows": 0,
+        "full_current_split_retained_oos_positive_entry_ids": [
+          "m_csa:119"
+        ],
+        "full_current_split_retained_oos_positive_rows": 1,
+        "full_current_split_union_oos_abstain_recall": 0.48,
+        "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.0,
+        "smoke_matches_smoke_or_gate_positive_rows": false,
+        "smoke_primary_positive_entry_ids": [],
+        "smoke_primary_positive_rows": 0,
+        "smoke_retained_oos_positive_entry_ids": [],
+        "smoke_retained_oos_positive_rows": 0,
+        "smoke_union_oos_abstain_recall": 0.466667
+      }
+    ],
+    "full_current_split_positive_entry_ids": [
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:464"
+    ],
+    "smoke_positive_entry_ids": [
+      "m_csa:104"
+    ],
+    "source_row_gate_audit": {
+      "result_class": "research_only_current_split_row_gate_audit_operating_point_signal",
+      "row_gate_matrix_sha256": "98a5eb56d8c5cf28bba414f085fa4f3723ef65ce46c73007825b29acb3a8d5b1",
+      "source_artifact": {
+        "exists": true,
+        "path": "artifacts/v3_lever2_source_free_electron_flow_current_split_row_gate_audit_readout_current702_20260606.json",
+        "sha256": "63b08a70333942ae3e5197ad85a4e3f5e4a8d9147998db45893f89a0e9fe999e"
+      },
+      "status": "lever2_source_free_electron_flow_current_split_row_gate_audit_readout_research_only_current_split_row_gate_audit_operating_point_signal"
+    }
+  },
+  "result_class": "research_only_direct_source_free_electron_flow_field_sensitivity_signal",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_current_split_field_sensitivity_readout.v0",
+  "scope": "Lever 2 measured field-level sensitivity readout for the direct source-free electron-flow row-gate matrix. It tests the generic direct event flag/count fields and the component-specific flag/count fields on the current train/cal split without applying protected imports, editing approved sidecars, changing thresholds, training models, scoring heldout, or touching labels, registries, ontologies, or Lever 3 surfaces.",
+  "source_artifacts": {
+    "current_split_row_gate_audit_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_current_split_row_gate_audit_readout_current702_20260606.json",
+      "sha256": "63b08a70333942ae3e5197ad85a4e3f5e4a8d9147998db45893f89a0e9fe999e"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_current_split_field_sensitivity_readout_research_only_direct_source_free_electron_flow_field_sensitivity_signal"
+}

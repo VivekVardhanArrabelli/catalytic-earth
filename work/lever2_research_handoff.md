@@ -4,18 +4,208 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-06T03:31:51Z`
-- STARTED_AT_LOCAL: `2026-06-05T22:31:51-0500 CDT`
-- ENDED_AT_UTC: `2026-06-06T03:49:41Z`
-- ENDED_AT_LOCAL: `2026-06-05T22:49:41-0500 CDT`
-- ELAPSED_MINUTES: `17.83`
-- Scope: Lever 2 mechanism-representation research only.
-- Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
-  no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
-  edits, ontology edits, import edits, production threshold edits, or heldout
-  split edits.
+- STARTED_AT_UTC: `2026-06-06T05:13:56Z`
+- STARTED_AT_LOCAL: `2026-06-06T00:13:56-0500 CDT`
+- ENDED_AT_UTC: `2026-06-06T05:30:50Z`
+- ENDED_AT_LOCAL: `2026-06-06T00:30:50-0500 CDT`
+- ELAPSED_MINUTES: `16.90`
+- Scope: Lever 2 electron-flow protected train/cal-only approved-sidecar
+  import test.
+- Guardrails: source-free/deployment-valid feature discipline, no heldout
+  tuning/scoring/import, no mechanism text, EC/Rhea IDs, labels, source IDs,
+  target names, accessions, coordinate paths, or provenance as predictive
+  feature values, no label/registry/ontology edits, no production threshold
+  edits, no heldout split edits, and no Lever 3 surface edits.
 
 ## Run Ledger
+
+### 2026-06-06 Lever 2 Research Run 37
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-06T05:13:56Z`
+- STARTED_LOCAL: `2026-06-06T00:13:56-0500 CDT`
+- ENDED_AT: `2026-06-06T05:30:50Z`
+- ENDED_LOCAL: `2026-06-06T00:30:50-0500 CDT`
+- ELAPSED_MINUTES: `16.90`
+
+#### Intent
+
+Convert the measured direct source-free electron-flow operating point from
+research-only evidence into an approved train/cal-only sidecar import test,
+starting with the 35-row smoke tranche and expanding to the full 74-row current
+split only if smoke preserves primary retention with zero primary positives.
+
+#### Work log
+
+- Added
+  `build-lever2-source-free-electron-flow-protected-train-cal-approved-sidecar-import-readout`.
+  It consumes the hash-pinned protected import sequence preflight and source
+  delta package, applies the 35-row smoke tranche first to an
+  approved-sidecar-shaped train/cal artifact copy, reruns the namespaced direct
+  source-free electron-flow operating point from that written sidecar state,
+  and expands to the remaining 39 current-split rows only after smoke passes.
+- Generated the protected train/cal smoke/full sidecar snapshots:
+  `artifacts/v3_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_smoke_current702_20260606.json`
+  and
+  `artifacts/v3_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_full_current702_20260606.json`.
+- Generated the master approved-sidecar import readout/report:
+  `artifacts/v3_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout_current702_20260606.json`
+  and
+  `work/lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout_current702_20260606.md`.
+- Added focused unit, CLI parser, and artifact-regression coverage.
+- Did not modify the canonical source sidecar path, labels, registries,
+  ontologies, production thresholds, heldout splits, or Lever 3 surfaces.
+
+#### Measured results
+
+- Classification:
+  `deployment-candidate`.
+- Result class:
+  `deployment_candidate_protected_train_cal_approved_sidecar_electron_flow_import_signal`.
+- Smoke-first import: 35 rows applied first, 34 new approved-sidecar rows and
+  1 existing-row update, 35/35 complete, zero primary-positive rows, primary
+  retain recall `1.0`, retained-OOS positives `m_csa:104`, OOS recall `0.48`,
+  delta versus current geometry/fold `0.013333`, and exact match to the
+  research-only overlay.
+- Full current-split import: expanded only after smoke passed; 74 rows applied
+  in the full sidecar state, 116 approved-sidecar snapshot rows after import,
+  74/74 complete, zero primary-positive rows, primary retain recall `1.0`,
+  retained-OOS positives `m_csa:104`, `m_csa:119`, and `m_csa:464`, OOS recall
+  `0.506667`, delta versus current geometry/fold `0.04`, and exact match to
+  the research-only overlay.
+- Baseline current geometry/fold OOS recall remained `0.466667`.
+- Approved-sidecar rerun differs from research-only overlay: `false`.
+- Smallest failing tranche: `None`.
+- Generic electron-transfer overwrite violations: `0`.
+- Critical guardrail violations: `0`.
+
+#### Guardrails
+
+- Used only the eight namespaced direct source-free electron-flow fields:
+  `has_source_free_direct_electron_transfer_event`,
+  `source_free_direct_electron_transfer_count`,
+  `has_source_free_pqq_donor_acceptor_contact`,
+  `source_free_pqq_donor_acceptor_contact_count`,
+  `has_source_free_nad_family_donor_acceptor_distance`,
+  `source_free_nad_family_donor_acceptor_distance_count`,
+  `has_source_free_iron_sulfur_or_iron_donor_acceptor_distance`, and
+  `source_free_iron_sulfur_or_iron_donor_acceptor_distance_count`.
+- Existing generic electron-transfer fields were preserved and were not
+  overwritten or used as the gate fields.
+- No heldout rows were trained on, tuned on, rescored, evaluated, imported, or
+  used for threshold selection.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, coordinate paths, or provenance were used as predictive feature
+  values.
+- No label, registry, ontology, production-threshold, heldout-split, canonical
+  source-sidecar, or Lever 3 surface path was modified.
+
+#### Validation
+
+- New CLI artifact generation:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-protected-train-cal-approved-sidecar-import-readout`:
+  wrote classification `deployment-candidate`, smoke primary/OOS positives
+  `0/1`, full delta `0.04`, and deployment candidate `True`.
+- Focused new unit/parser/regression slice:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_protected_train_cal_approved_sidecar_import_smoke_then_full tests/test_cli.py::CliTests::test_lever2_electron_flow_protected_train_cal_approved_sidecar_import_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_protected_train_cal_approved_sidecar_import_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  530 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1607 passed, 212 subtests passed,
+  with the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_cli.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `python -m json.tool` parsed all three new JSON artifacts.
+- `git diff --check`: passed.
+- Guardrail scan found no true heldout, production-threshold,
+  label/registry/ontology, Lever 3, generic electron-transfer overwrite, or
+  forbidden-feature flags in the new artifacts/report.
+
+#### Exact next action
+
+- Treat protected train/cal approved-sidecar electron-flow import as
+  deployment-candidate for Lever 2. Do not touch production thresholds,
+  heldout, labels, registries, ontologies, or Lever 3 surfaces without a
+  separate explicit authorization.
+
+### 2026-06-05 Lever 2 Research Run 36
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-06T04:34:18Z`
+- STARTED_LOCAL: `2026-06-05T23:34:18-0500 CDT`
+- ENDED_AT: `2026-06-06T05:10:21Z`
+- ENDED_LOCAL: `2026-06-06T00:10:21-0500 CDT`
+- ELAPSED_MINUTES: `36.05`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured direct source-free operating-point readout and produce
+the next measured train/cal-disciplined electron-flow readout without editing
+protected imports, labels, registries, ontologies, production thresholds,
+heldout splits, or Lever 3 surfaces.
+
+#### Work log
+
+- Produced two follow-up sensitivity readouts for the direct source-free
+  electron-flow operating point:
+  `artifacts/v3_lever2_source_free_electron_flow_current_split_sensitivity_readout_current702_20260606.json`
+  with report
+  `work/lever2_source_free_electron_flow_current_split_sensitivity_readout_current702_20260606.md`,
+  and
+  `artifacts/v3_lever2_source_free_electron_flow_current_split_field_sensitivity_readout_current702_20260606.json`
+  with report
+  `work/lever2_source_free_electron_flow_current_split_field_sensitivity_readout_current702_20260606.md`.
+- Added CLI builders for the sensitivity and field-sensitivity readouts.
+- Added focused parser, unit, and artifact-regression coverage for both
+  readouts.
+- Did not edit protected imports, approved sidecars, labels, registries,
+  ontologies, production thresholds, heldout splits, or Lever 3 surfaces.
+
+#### Measured results
+
+- Sensitivity readout status:
+  `lever2_source_free_electron_flow_current_split_sensitivity_readout_research_only_direct_source_free_electron_flow_sensitivity_signal`.
+- Field-sensitivity readout status:
+  `lever2_source_free_electron_flow_current_split_field_sensitivity_readout_research_only_direct_source_free_electron_flow_field_sensitivity_signal`.
+- Full positive retained-OOS rows remain
+  `m_csa:104`, `m_csa:119`, and `m_csa:464`.
+- Baseline current geometry/fold OOS recall remains `0.466667`.
+- Full direct electron-flow overlay OOS recall remains `0.506667`, delta
+  `0.04`, with zero primary-positive rows.
+- Leave-one-component sensitivity: all three variants remain primary-safe and
+  retain positive value; minimum delta is `0.026667`.
+- Leave-one-positive-row sensitivity: all three variants remain primary-safe
+  and retain positive value; minimum delta is `0.026667`.
+- Field sensitivity: all eight direct source-free electron-flow field variants
+  are primary-safe, and the generic direct event flag/count each recover the
+  full 3-row operating-point signal.
+- Deployable now remains `false`; remaining gap is explicit protected import
+  authorization plus approved-sidecar rerun, not missing source-free
+  electron-flow evidence.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_current_split_sensitivity_readout_scores_ablations tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_current_split_field_sensitivity_scores_fields tests/test_cli.py::CliTests::test_lever2_electron_flow_current_split_sensitivity_parser_defaults tests/test_cli.py::CliTests::test_lever2_electron_flow_current_split_field_sensitivity_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_current_split_sensitivity_current_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_current_split_field_sensitivity_current_counts -q`:
+  6 passed.
+- `python -m json.tool` parsed both new JSON artifacts.
+- `git diff --check` passed.
+
+#### Exact next action
+
+- User has now explicitly authorized the protected train/cal-only
+  electron-flow sidecar import test. Next run should apply the 35-row smoke
+  tranche only, rerun the approved-sidecar operating-point readout, and expand
+  to the remaining 39 rows only if primary positives remain zero. No heldout,
+  label, registry, ontology, production threshold, or Lever 3 changes are
+  authorized.
 
 ### 2026-06-05 Lever 2 Research Run 35
 
