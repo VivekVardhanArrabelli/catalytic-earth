@@ -13,6 +13,1146 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CliTests(unittest.TestCase):
+    def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-mechanism-feature-incremental-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_lever2_mechanism_feature_incremental_readout_"
+                "current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn(
+            "expanded_oos_calibrated",
+            args.expanded_oos_calibrated_threshold_contract,
+        )
+
+    def test_source_free_train_cal_projection_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-mechanism-feature-row-specific-bond-change-p0-oos-"
+                    "augmented-best-token-followup-pair-source-free-train-cal-"
+                    "projection-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "source_free_train_cal_projection_readout_current702_20260604.json",
+            args.out,
+        )
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "abstention_threshold_contract_current702",
+            args.current_in_scope_threshold_contract,
+        )
+        self.assertIn(
+            "expanded_oos_calibrated",
+            args.expanded_oos_calibrated_threshold_contract,
+        )
+        self.assertIn(
+            "abstention_threshold_contract_current702",
+            args.current_in_scope_threshold_contract,
+        )
+        self.assertIn(
+            "expanded_oos_calibrated",
+            args.expanded_oos_calibrated_threshold_contract,
+        )
+
+    def test_lever2_electron_flow_split_alignment_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-source-free-electron-flow-split-alignment-readout"]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_split_alignment_readout",
+            args.out,
+        )
+        self.assertIn(
+            "source_free_train_cal_projection_readout", args.projection_readout
+        )
+        self.assertIn(
+            "lever2_mechanism_feature_incremental_readout", args.incremental_readout
+        )
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn(
+            "extended_train_cal_oos_surface", args.current_extended_oos_surface
+        )
+
+    def test_lever2_electron_flow_acquisition_ceiling_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-source-free-electron-flow-acquisition-ceiling-readout"]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_acquisition_ceiling_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_split_alignment_readout",
+            args.electron_flow_split_alignment_readout,
+        )
+        self.assertEqual(args.tranche_sizes, [1, 2, 5, 10, 20, 40])
+
+    def test_lever2_electron_flow_smoke_tranche_scan_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-smoke-tranche-evidence-scan"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_smoke_tranche_evidence_scan",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_acquisition_ceiling_readout",
+            args.electron_flow_acquisition_ceiling_readout,
+        )
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn(
+            "source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertIn(
+            "source_free_active_site_locator_candidates",
+            args.review_only_locator_candidate_dir,
+        )
+        self.assertIn(
+            "source_free_locator_rewrite_materialization_gate_materialized",
+            args.source_free_locator_rewrite_materialization_gate,
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_materialization_gate",
+            args.source_free_event_axis_linker_materialization_gate,
+        )
+
+    def test_lever2_electron_flow_coordinate_proxy_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-coordinate-proxy-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_coordinate_proxy_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_acquisition_ceiling_readout",
+            args.electron_flow_acquisition_ceiling_readout,
+        )
+        self.assertEqual(
+            args.geometry_features,
+            "artifacts/v3_geometry_features_1025.json",
+        )
+        self.assertIsNone(args.coordinate_gap_cif)
+
+    def test_lever2_electron_flow_pqq_primitive_axis_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-pqq-primitive-axis-audit"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_primitive_axis_audit",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_coordinate_proxy_readout",
+            args.coordinate_proxy_readout,
+        )
+        self.assertEqual(
+            args.geometry_features,
+            "artifacts/v3_geometry_features_1025.json",
+        )
+        self.assertIsNone(args.coordinate_cif)
+
+    def test_lever2_electron_flow_pqq_current_split_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-pqq-current-split-sidecar-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_current_split_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_primitive_axis_audit",
+            args.pqq_primitive_axis_audit,
+        )
+        self.assertIn(
+            "source_free_train_cal_projection_readout",
+            args.projection_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertEqual(
+            args.geometry_features,
+            "artifacts/v3_geometry_features_1025.json",
+        )
+
+    def test_lever2_electron_flow_donor_acceptor_contact_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-donor-acceptor-contact-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_donor_acceptor_contact_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_coordinate_proxy_readout",
+            args.coordinate_proxy_readout,
+        )
+        self.assertEqual(
+            args.geometry_features,
+            "artifacts/v3_geometry_features_1025.json",
+        )
+        self.assertIn(
+            "source_free_train_cal_projection_readout",
+            args.projection_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertIsNone(args.coordinate_cif)
+
+    def test_lever2_electron_flow_pqq_donor_acceptor_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-pqq-donor-acceptor-contact-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_primitive_axis_audit",
+            args.pqq_primitive_axis_audit,
+        )
+        self.assertIn(
+            "source_free_train_cal_projection_readout",
+            args.projection_readout,
+        )
+
+    def test_lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-pqq-donor-"
+                    "acceptor-current-split-feature-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_donor_acceptor_contact_readout",
+            args.donor_acceptor_readout,
+        )
+
+    def test_lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-relaxed-non-pqq-"
+                    "donor-acceptor-feature-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_donor_acceptor_contact_readout",
+            args.donor_acceptor_readout,
+        )
+        self.assertIn("v3_geometry_features_1025", args.geometry_features)
+        self.assertIn(
+            "train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_combined_direct_feature_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-combined-direct-"
+                    "feature-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout",
+            args.pqq_donor_acceptor_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.relaxed_non_pqq_feature_sidecar_readout,
+        )
+
+    def test_lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-projection-backed-"
+                    "pqq-nad-feature-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout",
+            args.combined_direct_feature_sidecar_readout,
+        )
+
+    def test_lever2_electron_flow_iron_sulfur_projection_support_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-iron-sulfur-"
+                    "projection-support-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_projection_support_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.relaxed_non_pqq_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "mechanism_feature_iron_sulfur_locus_sidecar",
+            args.iron_sulfur_locus_sidecar,
+        )
+        self.assertIn("v3_geometry_features_1025", args.geometry_features)
+        self.assertIsNone(args.coordinate_cif)
+
+    def test_lever2_electron_flow_iron_sulfur_approval_qualified_union_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-iron-sulfur-"
+                    "approval-qualified-union-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout",
+            args.projection_backed_pqq_nad_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.relaxed_non_pqq_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_projection_support_readout",
+            args.iron_sulfur_projection_support_readout,
+        )
+
+    def test_lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-iron-sulfur-"
+                    "tiny-tranche-approval-readiness-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_projection_support_readout",
+            args.iron_sulfur_projection_support_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout",
+            args.approval_qualified_union_readout,
+        )
+        self.assertIn(
+            "mechanism_feature_iron_sulfur_locus_sidecar",
+            args.iron_sulfur_locus_sidecar,
+        )
+        self.assertIn(
+            "mechanism_feature_embedding_train_cal_input_manifest",
+            args.train_cal_input_manifest,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertIn(
+            "mechanism_feature_active_site_role_graph_sidecar",
+            args.role_graph_sidecar,
+        )
+
+    def test_lever2_electron_flow_current_split_smoke_materialization_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-current-split-"
+                    "smoke-materialization-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_current_split_smoke_materialization_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout",
+            args.projection_backed_pqq_nad_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout",
+            args.combined_direct_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout",
+            args.approval_qualified_union_readout,
+        )
+
+    def test_lever2_electron_flow_iron_sulfur_support_subset_preflight_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-iron-sulfur-"
+                    "support-subset-preflight-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout",
+            args.tiny_tranche_approval_readiness_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_current_split_smoke_materialization_readout",
+            args.current_split_smoke_materialization_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout",
+            args.approval_qualified_union_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout",
+            args.projection_backed_pqq_nad_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_candidate_train_cal_bundle_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-candidate-train-"
+                    "cal-bundle-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_candidate_train_cal_bundle_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout",
+            args.approval_qualified_union_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout",
+            args.support_subset_preflight_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.relaxed_non_pqq_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertIn(
+            "mechanism_feature_embedding_train_cal_input_manifest",
+            args.train_cal_input_manifest,
+        )
+
+    def test_lever2_electron_flow_train_cal_sidecar_candidate_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-train-cal-"
+                    "sidecar-candidate-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_candidate_train_cal_bundle_readout",
+            args.candidate_train_cal_bundle_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_approval_import_dry_run_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-"
+                    "import-dry-run-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_dry_run_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout",
+            args.train_cal_sidecar_candidate_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertIn(
+            "mechanism_feature_embedding_train_cal_input_manifest",
+            args.train_cal_input_manifest,
+        )
+
+    def test_lever2_electron_flow_approval_import_smoke_review_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-import-"
+                    "smoke-review-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_smoke_review_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_dry_run_readout",
+            args.approval_import_dry_run_readout,
+        )
+
+    def test_lever2_electron_flow_approval_import_smoke_materialization_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-import-"
+                    "smoke-materialization-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_smoke_materialization_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_smoke_review_readout",
+            args.approval_import_smoke_review_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_approval_import_candidate_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-import-"
+                    "candidate-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_smoke_materialization_readout",
+            args.approval_import_smoke_materialization_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_approval_import_delta_package_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-import-"
+                    "delta-package-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_delta_package_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout",
+            args.approval_import_candidate_sidecar_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_approval_import_delta_package_contract_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-import-"
+                    "delta-package-contract-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_approval_import_delta_"
+                "package_contract_readout"
+            ),
+            args.out,
+        )
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_approval_import_delta_"
+                "package_readout"
+            ),
+            args.approval_import_delta_package_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_protected_import_sequence_preflight_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-protected-import-"
+                    "sequence-preflight-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_protected_import_"
+                "sequence_preflight_readout"
+            ),
+            args.out,
+        )
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_approval_import_delta_"
+                "package_contract_readout"
+            ),
+            args.approval_import_delta_package_contract_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_current_split_row_gate_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-current-split-row-"
+                    "gate-audit-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_current_split_row_gate_"
+                "audit_readout"
+            ),
+            args.out,
+        )
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_protected_import_"
+                "sequence_preflight_readout"
+            ),
+            args.protected_import_sequence_preflight_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_current_split_operating_point_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-current-split-"
+                    "operating-point-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_current_split_operating_"
+                "point_readout"
+            ),
+            args.out,
+        )
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_current_split_row_gate_"
+                "audit_readout"
+            ),
+            args.current_split_row_gate_audit_readout,
+        )
+
+    def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-mechanism-axis-acquisition-ranking-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_mechanism_axis_acquisition_ranking_readout",
+            args.out,
+        )
+        self.assertIn("source_free_train_cal_projection_readout", args.projection_readout)
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn(
+            "source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+
+    def test_lever2_current_extended_oos_mechanism_overlap_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-current-extended-oos-mechanism-overlap-readout"]
+        )
+
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.out,
+        )
+        self.assertIn("lever3_current_measured_readout", args.current_measured_readout)
+        self.assertIn(
+            "extended_train_cal_oos_surface", args.current_extended_oos_surface
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn("source_free_train_cal_projection_readout", args.projection_readout)
+        self.assertIn(
+            "source_free_coordinate_anchor_candidates",
+            args.source_free_coordinate_anchor_candidate_dir,
+        )
+
+    def test_lever2_event_axis_current_extended_frontier_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-axis-current-extended-frontier-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_axis_current_extended_frontier_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 0.9)
+
+    def test_lever2_event_axis_loo_current_extended_frontier_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-axis-loo-current-extended-frontier-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_axis_loo_current_extended_frontier_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 0.9)
+        self.assertEqual(
+            args.baseline_axis_id, "source_free_projected_proton_role_subset"
+        )
+
+    def test_lever2_event_axis_primary_safe_frontier_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-axis-primary-safe-frontier-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_axis_primary_safe_frontier_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 1.0)
+        self.assertEqual(
+            args.baseline_axis_id, "source_free_projected_proton_role_subset"
+        )
+
+    def test_lever2_event_axis_primary_controlled_rescue_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-axis-primary-controlled-rescue-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_axis_primary_controlled_rescue_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 1.0)
+        self.assertEqual(
+            args.baseline_axis_id, "source_free_projected_proton_role_subset"
+        )
+
+    def test_lever2_event_axis_signature_excluded_frontier_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-axis-signature-excluded-frontier-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_axis_signature_excluded_frontier_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 1.0)
+        self.assertEqual(
+            args.baseline_axis_id, "source_free_projected_proton_role_subset"
+        )
+        self.assertEqual(
+            args.signature_axis_id, "source_free_projected_proton_role_subset"
+        )
+
+    def test_lever2_event_axis_primary_controlled_null_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-axis-primary-controlled-null-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_axis_primary_controlled_null_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 1.0)
+        self.assertEqual(
+            args.baseline_axis_id, "source_free_projected_proton_role_subset"
+        )
+        self.assertEqual(args.null_permutations, 128)
+        self.assertEqual(
+            args.null_seed, "lever2_primary_controlled_event_axis_null_v0"
+        )
+
+    def test_lever2_event_motif_interaction_null_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-motif-interaction-null-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_motif_interaction_null_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 1.0)
+        self.assertEqual(
+            args.baseline_axis_id, "source_free_projected_proton_role_subset"
+        )
+        self.assertEqual(args.null_permutations, 128)
+        self.assertEqual(args.null_seed, "lever2_event_motif_interaction_null_v0")
+
+    def test_lever2_event_axis_signature_exclusion_sensitivity_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-axis-signature-exclusion-sensitivity-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_axis_signature_exclusion_sensitivity_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertEqual(args.min_primary_retain, 1.0)
+        self.assertEqual(
+            args.baseline_axis_id, "source_free_projected_proton_role_subset"
+        )
+        self.assertEqual(
+            args.signature_axis_ids,
+            [
+                "source_free_projected_proton_role_subset",
+                "bond_change",
+                "electron_flow",
+                "event_topology",
+            ],
+        )
+
+    def test_lever2_partial_surface_current_split_portability_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-partial-surface-current-split-portability-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability_readout",
+            args.out,
+        )
+        self.assertIn("lever3_current_measured_readout", args.current_measured_readout)
+        self.assertIn(
+            "extended_train_cal_oos_surface", args.current_extended_oos_surface
+        )
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_materialization_gate",
+            args.source_free_event_axis_linker_materialization_gate,
+        )
+        self.assertIn(
+            "source_free_locator_rewrite_materialization_gate_materialized",
+            args.source_free_locator_rewrite_materialization_gate,
+        )
+        self.assertIn(
+            "family_panel_source_free_active_site_locator_candidates",
+            args.review_only_locator_candidate_dir,
+        )
+
     def test_lever3_current_measured_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-fold-augmented-lever3-current-measured-readout"]
@@ -2221,6 +3361,17 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_mechanism_feature_row_specific_bond_change_"
                     "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "train-cal-projection-readout"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout"
                 ),
             ),
             (

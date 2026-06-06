@@ -1,0 +1,2028 @@
+{
+  "artifact_id": "v3_lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604",
+  "counts": {
+    "best_single_axis_new_current_retained_oos_catches": 2,
+    "best_single_axis_new_oos_catches": 4,
+    "best_single_axis_new_oos_catches_on_current_extended_oos": 3,
+    "critical_violation_total": 0,
+    "current_extended_candidate_oos_rows": 210,
+    "current_extended_current_abstained_overlap_rows": 8,
+    "current_extended_current_retained_overlap_rows": 13,
+    "current_extended_oos_overlap_rows": 21,
+    "current_extended_scored_oos_rows": 204,
+    "current_extended_unscored_oos_rows": 6,
+    "current_primary_rows": 34,
+    "current_retained_oos_caught_by_mechanism": 11,
+    "mechanism_surface_abstained_overlap_rows": 18,
+    "missing_current_extended_abstained_oos_mechanism_feature_rows": 64,
+    "missing_current_extended_retained_oos_mechanism_feature_rows": 119,
+    "missing_current_extended_scored_oos_mechanism_feature_rows": 183,
+    "missing_current_primary_mechanism_feature_rows": 34,
+    "source_free_candidate_overlap_missing_abstained_oos_rows": 0,
+    "source_free_candidate_overlap_missing_primary_rows": 0,
+    "source_free_candidate_overlap_missing_retained_oos_rows": 0,
+    "source_free_coordinate_anchor_candidate_files": 126,
+    "union_or_gate_abstained_overlap_rows": 19,
+    "valid_primary_overlap_rows": 0
+  },
+  "created_utc": "2026-06-04T16:59:22Z",
+  "decision": {
+    "adds_operating_point_value_beyond_current_surface": false,
+    "apply_or_promote_now": false,
+    "best_axis_new_oos_rows_overlap_current_extended_surface": true,
+    "deployable_now": false,
+    "local_oos_signal_measured": true,
+    "measured_readout_available": true,
+    "mechanism_adds_oos_abstentions_on_current_extended_overlap": true,
+    "negative": false,
+    "next_gate": "Materialize split-aligned source-free mechanism fields for the 119 current-retained OOS rows and 34 current calibration-primary rows, then rerun this fixed-threshold readout before any heldout or deployment claim.",
+    "research_only": true,
+    "valid_integrated_operating_point_measurable": false
+  },
+  "fixed_operating_points": {
+    "current_surface": {
+      "channel": "combined_mean_geometry_fold",
+      "current_measured_context": {
+        "abstain_recall": 0.3529,
+        "abstained": 72,
+        "retained": 132,
+        "retained_recall": 0.6471,
+        "row_count": 204,
+        "threshold": 0.44155
+      },
+      "decision_rule": "abstain_when_current_surface_score_below_threshold",
+      "threshold": 0.44155
+    },
+    "mechanism_surface": {
+      "channel": "row_specific_mechanism_out_of_atlas_span_residual",
+      "decision_rule": "abstain_when_mechanism_residual_above_threshold",
+      "threshold": 3.21469422,
+      "train_cal_selection_summary": {
+        "oos_abstain_recall": 0.857143,
+        "oos_rows": 28,
+        "primary_retain_recall": 1.0,
+        "primary_rows": 4,
+        "retention_target": 0.9,
+        "threshold": 3.21469422
+      }
+    }
+  },
+  "guardrails": {
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "labels_used_only_for_train_cal_metric_accounting": true,
+    "m_csa_row_specific_features_train_cal_only": true,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "headline": "On the current extended OOS overlap, the mechanism residual catches 11/13 rows retained by the current geometry/fold surface.",
+    "next_action": "Build split-aligned source-free mechanism features for the current primary retention gate and current-retained OOS rows.",
+    "result": "Research-only: the newer current OOS surface increases the train/cal mechanism overlap to 21 rows and raises overlap abstentions from 8 to 19 under a fixed OR gate, but valid primary overlap remains 0 rows."
+  },
+  "measured_readout": {
+    "current_extended_oos_overlap_rows": {
+      "current_retained_oos_catch_fraction": 0.846154,
+      "current_retained_oos_caught_by_mechanism": 11,
+      "current_retained_oos_rows": 13,
+      "current_surface_abstain_recall": 0.380952,
+      "current_surface_abstained": 8,
+      "mechanism_surface_abstain_recall": 0.857143,
+      "mechanism_surface_abstained": 18,
+      "row_count": 21,
+      "union_minus_current_abstain_recall": 0.52381,
+      "union_or_gate_abstain_recall": 0.904762,
+      "union_or_gate_abstained": 19
+    },
+    "event_feature_overlap_summary": {
+      "all_overlap_rows": {
+        "current_retained_caught_by_mechanism": 11,
+        "mechanism_abstained_rows": 18,
+        "rows": 21,
+        "with_bond_change_event": 16,
+        "with_electron_transfer_event": 6,
+        "with_proton_transfer_event": 17
+      },
+      "current_retained_overlap_rows": {
+        "current_retained_caught_by_mechanism": 11,
+        "mechanism_abstained_rows": 11,
+        "rows": 13,
+        "with_bond_change_event": 9,
+        "with_electron_transfer_event": 5,
+        "with_proton_transfer_event": 11
+      },
+      "feature_sidecar_available": true
+    },
+    "existing_source_free_coordinate_anchor_candidate_reuse": {
+      "candidate_dir_available": true,
+      "candidate_files": 126,
+      "missing_abstained_oos_overlap_rows": [],
+      "missing_primary_overlap_rows": [],
+      "missing_retained_oos_overlap_rows": [],
+      "reuse_reduces_current_primary_gap": false,
+      "reuse_reduces_current_retained_oos_gap": false
+    },
+    "source_free_best_axis_current_extended_overlap": {
+      "available": true,
+      "best_single_axis_name": "electron_flow",
+      "best_single_axis_new_current_retained_oos_rows": [
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.40327957,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.6042,
+          "entry_id": "m_csa:221",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 2.71877433,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.0,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.61925,
+          "entry_id": "m_csa:256",
+          "in_current_extended_scored_oos": true
+        }
+      ],
+      "best_single_axis_new_oos_rows": [
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.40327957,
+          "current_retained_oos_caught_by_best_axis": false,
+          "current_surface_abstains": null,
+          "current_surface_score": null,
+          "entry_id": "m_csa:154",
+          "in_current_extended_scored_oos": false
+        },
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.40327957,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.6042,
+          "entry_id": "m_csa:221",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.40327957,
+          "current_retained_oos_caught_by_best_axis": false,
+          "current_surface_abstains": true,
+          "current_surface_score": 0.4011,
+          "entry_id": "m_csa:224",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 2.71877433,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.0,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.61925,
+          "entry_id": "m_csa:256",
+          "in_current_extended_scored_oos": true
+        }
+      ],
+      "best_single_axis_new_oos_rows_on_current_extended_oos": [
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.40327957,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.6042,
+          "entry_id": "m_csa:221",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.40327957,
+          "current_retained_oos_caught_by_best_axis": false,
+          "current_surface_abstains": true,
+          "current_surface_score": 0.4011,
+          "entry_id": "m_csa:224",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 2.71877433,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_residual": 0.0,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.61925,
+          "entry_id": "m_csa:256",
+          "in_current_extended_scored_oos": true
+        }
+      ],
+      "best_single_axis_train_cal_ceiling": {
+        "auc_oos_gt_primary": 0.870536,
+        "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+        "feature_field_count": 6,
+        "feature_fields": [
+          "electron_transfer_count",
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_electron_transfer_event",
+          "has_proton_transfer_event",
+          "proton_transfer_count"
+        ],
+        "oos_abstain_recall": 0.785714,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+        "threshold": 1.72848324,
+        "variant": "current_plus_missing_electron_flow"
+      }
+    },
+    "valid_primary_overlap_rows": {
+      "entry_ids": [],
+      "row_count": 0
+    }
+  },
+  "missing_evidence": [
+    {
+      "gap_id": "current_primary_mechanism_retention_gate",
+      "required_rows": 34,
+      "valid_overlap_rows_now": 0,
+      "why_it_matters": "A deployable or promotable Lever 2 operating-point claim requires primary retention cost on the same current geometry/fold calibration-primary split."
+    },
+    {
+      "gap_id": "current_extended_retained_oos_mechanism_features",
+      "missing_rows_now": 119,
+      "required_rows": 132,
+      "valid_overlap_rows_now": 13,
+      "why_it_matters": "These are current-surface retained OOS rows where mechanism evidence would be most valuable if it transfers."
+    },
+    {
+      "gap_id": "current_extended_abstained_oos_mechanism_features",
+      "missing_rows_now": 64,
+      "required_rows": 72,
+      "valid_overlap_rows_now": 8,
+      "why_it_matters": "These complete the current extended OOS surface but are lower priority because geometry/fold already abstains."
+    }
+  ],
+  "missing_evidence_rows": {
+    "current_extended_abstained_oos_rows_requiring_mechanism_features": [
+      {
+        "accession": "P25006",
+        "current_surface_score": 0.3729,
+        "entry_id": "m_csa:4",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q29495",
+        "current_surface_score": 0.42405,
+        "entry_id": "m_csa:22",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "A5JTM5",
+        "current_surface_score": 0.43875,
+        "entry_id": "m_csa:24",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P22259",
+        "current_surface_score": 0.4314,
+        "entry_id": "m_csa:51",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P13448",
+        "current_surface_score": 0.39125,
+        "entry_id": "m_csa:57",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0AB87",
+        "current_surface_score": 0.42285,
+        "entry_id": "m_csa:72",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P09148",
+        "current_surface_score": 0.41345,
+        "entry_id": "m_csa:88",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P04035",
+        "current_surface_score": 0.35285,
+        "entry_id": "m_csa:93",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q46509",
+        "current_surface_score": 0.40305,
+        "entry_id": "m_csa:105",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A110",
+        "current_surface_score": 0.41015,
+        "entry_id": "m_csa:130",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P04177",
+        "current_surface_score": 0.40925,
+        "entry_id": "m_csa:134",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P18548",
+        "current_surface_score": 0.2836,
+        "entry_id": "m_csa:137",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P80457",
+        "current_surface_score": 0.43635,
+        "entry_id": "m_csa:139",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q59490",
+        "current_surface_score": 0.4294,
+        "entry_id": "m_csa:140",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P05326",
+        "current_surface_score": 0.40385,
+        "entry_id": "m_csa:145",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P80563",
+        "current_surface_score": 0.43465,
+        "entry_id": "m_csa:146",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P25043",
+        "current_surface_score": 0.3993,
+        "entry_id": "m_csa:177",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00829",
+        "current_surface_score": 0.4182,
+        "entry_id": "m_csa:178",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P61112",
+        "current_surface_score": 0.42145,
+        "entry_id": "m_csa:179",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0C1A7",
+        "current_surface_score": 0.3489,
+        "entry_id": "m_csa:184",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P62937",
+        "current_surface_score": 0.4103,
+        "entry_id": "m_csa:189",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q9TVW2",
+        "current_surface_score": 0.4348,
+        "entry_id": "m_csa:209",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P16455",
+        "current_surface_score": 0.4207,
+        "entry_id": "m_csa:251",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "O81192",
+        "current_surface_score": 0.4188,
+        "entry_id": "m_csa:259",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P13513",
+        "current_surface_score": 0.42085,
+        "entry_id": "m_csa:262",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P37268",
+        "current_surface_score": 0.3713,
+        "entry_id": "m_csa:264",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q40577",
+        "current_surface_score": 0.3886,
+        "entry_id": "m_csa:265",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q53176",
+        "current_surface_score": 0.4391,
+        "entry_id": "m_csa:276",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P36507",
+        "current_surface_score": 0.38295,
+        "entry_id": "m_csa:282",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P07662",
+        "current_surface_score": 0.41995,
+        "entry_id": "m_csa:288",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P27142",
+        "current_surface_score": 0.4212,
+        "entry_id": "m_csa:290",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "O31465",
+        "current_surface_score": 0.3655,
+        "entry_id": "m_csa:301",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0DJQ7",
+        "current_surface_score": 0.4257,
+        "entry_id": "m_csa:303",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P56690",
+        "current_surface_score": 0.3913,
+        "entry_id": "m_csa:309",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q06128",
+        "current_surface_score": 0.38025,
+        "entry_id": "m_csa:314",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P11974",
+        "current_surface_score": 0.43785,
+        "entry_id": "m_csa:326",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q56310",
+        "current_surface_score": 0.36295,
+        "entry_id": "m_csa:327",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P43912",
+        "current_surface_score": 0.3922,
+        "entry_id": "m_csa:332",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q62651",
+        "current_surface_score": 0.43935,
+        "entry_id": "m_csa:342",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q6NVY1",
+        "current_surface_score": 0.4383,
+        "entry_id": "m_csa:345",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "O69762",
+        "current_surface_score": 0.4354,
+        "entry_id": "m_csa:347",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q8WTS6",
+        "current_surface_score": 0.3817,
+        "entry_id": "m_csa:350",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0AC81",
+        "current_surface_score": 0.4292,
+        "entry_id": "m_csa:359",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P24058",
+        "current_surface_score": 0.39475,
+        "entry_id": "m_csa:408",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00651",
+        "current_surface_score": 0.40705,
+        "entry_id": "m_csa:414",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P08056",
+        "current_surface_score": 0.3951,
+        "entry_id": "m_csa:426",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q54873",
+        "current_surface_score": 0.3933,
+        "entry_id": "m_csa:439",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q59288",
+        "current_surface_score": 0.41695,
+        "entry_id": "m_csa:441",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q9ZHI0",
+        "current_surface_score": 0.38735,
+        "entry_id": "m_csa:450",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q9KX40",
+        "current_surface_score": 0.38555,
+        "entry_id": "m_csa:466",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q13423",
+        "current_surface_score": 0.415,
+        "entry_id": "m_csa:496",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P52197",
+        "current_surface_score": 0.4158,
+        "entry_id": "m_csa:505",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P17255",
+        "current_surface_score": 0.42915,
+        "entry_id": "m_csa:508",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q08649",
+        "current_surface_score": 0.37455,
+        "entry_id": "m_csa:525",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P27001",
+        "current_surface_score": 0.37695,
+        "entry_id": "m_csa:539",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A8M3",
+        "current_surface_score": 0.40915,
+        "entry_id": "m_csa:540",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P20004",
+        "current_surface_score": 0.42135,
+        "entry_id": "m_csa:552",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P17707",
+        "current_surface_score": 0.4118,
+        "entry_id": "m_csa:575",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q64536",
+        "current_surface_score": 0.4415,
+        "entry_id": "m_csa:603",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P15807",
+        "current_surface_score": 0.43915,
+        "entry_id": "m_csa:610",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q9P4R4",
+        "current_surface_score": 0.43035,
+        "entry_id": "m_csa:618",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q60364",
+        "current_surface_score": 0.3987,
+        "entry_id": "m_csa:648",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q7SIE1",
+        "current_surface_score": 0.37305,
+        "entry_id": "m_csa:649",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P78549",
+        "current_surface_score": 0.42485,
+        "entry_id": "uniprot:P78549",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      }
+    ],
+    "current_extended_retained_oos_rows_requiring_mechanism_features": [
+      {
+        "accession": "P08200",
+        "current_surface_score": 0.5321,
+        "entry_id": "m_csa:7",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P9WJJ7",
+        "current_surface_score": 0.52555,
+        "entry_id": "m_csa:8",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P23368",
+        "current_surface_score": 0.58575,
+        "entry_id": "m_csa:21",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00518",
+        "current_surface_score": 0.4967,
+        "entry_id": "m_csa:35",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q60099",
+        "current_surface_score": 0.51785,
+        "entry_id": "m_csa:36",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q27546",
+        "current_surface_score": 0.58215,
+        "entry_id": "m_csa:39",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00492",
+        "current_surface_score": 0.4612,
+        "entry_id": "m_csa:48",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0AB71",
+        "current_surface_score": 0.6154,
+        "entry_id": "m_csa:52",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P24670",
+        "current_surface_score": 0.55665,
+        "entry_id": "m_csa:54",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A759",
+        "current_surface_score": 0.4709,
+        "entry_id": "m_csa:60",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q01468",
+        "current_surface_score": 0.4799,
+        "entry_id": "m_csa:61",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A7D4",
+        "current_surface_score": 0.5474,
+        "entry_id": "m_csa:65",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P13000",
+        "current_surface_score": 0.61305,
+        "entry_id": "m_csa:74",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00963",
+        "current_surface_score": 0.4884,
+        "entry_id": "m_csa:75",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P17169",
+        "current_surface_score": 0.47405,
+        "entry_id": "m_csa:82",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P27213",
+        "current_surface_score": 0.56755,
+        "entry_id": "m_csa:84",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q55012",
+        "current_surface_score": 0.45,
+        "entry_id": "m_csa:89",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P10760",
+        "current_surface_score": 0.49735,
+        "entry_id": "m_csa:90",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P77836",
+        "current_surface_score": 0.45895,
+        "entry_id": "m_csa:91",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P69922",
+        "current_surface_score": 0.59525,
+        "entry_id": "m_csa:95",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P38539",
+        "current_surface_score": 0.66455,
+        "entry_id": "m_csa:99",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P13650",
+        "current_surface_score": 0.6498,
+        "entry_id": "m_csa:104",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P21873",
+        "current_surface_score": 0.50535,
+        "entry_id": "m_csa:106",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P19919",
+        "current_surface_score": 0.5142,
+        "entry_id": "m_csa:107",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P94692",
+        "current_surface_score": 0.4463,
+        "entry_id": "m_csa:119",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P12944",
+        "current_surface_score": 0.5127,
+        "entry_id": "m_csa:126",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P07598",
+        "current_surface_score": 0.5155,
+        "entry_id": "m_csa:127",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P14925",
+        "current_surface_score": 0.5317,
+        "entry_id": "m_csa:135",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P22337",
+        "current_surface_score": 0.51505,
+        "entry_id": "m_csa:136",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00445",
+        "current_surface_score": 0.535,
+        "entry_id": "m_csa:138",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A006",
+        "current_surface_score": 0.49495,
+        "entry_id": "m_csa:143",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P22887",
+        "current_surface_score": 0.4438,
+        "entry_id": "m_csa:150",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P26281",
+        "current_surface_score": 0.4988,
+        "entry_id": "m_csa:151",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P77541",
+        "current_surface_score": 0.5616,
+        "entry_id": "m_csa:182",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P11444",
+        "current_surface_score": 0.65175,
+        "entry_id": "m_csa:187",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q46822",
+        "current_surface_score": 0.6365,
+        "entry_id": "m_csa:190",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P08164",
+        "current_surface_score": 0.4614,
+        "entry_id": "m_csa:200",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P71447",
+        "current_surface_score": 0.63845,
+        "entry_id": "m_csa:206",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P22983",
+        "current_surface_score": 0.502,
+        "entry_id": "m_csa:207",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0AG16",
+        "current_surface_score": 0.4598,
+        "entry_id": "m_csa:214",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P06169",
+        "current_surface_score": 0.61095,
+        "entry_id": "m_csa:215",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q2K340",
+        "current_surface_score": 0.5078,
+        "entry_id": "m_csa:223",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P9WIL5",
+        "current_surface_score": 0.5438,
+        "entry_id": "m_csa:229",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "O34714",
+        "current_surface_score": 0.4688,
+        "entry_id": "m_csa:231",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P04079",
+        "current_surface_score": 0.45495,
+        "entry_id": "m_csa:234",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P39304",
+        "current_surface_score": 0.56265,
+        "entry_id": "m_csa:236",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "O76290",
+        "current_surface_score": 0.4887,
+        "entry_id": "m_csa:237",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P53686",
+        "current_surface_score": 0.4716,
+        "entry_id": "m_csa:240",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A794",
+        "current_surface_score": 0.53445,
+        "entry_id": "m_csa:243",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q13126",
+        "current_surface_score": 0.4724,
+        "entry_id": "m_csa:244",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P13009",
+        "current_surface_score": 0.63655,
+        "entry_id": "m_csa:268",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q4K9X1",
+        "current_surface_score": 0.65065,
+        "entry_id": "m_csa:269",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q9SE42",
+        "current_surface_score": 0.57625,
+        "entry_id": "m_csa:270",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P56839",
+        "current_surface_score": 0.5757,
+        "entry_id": "m_csa:271",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P9WKK7",
+        "current_surface_score": 0.6054,
+        "entry_id": "m_csa:272",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P12694",
+        "current_surface_score": 0.44705,
+        "entry_id": "m_csa:280",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "O66186",
+        "current_surface_score": 0.45095,
+        "entry_id": "m_csa:284",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P21332",
+        "current_surface_score": 0.50825,
+        "entry_id": "m_csa:285",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P07342",
+        "current_surface_score": 0.6398,
+        "entry_id": "m_csa:289",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P05102",
+        "current_surface_score": 0.4763,
+        "entry_id": "m_csa:293",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P06134",
+        "current_surface_score": 0.44365,
+        "entry_id": "m_csa:295",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0AEP7",
+        "current_surface_score": 0.5344,
+        "entry_id": "m_csa:298",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A6I6",
+        "current_surface_score": 0.4712,
+        "entry_id": "m_csa:299",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P12070",
+        "current_surface_score": 0.68115,
+        "entry_id": "m_csa:308",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P25051",
+        "current_surface_score": 0.4432,
+        "entry_id": "m_csa:310",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0CS93",
+        "current_surface_score": 0.53375,
+        "entry_id": "m_csa:322",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P38051",
+        "current_surface_score": 0.4878,
+        "entry_id": "m_csa:325",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P11986",
+        "current_surface_score": 0.4663,
+        "entry_id": "m_csa:331",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P05404",
+        "current_surface_score": 0.649,
+        "entry_id": "m_csa:348",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P68175",
+        "current_surface_score": 0.5407,
+        "entry_id": "m_csa:360",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q76K71",
+        "current_surface_score": 0.45695,
+        "entry_id": "m_csa:361",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P39594",
+        "current_surface_score": 0.51145,
+        "entry_id": "m_csa:364",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A796",
+        "current_surface_score": 0.56465,
+        "entry_id": "m_csa:365",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q9LCV9",
+        "current_surface_score": 0.72395,
+        "entry_id": "m_csa:367",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P37747",
+        "current_surface_score": 0.4537,
+        "entry_id": "m_csa:368",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q56268",
+        "current_surface_score": 0.5353,
+        "entry_id": "m_csa:371",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P42790",
+        "current_surface_score": 0.47015,
+        "entry_id": "m_csa:380",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q5EBY5",
+        "current_surface_score": 0.48795,
+        "entry_id": "m_csa:390",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A9M5",
+        "current_surface_score": 0.4853,
+        "entry_id": "m_csa:391",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P17846",
+        "current_surface_score": 0.4463,
+        "entry_id": "m_csa:398",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A786",
+        "current_surface_score": 0.4837,
+        "entry_id": "m_csa:405",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P22643",
+        "current_surface_score": 0.58595,
+        "entry_id": "m_csa:415",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P10342",
+        "current_surface_score": 0.61545,
+        "entry_id": "m_csa:421",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00722",
+        "current_surface_score": 0.47265,
+        "entry_id": "m_csa:422",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P11409",
+        "current_surface_score": 0.446,
+        "entry_id": "m_csa:427",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0AES2",
+        "current_surface_score": 0.588,
+        "entry_id": "m_csa:451",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P29736",
+        "current_surface_score": 0.5277,
+        "entry_id": "m_csa:460",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P11064",
+        "current_surface_score": 0.4766,
+        "entry_id": "m_csa:462",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q89FH0",
+        "current_surface_score": 0.54765,
+        "entry_id": "m_csa:463",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P11766",
+        "current_surface_score": 0.60295,
+        "entry_id": "m_csa:464",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q05514",
+        "current_surface_score": 0.64225,
+        "entry_id": "m_csa:468",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q9GPQ4",
+        "current_surface_score": 0.5853,
+        "entry_id": "m_csa:471",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "A9CEQ8",
+        "current_surface_score": 0.6341,
+        "entry_id": "m_csa:483",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P32170",
+        "current_surface_score": 0.64045,
+        "entry_id": "m_csa:488",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00374",
+        "current_surface_score": 0.4638,
+        "entry_id": "m_csa:490",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P48637",
+        "current_surface_score": 0.4466,
+        "entry_id": "m_csa:498",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q05871",
+        "current_surface_score": 0.44955,
+        "entry_id": "m_csa:499",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q9QYY9",
+        "current_surface_score": 0.61935,
+        "entry_id": "m_csa:500",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P28332",
+        "current_surface_score": 0.601,
+        "entry_id": "m_csa:501",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q8EMJ9",
+        "current_surface_score": 0.5957,
+        "entry_id": "m_csa:502",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "B9JNP7",
+        "current_surface_score": 0.55265,
+        "entry_id": "m_csa:503",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P23532",
+        "current_surface_score": 0.504,
+        "entry_id": "m_csa:514",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P31572",
+        "current_surface_score": 0.4756,
+        "entry_id": "m_csa:531",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P10824",
+        "current_surface_score": 0.5423,
+        "entry_id": "m_csa:533",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P9WN39",
+        "current_surface_score": 0.4835,
+        "entry_id": "m_csa:537",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P38677",
+        "current_surface_score": 0.5365,
+        "entry_id": "m_csa:542",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q93099",
+        "current_surface_score": 0.46725,
+        "entry_id": "m_csa:547",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q58819",
+        "current_surface_score": 0.46835,
+        "entry_id": "m_csa:565",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00733",
+        "current_surface_score": 0.4867,
+        "entry_id": "m_csa:585",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P00727",
+        "current_surface_score": 0.45975,
+        "entry_id": "m_csa:587",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P05164",
+        "current_surface_score": 0.67005,
+        "entry_id": "m_csa:601",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P28002",
+        "current_surface_score": 0.4602,
+        "entry_id": "m_csa:621",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P31677",
+        "current_surface_score": 0.5615,
+        "entry_id": "m_csa:622",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P42676",
+        "current_surface_score": 0.5862,
+        "entry_id": "m_csa:638",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P0A3Y5",
+        "current_surface_score": 0.51735,
+        "entry_id": "m_csa:640",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P32169",
+        "current_surface_score": 0.50615,
+        "entry_id": "m_csa:645",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P31939",
+        "current_surface_score": 0.54185,
+        "entry_id": "m_csa:646",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "P51016",
+        "current_surface_score": 0.6333,
+        "entry_id": "m_csa:652",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": "Q3LXA3",
+        "current_surface_score": 0.4483,
+        "entry_id": "uniprot:Q3LXA3",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      }
+    ],
+    "current_extended_unscored_oos_rows": [
+      {
+        "accession": "P10746",
+        "entry_id": "m_csa:204",
+        "reason": "current_surface_missing_full_channel_score"
+      },
+      {
+        "accession": "P07071",
+        "entry_id": "m_csa:416",
+        "reason": "current_surface_missing_full_channel_score"
+      },
+      {
+        "accession": "P07658",
+        "entry_id": "m_csa:562",
+        "reason": "current_surface_missing_full_channel_score"
+      },
+      {
+        "accession": "P00806",
+        "entry_id": "m_csa:586",
+        "reason": "current_surface_missing_full_channel_score"
+      },
+      {
+        "accession": "Q43088",
+        "entry_id": "m_csa:604",
+        "reason": "current_surface_missing_full_channel_score"
+      },
+      {
+        "accession": "P04531",
+        "entry_id": "m_csa:637",
+        "reason": "current_surface_missing_full_channel_score"
+      }
+    ],
+    "current_primary_rows_requiring_mechanism_features": [
+      {
+        "accession": null,
+        "current_surface_score": 0.6649,
+        "entry_id": "m_csa:27",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.5219,
+        "entry_id": "m_csa:38",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.5508,
+        "entry_id": "m_csa:41",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.66345,
+        "entry_id": "m_csa:87",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.63105,
+        "entry_id": "m_csa:102",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.5702,
+        "entry_id": "m_csa:160",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.42755,
+        "entry_id": "m_csa:165",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.8963,
+        "entry_id": "m_csa:173",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.4682,
+        "entry_id": "m_csa:216",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.44155,
+        "entry_id": "m_csa:233",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.57485,
+        "entry_id": "m_csa:277",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.64755,
+        "entry_id": "m_csa:305",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.62295,
+        "entry_id": "m_csa:319",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.54915,
+        "entry_id": "m_csa:320",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.4806,
+        "entry_id": "m_csa:338",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.86325,
+        "entry_id": "m_csa:387",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.4405,
+        "entry_id": "m_csa:399",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.5715,
+        "entry_id": "m_csa:410",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.7287,
+        "entry_id": "m_csa:473",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.624,
+        "entry_id": "m_csa:482",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.7384,
+        "entry_id": "m_csa:556",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.6399,
+        "entry_id": "m_csa:630",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.6621,
+        "entry_id": "m_csa:694",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.51735,
+        "entry_id": "m_csa:754",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.57285,
+        "entry_id": "m_csa:800",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.46975,
+        "entry_id": "m_csa:837",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.57705,
+        "entry_id": "m_csa:865",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.5846,
+        "entry_id": "m_csa:879",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.8844,
+        "entry_id": "m_csa:900",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.69605,
+        "entry_id": "m_csa:912",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.89215,
+        "entry_id": "m_csa:922",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.5803,
+        "entry_id": "m_csa:933",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.41,
+        "entry_id": "m_csa:973",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      },
+      {
+        "accession": null,
+        "current_surface_score": 0.6095,
+        "entry_id": "m_csa:988",
+        "required_evidence": "source-free row-specific mechanism feature sidecar compatible with the frozen residual contract"
+      }
+    ]
+  },
+  "result_class": "research_only",
+  "row_readouts": {
+    "current_extended_oos_overlap_rows": [
+      {
+        "accession": "P00491",
+        "bond_change_event_count": 4,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.45885,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:17",
+        "event_count": 5,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 6.02277599,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 1,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P13255",
+        "bond_change_event_count": 1,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.4787,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:23",
+        "event_count": 2,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 3.74834254,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 1,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P32400",
+        "bond_change_event_count": 3,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.6241,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:25",
+        "event_count": 3,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": false,
+        "mechanism_residual": 3.67227966,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 0,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P07378",
+        "bond_change_event_count": 1,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": true,
+        "current_surface_score": 0.41725,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:40",
+        "event_count": 1,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": false,
+        "mechanism_residual": 3.63849194,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 0,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P07547",
+        "bond_change_event_count": 0,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.60775,
+        "electron_transfer_count": 2,
+        "entry_id": "m_csa:59",
+        "event_count": 5,
+        "has_bond_change_event": false,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 4.23431067,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 3,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P52045",
+        "bond_change_event_count": 2,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.47955,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:70",
+        "event_count": 3,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 3.26807732,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 1,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P23007",
+        "bond_change_event_count": 2,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": true,
+        "current_surface_score": 0.4054,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:78",
+        "event_count": 3,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 2.33596541,
+        "mechanism_surface_abstains": false,
+        "proton_transfer_count": 1,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P0A731",
+        "bond_change_event_count": 0,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.49955,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:85",
+        "event_count": 2,
+        "has_bond_change_event": false,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 4.96150995,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 2,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P00488",
+        "bond_change_event_count": 1,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": true,
+        "current_surface_score": 0.37655,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:149",
+        "event_count": 3,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 3.55609944,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 2,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P26276",
+        "bond_change_event_count": 2,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.4559,
+        "electron_transfer_count": 1,
+        "entry_id": "m_csa:194",
+        "event_count": 5,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 5.12488835,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 2,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "Q9F4L3",
+        "bond_change_event_count": 2,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.6042,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:221",
+        "event_count": 4,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 3.84686852,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 2,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P00883",
+        "bond_change_event_count": 2,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.52675,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:222",
+        "event_count": 5,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 5.21496062,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 3,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "Q12341",
+        "bond_change_event_count": 0,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": true,
+        "current_surface_score": 0.4011,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:224",
+        "event_count": 2,
+        "has_bond_change_event": false,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 4.13211893,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 2,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P06213",
+        "bond_change_event_count": 1,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.5171,
+        "electron_transfer_count": 1,
+        "entry_id": "m_csa:246",
+        "event_count": 4,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 1.71494092,
+        "mechanism_surface_abstains": false,
+        "proton_transfer_count": 2,
+        "union_or_gate_abstains": false
+      },
+      {
+        "accession": "P08836",
+        "bond_change_event_count": 1,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.5158,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:253",
+        "event_count": 2,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 4.44010536,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 1,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P00327",
+        "bond_change_event_count": 0,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.61925,
+        "electron_transfer_count": 3,
+        "entry_id": "m_csa:256",
+        "event_count": 3,
+        "has_bond_change_event": false,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": false,
+        "mechanism_residual": 2.79157886,
+        "mechanism_surface_abstains": false,
+        "proton_transfer_count": 0,
+        "union_or_gate_abstains": false
+      },
+      {
+        "accession": "Q9K499",
+        "bond_change_event_count": 2,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": true,
+        "current_surface_score": 0.42965,
+        "electron_transfer_count": 1,
+        "entry_id": "m_csa:263",
+        "event_count": 4,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 4.28326141,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 1,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P08203",
+        "bond_change_event_count": 1,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": true,
+        "current_surface_score": 0.4133,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:273",
+        "event_count": 4,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 3.92572474,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 3,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P08536",
+        "bond_change_event_count": 3,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": true,
+        "current_surface_score": 0.41145,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:287",
+        "event_count": 3,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": false,
+        "mechanism_residual": 4.61602905,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 0,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "Q9WYQ4",
+        "bond_change_event_count": 0,
+        "current_false_negative_caught_by_mechanism": true,
+        "current_surface_abstains": false,
+        "current_surface_score": 0.5714,
+        "electron_transfer_count": 1,
+        "entry_id": "m_csa:312",
+        "event_count": 2,
+        "has_bond_change_event": false,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 4.23552349,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 1,
+        "union_or_gate_abstains": true
+      },
+      {
+        "accession": "P27000",
+        "bond_change_event_count": 1,
+        "current_false_negative_caught_by_mechanism": false,
+        "current_surface_abstains": true,
+        "current_surface_score": 0.34875,
+        "electron_transfer_count": 0,
+        "entry_id": "m_csa:318",
+        "event_count": 2,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "mechanism_residual": 3.3510611,
+        "mechanism_surface_abstains": true,
+        "proton_transfer_count": 1,
+        "union_or_gate_abstains": true
+      }
+    ],
+    "valid_primary_overlap_rows": []
+  },
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.current_extended_oos_mechanism_overlap_readout.v0",
+  "scope": "Lever 2 train/cal readout comparing the frozen row-specific mechanism residual surface against the current Lever 3 extended train/cal OOS surface. It uses fixed thresholds only, evaluates non-heldout current OOS rows with existing train/cal mechanism features, and does not read or tune heldout.",
+  "source_artifacts": {
+    "current_extended_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "current_in_scope_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    },
+    "current_measured_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
+      "sha256": "9b75e3a85d64b817353b2edcd0aba94309c04d4929deaacb39aa537a7d101879"
+    },
+    "mechanism_no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun_current702_20260602.json",
+      "sha256": "959c3da8f18bfb02d5fac18768cb3c270441054ab2d545d85f350a6295840178"
+    },
+    "mechanism_operating_point_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json",
+      "sha256": "38cecbf67c9d8e283aa79676d8580425c78344124d017d6d5980c0f0cebb70d0"
+    },
+    "projection_readout": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_current702_20260604.json",
+      "sha256": "deb59488cfb6efa79e8f9d5b4a13cb67d836cd81fa498bff47169ba0b4bb913d"
+    },
+    "source_free_coordinate_anchor_candidate_dir": {
+      "exists": true,
+      "file_count": 126,
+      "path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602"
+    },
+    "train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    }
+  },
+  "status": "lever2_current_extended_oos_mechanism_overlap_readout_research_only"
+}

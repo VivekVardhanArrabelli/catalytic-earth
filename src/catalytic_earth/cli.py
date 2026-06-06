@@ -46,6 +46,48 @@ from .mechanism_novelty_abstention_eval import (
 )
 from .mechanism_feature_embedding import write_mechanism_feature_embedding_eval
 from .mechanism_feature_residual_robustness import write_residual_robustness_audit
+from .lever2_mechanism_incremental_readout import (
+    write_lever2_current_extended_oos_mechanism_overlap_readout,
+    write_lever2_event_axis_current_extended_frontier_readout,
+    write_lever2_event_axis_loo_current_extended_frontier_readout,
+    write_lever2_event_axis_primary_controlled_null_readout,
+    write_lever2_event_axis_primary_controlled_rescue_readout,
+    write_lever2_event_axis_primary_safe_frontier_readout,
+    write_lever2_event_axis_signature_exclusion_sensitivity_readout,
+    write_lever2_event_axis_signature_excluded_frontier_readout,
+    write_lever2_event_motif_interaction_null_readout,
+    write_lever2_mechanism_feature_incremental_readout,
+    write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
+    write_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout,
+    write_lever2_source_free_electron_flow_approval_import_delta_package_contract_readout,
+    write_lever2_source_free_electron_flow_approval_import_delta_package_readout,
+    write_lever2_source_free_electron_flow_approval_import_dry_run_readout,
+    write_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout,
+    write_lever2_source_free_electron_flow_approval_import_smoke_review_readout,
+    write_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout,
+    write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
+    write_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    write_lever2_source_free_electron_flow_current_split_operating_point_readout,
+    write_lever2_source_free_electron_flow_current_split_row_gate_audit_readout,
+    write_lever2_source_free_electron_flow_current_split_smoke_materialization_readout,
+    write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
+    write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout,
+    write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout,
+    write_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout,
+    write_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout,
+    write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
+    write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
+    write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
+    write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
+    write_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout,
+    write_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout,
+    write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
+    write_lever2_source_free_electron_flow_split_alignment_readout,
+    write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
+    write_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout,
+    write_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
+    write_lever2_source_free_partial_surface_current_split_portability_readout,
+)
 from .mechanism_residual_gate_integration import write_residual_gate_integration_eval
 from .mechanism_abstention_gate_eval import (
     write_mechanism_abstention_gate_eval,
@@ -251,6 +293,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit,
@@ -13807,6 +13850,1372 @@ def cmd_build_fold_augmented_lever3_p07658_local_input_inventory_audit(
     return 0
 
 
+def cmd_build_lever2_mechanism_feature_incremental_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_mechanism_feature_incremental_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        mechanism_operating_point_contract_path=Path(
+            args.mechanism_operating_point_contract
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 mechanism feature incremental readout to "
+        f"{args.out} (OOS overlap: {counts.get('oos_overlap_rows')}, "
+        f"valid primary overlap: {counts.get('valid_primary_overlap_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_split_alignment_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_split_alignment_readout(
+        projection_readout_path=Path(args.projection_readout),
+        incremental_readout_path=Path(args.incremental_readout),
+        source_free_projection_repair_candidate_surface_path=Path(
+            args.source_free_projection_repair_candidate_surface
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        current_extended_oos_surface_path=Path(args.current_extended_oos_surface),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow split-alignment readout to "
+        f"{args.out} (retained OOS missing: "
+        f"{counts.get('missing_current_retained_oos_electron_flow_rows')}, "
+        f"best-axis current OOS catches: "
+        f"{counts.get('best_single_axis_new_oos_catches_on_current_geometry_fold_oos')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_acquisition_ceiling_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_acquisition_ceiling_readout(
+        electron_flow_split_alignment_readout_path=Path(
+            args.electron_flow_split_alignment_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        tranche_sizes=tuple(args.tranche_sizes),
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow acquisition-ceiling readout to "
+        f"{args.out} (smoke rows: "
+        f"{counts.get('smallest_smoke_source_free_rows_required')}, "
+        "full retained rows: "
+        f"{counts.get('full_retained_current_split_source_free_rows_required')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
+        electron_flow_acquisition_ceiling_readout_path=Path(
+            args.electron_flow_acquisition_ceiling_readout
+        ),
+        source_free_projection_repair_candidate_surface_path=Path(
+            args.source_free_projection_repair_candidate_surface
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        review_only_locator_candidate_dir_path=Path(
+            args.review_only_locator_candidate_dir
+        ),
+        source_free_locator_rewrite_materialization_gate_path=Path(
+            args.source_free_locator_rewrite_materialization_gate
+        ),
+        source_free_event_axis_linker_materialization_gate_path=Path(
+            args.source_free_event_axis_linker_materialization_gate
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow smoke-tranche evidence scan "
+        f"to {args.out} (complete rows: "
+        f"{counts.get('complete_source_free_electron_flow_rows')}/"
+        f"{counts.get('smoke_tranche_rows')}, result: "
+        f"{readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_coordinate_proxy_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_gap_cif", None):
+        coordinate_gap_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_gap_cif:
+            if "=" not in item:
+                raise ValueError(
+                    "--coordinate-gap-cif values must use ENTRY_ID=PATH"
+                )
+            entry_id, path = item.split("=", 1)
+            coordinate_gap_cif_paths[entry_id] = Path(path)
+        writer_kwargs["supplemental_coordinate_cif_paths"] = (
+            coordinate_gap_cif_paths
+        )
+    readout = write_lever2_source_free_electron_flow_coordinate_proxy_readout(
+        electron_flow_acquisition_ceiling_readout_path=Path(
+            args.electron_flow_acquisition_ceiling_readout
+        ),
+        geometry_features_path=Path(args.geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow coordinate-proxy readout "
+        f"to {args.out} (smoke PQQ primary/OOS positives: "
+        f"{counts.get('smoke_pqq_primary_positive_rows')}/"
+        f"{counts.get('smoke_pqq_retained_oos_positive_rows')}, "
+        "full PQQ primary/OOS positives: "
+        f"{counts.get('full_pqq_primary_positive_rows')}/"
+        f"{counts.get('full_pqq_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_cif", None):
+        coordinate_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_cif:
+            if "=" not in item:
+                raise ValueError("--coordinate-cif values must use ENTRY_ID=PATH")
+            entry_id, path = item.split("=", 1)
+            coordinate_cif_paths[entry_id] = Path(path)
+        writer_kwargs["coordinate_cif_paths"] = coordinate_cif_paths
+    readout = write_lever2_source_free_electron_flow_pqq_primitive_axis_audit(
+        coordinate_proxy_readout_path=Path(args.coordinate_proxy_readout),
+        geometry_features_path=Path(args.geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow PQQ primitive-axis audit "
+        f"to {args.out} (smoke PQQ-redox primary/OOS positives: "
+        f"{counts.get('smoke_pqq_redox_center_primary_positive_rows')}/"
+        f"{counts.get('smoke_pqq_redox_center_retained_oos_positive_rows')}, "
+        "full PQQ-redox primary/OOS positives: "
+        f"{counts.get('full_pqq_redox_center_primary_positive_rows')}/"
+        f"{counts.get('full_pqq_redox_center_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout(
+            pqq_primitive_axis_audit_path=Path(args.pqq_primitive_axis_audit),
+            projection_readout_path=Path(args.projection_readout),
+            train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+            geometry_features_path=Path(args.geometry_features),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow PQQ current-split "
+        f"sidecar readout to {args.out} (complete rows: "
+        f"{counts.get('full_current_split_complete_direct_electron_flow_rows')}/"
+        f"{counts.get('full_current_split_sidecar_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('full_current_split_primary_positive_rows')}/"
+        f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_donor_acceptor_contact_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_cif", None):
+        coordinate_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_cif:
+            if "=" not in item:
+                raise ValueError("--coordinate-cif values must use ENTRY_ID=PATH")
+            entry_id, path = item.split("=", 1)
+            coordinate_cif_paths[entry_id] = Path(path)
+        writer_kwargs["coordinate_cif_paths"] = coordinate_cif_paths
+    readout = write_lever2_source_free_electron_flow_donor_acceptor_contact_readout(
+        coordinate_proxy_readout_path=Path(args.coordinate_proxy_readout),
+        geometry_features_path=Path(args.geometry_features),
+        projection_readout_path=Path(args.projection_readout),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow donor/acceptor "
+        f"contact readout to {args.out} (complete rows: "
+        f"{counts.get('full_complete_pqq_donor_acceptor_rows')}/"
+        f"{counts.get('full_current_split_rows')}, "
+        "PQQ primary/OOS positives: "
+        f"{counts.get('full_pqq_donor_acceptor_primary_positive_rows')}/"
+        f"{counts.get('full_pqq_donor_acceptor_retained_oos_positive_rows')}, "
+        "broad-control primary/OOS positives: "
+        f"{counts.get('broad_control_full_primary_positive_rows')}/"
+        f"{counts.get('broad_control_full_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout(
+            pqq_primitive_axis_audit_path=Path(args.pqq_primitive_axis_audit),
+            projection_readout_path=Path(args.projection_readout),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow PQQ donor/acceptor "
+        f"contact readout to {args.out} (complete rows: "
+        f"{counts.get('full_current_split_complete_donor_acceptor_rows')}/"
+        f"{counts.get('full_current_split_donor_acceptor_sidecar_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('full_current_split_primary_positive_rows')}/"
+        f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+        donor_acceptor_readout_path=Path(args.donor_acceptor_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow PQQ donor/acceptor "
+        f"current-split feature sidecar readout to {args.out} "
+        f"(feature rows: {counts.get('materialized_feature_rows')}, "
+        "complete rows: "
+        f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_cif", None):
+        coordinate_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_cif:
+            if "=" not in item:
+                raise ValueError("--coordinate-cif values must use ENTRY_ID=PATH")
+            entry_id, path = item.split("=", 1)
+            coordinate_cif_paths[entry_id] = Path(path)
+        writer_kwargs["coordinate_cif_paths"] = coordinate_cif_paths
+    readout = write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+        donor_acceptor_readout_path=Path(args.donor_acceptor_readout),
+        geometry_features_path=Path(args.geometry_features),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow relaxed non-PQQ "
+        f"donor/acceptor feature sidecar readout to {args.out} "
+        f"(feature rows: {counts.get('materialized_feature_rows')}, "
+        "complete rows: "
+        f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        "projection positives: "
+        f"{counts.get('projection_row_scout_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout(
+        pqq_donor_acceptor_feature_sidecar_readout_path=Path(
+            args.pqq_donor_acceptor_feature_sidecar_readout
+        ),
+        relaxed_non_pqq_feature_sidecar_readout_path=Path(
+            args.relaxed_non_pqq_feature_sidecar_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow combined direct feature "
+        f"sidecar readout to {args.out} "
+        f"(feature rows: {counts.get('materialized_feature_rows')}, "
+        "complete rows: "
+        f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout(
+        combined_direct_feature_sidecar_readout_path=Path(
+            args.combined_direct_feature_sidecar_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow projection-backed PQQ+NAD "
+        f"feature sidecar readout to {args.out} "
+        f"(feature rows: {counts.get('materialized_feature_rows')}, "
+        "complete rows: "
+        f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_cif", None):
+        coordinate_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_cif:
+            if "=" not in item:
+                raise ValueError("--coordinate-cif values must use ENTRY_ID=PATH")
+            entry_id, path = item.split("=", 1)
+            coordinate_cif_paths[entry_id] = Path(path)
+        writer_kwargs["coordinate_cif_paths"] = coordinate_cif_paths
+    readout = write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout(
+        relaxed_non_pqq_feature_sidecar_readout_path=Path(
+            args.relaxed_non_pqq_feature_sidecar_readout
+        ),
+        iron_sulfur_locus_sidecar_path=Path(args.iron_sulfur_locus_sidecar),
+        geometry_features_path=Path(args.geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow Fe-S/iron projection "
+        f"support readout to {args.out} "
+        "current primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        "projection positives: "
+        f"{counts.get('projection_positive_rows')}, "
+        "tiny materialization positives: "
+        f"{counts.get('tiny_projection_positive_rows')}, "
+        "review-only noncurrent proximal rows: "
+        f"{counts.get('review_only_nonheldout_proximal_rows_outside_current_split')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout(
+        projection_backed_pqq_nad_feature_sidecar_readout_path=Path(
+            args.projection_backed_pqq_nad_feature_sidecar_readout
+        ),
+        relaxed_non_pqq_feature_sidecar_readout_path=Path(
+            args.relaxed_non_pqq_feature_sidecar_readout
+        ),
+        iron_sulfur_projection_support_readout_path=Path(
+            args.iron_sulfur_projection_support_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow Fe-S/iron "
+        f"approval-qualified union readout to {args.out} "
+        "supported-now OOS positives: "
+        f"{counts.get('supported_now_current_retained_oos_positive_rows')}, "
+        "approval-qualified OOS positives: "
+        f"{counts.get('approval_qualified_current_retained_oos_positive_rows')}, "
+        "Fe-S incremental rows: "
+        f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout(
+        iron_sulfur_projection_support_readout_path=Path(
+            args.iron_sulfur_projection_support_readout
+        ),
+        approval_qualified_union_readout_path=Path(
+            args.approval_qualified_union_readout
+        ),
+        iron_sulfur_locus_sidecar_path=Path(args.iron_sulfur_locus_sidecar),
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        role_graph_sidecar_path=Path(args.role_graph_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow Fe-S/iron tiny-tranche "
+        f"approval-readiness readout to {args.out} "
+        "source-free positives: "
+        f"{counts.get('tiny_tranche_source_free_positive_rows')}/"
+        f"{counts.get('tiny_tranche_candidate_rows')}, "
+        "bundle-ready rows: "
+        f"{counts.get('tiny_tranche_minimal_train_cal_feature_bundle_ready_rows')}, "
+        "Fe-S incremental rows: "
+        f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_current_split_smoke_materialization_readout(
+        projection_backed_pqq_nad_feature_sidecar_readout_path=Path(
+            args.projection_backed_pqq_nad_feature_sidecar_readout
+        ),
+        combined_direct_feature_sidecar_readout_path=Path(
+            args.combined_direct_feature_sidecar_readout
+        ),
+        approval_qualified_union_readout_path=Path(
+            args.approval_qualified_union_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow current-split smoke "
+        f"materialization readout to {args.out} "
+        "smoke complete rows: "
+        f"{counts.get('smoke_complete_source_free_electron_flow_rows')}/"
+        f"{counts.get('smoke_tranche_rows')}, "
+        "smoke primary/OOS positives: "
+        f"{counts.get('smoke_primary_positive_rows')}/"
+        f"{counts.get('smoke_retained_oos_positive_rows')}, "
+        "full OOS positives: "
+        f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout(
+        tiny_tranche_approval_readiness_readout_path=Path(
+            args.tiny_tranche_approval_readiness_readout
+        ),
+        current_split_smoke_materialization_readout_path=Path(
+            args.current_split_smoke_materialization_readout
+        ),
+        approval_qualified_union_readout_path=Path(
+            args.approval_qualified_union_readout
+        ),
+        projection_backed_pqq_nad_feature_sidecar_readout_path=Path(
+            args.projection_backed_pqq_nad_feature_sidecar_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow Fe-S/iron support-subset "
+        f"preflight readout to {args.out} "
+        "tiny support rows: "
+        f"{counts.get('tiny_bundle_ready_support_subset_rows')}, "
+        "approval-qualified OOS positives: "
+        f"{counts.get('approval_qualified_current_retained_oos_positive_rows')}, "
+        "Fe-S incremental rows: "
+        f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
+        approval_qualified_union_readout_path=Path(
+            args.approval_qualified_union_readout
+        ),
+        support_subset_preflight_readout_path=Path(
+            args.support_subset_preflight_readout
+        ),
+        relaxed_non_pqq_feature_sidecar_readout_path=Path(
+            args.relaxed_non_pqq_feature_sidecar_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow candidate train/cal "
+        f"bundle readout to {args.out} "
+        "current primary/OOS positives: "
+        f"{counts.get('candidate_current_primary_positive_rows')}/"
+        f"{counts.get('candidate_current_retained_oos_positive_rows')}, "
+        "support rows: "
+        f"{counts.get('candidate_support_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
+        candidate_train_cal_bundle_readout_path=Path(
+            args.candidate_train_cal_bundle_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow train/cal sidecar "
+        f"candidate readout to {args.out} "
+        "current primary/OOS positives: "
+        f"{counts.get('sidecar_candidate_current_primary_positive_rows')}/"
+        f"{counts.get('sidecar_candidate_current_retained_oos_positive_rows')}, "
+        "explicit split rows: "
+        f"{counts.get('sidecar_candidate_explicit_train_cal_split_rows')}/"
+        f"{counts.get('sidecar_candidate_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_approval_import_dry_run_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_approval_import_dry_run_readout(
+        train_cal_sidecar_candidate_readout_path=Path(
+            args.train_cal_sidecar_candidate_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow approval/import dry-run "
+        f"readout to {args.out} "
+        "current primary/OOS positives: "
+        f"{counts.get('dry_run_current_primary_positive_rows')}/"
+        f"{counts.get('dry_run_current_retained_oos_positive_rows')}, "
+        "dry-run complete current rows: "
+        f"{counts.get('dry_run_current_split_direct_component_complete_rows')}/"
+        f"{counts.get('dry_run_current_split_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_approval_import_smoke_review_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_approval_import_smoke_review_readout(
+        approval_import_dry_run_readout_path=Path(
+            args.approval_import_dry_run_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow approval/import smoke "
+        f"review readout to {args.out} "
+        "smoke primary/OOS positives: "
+        f"{counts.get('smoke_current_primary_positive_rows')}/"
+        f"{counts.get('smoke_retained_oos_positive_rows')}, "
+        "full OOS positives: "
+        f"{counts.get('full_current_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout(
+        approval_import_smoke_review_readout_path=Path(
+            args.approval_import_smoke_review_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow approval/import smoke "
+        f"materialization readout to {args.out} "
+        "sidecar add/update rows: "
+        f"{counts.get('smoke_materialization_new_rows')}/"
+        f"{counts.get('smoke_materialization_updated_existing_rows')}, "
+        "smoke primary/OOS positives: "
+        f"{counts.get('approved_sidecar_only_smoke_primary_positive_rows')}/"
+        f"{counts.get('approved_sidecar_only_smoke_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout(
+        approval_import_smoke_materialization_readout_path=Path(
+            args.approval_import_smoke_materialization_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow approval/import candidate "
+        f"sidecar readout to {args.out} "
+        "smoke primary/OOS positives: "
+        f"{counts.get('candidate_smoke_written_gate_primary_positive_rows')}/"
+        f"{counts.get('candidate_smoke_written_gate_retained_oos_positive_rows')}, "
+        "full OOS positives: "
+        f"{counts.get('candidate_full_74row_gate_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_approval_import_delta_package_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_approval_import_delta_package_readout(
+        approval_import_candidate_sidecar_readout_path=Path(
+            args.approval_import_candidate_sidecar_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow approval/import delta "
+        f"package readout to {args.out} "
+        "smoke delta rows: "
+        f"{counts.get('smoke_delta_rows')}, "
+        "full delta rows: "
+        f"{counts.get('full_delta_rows_after_smoke')}, "
+        "full OOS positives: "
+        f"{counts.get('full_gate_retained_oos_positive_entry_ids')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_approval_import_delta_package_contract_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_approval_import_delta_package_contract_readout(
+        approval_import_delta_package_readout_path=Path(
+            args.approval_import_delta_package_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow approval/import delta "
+        f"package contract readout to {args.out} "
+        "contract full rows: "
+        f"{counts.get('contract_full_delta_rows_after_smoke')}, "
+        "sidecar fresh: "
+        f"{counts.get('current_sidecar_sha256_matches_source_package')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout(
+        approval_import_delta_package_contract_readout_path=Path(
+            args.approval_import_delta_package_contract_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow protected import "
+        f"sequence preflight readout to {args.out} "
+        "smoke rows: "
+        f"{counts.get('smoke_stage_rows')}, "
+        "full rows: "
+        f"{counts.get('full_current_split_rows_after_smoke')}, "
+        "failures: "
+        f"{counts.get('critical_preflight_failure_total')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_current_split_row_gate_audit_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_current_split_row_gate_audit_readout(
+        protected_import_sequence_preflight_readout_path=Path(
+            args.protected_import_sequence_preflight_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow current-split row gate "
+        f"audit readout to {args.out} "
+        "smoke primary/OOS positives: "
+        f"{counts.get('smoke_primary_positive_rows')}/"
+        f"{counts.get('smoke_retained_oos_positive_entry_ids')}, "
+        "full primary/OOS positives: "
+        f"{counts.get('full_current_split_primary_positive_rows')}/"
+        f"{counts.get('full_current_split_retained_oos_positive_entry_ids')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_current_split_operating_point_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_current_split_operating_point_readout(
+        current_split_row_gate_audit_readout_path=Path(
+            args.current_split_row_gate_audit_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow current-split "
+        f"operating-point readout to {args.out} "
+        "baseline/smoke/full OOS recall: "
+        f"{counts.get('current_geometry_fold_oos_abstain_recall_baseline')}/"
+        f"{counts.get('smoke_union_or_gate_oos_abstain_recall')}/"
+        f"{counts.get('full_current_split_union_or_gate_oos_abstain_recall')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_mechanism_axis_acquisition_ranking_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_mechanism_axis_acquisition_ranking_readout(
+        projection_readout_path=Path(args.projection_readout),
+        source_free_projection_repair_candidate_surface_path=Path(
+            args.source_free_projection_repair_candidate_surface
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 source-free mechanism-axis acquisition-ranking readout "
+        f"to {args.out} (best axis: "
+        f"{decision.get('best_genuine_mechanism_axis_id')}, "
+        "ready genuine axes: "
+        f"{counts.get('source_free_ready_genuine_mechanism_axes_now')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_current_extended_oos_mechanism_overlap_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_current_extended_oos_mechanism_overlap_readout(
+        current_measured_readout_path=Path(args.current_measured_readout),
+        current_extended_oos_surface_path=Path(args.current_extended_oos_surface),
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        mechanism_operating_point_contract_path=Path(
+            args.mechanism_operating_point_contract
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        projection_readout_path=Path(args.projection_readout),
+        source_free_coordinate_anchor_candidate_dir_path=Path(
+            args.source_free_coordinate_anchor_candidate_dir
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 current extended OOS mechanism overlap readout to "
+        f"{args.out} (OOS overlap: "
+        f"{counts.get('current_extended_oos_overlap_rows')}, retained caught: "
+        f"{counts.get('current_retained_oos_caught_by_mechanism')}, "
+        f"primary overlap: {counts.get('valid_primary_overlap_rows')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_axis_current_extended_frontier_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_axis_current_extended_frontier_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-axis current-extended frontier readout to "
+        f"{args.out} (best axis: {decision.get('best_axis_id')}, "
+        f"retained catches: "
+        f"{counts.get('best_axis_current_retained_oos_catches')}, "
+        f"current primary overlap: "
+        f"{counts.get('valid_current_primary_calibration_feature_overlap_rows')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_axis_loo_current_extended_frontier_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_axis_loo_current_extended_frontier_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-axis LOO current-extended frontier readout to "
+        f"{args.out} (best new axis: {decision.get('best_new_axis_id')}, "
+        f"marginal retained catches: "
+        f"{counts.get('best_projection_plus_axis_marginal_current_retained_oos_catches')}, "
+        f"current primary overlap: "
+        f"{counts.get('valid_current_primary_calibration_feature_overlap_rows')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_axis_primary_safe_frontier_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_axis_primary_safe_frontier_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-axis primary-safe frontier readout to "
+        f"{args.out} (best marginal axis: "
+        f"{decision.get('best_marginal_axis_id')}, primary-safe marginal "
+        f"catches: "
+        f"{counts.get('best_primary_safe_axis_marginal_current_retained_oos_catches')}, "
+        f"best marginal primary retained: "
+        f"{counts.get('best_marginal_axis_primary_loo_retained_rows')}/"
+        f"{counts.get('best_marginal_axis_primary_loo_control_rows')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_axis_primary_controlled_rescue_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_axis_primary_controlled_rescue_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-axis primary-controlled rescue readout to "
+        f"{args.out} (best new axis: {decision.get('best_new_axis_id')}, "
+        f"marginal retained catches: "
+        f"{counts.get('best_primary_controlled_axis_marginal_current_retained_oos_catches')}, "
+        f"target rules passing primary control: "
+        f"{counts.get('best_primary_controlled_axis_target_rows_passing_primary_control')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_axis_primary_controlled_null_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_axis_primary_controlled_null_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        null_permutations=args.null_permutations,
+        null_seed=args.null_seed,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-axis primary-controlled null readout to "
+        f"{args.out} (observed marginal: "
+        f"{counts.get('observed_best_axis_marginal_current_retained_oos_catches')}, "
+        f"null p95: {counts.get('null_max_marginal_catches_p95')}, "
+        f"supported: "
+        f"{decision.get('null_control_supports_genuinely_new_axis_signal')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_motif_interaction_null_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_motif_interaction_null_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        null_permutations=args.null_permutations,
+        null_seed=args.null_seed,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-motif interaction null readout to "
+        f"{args.out} (best motif: {decision.get('best_new_motif_axis_id')}, "
+        f"observed marginal: "
+        f"{counts.get('best_event_motif_marginal_current_retained_oos_catches')}, "
+        f"null p95: {counts.get('null_max_marginal_catches_p95')}, "
+        f"supported: {decision.get('null_control_supports_event_motif_signal')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_axis_signature_excluded_frontier_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_axis_signature_excluded_frontier_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        signature_axis_id=args.signature_axis_id,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-axis signature-excluded frontier readout to "
+        f"{args.out} (best new axis: {decision.get('best_new_axis_id')}, "
+        f"marginal retained catches: "
+        f"{counts.get('best_signature_excluded_axis_marginal_current_retained_oos_catches')}, "
+        f"same-signature rows excluded: "
+        f"{counts.get('signature_excluded_same_signature_oos_rows_for_best_axis')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_axis_signature_exclusion_sensitivity_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_axis_signature_exclusion_sensitivity_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        signature_axis_ids=tuple(args.signature_axis_ids),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-axis signature-exclusion sensitivity readout to "
+        f"{args.out} (axes with signal: "
+        f"{counts.get('signature_axes_with_marginal_signal')}/"
+        f"{counts.get('signature_axes_evaluated')}, bond collapses: "
+        f"{decision.get('bond_change_signal_collapses_under_own_signature_exclusion')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_partial_surface_current_split_portability_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_lever2_source_free_partial_surface_current_split_portability_readout(
+            current_measured_readout_path=Path(args.current_measured_readout),
+            current_extended_oos_surface_path=Path(args.current_extended_oos_surface),
+            current_in_scope_threshold_contract_path=Path(
+                args.current_in_scope_threshold_contract
+            ),
+            source_free_projection_repair_candidate_surface_path=Path(
+                args.source_free_projection_repair_candidate_surface
+            ),
+            source_free_event_axis_linker_materialization_gate_path=Path(
+                args.source_free_event_axis_linker_materialization_gate
+            ),
+            source_free_locator_rewrite_materialization_gate_path=Path(
+                args.source_free_locator_rewrite_materialization_gate
+            ),
+            review_only_locator_candidate_dir_path=Path(
+                args.review_only_locator_candidate_dir
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free partial-surface current-split portability "
+        f"readout to {args.out} (union primary overlap: "
+        f"{counts.get('union_current_primary_overlap_rows')}, retained OOS "
+        f"overlap: {counts.get('union_current_retained_oos_overlap_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_lever3_p07658_sequence_compatibility_readout(
     args: argparse.Namespace,
 ) -> int:
@@ -17809,6 +19218,55 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"direct proton rows: "
         f"{counts.get('rows_with_direct_proton_transfer_projection')}, "
         f"scoring-ready rows: {counts.get('threshold_scoring_ready_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+    args: argparse.Namespace,
+) -> int:
+    readout = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_feature_guardrail_path=Path(args.train_cal_feature_guardrail),
+        label_manifest_path=Path(args.label_manifest),
+        source_free_projection_repair_candidate_surface_path=Path(
+            args.source_free_projection_repair_candidate_surface
+        ),
+        full_no_template_rerun_path=Path(args.full_no_template_rerun),
+        fold_augmented_current_measured_readout_path=(
+            Path(args.fold_augmented_current_measured_readout)
+            if args.fold_augmented_current_measured_readout
+            else None
+        ),
+        current_in_scope_threshold_contract_path=(
+            Path(args.current_in_scope_threshold_contract)
+            if args.current_in_scope_threshold_contract
+            else None
+        ),
+        expanded_oos_calibrated_threshold_contract_path=(
+            Path(args.expanded_oos_calibrated_threshold_contract)
+            if args.expanded_oos_calibrated_threshold_contract
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    projected = (
+        readout.get("measured_readout", {})
+        .get("projected_source_free_subset", {})
+        .get("residual_variant", {})
+        .get("calibration_selected_residual_threshold", {})
+    )
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free train/cal projection readout to "
+        f"{args.out} (status: {readout.get('status')}, "
+        f"projected fields: "
+        f"{counts.get('source_free_projected_train_cal_feature_fields')}, "
+        f"OOS abstain recall: {projected.get('oos_abstain_recall')}, "
+        f"classification: {decision.get('result_classification')})"
     )
     return 0
 
@@ -33268,6 +34726,2410 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_lever3_dispatch_readiness_summary
     )
 
+    lever2_mechanism_incremental_readout = subparsers.add_parser(
+        "build-lever2-mechanism-feature-incremental-readout",
+        help=(
+            "write a train/cal Lever 2 readout comparing row-specific "
+            "mechanism features against the current geometry/fold surface"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--mechanism-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument("--artifact-id", default=None)
+    lever2_mechanism_incremental_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_mechanism_feature_incremental_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_mechanism_feature_incremental_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_mechanism_incremental_readout.set_defaults(
+        func=cmd_build_lever2_mechanism_feature_incremental_readout
+    )
+
+    lever2_electron_flow_split_alignment_readout = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-split-alignment-readout",
+        help=(
+            "write a train/cal Lever 2 readout for the source-free "
+            "electron-flow repair axis against the current geometry/fold split"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--incremental-readout",
+        default=(
+            "artifacts/v3_lever2_mechanism_feature_incremental_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--current-extended-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_split_alignment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_split_alignment_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_split_alignment_readout
+    )
+
+    lever2_electron_flow_acquisition_ceiling_readout = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-acquisition-ceiling-readout",
+        help=(
+            "write a Lever 2 acquisition-ceiling readout for source-free "
+            "electron-flow evidence tranches after the split-alignment readout"
+        ),
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--electron-flow-split-alignment-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_split_alignment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--tranche-sizes",
+        type=int,
+        nargs="+",
+        default=[1, 2, 5, 10, 20, 40],
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_acquisition_"
+            "ceiling_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_acquisition_ceiling_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_acquisition_ceiling_readout
+    )
+
+    lever2_electron_flow_smoke_tranche_scan = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-smoke-tranche-evidence-scan",
+        help=(
+            "scan whether the smallest source-free electron-flow smoke tranche "
+            "already has direct deployment-valid electron-flow fields"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--electron-flow-acquisition-ceiling-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_acquisition_"
+            "ceiling_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--review-only-locator-candidate-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locator_candidates_"
+            "current702_20260601"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--source-free-locator-rewrite-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_locator_rewrite_"
+            "materialization_gate_materialized_current702_20260603.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--source-free-event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_event_axis_linker_"
+            "materialization_gate_current702_20260603.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_smoke_tranche_"
+            "evidence_scan_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_smoke_tranche_"
+            "evidence_scan_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan
+    )
+
+    lever2_electron_flow_coordinate_proxy_readout = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-coordinate-proxy-readout",
+        help=(
+            "measure coordinate-only redox/electron-flow proxy fields on the "
+            "smoke tranche and retained-OOS current split"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--electron-flow-acquisition-ceiling-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_acquisition_"
+            "ceiling_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--coordinate-gap-cif",
+        action="append",
+        default=None,
+        help=(
+            "supplemental committed CIF sidecar for full-tranche coordinate "
+            "gap inventory scans, as ENTRY_ID=PATH; omit to use the current "
+            "readout's default gap sidecars"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_coordinate_proxy_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_coordinate_proxy_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_coordinate_proxy_readout
+    )
+
+    lever2_electron_flow_pqq_primitive_axis_audit = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-pqq-primitive-axis-audit",
+        help=(
+            "audit an atom-level PQQ/quinone redox-center contact field as a "
+            "candidate source-free electron-flow primitive"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--coordinate-proxy-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_coordinate_proxy_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--coordinate-cif",
+        action="append",
+        default=None,
+        help=(
+            "optional committed CIF sidecar override for atom-level contact "
+            "checks, as ENTRY_ID=PATH"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_primitive_axis_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_pqq_primitive_axis_"
+            "audit_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_pqq_primitive_axis_audit.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_pqq_primitive_axis_audit
+    )
+
+    lever2_electron_flow_pqq_current_split_sidecar_readout = (
+        subparsers.add_parser(
+            "build-lever2-source-free-electron-flow-pqq-current-split-sidecar-readout",
+            help=(
+                "materialize a research-only PQQ redox-center current-split "
+                "sidecar view and measure its fixed operating-point value"
+            ),
+        )
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--pqq-primitive-axis-audit",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_primitive_axis_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_current_split_"
+            "sidecar_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_pqq_current_split_"
+            "sidecar_readout_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_pqq_current_split_sidecar_readout.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_donor_acceptor_contact_readout = (
+        subparsers.add_parser(
+            "build-lever2-source-free-electron-flow-donor-acceptor-contact-readout",
+            help=(
+                "measure a source-free PQQ donor/acceptor contact primitive "
+                "and a broad redox-center control on the current split"
+            ),
+        )
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--coordinate-proxy-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_coordinate_proxy_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--coordinate-cif",
+        action="append",
+        default=None,
+        help=(
+            "optional committed CIF sidecar override for atom-level contact "
+            "checks, as ENTRY_ID=PATH"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_donor_acceptor_"
+            "contact_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_donor_acceptor_"
+            "contact_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_donor_acceptor_contact_readout.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_donor_acceptor_contact_readout
+        )
+    )
+
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout = (
+        subparsers.add_parser(
+            "build-lever2-source-free-electron-flow-pqq-donor-acceptor-contact-readout",
+            help=(
+                "measure a fixed PQQ O4/O5 to active-site N/O/S donor/acceptor "
+                "contact sidecar against the current primary/OOS split"
+            ),
+        )
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--pqq-primitive-axis-audit",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_primitive_axis_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "contact_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "contact_readout_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_contact_readout.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout
+        )
+    )
+
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-pqq-donor-acceptor-"
+                "current-split-feature-sidecar-readout"
+            ),
+            help=(
+                "emit standalone source-free current-split feature rows for "
+                "the measured PQQ donor/acceptor electron-flow primitive and "
+                "remeasure the fixed operating point"
+            ),
+        )
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.add_argument(
+        "--donor-acceptor-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_donor_acceptor_"
+            "contact_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "current_split_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "current_split_feature_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-relaxed-non-pqq-"
+                "donor-acceptor-feature-sidecar-readout"
+            ),
+            help=(
+                "emit fixed 8 A source-free non-PQQ donor/acceptor feature "
+                "rows and remeasure the current split"
+            ),
+        )
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--donor-acceptor-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_donor_acceptor_"
+            "contact_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--coordinate-cif",
+        action="append",
+        default=None,
+        help=(
+            "optional committed CIF sidecar override for projection atom checks, "
+            "as ENTRY_ID=PATH"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_combined_direct_feature_sidecar = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-combined-direct-"
+                "feature-sidecar-readout"
+            ),
+            help=(
+                "union measured PQQ and relaxed non-PQQ direct electron-flow "
+                "feature rows and remeasure the current split"
+            ),
+        )
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--pqq-donor-acceptor-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "current_split_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--relaxed-non-pqq-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-projection-backed-"
+                "pqq-nad-feature-sidecar-readout"
+            ),
+            help=(
+                "emit the projection-backed PQQ plus NAD-family direct "
+                "electron-flow sidecar and remeasure the current split"
+            ),
+        )
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.add_argument(
+        "--combined-direct-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_projection_backed_pqq_nad_"
+            "feature_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_iron_sulfur_projection_support = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-iron-sulfur-"
+                "projection-support-readout"
+            ),
+            help=(
+                "measure whether the Fe-S/iron electron-flow family split has "
+                "existing train/cal projection support or only review-only "
+                "source-free evidence"
+            ),
+        )
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--relaxed-non-pqq-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--iron-sulfur-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--coordinate-cif",
+        action="append",
+        default=None,
+        help=(
+            "optional committed CIF sidecar override for tiny Fe-S/iron "
+            "projection atom checks, as ENTRY_ID=PATH"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "projection_support_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_iron_sulfur_projection_"
+            "support_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout
+        )
+    )
+
+    lever2_electron_flow_iron_sulfur_approval_qualified_union = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-iron-sulfur-"
+                "approval-qualified-union-readout"
+            ),
+            help=(
+                "measure the supported PQQ+NAD electron-flow route against a "
+                "research-only Fe-S/iron approval-qualified union"
+            ),
+        )
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--projection-backed-pqq-nad-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--relaxed-non-pqq-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--iron-sulfur-projection-support-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "projection_support_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout
+        )
+    )
+
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-iron-sulfur-"
+                "tiny-tranche-approval-readiness-readout"
+            ),
+            help=(
+                "measure whether the tiny Fe-S/iron source-free support "
+                "tranche is ready for train/cal feature-sidecar approval"
+            ),
+        )
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--iron-sulfur-projection-support-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "projection_support_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--approval-qualified-union-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--iron-sulfur-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "tiny_tranche_approval_readiness_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_"
+            "approval_readiness_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout
+        )
+    )
+
+    lever2_electron_flow_current_split_smoke_materialization = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-current-split-"
+                "smoke-materialization-readout"
+            ),
+            help=(
+                "measure the m_csa:104 plus primary current-split smoke "
+                "tranche from direct source-free electron-flow feature rows"
+            ),
+        )
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--projection-backed-pqq-nad-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--combined-direct-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--approval-qualified-union-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_"
+            "smoke_materialization_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_current_split_"
+            "smoke_materialization_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout
+        )
+    )
+
+    lever2_electron_flow_iron_sulfur_support_subset_preflight = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-iron-sulfur-"
+                "support-subset-preflight-readout"
+            ),
+            help=(
+                "measure whether the bundle-ready Fe-S/iron support subset "
+                "can make the m_csa:119 current-split OOS catch supportable"
+            ),
+        )
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--tiny-tranche-approval-readiness-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "tiny_tranche_approval_readiness_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--current-split-smoke-materialization-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_"
+            "smoke_materialization_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--approval-qualified-union-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--projection-backed-pqq-nad-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "support_subset_preflight_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_iron_sulfur_"
+            "support_subset_preflight_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_support_subset_preflight.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout
+        )
+    )
+
+    lever2_electron_flow_candidate_train_cal_bundle = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-candidate-train-cal-bundle-readout",
+        help=(
+            "materialize a research-only candidate train/cal bundle for direct "
+            "source-free PQQ+NAD+Fe-S electron-flow component fields"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--approval-qualified-union-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--support-subset-preflight-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "support_subset_preflight_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--relaxed-non-pqq-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_candidate_train_cal_"
+            "bundle_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_candidate_train_cal_"
+            "bundle_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_candidate_train_cal_bundle.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout
+        )
+    )
+
+    lever2_electron_flow_train_cal_sidecar_candidate = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-train-cal-sidecar-candidate-readout",
+        help=(
+            "audit a research-only train/cal sidecar candidate for direct "
+            "source-free PQQ+NAD+Fe-S electron-flow component fields"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--candidate-train-cal-bundle-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_candidate_train_cal_"
+            "bundle_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_train_cal_"
+            "sidecar_candidate_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_train_cal_sidecar_"
+            "candidate_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout
+        )
+    )
+
+    lever2_electron_flow_approval_import_dry_run = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-approval-import-dry-run-readout",
+        help=(
+            "dry-run the protected approved-sidecar import shape for direct "
+            "source-free PQQ+NAD+Fe-S electron-flow component fields"
+        ),
+    )
+    lever2_electron_flow_approval_import_dry_run.add_argument(
+        "--train-cal-sidecar-candidate-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_train_cal_"
+            "sidecar_candidate_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_dry_run.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_dry_run.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_dry_run.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_approval_import_dry_run.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "dry_run_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_dry_run.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_approval_import_"
+            "dry_run_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_approval_import_dry_run.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_approval_import_dry_run_readout
+        )
+    )
+
+    lever2_electron_flow_approval_import_smoke_review = subparsers.add_parser(
+        (
+            "build-lever2-source-free-electron-flow-approval-import-"
+            "smoke-review-readout"
+        ),
+        help=(
+            "measure the m_csa:104 plus primary retention smoke tranche from "
+            "the direct source-free electron-flow approval/import dry run"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_review.add_argument(
+        "--approval-import-dry-run-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "dry_run_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_review.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_approval_import_smoke_review.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "smoke_review_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_review.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_approval_import_"
+            "smoke_review_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_review.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_approval_import_smoke_review_readout
+        )
+    )
+
+    lever2_electron_flow_approval_import_smoke_materialization = subparsers.add_parser(
+        (
+            "build-lever2-source-free-electron-flow-approval-import-"
+            "smoke-materialization-readout"
+        ),
+        help=(
+            "simulate the 35-row direct source-free electron-flow smoke import "
+            "in approved-sidecar shape and rerun the fixed gate"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_materialization.add_argument(
+        "--approval-import-smoke-review-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "smoke_review_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_materialization.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_materialization.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_approval_import_smoke_materialization.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "smoke_materialization_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_materialization.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_approval_import_"
+            "smoke_materialization_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_approval_import_smoke_materialization.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout
+        )
+    )
+
+    lever2_electron_flow_approval_import_candidate_sidecar = subparsers.add_parser(
+        (
+            "build-lever2-source-free-electron-flow-approval-import-"
+            "candidate-sidecar-readout"
+        ),
+        help=(
+            "materialize a research-only collision-safe candidate sidecar for "
+            "the direct source-free electron-flow smoke and current-split gates"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--approval-import-smoke-materialization-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "smoke_materialization_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "candidate_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_approval_import_"
+            "candidate_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_approval_import_candidate_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_approval_import_delta_package = subparsers.add_parser(
+        (
+            "build-lever2-source-free-electron-flow-approval-import-"
+            "delta-package-readout"
+        ),
+        help=(
+            "freeze a research-only protected delta package for the direct "
+            "source-free electron-flow candidate sidecar import route"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package.add_argument(
+        "--approval-import-candidate-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "candidate_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_approval_import_delta_package.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "delta_package_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_approval_import_delta_"
+            "package_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_approval_import_delta_package_readout
+        )
+    )
+
+    lever2_electron_flow_approval_import_delta_package_contract = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-approval-import-"
+                "delta-package-contract-readout"
+            ),
+            help=(
+                "hash-pin and validate the research-only protected delta "
+                "package acceptance contract for future electron-flow import"
+            ),
+        )
+    )
+    lever2_electron_flow_approval_import_delta_package_contract.add_argument(
+        "--approval-import-delta-package-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "delta_package_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package_contract.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package_contract.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_approval_import_delta_package_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "delta_package_contract_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package_contract.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_approval_import_delta_"
+            "package_contract_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_approval_import_delta_package_contract.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_approval_import_delta_package_contract_readout
+        )
+    )
+
+    lever2_electron_flow_protected_import_sequence_preflight = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-protected-import-"
+                "sequence-preflight-readout"
+            ),
+            help=(
+                "preflight the hash-pinned smoke-first protected import "
+                "sequence for source-free electron-flow without applying it"
+            ),
+        )
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--approval-import-delta-package-contract-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_approval_import_"
+            "delta_package_contract_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_protected_import_"
+            "sequence_preflight_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_protected_import_sequence_"
+            "preflight_readout_current702_20260606.md"
+        ),
+    )
+    lever2_electron_flow_protected_import_sequence_preflight.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout
+        )
+    )
+
+    lever2_electron_flow_current_split_row_gate_audit = subparsers.add_parser(
+        (
+            "build-lever2-source-free-electron-flow-current-split-row-gate-"
+            "audit-readout"
+        ),
+        help=(
+            "write a row-level smoke/full current-split gate audit for the "
+            "source-free electron-flow delta without applying protected imports"
+        ),
+    )
+    lever2_electron_flow_current_split_row_gate_audit.add_argument(
+        "--protected-import-sequence-preflight-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_protected_import_"
+            "sequence_preflight_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_current_split_row_gate_audit.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_current_split_row_gate_audit.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_current_split_row_gate_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_row_"
+            "gate_audit_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_current_split_row_gate_audit.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_current_split_row_gate_"
+            "audit_readout_current702_20260606.md"
+        ),
+    )
+    lever2_electron_flow_current_split_row_gate_audit.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_current_split_row_gate_audit_readout
+        )
+    )
+
+    lever2_electron_flow_current_split_operating_point = subparsers.add_parser(
+        (
+            "build-lever2-source-free-electron-flow-current-split-operating-"
+            "point-readout"
+        ),
+        help=(
+            "measure the fixed smoke/full source-free electron-flow OR overlay "
+            "against the current geometry/fold operating point"
+        ),
+    )
+    lever2_electron_flow_current_split_operating_point.add_argument(
+        "--current-split-row-gate-audit-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_row_"
+            "gate_audit_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_current_split_operating_point.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_current_split_operating_point.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_"
+            "operating_point_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_current_split_operating_point.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_current_split_operating_"
+            "point_readout_current702_20260606.md"
+        ),
+    )
+    lever2_electron_flow_current_split_operating_point.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_current_split_operating_point_readout
+        )
+    )
+
+    lever2_axis_acquisition_ranking_readout = subparsers.add_parser(
+        "build-lever2-source-free-mechanism-axis-acquisition-ranking-readout",
+        help=(
+            "write a Lever 2 train/cal ranking of missing source-free "
+            "mechanism axes by value and evidence burden"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_mechanism_axis_acquisition_"
+            "ranking_readout_current702_20260604.json"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_mechanism_axis_acquisition_ranking_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.set_defaults(
+        func=cmd_build_lever2_source_free_mechanism_axis_acquisition_ranking_readout
+    )
+
+    lever2_current_extended_oos_mechanism_overlap_readout = subparsers.add_parser(
+        "build-lever2-current-extended-oos-mechanism-overlap-readout",
+        help=(
+            "write a train/cal Lever 2 readout comparing frozen mechanism "
+            "residuals against the current extended geometry/fold OOS surface"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--current-extended-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--mechanism-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--source-free-coordinate-anchor-candidate-dir",
+        default=(
+            "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_coordinate_anchor_"
+            "candidates_current702_20260602"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_current_extended_oos_mechanism_overlap_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.set_defaults(
+        func=cmd_build_lever2_current_extended_oos_mechanism_overlap_readout
+    )
+
+    lever2_event_axis_current_extended_frontier_readout = subparsers.add_parser(
+        "build-lever2-event-axis-current-extended-frontier-readout",
+        help=(
+            "write a train/cal Lever 2 readout for simple mechanism event-axis "
+            "rules on the current extended geometry/fold OOS overlap"
+        ),
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--min-primary-retain", type=float, default=0.9
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_axis_current_extended_frontier_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_current_extended_frontier_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_axis_current_extended_frontier_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_event_axis_current_extended_frontier_readout.set_defaults(
+        func=cmd_build_lever2_event_axis_current_extended_frontier_readout
+    )
+
+    lever2_event_axis_loo_current_extended_frontier_readout = subparsers.add_parser(
+        "build-lever2-event-axis-loo-current-extended-frontier-readout",
+        help=(
+            "write a train/cal Lever 2 leave-one-OOS-out readout for event-axis "
+            "rules on the current extended geometry/fold OOS overlap"
+        ),
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--min-primary-retain", type=float, default=0.9
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_axis_loo_current_extended_frontier_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_axis_loo_current_extended_frontier_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_event_axis_loo_current_extended_frontier_readout.set_defaults(
+        func=cmd_build_lever2_event_axis_loo_current_extended_frontier_readout
+    )
+
+    lever2_event_axis_primary_safe_frontier_readout = subparsers.add_parser(
+        "build-lever2-event-axis-primary-safe-frontier-readout",
+        help=(
+            "write a train/cal Lever 2 readout requiring event-axis marginal "
+            "catches to pass leave-one-primary-out control"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--min-primary-retain", type=float, default=1.0
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_axis_primary_safe_frontier_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_axis_primary_safe_frontier_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.set_defaults(
+        func=cmd_build_lever2_event_axis_primary_safe_frontier_readout
+    )
+
+    lever2_event_axis_primary_controlled_rescue_readout = subparsers.add_parser(
+        "build-lever2-event-axis-primary-controlled-rescue-readout",
+        help=(
+            "write a train/cal Lever 2 readout using primary-control-aware "
+            "event-axis rule selection on the current extended overlap"
+        ),
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--min-primary-retain", type=float, default=1.0
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_axis_primary_controlled_rescue_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_axis_primary_controlled_rescue_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_event_axis_primary_controlled_rescue_readout.set_defaults(
+        func=cmd_build_lever2_event_axis_primary_controlled_rescue_readout
+    )
+
+    lever2_event_axis_primary_controlled_null_readout = subparsers.add_parser(
+        "build-lever2-event-axis-primary-controlled-null-readout",
+        help=(
+            "write a train/cal Lever 2 null-control readout for the "
+            "primary-controlled event-axis rescue"
+        ),
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--min-primary-retain", type=float, default=1.0
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--null-permutations", type=int, default=128
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--null-seed", default="lever2_primary_controlled_event_axis_null_v0"
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_axis_primary_controlled_null_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_controlled_null_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_axis_primary_controlled_null_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_event_axis_primary_controlled_null_readout.set_defaults(
+        func=cmd_build_lever2_event_axis_primary_controlled_null_readout
+    )
+
+    lever2_event_motif_interaction_null_readout = subparsers.add_parser(
+        "build-lever2-event-motif-interaction-null-readout",
+        help=(
+            "write a train/cal Lever 2 null-control readout for coupled "
+            "event-motif interaction features"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--min-primary-retain", type=float, default=1.0
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--null-permutations", type=int, default=128
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--null-seed", default="lever2_event_motif_interaction_null_v0"
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_motif_interaction_null_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_motif_interaction_null_readout_current702_20260604.md"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.set_defaults(
+        func=cmd_build_lever2_event_motif_interaction_null_readout
+    )
+
+    lever2_event_axis_signature_excluded_frontier_readout = subparsers.add_parser(
+        "build-lever2-event-axis-signature-excluded-frontier-readout",
+        help=(
+            "write a train/cal Lever 2 readout excluding same-signature OOS "
+            "neighbors during event-axis rule selection"
+        ),
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--min-primary-retain", type=float, default=1.0
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--signature-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_axis_signature_excluded_frontier_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_axis_signature_excluded_frontier_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_event_axis_signature_excluded_frontier_readout.set_defaults(
+        func=cmd_build_lever2_event_axis_signature_excluded_frontier_readout
+    )
+
+    lever2_event_axis_signature_exclusion_sensitivity_readout = (
+        subparsers.add_parser(
+            "build-lever2-event-axis-signature-exclusion-sensitivity-readout",
+            help=(
+                "write a train/cal Lever 2 sensitivity readout across several "
+                "same-signature OOS exclusion definitions"
+            ),
+        )
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--min-primary-retain", type=float, default=1.0
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--signature-axis-ids",
+        nargs="+",
+        default=[
+            "source_free_projected_proton_role_subset",
+            "bond_change",
+            "electron_flow",
+            "event_topology",
+        ],
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_axis_signature_exclusion_sensitivity_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_axis_signature_exclusion_sensitivity_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_event_axis_signature_exclusion_sensitivity_readout.set_defaults(
+        func=cmd_build_lever2_event_axis_signature_exclusion_sensitivity_readout
+    )
+
+    lever2_partial_surface_current_split_portability_readout = (
+        subparsers.add_parser(
+            "build-lever2-source-free-partial-surface-current-split-portability-readout",
+            help=(
+                "write a train/cal Lever 2 readout testing whether existing "
+                "source-free partial-surface rows overlap the current "
+                "geometry/fold split"
+            ),
+        )
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--current-extended-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--source-free-event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_event_axis_linker_"
+            "materialization_gate_current702_20260603.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--source-free-locator-rewrite-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_locator_rewrite_"
+            "materialization_gate_materialized_current702_20260603.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--review-only-locator-candidate-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locator_candidates_"
+            "current702_20260601"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.md"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_partial_surface_current_split_portability_readout
+        )
+    )
+
     lever3_current_measured_readout = subparsers.add_parser(
         "build-fold-augmented-lever3-current-measured-readout",
         help=(
@@ -42043,6 +45905,97 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "train-cal-projection-readout"
+        ),
+        help=(
+            "measure the train/cal operating point of the currently "
+            "source-free-projectable mechanism feature subset without "
+            "reading or retuning heldout"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--train-cal-feature-guardrail",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_"
+            "guardrail_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--full-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--fold-augmented-current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout
         )
     )
 

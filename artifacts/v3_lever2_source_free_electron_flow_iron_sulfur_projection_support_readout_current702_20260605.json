@@ -1,0 +1,2455 @@
+{
+  "artifact_id": "v3_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout_current702_20260605",
+  "counts": {
+    "critical_violation_total": 0,
+    "current_primary_positive_rows": 0,
+    "current_primary_retain_recall": 1.0,
+    "current_primary_rows": 34,
+    "current_retained_oos_abstain_recall": 0.025,
+    "current_retained_oos_positive_rows": 1,
+    "current_retained_oos_rows": 40,
+    "expanded_projection_candidate_rows": 12,
+    "expanded_projection_complete_rows": 12,
+    "expanded_projection_positive_entry_ids": [
+      "m_csa:108",
+      "m_csa:123",
+      "m_csa:127",
+      "m_csa:130",
+      "m_csa:208",
+      "m_csa:212",
+      "m_csa:276",
+      "m_csa:281",
+      "m_csa:358",
+      "m_csa:398",
+      "m_csa:443",
+      "m_csa:562"
+    ],
+    "expanded_projection_positive_rows": 12,
+    "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+    "projection_calibration_positive_rows": 0,
+    "projection_complete_rows": 43,
+    "projection_positive_rows": 0,
+    "projection_rows": 43,
+    "projection_train_positive_rows": 0,
+    "review_only_heldout_rows_excluded_from_support_scan": 140,
+    "review_only_locus_rows": 702,
+    "review_only_nonheldout_proximal_predictive_use_allowed_rows": 0,
+    "review_only_nonheldout_proximal_rows": 13,
+    "review_only_nonheldout_proximal_rows_outside_current_split": 12,
+    "review_only_nonheldout_rows_scanned": 562,
+    "smallest_noncurrent_projection_tranche_rows": 3,
+    "tiny_projection_candidate_rows": 3,
+    "tiny_projection_complete_rows": 3,
+    "tiny_projection_materialization_available": true,
+    "tiny_projection_positive_entry_ids": [
+      "m_csa:127",
+      "m_csa:281",
+      "m_csa:443"
+    ],
+    "tiny_projection_positive_rows": 3,
+    "union_or_gate_oos_abstain_recall": 0.48
+  },
+  "created_utc": "2026-06-05T11:02:11Z",
+  "decision": {
+    "apply_or_promote_now": false,
+    "current_split_iron_sulfur_or_iron_gate_measurable": true,
+    "deployable_now": false,
+    "existing_projection_rows_support_iron_sulfur_contract": false,
+    "iron_sulfur_or_iron_adds_current_retained_oos_abstention": true,
+    "iron_sulfur_or_iron_adds_operating_point_value_beyond_current_geometry_fold": true,
+    "iron_sulfur_or_iron_preserves_primary_retention": true,
+    "measured_readout_available": true,
+    "negative": true,
+    "remaining_gap": "The Fe-S/iron family split is measured and primary-safe on the current 74-row split, but the existing 43-row train/cal projection surface has 0 Fe-S/iron positives. Separate non-heldout source-free Fe-S/iron locus evidence exists and the tiny materialization attempt can make those rows positive in research-only mode, but the rows remain outside the approved train/cal feature sidecar and predictive_use_allowed is false.",
+    "research_only": true,
+    "review_only_source_free_iron_sulfur_evidence_consumable_now": false,
+    "review_only_source_free_iron_sulfur_evidence_exists_outside_current_split": true,
+    "smallest_next_experiment": "Approve/import the research-only tiny Fe-S/iron materialization tranche (m_csa:443, m_csa:127, m_csa:281) into the train/cal source-free feature sidecar, then rerun the same Fe-S/iron family split gate without changing thresholds or touching heldout rows.",
+    "tiny_projection_materialization_attempt_positive": true,
+    "tiny_projection_materialization_consumable_as_train_cal_support_now": false,
+    "train_cal_supported_now": false
+  },
+  "guardrails": {
+    "accessions_or_pdb_ids_used_as_predictive_features": false,
+    "approved_direct_electron_flow_axis_materialized_by_this_artifact": false,
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": true,
+    "expanded_projection_materialization_imported_or_promoted": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_excluded_from_support_scan": true,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "ligand_codes_used_as_source_free_coordinate_features": true,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only_locus_sidecar_imported_or_promoted": false,
+    "threshold_selected_or_tuned": false,
+    "tiny_projection_materialization_imported_or_promoted": false
+  },
+  "interpretation": {
+    "next_action": "Keep the projection-backed PQQ+NAD subunion as the supported measured route for now; the exact next Fe-S/iron action is approval/import of the tiny materialized projection tranche before deciding whether m_csa:119 can join it.",
+    "result": "The Fe-S/iron family split catches the current-retained OOS row m_csa:119 at primary retain 1.0, but the existing train/cal projection surface has no Fe-S/iron positive rows. The tiny non-current Fe-S/iron projection materialization attempt is source-free positive in research-only mode, but those rows are still outside the approved train/cal feature sidecar and are not consumable as predictive features."
+  },
+  "measured_readout": {
+    "current_split_iron_sulfur_or_iron_family_gate": {
+      "adds_incremental_oos_abstention": true,
+      "baseline_current_geometry_fold_abstained_oos_rows": 35,
+      "complete_rows": 74,
+      "current_geometry_fold_oos_rows": 75,
+      "feature_fields": [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+        "has_source_free_relaxed_non_pqq_donor_acceptor_contact",
+        "source_free_relaxed_non_pqq_donor_acceptor_contact_count"
+      ],
+      "gate_id": "fixed_binary_relaxed_non_pqq_iron_sulfur_or_iron_only_distance_8A",
+      "gate_rule": "Family-split scout over the fixed 8 A relaxed non-PQQ donor/acceptor distance contract. This readout measures a single redox family at a time and does not tune thresholds.",
+      "incomplete_rows": 0,
+      "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+      "operating_point_measurable_now": true,
+      "preserves_primary_retention": true,
+      "primary_positive_entry_ids": [],
+      "primary_positive_rows": 0,
+      "primary_retain_recall_if_abstain_positive": 1.0,
+      "primary_rows": 34,
+      "retained_oos_abstain_recall_if_abstain_positive": 0.025,
+      "retained_oos_positive_entry_ids": [
+        "m_csa:119"
+      ],
+      "retained_oos_positive_rows": 1,
+      "retained_oos_rows": 40,
+      "rows": 74,
+      "union_or_gate_oos_abstain_recall": 0.48,
+      "union_or_gate_oos_abstained_rows": 36
+    },
+    "current_split_positive_entry_ids": [
+      "m_csa:119"
+    ],
+    "existing_train_cal_projection_attempt": {
+      "available": true,
+      "calibration_positive_rows": 0,
+      "closest_negative_distance_angstrom": null,
+      "closest_negative_distance_examples": [],
+      "complete_rows": 43,
+      "family_positive_row_counts": {},
+      "incomplete_rows": 0,
+      "interpretation": "The fixed relaxed non-PQQ distance contract has no positive train/cal projection rows.",
+      "positive_entry_ids": [],
+      "positive_row_examples": [],
+      "positive_rows": 0,
+      "projection_row_materialization_complete_now": true,
+      "projection_rows": 43,
+      "split_positive_row_counts": {},
+      "train_cal_supports_fixed_contract": false,
+      "train_positive_rows": 0
+    },
+    "expanded_iron_sulfur_projection_materialization_attempt": {
+      "available": true,
+      "candidate_entry_ids": [
+        "m_csa:443",
+        "m_csa:127",
+        "m_csa:281",
+        "m_csa:208",
+        "m_csa:130",
+        "m_csa:398",
+        "m_csa:358",
+        "m_csa:123",
+        "m_csa:212",
+        "m_csa:108",
+        "m_csa:562",
+        "m_csa:276"
+      ],
+      "candidate_rows": 12,
+      "complete_rows": 12,
+      "feature_rows": [
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:108",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PS9.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "A",
+                  "active_resid": "339",
+                  "active_residue_code": "GLN",
+                  "distance_angstrom": 4.255,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "700",
+                "min_distance_to_active_site_donor_acceptor_atom": 4.255,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 4.255,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "A",
+                  "active_resid": "339",
+                  "active_residue_code": "GLN",
+                  "distance_angstrom": 4.255,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "700",
+                "min_distance_to_active_site_donor_acceptor_atom": 4.255,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:123",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1JNR.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "B",
+                  "active_resid": "48",
+                  "active_residue_code": "TRP",
+                  "distance_angstrom": 3.551,
+                  "ligand_atom": "S4",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "B",
+                "ligand_code": "SF4",
+                "ligand_resid": "1100",
+                "min_distance_to_active_site_donor_acceptor_atom": 3.551,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "B",
+                  "active_resid": "48",
+                  "active_residue_code": "TRP",
+                  "distance_angstrom": 16.044,
+                  "ligand_atom": "S2",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "B",
+                "ligand_code": "SF4",
+                "ligand_resid": "1110",
+                "min_distance_to_active_site_donor_acceptor_atom": 16.044,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "B",
+                  "active_resid": "48",
+                  "active_residue_code": "TRP",
+                  "distance_angstrom": 32.071,
+                  "ligand_atom": "FE3",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "D",
+                "ligand_code": "SF4",
+                "ligand_resid": "3100",
+                "min_distance_to_active_site_donor_acceptor_atom": 32.071,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "B",
+                  "active_resid": "48",
+                  "active_residue_code": "TRP",
+                  "distance_angstrom": 38.354,
+                  "ligand_atom": "S2",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "D",
+                "ligand_code": "SF4",
+                "ligand_resid": "3110",
+                "min_distance_to_active_site_donor_acceptor_atom": 38.354,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 3.551,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "B",
+                  "active_resid": "48",
+                  "active_residue_code": "TRP",
+                  "distance_angstrom": 3.551,
+                  "ligand_atom": "S4",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "B",
+                "ligand_code": "SF4",
+                "ligand_resid": "1100",
+                "min_distance_to_active_site_donor_acceptor_atom": 3.551,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:127",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HFE.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "L",
+                  "active_resid": "382",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.32,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "L",
+                "ligand_code": "SF4",
+                "ligand_resid": "424",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.32,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "L",
+                  "active_resid": "237",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 10.332,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "L",
+                "ligand_code": "SF4",
+                "ligand_resid": "423",
+                "min_distance_to_active_site_donor_acceptor_atom": 10.332,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "L",
+                  "active_resid": "382",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 19.418,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "L",
+                "ligand_code": "SF4",
+                "ligand_resid": "422",
+                "min_distance_to_active_site_donor_acceptor_atom": 19.418,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "L",
+                  "active_resid": "245",
+                  "active_residue_code": "GLU",
+                  "distance_angstrom": 35.657,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "M",
+                "ligand_code": "SF4",
+                "ligand_resid": "424",
+                "min_distance_to_active_site_donor_acceptor_atom": 35.657,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "L",
+                  "active_resid": "245",
+                  "active_residue_code": "GLU",
+                  "distance_angstrom": 43.437,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "M",
+                "ligand_code": "SF4",
+                "ligand_resid": "423",
+                "min_distance_to_active_site_donor_acceptor_atom": 43.437,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "L",
+                  "active_resid": "245",
+                  "active_residue_code": "GLU",
+                  "distance_angstrom": 53.233,
+                  "ligand_atom": "S2",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "M",
+                "ligand_code": "SF4",
+                "ligand_resid": "422",
+                "min_distance_to_active_site_donor_acceptor_atom": 53.233,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.32,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "L",
+                  "active_resid": "382",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.32,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "L",
+                "ligand_code": "SF4",
+                "ligand_resid": "424",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.32,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:130",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1NDO.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "ND1",
+                  "active_atom_element": "N",
+                  "active_chain": "A",
+                  "active_resid": "104",
+                  "active_residue_code": "HIS",
+                  "distance_angstrom": 1.994,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "FES",
+                "ligand_resid": "451",
+                "min_distance_to_active_site_donor_acceptor_atom": 1.994,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "E",
+                  "active_resid": "362",
+                  "active_residue_code": "ASP",
+                  "distance_angstrom": 40.204,
+                  "ligand_atom": "S2",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "E",
+                "ligand_code": "FES",
+                "ligand_resid": "451",
+                "min_distance_to_active_site_donor_acceptor_atom": 40.204,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "E",
+                  "active_resid": "362",
+                  "active_residue_code": "ASP",
+                  "distance_angstrom": 45.397,
+                  "ligand_atom": "S2",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "C",
+                "ligand_code": "FES",
+                "ligand_resid": "451",
+                "min_distance_to_active_site_donor_acceptor_atom": 45.397,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 1.994,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "ND1",
+                  "active_atom_element": "N",
+                  "active_chain": "A",
+                  "active_resid": "104",
+                  "active_residue_code": "HIS",
+                  "distance_angstrom": 1.994,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "FES",
+                "ligand_resid": "451",
+                "min_distance_to_active_site_donor_acceptor_atom": 1.994,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:208",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EZV.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "ND1",
+                  "active_atom_element": "N",
+                  "active_chain": "E",
+                  "active_resid": "181",
+                  "active_residue_code": "HIS",
+                  "distance_angstrom": 2.095,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "E",
+                "ligand_code": "FES",
+                "ligand_resid": "4",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.095,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.095,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "ND1",
+                  "active_atom_element": "N",
+                  "active_chain": "E",
+                  "active_resid": "181",
+                  "active_residue_code": "HIS",
+                  "distance_angstrom": 2.095,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "E",
+                "ligand_code": "FES",
+                "ligand_resid": "4",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.095,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:212",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1N2C.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "B",
+                  "active_resid": "157",
+                  "active_residue_code": "VAL",
+                  "distance_angstrom": 3.223,
+                  "ligand_atom": "S4",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "F",
+                "ligand_code": "SF4",
+                "ligand_resid": "290",
+                "min_distance_to_active_site_donor_acceptor_atom": 3.223,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "A",
+                  "active_resid": "96",
+                  "active_residue_code": "ARG",
+                  "distance_angstrom": 73.777,
+                  "ligand_atom": "FE3",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "G",
+                "ligand_code": "SF4",
+                "ligand_resid": "290",
+                "min_distance_to_active_site_donor_acceptor_atom": 73.777,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 3.223,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "B",
+                  "active_resid": "157",
+                  "active_residue_code": "VAL",
+                  "distance_angstrom": 3.223,
+                  "ligand_atom": "S4",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "F",
+                "ligand_code": "SF4",
+                "ligand_resid": "290",
+                "min_distance_to_active_site_donor_acceptor_atom": 3.223,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:276",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "NZ",
+                  "active_atom_element": "N",
+                  "active_chain": "E",
+                  "active_resid": "56",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 4.212,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "E",
+                "ligand_code": "SF4",
+                "ligand_resid": "1801",
+                "min_distance_to_active_site_donor_acceptor_atom": 4.212,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "E",
+                  "active_resid": "56",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 37.452,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "1801",
+                "min_distance_to_active_site_donor_acceptor_atom": 37.452,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "E",
+                  "active_resid": "56",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 47.859,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "C",
+                "ligand_code": "SF4",
+                "ligand_resid": "1801",
+                "min_distance_to_active_site_donor_acceptor_atom": 47.859,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "NZ",
+                  "active_atom_element": "N",
+                  "active_chain": "E",
+                  "active_resid": "56",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 51.197,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "I",
+                "ligand_code": "SF4",
+                "ligand_resid": "1801",
+                "min_distance_to_active_site_donor_acceptor_atom": 51.197,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "E",
+                  "active_resid": "56",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 61.239,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "G",
+                "ligand_code": "SF4",
+                "ligand_resid": "1801",
+                "min_distance_to_active_site_donor_acceptor_atom": 61.239,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "E",
+                  "active_resid": "56",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 63.814,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "O",
+                "ligand_code": "SF4",
+                "ligand_resid": "1801",
+                "min_distance_to_active_site_donor_acceptor_atom": 63.814,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 4.212,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "NZ",
+                  "active_atom_element": "N",
+                  "active_chain": "E",
+                  "active_resid": "56",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 4.212,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "E",
+                "ligand_code": "SF4",
+                "ligand_resid": "1801",
+                "min_distance_to_active_site_donor_acceptor_atom": 4.212,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:281",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2GMH.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "A",
+                  "active_resid": "556",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.213,
+                  "ligand_atom": "FE3",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "610",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.213,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "A",
+                  "active_resid": "82",
+                  "active_residue_code": "SER",
+                  "distance_angstrom": 58.039,
+                  "ligand_atom": "S4",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "B",
+                "ligand_code": "SF4",
+                "ligand_resid": "613",
+                "min_distance_to_active_site_donor_acceptor_atom": 58.039,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.213,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "A",
+                  "active_resid": "556",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.213,
+                  "ligand_atom": "FE3",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "610",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.213,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:358",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2A5H.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "A",
+                  "active_resid": "125",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.287,
+                  "ligand_atom": "FE3",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "418",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.287,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "NH1",
+                  "active_atom_element": "N",
+                  "active_chain": "A",
+                  "active_resid": "116",
+                  "active_residue_code": "ARG",
+                  "distance_angstrom": 30.013,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "B",
+                "ligand_code": "SF4",
+                "ligand_resid": "418",
+                "min_distance_to_active_site_donor_acceptor_atom": 30.013,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "A",
+                  "active_resid": "293",
+                  "active_residue_code": "ASP",
+                  "distance_angstrom": 42.647,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "C",
+                "ligand_code": "SF4",
+                "ligand_resid": "418",
+                "min_distance_to_active_site_donor_acceptor_atom": 42.647,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "A",
+                  "active_resid": "337",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 43.052,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "D",
+                "ligand_code": "SF4",
+                "ligand_resid": "418",
+                "min_distance_to_active_site_donor_acceptor_atom": 43.052,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.287,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "A",
+                  "active_resid": "125",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.287,
+                  "ligand_atom": "FE3",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "418",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.287,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:398",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AOP.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "A",
+                  "active_resid": "483",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.161,
+                  "ligand_atom": "FE4",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "575",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.161,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.161,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "A",
+                  "active_resid": "483",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.161,
+                  "ligand_atom": "FE4",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "575",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.161,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:443",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 3,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CC1.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "ND1",
+                  "active_atom_element": "N",
+                  "active_chain": "S",
+                  "active_resid": "208",
+                  "active_residue_code": "HIS",
+                  "distance_angstrom": 1.963,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "284",
+                "min_distance_to_active_site_donor_acceptor_atom": 1.963,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "S",
+                  "active_resid": "267",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.262,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "285",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.262,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "S",
+                  "active_resid": "18",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.288,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "286",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.288,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 1.963,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "ND1",
+                  "active_atom_element": "N",
+                  "active_chain": "S",
+                  "active_resid": "208",
+                  "active_residue_code": "HIS",
+                  "distance_angstrom": 1.963,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "284",
+                "min_distance_to_active_site_donor_acceptor_atom": 1.963,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "S",
+                  "active_resid": "267",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.262,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "285",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.262,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "S",
+                  "active_resid": "18",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.288,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "286",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.288,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 3,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 3
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:562",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AA6.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "NZ",
+                  "active_atom_element": "N",
+                  "active_chain": "A",
+                  "active_resid": "44",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 3.28,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "800",
+                "min_distance_to_active_site_donor_acceptor_atom": 3.28,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 3.28,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "NZ",
+                  "active_atom_element": "N",
+                  "active_chain": "A",
+                  "active_resid": "44",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 3.28,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "800",
+                "min_distance_to_active_site_donor_acceptor_atom": 3.28,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        }
+      ],
+      "incomplete_rows": 0,
+      "interpretation": "The tiny Fe-S/iron projection tranche can be materialized from source-free coordinate fields in research-only mode, but it is not an approved/imported train/cal feature sidecar and therefore does not by itself make the Fe-S/iron current-split positive deployable.",
+      "missing_rows": [],
+      "positive_entry_ids": [
+        "m_csa:108",
+        "m_csa:123",
+        "m_csa:127",
+        "m_csa:130",
+        "m_csa:208",
+        "m_csa:212",
+        "m_csa:276",
+        "m_csa:281",
+        "m_csa:358",
+        "m_csa:398",
+        "m_csa:443",
+        "m_csa:562"
+      ],
+      "positive_rows": 12,
+      "research_only_not_consumable_as_train_cal_support": true
+    },
+    "review_only_iron_sulfur_locus_support_scan": {
+      "available": true,
+      "consumable_as_predictive_feature_now": false,
+      "expanded_noncurrent_projection_tranche_entry_ids": [
+        "m_csa:443",
+        "m_csa:127",
+        "m_csa:281",
+        "m_csa:208",
+        "m_csa:130",
+        "m_csa:398",
+        "m_csa:358",
+        "m_csa:123",
+        "m_csa:212",
+        "m_csa:108",
+        "m_csa:562",
+        "m_csa:276"
+      ],
+      "heldout_rows_excluded_from_support_scan": 140,
+      "missing_consumption_gate": "The iron-sulfur locus sidecar is review-only: proximal source-free coordinate evidence exists outside the current split, but predictive_use_allowed is false for every row, so these rows cannot be counted as train/cal projection support until an approved source-free Fe-S/iron feature-sidecar materialization contract exists.",
+      "nearest_nonheldout_proximal_examples": [
+        {
+          "entry_id": "m_csa:443",
+          "nearest_active_site_distance_angstrom": 3.458,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 24,
+              "code": "SF4",
+              "instance_count": 3,
+              "min_distance_to_active_site": 3.458
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:127",
+          "nearest_active_site_distance_angstrom": 3.486,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.486
+            },
+            {
+              "atom_count": 1,
+              "code": "FE2",
+              "instance_count": 1,
+              "min_distance_to_active_site": 4.824
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "FE2",
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:281",
+          "nearest_active_site_distance_angstrom": 3.664,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.664
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:208",
+          "nearest_active_site_distance_angstrom": 3.724,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 4,
+              "code": "FES",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.724
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "FES"
+          ]
+        },
+        {
+          "entry_id": "m_csa:130",
+          "nearest_active_site_distance_angstrom": 3.76,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 4,
+              "code": "FES",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.76
+            },
+            {
+              "atom_count": 1,
+              "code": "FE",
+              "instance_count": 1,
+              "min_distance_to_active_site": 5.111
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "FE",
+            "FES"
+          ]
+        },
+        {
+          "entry_id": "m_csa:398",
+          "nearest_active_site_distance_angstrom": 3.858,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.858
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:358",
+          "nearest_active_site_distance_angstrom": 4.023,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 4.023
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:123",
+          "nearest_active_site_distance_angstrom": 4.436,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 4.436
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        }
+      ],
+      "nearest_nonheldout_proximal_noncurrent_examples": [
+        {
+          "entry_id": "m_csa:443",
+          "nearest_active_site_distance_angstrom": 3.458,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 24,
+              "code": "SF4",
+              "instance_count": 3,
+              "min_distance_to_active_site": 3.458
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:127",
+          "nearest_active_site_distance_angstrom": 3.486,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.486
+            },
+            {
+              "atom_count": 1,
+              "code": "FE2",
+              "instance_count": 1,
+              "min_distance_to_active_site": 4.824
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "FE2",
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:281",
+          "nearest_active_site_distance_angstrom": 3.664,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.664
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:208",
+          "nearest_active_site_distance_angstrom": 3.724,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 4,
+              "code": "FES",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.724
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "FES"
+          ]
+        },
+        {
+          "entry_id": "m_csa:130",
+          "nearest_active_site_distance_angstrom": 3.76,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 4,
+              "code": "FES",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.76
+            },
+            {
+              "atom_count": 1,
+              "code": "FE",
+              "instance_count": 1,
+              "min_distance_to_active_site": 5.111
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "FE",
+            "FES"
+          ]
+        },
+        {
+          "entry_id": "m_csa:398",
+          "nearest_active_site_distance_angstrom": 3.858,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 3.858
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:358",
+          "nearest_active_site_distance_angstrom": 4.023,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 4.023
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        },
+        {
+          "entry_id": "m_csa:123",
+          "nearest_active_site_distance_angstrom": 4.436,
+          "predictive_use_allowed": false,
+          "proximal_iron_sulfur_ligands": [
+            {
+              "atom_count": 8,
+              "code": "SF4",
+              "instance_count": 1,
+              "min_distance_to_active_site": 4.436
+            }
+          ],
+          "sidecar_status": "proximal_iron_sulfur_context_available",
+          "source_feature_status": "ok",
+          "split_assignment": "in_distribution",
+          "supporting_ligand_codes": [
+            "SF4"
+          ]
+        }
+      ],
+      "nonheldout_proximal_iron_sulfur_rows": 13,
+      "nonheldout_proximal_iron_sulfur_rows_outside_current_split": 12,
+      "nonheldout_proximal_predictive_use_allowed_rows": 0,
+      "nonheldout_rows_scanned": 562,
+      "nonheldout_structure_wide_only_rows": 9,
+      "nonheldout_unsupported_or_missing_geometry_rows": 15,
+      "rows": 702,
+      "smallest_noncurrent_projection_tranche_entry_ids": [
+        "m_csa:443",
+        "m_csa:127",
+        "m_csa:281"
+      ]
+    },
+    "tiny_iron_sulfur_projection_materialization_attempt": {
+      "available": true,
+      "candidate_entry_ids": [
+        "m_csa:443",
+        "m_csa:127",
+        "m_csa:281"
+      ],
+      "candidate_rows": 3,
+      "complete_rows": 3,
+      "feature_rows": [
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:127",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HFE.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "L",
+                  "active_resid": "382",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.32,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "L",
+                "ligand_code": "SF4",
+                "ligand_resid": "424",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.32,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "N",
+                  "active_atom_element": "N",
+                  "active_chain": "L",
+                  "active_resid": "237",
+                  "active_residue_code": "LYS",
+                  "distance_angstrom": 10.332,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "L",
+                "ligand_code": "SF4",
+                "ligand_resid": "423",
+                "min_distance_to_active_site_donor_acceptor_atom": 10.332,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "L",
+                  "active_resid": "382",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 19.418,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "L",
+                "ligand_code": "SF4",
+                "ligand_resid": "422",
+                "min_distance_to_active_site_donor_acceptor_atom": 19.418,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "L",
+                  "active_resid": "245",
+                  "active_residue_code": "GLU",
+                  "distance_angstrom": 35.657,
+                  "ligand_atom": "S3",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "M",
+                "ligand_code": "SF4",
+                "ligand_resid": "424",
+                "min_distance_to_active_site_donor_acceptor_atom": 35.657,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "L",
+                  "active_resid": "245",
+                  "active_residue_code": "GLU",
+                  "distance_angstrom": 43.437,
+                  "ligand_atom": "S1",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "M",
+                "ligand_code": "SF4",
+                "ligand_resid": "423",
+                "min_distance_to_active_site_donor_acceptor_atom": 43.437,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "L",
+                  "active_resid": "245",
+                  "active_residue_code": "GLU",
+                  "distance_angstrom": 53.233,
+                  "ligand_atom": "S2",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "M",
+                "ligand_code": "SF4",
+                "ligand_resid": "422",
+                "min_distance_to_active_site_donor_acceptor_atom": 53.233,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.32,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "L",
+                  "active_resid": "382",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.32,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "L",
+                "ligand_code": "SF4",
+                "ligand_resid": "424",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.32,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:281",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 1,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2GMH.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "A",
+                  "active_resid": "556",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.213,
+                  "ligand_atom": "FE3",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "610",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.213,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "O",
+                  "active_atom_element": "O",
+                  "active_chain": "A",
+                  "active_resid": "82",
+                  "active_residue_code": "SER",
+                  "distance_angstrom": 58.039,
+                  "ligand_atom": "S4",
+                  "ligand_atom_element": "S"
+                },
+                "ligand_chain": "B",
+                "ligand_code": "SF4",
+                "ligand_resid": "613",
+                "min_distance_to_active_site_donor_acceptor_atom": 58.039,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 2.213,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "A",
+                  "active_resid": "556",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.213,
+                  "ligand_atom": "FE3",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "A",
+                "ligand_code": "SF4",
+                "ligand_resid": "610",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.213,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 1,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 1
+          },
+          "source_free_electron_flow_field_complete": true
+        },
+        {
+          "assigned_embedding_split": "research_only_projection_tranche",
+          "current_split_role": "tiny_iron_sulfur_projection_materialization",
+          "entry_id": "m_csa:443",
+          "feature_guardrails": {
+            "accessions_excluded_from_features": true,
+            "ec_rhea_ids_excluded_from_features": true,
+            "fixed_relaxed_distance_cutoff_used": true,
+            "heldout_row": false,
+            "heme_flavin_pqq_excluded_from_feature_contract": true,
+            "labels_excluded_from_features": true,
+            "mechanism_text_excluded_from_features": true,
+            "pdb_ids_and_coordinate_paths_excluded_from_features": true,
+            "source_ids_excluded_from_features": true,
+            "target_names_excluded_from_features": true
+          },
+          "relaxed_non_pqq_donor_acceptor_evidence": {
+            "contact_count": 3,
+            "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CC1.cif",
+            "donor_acceptor_active_atom_elements": [
+              "N",
+              "O",
+              "S"
+            ],
+            "excluded_redox_families": [
+              "flavin",
+              "heme",
+              "pqq"
+            ],
+            "family_distance_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "ND1",
+                  "active_atom_element": "N",
+                  "active_chain": "S",
+                  "active_resid": "208",
+                  "active_residue_code": "HIS",
+                  "distance_angstrom": 1.963,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "284",
+                "min_distance_to_active_site_donor_acceptor_atom": 1.963,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "S",
+                  "active_resid": "267",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.262,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "285",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.262,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "S",
+                  "active_resid": "18",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.288,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "286",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.288,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "field_status": "ok",
+            "fixed_broad_contact_cutoff_reference_angstrom": 3.2,
+            "geometry_status": "ok",
+            "included_redox_families": [
+              "iron_sulfur_or_iron"
+            ],
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": 1.963,
+            "missing_source_free_evidence": [],
+            "positive_contact_examples": [
+              {
+                "closest_contact": {
+                  "active_atom": "ND1",
+                  "active_atom_element": "N",
+                  "active_chain": "S",
+                  "active_resid": "208",
+                  "active_residue_code": "HIS",
+                  "distance_angstrom": 1.963,
+                  "ligand_atom": "FE2",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "284",
+                "min_distance_to_active_site_donor_acceptor_atom": 1.963,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "S",
+                  "active_resid": "267",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.262,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "285",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.262,
+                "reported_family": "iron_sulfur_or_iron"
+              },
+              {
+                "closest_contact": {
+                  "active_atom": "SG",
+                  "active_atom_element": "S",
+                  "active_chain": "S",
+                  "active_resid": "18",
+                  "active_residue_code": "CYS",
+                  "distance_angstrom": 2.288,
+                  "ligand_atom": "FE1",
+                  "ligand_atom_element": "FE"
+                },
+                "ligand_chain": "S",
+                "ligand_code": "SF4",
+                "ligand_resid": "286",
+                "min_distance_to_active_site_donor_acceptor_atom": 2.288,
+                "reported_family": "iron_sulfur_or_iron"
+              }
+            ],
+            "relaxed_non_pqq_distance_cutoff_angstrom": 8.0
+          },
+          "row_specific_event_features": {
+            "electron_transfer_count": 3,
+            "has_electron_transfer_event": true,
+            "has_source_free_relaxed_non_pqq_donor_acceptor_contact": true,
+            "source_free_relaxed_non_pqq_donor_acceptor_contact_count": 3
+          },
+          "source_free_electron_flow_field_complete": true
+        }
+      ],
+      "incomplete_rows": 0,
+      "interpretation": "The tiny Fe-S/iron projection tranche can be materialized from source-free coordinate fields in research-only mode, but it is not an approved/imported train/cal feature sidecar and therefore does not by itself make the Fe-S/iron current-split positive deployable.",
+      "missing_rows": [],
+      "positive_entry_ids": [
+        "m_csa:127",
+        "m_csa:281",
+        "m_csa:443"
+      ],
+      "positive_rows": 3,
+      "research_only_not_consumable_as_train_cal_support": true
+    }
+  },
+  "result_class": "research_only_iron_sulfur_current_split_signal_tiny_materialization_support_gap",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_iron_sulfur_projection_support_readout.v0",
+  "scope": "Lever 2 train/cal-disciplined source-free Fe-S/iron projection support readout. It consumes the measured fixed 8 A relaxed non-PQQ family split and the review-only iron-sulfur locus sidecar to determine whether the Fe-S/iron current-split signal can be counted as train/cal-supported now. It does not train, tune thresholds, score heldout, edit registries, import features, or promote a primitive.",
+  "source_artifacts": {
+    "geometry_features": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6"
+    },
+    "iron_sulfur_locus_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_current702_20260601.json",
+      "sha256": "4631c7d26b11d8c278644675dcd33b20d61a371889ed23e080aca0477a760b62"
+    },
+    "relaxed_non_pqq_feature_sidecar_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout_current702_20260605.json",
+      "sha256": "ab5ee2a8b83e24b06c54cddbc37ef40c59b702b6072f0c39473933105a087ffb"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_iron_sulfur_projection_support_readout_research_only_iron_sulfur_current_split_signal_tiny_materialization_support_gap"
+}

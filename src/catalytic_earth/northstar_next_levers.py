@@ -795,6 +795,9 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PROJECTION_REPAIR_CANDIDATE_SURFACE_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_TRAIN_CAL_PROJECTION_READOUT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_current702_20260604"
+)
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PROJECTION_REPAIR_AXIS_REVIEW_PACKET_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_current702_20260604"
 )
@@ -96628,6 +96631,954 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             encoding="utf-8",
         )
     return surface
+
+
+def _source_free_projectable_frozen_fields(
+    *,
+    candidate_surface: dict[str, Any],
+    frozen_feature_fields: list[str],
+    train_cal_feature_rows: list[dict[str, Any]],
+) -> list[str]:
+    frozen = set(frozen_feature_fields)
+    train_cal_fields = set(_row_specific_no_template_feature_fields(train_cal_feature_rows))
+    candidate_fields = {
+        str(field)
+        for row in candidate_surface.get("candidate_projection_rows", [])
+        if isinstance(row, dict)
+        for field in (row.get("candidate_projected_event_features") or {})
+    }
+    return sorted(candidate_fields & frozen & train_cal_fields)
+
+
+def _row_specific_projection_train_cal_readout(
+    *,
+    feature_rows: list[dict[str, Any]],
+    labels_by_entry: dict[str, str],
+    feature_fields: list[str],
+) -> dict[str, Any]:
+    train_rows = [
+        row for row in feature_rows if row.get("assigned_embedding_split") == "train"
+    ]
+    calibration_rows = [
+        row
+        for row in feature_rows
+        if row.get("assigned_embedding_split") == "calibration"
+    ]
+    train_raw = [
+        _row_specific_no_template_vector(row, feature_fields=feature_fields)
+        for row in train_rows
+    ]
+    calibration_raw = [
+        _row_specific_no_template_vector(row, feature_fields=feature_fields)
+        for row in calibration_rows
+    ]
+    train_vectors, calibration_vectors, scaling = _standardize_train_cal_vectors(
+        train_raw, calibration_raw
+    )
+    primary_labels = sorted(
+        {
+            labels_by_entry.get(str(row.get("entry_id")))
+            for row in train_rows
+            if labels_by_entry.get(str(row.get("entry_id"))) != "none_of_above"
+        }
+    )
+    primary_centroids: dict[str, list[float]] = {}
+    for label in primary_labels:
+        label_vectors = [
+            vector
+            for vector, row in zip(train_vectors, train_rows)
+            if labels_by_entry.get(str(row.get("entry_id"))) == label
+        ]
+        primary_centroids[str(label)] = _centroid(label_vectors)
+    train_scored = _mechanism_feature_pilot_scores(
+        train_vectors,
+        train_rows,
+        labels_by_entry=labels_by_entry,
+        primary_centroids=primary_centroids,
+    )
+    calibration_scored = _mechanism_feature_pilot_scores(
+        calibration_vectors,
+        calibration_rows,
+        labels_by_entry=labels_by_entry,
+        primary_centroids=primary_centroids,
+    )
+    for row in train_scored + calibration_scored:
+        row["out_of_atlas_span_residual"] = row["nearest_primary_distance"]
+    return {
+        "feature_fields": feature_fields,
+        "model_parameters": {
+            "scaling": scaling,
+            "primary_centroids": primary_centroids,
+        },
+        "centroid_variant": {
+            "model_type": "standardized_nearest_primary_centroid",
+            "train_summary": _classification_summary(train_scored),
+            "calibration_summary": _classification_summary(calibration_scored),
+            "calibration_selected_similarity_threshold": _select_similarity_threshold(
+                calibration_scored, retention_target=0.9
+            ),
+        },
+        "residual_variant": {
+            "model_type": "standardized_out_of_atlas_span_residual",
+            "train_summary": _row_specific_residual_summary(train_scored),
+            "calibration_summary": _row_specific_residual_summary(calibration_scored),
+            "calibration_selected_residual_threshold": (
+                _select_residual_distance_threshold(
+                    calibration_scored, retention_target=0.9
+                )
+            ),
+        },
+        "scored_rows": {
+            "train": train_scored,
+            "calibration": calibration_scored,
+        },
+    }
+
+
+def _fold_geometry_context_for_lever2_projection(
+    readout: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if not isinstance(readout, dict):
+        return {"available": False}
+    fixed = readout.get("fixed_operating_point", {})
+    measured = readout.get("measured_readout", {})
+    return {
+        "available": True,
+        "channel": fixed.get("channel"),
+        "threshold": fixed.get("threshold"),
+        "calibration_selection": measured.get(
+            "train_cal_in_scope_threshold_selection"
+        )
+        or fixed.get("calibration_selection"),
+        "train_cal_oos_current_scored_surface": measured.get(
+            "train_cal_oos_current_scored_surface"
+        ),
+        "baseline_surface_note": (
+            "Context only: the geometry/fold readout uses the current "
+            "fold-augmented train/cal OOS surface, not the 43-row "
+            "row-specific mechanism-feature calibration surface."
+        ),
+    }
+
+
+def _projection_readout_variant_summary(
+    *,
+    variant_name: str,
+    feature_fields: list[str],
+    feature_rows: list[dict[str, Any]],
+    labels_by_entry: dict[str, str],
+    baseline_oos_recall: float | None,
+    full_oos_recall: float | None,
+) -> dict[str, Any]:
+    variant = _row_specific_projection_train_cal_readout(
+        feature_rows=feature_rows,
+        labels_by_entry=labels_by_entry,
+        feature_fields=feature_fields,
+    )
+    threshold = variant["residual_variant"]["calibration_selected_residual_threshold"]
+    summary = variant["residual_variant"]["calibration_summary"]
+    oos_recall = threshold.get("oos_abstain_recall")
+    auc = summary.get("auc_oos_gt_primary")
+    return {
+        "variant": variant_name,
+        "feature_fields": feature_fields,
+        "feature_field_count": len(feature_fields),
+        "primary_retain_recall": threshold.get("primary_retain_recall"),
+        "oos_abstain_recall": oos_recall,
+        "auc_oos_gt_primary": auc,
+        "threshold": threshold.get("threshold"),
+        "delta_vs_current_projected_oos_abstain_recall": (
+            round(float(oos_recall) - float(baseline_oos_recall), 6)
+            if oos_recall is not None and baseline_oos_recall is not None
+            else None
+        ),
+        "remaining_gap_to_full_oos_abstain_recall": (
+            round(float(full_oos_recall) - float(oos_recall), 6)
+            if oos_recall is not None and full_oos_recall is not None
+            else None
+        ),
+    }
+
+
+def _projection_best_axis_new_oos_rows(
+    *,
+    baseline_readout: dict[str, Any],
+    repair_readout: dict[str, Any],
+) -> list[dict[str, Any]]:
+    baseline_threshold = (
+        baseline_readout.get("residual_variant", {})
+        .get("calibration_selected_residual_threshold", {})
+        .get("threshold")
+    )
+    repair_threshold = (
+        repair_readout.get("residual_variant", {})
+        .get("calibration_selected_residual_threshold", {})
+        .get("threshold")
+    )
+    if baseline_threshold is None or repair_threshold is None:
+        return []
+    baseline_rows = {
+        str(row.get("entry_id")): row
+        for row in (baseline_readout.get("scored_rows", {}).get("calibration") or [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    repair_rows = {
+        str(row.get("entry_id")): row
+        for row in (repair_readout.get("scored_rows", {}).get("calibration") or [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    rows: list[dict[str, Any]] = []
+    for entry_id in sorted(set(baseline_rows) & set(repair_rows), key=_entry_id_sort_key):
+        baseline_row = baseline_rows[entry_id]
+        repair_row = repair_rows[entry_id]
+        if bool(baseline_row.get("is_primary")) or bool(repair_row.get("is_primary")):
+            continue
+        baseline_residual = float(baseline_row.get("out_of_atlas_span_residual") or 0.0)
+        repair_residual = float(repair_row.get("out_of_atlas_span_residual") or 0.0)
+        baseline_abstains = baseline_residual > float(baseline_threshold)
+        repair_abstains = repair_residual > float(repair_threshold)
+        if baseline_abstains or not repair_abstains:
+            continue
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "current_projected_subset_residual": round(baseline_residual, 8),
+                "current_projected_subset_threshold": round(
+                    float(baseline_threshold), 8
+                ),
+                "current_projected_subset_abstains": baseline_abstains,
+                "best_single_axis_residual": round(repair_residual, 8),
+                "best_single_axis_threshold": round(float(repair_threshold), 8),
+                "best_single_axis_abstains": repair_abstains,
+            }
+        )
+    return rows
+
+
+def _entry_ids_from_rows(rows: list[dict[str, Any]]) -> set[str]:
+    return {
+        str(row.get("entry_id"))
+        for row in rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _lever2_split_overlap_context(
+    *,
+    feature_rows: list[dict[str, Any]],
+    candidate_surface: dict[str, Any],
+    current_in_scope_threshold_contract: dict[str, Any] | None,
+    expanded_oos_calibrated_threshold_contract: dict[str, Any] | None,
+) -> dict[str, Any]:
+    feature_ids = _entry_ids_from_rows(feature_rows)
+    candidate_ids = _entry_ids_from_rows(
+        candidate_surface.get("candidate_projection_rows", [])
+        if isinstance(candidate_surface.get("candidate_projection_rows"), list)
+        else []
+    )
+    primary_rows = (
+        current_in_scope_threshold_contract.get("calibration_row_scores", [])
+        if isinstance(current_in_scope_threshold_contract, dict)
+        else []
+    )
+    oos_rows = (
+        expanded_oos_calibrated_threshold_contract.get(
+            "calibration_oos_negative_row_scores", []
+        )
+        if isinstance(expanded_oos_calibrated_threshold_contract, dict)
+        else []
+    )
+    primary_ids = _entry_ids_from_rows(primary_rows if isinstance(primary_rows, list) else [])
+    oos_ids = _entry_ids_from_rows(oos_rows if isinstance(oos_rows, list) else [])
+    feature_primary_overlap = sorted(feature_ids & primary_ids, key=_entry_id_sort_key)
+    feature_oos_overlap = sorted(feature_ids & oos_ids, key=_entry_id_sort_key)
+    candidate_primary_overlap = sorted(candidate_ids & primary_ids, key=_entry_id_sort_key)
+    candidate_oos_overlap = sorted(candidate_ids & oos_ids, key=_entry_id_sort_key)
+    return {
+        "available": bool(primary_ids or oos_ids),
+        "current_geometry_fold_calibration_primary_rows": len(primary_ids),
+        "current_geometry_fold_calibration_oos_rows": len(oos_ids),
+        "full_row_specific_feature_overlap_primary_rows": len(feature_primary_overlap),
+        "full_row_specific_feature_overlap_oos_rows": len(feature_oos_overlap),
+        "source_free_candidate_projection_overlap_primary_rows": len(
+            candidate_primary_overlap
+        ),
+        "source_free_candidate_projection_overlap_oos_rows": len(candidate_oos_overlap),
+        "full_row_specific_feature_overlap_primary_entry_ids": feature_primary_overlap,
+        "full_row_specific_feature_overlap_oos_entry_ids": feature_oos_overlap,
+        "source_free_candidate_projection_overlap_primary_entry_ids": (
+            candidate_primary_overlap
+        ),
+        "source_free_candidate_projection_overlap_oos_entry_ids": candidate_oos_overlap,
+        "measurability_note": (
+            "The current source-free candidate projection cannot support a "
+            "split-aligned incremental operating-point readout until it covers "
+            "the current geometry/fold calibration-primary and train/cal OOS rows."
+        ),
+    }
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_feature_guardrail_path: Path,
+    label_manifest_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    full_no_template_rerun_path: Path,
+    fold_augmented_current_measured_readout_path: Path | None = None,
+    current_in_scope_threshold_contract_path: Path | None = None,
+    expanded_oos_calibrated_threshold_contract_path: Path | None = None,
+) -> dict[str, Any]:
+    sidecar = _read_json(train_cal_feature_sidecar_path)
+    guardrail = _read_json(train_cal_feature_guardrail_path)
+    label_manifest = _read_json(label_manifest_path)
+    candidate_surface = _read_json(source_free_projection_repair_candidate_surface_path)
+    full_rerun = _read_json(full_no_template_rerun_path)
+    fold_context_payload = (
+        _read_json(fold_augmented_current_measured_readout_path)
+        if fold_augmented_current_measured_readout_path is not None
+        and Path(fold_augmented_current_measured_readout_path).exists()
+        else None
+    )
+    current_in_scope_threshold_contract = (
+        _read_json(current_in_scope_threshold_contract_path)
+        if current_in_scope_threshold_contract_path is not None
+        and Path(current_in_scope_threshold_contract_path).exists()
+        else None
+    )
+    expanded_oos_calibrated_threshold_contract = (
+        _read_json(expanded_oos_calibrated_threshold_contract_path)
+        if expanded_oos_calibrated_threshold_contract_path is not None
+        and Path(expanded_oos_calibrated_threshold_contract_path).exists()
+        else None
+    )
+
+    feature_rows = [
+        row
+        for row in sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    labels_by_entry = _label_by_entry_from_manifest(label_manifest)
+    guardrail_safe = bool(
+        guardrail.get("decision", {}).get("safe_to_run_no_template_methods_now")
+    ) and int(guardrail.get("counts", {}).get("critical_violation_total") or 0) == 0
+    frozen_feature_fields = [
+        str(field) for field in full_rerun.get("feature_fields", []) if field
+    ]
+    projected_feature_fields = _source_free_projectable_frozen_fields(
+        candidate_surface=candidate_surface,
+        frozen_feature_fields=frozen_feature_fields,
+        train_cal_feature_rows=feature_rows,
+    )
+    missing_frozen_fields = [
+        field for field in frozen_feature_fields if field not in projected_feature_fields
+    ]
+    blockers: list[str] = []
+    if not guardrail_safe:
+        blockers.append("train_cal_feature_guardrail_not_safe")
+    if not feature_rows:
+        blockers.append("train_cal_feature_rows_missing")
+    if not frozen_feature_fields:
+        blockers.append("frozen_full_surface_feature_fields_missing")
+    if not projected_feature_fields:
+        blockers.append("source_free_projected_train_cal_feature_fields_missing")
+
+    projection_readout = (
+        _row_specific_projection_train_cal_readout(
+            feature_rows=feature_rows,
+            labels_by_entry=labels_by_entry,
+            feature_fields=projected_feature_fields,
+        )
+        if not blockers
+        else {
+            "feature_fields": projected_feature_fields,
+            "centroid_variant": {
+                "train_summary": _classification_summary([]),
+                "calibration_summary": _classification_summary([]),
+                "calibration_selected_similarity_threshold": (
+                    _select_similarity_threshold([], retention_target=0.9)
+                ),
+            },
+            "residual_variant": {
+                "train_summary": _row_specific_residual_summary([]),
+                "calibration_summary": _row_specific_residual_summary([]),
+                "calibration_selected_residual_threshold": (
+                    _select_residual_distance_threshold([], retention_target=0.9)
+                ),
+            },
+            "scored_rows": {"train": [], "calibration": []},
+            "model_parameters": {"scaling": {"mean": [], "scale": []}, "primary_centroids": {}},
+        }
+    )
+    projected_residual = projection_readout["residual_variant"]
+    projected_threshold = projected_residual[
+        "calibration_selected_residual_threshold"
+    ]
+    full_residual = full_rerun.get("residual_variant", {})
+    full_threshold = full_residual.get("calibration_selected_residual_threshold", {})
+    full_calibration = full_residual.get("calibration_summary", {})
+    projected_calibration = projected_residual.get("calibration_summary", {})
+    projected_oos_recall = projected_threshold.get("oos_abstain_recall")
+    full_oos_recall = full_threshold.get("oos_abstain_recall")
+    projected_auc = projected_calibration.get("auc_oos_gt_primary")
+    full_auc = full_calibration.get("auc_oos_gt_primary")
+    axis_repair_ceiling_rows: list[dict[str, Any]] = []
+    best_single_axis_ceiling: dict[str, Any] | None = None
+    best_single_axis_new_oos_rows: list[dict[str, Any]] = []
+    if not blockers:
+        axis_repair_ceiling_rows.append(
+            _projection_readout_variant_summary(
+                variant_name="current_source_free_projected_subset",
+                feature_fields=projected_feature_fields,
+                feature_rows=feature_rows,
+                labels_by_entry=labels_by_entry,
+                baseline_oos_recall=projected_oos_recall,
+                full_oos_recall=full_oos_recall,
+            )
+        )
+        missing_by_category: dict[str, list[str]] = defaultdict(list)
+        for field in missing_frozen_fields:
+            missing_by_category[_feature_projection_repair_category(field)].append(
+                field
+            )
+        for category, fields in sorted(missing_by_category.items()):
+            candidate_fields = sorted(set(projected_feature_fields) | set(fields))
+            axis_repair_ceiling_rows.append(
+                _projection_readout_variant_summary(
+                    variant_name=f"current_plus_missing_{category}",
+                    feature_fields=candidate_fields,
+                    feature_rows=feature_rows,
+                    labels_by_entry=labels_by_entry,
+                    baseline_oos_recall=projected_oos_recall,
+                    full_oos_recall=full_oos_recall,
+                )
+            )
+        axis_repair_ceiling_rows.append(
+            _projection_readout_variant_summary(
+                variant_name="full_frozen_row_specific_surface",
+                feature_fields=frozen_feature_fields,
+                feature_rows=feature_rows,
+                labels_by_entry=labels_by_entry,
+                baseline_oos_recall=projected_oos_recall,
+                full_oos_recall=full_oos_recall,
+            )
+        )
+        single_axis_rows = [
+            row
+            for row in axis_repair_ceiling_rows
+            if row["variant"].startswith("current_plus_missing_")
+            and (row.get("primary_retain_recall") or 0.0) >= 0.9
+        ]
+        if single_axis_rows:
+            best_single_axis_ceiling = sorted(
+                single_axis_rows,
+                key=lambda row: (
+                    -float(row.get("oos_abstain_recall") or -1.0),
+                    -float(row.get("auc_oos_gt_primary") or -1.0),
+                    str(row.get("variant")),
+                ),
+            )[0]
+            best_single_axis_readout = _row_specific_projection_train_cal_readout(
+                feature_rows=feature_rows,
+                labels_by_entry=labels_by_entry,
+                feature_fields=best_single_axis_ceiling["feature_fields"],
+            )
+            best_single_axis_new_oos_rows = _projection_best_axis_new_oos_rows(
+                baseline_readout=projection_readout,
+                repair_readout=best_single_axis_readout,
+            )
+    fold_context = _fold_geometry_context_for_lever2_projection(fold_context_payload)
+    split_overlap_context = _lever2_split_overlap_context(
+        feature_rows=feature_rows,
+        candidate_surface=candidate_surface,
+        current_in_scope_threshold_contract=current_in_scope_threshold_contract,
+        expanded_oos_calibrated_threshold_contract=(
+            expanded_oos_calibrated_threshold_contract
+        ),
+    )
+    current_surface_oos_ids = _entry_ids_from_rows(
+        expanded_oos_calibrated_threshold_contract.get(
+            "calibration_oos_negative_row_scores", []
+        )
+        if isinstance(expanded_oos_calibrated_threshold_contract, dict)
+        else []
+    )
+    for row in best_single_axis_new_oos_rows:
+        row["in_current_geometry_fold_calibration_oos"] = (
+            row["entry_id"] in current_surface_oos_ids
+        )
+    best_single_axis_current_surface_new_oos_rows = [
+        row
+        for row in best_single_axis_new_oos_rows
+        if row["in_current_geometry_fold_calibration_oos"]
+    ]
+    split_aligned_current_surface_incremental_readout_measurable = bool(
+        split_overlap_context["source_free_candidate_projection_overlap_primary_rows"]
+        and split_overlap_context["source_free_candidate_projection_overlap_oos_rows"]
+    )
+    fold_cal = fold_context.get("calibration_selection") or {}
+    fold_oos_recall = fold_cal.get("calibration_oos_abstain_recall")
+    primary_retain = projected_threshold.get("primary_retain_recall")
+    delta_vs_full_recall = (
+        round(float(projected_oos_recall) - float(full_oos_recall), 6)
+        if projected_oos_recall is not None and full_oos_recall is not None
+        else None
+    )
+    delta_vs_full_auc = (
+        round(float(projected_auc) - float(full_auc), 6)
+        if projected_auc is not None and full_auc is not None
+        else None
+    )
+    delta_vs_fold_context_recall = (
+        round(float(projected_oos_recall) - float(fold_oos_recall), 6)
+        if projected_oos_recall is not None and fold_oos_recall is not None
+        else None
+    )
+    current_projection_incomplete = bool(missing_frozen_fields)
+    projection_clears_fold_context = (
+        projected_oos_recall is not None
+        and fold_oos_recall is not None
+        and primary_retain is not None
+        and float(primary_retain) >= 0.9
+        and float(projected_oos_recall) > float(fold_oos_recall)
+    )
+    projection_matches_full = (
+        projected_oos_recall is not None
+        and full_oos_recall is not None
+        and primary_retain is not None
+        and float(primary_retain) >= 0.9
+        and float(projected_oos_recall) >= float(full_oos_recall)
+    )
+    if blockers:
+        status = "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_blocked"
+        result_classification = "blocker"
+        next_action = "Repair the listed train/cal projection readout blockers."
+    elif current_projection_incomplete:
+        status = (
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_measured_research_only"
+        )
+        result_classification = (
+            "research_only_signal_current_projection_incomplete"
+            if projection_clears_fold_context
+            else "negative_current_projection_incomplete"
+        )
+        best_axis_name = (
+            str(best_single_axis_ceiling.get("variant", "")).replace(
+                "current_plus_missing_", ""
+            )
+            if best_single_axis_ceiling
+            else None
+        )
+        next_action = (
+            "Prioritize source-free electron-flow projection first by the "
+            "train/cal ceiling, then materialize the remaining bond-change "
+            "and event-topology axes; rerun this projection readout before "
+            "any heldout or deployment claim."
+            if best_axis_name == "electron_flow"
+            else "Materialize the missing source-free bond-change, electron-flow, "
+            "and event-topology axes, then rerun this train/cal projection "
+            "readout before any heldout or deployment claim."
+        )
+    elif projection_matches_full:
+        status = (
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_measured_promotable_candidate"
+        )
+        result_classification = "research_only_complete_projection_candidate"
+        next_action = (
+            "Run the source-free guardrails and a heldout-safe application "
+            "surface preflight before any read-once threshold application."
+        )
+    else:
+        status = (
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_measured_negative"
+        )
+        result_classification = "negative_complete_projection_no_incremental_value"
+        next_action = (
+            "Do not promote Lever 2 from this projection. Search for an "
+            "additional source-free mechanism axis or treat the current result "
+            "as a negative."
+        )
+
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_TRAIN_CAL_PROJECTION_READOUT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 2 measured train/cal readout for the currently source-free "
+            "projectable subset of the row-specific bond-change/event-pair "
+            "feature surface. It fits only train rows, selects only on "
+            "calibration rows, compares against the full row-specific "
+            "train/cal contract plus current fold/geometry context, and does "
+            "not read or rescore heldout."
+        ),
+        "blockers": blockers,
+        "counts": {
+            "feature_rows": len(feature_rows),
+            "train_rows": sum(
+                1
+                for row in feature_rows
+                if row.get("assigned_embedding_split") == "train"
+            ),
+            "calibration_rows": sum(
+                1
+                for row in feature_rows
+                if row.get("assigned_embedding_split") == "calibration"
+            ),
+            "frozen_full_surface_feature_fields": len(frozen_feature_fields),
+            "source_free_projected_train_cal_feature_fields": len(
+                projected_feature_fields
+            ),
+            "missing_frozen_feature_fields": len(missing_frozen_fields),
+            "candidate_projection_rows": len(
+                candidate_surface.get("candidate_projection_rows", [])
+                if isinstance(candidate_surface.get("candidate_projection_rows"), list)
+                else []
+            ),
+            "candidate_rows_full_frozen_projection_ready": int(
+                candidate_surface.get("counts", {}).get(
+                    "full_frozen_projection_ready_rows"
+                )
+                or 0
+            ),
+            "current_geometry_fold_calibration_primary_rows": (
+                split_overlap_context[
+                    "current_geometry_fold_calibration_primary_rows"
+                ]
+            ),
+            "current_geometry_fold_calibration_oos_rows": (
+                split_overlap_context["current_geometry_fold_calibration_oos_rows"]
+            ),
+            "source_free_candidate_projection_overlap_primary_rows": (
+                split_overlap_context[
+                    "source_free_candidate_projection_overlap_primary_rows"
+                ]
+            ),
+            "source_free_candidate_projection_overlap_oos_rows": (
+                split_overlap_context[
+                    "source_free_candidate_projection_overlap_oos_rows"
+                ]
+            ),
+            "best_single_axis_new_oos_catches": len(best_single_axis_new_oos_rows),
+            "best_single_axis_new_oos_catches_on_current_geometry_fold_oos_rows": len(
+                best_single_axis_current_surface_new_oos_rows
+            ),
+            "critical_violation_total": 0,
+            "blockers": len(blockers),
+        },
+        "source_free_projection": {
+            "projected_feature_fields": projected_feature_fields,
+            "missing_frozen_feature_fields": missing_frozen_fields,
+            "candidate_surface_status": candidate_surface.get("status"),
+            "candidate_surface_ready_for_threshold_scoring": bool(
+                candidate_surface.get("decision", {}).get(
+                    "candidate_surface_ready_for_threshold_scoring"
+                )
+            ),
+        },
+        "measured_readout": {
+            "projected_source_free_subset": {
+                "feature_fields": projected_feature_fields,
+                "centroid_variant": projection_readout["centroid_variant"],
+                "residual_variant": projection_readout["residual_variant"],
+            },
+            "axis_repair_ceiling_rows": axis_repair_ceiling_rows,
+            "best_single_axis_repair_ceiling": best_single_axis_ceiling,
+            "best_single_axis_new_oos_rows": best_single_axis_new_oos_rows,
+            "full_row_specific_train_cal_context": {
+                "feature_fields": frozen_feature_fields,
+                "centroid_variant": full_rerun.get("centroid_variant", {}),
+                "residual_variant": full_residual,
+            },
+            "fold_geometry_context": fold_context,
+            "split_alignment_context": split_overlap_context,
+            "deltas": {
+                "residual_oos_abstain_recall_delta_vs_full_row_specific": (
+                    delta_vs_full_recall
+                ),
+                "residual_auc_delta_vs_full_row_specific": delta_vs_full_auc,
+                "residual_oos_abstain_recall_delta_vs_fold_geometry_context": (
+                    delta_vs_fold_context_recall
+                ),
+            },
+        },
+        "scored_rows": projection_readout["scored_rows"],
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": not blockers,
+            "model_fit_rows": "train_only",
+            "threshold_selected_or_tuned": not blockers,
+            "threshold_selection_rows": "calibration_only",
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "heldout_rows_rescored": False,
+            "m_csa_heldout_mechanism_text_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "source_ids_used_as_predictive_features": False,
+            "target_names_used_as_predictive_features": False,
+            "ec_or_rhea_ids_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "labels_used_only_for_train_cal_supervision_and_metric_accounting": True,
+            "feature_projection_uses_current_source_free_candidate_fields_only": True,
+            "review_only": True,
+        },
+        "decision": {
+            "measured_readout_available": not blockers,
+            "result_classification": result_classification,
+            "deployable_now": False,
+            "research_only": not blockers,
+            "negative": result_classification.startswith("negative"),
+            "source_free_projection_complete_for_frozen_contract": (
+                not current_projection_incomplete and not blockers
+            ),
+            "split_aligned_current_surface_incremental_readout_measurable": (
+                split_aligned_current_surface_incremental_readout_measurable
+                if not blockers
+                else False
+            ),
+            "best_axis_new_oos_rows_overlap_current_geometry_fold_oos": bool(
+                best_single_axis_current_surface_new_oos_rows
+            ),
+            "operating_point_value_beyond_fold_geometry_context": (
+                projection_clears_fold_context if not blockers else False
+            ),
+            "operating_point_value_beyond_full_row_specific_surface": (
+                projection_matches_full if not blockers else False
+            ),
+            "best_next_source_free_axis_category_by_train_cal_ceiling": (
+                str(best_single_axis_ceiling.get("variant", "")).replace(
+                    "current_plus_missing_", ""
+                )
+                if best_single_axis_ceiling
+                else None
+            ),
+            "heldout_read_once_performed": False,
+            "rerun_or_retune_heldout_authorized": False,
+            "next_gate": next_action,
+        },
+        "source_artifacts": {
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+            "train_cal_feature_guardrail": _source_path_record(
+                train_cal_feature_guardrail_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "source_free_projection_repair_candidate_surface": _source_path_record(
+                source_free_projection_repair_candidate_surface_path
+            ),
+            "full_no_template_rerun": _source_path_record(full_no_template_rerun_path),
+            "fold_augmented_current_measured_readout": (
+                _source_path_record(fold_augmented_current_measured_readout_path)
+                if fold_augmented_current_measured_readout_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "current_in_scope_threshold_contract": (
+                _source_path_record(current_in_scope_threshold_contract_path)
+                if current_in_scope_threshold_contract_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "expanded_oos_calibrated_threshold_contract": (
+                _source_path_record(expanded_oos_calibrated_threshold_contract_path)
+                if expanded_oos_calibrated_threshold_contract_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The current source-free projection is measured on train/cal "
+                f"using {len(projected_feature_fields)}/"
+                f"{len(frozen_feature_fields)} frozen feature fields. "
+                f"Residual OOS abstain recall is {projected_oos_recall} at "
+                f"primary retain recall {primary_retain}; full row-specific "
+                f"context is {full_oos_recall}."
+                if not blockers
+                else "The source-free train/cal projection readout is blocked."
+            ),
+            "next_action": next_action,
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    projected = measured["projected_source_free_subset"]["residual_variant"]
+    full = measured["full_row_specific_train_cal_context"]["residual_variant"]
+    projected_threshold = projected["calibration_selected_residual_threshold"]
+    full_threshold = full.get("calibration_selected_residual_threshold", {})
+    fold_context = measured.get("fold_geometry_context", {})
+    fold_cal = fold_context.get("calibration_selection") or {}
+    split_context = measured.get("split_alignment_context", {})
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Train/Cal Projection Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result classification: {decision['result_classification']}",
+        f"- Feature rows: {counts['feature_rows']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        "- Source-free projected fields: "
+        f"{counts['source_free_projected_train_cal_feature_fields']}/"
+        f"{counts['frozen_full_surface_feature_fields']}",
+        f"- Missing frozen fields: {counts['missing_frozen_feature_fields']}",
+        "- Source-free candidate overlap with current calibration primary rows: "
+        f"{counts['source_free_candidate_projection_overlap_primary_rows']}/"
+        f"{counts['current_geometry_fold_calibration_primary_rows']}",
+        "- Source-free candidate overlap with current calibration OOS rows: "
+        f"{counts['source_free_candidate_projection_overlap_oos_rows']}/"
+        f"{counts['current_geometry_fold_calibration_oos_rows']}",
+        f"- Blockers: {readout['blockers'] if readout['blockers'] else 'none'}",
+        "",
+        "## Measured Projection",
+        "",
+        "- Projected residual calibration summary: "
+        f"{projected['calibration_summary']}",
+        "- Projected residual threshold: "
+        f"{projected_threshold}",
+        "- Full row-specific residual calibration summary: "
+        f"{full.get('calibration_summary')}",
+        f"- Full row-specific residual threshold: {full_threshold}",
+        "- Fold/geometry calibration context: "
+        f"{fold_cal if fold_cal else 'unavailable'}",
+        "- Split-aligned current-surface overlap: "
+        f"{split_context if split_context else 'unavailable'}",
+        f"- Deltas: {measured['deltas']}",
+        "",
+        "## Axis Repair Ceiling",
+        "",
+        "| variant | fields | primary retain | OOS abstain | AUC | delta vs current | gap to full |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in measured.get("axis_repair_ceiling_rows", []):
+        lines.append(
+            f"| {row['variant']} | "
+            f"{row['feature_field_count']} | "
+            f"{row['primary_retain_recall']} | "
+            f"{row['oos_abstain_recall']} | "
+            f"{row['auc_oos_gt_primary']} | "
+            f"{row['delta_vs_current_projected_oos_abstain_recall']} | "
+            f"{row['remaining_gap_to_full_oos_abstain_recall']} |"
+        )
+    lines += [
+        "",
+        "## Best Axis Newly Caught OOS Rows",
+        "",
+        "| row | current residual | current threshold | best-axis residual | best-axis threshold | current geometry/fold OOS |",
+        "| --- | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in measured.get("best_single_axis_new_oos_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | "
+            f"{row['current_projected_subset_residual']} | "
+            f"{row['current_projected_subset_threshold']} | "
+            f"{row['best_single_axis_residual']} | "
+            f"{row['best_single_axis_threshold']} | "
+            f"{row['in_current_geometry_fold_calibration_oos']} |"
+        )
+    if not measured.get("best_single_axis_new_oos_rows", []):
+        lines.append("| none |  |  |  |  |  |")
+    lines += [
+        "",
+        "## Projected Fields",
+        "",
+    ]
+    for field in readout["source_free_projection"]["projected_feature_fields"]:
+        lines.append(f"- {field}")
+    lines += [
+        "",
+        "## Missing Frozen Fields",
+        "",
+    ]
+    for field in readout["source_free_projection"]["missing_frozen_feature_fields"]:
+        lines.append(f"- {field}")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Negative: {decision['negative']}",
+        "- Complete for frozen contract: "
+        f"{decision['source_free_projection_complete_for_frozen_contract']}",
+        "- Split-aligned current-surface incremental readout measurable: "
+        f"{decision['split_aligned_current_surface_incremental_readout_measurable']}",
+        "- Value beyond fold/geometry context: "
+        f"{decision['operating_point_value_beyond_fold_geometry_context']}",
+        "- Value beyond full row-specific surface: "
+        f"{decision['operating_point_value_beyond_full_row_specific_surface']}",
+        "- Best-axis new OOS rows overlap current geometry/fold OOS: "
+        f"{decision['best_axis_new_oos_rows_overlap_current_geometry_fold_oos']}",
+        "- Best next source-free axis by ceiling: "
+        f"{decision['best_next_source_free_axis_category_by_train_cal_ceiling']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_feature_guardrail_path: Path,
+    label_manifest_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    full_no_template_rerun_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    fold_augmented_current_measured_readout_path: Path | None = None,
+    current_in_scope_threshold_contract_path: Path | None = None,
+    expanded_oos_calibrated_threshold_contract_path: Path | None = None,
+) -> dict[str, Any]:
+    readout = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_feature_guardrail_path=train_cal_feature_guardrail_path,
+        label_manifest_path=label_manifest_path,
+        source_free_projection_repair_candidate_surface_path=(
+            source_free_projection_repair_candidate_surface_path
+        ),
+        full_no_template_rerun_path=full_no_template_rerun_path,
+        fold_augmented_current_measured_readout_path=(
+            fold_augmented_current_measured_readout_path
+        ),
+        current_in_scope_threshold_contract_path=current_in_scope_threshold_contract_path,
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
 
 
 def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet(

@@ -1,0 +1,307 @@
+{
+  "artifact_id": "v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606",
+  "counts": {
+    "approved_sidecar_rows_written": 0,
+    "component_operating_point_variants": 3,
+    "component_operating_point_variants_primary_safe": true,
+    "critical_violation_total": 0,
+    "current_geometry_fold_oos_abstain_recall_baseline": 0.466667,
+    "direct_source_free_electron_flow_feature_fields": 8,
+    "estimated_calibration_oos_rows": 75,
+    "estimated_current_geometry_fold_oos_abstained_rows": 35,
+    "estimated_full_current_split_union_oos_abstained_rows": 38,
+    "estimated_smoke_union_oos_abstained_rows": 36,
+    "full_current_split_complete_rows": 74,
+    "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+    "full_current_split_primary_positive_rows": 0,
+    "full_current_split_primary_retain_recall": 1.0,
+    "full_current_split_primary_rows": 34,
+    "full_current_split_retained_oos_positive_entry_ids": [
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:464"
+    ],
+    "full_current_split_retained_oos_positive_rows": 3,
+    "full_current_split_retained_oos_rows": 40,
+    "full_current_split_rows": 74,
+    "full_current_split_union_or_gate_oos_abstain_recall": 0.506667,
+    "iron_sulfur_or_iron_component_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+    "iron_sulfur_or_iron_positive_retained_oos_entry_ids": [
+      "m_csa:119"
+    ],
+    "nad_family_component_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+    "nad_family_positive_retained_oos_entry_ids": [
+      "m_csa:464"
+    ],
+    "positive_component_operating_point_variants": 3,
+    "pqq_component_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+    "pqq_positive_retained_oos_entry_ids": [
+      "m_csa:104"
+    ],
+    "protected_imports_executed": 0,
+    "row_gate_matrix_sha256": "98a5eb56d8c5cf28bba414f085fa4f3723ef65ce46c73007825b29acb3a8d5b1",
+    "smoke_complete_rows": 35,
+    "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+    "smoke_primary_positive_rows": 0,
+    "smoke_primary_retain_recall": 1.0,
+    "smoke_primary_rows": 34,
+    "smoke_retained_oos_positive_entry_ids": [
+      "m_csa:104"
+    ],
+    "smoke_rows": 35,
+    "smoke_union_or_gate_oos_abstain_recall": 0.48,
+    "source_row_gate_critical_row_violation_total": 0,
+    "source_row_gate_field_conflict_rows": 0,
+    "source_row_gate_field_consistency_violation_rows": 0
+  },
+  "created_utc": "2026-06-06T03:45:34Z",
+  "decision": {
+    "apply_or_promote_now": false,
+    "component_decomposition_all_three_components_add_value": true,
+    "component_decomposition_primary_safe": true,
+    "deployable_now": false,
+    "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold": true,
+    "direct_source_free_electron_flow_operating_point_measured": true,
+    "done_bar_evidence_measured": true,
+    "full_current_split_adds_incremental_oos_abstention": true,
+    "full_gate_preserves_primary_retention": true,
+    "measured_readout_available": true,
+    "negative": false,
+    "primary_retention_preserved": true,
+    "remaining_gap": "No source-free electron-flow evidence gap remains for the current train/cal split; the remaining gap is explicit protected import authorization and approved-sidecar rerun.",
+    "research_only": true,
+    "row_gate_matrix_valid": true,
+    "smallest_next_experiment": "With explicit protected import authorization, apply the 35-row smoke tranche and rerun this operating-point readout on the approved sidecar; expand the remaining 39 rows only if primary positives remain zero.",
+    "smoke_gate_preserves_primary_retention": true,
+    "smoke_tranche_adds_incremental_oos_abstention": true,
+    "source_free_electron_flow_current_split_measured": true
+  },
+  "guardrails": {
+    "accessions_or_pdb_ids_used_as_predictive_features": false,
+    "approved_sidecar_written": false,
+    "canonical_imports_or_promotions_performed": false,
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_tranche_delta_and_contract_accounting": true,
+    "gate_uses_only_direct_source_free_electron_flow_fields": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "pdb_ids_or_coordinate_paths_used_as_predictive_features": false,
+    "predictive_use_allowed_modified": false,
+    "production_thresholds_changed": false,
+    "protected_import_authorized_by_this_artifact": false,
+    "protected_import_executed_by_this_artifact": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Treat the remaining gap as protected import authorization, not missing source-free electron-flow evidence; next run should only apply smoke if that authorization is explicit.",
+    "result": "Direct source-free electron-flow adds measured train/cal operating-point signal beyond the current geometry/fold surface: smoke recall moves 0.466667 -> 0.48, full recall moves 0.466667 -> 0.506667, and primary retain recall stays 1.0."
+  },
+  "measured_readout": {
+    "component_operating_point_variants": [
+      {
+        "calibration_oos_abstain_recall": 0.48,
+        "component_id": "pqq",
+        "estimated_calibration_oos_abstained_rows": 36,
+        "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "operating_point_value_added": true,
+        "positive_retained_oos_entry_ids": [
+          "m_csa:104"
+        ],
+        "primary_positive_entry_ids": [],
+        "primary_positive_rows": 0,
+        "primary_retain_recall": 1.0
+      },
+      {
+        "calibration_oos_abstain_recall": 0.48,
+        "component_id": "nad_family",
+        "estimated_calibration_oos_abstained_rows": 36,
+        "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "operating_point_value_added": true,
+        "positive_retained_oos_entry_ids": [
+          "m_csa:464"
+        ],
+        "primary_positive_entry_ids": [],
+        "primary_positive_rows": 0,
+        "primary_retain_recall": 1.0
+      },
+      {
+        "calibration_oos_abstain_recall": 0.48,
+        "component_id": "iron_sulfur_or_iron",
+        "estimated_calibration_oos_abstained_rows": 36,
+        "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "operating_point_value_added": true,
+        "positive_retained_oos_entry_ids": [
+          "m_csa:119"
+        ],
+        "primary_positive_entry_ids": [],
+        "primary_positive_rows": 0,
+        "primary_retain_recall": 1.0
+      }
+    ],
+    "fixed_operating_point_variants": [
+      {
+        "calibration_oos_abstain_recall": 0.466667,
+        "direct_source_free_electron_flow_fields_used": false,
+        "estimated_calibration_oos_abstained_rows": 35,
+        "primary_retain_recall": 1.0,
+        "source": "current geometry/fold operating point",
+        "variant_id": "current_geometry_fold_surface"
+      },
+      {
+        "calibration_oos_abstain_recall": 0.48,
+        "direct_source_free_electron_flow_fields_used": true,
+        "estimated_calibration_oos_abstained_rows": 36,
+        "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+        "operating_point_value_added": true,
+        "positive_retained_oos_entry_ids": [
+          "m_csa:104"
+        ],
+        "primary_positive_rows": 0,
+        "primary_retain_recall": 1.0,
+        "source": "m_csa:104 plus 34 current primary rows",
+        "variant_id": "smoke_source_free_electron_flow_or_gate"
+      },
+      {
+        "calibration_oos_abstain_recall": 0.506667,
+        "direct_source_free_electron_flow_fields_used": true,
+        "estimated_calibration_oos_abstained_rows": 38,
+        "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+        "operating_point_value_added": true,
+        "positive_retained_oos_entry_ids": [
+          "m_csa:104",
+          "m_csa:119",
+          "m_csa:464"
+        ],
+        "primary_positive_rows": 0,
+        "primary_retain_recall": 1.0,
+        "source": "74-row current split after smoke",
+        "variant_id": "full_current_split_source_free_electron_flow_or_gate"
+      }
+    ],
+    "primary_retention_gate": {
+      "full_primary_positive_rows": 0,
+      "full_primary_retain_recall": 1.0,
+      "full_primary_rows": 34,
+      "smoke_primary_positive_rows": 0,
+      "smoke_primary_retain_recall": 1.0,
+      "smoke_primary_rows": 34
+    },
+    "row_gate_summaries": {
+      "full_current_split_after_smoke": {
+        "complete_rows": 74,
+        "component_positive_retained_oos_entry_ids": {
+          "iron_sulfur_or_iron": [
+            "m_csa:119"
+          ],
+          "nad_family": [
+            "m_csa:464"
+          ],
+          "pqq": [
+            "m_csa:104"
+          ]
+        },
+        "critical_row_violation_entry_ids": [],
+        "field_conflict_entry_ids": [],
+        "field_consistency_violation_entry_ids": [],
+        "incomplete_entry_ids": [],
+        "primary_positive_entry_ids": [],
+        "primary_positive_rows": 0,
+        "primary_retain_recall_if_abstain_positive": 1.0,
+        "primary_rows": 34,
+        "retained_oos_positive_entry_ids": [
+          "m_csa:104",
+          "m_csa:119",
+          "m_csa:464"
+        ],
+        "retained_oos_positive_rows": 3,
+        "retained_oos_rows": 40,
+        "rows": 74
+      },
+      "smoke_tranche_first": {
+        "complete_rows": 35,
+        "component_positive_retained_oos_entry_ids": {
+          "iron_sulfur_or_iron": [],
+          "nad_family": [],
+          "pqq": [
+            "m_csa:104"
+          ]
+        },
+        "critical_row_violation_entry_ids": [],
+        "field_conflict_entry_ids": [],
+        "field_consistency_violation_entry_ids": [],
+        "incomplete_entry_ids": [],
+        "primary_positive_entry_ids": [],
+        "primary_positive_rows": 0,
+        "primary_retain_recall_if_abstain_positive": 1.0,
+        "primary_rows": 34,
+        "retained_oos_positive_entry_ids": [
+          "m_csa:104"
+        ],
+        "retained_oos_positive_rows": 1,
+        "retained_oos_rows": 1,
+        "rows": 35
+      }
+    },
+    "source_free_electron_flow_positive_rows": {
+      "full_retained_oos_positive_entry_ids": [
+        "m_csa:104",
+        "m_csa:119",
+        "m_csa:464"
+      ],
+      "iron_sulfur_or_iron_positive_retained_oos_entry_ids": [
+        "m_csa:119"
+      ],
+      "nad_family_positive_retained_oos_entry_ids": [
+        "m_csa:464"
+      ],
+      "pqq_positive_retained_oos_entry_ids": [
+        "m_csa:104"
+      ],
+      "smoke_retained_oos_positive_entry_ids": [
+        "m_csa:104"
+      ]
+    },
+    "source_row_gate_audit": {
+      "result_class": "research_only_current_split_row_gate_audit_operating_point_signal",
+      "row_gate_matrix_sha256": "98a5eb56d8c5cf28bba414f085fa4f3723ef65ce46c73007825b29acb3a8d5b1",
+      "source_artifact": {
+        "exists": true,
+        "path": "artifacts/v3_lever2_source_free_electron_flow_current_split_row_gate_audit_readout_current702_20260606.json",
+        "sha256": "63b08a70333942ae3e5197ad85a4e3f5e4a8d9147998db45893f89a0e9fe999e"
+      },
+      "status": "lever2_source_free_electron_flow_current_split_row_gate_audit_readout_research_only_current_split_row_gate_audit_operating_point_signal"
+    }
+  },
+  "missing_evidence": [
+    {
+      "gap_id": "protected_approved_sidecar_import_authorization",
+      "required_rows": 35,
+      "valid_source_free_rows_now": 35,
+      "why_it_matters": "The source-free smoke rows are measured and primary-safe, but protected approved-sidecar import authorization is outside this research artifact."
+    },
+    {
+      "gap_id": "protected_remaining_current_split_import_authorization",
+      "required_rows": 39,
+      "valid_source_free_rows_now": 39,
+      "why_it_matters": "The full 74-row current split is measured as direct source-free electron-flow evidence; expansion still requires protected import authorization after smoke."
+    }
+  ],
+  "result_class": "research_only_direct_source_free_operating_point_signal_pending_protected_import",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_current_split_operating_point_readout.v0",
+  "scope": "Lever 2 measured train/cal operating-point readout for direct source-free electron-flow fields. It consumes the row-gate audit matrix, compares a fixed electron-flow OR overlay against the current geometry/fold operating point, and reports smoke/full current-split value while preserving primary retention. It does not apply protected imports, edit approved sidecars, change thresholds, train models, score heldout, or touch labels, registries, ontologies, or Lever 3 surfaces.",
+  "source_artifacts": {
+    "current_split_row_gate_audit_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_current_split_row_gate_audit_readout_current702_20260606.json",
+      "sha256": "63b08a70333942ae3e5197ad85a4e3f5e4a8d9147998db45893f89a0e9fe999e"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_current_split_operating_point_readout_research_only_direct_source_free_operating_point_signal_pending_protected_import"
+}
