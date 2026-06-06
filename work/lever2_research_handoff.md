@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T20:32:40Z`
-- STARTED_AT_LOCAL: `2026-06-05T15:32:40-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T20:51:45Z`
-- ENDED_AT_LOCAL: `2026-06-05T15:51:45-0500 CDT`
-- ELAPSED_MINUTES: `19.08`
+- STARTED_AT_UTC: `2026-06-05T23:43:05Z`
+- STARTED_AT_LOCAL: `2026-06-05T18:43:05-0500 CDT`
+- ENDED_AT_UTC: `2026-06-06T00:01:20Z`
+- ENDED_AT_LOCAL: `2026-06-05T19:01:20-0500 CDT`
+- ELAPSED_MINUTES: `18.25`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,126 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 31
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T23:43:05Z`
+- STARTED_LOCAL: `2026-06-05T18:43:05-0500 CDT`
+- ENDED_AT: `2026-06-06T00:01:20Z`
+- ENDED_LOCAL: `2026-06-05T19:01:20-0500 CDT`
+- ELAPSED_MINUTES: `18.25`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the candidate-sidecar positive readout and pursue the next measured
+train/cal-disciplined source-free electron-flow route without editing canonical
+approved imports or production thresholds.
+
+#### Work log
+
+- Continued in the dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Added
+  `build-lever2-source-free-electron-flow-approval-import-delta-package-readout`.
+  This consumes the positive candidate-sidecar readout plus the current
+  approved train/cal feature sidecar, extracts the exact collision-safe
+  namespaced direct electron-flow smoke/full delta rows, applies those deltas
+  to an in-memory copy of the approved sidecar, and reruns the fixed smoke and
+  74-row gates from the reconstructed sidecar states.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_approval_import_delta_package_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_approval_import_delta_package_readout_current702_20260605.md`.
+- No canonical approved sidecar, import file, production threshold, registry,
+  ontology, label, heldout split, or Lever 3 surface was edited.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_approval_import_delta_package_readout_research_only_candidate_sidecar_delta_package_ready_pending_protected_import`.
+  Result class:
+  `research_only_candidate_sidecar_delta_package_ready_pending_protected_import`.
+- Approved sidecar before delta: 43 rows, only 1 current-split entry present
+  before delta, and 0 current-split rows complete for the eight direct
+  source-free electron-flow component fields.
+- Smoke package: 35 rows, 34 new approved-sidecar rows and 1 existing-row
+  update, 280 direct field-cell writes, 0 conflicts. Reconstructed smoke
+  sidecar has 77 rows.
+- Smoke replay gate: 35/35 complete, 34 current primary rows, 0 primary
+  positives, primary retain recall `1.0`, retained-OOS positive `m_csa:104`,
+  incremental OOS abstain recall `0.013333`, union OOS recall `0.48`, and exact
+  match to the candidate-sidecar smoke gate.
+- Full current-split package: 74 rows total after smoke, 73 new rows and 1
+  existing-row update, 592 direct field-cell writes, 0 conflicts. Reconstructed
+  full sidecar has 116 rows.
+- Full replay gate: 74/74 complete, 34 current primary rows, 0 primary
+  positives, primary retain recall `1.0`, retained-OOS positives `m_csa:104`,
+  `m_csa:119`, and `m_csa:464`, incremental OOS abstain recall `0.04`, union
+  OOS recall `0.506667`, and exact match to the candidate-sidecar full gate.
+- Direct feature whitelist/integrity audit found only the eight allowed
+  namespaced source-free electron-flow keys across all 74 packaged rows.
+- Interpretation: direct source-free electron-flow signal is now measured as
+  an apply-ready research-only protected delta package. No source-free
+  electron-flow evidence blocker remains for the current train/cal split; the
+  remaining gap is protected import authorization.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Entry IDs are used only for tranche, delta, merge, and
+  verification accounting.
+- Final pre-handoff disk check showed 11 GiB free, above the 10 GiB guardrail.
+
+#### Validation
+
+- Focused new unit/parser/regression slice:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_approval_import_delta_package_readout tests/test_cli.py::CliTests::test_lever2_electron_flow_approval_import_delta_package_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_approval_import_delta_package_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  510 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1587 passed, 212 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1542 tests OK,
+  with the same existing warning.
+- Hash-seed stability:
+  `PYTHONHASHSEED=1` and `PYTHONHASHSEED=2` full pytest passed; focused
+  new unit/parser/regression slice passed for `PYTHONHASHSEED=1` through
+  `PYTHONHASHSEED=4`; `PYTHONHASHSEED=1` full unittest discovery passed.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- Normalized regeneration matched after deleting `created_utc`; direct-field
+  whitelist/integrity check passed with 74 rows and 8 allowed fields.
+
+#### Commit/push status
+
+- Commit and push completed in this wrap-up; branch sync verified before
+  returning.
+
+#### Exact next action
+
+- With explicit protected import authorization, apply the 35-row smoke delta
+  package to the approved sidecar, rerun the written approved-sidecar-only
+  smoke gate, then apply the remaining 39 current-split rows and rerun the
+  74-row gate. Without that authorization, treat the remaining gap as policy,
+  not missing source-free electron-flow evidence.
 
 ### 2026-06-05 Lever 2 Research Run 30
 

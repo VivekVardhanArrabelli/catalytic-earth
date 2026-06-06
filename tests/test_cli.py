@@ -690,6 +690,31 @@ class CliTests(unittest.TestCase):
             args.train_cal_feature_sidecar,
         )
 
+    def test_lever2_electron_flow_approval_import_delta_package_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-import-"
+                    "delta-package-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_delta_package_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout",
+            args.approval_import_candidate_sidecar_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

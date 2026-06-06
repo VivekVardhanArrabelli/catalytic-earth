@@ -120,6 +120,10 @@ DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_CANDIDATE_SIDECAR_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_approval_import_candidate_"
     "sidecar_readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_DELTA_PACKAGE_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_approval_import_delta_package_"
+    "readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -21520,6 +21524,801 @@ def write_lever2_source_free_electron_flow_approval_import_candidate_sidecar_rea
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_approval_import_candidate_sidecar_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _gate_signature_for_delta_package(gate: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "rows": gate.get("rows"),
+        "complete_rows": gate.get("complete_rows"),
+        "primary_rows": gate.get("primary_rows"),
+        "retained_oos_rows": gate.get("retained_oos_rows"),
+        "primary_positive_rows": gate.get("primary_positive_rows"),
+        "retained_oos_positive_rows": gate.get("retained_oos_positive_rows"),
+        "primary_positive_entry_ids": gate.get("primary_positive_entry_ids"),
+        "retained_oos_positive_entry_ids": gate.get(
+            "retained_oos_positive_entry_ids"
+        ),
+        "primary_retain_recall_if_abstain_positive": gate.get(
+            "primary_retain_recall_if_abstain_positive"
+        ),
+        "incremental_oos_abstain_recall_vs_current_geometry_fold": gate.get(
+            "incremental_oos_abstain_recall_vs_current_geometry_fold"
+        ),
+        "union_or_gate_oos_abstain_recall": gate.get(
+            "union_or_gate_oos_abstain_recall"
+        ),
+    }
+
+
+def _electron_flow_delta_rows(
+    *,
+    rows: list[dict[str, Any]],
+    approved_rows_by_entry: dict[str, dict[str, Any]],
+    feature_fields: list[str],
+    delta_stage: str,
+) -> list[dict[str, Any]]:
+    delta_rows: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        source_features = row.get("row_specific_event_features") or {}
+        direct_features = {
+            field: source_features[field]
+            for field in feature_fields
+            if field in source_features
+        }
+        approved_row = approved_rows_by_entry.get(entry_id)
+        approved_features = (
+            (approved_row or {}).get("row_specific_event_features") or {}
+        )
+        fields_added = [
+            field
+            for field in feature_fields
+            if field in direct_features and field not in approved_features
+        ]
+        fields_already_matching = [
+            field
+            for field in feature_fields
+            if (
+                field in direct_features
+                and field in approved_features
+                and approved_features[field] == direct_features[field]
+            )
+        ]
+        field_conflicts = [
+            {
+                "feature_key": field,
+                "approved_value": approved_features[field],
+                "candidate_value": direct_features[field],
+            }
+            for field in feature_fields
+            if (
+                field in direct_features
+                and field in approved_features
+                and approved_features[field] != direct_features[field]
+            )
+        ]
+        delta_rows.append(
+            {
+                "entry_id": entry_id,
+                "delta_stage": delta_stage,
+                "row_action": (
+                    "update_existing_approved_row"
+                    if approved_row is not None
+                    else "add_new_approved_row"
+                ),
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "candidate_bundle_role": row.get("candidate_bundle_role"),
+                "current_split_role": row.get("current_split_role"),
+                "source_free_electron_flow_field_complete": bool(
+                    row.get("source_free_electron_flow_field_complete")
+                ),
+                "row_specific_event_features": direct_features,
+                "fields_added_to_approved_row": fields_added,
+                "fields_already_matching_approved_row": fields_already_matching,
+                "field_conflicts_with_approved_row": field_conflicts,
+                "candidate_import_stage": row.get("candidate_import_stage"),
+                "feature_guardrails": row.get("feature_guardrails") or {},
+            }
+        )
+    return sorted(
+        delta_rows,
+        key=lambda item: _entry_sort_key(str(item.get("entry_id") or "")),
+    )
+
+
+def _electron_flow_delta_component_labels(row: dict[str, Any]) -> list[str]:
+    features = row.get("row_specific_event_features") or {}
+    labels = []
+    if features.get("has_source_free_pqq_donor_acceptor_contact"):
+        labels.append("pqq")
+    if features.get("has_source_free_nad_family_donor_acceptor_distance"):
+        labels.append("nad_family")
+    if features.get("has_source_free_iron_sulfur_or_iron_donor_acceptor_distance"):
+        labels.append("iron_sulfur_or_iron")
+    return labels
+
+
+def _apply_electron_flow_delta_rows_to_sidecar(
+    *,
+    base_rows: list[dict[str, Any]],
+    delta_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    rows_by_id = {
+        str(row["entry_id"]): copy.deepcopy(row)
+        for row in base_rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    for delta_row in delta_rows:
+        if not isinstance(delta_row, dict) or not delta_row.get("entry_id"):
+            continue
+        entry_id = str(delta_row["entry_id"])
+        target_row = rows_by_id.get(entry_id)
+        if target_row is None:
+            target_row = {
+                "entry_id": entry_id,
+                "row_specific_event_features": {},
+            }
+            rows_by_id[entry_id] = target_row
+        target_features = dict(
+            target_row.get("row_specific_event_features") or {}
+        )
+        target_features.update(delta_row.get("row_specific_event_features") or {})
+        target_row["row_specific_event_features"] = target_features
+        for field in (
+            "assigned_embedding_split",
+            "candidate_bundle_role",
+            "current_split_role",
+        ):
+            if delta_row.get(field) is not None:
+                target_row[field] = delta_row.get(field)
+        target_row["source_free_electron_flow_field_complete"] = bool(
+            delta_row.get("source_free_electron_flow_field_complete")
+        )
+        if delta_row.get("candidate_import_stage") is not None:
+            target_row["candidate_import_stage"] = delta_row.get(
+                "candidate_import_stage"
+            )
+        feature_guardrails = dict(target_row.get("feature_guardrails") or {})
+        feature_guardrails.update(delta_row.get("feature_guardrails") or {})
+        target_row["feature_guardrails"] = feature_guardrails
+    return sorted(
+        rows_by_id.values(),
+        key=lambda row: _entry_sort_key(str(row.get("entry_id") or "")),
+    )
+
+
+def build_lever2_source_free_electron_flow_approval_import_delta_package_readout(
+    *,
+    approval_import_candidate_sidecar_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_DELTA_PACKAGE_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    candidate = _read_json(approval_import_candidate_sidecar_readout_path)
+    approved_sidecar = _read_json(train_cal_feature_sidecar_path)
+    contract = candidate.get("candidate_sidecar_contract") or {}
+    feature_fields = list(
+        contract.get("feature_fields")
+        or [
+            "has_source_free_direct_electron_transfer_event",
+            "source_free_direct_electron_transfer_count",
+            "has_source_free_pqq_donor_acceptor_contact",
+            "source_free_pqq_donor_acceptor_contact_count",
+            "has_source_free_nad_family_donor_acceptor_distance",
+            "source_free_nad_family_donor_acceptor_distance_count",
+            "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+            "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+        ]
+    )
+    approved_rows = [
+        row
+        for row in approved_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    approved_rows_by_entry = {
+        str(row["entry_id"]): row for row in approved_rows
+    }
+    measured = candidate.get("measured_readout") or {}
+    smoke_gate_source = measured.get("candidate_written_sidecar_smoke_gate") or {}
+    full_gate_source = measured.get("candidate_written_sidecar_full_74row_gate") or {}
+    smoke_delta_source = measured.get("candidate_smoke_import_delta") or {}
+    remaining_delta_source = (
+        measured.get("candidate_remaining_current_split_expansion_delta") or {}
+    )
+    smoke_entry_ids = [
+        str(entry_id) for entry_id in smoke_gate_source.get("entry_ids", [])
+    ]
+    full_entry_ids = [
+        str(entry_id) for entry_id in full_gate_source.get("entry_ids", [])
+    ]
+    smoke_delta_rows = _electron_flow_delta_rows(
+        rows=smoke_delta_source.get("imported_feature_rows") or [],
+        approved_rows_by_entry=approved_rows_by_entry,
+        feature_fields=feature_fields,
+        delta_stage="protected_smoke_tranche",
+    )
+    remaining_delta_rows = _electron_flow_delta_rows(
+        rows=remaining_delta_source.get("imported_feature_rows") or [],
+        approved_rows_by_entry=approved_rows_by_entry,
+        feature_fields=feature_fields,
+        delta_stage="protected_remaining_current_split_expansion",
+    )
+    full_delta_rows = sorted(
+        [*smoke_delta_rows, *remaining_delta_rows],
+        key=lambda row: _entry_sort_key(str(row.get("entry_id") or "")),
+    )
+    reconstructed_smoke_sidecar_rows = _apply_electron_flow_delta_rows_to_sidecar(
+        base_rows=approved_rows,
+        delta_rows=smoke_delta_rows,
+    )
+    reconstructed_full_sidecar_rows = _apply_electron_flow_delta_rows_to_sidecar(
+        base_rows=reconstructed_smoke_sidecar_rows,
+        delta_rows=remaining_delta_rows,
+    )
+    reconstructed_smoke_rows = _candidate_sidecar_rows_for_entry_ids(
+        reconstructed_smoke_sidecar_rows,
+        smoke_entry_ids,
+    )
+    reconstructed_full_rows = _candidate_sidecar_rows_for_entry_ids(
+        reconstructed_full_sidecar_rows,
+        full_entry_ids,
+    )
+    source_smoke_gate = smoke_gate_source.get("fixed_gate_readout") or {}
+    source_full_gate = full_gate_source.get("fixed_gate_readout") or {}
+    split_oos_rows = (
+        source_full_gate.get("current_geometry_fold_oos_rows")
+        or source_smoke_gate.get("current_geometry_fold_oos_rows")
+    )
+    if split_oos_rows is not None:
+        try:
+            split_oos_rows = int(split_oos_rows)
+        except (TypeError, ValueError):
+            split_oos_rows = None
+    baseline_retained_oos_rows = source_full_gate.get("retained_oos_rows")
+    if baseline_retained_oos_rows is not None:
+        try:
+            baseline_retained_oos_rows = int(baseline_retained_oos_rows)
+        except (TypeError, ValueError):
+            baseline_retained_oos_rows = None
+    smoke_gate = _electron_flow_event_gate_readout(
+        reconstructed_smoke_rows,
+        split_oos_rows=split_oos_rows,
+        baseline_retained_oos_rows=baseline_retained_oos_rows,
+        gate_id="fixed_binary_delta_package_smoke_gate_m_csa104_plus_primary",
+        feature_fields=feature_fields,
+        event_flag_field="has_source_free_direct_electron_transfer_event",
+        gate_rule=(
+            "Delta-package smoke gate: rerun the fixed written-sidecar-only "
+            "gate from the serialized protected smoke delta rows plus the "
+            "candidate sidecar state. Positive namespaced direct source-free "
+            "electron-flow events abstain retained OOS rows; complete negatives "
+            "retain primary rows."
+        ),
+    )
+    full_gate = _electron_flow_event_gate_readout(
+        reconstructed_full_rows,
+        split_oos_rows=split_oos_rows,
+        baseline_retained_oos_rows=baseline_retained_oos_rows,
+        gate_id="fixed_binary_delta_package_full_74row_current_split",
+        feature_fields=feature_fields,
+        event_flag_field="has_source_free_direct_electron_transfer_event",
+        gate_rule=(
+            "Delta-package full gate: rerun the same fixed namespaced direct "
+            "source-free electron-flow event gate on the full 74-row current "
+            "split after the smoke delta and remaining expansion delta are "
+            "applied inside this research artifact only."
+        ),
+    )
+    smoke_gate_matches_candidate = (
+        _gate_signature_for_delta_package(smoke_gate)
+        == _gate_signature_for_delta_package(source_smoke_gate)
+    )
+    full_gate_matches_candidate = (
+        _gate_signature_for_delta_package(full_gate)
+        == _gate_signature_for_delta_package(source_full_gate)
+    )
+    smoke_forbidden_hits = _feature_row_exact_forbidden_key_hits(smoke_delta_rows)
+    full_forbidden_hits = _feature_row_exact_forbidden_key_hits(full_delta_rows)
+    delta_conflicts = [
+        conflict
+        for row in full_delta_rows
+        for conflict in row["field_conflicts_with_approved_row"]
+    ]
+    approved_sidecar_keys = sorted(
+        {
+            str(key)
+            for row in approved_rows
+            for key in (row.get("row_specific_event_features") or {})
+        }
+    )
+    approved_direct_fields_present = [
+        field for field in feature_fields if field in approved_sidecar_keys
+    ]
+    approved_current_split_entry_ids_present = [
+        entry_id for entry_id in full_entry_ids if entry_id in approved_rows_by_entry
+    ]
+    approved_current_split_direct_complete_entry_ids = [
+        entry_id
+        for entry_id in approved_current_split_entry_ids_present
+        if all(
+            field
+            in (
+                approved_rows_by_entry[entry_id].get(
+                    "row_specific_event_features"
+                )
+                or {}
+            )
+            for field in feature_fields
+        )
+    ]
+    smoke_delta_ready = bool(
+        smoke_delta_rows
+        and len(smoke_delta_rows) == len(smoke_entry_ids)
+        and smoke_gate["operating_point_measurable_now"]
+        and smoke_gate["preserves_primary_retention"]
+        and smoke_gate["retained_oos_positive_entry_ids"] == ["m_csa:104"]
+        and smoke_gate_matches_candidate
+        and not smoke_forbidden_hits
+        and not [
+            conflict
+            for row in smoke_delta_rows
+            for conflict in row["field_conflicts_with_approved_row"]
+        ]
+    )
+    full_delta_ready = bool(
+        smoke_delta_ready
+        and full_delta_rows
+        and len(full_delta_rows) == len(full_entry_ids)
+        and full_gate["operating_point_measurable_now"]
+        and full_gate["preserves_primary_retention"]
+        and full_gate["adds_incremental_oos_abstention"]
+        and full_gate_matches_candidate
+        and not full_forbidden_hits
+        and not delta_conflicts
+    )
+    result_class = (
+        "research_only_candidate_sidecar_delta_package_ready_pending_protected_import"
+        if full_delta_ready
+        else "research_only_candidate_sidecar_delta_package_incomplete_or_negative"
+    )
+    status = (
+        "lever2_source_free_electron_flow_approval_import_delta_package_"
+        f"readout_{result_class}"
+    )
+    retained_oos_delta_matrix = [
+        {
+            "entry_id": row["entry_id"],
+            "direct_event_positive": bool(
+                row["row_specific_event_features"].get(
+                    "has_source_free_direct_electron_transfer_event"
+                )
+            ),
+            "electron_transfer_count": row["row_specific_event_features"].get(
+                "source_free_direct_electron_transfer_count"
+            ),
+            "positive_components": _electron_flow_delta_component_labels(row),
+        }
+        for row in full_delta_rows
+        if row.get("current_split_role") == "current_retained_oos"
+    ]
+    smoke_delta_new_rows = [
+        row["entry_id"]
+        for row in smoke_delta_rows
+        if row["row_action"] == "add_new_approved_row"
+    ]
+    smoke_delta_update_rows = [
+        row["entry_id"]
+        for row in smoke_delta_rows
+        if row["row_action"] == "update_existing_approved_row"
+    ]
+    full_delta_new_rows = [
+        row["entry_id"]
+        for row in full_delta_rows
+        if row["row_action"] == "add_new_approved_row"
+    ]
+    full_delta_update_rows = [
+        row["entry_id"]
+        for row in full_delta_rows
+        if row["row_action"] == "update_existing_approved_row"
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_approval_import_"
+            "delta_package_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured protected-delta package for the direct "
+            "source-free electron-flow candidate sidecar route. It consumes "
+            "the candidate-sidecar readout and the current approved train/cal "
+            "feature sidecar, emits the exact smoke and remaining current-split "
+            "delta rows needed for a future protected import, reconstructs the "
+            "delta-applied sidecar states, and reruns the fixed gates from "
+            "those reconstructed rows. It does not edit the approved sidecar, "
+            "labels, registries, imports, thresholds, model weights, or "
+            "heldout splits."
+        ),
+        "delta_package_contract": {
+            "contract_id": (
+                "source_free_pqq_nad_fe_s_direct_electron_flow_protected_"
+                "delta_package"
+            ),
+            "contract_status": "research_only_ready_package_not_imported",
+            "source_candidate_contract": contract.get("contract_id"),
+            "feature_fields": feature_fields,
+            "event_flag_field": "has_source_free_direct_electron_transfer_event",
+            "smoke_tranche_rule": (
+                "apply m_csa:104 plus the 34 current primary retention-gate "
+                "rows first"
+            ),
+            "expansion_rule": (
+                "apply the remaining current-split rows only after the smoke "
+                "gate preserves primary retention"
+            ),
+            "canonical_approved_sidecar_written": False,
+            "protected_surface_written": False,
+        },
+        "protected_delta_rows": {
+            "smoke_tranche": smoke_delta_rows,
+            "remaining_current_split_expansion": remaining_delta_rows,
+            "full_current_split_after_smoke": full_delta_rows,
+        },
+        "measured_readout": {
+            "approved_sidecar_before_delta": {
+                "approved_sidecar_rows": len(approved_rows),
+                "direct_source_free_component_fields_present": (
+                    approved_direct_fields_present
+                ),
+                "current_split_entry_ids_present": (
+                    approved_current_split_entry_ids_present
+                ),
+                "current_split_direct_component_complete_entry_ids": (
+                    approved_current_split_direct_complete_entry_ids
+                ),
+            },
+            "delta_smoke_gate_rerun": {
+                "entry_ids": smoke_entry_ids,
+                "fixed_gate_readout": smoke_gate,
+                "matches_candidate_sidecar_gate": smoke_gate_matches_candidate,
+                "forbidden_feature_key_hits": smoke_forbidden_hits,
+            },
+            "delta_full_74row_gate_rerun": {
+                "entry_ids": full_entry_ids,
+                "fixed_gate_readout": full_gate,
+                "matches_candidate_sidecar_gate": full_gate_matches_candidate,
+                "forbidden_feature_key_hits": full_forbidden_hits,
+            },
+            "delta_reconstructed_sidecar_states": {
+                "reconstructed_sidecar_rows_after_smoke_delta": len(
+                    reconstructed_smoke_sidecar_rows
+                ),
+                "reconstructed_sidecar_rows_after_full_delta": len(
+                    reconstructed_full_sidecar_rows
+                ),
+                "smoke_gate_reconstructed_from_delta_rows": True,
+                "full_gate_reconstructed_from_delta_rows": True,
+                "smoke_gate_matches_candidate_sidecar_gate": (
+                    smoke_gate_matches_candidate
+                ),
+                "full_gate_matches_candidate_sidecar_gate": (
+                    full_gate_matches_candidate
+                ),
+            },
+            "retained_oos_delta_matrix": retained_oos_delta_matrix,
+            "field_conflicts_with_approved_sidecar": delta_conflicts,
+        },
+        "counts": {
+            "critical_violation_total": (
+                len(smoke_forbidden_hits)
+                + len(full_forbidden_hits)
+                + len(delta_conflicts)
+            ),
+            "approved_sidecar_rows_before_delta": len(approved_rows),
+            "approved_sidecar_direct_component_fields_present": (
+                approved_direct_fields_present
+            ),
+            "approved_sidecar_current_split_rows_present_before_delta": len(
+                approved_current_split_entry_ids_present
+            ),
+            "approved_sidecar_current_split_direct_component_complete_rows_before_delta": (
+                len(approved_current_split_direct_complete_entry_ids)
+            ),
+            "smoke_delta_rows": len(smoke_delta_rows),
+            "smoke_delta_new_rows": len(smoke_delta_new_rows),
+            "smoke_delta_updated_existing_rows": len(smoke_delta_update_rows),
+            "smoke_delta_field_cell_writes": sum(
+                len(row["row_specific_event_features"]) for row in smoke_delta_rows
+            ),
+            "smoke_delta_field_conflicts": sum(
+                len(row["field_conflicts_with_approved_row"])
+                for row in smoke_delta_rows
+            ),
+            "remaining_current_split_delta_rows": len(remaining_delta_rows),
+            "full_delta_rows_after_smoke": len(full_delta_rows),
+            "full_delta_new_rows": len(full_delta_new_rows),
+            "full_delta_updated_existing_rows": len(full_delta_update_rows),
+            "full_delta_field_cell_writes": sum(
+                len(row["row_specific_event_features"]) for row in full_delta_rows
+            ),
+            "full_delta_field_conflicts": len(delta_conflicts),
+            "reconstructed_sidecar_rows_after_smoke_delta": len(
+                reconstructed_smoke_sidecar_rows
+            ),
+            "reconstructed_sidecar_rows_after_full_delta": len(
+                reconstructed_full_sidecar_rows
+            ),
+            "smoke_gate_rows": smoke_gate["rows"],
+            "smoke_gate_complete_rows": smoke_gate["complete_rows"],
+            "smoke_gate_primary_rows": smoke_gate["primary_rows"],
+            "smoke_gate_retained_oos_rows": smoke_gate["retained_oos_rows"],
+            "smoke_gate_primary_positive_rows": smoke_gate["primary_positive_rows"],
+            "smoke_gate_retained_oos_positive_entry_ids": (
+                smoke_gate["retained_oos_positive_entry_ids"]
+            ),
+            "smoke_gate_primary_retain_recall": smoke_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "smoke_gate_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                smoke_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "smoke_gate_union_or_gate_oos_abstain_recall": smoke_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "smoke_gate_matches_candidate_sidecar_gate": (
+                smoke_gate_matches_candidate
+            ),
+            "full_gate_rows": full_gate["rows"],
+            "full_gate_complete_rows": full_gate["complete_rows"],
+            "full_gate_primary_rows": full_gate["primary_rows"],
+            "full_gate_retained_oos_rows": full_gate["retained_oos_rows"],
+            "full_gate_primary_positive_rows": full_gate["primary_positive_rows"],
+            "full_gate_retained_oos_positive_entry_ids": (
+                full_gate["retained_oos_positive_entry_ids"]
+            ),
+            "full_gate_primary_retain_recall": full_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "full_gate_union_or_gate_oos_abstain_recall": full_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "full_gate_matches_candidate_sidecar_gate": full_gate_matches_candidate,
+            "retained_oos_delta_rows": len(retained_oos_delta_matrix),
+            "retained_oos_delta_positive_entry_ids": [
+                row["entry_id"]
+                for row in retained_oos_delta_matrix
+                if row["direct_event_positive"]
+            ],
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "protected_smoke_delta_package_ready": smoke_delta_ready,
+            "protected_full_delta_package_ready": full_delta_ready,
+            "delta_smoke_gate_preserves_primary_retention": smoke_gate[
+                "preserves_primary_retention"
+            ],
+            "delta_smoke_gate_adds_m_csa104_retained_oos_abstention": (
+                smoke_gate["retained_oos_positive_entry_ids"] == ["m_csa:104"]
+            ),
+            "delta_full_gate_preserves_primary_retention": full_gate[
+                "preserves_primary_retention"
+            ],
+            "delta_full_gate_adds_operating_point_value_beyond_current_geometry_fold": (
+                full_gate["adds_incremental_oos_abstention"]
+            ),
+            "delta_gates_match_candidate_sidecar_readout": bool(
+                smoke_gate_matches_candidate and full_gate_matches_candidate
+            ),
+            "delta_rows_reconstruct_candidate_sidecar_gates": bool(
+                smoke_gate_matches_candidate and full_gate_matches_candidate
+            ),
+            "approved_sidecar_before_delta_lacks_direct_component_fields": bool(
+                len(approved_direct_fields_present) < len(feature_fields)
+            ),
+            "direct_source_free_electron_flow_delta_is_apply_ready_when_imports_allowed": (
+                full_delta_ready
+            ),
+            "canonical_approved_sidecar_modified": False,
+            "protected_surfaces_modified": False,
+            "imports_or_promotions_performed": False,
+            "train_cal_supported_in_delta_package": full_delta_ready,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not full_delta_ready,
+            "remaining_gap": (
+                "The exact source-free electron-flow smoke/full delta is "
+                "ready as a research-only package, but canonical approved "
+                "sidecar import remains intentionally unexecuted under this "
+                "run's guardrails."
+            ),
+            "smallest_next_experiment": (
+                "When protected import edits are explicitly allowed, apply the "
+                "35-row smoke delta first, rerun this smoke gate, then apply "
+                "the remaining 39 current-split rows and rerun the full "
+                "74-row fixed gate."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_delta_accounting": True,
+            "gate_uses_only_direct_source_free_electron_flow_fields": True,
+            "delta_package_artifact_written": True,
+            "approved_sidecar_written": False,
+            "canonical_imports_or_promotions_performed": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "approval_import_candidate_sidecar_readout": _source_path_record(
+                approval_import_candidate_sidecar_readout_path
+            ),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The protected delta package reproduces the candidate smoke "
+                "and full current-split gates, preserves all current primary "
+                "rows, and catches m_csa:104, m_csa:119, and m_csa:464 with "
+                "only direct source-free electron-flow fields."
+                if full_delta_ready
+                else (
+                    "The protected delta package is incomplete or fails to "
+                    "reproduce the candidate sidecar operating-point readout."
+                )
+            ),
+            "next_action": (
+                "No source-free evidence blocker remains for the measured "
+                "train/cal split; the next step is protected import "
+                "authorization, not another evidence scan."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_approval_import_delta_package_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    smoke_gate = readout["measured_readout"]["delta_smoke_gate_rerun"][
+        "fixed_gate_readout"
+    ]
+    full_gate = readout["measured_readout"]["delta_full_74row_gate_rerun"][
+        "fixed_gate_readout"
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Approval Import Delta Package Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Approved sidecar rows before delta: "
+        f"{counts['approved_sidecar_rows_before_delta']}",
+        "- Approved current-split direct rows before delta: "
+        f"{counts['approved_sidecar_current_split_direct_component_complete_rows_before_delta']}",
+        "- Smoke delta rows: "
+        f"{counts['smoke_delta_rows']} "
+        f"({counts['smoke_delta_new_rows']} new, "
+        f"{counts['smoke_delta_updated_existing_rows']} update)",
+        "- Remaining current-split delta rows: "
+        f"{counts['remaining_current_split_delta_rows']}",
+        "- Full delta field writes: "
+        f"{counts['full_delta_field_cell_writes']}",
+        "- Reconstructed sidecar rows after smoke/full delta: "
+        f"{counts['reconstructed_sidecar_rows_after_smoke_delta']}/"
+        f"{counts['reconstructed_sidecar_rows_after_full_delta']}",
+        "- Critical violations: "
+        f"{counts['critical_violation_total']}",
+        "",
+        "## Fixed Gates",
+        "",
+        "| gate | rows complete | primary positives | retained-OOS IDs | primary retain | union OOS recall | matches source |",
+        "| --- | ---: | ---: | --- | ---: | ---: | --- |",
+        f"| smoke | {smoke_gate['complete_rows']}/{smoke_gate['rows']} | "
+        f"{smoke_gate['primary_positive_rows']} | "
+        f"{', '.join(smoke_gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{smoke_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{smoke_gate['union_or_gate_oos_abstain_recall']} | "
+        f"{counts['smoke_gate_matches_candidate_sidecar_gate']} |",
+        f"| full 74-row | {full_gate['complete_rows']}/{full_gate['rows']} | "
+        f"{full_gate['primary_positive_rows']} | "
+        f"{', '.join(full_gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{full_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{full_gate['union_or_gate_oos_abstain_recall']} | "
+        f"{counts['full_gate_matches_candidate_sidecar_gate']} |",
+        "",
+        "## Decision",
+        "",
+        "- Protected smoke delta ready: "
+        f"{decision['protected_smoke_delta_package_ready']}",
+        "- Protected full delta ready: "
+        f"{decision['protected_full_delta_package_ready']}",
+        "- Full gate preserves primary retention: "
+        f"{decision['delta_full_gate_preserves_primary_retention']}",
+        "- Full gate adds value beyond geometry/fold: "
+        f"{decision['delta_full_gate_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Delta rows reconstruct candidate sidecar gates: "
+        f"{decision['delta_rows_reconstruct_candidate_sidecar_gates']}",
+        "- Approved sidecar modified: False",
+        "- Protected surfaces modified: False",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_approval_import_delta_package_readout(
+    *,
+    approval_import_candidate_sidecar_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_DELTA_PACKAGE_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = (
+        build_lever2_source_free_electron_flow_approval_import_delta_package_readout(
+            approval_import_candidate_sidecar_readout_path=(
+                approval_import_candidate_sidecar_readout_path
+            ),
+            train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_approval_import_delta_package_report(
                 readout
             ),
             encoding="utf-8",

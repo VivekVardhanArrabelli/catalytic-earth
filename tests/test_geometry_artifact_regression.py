@@ -21816,6 +21816,137 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
         )
 
+    def test_lever2_electron_flow_approval_import_delta_package_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_approval_import_"
+                "delta_package_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_approval_import_delta_package_"
+                "readout_research_only_candidate_sidecar_delta_package_ready_"
+                "pending_protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            (
+                "research_only_candidate_sidecar_delta_package_ready_pending_"
+                "protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_rows_before_delta"], 43
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_current_split_rows_present_before_delta"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_current_split_direct_component_complete_rows_before_delta"
+            ],
+            0,
+        )
+        self.assertEqual(readout["counts"]["smoke_delta_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_delta_new_rows"], 34)
+        self.assertEqual(readout["counts"]["smoke_delta_updated_existing_rows"], 1)
+        self.assertEqual(readout["counts"]["smoke_delta_field_cell_writes"], 280)
+        self.assertEqual(
+            readout["counts"]["remaining_current_split_delta_rows"], 39
+        )
+        self.assertEqual(readout["counts"]["full_delta_rows_after_smoke"], 74)
+        self.assertEqual(readout["counts"]["full_delta_new_rows"], 73)
+        self.assertEqual(readout["counts"]["full_delta_updated_existing_rows"], 1)
+        self.assertEqual(readout["counts"]["full_delta_field_cell_writes"], 592)
+        self.assertEqual(readout["counts"]["full_delta_field_conflicts"], 0)
+        self.assertEqual(
+            readout["counts"]["reconstructed_sidecar_rows_after_smoke_delta"],
+            77,
+        )
+        self.assertEqual(
+            readout["counts"]["reconstructed_sidecar_rows_after_full_delta"],
+            116,
+        )
+        self.assertEqual(readout["counts"]["smoke_gate_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_gate_complete_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_gate_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["smoke_gate_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_gate_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertEqual(readout["counts"]["smoke_gate_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"][
+                "smoke_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_gate_union_or_gate_oos_abstain_recall"],
+            0.48,
+        )
+        self.assertTrue(readout["counts"]["smoke_gate_matches_candidate_sidecar_gate"])
+        self.assertEqual(readout["counts"]["full_gate_rows"], 74)
+        self.assertEqual(readout["counts"]["full_gate_complete_rows"], 74)
+        self.assertEqual(readout["counts"]["full_gate_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["full_gate_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["full_gate_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(readout["counts"]["full_gate_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"][
+                "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"]["full_gate_union_or_gate_oos_abstain_recall"],
+            0.506667,
+        )
+        self.assertTrue(readout["counts"]["full_gate_matches_candidate_sidecar_gate"])
+        self.assertEqual(readout["counts"]["retained_oos_delta_rows"], 40)
+        self.assertEqual(
+            readout["counts"]["retained_oos_delta_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertTrue(readout["decision"]["protected_smoke_delta_package_ready"])
+        self.assertTrue(readout["decision"]["protected_full_delta_package_ready"])
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_delta_is_apply_ready_when_imports_allowed"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["delta_rows_reconstruct_candidate_sidecar_gates"]
+        )
+        self.assertFalse(readout["decision"]["canonical_approved_sidecar_modified"])
+        self.assertFalse(readout["decision"]["protected_surfaces_modified"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["approved_sidecar_written"])
+        self.assertTrue(
+            readout["source_artifacts"][
+                "approval_import_candidate_sidecar_readout"
+            ]["exists"]
+        )
+        self.assertTrue(
+            readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
+        )
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:
