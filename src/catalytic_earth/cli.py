@@ -79,6 +79,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     write_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout,
+    write_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout,
     write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
@@ -14574,6 +14575,44 @@ def cmd_build_lever2_source_free_electron_flow_protected_import_sequence_preflig
         "failures: "
         f"{counts.get('critical_preflight_failure_total')}, "
         f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout(
+        protected_import_sequence_preflight_readout_path=Path(
+            args.protected_import_sequence_preflight_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        smoke_sidecar_out_path=(
+            Path(args.smoke_sidecar_out) if args.smoke_sidecar_out else None
+        ),
+        full_sidecar_out_path=(
+            Path(args.full_sidecar_out) if args.full_sidecar_out else None
+        ),
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow protected train/cal "
+        f"approved-sidecar import readout to {args.out} "
+        f"(class: {readout.get('classification')}, "
+        "smoke primary/OOS positives: "
+        f"{counts.get('smoke_primary_positive_rows')}/"
+        f"{len(counts.get('smoke_retained_oos_positive_entry_ids') or [])}, "
+        "full delta: "
+        f"{counts.get('full_incremental_oos_abstain_recall_vs_current_geometry_fold')}, "
+        "deployment candidate: "
+        f"{decision.get('deployment_candidate')})"
     )
     return 0
 
@@ -35047,6 +35086,71 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_protected_import_sequence_preflight.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_protected_import_sequence_preflight_readout
+        )
+    )
+
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-protected-train-cal-"
+                "approved-sidecar-import-readout"
+            ),
+            help=(
+                "apply the authorized smoke-first protected train/cal "
+                "approved-sidecar electron-flow import test and rerun the "
+                "namespaced operating point"
+            ),
+        )
+    )
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import.add_argument(
+        "--protected-import-sequence-preflight-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_protected_import_"
+            "sequence_preflight_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import.add_argument(
+        "--smoke-sidecar-out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_protected_train_cal_"
+            "approved_sidecar_smoke_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import.add_argument(
+        "--full-sidecar-out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_protected_train_cal_"
+            "approved_sidecar_full_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_protected_train_cal_"
+            "approved_sidecar_import_readout_current702_20260606.json"
+        ),
+    )
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_protected_train_cal_"
+            "approved_sidecar_import_readout_current702_20260606.md"
+        ),
+    )
+    lever2_electron_flow_protected_train_cal_approved_sidecar_import.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout
         )
     )
 

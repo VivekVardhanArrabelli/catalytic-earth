@@ -808,6 +808,39 @@ class CliTests(unittest.TestCase):
             args.train_cal_feature_sidecar,
         )
 
+    def test_lever2_electron_flow_protected_train_cal_approved_sidecar_import_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-protected-train-cal-"
+                    "approved-sidecar-import-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_protected_train_cal_"
+                "approved_sidecar_import_readout"
+            ),
+            args.out,
+        )
+        self.assertIn(
+            (
+                "lever2_source_free_electron_flow_protected_import_"
+                "sequence_preflight_readout"
+            ),
+            args.protected_import_sequence_preflight_readout,
+        )
+        self.assertIn(
+            "followup_pair_train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+        self.assertIn("approved_sidecar_smoke", args.smoke_sidecar_out)
+        self.assertIn("approved_sidecar_full", args.full_sidecar_out)
+
     def test_lever2_electron_flow_current_split_operating_point_parser_defaults(
         self,
     ) -> None:

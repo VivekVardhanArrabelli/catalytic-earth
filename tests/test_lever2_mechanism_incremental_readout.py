@@ -41,6 +41,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
     build_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     build_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout,
+    build_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout,
     build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
     build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
@@ -7622,6 +7623,272 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             ]
         )
         self.assertFalse(readout["decision"]["approved_sidecar_written"])
+
+    def test_electron_flow_protected_train_cal_approved_sidecar_import_smoke_then_full(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight_path = root / "preflight.json"
+            sidecar_path = root / "sidecar.json"
+            delta_package_path = root / "delta_package.json"
+            feature_fields = [
+                "has_source_free_direct_electron_transfer_event",
+                "source_free_direct_electron_transfer_count",
+                "has_source_free_pqq_donor_acceptor_contact",
+                "source_free_pqq_donor_acceptor_contact_count",
+                "has_source_free_nad_family_donor_acceptor_distance",
+                "source_free_nad_family_donor_acceptor_distance_count",
+                "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+                "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+            ]
+
+            def features(
+                *,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "has_source_free_direct_electron_transfer_event": bool(
+                        pqq or nad or fe_s
+                    ),
+                    "source_free_direct_electron_transfer_count": pqq + nad + fe_s,
+                    "has_source_free_pqq_donor_acceptor_contact": pqq > 0,
+                    "source_free_pqq_donor_acceptor_contact_count": pqq,
+                    "has_source_free_nad_family_donor_acceptor_distance": nad > 0,
+                    "source_free_nad_family_donor_acceptor_distance_count": nad,
+                    "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": fe_s > 0,
+                    "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": fe_s,
+                }
+
+            def row(
+                entry_id: str,
+                role: str,
+                stage: str,
+                row_action: str = "add_new_approved_row",
+                *,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "calibration",
+                    "candidate_bundle_role": "current_split_operating_point_row",
+                    "current_split_role": role,
+                    "delta_stage": stage,
+                    "row_action": row_action,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": features(
+                        pqq=pqq, nad=nad, fe_s=fe_s
+                    ),
+                    "field_conflicts_with_approved_row": [],
+                    "feature_guardrails": {
+                        "generic_event_fields_not_overwritten": True
+                    },
+                }
+
+            smoke_rows = [
+                row(
+                    f"m_csa:{index}",
+                    "current_primary_retention_gate",
+                    "protected_smoke_tranche",
+                    (
+                        "update_existing_approved_row"
+                        if index == 2
+                        else "add_new_approved_row"
+                    ),
+                )
+                for index in range(1, 35)
+            ]
+            smoke_rows.append(
+                row(
+                    "m_csa:104",
+                    "current_retained_oos",
+                    "protected_smoke_tranche",
+                    pqq=1,
+                )
+            )
+            remaining_rows = [
+                row(
+                    f"m_csa:{index}",
+                    "current_retained_oos",
+                    "protected_remaining_current_split_expansion",
+                )
+                for index in range(200, 237)
+            ]
+            remaining_rows.extend(
+                [
+                    row(
+                        "m_csa:119",
+                        "current_retained_oos",
+                        "protected_remaining_current_split_expansion",
+                        fe_s=1,
+                    ),
+                    row(
+                        "m_csa:464",
+                        "current_retained_oos",
+                        "protected_remaining_current_split_expansion",
+                        nad=1,
+                    ),
+                ]
+            )
+            smoke_gate = {
+                "rows": 35,
+                "complete_rows": 35,
+                "primary_rows": 34,
+                "retained_oos_rows": 1,
+                "primary_positive_rows": 0,
+                "retained_oos_positive_rows": 1,
+                "primary_positive_entry_ids": [],
+                "retained_oos_positive_entry_ids": ["m_csa:104"],
+                "primary_retain_recall_if_abstain_positive": 1.0,
+                "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.013333,
+                "union_or_gate_oos_abstain_recall": 0.48,
+                "current_geometry_fold_oos_rows": 75,
+            }
+            full_gate = {
+                "rows": 74,
+                "complete_rows": 74,
+                "primary_rows": 34,
+                "retained_oos_rows": 40,
+                "primary_positive_rows": 0,
+                "retained_oos_positive_rows": 3,
+                "primary_positive_entry_ids": [],
+                "retained_oos_positive_entry_ids": [
+                    "m_csa:104",
+                    "m_csa:119",
+                    "m_csa:464",
+                ],
+                "primary_retain_recall_if_abstain_positive": 1.0,
+                "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+                "union_or_gate_oos_abstain_recall": 0.506667,
+                "current_geometry_fold_oos_rows": 75,
+            }
+            delta_package_path.write_text(
+                json.dumps(
+                    {
+                        "protected_delta_rows": {
+                            "smoke_tranche": smoke_rows,
+                            "remaining_current_split_expansion": remaining_rows,
+                            "full_current_split_after_smoke": [
+                                *smoke_rows,
+                                *remaining_rows,
+                            ],
+                        },
+                        "measured_readout": {
+                            "delta_smoke_gate_rerun": {
+                                "fixed_gate_readout": smoke_gate,
+                            },
+                            "delta_full_74row_gate_rerun": {
+                                "fixed_gate_readout": full_gate,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 7,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar_sha = hashlib.sha256(sidecar_path.read_bytes()).hexdigest()
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "preflight_contract": {
+                            "contract_id": "test_preflight",
+                            "feature_fields": feature_fields,
+                        },
+                        "decision": {"protected_import_sequence_ready": True},
+                        "source_artifacts": {
+                            "approval_import_delta_package_readout": {
+                                "path": str(delta_package_path)
+                            },
+                            "train_cal_feature_sidecar": {
+                                "path": str(sidecar_path),
+                                "sha256": sidecar_sha,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout(
+                protected_import_sequence_preflight_readout_path=preflight_path,
+                train_cal_feature_sidecar_path=sidecar_path,
+                artifact_id="test_protected_import",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_protected_import")
+        self.assertEqual(readout["classification"], "deployment-candidate")
+        self.assertTrue(readout["decision"]["deployment_candidate"])
+        self.assertEqual(readout["counts"]["smoke_delta_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_delta_new_rows"], 34)
+        self.assertEqual(readout["counts"]["smoke_delta_updated_existing_rows"], 1)
+        self.assertEqual(readout["counts"]["smoke_primary_positive_rows"], 0)
+        self.assertEqual(readout["counts"]["smoke_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertTrue(readout["counts"]["smoke_gate_matches_research_overlay"])
+        self.assertTrue(readout["counts"]["remaining_delta_applied_after_smoke"])
+        self.assertEqual(readout["counts"]["full_delta_rows"], 74)
+        self.assertEqual(readout["counts"]["full_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["full_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertTrue(readout["counts"]["full_gate_matches_research_overlay"])
+        self.assertFalse(
+            readout["guardrails"]["generic_electron_transfer_fields_overwritten"]
+        )
+        smoke_sidecar = readout["materialized_approved_sidecars"][
+            "smoke_tranche_first"
+        ]
+        imported_existing = {
+            row["entry_id"]: row
+            for row in smoke_sidecar["feature_rows"]
+            if row["entry_id"] == "m_csa:2"
+        }["m_csa:2"]
+        self.assertEqual(
+            imported_existing["row_specific_event_features"][
+                "has_electron_transfer_event"
+            ],
+            True,
+        )
+        self.assertEqual(
+            imported_existing["row_specific_event_features"][
+                "electron_transfer_count"
+            ],
+            7,
+        )
+        self.assertIn(
+            "has_source_free_direct_electron_transfer_event",
+            imported_existing["row_specific_event_features"],
+        )
 
     def test_electron_flow_current_split_operating_point_readout_scores_gate_overlay(
         self,
