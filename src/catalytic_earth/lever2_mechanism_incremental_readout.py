@@ -132,6 +132,10 @@ DEFAULT_ELECTRON_FLOW_PROTECTED_IMPORT_SEQUENCE_PREFLIGHT_READOUT_ARTIFACT_ID = 
     "v3_lever2_source_free_electron_flow_protected_import_sequence_"
     "preflight_readout_current702_20260606"
 )
+DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_ROW_GATE_AUDIT_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_current_split_row_gate_audit_"
+    "readout_current702_20260606"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -23647,6 +23651,693 @@ def write_lever2_source_free_electron_flow_protected_import_sequence_preflight_r
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_protected_import_sequence_preflight_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+_ELECTRON_FLOW_COMPONENT_FIELD_SPECS = [
+    (
+        "pqq",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+    ),
+    (
+        "nad_family",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+    ),
+    (
+        "iron_sulfur_or_iron",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+    ),
+]
+
+
+def _electron_flow_row_gate_audit_rows(
+    rows: list[dict[str, Any]],
+    *,
+    feature_fields: list[str],
+    stage: str,
+) -> list[dict[str, Any]]:
+    allowed_fields = set(feature_fields)
+    audit_rows: list[dict[str, Any]] = []
+    for row in sorted(
+        rows, key=lambda item: _entry_sort_key(str(item.get("entry_id") or ""))
+    ):
+        entry_id = str(row.get("entry_id") or "")
+        role = str(row.get("current_split_role") or "")
+        features = row.get("row_specific_event_features") or {}
+        direct_event_positive = bool(
+            features.get("has_source_free_direct_electron_transfer_event")
+        )
+        direct_count = features.get("source_free_direct_electron_transfer_count")
+        try:
+            direct_count_int = int(direct_count)
+        except (TypeError, ValueError):
+            direct_count_int = None
+        component_counts: dict[str, int | None] = {}
+        component_positive_flags: dict[str, bool] = {}
+        component_consistency_violations: list[str] = []
+        component_count_sum = 0
+        component_count_sum_available = True
+        for label, flag_field, count_field in _ELECTRON_FLOW_COMPONENT_FIELD_SPECS:
+            flag_value = bool(features.get(flag_field))
+            count_value = features.get(count_field)
+            try:
+                count_int = int(count_value)
+            except (TypeError, ValueError):
+                count_int = None
+                component_count_sum_available = False
+            component_positive_flags[label] = flag_value
+            component_counts[label] = count_int
+            if count_int is not None:
+                component_count_sum += count_int
+                if flag_value != (count_int > 0):
+                    component_consistency_violations.append(
+                        f"{label} flag/count mismatch"
+                    )
+        if direct_count_int is None:
+            direct_count_consistent = False
+        else:
+            direct_count_consistent = (
+                component_count_sum_available
+                and direct_count_int == component_count_sum
+            )
+        direct_flag_consistent = (
+            direct_count_int is not None
+            and direct_event_positive == (direct_count_int > 0)
+        )
+        missing_fields = [
+            field for field in feature_fields if field not in features
+        ]
+        forbidden_fields = sorted(set(features) - allowed_fields)
+        if role == "current_primary_retention_gate":
+            gate_action = (
+                "would_abstain_primary_violation"
+                if direct_event_positive
+                else "retain_primary"
+            )
+        elif role == "current_retained_oos":
+            gate_action = (
+                "would_abstain_retained_oos"
+                if direct_event_positive
+                else "retain_retained_oos"
+            )
+        else:
+            gate_action = "not_current_gate_row"
+        audit_rows.append(
+            {
+                "entry_id": entry_id,
+                "stage": stage,
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "current_split_role": role,
+                "row_action": row.get("row_action"),
+                "delta_stage": row.get("delta_stage"),
+                "source_free_electron_flow_field_complete": bool(
+                    row.get("source_free_electron_flow_field_complete")
+                )
+                and not missing_fields
+                and not forbidden_fields,
+                "direct_event_positive": direct_event_positive,
+                "direct_electron_transfer_count": direct_count_int,
+                "positive_components": _electron_flow_delta_component_labels(row),
+                "component_positive_flags": component_positive_flags,
+                "component_counts": component_counts,
+                "component_count_sum": (
+                    component_count_sum if component_count_sum_available else None
+                ),
+                "direct_count_equals_component_count_sum": direct_count_consistent,
+                "direct_flag_matches_direct_count": direct_flag_consistent,
+                "component_flag_count_consistency_violations": (
+                    component_consistency_violations
+                ),
+                "gate_action_if_imported": gate_action,
+                "feature_values": {
+                    field: features.get(field) for field in feature_fields
+                },
+                "missing_feature_fields": missing_fields,
+                "forbidden_feature_fields": forbidden_fields,
+                "field_conflicts_with_approved_row": (
+                    row.get("field_conflicts_with_approved_row") or []
+                ),
+                "feature_guardrails": row.get("feature_guardrails") or {},
+            }
+        )
+    return audit_rows
+
+
+def _electron_flow_row_gate_summary(
+    audit_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    primary_rows = [
+        row
+        for row in audit_rows
+        if row.get("current_split_role") == "current_primary_retention_gate"
+    ]
+    retained_oos_rows = [
+        row
+        for row in audit_rows
+        if row.get("current_split_role") == "current_retained_oos"
+    ]
+    primary_positive_entry_ids = [
+        row["entry_id"] for row in primary_rows if row["direct_event_positive"]
+    ]
+    retained_oos_positive_entry_ids = [
+        row["entry_id"]
+        for row in retained_oos_rows
+        if row["direct_event_positive"]
+    ]
+    component_positive_entry_ids: dict[str, list[str]] = {
+        label: [] for label, _, _ in _ELECTRON_FLOW_COMPONENT_FIELD_SPECS
+    }
+    for row in retained_oos_rows:
+        for label in row["positive_components"]:
+            component_positive_entry_ids.setdefault(label, []).append(
+                row["entry_id"]
+            )
+    component_positive_entry_ids = {
+        label: sorted(set(entry_ids), key=_entry_sort_key)
+        for label, entry_ids in component_positive_entry_ids.items()
+    }
+    incomplete_rows = [
+        row["entry_id"]
+        for row in audit_rows
+        if not row["source_free_electron_flow_field_complete"]
+    ]
+    inconsistent_rows = [
+        row["entry_id"]
+        for row in audit_rows
+        if (
+            not row["direct_count_equals_component_count_sum"]
+            or not row["direct_flag_matches_direct_count"]
+            or row["component_flag_count_consistency_violations"]
+        )
+    ]
+    conflict_rows = [
+        row["entry_id"]
+        for row in audit_rows
+        if row["field_conflicts_with_approved_row"]
+    ]
+    return {
+        "rows": len(audit_rows),
+        "complete_rows": len(audit_rows) - len(incomplete_rows),
+        "incomplete_entry_ids": sorted(incomplete_rows, key=_entry_sort_key),
+        "primary_rows": len(primary_rows),
+        "retained_oos_rows": len(retained_oos_rows),
+        "primary_positive_rows": len(primary_positive_entry_ids),
+        "primary_positive_entry_ids": sorted(
+            primary_positive_entry_ids, key=_entry_sort_key
+        ),
+        "primary_retain_recall_if_abstain_positive": (
+            round(
+                (len(primary_rows) - len(primary_positive_entry_ids))
+                / len(primary_rows),
+                6,
+            )
+            if primary_rows
+            else None
+        ),
+        "retained_oos_positive_rows": len(retained_oos_positive_entry_ids),
+        "retained_oos_positive_entry_ids": sorted(
+            retained_oos_positive_entry_ids, key=_entry_sort_key
+        ),
+        "component_positive_retained_oos_entry_ids": component_positive_entry_ids,
+        "field_consistency_violation_entry_ids": sorted(
+            set(inconsistent_rows), key=_entry_sort_key
+        ),
+        "field_conflict_entry_ids": sorted(set(conflict_rows), key=_entry_sort_key),
+        "critical_row_violation_entry_ids": sorted(
+            set(
+                primary_positive_entry_ids
+                + incomplete_rows
+                + inconsistent_rows
+                + conflict_rows
+            ),
+            key=_entry_sort_key,
+        ),
+    }
+
+
+def build_lever2_source_free_electron_flow_current_split_row_gate_audit_readout(
+    *,
+    protected_import_sequence_preflight_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_ROW_GATE_AUDIT_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    preflight_path = Path(protected_import_sequence_preflight_readout_path)
+    preflight = _read_json(preflight_path)
+    approved_sidecar = _read_json(train_cal_feature_sidecar_path)
+    preflight_contract = preflight.get("preflight_contract") or {}
+    source_artifacts = preflight.get("source_artifacts") or {}
+    package_path = _resolve_contract_source_path(
+        source_artifacts.get("approval_import_delta_package_readout") or {},
+        contract_path=preflight_path,
+    )
+    package = _read_json(package_path) if package_path and package_path.exists() else {}
+    protected_rows = package.get("protected_delta_rows") or {}
+    smoke_rows = list(protected_rows.get("smoke_tranche") or [])
+    remaining_rows = list(
+        protected_rows.get("remaining_current_split_expansion") or []
+    )
+    full_rows = list(protected_rows.get("full_current_split_after_smoke") or [])
+    feature_fields = list(preflight_contract.get("feature_fields") or [])
+    smoke_audit_rows = _electron_flow_row_gate_audit_rows(
+        smoke_rows,
+        feature_fields=feature_fields,
+        stage="smoke_tranche_first",
+    )
+    remaining_audit_rows = _electron_flow_row_gate_audit_rows(
+        remaining_rows,
+        feature_fields=feature_fields,
+        stage="remaining_current_split_after_smoke",
+    )
+    full_audit_rows = _electron_flow_row_gate_audit_rows(
+        full_rows,
+        feature_fields=feature_fields,
+        stage="full_current_split_after_smoke",
+    )
+    smoke_summary = _electron_flow_row_gate_summary(smoke_audit_rows)
+    remaining_summary = _electron_flow_row_gate_summary(remaining_audit_rows)
+    full_summary = _electron_flow_row_gate_summary(full_audit_rows)
+    approved_rows = [
+        row
+        for row in approved_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    sidecar_record = _source_path_record(Path(train_cal_feature_sidecar_path))
+    preflight_record = _source_path_record(preflight_path)
+    package_record = (
+        _source_path_record(package_path)
+        if package_path is not None
+        else {"exists": False, "path": None, "sha256": None}
+    )
+    source_sidecar_record = (
+        preflight.get("source_artifacts", {}).get("train_cal_feature_sidecar")
+        or {}
+    )
+    sidecar_matches_preflight = bool(
+        sidecar_record.get("sha256")
+        and sidecar_record.get("sha256") == source_sidecar_record.get("sha256")
+    )
+    row_gate_matrix_sha256 = _canonical_json_sha256(
+        {
+            "smoke": smoke_audit_rows,
+            "remaining": remaining_audit_rows,
+            "full": full_audit_rows,
+        }
+    )
+    preflight_ready = bool(
+        preflight.get("decision", {}).get("protected_import_sequence_ready")
+    )
+    measured_positive = bool(
+        preflight_ready
+        and sidecar_matches_preflight
+        and smoke_summary["rows"] == 35
+        and smoke_summary["complete_rows"] == 35
+        and smoke_summary["primary_rows"] == 34
+        and smoke_summary["primary_positive_rows"] == 0
+        and smoke_summary["retained_oos_positive_entry_ids"] == ["m_csa:104"]
+        and full_summary["rows"] == 74
+        and full_summary["complete_rows"] == 74
+        and full_summary["primary_rows"] == 34
+        and full_summary["primary_positive_rows"] == 0
+        and full_summary["retained_oos_positive_entry_ids"]
+        == ["m_csa:104", "m_csa:119", "m_csa:464"]
+        and not smoke_summary["critical_row_violation_entry_ids"]
+        and not full_summary["critical_row_violation_entry_ids"]
+    )
+    result_class = (
+        "research_only_current_split_row_gate_audit_operating_point_signal"
+        if measured_positive
+        else "research_only_current_split_row_gate_audit_incomplete_or_negative"
+    )
+    status = (
+        "lever2_source_free_electron_flow_current_split_row_gate_audit_"
+        f"readout_{result_class}"
+    )
+    gate_evidence = preflight.get("measured_readout", {}).get("gate_evidence") or {}
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_current_split_row_"
+            "gate_audit_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured row-level gate audit for the direct source-free "
+            "electron-flow current-split delta. It consumes the protected "
+            "import sequence preflight and source delta package, emits the "
+            "smoke/remaining/full row gate matrices, and verifies that each "
+            "direct event flag and count is component-consistent. It does not "
+            "apply imports, edit approved sidecars, change thresholds, train "
+            "models, read heldout, or touch labels, registries, ontologies, or "
+            "Lever 3 surfaces."
+        ),
+        "row_gate_contract": {
+            "contract_id": (
+                "source_free_direct_electron_flow_current_split_row_gate_audit"
+            ),
+            "source_preflight_contract": preflight_contract.get("contract_id"),
+            "source_preflight_status": preflight_contract.get("contract_status"),
+            "feature_fields": feature_fields,
+            "event_flag_field": "has_source_free_direct_electron_transfer_event",
+            "gate_rule": (
+                "Rows with a positive namespaced direct source-free "
+                "electron-transfer event would abstain retained OOS rows; all "
+                "34 current primary retention-gate rows must stay negative."
+            ),
+            "protected_import_authorized_by_this_artifact": False,
+            "protected_import_executed_by_this_artifact": False,
+        },
+        "measured_readout": {
+            "source_freshness": {
+                "current_train_cal_feature_sidecar": sidecar_record,
+                "source_preflight_readout": preflight_record,
+                "source_delta_package_readout": package_record,
+                "current_sidecar_sha256_matches_preflight": (
+                    sidecar_matches_preflight
+                ),
+            },
+            "row_gate_summaries": {
+                "smoke_tranche_first": smoke_summary,
+                "remaining_current_split_after_smoke": remaining_summary,
+                "full_current_split_after_smoke": full_summary,
+            },
+            "row_gate_matrices": {
+                "smoke_tranche_first": smoke_audit_rows,
+                "remaining_current_split_after_smoke": remaining_audit_rows,
+                "full_current_split_after_smoke": full_audit_rows,
+            },
+            "gate_evidence_from_preflight": gate_evidence,
+            "row_gate_matrix_sha256": row_gate_matrix_sha256,
+        },
+        "counts": {
+            "critical_row_violation_total": len(
+                full_summary["critical_row_violation_entry_ids"]
+            ),
+            "approved_sidecar_rows_current": len(approved_rows),
+            "direct_source_free_electron_flow_feature_fields": len(feature_fields),
+            "smoke_rows": smoke_summary["rows"],
+            "smoke_complete_rows": smoke_summary["complete_rows"],
+            "smoke_primary_rows": smoke_summary["primary_rows"],
+            "smoke_primary_positive_rows": smoke_summary[
+                "primary_positive_rows"
+            ],
+            "smoke_primary_retain_recall": smoke_summary[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "smoke_retained_oos_rows": smoke_summary["retained_oos_rows"],
+            "smoke_retained_oos_positive_entry_ids": smoke_summary[
+                "retained_oos_positive_entry_ids"
+            ],
+            "remaining_rows_after_smoke": remaining_summary["rows"],
+            "remaining_complete_rows_after_smoke": remaining_summary[
+                "complete_rows"
+            ],
+            "remaining_retained_oos_positive_entry_ids": remaining_summary[
+                "retained_oos_positive_entry_ids"
+            ],
+            "full_current_split_rows": full_summary["rows"],
+            "full_current_split_complete_rows": full_summary["complete_rows"],
+            "full_current_split_primary_rows": full_summary["primary_rows"],
+            "full_current_split_primary_positive_rows": full_summary[
+                "primary_positive_rows"
+            ],
+            "full_current_split_primary_retain_recall": full_summary[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "full_current_split_retained_oos_rows": full_summary[
+                "retained_oos_rows"
+            ],
+            "full_current_split_retained_oos_positive_entry_ids": full_summary[
+                "retained_oos_positive_entry_ids"
+            ],
+            "full_current_split_retained_oos_positive_rows": full_summary[
+                "retained_oos_positive_rows"
+            ],
+            "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                gate_evidence.get(
+                    "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+                )
+            ),
+            "full_current_split_union_or_gate_oos_abstain_recall": (
+                gate_evidence.get("full_gate_union_or_gate_oos_abstain_recall")
+            ),
+            "pqq_positive_retained_oos_entry_ids": full_summary[
+                "component_positive_retained_oos_entry_ids"
+            ]["pqq"],
+            "nad_family_positive_retained_oos_entry_ids": full_summary[
+                "component_positive_retained_oos_entry_ids"
+            ]["nad_family"],
+            "iron_sulfur_or_iron_positive_retained_oos_entry_ids": full_summary[
+                "component_positive_retained_oos_entry_ids"
+            ]["iron_sulfur_or_iron"],
+            "field_consistency_violation_rows": len(
+                full_summary["field_consistency_violation_entry_ids"]
+            ),
+            "field_conflict_rows": len(full_summary["field_conflict_entry_ids"]),
+            "current_sidecar_sha256_matches_preflight": sidecar_matches_preflight,
+            "row_gate_matrix_sha256": row_gate_matrix_sha256,
+            "protected_imports_executed": 0,
+            "approved_sidecar_rows_written": 0,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "source_free_electron_flow_current_split_measured": measured_positive,
+            "row_level_audit_confirms_operating_point_value": measured_positive,
+            "smoke_gate_preserves_primary_retention": (
+                smoke_summary["primary_positive_rows"] == 0
+                and smoke_summary["primary_rows"] == 34
+            ),
+            "smoke_gate_adds_m_csa104_retained_oos_abstention": (
+                smoke_summary["retained_oos_positive_entry_ids"] == ["m_csa:104"]
+            ),
+            "full_gate_preserves_primary_retention": (
+                full_summary["primary_positive_rows"] == 0
+                and full_summary["primary_rows"] == 34
+            ),
+            "full_gate_adds_operating_point_value_beyond_current_geometry_fold": bool(
+                gate_evidence.get(
+                    "full_gate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+                )
+            ),
+            "direct_field_counts_component_consistent": (
+                not full_summary["field_consistency_violation_entry_ids"]
+            ),
+            "approved_sidecar_written": False,
+            "protected_surfaces_modified": False,
+            "imports_or_promotions_performed": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not measured_positive,
+            "remaining_gap": (
+                "The row-level source-free electron-flow gate is measured and "
+                "primary-safe on the current train/cal split; protected import "
+                "authorization remains absent."
+                if measured_positive
+                else (
+                    "The row-level source-free electron-flow gate audit is "
+                    "incomplete or has row-level violations; inspect the "
+                    "reported matrix before any import."
+                )
+            ),
+            "smallest_next_experiment": (
+                "With explicit protected import authorization, apply the "
+                "35-row smoke tranche, rerun this row-level audit on the "
+                "approved sidecar, then apply the remaining 39 rows only if "
+                "the smoke audit still has zero primary-positive rows."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_delta_and_contract_accounting": True,
+            "gate_uses_only_direct_source_free_electron_flow_fields": True,
+            "approved_sidecar_written": False,
+            "canonical_imports_or_promotions_performed": False,
+            "protected_import_authorized_by_this_artifact": False,
+            "protected_import_executed_by_this_artifact": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "protected_import_sequence_preflight_readout": preflight_record,
+            "approval_import_delta_package_readout": package_record,
+            "train_cal_feature_sidecar": sidecar_record,
+        },
+        "interpretation": {
+            "result": (
+                "The row-level direct source-free electron-flow matrix is "
+                "complete for the 35-row smoke tranche and 74-row current "
+                "split, preserves all 34 current primary rows, and catches "
+                "m_csa:104, m_csa:119, and m_csa:464 as retained OOS rows."
+                if measured_positive
+                else (
+                    "The row-level direct source-free electron-flow matrix "
+                    "does not yet meet the primary-safe operating-point gate."
+                )
+            ),
+            "next_action": (
+                "No source-free row evidence gap remains for the current "
+                "train/cal split; the next experiment is protected smoke "
+                "import authorization and rerun of this audit."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_current_split_row_gate_audit_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    summaries = readout["measured_readout"]["row_gate_summaries"]
+    full_summary = summaries["full_current_split_after_smoke"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Current-Split Row Gate Audit - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Critical row violations: "
+        f"{counts['critical_row_violation_total']}",
+        "- Protected imports executed: 0",
+        "- Approved sidecar rows written: 0",
+        "- Row gate matrix SHA-256: "
+        f"{counts['row_gate_matrix_sha256']}",
+        "",
+        "## Row Gate Summary",
+        "",
+        "| tranche | rows complete | primary positives | retained-OOS IDs | primary retain |",
+        "| --- | ---: | ---: | --- | ---: |",
+        f"| smoke | {counts['smoke_complete_rows']}/{counts['smoke_rows']} | "
+        f"{counts['smoke_primary_positive_rows']} | "
+        f"{', '.join(counts['smoke_retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{counts['smoke_primary_retain_recall']} |",
+        f"| remaining | {counts['remaining_complete_rows_after_smoke']}/"
+        f"{counts['remaining_rows_after_smoke']} | 0 | "
+        f"{', '.join(counts['remaining_retained_oos_positive_entry_ids']) or 'none'} | n/a |",
+        f"| full current split | {counts['full_current_split_complete_rows']}/"
+        f"{counts['full_current_split_rows']} | "
+        f"{counts['full_current_split_primary_positive_rows']} | "
+        f"{', '.join(counts['full_current_split_retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{counts['full_current_split_primary_retain_recall']} |",
+        "",
+        "## Component Positives",
+        "",
+        "- PQQ: "
+        f"{counts['pqq_positive_retained_oos_entry_ids']}",
+        "- NAD-family: "
+        f"{counts['nad_family_positive_retained_oos_entry_ids']}",
+        "- Fe-S/iron: "
+        f"{counts['iron_sulfur_or_iron_positive_retained_oos_entry_ids']}",
+        "- Field consistency violation rows: "
+        f"{counts['field_consistency_violation_rows']}",
+        "- Field conflict rows: "
+        f"{counts['field_conflict_rows']}",
+        "",
+        "## Full Positive Rows",
+        "",
+        "| row | components | direct count | gate action |",
+        "| --- | --- | ---: | --- |",
+    ]
+    positive_rows = [
+        row
+        for row in readout["measured_readout"]["row_gate_matrices"][
+            "full_current_split_after_smoke"
+        ]
+        if row["direct_event_positive"]
+    ]
+    if not positive_rows:
+        lines.append("| none | none | 0 | none |")
+    for row in positive_rows:
+        lines.append(
+            f"| {row['entry_id']} | "
+            f"{', '.join(row['positive_components']) or 'none'} | "
+            f"{row['direct_electron_transfer_count']} | "
+            f"{row['gate_action_if_imported']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Row-level audit confirms operating-point value: "
+        f"{decision['row_level_audit_confirms_operating_point_value']}",
+        "- Smoke gate preserves primary retention: "
+        f"{decision['smoke_gate_preserves_primary_retention']}",
+        "- Full gate preserves primary retention: "
+        f"{decision['full_gate_preserves_primary_retention']}",
+        "- Full gate adds value beyond geometry/fold: "
+        f"{decision['full_gate_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Direct fields are component-consistent: "
+        f"{decision['direct_field_counts_component_consistent']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    critical_rows = full_summary["critical_row_violation_entry_ids"]
+    if critical_rows:
+        lines.extend(["", "## Critical Rows", ""])
+        lines.append(f"- {critical_rows}")
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_current_split_row_gate_audit_readout(
+    *,
+    protected_import_sequence_preflight_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_ROW_GATE_AUDIT_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_current_split_row_gate_audit_readout(
+        protected_import_sequence_preflight_readout_path=(
+            protected_import_sequence_preflight_readout_path
+        ),
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_current_split_row_gate_audit_report(
                 readout
             ),
             encoding="utf-8",
