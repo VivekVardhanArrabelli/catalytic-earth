@@ -1,0 +1,913 @@
+{
+  "application_row_actions": [
+    {
+      "accession": "P32400",
+      "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_descriptor_rule",
+      "descriptor_source": "descriptor_present_preflight",
+      "entry_id": "m_csa:25",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": true,
+      "selected_pairwise_counteraxis_fires_after_selection": true,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P0AB71",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "descriptor_present_preflight",
+      "entry_id": "m_csa:52",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P13000",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:74",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P27213",
+      "deployment_action_delta": "abstain_or_route_novel_oos",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:84",
+      "new_abstention_from_pairwise_counteraxis": true,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": true,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q55012",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:89",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q46822",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:190",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P9WIL5",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:229",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P00327",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:256",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P12070",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:308",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "Q05514",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:468",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    },
+    {
+      "accession": "P42676",
+      "deployment_action_delta": "retain_at_fixed_operating_point_not_scoring_closure",
+      "descriptor_source": "retained_descriptor_rescue",
+      "entry_id": "m_csa:638",
+      "new_abstention_from_pairwise_counteraxis": false,
+      "prior_descriptor_counteraxis_fires": false,
+      "selected_pairwise_counteraxis_fires_after_selection": false,
+      "used_for_rule_selection": false
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+  "counts": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_descriptor_rows": 34,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "calibration_in_scope_rows_expected": 34,
+    "candidate_pairwise_or_rules_within_breadth_cap": 53,
+    "design_same_family_descriptor_rows": 14,
+    "design_same_family_rows_missing_descriptor": 34,
+    "full_feature_atom_rules_checked": 16,
+    "full_feature_pairwise_or_rules_evaluated": 136,
+    "full_feature_pairwise_or_rules_within_breadth_cap": 117,
+    "greedy_followup_new_application_rows_after_selected_pairwise": 0,
+    "greedy_followup_rules_after_selected_pairwise": 2,
+    "new_pairwise_application_rows_fired_after_prior_rule": 1,
+    "pairwise_or_rules_evaluated": 66,
+    "prior_descriptor_counteraxis_application_rows_fired": 1,
+    "remaining_retained_rows_hit_by_full_feature_pair_family": 0,
+    "remaining_retained_rows_with_any_eligible_pair_rule": 0,
+    "residue_count_atom_rules_checked": 11,
+    "retained_blind_greedy_rules_reported": 3,
+    "retained_descriptor_application_rows": 11,
+    "retained_residual_rows_after_all_descriptor_counteraxes": 9,
+    "retained_residual_rows_after_pairwise_counteraxis": 9,
+    "retained_residual_rows_after_retained_blind_greedy_sequence": 9,
+    "retained_residual_rows_before_any_descriptor_counteraxis": 11,
+    "retained_residual_rows_before_pairwise_counteraxis": 10,
+    "same_family_proxy_rows": 59,
+    "selected_rule_all_train_cal_oos_rows_fired": 8,
+    "selected_rule_application_rows_fired_after_selection": 2,
+    "selected_rule_calibration_in_scope_fired": 0,
+    "selected_rule_design_same_family_rows_fired": 4,
+    "top_candidate_pair_rules_reported": 10,
+    "train_cal_oos_descriptor_rows": 71
+  },
+  "created_utc": "2026-06-05T06:18:16Z",
+  "decision": {
+    "application_rows_used_for_rule_selection": false,
+    "apply_or_change_threshold_now": false,
+    "current_full_descriptor_pair_family_exhausted_for_remaining_retained_rows": true,
+    "current_residue_count_pair_family_exhausted_for_remaining_retained_rows": true,
+    "exact_remaining_evidence_for_zero_residual_risk": [
+      "additional train/cal-selected source-free descriptor or chemistry counteraxes for retained rows not fired by the LEU-count or pairwise residue-count rules",
+      "the existing P07658 full-length predicted coordinate and provenance route before fixed-threshold scoring closure"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "new_retained_descriptor_rows_abstained_after_prior_rule": 1,
+    "next_gate": "Treat the selected pairwise residue-count rule as partial fail-closed evidence for newly fired retained rows only. Continue designing train/cal-only counteraxes for the remaining retained descriptor rows; do not change threshold 0.44155 or force a mechanism label.",
+    "pairwise_descriptor_counteraxis_ready_for_partial_application_now": true,
+    "pairwise_descriptor_counteraxis_selected_now": true,
+    "retained_descriptor_rows_abstained_by_pairwise_rule": 2,
+    "retained_rows_remaining_after_pairwise_counteraxis": [
+      "m_csa:52",
+      "m_csa:74",
+      "m_csa:89",
+      "m_csa:190",
+      "m_csa:229",
+      "m_csa:256",
+      "m_csa:308",
+      "m_csa:468",
+      "m_csa:638"
+    ],
+    "safe_abstention_routing_available_now": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false,
+    "zero_residual_retained_transfer_risk_available_now": false
+  },
+  "full_feature_family_residual_pressure": {
+    "all_train_cal_oos_breadth_cap_rows": 8,
+    "eligible_pair_rules_within_breadth_cap": 117,
+    "feature_family": "all frozen descriptor fields plus residue-code count fields",
+    "remaining_retained_hit_rules": []
+  },
+  "guardrails": {
+    "all_train_cal_oos_breadth_cap_applied": true,
+    "application_row_outcomes_used_in_selection_objective": false,
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "rule_selected_on_train_cal_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "The pairwise residue-count counteraxis adds 1 new retained-row abstention after train/cal-only selection.",
+    "next_action": "Keep the remaining retained descriptor rows in the evidence queue and search for another source-free counteraxis selected only on train/cal evidence.",
+    "result": "The selected rule is residue_count.ASN >= 8.0 OR residue_count.LEU <= 1.0; retained residual rows fall from 10 to 9 after the prior descriptor rule."
+  },
+  "missing_descriptor_entry_ids": {
+    "design_same_family": [
+      "m_csa:51",
+      "m_csa:59",
+      "m_csa:78",
+      "m_csa:91",
+      "m_csa:105",
+      "m_csa:135",
+      "m_csa:146",
+      "m_csa:179",
+      "m_csa:187",
+      "m_csa:206",
+      "m_csa:223",
+      "m_csa:224",
+      "m_csa:234",
+      "m_csa:240",
+      "m_csa:253",
+      "m_csa:269",
+      "m_csa:280",
+      "m_csa:289",
+      "m_csa:322",
+      "m_csa:348",
+      "m_csa:405",
+      "m_csa:441",
+      "m_csa:451",
+      "m_csa:463",
+      "m_csa:488",
+      "m_csa:498",
+      "m_csa:500",
+      "m_csa:501",
+      "m_csa:502",
+      "m_csa:508",
+      "m_csa:533",
+      "m_csa:585",
+      "m_csa:621",
+      "m_csa:645"
+    ]
+  },
+  "prior_descriptor_counteraxis_rule": {
+    "all_train_cal_oos_entry_ids_fired": [
+      "m_csa:25",
+      "m_csa:57",
+      "m_csa:104",
+      "m_csa:106",
+      "m_csa:244",
+      "m_csa:295",
+      "m_csa:646"
+    ],
+    "all_train_cal_oos_rows_fired": 7,
+    "application_entry_ids_fired_after_selection": [
+      "m_csa:25"
+    ],
+    "application_rows_fired_after_selection": 1,
+    "calibration_in_scope_entry_ids_fired": [],
+    "calibration_in_scope_fired": 0,
+    "design_same_family_entry_ids_fired": [
+      "m_csa:104",
+      "m_csa:244",
+      "m_csa:646"
+    ],
+    "design_same_family_rows_fired": 3,
+    "feature_kind": "residue_count",
+    "feature_name": "LEU",
+    "feature_rule": "residue_count.LEU <= 1.0",
+    "operator": "<=",
+    "retention_floor_met": true,
+    "rule_id": "residue_count:LEU:<=:1.0",
+    "threshold": 1.0
+  },
+  "retained_blind_greedy_followup": {
+    "greedy_sequence_rows": [
+      {
+        "all_train_cal_oos_rows_fired": 8,
+        "application_entry_ids_fired_after_selection": [
+          "m_csa:25",
+          "m_csa:84"
+        ],
+        "feature_rule": "residue_count.ASN >= 8.0 OR residue_count.LEU <= 1.0",
+        "new_application_entry_ids_after_prior_greedy_rules": [
+          "m_csa:84"
+        ],
+        "new_design_same_family_entry_ids_fired": [
+          "m_csa:104",
+          "m_csa:244",
+          "m_csa:422",
+          "m_csa:646"
+        ],
+        "new_design_same_family_rows_fired": 4,
+        "new_retained_rows_after_prior_greedy_rules": 1,
+        "rank": 1
+      },
+      {
+        "all_train_cal_oos_rows_fired": 2,
+        "application_entry_ids_fired_after_selection": [],
+        "feature_rule": "residue_count.CYS >= 7.0 OR residue_count.LEU >= 15.0",
+        "new_application_entry_ids_after_prior_greedy_rules": [],
+        "new_design_same_family_entry_ids_fired": [
+          "m_csa:22",
+          "m_csa:464"
+        ],
+        "new_design_same_family_rows_fired": 2,
+        "new_retained_rows_after_prior_greedy_rules": 0,
+        "rank": 2
+      },
+      {
+        "all_train_cal_oos_rows_fired": 4,
+        "application_entry_ids_fired_after_selection": [],
+        "feature_rule": "residue_count.SER >= 9.0 OR residue_count.SER >= 9.0",
+        "new_application_entry_ids_after_prior_greedy_rules": [],
+        "new_design_same_family_entry_ids_fired": [
+          "m_csa:119"
+        ],
+        "new_design_same_family_rows_fired": 1,
+        "new_retained_rows_after_prior_greedy_rules": 0,
+        "rank": 3
+      }
+    ],
+    "max_rules_reported": 5,
+    "remaining_retained_candidate_hits_by_entry": {
+      "m_csa:190": [],
+      "m_csa:229": [],
+      "m_csa:256": [],
+      "m_csa:308": [],
+      "m_csa:468": [],
+      "m_csa:52": [],
+      "m_csa:638": [],
+      "m_csa:74": [],
+      "m_csa:89": []
+    },
+    "selection_objective": "iteratively maximize uncovered design same-family OOS rows, then minimize all train/cal OOS descriptor rows, then deterministic rule id; retained application outcomes are measured only after each rule is selected"
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout",
+  "scope": "Lever 3 measured retained pairwise descriptor counteraxis readout. It pre-registers a source-free residue-count OR-rule family, selects within train/cal same-family OOS design rows under a zero-calibration-fire guard and an all-train/cal-OOS breadth cap, then applies the selected rule to retained descriptor rows only after selection. It changes no thresholds, scores no new rows, stages no coordinates, and uses no heldout rows.",
+  "selected_pairwise_counteraxis_rule": {
+    "all_train_cal_oos_entry_ids_fired": [
+      "m_csa:25",
+      "m_csa:57",
+      "m_csa:104",
+      "m_csa:106",
+      "m_csa:244",
+      "m_csa:295",
+      "m_csa:422",
+      "m_csa:646"
+    ],
+    "all_train_cal_oos_rows_fired": 8,
+    "application_entry_ids_fired_after_selection": [
+      "m_csa:25",
+      "m_csa:84"
+    ],
+    "application_rows_fired_after_selection": 2,
+    "calibration_in_scope_entry_ids_fired": [],
+    "calibration_in_scope_fired": 0,
+    "component_rules": [
+      {
+        "feature_kind": "residue_count",
+        "feature_name": "ASN",
+        "feature_rule": "residue_count.ASN >= 8.0",
+        "operator": ">=",
+        "rule_id": "residue_count:ASN:>=:8.0",
+        "threshold": 8.0
+      },
+      {
+        "feature_kind": "residue_count",
+        "feature_name": "LEU",
+        "feature_rule": "residue_count.LEU <= 1.0",
+        "operator": "<=",
+        "rule_id": "residue_count:LEU:<=:1.0",
+        "threshold": 1.0
+      }
+    ],
+    "design_same_family_entry_ids_fired": [
+      "m_csa:104",
+      "m_csa:244",
+      "m_csa:422",
+      "m_csa:646"
+    ],
+    "design_same_family_rows_fired": 4,
+    "feature_rule": "residue_count.ASN >= 8.0 OR residue_count.LEU <= 1.0",
+    "retention_floor_met": true,
+    "rule_id": "residue_count:ASN:>=:8.0 OR residue_count:LEU:<=:1.0"
+  },
+  "selection_policy": {
+    "all_train_cal_oos_breadth_cap_rows": 8,
+    "application_rows_excluded_from_selection": [
+      "m_csa:25",
+      "m_csa:52",
+      "m_csa:74",
+      "m_csa:84",
+      "m_csa:89",
+      "m_csa:190",
+      "m_csa:229",
+      "m_csa:256",
+      "m_csa:308",
+      "m_csa:468",
+      "m_csa:638"
+    ],
+    "application_rows_used_for_rule_selection": false,
+    "calibration_guard": "candidate OR rule must fire zero calibration in-scope rows with descriptor values",
+    "feature_source": "source-free pocket residue-code counts from the frozen descriptor contract and rescued retained descriptor rows",
+    "rule_family": "pairwise_or_of_residue_code_count_threshold_rules",
+    "selection_objective": "maximize design same-family OOS rows fired, then minimize all train/cal OOS descriptor rows fired, then deterministic rule id",
+    "selection_rows": "train/cal same-family structural proxy OOS rows with pocket descriptors, excluding every retained descriptor application row",
+    "threshold_grid_source": "unique train/cal design-row residue counts"
+  },
+  "source_artifacts": {
+    "channel_veto_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+      "sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be"
+    },
+    "descriptor_generalization_counteraxis_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.json",
+      "sha256": "0e1e84fc1c80523a73b6d7d9a52d76c08a978f2acfa16f12e1abed9d860742a1"
+    },
+    "descriptor_present_counteraxis_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json",
+      "sha256": "04cf7fe0886a101f32b1103b3671f4e71d2519e18e82d28eb65f5b6dfc27fefe"
+    },
+    "latest_train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "predicted_geometry_atlas_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "retained_descriptor_rescue_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json",
+      "sha256": "ca3b9bbba54ab3acb875aac022a0883b99bf3484f4df29fef2a6050c43377b3d"
+    },
+    "retained_residual_risk_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json",
+      "sha256": "f706a0cba7dd108cdd4f545408075f5238d04f0b85c7b2dbbd01a66a73c484b3"
+    },
+    "threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    }
+  },
+  "status": "fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_partial_application",
+  "top_candidate_pair_rules": [
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:422",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 8,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25",
+        "m_csa:84"
+      ],
+      "application_rows_fired_after_selection": 2,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "ASN",
+          "feature_rule": "residue_count.ASN >= 8.0",
+          "operator": ">=",
+          "rule_id": "residue_count:ASN:>=:8.0",
+          "threshold": 8.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:422",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 4,
+      "feature_rule": "residue_count.ASN >= 8.0 OR residue_count.LEU <= 1.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:ASN:>=:8.0 OR residue_count:LEU:<=:1.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:422",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 8,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "ASP",
+          "feature_rule": "residue_count.ASP >= 11.0",
+          "operator": ">=",
+          "rule_id": "residue_count:ASP:>=:11.0",
+          "threshold": 11.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:422",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 4,
+      "feature_rule": "residue_count.ASP >= 11.0 OR residue_count.LEU <= 1.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:ASP:>=:11.0 OR residue_count:LEU:<=:1.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:464",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 8,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "CYS",
+          "feature_rule": "residue_count.CYS >= 7.0",
+          "operator": ">=",
+          "rule_id": "residue_count:CYS:>=:7.0",
+          "threshold": 7.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:464",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 4,
+      "feature_rule": "residue_count.CYS >= 7.0 OR residue_count.LEU <= 1.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:CYS:>=:7.0 OR residue_count:LEU:<=:1.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:22",
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 8,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU >= 15.0",
+          "operator": ">=",
+          "rule_id": "residue_count:LEU:>=:15.0",
+          "threshold": 15.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:22",
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 4,
+      "feature_rule": "residue_count.LEU <= 1.0 OR residue_count.LEU >= 15.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:LEU:<=:1.0 OR residue_count:LEU:>=:15.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:422",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 8,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "MET",
+          "feature_rule": "residue_count.MET >= 7.0",
+          "operator": ">=",
+          "rule_id": "residue_count:MET:>=:7.0",
+          "threshold": 7.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:422",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 4,
+      "feature_rule": "residue_count.LEU <= 1.0 OR residue_count.MET >= 7.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:LEU:<=:1.0 OR residue_count:MET:>=:7.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 7,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "GLN",
+          "feature_rule": "residue_count.GLN >= 8.0",
+          "operator": ">=",
+          "rule_id": "residue_count:GLN:>=:8.0",
+          "threshold": 8.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 3,
+      "feature_rule": "residue_count.GLN >= 8.0 OR residue_count.LEU <= 1.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:GLN:>=:8.0 OR residue_count:LEU:<=:1.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 7,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 0.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:0.0",
+          "threshold": 0.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 3,
+      "feature_rule": "residue_count.LEU <= 0.0 OR residue_count.LEU <= 1.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:LEU:<=:0.0 OR residue_count:LEU:<=:1.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:25",
+        "m_csa:57",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:244",
+        "m_csa:295",
+        "m_csa:646"
+      ],
+      "all_train_cal_oos_rows_fired": 7,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:25"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "LEU",
+          "feature_rule": "residue_count.LEU <= 1.0",
+          "operator": "<=",
+          "rule_id": "residue_count:LEU:<=:1.0",
+          "threshold": 1.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:244",
+        "m_csa:646"
+      ],
+      "design_same_family_rows_fired": 3,
+      "feature_rule": "residue_count.LEU <= 1.0 OR residue_count.LEU <= 1.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:LEU:<=:1.0 OR residue_count:LEU:<=:1.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:422",
+        "m_csa:464"
+      ],
+      "all_train_cal_oos_rows_fired": 2,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:84"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "ASN",
+          "feature_rule": "residue_count.ASN >= 8.0",
+          "operator": ">=",
+          "rule_id": "residue_count:ASN:>=:8.0",
+          "threshold": 8.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "CYS",
+          "feature_rule": "residue_count.CYS >= 7.0",
+          "operator": ">=",
+          "rule_id": "residue_count:CYS:>=:7.0",
+          "threshold": 7.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:422",
+        "m_csa:464"
+      ],
+      "design_same_family_rows_fired": 2,
+      "feature_rule": "residue_count.ASN >= 8.0 OR residue_count.CYS >= 7.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:ASN:>=:8.0 OR residue_count:CYS:>=:7.0"
+    },
+    {
+      "all_train_cal_oos_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:422"
+      ],
+      "all_train_cal_oos_rows_fired": 2,
+      "application_entry_ids_fired_after_selection": [
+        "m_csa:84"
+      ],
+      "application_rows_fired_after_selection": 1,
+      "calibration_in_scope_entry_ids_fired": [],
+      "calibration_in_scope_fired": 0,
+      "component_rules": [
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "ASN",
+          "feature_rule": "residue_count.ASN >= 8.0",
+          "operator": ">=",
+          "rule_id": "residue_count:ASN:>=:8.0",
+          "threshold": 8.0
+        },
+        {
+          "feature_kind": "residue_count",
+          "feature_name": "GLN",
+          "feature_rule": "residue_count.GLN >= 8.0",
+          "operator": ">=",
+          "rule_id": "residue_count:GLN:>=:8.0",
+          "threshold": 8.0
+        }
+      ],
+      "design_same_family_entry_ids_fired": [
+        "m_csa:104",
+        "m_csa:422"
+      ],
+      "design_same_family_rows_fired": 2,
+      "feature_rule": "residue_count.ASN >= 8.0 OR residue_count.GLN >= 8.0",
+      "retention_floor_met": true,
+      "rule_id": "residue_count:ASN:>=:8.0 OR residue_count:GLN:>=:8.0"
+    }
+  ]
+}

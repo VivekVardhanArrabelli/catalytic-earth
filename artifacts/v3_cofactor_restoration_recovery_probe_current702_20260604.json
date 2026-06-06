@@ -1,0 +1,397 @@
+{
+  "artifact_id": "v3_cofactor_restoration_recovery_probe_current702_20260604",
+  "created_utc": "2026-06-04T00:04:00Z",
+  "guardrails": {
+    "fingerprint_registry_edited": false,
+    "global_threshold_changed": false,
+    "heldout_labels_used_for_fit_or_threshold": false,
+    "label_registry_edited": false,
+    "note": "counterfactual diagnostic on already-evaluated heldout rows; reuses the frozen 0.4115 threshold and frozen fingerprints; correctness is an evaluation target, not a predictive input",
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "trained_a_model": false
+  },
+  "headline": {
+    "apo_control_rescore_matches_audit": true,
+    "cofactor_apo_loss_targets": 22,
+    "recovered_under_perfect_restoration": 22,
+    "recovery_fraction": 1.0,
+    "wave1_readthrough_recovered": 20,
+    "wave1_readthrough_targets": 20
+  },
+  "interpretation": "Restoring the cofactor onto the predicted backbone recovers 22/22 cofactor_apo_loss lost primary rows (upper bound). A high fraction confirms the predicted backbone is faithful and the missing cofactor is the load-bearing loss, so a cofactor-restoration step (dock/graft the cofactor, or a cofactor-presence channel) is the right Problem-2 lever. ESMFold2's better apo side-chains would help this residual backbone term, but cannot supply the cofactor.",
+  "method": "inject experimental proximal cofactor/metal ligand_context onto the predicted apo geometry entry, keep predicted residue geometry, re-score with frozen run_geometry_retrieval + hand router at the existing threshold; recovered = restored call is non-abstained and matches the true fingerprint",
+  "rows": [
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.3678,
+      "entry_id": "m_csa:3",
+      "experimental_cofactor_families": [
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.7493,
+      "score_lift": 0.3815,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.363,
+      "entry_id": "m_csa:20",
+      "experimental_cofactor_families": [
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.7529,
+      "score_lift": 0.3899,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": false,
+      "apo_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "apo_top1_score": 0.4316,
+      "entry_id": "m_csa:44",
+      "experimental_cofactor_families": [
+        "metal_ion"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "restored_top1_score": 0.5973,
+      "score_lift": 0.1657,
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "apo_top1_score": 0.3441,
+      "entry_id": "m_csa:109",
+      "experimental_cofactor_families": [
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.7536,
+      "score_lift": 0.4095,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "apo_top1_score": 0.4112,
+      "entry_id": "m_csa:115",
+      "experimental_cofactor_families": [
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.8202,
+      "score_lift": 0.409,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.3516,
+      "entry_id": "m_csa:211",
+      "experimental_cofactor_families": [
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.5458,
+      "score_lift": 0.1942,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "apo_top1_score": 0.3561,
+      "entry_id": "m_csa:213",
+      "experimental_cofactor_families": [
+        "plp"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "plp_dependent_enzyme",
+      "restored_top1_score": 0.5273,
+      "score_lift": 0.1712,
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": false,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.5423,
+      "entry_id": "m_csa:239",
+      "experimental_cofactor_families": [
+        "heme"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "restored_top1_score": 0.7209,
+      "score_lift": 0.1786,
+      "true_fingerprint_id": "heme_peroxidase_oxidase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.3994,
+      "entry_id": "m_csa:242",
+      "experimental_cofactor_families": [
+        "metal_ion"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "restored_top1_score": 0.5873,
+      "score_lift": 0.1879,
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": false,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.5425,
+      "entry_id": "m_csa:250",
+      "experimental_cofactor_families": [
+        "heme",
+        "metal_ion"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "restored_top1_score": 0.7104,
+      "score_lift": 0.1679,
+      "true_fingerprint_id": "heme_peroxidase_oxidase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.3646,
+      "entry_id": "m_csa:418",
+      "experimental_cofactor_families": [
+        "plp"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "plp_dependent_enzyme",
+      "restored_top1_score": 0.6354,
+      "score_lift": 0.2708,
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.33,
+      "entry_id": "m_csa:419",
+      "experimental_cofactor_families": [
+        "plp"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "plp_dependent_enzyme",
+      "restored_top1_score": 0.606,
+      "score_lift": 0.276,
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.3568,
+      "entry_id": "m_csa:424",
+      "experimental_cofactor_families": [
+        "plp"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "plp_dependent_enzyme",
+      "restored_top1_score": 0.629,
+      "score_lift": 0.2722,
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": false,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.5899,
+      "entry_id": "m_csa:497",
+      "experimental_cofactor_families": [
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.6729,
+      "score_lift": 0.083,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": true
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "apo_top1_score": 0.3887,
+      "entry_id": "m_csa:545",
+      "experimental_cofactor_families": [
+        "plp"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "plp_dependent_enzyme",
+      "restored_top1_score": 0.699,
+      "score_lift": 0.3103,
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.3583,
+      "entry_id": "m_csa:551",
+      "experimental_cofactor_families": [
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.6685,
+      "score_lift": 0.3102,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "apo_top1_score": 0.3896,
+      "entry_id": "m_csa:709",
+      "experimental_cofactor_families": [
+        "heme"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "restored_top1_score": 0.7794,
+      "score_lift": 0.3898,
+      "true_fingerprint_id": "heme_peroxidase_oxidase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.376,
+      "entry_id": "m_csa:714",
+      "experimental_cofactor_families": [
+        "heme",
+        "metal_ion"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "restored_top1_score": 0.665,
+      "score_lift": 0.289,
+      "true_fingerprint_id": "heme_peroxidase_oxidase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.3664,
+      "entry_id": "m_csa:750",
+      "experimental_cofactor_families": [
+        "fe_s_cluster",
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.7531,
+      "score_lift": 0.3867,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": true
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.3378,
+      "entry_id": "m_csa:854",
+      "experimental_cofactor_families": [
+        "plp"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "plp_dependent_enzyme",
+      "restored_top1_score": 0.6091,
+      "score_lift": 0.2713,
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": true,
+      "apo_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "apo_top1_score": 0.2908,
+      "entry_id": "m_csa:892",
+      "experimental_cofactor_families": [
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.6647,
+      "score_lift": 0.3739,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": false
+    },
+    {
+      "apo_abstained": false,
+      "apo_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "apo_top1_score": 0.5209,
+      "entry_id": "m_csa:990",
+      "experimental_cofactor_families": [
+        "fe_s_cluster",
+        "flavin"
+      ],
+      "recovered": true,
+      "restored_abstained": false,
+      "restored_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "restored_top1_score": 0.7329,
+      "score_lift": 0.212,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "wave1_readthrough_excluded": false
+    }
+  ],
+  "schema_version": "cofactor_restoration_recovery_probe.v1",
+  "scope": {
+    "backend": "alphafold_db",
+    "hand_router_threshold": 0.4115,
+    "source_robustness_audit": "v3_predicted_geometry_robustness_audit_current702_20260529",
+    "target_definition": "cofactor_apo_loss lost primary rows under the canonical mask"
+  },
+  "source_artifacts": {
+    "experimental_geometry_features": "artifacts/v3_geometry_features_1025.json",
+    "label_manifest": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "robustness_audit": "v3_predicted_geometry_robustness_audit_current702_20260529",
+    "wave1_2_audit": "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+  },
+  "status": "complete",
+  "upper_bound_caveat": "this assumes perfect cofactor placement relative to the predicted active site, so the recovery count is an upper bound; real docking is imperfect"
+}

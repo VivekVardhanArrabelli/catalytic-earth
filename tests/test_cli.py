@@ -1813,6 +1813,670 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_retained_pairwise_descriptor_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-pairwise-"
+                "descriptor-counteraxis-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_pairwise_"
+                "descriptor_counteraxis_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "descriptor_present_counteraxis_preflight",
+            args.descriptor_present_counteraxis_preflight,
+        )
+        self.assertIn(
+            "retained_descriptor_rescue_readout",
+            args.retained_descriptor_rescue_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertEqual(args.max_all_train_cal_oos_rows_fired, 8)
+        self.assertIn(
+            "retained_pairwise_descriptor_counteraxis_readout",
+            args.report,
+        )
+
+    def test_lever3_retained_channel_margin_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-channel-margin-"
+                "counteraxis-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_channel_margin_"
+                "counteraxis_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "retained_pairwise_descriptor_counteraxis_readout",
+            args.retained_pairwise_descriptor_counteraxis_readout,
+        )
+        self.assertIn(
+            "lever3_residual_safety_readout",
+            args.residual_safety_readout,
+        )
+        self.assertIn(
+            "lever3_cofactor_context_counteraxis_readout",
+            args.cofactor_context_counteraxis_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertEqual(args.max_all_train_cal_oos_rows_fired, 50)
+        self.assertIn(
+            "retained_channel_margin_counteraxis_readout",
+            args.report,
+        )
+
+    def test_lever3_retained_pocket_chemistry_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-pocket-chemistry-"
+                "counteraxis-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_"
+                "counteraxis_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "retained_channel_margin_counteraxis_readout",
+            args.retained_channel_margin_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_pairwise_descriptor_counteraxis_readout",
+            args.retained_pairwise_descriptor_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_descriptor_rescue_readout",
+            args.retained_descriptor_rescue_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertEqual(args.max_all_train_cal_oos_rows_fired, 8)
+        self.assertIn(
+            "retained_pocket_chemistry_counteraxis_readout",
+            args.report,
+        )
+
+    def test_lever3_retained_geometry_mismatch_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-geometry-mismatch-"
+                "counteraxis-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_"
+                "counteraxis_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "retained_pocket_chemistry_counteraxis_readout",
+            args.retained_pocket_chemistry_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_channel_margin_counteraxis_readout",
+            args.retained_channel_margin_counteraxis_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertEqual(args.min_design_same_family_rows_fired, 2)
+        self.assertEqual(args.min_all_train_cal_oos_rows_fired, 5)
+        self.assertEqual(args.max_all_train_cal_oos_rows_fired, 8)
+        self.assertIn(
+            "retained_geometry_mismatch_counteraxis_readout",
+            args.report,
+        )
+
+    def test_lever3_operating_point_closure_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-operating-point-"
+                "closure-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_operating_point_closure_"
+                "readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_deployment_action_readout",
+            args.deployment_action_readout,
+        )
+        self.assertIn(
+            "retained_pairwise_descriptor_counteraxis_readout",
+            args.retained_pairwise_descriptor_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_channel_margin_counteraxis_readout",
+            args.retained_channel_margin_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_pocket_chemistry_counteraxis_readout",
+            args.retained_pocket_chemistry_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_geometry_mismatch_counteraxis_readout",
+            args.retained_geometry_mismatch_counteraxis_readout,
+        )
+        self.assertIn(
+            "operating_point_closure_readout",
+            args.report,
+        )
+
+    def test_lever3_closure_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-closure-"
+                "reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_closure_"
+                "reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_closure_readout",
+            args.operating_point_closure_readout,
+        )
+        self.assertIn(
+            "closure_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_operating_point_application_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-operating-point-"
+                "application-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_operating_point_"
+                "application_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_closure_readout",
+            args.operating_point_closure_readout,
+        )
+        self.assertIn(
+            "closure_reproducibility_audit",
+            args.closure_reproducibility_audit,
+        )
+        self.assertIn(
+            "operating_point_application_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_contract_readiness_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-contract-"
+                "readiness-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+                "readiness_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_application_audit",
+            args.operating_point_application_audit,
+        )
+        self.assertIn(
+            "deployment_contract_readiness_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_contract_lineage_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-contract-"
+                "lineage-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+                "lineage_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_contract_readiness_audit",
+            args.deployment_contract_readiness_audit,
+        )
+        self.assertIn(
+            "deployment_contract_lineage_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_contract_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-contract-"
+                "reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+                "reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_contract_readiness_audit",
+            args.deployment_contract_readiness_audit,
+        )
+        self.assertIn(
+            "deployment_contract_lineage_audit",
+            args.deployment_contract_lineage_audit,
+        )
+        self.assertIn(
+            "deployment_contract_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_manifest_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "manifest-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "manifest_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_contract_reproducibility_audit",
+            args.deployment_contract_reproducibility_audit,
+        )
+        self.assertIn(
+            "deployment_contract_readiness_audit",
+            args.deployment_contract_readiness_audit,
+        )
+        self.assertIn(
+            "deployment_operator_manifest_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_manifest_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "manifest-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "manifest_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_manifest_audit",
+            args.deployment_operator_manifest_audit,
+        )
+        self.assertIn(
+            "deployment_operator_manifest_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_stage_provenance_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-deployment-stage-provenance-audit"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+                "provenance_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_manifest_audit",
+            args.deployment_operator_manifest_audit,
+        )
+        self.assertIn(
+            "deployment_contract_lineage_audit",
+            args.deployment_contract_lineage_audit,
+        )
+        self.assertIn(
+            "deployment_stage_provenance_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_stage_provenance_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-stage-"
+                "provenance-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+                "provenance_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_stage_provenance_audit",
+            args.deployment_stage_provenance_audit,
+        )
+        self.assertIn(
+            "deployment_stage_provenance_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_route_class_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_stage_provenance_reproducibility_audit",
+            args.deployment_stage_provenance_reproducibility_audit,
+        )
+        self.assertIn(
+            "deployment_operator_manifest_audit",
+            args.deployment_operator_manifest_audit,
+        )
+        self.assertIn("deployment_operator_route_class_readout", args.report)
+
+    def test_lever3_deployment_operator_route_class_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_route_class_readout",
+            args.deployment_operator_route_class_readout,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_route_class_provenance_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-provenance-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_provenance_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_route_class_readout",
+            args.deployment_operator_route_class_readout,
+        )
+        self.assertIn(
+            "deployment_stage_provenance_audit",
+            args.deployment_stage_provenance_audit,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_readout",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_route_class_provenance_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-provenance-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_provenance_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_readout",
+            args.deployment_operator_route_class_provenance_readout,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_matrix_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-matrix-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "transfer_safety_matrix_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_route_class_readout",
+            args.deployment_operator_route_class_readout,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_readout",
+            args.deployment_operator_route_class_provenance_readout,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_reproducibility_audit",
+            args.deployment_operator_route_class_provenance_reproducibility_audit,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_readout",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-matrix-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "transfer_safety_matrix_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_readout",
+            args.deployment_operator_transfer_safety_matrix_readout,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_application_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-application-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "transfer_safety_application_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_readout",
+            args.deployment_operator_transfer_safety_matrix_readout,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_reproducibility_audit",
+            args.deployment_operator_transfer_safety_matrix_reproducibility_audit,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_application_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-application-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "transfer_safety_application_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_application_audit",
+            args.deployment_operator_transfer_safety_application_audit,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_application_reproducibility_audit",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

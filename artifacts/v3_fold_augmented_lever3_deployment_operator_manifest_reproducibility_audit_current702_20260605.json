@@ -1,0 +1,118 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605",
+  "counts": {
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "forbidden_manifest_field_rows": 0,
+    "forced_mechanism_label_rows": 0,
+    "operator_manifest_rows": 21,
+    "operator_manifest_rows_abstain_or_route_novel_oos": 21,
+    "rebuild_difference_count": 0,
+    "reproducibility_violation_total": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "source_records_checked": 2,
+    "source_records_hash_current": 2,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204,
+    "unsafe_action_rows": 0
+  },
+  "created_utc": "2026-06-05T12:13:56Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_operator_manifest_ready": true,
+    "deployment_operator_manifest_reproducible": true,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Use the reproducible operator manifest only as the abstain/route action table; keep fixed-threshold scoring closure fail-closed pending exact P07658 coordinate/provenance evidence.",
+    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": false,
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "safe_abstention_route_remains_current": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "new_rule_selected_now": false,
+    "operator_manifest_reproducibility_only": true,
+    "production_thresholds_changed": false,
+    "provider_calls_performed": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 operator manifest is reproducible.",
+    "next_action": "Use the reproducible manifest for abstain/route actions only; keep scoring closure fail-closed.",
+    "result": "Operator manifest audit rebuilds after created_utc normalization with 0 reproducibility violations."
+  },
+  "operator_manifest_artifact": {
+    "artifact_id": "v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605",
+    "normalized_rebuild_matches_stored": true,
+    "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json",
+    "rebuild_error": null,
+    "rebuilt_created_utc": "2026-06-05T12:13:56Z",
+    "rebuilt_normalized_sha256": "7348b844d6626bc0d26cd4846fdfeb1255c97cc95ad5b3db9d276de56f634d62",
+    "rebuilt_operator_manifest_sha256": "e3de25919052c16e5a139ebd950885d3ca8bbc1cbafaa58ba37df5d346578fdf",
+    "stored_created_utc": "2026-06-05T12:09:33Z",
+    "stored_normalized_sha256": "7348b844d6626bc0d26cd4846fdfeb1255c97cc95ad5b3db9d276de56f634d62",
+    "stored_operator_manifest_sha256": "e3de25919052c16e5a139ebd950885d3ca8bbc1cbafaa58ba37df5d346578fdf"
+  },
+  "reproducibility_checks": {
+    "fixed_threshold_scoring_fail_closed": true,
+    "operating_point_metrics_stable": true,
+    "operator_manifest_audit_passed": true,
+    "operator_manifest_rebuild_matches_stored_after_created_utc_normalization": true,
+    "operator_manifest_sha_stable": true,
+    "operator_manifest_source_hashes_current": true
+  },
+  "reproducibility_violations": [],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit",
+  "scope": "Reproducibility audit for the current Lever 3 operator manifest. It rebuilds the manifest audit from its recorded deployment contract sources, normalizes only created_utc, and checks source hash currency plus manifest SHA and metric stability.",
+  "source_artifacts": {
+    "deployment_operator_manifest_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json",
+      "sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8"
+    }
+  },
+  "source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "f583acba699ada87205ebee9d795ea72f723d5733267e06348b6b458288474de",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "f583acba699ada87205ebee9d795ea72f723d5733267e06348b6b458288474de",
+      "source_hash_current": true,
+      "source_key": "deployment_contract_readiness_audit"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "afa9ee1f91d26dfdc180feb1b5523d90cc27ca01cf7ae89b080f3c4515b0cf87",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "afa9ee1f91d26dfdc180feb1b5523d90cc27ca01cf7ae89b080f3c4515b0cf87",
+      "source_hash_current": true,
+      "source_key": "deployment_contract_reproducibility_audit"
+    }
+  ],
+  "status": "fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_passed"
+}

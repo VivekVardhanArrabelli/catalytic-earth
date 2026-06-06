@@ -1,0 +1,2747 @@
+{
+  "accession_inventory": {
+    "atlas_definition": "in_distribution rows with a mechanism fingerprint",
+    "atlas_row_count": 184,
+    "atlas_rows": [
+      {
+        "accession": "P08819",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:5",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P08819",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00390",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:6",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P00390",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0A6C1",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:11",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P0A6C1",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P25910",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:15",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P25910",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P04190",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:16",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P04190",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P09598",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:27",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P09598",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P10688",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:28",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P10688",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q05769",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:37",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "Q05769",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0A6T5",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:38",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P0A6T5",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00639",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:41",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P00639",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P13717",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:42",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P13717",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P11652",
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "entry_id": "m_csa:62",
+        "fingerprint_id": "cobalamin_radical_rearrangement",
+        "sequence_id": "P11652",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P80077",
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "entry_id": "m_csa:63",
+        "fingerprint_id": "cobalamin_radical_rearrangement",
+        "sequence_id": "P80077",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P19938",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:66",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P19938",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P26440",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:68",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P26440",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00592",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:83",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P00592",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P18314",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:87",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P18314",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q29460",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:94",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q29460",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0A6K3",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:98",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P0A6K3",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00175",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:102",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P00175",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P56216",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:103",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P56216",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P42593",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:108",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P42593",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P80324",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:110",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P80324",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P55038",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:111",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P55038",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P40859",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:113",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P40859",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P16099",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:114",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P16099",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00388",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:117",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P00388",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0AEZ1",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:120",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P0AEZ1",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O28603",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:123",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "O28603",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00396",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:124",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P00396",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P07739",
+        "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+        "entry_id": "m_csa:132",
+        "fingerprint_id": "flavin_monooxygenase",
+        "sequence_id": "P07739",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00183",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:133",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P00183",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P09787",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:141",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P09787",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P08165",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:142",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P08165",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P07511",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:147",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P07511",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q16775",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:157",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q16775",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P15289",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:158",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P15289",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P09030",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:160",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P09030",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P13340",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:161",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P13340",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00644",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:165",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P00644",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P09960",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:166",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P09960",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q01693",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:167",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q01693",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P16444",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:168",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P16444",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P27487",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:169",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P27487",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P12821",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:170",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P12821",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P39377",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:172",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P39377",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P35049",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:173",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P35049",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00800",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:176",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P00800",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O31156",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:181",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "O31156",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00914",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:183",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P00914",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P09367",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:186",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P09367",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P24630",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:195",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P24630",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00489",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:205",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P00489",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00163",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:208",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P00163",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00918",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:216",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P00918",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P29183",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:218",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P29183",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P05725",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:233",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P05725",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P16753",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:238",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P16753",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O31168",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:248",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "O31168",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P12995",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:249",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P12995",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P52700",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:258",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P52700",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P37063",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:274",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P37063",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P07003",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:275",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P07003",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00392",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:277",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P00392",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P55931",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:281",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P55931",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q6LZM9",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:286",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "Q6LZM9",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9YHT1",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:294",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q9YHT1",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q8RB32",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:300",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q8RB32",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q05755",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:304",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q05755",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P28305",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:305",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P28305",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q02899",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:319",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q02899",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q7ZAG8",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:320",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q7ZAG8",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O59791",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:330",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "O59791",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P04042",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:337",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P04042",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P30850",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:338",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P30850",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P08373",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:353",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P08373",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P22637",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:354",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P22637",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9XBQ8",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:358",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "Q9XBQ8",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P03958",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:376",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P03958",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q56839",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:378",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q56839",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P15034",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:379",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P15034",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0A9P4",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:381",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P0A9P4",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00929",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:383",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P00929",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00766",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:387",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P00766",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P24289",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:395",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P24289",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P48534",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:399",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P48534",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P30122",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:401",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P30122",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P63098",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:406",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P63098",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P28796",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:410",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P28796",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P95468",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:411",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P95468",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P52279",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:412",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P52279",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00747",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:425",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P00747",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P12998",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:430",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P12998",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q75WN8",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:437",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q75WN8",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P53608",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:445",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P53608",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P56200",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:446",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P56200",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P06621",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:447",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P06621",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P06721",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:449",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P06721",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9L9D7",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:465",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q9L9D7",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P53041",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:472",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P53041",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P23295",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:473",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P23295",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P16932",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:482",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P16932",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O13297",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:486",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "O13297",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O68557",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:495",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "O68557",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00455",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:506",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P00455",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P40881",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:516",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P40881",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P37957",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:518",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P37957",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "1TAH",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:519",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "1TAH",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P22394",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:520",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P22394",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P45478",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:522",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P45478",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9UMR5",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:523",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q9UMR5",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q6UV28",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:528",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q6UV28",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0CE47",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:535",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P0CE47",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00636",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:546",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P00636",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P22266",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:556",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P22266",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P21179",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:573",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P21179",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q50925",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:581",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "Q50925",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P46076",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:596",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P46076",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00777",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:608",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P00777",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P08473",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:623",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P08473",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P10844",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:626",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P10844",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P05020",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:630",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P05020",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00590",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:631",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P00590",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q12178",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:636",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q12178",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P15917",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:641",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P15917",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q6YBS3",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:666",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q6YBS3",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P08148",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:668",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P08148",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q00441",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:694",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "Q00441",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9FEW9",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:697",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q9FEW9",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P14779",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:699",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P14779",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q00017",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:705",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q00017",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q06241",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:706",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q06241",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O58727",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:716",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "O58727",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P83772",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:720",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P83772",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q58989",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:727",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q58989",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P05521",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:728",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P05521",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q3HWU8",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:733",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q3HWU8",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P82543",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:735",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P82543",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P10902",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:739",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P10902",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P27170",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:740",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P27170",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P83788",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:742",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P83788",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P03007",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:754",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P03007",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O16025",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:758",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "O16025",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00935",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:759",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P00935",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0AB77",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:762",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P0AB77",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P96965",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:771",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P96965",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O39914",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:776",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "O39914",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P81054",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:786",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P81054",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P09883",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:791",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P09883",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P71119",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:795",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P71119",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00750",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:798",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P00750",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q28943",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:800",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q28943",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P96086",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:808",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P96086",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9NPB1",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:812",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q9NPB1",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q7SID9",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:822",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q7SID9",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O33199",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:823",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "O33199",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q94702",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:837",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q94702",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q03708",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:838",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q03708",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P09184",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:839",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P09184",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P05414",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:852",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P05414",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P77444",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:855",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P77444",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P21327",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:856",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P21327",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P43099",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:860",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P43099",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P83686",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:862",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P83686",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0A1E3",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:865",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P0A1E3",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9AGP8",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:879",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q9AGP8",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P37062",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:895",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P37062",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P37967",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:900",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P37967",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P23687",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:901",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P23687",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P24474",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:903",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P24474",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P0A6G7",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:912",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P0A6G7",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P56218",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:917",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P56218",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P21836",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:922",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P21836",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P31013",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:933",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P31013",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P29474",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:935",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P29474",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P00860",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:937",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P00860",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q945K2",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:941",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q945K2",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9X9P9",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:942",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q9X9P9",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "A5JUY8",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:944",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "A5JUY8",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "O59791",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:956",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "O59791",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "A0A0C6DRW4",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:973",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "A0A0C6DRW4",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "Q9HXE3",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:978",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q9HXE3",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "A1AA28",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:988",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "A1AA28",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "F8W4B7",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:998",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "F8W4B7",
+        "split_assignment": "in_distribution"
+      }
+    ],
+    "heldout_row_count": 140,
+    "heldout_rows": [
+      {
+        "accession": "P15559",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:3",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P15559",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P31153",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:9",
+        "fingerprint_id": null,
+        "sequence_id": "P31153",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0A6Q3",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:10",
+        "fingerprint_id": null,
+        "sequence_id": "P0A6Q3",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00480",
+        "benchmark_role": "oos_tier::far_oos",
+        "entry_id": "m_csa:12",
+        "fingerprint_id": null,
+        "sequence_id": "P00480",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P49053",
+        "benchmark_role": "oos_tier::near_oos",
+        "entry_id": "m_csa:14",
+        "fingerprint_id": null,
+        "sequence_id": "P49053",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q07WU7",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:20",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q07WU7",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P09373",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:30",
+        "fingerprint_id": null,
+        "sequence_id": "P09373",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00469",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:31",
+        "fingerprint_id": null,
+        "sequence_id": "P00469",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q04760",
+        "benchmark_role": "oos_tier::near_oos",
+        "entry_id": "m_csa:32",
+        "fingerprint_id": null,
+        "sequence_id": "Q04760",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P06622",
+        "benchmark_role": "oos_tier::near_oos",
+        "entry_id": "m_csa:34",
+        "fingerprint_id": null,
+        "sequence_id": "P06622",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P80366",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:43",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P80366",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00634",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:44",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P00634",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P43379",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:45",
+        "fingerprint_id": null,
+        "sequence_id": "P43379",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P14385",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:46",
+        "fingerprint_id": null,
+        "sequence_id": "P14385",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9WZW0",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:56",
+        "fingerprint_id": null,
+        "sequence_id": "Q9WZW0",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "O52942",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:67",
+        "fingerprint_id": null,
+        "sequence_id": "O52942",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P12295",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:71",
+        "fingerprint_id": null,
+        "sequence_id": "P12295",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P61459",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:73",
+        "fingerprint_id": null,
+        "sequence_id": "P61459",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q05603",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:79",
+        "fingerprint_id": null,
+        "sequence_id": "Q05603",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9X0I0",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:80",
+        "fingerprint_id": null,
+        "sequence_id": "Q9X0I0",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P51541",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:86",
+        "fingerprint_id": null,
+        "sequence_id": "P51541",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0ABF6",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:97",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P0ABF6",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q02127",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:109",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q02127",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9T0N8",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:115",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q9T0N8",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q2RSB2",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:116",
+        "fingerprint_id": null,
+        "sequence_id": "Q2RSB2",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q00511",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:118",
+        "fingerprint_id": null,
+        "sequence_id": "Q00511",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P07850",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:121",
+        "fingerprint_id": null,
+        "sequence_id": "P07850",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9ZP19",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:125",
+        "fingerprint_id": null,
+        "sequence_id": "Q9ZP19",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P37610",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:129",
+        "fingerprint_id": null,
+        "sequence_id": "P37610",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P20586",
+        "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+        "entry_id": "m_csa:131",
+        "fingerprint_id": "flavin_monooxygenase",
+        "sequence_id": "P20586",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q7SIF3",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:144",
+        "fingerprint_id": null,
+        "sequence_id": "Q7SIF3",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "O06644",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:155",
+        "fingerprint_id": null,
+        "sequence_id": "O06644",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0A434",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:159",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P0A434",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0A7Y4",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:163",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P0A7Y4",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00730",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:171",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P00730",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P35505",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:180",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P35505",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "O15527",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:185",
+        "fingerprint_id": null,
+        "sequence_id": "O15527",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P09147",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:188",
+        "fingerprint_id": null,
+        "sequence_id": "P09147",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P07237",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:191",
+        "fingerprint_id": null,
+        "sequence_id": "P07237",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9N0A4",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:192",
+        "fingerprint_id": null,
+        "sequence_id": "Q9N0A4",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P21638",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:193",
+        "fingerprint_id": null,
+        "sequence_id": "P21638",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00952",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:197",
+        "fingerprint_id": null,
+        "sequence_id": "P00952",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q5SKN9",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:198",
+        "fingerprint_id": null,
+        "sequence_id": "Q5SKN9",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P04425",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:199",
+        "fingerprint_id": null,
+        "sequence_id": "P04425",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9X4K7",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:201",
+        "fingerprint_id": null,
+        "sequence_id": "Q9X4K7",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P38489",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:211",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P38489",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P10724",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:213",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P10724",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P52704",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:217",
+        "fingerprint_id": null,
+        "sequence_id": "P52704",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P29401",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:219",
+        "fingerprint_id": null,
+        "sequence_id": "P29401",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P20906",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:220",
+        "fingerprint_id": null,
+        "sequence_id": "P20906",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9WZC3",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:225",
+        "fingerprint_id": null,
+        "sequence_id": "Q9WZC3",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q59643",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:230",
+        "fingerprint_id": null,
+        "sequence_id": "Q59643",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00433",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:239",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P00433",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q8I914",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:242",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q8I914",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P04963",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:250",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P04963",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P33247",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:254",
+        "fingerprint_id": null,
+        "sequence_id": "P33247",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00334",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:255",
+        "fingerprint_id": null,
+        "sequence_id": "P00334",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0A6L2",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:267",
+        "fingerprint_id": null,
+        "sequence_id": "P0A6L2",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P77072",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:297",
+        "fingerprint_id": null,
+        "sequence_id": "P77072",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00924",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:311",
+        "fingerprint_id": null,
+        "sequence_id": "P00924",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P04395",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:313",
+        "fingerprint_id": null,
+        "sequence_id": "P04395",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P09155",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:321",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P09155",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P05314",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:323",
+        "fingerprint_id": null,
+        "sequence_id": "P05314",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9RUB5",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:333",
+        "fingerprint_id": null,
+        "sequence_id": "Q9RUB5",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P44859",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:334",
+        "fingerprint_id": null,
+        "sequence_id": "P44859",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P9WNP5",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:346",
+        "fingerprint_id": null,
+        "sequence_id": "P9WNP5",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00949",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:352",
+        "fingerprint_id": null,
+        "sequence_id": "P00949",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P30074",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:355",
+        "fingerprint_id": null,
+        "sequence_id": "P30074",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P14769",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:356",
+        "fingerprint_id": null,
+        "sequence_id": "P14769",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P08179",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:363",
+        "fingerprint_id": null,
+        "sequence_id": "P08179",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P33038",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:369",
+        "fingerprint_id": null,
+        "sequence_id": "P33038",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "O75164",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:370",
+        "fingerprint_id": null,
+        "sequence_id": "O75164",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q712I6",
+        "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+        "entry_id": "m_csa:372",
+        "fingerprint_id": "radical_sam_enzyme",
+        "sequence_id": "Q712I6",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0ABP8",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:375",
+        "fingerprint_id": null,
+        "sequence_id": "P0ABP8",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P23395",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:384",
+        "fingerprint_id": null,
+        "sequence_id": "P23395",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "A0A0H3JGH6",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:388",
+        "fingerprint_id": null,
+        "sequence_id": "A0A0H3JGH6",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P07801",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:392",
+        "fingerprint_id": null,
+        "sequence_id": "P07801",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P56272",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:396",
+        "fingerprint_id": null,
+        "sequence_id": "P56272",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P04063",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:397",
+        "fingerprint_id": null,
+        "sequence_id": "P04063",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P04036",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:402",
+        "fingerprint_id": null,
+        "sequence_id": "P04036",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P07584",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:403",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P07584",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q0ZPV7",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:407",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q0ZPV7",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0A790",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:409",
+        "fingerprint_id": null,
+        "sequence_id": "P0A790",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P37821",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:418",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P37821",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "O52552",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:419",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "O52552",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P08236",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:423",
+        "fingerprint_id": null,
+        "sequence_id": "P08236",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P23721",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:424",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P23721",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9ZF13",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:428",
+        "fingerprint_id": null,
+        "sequence_id": "Q9ZF13",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "O59893",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:431",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "O59893",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P68036",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:438",
+        "fingerprint_id": null,
+        "sequence_id": "P68036",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P07987",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:440",
+        "fingerprint_id": null,
+        "sequence_id": "P07987",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P62694",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:444",
+        "fingerprint_id": null,
+        "sequence_id": "P62694",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P33665",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:448",
+        "fingerprint_id": null,
+        "sequence_id": "P33665",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "O68884",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:453",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "O68884",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P19080",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:474",
+        "fingerprint_id": null,
+        "sequence_id": "P19080",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P04936",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:477",
+        "fingerprint_id": null,
+        "sequence_id": "P04936",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P26214",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:480",
+        "fingerprint_id": null,
+        "sequence_id": "P26214",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P01116",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:484",
+        "fingerprint_id": null,
+        "sequence_id": "P01116",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P07649",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:493",
+        "fingerprint_id": null,
+        "sequence_id": "P07649",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9FDN7",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:497",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q9FDN7",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9X592",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:509",
+        "fingerprint_id": null,
+        "sequence_id": "Q9X592",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q13526",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:511",
+        "fingerprint_id": null,
+        "sequence_id": "Q13526",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P61517",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:517",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P61517",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P11708",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:526",
+        "fingerprint_id": null,
+        "sequence_id": "P11708",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P26239",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:536",
+        "fingerprint_id": null,
+        "sequence_id": "P26239",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P75430",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:541",
+        "fingerprint_id": null,
+        "sequence_id": "P75430",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q7M523",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:545",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "Q7M523",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P06229",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:549",
+        "fingerprint_id": null,
+        "sequence_id": "P06229",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P15245",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:551",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P15245",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0AAJ3",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:563",
+        "fingerprint_id": null,
+        "sequence_id": "P0AAJ3",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P46844",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:566",
+        "fingerprint_id": null,
+        "sequence_id": "P46844",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P29218",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:577",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P29218",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q01172",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:590",
+        "fingerprint_id": null,
+        "sequence_id": "Q01172",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9UM07",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:594",
+        "fingerprint_id": null,
+        "sequence_id": "Q9UM07",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P36936",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:599",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P36936",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0AEK4",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:606",
+        "fingerprint_id": null,
+        "sequence_id": "P0AEK4",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00778",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:609",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P00778",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0A715",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:614",
+        "fingerprint_id": null,
+        "sequence_id": "P0A715",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q44297",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:617",
+        "fingerprint_id": null,
+        "sequence_id": "Q44297",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q8WZM3",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:620",
+        "fingerprint_id": null,
+        "sequence_id": "Q8WZM3",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P36655",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:627",
+        "fingerprint_id": null,
+        "sequence_id": "P36655",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "O43924",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:628",
+        "fingerprint_id": null,
+        "sequence_id": "O43924",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P84147",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:634",
+        "fingerprint_id": null,
+        "sequence_id": "P84147",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P05057",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:647",
+        "fingerprint_id": null,
+        "sequence_id": "P05057",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P04807",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:651",
+        "fingerprint_id": null,
+        "sequence_id": "P04807",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q7SIG4",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:686",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q7SIG4",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q5JP69",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:688",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "Q5JP69",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00431",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:709",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P00431",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P25524",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:710",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P25524",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P0ABI8",
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:714",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "sequence_id": "P0ABI8",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P00782",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:723",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P00782",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P55792",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:750",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "P55792",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P31570",
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "entry_id": "m_csa:853",
+        "fingerprint_id": "cobalamin_radical_rearrangement",
+        "sequence_id": "P31570",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P80147",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:854",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "sequence_id": "P80147",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P94388",
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:866",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "sequence_id": "P94388",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "A2RJT9",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:892",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "A2RJT9",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P23657",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:897",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P23657",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "P9WI55",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:916",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "P9WI55",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q8GS60",
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:990",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "sequence_id": "Q8GS60",
+        "split_assignment": "heldout"
+      },
+      {
+        "accession": "Q9Y3Z3",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:994",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "sequence_id": "Q9Y3Z3",
+        "split_assignment": "heldout"
+      }
+    ],
+    "unique_accessions_to_predict": 323
+  },
+  "afdb_v6_baseline_to_beat": {
+    "experimental_hand_router_primary_accuracy": 1.0,
+    "predicted_hand_router_oos_or_secondary_false_positive_rate": 0.123457,
+    "predicted_hand_router_primary_abstention_count": 17,
+    "predicted_hand_router_primary_correct": 23,
+    "predicted_hand_router_primary_support": 45,
+    "predicted_hand_router_primary_wrong_nonabstained_count": 5,
+    "source_artifact": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+  },
+  "artifact_id": "v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603",
+  "created_utc": "2026-06-03T22:42:11Z",
+  "decision_gate": {
+    "augment_afdb_v6_if": "ESMFold2 helps only a subset (e.g. side-chain-limited rows) while AlphaFoldDB-v6 remains better elsewhere",
+    "reject_if": "no train/cal improvement over AlphaFoldDB-v6; do not spend a heldout read",
+    "replace_afdb_v6_if": "ESMFold2 beats AlphaFoldDB-v6 on heldout primary recovery and OOS false-positive rate at matched in-scope retention, selected on train/cal only"
+  },
+  "experiment": {
+    "apo_caveat": "ESMFold2, like every sequence folder, predicts apo structures. It will not place FAD/PLP/heme/Zn or substrate. The active-site signal leans heavily on cofactor/metal coordination, so ESMFold2 can only improve the protein side-chain part, not supply cofactor geometry. Expect partial help; measure it, do not assume it.",
+    "hypothesis": "ESMFold2 all-atom side-chain placement plus pLDDT confidence recovers part of the predicted-geometry degradation and improves principled abstention versus AlphaFoldDB-v6.",
+    "open_problem": "Make the mechanism router robust to predicted (vs experimental) active-site geometry degradation: recover the clean 45/45 -> AlphaFoldDB-v6 23/45 primary drop and cut the 12.3% OOS false positive rate, as a learned-model job rather than a clean-M-CSA accuracy contest.",
+    "title": "ESMFold2 predicted active-site geometry robustness"
+  },
+  "guardrails": {
+    "coordinate_download_scope": "Biohub ESMFold2 all-atom mmCIF coordinates read from a locally staged directory keyed by accession; no ESMFold2 weights or inference are run here and raw coordinates are not committed",
+    "esmfold2_inference_run": false,
+    "fingerprint_registry_edited": false,
+    "global_threshold_changed": false,
+    "heldout_labels_used_for_fit_or_threshold": false,
+    "label_registry_edited": false,
+    "large_model_downloads_performed": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false
+  },
+  "metric_plan": [
+    {
+      "afdb_v6_predicted_baseline": "23/45",
+      "clean_experimental_reference": "45/45",
+      "metric": "hand_router_primary_correct_over_support",
+      "split": "heldout (final-only)",
+      "success_criterion": "recover lost primary rows toward 45/45 without spending more than one heldout read"
+    },
+    {
+      "afdb_v6_predicted_baseline": 0.123457,
+      "clean_experimental_reference": 0.0,
+      "metric": "hand_router_oos_or_secondary_false_positive_rate",
+      "split": "heldout (final-only)",
+      "success_criterion": "reduce below the 12.3% AlphaFoldDB-v6 predicted rate"
+    },
+    {
+      "afdb_v6_predicted_baseline": 0.667,
+      "metric": "geometry_feature_logistic_probe_primary_accuracy",
+      "split": "in_distribution train/cal selects, heldout final-only",
+      "success_criterion": "match or beat the AlphaFoldDB-v6 logistic probe"
+    },
+    {
+      "afdb_v6_predicted_baseline": 0.814301,
+      "metric": "nearest_atlas_fold_tm_auc_in_vs_all_oos",
+      "source_artifact": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "split": "in_distribution atlas vs heldout (final-only readout)",
+      "success_criterion": "match or beat AlphaFoldDB-v6 fold/TM separation"
+    },
+    {
+      "afdb_v6_confounded_oos_baseline": 0.911348,
+      "afdb_v6_predicted_baseline": 0.907622,
+      "metric": "combined_geometry_plus_fold_mean_auc",
+      "split": "in_distribution atlas vs heldout (final-only readout)",
+      "success_criterion": "match or beat the AlphaFoldDB-v6 no-fit geometry+fold mean overall and on the 6 cofactor-confounded OOS rows"
+    },
+    {
+      "afdb_v6_fixed_gate_heldout_readout": "retains 45/47 in-scope, abstains 44/79 OOS, abstains 5/6 cofactor-confounded OOS",
+      "afdb_v6_fixed_gate_threshold": 0.44155,
+      "metric": "plddt_gated_abstention_vs_fixed_fold_augmented_gate",
+      "new_signal": "ESMFold2 per-residue pLDDT confidence (apo) as a principled abstention input, selected on train/cal only",
+      "source_artifact": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "split": "in_distribution train/cal selects gate, heldout final-only",
+      "success_criterion": "a pLDDT-gated abstention rule selected on train/cal beats the fixed 0.44155 fold-augmented gate on heldout OOS abstention at matched in-scope retention"
+    }
+  ],
+  "model_under_test": {
+    "all_atom": true,
+    "license": "MIT (open weights)",
+    "name": "ESMFold2",
+    "per_residue_confidence": "pLDDT",
+    "predicts_cofactor_or_substrate_geometry": false,
+    "provider": "Biohub (A. Rives)",
+    "release_date": "2026-05-27"
+  },
+  "protocol": [
+    {
+      "action": "Re-predict the in-distribution atlas and the 140 heldout accessions with ESMFold2 (all-atom + pLDDT). Stage outputs as mmCIF keyed by accession in the staged-coordinate directory.",
+      "coordinate_source": "ESMFold2 (esm package + weights, Biohub platform, or ESM Atlas)",
+      "step": 1,
+      "touches_heldout_labels": false
+    },
+    {
+      "action": "Re-run the frozen active-site geometry router and the Foldseek/TM fold channel on the ESMFold2 structures via backend=esmfold2.",
+      "command_key": "robustness_audit",
+      "step": 2,
+      "touches_heldout_labels": false
+    },
+    {
+      "action": "Compare to the AlphaFoldDB-v6 baseline: does 23/45 recover, does the 12.3% OOS false-positive rate drop, does a pLDDT-gated abstention rule (selected on train/cal) beat the fixed 0.44155 fold-augmented gate.",
+      "command_key": "atlas_retrieval + fold channel rerun",
+      "step": 3,
+      "touches_heldout_labels": "final-only readout after train/cal selection"
+    },
+    {
+      "action": "Decide whether ESMFold2 replaces or augments AlphaFoldDB-v6 as the predicted-structure coordinate source for the deployment regime.",
+      "step": 4,
+      "touches_heldout_labels": false
+    }
+  ],
+  "rerun_commands": {
+    "atlas_retrieval": "PYTHONPATH=src python -m catalytic_earth.cli build-predicted-geometry-in-distribution-atlas-retrieval --backend esmfold2 --esmfold2-staged-dir <DIR> --out artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_esmfold2_<DATE>.json",
+    "distillation_audit": "PYTHONPATH=src python -m catalytic_earth.cli build-predicted-geometry-distillation-audit --backend esmfold2 --esmfold2-staged-dir <DIR> --out artifacts/v3_predicted_geometry_distillation_audit_current702_esmfold2_<DATE>.json",
+    "robustness_audit": "PYTHONPATH=src python -m catalytic_earth.cli build-predicted-geometry-robustness-audit --backend esmfold2 --esmfold2-staged-dir <DIR> --out artifacts/v3_predicted_geometry_robustness_audit_current702_esmfold2_<DATE>.json --report work/predicted_geometry_robustness_audit_current702_esmfold2_<DATE>.md"
+  },
+  "schema_version": "esmfold2_robustness_experiment_contract.v1",
+  "source_artifacts": {
+    "afdb_v6_robustness_audit": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+    "fold_augmented_gate": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+    "fold_channel": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    "label_manifest": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json"
+  },
+  "split_discipline": {
+    "clean_experimental_reference": "45/45 primary, 0/92 pure-OOS FP at 0.4115",
+    "heldout_policy": "read once, after thresholds/models are fixed",
+    "leakage_rules": [
+      "no labels, fingerprints, M-CSA mechanism text/roles, source IDs, target names, or EC/Rhea IDs as predictive inputs",
+      "no threshold tuning on heldout rows",
+      "ESMFold2 coordinates swap only the coordinate source; the geometry router and fold channel are otherwise frozen"
+    ],
+    "threshold_and_model_selection_split": "in_distribution train/cal"
+  },
+  "staging_status": {
+    "accessions_needed": 323,
+    "accessions_with_staged_cif": 0,
+    "blocker": "esmfold2_runtime_or_staged_coordinates_unavailable",
+    "detail": "ESMFold2 inference is not run by this audit and no model weights are downloaded. Stage ESMFold2 all-atom mmCIF files keyed by current702 accession (file name 'ESMFOLD2-{accession}.cif' or '{accession}.cif'), then pass the directory via esmfold2_staged_dir= or the CE_ESMFOLD2_STAGED_DIR environment variable. Coordinates can be produced with the open `esm` package plus ESMFold2 weights, the hosted Biohub platform, or the ESM Atlas lookup. Once staged, this backend reuses the frozen geometry router and Foldseek/TM fold channel without edits.",
+    "esmfold2_staged_dir": null,
+    "staged_dir_env_var": "CE_ESMFOLD2_STAGED_DIR"
+  },
+  "status": "blocked_on_staged_coordinates"
+}

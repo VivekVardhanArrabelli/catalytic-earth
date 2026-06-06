@@ -30,6 +30,10 @@ from .active_site_encoder_cache import write_active_site_encoder_cache
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .bin_targeted_expansion import write_bin_targeted_expansion_plan
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
+from .cofactor_presence_calibration import write_cofactor_presence_calibration
+from .predicted_geometry_recovery import (
+    write_in_distribution_predicted_geometry_recovery,
+)
 from .doc_reference_check import write_current_docs_artifact_reference_check
 from .embedding_sidecar import write_sequence_embedding_sidecar
 from .fingerprints import build_mechanism_demo, load_fingerprints
@@ -211,6 +215,28 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_descriptor_present_counteraxis_preflight,
     write_fold_augmented_lever3_descriptor_generalization_counteraxis_readout,
     write_fold_augmented_lever3_retained_descriptor_rescue_readout,
+    write_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout,
+    write_fold_augmented_lever3_retained_channel_margin_counteraxis_readout,
+    write_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout,
+    write_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout,
+    write_fold_augmented_lever3_operating_point_closure_readout,
+    write_fold_augmented_lever3_closure_reproducibility_audit,
+    write_fold_augmented_lever3_operating_point_application_audit,
+    write_fold_augmented_lever3_deployment_contract_readiness_audit,
+    write_fold_augmented_lever3_deployment_contract_lineage_audit,
+    write_fold_augmented_lever3_deployment_contract_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_manifest_audit,
+    write_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_stage_provenance_audit,
+    write_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_route_class_readout,
+    write_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_route_class_provenance_readout,
+    write_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout,
+    write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit,
+    write_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -333,6 +359,10 @@ from .northstar_next_levers import (
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
+    write_cofactor_graft_fidelity_probe,
+    write_cofactor_restoration_recovery_probe,
+    write_esmfold2_robustness_experiment_contract,
+    write_predicted_geometry_failure_decomposition,
     write_predicted_geometry_in_distribution_atlas_retrieval,
     write_predicted_geometry_distillation_audit,
     write_predicted_geometry_robustness_audit,
@@ -2392,6 +2422,7 @@ def cmd_build_predicted_geometry_robustness_audit(args: argparse.Namespace) -> i
         cal_fraction=args.cal_fraction,
         hidden_layer_size=args.hidden_layer_size,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     headline = audit.get("headline", {})
     print(
@@ -2417,6 +2448,7 @@ def cmd_build_predicted_geometry_distillation_audit(args: argparse.Namespace) ->
         cal_fraction=args.cal_fraction,
         hidden_layer_size=args.hidden_layer_size,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     answer = audit.get("distillation_answer", {})
     print(
@@ -2444,6 +2476,7 @@ def cmd_build_predicted_geometry_in_distribution_atlas_retrieval(
         backend=args.backend,
         alphafold_version=args.alphafold_version,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     counts = audit.get("counts", {})
     print(
@@ -2451,6 +2484,89 @@ def cmd_build_predicted_geometry_in_distribution_atlas_retrieval(
         f"{args.out} ({audit.get('status')}; "
         f"atlas_ok={counts.get('atlas_rows_scored_ok')}/"
         f"{counts.get('atlas_rows_expected')})"
+    )
+    return 0
+
+
+def cmd_build_esmfold2_robustness_experiment_contract(args: argparse.Namespace) -> int:
+    contract = write_esmfold2_robustness_experiment_contract(
+        label_manifest_path=Path(args.label_manifest),
+        afdb_robustness_audit_path=(
+            Path(args.afdb_robustness_audit) if args.afdb_robustness_audit else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
+    )
+    inventory = contract.get("accession_inventory", {})
+    staging = contract.get("staging_status", {})
+    print(
+        "Wrote ESMFold2 robustness experiment contract to "
+        f"{args.out} ({contract.get('status')}; "
+        f"atlas={inventory.get('atlas_row_count')}, "
+        f"heldout={inventory.get('heldout_row_count')}, "
+        f"staged={staging.get('accessions_with_staged_cif')}/"
+        f"{staging.get('accessions_needed')})"
+    )
+    return 0
+
+
+def cmd_build_predicted_geometry_failure_decomposition(
+    args: argparse.Namespace,
+) -> int:
+    decomposition = write_predicted_geometry_failure_decomposition(
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    lost = decomposition.get("lost_primary", {})
+    ceiling = decomposition.get("esmfold2_ceiling", {})
+    print(
+        "Wrote predicted geometry failure decomposition to "
+        f"{args.out} ({decomposition.get('status')}; "
+        f"lost_primary={lost.get('total')} by_mode={lost.get('by_mode')}; "
+        "fold_recoverable_upper_bound="
+        f"{ceiling.get('primary_recoverable_upper_bound_fold_or_sidechain')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_restoration_recovery_probe(args: argparse.Namespace) -> int:
+    probe = write_cofactor_restoration_recovery_probe(
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        label_manifest_path=Path(args.label_manifest),
+        wave1_audit_path=Path(args.wave1_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    head = probe.get("headline", {})
+    print(
+        "Wrote cofactor restoration recovery probe to "
+        f"{args.out} ({probe.get('status')}; "
+        f"recovered={head.get('recovered_under_perfect_restoration')}/"
+        f"{head.get('cofactor_apo_loss_targets')}; "
+        f"apo_control_matches_audit={head.get('apo_control_rescore_matches_audit')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_graft_fidelity_probe(args: argparse.Namespace) -> int:
+    probe = write_cofactor_graft_fidelity_probe(
+        cofactor_restoration_probe_path=Path(args.cofactor_restoration_probe),
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    head = probe.get("headline", {})
+    print(
+        "Wrote cofactor graft fidelity probe to "
+        f"{args.out} ({probe.get('status')}; "
+        f"graft_realistic={head.get('graft_realistic_recovery')}/"
+        f"{head.get('targets')}; "
+        f"faithful={head.get('active_site_faithful')})"
     )
     return 0
 
@@ -2499,6 +2615,63 @@ def cmd_build_sequence_cofactor_channel_probe(args: argparse.Namespace) -> int:
         f"{args.out} ({audit.get('status')}; "
         f"label_readiness={answer.get('label_readiness')}; "
         f"heme_presence={support.get('heme')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_presence_calibration(args: argparse.Namespace) -> int:
+    audit = write_cofactor_presence_calibration(
+        label_manifest_path=Path(args.label_manifest),
+        geometry_features_path=Path(args.geometry_features),
+        split_manifest_path=Path(args.split_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        sequence_manifest_path=(
+            Path(args.sequence_manifest) if args.sequence_manifest else None
+        ),
+        fasta_path=Path(args.fasta) if args.fasta else None,
+        use_motif_features=args.use_motif_features,
+        min_calibration_positive=args.min_calibration_positive,
+        random_state=args.random_state,
+    )
+    selected = audit.get("selected_sources", {})
+    summary = ", ".join(
+        f"{cofactor_class}={info.get('calibration_roc_auc')}"
+        for cofactor_class, info in selected.items()
+    )
+    print(
+        "Wrote cofactor presence calibration to "
+        f"{args.out} ({audit.get('status')}; "
+        f"heldout_labels_read={audit['guardrails']['heldout_labels_read']}; "
+        f"cal_auc[{summary}])"
+    )
+    return 0
+
+
+def cmd_build_in_distribution_predicted_geometry_recovery(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_in_distribution_predicted_geometry_recovery(
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        split_manifest_path=Path(args.split_manifest),
+        reconstruction_channel_path=Path(args.reconstruction_channel),
+        staged_atlas_dir=Path(args.staged_atlas_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        context_label=args.context_label,
+        threshold=args.threshold,
+        alphafold_version=args.alphafold_version,
+    )
+    cal = audit.get("readouts_by_split", {}).get("calibration", {})
+    print(
+        "Wrote in-distribution predicted-geometry recovery to "
+        f"{args.out} ({audit.get('status')}; calibration out-of-sample: "
+        f"exp {cal.get('experimental_correct')} -> apo {cal.get('apo_correct')} "
+        f"-> fused {cal.get('fused_correct')}; "
+        f"recovered {cal.get('fused_recovered_rows')}/{cal.get('apo_lost_primary_rows')}, "
+        f"regressed {cal.get('fused_regressed_rows')})"
     )
     return 0
 
@@ -15265,6 +15438,755 @@ def cmd_build_fold_augmented_lever3_retained_descriptor_rescue_readout(
     return 0
 
 
+def cmd_build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout(
+            descriptor_present_counteraxis_preflight_path=Path(
+                args.descriptor_present_counteraxis_preflight
+            ),
+            retained_residual_risk_readout_path=Path(
+                args.retained_residual_risk_readout
+            ),
+            descriptor_generalization_counteraxis_readout_path=Path(
+                args.descriptor_generalization_counteraxis_readout
+            ),
+            retained_descriptor_rescue_readout_path=Path(
+                args.retained_descriptor_rescue_readout
+            ),
+            latest_train_cal_oos_surface_path=Path(
+                args.latest_train_cal_oos_surface
+            ),
+            predicted_geometry_atlas_retrieval_path=Path(
+                args.predicted_geometry_atlas_retrieval
+            ),
+            threshold_contract_path=Path(args.threshold_contract),
+            channel_veto_readout_path=Path(args.channel_veto_readout),
+            max_all_train_cal_oos_rows_fired=(
+                args.max_all_train_cal_oos_rows_fired
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 retained pairwise descriptor "
+        f"counteraxis readout to {args.out} (new application fired: "
+        f"{counts.get('new_pairwise_application_rows_fired_after_prior_rule')}, "
+        "retained after pairwise: "
+        f"{counts.get('retained_residual_rows_after_pairwise_counteraxis')}, "
+        "partial ready: "
+        f"{decision.get('pairwise_descriptor_counteraxis_ready_for_partial_application_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+            retained_pairwise_descriptor_counteraxis_readout_path=Path(
+                args.retained_pairwise_descriptor_counteraxis_readout
+            ),
+            residual_safety_readout_path=Path(args.residual_safety_readout),
+            cofactor_context_counteraxis_readout_path=Path(
+                args.cofactor_context_counteraxis_readout
+            ),
+            latest_train_cal_oos_surface_path=Path(
+                args.latest_train_cal_oos_surface
+            ),
+            threshold_contract_path=Path(args.threshold_contract),
+            channel_veto_readout_path=Path(args.channel_veto_readout),
+            max_all_train_cal_oos_rows_fired=(
+                args.max_all_train_cal_oos_rows_fired
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 retained channel-margin "
+        f"counteraxis readout to {args.out} (new application fired: "
+        f"{counts.get('new_counteraxis_application_rows_fired_after_descriptor_rules')}, "
+        "retained after all counteraxes: "
+        f"{counts.get('retained_residual_rows_after_all_counteraxes')}, "
+        "partial ready: "
+        f"{decision.get('channel_margin_counteraxis_ready_for_partial_application_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout(
+            retained_channel_margin_counteraxis_readout_path=Path(
+                args.retained_channel_margin_counteraxis_readout
+            ),
+            retained_pairwise_descriptor_counteraxis_readout_path=Path(
+                args.retained_pairwise_descriptor_counteraxis_readout
+            ),
+            cofactor_context_counteraxis_readout_path=Path(
+                args.cofactor_context_counteraxis_readout
+            ),
+            descriptor_present_counteraxis_preflight_path=Path(
+                args.descriptor_present_counteraxis_preflight
+            ),
+            retained_descriptor_rescue_readout_path=Path(
+                args.retained_descriptor_rescue_readout
+            ),
+            latest_train_cal_oos_surface_path=Path(
+                args.latest_train_cal_oos_surface
+            ),
+            predicted_geometry_atlas_retrieval_path=Path(
+                args.predicted_geometry_atlas_retrieval
+            ),
+            threshold_contract_path=Path(args.threshold_contract),
+            channel_veto_readout_path=Path(args.channel_veto_readout),
+            max_all_train_cal_oos_rows_fired=(
+                args.max_all_train_cal_oos_rows_fired
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 retained pocket-chemistry "
+        f"counteraxis readout to {args.out} (new application fired: "
+        f"{counts.get('new_pocket_chemistry_application_rows_fired_after_prior_counteraxes')}, "
+        "retained after pocket chemistry: "
+        f"{counts.get('retained_residual_rows_after_pocket_chemistry_counteraxis')}, "
+        "partial ready: "
+        f"{decision.get('pocket_chemistry_counteraxis_ready_for_partial_application_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout(
+            retained_pocket_chemistry_counteraxis_readout_path=Path(
+                args.retained_pocket_chemistry_counteraxis_readout
+            ),
+            retained_channel_margin_counteraxis_readout_path=Path(
+                args.retained_channel_margin_counteraxis_readout
+            ),
+            retained_pairwise_descriptor_counteraxis_readout_path=Path(
+                args.retained_pairwise_descriptor_counteraxis_readout
+            ),
+            cofactor_context_counteraxis_readout_path=Path(
+                args.cofactor_context_counteraxis_readout
+            ),
+            latest_train_cal_oos_surface_path=Path(
+                args.latest_train_cal_oos_surface
+            ),
+            threshold_contract_path=Path(args.threshold_contract),
+            channel_veto_readout_path=Path(args.channel_veto_readout),
+            min_design_same_family_rows_fired=(
+                args.min_design_same_family_rows_fired
+            ),
+            min_all_train_cal_oos_rows_fired=(
+                args.min_all_train_cal_oos_rows_fired
+            ),
+            max_all_train_cal_oos_rows_fired=(
+                args.max_all_train_cal_oos_rows_fired
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 retained geometry-mismatch "
+        f"counteraxis readout to {args.out} (new application fired: "
+        f"{counts.get('new_geometry_mismatch_application_rows_fired_after_pocket_chemistry')}, "
+        "retained after geometry mismatch: "
+        f"{counts.get('retained_residual_rows_after_geometry_mismatch_counteraxis')}, "
+        "ready: "
+        f"{decision.get('geometry_mismatch_counteraxis_ready_for_application_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_operating_point_closure_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_operating_point_closure_readout(
+        deployment_action_readout_path=Path(args.deployment_action_readout),
+        retained_pairwise_descriptor_counteraxis_readout_path=Path(
+            args.retained_pairwise_descriptor_counteraxis_readout
+        ),
+        retained_channel_margin_counteraxis_readout_path=Path(
+            args.retained_channel_margin_counteraxis_readout
+        ),
+        retained_pocket_chemistry_counteraxis_readout_path=Path(
+            args.retained_pocket_chemistry_counteraxis_readout
+        ),
+        retained_geometry_mismatch_counteraxis_readout_path=Path(
+            args.retained_geometry_mismatch_counteraxis_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 operating-point closure readout to "
+        f"{args.out} (retained residual rows: "
+        f"{counts.get('retained_residual_rows_after_all_counteraxes')}, "
+        "train/cal OOS abstained/routed: "
+        f"{counts.get('train_cal_oos_abstained_or_routed')}/"
+        f"{counts.get('train_cal_oos_rows')}, safe route: "
+        f"{decision.get('deployment_valid_safe_abstention_route_available_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_closure_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_closure_reproducibility_audit(
+        operating_point_closure_readout_path=Path(
+            args.operating_point_closure_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 closure reproducibility audit to "
+        f"{args.out} (direct hashes current: "
+        f"{counts.get('direct_source_records_hash_current')}/"
+        f"{counts.get('direct_source_records_checked')}, rebuild differences: "
+        f"{counts.get('closure_rebuild_difference_count')}, safe route current: "
+        f"{decision.get('safe_abstention_route_remains_current')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_operating_point_application_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_operating_point_application_audit(
+        operating_point_closure_readout_path=Path(
+            args.operating_point_closure_readout
+        ),
+        closure_reproducibility_audit_path=Path(
+            args.closure_reproducibility_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 operating-point application audit to "
+        f"{args.out} (application rows: "
+        f"{counts.get('application_rows_abstain_or_route_novel_oos')}/"
+        f"{counts.get('application_rows')}, forced labels: "
+        f"{counts.get('forced_mechanism_label_rows')}, ready: "
+        f"{decision.get('operating_point_application_contract_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_contract_readiness_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_contract_readiness_audit(
+        operating_point_application_audit_path=Path(
+            args.operating_point_application_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment contract readiness audit to "
+        f"{args.out} (application rows: "
+        f"{counts.get('application_rows_abstain_or_route_novel_oos')}/"
+        f"{counts.get('application_rows')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, contract ready: "
+        f"{decision.get('deployment_contract_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_contract_lineage_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_contract_lineage_audit(
+        deployment_contract_readiness_audit_path=Path(
+            args.deployment_contract_readiness_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment contract lineage audit to "
+        f"{args.out} (lineage artifacts: "
+        f"{counts.get('lineage_artifacts_checked')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, lineage clean: "
+        f"{decision.get('deployment_contract_lineage_clean')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+        deployment_contract_readiness_audit_path=Path(
+            args.deployment_contract_readiness_audit
+        ),
+        deployment_contract_lineage_audit_path=Path(
+            args.deployment_contract_lineage_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment contract reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, reproducible: "
+        f"{decision.get('deployment_contract_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_manifest_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_operator_manifest_audit(
+        deployment_contract_reproducibility_audit_path=Path(
+            args.deployment_contract_reproducibility_audit
+        ),
+        deployment_contract_readiness_audit_path=Path(
+            args.deployment_contract_readiness_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator manifest audit to "
+        f"{args.out} (manifest rows: "
+        f"{counts.get('operator_manifest_rows_abstain_or_route_novel_oos')}/"
+        f"{counts.get('operator_manifest_rows')}, forbidden-field rows: "
+        f"{counts.get('forbidden_manifest_field_rows')}, ready: "
+        f"{decision.get('deployment_operator_manifest_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+            deployment_operator_manifest_audit_path=Path(
+                args.deployment_operator_manifest_audit
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator manifest "
+        "reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_manifest_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_stage_provenance_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_stage_provenance_audit(
+        deployment_operator_manifest_audit_path=Path(
+            args.deployment_operator_manifest_audit
+        ),
+        deployment_contract_lineage_audit_path=Path(
+            args.deployment_contract_lineage_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment stage provenance audit to "
+        f"{args.out} (stage sources covered: "
+        f"{counts.get('stage_source_artifacts_covered_by_lineage')}/"
+        f"{counts.get('unique_stage_source_artifacts')}, guardrail clean: "
+        f"{counts.get('stage_source_artifacts_guardrail_clean')}/"
+        f"{counts.get('unique_stage_source_artifacts')}, clean: "
+        f"{decision.get('deployment_stage_provenance_clean')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+            deployment_stage_provenance_audit_path=Path(
+                args.deployment_stage_provenance_audit
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment stage provenance "
+        "reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_stage_provenance_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_route_class_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_deployment_operator_route_class_readout(
+        deployment_stage_provenance_reproducibility_audit_path=Path(
+            args.deployment_stage_provenance_reproducibility_audit
+        ),
+        deployment_operator_manifest_audit_path=Path(
+            args.deployment_operator_manifest_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator route-class readout to "
+        f"{args.out} (operator rows: "
+        f"{counts.get('operator_action_rows_abstain_or_route_novel_oos')}/"
+        f"{counts.get('operator_action_rows')}, route classes: "
+        f"{counts.get('route_classes_with_rows')}, ready: "
+        f"{decision.get('deployment_operator_route_class_readout_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+            deployment_operator_route_class_readout_path=Path(
+                args.deployment_operator_route_class_readout
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator route-class "
+        "reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_route_class_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+        deployment_operator_route_class_readout_path=Path(
+            args.deployment_operator_route_class_readout
+        ),
+        deployment_stage_provenance_audit_path=Path(
+            args.deployment_stage_provenance_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator route-class "
+        "provenance readout to "
+        f"{args.out} (stage-source links covered: "
+        f"{counts.get('route_class_stage_source_links_lineage_covered')}/"
+        f"{counts.get('route_class_stage_source_links')}, guardrail clean: "
+        f"{counts.get('route_class_stage_source_links_guardrail_clean')}/"
+        f"{counts.get('route_class_stage_source_links')}, ready: "
+        f"{decision.get('deployment_operator_route_class_provenance_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+            deployment_operator_route_class_provenance_readout_path=Path(
+                args.deployment_operator_route_class_provenance_readout
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator route-class "
+        "provenance reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_route_class_provenance_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+            deployment_operator_route_class_readout_path=Path(
+                args.deployment_operator_route_class_readout
+            ),
+            deployment_operator_route_class_provenance_readout_path=Path(
+                args.deployment_operator_route_class_provenance_readout
+            ),
+            deployment_operator_route_class_provenance_reproducibility_audit_path=Path(
+                args.deployment_operator_route_class_provenance_reproducibility_audit
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator transfer-safety "
+        "matrix readout to "
+        f"{args.out} (safe rows: "
+        f"{counts.get('row_safety_records_safe_to_abstain_or_route')}/"
+        f"{counts.get('row_safety_records')}, route classes: "
+        f"{counts.get('route_classes_with_rows')}, transfer allowed rows: "
+        f"{counts.get('mechanism_transfer_allowed_rows')}, ready: "
+        f"{decision.get('deployment_operator_transfer_safety_matrix_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+            deployment_operator_transfer_safety_matrix_readout_path=Path(
+                args.deployment_operator_transfer_safety_matrix_readout
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator transfer-safety "
+        "matrix reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_transfer_safety_matrix_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+            deployment_operator_transfer_safety_matrix_readout_path=Path(
+                args.deployment_operator_transfer_safety_matrix_readout
+            ),
+            deployment_operator_transfer_safety_matrix_reproducibility_audit_path=Path(
+                args.deployment_operator_transfer_safety_matrix_reproducibility_audit
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator transfer-safety "
+        "application audit to "
+        f"{args.out} (safe rows: "
+        f"{counts.get('application_operator_rows_safe_to_abstain_or_route')}/"
+        f"{counts.get('application_operator_rows')}, rebuild differences: "
+        f"{counts.get('matrix_rebuild_difference_count')}, ready: "
+        f"{decision.get('deployment_operator_transfer_safety_application_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+            deployment_operator_transfer_safety_application_audit_path=Path(
+                args.deployment_operator_transfer_safety_application_audit
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator transfer-safety "
+        "application reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_transfer_safety_application_reproducible')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet(
     args: argparse.Namespace,
 ) -> int:
@@ -20271,7 +21193,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_robustness.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db", "esmfold"),
+        choices=("alphafold_db", "esmfold", "esmfold2"),
+    )
+    predicted_geometry_robustness.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_robustness.add_argument("--alphafold-version", default="auto")
     predicted_geometry_robustness.add_argument("--split-assignment", default="heldout")
@@ -20317,7 +21247,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_distillation.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db", "esmfold"),
+        choices=("alphafold_db", "esmfold", "esmfold2"),
+    )
+    predicted_geometry_distillation.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_distillation.add_argument("--alphafold-version", default="auto")
     predicted_geometry_distillation.add_argument("--random-state", type=int, default=702)
@@ -20365,7 +21303,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_atlas.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db",),
+        choices=("alphafold_db", "esmfold2"),
+    )
+    predicted_geometry_atlas.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_atlas.add_argument("--alphafold-version", default="auto")
     predicted_geometry_atlas.add_argument("--max-rows", type=int, default=0)
@@ -20385,6 +21331,159 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_geometry_atlas.set_defaults(
         func=cmd_build_predicted_geometry_in_distribution_atlas_retrieval
+    )
+
+    esmfold2_experiment_contract = subparsers.add_parser(
+        "build-esmfold2-robustness-experiment-contract",
+        help=(
+            "stage the no-fit, leakage-safe ESMFold2 predicted-geometry robustness "
+            "experiment (accession lists, baseline, discipline, rerun commands)"
+        ),
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--afdb-robustness-audit",
+        default="artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help="directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract"
+            "_current702_20260603.json"
+        ),
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--report",
+        default=(
+            "work/esmfold2_predicted_geometry_robustness_experiment_contract"
+            "_20260603.md"
+        ),
+    )
+    esmfold2_experiment_contract.set_defaults(
+        func=cmd_build_esmfold2_robustness_experiment_contract
+    )
+
+    predicted_geometry_failure_decomposition = subparsers.add_parser(
+        "build-predicted-geometry-failure-decomposition",
+        help=(
+            "decompose predicted-geometry router failures into cofactor-apo-loss "
+            "vs fold/side-chain vs missing-residue (backend-agnostic; runs on the "
+            "AlphaFoldDB-v6 or a future ESMFold2 audit)"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_geometry_failure_decomposition"
+            "_current702_20260603.json"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--report",
+        default=(
+            "work/predicted_geometry_failure_decomposition_current702_20260603.md"
+        ),
+    )
+    predicted_geometry_failure_decomposition.set_defaults(
+        func=cmd_build_predicted_geometry_failure_decomposition
+    )
+
+    cofactor_restoration_probe = subparsers.add_parser(
+        "build-cofactor-restoration-recovery-probe",
+        help=(
+            "counterfactual: restore the experimental cofactor onto the predicted "
+            "apo backbone and re-score to measure how many cofactor_apo_loss lost "
+            "primary rows recover (upper bound)"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--wave1-audit",
+        default="artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--report",
+        default=(
+            "work/cofactor_restoration_recovery_probe_current702_20260604.md"
+        ),
+    )
+    cofactor_restoration_probe.set_defaults(
+        func=cmd_build_cofactor_restoration_recovery_probe
+    )
+
+    cofactor_graft_fidelity_probe = subparsers.add_parser(
+        "build-cofactor-graft-fidelity-probe",
+        help=(
+            "refine the cofactor-restoration upper bound: measure whether a real "
+            "rigid cofactor graft keeps the cofactor proximal given the predicted "
+            "active-site internal-distance distortion"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--cofactor-restoration-probe",
+        default=(
+            "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--report",
+        default="work/cofactor_graft_fidelity_probe_current702_20260604.md",
+    )
+    cofactor_graft_fidelity_probe.set_defaults(
+        func=cmd_build_cofactor_graft_fidelity_probe
     )
 
     mechanism_relationship_eval = subparsers.add_parser(
@@ -20485,6 +21584,131 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/sequence_cofactor_channel_probe_current702_20260529.md",
     )
     cofactor_channel_probe.set_defaults(func=cmd_build_sequence_cofactor_channel_probe)
+
+    cofactor_presence_calibration = subparsers.add_parser(
+        "build-cofactor-presence-calibration",
+        help=(
+            "leakage-safe train/cal cofactor-presence channel: fit heads on train, "
+            "select thresholds and backend on calibration, never read heldout"
+        ),
+    )
+    cofactor_presence_calibration.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--split-manifest",
+        default=(
+            "artifacts/"
+            "v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json"
+        ),
+    )
+    cofactor_presence_calibration.add_argument(
+        "--min-calibration-positive", type=int, default=5
+    )
+    cofactor_presence_calibration.add_argument("--random-state", type=int, default=702)
+    cofactor_presence_calibration.add_argument(
+        "--use-motif-features",
+        action="store_true",
+        help=(
+            "append leakage-safe cofactor-binding sequence motifs (Rossmann, "
+            "c-type heme, zinc-hydrolase) to the embedding before fitting"
+        ),
+    )
+    cofactor_presence_calibration.add_argument(
+        "--sequence-manifest",
+        default="artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+        help="sequence manifest (only used with --use-motif-features)",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--fasta",
+        default=(
+            "artifacts/"
+            "v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta"
+        ),
+        help="FASTA for motif extraction (only used with --use-motif-features)",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--out",
+        default="artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--report",
+        default="work/cofactor_presence_calibration_current702_20260604.md",
+    )
+    cofactor_presence_calibration.set_defaults(
+        func=cmd_build_cofactor_presence_calibration
+    )
+
+    in_distribution_recovery = subparsers.add_parser(
+        "build-in-distribution-predicted-geometry-recovery",
+        help=(
+            "leakage-safe in-distribution analog of the 45->23 predicted-apo drop: "
+            "score the router on experimental vs predicted-apo vs cofactor-fused "
+            "geometry and measure the cofactor-channel recovery (no heldout read)"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    in_distribution_recovery.add_argument(
+        "--graph", default="artifacts/v1_graph_1025.json"
+    )
+    in_distribution_recovery.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    in_distribution_recovery.add_argument(
+        "--split-manifest",
+        default=(
+            "artifacts/"
+            "v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--reconstruction-channel",
+        default="artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+        help=(
+            "sequence -> active-site-context channel artifact (channel_predictions "
+            "schema); defaults to the cofactor-presence calibration"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--context-label",
+        default="cofactor",
+        help="name of the reconstructed active-site context (e.g. cofactor, substrate)",
+    )
+    in_distribution_recovery.add_argument(
+        "--staged-atlas-dir",
+        default=(
+            "artifacts/"
+            "v3_predicted_structure_fold_channel_current702_20260601_coordinates/"
+            "atlas_in_distribution"
+        ),
+    )
+    in_distribution_recovery.add_argument("--threshold", type=float, default=0.4115)
+    in_distribution_recovery.add_argument("--alphafold-version", default="6")
+    in_distribution_recovery.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_in_distribution_predicted_geometry_recovery_current702_20260604.json"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--report",
+        default=(
+            "work/in_distribution_predicted_geometry_recovery_current702_20260604.md"
+        ),
+    )
+    in_distribution_recovery.set_defaults(
+        func=cmd_build_in_distribution_predicted_geometry_recovery
+    )
 
     embedding_sidecar = subparsers.add_parser(
         "build-sequence-embedding-sidecar",
@@ -37086,6 +38310,1176 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_retained_descriptor_rescue_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_retained_descriptor_rescue_readout
+    )
+
+    lever3_retained_pairwise_descriptor_counteraxis_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-retained-pairwise-descriptor-counteraxis-readout",
+        help=(
+            "select a train/cal-only residue-count OR counteraxis and measure "
+            "its retained descriptor-row application after descriptor rescue"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--descriptor-present-counteraxis-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_descriptor_present_"
+            "counteraxis_preflight_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--retained-residual-risk-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_residual_risk_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--descriptor-generalization-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_descriptor_generalization_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--retained-descriptor-rescue-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_descriptor_"
+            "rescue_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--predicted-geometry-atlas-retrieval",
+        default=(
+            "artifacts/v3_predicted_geometry_in_distribution_atlas_"
+            "retrieval_current702_20260601.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--channel-veto-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--max-all-train-cal-oos-rows-fired",
+        type=int,
+        default=8,
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pairwise_"
+            "descriptor_counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_retained_pairwise_descriptor_"
+            "counteraxis_readout_current702_20260604.md"
+        ),
+    )
+    lever3_retained_pairwise_descriptor_counteraxis_readout.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout
+        )
+    )
+
+    lever3_retained_channel_margin_counteraxis_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-retained-channel-margin-counteraxis-readout",
+        help=(
+            "select a train/cal-only strict-positive score-margin counteraxis "
+            "and measure retained-row application after descriptor rules"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--retained-pairwise-descriptor-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pairwise_"
+            "descriptor_counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--residual-safety-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_residual_safety_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--cofactor-context-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--channel-veto-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--max-all-train-cal-oos-rows-fired",
+        type=int,
+        default=50,
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_channel_margin_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_retained_channel_margin_"
+            "counteraxis_readout_current702_20260604.md"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout
+        )
+    )
+
+    lever3_retained_pocket_chemistry_counteraxis_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-retained-pocket-chemistry-counteraxis-readout",
+        help=(
+            "select a train/cal-only source-free pocket chemistry class-count "
+            "counteraxis and measure retained-row application after prior "
+            "Lever 3 counteraxes"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--retained-channel-margin-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_channel_margin_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--retained-pairwise-descriptor-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pairwise_"
+            "descriptor_counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--cofactor-context-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--descriptor-present-counteraxis-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_descriptor_present_"
+            "counteraxis_preflight_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--retained-descriptor-rescue-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_descriptor_"
+            "rescue_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--predicted-geometry-atlas-retrieval",
+        default=(
+            "artifacts/v3_predicted_geometry_in_distribution_atlas_"
+            "retrieval_current702_20260601.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--channel-veto-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--max-all-train-cal-oos-rows-fired",
+        type=int,
+        default=8,
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_"
+            "counteraxis_readout_current702_20260605.json"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_retained_pocket_chemistry_"
+            "counteraxis_readout_current702_20260605.md"
+        ),
+    )
+    lever3_retained_pocket_chemistry_counteraxis_readout.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout
+        )
+    )
+
+    lever3_retained_geometry_mismatch_counteraxis_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-retained-geometry-mismatch-counteraxis-readout",
+        help=(
+            "select a train/cal-only source-free channel-geometry mismatch "
+            "counteraxis and measure retained-row application after pocket "
+            "chemistry"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--retained-pocket-chemistry-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_"
+            "counteraxis_readout_current702_20260605.json"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--retained-channel-margin-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_channel_margin_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--retained-pairwise-descriptor-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pairwise_"
+            "descriptor_counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--cofactor-context-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--channel-veto-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--min-design-same-family-rows-fired",
+        type=int,
+        default=2,
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--min-all-train-cal-oos-rows-fired",
+        type=int,
+        default=5,
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--max-all-train-cal-oos-rows-fired",
+        type=int,
+        default=8,
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_"
+            "counteraxis_readout_current702_20260605.json"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_retained_geometry_mismatch_"
+            "counteraxis_readout_current702_20260605.md"
+        ),
+    )
+    lever3_retained_geometry_mismatch_counteraxis_readout.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout
+        )
+    )
+
+    lever3_operating_point_closure_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-operating-point-closure-readout",
+        help=(
+            "compose accepted Lever 3 retained counteraxis readouts into a "
+            "deployment-valid abstain/route operating-point closure readout"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--deployment-action-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_action_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--retained-pairwise-descriptor-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pairwise_"
+            "descriptor_counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--retained-channel-margin-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_channel_margin_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--retained-pocket-chemistry-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_"
+            "counteraxis_readout_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--retained-geometry-mismatch-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_"
+            "counteraxis_readout_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_closure_"
+            "readout_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_operating_point_closure_"
+            "readout_current702_20260605.md"
+        ),
+    )
+    lever3_operating_point_closure_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_operating_point_closure_readout
+    )
+
+    lever3_closure_reproducibility_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-closure-reproducibility-audit",
+        help=(
+            "audit the current Lever 3 operating-point closure readout for "
+            "source-hash currency and deterministic rebuild reproducibility"
+        ),
+    )
+    lever3_closure_reproducibility_audit.add_argument(
+        "--operating-point-closure-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_closure_"
+            "readout_current702_20260605.json"
+        ),
+    )
+    lever3_closure_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_closure_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_closure_reproducibility_"
+            "audit_current702_20260605.json"
+        ),
+    )
+    lever3_closure_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_closure_reproducibility_"
+            "audit_current702_20260605.md"
+        ),
+    )
+    lever3_closure_reproducibility_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_closure_reproducibility_audit
+    )
+
+    lever3_operating_point_application_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-operating-point-application-audit",
+        help=(
+            "audit the row-level application contract for the current Lever 3 "
+            "abstain/route operating point"
+        ),
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--operating-point-closure-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_closure_"
+            "readout_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--closure-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_closure_reproducibility_"
+            "audit_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_"
+            "application_audit_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_operating_point_"
+            "application_audit_current702_20260605.md"
+        ),
+    )
+    lever3_operating_point_application_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_operating_point_application_audit
+    )
+
+    lever3_deployment_contract_readiness_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-contract-readiness-audit",
+        help=(
+            "audit whether the current Lever 3 row-level application contract "
+            "is ready for deployment-time abstain/route use"
+        ),
+    )
+    lever3_deployment_contract_readiness_audit.add_argument(
+        "--operating-point-application-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_"
+            "application_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_readiness_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_contract_readiness_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_readiness_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_contract_readiness_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_contract_readiness_audit
+    )
+
+    lever3_deployment_contract_lineage_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-contract-lineage-audit",
+        help=(
+            "audit the bounded source lineage behind the current Lever 3 "
+            "deployment contract readiness artifact"
+        ),
+    )
+    lever3_deployment_contract_lineage_audit.add_argument(
+        "--deployment-contract-readiness-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_lineage_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_contract_lineage_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "lineage_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_lineage_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_contract_"
+            "lineage_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_contract_lineage_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_contract_lineage_audit
+    )
+
+    lever3_deployment_contract_reproducibility_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-contract-reproducibility-audit",
+        help=(
+            "rebuild the current Lever 3 deployment contract readiness and "
+            "lineage artifacts from their recorded sources"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--deployment-contract-readiness-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--deployment-contract-lineage-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "lineage_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_contract_"
+            "reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_contract_reproducibility_audit
+        )
+    )
+
+    lever3_deployment_operator_manifest_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-operator-manifest-audit",
+        help=(
+            "package the current Lever 3 deployment contract into a minimal "
+            "leakage-audited abstain/route operator manifest"
+        ),
+    )
+    lever3_deployment_operator_manifest_audit.add_argument(
+        "--deployment-contract-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_manifest_audit.add_argument(
+        "--deployment-contract-readiness-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_manifest_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_manifest_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "manifest_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_manifest_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "manifest_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_manifest_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_operator_manifest_audit
+    )
+
+    lever3_deployment_operator_manifest_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "manifest-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 deployment operator manifest "
+                "from its recorded contract sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_manifest_reproducibility_audit.add_argument(
+        "--deployment-operator-manifest-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "manifest_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_manifest_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_manifest_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "manifest_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_manifest_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "manifest_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_manifest_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit
+        )
+    )
+
+    lever3_deployment_stage_provenance_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-stage-provenance-audit",
+        help=(
+            "verify every Lever 3 operator-manifest stage source is covered "
+            "by the clean deployment-contract lineage"
+        ),
+    )
+    lever3_deployment_stage_provenance_audit.add_argument(
+        "--deployment-operator-manifest-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "manifest_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_stage_provenance_audit.add_argument(
+        "--deployment-contract-lineage-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "lineage_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_stage_provenance_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_stage_provenance_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+            "provenance_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_stage_provenance_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_stage_"
+            "provenance_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_stage_provenance_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_stage_provenance_audit
+    )
+
+    lever3_deployment_stage_provenance_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-stage-"
+                "provenance-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 deployment stage-provenance "
+                "audit from its recorded manifest and lineage sources"
+            ),
+        )
+    )
+    lever3_deployment_stage_provenance_reproducibility_audit.add_argument(
+        "--deployment-stage-provenance-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+            "provenance_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_stage_provenance_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_stage_provenance_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+            "provenance_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_stage_provenance_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_stage_"
+            "provenance_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_stage_provenance_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit
+        )
+    )
+
+    lever3_deployment_operator_route_class_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-operator-route-class-readout",
+        help=(
+            "classify current Lever 3 operator manifest actions by "
+            "deployment confounder route class"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--deployment-stage-provenance-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+            "provenance_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--deployment-operator-manifest-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "manifest_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_operator_route_class_readout
+    )
+
+    lever3_deployment_operator_route_class_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 operator route-class readout "
+                "from its recorded sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.add_argument(
+        "--deployment-operator-route-class-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "route_class_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit
+        )
+    )
+
+    lever3_deployment_operator_route_class_provenance_readout = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-provenance-readout"
+            ),
+            help=(
+                "audit clean stage-source provenance for each current Lever 3 "
+                "operator route class"
+            ),
+        )
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--deployment-operator-route-class-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--deployment-stage-provenance-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+            "provenance_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_readout_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout
+    )
+
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-provenance-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 operator route-class provenance "
+                "readout from its recorded sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.add_argument(
+        "--deployment-operator-route-class-provenance-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit
+    )
+
+    lever3_deployment_operator_transfer_safety_matrix_readout = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-matrix-readout"
+            ),
+            help=(
+                "convert current Lever 3 operator route classes into a "
+                "deployment transfer-safety matrix"
+            ),
+        )
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--deployment-operator-route-class-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--deployment-operator-route-class-provenance-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--deployment-operator-route-class-provenance-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_readout_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout
+        )
+    )
+
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-matrix-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 operator transfer-safety "
+                "matrix from its recorded route-class/provenance sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.add_argument(
+        "--deployment-operator-transfer-safety-matrix-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit
+        )
+    )
+
+    lever3_deployment_operator_transfer_safety_application_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-application-audit"
+            ),
+            help=(
+                "verify the reproducible Lever 3 operator transfer-safety "
+                "matrix is ready for abstain/route-only application"
+            ),
+        )
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--deployment-operator-transfer-safety-matrix-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--deployment-operator-transfer-safety-matrix-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit
+        )
+    )
+
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-application-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 transfer-safety application "
+                "audit from its recorded matrix sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.add_argument(
+        "--deployment-operator-transfer-safety-application-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit
+        )
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(
