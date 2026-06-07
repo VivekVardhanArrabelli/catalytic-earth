@@ -305,10 +305,12 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
                 evidence_packet_paths=[evidence],
                 out_path=out,
                 report_path=report,
+                created_utc="2026-06-07T22:22:55Z",
             )
 
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
+            self.assertEqual(audit["created_utc"], "2026-06-07T22:22:55Z")
             self.assertEqual(audit["counts"]["candidate_rows_evaluated"], 3)
             self.assertEqual(
                 audit["counts"]["admission_state_counts"]["blocked_family_decision"],
