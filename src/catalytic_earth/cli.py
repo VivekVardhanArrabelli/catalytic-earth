@@ -37,6 +37,10 @@ from .predicted_geometry_recovery import (
 from .doc_reference_check import write_current_docs_artifact_reference_check
 from .embedding_sidecar import write_sequence_embedding_sidecar
 from .fingerprints import build_mechanism_demo, load_fingerprints
+from .family_label_admission import (
+    DEFAULT_EVIDENCE_PACKET_PATHS,
+    write_family_label_admission_pipeline,
+)
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .mechanism_relationship_surface_eval import write_mechanism_relationship_surface_eval
@@ -17137,6 +17141,42 @@ def cmd_build_fold_augmented_family_panel_label_factory_gate_readiness(
         "Wrote fold-augmented family-panel label-factory gate readiness to "
         f"{args.out} (status: {readiness.get('status')}, gate input rows: "
         f"{counts.get('label_factory_gate_input_rows')})"
+    )
+    return 0
+
+
+def cmd_build_family_label_admission_pipeline(args: argparse.Namespace) -> int:
+    audit = write_family_label_admission_pipeline(
+        family_set_expansion_targets_path=Path(args.family_set_expansion_targets),
+        countability_gate_preflight_path=Path(args.countability_gate_preflight),
+        import_preview_blocker_gate_path=Path(args.import_preview_blocker_gate),
+        expert_import_decision_packet_path=Path(args.expert_import_decision_packet),
+        acceptance_scenario_plan_path=Path(args.acceptance_scenario_plan),
+        expert_import_decision_application_path=Path(
+            args.expert_import_decision_application
+        ),
+        accepted_import_preview_path=Path(args.accepted_import_preview),
+        label_factory_gate_readiness_path=Path(args.label_factory_gate_readiness),
+        research_readout_path=Path(args.research_readout),
+        locator_human_decision_matrix_path=Path(args.locator_human_decision_matrix),
+        source_free_predicted_geometry_retrieval_path=Path(
+            args.source_free_predicted_geometry_retrieval
+        ),
+        evidence_packet_paths=(
+            [Path(path) for path in args.evidence_packet]
+            if args.evidence_packet
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        artifact_id=args.artifact_id,
+    )
+    counts = audit.get("counts", {})
+    state_counts = counts.get("admission_state_counts", {})
+    print(
+        "Wrote family label admission pipeline to "
+        f"{args.out} (rows: {counts.get('candidate_rows_evaluated')}, "
+        f"states: {state_counts})"
     )
     return 0
 
@@ -41285,6 +41325,115 @@ def build_parser() -> argparse.ArgumentParser:
     family_panel_label_factory_readiness.set_defaults(
         func=cmd_build_fold_augmented_family_panel_label_factory_gate_readiness
     )
+
+    family_label_admission = subparsers.add_parser(
+        "build-family-label-admission-pipeline",
+        help=(
+            "normalize current family-panel candidate rows into row-level "
+            "admission states without importing or promoting labels"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--family-set-expansion-targets",
+        default="artifacts/v3_family_set_expansion_targets_current702_20260601.json",
+    )
+    family_label_admission.add_argument(
+        "--countability-gate-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_countability_gate_"
+            "preflight_current702_20260602.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--import-preview-blocker-gate",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_import_preview_"
+            "blocker_gate_current702_20260602.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--expert-import-decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_packet_current702_20260603.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--acceptance-scenario-plan",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_acceptance_scenario_"
+            "plan_current702_20260603.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--expert-import-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_application_current702_20260603.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--accepted-import-preview",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_accepted_import_"
+            "preview_current702_20260603.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--label-factory-gate-readiness",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_label_factory_gate_"
+            "readiness_current702_20260603.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--research-readout",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_research_readout_"
+            "current702_20260601.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--locator-human-decision-matrix",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_human_decision_"
+            "matrix_current702_20260601.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--source-free-predicted-geometry-retrieval",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_"
+            "retrieval_current702_20260601.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--evidence-packet",
+        action="append",
+        default=None,
+        help=(
+            "family-panel evidence packet path; may be supplied multiple times "
+            f"(defaults to {len(DEFAULT_EVIDENCE_PACKET_PATHS)} current packets)"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--artifact-id",
+        default="v3_family_label_admission_pipeline_current702_20260607",
+    )
+    family_label_admission.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_label_admission_pipeline_current702_"
+            "20260607.json"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--report",
+        default=(
+            "work/family_label_admission_pipeline_current702_20260607.md"
+        ),
+    )
+    family_label_admission.set_defaults(func=cmd_build_family_label_admission_pipeline)
 
     active_lever_reviewer_queue = subparsers.add_parser(
         "build-active-lever-reviewer-decision-queue",
