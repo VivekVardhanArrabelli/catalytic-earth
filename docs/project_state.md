@@ -26,6 +26,14 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **Current headline result (2026-06-06) — cofactor reconstruction:** the predicted-geometry
+  drop is recovered by reconstructing the deploy-missing cofactor from sequence. Predicted-apo
+  **23/45 → 37/45** primary (confirmed heldout one-shot, now SPENT; OOS/sec FP 12.3% → 25.9%).
+  Full detail in *Trusted Results* below, the decision_log "HELDOUT ONE-SHOT SPENT" entry, and
+  `docs/MAP.md`. **Vocabulary note (so this is searchable):** *cofactor reconstruction* =
+  *cofactor recovery* = the *sequence→cofactor-presence channel* (`cofactor_presence_calibration.py`)
+  fused into the router; the generalized form is "reconstruct the deploy-missing active-site
+  context from sequence" (`docs/predicted_geometry_robustness_pipeline_runbook.md`).
 - Current label surface: 702 curated labels in the current sequence-NN manifest,
   with 562 in-distribution rows and 140 heldout rows.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
