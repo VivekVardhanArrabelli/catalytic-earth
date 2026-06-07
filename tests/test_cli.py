@@ -3535,6 +3535,10 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                "build-family-label-admission-pipeline",
+                "cmd_build_family_label_admission_pipeline",
+            ),
+            (
                 "build-active-lever-reviewer-decision-queue",
                 "cmd_build_active_lever_reviewer_decision_queue",
             ),
