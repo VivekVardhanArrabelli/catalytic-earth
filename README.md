@@ -36,10 +36,13 @@ enzymes, and not a production biological design system.
   on the standardized heldout rows, joined 140/140 rows, and reported 45/45
   canonical primary accuracy with 0/92 pure-OOS false positives under the
   existing geometry abstention threshold.
-- Deployment caveat: that clean experimental-coordinate result is not a
-  bare-sequence deployment claim. The AlphaFoldDB predicted-geometry robustness
-  audit drops the hand router to 23/45 canonical primary heldout correct, so
-  predicted active-site degradation is now an explicit next-gate problem.
+- Deployment caveat + recovery (2026-06-06): the clean experimental result is not a
+  bare-sequence claim — on predicted (AlphaFoldDB apo) geometry the hand router drops to
+  23/45. This is now **recovered**: a leakage-safe sequence -> cofactor-presence channel
+  fused into the router lifts the heldout one-shot to **37/45** primary (+14), at a
+  precision cost (OOS/sec FP 12.3% -> 25.9%). The one-shot is spent; the open question is
+  the precision operating point (suppression vs recalibrated threshold + the Lever-2
+  electron-flow OOS lever). See `docs/MAP.md` for the one-page compass.
 - Learned representation results are diagnostic. ESM-C logistic versus ESM-C
   cosine shows decoder choice is confounded; ProtT5 and SaProt matched logistic
   reruns are blocked until raw local sidecars or weights exist.

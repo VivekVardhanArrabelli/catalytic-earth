@@ -1,11 +1,11 @@
 {
   "artifact_id": "v3_current_docs_artifact_reference_check_current702_20260601",
   "counts": {
-    "ignored_references": 9,
+    "ignored_references": 14,
     "missing_references": 0,
-    "references_checked": 823
+    "references_checked": 865
   },
-  "created_utc": "2026-06-06T14:37:15Z",
+  "created_utc": "2026-06-07T02:17:50Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -19,6 +19,31 @@
     "production_thresholds_changed": false
   },
   "ignored_references": [
+    {
+      "doc": "docs/artifact_index.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/research_lanes/epk_*"
+    },
+    {
+      "doc": "docs/project_state.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/research_lanes/epk_*"
+    },
+    {
+      "doc": "docs/project_state.md",
+      "reason": "glob_pattern",
+      "reference": "docs/session_decision_record_*"
+    },
+    {
+      "doc": "docs/decision_log.md",
+      "reason": "glob_pattern",
+      "reference": "docs/session_decision_record_*"
+    },
+    {
+      "doc": "docs/decision_log.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/research_lanes/epk_*"
+    },
     {
       "doc": "docs/agent_runbook.md",
       "reason": "glob_pattern",
@@ -71,6 +96,78 @@
   },
   "missing_references": [],
   "sample_checked_references": [
+    {
+      "checked_path": "artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_cofactor_presence_calibration_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json"
+    },
+    {
+      "checked_path": "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json"
+    },
+    {
+      "checked_path": "artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json"
+    },
+    {
+      "checked_path": "docs/predicted_geometry_robustness_pipeline_runbook.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/predicted_geometry_robustness_pipeline_runbook.md"
+    },
+    {
+      "checked_path": "docs/MAP.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/MAP.md"
+    },
+    {
+      "checked_path": "docs/session_decision_record_20260606.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/session_decision_record_20260606.md"
+    },
+    {
+      "checked_path": "docs/epk_heuristic_geometry_no_go_20260521.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/epk_heuristic_geometry_no_go_20260521.md"
+    },
     {
       "checked_path": "docs/project_state.md",
       "doc": "docs/artifact_index.md",
@@ -238,78 +335,6 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_p10746_source_feature_refresh_audit_current702_20260603.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_p10746_source_feature_refresh_audit_current702_20260603.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

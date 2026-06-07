@@ -96,11 +96,19 @@ a hard problem is supposed to yield: one honest slice at a time.
 
 1. **Bank the win.** 23 → 37/45 is real and confirmed. The recovery line is the
    evident product. Its open question is now *precision* (the OOS over-opening),
-   which has two pre-built dials — settle it on a leakage-safe OOS surface, not by
+   with three pre-built dials — sequence-supported suppression, a recalibrated
+   abstention threshold, and the **Lever-2 electron-flow** OOS lift (+0.04 abstain
+   at primary retention 1.0) — settle it on a leakage-safe OOS surface, not by
    peeking at the spent one-shot.
-2. **Stop feeding the receding horizon.** The per-row Lever-3/4 grind can be
+2. **Expansion (adding families): mind the LOMO collision.** Before scaling, build
+   the family-onboarding pipeline as a thin orchestrator that *assembles existing
+   parts* into one per-family status manifest — AND reconcile the **LOMO↔expansion
+   collision**: Leave-One-Mechanism-Out eval needs a frozen pre-expansion snapshot,
+   while expansion adds rows (opposite split semantics). Tag the snapshot before any
+   expansion write; keep expansion rows out of the LOMO split.
+3. **Stop feeding the receding horizon.** The per-row Lever-3/4 grind can be
    paused with a clear conscience unless a specific row is genuinely high-value.
-3. **The big bet, when you have energy:** model the **chemistry directly**
+4. **The big bet, when you have energy:** model the **chemistry directly**
    (bond-change / reaction representation). Geometry is a *proxy* for chemistry,
    and every proxy leak became a "new problem." The reaction representation is
    closer to ground truth and is the one underinvested lever that could dissolve
