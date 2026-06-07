@@ -5,9 +5,9 @@
 - Automation ID: `catalytic-earth-family-label-admission-pipeline`
 - STARTED_AT_UTC: `2026-06-07T22:22:55Z`
 - STARTED_AT_LOCAL: `2026-06-07T17:22:55-0500 CDT`
-- ENDED_AT_UTC: `2026-06-07T22:28:41Z`
-- ENDED_AT_LOCAL: `2026-06-07T17:28:41-0500 CDT`
-- ELAPSED_MINUTES: `5.767`
+- ENDED_AT_UTC: `2026-06-07T22:29:39Z`
+- ENDED_AT_LOCAL: `2026-06-07T17:29:39-0500 CDT`
+- ELAPSED_MINUTES: `6.733`
 - Status: Family label admission pipeline advanced on branch
   `family-label-admission-pipeline-7779-20260607`. This run started from
   current `origin/main`, applied the unmerged family-admission pipeline work,
@@ -76,9 +76,9 @@ Automation run: `catalytic-earth-family-label-admission-pipeline`
 
 - STARTED_AT: `2026-06-07T22:22:55Z`
 - STARTED_LOCAL: `2026-06-07T17:22:55-0500 CDT`
-- ENDED_AT: `2026-06-07T22:28:41Z`
-- ENDED_LOCAL: `2026-06-07T17:28:41-0500 CDT`
-- ELAPSED_MINUTES: `5.767`
+- ENDED_AT: `2026-06-07T22:29:39Z`
+- ENDED_LOCAL: `2026-06-07T17:29:39-0500 CDT`
+- ELAPSED_MINUTES: `6.733`
 - Lock acquire result:
   literal `.git/catalytic-earth-automation.lock` acquisition failed because
   this linked worktree stores `.git` as a pointer file. The existing
@@ -118,6 +118,11 @@ family-expansion action concrete without importing/promoting labels.
   packet, empty import preview for current inputs, rejects/OOS-signal packet,
   source hashes, row-context hashes, preserved evidence/provenance, and a
   ranked family-expansion action queue.
+- Files changed in this run: `src/catalytic_earth/family_label_admission.py`,
+  `src/catalytic_earth/cli.py`, `tests/test_family_label_admission.py`,
+  `artifacts/v3_family_label_admission_pipeline_current702_20260607.json`,
+  `work/family_label_admission_pipeline_current702_20260607.md`, and
+  `work/handoff.md`.
 
 #### Validation
 
