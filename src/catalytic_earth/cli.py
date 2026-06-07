@@ -17170,6 +17170,7 @@ def cmd_build_family_label_admission_pipeline(args: argparse.Namespace) -> int:
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
         artifact_id=args.artifact_id,
+        created_utc=args.created_utc,
     )
     counts = audit.get("counts", {})
     state_counts = counts.get("admission_state_counts", {})
@@ -41419,6 +41420,11 @@ def build_parser() -> argparse.ArgumentParser:
     family_label_admission.add_argument(
         "--artifact-id",
         default="v3_family_label_admission_pipeline_current702_20260607",
+    )
+    family_label_admission.add_argument(
+        "--created-utc",
+        default=None,
+        help="optional fixed UTC timestamp for reproducible artifact metadata",
     )
     family_label_admission.add_argument(
         "--out",

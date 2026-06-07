@@ -1,6 +1,6 @@
 # Family Label Admission Pipeline - current702
 
-Run: 2026-06-07T19:26:57Z
+Run: 2026-06-07T22:22:55Z
 
 Small deterministic family-label admission pipeline for current702 family-panel rows. It normalizes existing family-panel gates into one row-level state, preserves mechanism/provenance signal, and does not import, promote, score heldout, refit, or change thresholds.
 

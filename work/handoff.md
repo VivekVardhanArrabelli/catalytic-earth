@@ -3,19 +3,20 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-family-label-admission-pipeline`
-- STARTED_AT_UTC: `2026-06-07T19:22:02Z`
-- STARTED_AT_LOCAL: `2026-06-07T14:22:02-0500 CDT`
-- ENDED_AT_UTC: `2026-06-07T19:28:17Z`
-- ENDED_AT_LOCAL: `2026-06-07T14:28:17-0500 CDT`
-- ELAPSED_MINUTES: `6.250`
+- STARTED_AT_UTC: `2026-06-07T22:22:55Z`
+- STARTED_AT_LOCAL: `2026-06-07T17:22:55-0500 CDT`
+- ENDED_AT_UTC: `2026-06-07T22:28:41Z`
+- ENDED_AT_LOCAL: `2026-06-07T17:28:41-0500 CDT`
+- ELAPSED_MINUTES: `5.767`
 - Status: Family label admission pipeline advanced on branch
-  `family-label-admission-pipeline`. This run fast-forwarded the existing
-  branch from current `origin/main`-based work, added a machine-readable
-  exact-one-state invariant audit and ranked expansion action queue to the
-  current JSON/report, verified 22/22 rows have exactly one state, and kept the
-  single next task focused on expert adjudication of six family-decision rows.
-  It made no label, registry, ontology, import, threshold, production scoring,
-  split, heldout-evaluation, or model-weight changes.
+  `family-label-admission-pipeline-7779-20260607`. This run started from
+  current `origin/main`, applied the unmerged family-admission pipeline work,
+  added fixed `created_utc` provenance support to the builder/CLI, regenerated
+  the JSON/report with the recorded automation start time, verified 22/22 rows
+  have exactly one state, and kept the single next task focused on expert
+  adjudication of six family-decision rows. It made no label, registry,
+  ontology, import, threshold, production scoring, split, heldout-evaluation,
+  or model-weight changes.
 
 ## Mission
 
@@ -66,6 +67,94 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-07 Family Label Admission Pipeline Run 3
+
+Automation run: `catalytic-earth-family-label-admission-pipeline`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-07T22:22:55Z`
+- STARTED_LOCAL: `2026-06-07T17:22:55-0500 CDT`
+- ENDED_AT: `2026-06-07T22:28:41Z`
+- ENDED_LOCAL: `2026-06-07T17:28:41-0500 CDT`
+- ELAPSED_MINUTES: `5.767`
+- Lock acquire result:
+  literal `.git/catalytic-earth-automation.lock` acquisition failed because
+  this linked worktree stores `.git` as a pointer file. The existing
+  `automation-lock` CLI then acquired the resolved gitdir lock path
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth3/catalytic-earth-automation.lock`
+  at `2026-06-07T22:22:55Z`.
+- Disk note: free space was `14Gi` before implementation and `13Gi` at wrap,
+  above the requested 10 GiB floor.
+
+#### Current objective
+
+Advance the smallest useful family-label admission pipeline from current
+`origin/main`, preserve row-level evidence/provenance, and make the next
+family-expansion action concrete without importing/promoting labels.
+
+#### Run notes
+
+- Created branch `family-label-admission-pipeline-7779-20260607` from current
+  `origin/main`.
+- Reused the unmerged family-admission implementation from
+  `origin/family-label-admission-pipeline` because it already contained the
+  required deterministic module, CLI command, focused tests, JSON artifact,
+  markdown report, exact-one-state audit, and ranked action queue.
+- Added explicit `created_utc` support to
+  `build-family-label-admission-pipeline` and the underlying writer so the
+  operational artifact can be regenerated with the recorded automation start
+  time instead of wall-clock drift.
+- Regenerated
+  `artifacts/v3_family_label_admission_pipeline_current702_20260607.json` and
+  `work/family_label_admission_pipeline_current702_20260607.md` with
+  `created_utc` set to `2026-06-07T22:22:55Z`.
+- Current row-state result: 22 evaluated rows across 7 family axes; 0
+  `countable_candidate`, 0 `review_only_evidence`, 11 `oos_hard_negative`, 2
+  `blocked_locator`, 3 `blocked_coordinate`, 6 `blocked_family_decision`, and
+  0 `reject_preserve_signal`.
+- The JSON contains a family onboarding manifest, row admission table, review
+  packet, empty import preview for current inputs, rejects/OOS-signal packet,
+  source hashes, row-context hashes, preserved evidence/provenance, and a
+  ranked family-expansion action queue.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest tests/test_family_label_admission.py -q`:
+  3 passed, 7 subtests passed.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`:
+  1 passed, 160 subtests passed.
+- `python -m json.tool artifacts/v3_family_label_admission_pipeline_current702_20260607.json`
+  parsed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 labels.
+- `git diff --check` passed.
+
+#### Guardrails
+
+- No curated labels, registries, ontology, mechanism fingerprints, production
+  scoring, thresholds, train/cal/heldout splits, or existing label-factory
+  outputs were edited.
+- No labels were imported or promoted.
+- No LOMO, spent cofactor heldout one-shot, heldout tuning/evaluation, model
+  fitting/refitting, provider coordinate generation, or source-free locator
+  fabrication was performed.
+
+#### Recommended next concrete family-expansion task
+
+Adjudicate the 6 `blocked_family_decision` rows with their preserved
+`decision_context_sha256` values: `m_csa:10`, `m_csa:30`, `m_csa:31`,
+`m_csa:191`, `m_csa:448`, and `m_csa:973`; then rerun the expert-decision
+application and accepted import-preview builders. Human decision needed:
+explicit accept/reject/review-only expert decisions for those six rows.
+
+#### Stop condition
+
+This bounded branch is complete early after validation because the next useful
+family-expansion step is a human decision batch. Further automation would
+duplicate the existing action queue or move into label import/promotion without
+the required decisions and gates.
 
 ### 2026-06-07 Family Label Admission Pipeline Run 2
 
