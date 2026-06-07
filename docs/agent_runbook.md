@@ -5,8 +5,14 @@ the main repo.
 
 ## Source Of Truth Order
 
+Quick compass first: `docs/MAP.md` — one page with the current headline
+(**cofactor reconstruction**: predicted-apo 23/45 → 37/45, confirmed) and where each
+thing lives. Then in order:
+
 1. `docs/project_state.md` for current north star, benchmark state, blockers,
-   and next gates.
+   and next gates. (The "Current Benchmark State" section opens with the current
+   headline result — cofactor reconstruction — so it is not buried.)
+2. `docs/decision_log.md` for dated decisions that override older wording.
 2. `docs/decision_log.md` for dated decisions that override older wording.
 3. `docs/artifact_index.md` for which artifacts answer which questions.
 4. Machine artifacts under `artifacts/`, especially JSON contracts and audit
