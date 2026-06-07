@@ -326,6 +326,36 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
             self.assertFalse(
                 audit["guardrails"]["labels_registries_ontologies_changed"]
             )
+            self.assertTrue(audit["state_assignment_audit"]["passed"])
+            self.assertEqual(
+                audit["state_assignment_audit"]["rows_with_exactly_one_state"],
+                3,
+            )
+            action_queue = audit["family_expansion_action_queue"]
+            self.assertEqual(action_queue["queue_status"], "ready")
+            self.assertEqual(action_queue["recommended_next_item"]["entry_id"], "row_family")
+            self.assertEqual(
+                action_queue["recommended_next_item"]["action_class"],
+                "expert_family_admission_decision",
+            )
+            self.assertEqual(
+                action_queue["recommended_next_item"]["evidence_summary"][
+                    "decision_context_sha256"
+                ],
+                "a" * 64,
+            )
+            self.assertIn(
+                "family_panel_accepted_import_preview",
+                action_queue["recommended_next_item"][
+                    "machinery_to_rerun_after_resolution"
+                ],
+            )
+            self.assertEqual(
+                action_queue["counts_by_action_class"][
+                    "coordinate_or_coordinate_policy_resolution"
+                ],
+                1,
+            )
             self.assertEqual(
                 audit["source_artifacts"]["family_set_expansion_targets"]["sha256"],
                 sha256_path(family),

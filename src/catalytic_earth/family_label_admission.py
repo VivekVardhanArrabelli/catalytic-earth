@@ -467,6 +467,214 @@ def _row_source_hashes(
     return dict(sorted(sources.items()))
 
 
+def _state_assignment_audit(
+    row_admission_table: list[dict[str, Any]],
+) -> dict[str, Any]:
+    allowed_states = set(ADMISSION_STATES)
+    seen_entry_ids: set[str] = set()
+    violations: list[dict[str, Any]] = []
+    for row in row_admission_table:
+        entry_id = str(row.get("entry_id") or "")
+        state = row.get("admission_state")
+        row_violations: list[str] = []
+        if not entry_id:
+            row_violations.append("missing_entry_id")
+        elif entry_id in seen_entry_ids:
+            row_violations.append("duplicate_entry_id")
+        else:
+            seen_entry_ids.add(entry_id)
+        if not isinstance(state, str):
+            row_violations.append("missing_single_state_string")
+        elif state not in allowed_states:
+            row_violations.append("unknown_admission_state")
+        if row_violations:
+            violations.append(
+                {
+                    "entry_id": entry_id or None,
+                    "admission_state": state,
+                    "violations": row_violations,
+                }
+            )
+    return {
+        "passed": not violations,
+        "rows_checked": len(row_admission_table),
+        "rows_with_exactly_one_state": len(row_admission_table) - len(violations),
+        "allowed_states": list(ADMISSION_STATES),
+        "violations": violations,
+    }
+
+
+def _queue_evidence_summary(row: dict[str, Any]) -> dict[str, Any]:
+    evidence = row.get("evidence_preserved") or {}
+    mechanism = evidence.get("mechanism_and_review_signal") or {}
+    cofactor = evidence.get("cofactor_metal_signal") or {}
+    geometry = evidence.get("active_site_geometry") or {}
+    gate = evidence.get("gates_and_decisions") or {}
+    locator = evidence.get("source_free_locator_provenance") or {}
+    fold_gate = evidence.get("fold_tm_or_lever3_gate_result") or {}
+    return {
+        "benchmark_role": mechanism.get("benchmark_role"),
+        "split_assignment": mechanism.get("split_assignment"),
+        "catalytic_residues_roles": mechanism.get("catalytic_residues_roles"),
+        "bond_electron_proton_hints": mechanism.get("bond_electron_proton_hints"),
+        "selected_organic_cofactor_max": cofactor.get(
+            "selected_organic_cofactor_max"
+        ),
+        "predicted_geometry_status": geometry.get("predicted_geometry_status"),
+        "resolved_residue_count": geometry.get("resolved_residue_count"),
+        "research_gate_status": fold_gate.get("research_gate_status"),
+        "primary_channel": fold_gate.get("primary_channel"),
+        "locator_resolution_status": locator.get("locator_resolution_status"),
+        "locator_decision_class": locator.get("locator_decision_class"),
+        "decision_context_sha256": gate.get("decision_context_sha256"),
+        "source_check_completion_status": gate.get("source_check_completion_status"),
+    }
+
+
+def _action_queue_item(
+    *,
+    row: dict[str, Any],
+    priority: int,
+    action_class: str,
+    unblock_result: str,
+    machinery_to_rerun: list[str],
+) -> dict[str, Any]:
+    return {
+        "priority": priority,
+        "action_class": action_class,
+        "entry_id": row["entry_id"],
+        "candidate_family_axis": row["candidate_family_axis"],
+        "admission_state": row["admission_state"],
+        "blocker_class": row["blocker_class"],
+        "allowed_next_action": row["allowed_next_action"],
+        "unblock_result": unblock_result,
+        "would_enter_import_preview_if_accepted": (
+            row["would_enter_import_preview_if_accepted"]
+        ),
+        "row_context_sha256": row["row_context_sha256"],
+        "source_hashes": row["source_hashes"],
+        "evidence_summary": _queue_evidence_summary(row),
+        "machinery_to_rerun_after_resolution": machinery_to_rerun,
+    }
+
+
+def _family_expansion_action_queue(
+    *,
+    blocked_family_rows: list[dict[str, Any]],
+    blocked_locator_rows: list[dict[str, Any]],
+    blocked_coordinate_rows: list[dict[str, Any]],
+    import_preview_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    items: list[dict[str, Any]] = []
+    previewable_family_rows = [
+        row for row in blocked_family_rows if row["would_enter_import_preview_if_accepted"]
+    ]
+    nonpreview_family_rows = [
+        row
+        for row in blocked_family_rows
+        if not row["would_enter_import_preview_if_accepted"]
+    ]
+    for row in previewable_family_rows:
+        items.append(
+            _action_queue_item(
+                row=row,
+                priority=10,
+                action_class="expert_family_admission_decision",
+                unblock_result=(
+                    "row can enter accepted import-preview construction if "
+                    "explicitly accepted"
+                ),
+                machinery_to_rerun=[
+                    "family_panel_expert_import_decision_application",
+                    "family_panel_accepted_import_preview",
+                    "family_label_admission_pipeline",
+                ],
+            )
+        )
+    for row in nonpreview_family_rows:
+        items.append(
+            _action_queue_item(
+                row=row,
+                priority=20,
+                action_class="expert_family_admission_decision",
+                unblock_result="row exits family-decision blocker after explicit review",
+                machinery_to_rerun=[
+                    "family_panel_expert_import_decision_application",
+                    "family_label_admission_pipeline",
+                ],
+            )
+        )
+    for row in blocked_locator_rows:
+        items.append(
+            _action_queue_item(
+                row=row,
+                priority=30,
+                action_class="source_free_locator_or_position_mapping_resolution",
+                unblock_result=(
+                    "row can rerun source-free retrieval/countability gates after "
+                    "locator resolution"
+                ),
+                machinery_to_rerun=[
+                    "family_panel_source_free_predicted_geometry_retrieval",
+                    "family_panel_countability_gate_preflight",
+                    "family_panel_import_preview_blocker_gate",
+                    "family_label_admission_pipeline",
+                ],
+            )
+        )
+    for row in blocked_coordinate_rows:
+        items.append(
+            _action_queue_item(
+                row=row,
+                priority=40,
+                action_class="coordinate_or_coordinate_policy_resolution",
+                unblock_result=(
+                    "row can rerun coordinate-dependent source-free retrieval and "
+                    "gate preflight after approval"
+                ),
+                machinery_to_rerun=[
+                    "family_panel_source_free_predicted_geometry_retrieval",
+                    "family_panel_countability_gate_preflight",
+                    "family_panel_import_preview_blocker_gate",
+                    "family_label_admission_pipeline",
+                ],
+            )
+        )
+    for row in import_preview_rows:
+        items.append(
+            _action_queue_item(
+                row=row,
+                priority=50,
+                action_class="label_factory_gate_review",
+                unblock_result=(
+                    "row can be reviewed through the label-factory gate without "
+                    "automatic import"
+                ),
+                machinery_to_rerun=[
+                    "family_panel_label_factory_gate_readiness",
+                    "family_label_admission_pipeline",
+                ],
+            )
+        )
+    items = sorted(
+        items,
+        key=lambda item: (
+            int(item["priority"]),
+            _entry_sort_key(str(item["entry_id"])),
+        ),
+    )
+    for rank, item in enumerate(items, start=1):
+        item["rank"] = rank
+    return {
+        "queue_status": "ready" if items else "empty_no_unblocked_family_task",
+        "recommended_next_item": items[0] if items else None,
+        "items": items,
+        "counts_by_action_class": dict(
+            sorted(Counter(item["action_class"] for item in items).items())
+        ),
+    }
+
+
 def build_family_label_admission_pipeline(
     *,
     family_set_expansion_targets_path: Path,
@@ -745,6 +953,16 @@ def build_family_label_admission_pipeline(
     if state_counts.get("countable_candidate", 0) == 0:
         blockers.append("no_countable_candidates_from_current_inputs")
 
+    state_assignment_audit = _state_assignment_audit(row_admission_table)
+    if not state_assignment_audit["passed"]:
+        blockers.append("state_assignment_invariant_failed")
+    family_expansion_action_queue = _family_expansion_action_queue(
+        blocked_family_rows=blocked_family_rows,
+        blocked_locator_rows=blocked_locator_rows,
+        blocked_coordinate_rows=blocked_coordinate_rows,
+        import_preview_rows=import_preview_rows,
+    )
+
     return {
         "artifact_id": artifact_id,
         "schema_version": SCHEMA_VERSION,
@@ -769,6 +987,7 @@ def build_family_label_admission_pipeline(
             "heldout_rows_used_for_training": False,
             "mechanism_text_or_ids_used_as_predictive_features": False,
         },
+        "state_assignment_audit": state_assignment_audit,
         "counts": {
             "candidate_rows_evaluated": len(row_admission_table),
             "family_axes_evaluated": len(
@@ -829,6 +1048,7 @@ def build_family_label_admission_pipeline(
                 if row["admission_state"] == "reject_preserve_signal"
             ],
         },
+        "family_expansion_action_queue": family_expansion_action_queue,
         "recommended_next_concrete_family_expansion_task": next_task,
         "human_decision_needed": human_decision_needed,
         "source_artifacts": source_records,
@@ -849,6 +1069,9 @@ def build_family_label_admission_pipeline(
 
 def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
     counts = audit["counts"]
+    state_audit = audit.get("state_assignment_audit") or {}
+    action_queue = audit.get("family_expansion_action_queue") or {}
+    queue_items = action_queue.get("items") or []
     lines = [
         "# Family Label Admission Pipeline - current702",
         "",
@@ -865,6 +1088,11 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
         f"- Import-preview rows: {counts['import_preview_rows']}",
         f"- Review-packet rows: {counts['review_packet_rows']}",
         f"- OOS/reject signal rows: {counts['oos_signal_rows']}",
+        "- Exact-one-state audit: "
+        f"{'passed' if state_audit.get('passed') else 'failed'} "
+        f"({state_audit.get('rows_with_exactly_one_state', 0)}/"
+        f"{state_audit.get('rows_checked', 0)} rows)",
+        f"- Action-queue rows: {len(queue_items)}",
         f"- Blockers: {audit['blockers']}",
         "",
         "## Machinery Applied",
@@ -906,6 +1134,21 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
         f"{counts['import_preview_rows']} rows from current inputs.",
         "- Rejects/OOS signal packet: "
         f"{counts['oos_signal_rows']} preserved signal rows.",
+        "",
+        "## Action Queue",
+        "",
+        "| rank | row | action class | state | next action |",
+        "| ---: | --- | --- | --- | --- |",
+    ]
+    for item in queue_items[:12]:
+        lines.append(
+            f"| {item['rank']} | {item['entry_id']} | "
+            f"{item['action_class']} | {item['admission_state']} | "
+            f"{item['allowed_next_action']} |"
+        )
+    if not queue_items:
+        lines.append("| n/a | n/a | n/a | n/a | no unresolved expansion action |")
+    lines += [
         "",
         "## Next Task",
         "",

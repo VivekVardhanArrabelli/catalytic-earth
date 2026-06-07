@@ -1,6 +1,6 @@
 # Family Label Admission Pipeline - current702
 
-Run: 2026-06-07T18:40:09Z
+Run: 2026-06-07T19:26:57Z
 
 Small deterministic family-label admission pipeline for current702 family-panel rows. It normalizes existing family-panel gates into one row-level state, preserves mechanism/provenance signal, and does not import, promote, score heldout, refit, or change thresholds.
 
@@ -13,6 +13,8 @@ Small deterministic family-label admission pipeline for current702 family-panel 
 - Import-preview rows: 0
 - Review-packet rows: 11
 - OOS/reject signal rows: 11
+- Exact-one-state audit: passed (22/22 rows)
+- Action-queue rows: 11
 - Blockers: ['family_decisions_pending', 'source_free_locators_pending', 'coordinates_or_coordinate_policy_pending', 'no_countable_candidates_from_current_inputs']
 
 ## Machinery Applied
@@ -74,6 +76,22 @@ Small deterministic family-label admission pipeline for current702 family-panel 
 - Review packet: 11 unresolved family/locator/coordinate rows.
 - Import preview: 0 rows from current inputs.
 - Rejects/OOS signal packet: 11 preserved signal rows.
+
+## Action Queue
+
+| rank | row | action class | state | next action |
+| ---: | --- | --- | --- | --- |
+| 1 | m_csa:10 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
+| 2 | m_csa:30 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
+| 3 | m_csa:31 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
+| 4 | m_csa:191 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
+| 5 | m_csa:448 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
+| 6 | m_csa:973 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
+| 7 | mh_065 | source_free_locator_or_position_mapping_resolution | blocked_locator | No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy. |
+| 8 | mh_072 | source_free_locator_or_position_mapping_resolution | blocked_locator | No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy. |
+| 9 | external_glycoside_panel | coordinate_or_coordinate_policy_resolution | blocked_coordinate | No cached same-accession substrate-like coordinate clears external_glycoside_panel; provide an explicit substrate-complex coordinate or expert-approved non-glycan locator before rerunning schema/scoring. |
+| 10 | mh_064 | coordinate_or_coordinate_policy_resolution | blocked_coordinate | Approve or reject fetching mh_064 frozen alternate coordinates 3RKJ/3RKK/3SBL/3SFP/3SPU. |
+| 11 | secondary_probe::cobalamin_radical_rearrangement | coordinate_or_coordinate_policy_resolution | blocked_coordinate | No eligible alternate source row is available for Q59490; authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators. |
 
 ## Next Task
 
