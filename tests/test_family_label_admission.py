@@ -12,6 +12,9 @@ from catalytic_earth.family_label_admission import (
     sha256_path,
     write_family_label_admission_pipeline,
 )
+from catalytic_earth.northstar_next_levers import (
+    build_fold_augmented_family_panel_expert_import_decision_application,
+)
 
 
 def _write(path: Path, payload: dict) -> Path:
@@ -323,6 +326,7 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
 
             out = root / "out.json"
             report = root / "report.md"
+            decision_template = root / "decision_template.json"
             audit = write_family_label_admission_pipeline(
                 family_set_expansion_targets_path=family,
                 countability_gate_preflight_path=preflight,
@@ -338,11 +342,13 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
                 evidence_packet_paths=[evidence],
                 out_path=out,
                 report_path=report,
+                expert_decision_template_path=decision_template,
                 created_utc="2026-06-07T22:22:55Z",
             )
 
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
+            self.assertTrue(decision_template.exists())
             self.assertEqual(audit["created_utc"], "2026-06-07T22:22:55Z")
             self.assertEqual(audit["counts"]["candidate_rows_evaluated"], 3)
             self.assertEqual(
@@ -417,6 +423,71 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
             self.assertIn(
                 "apply-fold-augmented-family-panel-expert-import-decision",
                 decision_intake["application_commands_after_review"][0],
+            )
+            self.assertEqual(
+                audit["counts"]["expert_decision_review_template_rows"],
+                1,
+            )
+            self.assertEqual(
+                audit["operational_output_paths"][
+                    "expert_decision_review_template"
+                ],
+                str(decision_template),
+            )
+            template_payload = json.loads(
+                decision_template.read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                template_payload["status"],
+                "expert_decision_template_pending_review",
+            )
+            self.assertEqual(
+                template_payload["counts"],
+                {
+                    "decision_rows": 1,
+                    "pending_review_rows": 1,
+                    "previewable_if_accepted_rows": 1,
+                    "reviewed_rows": 0,
+                },
+            )
+            template_decision = template_payload["expert_import_decisions"][0]
+            self.assertEqual(template_decision["entry_id"], "row_family")
+            self.assertEqual(template_decision["decision"], "pending_review")
+            self.assertEqual(
+                template_decision["review_status"],
+                "pending_expert_import_decision",
+            )
+            self.assertEqual(
+                template_decision["decision_context_sha256"],
+                "a" * 64,
+            )
+            self.assertEqual(
+                template_decision["source_hashes"],
+                template_row["source_hashes"],
+            )
+            self.assertEqual(
+                template_decision["evidence_summary"],
+                template_row["evidence_summary"],
+            )
+            application_from_template = (
+                build_fold_augmented_family_panel_expert_import_decision_application(
+                    expert_import_decision_packet_path=packet,
+                    expert_decisions_path=decision_template,
+                )
+            )
+            self.assertEqual(
+                application_from_template["status"],
+                "family_panel_expert_import_decision_application_blocked",
+            )
+            self.assertEqual(
+                application_from_template["counts"][
+                    "accepted_import_preview_candidate_rows"
+                ],
+                0,
+            )
+            self.assertEqual(
+                application_from_template["counts"]["pending_decision_rows"],
+                1,
             )
             self.assertEqual(
                 audit["source_artifacts"]["family_set_expansion_targets"]["sha256"],

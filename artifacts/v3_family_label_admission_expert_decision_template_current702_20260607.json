@@ -1,0 +1,294 @@
+{
+  "application_command_after_review": "PYTHONPATH=src python -m catalytic_earth.cli apply-fold-augmented-family-panel-expert-import-decision --expert-decisions <this-reviewed-file.json>",
+  "artifact_id": "v3_family_label_admission_expert_decision_template_current702_20260607",
+  "counts": {
+    "decision_rows": 6,
+    "pending_review_rows": 6,
+    "previewable_if_accepted_rows": 6,
+    "reviewed_rows": 0
+  },
+  "created_utc": "2026-06-07T23:48:12Z",
+  "decision_contract": {
+    "decision_values": [
+      "explicit_accept_family_panel_import_candidate",
+      "reject_family_panel_import_candidate",
+      "keep_family_panel_review_only_require_more_evidence"
+    ],
+    "fail_closed_if": [
+      "decision_context_sha256 differs from the template row",
+      "decision is outside allowed_decisions",
+      "review_status is not reviewed_expert_import_decision",
+      "entry_id is not present in the expert import decision packet"
+    ],
+    "required_fields": [
+      "entry_id",
+      "decision_context_sha256",
+      "decision",
+      "review_status"
+    ],
+    "required_review_status_after_decision": "reviewed_expert_import_decision"
+  },
+  "expert_import_decisions": [
+    {
+      "allowed_decisions": [
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
+      ],
+      "decision": "pending_review",
+      "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+      "decision_rationale": "",
+      "entry_id": "m_csa:10",
+      "evidence_summary": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "bond_electron_proton_hints": null,
+        "catalytic_residues_roles": null,
+        "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+        "locator_decision_class": null,
+        "locator_resolution_status": null,
+        "predicted_geometry_status": "ok",
+        "primary_channel": "combined_mean_geometry_fold",
+        "research_gate_status": "abstained_at_research_threshold",
+        "resolved_residue_count": null,
+        "selected_organic_cofactor_max": 0.017518,
+        "source_check_completion_status": null,
+        "split_assignment": "heldout"
+      },
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision",
+      "reviewed_at_utc": null,
+      "reviewer": null,
+      "row_context_sha256": "5e106f1e3a1a42a4d7ec1261ab2c5cd64570af1518bfbea11f032da8eebf7e2d",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_4": "83ff67d2a86775fb3d7da5d49cbb1d448d391e1904420b602b68dd114f91095c",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      },
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "allowed_decisions": [
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
+      ],
+      "decision": "pending_review",
+      "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+      "decision_rationale": "",
+      "entry_id": "m_csa:30",
+      "evidence_summary": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "bond_electron_proton_hints": null,
+        "catalytic_residues_roles": null,
+        "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+        "locator_decision_class": null,
+        "locator_resolution_status": null,
+        "predicted_geometry_status": "ok",
+        "primary_channel": "combined_mean_geometry_fold",
+        "research_gate_status": "abstained_at_research_threshold",
+        "resolved_residue_count": null,
+        "selected_organic_cofactor_max": 0.589255,
+        "source_check_completion_status": null,
+        "split_assignment": "heldout"
+      },
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision",
+      "reviewed_at_utc": null,
+      "reviewer": null,
+      "row_context_sha256": "25db03e7096bc339bc77f7115ddf5d76e76710aad34133064b1ac4f328cd0d25",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_2": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      },
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "allowed_decisions": [
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
+      ],
+      "decision": "pending_review",
+      "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+      "decision_rationale": "",
+      "entry_id": "m_csa:31",
+      "evidence_summary": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "bond_electron_proton_hints": null,
+        "catalytic_residues_roles": null,
+        "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+        "locator_decision_class": null,
+        "locator_resolution_status": null,
+        "predicted_geometry_status": "ok",
+        "primary_channel": "combined_mean_geometry_fold",
+        "research_gate_status": "abstained_at_research_threshold",
+        "resolved_residue_count": null,
+        "selected_organic_cofactor_max": 0.808565,
+        "source_check_completion_status": null,
+        "split_assignment": "heldout"
+      },
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision",
+      "reviewed_at_utc": null,
+      "reviewer": null,
+      "row_context_sha256": "b96c466fa184138d944b16fec5cfc82ee81930536efb5ea210009ee9caae47a0",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_2": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      },
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "allowed_decisions": [
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
+      ],
+      "decision": "pending_review",
+      "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+      "decision_rationale": "",
+      "entry_id": "m_csa:191",
+      "evidence_summary": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "bond_electron_proton_hints": null,
+        "catalytic_residues_roles": null,
+        "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+        "locator_decision_class": null,
+        "locator_resolution_status": null,
+        "predicted_geometry_status": "ok",
+        "primary_channel": "combined_mean_geometry_fold",
+        "research_gate_status": "abstained_at_research_threshold",
+        "resolved_residue_count": null,
+        "selected_organic_cofactor_max": 0.555321,
+        "source_check_completion_status": null,
+        "split_assignment": "heldout"
+      },
+      "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision",
+      "reviewed_at_utc": null,
+      "reviewer": null,
+      "row_context_sha256": "54347489169da61ac9f6aeef526da8d8ea7b0d2d527f998ed8b546b92e28872e",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_6": "a6fe62a2cdd2927e4e0faecf473f6fe5aa2c4bf9616e8086a754f33f4cfa451c",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      },
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "allowed_decisions": [
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
+      ],
+      "decision": "pending_review",
+      "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+      "decision_rationale": "",
+      "entry_id": "m_csa:448",
+      "evidence_summary": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "bond_electron_proton_hints": null,
+        "catalytic_residues_roles": null,
+        "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+        "locator_decision_class": null,
+        "locator_resolution_status": null,
+        "predicted_geometry_status": "ok",
+        "primary_channel": "combined_mean_geometry_fold",
+        "research_gate_status": "abstained_at_research_threshold",
+        "resolved_residue_count": null,
+        "selected_organic_cofactor_max": 0.904927,
+        "source_check_completion_status": null,
+        "split_assignment": "heldout"
+      },
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision",
+      "reviewed_at_utc": null,
+      "reviewer": null,
+      "row_context_sha256": "277985525b6f20fa752f1ca8f7bbd928f78ae74d8bd76bdce8a076ce535ab4c1",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_3": "78b3032f6f9b3f381da700cdab3df55f18256d0da9412298e4368637c5d38c1c",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      },
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "allowed_decisions": [
+        "explicit_accept_family_panel_import_candidate",
+        "reject_family_panel_import_candidate",
+        "keep_family_panel_review_only_require_more_evidence"
+      ],
+      "decision": "pending_review",
+      "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+      "decision_rationale": "",
+      "entry_id": "m_csa:973",
+      "evidence_summary": {
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "bond_electron_proton_hints": null,
+        "catalytic_residues_roles": null,
+        "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+        "locator_decision_class": null,
+        "locator_resolution_status": null,
+        "predicted_geometry_status": "ok",
+        "primary_channel": "combined_mean_geometry_fold",
+        "research_gate_status": "abstained_at_research_threshold",
+        "resolved_residue_count": null,
+        "selected_organic_cofactor_max": 0.993434,
+        "source_check_completion_status": null,
+        "split_assignment": "in_distribution"
+      },
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision",
+      "reviewed_at_utc": null,
+      "reviewer": null,
+      "row_context_sha256": "eb70c21ef5039b9347e3a846007684229ec6017f9cf5cb728a78dcfc22276829",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_1": "814d11f6dfba81eb22525d10566f4f5888e0513e0c437002f9a9eff0d10ea121",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      },
+      "would_enter_import_preview_if_accepted": true
+    }
+  ],
+  "safe_default": "All rows are pending_review until a human reviewer changes decision to one allowed value and review_status to reviewed_expert_import_decision.",
+  "schema_version": "v3.family_label_admission_pipeline.expert_decision_template",
+  "status": "expert_decision_template_pending_review"
+}

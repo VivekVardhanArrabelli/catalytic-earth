@@ -17169,6 +17169,9 @@ def cmd_build_family_label_admission_pipeline(args: argparse.Namespace) -> int:
         ),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        expert_decision_template_path=Path(args.expert_decision_template_out)
+        if args.expert_decision_template_out
+        else None,
         artifact_id=args.artifact_id,
         created_utc=args.created_utc,
     )
@@ -41437,6 +41440,17 @@ def build_parser() -> argparse.ArgumentParser:
         "--report",
         default=(
             "work/family_label_admission_pipeline_current702_20260607.md"
+        ),
+    )
+    family_label_admission.add_argument(
+        "--expert-decision-template-out",
+        default=(
+            "artifacts/v3_family_label_admission_expert_decision_template_"
+            "current702_20260607.json"
+        ),
+        help=(
+            "optional standalone reviewed-decision JSON template for the "
+            "pending family-decision rows"
         ),
     )
     family_label_admission.set_defaults(func=cmd_build_family_label_admission_pipeline)

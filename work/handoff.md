@@ -3,22 +3,21 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-family-label-admission-pipeline`
-- STARTED_AT_UTC: `2026-06-07T23:22:28Z`
-- STARTED_AT_LOCAL: `2026-06-07T18:22:28-0500 CDT`
-- ENDED_AT_UTC: `2026-06-07T23:29:38Z`
-- ENDED_AT_LOCAL: `2026-06-07T18:29:38-0500 CDT`
-- ELAPSED_MINUTES: `7.167`
+- STARTED_AT_UTC: `2026-06-07T23:48:12Z`
+- STARTED_AT_LOCAL: `2026-06-07T18:48:12-0500 CDT`
+- ENDED_AT_UTC: `2026-06-07T23:53:19Z`
+- ENDED_AT_LOCAL: `2026-06-07T18:53:19-0500 CDT`
+- ELAPSED_MINUTES: `5.117`
 - Status: Family label admission pipeline advanced on branch
-  `family-label-admission-pipeline-8f68-20260607`. This run started from
-  current `origin/main`, reused the latest unmerged family-admission pipeline,
-  restored disk above the 10 GiB guardrail, added a machine-ingestable expert
-  decision intake packet for the six `blocked_family_decision` rows, corrected
-  future explicit accept/review-only decision routing, regenerated the
-  JSON/report with this run timestamp, and verified 22/22 rows have exactly
-  one state. It made no label, registry, ontology, import, threshold,
-  production scoring, split, heldout-evaluation, model-weight, LOMO,
-  spent-cofactor, provider, coordinate, or source-free locator fabrication
-  changes.
+  `family-label-admission-pipeline-6cea-20260607`. This run started from
+  current `origin/main`, replayed the latest unmerged family-admission pipeline
+  line, restored disk above the 10 GiB guardrail, added a standalone
+  fail-closed expert decision review-file template for the six
+  `blocked_family_decision` rows, regenerated JSON/report outputs with this
+  run timestamp, and verified 22/22 rows have exactly one state. It made no
+  label, registry, ontology, import, threshold, production scoring, split,
+  heldout-evaluation, model-weight, LOMO, spent-cofactor, provider,
+  coordinate, or source-free locator fabrication changes.
 
 ## Mission
 
@@ -69,6 +68,98 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-07 Family Label Admission Pipeline Run 5
+
+Automation run: `catalytic-earth-family-label-admission-pipeline`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-07T23:48:12Z`
+- STARTED_LOCAL: `2026-06-07T18:48:12-0500 CDT`
+- HANDOFF_ENDED_AT: `2026-06-07T23:53:19Z`
+- HANDOFF_ENDED_LOCAL: `2026-06-07T18:53:19-0500 CDT`
+- HANDOFF_ELAPSED_MINUTES: `5.117`
+- Lock acquire result:
+  default `.git/catalytic-earth-automation.lock` is unavailable in this linked
+  worktree because `.git` is a pointer file; acquired the repo helper lock at
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth1/catalytic-earth-automation.lock`
+  with `started_at=2026-06-07T23:48:12Z`.
+- Disk: startup free space was 9 GiB, below the run guardrail. Removed the
+  clean pushed stale worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/7779/catalytic-earth`;
+  wrap free space was 12 GiB.
+
+#### Current objective
+
+Advance the smallest useful family-label admission pipeline from current
+`origin/main`, preserve row-level evidence/provenance, and make the next
+family-expansion action concrete without importing/promoting labels.
+
+#### Run notes
+
+- Created branch `family-label-admission-pipeline-6cea-20260607` from current
+  `origin/main`.
+- Cherry-picked the latest pushed unmerged family-admission line through
+  `origin/family-label-admission-pipeline-8f68-20260607`.
+- Added a standalone safe-default expert decision review-file template at
+  `artifacts/v3_family_label_admission_expert_decision_template_current702_20260607.json`.
+  It contains exactly the six `blocked_family_decision` rows, preserves each
+  `decision_context_sha256`, `row_context_sha256`, source hashes, and compact
+  evidence summary, and keeps every row as `pending_review` until a human
+  changes `decision` and `review_status`.
+- Updated
+  `artifacts/v3_family_label_admission_pipeline_current702_20260607.json` and
+  `work/family_label_admission_pipeline_current702_20260607.md` so the main
+  pipeline artifact/report point at the review-file template and count its six
+  pending rows.
+
+#### Current pipeline result
+
+- Family axes evaluated: 7.
+- Candidate rows evaluated: 22.
+- Exact-one-state audit: passed for 22/22 rows.
+- State counts:
+  `countable_candidate=0`, `review_only_evidence=0`,
+  `oos_hard_negative=11`, `blocked_locator=2`,
+  `blocked_coordinate=3`, `blocked_family_decision=6`,
+  `reject_preserve_signal=0`.
+- Operational outputs present: family onboarding manifest, row admission table,
+  review packet, expert decision intake packet, standalone expert decision
+  review-file template, empty import preview for current inputs,
+  rejects/OOS-signal packet, action queue, source hashes, row-context hashes,
+  and preserved mechanism/provenance evidence.
+- Expert decision review-file template: 6 pending rows, 6 previewable if
+  explicitly accepted, 0 reviewed rows.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest tests/test_family_label_admission.py -q`:
+  4 passed, 9 subtests passed.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`:
+  1 passed, 160 subtests passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-family-label-admission-pipeline --created-utc 2026-06-07T23:48:12Z`:
+  regenerated the main JSON/report and standalone decision template.
+- `PYTHONPATH=src python -m catalytic_earth.cli apply-fold-augmented-family-panel-expert-import-decision --expert-decisions artifacts/v3_family_label_admission_expert_decision_template_current702_20260607.json --out /tmp/family_label_admission_template_application.json --report /tmp/family_label_admission_template_application.md`:
+  fail-closed as `family_panel_expert_import_decision_application_blocked`
+  with 0 accepted import-preview candidates.
+- `python -m json.tool` parsed both family-admission JSON outputs.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 curated mechanism labels.
+- `python -m py_compile src/catalytic_earth/family_label_admission.py` passed.
+- `git diff --check` passed.
+
+#### Next concrete family-expansion task
+
+Use
+`artifacts/v3_family_label_admission_expert_decision_template_current702_20260607.json`
+as the reviewed decision input template. Record explicit accept/reject/review-only
+expert decisions for `m_csa:10`, `m_csa:30`, `m_csa:31`, `m_csa:191`,
+`m_csa:448`, and `m_csa:973` without changing their preserved
+`decision_context_sha256` values; then rerun:
+`apply-fold-augmented-family-panel-expert-import-decision`,
+`build-fold-augmented-family-panel-accepted-import-preview`, and
+`build-family-label-admission-pipeline`.
 
 ### 2026-06-07 Family Label Admission Pipeline Run 4
 

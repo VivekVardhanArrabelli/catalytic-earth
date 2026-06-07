@@ -10,6 +10,9 @@ from typing import Any
 
 ARTIFACT_ID = "v3_family_label_admission_pipeline_current702_20260607"
 SCHEMA_VERSION = "v3.family_label_admission_pipeline"
+EXPERT_DECISION_TEMPLATE_ARTIFACT_ID = (
+    "v3_family_label_admission_expert_decision_template_current702_20260607"
+)
 
 ADMISSION_STATES = (
     "countable_candidate",
@@ -840,6 +843,74 @@ def _expert_decision_intake_packet(
     }
 
 
+def _expert_decision_review_template(
+    intake_packet: dict[str, Any],
+    *,
+    created_utc: str,
+) -> dict[str, Any]:
+    template_rows = [
+        row
+        for row in intake_packet.get("template_rows", [])
+        if isinstance(row, dict)
+    ]
+    decision_rows = []
+    for row in template_rows:
+        decision_rows.append(
+            {
+                "entry_id": row["entry_id"],
+                "panel_id": row["candidate_family_axis"],
+                "decision_context_sha256": row["decision_context_sha256"],
+                "decision": "pending_review",
+                "review_status": "pending_expert_import_decision",
+                "allowed_decisions": row["allowed_decisions"],
+                "required_review_status_after_decision": (
+                    REVIEWED_EXPERT_IMPORT_DECISION_STATUS
+                ),
+                "would_enter_import_preview_if_accepted": row[
+                    "would_enter_import_preview_if_accepted"
+                ],
+                "row_context_sha256": row["row_context_sha256"],
+                "source_hashes": row["source_hashes"],
+                "evidence_summary": row["evidence_summary"],
+                "reviewer": None,
+                "reviewed_at_utc": None,
+                "decision_rationale": "",
+            }
+        )
+    return {
+        "artifact_id": EXPERT_DECISION_TEMPLATE_ARTIFACT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.expert_decision_template",
+        "created_utc": created_utc,
+        "status": (
+            "expert_decision_template_pending_review"
+            if decision_rows
+            else "not_needed_no_blocked_family_decisions"
+        ),
+        "safe_default": (
+            "All rows are pending_review until a human reviewer changes "
+            "decision to one allowed value and review_status to "
+            "reviewed_expert_import_decision."
+        ),
+        "decision_contract": intake_packet.get("decision_contract", {}),
+        "application_command_after_review": (
+            "PYTHONPATH=src python -m catalytic_earth.cli "
+            "apply-fold-augmented-family-panel-expert-import-decision "
+            "--expert-decisions <this-reviewed-file.json>"
+        ),
+        "counts": {
+            "decision_rows": len(decision_rows),
+            "pending_review_rows": len(decision_rows),
+            "reviewed_rows": 0,
+            "previewable_if_accepted_rows": sum(
+                1
+                for row in decision_rows
+                if row["would_enter_import_preview_if_accepted"]
+            ),
+        },
+        "expert_import_decisions": decision_rows,
+    }
+
+
 def build_family_label_admission_pipeline(
     *,
     family_set_expansion_targets_path: Path,
@@ -857,6 +928,7 @@ def build_family_label_admission_pipeline(
     artifact_id: str = ARTIFACT_ID,
     created_utc: str | None = None,
 ) -> dict[str, Any]:
+    run_created_utc = created_utc or _utc_now_iso()
     evidence_packet_paths = evidence_packet_paths or [
         Path(path) for path in DEFAULT_EVIDENCE_PACKET_PATHS
     ]
@@ -1139,6 +1211,10 @@ def build_family_label_admission_pipeline(
     expert_decision_intake_packet = _expert_decision_intake_packet(
         blocked_family_rows
     )
+    expert_decision_review_template = _expert_decision_review_template(
+        expert_decision_intake_packet,
+        created_utc=run_created_utc,
+    )
     if expert_decision_intake_packet["counts"]["rows_with_validation_blockers"]:
         blockers.append("expert_decision_intake_template_invalid")
     family_expansion_action_queue = _family_expansion_action_queue(
@@ -1152,7 +1228,7 @@ def build_family_label_admission_pipeline(
     return {
         "artifact_id": artifact_id,
         "schema_version": SCHEMA_VERSION,
-        "created_utc": created_utc or _utc_now_iso(),
+        "created_utc": run_created_utc,
         "status": "family_label_admission_pipeline_ready_review_only",
         "scope": (
             "Small deterministic family-label admission pipeline for current702 "
@@ -1194,6 +1270,9 @@ def build_family_label_admission_pipeline(
             "expert_decision_template_rows": expert_decision_intake_packet[
                 "counts"
             ]["template_rows"],
+            "expert_decision_review_template_rows": expert_decision_review_template[
+                "counts"
+            ]["decision_rows"],
             "oos_signal_rows": len(oos_signal_rows),
             "blockers": len(blockers),
         },
@@ -1221,6 +1300,7 @@ def build_family_label_admission_pipeline(
             "expert_decision_intake_packet_ref": "#/expert_decision_intake_packet",
         },
         "expert_decision_intake_packet": expert_decision_intake_packet,
+        "expert_decision_review_template": expert_decision_review_template,
         "import_preview": {
             "rows": import_preview_rows,
             "accepted_decision_waiting_import_preview_rows": (
@@ -1249,6 +1329,7 @@ def build_family_label_admission_pipeline(
         "recommended_next_concrete_family_expansion_task": next_task,
         "human_decision_needed": human_decision_needed,
         "source_artifacts": source_records,
+        "operational_output_paths": {},
         "interpretation": {
             "headline": (
                 f"{len(row_admission_table)} family-panel rows classified into "
@@ -1287,6 +1368,8 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
         f"{counts['accepted_decision_waiting_import_preview_rows']}",
         f"- Review-packet rows: {counts['review_packet_rows']}",
         f"- Expert decision template rows: {counts['expert_decision_template_rows']}",
+        "- Expert decision review-file rows: "
+        f"{counts['expert_decision_review_template_rows']}",
         f"- OOS/reject signal rows: {counts['oos_signal_rows']}",
         "- Exact-one-state audit: "
         f"{'passed' if state_audit.get('passed') else 'failed'} "
@@ -1332,6 +1415,8 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
         f"{counts['review_packet_rows']} unresolved family/locator/coordinate rows.",
         "- Expert decision intake packet: "
         f"{counts['expert_decision_template_rows']} family-decision templates.",
+        "- Expert decision review-file template: "
+        f"{counts['expert_decision_review_template_rows']} pending rows.",
         "- Import preview: "
         f"{counts['import_preview_rows']} rows from current inputs.",
         "- Rejects/OOS signal packet: "
@@ -1354,6 +1439,17 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
         )
     if not intake_rows:
         lines.append("| n/a | n/a | n/a | 0 | no pending expert decision templates |")
+    template_path = (
+        (audit.get("operational_output_paths") or {}).get(
+            "expert_decision_review_template"
+        )
+    )
+    if template_path:
+        lines += [
+            "",
+            "Decision review-file template:",
+            f"`{template_path}`",
+        ]
     lines += [
         "",
         "## Action Queue",
@@ -1395,6 +1491,7 @@ def write_family_label_admission_pipeline(
     source_free_predicted_geometry_retrieval_path: Path,
     out_path: Path,
     report_path: Path | None = None,
+    expert_decision_template_path: Path | None = None,
     evidence_packet_paths: list[Path] | None = None,
     artifact_id: str = ARTIFACT_ID,
     created_utc: str | None = None,
@@ -1417,8 +1514,23 @@ def write_family_label_admission_pipeline(
         artifact_id=artifact_id,
         created_utc=created_utc,
     )
+    if expert_decision_template_path is not None:
+        audit.setdefault("operational_output_paths", {})[
+            "expert_decision_review_template"
+        ] = str(expert_decision_template_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if expert_decision_template_path is not None:
+        expert_decision_template_path.parent.mkdir(parents=True, exist_ok=True)
+        expert_decision_template_path.write_text(
+            json.dumps(
+                audit["expert_decision_review_template"],
+                indent=2,
+                sort_keys=True,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
     if report_path is not None:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
