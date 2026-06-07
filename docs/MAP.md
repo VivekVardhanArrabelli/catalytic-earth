@@ -100,12 +100,12 @@ a hard problem is supposed to yield: one honest slice at a time.
    abstention threshold, and the **Lever-2 electron-flow** OOS lift (+0.04 abstain
    at primary retention 1.0) — settle it on a leakage-safe OOS surface, not by
    peeking at the spent one-shot.
-2. **Expansion (adding families): mind the LOMO collision.** Before scaling, build
-   the family-onboarding pipeline as a thin orchestrator that *assembles existing
-   parts* into one per-family status manifest — AND reconcile the **LOMO↔expansion
-   collision**: Leave-One-Mechanism-Out eval needs a frozen pre-expansion snapshot,
-   while expansion adds rows (opposite split semantics). Tag the snapshot before any
-   expansion write; keep expansion rows out of the LOMO split.
+2. **Expansion (adding families).** Build the family-onboarding pipeline as a thin
+   orchestrator that *assembles existing parts* into one per-family status manifest.
+   **LOMO already ran (negative — no exact open-set recovery); it motivates targeted
+   expansion and is NOT a pending gate — do not rerun it.** The only LOMO hygiene that
+   matters: preserve/record the frozen pre-expansion snapshot/tag now (expansion adds
+   rows and destroys the ability to reconstruct a clean baseline later).
 3. **Stop feeding the receding horizon.** The per-row Lever-3/4 grind can be
    paused with a clear conscience unless a specific row is genuinely high-value.
 4. **The big bet, when you have energy:** model the **chemistry directly**

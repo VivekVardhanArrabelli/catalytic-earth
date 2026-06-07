@@ -788,15 +788,17 @@ artifacts first.
 
 ## Expansion And Generalization Constraints
 
-- **LOMO (Leave-One-Mechanism-Out) open-set eval is the generalization yardstick, and it
-  collides with expansion.** Recorded constraint (from the merged lever-2 readouts +
-  `docs/session_decision_record_20260530.md` + the merged
-  `automation/lomo-frozen-snapshot-current702-20260530` infra): **LOMO needs a frozen
-  pre-expansion snapshot; expansion adds rows — they touch evaluation split semantics in
-  opposite directions.** Current LOMO did NOT show exact open-set recovery. **Before
-  building/running the family-expansion pipeline, reconcile this:** run LOMO against a
-  frozen snapshot tagged before any expansion write, and keep expansion row-adds out of the
-  LOMO eval split. This is a hard precondition for the expansion phase, not an afterthought.
+- **LOMO (Leave-One-Mechanism-Out) open-set eval already ran and is a recorded NEGATIVE
+  baseline — it MOTIVATES targeted expansion; it is NOT a pending gate.** Result: no exact
+  open-set recovery (sources: merged lever-2 readouts,
+  `docs/session_decision_record_20260530.md`, the merged
+  `automation/lomo-frozen-snapshot-current702-20260530` infra, and
+  `work/lomo_frozen_snapshot_transfer_current702_20260530.md`). **Do NOT rerun LOMO as a
+  prerequisite for expansion.** The one durable hygiene action: **preserve/record the frozen
+  pre-expansion snapshot/tag now** — expansion adds rows, and once it does a clean
+  pre-expansion baseline can no longer be reconstructed. If a future generalization
+  re-baseline is ever wanted, run it against that frozen snapshot and keep expansion
+  row-adds out of the eval split — optional hygiene, not a blocker on targeted expansion.
 
 ## Concluded And Archived Tracks
 
@@ -869,8 +871,9 @@ artifacts first.
    the PRECISION point (sequence-supported suppression vs a recalibrated abstention
    threshold) and layer the complementary **Lever-2 electron-flow** OOS lift (+0.04 abstain
    at primary retention 1.0), decided on a leakage-safe OOS surface — NOT by peeking at the
-   spent one-shot. NOTE the **LOMO<->expansion collision** before scaling (see "Expansion
-   And Generalization Constraints" below). Default deploy path is the feature-channel
+   spent one-shot. NOTE: LOMO already ran as a NEGATIVE baseline that motivates targeted
+   expansion (do NOT rerun it); just preserve the frozen pre-expansion snapshot/tag (see
+   "Expansion And Generalization Constraints" below). Default deploy path is the feature-channel
    (A); structure-restoration with a CANONICAL/template cofactor (B) is held in
    reserve. The experimental-cofactor atom-level graft is demoted to an optional
    oracle (sharpen the ceiling integer / one-time-validate the cheap proxy); it is
