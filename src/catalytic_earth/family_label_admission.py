@@ -21,6 +21,20 @@ ADMISSION_STATES = (
     "reject_preserve_signal",
 )
 
+ACCEPT_FAMILY_PANEL_IMPORT_DECISION = (
+    "explicit_accept_family_panel_import_candidate"
+)
+REJECT_FAMILY_PANEL_IMPORT_DECISION = "reject_family_panel_import_candidate"
+REVIEW_ONLY_FAMILY_PANEL_DECISION = (
+    "keep_family_panel_review_only_require_more_evidence"
+)
+REVIEWED_EXPERT_IMPORT_DECISION_STATUS = "reviewed_expert_import_decision"
+FAMILY_PANEL_IMPORT_DECISIONS = (
+    ACCEPT_FAMILY_PANEL_IMPORT_DECISION,
+    REJECT_FAMILY_PANEL_IMPORT_DECISION,
+    REVIEW_ONLY_FAMILY_PANEL_DECISION,
+)
+
 DEFAULT_EVIDENCE_PACKET_PATHS = (
     "artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json",
     "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
@@ -188,6 +202,32 @@ def classify_family_label_admission_row(row: dict[str, Any]) -> dict[str, Any]:
                 "repair the reviewed decision record and matching context hash"
             ),
             "classification_basis": "decision_application_critical_violations",
+        }
+    if (
+        primary_blocker == "expert_family_admission_decision_required"
+        and decision == ACCEPT_FAMILY_PANEL_IMPORT_DECISION
+    ):
+        return {
+            "state": "review_only_evidence",
+            "blocker_class": "accepted_expert_decision_waiting_import_preview",
+            "allowed_next_action": (
+                "build the accepted import-preview artifact, then run the "
+                "family-panel label-factory gate before any countable use"
+            ),
+            "classification_basis": "explicit_accept_decision_verified",
+        }
+    if (
+        primary_blocker == "expert_family_admission_decision_required"
+        and decision == REVIEW_ONLY_FAMILY_PANEL_DECISION
+    ):
+        return {
+            "state": "review_only_evidence",
+            "blocker_class": "explicit_review_only_decision",
+            "allowed_next_action": (
+                "preserve the reviewed evidence outside import preview unless "
+                "new family-promotion evidence is added"
+            ),
+            "classification_basis": "explicit_review_only_decision_verified",
         }
     if accepted_preview or label_factory:
         return {
@@ -560,12 +600,29 @@ def _action_queue_item(
 
 def _family_expansion_action_queue(
     *,
+    accepted_decision_waiting_preview_rows: list[dict[str, Any]],
     blocked_family_rows: list[dict[str, Any]],
     blocked_locator_rows: list[dict[str, Any]],
     blocked_coordinate_rows: list[dict[str, Any]],
     import_preview_rows: list[dict[str, Any]],
 ) -> dict[str, Any]:
     items: list[dict[str, Any]] = []
+    for row in accepted_decision_waiting_preview_rows:
+        items.append(
+            _action_queue_item(
+                row=row,
+                priority=5,
+                action_class="accepted_import_preview_build",
+                unblock_result=(
+                    "row can enter label-factory gate review after accepted "
+                    "import-preview construction"
+                ),
+                machinery_to_rerun=[
+                    "family_panel_accepted_import_preview",
+                    "family_label_admission_pipeline",
+                ],
+            )
+        )
     previewable_family_rows = [
         row for row in blocked_family_rows if row["would_enter_import_preview_if_accepted"]
     ]
@@ -672,6 +729,114 @@ def _family_expansion_action_queue(
         "counts_by_action_class": dict(
             sorted(Counter(item["action_class"] for item in items).items())
         ),
+    }
+
+
+def _decision_intake_template_row(row: dict[str, Any], rank: int) -> dict[str, Any]:
+    evidence_summary = _queue_evidence_summary(row)
+    gate = row.get("evidence_preserved", {}).get("gates_and_decisions", {})
+    allowed_decisions = gate.get("allowed_decisions") or list(
+        FAMILY_PANEL_IMPORT_DECISIONS
+    )
+    current_decision = str(gate.get("expert_decision") or "pending_review")
+    decision_context_sha256 = str(gate.get("decision_context_sha256") or "")
+    validation_blockers: list[str] = []
+    if len(decision_context_sha256) != 64:
+        validation_blockers.append("decision_context_sha256_missing_or_invalid")
+    if not set(FAMILY_PANEL_IMPORT_DECISIONS).issubset(set(allowed_decisions)):
+        validation_blockers.append("allowed_decisions_do_not_match_contract")
+    return {
+        "rank": rank,
+        "entry_id": row["entry_id"],
+        "candidate_family_axis": row["candidate_family_axis"],
+        "decision_context_sha256": decision_context_sha256 or None,
+        "row_context_sha256": row["row_context_sha256"],
+        "source_hashes": row["source_hashes"],
+        "current_decision": current_decision,
+        "current_review_status": gate.get("review_status"),
+        "decision_field_to_update": "decision",
+        "review_status_field_to_update": "review_status",
+        "required_review_status_after_decision": REVIEWED_EXPERT_IMPORT_DECISION_STATUS,
+        "allowed_decisions": allowed_decisions,
+        "would_enter_import_preview_if_accepted": (
+            row["would_enter_import_preview_if_accepted"]
+        ),
+        "required_decision_record": {
+            "entry_id": row["entry_id"],
+            "decision_context_sha256": decision_context_sha256 or "<required>",
+            "decision": "<one of allowed_decisions>",
+            "review_status": REVIEWED_EXPERT_IMPORT_DECISION_STATUS,
+        },
+        "evidence_summary": evidence_summary,
+        "validation_blockers": validation_blockers,
+    }
+
+
+def _expert_decision_intake_packet(
+    blocked_family_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    ranked_rows = sorted(
+        blocked_family_rows,
+        key=lambda row: (
+            0 if row["would_enter_import_preview_if_accepted"] else 1,
+            _entry_sort_key(str(row["entry_id"])),
+        ),
+    )
+    template_rows = [
+        _decision_intake_template_row(row, rank)
+        for rank, row in enumerate(ranked_rows, start=1)
+    ]
+    rows_with_validation_blockers = [
+        row for row in template_rows if row["validation_blockers"]
+    ]
+    previewable_rows = [
+        row for row in template_rows if row["would_enter_import_preview_if_accepted"]
+    ]
+    return {
+        "status": (
+            "awaiting_expert_family_decisions"
+            if template_rows
+            else "not_needed_no_blocked_family_decisions"
+        ),
+        "decision_contract": {
+            "decision_values": list(FAMILY_PANEL_IMPORT_DECISIONS),
+            "required_review_status_after_decision": (
+                REVIEWED_EXPERT_IMPORT_DECISION_STATUS
+            ),
+            "required_fields": [
+                "entry_id",
+                "decision_context_sha256",
+                "decision",
+                "review_status",
+            ],
+            "fail_closed_if": [
+                "decision_context_sha256 differs from the template row",
+                "decision is outside allowed_decisions",
+                "review_status is not reviewed_expert_import_decision",
+                "entry_id is not present in the expert import decision packet",
+            ],
+        },
+        "application_commands_after_review": [
+            (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "apply-fold-augmented-family-panel-expert-import-decision "
+                "--expert-decisions <reviewed-family-decisions.json>"
+            ),
+            (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-fold-augmented-family-panel-accepted-import-preview"
+            ),
+            (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-label-admission-pipeline"
+            ),
+        ],
+        "counts": {
+            "template_rows": len(template_rows),
+            "previewable_if_accepted_rows": len(previewable_rows),
+            "rows_with_validation_blockers": len(rows_with_validation_blockers),
+        },
+        "template_rows": template_rows,
     }
 
 
@@ -888,6 +1053,12 @@ def build_family_label_admission_pipeline(
         for row in row_admission_table
         if row["admission_state"] == "blocked_coordinate"
     ]
+    accepted_decision_waiting_preview_rows = [
+        row
+        for row in row_admission_table
+        if row["admission_state"] == "review_only_evidence"
+        and row["blocker_class"] == "accepted_expert_decision_waiting_import_preview"
+    ]
     import_preview_rows = [
         row
         for row in row_admission_table
@@ -904,7 +1075,15 @@ def build_family_label_admission_pipeline(
         if row["admission_state"] in {"oos_hard_negative", "reject_preserve_signal"}
     ]
 
-    if blocked_family_rows:
+    if accepted_decision_waiting_preview_rows:
+        first = accepted_decision_waiting_preview_rows[0]
+        next_task = (
+            "Build the accepted import-preview artifact for the reviewed "
+            f"accepted row {first['entry_id']}, then rerun this admission "
+            "pipeline before any label-factory gate."
+        )
+        human_decision_needed = None
+    elif blocked_family_rows:
         previewable = [
             row for row in blocked_family_rows if row["would_enter_import_preview_if_accepted"]
         ]
@@ -957,7 +1136,13 @@ def build_family_label_admission_pipeline(
     state_assignment_audit = _state_assignment_audit(row_admission_table)
     if not state_assignment_audit["passed"]:
         blockers.append("state_assignment_invariant_failed")
+    expert_decision_intake_packet = _expert_decision_intake_packet(
+        blocked_family_rows
+    )
+    if expert_decision_intake_packet["counts"]["rows_with_validation_blockers"]:
+        blockers.append("expert_decision_intake_template_invalid")
     family_expansion_action_queue = _family_expansion_action_queue(
+        accepted_decision_waiting_preview_rows=accepted_decision_waiting_preview_rows,
         blocked_family_rows=blocked_family_rows,
         blocked_locator_rows=blocked_locator_rows,
         blocked_coordinate_rows=blocked_coordinate_rows,
@@ -998,11 +1183,17 @@ def build_family_label_admission_pipeline(
                 state: int(state_counts.get(state, 0)) for state in ADMISSION_STATES
             },
             "import_preview_rows": len(import_preview_rows),
+            "accepted_decision_waiting_import_preview_rows": len(
+                accepted_decision_waiting_preview_rows
+            ),
             "review_packet_rows": (
                 len(blocked_family_rows)
                 + len(blocked_locator_rows)
                 + len(blocked_coordinate_rows)
             ),
+            "expert_decision_template_rows": expert_decision_intake_packet[
+                "counts"
+            ]["template_rows"],
             "oos_signal_rows": len(oos_signal_rows),
             "blockers": len(blockers),
         },
@@ -1027,9 +1218,14 @@ def build_family_label_admission_pipeline(
             "blocked_family_decision_rows": blocked_family_rows,
             "blocked_locator_rows": blocked_locator_rows,
             "blocked_coordinate_rows": blocked_coordinate_rows,
+            "expert_decision_intake_packet_ref": "#/expert_decision_intake_packet",
         },
+        "expert_decision_intake_packet": expert_decision_intake_packet,
         "import_preview": {
             "rows": import_preview_rows,
+            "accepted_decision_waiting_import_preview_rows": (
+                accepted_decision_waiting_preview_rows
+            ),
             "countable_candidates": [
                 row
                 for row in row_admission_table
@@ -1087,7 +1283,10 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
         f"- Family axes evaluated: {counts['family_axes_evaluated']}",
         f"- Admission states: {counts['admission_state_counts']}",
         f"- Import-preview rows: {counts['import_preview_rows']}",
+        "- Accepted decisions waiting for import preview: "
+        f"{counts['accepted_decision_waiting_import_preview_rows']}",
         f"- Review-packet rows: {counts['review_packet_rows']}",
+        f"- Expert decision template rows: {counts['expert_decision_template_rows']}",
         f"- OOS/reject signal rows: {counts['oos_signal_rows']}",
         "- Exact-one-state audit: "
         f"{'passed' if state_audit.get('passed') else 'failed'} "
@@ -1131,10 +1330,31 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
         "",
         "- Review packet: "
         f"{counts['review_packet_rows']} unresolved family/locator/coordinate rows.",
+        "- Expert decision intake packet: "
+        f"{counts['expert_decision_template_rows']} family-decision templates.",
         "- Import preview: "
         f"{counts['import_preview_rows']} rows from current inputs.",
         "- Rejects/OOS signal packet: "
         f"{counts['oos_signal_rows']} preserved signal rows.",
+        "",
+        "## Expert Decision Intake",
+        "",
+        "| rank | row | decision context | preview if accepted | allowed decisions |",
+        "| ---: | --- | --- | --- | --- |",
+    ]
+    intake_rows = (
+        (audit.get("expert_decision_intake_packet") or {}).get("template_rows") or []
+    )
+    for row in intake_rows[:12]:
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | "
+            f"{row['decision_context_sha256'] or 'missing'} | "
+            f"{int(bool(row['would_enter_import_preview_if_accepted']))} | "
+            f"{', '.join(row['allowed_decisions'])} |"
+        )
+    if not intake_rows:
+        lines.append("| n/a | n/a | n/a | 0 | no pending expert decision templates |")
+    lines += [
         "",
         "## Action Queue",
         "",

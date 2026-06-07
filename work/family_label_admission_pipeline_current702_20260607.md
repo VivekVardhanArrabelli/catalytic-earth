@@ -1,6 +1,6 @@
 # Family Label Admission Pipeline - current702
 
-Run: 2026-06-07T22:22:55Z
+Run: 2026-06-07T23:22:28Z
 
 Small deterministic family-label admission pipeline for current702 family-panel rows. It normalizes existing family-panel gates into one row-level state, preserves mechanism/provenance signal, and does not import, promote, score heldout, refit, or change thresholds.
 
@@ -11,7 +11,9 @@ Small deterministic family-label admission pipeline for current702 family-panel 
 - Family axes evaluated: 7
 - Admission states: {'countable_candidate': 0, 'review_only_evidence': 0, 'oos_hard_negative': 11, 'blocked_locator': 2, 'blocked_coordinate': 3, 'blocked_family_decision': 6, 'reject_preserve_signal': 0}
 - Import-preview rows: 0
+- Accepted decisions waiting for import preview: 0
 - Review-packet rows: 11
+- Expert decision template rows: 6
 - OOS/reject signal rows: 11
 - Exact-one-state audit: passed (22/22 rows)
 - Action-queue rows: 11
@@ -74,8 +76,20 @@ Small deterministic family-label admission pipeline for current702 family-panel 
 ## Outputs
 
 - Review packet: 11 unresolved family/locator/coordinate rows.
+- Expert decision intake packet: 6 family-decision templates.
 - Import preview: 0 rows from current inputs.
 - Rejects/OOS signal packet: 11 preserved signal rows.
+
+## Expert Decision Intake
+
+| rank | row | decision context | preview if accepted | allowed decisions |
+| ---: | --- | --- | --- | --- |
+| 1 | m_csa:10 | 7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7 | 1 | explicit_accept_family_panel_import_candidate, reject_family_panel_import_candidate, keep_family_panel_review_only_require_more_evidence |
+| 2 | m_csa:30 | 053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885 | 1 | explicit_accept_family_panel_import_candidate, reject_family_panel_import_candidate, keep_family_panel_review_only_require_more_evidence |
+| 3 | m_csa:31 | 53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4 | 1 | explicit_accept_family_panel_import_candidate, reject_family_panel_import_candidate, keep_family_panel_review_only_require_more_evidence |
+| 4 | m_csa:191 | ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb | 1 | explicit_accept_family_panel_import_candidate, reject_family_panel_import_candidate, keep_family_panel_review_only_require_more_evidence |
+| 5 | m_csa:448 | 5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d | 1 | explicit_accept_family_panel_import_candidate, reject_family_panel_import_candidate, keep_family_panel_review_only_require_more_evidence |
+| 6 | m_csa:973 | 1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6 | 1 | explicit_accept_family_panel_import_candidate, reject_family_panel_import_candidate, keep_family_panel_review_only_require_more_evidence |
 
 ## Action Queue
 
