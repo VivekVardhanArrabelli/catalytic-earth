@@ -690,6 +690,7 @@ def build_family_label_admission_pipeline(
     source_free_predicted_geometry_retrieval_path: Path,
     evidence_packet_paths: list[Path] | None = None,
     artifact_id: str = ARTIFACT_ID,
+    created_utc: str | None = None,
 ) -> dict[str, Any]:
     evidence_packet_paths = evidence_packet_paths or [
         Path(path) for path in DEFAULT_EVIDENCE_PACKET_PATHS
@@ -966,7 +967,7 @@ def build_family_label_admission_pipeline(
     return {
         "artifact_id": artifact_id,
         "schema_version": SCHEMA_VERSION,
-        "created_utc": _utc_now_iso(),
+        "created_utc": created_utc or _utc_now_iso(),
         "status": "family_label_admission_pipeline_ready_review_only",
         "scope": (
             "Small deterministic family-label admission pipeline for current702 "
@@ -1176,6 +1177,7 @@ def write_family_label_admission_pipeline(
     report_path: Path | None = None,
     evidence_packet_paths: list[Path] | None = None,
     artifact_id: str = ARTIFACT_ID,
+    created_utc: str | None = None,
 ) -> dict[str, Any]:
     audit = build_family_label_admission_pipeline(
         family_set_expansion_targets_path=family_set_expansion_targets_path,
@@ -1193,6 +1195,7 @@ def write_family_label_admission_pipeline(
         ),
         evidence_packet_paths=evidence_packet_paths,
         artifact_id=artifact_id,
+        created_utc=created_utc,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
