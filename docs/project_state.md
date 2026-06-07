@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-04
+Last refreshed: 2026-06-06
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -46,6 +46,46 @@ flavin counts directly. Check the decision log and the row-level revision
 artifacts first.
 
 ## Trusted Results
+
+### 2026-06-06 session update — predicted-geometry recovery confirmed (read newest-first)
+
+- **Predicted-geometry recovery now works and is confirmed on the spent heldout
+  one-shot.** Applying the FROZEN leakage-safe cofactor-presence channel via raw cofactor
+  fusion at the existing 0.4115 threshold moved predicted-apo primary from **23/45 to
+  37/45** (+14 recovered), at a precision cost of OOS/secondary FP **12.3% -> 25.9%**.
+  The one-shot is **spent**; do not re-run or tune any threshold/policy against it.
+  (`artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json`;
+  decision_log 2026-06-04 "HELDOUT ONE-SHOT SPENT".)
+- **The leakage-safe methodology validated itself:** the in-distribution recovery harness
+  predicted the result before the read — out-of-sample calibration recovery 70.6% ->
+  heldout 63.6%; projected ~38/45 landed at 37/45.
+  (`src/catalytic_earth/predicted_geometry_recovery.py`,
+  `artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json`.)
+- **Leakage-safe cofactor-presence channel** (heads fit on train, thresholds + backend
+  selected on calibration, heldout never read for fit/threshold): metal/flavin/PLP/heme
+  one-vs-rest heads, optional cofactor-binding sequence-motif features.
+  (`src/catalytic_earth/cofactor_presence_calibration.py`,
+  `artifacts/v3_cofactor_presence_calibration_current702_20260604.json` [+ `_motif_`].)
+- **Problem-2 diagnosis (the foundation under the above):** the 45->23 drop is
+  **cofactor-loss-dominated** (22/22 lost primaries are cofactor-apo loss), the predicted
+  backbone is faithful (restoration probe recovers **22/22**; realistic graft **19/22**;
+  3 distorted-backbone rows are the ESMFold2 apo secondary-lever boundary). Generalized to
+  a reusable pipeline — diagnose missing context -> bound ceiling -> reconstruct from
+  sequence -> fuse + abstain — see `docs/predicted_geometry_robustness_pipeline_runbook.md`.
+  (`artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json`,
+  `v3_cofactor_restoration_recovery_probe_current702_20260604.json`,
+  `v3_cofactor_graft_fidelity_probe_current702_20260604.json`,
+  `v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`.)
+- **Lever-2 electron-flow is a complementary precision lever (research-grade):** a direct
+  source-free electron-flow OR overlay raises OOS abstain-recall **0.467 -> 0.507 (+0.04)**
+  at **primary retention 1.0** (PQQ `m_csa:104`, NAD-family `m_csa:464`, Fe-S `m_csa:119`);
+  not deployable until a protected-import authorization + approved-sidecar rerun. It offsets
+  the cofactor channel's precision cost (cofactor adds recall, electron-flow adds OOS
+  abstention). (`src/catalytic_earth/lever2_mechanism_incremental_readout.py`,
+  `artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json`;
+  decision_log 2026-06-06 "Lever 2 Electron-Flow…".)
+
+### Pre-2026-06-06 trusted results
 
 - Geometry re-export removed the prior join confound. The current Wave 1.2 audit
   joins 140/140 standardized heldout rows, recovers the five rows missed by the
@@ -738,8 +778,42 @@ artifacts first.
   review/acquisition evidence, but no canonical primary promotion, registry
   change, threshold change, production scorer change, or import is authorized.
 
+## Expansion And Generalization Constraints
+
+- **LOMO (Leave-One-Mechanism-Out) open-set eval is the generalization yardstick, and it
+  collides with expansion.** Recorded constraint (from the merged lever-2 readouts +
+  `docs/session_decision_record_20260530.md` + the merged
+  `automation/lomo-frozen-snapshot-current702-20260530` infra): **LOMO needs a frozen
+  pre-expansion snapshot; expansion adds rows — they touch evaluation split semantics in
+  opposite directions.** Current LOMO did NOT show exact open-set recovery. **Before
+  building/running the family-expansion pipeline, reconcile this:** run LOMO against a
+  frozen snapshot tagged before any expansion write, and keep expansion row-adds out of the
+  LOMO eval split. This is a hard precondition for the expansion phase, not an afterthought.
+
+## Concluded And Archived Tracks
+
+- **ePK (eukaryotic protein kinase) family expansion = NO-GO** for heuristic geometry
+  (`docs/epk_heuristic_geometry_no_go_20260521.md`). The 5 research tracks
+  (`false-positive-hunter`, `policy-harness`, `positive-evidence`, `sibling-controls`,
+  `substrate-role-identity`) are **archived as recoverable tags** `archive/epk-*` (NOT
+  merged — their conclusions are captured; their code stays out of main). Detailed
+  learnings live in the tags under `artifacts/research_lanes/epk_*` (candidate-conflict,
+  false-negative state-topology, source-free adjudication requirement, terminal blocker
+  classes). Restore with `git checkout archive/epk-<track>` only if revisited.
+- **Branch consolidation complete (2026-06-06):** every research track is unified into
+  `main` (PRs #4 cofactor, #5 youthful Problem-2, #6 lever-2 electron-flow + trailing
+  commits; earlier representation-shootout / LOMO-snapshot / organic-cofactor / Lever-2
+  PRs already in main). Only the 5 `archive/epk-*` tags remain unmerged. `main` is the
+  single source of truth; `work/handoff.md` is an auto-generated ledger (this file +
+  `docs/session_decision_record_*` are the durable human handoff).
+
 ## Active Blockers
 
+- **Precision operating point for cofactor fusion is the live open question.** The
+  confirmed 23 -> 37/45 recovery came with OOS/sec FP rising 12.3% -> 25.9%. Choosing the
+  deployable point (sequence-supported suppression dial vs recalibrated abstention
+  threshold, plus the Lever-2 electron-flow OOS lift) is unresolved and must be decided on
+  a leakage-safe OOS surface; the heldout one-shot is spent and must not be tuned against.
 - Fair ProtT5/SaProt logistic-head comparison needs local raw embedding or
   structure-token sidecars and an ESM-2-style train/cal-only head. Existing
   local exports are not equivalent decoders.
@@ -776,13 +850,19 @@ artifacts first.
    The solution architecture is generalized (see the 2026-06-04 "Problem 2 Solution
    Architecture" decision-log entry): diagnose the deploy-missing context ->
    bound the ceiling -> reconstruct the context from sequence -> fuse + abstain.
-   Steps 1-2 are built and class/backend-agnostic. **The next build is step 3:**
-   a leakage-safe train/cal **sequence -> cofactor-presence channel**
-   (`sequence_cofactor_channel.py` / `cofactor_channel_probe.py` + the materialized
-   cofactor-locus sidecars), supervised by STRUCTURAL ligand context only (never the
-   fingerprint/EC/Rhea/mechanism text), fed into the router where the experimental
-   `ligand_context` used to plug in, selected on train/cal with heldout one-shot, and
-   measured against the 19-22/22 ceiling. Default deploy path is the feature-channel
+   Steps 1-2 are built and class/backend-agnostic. **Step 3 is now DONE and confirmed
+   (2026-06-06):** the leakage-safe train/cal **sequence -> cofactor-presence channel**
+   (`src/catalytic_earth/cofactor_presence_calibration.py`, supervised by STRUCTURAL
+   ligand context only) was fused into the router where the experimental `ligand_context`
+   plugs in, and the heldout one-shot moved predicted-apo primary **23/45 -> 37/45** (+14;
+   OOS/sec FP 12.3% -> 25.9%); the in-distribution recovery harness predicted it
+   out-of-sample (70.6% -> heldout 63.6%). **The heldout one-shot is SPENT — do not re-run
+   or tune against it.** The open next step is **step 4 operating-point selection**: choose
+   the PRECISION point (sequence-supported suppression vs a recalibrated abstention
+   threshold) and layer the complementary **Lever-2 electron-flow** OOS lift (+0.04 abstain
+   at primary retention 1.0), decided on a leakage-safe OOS surface — NOT by peeking at the
+   spent one-shot. NOTE the **LOMO<->expansion collision** before scaling (see "Expansion
+   And Generalization Constraints" below). Default deploy path is the feature-channel
    (A); structure-restoration with a CANONICAL/template cofactor (B) is held in
    reserve. The experimental-cofactor atom-level graft is demoted to an optional
    oracle (sharpen the ceiling integer / one-time-validate the cheap proxy); it is
@@ -865,6 +945,20 @@ artifacts first.
   inflating this file.
 
 ## Primary References
+
+2026-06-06 session (cofactor recovery, electron-flow, consolidation):
+
+- `src/catalytic_earth/cofactor_presence_calibration.py` + `artifacts/v3_cofactor_presence_calibration_current702_20260604.json`
+- `src/catalytic_earth/predicted_geometry_recovery.py` + `artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json`
+- `artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json`
+- `artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json`
+- `artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json`
+- `artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json`
+- `artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`
+- `src/catalytic_earth/lever2_mechanism_incremental_readout.py` + `artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json`
+- `docs/predicted_geometry_robustness_pipeline_runbook.md`, `docs/MAP.md`, `docs/session_decision_record_20260606.md`
+
+Earlier primary references:
 
 - `artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json`
 - `work/wave1_2_decoder_join_confound_audit_702_20260528.md`

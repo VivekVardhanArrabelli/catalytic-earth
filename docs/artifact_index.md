@@ -11,6 +11,23 @@ Status terms:
 - Diagnostic: useful for analysis, but not enough alone for a gate decision.
 - Historical/superseded/confounded: read only through the caveat stated here.
 
+## 2026-06-06 Session — Predicted-Geometry Recovery, Electron-Flow, Consolidation
+
+| Artifact | Answers | Status |
+| --- | --- | --- |
+| `artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json` | Confirmed heldout recovery: predicted-apo 23/45 -> cofactor-fused 37/45 (OOS FP 12.3->25.9%) | Trusted result (one-shot SPENT) |
+| `artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json` (+ `_motif_`) | Leakage-safe out-of-sample recovery harness (70.6% cal -> predicted heldout) | Diagnostic (leakage-safe) |
+| `artifacts/v3_cofactor_presence_calibration_current702_20260604.json` (+ `_motif_`) | Leakage-safe train/cal sequence->cofactor-presence channel | Trusted contract |
+| `artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json` | Why the apo drop happens (cofactor-loss-dominated, 22/22) | Diagnostic |
+| `artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json` | Ceiling if cofactor restored (22/22) | Diagnostic |
+| `artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json` | Realistic graft ceiling (19/22) | Diagnostic |
+| `artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json` | Staged no-fit ESMFold2 secondary-lever experiment | Trusted contract (staged) |
+| `artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json` | Electron-flow OOS-abstain lift (+0.04, primary-safe) | Diagnostic (research-grade) |
+| `docs/predicted_geometry_robustness_pipeline_runbook.md` / `docs/MAP.md` / `docs/session_decision_record_20260606.md` | Reusable pipeline / one-page compass / session record | Current orientation |
+
+ePK NO-GO learnings are archived (not in main): `git checkout archive/epk-<track>` ->
+`artifacts/research_lanes/epk_*`. See `docs/epk_heuristic_geometry_no_go_20260521.md`.
+
 ## Start Here
 
 | Artifact | Answers | Status |

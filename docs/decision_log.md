@@ -3,6 +3,40 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-06: Branch Consolidation Complete — `main` Is The Single Source Of Truth
+
+Decision: unify every research track into `main` and stop maintaining parallel branches.
+
+State: PRs #4 (cofactor-presence-channel), #5 (youthful-babbage Problem-2 diagnosis), and
+#6 (lever-2 electron-flow, incl. trailing sensitivity + approved-sidecar-import commits) are
+merged; earlier branches (representation shootout esm-c / esm2-150m / prott5 / prostt5-3di /
+saprot / foldseek-pocket, `automation/lomo-frozen-snapshot`, organic-cofactor-resolution,
+targeted-bin-expansion, peaceful-mayer, happy-ride, Lever-2 PRs #2/#3) were already in main.
+Verified exhaustively (2026-06-06): only `main` is a live remote branch, and every other
+local branch / worktree HEAD is an ancestor of main — nothing dangling, nothing lost.
+
+Consequence: develop on `main` (or short-lived isolated worktrees that PR back). `work/handoff.md`
+is an auto-generated ledger; `docs/project_state.md` + `docs/session_decision_record_*` are the
+durable human handoff. The 5 ePK tracks are the only unmerged work, archived as tags (next entry).
+
+## 2026-06-06: ePK Family Expansion Is NO-GO — Archived As Recoverable Tags (learnings retained)
+
+Decision: do NOT merge the 5 ePK (eukaryotic protein kinase) research tracks into main; archive
+them as recoverable tags and retain their learnings by reference.
+
+Rationale: ePK expansion is a NO-GO for heuristic geometry
+(`docs/epk_heuristic_geometry_no_go_20260521.md`). The tracks forked 2026-05-20 (~455 commits
+behind) and are concluded; merging concluded dead-ends would add noise, not capability. Their
+conclusions are already in main (the NO-GO doc + refs in `external_source_transfer.md`,
+`label_factory.md`).
+
+Retained learnings (in the archive tags only, under `artifacts/research_lanes/epk_*`):
+candidate-conflict decision, false-negative state-topology probe, source-free adjudication
+requirement, terminal blocker-class decisions. Tags: `archive/epk-false-positive-hunter`,
+`archive/epk-policy-harness`, `archive/epk-positive-evidence`, `archive/epk-sibling-controls`,
+`archive/epk-substrate-role-identity`. Restore with `git checkout archive/epk-<track>` only if
+ePK is revisited with a non-heuristic-geometry approach.
+
 ## 2026-06-06: Lever 2 Electron-Flow Adds A Real, Primary-Safe OOS-Abstain Lift (research-grade) — Integrated
 
 Event: the Lever-2 electron-flow research track (formerly `lever-2-research-track`,
