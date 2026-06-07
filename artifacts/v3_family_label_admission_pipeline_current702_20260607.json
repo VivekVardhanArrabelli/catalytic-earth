@@ -32,7 +32,538 @@
     "oos_signal_rows": 11,
     "review_packet_rows": 11
   },
-  "created_utc": "2026-06-07T18:40:09Z",
+  "created_utc": "2026-06-07T19:26:57Z",
+  "family_expansion_action_queue": {
+    "counts_by_action_class": {
+      "coordinate_or_coordinate_policy_resolution": 3,
+      "expert_family_admission_decision": 6,
+      "source_free_locator_or_position_mapping_resolution": 2
+    },
+    "items": [
+      {
+        "action_class": "expert_family_admission_decision",
+        "admission_state": "blocked_family_decision",
+        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "blocker_class": "expert_family_admission_decision_required",
+        "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+        "entry_id": "m_csa:10",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.017518,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_expert_import_decision_application",
+          "family_panel_accepted_import_preview",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 10,
+        "rank": 1,
+        "row_context_sha256": "5e106f1e3a1a42a4d7ec1261ab2c5cd64570af1518bfbea11f032da8eebf7e2d",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_4": "83ff67d2a86775fb3d7da5d49cbb1d448d391e1904420b602b68dd114f91095c",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "action_class": "expert_family_admission_decision",
+        "admission_state": "blocked_family_decision",
+        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "blocker_class": "expert_family_admission_decision_required",
+        "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+        "entry_id": "m_csa:30",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.589255,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_expert_import_decision_application",
+          "family_panel_accepted_import_preview",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 10,
+        "rank": 2,
+        "row_context_sha256": "25db03e7096bc339bc77f7115ddf5d76e76710aad34133064b1ac4f328cd0d25",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_2": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "action_class": "expert_family_admission_decision",
+        "admission_state": "blocked_family_decision",
+        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "blocker_class": "expert_family_admission_decision_required",
+        "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+        "entry_id": "m_csa:31",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.808565,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_expert_import_decision_application",
+          "family_panel_accepted_import_preview",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 10,
+        "rank": 3,
+        "row_context_sha256": "b96c466fa184138d944b16fec5cfc82ee81930536efb5ea210009ee9caae47a0",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_2": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "action_class": "expert_family_admission_decision",
+        "admission_state": "blocked_family_decision",
+        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "blocker_class": "expert_family_admission_decision_required",
+        "candidate_family_axis": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+        "entry_id": "m_csa:191",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.555321,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_expert_import_decision_application",
+          "family_panel_accepted_import_preview",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 10,
+        "rank": 4,
+        "row_context_sha256": "54347489169da61ac9f6aeef526da8d8ea7b0d2d527f998ed8b546b92e28872e",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_6": "a6fe62a2cdd2927e4e0faecf473f6fe5aa2c4bf9616e8086a754f33f4cfa451c",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "action_class": "expert_family_admission_decision",
+        "admission_state": "blocked_family_decision",
+        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "blocker_class": "expert_family_admission_decision_required",
+        "candidate_family_axis": "lipoamide_or_sulfur_transfer_redox_boundary",
+        "entry_id": "m_csa:448",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.904927,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_expert_import_decision_application",
+          "family_panel_accepted_import_preview",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 10,
+        "rank": 5,
+        "row_context_sha256": "277985525b6f20fa752f1ca8f7bbd928f78ae74d8bd76bdce8a076ce535ab4c1",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_3": "78b3032f6f9b3f381da700cdab3df55f18256d0da9412298e4368637c5d38c1c",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "action_class": "expert_family_admission_decision",
+        "admission_state": "blocked_family_decision",
+        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "blocker_class": "expert_family_admission_decision_required",
+        "candidate_family_axis": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+        "entry_id": "m_csa:973",
+        "evidence_summary": {
+          "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.993434,
+          "source_check_completion_status": null,
+          "split_assignment": "in_distribution"
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_expert_import_decision_application",
+          "family_panel_accepted_import_preview",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 10,
+        "rank": 6,
+        "row_context_sha256": "eb70c21ef5039b9347e3a846007684229ec6017f9cf5cb728a78dcfc22276829",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_1": "814d11f6dfba81eb22525d10566f4f5888e0513e0c437002f9a9eff0d10ea121",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "action_class": "source_free_locator_or_position_mapping_resolution",
+        "admission_state": "blocked_locator",
+        "allowed_next_action": "No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
+        "blocker_class": "source_free_locator_or_position_mapping_missing",
+        "candidate_family_axis": "no_reliable_structure_metal_hydrolase_controls",
+        "entry_id": "mh_065",
+        "evidence_summary": {
+          "benchmark_role": null,
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "c705b3e334a6ec139c660157c239a2b5e114b08090291ce57b7957ed09d44f1b",
+          "locator_decision_class": "accession_equivalence_or_matching_coordinate_required",
+          "locator_resolution_status": "blocked_accession_mismatch_requested_afdb_position_mismatch",
+          "predicted_geometry_status": "missing",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "not_score_complete_for_primary_channel",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": null,
+          "source_check_completion_status": null,
+          "split_assignment": null
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_source_free_predicted_geometry_retrieval",
+          "family_panel_countability_gate_preflight",
+          "family_panel_import_preview_blocker_gate",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 30,
+        "rank": 7,
+        "row_context_sha256": "9ca241d8446f08a019d3232d5cfb1cd4c36d48e666982e78eff4ff8d34f01843",
+        "source_hashes": {
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_5": "fcc454b5bdaa43b049c5b0811b1bed793dc50cc27d6245a1a8713f64af403267",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "locator_human_decision_matrix": "190719702410aa1b199a1b5f8ea13576ba8f78308b7fc39f14769654655571f9",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can rerun source-free retrieval/countability gates after locator resolution",
+        "would_enter_import_preview_if_accepted": false
+      },
+      {
+        "action_class": "source_free_locator_or_position_mapping_resolution",
+        "admission_state": "blocked_locator",
+        "allowed_next_action": "No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
+        "blocker_class": "source_free_locator_or_position_mapping_missing",
+        "candidate_family_axis": "no_reliable_structure_metal_hydrolase_controls",
+        "entry_id": "mh_072",
+        "evidence_summary": {
+          "benchmark_role": null,
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "02378e497c32aba58d6f3f16030c9ebaa6ac7eb35949c29ac5d371f438199562",
+          "locator_decision_class": "accession_equivalence_or_matching_coordinate_required",
+          "locator_resolution_status": "blocked_accession_mismatch_requested_afdb_position_mismatch",
+          "predicted_geometry_status": "missing",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "not_score_complete_for_primary_channel",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": null,
+          "source_check_completion_status": null,
+          "split_assignment": null
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_source_free_predicted_geometry_retrieval",
+          "family_panel_countability_gate_preflight",
+          "family_panel_import_preview_blocker_gate",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 30,
+        "rank": 8,
+        "row_context_sha256": "4d219acbb915c9e5463b6a204a8811d189b21e273a464a2d3bc4b46619fdb9b1",
+        "source_hashes": {
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_5": "fcc454b5bdaa43b049c5b0811b1bed793dc50cc27d6245a1a8713f64af403267",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "locator_human_decision_matrix": "190719702410aa1b199a1b5f8ea13576ba8f78308b7fc39f14769654655571f9",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can rerun source-free retrieval/countability gates after locator resolution",
+        "would_enter_import_preview_if_accepted": false
+      },
+      {
+        "action_class": "coordinate_or_coordinate_policy_resolution",
+        "admission_state": "blocked_coordinate",
+        "allowed_next_action": "No cached same-accession substrate-like coordinate clears external_glycoside_panel; provide an explicit substrate-complex coordinate or expert-approved non-glycan locator before rerunning schema/scoring.",
+        "blocker_class": "coordinate_or_coordinate_policy_missing",
+        "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+        "entry_id": "external_glycoside_panel",
+        "evidence_summary": {
+          "benchmark_role": null,
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "60e499d3cc409a481c1bf7a458cf7d706bd9cd520f59c07f2ed0718caa66fd60",
+          "locator_decision_class": "ligand_specificity_validator_or_substrate_coordinate_required",
+          "locator_resolution_status": "selected_acetate_and_nag_glycan_validator_rejected",
+          "predicted_geometry_status": "missing",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "not_score_complete_for_primary_channel",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": null,
+          "source_check_completion_status": null,
+          "split_assignment": null
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_source_free_predicted_geometry_retrieval",
+          "family_panel_countability_gate_preflight",
+          "family_panel_import_preview_blocker_gate",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 40,
+        "rank": 9,
+        "row_context_sha256": "64159b3281447c3aedd34dbd585adddce641b938864d0fa9c867752eaf45028a",
+        "source_hashes": {
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_4": "83ff67d2a86775fb3d7da5d49cbb1d448d391e1904420b602b68dd114f91095c",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "locator_human_decision_matrix": "190719702410aa1b199a1b5f8ea13576ba8f78308b7fc39f14769654655571f9",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can rerun coordinate-dependent source-free retrieval and gate preflight after approval",
+        "would_enter_import_preview_if_accepted": false
+      },
+      {
+        "action_class": "coordinate_or_coordinate_policy_resolution",
+        "admission_state": "blocked_coordinate",
+        "allowed_next_action": "Approve or reject fetching mh_064 frozen alternate coordinates 3RKJ/3RKK/3SBL/3SFP/3SPU.",
+        "blocker_class": "coordinate_or_coordinate_policy_missing",
+        "candidate_family_axis": "no_reliable_structure_metal_hydrolase_controls",
+        "entry_id": "mh_064",
+        "evidence_summary": {
+          "benchmark_role": null,
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "40080da23147810796b2fc60b9e9939f32aa081f6ac40052e7a47d1e9de2c5d5",
+          "locator_decision_class": "alternate_coordinate_fetch_approval_required",
+          "locator_resolution_status": "blocked_pending_fetch_policy_no_local_alternates_cached",
+          "predicted_geometry_status": "missing",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "not_score_complete_for_primary_channel",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": null,
+          "source_check_completion_status": null,
+          "split_assignment": null
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_source_free_predicted_geometry_retrieval",
+          "family_panel_countability_gate_preflight",
+          "family_panel_import_preview_blocker_gate",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 40,
+        "rank": 10,
+        "row_context_sha256": "3980366affd5464062e1651cda68bbc2a5040f5392b8ec6a5e54d623b9a663bb",
+        "source_hashes": {
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_5": "fcc454b5bdaa43b049c5b0811b1bed793dc50cc27d6245a1a8713f64af403267",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "locator_human_decision_matrix": "190719702410aa1b199a1b5f8ea13576ba8f78308b7fc39f14769654655571f9",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can rerun coordinate-dependent source-free retrieval and gate preflight after approval",
+        "would_enter_import_preview_if_accepted": false
+      },
+      {
+        "action_class": "coordinate_or_coordinate_policy_resolution",
+        "admission_state": "blocked_coordinate",
+        "allowed_next_action": "No eligible alternate source row is available for Q59490; authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators.",
+        "blocker_class": "coordinate_or_coordinate_policy_missing",
+        "candidate_family_axis": "cobalamin_and_radical_rearrangement_panel",
+        "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+        "evidence_summary": {
+          "benchmark_role": null,
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "76e4d014d61588cf518a2f04ed9108821453c1318d4490366fb100a957baff71",
+          "locator_decision_class": "nonlabel_locator_strategy_or_alternate_source_required",
+          "locator_resolution_status": "blocked_no_coordinate_anchor_nonlabel_strategy_required",
+          "predicted_geometry_status": "missing",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "not_score_complete_for_primary_channel",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": null,
+          "source_check_completion_status": null,
+          "split_assignment": null
+        },
+        "machinery_to_rerun_after_resolution": [
+          "family_panel_source_free_predicted_geometry_retrieval",
+          "family_panel_countability_gate_preflight",
+          "family_panel_import_preview_blocker_gate",
+          "family_label_admission_pipeline"
+        ],
+        "priority": 40,
+        "rank": 11,
+        "row_context_sha256": "bb659b6da6ee3e21b4b02d2945a5aed3b20386a76bd967431fe01e164b38afb7",
+        "source_hashes": {
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_0": "64b3efdd11ad4594994f21ba3cc6237f5f3fec0b6756da89a5613570f5e5533e",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "locator_human_decision_matrix": "190719702410aa1b199a1b5f8ea13576ba8f78308b7fc39f14769654655571f9",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "unblock_result": "row can rerun coordinate-dependent source-free retrieval and gate preflight after approval",
+        "would_enter_import_preview_if_accepted": false
+      }
+    ],
+    "queue_status": "ready",
+    "recommended_next_item": {
+      "action_class": "expert_family_admission_decision",
+      "admission_state": "blocked_family_decision",
+      "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+      "blocker_class": "expert_family_admission_decision_required",
+      "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "entry_id": "m_csa:10",
+      "evidence_summary": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "bond_electron_proton_hints": null,
+        "catalytic_residues_roles": null,
+        "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+        "locator_decision_class": null,
+        "locator_resolution_status": null,
+        "predicted_geometry_status": "ok",
+        "primary_channel": "combined_mean_geometry_fold",
+        "research_gate_status": "abstained_at_research_threshold",
+        "resolved_residue_count": null,
+        "selected_organic_cofactor_max": 0.017518,
+        "source_check_completion_status": null,
+        "split_assignment": "heldout"
+      },
+      "machinery_to_rerun_after_resolution": [
+        "family_panel_expert_import_decision_application",
+        "family_panel_accepted_import_preview",
+        "family_label_admission_pipeline"
+      ],
+      "priority": 10,
+      "rank": 1,
+      "row_context_sha256": "5e106f1e3a1a42a4d7ec1261ab2c5cd64570af1518bfbea11f032da8eebf7e2d",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_4": "83ff67d2a86775fb3d7da5d49cbb1d448d391e1904420b602b68dd114f91095c",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      },
+      "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+      "would_enter_import_preview_if_accepted": true
+    }
+  },
   "family_onboarding_manifest": [
     {
       "admission_state_counts": {
@@ -6734,6 +7265,21 @@
       "path": "artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json",
       "sha256": "ce2a6396f5b5b960f34be742d6c1f7be8f0e2966ee8773af04d9311b92ae1c92"
     }
+  },
+  "state_assignment_audit": {
+    "allowed_states": [
+      "countable_candidate",
+      "review_only_evidence",
+      "oos_hard_negative",
+      "blocked_locator",
+      "blocked_coordinate",
+      "blocked_family_decision",
+      "reject_preserve_signal"
+    ],
+    "passed": true,
+    "rows_checked": 22,
+    "rows_with_exactly_one_state": 22,
+    "violations": []
   },
   "status": "family_label_admission_pipeline_ready_review_only"
 }
