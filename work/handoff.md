@@ -2,19 +2,94 @@
 
 ## Current automation run
 
-- Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T20:01:25Z`
-- STARTED_AT_LOCAL: `2026-06-05T15:01:25-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T20:05:00Z`
-- ENDED_AT_LOCAL: `2026-06-05T15:05:00-0500 CDT`
-- ELAPSED_MINUTES: `3.583`
-- Status: Run 63 final Lever 3 stop/sync verification complete. Canonical
-  `.git/catalytic-earth-automation.lock` was acquired before substantive work
-  at `2026-06-05T20:01:25Z`. The reusable Lever 3 gate/final P07658 closure
-  artifact was already committed and pushed; this run verified the pushed stop
-  state, updated the handoff/progress/status/memory ledger, and made no
-  current-family counteraxis, threshold, scoring, label, registry, ontology,
-  import, split, provider, coordinate, or P07658 no-credential retry changes.
+- Automation ID: `catalytic-earth-family-label-admission-pipeline`
+- STARTED_AT_UTC: `2026-06-07T21:23:08Z`
+- STARTED_AT_LOCAL: `2026-06-07T16:23:08-0500 CDT`
+- ENDED_AT_UTC: `2026-06-07T21:32:40Z`
+- ENDED_AT_LOCAL: `2026-06-07T16:32:40-0500 CDT`
+- ELAPSED_MINUTES: `9.533`
+- Status: Small family label admission pipeline built and validated on branch
+  `family-label-admission-pipeline-b2e3-20260607`. The lock helper acquired the
+  worktree git-dir lock before substantive work at `2026-06-07T21:23:08Z`;
+  literal `.git/catalytic-earth-automation.lock` was not usable in this linked
+  worktree because `.git` is a file. The run produced one machine-readable
+  row-admission artifact plus one markdown report, added focused tests and a
+  CLI entrypoint, and made no label, registry, ontology, mechanism fingerprint,
+  production scoring, threshold, split, heldout, model-weight, LOMO, cofactor
+  heldout, locator-fabrication, import, or promotion changes.
+
+### 2026-06-07 Family Label Admission Pipeline
+
+Automation run: `catalytic-earth-family-label-admission-pipeline`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-07T21:23:08Z`
+- STARTED_LOCAL: `2026-06-07T16:23:08-0500 CDT`
+- ENDED_AT: `2026-06-07T21:32:40Z`
+- ENDED_LOCAL: `2026-06-07T16:32:40-0500 CDT`
+- ELAPSED_MINUTES: `9.533`
+- Lock acquire result:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth2/catalytic-earth-automation.lock`
+  acquired by `PYTHONPATH=src python -m catalytic_earth.cli automation-lock`
+  before substantive work. The linked worktree's `.git` entry is a file, so the
+  lock path was resolved with `git rev-parse --git-path
+  catalytic-earth-automation.lock`.
+
+#### Output
+
+- Added deterministic admission module:
+  `src/catalytic_earth/family_label_admission.py`.
+- Added CLI command: `build-family-label-admission-pipeline`.
+- Added focused tests: `tests/test_family_label_admission.py`.
+- Generated machine-readable artifact:
+  `artifacts/v3_family_label_admission_pipeline_current702_20260607.json`.
+- Generated markdown report:
+  `work/family_label_admission_pipeline_current702_20260607.md`.
+
+#### Result
+
+- Evaluated 22 current family-panel rows across 7 family axes.
+- Row states: 11 `review_only_evidence`, 6 `blocked_family_decision`, 3
+  `blocked_coordinate`, 2 `blocked_locator`, 0 `countable_candidate`, 0
+  `oos_hard_negative`, and 0 `reject_preserve_signal`.
+- Preserved evidence/provenance context from family-panel evidence packets for
+  all 22 rows, source-check provenance for 11 rows, source-check catalytic or
+  locator detail for 11 rows, and locator decision provenance for 5 rows.
+- Import-preview output is explicitly empty because no row passes the current
+  accepted-preview/label-factory readiness path.
+- Review packet rows are exposed in the JSON for the 11 review-only rows and 6
+  family-decision blockers.
+- Reject/OOS-signal packet preserves OOS/review signal for all 22 rows as
+  review context only; it does not authorize feature use, labels, or imports.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest tests/test_family_label_admission.py -q`:
+  4 passed.
+- `python -m json.tool
+  artifacts/v3_family_label_admission_pipeline_current702_20260607.json`:
+  parsed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 labels.
+- `python -m compileall -q src/catalytic_earth/family_label_admission.py`:
+  passed.
+- `git diff --check`: passed.
+- Disk remained above the 10 GiB floor: 17 GiB available at wrap.
+
+#### Recommended next family-expansion task
+
+Resolve the `accession_equivalence_or_matching_coordinate_required` locator
+decision for `mh_065` and `mh_072`: provide frozen coordinates that map to
+`Q79MP6`/`P0A6P9`, or record an explicitly approved remapped locator. Then
+rerun the family-panel import-preview blocker gate and this admission pipeline.
+
+#### Human decision needed
+
+Expert family-admission decisions remain required for the six
+import-preview-candidate-if-accepted rows, and locator/coordinate policy
+decisions remain required for five mechanical blockers. No countable labels are
+currently authorized.
 
 ## Mission
 
