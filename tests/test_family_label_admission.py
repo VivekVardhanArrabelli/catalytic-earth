@@ -39,6 +39,38 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
                 },
             ),
             (
+                "review_only_evidence",
+                {
+                    "import_preview_blocker": {
+                        "primary_blocker_class": (
+                            "expert_family_admission_decision_required"
+                        ),
+                    },
+                    "expert_application": {
+                        "decision": (
+                            "explicit_accept_family_panel_import_candidate"
+                        ),
+                        "critical_violations": [],
+                    },
+                },
+            ),
+            (
+                "review_only_evidence",
+                {
+                    "import_preview_blocker": {
+                        "primary_blocker_class": (
+                            "expert_family_admission_decision_required"
+                        ),
+                    },
+                    "expert_application": {
+                        "decision": (
+                            "keep_family_panel_review_only_require_more_evidence"
+                        ),
+                        "critical_violations": [],
+                    },
+                },
+            ),
+            (
                 "oos_hard_negative",
                 {
                     "import_preview_blocker": {
@@ -199,6 +231,7 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
                             "allowed_decisions": [
                                 "explicit_accept_family_panel_import_candidate",
                                 "reject_family_panel_import_candidate",
+                                "keep_family_panel_review_only_require_more_evidence",
                             ],
                         }
                     ]
@@ -358,6 +391,33 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
                 ],
                 1,
             )
+            decision_intake = audit["expert_decision_intake_packet"]
+            self.assertEqual(
+                decision_intake["status"],
+                "awaiting_expert_family_decisions",
+            )
+            self.assertEqual(decision_intake["counts"]["template_rows"], 1)
+            self.assertEqual(
+                decision_intake["counts"]["previewable_if_accepted_rows"],
+                1,
+            )
+            template_row = decision_intake["template_rows"][0]
+            self.assertEqual(template_row["entry_id"], "row_family")
+            self.assertEqual(template_row["decision_context_sha256"], "a" * 64)
+            self.assertEqual(
+                template_row["required_decision_record"],
+                {
+                    "entry_id": "row_family",
+                    "decision_context_sha256": "a" * 64,
+                    "decision": "<one of allowed_decisions>",
+                    "review_status": "reviewed_expert_import_decision",
+                },
+            )
+            self.assertFalse(template_row["validation_blockers"])
+            self.assertIn(
+                "apply-fold-augmented-family-panel-expert-import-decision",
+                decision_intake["application_commands_after_review"][0],
+            )
             self.assertEqual(
                 audit["source_artifacts"]["family_set_expansion_targets"]["sha256"],
                 sha256_path(family),
@@ -368,6 +428,25 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
                 self.assertIn("family_set_expansion_targets", row["source_hashes"])
                 if row["entry_id"] == "row_family":
                     self.assertIn("acceptance_scenario_plan", row["source_hashes"])
+
+    def test_accepted_expert_decision_routes_to_import_preview_build(self) -> None:
+        row = {
+            "import_preview_blocker": {
+                "primary_blocker_class": "expert_family_admission_decision_required",
+            },
+            "expert_application": {
+                "decision": "explicit_accept_family_panel_import_candidate",
+                "review_status": "reviewed_expert_import_decision",
+                "critical_violations": [],
+            },
+        }
+        classification = classify_family_label_admission_row(row)
+        self.assertEqual(classification["state"], "review_only_evidence")
+        self.assertEqual(
+            classification["blocker_class"],
+            "accepted_expert_decision_waiting_import_preview",
+        )
+        self.assertIn("accepted import-preview", classification["allowed_next_action"])
 
     def test_missing_required_input_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
