@@ -2,19 +2,92 @@
 
 ## Current automation run
 
-- Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T20:01:25Z`
-- STARTED_AT_LOCAL: `2026-06-05T15:01:25-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T20:05:00Z`
-- ENDED_AT_LOCAL: `2026-06-05T15:05:00-0500 CDT`
-- ELAPSED_MINUTES: `3.583`
-- Status: Run 63 final Lever 3 stop/sync verification complete. Canonical
-  `.git/catalytic-earth-automation.lock` was acquired before substantive work
-  at `2026-06-05T20:01:25Z`. The reusable Lever 3 gate/final P07658 closure
-  artifact was already committed and pushed; this run verified the pushed stop
-  state, updated the handoff/progress/status/memory ledger, and made no
-  current-family counteraxis, threshold, scoring, label, registry, ontology,
-  import, split, provider, coordinate, or P07658 no-credential retry changes.
+- Automation ID: `catalytic-earth-family-label-admission-pipeline`
+- STARTED_AT_UTC: `2026-06-07T20:46:43Z`
+- STARTED_AT_LOCAL: `2026-06-07T15:46:43-0500 CDT`
+- ENDED_AT_UTC: `2026-06-07T20:57:49Z`
+- ENDED_AT_LOCAL: `2026-06-07T15:57:49-0500 CDT`
+- ELAPSED_MINUTES: `11.1`
+- Branch: `family-label-admission-pipeline-20260607`
+- Status: Built the smallest useful family label admission pipeline. The new
+  deterministic adapter classifies current family-panel candidate rows into the
+  seven allowed row-level admission states, preserves mechanism/provenance
+  signal and source hashes, and emits one JSON plus one Markdown report without
+  editing labels, registries, ontology, mechanism fingerprints, scoring,
+  thresholds, splits, or existing label-factory outputs.
+- Lock: this linked Codex worktree has a file-backed `.git`, so the literal
+  `.git/catalytic-earth-automation.lock` path is not a directory. The first
+  literal lock attempt failed with `NotADirectoryError`; the same lock basename
+  was then acquired before substantive work under the resolved worktree Git dir:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth1/catalytic-earth-automation.lock`.
+- Disk guardrail: startup disk was below the 10 GiB guardrail at 5 GiB free.
+  Four clean detached Codex Catalytic Earth worktrees were removed with
+  `git worktree remove`, raising free space to 19 GiB before implementation.
+
+### 2026-06-07 Family Label Admission Pipeline
+
+#### Outputs
+
+- `src/catalytic_earth/family_label_admission.py`
+- `src/catalytic_earth/cli.py`
+- `tests/test_family_label_admission.py`
+- `artifacts/v3_family_label_admission_pipeline_current702_20260607.json`
+- `work/family_label_admission_pipeline_current702_20260607.md`
+- `work/progress_log.jsonl`
+- `work/status.md`
+
+#### Admission result
+
+- Evaluated 7 family axes and 22 candidate rows from the current family-panel
+  machinery.
+- State counts:
+  - `review_only_evidence`: 11
+  - `blocked_family_decision`: 6
+  - `blocked_coordinate`: 3
+  - `blocked_locator`: 2
+  - `countable_candidate`: 0
+  - `oos_hard_negative`: 0
+  - `reject_preserve_signal`: 0
+- Import preview is intentionally empty: no rows are countable candidates.
+- Review packet contains all 22 rows.
+- Reject/OOS-signal packet preserves 11 review-only signal rows.
+
+#### Machinery added
+
+- Added `build-family-label-admission-pipeline` CLI.
+- Added deterministic row classifier over existing family-panel artifacts:
+  family onboarding manifest, research readout, countability gate preflight,
+  import-preview blocker gate, expert import decision packet, accepted import
+  preview, label-factory gate readiness, and source evidence packets.
+- Added focused tests covering exact row-state classification, source
+  hashes/provenance, guardrail behavior against source/label/provenance feature
+  leakage, missing required input fail-closed behavior, missing row machinery
+  fail-closed state, and CLI registration.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest tests/test_family_label_admission.py -q`: 6
+  passed.
+- `PYTHONPATH=src python -m pytest tests/test_family_label_admission.py tests/test_cli.py -q`:
+  212 passed and 159 subtests passed.
+- `python -m json.tool artifacts/v3_family_label_admission_pipeline_current702_20260607.json`
+  parsed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 labels.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth tests/test_family_label_admission.py`
+  passed.
+- `git diff --check` passed.
+- Disk remained above guardrail at 19 GiB free.
+- Formatter note: `black` and `ruff` are not installed in this environment.
+
+#### Carryover
+
+Recommended next concrete family-expansion task: start with the highest-priority
+locator decision class. No matching non-AFDB replacement coordinate is cached
+for `mh_065`/`mh_072`; provide matching frozen PDB/mmCIF coordinates or
+explicitly approve alignment/remapped locators before any raw representative
+coordinate copy. Then rerun the relevant locator schema or candidate audit
+before scoring.
 
 ## Mission
 

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 375
-- Measured elapsed time: 11417.0 minutes (190.28 hours)
+- Entries: 376
+- Measured elapsed time: 11428.1 minutes (190.47 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,6 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - automation-lever-3: 23.5 measured minutes (0.39 hours)
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
+- family-label-admission: 11.1 measured minutes (0.18 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
@@ -32,21 +33,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3909
-- Evidence references logged: 3239
+- Artifact references logged: 3914
+- Evidence references logged: 3249
 
 ## Recent Entries
-
-### 2026-06-05T13:51:57.851542+00:00 - northstar-lever3
-
-- Task: Lever 3 operator route-class deployment readouts
-- Time mode: measured
-- Measured minutes: 49.75
-- Started: 2026-06-05T13:01:51Z
-- Ended: 2026-06-05T13:51:36Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_provenance_readout_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_route_class_provenance_readout_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_current702_20260605.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: route-class readout classified 21 of 21 operator rows as abstain route novel OOS across five confounder classes, route-class reproducibility rebuilt with zero normalized differences and 2 of 2 direct source hashes current, route-class provenance readout covered 7 of 7 class stage-source links in clean lineage and guardrail-clean provenance, route-class provenance reproducibility rebuilt with zero normalized differences and 2 of 2 direct source hashes current, calibration retention stayed 31 of 34 and train cal OOS abstention stayed 167 of 204, retained residual rows after all counteraxes stayed 0, focused tests 13 passed and 45 subtests, affected suite 657 passed and 210 subtests, full pytest 1529 passed and 229 subtests with existing sklearn warning, unittest discovery 1484 passed, validate compileall diff-check JSON parse CLI smoke doc-reference source-hash cross-artifact guardrail audit and disk checks passed
-- Notes: Measured readouts first; no blocker packet produced; fixed threshold 0.44155 unchanged; fixed-threshold scoring closure remains fail-closed pending exact P07658 coordinate provenance.
 
 ### 2026-06-05T14:36:17.881700+00:00 - northstar-lever3
 
@@ -124,6 +114,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
 - Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 coordinate candidate or filled provenance found, no provider credentials or local predictor executable route present, JSON parse focused artifact regression validate doc-reference unittest discovery and diff check passed
 - Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
+
+### 2026-06-07T20:58:02.814584+00:00 - family-label-admission
+
+- Task: Build family label admission pipeline
+- Time mode: measured
+- Measured minutes: 11.1
+- Started: 2026-06-07T20:46:43Z
+- Ended: 2026-06-07T20:57:49Z
+- Artifacts: src/catalytic_earth/family_label_admission.py, src/catalytic_earth/cli.py, tests/test_family_label_admission.py, artifacts/v3_family_label_admission_pipeline_current702_20260607.json, work/family_label_admission_pipeline_current702_20260607.md
+- Evidence: 22 family-panel rows classified into exact admission states, 7 family axes evaluated, 0 countable candidates, 11 review-only evidence rows, 3 blocked-coordinate rows, 2 blocked-locator rows, 6 blocked-family-decision rows, source hashes and expert decision provenance preserved, focused family-label and CLI tests passed, validate compileall JSON parse diff-check and disk checks passed
 
 ## Expectation Updates
 
@@ -404,6 +404,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T01:33:57.855493+00:00: Lever 3 operating-point evidence remains deployment-valid for train-cal hard-confounded routing but P07658 closure must fail closed until one exact full-length credentialed or local predictor route returns coordinate plus filled provenance.
 - 2026-06-05T02:27:05.027678+00:00: Lever 3 current evidence is enough for fail-closed safe abstention routing on the remaining P07658 gap but not enough for fixed-threshold scoring closure until exact full-length coordinate provenance exists.
 - 2026-06-05T03:33:38.753039+00:00: Lever 3 now has a deployment-valid row-action readout that applies accepted counteraxes and fail-closed P07658 abstention; fixed-threshold scoring closure still needs exact full-length P07658 coordinate provenance and zero-residual-risk closure would need source-free counteraxis evidence for 11 retained same-family rows.
+- 2026-06-07T20:58:02.814584+00:00: Next concrete family-expansion task is resolving matching frozen coordinates or explicit remapped-locator approval for mh_065 and mh_072, then rerunning locator/primary-channel gates.
 
 ## Scope Adjustments
 
@@ -635,3 +636,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T17:06:58.568415+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
 - 2026-06-05T19:06:13.363198+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.
 - 2026-06-05T20:05:21.984184+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.
+- 2026-06-07T20:58:02.814584+00:00: Family expansion now has a deterministic row-level admission adapter over existing family-panel gates; it does not import labels or edit registries/ontology/scoring.
