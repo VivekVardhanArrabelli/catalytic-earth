@@ -17418,18 +17418,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "family_panel_expert_import_decision_application_blocked",
         )
         self.assertEqual(application["counts"]["packet_stub_rows"], 22)
-        self.assertEqual(application["counts"]["decision_records_total"], 22)
-        self.assertEqual(application["counts"]["explicit_decision_records"], 0)
-        self.assertEqual(application["counts"]["reviewed_decision_records"], 0)
-        self.assertEqual(application["counts"]["pending_decision_rows"], 22)
+        self.assertEqual(application["counts"]["decision_records_total"], 6)
+        self.assertEqual(application["counts"]["explicit_decision_records"], 6)
+        self.assertEqual(application["counts"]["reviewed_decision_records"], 6)
+        self.assertEqual(application["counts"]["pending_decision_rows"], 16)
         self.assertEqual(
             application["counts"]["accepted_import_preview_candidate_rows"], 0
         )
         self.assertEqual(
             application["counts"]["accepted_but_still_blocked_rows"], 0
         )
-        self.assertEqual(application["counts"]["rejected_rows"], 0)
-        self.assertEqual(application["counts"]["review_only_rows"], 0)
+        self.assertEqual(application["counts"]["rejected_rows"], 4)
+        self.assertEqual(application["counts"]["review_only_rows"], 2)
         self.assertEqual(application["counts"]["critical_violation_total"], 0)
         self.assertIn(
             "explicit_expert_import_decisions_missing",
@@ -17444,7 +17444,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         by_entry = {
             row["entry_id"]: row for row in application["row_decisions"]
         }
-        self.assertEqual(by_entry["m_csa:30"]["decision"], "pending_review")
+        self.assertEqual(
+            by_entry["m_csa:30"]["decision"],
+            "reject_family_panel_import_candidate",
+        )
+        self.assertEqual(
+            by_entry["m_csa:973"]["decision"],
+            "keep_family_panel_review_only_require_more_evidence",
+        )
         self.assertFalse(
             by_entry["m_csa:30"]["accepted_import_preview_candidate"]
         )

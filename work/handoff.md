@@ -24531,3 +24531,136 @@ Current next action:
 - The remaining current-family blockers are concrete locator/coordinate
   blockers: `mh_065`, `mh_072`, `external_glycoside_panel`, `mh_064`, and
   `secondary_probe::cobalamin_radical_rearrangement`.
+
+## Automation Run: targeted expansion factory (2026-06-08T04:06:45Z)
+- STARTED_AT_UTC: 2026-06-08T04:06:45Z
+- STARTED_AT_LOCAL: Sun Jun  7 23:06:45 CDT 2026
+- ENDED_AT_UTC: 2026-06-08T04:57:20Z
+- ENDED_AT_LOCAL: Sun Jun  7 23:57:20 CDT 2026
+- ELAPSED_MINUTES: 50.583
+- Automation ID: catalytic-earth-family-label-admission-pipeline
+- Status: wrap complete; commit/push/sync/lock-release are the remaining
+  mechanical steps after this handoff edit.
+
+Scope:
+
+- Built the first reusable targeted expansion factory output for diverse atlas
+  growth from current local/data sources. The batch evaluates 703 non-importing
+  candidates across 12 targeted family axes from 324 M-CSA expansion rows plus
+  379 UniProt/Swiss-Prot external-freeze rows.
+- Excluded the already materialized architecture-default rows
+  `m_csa:10`, `m_csa:30`, `m_csa:31`, `m_csa:191`, `m_csa:448`, and
+  `m_csa:973`.
+- Added a machine-readable first-action screen input for the 12 external
+  review-only rows that should enter source-free duplicate, structural, UniRef,
+  review, and label-factory gates next.
+
+Artifacts/reports produced:
+
+- `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`
+  (`v3_targeted_expansion_factory_batch_current702_20260608`): 703 candidates,
+  12 family axes, exact-one-state audit, source hashes, admission states,
+  first-action screen input, and 0 countable/import-ready rows.
+- `work/targeted_expansion_factory_batch_current702_20260608.md`: markdown
+  report with admission counts, family axes, coordinate status, proposed tiers,
+  source hashes, action tranches, first-action preview, blockers, and next
+  batch recommendations.
+
+Key counts:
+
+- Admission states: 262 `review_only_evidence`, 178 `acquisition_needed`,
+  130 `blocked_family_decision`, 72 `blocked_locator`, 58
+  `reject_preserve_signal`, 3 `blocked_coordinate`, 0
+  `countable_candidate`, and 0 `oos_hard_negative`.
+- Source namespaces: 324 `m_csa`, 379 `uniprot_swissprot`.
+- Coordinate statuses: 322 `experimental_pdb_selected`, 248
+  `experimental_pdb_references_present`, 130
+  `predicted_alphafold_reference_present`, 2 `coordinate_missing`, and 1
+  `coordinate_reference_missing`.
+- First-action screen input: 12 `review_only_evidence` external rows:
+  `uniprot:P07237`, `uniprot:P0A6L4`, `uniprot:P14174`,
+  `uniprot:P28240`, `uniprot:P28330`, `uniprot:P30101`,
+  `uniprot:P30838`, `uniprot:P31040`, `uniprot:P36959`,
+  `uniprot:P54098`, `uniprot:Q8TAT5`, and `uniprot:Q9BZE2`.
+
+Code paths changed:
+
+- Added `src/catalytic_earth/targeted_expansion_factory.py`.
+- Added CLI wiring in `src/catalytic_earth/cli.py`:
+  `build-targeted-expansion-factory-batch`.
+- Added `tests/test_targeted_expansion_factory.py`.
+- Added CLI parser coverage in `tests/test_cli.py`.
+- Updated the current family-panel decision regression in
+  `tests/test_geometry_artifact_regression.py` to match the already
+  materialized architecture-default decisions now on main.
+- Updated durable docs because the run created a durable source-of-truth output:
+  `docs/project_state.md` and `docs/artifact_index.md`. No decision-log update
+  was needed because this run did not record a new durable architecture/policy
+  decision.
+
+Guardrails:
+
+- No production label registries, ontologies, imports, train/test splits,
+  model weights, production thresholds, or threshold values were changed.
+- No labels were promoted/imported, and every candidate row has
+  `countable_label_candidate = false` and `ready_for_label_import = false`.
+- No heldout M-CSA row was used for training or threshold tuning.
+- Mechanism text snippets, EC/Rhea row fields, labels, target names, and source
+  IDs were not used as scoring/model features. EC/Rhea row fields and mechanism
+  snippets are not copied into candidate-row evidence fields.
+- The radical/cobalamin family-panel artifacts were inspected but not folded
+  into this batch because the available rows are mostly heldout or
+  secondary-probe review material rather than countable atlas-growth input.
+
+Verification:
+
+- `PYTHONPATH=src python -m pytest tests/test_targeted_expansion_factory.py tests/test_cli.py::CliTests::test_targeted_expansion_factory_parser_defaults -q`:
+  4 passed.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_targeted_expansion_factory.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_family_panel_expert_import_decision_application_current_counts -q`:
+  211 passed, 160 subtests passed.
+- Larger touched slice
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_targeted_expansion_factory.py tests/test_geometry_artifact_regression.py -q`:
+  537 passed, 216 subtests passed.
+- Final full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1702 passed, 244 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Final unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1657 tests passed, with
+  the same existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 curated labels.
+- `PYTHONPATH=src python -m compileall -q src tests`.
+- `python -m json.tool artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json >/dev/null`.
+- Deterministic CLI rerun with `--created-utc 2026-06-08T04:06:45Z` reproduced
+  both the JSON artifact and markdown report byte-for-byte.
+- Repo-wide JSON parse: 3644 files checked, 0 parse errors.
+- Repo-wide JSONL parse: 27 files and 7995 lines checked, 0 parse errors.
+- Repo-wide CSV/TSV scan: 29 files and 34083 rows scanned, 0 parse errors.
+- Targeted generated-row evidence audit: 703 rows checked, 0 forbidden evidence
+  field payloads and 0 import/countable flag violations.
+- Targeted source-hash audit: all 3 recorded factory source hashes matched.
+- `git diff --check`.
+- Disk guardrail: 17 GiB available.
+- Non-gating exploratory repo-wide `source_artifacts` hash sweep was attempted
+  but is not a valid current gate because older archived artifacts reference
+  missing external worktrees and stale historical sources.
+
+Commit/push/sync/lock status:
+
+- Commit hash: pending until the post-handoff commit is created; final pushed
+  HEAD will be reported in the automation memory and final response because a
+  commit cannot contain its own final hash.
+- Push/sync status: pending; will push to `origin/main` and verify
+  `HEAD == origin/main`.
+- Lock release status: pending; will release the canonical repo automation lock
+  after clean/synced verification.
+
+Exact next action:
+
+Run the first-action screen input from
+`artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`:
+source-free current-reference duplicate search, current-countable structural
+screen, external all-vs-all structural cluster assignment, UniRef-wide duplicate
+screening, terminal review decision, and full label-factory gate for the 12
+external `review_only_evidence` rows. Only after those gates pass should any row
+approach a countable-promotion boundary.

@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-06
+Last refreshed: 2026-06-08
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -36,6 +36,12 @@ artifact-backed mechanism diagnostics.
   context from sequence" (`docs/predicted_geometry_robustness_pipeline_runbook.md`).
 - Current label surface: 702 curated labels in the current sequence-NN manifest,
   with 562 in-distribution rows and 140 heldout rows.
+- Current label-growth factory output: the targeted expansion factory has a
+  703-row non-importing admission batch across 12 family axes, sourced from 324
+  M-CSA expansion rows plus 379 external Swiss-Prot freeze rows. It preserves
+  row evidence and admission states only: 0 countable/import-ready rows, and no
+  registry, ontology, split, threshold, heldout, or model-weight change.
+  Source: `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.
@@ -944,7 +950,12 @@ artifacts first.
    coordinate/materialization blockers, and keep candidate rows review-only.
 5. For label growth, require explicit expert decision, no-import safety checks
    where applicable, label-factory gate pass, batch acceptance, and registry
-   summary refresh before any countable import.
+   summary refresh before any countable import. The exact next expansion action
+   is to run source-free duplicate/structural distance screens for the external
+   review-only rows in
+   `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`,
+   then collect catalytic-residue locator sources for its acquisition-needed
+   external rows.
 
 ## Maintenance Notes
 

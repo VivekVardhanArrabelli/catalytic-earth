@@ -13,6 +13,26 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CliTests(unittest.TestCase):
+    def test_targeted_expansion_factory_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-targeted-expansion-factory-batch"])
+
+        self.assertEqual(
+            args.label_expansion_candidates,
+            "artifacts/v3_label_expansion_candidates_1025.json",
+        )
+        self.assertIn(
+            "prospective_external_minicampaign_candidate_freeze",
+            args.external_candidate_freeze,
+        )
+        self.assertEqual(
+            args.sequence_cluster_proxy,
+            "artifacts/v3_sequence_cluster_proxy_1025.json",
+        )
+        self.assertEqual(args.min_target_candidates, 500)
+        self.assertEqual(args.max_target_candidates, 1000)
+        self.assertIn("targeted_expansion_factory_batch", args.out)
+        self.assertIn("targeted_expansion_factory_batch", args.report)
+
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-lever2-mechanism-feature-incremental-readout"]
