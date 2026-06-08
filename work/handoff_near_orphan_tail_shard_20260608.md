@@ -3,9 +3,9 @@
 - Automation ID: `ce-expansion-shard-near-orphan-tail`
 - STARTED_AT_UTC: `2026-06-08T15:12:00Z`
 - STARTED_AT_LOCAL: `2026-06-08T10:12:00-0500`
-- ENDED_AT_UTC: `2026-06-08T15:21:12Z`
-- ENDED_AT_LOCAL: `2026-06-08T10:21:12-0500`
-- ELAPSED_MINUTES: `9.21`
+- ENDED_AT_UTC: `2026-06-08T15:24:35Z`
+- ENDED_AT_LOCAL: `2026-06-08T10:24:35-0500`
+- ELAPSED_MINUTES: `12.583`
 - Lock: `/tmp/ce_scaleout_near_orphan_tail.lock`
 - Artifact: `artifacts/v3_scaleout_near_orphan_tail_shard_current702_20260608.json`
 - Report: `work/scaleout_near_orphan_tail_shard_current702_20260608.md`
@@ -28,7 +28,19 @@ Produced a lane-specific, source-free, non-importing expansion candidate shard f
 ## Validation
 
 - JSON generated with internal schema/row/hash/source validation passing.
-- Run `python -m json.tool` and repository validation before push.
+- `python -m json.tool artifacts/v3_scaleout_near_orphan_tail_shard_current702_20260608.json`: passed.
+- `git diff --check HEAD~1..HEAD`: passed after rebase.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702 curated mechanism labels.
+- Custom tail shard assertions: passed after rebase.
+
+## Commit, Push, Sync, And Lock
+
+- Rebased cleanly onto `origin/main` after the phosphoryl transfer shard landed.
+- Initial shard commit after rebase: `16d88884c8ac716c98a2e2f8341b099396b86732`.
+- `git push origin HEAD:main`: passed.
+- Post-push sync check: `HEAD == origin/main` at `16d88884c8ac716c98a2e2f8341b099396b86732` before this final handoff-only update.
+- Disk guardrail at wrap: `16,775,156` KiB available, above the 10 GiB floor.
+- Lock release status: release `/tmp/ce_scaleout_near_orphan_tail.lock` immediately after the final synced handoff update; the final automation response records the actual release.
 
 ## Exact Next Action
 
