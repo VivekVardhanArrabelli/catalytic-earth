@@ -2,23 +2,23 @@
 
 ## Current automation run
 
-- Automation ID: `catalytic-earth-family-label-admission-pipeline`
-- STARTED_AT_UTC: `2026-06-08T13:23:13Z`
-- STARTED_AT_LOCAL: `Mon Jun  8 08:23:13 CDT 2026`
-- ENDED_AT_UTC: `2026-06-08T14:13:40Z`
-- ENDED_AT_LOCAL: `Mon Jun  8 09:13:40 CDT 2026`
-- ELAPSED_MINUTES: `50.450`
-- Status: Self-stop reconciliation complete pending final commit/push/sync and
-  run-owned lock release. During wrap, `origin/main` was found to already
-  contain the durable acquisition conversion screen at
-  `fcee1b768934da05f9fc24ac8cc303fe8897b21a`, so this run did not push a
-  competing duplicate conversion artifact or start a promotion/import batch.
-  The local duplicate exploratory output was preserved in a git stash named
-  `automation duplicate conversion screen before origin reconciliation`.
-  Canonical automation lock acquired at
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth5/catalytic-earth-automation.lock`;
-  start timestamps were also written to
-  `/tmp/catalytic_earth_expansion_conversion_started_at.txt`.
+- Automation ID: `ce-expansion-merger-qa`
+- STARTED_AT_UTC: `2026-06-08T14:17:14Z`
+- STARTED_AT_LOCAL: `2026-06-08T09:17:14-0500`
+- Status: Scale-out merger/repair QA output produced pending final
+  validation, commit/push/sync check, automation memory update, and run-owned
+  lock release. The run first produced the locator/coordinate repair artifact
+  while fewer than three shards were available, then rebased onto current
+  `origin/main` after four shard artifacts arrived and built the consolidated
+  non-importing acceptance surface.
+- Current output:
+  `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
+  and `work/scaleout_merged_acceptance_surface_current702_20260608.md`.
+- Repair overlay:
+  `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
+  and `work/scaleout_locator_coordinate_repair_current702_20260608.md`.
+- Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`; start timestamps
+  written to `/tmp/ce_scaleout_merger_started_at.txt`.
 
 ## Mission
 
@@ -69,6 +69,76 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 Scale-Out Merger/Repair QA
+
+Automation run: `ce-expansion-merger-qa`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-08T14:17:14Z`
+- STARTED_AT_LOCAL: `2026-06-08T09:17:14-0500`
+- Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`
+
+#### Scope
+
+- Started from the current main-line acquisition conversion state, produced a
+  repair artifact for the seven `blocked_locator` acquisition-conversion rows,
+  then rebased onto `origin/main` after four scale-out shard artifacts became
+  available.
+- Consolidated the glycoside/nucleoside, metal hydrolase, PLP children, and
+  redox/oxygen/sulfur shard artifacts into one acceptance/QA surface.
+- Did not import or promote labels. No production label registry, ontology,
+  train/test split, model weight, production threshold, locator sidecar, or
+  heldout training/tuning surface was changed.
+
+#### Outputs
+
+- Merged JSON artifact:
+  `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`.
+- Merged markdown report:
+  `work/scaleout_merged_acceptance_surface_current702_20260608.md`.
+- Merger run handoff:
+  `work/handoff_scaleout_merger_20260608.md`.
+- Repair JSON artifact:
+  `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`.
+- Repair markdown report:
+  `work/scaleout_locator_coordinate_repair_current702_20260608.md`.
+
+#### Merger result
+
+- Source shard rows consumed: 2,058.
+- Canonical candidate keys after dedupe: 1,116.
+- Source terminal counts:
+  `reject/OOS_preserve_signal=784`, `review_only_evidence=808`,
+  `blocked_locator=268`, `blocked_coordinate=135`,
+  `blocked_family_decision=60`, and
+  `countable_candidate_preflight_only=3`.
+- Conservative canonical terminal counts:
+  `reject/OOS_preserve_signal=583`, `review_only_evidence=284`,
+  `blocked_locator=122`, `blocked_coordinate=68`,
+  `blocked_family_decision=59`, and
+  `countable_candidate_preflight_only=0`.
+- No import-preview artifact was built because all three source preflight-only
+  rows (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`) are blocked by
+  current702 overlap and/or conservative non-new terminal resolution.
+
+#### Repair result
+
+- All seven acquisition-conversion locator blockers have hash-matched local
+  AFDB coordinates.
+- `uniprot:Q9BXS1` is recommended as future
+  `reject/OOS_preserve_signal` through transitive structural duplicate
+  evidence.
+- `uniprot:P60174` has a candidate-only source-backed mapped locator payload
+  for AFDB residues 96/HIS and 166/GLU; no locator sidecar was copied.
+
+#### Exact next action
+
+Review `work/scaleout_merged_acceptance_surface_current702_20260608.md`,
+especially the import-preview blockers and terminal conflict records. If label
+growth resumes, resolve the current-registry overlaps first and review the
+remaining locator queue with `uniprot:P60174` first.
 
 ### 2026-06-08 Acquisition Conversion Screen Reconciliation
 

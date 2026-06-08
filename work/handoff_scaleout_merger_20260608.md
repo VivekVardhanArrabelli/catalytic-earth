@@ -3,16 +3,22 @@
 - Automation ID: `ce-expansion-merger-qa`
 - STARTED_AT_UTC: `2026-06-08T14:17:14Z`
 - STARTED_AT_LOCAL: `2026-06-08T09:17:14-0500`
-- RUN_ARTIFACT: `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
-- RUN_REPORT: `work/scaleout_locator_coordinate_repair_current702_20260608.md`
+- RUN_ARTIFACT: `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
+- RUN_REPORT: `work/scaleout_merged_acceptance_surface_current702_20260608.md`
+- REPAIR_ARTIFACT: `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
+- REPAIR_REPORT: `work/scaleout_locator_coordinate_repair_current702_20260608.md`
 - Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`
-- Source branch/head: `ce-expansion-merger-qa-20260608` / `fcee1b768934da05f9fc24ac8cc303fe8897b21a`
-- Origin main at fetch: `ad12659099f3be62586378e60a3ca83e8889164b`
-- Status: repair artifact/report produced; commit/push/sync and lock release are wrap steps.
+- Source branch/head at merger assembly: `ce-expansion-merger-qa-20260608` / `a9a0c4af208151e346c0f42eb4842f681c982751`
+- Origin main consumed: `5a915007d68d4df05f7d0b1f4eef6761357b7b63`
+- Status: consolidated artifact/report produced; validation, final commit/push/sync, memory update, and lock release are wrap steps.
 
 ## Mode
 
-Fewer than three shard artifacts were available on `origin/main` or fetched origin branches, so no consolidated merger acceptance surface or import preview was built. This run stayed in the repair lane.
+This run started in repair mode because fewer than three shard artifacts were
+available at first. During wrap, `origin/main` advanced with four shard
+artifacts, so the branch was rebased onto `origin/main` and the consolidated
+merger surface was built from the current shard artifacts plus the repair
+overlay.
 
 ## Durable Repair
 
@@ -22,6 +28,38 @@ Fewer than three shard artifacts were available on `origin/main` or fetched orig
 - Recommended `uniprot:Q9BXS1` as `reject/OOS_preserve_signal` for future consolidated surfaces through source-free transitive structural duplicate evidence via `uniprot:Q13907` and current-countable `m_csa:190`.
 - Performed no import, registry edit, threshold/model/split edit, or heldout training/tuning.
 
+## Consolidated Surface
+
+- Consumed four shard artifacts:
+  `artifacts/v3_scaleout_glycoside_nucleoside_shard_current702_20260608.json`,
+  `artifacts/v3_scaleout_metal_hydrolase_shard_current702_20260608.json`,
+  `artifacts/v3_scaleout_plp_children_shard_current702_20260608.json`, and
+  `artifacts/v3_scaleout_redox_oxygen_sulfur_shard_current702_20260608.json`.
+- Merged 2,058 shard source rows into 1,116 canonical candidate keys.
+- Preserved source terminal counts:
+  `reject/OOS_preserve_signal=784`, `review_only_evidence=808`,
+  `blocked_locator=268`, `blocked_coordinate=135`,
+  `blocked_family_decision=60`, and
+  `countable_candidate_preflight_only=3`.
+- Conservative canonical states:
+  `reject/OOS_preserve_signal=583`, `review_only_evidence=284`,
+  `blocked_locator=122`, `blocked_coordinate=68`,
+  `blocked_family_decision=59`, and
+  `countable_candidate_preflight_only=0`.
+- No import-preview artifact was built because the three source
+  preflight-only rows (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`) all
+  overlap current702 and/or resolve to non-new canonical terminal states.
+- Deduplication records cover accession/candidate key, sequence-neighborhood,
+  structure/fold cluster, ligand/cofactor/family lane, and current-registry
+  overlap axes.
+
 ## Next Action
 
-Future shard/merger runs should consume the repair artifact before building the consolidated acceptance surface. The remaining locator queue is `uniprot:O60568`, `uniprot:P29372`, `uniprot:P60174`, `uniprot:Q96I15`, `uniprot:A2RUC4`, and `uniprot:A5PLL7`; `uniprot:P60174` should be reviewed first because its two local active-site feature positions now map to AFDB residues 96/HIS and 166/GLU, while the others need explicit source-free active-site locator evidence, a sufficient source-backed locator decision, or approved terminal reject/OOS evidence before promotion or import preview.
+Review `work/scaleout_merged_acceptance_surface_current702_20260608.md`,
+especially `import_preview_decision`, `terminal_conflict_records`, and the
+current-registry overlaps on `uniprot:P78549`, `m_csa:127`, and `m_csa:281`.
+For locator repair follow-up, review `uniprot:P60174` first because its two
+local active-site feature positions now map to AFDB residues 96/HIS and
+166/GLU; the other remaining locator blockers need explicit source-free
+active-site locator evidence, a sufficient source-backed locator decision, or
+approved terminal reject/OOS evidence before promotion or import preview.

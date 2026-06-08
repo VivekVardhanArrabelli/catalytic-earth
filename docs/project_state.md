@@ -54,19 +54,24 @@ artifact-backed mechanism diagnostics.
   `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`
   and
   `work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`.
-- Current scale-out repair surface (2026-06-08): no pushed shard artifacts are
-  available yet, so the merger lane produced a non-importing repair artifact
-  for the 7 acquisition-conversion `blocked_locator` rows. All 7 have
-  hash-matched local coordinates; `uniprot:Q9BXS1` is recommended for future
-  consolidated surfaces as `reject/OOS_preserve_signal` through source-free
-  transitive structural duplicate evidence via `uniprot:Q13907` and
-  current-countable `m_csa:190`; the other 6 remain locator-blocked, with
-  `uniprot:P60174` first for review-gated locator copy because the local
-  active-site evidence sample has two active-site feature positions that map to
-  AFDB residues 96/HIS and 166/GLU. Use
+- Current scale-out merged acceptance surface (2026-06-08): four shard
+  artifacts were consolidated into a non-importing merger/QA surface with 2,058
+  source rows deduplicated to 1,116 canonical candidate keys. Canonical states:
+  583 reject/OOS-preserve, 284 review-only, 122 blocked-locator, 68
+  blocked-coordinate, 59 blocked-family-decision, and 0 new
+  countable-candidate preflight rows after current-registry overlap. The three
+  source preflight-only rows (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`)
+  are blocked from import preview by current702 overlap and/or conservative
+  reject/OOS resolution. Use
+  `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
+  and `work/scaleout_merged_acceptance_surface_current702_20260608.md`. The
+  repair overlay remains durable:
   `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
-  and `work/scaleout_locator_coordinate_repair_current702_20260608.md`. No
-  locator sidecar, import preview, or registry edit was performed.
+  records hash-matched coordinates for the 7 acquisition-conversion
+  locator-blocked rows, recommends `uniprot:Q9BXS1` as future
+  reject/OOS-preserve, and keeps `uniprot:P60174` first for review-gated
+  locator copy. No locator sidecar, import preview artifact, registry edit,
+  threshold/model/split edit, or heldout training/tuning was performed.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.
@@ -984,9 +989,10 @@ artifacts first.
    coordinate/materialization blockers, and keep candidate rows review-only.
 6. For label growth, require explicit expert decision, no-import safety checks
    where applicable, label-factory gate pass, batch acceptance, and registry
-   summary refresh before any countable import. The current targeted expansion
-   conversion result is review/control input only; it does not authorize label
-   import or registry mutation.
+   summary refresh before any countable import. The current scale-out merged
+   acceptance surface is review/control input only; it preserves shard signal
+   and repair overlays but does not authorize label import or registry
+   mutation.
 
 ## Maintenance Notes
 
@@ -1007,6 +1013,10 @@ artifacts first.
 - `src/catalytic_earth/targeted_expansion_acquisition_conversion.py`
 - `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`
 - `work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`
+- `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
+- `work/scaleout_merged_acceptance_surface_current702_20260608.md`
+- `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
+- `work/scaleout_locator_coordinate_repair_current702_20260608.md`
 
 2026-06-06 session (cofactor recovery, electron-flow, consolidation):
 
