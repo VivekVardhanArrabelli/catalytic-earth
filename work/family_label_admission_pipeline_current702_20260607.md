@@ -1,6 +1,6 @@
 # Family Label Admission Pipeline - current702
 
-Run: 2026-06-07T23:48:12Z
+Run: 2026-06-08T01:50:14Z
 
 Small deterministic family-label admission pipeline for current702 family-panel rows. It normalizes existing family-panel gates into one row-level state, preserves mechanism/provenance signal, and does not import, promote, score heldout, refit, or change thresholds.
 
@@ -15,10 +15,12 @@ Small deterministic family-label admission pipeline for current702 family-panel 
 - Review-packet rows: 11
 - Expert decision template rows: 6
 - Expert decision review-file rows: 6
+- Architecture decision proposals: 6 ({'keep_family_panel_review_only_require_more_evidence': 2, 'reject_family_panel_import_candidate': 4})
+- Human family-decision rows after architecture defaults: 0
 - OOS/reject signal rows: 11
 - Exact-one-state audit: passed (22/22 rows)
 - Action-queue rows: 11
-- Blockers: ['family_decisions_pending', 'source_free_locators_pending', 'coordinates_or_coordinate_policy_pending', 'no_countable_candidates_from_current_inputs']
+- Blockers: ['architecture_default_non_counting_dispositions_pending', 'source_free_locators_pending', 'coordinates_or_coordinate_policy_pending', 'no_countable_candidates_from_current_inputs']
 
 ## Machinery Applied
 
@@ -74,6 +76,17 @@ Small deterministic family-label admission pipeline for current702 family-panel 
 | secondary_probe::cobalamin_radical_rearrangement | cobalamin_and_radical_rearrangement_panel | blocked_coordinate | coordinate_or_coordinate_policy_missing | No eligible alternate source row is available for Q59490; authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators. |
 | secondary_probe::radical_sam_enzyme | cobalamin_and_radical_rearrangement_panel | oos_hard_negative | completed_source_check_no_family_promotion | preserve as OOS/boundary signal unless a separate family-promotion override is explicitly reviewed |
 
+## Architecture Decision Proposals
+
+| row | proposed decision | confidence | human required for default | rationale |
+| --- | --- | --- | --- | --- |
+| m_csa:10 | reject_family_panel_import_candidate | high | 0 | The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold. Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review. |
+| m_csa:30 | reject_family_panel_import_candidate | medium_high | 0 | The row is an OOS boundary/control and abstains under the fold/geometry channel. The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal. |
+| m_csa:31 | reject_family_panel_import_candidate | medium_high | 0 | The row is an OOS boundary/control and abstains under the fold/geometry channel. The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal. |
+| m_csa:191 | reject_family_panel_import_candidate | medium_high | 0 | The row is an OOS boundary/control and abstains under the fold/geometry channel. The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal. |
+| m_csa:448 | keep_family_panel_review_only_require_more_evidence | medium | 0 | The row is OOS-like and abstains under the fold/geometry channel, but the family axis is a boundary signal worth preserving. Use as review-only evidence unless a future family-specific locator/import gate clears it. |
+| m_csa:973 | keep_family_panel_review_only_require_more_evidence | medium | 0 | FMO/oxygen-transfer is a real boundary against the current flavin redox bucket, but the row should not become countable until coordinate/active-site cleanliness is resolved. Strong cofactor signal alone is not sufficient for family admission. |
+
 ## Outputs
 
 - Review packet: 11 unresolved family/locator/coordinate rows.
@@ -100,12 +113,12 @@ Decision review-file template:
 
 | rank | row | action class | state | next action |
 | ---: | --- | --- | --- | --- |
-| 1 | m_csa:10 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
-| 2 | m_csa:30 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
-| 3 | m_csa:31 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
-| 4 | m_csa:191 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
-| 5 | m_csa:448 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
-| 6 | m_csa:973 | expert_family_admission_decision | blocked_family_decision | record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256 |
+| 1 | m_csa:10 | architecture_default_non_counting_family_disposition | blocked_family_decision | preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion |
+| 2 | m_csa:30 | architecture_default_non_counting_family_disposition | blocked_family_decision | preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion |
+| 3 | m_csa:31 | architecture_default_non_counting_family_disposition | blocked_family_decision | preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion |
+| 4 | m_csa:191 | architecture_default_non_counting_family_disposition | blocked_family_decision | preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion |
+| 5 | m_csa:448 | architecture_default_non_counting_family_disposition | blocked_family_decision | preserve the architecture-proposed non-counting disposition (keep_family_panel_review_only_require_more_evidence); escalate only to override toward countable promotion |
+| 6 | m_csa:973 | architecture_default_non_counting_family_disposition | blocked_family_decision | preserve the architecture-proposed non-counting disposition (keep_family_panel_review_only_require_more_evidence); escalate only to override toward countable promotion |
 | 7 | mh_065 | source_free_locator_or_position_mapping_resolution | blocked_locator | No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy. |
 | 8 | mh_072 | source_free_locator_or_position_mapping_resolution | blocked_locator | No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy. |
 | 9 | external_glycoside_panel | coordinate_or_coordinate_policy_resolution | blocked_coordinate | No cached same-accession substrate-like coordinate clears external_glycoside_panel; provide an explicit substrate-complex coordinate or expert-approved non-glycan locator before rerunning schema/scoring. |
@@ -114,5 +127,4 @@ Decision review-file template:
 
 ## Next Task
 
-- Adjudicate the blocked family-decision rows with preserved decision_context_sha256 values, starting with m_csa:10, m_csa:30, m_csa:31, m_csa:191, m_csa:448, m_csa:973; then rerun the expert-decision application and accepted import-preview builders.
-- Human decision needed: explicit accept/reject/review-only expert decisions for 6 family-panel rows
+- Use the architecture default proposal layer to route the pending family-decision rows as non-counting dispositions ({'keep_family_panel_review_only_require_more_evidence': 2, 'reject_family_panel_import_candidate': 4}); only escalate rows where you want to override into countable family promotion.

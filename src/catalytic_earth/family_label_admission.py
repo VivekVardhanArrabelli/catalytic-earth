@@ -574,6 +574,184 @@ def _queue_evidence_summary(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _float_or_none(value: Any) -> float | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int | float):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value)
+        except ValueError:
+            return None
+    return None
+
+
+def _architecture_decision_proposal(row: dict[str, Any]) -> dict[str, Any] | None:
+    if row.get("admission_state") != "blocked_family_decision":
+        return None
+
+    evidence = row.get("evidence_preserved") or {}
+    mechanism = evidence.get("mechanism_and_review_signal") or {}
+    cofactor = evidence.get("cofactor_metal_signal") or {}
+    geometry = evidence.get("active_site_geometry") or {}
+    fold_gate = evidence.get("fold_tm_or_lever3_gate_result") or {}
+    gate = evidence.get("gates_and_decisions") or {}
+
+    panel_id = str(row.get("candidate_family_axis") or "")
+    benchmark_role = str(mechanism.get("benchmark_role") or "")
+    split_assignment = str(mechanism.get("split_assignment") or "")
+    evidence_role = str(mechanism.get("evidence_role") or "")
+    predicted_top1 = geometry.get("predicted_geometry_top1") or {}
+    geometry_score = _float_or_none(predicted_top1.get("score"))
+    cofactor_max = _float_or_none(cofactor.get("selected_organic_cofactor_max"))
+    threshold_margin = _float_or_none(fold_gate.get("primary_threshold_margin"))
+    gate_status = str(fold_gate.get("research_gate_status") or "")
+    nearest_fingerprint = fold_gate.get(
+        "predicted_structure_nearest_atlas_true_fingerprint_id"
+    )
+
+    evidence_flags: list[str] = []
+    risk_flags: list[str] = []
+    rationale: list[str] = []
+    oos_like = benchmark_role.startswith("oos_tier::")
+    in_distribution = benchmark_role.startswith("primary_supervised_metric::")
+    gate_abstained = gate_status == "abstained_at_research_threshold"
+    below_threshold = threshold_margin is not None and threshold_margin < 0
+    low_geometry = geometry_score is not None and geometry_score < 0.40
+    strong_cofactor = cofactor_max is not None and cofactor_max >= 0.85
+    boundary_axis = any(
+        token in panel_id
+        for token in (
+            "boundary",
+            "flavin_monooxygenase",
+            "lipoamide",
+            "sulfur_transfer",
+        )
+    )
+
+    if oos_like:
+        evidence_flags.append("benchmark_role_oos_tier")
+    if split_assignment:
+        evidence_flags.append(f"split::{split_assignment}")
+    if gate_abstained:
+        evidence_flags.append("fold_geometry_gate_abstained")
+    if below_threshold:
+        evidence_flags.append("primary_channel_below_threshold")
+    if low_geometry:
+        evidence_flags.append("low_predicted_geometry_top1_score")
+    if strong_cofactor:
+        evidence_flags.append("strong_organic_cofactor_signal")
+    if nearest_fingerprint:
+        evidence_flags.append(f"nearest_atlas_fingerprint::{nearest_fingerprint}")
+    if "cofactor-confounded" in evidence_role:
+        evidence_flags.append("evidence_role::cofactor_confounded_control")
+    if boundary_axis:
+        risk_flags.append("boundary_or_underpowered_family_axis")
+    if in_distribution:
+        risk_flags.append("current_primary_role_conflicts_with_family_boundary")
+
+    if "flavin_monooxygenase" in panel_id:
+        decision = REVIEW_ONLY_FAMILY_PANEL_DECISION
+        proposed_state = "review_only_evidence"
+        confidence = "medium"
+        rationale.extend(
+            [
+                "FMO/oxygen-transfer is a real boundary against the current flavin "
+                "redox bucket, but the row should not become countable until "
+                "coordinate/active-site cleanliness is resolved.",
+                "Strong cofactor signal alone is not sufficient for family admission.",
+            ]
+        )
+        risk_flags.append("coordinate_or_active_site_cleanliness_required_before_import")
+    elif (
+        oos_like
+        and gate_abstained
+        and below_threshold
+        and boundary_axis
+        and strong_cofactor
+    ):
+        decision = REVIEW_ONLY_FAMILY_PANEL_DECISION
+        proposed_state = "review_only_evidence"
+        confidence = "medium"
+        rationale.extend(
+            [
+                "The row is OOS-like and abstains under the fold/geometry channel, "
+                "but the family axis is a boundary signal worth preserving.",
+                "Use as review-only evidence unless a future family-specific "
+                "locator/import gate clears it.",
+            ]
+        )
+    elif oos_like and gate_abstained and below_threshold and boundary_axis:
+        decision = REJECT_FAMILY_PANEL_IMPORT_DECISION
+        proposed_state = "reject_preserve_signal"
+        confidence = "medium_high"
+        rationale.extend(
+            [
+                "The row is an OOS boundary/control and abstains under the "
+                "fold/geometry channel.",
+                "The cofactor signal is not strong enough to justify preserving "
+                "the row as a family-admission candidate, so the default is "
+                "non-counting reject/OOS signal.",
+            ]
+        )
+    elif oos_like and gate_abstained and below_threshold:
+        decision = REJECT_FAMILY_PANEL_IMPORT_DECISION
+        proposed_state = "reject_preserve_signal"
+        confidence = "high" if low_geometry else "medium_high"
+        rationale.extend(
+            [
+                "The row is already framed as an OOS-tier control and the "
+                "fold/geometry channel abstains below threshold.",
+                "Default action should preserve the row as non-counting OOS/reject "
+                "signal instead of escalating it to human import review.",
+            ]
+        )
+    else:
+        decision = REVIEW_ONLY_FAMILY_PANEL_DECISION
+        proposed_state = "review_only_evidence"
+        confidence = "low"
+        rationale.extend(
+            [
+                "The architecture cannot justify countable admission from current "
+                "signals.",
+                "Preserve evidence as review-only until a sharper family-specific "
+                "gate is available.",
+            ]
+        )
+        risk_flags.append("architecture_default_low_confidence")
+
+    if decision == ACCEPT_FAMILY_PANEL_IMPORT_DECISION:
+        human_required_for_default = True
+        action = "human_review_required_before_countable_promotion"
+    else:
+        human_required_for_default = False
+        action = "machine_default_non_counting_disposition_available"
+
+    return {
+        "policy_name": "family_admission_architecture_default_v1",
+        "policy_scope": (
+            "Architecture may propose reject/review-only non-counting dispositions "
+            "for pending family-decision rows. It must not auto-promote, import, "
+            "or create countable labels."
+        ),
+        "proposed_decision": decision,
+        "proposed_admission_state_after_reviewed_decision": proposed_state,
+        "confidence": confidence,
+        "human_review_required_for_default": human_required_for_default,
+        "human_review_required_for_countable_promotion": True,
+        "automation_action": action,
+        "evidence_flags": evidence_flags,
+        "risk_flags": risk_flags,
+        "rationale": rationale,
+        "decision_context_sha256": gate.get("decision_context_sha256"),
+        "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": False,
+            "proposal_uses_existing_channel_scores_only": True,
+        },
+    }
+
+
 def _action_queue_item(
     *,
     row: dict[str, Any],
@@ -582,6 +760,17 @@ def _action_queue_item(
     unblock_result: str,
     machinery_to_rerun: list[str],
 ) -> dict[str, Any]:
+    proposal = row.get("architecture_decision_proposal") or {}
+    allowed_next_action = row["allowed_next_action"]
+    if (
+        action_class == "architecture_default_non_counting_family_disposition"
+        and proposal
+    ):
+        allowed_next_action = (
+            "preserve the architecture-proposed non-counting disposition "
+            f"({proposal.get('proposed_decision')}); escalate only to override "
+            "toward countable promotion"
+        )
     return {
         "priority": priority,
         "action_class": action_class,
@@ -589,13 +778,16 @@ def _action_queue_item(
         "candidate_family_axis": row["candidate_family_axis"],
         "admission_state": row["admission_state"],
         "blocker_class": row["blocker_class"],
-        "allowed_next_action": row["allowed_next_action"],
+        "allowed_next_action": allowed_next_action,
         "unblock_result": unblock_result,
         "would_enter_import_preview_if_accepted": (
             row["would_enter_import_preview_if_accepted"]
         ),
         "row_context_sha256": row["row_context_sha256"],
         "source_hashes": row["source_hashes"],
+        "architecture_decision_proposal": row.get(
+            "architecture_decision_proposal"
+        ),
         "evidence_summary": _queue_evidence_summary(row),
         "machinery_to_rerun_after_resolution": machinery_to_rerun,
     }
@@ -626,12 +818,25 @@ def _family_expansion_action_queue(
                 ],
             )
         )
+    architecture_default_rows = [
+        row
+        for row in blocked_family_rows
+        if (row.get("architecture_decision_proposal") or {}).get(
+            "human_review_required_for_default"
+        )
+        is False
+    ]
+    rows_requiring_human_family_review = [
+        row for row in blocked_family_rows if row not in architecture_default_rows
+    ]
     previewable_family_rows = [
-        row for row in blocked_family_rows if row["would_enter_import_preview_if_accepted"]
+        row
+        for row in rows_requiring_human_family_review
+        if row["would_enter_import_preview_if_accepted"]
     ]
     nonpreview_family_rows = [
         row
-        for row in blocked_family_rows
+        for row in rows_requiring_human_family_review
         if not row["would_enter_import_preview_if_accepted"]
     ]
     for row in previewable_family_rows:
@@ -658,6 +863,24 @@ def _family_expansion_action_queue(
                 priority=20,
                 action_class="expert_family_admission_decision",
                 unblock_result="row exits family-decision blocker after explicit review",
+                machinery_to_rerun=[
+                    "family_panel_expert_import_decision_application",
+                    "family_label_admission_pipeline",
+                ],
+            )
+        )
+    for row in architecture_default_rows:
+        proposal = row.get("architecture_decision_proposal") or {}
+        items.append(
+            _action_queue_item(
+                row=row,
+                priority=15,
+                action_class="architecture_default_non_counting_family_disposition",
+                unblock_result=(
+                    "row can exit the human-decision queue as a non-counting "
+                    f"{proposal.get('proposed_decision')} proposal unless a "
+                    "human wants countable promotion"
+                ),
                 machinery_to_rerun=[
                     "family_panel_expert_import_decision_application",
                     "family_label_admission_pipeline",
@@ -752,6 +975,9 @@ def _decision_intake_template_row(row: dict[str, Any], rank: int) -> dict[str, A
         "rank": rank,
         "entry_id": row["entry_id"],
         "candidate_family_axis": row["candidate_family_axis"],
+        "architecture_decision_proposal": row.get(
+            "architecture_decision_proposal"
+        ),
         "decision_context_sha256": decision_context_sha256 or None,
         "row_context_sha256": row["row_context_sha256"],
         "source_hashes": row["source_hashes"],
@@ -795,11 +1021,26 @@ def _expert_decision_intake_packet(
     previewable_rows = [
         row for row in template_rows if row["would_enter_import_preview_if_accepted"]
     ]
+    architecture_default_rows = [
+        row
+        for row in template_rows
+        if (row.get("architecture_decision_proposal") or {}).get(
+            "human_review_required_for_default"
+        )
+        is False
+    ]
+    human_review_required_rows = [
+        row for row in template_rows if row not in architecture_default_rows
+    ]
     return {
         "status": (
-            "awaiting_expert_family_decisions"
-            if template_rows
-            else "not_needed_no_blocked_family_decisions"
+            "not_needed_no_blocked_family_decisions"
+            if not template_rows
+            else (
+                "architecture_non_counting_defaults_available"
+                if not human_review_required_rows
+                else "awaiting_expert_family_decisions"
+            )
         ),
         "decision_contract": {
             "decision_values": list(FAMILY_PANEL_IMPORT_DECISIONS),
@@ -838,6 +1079,12 @@ def _expert_decision_intake_packet(
             "template_rows": len(template_rows),
             "previewable_if_accepted_rows": len(previewable_rows),
             "rows_with_validation_blockers": len(rows_with_validation_blockers),
+            "architecture_default_non_counting_rows": len(
+                architecture_default_rows
+            ),
+            "human_review_required_for_default_rows": len(
+                human_review_required_rows
+            ),
         },
         "template_rows": template_rows,
     }
@@ -871,6 +1118,14 @@ def _expert_decision_review_template(
                 ],
                 "row_context_sha256": row["row_context_sha256"],
                 "source_hashes": row["source_hashes"],
+                "architecture_decision_proposal": row.get(
+                    "architecture_decision_proposal"
+                ),
+                "suggested_decision": (
+                    (row.get("architecture_decision_proposal") or {}).get(
+                        "proposed_decision"
+                    )
+                ),
                 "evidence_summary": row["evidence_summary"],
                 "reviewer": None,
                 "reviewed_at_utc": None,
@@ -887,9 +1142,10 @@ def _expert_decision_review_template(
             else "not_needed_no_blocked_family_decisions"
         ),
         "safe_default": (
-            "All rows are pending_review until a human reviewer changes "
-            "decision to one allowed value and review_status to "
-            "reviewed_expert_import_decision."
+            "Rows remain pending_review until a reviewed decision record is "
+            "applied. architecture_decision_proposal supplies a non-counting "
+            "machine default where available; countable promotion still requires "
+            "human review."
         ),
         "decision_contract": intake_packet.get("decision_contract", {}),
         "application_command_after_review": (
@@ -1067,24 +1323,26 @@ def build_family_label_admission_pipeline(
             row=merged,
             source_records=source_records,
         )
-        row_admission_table.append(
-            {
-                "entry_id": entry_id,
-                "candidate_family_axis": panel_id,
-                "admission_state": classification["state"],
-                "blocker_class": classification["blocker_class"],
-                "classification_basis": classification["classification_basis"],
-                "allowed_next_action": classification["allowed_next_action"],
-                "would_enter_import_preview_if_accepted": bool(
-                    (scenario_by_entry.get(entry_id) or {}).get(
-                        "would_enter_import_preview_if_accepted"
-                    )
-                ),
-                "evidence_preserved": _compact_evidence(merged),
-                "source_hashes": source_hashes,
-                "row_context_sha256": _canonical_sha256(row_context_payload),
-            }
-        )
+        row_record = {
+            "entry_id": entry_id,
+            "candidate_family_axis": panel_id,
+            "admission_state": classification["state"],
+            "blocker_class": classification["blocker_class"],
+            "classification_basis": classification["classification_basis"],
+            "allowed_next_action": classification["allowed_next_action"],
+            "would_enter_import_preview_if_accepted": bool(
+                (scenario_by_entry.get(entry_id) or {}).get(
+                    "would_enter_import_preview_if_accepted"
+                )
+            ),
+            "evidence_preserved": _compact_evidence(merged),
+            "source_hashes": source_hashes,
+            "row_context_sha256": _canonical_sha256(row_context_payload),
+        }
+        proposal = _architecture_decision_proposal(row_record)
+        if proposal is not None:
+            row_record["architecture_decision_proposal"] = proposal
+        row_admission_table.append(row_record)
 
     state_counts = Counter(row["admission_state"] for row in row_admission_table)
     panel_state_counts: defaultdict[str, Counter[str]] = defaultdict(Counter)
@@ -1146,6 +1404,24 @@ def build_family_label_admission_pipeline(
         for row in row_admission_table
         if row["admission_state"] in {"oos_hard_negative", "reject_preserve_signal"}
     ]
+    architecture_proposal_rows = [
+        row for row in row_admission_table if row.get("architecture_decision_proposal")
+    ]
+    architecture_default_family_rows = [
+        row
+        for row in architecture_proposal_rows
+        if (row.get("architecture_decision_proposal") or {}).get(
+            "human_review_required_for_default"
+        )
+        is False
+    ]
+    human_family_decision_rows = [
+        row for row in blocked_family_rows if row not in architecture_default_family_rows
+    ]
+    architecture_proposal_decision_counts = Counter(
+        (row.get("architecture_decision_proposal") or {}).get("proposed_decision")
+        for row in architecture_proposal_rows
+    )
 
     if accepted_decision_waiting_preview_rows:
         first = accepted_decision_waiting_preview_rows[0]
@@ -1155,11 +1431,22 @@ def build_family_label_admission_pipeline(
             "pipeline before any label-factory gate."
         )
         human_decision_needed = None
-    elif blocked_family_rows:
+    elif architecture_default_family_rows and not human_family_decision_rows:
+        decision_counts = dict(sorted(architecture_proposal_decision_counts.items()))
+        next_task = (
+            "Use the architecture default proposal layer to route the pending "
+            f"family-decision rows as non-counting dispositions ({decision_counts}); "
+            "only escalate rows where you want to override into countable family "
+            "promotion."
+        )
+        human_decision_needed = None
+    elif human_family_decision_rows:
         previewable = [
-            row for row in blocked_family_rows if row["would_enter_import_preview_if_accepted"]
+            row
+            for row in human_family_decision_rows
+            if row["would_enter_import_preview_if_accepted"]
         ]
-        targets = previewable or blocked_family_rows
+        targets = previewable or human_family_decision_rows
         next_task = (
             "Adjudicate the blocked family-decision rows with preserved "
             "decision_context_sha256 values, starting with "
@@ -1169,7 +1456,7 @@ def build_family_label_admission_pipeline(
         )
         human_decision_needed = (
             "explicit accept/reject/review-only expert decisions for "
-            f"{len(blocked_family_rows)} family-panel rows"
+            f"{len(human_family_decision_rows)} family-panel rows"
         )
     elif blocked_locator_rows:
         first = blocked_locator_rows[0]
@@ -1196,8 +1483,10 @@ def build_family_label_admission_pipeline(
         human_decision_needed = None
 
     blockers = []
-    if blocked_family_rows:
+    if human_family_decision_rows:
         blockers.append("family_decisions_pending")
+    if architecture_default_family_rows:
+        blockers.append("architecture_default_non_counting_dispositions_pending")
     if blocked_locator_rows:
         blockers.append("source_free_locators_pending")
     if blocked_coordinate_rows:
@@ -1273,6 +1562,16 @@ def build_family_label_admission_pipeline(
             "expert_decision_review_template_rows": expert_decision_review_template[
                 "counts"
             ]["decision_rows"],
+            "architecture_decision_proposal_rows": len(architecture_proposal_rows),
+            "architecture_default_non_counting_rows": len(
+                architecture_default_family_rows
+            ),
+            "human_family_decision_rows_after_architecture_defaults": len(
+                human_family_decision_rows
+            ),
+            "architecture_proposal_decision_counts": dict(
+                sorted(architecture_proposal_decision_counts.items())
+            ),
             "oos_signal_rows": len(oos_signal_rows),
             "blockers": len(blockers),
         },
@@ -1293,6 +1592,53 @@ def build_family_label_admission_pipeline(
         "blockers": blockers,
         "family_onboarding_manifest": family_onboarding_manifest,
         "row_admission_table": row_admission_table,
+        "architecture_decision_proposals": {
+            "status": (
+                "available"
+                if architecture_proposal_rows
+                else "not_needed_no_pending_family_decision_rows"
+            ),
+            "policy_name": "family_admission_architecture_default_v1",
+            "counts": {
+                "proposal_rows": len(architecture_proposal_rows),
+                "default_non_counting_rows": len(
+                    architecture_default_family_rows
+                ),
+                "human_review_required_for_default_rows": len(
+                    human_family_decision_rows
+                ),
+                "proposed_decisions": dict(
+                    sorted(architecture_proposal_decision_counts.items())
+                ),
+            },
+            "allowed_to_do_without_human": [
+                "preserve row as reject/OOS signal",
+                "preserve row as review-only evidence",
+                "keep row out of import preview and countable labels",
+            ],
+            "not_allowed_without_human": [
+                "accept family-panel import candidate",
+                "promote to countable label",
+                "change registry, ontology, production threshold, or split",
+            ],
+            "rows": [
+                {
+                    "entry_id": row["entry_id"],
+                    "candidate_family_axis": row["candidate_family_axis"],
+                    "admission_state": row["admission_state"],
+                    "would_enter_import_preview_if_accepted": row[
+                        "would_enter_import_preview_if_accepted"
+                    ],
+                    "architecture_decision_proposal": row[
+                        "architecture_decision_proposal"
+                    ],
+                    "evidence_summary": _queue_evidence_summary(row),
+                    "row_context_sha256": row["row_context_sha256"],
+                    "source_hashes": row["source_hashes"],
+                }
+                for row in architecture_proposal_rows
+            ],
+        },
         "review_packet": {
             "blocked_family_decision_rows": blocked_family_rows,
             "blocked_locator_rows": blocked_locator_rows,
@@ -1370,6 +1716,11 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
         f"- Expert decision template rows: {counts['expert_decision_template_rows']}",
         "- Expert decision review-file rows: "
         f"{counts['expert_decision_review_template_rows']}",
+        "- Architecture decision proposals: "
+        f"{counts.get('architecture_decision_proposal_rows', 0)} "
+        f"({counts.get('architecture_proposal_decision_counts', {})})",
+        "- Human family-decision rows after architecture defaults: "
+        f"{counts.get('human_family_decision_rows_after_architecture_defaults', 0)}",
         f"- OOS/reject signal rows: {counts['oos_signal_rows']}",
         "- Exact-one-state audit: "
         f"{'passed' if state_audit.get('passed') else 'failed'} "
@@ -1407,6 +1758,26 @@ def render_family_label_admission_pipeline_report(audit: dict[str, Any]) -> str:
             f"{row['admission_state']} | {row['blocker_class'] or 'none'} | "
             f"{row['allowed_next_action']} |"
         )
+    lines += [
+        "",
+        "## Architecture Decision Proposals",
+        "",
+        "| row | proposed decision | confidence | human required for default | rationale |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    proposal_rows = (
+        (audit.get("architecture_decision_proposals") or {}).get("rows") or []
+    )
+    for proposal_row in proposal_rows[:12]:
+        proposal = proposal_row.get("architecture_decision_proposal") or {}
+        lines.append(
+            f"| {proposal_row['entry_id']} | {proposal.get('proposed_decision')} | "
+            f"{proposal.get('confidence')} | "
+            f"{int(bool(proposal.get('human_review_required_for_default')))} | "
+            f"{' '.join(proposal.get('rationale') or [])} |"
+        )
+    if not proposal_rows:
+        lines.append("| n/a | n/a | n/a | 0 | no architecture proposal rows |")
     lines += [
         "",
         "## Outputs",

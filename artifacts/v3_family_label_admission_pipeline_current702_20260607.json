@@ -8,9 +8,413 @@
     "blocked_family_decision",
     "reject_preserve_signal"
   ],
+  "architecture_decision_proposals": {
+    "allowed_to_do_without_human": [
+      "preserve row as reject/OOS signal",
+      "preserve row as review-only evidence",
+      "keep row out of import preview and countable labels"
+    ],
+    "counts": {
+      "default_non_counting_rows": 6,
+      "human_review_required_for_default_rows": 0,
+      "proposal_rows": 6,
+      "proposed_decisions": {
+        "keep_family_panel_review_only_require_more_evidence": 2,
+        "reject_family_panel_import_candidate": 4
+      }
+    },
+    "not_allowed_without_human": [
+      "accept family-panel import candidate",
+      "promote to countable label",
+      "change registry, ontology, production threshold, or split"
+    ],
+    "policy_name": "family_admission_architecture_default_v1",
+    "rows": [
+      {
+        "admission_state": "blocked_family_decision",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "high",
+          "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold.",
+            "Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review."
+          ],
+          "risk_flags": [],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
+        "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+        "entry_id": "m_csa:10",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.017518,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "row_context_sha256": "5e106f1e3a1a42a4d7ec1261ab2c5cd64570af1518bfbea11f032da8eebf7e2d",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_4": "83ff67d2a86775fb3d7da5d49cbb1d448d391e1904420b602b68dd114f91095c",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "admission_state": "blocked_family_decision",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
+        "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+        "entry_id": "m_csa:30",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.589255,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "row_context_sha256": "25db03e7096bc339bc77f7115ddf5d76e76710aad34133064b1ac4f328cd0d25",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_2": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "admission_state": "blocked_family_decision",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
+        "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+        "entry_id": "m_csa:31",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.808565,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "row_context_sha256": "b96c466fa184138d944b16fec5cfc82ee81930536efb5ea210009ee9caae47a0",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_2": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "admission_state": "blocked_family_decision",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
+        "candidate_family_axis": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+        "entry_id": "m_csa:191",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.555321,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "row_context_sha256": "54347489169da61ac9f6aeef526da8d8ea7b0d2d527f998ed8b546b92e28872e",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_6": "a6fe62a2cdd2927e4e0faecf473f6fe5aa2c4bf9616e8086a754f33f4cfa451c",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "admission_state": "blocked_family_decision",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "The row is OOS-like and abstains under the fold/geometry channel, but the family axis is a boundary signal worth preserving.",
+            "Use as review-only evidence unless a future family-specific locator/import gate clears it."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
+        "candidate_family_axis": "lipoamide_or_sulfur_transfer_redox_boundary",
+        "entry_id": "m_csa:448",
+        "evidence_summary": {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.904927,
+          "source_check_completion_status": null,
+          "split_assignment": "heldout"
+        },
+        "row_context_sha256": "277985525b6f20fa752f1ca8f7bbd928f78ae74d8bd76bdce8a076ce535ab4c1",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_3": "78b3032f6f9b3f381da700cdab3df55f18256d0da9412298e4368637c5d38c1c",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "would_enter_import_preview_if_accepted": true
+      },
+      {
+        "admission_state": "blocked_family_decision",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+          "evidence_flags": [
+            "split::in_distribution",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::heme_peroxidase_oxidase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "FMO/oxygen-transfer is a real boundary against the current flavin redox bucket, but the row should not become countable until coordinate/active-site cleanliness is resolved.",
+            "Strong cofactor signal alone is not sufficient for family admission."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis",
+            "current_primary_role_conflicts_with_family_boundary",
+            "coordinate_or_active_site_cleanliness_required_before_import"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
+        "candidate_family_axis": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+        "entry_id": "m_csa:973",
+        "evidence_summary": {
+          "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+          "bond_electron_proton_hints": null,
+          "catalytic_residues_roles": null,
+          "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+          "locator_decision_class": null,
+          "locator_resolution_status": null,
+          "predicted_geometry_status": "ok",
+          "primary_channel": "combined_mean_geometry_fold",
+          "research_gate_status": "abstained_at_research_threshold",
+          "resolved_residue_count": null,
+          "selected_organic_cofactor_max": 0.993434,
+          "source_check_completion_status": null,
+          "split_assignment": "in_distribution"
+        },
+        "row_context_sha256": "eb70c21ef5039b9347e3a846007684229ec6017f9cf5cb728a78dcfc22276829",
+        "source_hashes": {
+          "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+          "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+          "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+          "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+          "family_panel_evidence_packet_1": "814d11f6dfba81eb22525d10566f4f5888e0513e0c437002f9a9eff0d10ea121",
+          "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+          "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+          "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+        },
+        "would_enter_import_preview_if_accepted": true
+      }
+    ],
+    "status": "available"
+  },
   "artifact_id": "v3_family_label_admission_pipeline_current702_20260607",
   "blockers": [
-    "family_decisions_pending",
+    "architecture_default_non_counting_dispositions_pending",
     "source_free_locators_pending",
     "coordinates_or_coordinate_policy_pending",
     "no_countable_candidates_from_current_inputs"
@@ -26,16 +430,23 @@
       "reject_preserve_signal": 0,
       "review_only_evidence": 0
     },
+    "architecture_decision_proposal_rows": 6,
+    "architecture_default_non_counting_rows": 6,
+    "architecture_proposal_decision_counts": {
+      "keep_family_panel_review_only_require_more_evidence": 2,
+      "reject_family_panel_import_candidate": 4
+    },
     "blockers": 4,
     "candidate_rows_evaluated": 22,
     "expert_decision_review_template_rows": 6,
     "expert_decision_template_rows": 6,
     "family_axes_evaluated": 7,
+    "human_family_decision_rows_after_architecture_defaults": 0,
     "import_preview_rows": 0,
     "oos_signal_rows": 11,
     "review_packet_rows": 11
   },
-  "created_utc": "2026-06-07T23:48:12Z",
+  "created_utc": "2026-06-08T01:50:14Z",
   "expert_decision_intake_packet": {
     "application_commands_after_review": [
       "PYTHONPATH=src python -m catalytic_earth.cli apply-fold-augmented-family-panel-expert-import-decision --expert-decisions <reviewed-family-decisions.json>",
@@ -43,6 +454,8 @@
       "PYTHONPATH=src python -m catalytic_earth.cli build-family-label-admission-pipeline"
     ],
     "counts": {
+      "architecture_default_non_counting_rows": 6,
+      "human_review_required_for_default_rows": 0,
       "previewable_if_accepted_rows": 6,
       "rows_with_validation_blockers": 0,
       "template_rows": 6
@@ -67,7 +480,7 @@
       ],
       "required_review_status_after_decision": "reviewed_expert_import_decision"
     },
-    "status": "awaiting_expert_family_decisions",
+    "status": "architecture_non_counting_defaults_available",
     "template_rows": [
       {
         "allowed_decisions": [
@@ -75,6 +488,35 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "high",
+          "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold.",
+            "Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review."
+          ],
+          "risk_flags": [],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
         "current_decision": "pending_review",
         "current_review_status": "pending_expert_import_decision",
@@ -125,6 +567,37 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
         "current_decision": "pending_review",
         "current_review_status": "pending_expert_import_decision",
@@ -175,6 +648,37 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
         "current_decision": "pending_review",
         "current_review_status": "pending_expert_import_decision",
@@ -225,6 +729,37 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "candidate_family_axis": "thiol_disulfide_oxidoreductase_isomerase_boundary",
         "current_decision": "pending_review",
         "current_review_status": "pending_expert_import_decision",
@@ -275,6 +810,38 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "The row is OOS-like and abstains under the fold/geometry channel, but the family axis is a boundary signal worth preserving.",
+            "Use as review-only evidence unless a future family-specific locator/import gate clears it."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "candidate_family_axis": "lipoamide_or_sulfur_transfer_redox_boundary",
         "current_decision": "pending_review",
         "current_review_status": "pending_expert_import_decision",
@@ -325,6 +892,39 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+          "evidence_flags": [
+            "split::in_distribution",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::heme_peroxidase_oxidase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "FMO/oxygen-transfer is a real boundary against the current flavin redox bucket, but the row should not become countable until coordinate/active-site cleanliness is resolved.",
+            "Strong cofactor signal alone is not sufficient for family admission."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis",
+            "current_primary_role_conflicts_with_family_boundary",
+            "coordinate_or_active_site_cleanliness_required_before_import"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "candidate_family_axis": "flavin_monooxygenase_and_flavin_oxygen_transfer",
         "current_decision": "pending_review",
         "current_review_status": "pending_expert_import_decision",
@@ -380,7 +980,7 @@
       "previewable_if_accepted_rows": 6,
       "reviewed_rows": 0
     },
-    "created_utc": "2026-06-07T23:48:12Z",
+    "created_utc": "2026-06-08T01:50:14Z",
     "decision_contract": {
       "decision_values": [
         "explicit_accept_family_panel_import_candidate",
@@ -408,6 +1008,35 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "high",
+          "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold.",
+            "Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review."
+          ],
+          "risk_flags": [],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "decision": "pending_review",
         "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
         "decision_rationale": "",
@@ -443,6 +1072,7 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
+        "suggested_decision": "reject_family_panel_import_candidate",
         "would_enter_import_preview_if_accepted": true
       },
       {
@@ -451,6 +1081,37 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "decision": "pending_review",
         "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
         "decision_rationale": "",
@@ -486,6 +1147,7 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
+        "suggested_decision": "reject_family_panel_import_candidate",
         "would_enter_import_preview_if_accepted": true
       },
       {
@@ -494,6 +1156,37 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "decision": "pending_review",
         "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
         "decision_rationale": "",
@@ -529,6 +1222,7 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
+        "suggested_decision": "reject_family_panel_import_candidate",
         "would_enter_import_preview_if_accepted": true
       },
       {
@@ -537,6 +1231,37 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "decision": "pending_review",
         "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
         "decision_rationale": "",
@@ -572,6 +1297,7 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
+        "suggested_decision": "reject_family_panel_import_candidate",
         "would_enter_import_preview_if_accepted": true
       },
       {
@@ -580,6 +1306,38 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "The row is OOS-like and abstains under the fold/geometry channel, but the family axis is a boundary signal worth preserving.",
+            "Use as review-only evidence unless a future family-specific locator/import gate clears it."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "decision": "pending_review",
         "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
         "decision_rationale": "",
@@ -615,6 +1373,7 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
+        "suggested_decision": "keep_family_panel_review_only_require_more_evidence",
         "would_enter_import_preview_if_accepted": true
       },
       {
@@ -623,6 +1382,39 @@
           "reject_family_panel_import_candidate",
           "keep_family_panel_review_only_require_more_evidence"
         ],
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+          "evidence_flags": [
+            "split::in_distribution",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::heme_peroxidase_oxidase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "FMO/oxygen-transfer is a real boundary against the current flavin redox bucket, but the row should not become countable until coordinate/active-site cleanliness is resolved.",
+            "Strong cofactor signal alone is not sufficient for family admission."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis",
+            "current_primary_role_conflicts_with_family_boundary",
+            "coordinate_or_active_site_cleanliness_required_before_import"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "decision": "pending_review",
         "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
         "decision_rationale": "",
@@ -658,24 +1450,54 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
+        "suggested_decision": "keep_family_panel_review_only_require_more_evidence",
         "would_enter_import_preview_if_accepted": true
       }
     ],
-    "safe_default": "All rows are pending_review until a human reviewer changes decision to one allowed value and review_status to reviewed_expert_import_decision.",
+    "safe_default": "Rows remain pending_review until a reviewed decision record is applied. architecture_decision_proposal supplies a non-counting machine default where available; countable promotion still requires human review.",
     "schema_version": "v3.family_label_admission_pipeline.expert_decision_template",
     "status": "expert_decision_template_pending_review"
   },
   "family_expansion_action_queue": {
     "counts_by_action_class": {
+      "architecture_default_non_counting_family_disposition": 6,
       "coordinate_or_coordinate_policy_resolution": 3,
-      "expert_family_admission_decision": 6,
       "source_free_locator_or_position_mapping_resolution": 2
     },
     "items": [
       {
-        "action_class": "expert_family_admission_decision",
+        "action_class": "architecture_default_non_counting_family_disposition",
         "admission_state": "blocked_family_decision",
-        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "allowed_next_action": "preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "high",
+          "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold.",
+            "Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review."
+          ],
+          "risk_flags": [],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
         "entry_id": "m_csa:10",
@@ -696,10 +1518,9 @@
         },
         "machinery_to_rerun_after_resolution": [
           "family_panel_expert_import_decision_application",
-          "family_panel_accepted_import_preview",
           "family_label_admission_pipeline"
         ],
-        "priority": 10,
+        "priority": 15,
         "rank": 1,
         "row_context_sha256": "5e106f1e3a1a42a4d7ec1261ab2c5cd64570af1518bfbea11f032da8eebf7e2d",
         "source_hashes": {
@@ -712,13 +1533,44 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
-        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "unblock_result": "row can exit the human-decision queue as a non-counting reject_family_panel_import_candidate proposal unless a human wants countable promotion",
         "would_enter_import_preview_if_accepted": true
       },
       {
-        "action_class": "expert_family_admission_decision",
+        "action_class": "architecture_default_non_counting_family_disposition",
         "admission_state": "blocked_family_decision",
-        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "allowed_next_action": "preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
         "entry_id": "m_csa:30",
@@ -739,10 +1591,9 @@
         },
         "machinery_to_rerun_after_resolution": [
           "family_panel_expert_import_decision_application",
-          "family_panel_accepted_import_preview",
           "family_label_admission_pipeline"
         ],
-        "priority": 10,
+        "priority": 15,
         "rank": 2,
         "row_context_sha256": "25db03e7096bc339bc77f7115ddf5d76e76710aad34133064b1ac4f328cd0d25",
         "source_hashes": {
@@ -755,13 +1606,44 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
-        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "unblock_result": "row can exit the human-decision queue as a non-counting reject_family_panel_import_candidate proposal unless a human wants countable promotion",
         "would_enter_import_preview_if_accepted": true
       },
       {
-        "action_class": "expert_family_admission_decision",
+        "action_class": "architecture_default_non_counting_family_disposition",
         "admission_state": "blocked_family_decision",
-        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "allowed_next_action": "preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
         "entry_id": "m_csa:31",
@@ -782,10 +1664,9 @@
         },
         "machinery_to_rerun_after_resolution": [
           "family_panel_expert_import_decision_application",
-          "family_panel_accepted_import_preview",
           "family_label_admission_pipeline"
         ],
-        "priority": 10,
+        "priority": 15,
         "rank": 3,
         "row_context_sha256": "b96c466fa184138d944b16fec5cfc82ee81930536efb5ea210009ee9caae47a0",
         "source_hashes": {
@@ -798,13 +1679,44 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
-        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "unblock_result": "row can exit the human-decision queue as a non-counting reject_family_panel_import_candidate proposal unless a human wants countable promotion",
         "would_enter_import_preview_if_accepted": true
       },
       {
-        "action_class": "expert_family_admission_decision",
+        "action_class": "architecture_default_non_counting_family_disposition",
         "admission_state": "blocked_family_decision",
-        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "allowed_next_action": "preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "thiol_disulfide_oxidoreductase_isomerase_boundary",
         "entry_id": "m_csa:191",
@@ -825,10 +1737,9 @@
         },
         "machinery_to_rerun_after_resolution": [
           "family_panel_expert_import_decision_application",
-          "family_panel_accepted_import_preview",
           "family_label_admission_pipeline"
         ],
-        "priority": 10,
+        "priority": 15,
         "rank": 4,
         "row_context_sha256": "54347489169da61ac9f6aeef526da8d8ea7b0d2d527f998ed8b546b92e28872e",
         "source_hashes": {
@@ -841,13 +1752,45 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
-        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "unblock_result": "row can exit the human-decision queue as a non-counting reject_family_panel_import_candidate proposal unless a human wants countable promotion",
         "would_enter_import_preview_if_accepted": true
       },
       {
-        "action_class": "expert_family_admission_decision",
+        "action_class": "architecture_default_non_counting_family_disposition",
         "admission_state": "blocked_family_decision",
-        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "allowed_next_action": "preserve the architecture-proposed non-counting disposition (keep_family_panel_review_only_require_more_evidence); escalate only to override toward countable promotion",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "The row is OOS-like and abstains under the fold/geometry channel, but the family axis is a boundary signal worth preserving.",
+            "Use as review-only evidence unless a future family-specific locator/import gate clears it."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "lipoamide_or_sulfur_transfer_redox_boundary",
         "entry_id": "m_csa:448",
@@ -868,10 +1811,9 @@
         },
         "machinery_to_rerun_after_resolution": [
           "family_panel_expert_import_decision_application",
-          "family_panel_accepted_import_preview",
           "family_label_admission_pipeline"
         ],
-        "priority": 10,
+        "priority": 15,
         "rank": 5,
         "row_context_sha256": "277985525b6f20fa752f1ca8f7bbd928f78ae74d8bd76bdce8a076ce535ab4c1",
         "source_hashes": {
@@ -884,13 +1826,46 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
-        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "unblock_result": "row can exit the human-decision queue as a non-counting keep_family_panel_review_only_require_more_evidence proposal unless a human wants countable promotion",
         "would_enter_import_preview_if_accepted": true
       },
       {
-        "action_class": "expert_family_admission_decision",
+        "action_class": "architecture_default_non_counting_family_disposition",
         "admission_state": "blocked_family_decision",
-        "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "allowed_next_action": "preserve the architecture-proposed non-counting disposition (keep_family_panel_review_only_require_more_evidence); escalate only to override toward countable promotion",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+          "evidence_flags": [
+            "split::in_distribution",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::heme_peroxidase_oxidase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "FMO/oxygen-transfer is a real boundary against the current flavin redox bucket, but the row should not become countable until coordinate/active-site cleanliness is resolved.",
+            "Strong cofactor signal alone is not sufficient for family admission."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis",
+            "current_primary_role_conflicts_with_family_boundary",
+            "coordinate_or_active_site_cleanliness_required_before_import"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "flavin_monooxygenase_and_flavin_oxygen_transfer",
         "entry_id": "m_csa:973",
@@ -911,10 +1886,9 @@
         },
         "machinery_to_rerun_after_resolution": [
           "family_panel_expert_import_decision_application",
-          "family_panel_accepted_import_preview",
           "family_label_admission_pipeline"
         ],
-        "priority": 10,
+        "priority": 15,
         "rank": 6,
         "row_context_sha256": "eb70c21ef5039b9347e3a846007684229ec6017f9cf5cb728a78dcfc22276829",
         "source_hashes": {
@@ -927,13 +1901,14 @@
           "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
           "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
         },
-        "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+        "unblock_result": "row can exit the human-decision queue as a non-counting keep_family_panel_review_only_require_more_evidence proposal unless a human wants countable promotion",
         "would_enter_import_preview_if_accepted": true
       },
       {
         "action_class": "source_free_locator_or_position_mapping_resolution",
         "admission_state": "blocked_locator",
         "allowed_next_action": "No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
+        "architecture_decision_proposal": null,
         "blocker_class": "source_free_locator_or_position_mapping_missing",
         "candidate_family_axis": "no_reliable_structure_metal_hydrolase_controls",
         "entry_id": "mh_065",
@@ -978,6 +1953,7 @@
         "action_class": "source_free_locator_or_position_mapping_resolution",
         "admission_state": "blocked_locator",
         "allowed_next_action": "No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
+        "architecture_decision_proposal": null,
         "blocker_class": "source_free_locator_or_position_mapping_missing",
         "candidate_family_axis": "no_reliable_structure_metal_hydrolase_controls",
         "entry_id": "mh_072",
@@ -1022,6 +1998,7 @@
         "action_class": "coordinate_or_coordinate_policy_resolution",
         "admission_state": "blocked_coordinate",
         "allowed_next_action": "No cached same-accession substrate-like coordinate clears external_glycoside_panel; provide an explicit substrate-complex coordinate or expert-approved non-glycan locator before rerunning schema/scoring.",
+        "architecture_decision_proposal": null,
         "blocker_class": "coordinate_or_coordinate_policy_missing",
         "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
         "entry_id": "external_glycoside_panel",
@@ -1066,6 +2043,7 @@
         "action_class": "coordinate_or_coordinate_policy_resolution",
         "admission_state": "blocked_coordinate",
         "allowed_next_action": "Approve or reject fetching mh_064 frozen alternate coordinates 3RKJ/3RKK/3SBL/3SFP/3SPU.",
+        "architecture_decision_proposal": null,
         "blocker_class": "coordinate_or_coordinate_policy_missing",
         "candidate_family_axis": "no_reliable_structure_metal_hydrolase_controls",
         "entry_id": "mh_064",
@@ -1110,6 +2088,7 @@
         "action_class": "coordinate_or_coordinate_policy_resolution",
         "admission_state": "blocked_coordinate",
         "allowed_next_action": "No eligible alternate source row is available for Q59490; authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators.",
+        "architecture_decision_proposal": null,
         "blocker_class": "coordinate_or_coordinate_policy_missing",
         "candidate_family_axis": "cobalamin_and_radical_rearrangement_panel",
         "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
@@ -1153,9 +2132,38 @@
     ],
     "queue_status": "ready",
     "recommended_next_item": {
-      "action_class": "expert_family_admission_decision",
+      "action_class": "architecture_default_non_counting_family_disposition",
       "admission_state": "blocked_family_decision",
-      "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+      "allowed_next_action": "preserve the architecture-proposed non-counting disposition (reject_family_panel_import_candidate); escalate only to override toward countable promotion",
+      "architecture_decision_proposal": {
+        "automation_action": "machine_default_non_counting_disposition_available",
+        "confidence": "high",
+        "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+        "evidence_flags": [
+          "benchmark_role_oos_tier",
+          "split::heldout",
+          "fold_geometry_gate_abstained",
+          "primary_channel_below_threshold",
+          "low_predicted_geometry_top1_score",
+          "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+          "evidence_role::cofactor_confounded_control"
+        ],
+        "human_review_required_for_countable_promotion": true,
+        "human_review_required_for_default": false,
+        "policy_name": "family_admission_architecture_default_v1",
+        "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+        "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+        "proposed_decision": "reject_family_panel_import_candidate",
+        "rationale": [
+          "The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold.",
+          "Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review."
+        ],
+        "risk_flags": [],
+        "source_free": {
+          "mechanism_text_or_ids_used_as_predictive_features": false,
+          "proposal_uses_existing_channel_scores_only": true
+        }
+      },
       "blocker_class": "expert_family_admission_decision_required",
       "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "entry_id": "m_csa:10",
@@ -1176,10 +2184,9 @@
       },
       "machinery_to_rerun_after_resolution": [
         "family_panel_expert_import_decision_application",
-        "family_panel_accepted_import_preview",
         "family_label_admission_pipeline"
       ],
-      "priority": 10,
+      "priority": 15,
       "rank": 1,
       "row_context_sha256": "5e106f1e3a1a42a4d7ec1261ab2c5cd64570af1518bfbea11f032da8eebf7e2d",
       "source_hashes": {
@@ -1192,7 +2199,7 @@
         "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
         "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
       },
-      "unblock_result": "row can enter accepted import-preview construction if explicitly accepted",
+      "unblock_result": "row can exit the human-decision queue as a non-counting reject_family_panel_import_candidate proposal unless a human wants countable promotion",
       "would_enter_import_preview_if_accepted": true
     }
   },
@@ -1405,7 +2412,7 @@
     "review_only": true,
     "threshold_values_changed": false
   },
-  "human_decision_needed": "explicit accept/reject/review-only expert decisions for 6 family-panel rows",
+  "human_decision_needed": null,
   "import_preview": {
     "accepted_decision_waiting_import_preview_rows": [],
     "countable_candidates": [],
@@ -1413,7 +2420,7 @@
   },
   "interpretation": {
     "headline": "22 family-panel rows classified into exactly one admission state each.",
-    "next_action": "Adjudicate the blocked family-decision rows with preserved decision_context_sha256 values, starting with m_csa:10, m_csa:30, m_csa:31, m_csa:191, m_csa:448, m_csa:973; then rerun the expert-decision application and accepted import-preview builders.",
+    "next_action": "Use the architecture default proposal layer to route the pending family-decision rows as non-counting dispositions ({'keep_family_panel_review_only_require_more_evidence': 2, 'reject_family_panel_import_candidate': 4}); only escalate rows where you want to override into countable family promotion.",
     "result": "The current inputs emit no countable candidates and no import preview rows; they preserve OOS signal plus pending family, locator, and coordinate blockers."
   },
   "machinery_applied": [
@@ -1433,7 +2440,7 @@
   "operational_output_paths": {
     "expert_decision_review_template": "artifacts/v3_family_label_admission_expert_decision_template_current702_20260607.json"
   },
-  "recommended_next_concrete_family_expansion_task": "Adjudicate the blocked family-decision rows with preserved decision_context_sha256 values, starting with m_csa:10, m_csa:30, m_csa:31, m_csa:191, m_csa:448, m_csa:973; then rerun the expert-decision application and accepted import-preview builders.",
+  "recommended_next_concrete_family_expansion_task": "Use the architecture default proposal layer to route the pending family-decision rows as non-counting dispositions ({'keep_family_panel_review_only_require_more_evidence': 2, 'reject_family_panel_import_candidate': 4}); only escalate rows where you want to override into countable family promotion.",
   "rejects_oos_signal_packet": {
     "oos_hard_negative_rows": [
       {
@@ -4390,6 +5397,35 @@
       {
         "admission_state": "blocked_family_decision",
         "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "high",
+          "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold.",
+            "Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review."
+          ],
+          "risk_flags": [],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
         "classification_basis": "pending_expert_family_admission_decision",
@@ -4501,6 +5537,37 @@
       {
         "admission_state": "blocked_family_decision",
         "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
         "classification_basis": "pending_expert_family_admission_decision",
@@ -4612,6 +5679,37 @@
       {
         "admission_state": "blocked_family_decision",
         "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
         "classification_basis": "pending_expert_family_admission_decision",
@@ -4723,6 +5821,37 @@
       {
         "admission_state": "blocked_family_decision",
         "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium_high",
+          "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+          "proposed_decision": "reject_family_panel_import_candidate",
+          "rationale": [
+            "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+            "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "thiol_disulfide_oxidoreductase_isomerase_boundary",
         "classification_basis": "pending_expert_family_admission_decision",
@@ -4833,6 +5962,38 @@
       {
         "admission_state": "blocked_family_decision",
         "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+          "evidence_flags": [
+            "benchmark_role_oos_tier",
+            "split::heldout",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "The row is OOS-like and abstains under the fold/geometry channel, but the family axis is a boundary signal worth preserving.",
+            "Use as review-only evidence unless a future family-specific locator/import gate clears it."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "lipoamide_or_sulfur_transfer_redox_boundary",
         "classification_basis": "pending_expert_family_admission_decision",
@@ -4943,6 +6104,39 @@
       {
         "admission_state": "blocked_family_decision",
         "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+        "architecture_decision_proposal": {
+          "automation_action": "machine_default_non_counting_disposition_available",
+          "confidence": "medium",
+          "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+          "evidence_flags": [
+            "split::in_distribution",
+            "fold_geometry_gate_abstained",
+            "primary_channel_below_threshold",
+            "low_predicted_geometry_top1_score",
+            "strong_organic_cofactor_signal",
+            "nearest_atlas_fingerprint::heme_peroxidase_oxidase",
+            "evidence_role::cofactor_confounded_control"
+          ],
+          "human_review_required_for_countable_promotion": true,
+          "human_review_required_for_default": false,
+          "policy_name": "family_admission_architecture_default_v1",
+          "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+          "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+          "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+          "rationale": [
+            "FMO/oxygen-transfer is a real boundary against the current flavin redox bucket, but the row should not become countable until coordinate/active-site cleanliness is resolved.",
+            "Strong cofactor signal alone is not sufficient for family admission."
+          ],
+          "risk_flags": [
+            "boundary_or_underpowered_family_axis",
+            "current_primary_role_conflicts_with_family_boundary",
+            "coordinate_or_active_site_cleanliness_required_before_import"
+          ],
+          "source_free": {
+            "mechanism_text_or_ids_used_as_predictive_features": false,
+            "proposal_uses_existing_channel_scores_only": true
+          }
+        },
         "blocker_class": "expert_family_admission_decision_required",
         "candidate_family_axis": "flavin_monooxygenase_and_flavin_oxygen_transfer",
         "classification_basis": "pending_expert_family_admission_decision",
@@ -5284,6 +6478,35 @@
     {
       "admission_state": "blocked_family_decision",
       "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+      "architecture_decision_proposal": {
+        "automation_action": "machine_default_non_counting_disposition_available",
+        "confidence": "high",
+        "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+        "evidence_flags": [
+          "benchmark_role_oos_tier",
+          "split::heldout",
+          "fold_geometry_gate_abstained",
+          "primary_channel_below_threshold",
+          "low_predicted_geometry_top1_score",
+          "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+          "evidence_role::cofactor_confounded_control"
+        ],
+        "human_review_required_for_countable_promotion": true,
+        "human_review_required_for_default": false,
+        "policy_name": "family_admission_architecture_default_v1",
+        "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+        "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+        "proposed_decision": "reject_family_panel_import_candidate",
+        "rationale": [
+          "The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold.",
+          "Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review."
+        ],
+        "risk_flags": [],
+        "source_free": {
+          "mechanism_text_or_ids_used_as_predictive_features": false,
+          "proposal_uses_existing_channel_scores_only": true
+        }
+      },
       "blocker_class": "expert_family_admission_decision_required",
       "candidate_family_axis": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "classification_basis": "pending_expert_family_admission_decision",
@@ -5395,6 +6618,37 @@
     {
       "admission_state": "blocked_family_decision",
       "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+      "architecture_decision_proposal": {
+        "automation_action": "machine_default_non_counting_disposition_available",
+        "confidence": "medium_high",
+        "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+        "evidence_flags": [
+          "benchmark_role_oos_tier",
+          "split::heldout",
+          "fold_geometry_gate_abstained",
+          "primary_channel_below_threshold",
+          "low_predicted_geometry_top1_score",
+          "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+          "evidence_role::cofactor_confounded_control"
+        ],
+        "human_review_required_for_countable_promotion": true,
+        "human_review_required_for_default": false,
+        "policy_name": "family_admission_architecture_default_v1",
+        "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+        "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+        "proposed_decision": "reject_family_panel_import_candidate",
+        "rationale": [
+          "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+          "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+        ],
+        "risk_flags": [
+          "boundary_or_underpowered_family_axis"
+        ],
+        "source_free": {
+          "mechanism_text_or_ids_used_as_predictive_features": false,
+          "proposal_uses_existing_channel_scores_only": true
+        }
+      },
       "blocker_class": "expert_family_admission_decision_required",
       "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
       "classification_basis": "pending_expert_family_admission_decision",
@@ -5506,6 +6760,37 @@
     {
       "admission_state": "blocked_family_decision",
       "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+      "architecture_decision_proposal": {
+        "automation_action": "machine_default_non_counting_disposition_available",
+        "confidence": "medium_high",
+        "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+        "evidence_flags": [
+          "benchmark_role_oos_tier",
+          "split::heldout",
+          "fold_geometry_gate_abstained",
+          "primary_channel_below_threshold",
+          "low_predicted_geometry_top1_score",
+          "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+          "evidence_role::cofactor_confounded_control"
+        ],
+        "human_review_required_for_countable_promotion": true,
+        "human_review_required_for_default": false,
+        "policy_name": "family_admission_architecture_default_v1",
+        "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+        "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+        "proposed_decision": "reject_family_panel_import_candidate",
+        "rationale": [
+          "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+          "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+        ],
+        "risk_flags": [
+          "boundary_or_underpowered_family_axis"
+        ],
+        "source_free": {
+          "mechanism_text_or_ids_used_as_predictive_features": false,
+          "proposal_uses_existing_channel_scores_only": true
+        }
+      },
       "blocker_class": "expert_family_admission_decision_required",
       "candidate_family_axis": "glycyl_radical_or_thiamine_radical_lyase_boundary",
       "classification_basis": "pending_expert_family_admission_decision",
@@ -5964,6 +7249,37 @@
     {
       "admission_state": "blocked_family_decision",
       "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+      "architecture_decision_proposal": {
+        "automation_action": "machine_default_non_counting_disposition_available",
+        "confidence": "medium_high",
+        "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+        "evidence_flags": [
+          "benchmark_role_oos_tier",
+          "split::heldout",
+          "fold_geometry_gate_abstained",
+          "primary_channel_below_threshold",
+          "low_predicted_geometry_top1_score",
+          "nearest_atlas_fingerprint::ser_his_acid_hydrolase",
+          "evidence_role::cofactor_confounded_control"
+        ],
+        "human_review_required_for_countable_promotion": true,
+        "human_review_required_for_default": false,
+        "policy_name": "family_admission_architecture_default_v1",
+        "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+        "proposed_admission_state_after_reviewed_decision": "reject_preserve_signal",
+        "proposed_decision": "reject_family_panel_import_candidate",
+        "rationale": [
+          "The row is an OOS boundary/control and abstains under the fold/geometry channel.",
+          "The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal."
+        ],
+        "risk_flags": [
+          "boundary_or_underpowered_family_axis"
+        ],
+        "source_free": {
+          "mechanism_text_or_ids_used_as_predictive_features": false,
+          "proposal_uses_existing_channel_scores_only": true
+        }
+      },
       "blocker_class": "expert_family_admission_decision_required",
       "candidate_family_axis": "thiol_disulfide_oxidoreductase_isomerase_boundary",
       "classification_basis": "pending_expert_family_admission_decision",
@@ -6184,6 +7500,38 @@
     {
       "admission_state": "blocked_family_decision",
       "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+      "architecture_decision_proposal": {
+        "automation_action": "machine_default_non_counting_disposition_available",
+        "confidence": "medium",
+        "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+        "evidence_flags": [
+          "benchmark_role_oos_tier",
+          "split::heldout",
+          "fold_geometry_gate_abstained",
+          "primary_channel_below_threshold",
+          "low_predicted_geometry_top1_score",
+          "strong_organic_cofactor_signal",
+          "nearest_atlas_fingerprint::metal_dependent_hydrolase",
+          "evidence_role::cofactor_confounded_control"
+        ],
+        "human_review_required_for_countable_promotion": true,
+        "human_review_required_for_default": false,
+        "policy_name": "family_admission_architecture_default_v1",
+        "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+        "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+        "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+        "rationale": [
+          "The row is OOS-like and abstains under the fold/geometry channel, but the family axis is a boundary signal worth preserving.",
+          "Use as review-only evidence unless a future family-specific locator/import gate clears it."
+        ],
+        "risk_flags": [
+          "boundary_or_underpowered_family_axis"
+        ],
+        "source_free": {
+          "mechanism_text_or_ids_used_as_predictive_features": false,
+          "proposal_uses_existing_channel_scores_only": true
+        }
+      },
       "blocker_class": "expert_family_admission_decision_required",
       "candidate_family_axis": "lipoamide_or_sulfur_transfer_redox_boundary",
       "classification_basis": "pending_expert_family_admission_decision",
@@ -6516,6 +7864,39 @@
     {
       "admission_state": "blocked_family_decision",
       "allowed_next_action": "record an explicit expert accept/reject/review-only decision with the preserved decision_context_sha256",
+      "architecture_decision_proposal": {
+        "automation_action": "machine_default_non_counting_disposition_available",
+        "confidence": "medium",
+        "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+        "evidence_flags": [
+          "split::in_distribution",
+          "fold_geometry_gate_abstained",
+          "primary_channel_below_threshold",
+          "low_predicted_geometry_top1_score",
+          "strong_organic_cofactor_signal",
+          "nearest_atlas_fingerprint::heme_peroxidase_oxidase",
+          "evidence_role::cofactor_confounded_control"
+        ],
+        "human_review_required_for_countable_promotion": true,
+        "human_review_required_for_default": false,
+        "policy_name": "family_admission_architecture_default_v1",
+        "policy_scope": "Architecture may propose reject/review-only non-counting dispositions for pending family-decision rows. It must not auto-promote, import, or create countable labels.",
+        "proposed_admission_state_after_reviewed_decision": "review_only_evidence",
+        "proposed_decision": "keep_family_panel_review_only_require_more_evidence",
+        "rationale": [
+          "FMO/oxygen-transfer is a real boundary against the current flavin redox bucket, but the row should not become countable until coordinate/active-site cleanliness is resolved.",
+          "Strong cofactor signal alone is not sufficient for family admission."
+        ],
+        "risk_flags": [
+          "boundary_or_underpowered_family_axis",
+          "current_primary_role_conflicts_with_family_boundary",
+          "coordinate_or_active_site_cleanliness_required_before_import"
+        ],
+        "source_free": {
+          "mechanism_text_or_ids_used_as_predictive_features": false,
+          "proposal_uses_existing_channel_scores_only": true
+        }
+      },
       "blocker_class": "expert_family_admission_decision_required",
       "candidate_family_axis": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "classification_basis": "pending_expert_family_admission_decision",

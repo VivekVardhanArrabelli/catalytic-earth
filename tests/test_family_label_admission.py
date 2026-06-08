@@ -377,7 +377,18 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
             self.assertEqual(action_queue["recommended_next_item"]["entry_id"], "row_family")
             self.assertEqual(
                 action_queue["recommended_next_item"]["action_class"],
-                "expert_family_admission_decision",
+                "architecture_default_non_counting_family_disposition",
+            )
+            proposal = action_queue["recommended_next_item"][
+                "architecture_decision_proposal"
+            ]
+            self.assertEqual(
+                proposal["proposed_decision"],
+                "keep_family_panel_review_only_require_more_evidence",
+            )
+            self.assertFalse(proposal["human_review_required_for_default"])
+            self.assertTrue(
+                proposal["human_review_required_for_countable_promotion"]
             )
             self.assertEqual(
                 action_queue["recommended_next_item"]["evidence_summary"][
@@ -386,6 +397,12 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
                 "a" * 64,
             )
             self.assertIn(
+                "family_panel_expert_import_decision_application",
+                action_queue["recommended_next_item"][
+                    "machinery_to_rerun_after_resolution"
+                ],
+            )
+            self.assertNotIn(
                 "family_panel_accepted_import_preview",
                 action_queue["recommended_next_item"][
                     "machinery_to_rerun_after_resolution"
@@ -400,15 +417,31 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
             decision_intake = audit["expert_decision_intake_packet"]
             self.assertEqual(
                 decision_intake["status"],
-                "awaiting_expert_family_decisions",
+                "architecture_non_counting_defaults_available",
             )
             self.assertEqual(decision_intake["counts"]["template_rows"], 1)
+            self.assertEqual(
+                decision_intake["counts"]["architecture_default_non_counting_rows"],
+                1,
+            )
+            self.assertEqual(
+                decision_intake["counts"][
+                    "human_review_required_for_default_rows"
+                ],
+                0,
+            )
             self.assertEqual(
                 decision_intake["counts"]["previewable_if_accepted_rows"],
                 1,
             )
             template_row = decision_intake["template_rows"][0]
             self.assertEqual(template_row["entry_id"], "row_family")
+            self.assertEqual(
+                template_row["architecture_decision_proposal"][
+                    "proposed_decision"
+                ],
+                "keep_family_panel_review_only_require_more_evidence",
+            )
             self.assertEqual(template_row["decision_context_sha256"], "a" * 64)
             self.assertEqual(
                 template_row["required_decision_record"],
@@ -426,6 +459,26 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
             )
             self.assertEqual(
                 audit["counts"]["expert_decision_review_template_rows"],
+                1,
+            )
+            self.assertEqual(
+                audit["counts"]["architecture_decision_proposal_rows"],
+                1,
+            )
+            self.assertEqual(
+                audit["counts"]["architecture_default_non_counting_rows"],
+                1,
+            )
+            self.assertEqual(
+                audit["counts"][
+                    "human_family_decision_rows_after_architecture_defaults"
+                ],
+                0,
+            )
+            self.assertEqual(
+                audit["architecture_decision_proposals"]["counts"][
+                    "default_non_counting_rows"
+                ],
                 1,
             )
             self.assertEqual(
@@ -453,6 +506,16 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
             template_decision = template_payload["expert_import_decisions"][0]
             self.assertEqual(template_decision["entry_id"], "row_family")
             self.assertEqual(template_decision["decision"], "pending_review")
+            self.assertEqual(
+                template_decision["suggested_decision"],
+                "keep_family_panel_review_only_require_more_evidence",
+            )
+            self.assertEqual(
+                template_decision["architecture_decision_proposal"][
+                    "proposed_decision"
+                ],
+                "keep_family_panel_review_only_require_more_evidence",
+            )
             self.assertEqual(
                 template_decision["review_status"],
                 "pending_expert_import_decision",

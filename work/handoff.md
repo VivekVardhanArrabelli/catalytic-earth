@@ -24438,3 +24438,52 @@ Do not rerun or retune threshold `0.44155` yet. The next Lever 3 action is:
    intake slots; then handle the larger 170-row same-family structural intake.
    Score only accepted rows at unchanged threshold `0.44155` and only after
    intake checks pass.
+
+## Automation/handoff update: family admission dependency reduction 2026-06-08
+
+Scope: Reduce Vivek dependency in the targeted family-label expansion path
+without importing labels, changing registries/ontologies, or promoting any row
+to countable status.
+
+What changed:
+
+- Added `family_admission_architecture_default_v1` proposals to the family
+  label admission pipeline. Pending family-decision rows now get an
+  architecture-derived non-counting default when the existing channels support
+  reject/OOS preservation or review-only preservation.
+- Regenerated:
+  `artifacts/v3_family_label_admission_pipeline_current702_20260607.json`,
+  `artifacts/v3_family_label_admission_expert_decision_template_current702_20260607.json`,
+  and `work/family_label_admission_pipeline_current702_20260607.md`.
+- Current result for the 6 previously human-blocked family-decision rows:
+  6/6 have architecture default non-counting proposals and
+  `human_family_decision_rows_after_architecture_defaults = 0`.
+- Proposed defaults:
+  `m_csa:10`, `m_csa:30`, `m_csa:31`, and `m_csa:191` ->
+  `reject_family_panel_import_candidate`;
+  `m_csa:448` and `m_csa:973` ->
+  `keep_family_panel_review_only_require_more_evidence`.
+- Countable/import safety is unchanged: architecture defaults may route rows
+  away from import or keep them review-only, but may not accept a family-panel
+  import candidate, promote a countable label, alter splits, or change
+  thresholds without human review.
+
+How agents should read this:
+
+- Do not ask Vivek to adjudicate these 6 rows just to preserve non-counting
+  signal. Use the architecture proposal layer unless the goal is to override a
+  row into countable promotion.
+- The remaining family-panel work is locator/coordinate acquisition and true
+  countable family expansion, not repeated blocker-packet prose on these same
+  six rows.
+
+Verification:
+
+- `PYTHONPATH=src python -m pytest tests/test_family_label_admission.py -q`:
+  4 passed, 9 subtests passed.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -q`:
+  206 passed, 160 subtests passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 labels.
+- JSON parse for the regenerated family-admission artifacts passed.
+- `git diff --check` passed.
