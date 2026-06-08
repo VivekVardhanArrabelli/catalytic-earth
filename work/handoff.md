@@ -3,18 +3,20 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-family-label-admission-pipeline`
-- STARTED_AT_UTC: `2026-06-08T13:01:52Z`
-- STARTED_AT_LOCAL: `Mon Jun  8 08:01:52 CDT 2026`
-- ENDED_AT_UTC: `2026-06-08T13:52:30Z`
-- ENDED_AT_LOCAL: `Mon Jun  8 08:52:30 CDT 2026`
-- ELAPSED_MINUTES: `50.633`
-- Status: Wrap in progress. Durable conversion/screening artifact and report
-  produced for all 86 `acquisition_needed` rows in
-  `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`;
-  commit/push/sync, lock release, and automation pause are the remaining final
-  steps.
+- STARTED_AT_UTC: `2026-06-08T13:23:13Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 08:23:13 CDT 2026`
+- ENDED_AT_UTC: `2026-06-08T14:13:40Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 09:13:40 CDT 2026`
+- ELAPSED_MINUTES: `50.450`
+- Status: Self-stop reconciliation complete pending final commit/push/sync and
+  run-owned lock release. During wrap, `origin/main` was found to already
+  contain the durable acquisition conversion screen at
+  `fcee1b768934da05f9fc24ac8cc303fe8897b21a`, so this run did not push a
+  competing duplicate conversion artifact or start a promotion/import batch.
+  The local duplicate exploratory output was preserved in a git stash named
+  `automation duplicate conversion screen before origin reconciliation`.
   Canonical automation lock acquired at
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth4/catalytic-earth-automation.lock`;
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth5/catalytic-earth-automation.lock`;
   start timestamps were also written to
   `/tmp/catalytic_earth_expansion_conversion_started_at.txt`.
 
@@ -67,6 +69,93 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 Acquisition Conversion Screen Reconciliation
+
+Automation run: `catalytic-earth-family-label-admission-pipeline`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-08T13:23:13Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 08:23:13 CDT 2026`
+- ENDED_AT_UTC: `2026-06-08T14:13:40Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 09:13:40 CDT 2026`
+- ELAPSED_MINUTES: `50.450`
+- Lock: canonical linked-worktree lock directory
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth5/catalytic-earth-automation.lock`
+  acquired after the literal `.git/catalytic-earth-automation.lock` path was
+  unavailable in this linked worktree. Start timestamps were written to
+  `/tmp/catalytic_earth_expansion_conversion_started_at.txt`.
+
+#### Scope
+
+- Began from detached `HEAD` at
+  `c2f5c20eaf84d6878255f21ae1c79dac9f0f5068` and worked the requested
+  acquisition conversion/screening mission for the first targeted expansion
+  factory batch.
+- During mandatory wrap, `git fetch origin` showed that `origin/main` had
+  advanced to `fcee1b768934da05f9fc24ac8cc303fe8897b21a`, which already
+  contains the durable 86-row conversion screen, markdown report, rerunnable
+  CLI, and tests.
+- Applied the self-stop rule rather than pushing a competing duplicate artifact:
+  the local duplicate conversion artifact/report/code/tests were preserved in
+  git stash `automation duplicate conversion screen before origin reconciliation`
+  and the worktree was moved to the canonical `origin/main` commit.
+- Did not import or promote labels. No production label registry, ontology,
+  train/test split, model weight, production threshold, or heldout
+  training/tuning surface was changed.
+
+#### Existing durable output confirmed
+
+- JSON artifact:
+  `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`.
+- Markdown report:
+  `work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`.
+- Rerunnable code and tests:
+  `src/catalytic_earth/targeted_expansion_acquisition_conversion.py`,
+  `src/catalytic_earth/cli.py`,
+  `tests/test_targeted_expansion_acquisition_conversion.py`, and
+  `tests/test_cli.py`.
+- Durable docs already point to the conversion screen as the current
+  source-of-truth output: `docs/project_state.md` and
+  `docs/artifact_index.md`.
+
+#### Validation
+
+- Canonical focused regression:
+  `PYTHONPATH=src python -m pytest tests/test_targeted_expansion_acquisition_conversion.py tests/test_cli.py::CliTests::test_targeted_expansion_acquisition_conversion_parser_defaults tests/test_cli.py::CliTests::test_targeted_expansion_acquisition_conversion_rejects_bad_screen_override -q`:
+  5 passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 curated mechanism labels.
+- `python -m json.tool artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`:
+  passed.
+- `git diff --check`: passed.
+- Disk guardrail: `df -Pk .` reported 11,049,096 KiB free at wrap, above the
+  10 GiB guardrail.
+
+#### Commit, sync, and lock
+
+- Durable conversion artifact commit hash:
+  `fcee1b768934da05f9fc24ac8cc303fe8897b21a`.
+- Reconciliation handoff/status commit: this handoff update is intentionally
+  handoff-only; its final SHA is recorded by the post-push sync check and final
+  automation response because a commit cannot contain its own hash.
+- Push/sync status: pending immediate post-commit `git push origin HEAD:main`
+  and `HEAD == origin/main` verification.
+- Lock release status: pending immediate post-sync
+  `automation-lock release --require-clean --require-no-merge --require-synced`
+  for the run-owned `catalytic-earth5` lock.
+- Automation pause status: pause after the sync and lock-release checks; do not
+  repeat this conversion screen.
+
+#### Exact next action
+
+Vivek or the main thread should review
+`work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`,
+especially `uniprot:P78549`, `uniprot:Q3LXA3`, and the 50 grouped
+family-decision blockers. Do not start a larger promotion/import batch until
+Vivek or the main thread explicitly asks after reviewing this conversion
+result.
 
 ### 2026-06-08 Targeted Expansion Acquisition Conversion Screens
 

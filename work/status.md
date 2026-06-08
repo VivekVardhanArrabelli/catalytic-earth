@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 377
-- Measured elapsed time: 11518.5 minutes (191.97 hours)
+- Entries: 378
+- Measured elapsed time: 11568.9 minutes (192.82 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,7 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- targeted-expansion: 50.6 measured minutes (0.84 hours)
+- targeted-expansion: 101.1 measured minutes (1.68 hours)
 - v3: 2734.9 measured minutes (45.58 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -33,21 +33,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3913
-- Evidence references logged: 3247
+- Artifact references logged: 3917
+- Evidence references logged: 3253
 
 ## Recent Entries
-
-### 2026-06-05T15:08:04.783030+00:00 - northstar-lever3
-
-- Task: Lever 3 final reusable gate and P07658 stop readiness
-- Time mode: measured
-- Measured minutes: 6.1
-- Started: 2026-06-05T15:01:26Z
-- Ended: 2026-06-05T15:07:32Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
-- Evidence: final reusable Lever 3 gate documented, current hard residual operator rows 21 of 21 safe abstain route, mechanism transfer allowed rows 0 and forced labels 0, P07658 frozen FASTA 715 aa with U140 preserved, P07658 remains fail closed pending exact coordinate provenance, current environment has no credentialed provider route local predictor runtime or coordinate, source hash audit 8 of 8 current, new JSON parsed git diff check validate and unittest discovery 1495 passed
-- Notes: Lever 3 stop condition reached; fixed-threshold scoring closure remains fail-closed only on exact P07658 coordinate/provenance plus acceptance preflight.
 
 ### 2026-06-05T16:06:56.986922+00:00 - northstar-lever3
 
@@ -126,6 +115,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json, work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md
 - Evidence: PYTHONPATH=src python -m pytest -q:1708 passed, PYTHONPATH=src python -m unittest discover -s tests:1663 tests OK, PYTHONPATH=src python -m catalytic_earth.cli validate:702 labels
 - Notes: Routed 86 acquisition-needed rows: 27 reject/OOS, 7 locator blockers, 50 family-decision blockers, 1 review-only, 1 preflight-only.
+
+### 2026-06-08T14:19:32.103369+00:00 - targeted-expansion
+
+- Task: Acquisition conversion screen self-stop reconciliation
+- Time mode: measured
+- Measured minutes: 50.45
+- Started: 2026-06-08T13:23:13Z
+- Ended: 2026-06-08T14:13:40Z
+- Artifacts: artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json, work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md, work/handoff.md, work/status.md
+- Evidence: origin/main already contained durable 86-row conversion screen at fcee1b76, local duplicate conversion work stashed instead of pushed, focused canonical conversion tests passed, validate passed for 702 curated labels, JSON parse and git diff check passed, disk free 11049096 KiB
+- Notes: Paused automation after detecting the pushed conversion screen; exact next action remains human review of the conversion report before any controlled promotion discussion.
 
 ## Expectation Updates
 
@@ -638,3 +638,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T19:06:13.363198+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.
 - 2026-06-05T20:05:21.984184+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.
 - 2026-06-08T13:53:00.862088+00:00: Converted uncertainty to non-importing terminal states; no promotion/import batch started.
+- 2026-06-08T14:19:32.103369+00:00: Self-stop reconciliation only; no duplicate artifact, label import, registry edit, ontology edit, split edit, model change, threshold change, or promotion batch started.
