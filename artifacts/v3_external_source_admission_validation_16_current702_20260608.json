@@ -1,0 +1,2393 @@
+{
+  "artifact_id": "v3_external_source_admission_validation_16_current702_20260608",
+  "classification_policy": {
+    "direct_ready_requires": [
+      "reviewed Swiss-Prot/UniProt status",
+      "source hashes and source URLs present",
+      "no exact current702 accession or sequence SHA conflict",
+      "specific EC and Rhea reaction provenance",
+      "known pilot family lane assignment",
+      "at least one exact reviewed residue locator",
+      "PDB/AFDB coordinate provenance",
+      "hash-matched local coordinate file",
+      "approved source-free locator sidecar"
+    ],
+    "pending_coordinate_materialization": "all source admission gates clear, but no local coordinate file matched the PDB/AFDB handle or same-accession AFDB cache",
+    "pending_locator_materialization": "source and local coordinate gates clear, but no approved source-free locator sidecar matched the candidate",
+    "production_import_rule": "No production label import is authorized here; admission-ready rows remain preview candidates until controlled registry authorization.",
+    "terminal_states": [
+      "admission_ready_external_label_candidate",
+      "admission_ready_pending_locator_materialization",
+      "admission_ready_pending_coordinate_materialization",
+      "blocked_duplicate_or_current_registry_conflict",
+      "blocked_source_provenance",
+      "blocked_locator_or_coordinate_mapping",
+      "blocked_family_or_mechanism_policy",
+      "review_only_evidence",
+      "reject/OOS_preserve_signal"
+    ]
+  },
+  "counts": {
+    "admission_ready_rows": 16,
+    "direct_external_label_candidate_rows": 0,
+    "pending_coordinate_materialization_rows": 10,
+    "pending_locator_materialization_rows": 6,
+    "validated_rows": 16
+  },
+  "created_utc": "2026-06-08T23:47:35Z",
+  "family_lane_terminal_state_counts": {
+    "PLP children": {
+      "admission_ready_pending_locator_materialization": 3
+    },
+    "glycoside/nucleoside": {
+      "admission_ready_pending_coordinate_materialization": 1,
+      "admission_ready_pending_locator_materialization": 1
+    },
+    "phosphoryl transfer": {
+      "admission_ready_pending_coordinate_materialization": 2,
+      "admission_ready_pending_locator_materialization": 2
+    },
+    "radical-SAM/cobalamin": {
+      "admission_ready_pending_coordinate_materialization": 3
+    },
+    "redox oxygen/sulfur": {
+      "admission_ready_pending_coordinate_materialization": 4
+    }
+  },
+  "guardrails": {
+    "coordinates_fetched_or_materialized_now": false,
+    "heldout_training_or_tuning_performed": false,
+    "label_import_performed": false,
+    "locator_sidecars_copied_or_materialized_now": false,
+    "mechanism_text_ec_rhea_ids_labels_target_names_accession_ids_or_source_ids_used_as_predictive_features": false,
+    "model_weights_or_thresholds_edited": false,
+    "ontology_edited": false,
+    "production_import_edited": false,
+    "production_registry_edited": false,
+    "source_ids_and_accessions_used_as_provenance_only": true,
+    "train_test_splits_changed": false
+  },
+  "input_reconciliation": {
+    "expected_preview_count": 16,
+    "matched_preview_rows_in_pilot": 16,
+    "missing_preview_candidate_ids_from_pilot": [],
+    "pilot_candidate_count": 28,
+    "preview_candidate_count": 16,
+    "preview_candidate_ids_not_pilot_preflight": [],
+    "preview_row_count": 16
+  },
+  "rows": [
+    {
+      "accession": "P09601",
+      "admission_context_sha256": "c409ebfa9acca1bd3b4ba31e02444642bffb7d03fb8a536d1babf9cf4acbc0c2",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:P09601",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "c449769cb7617413952972a36312cd54cd78bb91731aaedb08a978fb7b8e6912",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "c449769cb7617413952972a36312cd54cd78bb91731aaedb08a978fb7b8e6912"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "1N3U",
+          "alphafold_ids": [
+            "P09601"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": [
+            "1N3U",
+            "1N45",
+            "1NI6",
+            "1OYK",
+            "1OYL",
+            "1OZE",
+            "1OZL",
+            "1OZR",
+            "1OZW",
+            "1S13",
+            "1S8C",
+            "1T5P",
+            "1TWN",
+            "1TWR",
+            "1XJZ",
+            "1XK0",
+            "1XK1",
+            "1XK2",
+            "1XK3",
+            "3CZY",
+            "3HOK",
+            "3K4F",
+            "3TGM",
+            "4WD4",
+            "5BTQ",
+            "6EHA"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "redox_oxygen_sulfur",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((ec:1.14.*) OR (ec:1.8.*) OR (protein_name:oxygenase) OR (protein_name:sulfur))",
+          "target_family_lane": "redox oxygen/sulfur"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "1.14.14.18"
+          ],
+          "rhea_ids": [
+            "RHEA-COMP:11964",
+            "RHEA-COMP:11965",
+            "RHEA:21764"
+          ],
+          "rhea_record_count": 3,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 6,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES",
+            "SITE"
+          ],
+          "residue_locator_count": 6,
+          "source_evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 6
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "redox_oxygen_sulfur",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "c1295610daed637ec6ce90a67001cc6706e9ccd6d2e74ec3fe65e43c0bd9ef93",
+        "pilot_row_sha256": "84af83622cb165722100cdc818177d8edba849af8ebfa191bb158c6a54c1b512",
+        "rhea_records_sha256": "bca2ba6bea98b54645cf68de9d32260eb9180e754b41765955dfbba46f0c5dbf",
+        "uniprot_entry_record_sha256": "2496a1008e3eddee67fa31a3aaf76faf7d4a751573130426d2c847e9267a9c0a",
+        "uniprot_search_row_sha256": "2f89fdc3d128c057877608c7ddb148072cd05c92888c768f5ce9f54406cd1332"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P09601.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P09601",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "P30519",
+      "admission_context_sha256": "89df685f8f5986785b4fd89f94343d1b5c9fc956bde6276e568cbfe02bd3fb1c",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:P30519",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "ce13cee44c9d91a2b4b38b16a509351140df0beda2b1f06d7ca223a26771f75d",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "ce13cee44c9d91a2b4b38b16a509351140df0beda2b1f06d7ca223a26771f75d"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "2Q32",
+          "alphafold_ids": [
+            "P30519"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": [
+            "2Q32",
+            "2QPP",
+            "2RGZ",
+            "4WMH",
+            "5UC8",
+            "5UC9",
+            "5UCA"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "redox_oxygen_sulfur",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((ec:1.14.*) OR (ec:1.8.*) OR (protein_name:oxygenase) OR (protein_name:sulfur))",
+          "target_family_lane": "redox oxygen/sulfur"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "1.14.14.18"
+          ],
+          "rhea_ids": [
+            "RHEA-COMP:11964",
+            "RHEA-COMP:11965",
+            "RHEA:21764"
+          ],
+          "rhea_record_count": 3,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 9,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES",
+            "SITE"
+          ],
+          "residue_locator_count": 9,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 9
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "redox_oxygen_sulfur",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "b3dee7bc00d007257e8480d2ccd9bae8513ed537d797a67888f57360bdc277b7",
+        "pilot_row_sha256": "47ad105aaaab74b9add533d9d8f2d35f335915963be560fb9e62e96fa7e31e90",
+        "rhea_records_sha256": "bca2ba6bea98b54645cf68de9d32260eb9180e754b41765955dfbba46f0c5dbf",
+        "uniprot_entry_record_sha256": "654f35ac2831818e7d740a3f8359be3174eaf6667ca8736d83551f659870573e",
+        "uniprot_search_row_sha256": "75a1410112a20cf51b8e90d61684c7b0f3c372ba7d93bb73b5f31a7ff75b0129"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P30519.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P30519",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "P29082",
+      "admission_context_sha256": "9fb6f0bee764484b2ab2c2593c966487a75bd7f4142914bb837ea2032591646a",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:P29082",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "99d8dd5710b9d37b79fa97271560ab2aea302ede7e7ea64db4e0960a5edc0d47",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "99d8dd5710b9d37b79fa97271560ab2aea302ede7e7ea64db4e0960a5edc0d47"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "2CB2",
+          "alphafold_ids": [
+            "P29082"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": [
+            "2CB2",
+            "2YAV",
+            "2YAW",
+            "2YAX",
+            "6QJC",
+            "6QKA",
+            "6QKM",
+            "6QMV",
+            "6QNE",
+            "6QO0",
+            "7X9W"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "redox_oxygen_sulfur",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((ec:1.14.*) OR (ec:1.8.*) OR (protein_name:oxygenase) OR (protein_name:sulfur))",
+          "target_family_lane": "redox oxygen/sulfur"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "1.13.11.55"
+          ],
+          "rhea_ids": [
+            "RHEA:13957"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact_residue_locator_count": 4,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES"
+          ],
+          "residue_locator_count": 4,
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "source_evidence_feature_count": 4
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "redox_oxygen_sulfur",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "32fba9312aa2f804e96611e2578977da7d32e4bb37c4925e5a9354fbd2d393a3",
+        "pilot_row_sha256": "110f22151269fe6e1edd6ba8dc568bd7c4e84443aaf4feaf53eba6ccfa6dd471",
+        "rhea_records_sha256": "660910629741d691f770d20bf98b864512b5a1069160fb02706ff9bb881466ea",
+        "uniprot_entry_record_sha256": "d81fbd774f3271046f5bba5e9286f603872514b78aeb990930bf189f87b74ee0",
+        "uniprot_search_row_sha256": "9ce2da579ebcf1aa29c955f8348a4ca03d6227d671de10b307f21533d02629fc"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P29082.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P29082",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q9UGB7",
+      "admission_context_sha256": "3c37fb82abc85074bfdd1bea8829d1226aa725c521fdc842f45cddcac918b699",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:Q9UGB7",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "ea704112f56f64d4b004d428bdc4a8b426ddc5e5c23b40de55387e779cb37115",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "ea704112f56f64d4b004d428bdc4a8b426ddc5e5c23b40de55387e779cb37115"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "2IBN",
+          "alphafold_ids": [
+            "Q9UGB7"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": [
+            "2IBN"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "redox_oxygen_sulfur",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((ec:1.14.*) OR (ec:1.8.*) OR (protein_name:oxygenase) OR (protein_name:sulfur))",
+          "target_family_lane": "redox oxygen/sulfur"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "1.13.99.1"
+          ],
+          "rhea_ids": [
+            "RHEA:23696"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "exact_residue_locator_count": 9,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES"
+          ],
+          "residue_locator_count": 12,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_evidence_feature_count": 12
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "redox_oxygen_sulfur",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "34e78578aef27761a9647eec54d2dad6d02f6a0c330dcba980e2aa0a05ce5607",
+        "pilot_row_sha256": "64156fac601e8bec910cc4d5ea0ef765c0c587c4b414ac8e9c155cd34ca6aaed",
+        "rhea_records_sha256": "db188bad4420d5f751bc0e2f04358d5705e52b58cf7ee53be15cec14ce716628",
+        "uniprot_entry_record_sha256": "26f3e29ea56b3a22fdccb19365e086128a7e656266e5167ae71bb49be41a4540",
+        "uniprot_search_row_sha256": "dd440fb939c1c0a74779ed49b60f4f996fd97d07c311814c50a4668573506fd9"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9UGB7.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9UGB7",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q9Y617",
+      "admission_context_sha256": "8d75fd205ece7fdab9772d14a08edd0f6a20d370db0eb18f056e8e0080fea57b",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:Q9Y617",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "47ac6e9f63a78f48d4b7c4695d9271ae3d7b713159ee6909746fca1f43d8778f",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "47ac6e9f63a78f48d4b7c4695d9271ae3d7b713159ee6909746fca1f43d8778f"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": true,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "3E77",
+          "alphafold_ids": [
+            "Q9Y617"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "local_coordinate_materialized",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [
+            {
+              "bytes": 881128,
+              "path": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521/pdb_3E77.cif",
+              "sha256": "7bf536b5da0f998ae4fd848230d87de7be9dcf0907b6fe2a8d2852f8ac4b4171"
+            }
+          ],
+          "pdb_ids": [
+            "3E77",
+            "8A5V",
+            "8A5W"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "plp_children",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((cc_cofactor:\"pyridoxal phosphate\") OR (keyword:\"Pyridoxal phosphate\") OR (protein_name:aminotransferase))",
+          "target_family_lane": "PLP children"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.6.1.52"
+          ],
+          "rhea_ids": [
+            "RHEA:14329"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 23,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES"
+          ],
+          "residue_locator_count": 23,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 23
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "plp_children",
+      "materialization_basis": {
+        "coordinate_materialization_status": "local_coordinate_materialized",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize an approved source-free locator sidecar from exact reviewed residue locators against the local coordinate, then rerun",
+      "source_hashes": {
+        "import_preview_row_sha256": "e9712444b76d71544260f5c57ca9cc934a71d5cafd52efe0ac59292d33c82f62",
+        "pilot_row_sha256": "324414a4abeadbc4cebcacd0ab31a7eb19fd7eb21338cbafebf6eef0b71dfa72",
+        "rhea_records_sha256": "14dbe7f19ed5163baeee57bae2d4b77bede02e3a5c04ca902bdca0d3a3da0181",
+        "uniprot_entry_record_sha256": "d7a9b0bdd6c1bd52662c9e3faace69ec0b7c529224c2c1a3928c1f440a0a017e",
+        "uniprot_search_row_sha256": "66a5ded211b5602ac6dd2fb19f936f84e9e86e9f62bfb5a3dc2d8cca2cbdc262"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9Y617.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3A%22pyridoxal+phosphate%22%29+OR+%28keyword%3A%22Pyridoxal+phosphate%22%29+OR+%28protein_name%3Aaminotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Y617",
+      "target_family_lane": "PLP children",
+      "terminal_route_basis": "all_source_and_coordinate_gates_clear_locator_sidecar_not_materialized",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "P04181",
+      "admission_context_sha256": "a574b366bff652078b259e4bd47d1a83aca7ce1f63ad4b6f710c6faa6f31686b",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:P04181",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "58788980d9e3f8d588063d043287da39ae48e269c757b2768a7eedc646120ea2",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "58788980d9e3f8d588063d043287da39ae48e269c757b2768a7eedc646120ea2"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": true,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "1GBN",
+          "alphafold_ids": [
+            "P04181"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "local_coordinate_materialized",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [
+            {
+              "bytes": 1069364,
+              "path": "artifacts/v3_mcsa_pymol_seventh_materialized_coordinates_20260522/pdb_2OAT.cif",
+              "sha256": "121b0f11f7d85ebc08c180e2452969188694fadaebb6c11d29e0ac3ab1985e9b"
+            }
+          ],
+          "pdb_ids": [
+            "1GBN",
+            "1OAT",
+            "2BYJ",
+            "2BYL",
+            "2CAN",
+            "2OAT",
+            "5VWO",
+            "6HX7",
+            "6OIA",
+            "6V8C",
+            "6V8D",
+            "7JX9",
+            "7LK0",
+            "7LK1",
+            "7LNM",
+            "7LOM",
+            "7LON",
+            "7T9Z",
+            "7TA0",
+            "7TA1",
+            "7TED",
+            "7TEV",
+            "7TFP",
+            "8EZ1",
+            "8V9M"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "plp_children",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((cc_cofactor:\"pyridoxal phosphate\") OR (keyword:\"Pyridoxal phosphate\") OR (protein_name:aminotransferase))",
+          "target_family_lane": "PLP children"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.6.1.13"
+          ],
+          "rhea_ids": [
+            "RHEA:25160"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "exact_residue_locator_count": 13,
+          "feature_codes": [
+            "MOD_RES"
+          ],
+          "residue_locator_count": 13,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_evidence_feature_count": 13
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "plp_children",
+      "materialization_basis": {
+        "coordinate_materialization_status": "local_coordinate_materialized",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize an approved source-free locator sidecar from exact reviewed residue locators against the local coordinate, then rerun",
+      "source_hashes": {
+        "import_preview_row_sha256": "d095818ac7e77bed3c938da4bc0ab87cd7a2f17b18828b5bb88165afc71c7935",
+        "pilot_row_sha256": "75fea65bb890c1b83d58ec430eb6c0e5dc91d3b82ce0fd07f18d0fa1fc040013",
+        "rhea_records_sha256": "a6939b9e5e7216ae16adf6a1db9dfa52695cbc3bab4a869cc8de41636814f27d",
+        "uniprot_entry_record_sha256": "87d6240de3ddb229b2eb159e070fb2e986a3a7eeb77dc5fd3f60bf41dd9392dd",
+        "uniprot_search_row_sha256": "91a3af4b9ac47af00bea20f545bd8a5e1aa357bb2f0d91c73e97423c344e783b"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P04181.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3A%22pyridoxal+phosphate%22%29+OR+%28keyword%3A%22Pyridoxal+phosphate%22%29+OR+%28protein_name%3Aaminotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P04181",
+      "target_family_lane": "PLP children",
+      "terminal_route_basis": "all_source_and_coordinate_gates_clear_locator_sidecar_not_materialized",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "Q96255",
+      "admission_context_sha256": "ee33a16c0c5ef9ad0c308e1880efcdd4fbc4237979afad2f0699b2e642de112b",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:Q96255",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "4b3ef69f9731ab4118378d659e4c619bb5b586bb858e01ba853fda46846e4b2c",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "4b3ef69f9731ab4118378d659e4c619bb5b586bb858e01ba853fda46846e4b2c"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": true,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "6CZX",
+          "alphafold_ids": [
+            "Q96255"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "local_coordinate_materialized",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [
+            {
+              "bytes": 2443073,
+              "path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_6CZX.cif",
+              "sha256": "47678391625ef4909164b9a16ccf58365cf1245cfc0a32aaee85c2d3b30a4b5f"
+            }
+          ],
+          "pdb_ids": [
+            "6CZX",
+            "6CZY",
+            "6CZZ"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "plp_children",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((cc_cofactor:\"pyridoxal phosphate\") OR (keyword:\"Pyridoxal phosphate\") OR (protein_name:aminotransferase))",
+          "target_family_lane": "PLP children"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.6.1.52"
+          ],
+          "rhea_ids": [
+            "RHEA:14329",
+            "RHEA:16573"
+          ],
+          "rhea_record_count": 2,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 7,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES"
+          ],
+          "residue_locator_count": 9,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 9
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "plp_children",
+      "materialization_basis": {
+        "coordinate_materialization_status": "local_coordinate_materialized",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize an approved source-free locator sidecar from exact reviewed residue locators against the local coordinate, then rerun",
+      "source_hashes": {
+        "import_preview_row_sha256": "79ae4c5439c0b023c130fc3ecf6891a94a8ac8c63d1970e5819caab5144c33d5",
+        "pilot_row_sha256": "6adbd52b4b9b21729c48209d2848baab4202df5d66a52c0f1563529e9bf1ed18",
+        "rhea_records_sha256": "99754598b11e0db151d25ddcc49dec7d92a9371a431bf17c6d617192cca79be1",
+        "uniprot_entry_record_sha256": "e8da8af13527e33209b9c20be5f6a96cf1565e79bc161480bb04c1fb8e2cdeb4",
+        "uniprot_search_row_sha256": "ab69f51bd4695856e9f40a85cbc2299f23788c73fac2bf8958bb39498afb448c"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q96255.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3A%22pyridoxal+phosphate%22%29+OR+%28keyword%3A%22Pyridoxal+phosphate%22%29+OR+%28protein_name%3Aaminotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q96255",
+      "target_family_lane": "PLP children",
+      "terminal_route_basis": "all_source_and_coordinate_gates_clear_locator_sidecar_not_materialized",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "O60502",
+      "admission_context_sha256": "d27c75f9f0f0af90e71d76926e6bbadbfde832b22a71f4a9f0073c0491645134",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:O60502",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "ae1523091376833c4484af92041471100af2911e87f39c9dfdaf1dea7a71e192",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "ae1523091376833c4484af92041471100af2911e87f39c9dfdaf1dea7a71e192"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "2YDQ",
+          "alphafold_ids": [
+            "O60502"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": [
+            "2YDQ",
+            "5M7R",
+            "5M7S",
+            "5M7T",
+            "5M7U",
+            "5TKE",
+            "5UHK",
+            "5UHL",
+            "5UHO",
+            "5UHP",
+            "5UN8",
+            "5UN9",
+            "5VVO",
+            "5VVT",
+            "5VVU",
+            "5VVV",
+            "5VVX",
+            "6HKI",
+            "6PM9",
+            "7OU6",
+            "7YEH",
+            "8P0L",
+            "9BA8",
+            "9BA9"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "glycoside_nucleoside",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND (ec:3.2.*)",
+          "target_family_lane": "glycoside/nucleoside"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "3.2.1.169"
+          ],
+          "rhea_ids": [
+            "RHEA-COMP:11060",
+            "RHEA-COMP:12251",
+            "RHEA-COMP:12252",
+            "RHEA-COMP:9863",
+            "RHEA:48876",
+            "RHEA:48892"
+          ],
+          "rhea_record_count": 6,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 9,
+          "feature_codes": [
+            "ACT_SITE",
+            "BINDING",
+            "MOD_RES",
+            "SITE"
+          ],
+          "residue_locator_count": 10,
+          "source_evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 10
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "glycoside_nucleoside",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "ff5347e526b5fd2d4f1082326268fc12f9683a745b92af3271903ad4efb12caf",
+        "pilot_row_sha256": "7098df22408ecd80733252a0d058f917eb8094249cecfd963b8c4cff6d95a258",
+        "rhea_records_sha256": "ab3c751369eed7f24ea57bbdcf0b00e208e7504325c7bdcbfff996f8dbbf64af",
+        "uniprot_entry_record_sha256": "73e7ee8cd684607623ae260a42eb4e80f311bf62a8c95271125e475768118c63",
+        "uniprot_search_row_sha256": "202b88b4255150b52ae39e7d616d22f652caf096ba6068c41ea2318c46e7d7f9"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/O60502.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.2.%2A%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:O60502",
+      "target_family_lane": "glycoside/nucleoside",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "P04062",
+      "admission_context_sha256": "b0d48c94d10d4e32e900446ace19bfe2aabf5c32f3cce5b536945f688028bb94",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:P04062",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "38e97d50880fc5ed6f0b961be3eff31062d9e7c8ddaa271c5384bb59ca0ce846",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "38e97d50880fc5ed6f0b961be3eff31062d9e7c8ddaa271c5384bb59ca0ce846"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": true,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "1OGS",
+          "alphafold_ids": [
+            "P04062"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "local_coordinate_materialized",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [
+            {
+              "bytes": 871034,
+              "path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2F61.cif",
+              "sha256": "0ec57468a3e82657d221f0a68e545aa148ae702796bf7f021aa2a22706f4a50f"
+            }
+          ],
+          "pdb_ids": [
+            "1OGS",
+            "1Y7V",
+            "2F61",
+            "2J25",
+            "2NSX",
+            "2NT0",
+            "2NT1",
+            "2V3D",
+            "2V3E",
+            "2V3F",
+            "2VT0",
+            "2WCG",
+            "2WKL",
+            "2XWD",
+            "2XWE",
+            "3GXD",
+            "3GXF",
+            "3GXI",
+            "3GXM",
+            "3KE0",
+            "3KEH",
+            "3RIK",
+            "3RIL",
+            "5LVX",
+            "6MOZ",
+            "6Q1N",
+            "6Q1P",
+            "6Q6K",
+            "6Q6L",
+            "6Q6N",
+            "6T13",
+            "6TJJ",
+            "6TJK",
+            "6TJQ",
+            "6TN1",
+            "6YTP",
+            "6YTR",
+            "6YUT",
+            "6YV3",
+            "6Z39",
+            "6Z3I",
+            "7NWV",
+            "8AWK",
+            "8AWR",
+            "8AX3",
+            "8P3E",
+            "8P41",
+            "9ENA",
+            "9F9Z",
+            "9FA3",
+            "9FA6",
+            "9FAD",
+            "9FAL",
+            "9FAY",
+            "9FAZ",
+            "9FB2",
+            "9FDI",
+            "9FJF"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "glycoside_nucleoside",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND (ec:3.2.*)",
+          "target_family_lane": "glycoside/nucleoside"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.4.1.-",
+            "3.2.1.-",
+            "3.2.1.45",
+            "3.2.1.46"
+          ],
+          "rhea_ids": [
+            "RHEA:11956",
+            "RHEA:13269",
+            "RHEA:14297",
+            "RHEA:58264",
+            "RHEA:58316",
+            "RHEA:58324",
+            "RHEA:62028",
+            "RHEA:70235",
+            "RHEA:70239",
+            "RHEA:70251",
+            "RHEA:70255",
+            "RHEA:70303",
+            "RHEA:70307",
+            "RHEA:70311",
+            "RHEA:70315"
+          ],
+          "rhea_record_count": 15,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 2
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact_residue_locator_count": 2,
+          "feature_codes": [
+            "ACT_SITE"
+          ],
+          "residue_locator_count": 2,
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "source_evidence_feature_count": 2
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "glycoside_nucleoside",
+      "materialization_basis": {
+        "coordinate_materialization_status": "local_coordinate_materialized",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize an approved source-free locator sidecar from exact reviewed residue locators against the local coordinate, then rerun",
+      "source_hashes": {
+        "import_preview_row_sha256": "3bbb5b58d59d5a4d7027bfcbd27531881916aabbca4e59d92fea666b0fb0b516",
+        "pilot_row_sha256": "811be394f42e966bf8eb57997c9a20a9ef9798ccfb94c83da473e6418dbb538a",
+        "rhea_records_sha256": "031501523cf2aee03231c81122e806eb98c63202b660cff1b66f74465dec2dd0",
+        "uniprot_entry_record_sha256": "f3e24ef26707fd6da6d9bb63a272eeb1d22c9269b3b12100c7792ae671b8fcd3",
+        "uniprot_search_row_sha256": "86f2cabdd9755e9cc4b3fd54004a100de9685df663dfc542c5daaa00cfa0ba51"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P04062.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.2.%2A%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P04062",
+      "target_family_lane": "glycoside/nucleoside",
+      "terminal_route_basis": "all_source_and_coordinate_gates_clear_locator_sidecar_not_materialized",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "Q3T906",
+      "admission_context_sha256": "3600c600f2a2e581fb7519c6455f0b1593a68dcef4f804f4536f2e911c4ee3d0",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:Q3T906",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "5d02ea965a94ce6e4b51b4ce814e7a7c6237b061dec879a844b672841ba0dcf0",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "5d02ea965a94ce6e4b51b4ce814e7a7c6237b061dec879a844b672841ba0dcf0"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "2N6D",
+          "alphafold_ids": [
+            "Q3T906"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": [
+            "2N6D",
+            "7S05",
+            "7S06",
+            "9BGF",
+            "9BGG"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "phosphoryl_transfer",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((ec:2.7.*) OR (protein_name:phosphotransferase))",
+          "target_family_lane": "phosphoryl transfer"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.7.8.17"
+          ],
+          "rhea_ids": [
+            "RHEA-COMP:14507",
+            "RHEA-COMP:14508",
+            "RHEA:13581"
+          ],
+          "rhea_record_count": 3,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact_residue_locator_count": 10,
+          "feature_codes": [
+            "BINDING",
+            "SITE"
+          ],
+          "residue_locator_count": 11,
+          "source_evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "source_evidence_feature_count": 11
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "phosphoryl_transfer",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "32c67d282cf66c59a2b70e45755765e70b63a221f8740c37373e485cb20aa6a5",
+        "pilot_row_sha256": "309c77531e7ca42d7f9a71d64e58d5496560704c1e16540427b9e65ecf4fd149",
+        "rhea_records_sha256": "9aaa827f7eb07431507194e8b13a1905cf4ddb3f630dd8a0af496e0064346617",
+        "uniprot_entry_record_sha256": "3047d1449e397e22b21480c4b331211665c9c77f3f4a2063368400e17519f5f6",
+        "uniprot_search_row_sha256": "2b9b2f6d9c5af28c88ceabaf333e3680bb2a372992fd01d77156fb17efc397f3"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q3T906.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q3T906",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q969G6",
+      "admission_context_sha256": "14159498fba1de669990ea3a4c24ab6b066e75f7224063795320d091f21ca35c",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:Q969G6",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "2a4ff478cb49a17597d4cb851d4be38fe5a3ab373f627c0262f58b28ddc60b8b",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "2a4ff478cb49a17597d4cb851d4be38fe5a3ab373f627c0262f58b28ddc60b8b"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": true,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "1NB0",
+          "alphafold_ids": [
+            "Q969G6"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "local_coordinate_materialized",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [
+            {
+              "bytes": 156664,
+              "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_Q969G6.cif",
+              "sha256": "cd96adecbffc776512a58af6ca3566dc0102b6878ed19f49a41ca187873a9482"
+            }
+          ],
+          "pdb_ids": [
+            "1NB0",
+            "1NB9",
+            "1P4M",
+            "1Q9S"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "phosphoryl_transfer",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((ec:2.7.*) OR (protein_name:phosphotransferase))",
+          "target_family_lane": "phosphoryl transfer"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.7.1.26"
+          ],
+          "rhea_ids": [
+            "RHEA:14357"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 13,
+          "feature_codes": [
+            "ACT_SITE",
+            "BINDING"
+          ],
+          "residue_locator_count": 13,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 13
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "phosphoryl_transfer",
+      "materialization_basis": {
+        "coordinate_materialization_status": "local_coordinate_materialized",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize an approved source-free locator sidecar from exact reviewed residue locators against the local coordinate, then rerun",
+      "source_hashes": {
+        "import_preview_row_sha256": "3c62b0d1e02f57f8231703a8f6d6353e0e8a8368e15cdb2540fbe0dc6cd32886",
+        "pilot_row_sha256": "d5a2c5f14f0c3cfef5e13724cf102a9bddcedcf7b64c371e08dd46619c3d4fdf",
+        "rhea_records_sha256": "ae3ce7aee5164070890fd9d9d9149c700fdfa379c28410aaa52f0d175b0bc209",
+        "uniprot_entry_record_sha256": "048e2957f442ef7fc337cc47d2496aee4c36438fd72b1bf5badffcf69cfb6348",
+        "uniprot_search_row_sha256": "b702ce0d3315abffbaed99557564732c10e43716e4ee79ed43febd7557db993e"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q969G6.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q969G6",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_route_basis": "all_source_and_coordinate_gates_clear_locator_sidecar_not_materialized",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "P32189",
+      "admission_context_sha256": "88c1b069f6dd15346939365680ae72bdb153e624efc5bc565cc91ec8c11b6343",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:P32189",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "2c777be10fa12aead49f6dee4bf35d5cf2a2ca1f07d5baa113f64844d607ebf9",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "2c777be10fa12aead49f6dee4bf35d5cf2a2ca1f07d5baa113f64844d607ebf9"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": true,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "AF-P32189-F1",
+          "alphafold_ids": [
+            "P32189"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "local_coordinate_materialized",
+          "coordinate_source": "AlphaFoldDB",
+          "coordinate_source_status": "afdb_predicted_coordinate_provenance_available",
+          "local_coordinate_matches": [
+            {
+              "bytes": 507210,
+              "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_P32189.cif",
+              "sha256": "e7e51ef339bbbb3dad5b54e21ba12f1297789432762731e71381f0923523dd90"
+            }
+          ],
+          "pdb_ids": []
+        },
+        "lane_assignment": {
+          "lane_id": "phosphoryl_transfer",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((ec:2.7.*) OR (protein_name:phosphotransferase))",
+          "target_family_lane": "phosphoryl transfer"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "rhea_ids": [
+            "RHEA:21644"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact_residue_locator_count": 23,
+          "feature_codes": [
+            "BINDING"
+          ],
+          "residue_locator_count": 23,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_evidence_feature_count": 23
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "phosphoryl_transfer",
+      "materialization_basis": {
+        "coordinate_materialization_status": "local_coordinate_materialized",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize an approved source-free locator sidecar from exact reviewed residue locators against the local coordinate, then rerun",
+      "source_hashes": {
+        "import_preview_row_sha256": "99ffdf5fb0b15a807de59188f9cf94722642a03ca41d521f0b30f7889de15b06",
+        "pilot_row_sha256": "08848fe59539967c8083218b7777c81776835d670f9f2786e8f516ff40b3b6bb",
+        "rhea_records_sha256": "a3699c7353d25c9be2213a717e2e8d891127b3c40696b163e681ff2a127b1c17",
+        "uniprot_entry_record_sha256": "8c1fa507f420e0a4fdbdbfb2e5143e85ebbad18cdda80aa6bb45bdfb1ca0a037",
+        "uniprot_search_row_sha256": "711926a2a920cef5f91a2d0dd6931b7911276a5b5ef4827d86cfc55f048b0145"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P32189.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P32189",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_route_basis": "all_source_and_coordinate_gates_clear_locator_sidecar_not_materialized",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "Q9Y6K0",
+      "admission_context_sha256": "c91cb706a32b4c95f0d8b0e8be680f862242d3bd190e01e2df5f023e258b8504",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:Q9Y6K0",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "20d866e3d7cec39b64b8eb27a04126d89d23558bb6e4e4868413f772eb569ddb",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "20d866e3d7cec39b64b8eb27a04126d89d23558bb6e4e4868413f772eb569ddb"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "8GYW",
+          "alphafold_ids": [
+            "Q9Y6K0"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": [
+            "8GYW",
+            "8GYX"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "phosphoryl_transfer",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((ec:2.7.*) OR (protein_name:phosphotransferase))",
+          "target_family_lane": "phosphoryl transfer"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.7.8.1",
+            "2.7.8.2",
+            "2.7.8.22"
+          ],
+          "rhea_ids": [
+            "RHEA:32939",
+            "RHEA:32943",
+            "RHEA:36179",
+            "RHEA:36227",
+            "RHEA:54232",
+            "RHEA:54236",
+            "RHEA:54240",
+            "RHEA:54244",
+            "RHEA:54248",
+            "RHEA:54252",
+            "RHEA:54332",
+            "RHEA:54336",
+            "RHEA:54340",
+            "RHEA:54348",
+            "RHEA:54352"
+          ],
+          "rhea_record_count": 15,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 3
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 9,
+          "feature_codes": [
+            "ACT_SITE",
+            "BINDING",
+            "MOD_RES",
+            "SITE"
+          ],
+          "residue_locator_count": 9,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 9
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "phosphoryl_transfer",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "515a31cb955f056cee95305bc75c3422c0554d4637b901c857fe0978cac98587",
+        "pilot_row_sha256": "f6a2d8097c0d136e3e3eed856e4b19c5e69ffa2b52b8ab3e4d293cc3576f7646",
+        "rhea_records_sha256": "d9cda3ef89c661057f43a71be3258d80bbb6e3043afe7142606e1aac487203f9",
+        "uniprot_entry_record_sha256": "e845b6580a2ac53acb1beae4ea5e2e1ae38a03b250be98c53a5eb710c61213a2",
+        "uniprot_search_row_sha256": "6fe4691814bec40dd346ac54b05dabbc32547ee1361fb42caeaba801b6c23dce"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9Y6K0.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Y6K0",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q99707",
+      "admission_context_sha256": "69124a213687e72d6a8c0ea91a60603840394febbf039cf3b23b2b1193d1615a",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:Q99707",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "f80abbb2d8b94387cc75ece5989cf57a56eea3589d346f0a2a94c7931906185b",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "f80abbb2d8b94387cc75ece5989cf57a56eea3589d346f0a2a94c7931906185b"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "2O2K",
+          "alphafold_ids": [
+            "Q99707"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "PDB",
+          "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": [
+            "2O2K",
+            "4CCZ"
+          ]
+        },
+        "lane_assignment": {
+          "lane_id": "radical_sam_cobalamin",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((protein_name:\"radical SAM\") OR (keyword:\"S-adenosyl-L-methionine\") OR (keyword:Cobalamin) OR (protein_name:cobalamin))",
+          "target_family_lane": "radical-SAM/cobalamin"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.1.1.13"
+          ],
+          "rhea_ids": [
+            "RHEA:11172"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 17,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES"
+          ],
+          "residue_locator_count": 20,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 20
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "radical_sam_cobalamin",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "756cd58b294b7d47f9e4ba4ae9aab03c664bdffd6ab704d1d5535348ec366cca",
+        "pilot_row_sha256": "2c068a952086545378bcf12437f09b699da336162faede4f73f129741d790732",
+        "rhea_records_sha256": "906ada63258cd63631503ba796b474ed5231a7bbbc2e42173e61a406a8257260",
+        "uniprot_entry_record_sha256": "23aada2e88c6339ab651f79fd8af4742496ae6f6269f76079cf5d7a4a6618247",
+        "uniprot_search_row_sha256": "48c0d73804076a0c1b7d9bbb4b6539c470b48ca8a660587f9a277dc8ce9d2976"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q99707.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q99707",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "A6H5Y3",
+      "admission_context_sha256": "ea7992ffd3024984daf56de7d77a3251d73ae7e5b977b97b8b92222e96ad3af1",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:A6H5Y3",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "51e7135bea35409ec7075a9c28344d1b28845b4b958da00ab6d7f3d61f81a0b6",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "51e7135bea35409ec7075a9c28344d1b28845b4b958da00ab6d7f3d61f81a0b6"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "AF-A6H5Y3-F1",
+          "alphafold_ids": [
+            "A6H5Y3"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "AlphaFoldDB",
+          "coordinate_source_status": "afdb_predicted_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": []
+        },
+        "lane_assignment": {
+          "lane_id": "radical_sam_cobalamin",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((protein_name:\"radical SAM\") OR (keyword:\"S-adenosyl-L-methionine\") OR (keyword:Cobalamin) OR (protein_name:cobalamin))",
+          "target_family_lane": "radical-SAM/cobalamin"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.1.1.13"
+          ],
+          "rhea_ids": [
+            "RHEA:11172"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "exact_residue_locator_count": 17,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES"
+          ],
+          "residue_locator_count": 20,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_evidence_feature_count": 20
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "radical_sam_cobalamin",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "8fbd385fb6bc89af84bab4dda489ebf83abeaf2d918b641cd5a0190012e5f10a",
+        "pilot_row_sha256": "bbf2ed08a98605733b5d785d299006064fd57b29896dd32d93f0e57298fffcb4",
+        "rhea_records_sha256": "4138e68101bc09c0e1cc39f97e7339b65efab66aae825089519dc05e739851cf",
+        "uniprot_entry_record_sha256": "af0fd291bbcb53f336effb60c9f2a58157c23d16a0b13d50d23bb9a79c6fc251",
+        "uniprot_search_row_sha256": "ce28a4215485da36f4980d8fb3dda23614d9d302e1899ec050d600b2104c57e4"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/A6H5Y3.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:A6H5Y3",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q9Z2Q4",
+      "admission_context_sha256": "b115c92800bbdb76cdbf128c8c8045e0a8d64f3aa04e6a5182bf9b04922c73a2",
+      "blocker_basis": [],
+      "candidate_id": "uniprot:Q9Z2Q4",
+      "duplicate_status": {
+        "artifact_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "af4e420e8bb7596c86b2928e73601e39dcf01de7741a8248a70079eaf6adaf1e",
+          "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+        },
+        "recomputed_current_registry_duplicate_status": {
+          "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+          "duplicate_or_current_registry_conflict": false,
+          "exact_accession_matched_current_entry_ids": [],
+          "exact_sequence_matched_current_entry_ids": [],
+          "exact_sequence_sha256": "af4e420e8bb7596c86b2928e73601e39dcf01de7741a8248a70079eaf6adaf1e"
+        },
+        "recomputed_status_matches_artifact": true,
+        "structural_duplicate_screen_status": "not_run_in_external_ingestion_pilot; required before production import"
+      },
+      "evidence_basis": {
+        "admission_gate": {
+          "coordinate_materialized_locally": false,
+          "coordinate_provenance_clear": true,
+          "duplicate_exact_current_registry_clear": true,
+          "import_preview_candidate": true,
+          "lane_assignment_clear": true,
+          "residue_locator_clear": true,
+          "reviewed_swiss_prot_clear": true,
+          "source_free_locator_materialized": false,
+          "source_provenance_clear": true,
+          "specific_ec_and_rhea_clear": true
+        },
+        "coordinate_evidence": {
+          "afdb_or_pdb_identifier": "AF-Q9Z2Q4-F1",
+          "alphafold_ids": [
+            "Q9Z2Q4"
+          ],
+          "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+          "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+          "coordinate_source": "AlphaFoldDB",
+          "coordinate_source_status": "afdb_predicted_coordinate_provenance_available",
+          "local_coordinate_matches": [],
+          "pdb_ids": []
+        },
+        "lane_assignment": {
+          "lane_id": "radical_sam_cobalamin",
+          "lane_known_in_pilot": true,
+          "source_query": "(reviewed:true) AND ((protein_name:\"radical SAM\") OR (keyword:\"S-adenosyl-L-methionine\") OR (keyword:Cobalamin) OR (protein_name:cobalamin))",
+          "target_family_lane": "radical-SAM/cobalamin"
+        },
+        "reaction_evidence": {
+          "ec_numbers": [
+            "2.1.1.13"
+          ],
+          "rhea_ids": [
+            "RHEA:11172"
+          ],
+          "rhea_record_count": 1,
+          "rhea_status": "rhea_provenance_available",
+          "specific_ec_count": 1
+        },
+        "residue_evidence": {
+          "evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0007744"
+          ],
+          "exact_residue_locator_count": 17,
+          "feature_codes": [
+            "BINDING",
+            "MOD_RES"
+          ],
+          "residue_locator_count": 20,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_evidence_feature_count": 20
+        },
+        "reviewed_status": "reviewed",
+        "source_free_locator_gate": {
+          "approved_locator_matches": [],
+          "exact_reviewed_locators_available_for_materialization": true,
+          "source_free_locator_status": "pending_source_free_locator_materialization"
+        },
+        "source_provenance_status": "present"
+      },
+      "guardrails": {
+        "label_import_performed": false,
+        "mechanism_text_ec_rhea_ids_labels_or_target_names_used_as_predictive_features": false,
+        "production_registry_edited": false,
+        "source_ids_or_accession_ids_used_as_predictive_features": false,
+        "source_ids_or_accession_ids_used_as_provenance_only": true
+      },
+      "input_preview_terminal_state": "external_countable_preflight_candidate",
+      "lane_id": "radical_sam_cobalamin",
+      "materialization_basis": {
+        "coordinate_materialization_status": "coordinate_provenance_available_local_file_missing",
+        "source_free_locator_status": "pending_source_free_locator_materialization"
+      },
+      "next_action": "materialize or hash-match local PDB/AFDB coordinates, then materialize source-free locator sidecar and rerun admission validation",
+      "source_hashes": {
+        "import_preview_row_sha256": "fe52320a08d3bfafe4189f95aaf11b953dd7e86dc1116c687e55bfc2d5de67d4",
+        "pilot_row_sha256": "3f0c1dc02d94d00666d14082e47b441c960dbad6d767f227908ae4aa6de8b767",
+        "rhea_records_sha256": "906ada63258cd63631503ba796b474ed5231a7bbbc2e42173e61a406a8257260",
+        "uniprot_entry_record_sha256": "f6ff99998580ca96b60af5028ae1c57da885db903c2475d9f1b468067f1eb4b2",
+        "uniprot_search_row_sha256": "0a35b0f89ad9f670f09d867f1f1e6aa72fd5af34f712dfab122f7d9adbb0813d"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9Z2Q4.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Z2Q4",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_route_basis": "all_source_gates_clear_coordinate_file_not_materialized_locally",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    }
+  ],
+  "schema_version": "v3.external_source_admission_validation",
+  "scope": "Admission validation for the first 16 external import-preview candidates from the current702 reviewed UniProt external ingestion lane.",
+  "source_artifacts": {
+    "external_ingestion_import_preview": {
+      "bytes": 121538,
+      "path": "artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json",
+      "sha256": "237759dda87fe16872d5db974911180796ef8d1cea085a9bd0ad888322b9bb87"
+    },
+    "external_ingestion_pilot": {
+      "bytes": 431281,
+      "path": "artifacts/v3_external_source_ingestion_pilot_current702_20260608.json",
+      "sha256": "d224e15dca0c0f56237510ae1be70b07ab28170dbb088422c2868cb3799e269d"
+    },
+    "import_preview_declared_source_artifacts": {
+      "external_ingestion_pilot": {
+        "bytes": 431281,
+        "path": "artifacts/v3_external_source_ingestion_pilot_current702_20260608.json",
+        "sha256": "d224e15dca0c0f56237510ae1be70b07ab28170dbb088422c2868cb3799e269d"
+      }
+    },
+    "pilot_declared_source_artifacts": {
+      "current_manifest": {
+        "bytes": 1005735,
+        "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+        "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+      },
+      "label_registry": {
+        "bytes": 508366,
+        "path": "data/registries/curated_mechanism_labels.json",
+        "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+      }
+    }
+  },
+  "terminal_state_counts": {
+    "admission_ready_pending_coordinate_materialization": 10,
+    "admission_ready_pending_locator_materialization": 6
+  },
+  "validation_checks": {
+    "all_duplicate_statuses_recomputed_match_artifact": true,
+    "all_rows_have_duplicate_status": true,
+    "all_rows_have_required_fields": true,
+    "all_rows_have_source_hashes_and_provenance": true,
+    "all_terminal_states_known": true,
+    "import_preview_artifact_id": "v3_external_source_ingestion_import_preview_current702_20260608",
+    "import_preview_file_sha256": "237759dda87fe16872d5db974911180796ef8d1cea085a9bd0ad888322b9bb87",
+    "json_inputs_parsed": true,
+    "passed": true,
+    "pilot_artifact_id": "v3_external_source_ingestion_pilot_current702_20260608",
+    "pilot_file_sha256": "d224e15dca0c0f56237510ae1be70b07ab28170dbb088422c2868cb3799e269d",
+    "preview_candidate_count_matches_expected": true,
+    "preview_declared_pilot_file_sha256_matches": true,
+    "preview_row_count_matches_expected": true,
+    "preview_rows_match_pilot_preflight_state": true,
+    "preview_rows_reconciled_to_pilot": true,
+    "violation_count": 0,
+    "violations": []
+  }
+}

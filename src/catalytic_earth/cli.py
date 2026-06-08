@@ -39,6 +39,9 @@ from .targeted_expansion_acquisition_conversion import (
 )
 from .countable_label_unblocker import write_countable_label_unblocker_matrix
 from .external_source_ingestion import write_external_source_ingestion_pilot
+from .external_source_admission_validation import (
+    write_external_source_admission_validation,
+)
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .predicted_geometry_recovery import (
@@ -2827,6 +2830,27 @@ def cmd_build_external_source_ingestion_pilot(args: argparse.Namespace) -> int:
         "Wrote external source ingestion pilot to "
         f"{args.out} ({artifact['candidate_count']} rows; "
         f"{artifact['import_preview_candidate_count']} import-preview preflight)"
+    )
+    return 0
+
+
+def cmd_build_external_source_admission_validation(args: argparse.Namespace) -> int:
+    artifact = write_external_source_admission_validation(
+        pilot_path=Path(args.pilot),
+        import_preview_path=Path(args.import_preview),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        ready_preview_path=Path(args.ready_preview)
+        if args.ready_preview
+        else None,
+        created_utc=args.created_utc,
+        expected_preview_count=args.expected_preview_count,
+        artifacts_dir=Path(args.artifacts_dir),
+    )
+    print(
+        "Wrote external source admission validation to "
+        f"{args.out} ({artifact['counts']['validated_rows']} rows; "
+        f"{artifact['counts']['admission_ready_rows']} admission-ready)"
     )
     return 0
 
@@ -22232,6 +22256,62 @@ def build_parser() -> argparse.ArgumentParser:
         help="use UniProt Rhea cross-references only; skip EC-based Rhea fallback lookups",
     )
     external_source_ingestion.set_defaults(func=cmd_build_external_source_ingestion_pilot)
+
+    external_admission_validation = subparsers.add_parser(
+        "build-external-source-admission-validation-16",
+        help=(
+            "validate the first 16 external import-preview rows into admission "
+            "terminal states"
+        ),
+    )
+    external_admission_validation.add_argument(
+        "--pilot",
+        default=(
+            "artifacts/"
+            "v3_external_source_ingestion_pilot_current702_20260608.json"
+        ),
+    )
+    external_admission_validation.add_argument(
+        "--import-preview",
+        default=(
+            "artifacts/"
+            "v3_external_source_ingestion_import_preview_current702_20260608.json"
+        ),
+    )
+    external_admission_validation.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_admission_validation_16_current702_20260608.json"
+        ),
+    )
+    external_admission_validation.add_argument(
+        "--report",
+        default=(
+            "work/"
+            "external_source_admission_validation_16_current702_20260608.md"
+        ),
+    )
+    external_admission_validation.add_argument(
+        "--ready-preview",
+        default=(
+            "artifacts/"
+            "v3_external_source_admission_ready_preview_current702_20260608.json"
+        ),
+    )
+    external_admission_validation.add_argument("--created-utc")
+    external_admission_validation.add_argument(
+        "--expected-preview-count",
+        type=int,
+        default=16,
+    )
+    external_admission_validation.add_argument(
+        "--artifacts-dir",
+        default="artifacts",
+    )
+    external_admission_validation.set_defaults(
+        func=cmd_build_external_source_admission_validation
+    )
 
     external_representation_backend_sample_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-sample",

@@ -25311,3 +25311,79 @@ screen, external all-vs-all structural cluster assignment, UniRef-wide duplicate
 screening, terminal review decision, and full label-factory gate for the 12
 external `review_only_evidence` rows. Only after those gates pass should any row
 approach a countable-promotion boundary.
+
+## CE External Admission 16 Validation Run
+- STARTED_AT_UTC: 2026-06-08T23:38:20Z
+- STARTED_AT_LOCAL: 2026-06-08T18:38:20-0500
+- Lock: `work/locks/ce_external_admission_16.lock`
+- ENDED_AT_UTC: 2026-06-08T23:51:22Z
+- ENDED_AT_LOCAL: 2026-06-08T18:51:22-0500
+- ELAPSED_MINUTES: 13.033
+- Automation ID: `ce-external-admission-16-validation`
+
+### Result
+
+- Built a rerunnable admission validation gate for the 16 rows in
+  `artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json`.
+- Output artifact:
+  `artifacts/v3_external_source_admission_validation_16_current702_20260608.json`.
+- Admission-ready preview:
+  `artifacts/v3_external_source_admission_ready_preview_current702_20260608.json`.
+- Human report:
+  `work/external_source_admission_validation_16_current702_20260608.md`.
+- Rerunnable code/tests:
+  `src/catalytic_earth/external_source_admission_validation.py`,
+  CLI command `build-external-source-admission-validation-16`, and
+  `tests/test_external_source_admission_validation.py`.
+
+### Decision Summary
+
+- All 16 import-preview rows reconcile exactly to pilot rows in
+  `external_countable_preflight_candidate` state.
+- All 16 pass reviewed Swiss-Prot, source-hash/provenance, exact residue
+  locator, PDB/AFDB handle, Rhea/specific EC, lane-assignment, and recomputed
+  exact current702 accession/sequence duplicate gates.
+- Terminal states: 10
+  `admission_ready_pending_coordinate_materialization`, 6
+  `admission_ready_pending_locator_materialization`, 0
+  `admission_ready_external_label_candidate`.
+- Family/lane counts: redox oxygen/sulfur 4 pending coordinate; PLP children 3
+  pending locator; glycoside/nucleoside 1 pending coordinate and 1 pending
+  locator; phosphoryl transfer 2 pending coordinate and 2 pending locator;
+  radical-SAM/cobalamin 3 pending coordinate.
+- No row was routed to human review. The remaining work is mechanical:
+  materialize/hash local coordinates for the 10 coordinate-pending rows, then
+  materialize approved source-free locator sidecars for all 16 and rerun this
+  validation.
+- No labels were imported and no production registry/import/ontology/model/
+  threshold/split surface was edited.
+
+### Validation
+
+- `python -m json.tool` passed for the pilot, import-preview, admission
+  validation, and admission-ready preview JSON artifacts.
+- Focused pytest:
+  `PYTHONPATH=src python -m pytest tests/test_external_source_admission_validation.py tests/test_external_source_ingestion.py tests/test_cli.py::CliTests::test_external_source_ingestion_pilot_parser_defaults tests/test_cli.py::CliTests::test_external_source_admission_validation_parser_defaults -q`:
+  4 passed.
+- Full unittest:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1,676 tests passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702
+  curated mechanism labels.
+- Current docs artifact-reference check passed with 0 missing references; the
+  temporary check output was not kept because it is not a durable output for
+  this run.
+- `git diff --check`: passed.
+- Production-edit guardrail scan: changed paths are limited to docs, handoff,
+  validation code/tests, and the new validation/report artifacts; no production
+  registry, import, ontology, model, threshold, or split path changed.
+- Disk guardrail: `df -h .` reported 18 GiB free.
+
+### Exact Next Action
+
+Start with the six `admission_ready_pending_locator_materialization` rows
+because their coordinates are already locally hash-matched:
+`uniprot:Q9Y617`, `uniprot:P04181`, `uniprot:Q96255`, `uniprot:P04062`,
+`uniprot:Q969G6`, and `uniprot:P32189`. Materialize approved source-free
+locator sidecars from the reviewed exact residue locators, then rerun
+`build-external-source-admission-validation-16`. For the other 10 rows, first
+materialize or hash-match the referenced PDB/AFDB coordinates.

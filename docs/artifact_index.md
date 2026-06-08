@@ -44,8 +44,12 @@ ePK NO-GO learnings are archived (not in main): `git checkout archive/epk-<track
 | --- | --- | --- |
 | `artifacts/v3_external_source_ingestion_pilot_current702_20260608.json` | Which reviewed Swiss-Prot/UniProt external proteins across seven scale-out lanes have curated feature evidence, coordinate provenance, Rhea/EC provenance, duplicate status, terminal state, confidence, and next action? | Current external ingestion pilot; 28 candidates, 16 preview-only preflight rows, no production import |
 | `artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json` | Which external ingestion rows passed the pilot preflight gate and can enter a preview-only import review queue? | Preview-only; 16 rows, still requires structural duplicate screen, label-factory gate, and explicit production authorization |
+| `artifacts/v3_external_source_admission_validation_16_current702_20260608.json` | Are the first 16 external import-preview rows genuinely admission-ready after provenance, reviewed status, residue, coordinate, duplicate, lane, and source-free materialization gates? | Current admission validation; 16/16 pass source gates, 6 pending locator materialization, 10 pending coordinate materialization, 0 direct production import candidates |
+| `artifacts/v3_external_source_admission_ready_preview_current702_20260608.json` | Which of the 16 validated external rows should enter the next admission/materialization queue? | Preview-only materialization queue; all 16 admission-ready, no label import authorized |
 | `work/external_source_ingestion_pilot_current702_20260608.md` | Human-readable terminal-state and family/lane summary for the external ingestion pilot | Current report |
+| `work/external_source_admission_validation_16_current702_20260608.md` | Human-readable admission decision for the first 16 external import-preview rows | Current report |
 | `src/catalytic_earth/external_source_ingestion.py` | How is the external ingestion pilot rerun from reviewed UniProt, AFDB/PDB provenance, and Rhea/EC provenance? | Rerunnable CLI implementation; read-only |
+| `src/catalytic_earth/external_source_admission_validation.py` | How is the 16-row external admission validation rerun from the pilot and import-preview artifacts? | Rerunnable CLI implementation; read-only |
 
 ## Current Benchmark Contracts
 

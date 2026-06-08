@@ -97,6 +97,21 @@ artifact-backed mechanism diagnostics.
   `artifacts/v3_external_source_ingestion_pilot_current702_20260608.json`,
   `artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json`,
   and `work/external_source_ingestion_pilot_current702_20260608.md`.
+- Current external admission validation (2026-06-08): the 16 external
+  import-preview rows reconcile exactly to the pilot and pass reviewed
+  Swiss-Prot, source-hash/provenance, exact residue locator, PDB/AFDB handle,
+  Rhea/specific EC, lane-assignment, and recomputed exact current702
+  accession/sequence duplicate gates. They are admission-ready as a
+  materialization queue, not direct production imports: 6 are
+  `admission_ready_pending_locator_materialization` with local coordinates
+  already matched, and 10 are
+  `admission_ready_pending_coordinate_materialization`. No direct
+  `admission_ready_external_label_candidate` rows exist until local coordinates
+  and approved source-free locator sidecars are materialized and the validation
+  reruns. Use
+  `artifacts/v3_external_source_admission_validation_16_current702_20260608.json`,
+  `artifacts/v3_external_source_admission_ready_preview_current702_20260608.json`,
+  and `work/external_source_admission_validation_16_current702_20260608.md`.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.
