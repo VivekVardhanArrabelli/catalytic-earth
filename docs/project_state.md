@@ -45,6 +45,15 @@ artifact-backed mechanism diagnostics.
   without reopening human review. Use
   `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json` and
   `work/targeted_expansion_factory_batch_current702_20260608.md`.
+- Current acquisition conversion screen (2026-06-08): the 86
+  acquisition-needed targeted-expansion rows have a durable non-importing
+  conversion artifact. Terminal states: 27 reject/OOS-preserve rows, 7 locator
+  blockers, 50 family-decision blockers, 1 review-only row, 1
+  countable-candidate preflight-only row, and 0 coordinate blockers. The
+  preflight-only row is not an import. Use
+  `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`
+  and
+  `work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.
@@ -899,15 +908,15 @@ artifacts first.
    --esmfold2-staged-dir <DIR>`, then re-run
    `build-predicted-geometry-failure-decomposition` on the ESMFold2 audit to
    confirm the pattern. Thresholds on train/cal; heldout once.
-1. Targeted expansion factory (active expansion track): use
+1. Targeted expansion factory/conversion screen (active expansion track): use
    `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json` as
-   the source-of-truth batch for diverse atlas growth. The exact next action is
-   to run the six required sequence/structure/duplicate/review screens for the
-   16 `acquisition_needed` rows that already carry explicit screen lists, fill
-   source-specific screen lists or source evidence for the remaining 70
-   acquisition rows, then repair the 134 locator/coordinate blockers. Do not
-   import or promote any row until a separate human countable-promotion review
-   and label-factory gate pass.
+   the source batch and
+   `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`
+   as the conversion-screen result. The exact next action is human review of
+   the conversion result, especially the single
+   `countable_candidate_preflight_only` row and the 50 family-decision blockers.
+   Do not start a larger promotion/import batch until Vivek or the main thread
+   explicitly asks after reviewing this result.
 2. Use the fold-augmented research gate with the disclosed 71/76 train/cal
    OOS-negative surface when running downstream diagnostics; clear the remaining
    five source-geometry/coordinate/sidecar blockers before any stronger
@@ -962,12 +971,9 @@ artifacts first.
    coordinate/materialization blockers, and keep candidate rows review-only.
 6. For label growth, require explicit expert decision, no-import safety checks
    where applicable, label-factory gate pass, batch acceptance, and registry
-   summary refresh before any countable import. The exact next expansion action
-   is to run source-free duplicate/structural distance screens for the external
-   review-only rows in
-   `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`,
-   then collect catalytic-residue locator sources for its acquisition-needed
-   external rows.
+   summary refresh before any countable import. The current targeted expansion
+   conversion result is review/control input only; it does not authorize label
+   import or registry mutation.
 
 ## Maintenance Notes
 
@@ -985,6 +991,9 @@ artifacts first.
 - `src/catalytic_earth/targeted_expansion_factory.py`
 - `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`
 - `work/targeted_expansion_factory_batch_current702_20260608.md`
+- `src/catalytic_earth/targeted_expansion_acquisition_conversion.py`
+- `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`
+- `work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`
 
 2026-06-06 session (cofactor recovery, electron-flow, consolidation):
 

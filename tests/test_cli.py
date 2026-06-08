@@ -44,6 +44,65 @@ class CliTests(unittest.TestCase):
             ["active_learning_1025_preview=/tmp/active.json"],
         )
 
+    def test_targeted_expansion_acquisition_conversion_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-targeted-expansion-acquisition-conversion-screens"]
+        )
+
+        self.assertEqual(
+            args.batch,
+            (
+                "artifacts/"
+                "v3_targeted_expansion_factory_batch_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            (
+                "work/"
+                "targeted_expansion_acquisition_conversion_screens_current702_20260608.md"
+            ),
+        )
+        self.assertIsNone(args.created_utc)
+        self.assertEqual(args.screen_path, [])
+
+        overridden = build_parser().parse_args(
+            [
+                "build-targeted-expansion-acquisition-conversion-screens",
+                "--screen-path",
+                "sequence_cluster_proxy_1025=/tmp/sequence.json",
+            ]
+        )
+        self.assertEqual(
+            overridden.screen_path,
+            ["sequence_cluster_proxy_1025=/tmp/sequence.json"],
+        )
+
+    def test_targeted_expansion_acquisition_conversion_rejects_bad_screen_override(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-targeted-expansion-acquisition-conversion-screens",
+                "--screen-path",
+                "not_a_screen=/tmp/missing.json",
+            ]
+        )
+
+        with self.assertRaises(SystemExit) as raised:
+            args.func(args)
+        self.assertIn(
+            "unknown targeted expansion conversion screen key",
+            str(raised.exception),
+        )
+
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-lever2-mechanism-feature-incremental-readout"]

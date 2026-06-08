@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 376
-- Measured elapsed time: 11467.8 minutes (191.13 hours)
+- Entries: 377
+- Measured elapsed time: 11518.5 minutes (191.97 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,6 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
+- targeted-expansion: 50.6 measured minutes (0.84 hours)
 - v3: 2734.9 measured minutes (45.58 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -32,21 +33,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3911
-- Evidence references logged: 3244
+- Artifact references logged: 3913
+- Evidence references logged: 3247
 
 ## Recent Entries
-
-### 2026-06-05T14:36:17.881700+00:00 - northstar-lever3
-
-- Task: Lever 3 operator transfer-safety deployment readouts
-- Time mode: measured
-- Measured minutes: 34.117
-- Started: 2026-06-05T14:01:50Z
-- Ended: 2026-06-05T14:35:57Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: transfer-safety matrix readout passed with 21 of 21 operator rows safe-to-abstain-or-route and 0 mechanism-transfer-allowed rows across 5 route classes, matrix reproducibility audit rebuilt with zero normalized differences and 3 of 3 direct source hashes current, application audit passed with 21 of 21 safe rows plus clean matrix path source and rebuild checks, application reproducibility audit rebuilt with zero normalized differences and 2 of 2 source hashes current, calibration retention stayed 31 of 34 and train-cal OOS abstention stayed 167 of 204, retained residual rows after all counteraxes stayed 0, affected suite 668 passed and 214 subtests, full pytest 1540 passed and 233 subtests with existing sklearn warning, unittest discovery 1495 passed, compileall validate diff-check JSON parse CLI smoke guardrail audit doc-reference source-hash and disk checks passed
-- Notes: Measured readouts first; no blocker packet produced; fixed threshold 0.44155 unchanged; fixed-threshold scoring closure remains fail-closed pending exact P07658 coordinate provenance. Actual elapsed is below the planned wall-clock window because the bounded implementation and validation completed early.
 
 ### 2026-06-05T15:08:04.783030+00:00 - northstar-lever3
 
@@ -125,6 +115,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: pytest 1703 passed, unittest 1658 passed, validate 702 labels, docs refs missing 0, row/source hash mismatches 0
 - Commit: `pending_final_wrap_commit`
 - Notes: Integrated over origin/main targeted factory; upgraded batch to 816 non-importing candidates across 8 axes with six architecture-default rows carried over.
+
+### 2026-06-08T13:53:00.862088+00:00 - targeted-expansion
+
+- Task: Acquisition-needed conversion screens for first targeted expansion batch
+- Time mode: measured
+- Measured minutes: 50.633
+- Started: 2026-06-08T13:01:52Z
+- Ended: 2026-06-08T13:52:30Z
+- Artifacts: artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json, work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md
+- Evidence: PYTHONPATH=src python -m pytest -q:1708 passed, PYTHONPATH=src python -m unittest discover -s tests:1663 tests OK, PYTHONPATH=src python -m catalytic_earth.cli validate:702 labels
+- Notes: Routed 86 acquisition-needed rows: 27 reject/OOS, 7 locator blockers, 50 family-decision blockers, 1 review-only, 1 preflight-only.
 
 ## Expectation Updates
 
@@ -636,3 +637,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T17:06:58.568415+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
 - 2026-06-05T19:06:13.363198+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.
 - 2026-06-05T20:05:21.984184+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.
+- 2026-06-08T13:53:00.862088+00:00: Converted uncertainty to non-importing terminal states; no promotion/import batch started.

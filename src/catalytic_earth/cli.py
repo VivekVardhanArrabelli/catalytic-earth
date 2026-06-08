@@ -33,6 +33,10 @@ from .targeted_expansion_factory import (
     DEFAULT_SOURCE_PATHS as TARGETED_EXPANSION_SOURCE_PATHS,
     write_targeted_expansion_factory_batch,
 )
+from .targeted_expansion_acquisition_conversion import (
+    DEFAULT_SCREEN_PATHS as TARGETED_EXPANSION_CONVERSION_SCREEN_PATHS,
+    write_targeted_expansion_acquisition_conversion_screens,
+)
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .predicted_geometry_recovery import (
@@ -2749,6 +2753,38 @@ def cmd_build_targeted_expansion_factory_batch(args: argparse.Namespace) -> int:
     print(
         "Wrote targeted expansion factory batch to "
         f"{args.out} ({artifact['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_build_targeted_expansion_acquisition_conversion_screens(
+    args: argparse.Namespace,
+) -> int:
+    screen_paths = {
+        name: Path(path)
+        for name, path in TARGETED_EXPANSION_CONVERSION_SCREEN_PATHS.items()
+    }
+    for override in args.screen_path or []:
+        key, separator, value = override.partition("=")
+        if not separator or not key or not value:
+            raise SystemExit("--screen-path must be formatted as KEY=PATH")
+        if key not in screen_paths:
+            allowed = ", ".join(sorted(screen_paths))
+            raise SystemExit(
+                f"unknown targeted expansion conversion screen key {key!r}; "
+                f"allowed: {allowed}"
+            )
+        screen_paths[key] = Path(value)
+    artifact = write_targeted_expansion_acquisition_conversion_screens(
+        batch_path=Path(args.batch),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        screen_paths=screen_paths,
+        created_utc=args.created_utc,
+    )
+    print(
+        "Wrote targeted expansion acquisition conversion screens to "
+        f"{args.out} ({artifact['candidate_count']} rows)"
     )
     return 0
 
@@ -22025,6 +22061,46 @@ def build_parser() -> argparse.ArgumentParser:
     )
     targeted_expansion_factory.set_defaults(
         func=cmd_build_targeted_expansion_factory_batch
+    )
+
+    targeted_expansion_conversion = subparsers.add_parser(
+        "build-targeted-expansion-acquisition-conversion-screens",
+        help=(
+            "convert acquisition-needed targeted expansion rows into "
+            "non-importing screened terminal states"
+        ),
+    )
+    targeted_expansion_conversion.add_argument(
+        "--batch",
+        default=(
+            "artifacts/"
+            "v3_targeted_expansion_factory_batch_current702_20260608.json"
+        ),
+    )
+    targeted_expansion_conversion.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json"
+        ),
+    )
+    targeted_expansion_conversion.add_argument(
+        "--report",
+        default=(
+            "work/"
+            "targeted_expansion_acquisition_conversion_screens_current702_20260608.md"
+        ),
+    )
+    targeted_expansion_conversion.add_argument("--created-utc")
+    targeted_expansion_conversion.add_argument(
+        "--screen-path",
+        action="append",
+        default=[],
+        metavar="KEY=PATH",
+        help="override one targeted expansion conversion screen artifact path",
+    )
+    targeted_expansion_conversion.set_defaults(
+        func=cmd_build_targeted_expansion_acquisition_conversion_screens
     )
 
     external_representation_backend_sample_audit = subparsers.add_parser(

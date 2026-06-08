@@ -3,18 +3,20 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-family-label-admission-pipeline`
-- STARTED_AT_UTC: `2026-06-08T05:21:49Z`
-- STARTED_AT_LOCAL: `Mon Jun  8 00:21:49 CDT 2026`
-- ENDED_AT_UTC: `2026-06-08T05:23:03Z`
-- ENDED_AT_LOCAL: `Mon Jun  8 00:23:03 CDT 2026`
-- ELAPSED_MINUTES: `1.241`
-- Status: Self-stop/no-op verification complete. The first durable targeted
-  expansion-factory batch already exists on `origin/main`, so this run did not
-  launch a second batch and is pausing the automation.
+- STARTED_AT_UTC: `2026-06-08T13:01:52Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 08:01:52 CDT 2026`
+- ENDED_AT_UTC: `2026-06-08T13:52:30Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 08:52:30 CDT 2026`
+- ELAPSED_MINUTES: `50.633`
+- Status: Wrap in progress. Durable conversion/screening artifact and report
+  produced for all 86 `acquisition_needed` rows in
+  `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`;
+  commit/push/sync, lock release, and automation pause are the remaining final
+  steps.
   Canonical automation lock acquired at
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth3/catalytic-earth-automation.lock`;
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth4/catalytic-earth-automation.lock`;
   start timestamps were also written to
-  `/tmp/catalytic_earth_targeted_expansion_started_at.txt`.
+  `/tmp/catalytic_earth_expansion_conversion_started_at.txt`.
 
 ## Mission
 
@@ -65,6 +67,127 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 Targeted Expansion Acquisition Conversion Screens
+
+Automation run: `catalytic-earth-family-label-admission-pipeline`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-08T13:01:52Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 08:01:52 CDT 2026`
+- ENDED_AT_UTC: `2026-06-08T13:52:30Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 08:52:30 CDT 2026`
+- ELAPSED_MINUTES: `50.633`
+- Lock: canonical linked-worktree lock directory
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth4/catalytic-earth-automation.lock`
+  acquired after the literal `.git/catalytic-earth-automation.lock` path was
+  unavailable in this linked worktree. Start timestamps were written to
+  `/tmp/catalytic_earth_expansion_conversion_started_at.txt`.
+
+#### Scope
+
+- Continued from current `origin/main` at
+  `c2f5c20eaf84d6878255f21ae1c79dac9f0f5068`.
+- Converted/screened all 86 `acquisition_needed` rows from
+  `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`,
+  prioritizing the 16 rows with explicit required screen lists and safely
+  expanding mechanical source-free screens to the remaining 70 acquisition
+  rows.
+- Did not import or promote labels. No production label registry, ontology,
+  train/test split, model weight, production threshold, or heldout
+  training/tuning surface was changed.
+- Disk guardrail note: free space dipped below 10 GiB during validation;
+  disposable cache/package-cache contents were cleared and free space was
+  restored above the 10 GiB guardrail before continuing. Wrap free space was
+  10.29 GiB.
+
+#### Outputs
+
+- JSON artifact:
+  `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`.
+- Markdown report:
+  `work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`.
+- Rerunnable code and tests:
+  `src/catalytic_earth/targeted_expansion_acquisition_conversion.py`,
+  `src/catalytic_earth/cli.py`,
+  `tests/test_targeted_expansion_acquisition_conversion.py`, and
+  `tests/test_cli.py`.
+- Durable docs updated because this run created a durable source-of-truth
+  conversion output and changed the exact next project action:
+  `docs/project_state.md` and `docs/artifact_index.md`.
+- Current docs reference check refreshed:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`
+  and `work/current_docs_artifact_reference_check_current702_20260601.md`.
+- Progress/status refreshed: `work/progress_log.jsonl` and `work/status.md`.
+- New artifact size: 0.63 MiB JSON plus 25 KiB markdown report, below the
+  large-artifact guard threshold.
+
+#### Conversion result
+
+- Acquisition rows screened: 86.
+- Priority screen-ready rows: 16; expanded non-priority acquisition rows: 70.
+- Terminal states:
+  `reject/OOS_preserve_signal=27`, `blocked_locator=7`,
+  `blocked_coordinate=0`, `blocked_family_decision=50`,
+  `review_only_evidence=1`, `countable_candidate_preflight_only=1`.
+- Priority row routes:
+  `reject/OOS_preserve_signal=14`, `review_only_evidence=1`,
+  `countable_candidate_preflight_only=1`.
+- The single preflight-only row is `uniprot:P78549`; it is not imported and is
+  held for Vivek/main-thread controlled-promotion review.
+- `uniprot:P22830` is rejected/OOS-preserve via an exact current-reference
+  sequence-cluster proxy match to `m_csa:578`.
+- All rows carry six required screen axes:
+  current-reference sequence duplicate, current-countable structural duplicate,
+  external all-vs-all structural cluster assignment, broad sequence
+  neighborhood duplicate, locator/coordinate readiness, and
+  label-factory/pre-promotion readiness.
+- The markdown report includes the priority-row outcome matrix, family routing,
+  screen-axis coverage, preflight-only row, remaining blockers, the locator
+  blocker queue, and the full grouped family-decision blocker queue.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest -q`: 1708 passed, 1 sklearn warning,
+  244 subtests passed.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1663 tests OK.
+- Focused conversion/CLI regression:
+  `PYTHONPATH=src python -m pytest tests/test_targeted_expansion_acquisition_conversion.py tests/test_cli.py::CliTests::test_targeted_expansion_acquisition_conversion_parser_defaults tests/test_cli.py::CliTests::test_targeted_expansion_acquisition_conversion_rejects_bad_screen_override -q`:
+  5 passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-targeted-expansion-acquisition-conversion-screens --created-utc 2026-06-08T13:01:52Z`:
+  regenerated the JSON artifact and markdown report with 86 rows.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 curated mechanism labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`:
+  886 references checked, 14 ignored templates/globs, 0 missing.
+- `PYTHONPATH=src python -m compileall -q src`, `git diff --check`, and
+  `python -m json.tool artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`:
+  passed.
+- Row audit: 86 input acquisition-needed IDs, 86 output IDs, 0 missing, 0 extra;
+  16 priority input rows and 16 priority output rows.
+- Source-hash audit: 31 screen source artifacts recorded; 0 rows missing input
+  source hashes; 0 screen contributions missing source hashes.
+- Guardrail audit: artifact-level guardrails record no label registry edits,
+  no ontology edits, no imports/promotions, no split/model/threshold changes,
+  no heldout training/tuning, and no mechanism text/source IDs used as scoring
+  features.
+
+#### Commit, sync, and lock
+
+- Final commit hash: `pending`.
+- Push/sync status: `pending`.
+- Lock release status: `pending`.
+- Automation pause status: `pending`.
+
+#### Exact next action
+
+Vivek or the main thread should review
+`work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`,
+especially `uniprot:P78549`, `uniprot:Q3LXA3`, and the 50 grouped
+family-decision blockers. Do not start a larger promotion/import batch until
+Vivek or the main thread explicitly asks after reviewing this conversion
+result.
 
 ### 2026-06-08 Targeted Expansion Factory Self-Stop Verification
 
