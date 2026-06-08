@@ -1,15 +1,15 @@
 # Scale-out Merged Acceptance Surface - current702 - 20260608
 
 - Automation ID: `ce-expansion-merger-qa`
-- Created UTC: `2026-06-08T14:40:53Z`
-- Source branch/head: `ce-expansion-merger-qa-20260608` / `a9a0c4af208151e346c0f42eb4842f681c982751`
-- Origin main head consumed: `5a915007d68d4df05f7d0b1f4eef6761357b7b63`
+- Created UTC: `2026-06-08T14:50:36Z`
+- Source branch/head: `main` / `ee0d27ae4c3c59326947fe6fe28ca77e39daf989`
+- Origin main head consumed: `ee0d27ae4c3c59326947fe6fe28ca77e39daf989`
 - JSON artifact: `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
 - Repair overlay consumed: `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
 
 ## Result
 
-Four shard artifacts were available, so this run built the consolidated non-importing acceptance surface. The merge consumed 2058 shard rows and deduplicated them to 1116 canonical candidate keys. The merge preserves every source-row terminal state as a source member, applies the locator/coordinate repair overlay, and keeps current-registry overlap as a hard import-preview blocker.
+Four shard artifacts were available, so this run built the consolidated non-importing acceptance surface. The merge consumed 2058 shard rows and deduplicated them to 1116 canonical candidate keys. The merge preserves every source-row terminal state as a source member, applies the locator/coordinate repair overlay, and keeps exact/current-screen registry overlap as a hard import-preview blocker.
 
 No production registry edit, locator sidecar copy, model/threshold/split edit, heldout training, or label import was performed.
 
@@ -39,7 +39,7 @@ No import-preview artifact was built. The three source `countable_candidate_pref
 
 - `m_csa:127` -> `reject/OOS_preserve_signal`; blockers: canonical_terminal_state=reject/OOS_preserve_signal, current_registry_overlap, reject_or_oos_signal_present; current matches: m_csa:127/out_of_scope
 - `m_csa:281` -> `review_only_evidence`; blockers: canonical_terminal_state=review_only_evidence, current_registry_overlap; current matches: m_csa:281/seed_fingerprint
-- `uniprot:p78549` -> `reject/OOS_preserve_signal`; blockers: canonical_terminal_state=reject/OOS_preserve_signal, current_registry_overlap, reject_or_oos_signal_present; current matches: m_csa:798/seed_fingerprint, uniprot:p78549/out_of_scope
+- `uniprot:p78549` -> `reject/OOS_preserve_signal`; blockers: canonical_terminal_state=reject/OOS_preserve_signal, current_registry_overlap, reject_or_oos_signal_present; current matches: uniprot:p78549/out_of_scope
 
 This means there are 0 new non-overlapping countable candidates ready for a gated import preview in this pass.
 

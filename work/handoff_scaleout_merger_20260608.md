@@ -3,6 +3,9 @@
 - Automation ID: `ce-expansion-merger-qa`
 - STARTED_AT_UTC: `2026-06-08T14:17:14Z`
 - STARTED_AT_LOCAL: `2026-06-08T09:17:14-0500`
+- ENDED_AT_UTC: `2026-06-08T14:52:33Z`
+- ENDED_AT_LOCAL: `2026-06-08T09:52:33-0500`
+- ELAPSED_MINUTES: `35.317`
 - RUN_ARTIFACT: `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
 - RUN_REPORT: `work/scaleout_merged_acceptance_surface_current702_20260608.md`
 - REPAIR_ARTIFACT: `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
@@ -10,7 +13,7 @@
 - Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`
 - Source branch/head at merger assembly: `ce-expansion-merger-qa-20260608` / `a9a0c4af208151e346c0f42eb4842f681c982751`
 - Origin main consumed: `5a915007d68d4df05f7d0b1f4eef6761357b7b63`
-- Status: consolidated artifact/report produced; validation, final commit/push/sync, memory update, and lock release are wrap steps.
+- Status: consolidated artifact/report produced and validation passed. Commit/push/sync, memory update, and lock release are final wrap steps recorded in the automation response.
 
 ## Mode
 
@@ -48,10 +51,22 @@ overlay.
   `countable_candidate_preflight_only=0`.
 - No import-preview artifact was built because the three source
   preflight-only rows (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`) all
-  overlap current702 and/or resolve to non-new canonical terminal states.
+  overlap current702 by exact/current-screen evidence and/or resolve to non-new
+  canonical terminal states.
+- Current-registry overlap records after separating structural neighbors from
+  exact/current-screen overlap: 516.
 - Deduplication records cover accession/candidate key, sequence-neighborhood,
   structure/fold cluster, ligand/cofactor/family lane, and current-registry
   overlap axes.
+
+## Validation
+
+- `python -m json.tool artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`: passed.
+- `python -m json.tool artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702 curated mechanism labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`: missing 0.
+- Custom merger guardrail assertions: passed.
 
 ## Next Action
 

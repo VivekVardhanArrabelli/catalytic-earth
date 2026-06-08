@@ -5,12 +5,15 @@
 - Automation ID: `ce-expansion-merger-qa`
 - STARTED_AT_UTC: `2026-06-08T14:17:14Z`
 - STARTED_AT_LOCAL: `2026-06-08T09:17:14-0500`
-- Status: Scale-out merger/repair QA output produced pending final
-  validation, commit/push/sync check, automation memory update, and run-owned
-  lock release. The run first produced the locator/coordinate repair artifact
-  while fewer than three shards were available, then rebased onto current
-  `origin/main` after four shard artifacts arrived and built the consolidated
-  non-importing acceptance surface.
+- ENDED_AT_UTC: `2026-06-08T14:52:33Z`
+- ENDED_AT_LOCAL: `2026-06-08T09:52:33-0500`
+- ELAPSED_MINUTES: `35.317`
+- Status: Scale-out merger/repair QA output produced and validation passed.
+  The run first produced the locator/coordinate repair artifact while fewer
+  than three shards were available, then rebased onto current `origin/main`
+  after four shard artifacts arrived and built the consolidated non-importing
+  acceptance surface. Commit/push/sync and lock-release details are recorded in
+  the final automation response.
 - Current output:
   `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
   and `work/scaleout_merged_acceptance_surface_current702_20260608.md`.
@@ -19,6 +22,10 @@
   and `work/scaleout_locator_coordinate_repair_current702_20260608.md`.
 - Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`; start timestamps
   written to `/tmp/ce_scaleout_merger_started_at.txt`.
+- Validation passed: JSON parse for merged + repair artifacts, `git diff
+  --check`, `PYTHONPATH=src python -m catalytic_earth.cli validate`, current
+  docs artifact-reference check with 0 missing references, and custom merger
+  guardrail assertions.
 
 ## Mission
 
@@ -78,6 +85,9 @@ Automation run: `ce-expansion-merger-qa`
 
 - STARTED_AT_UTC: `2026-06-08T14:17:14Z`
 - STARTED_AT_LOCAL: `2026-06-08T09:17:14-0500`
+- ENDED_AT_UTC: `2026-06-08T14:52:33Z`
+- ENDED_AT_LOCAL: `2026-06-08T09:52:33-0500`
+- ELAPSED_MINUTES: `35.317`
 - Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`
 
 #### Scope
@@ -121,7 +131,10 @@ Automation run: `ce-expansion-merger-qa`
   `countable_candidate_preflight_only=0`.
 - No import-preview artifact was built because all three source preflight-only
   rows (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`) are blocked by
-  current702 overlap and/or conservative non-new terminal resolution.
+  exact/current-screen current702 overlap and/or conservative non-new terminal
+  resolution.
+- Current-registry overlap records after separating structural neighbors from
+  exact/current-screen overlap: 516.
 
 #### Repair result
 
@@ -132,6 +145,15 @@ Automation run: `ce-expansion-merger-qa`
   evidence.
 - `uniprot:P60174` has a candidate-only source-backed mapped locator payload
   for AFDB residues 96/HIS and 166/GLU; no locator sidecar was copied.
+
+#### Validation
+
+- `python -m json.tool artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`: passed.
+- `python -m json.tool artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702 curated mechanism labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`: missing 0.
+- Custom merger guardrail assertions: passed.
 
 #### Exact next action
 
