@@ -2,29 +2,26 @@
 
 ## Current automation run
 
-- Automation ID: `ce-expansion-merger-qa`
-- STARTED_AT_UTC: `2026-06-08T15:16:18Z`
-- STARTED_AT_LOCAL: `2026-06-08T10:16:18-0500`
-- ENDED_AT_UTC: `2026-06-08T15:37:03Z`
-- ENDED_AT_LOCAL: `2026-06-08T10:37:03-0500`
-- ELAPSED_MINUTES: `20.761`
-- Status: Scale-out merger QA refreshed the consolidated non-importing
-  acceptance surface after `origin/main` advanced with three additional shard
-  artifacts. Seven shard artifacts are now consumed with zero eligible
-  import-preview candidates. Commit/push/sync and lock-release details are
-  recorded in the final automation response.
+- Automation ID: `ce-countable-label-unblocker`
+- STARTED_AT_UTC: `2026-06-08T21:31:27Z`
+- STARTED_AT_LOCAL: `2026-06-08T16:31:27-0500`
+- ENDED_AT_UTC: `2026-06-08T21:45:24Z`
+- ENDED_AT_LOCAL: `2026-06-08T16:45:24-0500`
+- ELAPSED_MINUTES: `13.950`
+- Status: Countable-label unblocker classified all 523 non-reject canonical
+  scale-out candidates into concrete import-preview/blocker actions. Zero
+  rows pass import-preview gates because no source row sets both
+  `ready_for_label_import=True` and `countable_label_candidate=True`.
 - Current output:
-  `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
-  and `work/scaleout_merged_acceptance_surface_current702_20260608.md`.
-- Repair overlay:
-  `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
-  and `work/scaleout_locator_coordinate_repair_current702_20260608.md`.
-- Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`; start timestamps
-  written to `/tmp/ce_scaleout_merger_started_at.txt`.
-- Validation passed: JSON parse for merged + repair artifacts, `git diff
-  --check`, `PYTHONPATH=src python -m catalytic_earth.cli validate`, current
-  docs artifact-reference check with 0 missing references, and custom merger
-  guardrail assertions.
+  `artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json`
+  and `work/countable_label_unblocker_matrix_current702_20260608.md`. No
+  import-preview artifact was written.
+- Lock: `work/locks/ce_countable_label_unblocker.lock`; start timestamps
+  written to `/tmp/ce_countable_unblocker_started_at.txt`.
+- Validation passed: JSON parse, focused countable-unblocker/CLI tests, `git
+  diff --check`, `PYTHONPATH=src python -m catalytic_earth.cli validate`, docs
+  artifact-reference check with 0 missing references, source-member
+  reconciliation, and disk free >10 GiB.
 
 ## Mission
 
@@ -75,6 +72,76 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 Countable Label Unblocker Matrix
+
+Automation run: `ce-countable-label-unblocker`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-08T21:31:27Z`
+- STARTED_AT_LOCAL: `2026-06-08T16:31:27-0500`
+- ENDED_AT_UTC: `2026-06-08T21:45:24Z`
+- ENDED_AT_LOCAL: `2026-06-08T16:45:24-0500`
+- ELAPSED_MINUTES: `13.950`
+- Lock: `work/locks/ce_countable_label_unblocker.lock`
+
+#### Scope
+
+- Started from detached `HEAD` at `origin/main`/`main`
+  (`95b31f2d36def6b47d0abcf63fe4133728c3befa`) and consumed the merged
+  scale-out acceptance surface plus locator/coordinate repair overlay.
+- Added rerunnable countable-unblocker code, CLI wiring, and focused tests.
+- Did not edit the production label registry, ontology, train/test split,
+  model weights, production thresholds, production locator sidecars, or
+  coordinate bundles. No import or promotion was performed.
+
+#### Outputs
+
+- Matrix artifact:
+  `artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json`.
+- Human report:
+  `work/countable_label_unblocker_matrix_current702_20260608.md`.
+- Rerunnable code/tests:
+  `src/catalytic_earth/countable_label_unblocker.py`,
+  `src/catalytic_earth/cli.py`,
+  `tests/test_countable_label_unblocker.py`, and `tests/test_cli.py`.
+- Durable docs updated:
+  `docs/project_state.md` and `docs/artifact_index.md`.
+
+#### Result
+
+- Target canonical rows: 523, reconciling to the merged counts:
+  review-only=280, family-decision=134, locator=85, coordinate=24.
+- Target source-member rows: 1,105. Full merged source rows reconcile:
+  4,820 merged source rows equals 4,820 canonical source members.
+- Import-preview candidates: 0. No target row has both
+  `ready_for_label_import=True` and `countable_label_candidate=True`.
+- Unblock classifications:
+  `hard_blocked_with_next_action=273`, `family_default_resolved=102`,
+  `locator_repair_candidate=96`, `true_expert_only=36`,
+  `reject/OOS_preserve_signal=14`, and `coordinate_repair_candidate=2`.
+- Concrete reductions: 102 family-decision rows were resolved to existing
+  no-import family defaults; 21 coordinate blockers had local coordinate files
+  and moved to locator repair; 37 rows are exact current-registry overlaps; 17
+  rows carry positive duplicate-screen blockers.
+
+#### Validation
+
+- `python -m json.tool artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json`: passed.
+- `PYTHONPATH=src python -m pytest tests/test_countable_label_unblocker.py tests/test_cli.py::CliTests::test_countable_label_unblocker_parser_defaults -q`: 4 passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702 curated mechanism labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`: missing 0.
+- `git diff --check`: passed.
+- Disk free at wrap: 18 GiB.
+
+#### Exact next action
+
+Do not look for an import preview in this surface. Label growth requires either
+new source ingestion/approved source-free locator materialization, explicit
+human family or promotion decisions for the 36 true-expert-only rows, or a new
+controlled import gate that sets both ready/countable booleans for candidate
+rows.
 
 ### 2026-06-08 Scale-Out Merger/Repair QA
 

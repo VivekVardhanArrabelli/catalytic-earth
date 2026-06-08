@@ -72,6 +72,20 @@ artifact-backed mechanism diagnostics.
   reject/OOS-preserve, and keeps `uniprot:P60174` first for review-gated
   locator copy. No locator sidecar, import preview artifact, registry edit,
   threshold/model/split edit, or heldout training/tuning was performed.
+- Current countable-label unblocker matrix (2026-06-08): the non-reject
+  canonical scale-out rows were classified into concrete import-preview or
+  blocker actions. Target rows reconcile to 523 candidates: 280 review-only,
+  134 family-decision, 85 locator, and 24 coordinate. Automated gates produced
+  0 import-preview candidates because no row has both
+  `ready_for_label_import=True` and `countable_label_candidate=True`; 37 rows
+  are exact current-registry overlaps and 17 carry positive duplicate-screen
+  signals. The matrix resolved 102 family-decision rows to existing no-import
+  family defaults, moved 21 coordinate blockers with local coordinate files into
+  locator repair, left 2 true coordinate repairs, and kept 36 rows as
+  true-expert-only. Use
+  `artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json` and
+  `work/countable_label_unblocker_matrix_current702_20260608.md`; no import
+  preview artifact was written.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.

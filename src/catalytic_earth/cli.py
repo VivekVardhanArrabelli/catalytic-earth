@@ -37,6 +37,7 @@ from .targeted_expansion_acquisition_conversion import (
     DEFAULT_SCREEN_PATHS as TARGETED_EXPANSION_CONVERSION_SCREEN_PATHS,
     write_targeted_expansion_acquisition_conversion_screens,
 )
+from .countable_label_unblocker import write_countable_label_unblocker_matrix
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .predicted_geometry_recovery import (
@@ -2785,6 +2786,25 @@ def cmd_build_targeted_expansion_acquisition_conversion_screens(
     print(
         "Wrote targeted expansion acquisition conversion screens to "
         f"{args.out} ({artifact['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_countable_label_unblocker_matrix(args: argparse.Namespace) -> int:
+    artifact = write_countable_label_unblocker_matrix(
+        merged_surface_path=Path(args.merged_surface),
+        repair_overlay_path=Path(args.repair_overlay),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        import_preview_path=(
+            Path(args.import_preview) if args.import_preview else None
+        ),
+        created_utc=args.created_utc,
+    )
+    print(
+        "Wrote countable label unblocker matrix to "
+        f"{args.out} ({artifact['counts']['target_canonical_records']} rows; "
+        f"{artifact['counts']['import_preview_candidate_rows']} import-preview candidates)"
     )
     return 0
 
@@ -22102,6 +22122,48 @@ def build_parser() -> argparse.ArgumentParser:
     targeted_expansion_conversion.set_defaults(
         func=cmd_build_targeted_expansion_acquisition_conversion_screens
     )
+
+    countable_unblocker = subparsers.add_parser(
+        "build-countable-label-unblocker-matrix",
+        help=(
+            "classify non-reject merged scale-out rows into import-preview "
+            "candidates or concrete blockers"
+        ),
+    )
+    countable_unblocker.add_argument(
+        "--merged-surface",
+        default=(
+            "artifacts/"
+            "v3_scaleout_merged_acceptance_surface_current702_20260608.json"
+        ),
+    )
+    countable_unblocker.add_argument(
+        "--repair-overlay",
+        default=(
+            "artifacts/"
+            "v3_scaleout_locator_coordinate_repair_current702_20260608.json"
+        ),
+    )
+    countable_unblocker.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_countable_label_unblocker_matrix_current702_20260608.json"
+        ),
+    )
+    countable_unblocker.add_argument(
+        "--report",
+        default="work/countable_label_unblocker_matrix_current702_20260608.md",
+    )
+    countable_unblocker.add_argument(
+        "--import-preview",
+        default=(
+            "artifacts/"
+            "v3_countable_label_unblocker_import_preview_current702_20260608.json"
+        ),
+    )
+    countable_unblocker.add_argument("--created-utc")
+    countable_unblocker.set_defaults(func=cmd_build_countable_label_unblocker_matrix)
 
     external_representation_backend_sample_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-sample",

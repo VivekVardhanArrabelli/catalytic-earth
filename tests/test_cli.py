@@ -103,6 +103,43 @@ class CliTests(unittest.TestCase):
             str(raised.exception),
         )
 
+    def test_countable_label_unblocker_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-countable-label-unblocker-matrix"])
+
+        self.assertEqual(
+            args.merged_surface,
+            (
+                "artifacts/"
+                "v3_scaleout_merged_acceptance_surface_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.repair_overlay,
+            (
+                "artifacts/"
+                "v3_scaleout_locator_coordinate_repair_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_countable_label_unblocker_matrix_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            "work/countable_label_unblocker_matrix_current702_20260608.md",
+        )
+        self.assertEqual(
+            args.import_preview,
+            (
+                "artifacts/"
+                "v3_countable_label_unblocker_import_preview_current702_20260608.json"
+            ),
+        )
+        self.assertIsNone(args.created_utc)
+
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-lever2-mechanism-feature-incremental-readout"]
