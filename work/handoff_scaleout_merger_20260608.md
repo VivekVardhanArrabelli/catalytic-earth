@@ -15,6 +15,29 @@
 - Origin main consumed: `5a915007d68d4df05f7d0b1f4eef6761357b7b63`
 - Status: consolidated artifact/report produced and validation passed. Commit/push/sync, memory update, and lock release are final wrap steps recorded in the automation response.
 
+## QA Rerun - 2026-06-08T15:16Z
+
+- Automation ID: `ce-expansion-merger-qa`
+- STARTED_AT_UTC: `2026-06-08T15:16:18Z`
+- STARTED_AT_LOCAL: `2026-06-08T10:16:18-0500`
+- ENDED_AT_UTC: `2026-06-08T15:21:12Z`
+- ENDED_AT_LOCAL: `2026-06-08T10:21:12-0500`
+- ELAPSED_MINUTES: `4.911`
+- Source head checked: `main` / `3201971e1c1c7cc859f213bf34c8ec33f97ee95a`
+- Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`
+- Result: existing consolidated surface and repair overlay were already present
+  on `origin/main`; four shard artifacts were still available, no additional
+  shard artifacts were present, and no new locator/coordinate/readiness repair
+  work was found.
+- QA confirmed: 2,058 shard rows, 1,116 canonical records, 516 current-registry
+  overlap keys, seven repair-overlay rows consumed, and zero eligible
+  import-preview candidates.
+- Validation passed: JSON parse for the mandatory source/merged/repair
+  artifacts, `git diff --check`, CLI validate, docs artifact-reference check
+  with 0 missing references, and a custom merger partition/guardrail QA script.
+- No import-preview artifact, registry edit, locator sidecar copy,
+  threshold/model/split edit, or heldout training/tuning was performed.
+
 ## Mode
 
 This run started in repair mode because fewer than three shard artifacts were
