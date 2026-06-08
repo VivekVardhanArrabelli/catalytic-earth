@@ -36,12 +36,15 @@ artifact-backed mechanism diagnostics.
   context from sequence" (`docs/predicted_geometry_robustness_pipeline_runbook.md`).
 - Current label surface: 702 curated labels in the current sequence-NN manifest,
   with 562 in-distribution rows and 140 heldout rows.
-- Current label-growth factory output: the targeted expansion factory has a
-  703-row non-importing admission batch across 12 family axes, sourced from 324
-  M-CSA expansion rows plus 379 external Swiss-Prot freeze rows. It preserves
-  row evidence and admission states only: 0 countable/import-ready rows, and no
-  registry, ontology, split, threshold, heldout, or model-weight change.
-  Source: `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`.
+- Current targeted expansion surface (2026-06-08): the first reusable targeted
+  expansion factory batch has 816 non-importing candidates across 8 family axes
+  with exact-one-state admission routing. Counts: 0 countable candidates, 391
+  review-only evidence rows, 205 reject/OOS-preserve rows, 90 locator blockers,
+  44 coordinate blockers, 86 acquisition-needed rows, and 0 family-decision
+  blockers. It also carries the six architecture-default family-admission rows
+  without reopening human review. Use
+  `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json` and
+  `work/targeted_expansion_factory_batch_current702_20260608.md`.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.
@@ -896,11 +899,20 @@ artifacts first.
    --esmfold2-staged-dir <DIR>`, then re-run
    `build-predicted-geometry-failure-decomposition` on the ESMFold2 audit to
    confirm the pattern. Thresholds on train/cal; heldout once.
-1. Use the fold-augmented research gate with the disclosed 71/76 train/cal
+1. Targeted expansion factory (active expansion track): use
+   `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json` as
+   the source-of-truth batch for diverse atlas growth. The exact next action is
+   to run the six required sequence/structure/duplicate/review screens for the
+   16 `acquisition_needed` rows that already carry explicit screen lists, fill
+   source-specific screen lists or source evidence for the remaining 70
+   acquisition rows, then repair the 134 locator/coordinate blockers. Do not
+   import or promote any row until a separate human countable-promotion review
+   and label-factory gate pass.
+2. Use the fold-augmented research gate with the disclosed 71/76 train/cal
    OOS-negative surface when running downstream diagnostics; clear the remaining
    five source-geometry/coordinate/sidecar blockers before any stronger
    threshold or production-like claim.
-2. For family-panel review, the six non-abstained fold-augmented rows are
+3. For family-panel review, the six non-abstained fold-augmented rows are
    source-checked and remain review-only. `m_csa:973` reuses its frozen
    train/calibration fold score, is score-complete, and abstains under the fixed
    research threshold. The 10-row source-backed coordinate/Foldseek pass is
@@ -916,7 +928,7 @@ artifacts first.
    `secondary_probe::cobalamin_radical_rearrangement` (nonlabel locator
    strategy or alternate source). No label/import/family promotion is
    authorized.
-3. If representation work resumes, produce row-aligned local sidecars first,
+4. If representation work resumes, produce row-aligned local sidecars first,
    start from
    `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
    then
@@ -946,9 +958,9 @@ artifacts first.
    In both cases, do not apply any frozen residual threshold or read heldout
    until the chosen source-free application surface is complete and guardrail
    audited.
-4. For FMO, revise the review/silver evidence gate into subtype panels, finish
+5. For FMO, revise the review/silver evidence gate into subtype panels, finish
    coordinate/materialization blockers, and keep candidate rows review-only.
-5. For label growth, require explicit expert decision, no-import safety checks
+6. For label growth, require explicit expert decision, no-import safety checks
    where applicable, label-factory gate pass, batch acceptance, and registry
    summary refresh before any countable import. The exact next expansion action
    is to run source-free duplicate/structural distance screens for the external
@@ -967,6 +979,12 @@ artifacts first.
   inflating this file.
 
 ## Primary References
+
+2026-06-08 targeted expansion factory:
+
+- `src/catalytic_earth/targeted_expansion_factory.py`
+- `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`
+- `work/targeted_expansion_factory_batch_current702_20260608.md`
 
 2026-06-06 session (cofactor recovery, electron-flow, consolidation):
 

@@ -17,21 +17,32 @@ class CliTests(unittest.TestCase):
         args = build_parser().parse_args(["build-targeted-expansion-factory-batch"])
 
         self.assertEqual(
-            args.label_expansion_candidates,
-            "artifacts/v3_label_expansion_candidates_1025.json",
-        )
-        self.assertIn(
-            "prospective_external_minicampaign_candidate_freeze",
-            args.external_candidate_freeze,
+            args.out,
+            (
+                "artifacts/"
+                "v3_targeted_expansion_factory_batch_current702_20260608.json"
+            ),
         )
         self.assertEqual(
-            args.sequence_cluster_proxy,
-            "artifacts/v3_sequence_cluster_proxy_1025.json",
+            args.report,
+            "work/targeted_expansion_factory_batch_current702_20260608.md",
         )
+        self.assertIsNone(args.created_utc)
         self.assertEqual(args.min_target_candidates, 500)
-        self.assertEqual(args.max_target_candidates, 1000)
-        self.assertIn("targeted_expansion_factory_batch", args.out)
-        self.assertIn("targeted_expansion_factory_batch", args.report)
+        self.assertEqual(args.max_candidates, 1000)
+        self.assertEqual(args.source_path, [])
+
+        overridden = build_parser().parse_args(
+            [
+                "build-targeted-expansion-factory-batch",
+                "--source-path",
+                "active_learning_1025_preview=/tmp/active.json",
+            ]
+        )
+        self.assertEqual(
+            overridden.source_path,
+            ["active_learning_1025_preview=/tmp/active.json"],
+        )
 
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(

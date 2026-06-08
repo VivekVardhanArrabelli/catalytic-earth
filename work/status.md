@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 375
-- Measured elapsed time: 11417.0 minutes (190.28 hours)
+- Entries: 376
+- Measured elapsed time: 11467.8 minutes (191.13 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,7 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- v3: 2684.1 measured minutes (44.74 hours)
+- v3: 2734.9 measured minutes (45.58 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3909
-- Evidence references logged: 3239
+- Artifact references logged: 3911
+- Evidence references logged: 3244
 
 ## Recent Entries
-
-### 2026-06-05T13:51:57.851542+00:00 - northstar-lever3
-
-- Task: Lever 3 operator route-class deployment readouts
-- Time mode: measured
-- Measured minutes: 49.75
-- Started: 2026-06-05T13:01:51Z
-- Ended: 2026-06-05T13:51:36Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_provenance_readout_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_route_class_provenance_readout_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_current702_20260605.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: route-class readout classified 21 of 21 operator rows as abstain route novel OOS across five confounder classes, route-class reproducibility rebuilt with zero normalized differences and 2 of 2 direct source hashes current, route-class provenance readout covered 7 of 7 class stage-source links in clean lineage and guardrail-clean provenance, route-class provenance reproducibility rebuilt with zero normalized differences and 2 of 2 direct source hashes current, calibration retention stayed 31 of 34 and train cal OOS abstention stayed 167 of 204, retained residual rows after all counteraxes stayed 0, focused tests 13 passed and 45 subtests, affected suite 657 passed and 210 subtests, full pytest 1529 passed and 229 subtests with existing sklearn warning, unittest discovery 1484 passed, validate compileall diff-check JSON parse CLI smoke doc-reference source-hash cross-artifact guardrail audit and disk checks passed
-- Notes: Measured readouts first; no blocker packet produced; fixed threshold 0.44155 unchanged; fixed-threshold scoring closure remains fail-closed pending exact P07658 coordinate provenance.
 
 ### 2026-06-05T14:36:17.881700+00:00 - northstar-lever3
 
@@ -124,6 +113,18 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
 - Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 coordinate candidate or filled provenance found, no provider credentials or local predictor executable route present, JSON parse focused artifact regression validate doc-reference unittest discovery and diff check passed
 - Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
+
+### 2026-06-08T05:12:17.067792+00:00 - v3
+
+- Task: targeted expansion factory batch current702
+- Time mode: measured
+- Measured minutes: 50.833
+- Started: 2026-06-08T04:21:01Z
+- Ended: 2026-06-08T05:11:51Z
+- Artifacts: artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json, work/targeted_expansion_factory_batch_current702_20260608.md
+- Evidence: pytest 1703 passed, unittest 1658 passed, validate 702 labels, docs refs missing 0, row/source hash mismatches 0
+- Commit: `pending_final_wrap_commit`
+- Notes: Integrated over origin/main targeted factory; upgraded batch to 816 non-importing candidates across 8 axes with six architecture-default rows carried over.
 
 ## Expectation Updates
 

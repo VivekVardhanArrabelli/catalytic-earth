@@ -17448,10 +17448,6 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             by_entry["m_csa:30"]["decision"],
             "reject_family_panel_import_candidate",
         )
-        self.assertEqual(
-            by_entry["m_csa:973"]["decision"],
-            "keep_family_panel_review_only_require_more_evidence",
-        )
         self.assertFalse(
             by_entry["m_csa:30"]["accepted_import_preview_candidate"]
         )

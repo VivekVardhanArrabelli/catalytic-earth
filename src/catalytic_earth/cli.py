@@ -29,7 +29,10 @@ from .artifact_storage import (
 from .active_site_encoder_cache import write_active_site_encoder_cache
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .bin_targeted_expansion import write_bin_targeted_expansion_plan
-from .targeted_expansion_factory import write_targeted_expansion_factory_batch
+from .targeted_expansion_factory import (
+    DEFAULT_SOURCE_PATHS as TARGETED_EXPANSION_SOURCE_PATHS,
+    write_targeted_expansion_factory_batch,
+)
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .predicted_geometry_recovery import (
@@ -2722,22 +2725,30 @@ def cmd_build_bin_targeted_expansion_plan(args: argparse.Namespace) -> int:
 
 
 def cmd_build_targeted_expansion_factory_batch(args: argparse.Namespace) -> int:
-    batch = write_targeted_expansion_factory_batch(
-        label_expansion_candidates_path=Path(args.label_expansion_candidates),
-        external_candidate_freeze_path=Path(args.external_candidate_freeze),
-        sequence_cluster_proxy_path=Path(args.sequence_cluster_proxy),
+    source_paths = {
+        name: Path(path) for name, path in TARGETED_EXPANSION_SOURCE_PATHS.items()
+    }
+    for override in args.source_path or []:
+        key, separator, value = override.partition("=")
+        if not separator or not key or not value:
+            raise SystemExit("--source-path must be formatted as KEY=PATH")
+        if key not in source_paths:
+            allowed = ", ".join(sorted(source_paths))
+            raise SystemExit(
+                f"unknown targeted expansion source key {key!r}; allowed: {allowed}"
+            )
+        source_paths[key] = Path(value)
+    artifact = write_targeted_expansion_factory_batch(
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
-        artifact_id=args.artifact_id,
+        source_paths=source_paths,
         created_utc=args.created_utc,
         min_target_candidates=args.min_target_candidates,
-        max_target_candidates=args.max_target_candidates,
+        max_candidates=args.max_candidates,
     )
-    counts = batch.get("counts", {})
     print(
         "Wrote targeted expansion factory batch to "
-        f"{args.out} (rows: {counts.get('candidate_rows_evaluated')}, "
-        f"states: {counts.get('admission_state_counts')})"
+        f"{args.out} ({artifact['candidate_count']} candidates)"
     )
     return 0
 
@@ -21981,57 +21992,36 @@ def build_parser() -> argparse.ArgumentParser:
 
     targeted_expansion_factory = subparsers.add_parser(
         "build-targeted-expansion-factory-batch",
-        help=(
-            "build a row-level targeted expansion factory batch with admission "
-            "states and no imports"
-        ),
+        help="build a non-importing targeted expansion admission batch",
     )
     targeted_expansion_factory.add_argument(
-        "--label-expansion-candidates",
-        default="artifacts/v3_label_expansion_candidates_1025.json",
-    )
-    targeted_expansion_factory.add_argument(
-        "--external-candidate-freeze",
+        "--out",
         default=(
             "artifacts/"
-            "v3_prospective_external_minicampaign_candidate_freeze_20260520.json"
+            "v3_targeted_expansion_factory_batch_current702_20260608.json"
         ),
     )
     targeted_expansion_factory.add_argument(
-        "--sequence-cluster-proxy",
-        default="artifacts/v3_sequence_cluster_proxy_1025.json",
+        "--report",
+        default="work/targeted_expansion_factory_batch_current702_20260608.md",
     )
-    targeted_expansion_factory.add_argument(
-        "--artifact-id",
-        default="v3_targeted_expansion_factory_batch_current702_20260608",
-    )
-    targeted_expansion_factory.add_argument(
-        "--created-utc",
-        default=None,
-        help="optional fixed UTC timestamp for reproducible artifact metadata",
-    )
+    targeted_expansion_factory.add_argument("--created-utc")
     targeted_expansion_factory.add_argument(
         "--min-target-candidates",
         type=int,
         default=500,
     )
     targeted_expansion_factory.add_argument(
-        "--max-target-candidates",
+        "--max-candidates",
         type=int,
         default=1000,
     )
     targeted_expansion_factory.add_argument(
-        "--out",
-        default=(
-            "artifacts/v3_targeted_expansion_factory_batch_current702_"
-            "20260608.json"
-        ),
-    )
-    targeted_expansion_factory.add_argument(
-        "--report",
-        default=(
-            "work/targeted_expansion_factory_batch_current702_20260608.md"
-        ),
+        "--source-path",
+        action="append",
+        default=[],
+        metavar="KEY=PATH",
+        help="override one targeted expansion source artifact path",
     )
     targeted_expansion_factory.set_defaults(
         func=cmd_build_targeted_expansion_factory_batch

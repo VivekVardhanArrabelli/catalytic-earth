@@ -3,21 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-family-label-admission-pipeline`
-- STARTED_AT_UTC: `2026-06-07T23:48:12Z`
-- STARTED_AT_LOCAL: `2026-06-07T18:48:12-0500 CDT`
-- ENDED_AT_UTC: `2026-06-07T23:53:19Z`
-- ENDED_AT_LOCAL: `2026-06-07T18:53:19-0500 CDT`
-- ELAPSED_MINUTES: `5.117`
-- Status: Family label admission pipeline advanced on branch
-  `family-label-admission-pipeline-6cea-20260607`. This run started from
-  current `origin/main`, replayed the latest unmerged family-admission pipeline
-  line, restored disk above the 10 GiB guardrail, added a standalone
-  fail-closed expert decision review-file template for the six
-  `blocked_family_decision` rows, regenerated JSON/report outputs with this
-  run timestamp, and verified 22/22 rows have exactly one state. It made no
-  label, registry, ontology, import, threshold, production scoring, split,
-  heldout-evaluation, model-weight, LOMO, spent-cofactor, provider,
-  coordinate, or source-free locator fabrication changes.
+- STARTED_AT_UTC: `2026-06-08T04:21:01Z`
+- STARTED_AT_LOCAL: `Sun Jun  7 23:21:01 CDT 2026`
+- ENDED_AT_UTC: `2026-06-08T05:11:51Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 00:11:51 CDT 2026`
+- ELAPSED_MINUTES: `50.833`
+- Status: Targeted expansion factory output complete; final commit/push/sync
+  and lock release are performed after this handoff update is staged.
+  Canonical automation lock acquired at
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth2/catalytic-earth-automation.lock`;
+  start timestamps were also written to and verified in
+  `/tmp/catalytic_earth_targeted_expansion_started_at.txt`.
 
 ## Mission
 
@@ -68,6 +64,108 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 Targeted Expansion Factory Batch
+
+Automation run: `catalytic-earth-family-label-admission-pipeline`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-08T04:21:01Z`
+- STARTED_AT_LOCAL: `Sun Jun  7 23:21:01 CDT 2026`
+- ENDED_AT_UTC: `2026-06-08T05:11:51Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 00:11:51 CDT 2026`
+- ELAPSED_MINUTES: `50.833`
+- Lock: canonical linked-worktree lock directory
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth2/catalytic-earth-automation.lock`
+  with `started_at_utc=2026-06-08T04:21:01Z`.
+
+#### Scope
+
+- Continued from current `origin/main`; `origin/main` already contained an
+  earlier 703-row targeted-expansion factory commit, so this run was integrated
+  as an update on branch `targeted-expansion-factory-ce44-20260608`.
+- Built a reusable, non-importing targeted expansion factory around source
+  hashes, row-context hashes, exact-one-state admission routing, architecture
+  default carryover, and action queues.
+- No label registry, ontology, import, split, model weight, production
+  threshold, or heldout-training/tuning surface was changed.
+
+#### Outputs
+
+- JSON artifact:
+  `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`.
+- Markdown report:
+  `work/targeted_expansion_factory_batch_current702_20260608.md`.
+- Code and tests:
+  `src/catalytic_earth/targeted_expansion_factory.py`,
+  `src/catalytic_earth/cli.py`, `tests/test_targeted_expansion_factory.py`,
+  `tests/test_cli.py`, and the stale family-panel regression expectation in
+  `tests/test_geometry_artifact_regression.py`.
+- Durable docs updated because the stable project state/artifact surface
+  changed: `docs/project_state.md` and `docs/artifact_index.md`.
+- Progress/status refreshed:
+  `work/progress_log.jsonl`, `work/status.md`, and
+  `work/current_docs_artifact_reference_check_current702_20260601.md`.
+
+#### Batch result
+
+- Candidate rows: 816 across 8 family axes.
+- Admission counts:
+  `countable_candidate=0`, `review_only_evidence=391`,
+  `reject/OOS_preserve_signal=205`, `blocked_locator=90`,
+  `blocked_coordinate=44`, `blocked_family_decision=0`,
+  `acquisition_needed=86`.
+- The six architecture-default family-admission rows are included without
+  re-asking for review:
+  `m_csa:10`, `m_csa:30`, `m_csa:31`, and `m_csa:191` route to
+  `reject/OOS_preserve_signal`; `m_csa:448` and `m_csa:973` route to
+  `review_only_evidence`.
+- Acquisition plan: 16 acquisition-needed rows have explicit required screen
+  lists; 70 acquisition rows still need explicit screen lists or source
+  evidence; 134 rows are blocked on locator/coordinate repair.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest -q`: 1703 passed, 1 sklearn warning,
+  244 subtests passed.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1658 passed.
+- Focused smoke:
+  `PYTHONPATH=src python -m pytest tests/test_targeted_expansion_factory.py tests/test_cli.py::CliTests::test_targeted_expansion_factory_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_family_panel_expert_import_decision_application_current_counts -q`:
+  6 passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 curated labels.
+- `python -m json.tool artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`,
+  `python -m compileall -q src`, and `git diff --check`: passed.
+- Current-docs reference check:
+  881 references checked, 14 ignored templates/globs, 0 missing.
+- Independent artifact integrity check:
+  816 candidate rows, 0 row-context-hash mismatches, 0 source-hash mismatches,
+  0 countable candidates.
+- Artifact admission guard remains blocked by 10 pre-existing large
+  unclassified artifacts; the new 3.1 MiB targeted-expansion artifact is below
+  the 5 MiB large-file threshold and is not a blocker.
+- Disk at wrap: 16 GiB free, above the 10 GiB guardrail.
+
+#### Commit, sync, and lock
+
+- Integrated work commit before final wrap edits: `b3a22ab1`.
+- Final commit hash, push/sync status, and lock-release status are finalized
+  immediately after this handoff is staged; verify with
+  `git rev-parse HEAD`, `git rev-parse origin/main`, and lock directory
+  absence.
+
+#### Exact next action
+
+Run the six required screens for the 16 screen-ready `acquisition_needed` rows
+listed in
+`work/targeted_expansion_factory_batch_current702_20260608.md`: current
+reference sequence search, current countable Foldseek structural screen,
+external all-vs-all structural cluster assignment, UniRef-wide duplicate
+screening, full label-factory gate, and terminal review decision. Then fill
+screen lists/source evidence for the other 70 acquisition rows and repair the
+134 locator/coordinate blockers. Do not import or promote any row until a
+separate human countable-promotion review and label-factory gate pass.
 
 ### 2026-06-07 Family Label Admission Pipeline Run 5
 

@@ -10,49 +10,59 @@ from typing import Any
 
 ARTIFACT_ID = "v3_targeted_expansion_factory_batch_current702_20260608"
 SCHEMA_VERSION = "v3.targeted_expansion_factory_batch"
-PRIOR_ARCHITECTURE_DEFAULT_ENTRY_IDS = (
-    "m_csa:10",
-    "m_csa:30",
-    "m_csa:31",
-    "m_csa:191",
-    "m_csa:448",
-    "m_csa:973",
-)
+
+DEFAULT_SOURCE_PATHS = {
+    "active_learning_1025_preview": (
+        "artifacts/v3_active_learning_review_queue_1025_preview_batch.json"
+    ),
+    "external_panel_router_queue": (
+        "artifacts/v3_external_panel_router_queue_20260528.json"
+    ),
+    "external_hard_negative_next_sourcing": (
+        "artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json"
+    ),
+    "external_hard_negative_new_sourcing": (
+        "artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json"
+    ),
+    "label_expansion_candidates_1025": (
+        "artifacts/v3_label_expansion_candidates_1025.json"
+    ),
+    "local_evidence_gap_audit_1025": (
+        "artifacts/v3_expert_label_decision_local_evidence_gap_audit_1025.json"
+    ),
+    "coordinate_readiness_1000": (
+        "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json"
+    ),
+    "architecture_default_decisions": (
+        "artifacts/"
+        "v3_family_label_admission_architecture_default_decisions_current702_20260608.json"
+    ),
+}
 
 ADMISSION_STATES = (
     "countable_candidate",
     "review_only_evidence",
-    "reject_preserve_signal",
-    "oos_hard_negative",
+    "reject/OOS_preserve_signal",
     "blocked_locator",
     "blocked_coordinate",
     "blocked_family_decision",
     "acquisition_needed",
 )
 
-MCSA_AXIS_BY_TOP1 = {
-    "metal_dependent_hydrolase": "metal_hydrolase_subclass_expansion",
-    "heme_peroxidase_oxidase": "underrepresented_redox_oxygen_transfer",
-    "ser_his_acid_hydrolase": "serine_or_cysteine_hydrolase_boundary_controls",
-    "flavin_dehydrogenase_reductase": "underrepresented_redox_oxygen_transfer",
-    "flavin_monooxygenase": "flavin_oxygen_transfer_boundary",
-    "plp_dependent_enzyme": "plp_subclass_expansion",
-    "radical_sam_enzyme": "radical_cobalamin_sam_like_probes",
+CANDIDATE_SOURCE_NAMES = {
+    "active_learning_1025_preview",
+    "external_panel_router_queue",
+    "external_hard_negative_next_sourcing",
+    "external_hard_negative_new_sourcing",
 }
 
-EXTERNAL_LANE_AXIS = {
-    "external_source:oxidoreductase_long_tail": (
-        "underrepresented_redox_oxygen_transfer"
-    ),
-    "external_source:transferase_phosphoryl": (
-        "phosphoryl_transfer_boundary_review_only"
-    ),
-    "external_source:transferase_methyl": "sam_methyltransferase_transfer_axis",
-    "external_source:glycan_chemistry": (
-        "glycoside_nucleoside_hydrolase_glycan_transfer"
-    ),
-    "external_source:isomerase": "near_orphan_isomerase_controls",
-    "external_source:lyase": "plp_schiff_base_or_nucleoside_lyase_controls",
+ARCHITECTURE_DEFAULT_ENTRY_IDS = {
+    "m_csa:10": "reject_family_panel_import_candidate",
+    "m_csa:30": "reject_family_panel_import_candidate",
+    "m_csa:31": "reject_family_panel_import_candidate",
+    "m_csa:191": "reject_family_panel_import_candidate",
+    "m_csa:448": "keep_family_panel_review_only_require_more_evidence",
+    "m_csa:973": "keep_family_panel_review_only_require_more_evidence",
 }
 
 
@@ -87,412 +97,756 @@ def _canonical_sha256(payload: Any) -> str:
     ).hexdigest()
 
 
-def _read_json_object(path: Path) -> dict[str, Any]:
-    payload = json.loads(path.read_text(encoding="utf-8"))
+def _read_json(path: Path) -> Any:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _rows_from_payload(payload: Any) -> list[dict[str, Any]]:
+    if isinstance(payload, list):
+        return [row for row in payload if isinstance(row, dict)]
     if not isinstance(payload, dict):
-        raise ValueError(f"expected JSON object at {path}")
-    return payload
-
-
-def _entry_sort_key(value: str) -> tuple[int, str, str]:
-    prefix, _, suffix = value.partition(":")
-    if suffix.isdigit():
-        return (0, prefix, f"{int(suffix):09d}")
-    return (1, prefix, suffix or value)
-
-
-def _rows(payload: dict[str, Any], key: str = "rows") -> list[dict[str, Any]]:
-    return [row for row in payload.get(key, []) if isinstance(row, dict)]
-
-
-def _sequence_index(sequence_cluster_proxy: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    return {
-        str(row.get("entry_id")): row
-        for row in _rows(sequence_cluster_proxy)
-        if row.get("entry_id") is not None
-    }
-
-
-def _clean_list(value: Any) -> list[Any]:
-    if not isinstance(value, list):
         return []
-    return [item for item in value if item not in (None, "")]
+    for key in (
+        "rows",
+        "queue_rows",
+        "candidate_rows",
+        "review_items",
+        "expert_import_decisions",
+    ):
+        rows = payload.get(key)
+        if isinstance(rows, list):
+            return [row for row in rows if isinstance(row, dict)]
+    return []
 
 
-def _source_free_policy() -> dict[str, bool]:
-    return {
-        "mechanism_text_used_for_scoring_or_routing": False,
-        "ec_or_rhea_ids_used_for_scoring_or_routing": False,
-        "entry_name_or_protein_name_used_for_scoring_or_routing": False,
-        "source_ids_used_for_scoring": False,
-    }
+def _row_id(row: dict[str, Any]) -> str | None:
+    for key in ("entry_id", "candidate_id"):
+        value = row.get(key)
+        if value:
+            return str(value)
+    accession = row.get("accession")
+    if accession:
+        return f"uniprot:{accession}"
+    return None
 
 
-def _mcsa_family_axis(row: dict[str, Any]) -> str:
-    status = str(row.get("status") or "")
-    top1 = str(row.get("top1_fingerprint_id") or "")
-    cofactor_families = {str(value) for value in _clean_list(row.get("cofactor_families"))}
-    cofactor_level = str(row.get("cofactor_evidence_level") or "")
-    top1_score = _float_or_none(row.get("top1_score"))
-    if status in {"no_structure_positions", "insufficient_resolved_residues"}:
-        return "no_reliable_structure_or_locator_gap"
-    if top1 == "radical_sam_enzyme" or "cobalamin" in cofactor_families:
+def _as_list(value: Any) -> list[Any]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value
+    return [value]
+
+
+def _string_tokens(record: dict[str, Any]) -> str:
+    pieces: list[str] = []
+    for source in record["source_rows"].values():
+        for row in source:
+            for key in (
+                "source_panels",
+                "proposed_routes_or_strata",
+                "panel_roles",
+                "hard_negative_roles",
+                "top1_fingerprint_id",
+                "top1_ontology_family",
+                "cofactor_families",
+                "cofactor_evidence_level",
+                "atp_phosphoryl_transfer_family_id",
+                "lane_id",
+                "panel_id",
+                "readiness_blockers",
+            ):
+                for value in _as_list(row.get(key)):
+                    pieces.append(str(value))
+    return " ".join(pieces).lower()
+
+
+def _has_any(text: str, *needles: str) -> bool:
+    return any(needle in text for needle in needles)
+
+
+def _family_axis(record: dict[str, Any]) -> str:
+    text = _string_tokens(record)
+    if _has_any(text, "radical", "sam", "cobalamin", "fe_s", "fe-s"):
         return "radical_cobalamin_sam_like_probes"
-    if top1 == "flavin_monooxygenase":
-        return "flavin_oxygen_transfer_boundary"
-    if "metal_ion" in cofactor_families and top1 == "metal_dependent_hydrolase":
-        return "metal_hydrolase_subclass_expansion"
-    if cofactor_level == "absent" and top1_score is not None and top1_score < 0.4:
-        return "near_orphan_low_geometry_support"
-    return MCSA_AXIS_BY_TOP1.get(top1, "near_orphan_low_geometry_support")
+    if _has_any(text, "glycoside", "glycan", "carbohydrate", "nucleoside"):
+        return "glycoside_or_nucleoside_hydrolase_controls"
+    if _has_any(text, "plp", "aminotransferase", "schiff"):
+        return "plp_child_subclasses"
+    if _has_any(
+        text,
+        "flavin",
+        "heme",
+        "oxidoreductase",
+        "oxygenase",
+        "peroxidase",
+        "monooxygenase",
+        "redox",
+        "lipoamide",
+        "sulfur",
+        "thiol",
+        "disulfide",
+    ):
+        return "redox_oxygen_transfer_and_sulfur_lipoamide"
+    if _has_any(
+        text,
+        "metal_dependent_hydrolase",
+        "metal_hydrolase",
+        "metallo",
+        "phosphatase",
+        "nuclease",
+        "hydrolase",
+        "zinc",
+    ):
+        return "metal_hydrolase_subclasses"
+    if _has_any(text, "ser_his", "serine_hydrolase"):
+        return "serine_hydrolase_boundary"
+    if _has_any(text, "atp", "kinase", "phosphoryl", "transferase_phosphoryl"):
+        return "phosphoryl_transfer_boundary"
+    if _coordinate_blocked(record) or _locator_blocked(record):
+        return "no_reliable_structure_or_locator_gap"
+    return "near_orphan_or_unrepresented_mechanism_tail"
 
 
-def _mcsa_admission(row: dict[str, Any]) -> tuple[str, str, str, str]:
-    status = str(row.get("status") or "")
-    blockers = [str(value) for value in _clean_list(row.get("readiness_blockers"))]
-    readiness_score = _int_or_none(row.get("readiness_score"))
-    if status == "no_structure_positions":
+def _first_value(record: dict[str, Any], *keys: str) -> Any:
+    for source in record["source_rows"].values():
+        for row in source:
+            for key in keys:
+                value = row.get(key)
+                if value not in (None, "", []):
+                    return value
+    return None
+
+
+def _all_values(record: dict[str, Any], key: str) -> list[Any]:
+    values: list[Any] = []
+    for source in record["source_rows"].values():
+        for row in source:
+            values.extend(_as_list(row.get(key)))
+    return values
+
+
+def _architecture_default_state(entry_id: str) -> str | None:
+    decision = ARCHITECTURE_DEFAULT_ENTRY_IDS.get(entry_id)
+    if decision == "reject_family_panel_import_candidate":
+        return "reject/OOS_preserve_signal"
+    if decision == "keep_family_panel_review_only_require_more_evidence":
+        return "review_only_evidence"
+    return None
+
+
+def _locator_blocked(record: dict[str, Any]) -> bool:
+    blockers = {str(value) for value in _all_values(record, "readiness_blockers")}
+    if "fewer_than_three_resolved_residues" in blockers:
+        return True
+    local_gap_classes = {
+        str(value)
+        for value in _all_values(record, "local_evidence_gap_classes")
+    }
+    if any("active_site_mapping" in value for value in local_gap_classes):
+        return True
+    statuses = {str(value) for value in _all_values(record, "active_site_evidence_status")}
+    if "binding_or_reaction_context_only" in statuses:
+        return True
+    return False
+
+
+def _coordinate_blocked(record: dict[str, Any]) -> bool:
+    blockers = {str(value) for value in _all_values(record, "readiness_blockers")}
+    if "geometry_status_not_ok" in blockers:
+        return True
+    coordinate_status = str(_first_value(record, "coordinate_status") or "")
+    if "missing" in coordinate_status or "blocked" in coordinate_status:
+        return True
+    sourcing_statuses = {str(value) for value in _all_values(record, "sourcing_status")}
+    if "blocked_source_sourcing_criteria" in sourcing_statuses:
+        return True
+    return False
+
+
+def _needs_acquisition(record: dict[str, Any]) -> bool:
+    statuses = {str(value) for value in _all_values(record, "sourcing_status")}
+    if statuses & {
+        "blocked_active_site_source_missing",
+        "blocked_uncovered_mechanism_lane",
+        "excluded_current_external_pool",
+        "excluded_prior_new_candidate_pool",
+        "sourced_pending_sequence_structure_distance_screens",
+    }:
+        return True
+    active_site_statuses = {
+        str(value) for value in _all_values(record, "active_site_evidence_status")
+    }
+    if active_site_statuses & {"not_sampled_metadata_blocked", "not_sampled_cap_reached"}:
+        return True
+    return False
+
+
+def _oos_or_reject_signal(record: dict[str, Any]) -> bool:
+    label_values = {
+        str(value)
+        for value in (
+            _all_values(record, "current_label_type")
+            + _all_values(record, "target_label_type")
+            + _all_values(record, "label_type")
+        )
+    }
+    if "out_of_scope" in label_values:
+        return True
+    text = _string_tokens(record)
+    if _has_any(text, "hard_negative", "oos_control", "out_of_scope_control"):
+        return True
+    recommended = {str(value) for value in _all_values(record, "recommended_action")}
+    if "hold_bronze_boundary_review" in recommended:
+        return True
+    return False
+
+
+def _countable_signal(record: dict[str, Any]) -> bool:
+    # Countable promotion still requires an explicit label-factory gate. This
+    # factory only preserves rows that already carry a positive gate signal.
+    for source in record["source_rows"].values():
+        for row in source:
+            if row.get("countable_label_candidate") is True and (
+                row.get("ready_for_label_import") is True
+                or row.get("import_ready_candidate") is True
+            ):
+                return True
+    return False
+
+
+def _admission_state(record: dict[str, Any]) -> tuple[str, str, str]:
+    entry_id = str(record["candidate_id"])
+    architecture_state = _architecture_default_state(entry_id)
+    if architecture_state is not None:
+        return (
+            architecture_state,
+            "architecture_default_non_counting_disposition_reused",
+            (
+                "preserve the existing architecture-default disposition; do not "
+                "ask for another family-admission decision"
+            ),
+        )
+    if _countable_signal(record):
+        return (
+            "countable_candidate",
+            "explicit_countable_and_import_ready_source_signal",
+            "run separate human promotion review and label-factory gates before import",
+        )
+    if _coordinate_blocked(record):
         return (
             "blocked_coordinate",
-            "m_csa_coordinate_positions_missing",
-            "materialize or approve a coordinate source before locator scoring",
-            "tier_3_blocked_coordinate",
+            "coordinate_or_geometry_status_blocked",
+            "materialize or approve a valid coordinate source before scoring",
         )
-    if (
-        status == "insufficient_resolved_residues"
-        or "resolved_at_least_three_residues" in blockers
-    ):
+    if _locator_blocked(record):
         return (
             "blocked_locator",
-            "m_csa_active_site_locator_incomplete",
-            "repair source-free residue locator mapping before family admission",
-            "tier_3_blocked_locator",
+            "source_free_locator_or_active_site_mapping_blocked",
+            "repair source-free residue mapping or active-site locator evidence",
         )
-    if readiness_score is not None and readiness_score >= 5:
+    if _needs_acquisition(record):
         return (
-            "review_only_evidence",
-            "local_geometry_candidate_ready_for_admission_review",
-            "run family-specific source/duplicate/import-preview gates before any countable use",
-            "tier_2_geometry_ready_review",
+            "acquisition_needed",
+            "external_source_or_distance_screen_acquisition_needed",
+            "run the named source, sequence, structure, and duplicate screens",
+        )
+    if _oos_or_reject_signal(record):
+        return (
+            "reject/OOS_preserve_signal",
+            "hard_negative_or_out_of_scope_signal_preserved",
+            "preserve as non-counting OOS or hard-negative evidence",
         )
     return (
         "review_only_evidence",
-        "local_geometry_candidate_low_support_review_only",
-        "preserve as non-counting evidence until a sharper family gate is available",
-        "tier_3_review_only_low_support",
+        "evidence_present_without_countable_promotion_authority",
+        "preserve as review-only family evidence until explicit promotion gates pass",
     )
 
 
-def _float_or_none(value: Any) -> float | None:
-    if isinstance(value, bool):
-        return None
-    if isinstance(value, int | float):
-        return float(value)
-    if isinstance(value, str):
-        try:
-            return float(value)
-        except ValueError:
-            return None
-    return None
-
-
-def _int_or_none(value: Any) -> int | None:
-    if isinstance(value, bool):
-        return None
-    if isinstance(value, int):
-        return value
-    if isinstance(value, float) and value.is_integer():
-        return int(value)
-    return None
-
-
-def _coordinate_status_from_pdb(pdb_id: Any) -> str:
-    return "experimental_pdb_selected" if pdb_id else "coordinate_missing"
-
-
-def _mcsa_candidate_row(
-    row: dict[str, Any],
-    *,
-    sequence_row: dict[str, Any] | None,
-    source_records: dict[str, dict[str, Any]],
-) -> dict[str, Any]:
-    admission_state, state_basis, next_action, tier = _mcsa_admission(row)
-    entry_id = str(row.get("entry_id") or "")
-    accessions = (
-        _clean_list(sequence_row.get("reference_uniprot_ids"))
-        if sequence_row
-        else []
-    )
-    top1_score = _float_or_none(row.get("top1_score"))
-    cofactor_families = [str(value) for value in _clean_list(row.get("cofactor_families"))]
-    source_hashes = {
-        "label_expansion_candidates": source_records["label_expansion_candidates"][
-            "sha256"
-        ]
-    }
-    if "sequence_cluster_proxy" in source_records:
-        source_hashes["sequence_cluster_proxy"] = source_records[
-            "sequence_cluster_proxy"
-        ]["sha256"]
-    return {
-        "candidate_id": entry_id,
-        "entry_id": entry_id,
-        "source_namespace": "m_csa",
-        "accession": str(accessions[0]) if accessions else None,
-        "source_accessions": accessions,
-        "family_axis": _mcsa_family_axis(row),
-        "family_axis_basis": (
-            "assigned from source-free geometry top1, cofactor availability, and "
-            "coordinate/locator status; mechanism text is retained only by source hash"
-        ),
-        "proposed_label_tier": tier,
-        "provenance_tier": "local_m_csa_geometry_retrieval",
-        "admission_state": admission_state,
-        "state_basis": state_basis,
-        "allowed_next_action": next_action,
-        "countable_label_candidate": False,
-        "ready_for_label_import": False,
-        "human_review_required_for_countable_promotion": True,
-        "coordinate_availability": {
-            "status": _coordinate_status_from_pdb(row.get("pdb_id")),
-            "pdb_id": row.get("pdb_id"),
-            "predicted_coordinate_available": None,
-            "coordinate_provenance": "M-CSA selected experimental PDB when present",
-        },
-        "active_site_locator_evidence": {
-            "status": row.get("status"),
-            "resolved_residue_count": row.get("resolved_residue_count"),
-            "has_pairwise_geometry": bool(row.get("has_pairwise_geometry")),
-            "has_pocket_context": bool(row.get("has_pocket_context")),
-            "readiness_checks": row.get("readiness_checks") or {},
-            "readiness_blockers": row.get("readiness_blockers") or [],
-        },
-        "cofactor_metal_evidence": {
-            "cofactor_evidence_level": row.get("cofactor_evidence_level"),
-            "cofactor_families": cofactor_families,
-        },
-        "fold_tm_near_neighbor_signal": {
-            "geometry_top1_fingerprint_id": row.get("top1_fingerprint_id"),
-            "geometry_top1_score": top1_score,
-            "sequence_cluster_id": (
-                sequence_row.get("sequence_cluster_id") if sequence_row else None
-            ),
-            "fold_tm_status": "not_attached_in_this_factory_batch",
-        },
-        "geometry_reconstruction_status": {
-            "status": row.get("status"),
-            "readiness_score": row.get("readiness_score"),
-            "mechanistic_coherence_score": row.get("mechanistic_coherence_score"),
-        },
-        "flags": {
-            "oos_or_novelty": True,
-            "novelty_signal": "not_in_current_label_registry_candidate_artifact",
-            "cofactor_confounded": bool(cofactor_families),
-            "no_reliable_structure": row.get("status") != "ok",
-            "prior_architecture_default_row": entry_id
-            in PRIOR_ARCHITECTURE_DEFAULT_ENTRY_IDS,
-        },
-        "review_context": {
-            "entry_name": row.get("entry_name"),
-            "mechanism_text_count": row.get("mechanism_text_count"),
-        },
-        "rationale": (
-            "Local M-CSA expansion candidate with geometry/cofactor/locator "
-            "evidence preserved for admission routing; no import or countable "
-            "promotion is implied."
-        ),
-        "predictive_feature_policy": _source_free_policy(),
-        "source_hashes": source_hashes,
-        "source_row_sha256": _canonical_sha256(row),
-    }
-
-
-def _external_family_axis(row: dict[str, Any]) -> str:
-    lane_id = str(row.get("lane_id") or "")
-    return EXTERNAL_LANE_AXIS.get(lane_id, "external_source_family_decision_needed")
-
-
-def _external_admission(row: dict[str, Any]) -> tuple[str, str, str, str]:
-    blockers = [str(value) for value in _clean_list(row.get("source_evidence_blockers"))]
-    sourcing_status = str(row.get("sourcing_status") or "")
-    active_site_status = str(row.get("active_site_evidence_status") or "")
-    new_to_pool = row.get("new_to_current_external_pool")
-    if new_to_pool is False or any("accession_already" in item for item in blockers):
-        return (
-            "reject_preserve_signal",
-            "external_duplicate_or_prior_pool_signal",
-            "preserve duplicate/prior-pool signal and do not import",
-            "tier_4_reject_preserve_signal",
-        )
-    if any("terminal_duplicate_rejection" in item for item in blockers):
-        return (
-            "reject_preserve_signal",
-            "prior_terminal_duplicate_rejection",
-            "preserve prior terminal duplicate decision and do not import",
-            "tier_4_reject_preserve_signal",
-        )
-    if (
-        sourcing_status == "blocked_uncovered_mechanism_lane"
-        or any("mechanism_lane_not_covered" in item for item in blockers)
+def _provenance_tier(record: dict[str, Any]) -> str:
+    tiers = [str(value) for value in _all_values(record, "provenance_tiers")]
+    if tiers:
+        return ";".join(sorted(set(tiers)))
+    if "external_hard_negative_next_sourcing" in record["source_rows"] or (
+        "external_hard_negative_new_sourcing" in record["source_rows"]
     ):
-        return (
-            "blocked_family_decision",
-            "external_lane_not_covered_by_current_family_policy",
-            "decide whether this source lane belongs in the next targeted axis before scoring",
-            "tier_3_blocked_family_decision",
-        )
-    if any("structure_reference_missing" in item for item in blockers):
-        return (
-            "blocked_coordinate",
-            "external_coordinate_reference_missing",
-            "acquire AlphaFold/PDB coordinate reference before source-free scoring",
-            "tier_3_blocked_coordinate",
-        )
-    if sourcing_status == "sourced_pending_sequence_structure_distance_screens":
-        return (
-            "review_only_evidence",
-            "external_source_evidence_ready_pending_distance_screens",
-            "run duplicate, structural, UniRef, review, and label-factory gates before import",
-            "tier_2_external_review_evidence",
-        )
-    if active_site_status in {
-        "binding_or_reaction_context_only",
-        "not_sampled_cap_reached",
-        "not_sampled_metadata_blocked",
-    }:
-        return (
-            "acquisition_needed",
-            f"external_active_site_evidence_{active_site_status}",
-            "collect explicit catalytic residue/locator evidence before admission scoring",
-            "tier_3_acquisition_needed",
-        )
-    return (
-        "acquisition_needed",
-        "external_evidence_sourcing_blocked",
-        "complete source, sequence, structure, and review-gate acquisition steps",
-        "tier_3_acquisition_needed",
-    )
+        return "tier_B_external_sourced_review_only"
+    if record["candidate_id"].startswith("m_csa:"):
+        return "tier_A_local_mcsa_queue"
+    if record["candidate_id"].startswith("uniprot:"):
+        return "tier_B_external_uniprot_queue"
+    return "mixed_local_review_queue"
 
 
-def _external_coordinate_availability(row: dict[str, Any]) -> dict[str, Any]:
-    pdb_ids = [str(value) for value in _clean_list(row.get("pdb_ids"))]
-    alphafold_ids = [str(value) for value in _clean_list(row.get("alphafold_ids"))]
-    if pdb_ids:
-        status = "experimental_pdb_references_present"
-    elif alphafold_ids:
-        status = "predicted_alphafold_reference_present"
-    else:
-        status = "coordinate_reference_missing"
+def _proposed_label_tier(state: str) -> str:
     return {
-        "status": status,
-        "pdb_id_count": len(pdb_ids),
-        "pdb_id_examples": pdb_ids[:5],
-        "alphafold_ids": alphafold_ids[:5],
-        "predicted_coordinate_available": bool(alphafold_ids),
-        "coordinate_provenance": "UniProt cross-reference fields in source freeze",
+        "countable_candidate": "countable_candidate_requires_separate_promotion_review",
+        "review_only_evidence": "review_only_family_evidence",
+        "reject/OOS_preserve_signal": "non_counting_oos_or_hard_negative_signal",
+        "blocked_locator": "evidence_blocked_locator_repair",
+        "blocked_coordinate": "evidence_blocked_coordinate_repair",
+        "blocked_family_decision": "family_decision_blocked_non_counting",
+        "acquisition_needed": "acquisition_needed_before_admission",
+    }[state]
+
+
+def _coordinate_evidence(record: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "coordinate_status": _first_value(
+            record,
+            "coordinate_materialization_status",
+            "coordinate_status",
+            "structure_statuses",
+        ),
+        "coordinate_path": _first_value(record, "coordinate_path"),
+        "selected_structure": _first_value(
+            record,
+            "selected_structure_key",
+            "selected_structure",
+            "pdb_id",
+            "selected_structure_id",
+        ),
+        "pdb_ids": sorted({str(value) for value in _all_values(record, "pdb_ids")}),
+        "alphafold_ids": sorted(
+            {str(value) for value in _all_values(record, "alphafold_ids")}
+        ),
+        "coordinate_provenance_available": bool(
+            _first_value(record, "coordinate_path", "selected_structure_key", "pdb_id")
+            or _all_values(record, "pdb_ids")
+            or _all_values(record, "alphafold_ids")
+        ),
     }
 
 
-def _external_candidate_row(
-    row: dict[str, Any],
-    *,
-    source_records: dict[str, dict[str, Any]],
-) -> dict[str, Any]:
-    admission_state, state_basis, next_action, tier = _external_admission(row)
-    accession = str(row.get("accession") or "")
-    blockers = [str(value) for value in _clean_list(row.get("source_evidence_blockers"))]
-    next_required_screens = [
-        str(value) for value in _clean_list(row.get("next_required_screens"))
-    ]
+def _active_site_evidence(record: dict[str, Any]) -> dict[str, Any]:
     return {
-        "candidate_id": str(row.get("entry_id") or f"uniprot:{accession}"),
-        "entry_id": str(row.get("entry_id") or f"uniprot:{accession}"),
-        "source_namespace": "uniprot_swissprot",
-        "accession": accession,
-        "source_accessions": [accession] if accession else [],
-        "family_axis": _external_family_axis(row),
-        "family_axis_basis": (
-            "assigned from the frozen external sourcing lane for worklist "
-            "organization only; lane/name/EC fields are not scoring features"
+        "active_site_evidence_status": _first_value(
+            record, "active_site_evidence_status", "local_mechanistic_evidence_status"
         ),
-        "proposed_label_tier": tier,
-        "provenance_tier": "external_swissprot_review_only_freeze",
-        "admission_state": admission_state,
-        "state_basis": state_basis,
-        "allowed_next_action": next_action,
-        "countable_label_candidate": False,
-        "ready_for_label_import": False,
-        "human_review_required_for_countable_promotion": True,
-        "coordinate_availability": _external_coordinate_availability(row),
-        "active_site_locator_evidence": {
-            "active_site_evidence_status": row.get("active_site_evidence_status"),
-            "active_site_feature_count": row.get("active_site_feature_count"),
-            "binding_site_feature_count": row.get("binding_site_feature_count"),
-            "catalytic_activity_count": row.get("catalytic_activity_count"),
-            "source_evidence_blockers": blockers,
-        },
-        "cofactor_metal_evidence": {
-            "cofactor_comment_count": row.get("cofactor_comment_count"),
-            "cofactor_evidence_level": (
-                "source_comment_present"
-                if row.get("cofactor_comment_count")
-                else "not_attached_or_absent"
-            ),
-            "cofactor_families": [],
-        },
-        "fold_tm_near_neighbor_signal": {
-            "current_reference_sequence_screen": "not_run_in_freeze",
-            "current_countable_structural_screen": "not_run_in_freeze",
-            "external_structural_cluster_assignment": "not_run_in_freeze",
-            "next_required_screens": next_required_screens,
-        },
-        "geometry_reconstruction_status": {
-            "sourcing_status": row.get("sourcing_status"),
-            "score_status": row.get("score_status"),
-            "import_ready_candidate": row.get("import_ready_candidate"),
-        },
-        "flags": {
-            "oos_or_novelty": True,
-            "novelty_signal": "external_review_only_candidate",
-            "cofactor_confounded": bool(row.get("cofactor_comment_count")),
-            "no_reliable_structure": not (
-                row.get("pdb_ids") or row.get("alphafold_ids")
-            ),
-            "covered_counterevidence_lane": bool(
-                row.get("covered_counterevidence_lane")
-            ),
-            "new_to_current_external_pool": bool(row.get("new_to_current_external_pool")),
-        },
-        "review_context": {
-            "protein_name": row.get("protein_name"),
-            "uniprot_entry_name": row.get("uniprot_entry_name"),
-            "uniprot_review_status": row.get("uniprot_review_status"),
-        },
-        "rationale": (
-            "Frozen external-source candidate with accession, source status, "
-            "coordinate-reference availability, active-site evidence status, and "
-            "required acquisition screens preserved for non-counting admission."
+        "active_site_feature_count": _first_value(record, "active_site_feature_count"),
+        "binding_site_feature_count": _first_value(record, "binding_site_feature_count"),
+        "resolved_residue_count": _first_value(record, "resolved_residue_count"),
+        "readiness_blockers": sorted(
+            {str(value) for value in _all_values(record, "readiness_blockers")}
         ),
-        "predictive_feature_policy": _source_free_policy(),
-        "source_hashes": {
-            "external_candidate_freeze": source_records["external_candidate_freeze"][
+        "local_evidence_gap_classes": sorted(
+            {str(value) for value in _all_values(record, "local_evidence_gap_classes")}
+        ),
+        "repair_bucket": _first_value(record, "repair_bucket"),
+    }
+
+
+def _cofactor_evidence(record: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "cofactor_evidence_level": _first_value(record, "cofactor_evidence_level"),
+        "cofactor_families": sorted(
+            {str(value) for value in _all_values(record, "cofactor_families")}
+        ),
+        "cofactor_or_ligand_states": _all_values(record, "cofactor_or_ligand_states"),
+        "cofactor_comment_count": _first_value(record, "cofactor_comment_count"),
+        "metal_or_cofactor_confounded": _cofactor_confounded(record),
+    }
+
+
+def _cofactor_confounded(record: dict[str, Any]) -> bool:
+    text = _string_tokens(record)
+    if _has_any(text, "cofactor", "flavin", "heme", "metal", "plp", "sam", "nad"):
+        return True
+    return bool(
+        _all_values(record, "cofactor_families")
+        or _all_values(record, "cofactor_or_ligand_states")
+    )
+
+
+def _fold_signal(record: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "top1_fingerprint_id": _first_value(record, "top1_fingerprint_id"),
+        "top1_ontology_family": _first_value(record, "top1_ontology_family"),
+        "top1_score": _first_value(record, "top1_score"),
+        "top2_fingerprint_id": _first_value(record, "top2_fingerprint_id"),
+        "top2_score": _first_value(record, "top2_score"),
+        "tm_score_split_member": _first_value(record, "tm_score_split_member"),
+        "nearest_neighbor_signal_source": (
+            "local_top1_scores_or_coordinate_readiness"
+            if _first_value(record, "top1_score", "tm_score_split_member") is not None
+            else None
+        ),
+    }
+
+
+def _geometry_status(record: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "geometry_status": _first_value(record, "geometry_status", "status"),
+        "has_pairwise_geometry": _first_value(record, "has_pairwise_geometry"),
+        "has_pocket_context": _first_value(record, "has_pocket_context"),
+        "pocket_descriptor_available": _first_value(
+            record, "pocket_descriptor_available"
+        ),
+        "reconstruction_status": _first_value(
+            record,
+            "alternate_structure_scan_outcome",
+            "coordinate_materialization_status",
+            "sourcing_status",
+        ),
+    }
+
+
+def _flags(record: dict[str, Any], family_axis: str) -> dict[str, bool]:
+    text = _string_tokens(record)
+    return {
+        "oos_or_hard_negative_signal": _oos_or_reject_signal(record),
+        "novel_or_near_orphan_signal": family_axis
+        == "near_orphan_or_unrepresented_mechanism_tail",
+        "cofactor_confounded_signal": _cofactor_confounded(record),
+        "source_free_feature_gap": _locator_blocked(record),
+        "coordinate_gap": _coordinate_blocked(record),
+        "external_candidate": str(record["candidate_id"]).startswith("uniprot:"),
+        "heldout_sensitive": "heldout" in text,
+    }
+
+
+def _mechanical_unblock_requirements(
+    record: dict[str, Any],
+    state: str,
+    allowed_next_action: str,
+) -> dict[str, Any]:
+    required_screens = sorted(
+        {str(value) for value in _all_values(record, "next_required_screens")}
+    )
+    source_evidence_blockers = sorted(
+        {str(value) for value in _all_values(record, "source_evidence_blockers")}
+    )
+    readiness_blockers = sorted(
+        {str(value) for value in _all_values(record, "readiness_blockers")}
+    )
+    source_next_actions = sorted(
+        {
+            str(value)
+            for value in (
+                _all_values(record, "next_action")
+                + _all_values(record, "recommended_next_action")
+                + _all_values(record, "recommended_action")
+            )
+            if str(value)
+        }
+    )
+    return {
+        "state": state,
+        "allowed_next_action": allowed_next_action,
+        "next_required_screens": required_screens,
+        "source_evidence_blockers": source_evidence_blockers,
+        "readiness_blockers": readiness_blockers,
+        "source_next_actions": source_next_actions,
+        "machine_actionable_now": state
+        in {"acquisition_needed", "blocked_locator", "blocked_coordinate"},
+    }
+
+
+def _rationale(record: dict[str, Any], family_axis: str, state: str) -> str:
+    source_names = ", ".join(sorted(record["source_rows"]))
+    top1 = _first_value(record, "top1_fingerprint_id")
+    action = _first_value(record, "recommended_action", "next_action")
+    role = _first_value(record, "panel_roles", "target_label_type", "current_label_type")
+    parts = [
+        f"Routed to {family_axis} from {source_names}.",
+        f"Admission state is {state}.",
+    ]
+    if top1:
+        parts.append(f"Nearest/current top1 family signal: {top1}.")
+    if role:
+        parts.append(f"Source review role: {role}.")
+    panel_id = _first_value(record, "panel_id")
+    if panel_id:
+        parts.append(f"Architecture/source panel: {panel_id}.")
+    if action:
+        parts.append(f"Next local-source action: {action}.")
+    return " ".join(parts)
+
+
+def _merge_records(
+    source_payloads: dict[str, Any],
+    source_records: dict[str, dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    records: dict[str, dict[str, Any]] = {}
+    architecture_rows = {
+        str(_row_id(row)): row
+        for row in _rows_from_payload(
+            source_payloads.get("architecture_default_decisions", {})
+        )
+        if _row_id(row)
+    }
+    for source_name, payload in source_payloads.items():
+        if source_name == "architecture_default_decisions":
+            continue
+        if source_name not in CANDIDATE_SOURCE_NAMES:
+            continue
+        for row in _rows_from_payload(payload):
+            candidate_id = _row_id(row)
+            if not candidate_id:
+                continue
+            record = records.setdefault(
+                candidate_id,
+                {
+                    "candidate_id": candidate_id,
+                    "source_rows": defaultdict(list),
+                    "source_hashes": {},
+                },
+            )
+            record["source_rows"][source_name].append(row)
+            record["source_hashes"][source_name] = source_records[source_name][
                 "sha256"
             ]
+    for source_name, payload in source_payloads.items():
+        if source_name in CANDIDATE_SOURCE_NAMES:
+            continue
+        if source_name == "architecture_default_decisions":
+            continue
+        for row in _rows_from_payload(payload):
+            candidate_id = _row_id(row)
+            if not candidate_id or candidate_id not in records:
+                continue
+            record = records[candidate_id]
+            record["source_rows"][source_name].append(row)
+            record["source_hashes"][source_name] = source_records[source_name][
+                "sha256"
+            ]
+    architecture_source = source_records.get("architecture_default_decisions")
+    if architecture_source is not None:
+        for entry_id in ARCHITECTURE_DEFAULT_ENTRY_IDS:
+            architecture_row = architecture_rows.get(entry_id, {})
+            if entry_id not in records and not architecture_row:
+                continue
+            record = records.setdefault(
+                entry_id,
+                {
+                    "candidate_id": entry_id,
+                    "source_rows": defaultdict(list),
+                    "source_hashes": {},
+                },
+            )
+            record["source_rows"][
+                "architecture_default_decisions"
+            ].append(
+                {
+                    "entry_id": entry_id,
+                    "architecture_default": architecture_row.get(
+                        "architecture_default"
+                    ),
+                    "architecture_confidence": architecture_row.get(
+                        "architecture_confidence"
+                    ),
+                    "architecture_policy_name": architecture_row.get(
+                        "architecture_policy_name"
+                    ),
+                    "decision": architecture_row.get("decision"),
+                    "decision_context_sha256": architecture_row.get(
+                        "decision_context_sha256"
+                    ),
+                    "panel_id": architecture_row.get("panel_id"),
+                    "review_status": architecture_row.get("review_status"),
+                    "row_context_sha256": architecture_row.get("row_context_sha256"),
+                }
+            )
+            record["source_hashes"][
+                "architecture_default_decisions"
+            ] = architecture_source["sha256"]
+    return records
+
+
+def build_targeted_expansion_factory_batch(
+    *,
+    source_payloads: dict[str, Any],
+    source_records: dict[str, dict[str, Any]],
+    created_utc: str | None = None,
+    min_target_candidates: int = 500,
+    max_candidates: int = 1000,
+) -> dict[str, Any]:
+    records = _merge_records(source_payloads, source_records)
+    candidate_rows = [
+        _candidate_output_row(record) for record in records.values()
+    ]
+    candidate_rows = sorted(
+        candidate_rows,
+        key=lambda row: (
+            row["family_axis"],
+            row["admission_state"],
+            row["candidate_id"],
+        ),
+    )
+    if len(candidate_rows) > max_candidates:
+        candidate_rows = _round_robin_limit(candidate_rows, max_candidates)
+
+    state_counts = Counter(row["admission_state"] for row in candidate_rows)
+    axis_counts = Counter(row["family_axis"] for row in candidate_rows)
+    tier_counts = Counter(row["proposed_label_tier"] for row in candidate_rows)
+    source_counts: Counter[str] = Counter()
+    for row in candidate_rows:
+        source_counts.update(row["sources"])
+
+    audit = _state_assignment_audit(candidate_rows)
+    target_status = (
+        "target_volume_reached"
+        if len(candidate_rows) >= min_target_candidates
+        else "largest_defensible_local_batch_below_target"
+    )
+    return {
+        "artifact_id": ARTIFACT_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": created_utc or _utc_now_iso(),
+        "status": target_status,
+        "scope": (
+            "first targeted expansion factory batch for diverse atlas growth; "
+            "non-importing admission states only"
+        ),
+        "candidate_count": len(candidate_rows),
+        "target_policy": {
+            "min_target_candidates": min_target_candidates,
+            "max_candidates": max_candidates,
+            "human_review_required_only_for_countable_promotion": True,
+            "default_non_counting_routes_do_not_require_vivek_row_review": True,
+            "architecture_default_rows_reused_not_reasked": sorted(
+                ARCHITECTURE_DEFAULT_ENTRY_IDS
+            ),
         },
-        "source_row_sha256": _canonical_sha256(row),
+        "routing_policy": {
+            "candidate_seed_sources": sorted(CANDIDATE_SOURCE_NAMES),
+            "non_counting_carryover_seed_sources": [
+                "architecture_default_decisions"
+            ],
+            "enrichment_sources": sorted(
+                set(DEFAULT_SOURCE_PATHS)
+                - CANDIDATE_SOURCE_NAMES
+                - {"architecture_default_decisions"}
+            ),
+            "state_priority": [
+                "architecture_default_reuse",
+                "explicit_countable_gate_signal",
+                "blocked_coordinate",
+                "blocked_locator",
+                "acquisition_needed",
+                "reject_or_oos_preserve_signal",
+                "review_only_evidence",
+            ],
+            "forbidden_scoring_features": [
+                "mechanism_text",
+                "EC_or_Rhea_ID",
+                "source_ID",
+                "target_name",
+                "current_label",
+            ],
+            "provenance_only_fields_may_include_for_rationale": [
+                "display_name",
+                "source_review_role",
+                "recommended_next_action",
+                "top1_family_signal",
+                "architecture_panel_id",
+            ],
+            "non_promotion_disposition_fields": [
+                "current_label_type",
+                "target_label_type",
+                "label_type",
+                "recommended_action",
+            ],
+            "routing_is_queue_organization_not_predictive_scoring": True,
+        },
+        "guardrails": {
+            "label_registry_edited": False,
+            "ontology_edited": False,
+            "imports_or_promotions_performed": False,
+            "train_test_splits_changed": False,
+            "model_weights_fit_or_refit": False,
+            "production_thresholds_changed": False,
+            "heldout_mcsa_rows_used_for_training_or_tuning": False,
+            "mechanism_text_or_ids_used_as_scoring_features": False,
+            "source_ids_or_target_names_used_as_scoring_features": False,
+        },
+        "counts": {
+            "admission_state_counts": {
+                state: state_counts.get(state, 0) for state in ADMISSION_STATES
+            },
+            "family_axis_counts": dict(sorted(axis_counts.items())),
+            "proposed_label_tier_counts": dict(sorted(tier_counts.items())),
+            "source_counts": dict(sorted(source_counts.items())),
+        },
+        "evidence_coverage": _evidence_coverage(candidate_rows),
+        "action_queues": _action_queues(candidate_rows),
+        "state_assignment_audit": audit,
+        "validation_checks": _validation_checks(
+            candidate_rows=candidate_rows,
+            source_records=source_records,
+            min_target_candidates=min_target_candidates,
+            max_candidates=max_candidates,
+        ),
+        "family_axes": _family_axis_summary(candidate_rows),
+        "candidate_rows": candidate_rows,
+        "acquisition_plan": _acquisition_plan(candidate_rows, min_target_candidates),
+        "next_batch_recommendation": _next_batch_recommendation(candidate_rows),
+        "source_artifacts": source_records,
     }
 
 
-def _dedupe_candidates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    deduped: dict[tuple[str, str], dict[str, Any]] = {}
+def _candidate_output_row(record: dict[str, Any]) -> dict[str, Any]:
+    candidate_id = str(record["candidate_id"])
+    state, basis, next_action = _admission_state(record)
+    family_axis = _family_axis(record)
+    sources = sorted(record["source_rows"])
+    row = {
+        "candidate_id": candidate_id,
+        "accession_or_source_id": _first_value(record, "accession") or candidate_id,
+        "display_name": _first_value(record, "entry_name", "display_name", "protein_name"),
+        "family_axis": family_axis,
+        "proposed_label_tier": _proposed_label_tier(state),
+        "provenance_tier": _provenance_tier(record),
+        "admission_state": state,
+        "admission_route_basis": basis,
+        "allowed_next_action": next_action,
+        "sources": sources,
+        "source_hashes": dict(sorted(record["source_hashes"].items())),
+        "predicted_coordinate_or_provenance_availability": _coordinate_evidence(
+            record
+        ),
+        "active_site_or_locator_evidence": _active_site_evidence(record),
+        "cofactor_or_metal_evidence": _cofactor_evidence(record),
+        "fold_tm_or_near_neighbor_signal": _fold_signal(record),
+        "geometry_or_reconstruction_status": _geometry_status(record),
+        "flags": _flags(record, family_axis),
+        "mechanical_unblock_requirements": _mechanical_unblock_requirements(
+            record,
+            state,
+            next_action,
+        ),
+        "rationale": _rationale(record, family_axis, state),
+        "row_context_sha256": None,
+    }
+    row["row_context_sha256"] = _canonical_sha256(
+        {key: value for key, value in row.items() if key != "row_context_sha256"}
+    )
+    return row
+
+
+def _round_robin_limit(
+    rows: list[dict[str, Any]],
+    max_candidates: int,
+) -> list[dict[str, Any]]:
+    by_axis: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
-        key = (str(row.get("source_namespace")), str(row.get("candidate_id")))
-        deduped[key] = row
+        by_axis[row["family_axis"]].append(row)
+    selected: list[dict[str, Any]] = []
+    while len(selected) < max_candidates and by_axis:
+        for axis in sorted(list(by_axis)):
+            if by_axis[axis]:
+                selected.append(by_axis[axis].pop(0))
+                if len(selected) >= max_candidates:
+                    break
+            if not by_axis[axis]:
+                del by_axis[axis]
     return sorted(
-        deduped.values(),
+        selected,
         key=lambda row: (
-            str(row.get("source_namespace")),
-            _entry_sort_key(str(row.get("candidate_id"))),
+            row["family_axis"],
+            row["admission_state"],
+            row["candidate_id"],
         ),
     )
 
@@ -502,9 +856,9 @@ def _state_assignment_audit(candidate_rows: list[dict[str, Any]]) -> dict[str, A
     seen: set[str] = set()
     violations: list[dict[str, Any]] = []
     for row in candidate_rows:
+        row_violations: list[str] = []
         candidate_id = str(row.get("candidate_id") or "")
         state = row.get("admission_state")
-        row_violations: list[str] = []
         if not candidate_id:
             row_violations.append("missing_candidate_id")
         elif candidate_id in seen:
@@ -513,10 +867,6 @@ def _state_assignment_audit(candidate_rows: list[dict[str, Any]]) -> dict[str, A
             seen.add(candidate_id)
         if state not in allowed:
             row_violations.append("unknown_or_missing_admission_state")
-        if row.get("countable_label_candidate") is not False:
-            row_violations.append("countable_candidate_flag_not_false")
-        if row.get("ready_for_label_import") is not False:
-            row_violations.append("ready_for_label_import_not_false")
         if row_violations:
             violations.append(
                 {
@@ -534,458 +884,359 @@ def _state_assignment_audit(candidate_rows: list[dict[str, Any]]) -> dict[str, A
     }
 
 
-def _factory_guardrail_audit(
-    candidate_rows: list[dict[str, Any]],
-    *,
-    min_target_candidates: int,
-    max_target_candidates: int,
-) -> dict[str, Any]:
-    candidate_ids = {str(row.get("candidate_id")) for row in candidate_rows}
-    accession_gaps = [
-        row.get("candidate_id")
-        for row in candidate_rows
-        if not row.get("accession") and not row.get("source_accessions")
-    ]
-    source_hash_gaps = [
-        row.get("candidate_id") for row in candidate_rows if not row.get("source_hashes")
-    ]
-    family_axis_gaps = [
-        row.get("candidate_id") for row in candidate_rows if not row.get("family_axis")
-    ]
-    policy_violations = []
+def _family_axis_summary(candidate_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows_by_axis: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in candidate_rows:
-        policy = row.get("predictive_feature_policy") or {}
-        if any(policy.get(key) for key in _source_free_policy()):
-            policy_violations.append(row.get("candidate_id"))
-    prior_rows_present = sorted(
-        set(PRIOR_ARCHITECTURE_DEFAULT_ENTRY_IDS) & candidate_ids,
-        key=_entry_sort_key,
-    )
-    candidate_count = len(candidate_rows)
-    violations: list[dict[str, Any]] = []
-    if not (min_target_candidates <= candidate_count <= max_target_candidates):
-        violations.append(
+        rows_by_axis[row["family_axis"]].append(row)
+    summaries: list[dict[str, Any]] = []
+    for axis, rows in sorted(rows_by_axis.items()):
+        summaries.append(
             {
-                "violation": "candidate_count_outside_target_range",
-                "candidate_count": candidate_count,
-                "min_target_candidates": min_target_candidates,
-                "max_target_candidates": max_target_candidates,
-            }
-        )
-    if accession_gaps:
-        violations.append(
-            {
-                "violation": "candidate_rows_missing_accession_or_source_accessions",
-                "candidate_ids": accession_gaps,
-            }
-        )
-    if source_hash_gaps:
-        violations.append(
-            {
-                "violation": "candidate_rows_missing_source_hashes",
-                "candidate_ids": source_hash_gaps,
-            }
-        )
-    if family_axis_gaps:
-        violations.append(
-            {
-                "violation": "candidate_rows_missing_family_axis",
-                "candidate_ids": family_axis_gaps,
-            }
-        )
-    if policy_violations:
-        violations.append(
-            {
-                "violation": "forbidden_predictive_feature_policy_true",
-                "candidate_ids": policy_violations,
-            }
-        )
-    if prior_rows_present:
-        violations.append(
-            {
-                "violation": "prior_architecture_default_rows_reintroduced",
-                "candidate_ids": prior_rows_present,
-            }
-        )
-    return {
-        "passed": not violations,
-        "candidate_count": candidate_count,
-        "target_range": [min_target_candidates, max_target_candidates],
-        "accession_or_source_accessions_complete": not accession_gaps,
-        "source_hashes_complete": not source_hash_gaps,
-        "family_axis_complete": not family_axis_gaps,
-        "forbidden_predictive_feature_policy_clean": not policy_violations,
-        "prior_architecture_default_rows_absent": not prior_rows_present,
-        "violations": violations,
-    }
-
-
-def _counter_by(rows: list[dict[str, Any]], key: str) -> dict[str, int]:
-    return dict(sorted(Counter(str(row.get(key)) for row in rows).items()))
-
-
-def _admission_state_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
-    counter = Counter(str(row.get("admission_state")) for row in rows)
-    return {state: counter.get(state, 0) for state in ADMISSION_STATES}
-
-
-def _nested_counter(rows: list[dict[str, Any]], path: tuple[str, ...]) -> dict[str, int]:
-    counter: Counter[str] = Counter()
-    for row in rows:
-        value: Any = row
-        for key in path:
-            value = value.get(key) if isinstance(value, dict) else None
-        counter[str(value)] += 1
-    return dict(sorted(counter.items()))
-
-
-def _acquisition_plan(candidate_rows: list[dict[str, Any]]) -> dict[str, Any]:
-    acquisition_rows = [
-        row for row in candidate_rows if row.get("admission_state") == "acquisition_needed"
-    ]
-    blocked_family_rows = [
-        row
-        for row in candidate_rows
-        if row.get("admission_state") == "blocked_family_decision"
-    ]
-    blocked_locator_rows = [
-        row for row in candidate_rows if row.get("admission_state") == "blocked_locator"
-    ]
-    blocked_coordinate_rows = [
-        row for row in candidate_rows if row.get("admission_state") == "blocked_coordinate"
-    ]
-    action_counts = Counter(str(row.get("allowed_next_action")) for row in candidate_rows)
-    return {
-        "status": "ready",
-        "counts": {
-            "acquisition_needed_rows": len(acquisition_rows),
-            "blocked_family_decision_rows": len(blocked_family_rows),
-            "blocked_locator_rows": len(blocked_locator_rows),
-            "blocked_coordinate_rows": len(blocked_coordinate_rows),
-        },
-        "next_mechanical_steps": [
-            {
-                "rank": 1,
-                "action": (
-                    "Run source-free duplicate and structural distance screens "
-                    "for the external review-only rows."
-                ),
-                "unblocks": (
-                    "external rows with explicit active-site evidence can move "
-                    "from review_only_evidence to a countable review boundary."
-                ),
-            },
-            {
-                "rank": 2,
-                "action": (
-                    "Collect explicit catalytic residue or locator sources for "
-                    "acquisition_needed external rows."
-                ),
-                "unblocks": (
-                    "active-site locator evidence and later geometry/reconstruction "
-                    "scoring."
-                ),
-            },
-            {
-                "rank": 3,
-                "action": (
-                    "Materialize or repair coordinate/locator mappings for "
-                    "blocked M-CSA rows."
-                ),
-                "unblocks": "local geometry candidates can enter normal admission review.",
-            },
-            {
-                "rank": 4,
-                "action": (
-                    "Decide whether uncovered external lanes become targeted axes "
-                    "or stay preserved OOS signal."
-                ),
-                "unblocks": (
-                    "family-axis routing for blocked_family_decision rows without "
-                    "row-by-row review."
-                ),
-            },
-        ],
-        "allowed_next_action_counts": dict(sorted(action_counts.items())),
-    }
-
-
-def _candidate_ref(row: dict[str, Any]) -> dict[str, Any]:
-    return {
-        "candidate_id": row.get("candidate_id"),
-        "entry_id": row.get("entry_id"),
-        "accession": row.get("accession"),
-        "family_axis": row.get("family_axis"),
-        "provenance_tier": row.get("provenance_tier"),
-        "source_namespace": row.get("source_namespace"),
-    }
-
-
-def _first_action_screen_row(row: dict[str, Any]) -> dict[str, Any]:
-    locator = row.get("active_site_locator_evidence") or {}
-    coordinate = row.get("coordinate_availability") or {}
-    fold_signal = row.get("fold_tm_near_neighbor_signal") or {}
-    return {
-        "candidate_id": row.get("candidate_id"),
-        "entry_id": row.get("entry_id"),
-        "accession": row.get("accession"),
-        "source_accessions": row.get("source_accessions"),
-        "source_namespace": row.get("source_namespace"),
-        "family_axis": row.get("family_axis"),
-        "proposed_label_tier": row.get("proposed_label_tier"),
-        "admission_state": row.get("admission_state"),
-        "required_action": row.get("allowed_next_action"),
-        "coordinate_status": coordinate.get("status"),
-        "active_site_evidence_status": (
-            locator.get("active_site_evidence_status") or locator.get("status")
-        ),
-        "next_required_screens": fold_signal.get("next_required_screens") or [],
-        "source_hashes": row.get("source_hashes"),
-        "source_row_sha256": row.get("source_row_sha256"),
-    }
-
-
-def _first_action_screen_input(
-    candidate_rows: list[dict[str, Any]],
-    action_tranches: list[dict[str, Any]],
-) -> dict[str, Any]:
-    if not action_tranches:
-        return {
-            "status": "empty",
-            "tranche_rank": None,
-            "required_action": None,
-            "candidate_count": 0,
-            "rows": [],
-        }
-    first_tranche = action_tranches[0]
-    rows = [
-        row
-        for row in candidate_rows
-        if row.get("admission_state") == first_tranche["admission_state"]
-        and row.get("allowed_next_action") == first_tranche["allowed_next_action"]
-    ]
-    rows = sorted(
-        rows,
-        key=lambda row: (
-            str(row.get("source_namespace")),
-            _entry_sort_key(str(row.get("candidate_id"))),
-        ),
-    )
-    return {
-        "status": "ready" if rows else "empty",
-        "tranche_rank": first_tranche["rank"],
-        "admission_state": first_tranche["admission_state"],
-        "required_action": first_tranche["allowed_next_action"],
-        "candidate_count": len(rows),
-        "rows": [_first_action_screen_row(row) for row in rows],
-    }
-
-
-def _tranche_priority(state: str, action: str) -> int:
-    if state == "review_only_evidence" and (
-        "structural" in action or "UniRef" in action or "distance" in action
-    ):
-        return 10
-    if state == "review_only_evidence":
-        return 20
-    if state == "acquisition_needed":
-        return 30
-    if state == "blocked_locator":
-        return 40
-    if state == "blocked_coordinate":
-        return 50
-    if state == "blocked_family_decision":
-        return 60
-    if state == "reject_preserve_signal":
-        return 90
-    return 80
-
-
-def _action_tranches(candidate_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    grouped: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-    for row in candidate_rows:
-        grouped[
-            (
-                str(row.get("admission_state")),
-                str(row.get("allowed_next_action")),
-            )
-        ].append(row)
-
-    tranches: list[dict[str, Any]] = []
-    for (state, action), rows in grouped.items():
-        rows = sorted(
-            rows,
-            key=lambda row: (
-                str(row.get("source_namespace")),
-                _entry_sort_key(str(row.get("candidate_id"))),
-            ),
-        )
-        priority = _tranche_priority(state, action)
-        tranches.append(
-            {
-                "priority": priority,
-                "admission_state": state,
-                "allowed_next_action": action,
+                "family_axis": axis,
                 "candidate_count": len(rows),
-                "family_axis_counts": _counter_by(rows, "family_axis"),
-                "source_namespace_counts": _counter_by(rows, "source_namespace"),
-                "candidate_refs_preview": [_candidate_ref(row) for row in rows[:25]],
-                "preview_limit": 25,
-                "full_rows_are_in_candidate_rows": True,
+                "admission_state_counts": dict(
+                    sorted(Counter(row["admission_state"] for row in rows).items())
+                ),
+                "representative_candidate_ids": [
+                    row["candidate_id"] for row in rows[:10]
+                ],
             }
         )
-    tranches = sorted(
-        tranches,
-        key=lambda tranche: (
-            int(tranche["priority"]),
-            -int(tranche["candidate_count"]),
-            str(tranche["allowed_next_action"]),
+    return summaries
+
+
+def _acquisition_plan(
+    candidate_rows: list[dict[str, Any]],
+    min_target_candidates: int,
+) -> dict[str, Any]:
+    acquisition_rows = [
+        row for row in candidate_rows if row["admission_state"] == "acquisition_needed"
+    ]
+    blocked_rows = [
+        row
+        for row in candidate_rows
+        if row["admission_state"] in {"blocked_locator", "blocked_coordinate"}
+    ]
+    required_screen_counts: Counter[str] = Counter()
+    for row in acquisition_rows:
+        required_screen_counts.update(
+            row["mechanical_unblock_requirements"].get("next_required_screens")
+            or []
+        )
+    missing_to_floor = max(0, min_target_candidates - len(candidate_rows))
+    return {
+        "target_floor_gap": missing_to_floor,
+        "acquisition_needed_rows": len(acquisition_rows),
+        "acquisition_rows_with_explicit_screen_lists": sum(
+            1
+            for row in acquisition_rows
+            if row["mechanical_unblock_requirements"].get("next_required_screens")
         ),
-    )
-    for rank, tranche in enumerate(tranches, start=1):
-        tranche["rank"] = rank
-    return tranches
+        "acquisition_rows_missing_explicit_screen_lists": sum(
+            1
+            for row in acquisition_rows
+            if not row["mechanical_unblock_requirements"].get("next_required_screens")
+        ),
+        "required_screen_counts": dict(sorted(required_screen_counts.items())),
+        "locator_or_coordinate_blocked_rows": len(blocked_rows),
+        "first_unblock_actions": [
+            "run current-reference sequence search and current-countable structural screen for external sourced rows",
+            "materialize source-free active-site locators for blocked M-CSA rows",
+            "promote no row until a separate label-factory gate and human countable-promotion review pass",
+        ],
+        "priority_candidate_ids": [
+            row["candidate_id"] for row in (acquisition_rows + blocked_rows)[:25]
+        ],
+    }
 
 
-def build_targeted_expansion_factory_batch(
+def _validation_checks(
     *,
-    label_expansion_candidates: dict[str, Any],
-    external_candidate_freeze: dict[str, Any],
-    sequence_cluster_proxy: dict[str, Any] | None = None,
-    source_records: dict[str, dict[str, Any]] | None = None,
-    artifact_id: str = ARTIFACT_ID,
+    candidate_rows: list[dict[str, Any]],
+    source_records: dict[str, dict[str, Any]],
+    min_target_candidates: int,
+    max_candidates: int,
+) -> dict[str, Any]:
+    required_row_fields = {
+        "candidate_id",
+        "accession_or_source_id",
+        "family_axis",
+        "proposed_label_tier",
+        "provenance_tier",
+        "admission_state",
+        "admission_route_basis",
+        "allowed_next_action",
+        "source_hashes",
+        "predicted_coordinate_or_provenance_availability",
+        "active_site_or_locator_evidence",
+        "cofactor_or_metal_evidence",
+        "fold_tm_or_near_neighbor_signal",
+        "geometry_or_reconstruction_status",
+        "flags",
+        "mechanical_unblock_requirements",
+        "rationale",
+        "row_context_sha256",
+    }
+    required_field_violations: list[dict[str, Any]] = []
+    source_hash_violations: list[dict[str, Any]] = []
+    row_hash_violations: list[dict[str, Any]] = []
+    forbidden_field_violations: list[dict[str, Any]] = []
+    known_hashes = {
+        name: str(record["sha256"]) for name, record in source_records.items()
+    }
+    for row in candidate_rows:
+        missing = sorted(
+            field for field in required_row_fields if not _has_value(row.get(field))
+        )
+        row_hash = str(row.get("row_context_sha256") or "")
+        if len(row_hash) != 64:
+            missing.append("valid_row_context_sha256")
+        else:
+            expected_hash = _canonical_sha256(
+                {
+                    key: value
+                    for key, value in row.items()
+                    if key != "row_context_sha256"
+                }
+            )
+            if row_hash != expected_hash:
+                row_hash_violations.append(
+                    {
+                        "candidate_id": row.get("candidate_id"),
+                        "expected_row_context_sha256": expected_hash,
+                        "actual_row_context_sha256": row_hash,
+                    }
+                )
+        if missing:
+            required_field_violations.append(
+                {
+                    "candidate_id": row.get("candidate_id"),
+                    "missing_or_invalid_fields": missing,
+                }
+            )
+        for source_name, source_hash in (row.get("source_hashes") or {}).items():
+            if source_name not in known_hashes:
+                source_hash_violations.append(
+                    {
+                        "candidate_id": row.get("candidate_id"),
+                        "source": source_name,
+                        "violation": "source_not_declared_top_level",
+                    }
+                )
+            elif str(source_hash) != known_hashes[source_name]:
+                source_hash_violations.append(
+                    {
+                        "candidate_id": row.get("candidate_id"),
+                        "source": source_name,
+                        "violation": "source_hash_mismatch",
+                    }
+                )
+        forbidden_field_violations.extend(_forbidden_field_violations(row))
+    candidate_count = len(candidate_rows)
+    checks = {
+        "candidate_volume_within_requested_bounds": (
+            min_target_candidates <= candidate_count <= max_candidates
+        ),
+        "required_row_fields_present": not required_field_violations,
+        "row_source_hashes_match_declared_sources": not source_hash_violations,
+        "all_rows_have_source_hashes": all(
+            bool(row.get("source_hashes")) for row in candidate_rows
+        ),
+        "all_rows_have_row_context_hashes": all(
+            isinstance(row.get("row_context_sha256"), str)
+            and len(str(row.get("row_context_sha256"))) == 64
+            for row in candidate_rows
+        ),
+        "row_context_hashes_recompute": not row_hash_violations,
+        "forbidden_raw_predictive_fields_absent": not forbidden_field_violations,
+    }
+    return {
+        "passed": all(checks.values()),
+        "checks": checks,
+        "required_row_fields": sorted(required_row_fields),
+        "required_field_violation_count": len(required_field_violations),
+        "required_field_violations": required_field_violations[:25],
+        "source_hash_violation_count": len(source_hash_violations),
+        "source_hash_violations": source_hash_violations[:25],
+        "row_hash_violation_count": len(row_hash_violations),
+        "row_hash_violations": row_hash_violations[:25],
+        "forbidden_field_violation_count": len(forbidden_field_violations),
+        "forbidden_field_violations": forbidden_field_violations[:25],
+    }
+
+
+def _forbidden_field_violations(row: dict[str, Any]) -> list[dict[str, Any]]:
+    forbidden_fields = {
+        "mechanism_text",
+        "mechanism_text_snippets",
+        "ec_numbers",
+        "rhea_ids",
+        "source_ids",
+        "target_names",
+    }
+    violations: list[dict[str, Any]] = []
+
+    def walk(value: Any, path: str) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                child_path = f"{path}/{key}"
+                if key in forbidden_fields:
+                    violations.append(
+                        {
+                            "candidate_id": row.get("candidate_id"),
+                            "field_path": child_path,
+                        }
+                    )
+                walk(child, child_path)
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                walk(child, f"{path}/{index}")
+
+    walk(row, "")
+    return violations
+
+
+def _has_value(value: Any) -> bool:
+    return value not in (None, "", [], {})
+
+
+def _evidence_coverage(candidate_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    def count_if(predicate: Any) -> int:
+        return sum(1 for row in candidate_rows if predicate(row))
+
+    return {
+        "candidate_rows": len(candidate_rows),
+        "coordinate_or_structure_provenance_available": count_if(
+            lambda row: row[
+                "predicted_coordinate_or_provenance_availability"
+            ].get("coordinate_provenance_available")
+        ),
+        "active_site_or_locator_evidence_present": count_if(
+            lambda row: any(
+                _has_value(value)
+                for value in row["active_site_or_locator_evidence"].values()
+            )
+        ),
+        "cofactor_or_metal_evidence_present": count_if(
+            lambda row: any(
+                _has_value(value)
+                for key, value in row["cofactor_or_metal_evidence"].items()
+                if key != "metal_or_cofactor_confounded"
+            )
+        ),
+        "fold_or_near_neighbor_signal_present": count_if(
+            lambda row: any(
+                _has_value(value)
+                for value in row["fold_tm_or_near_neighbor_signal"].values()
+            )
+        ),
+        "row_context_hash_present": count_if(
+            lambda row: bool(row.get("row_context_sha256"))
+        ),
+        "source_hashes_present": count_if(lambda row: bool(row.get("source_hashes"))),
+    }
+
+
+def _action_queues(candidate_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    queue_map: dict[tuple[str, str, str], list[str]] = defaultdict(list)
+    for row in candidate_rows:
+        key = (
+            row["admission_state"],
+            row["family_axis"],
+            row["allowed_next_action"],
+        )
+        queue_map[key].append(row["candidate_id"])
+    queues: list[dict[str, Any]] = []
+    for (state, axis, action), candidate_ids in sorted(
+        queue_map.items(),
+        key=lambda item: (-len(item[1]), item[0]),
+    ):
+        queues.append(
+            {
+                "admission_state": state,
+                "family_axis": axis,
+                "allowed_next_action": action,
+                "candidate_count": len(candidate_ids),
+                "representative_candidate_ids": candidate_ids[:20],
+            }
+        )
+    return queues
+
+
+def _next_batch_recommendation(candidate_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    axis_counts = Counter(row["family_axis"] for row in candidate_rows)
+    state_counts = Counter(row["admission_state"] for row in candidate_rows)
+    return {
+        "recommended_next_batch": "external_sourced_rows_sequence_structure_distance_screens",
+        "rationale": (
+            "The first batch already clears the 500-row target locally. The "
+            "largest actionable next lift is converting acquisition_needed "
+            "external rows into review_only_evidence with source-free locator, "
+            "sequence-distance, and structural duplicate screens."
+        ),
+        "highest_volume_axes": [
+            {"family_axis": axis, "candidate_count": count}
+            for axis, count in axis_counts.most_common(5)
+        ],
+        "state_pressure": dict(state_counts.most_common()),
+    }
+
+
+def write_targeted_expansion_factory_batch(
+    *,
+    out_path: Path,
+    report_path: Path | None = None,
+    source_paths: dict[str, Path] | None = None,
     created_utc: str | None = None,
     min_target_candidates: int = 500,
-    max_target_candidates: int = 1000,
+    max_candidates: int = 1000,
 ) -> dict[str, Any]:
-    source_records = source_records or {
-        "label_expansion_candidates": {"path": "<in-memory>", "sha256": "unknown"},
-        "external_candidate_freeze": {"path": "<in-memory>", "sha256": "unknown"},
+    resolved_paths = {
+        name: Path(path)
+        for name, path in (source_paths or DEFAULT_SOURCE_PATHS).items()
     }
-    sequence_rows = _sequence_index(sequence_cluster_proxy or {})
-    candidate_rows: list[dict[str, Any]] = []
-    for row in _rows(label_expansion_candidates):
-        entry_id = str(row.get("entry_id") or "")
-        if entry_id in PRIOR_ARCHITECTURE_DEFAULT_ENTRY_IDS:
-            continue
-        candidate_rows.append(
-            _mcsa_candidate_row(
-                row,
-                sequence_row=sequence_rows.get(entry_id),
-                source_records=source_records,
-            )
-        )
-    for row in _rows(external_candidate_freeze):
-        candidate_rows.append(
-            _external_candidate_row(row, source_records=source_records)
-        )
-
-    candidate_rows = _dedupe_candidates(candidate_rows)
-    state_audit = _state_assignment_audit(candidate_rows)
-    guardrail_audit = _factory_guardrail_audit(
-        candidate_rows,
+    source_records = {
+        name: _source_record(path) for name, path in sorted(resolved_paths.items())
+    }
+    source_payloads = {
+        name: _read_json(path) for name, path in sorted(resolved_paths.items())
+    }
+    artifact = build_targeted_expansion_factory_batch(
+        source_payloads=source_payloads,
+        source_records=source_records,
+        created_utc=created_utc,
         min_target_candidates=min_target_candidates,
-        max_target_candidates=max_target_candidates,
+        max_candidates=max_candidates,
     )
-    state_counts = _admission_state_counts(candidate_rows)
-    family_axis_counts = _counter_by(candidate_rows, "family_axis")
-    source_counts = _counter_by(candidate_rows, "source_namespace")
-    tier_counts = _counter_by(candidate_rows, "proposed_label_tier")
-    provenance_counts = _counter_by(candidate_rows, "provenance_tier")
-    coordinate_counts = _nested_counter(candidate_rows, ("coordinate_availability", "status"))
-    action_tranches = _action_tranches(candidate_rows)
-    candidate_count = len(candidate_rows)
-    below_min = max(0, min_target_candidates - candidate_count)
-    above_max = max(0, candidate_count - max_target_candidates)
-
-    return {
-        "artifact_id": artifact_id,
-        "schema_version": SCHEMA_VERSION,
-        "created_utc": created_utc or _utc_now_iso(),
-        "status": (
-            "targeted_expansion_factory_batch_ready"
-            if not below_min and not above_max
-            else "targeted_expansion_factory_batch_ready_with_volume_gap"
-        ),
-        "scope": (
-            "Reusable targeted expansion factory batch for diverse atlas growth. "
-            "Rows preserve evidence and admission state only; no label import, "
-            "registry edit, split edit, threshold edit, or countable promotion is "
-            "performed."
-        ),
-        "target_policy": {
-            "min_target_candidates": min_target_candidates,
-            "max_target_candidates": max_target_candidates,
-            "candidate_volume_gap_to_min": below_min,
-            "candidate_volume_over_max": above_max,
-            "human_review_required_only_for_countable_promotion": True,
-            "prior_architecture_default_rows_excluded": list(
-                PRIOR_ARCHITECTURE_DEFAULT_ENTRY_IDS
-            ),
-        },
-        "guardrails": {
-            "label_registry_edited": False,
-            "ontology_registry_edited": False,
-            "imports_or_promotions_performed": False,
-            "train_test_splits_changed": False,
-            "production_thresholds_changed": False,
-            "model_weights_changed": False,
-            "heldout_mcsa_rows_used_for_training_or_tuning": False,
-            "mechanism_text_ec_rhea_names_or_source_ids_used_as_predictive_features": False,
-        },
-        "source_artifacts": source_records,
-        "counts": {
-            "candidate_rows_evaluated": candidate_count,
-            "family_axes_evaluated": len(family_axis_counts),
-            "admission_state_counts": state_counts,
-            "family_axis_counts": family_axis_counts,
-            "source_namespace_counts": source_counts,
-            "proposed_label_tier_counts": tier_counts,
-            "provenance_tier_counts": provenance_counts,
-            "coordinate_status_counts": coordinate_counts,
-            "countable_candidate_rows": state_counts.get("countable_candidate", 0),
-            "ready_for_label_import_rows": 0,
-        },
-        "state_assignment_audit": state_audit,
-        "factory_guardrail_audit": guardrail_audit,
-        "action_tranches": action_tranches,
-        "first_action_screen_input": _first_action_screen_input(
-            candidate_rows,
-            action_tranches,
-        ),
-        "candidate_rows": candidate_rows,
-        "acquisition_plan": _acquisition_plan(candidate_rows),
-        "recommendation": {
-            "first_batch_status": (
-                "target_volume_met"
-                if candidate_count >= min_target_candidates
-                else "largest_defensible_local_batch_below_target"
-            ),
-            "first_batch_candidate_count": candidate_count,
-            "next_batch": (
-                "Prioritize external rows with explicit active-site evidence for "
-                "sequence/structure duplicate screens, then convert the largest "
-                "acquisition_needed external bins through catalytic-residue source "
-                "collection."
-            ),
-        },
-    }
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(artifact, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(render_targeted_expansion_report(artifact), encoding="utf-8")
+    return artifact
 
 
-def _markdown_report(batch: dict[str, Any]) -> str:
-    counts = batch["counts"]
+def render_targeted_expansion_report(artifact: dict[str, Any]) -> str:
+    counts = artifact["counts"]
     lines = [
-        "# Targeted Expansion Factory Batch - current702",
+        "# Targeted Expansion Factory Batch",
         "",
-        f"- Artifact: `{batch['artifact_id']}`",
-        f"- Status: `{batch['status']}`",
-        f"- Target volume: {batch['recommendation']['first_batch_status']}",
-        f"- Candidate rows: {counts['candidate_rows_evaluated']}",
-        f"- Family axes: {counts['family_axes_evaluated']}",
+        f"Run: `{artifact['created_utc']}`",
+        "",
         (
-            f"- Countable/import-ready rows: {counts['countable_candidate_rows']} / "
-            f"{counts['ready_for_label_import_rows']}"
+            "Non-importing targeted expansion artifact. No labels, registries, "
+            "ontologies, splits, model weights, production thresholds, or imports "
+            "were changed."
         ),
+        "",
+        "## Summary",
+        "",
+        f"- Status: `{artifact['status']}`",
+        f"- Candidate rows: `{artifact['candidate_count']}`",
+        f"- Exact-one-state audit: `{artifact['state_assignment_audit']['passed']}`",
         "",
         "## Admission Counts",
         "",
@@ -993,155 +1244,126 @@ def _markdown_report(batch: dict[str, Any]) -> str:
     for state, count in counts["admission_state_counts"].items():
         lines.append(f"- `{state}`: {count}")
     lines.extend(["", "## Family Axes", ""])
-    for axis, count in counts["family_axis_counts"].items():
-        lines.append(f"- `{axis}`: {count}")
-    lines.extend(["", "## Coordinate Status", ""])
-    for status, count in counts["coordinate_status_counts"].items():
-        lines.append(f"- `{status}`: {count}")
-    lines.extend(["", "## Proposed Tiers", ""])
-    for tier, count in counts["proposed_label_tier_counts"].items():
-        lines.append(f"- `{tier}`: {count}")
-    lines.extend(["", "## Source Surfaces", ""])
-    for source, count in counts["source_namespace_counts"].items():
+    lines.append("| Family axis | Candidates | Admission mix |")
+    lines.append("| --- | ---: | --- |")
+    for axis in artifact["family_axes"]:
+        mix = ", ".join(
+            f"{state}={count}"
+            for state, count in axis["admission_state_counts"].items()
+        )
+        lines.append(
+            f"| `{axis['family_axis']}` | {axis['candidate_count']} | {mix} |"
+        )
+    lines.extend(["", "## Source Counts", ""])
+    for source, count in counts["source_counts"].items():
         lines.append(f"- `{source}`: {count}")
-    lines.extend(["", "## Source Hashes", ""])
-    for source, record in batch["source_artifacts"].items():
-        lines.append(
-            f"- `{source}`: `{record['sha256']}` from `{record['path']}`"
-        )
-    plan = batch["acquisition_plan"]
-    audit = batch["factory_guardrail_audit"]
+    coverage = artifact["evidence_coverage"]
+    lines.extend(["", "## Evidence Coverage", ""])
+    for key, value in coverage.items():
+        lines.append(f"- `{key}`: {value}")
+    validation = artifact["validation_checks"]
+    lines.extend(["", "## Validation Checks", ""])
+    lines.append(f"- Passed: `{validation['passed']}`")
+    for key, value in validation["checks"].items():
+        lines.append(f"- `{key}`: {value}")
+    architecture_rows = [
+        row
+        for row in artifact["candidate_rows"]
+        if row["candidate_id"]
+        in artifact["target_policy"]["architecture_default_rows_reused_not_reasked"]
+    ]
+    architecture_state_counts = Counter(
+        row["admission_state"] for row in architecture_rows
+    )
     lines.extend(
         [
             "",
-            "## Factory Audit",
+            "## Architecture Defaults Reused",
             "",
-            f"- Passed: {audit['passed']}",
             (
-                "- Accession/source-accession coverage complete: "
-                f"{audit['accession_or_source_accessions_complete']}"
+                "- Expected default rows: "
+                f"`{len(artifact['target_policy']['architecture_default_rows_reused_not_reasked'])}`"
             ),
-            f"- Source hashes complete: {audit['source_hashes_complete']}",
-            f"- Family axes complete: {audit['family_axis_complete']}",
-            (
-                "- Forbidden predictive feature policy clean: "
-                f"{audit['forbidden_predictive_feature_policy_clean']}"
-            ),
-            (
-                "- Prior architecture-default rows absent: "
-                f"{audit['prior_architecture_default_rows_absent']}"
-            ),
-            "",
-            "## Action Tranches",
-            "",
+            f"- Present default rows: `{len(architecture_rows)}`",
+            "- Default row states:",
         ]
     )
-    for tranche in batch["action_tranches"][:8]:
+    for state, count in sorted(architecture_state_counts.items()):
+        lines.append(f"  - `{state}`: {count}")
+    lines.append("- Default row IDs:")
+    for row in sorted(architecture_rows, key=lambda item: item["candidate_id"]):
         lines.append(
-            (
-                f"{tranche['rank']}. `{tranche['admission_state']}` - "
-                f"{tranche['candidate_count']} rows - "
-                f"{tranche['allowed_next_action']}"
-            )
+            f"  - `{row['candidate_id']}`: `{row['admission_state']}` "
+            f"via `{row['family_axis']}`"
         )
-    if batch["action_tranches"]:
-        first_input = batch["first_action_screen_input"]
-        lines.extend(
-            [
-                "",
-                "## First Action Preview",
-                "",
-                (
-                    f"- Tranche {first_input['tranche_rank']}: "
-                    f"`{first_input['admission_state']}` / "
-                    f"{first_input['candidate_count']} rows"
-                ),
-                f"- Action: {first_input['required_action']}",
-            ]
-        )
-        for ref in first_input["rows"]:
-            lines.append(
-                (
-                    f"- `{ref['candidate_id']}` / `{ref['accession']}` / "
-                    f"`{ref['family_axis']}`"
-                )
-            )
+    acquisition = artifact["acquisition_plan"]
     lines.extend(
         [
             "",
-            "## Blockers And Next Batch",
+            "## Blockers And Acquisition",
             "",
-            f"- Acquisition-needed rows: {plan['counts']['acquisition_needed_rows']}",
+            f"- Target floor gap: `{acquisition['target_floor_gap']}`",
+            f"- Acquisition-needed rows: `{acquisition['acquisition_needed_rows']}`",
             (
-                "- Blocked family-decision rows: "
-                f"{plan['counts']['blocked_family_decision_rows']}"
+                "- Acquisition rows with explicit screen lists: "
+                f"`{acquisition['acquisition_rows_with_explicit_screen_lists']}`"
             ),
-            f"- Blocked locator rows: {plan['counts']['blocked_locator_rows']}",
-            f"- Blocked coordinate rows: {plan['counts']['blocked_coordinate_rows']}",
-            "",
-            "## Mechanical Next Steps",
-            "",
+            (
+                "- Acquisition rows missing explicit screen lists: "
+                f"`{acquisition['acquisition_rows_missing_explicit_screen_lists']}`"
+            ),
+            (
+                "- Locator/coordinate blocked rows: "
+                f"`{acquisition['locator_or_coordinate_blocked_rows']}`"
+            ),
+            "- Required screen counts:",
         ]
     )
-    for item in plan["next_mechanical_steps"]:
-        lines.append(f"{item['rank']}. {item['action']}")
+    for screen, count in acquisition["required_screen_counts"].items():
+        lines.append(f"  - `{screen}`: {count}")
+    screen_ready_rows = [
+        row
+        for row in artifact["candidate_rows"]
+        if row["admission_state"] == "acquisition_needed"
+        and row["mechanical_unblock_requirements"].get("next_required_screens")
+    ]
+    lines.append("- Screen-ready acquisition rows:")
+    for row in screen_ready_rows[:25]:
+        lines.append(f"  - `{row['candidate_id']}` via `{row['family_axis']}`")
+    lines.extend(
+        [
+            "- First unblock actions:",
+        ]
+    )
+    for action in acquisition["first_unblock_actions"]:
+        lines.append(f"  - {action}")
+    lines.append("- Priority unblock candidate IDs:")
+    for candidate_id in acquisition["priority_candidate_ids"]:
+        lines.append(f"  - `{candidate_id}`")
+    lines.extend(["", "## Largest Action Queues", ""])
+    lines.append("| Admission state | Family axis | Rows | Next action |")
+    lines.append("| --- | --- | ---: | --- |")
+    for queue in artifact["action_queues"][:12]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{queue['admission_state']}`",
+                    f"`{queue['family_axis']}`",
+                    str(queue["candidate_count"]),
+                    queue["allowed_next_action"],
+                ]
+            )
+            + " |"
+        )
+    next_batch = artifact["next_batch_recommendation"]
     lines.extend(
         [
             "",
-            "## Guardrails",
+            "## Next Batch Recommendation",
             "",
-            (
-                "- No labels, registries, ontologies, imports, splits, thresholds, "
-                "or model weights were changed."
-            ),
-            (
-                "- Mechanism text, EC/Rhea IDs, names, labels, target names, and "
-                "source IDs are preserved only as provenance/review context and "
-                "are not scoring inputs."
-            ),
-            "- Human review is required only to cross a countable-promotion boundary.",
+            f"`{next_batch['recommended_next_batch']}`: {next_batch['rationale']}",
             "",
         ]
     )
     return "\n".join(lines)
-
-
-def write_targeted_expansion_factory_batch(
-    *,
-    label_expansion_candidates_path: Path,
-    external_candidate_freeze_path: Path,
-    sequence_cluster_proxy_path: Path,
-    out_path: Path,
-    report_path: Path | None = None,
-    artifact_id: str = ARTIFACT_ID,
-    created_utc: str | None = None,
-    min_target_candidates: int = 500,
-    max_target_candidates: int = 1000,
-) -> dict[str, Any]:
-    label_expansion_candidates = _read_json_object(label_expansion_candidates_path)
-    external_candidate_freeze = _read_json_object(external_candidate_freeze_path)
-    sequence_cluster_proxy = _read_json_object(sequence_cluster_proxy_path)
-    source_records = {
-        "label_expansion_candidates": _source_record(label_expansion_candidates_path),
-        "external_candidate_freeze": _source_record(external_candidate_freeze_path),
-        "sequence_cluster_proxy": _source_record(sequence_cluster_proxy_path),
-    }
-    batch = build_targeted_expansion_factory_batch(
-        label_expansion_candidates=label_expansion_candidates,
-        external_candidate_freeze=external_candidate_freeze,
-        sequence_cluster_proxy=sequence_cluster_proxy,
-        source_records=source_records,
-        artifact_id=artifact_id,
-        created_utc=created_utc,
-        min_target_candidates=min_target_candidates,
-        max_target_candidates=max_target_candidates,
-    )
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(
-        json.dumps(batch, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
-    if report_path is not None:
-        report_path.parent.mkdir(parents=True, exist_ok=True)
-        report_path.write_text(_markdown_report(batch) + "\n", encoding="utf-8")
-    return batch
