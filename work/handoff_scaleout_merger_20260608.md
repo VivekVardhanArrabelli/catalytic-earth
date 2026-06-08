@@ -11,25 +11,24 @@
 - REPAIR_ARTIFACT: `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
 - REPAIR_REPORT: `work/scaleout_locator_coordinate_repair_current702_20260608.md`
 - Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`
-- Source branch/head at merger assembly: `ce-expansion-merger-qa-20260608` / `a9a0c4af208151e346c0f42eb4842f681c982751`
-- Origin main consumed: `5a915007d68d4df05f7d0b1f4eef6761357b7b63`
+- Source branch/head at merger refresh: `main` / `e9cac07a4452459c735ec474b32805aa3f8ec4fa`
+- Origin main consumed: `15094774ae20b7aa667ff4b625cc4082aee0d2af`
 - Status: consolidated artifact/report produced and validation passed. Commit/push/sync, memory update, and lock release are final wrap steps recorded in the automation response.
 
-## QA Rerun - 2026-06-08T15:16Z
+## Seven-Shard QA Refresh - 2026-06-08T15:16Z
 
 - Automation ID: `ce-expansion-merger-qa`
 - STARTED_AT_UTC: `2026-06-08T15:16:18Z`
 - STARTED_AT_LOCAL: `2026-06-08T10:16:18-0500`
-- ENDED_AT_UTC: `2026-06-08T15:21:12Z`
-- ENDED_AT_LOCAL: `2026-06-08T10:21:12-0500`
-- ELAPSED_MINUTES: `4.911`
-- Source head checked: `main` / `3201971e1c1c7cc859f213bf34c8ec33f97ee95a`
+- ENDED_AT_UTC: `2026-06-08T15:37:03Z`
+- ENDED_AT_LOCAL: `2026-06-08T10:37:03-0500`
+- ELAPSED_MINUTES: `20.761`
+- Source head checked: `main` / `e9cac07a4452459c735ec474b32805aa3f8ec4fa`
 - Lock: `/tmp/ce_scaleout_merger_repair_current702.lock`
-- Result: existing consolidated surface and repair overlay were already present
-  on `origin/main`; four shard artifacts were still available, no additional
-  shard artifacts were present, and no new locator/coordinate/readiness repair
-  work was found.
-- QA confirmed: 2,058 shard rows, 1,116 canonical records, 516 current-registry
+- Result: the existing consolidated surface was refreshed after `origin/main`
+  advanced with phosphoryl-transfer, near-orphan-tail, and
+  radical-SAM/cobalamin shard artifacts.
+- QA confirmed: 4,820 shard rows, 2,463 canonical records, 749 current-registry
   overlap keys, seven repair-overlay rows consumed, and zero eligible
   import-preview candidates.
 - Validation passed: JSON parse for the mandatory source/merged/repair
@@ -43,8 +42,9 @@
 This run started in repair mode because fewer than three shard artifacts were
 available at first. During wrap, `origin/main` advanced with four shard
 artifacts, so the branch was rebased onto `origin/main` and the consolidated
-merger surface was built from the current shard artifacts plus the repair
-overlay.
+merger surface was built. A later QA rerun rebased again after three more shard
+artifacts arrived and refreshed the same consolidated surface from all seven
+current shard artifacts plus the repair overlay.
 
 ## Durable Repair
 
@@ -56,28 +56,32 @@ overlay.
 
 ## Consolidated Surface
 
-- Consumed four shard artifacts:
+- Consumed seven shard artifacts:
   `artifacts/v3_scaleout_glycoside_nucleoside_shard_current702_20260608.json`,
   `artifacts/v3_scaleout_metal_hydrolase_shard_current702_20260608.json`,
-  `artifacts/v3_scaleout_plp_children_shard_current702_20260608.json`, and
+  `artifacts/v3_scaleout_near_orphan_tail_shard_current702_20260608.json`,
+  `artifacts/v3_scaleout_phosphoryl_transfer_shard_current702_20260608.json`,
+  `artifacts/v3_scaleout_plp_children_shard_current702_20260608.json`,
+  `artifacts/v3_scaleout_radical_sam_cobalamin_shard_current702_20260608.json`,
+  and
   `artifacts/v3_scaleout_redox_oxygen_sulfur_shard_current702_20260608.json`.
-- Merged 2,058 shard source rows into 1,116 canonical candidate keys.
+- Merged 4,820 shard source rows into 2,463 canonical candidate keys.
 - Preserved source terminal counts:
-  `reject/OOS_preserve_signal=784`, `review_only_evidence=808`,
-  `blocked_locator=268`, `blocked_coordinate=135`,
-  `blocked_family_decision=60`, and
-  `countable_candidate_preflight_only=3`.
+  `reject/OOS_preserve_signal=2788`, `review_only_evidence=1212`,
+  `blocked_locator=375`, `blocked_coordinate=174`,
+  `blocked_family_decision=267`, and
+  `countable_candidate_preflight_only=4`.
 - Conservative canonical states:
-  `reject/OOS_preserve_signal=583`, `review_only_evidence=284`,
-  `blocked_locator=122`, `blocked_coordinate=68`,
-  `blocked_family_decision=59`, and
+  `reject/OOS_preserve_signal=1940`, `review_only_evidence=280`,
+  `blocked_locator=85`, `blocked_coordinate=24`,
+  `blocked_family_decision=134`, and
   `countable_candidate_preflight_only=0`.
-- No import-preview artifact was built because the three source
-  preflight-only rows (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`) all
-  overlap current702 by exact/current-screen evidence and/or resolve to non-new
-  canonical terminal states.
+- No import-preview artifact was built because the four source preflight-only
+  rows collapse to three canonical groups (`uniprot:P78549`, `m_csa:127`, and
+  `m_csa:281`) that all overlap current702 by exact/current-screen evidence
+  and/or resolve to non-new canonical terminal states.
 - Current-registry overlap records after separating structural neighbors from
-  exact/current-screen overlap: 516.
+  exact/current-screen overlap: 749.
 - Deduplication records cover accession/candidate key, sequence-neighborhood,
   structure/fold cluster, ligand/cofactor/family lane, and current-registry
   overlap axes.

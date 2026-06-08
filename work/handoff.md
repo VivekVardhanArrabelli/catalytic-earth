@@ -3,17 +3,16 @@
 ## Current automation run
 
 - Automation ID: `ce-expansion-merger-qa`
-- STARTED_AT_UTC: `2026-06-08T14:17:14Z`
-- STARTED_AT_LOCAL: `2026-06-08T09:17:14-0500`
-- ENDED_AT_UTC: `2026-06-08T14:52:33Z`
-- ENDED_AT_LOCAL: `2026-06-08T09:52:33-0500`
-- ELAPSED_MINUTES: `35.317`
-- Status: Scale-out merger/repair QA output produced and validation passed.
-  The run first produced the locator/coordinate repair artifact while fewer
-  than three shards were available, then rebased onto current `origin/main`
-  after four shard artifacts arrived and built the consolidated non-importing
-  acceptance surface. Commit/push/sync and lock-release details are recorded in
-  the final automation response.
+- STARTED_AT_UTC: `2026-06-08T15:16:18Z`
+- STARTED_AT_LOCAL: `2026-06-08T10:16:18-0500`
+- ENDED_AT_UTC: `2026-06-08T15:37:03Z`
+- ENDED_AT_LOCAL: `2026-06-08T10:37:03-0500`
+- ELAPSED_MINUTES: `20.761`
+- Status: Scale-out merger QA refreshed the consolidated non-importing
+  acceptance surface after `origin/main` advanced with three additional shard
+  artifacts. Seven shard artifacts are now consumed with zero eligible
+  import-preview candidates. Commit/push/sync and lock-release details are
+  recorded in the final automation response.
 - Current output:
   `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
   and `work/scaleout_merged_acceptance_surface_current702_20260608.md`.
@@ -95,9 +94,11 @@ Automation run: `ce-expansion-merger-qa`
 - Started from the current main-line acquisition conversion state, produced a
   repair artifact for the seven `blocked_locator` acquisition-conversion rows,
   then rebased onto `origin/main` after four scale-out shard artifacts became
-  available.
-- Consolidated the glycoside/nucleoside, metal hydrolase, PLP children, and
-  redox/oxygen/sulfur shard artifacts into one acceptance/QA surface.
+  available. A later QA refresh rebased again after the phosphoryl-transfer,
+  near-orphan-tail, and radical-SAM/cobalamin shards arrived.
+- Consolidated the glycoside/nucleoside, metal hydrolase, PLP children,
+  redox/oxygen/sulfur, phosphoryl-transfer, near-orphan-tail, and
+  radical-SAM/cobalamin shard artifacts into one acceptance/QA surface.
 - Did not import or promote labels. No production label registry, ontology,
   train/test split, model weight, production threshold, locator sidecar, or
   heldout training/tuning surface was changed.
@@ -117,24 +118,24 @@ Automation run: `ce-expansion-merger-qa`
 
 #### Merger result
 
-- Source shard rows consumed: 2,058.
-- Canonical candidate keys after dedupe: 1,116.
+- Source shard rows consumed: 4,820.
+- Canonical candidate keys after dedupe: 2,463.
 - Source terminal counts:
-  `reject/OOS_preserve_signal=784`, `review_only_evidence=808`,
-  `blocked_locator=268`, `blocked_coordinate=135`,
-  `blocked_family_decision=60`, and
-  `countable_candidate_preflight_only=3`.
+  `reject/OOS_preserve_signal=2788`, `review_only_evidence=1212`,
+  `blocked_locator=375`, `blocked_coordinate=174`,
+  `blocked_family_decision=267`, and
+  `countable_candidate_preflight_only=4`.
 - Conservative canonical terminal counts:
-  `reject/OOS_preserve_signal=583`, `review_only_evidence=284`,
-  `blocked_locator=122`, `blocked_coordinate=68`,
-  `blocked_family_decision=59`, and
+  `reject/OOS_preserve_signal=1940`, `review_only_evidence=280`,
+  `blocked_locator=85`, `blocked_coordinate=24`,
+  `blocked_family_decision=134`, and
   `countable_candidate_preflight_only=0`.
-- No import-preview artifact was built because all three source preflight-only
-  rows (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`) are blocked by
-  exact/current-screen current702 overlap and/or conservative non-new terminal
-  resolution.
+- No import-preview artifact was built because all four source preflight-only
+  rows collapse to three canonical groups (`uniprot:P78549`, `m_csa:127`, and
+  `m_csa:281`) that are blocked by exact/current-screen current702 overlap
+  and/or conservative non-new terminal resolution.
 - Current-registry overlap records after separating structural neighbors from
-  exact/current-screen overlap: 516.
+  exact/current-screen overlap: 749.
 
 #### Repair result
 

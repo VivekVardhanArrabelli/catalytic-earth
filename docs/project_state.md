@@ -54,15 +54,15 @@ artifact-backed mechanism diagnostics.
   `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`
   and
   `work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`.
-- Current scale-out merged acceptance surface (2026-06-08): four shard
-  artifacts were consolidated into a non-importing merger/QA surface with 2,058
-  source rows deduplicated to 1,116 canonical candidate keys. Canonical states:
-  583 reject/OOS-preserve, 284 review-only, 122 blocked-locator, 68
-  blocked-coordinate, 59 blocked-family-decision, and 0 new
-  countable-candidate preflight rows after current-registry overlap. The three
-  source preflight-only rows (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`)
-  are blocked from import preview by current702 overlap and/or conservative
-  reject/OOS resolution. Use
+- Current scale-out merged acceptance surface (2026-06-08): seven shard
+  artifacts were consolidated into a non-importing merger/QA surface with 4,820
+  source rows deduplicated to 2,463 canonical candidate keys. Canonical states:
+  1,940 reject/OOS-preserve, 280 review-only, 85 blocked-locator, 24
+  blocked-coordinate, 134 blocked-family-decision, and 0 new
+  countable-candidate preflight rows after current-registry overlap. The four
+  source preflight-only rows collapse to three canonical groups
+  (`uniprot:P78549`, `m_csa:127`, and `m_csa:281`) blocked from import preview
+  by current702 overlap and/or conservative reject/OOS resolution. Use
   `artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json`
   and `work/scaleout_merged_acceptance_surface_current702_20260608.md`. The
   repair overlay remains durable:
