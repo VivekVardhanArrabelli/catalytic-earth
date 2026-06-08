@@ -1,0 +1,3696 @@
+{
+  "artifact_id": "v3_external_source_ingestion_import_preview_current702_20260608",
+  "candidate_count": 16,
+  "created_utc": "2026-06-08T21:48:26Z",
+  "guardrails": {
+    "label_import_performed": false,
+    "preview_only": true,
+    "production_registry_edited": false
+  },
+  "rows": [
+    {
+      "accession": "P09601",
+      "afdb_or_pdb_identifier": "1N3U",
+      "candidate_id": "uniprot:P09601",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Heme oxygenase 1 (HO-1) (EC 1.14.14.18) [Cleaved into: Heme oxygenase 1 soluble form]",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 18,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:60344",
+          "ligand_name": "heme b",
+          "position": 18
+        },
+        {
+          "end": 25,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:60344",
+          "ligand_name": "heme b",
+          "position": 25
+        },
+        {
+          "end": 134,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:60344",
+          "ligand_name": "heme b",
+          "position": 134
+        },
+        {
+          "end": 183,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:60344",
+          "ligand_name": "heme b",
+          "position": 183
+        },
+        {
+          "end": 140,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "SITE",
+          "feature_type": "Site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 140
+        },
+        {
+          "end": 229,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 229
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "1.14.14.18"
+        ],
+        "rhea_record_count": 3,
+        "rhea_records": [
+          {
+            "ec_number": "1.14.14.18",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "heme b + 3 reduced [NADPH--hemoprotein reductase] + 3 O2 = biliverdin IXalpha + CO + Fe(2+) + 3 oxidized [NADPH--hemoprotein reductase] + 3 H2O + H(+)",
+            "rhea_id": "RHEA:21764",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "1.14.14.18",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "heme b + 3 reduced [NADPH--hemoprotein reductase] + 3 O2 = biliverdin IXalpha + CO + Fe(2+) + 3 oxidized [NADPH--hemoprotein reductase] + 3 H2O + H(+)",
+            "rhea_id": "RHEA-COMP:11964",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "1.14.14.18",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "heme b + 3 reduced [NADPH--hemoprotein reductase] + 3 O2 = biliverdin IXalpha + CO + Fe(2+) + 3 oxidized [NADPH--hemoprotein reductase] + 3 H2O + H(+)",
+            "rhea_id": "RHEA-COMP:11965",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 288,
+      "source_hashes": {
+        "rhea_records_sha256": "bca2ba6bea98b54645cf68de9d32260eb9180e754b41765955dfbba46f0c5dbf",
+        "uniprot_entry_record_sha256": "2496a1008e3eddee67fa31a3aaf76faf7d4a751573130426d2c847e9267a9c0a",
+        "uniprot_search_row_sha256": "2f89fdc3d128c057877608c7ddb148072cd05c92888c768f5ce9f54406cd1332"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P09601",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "P30519",
+      "afdb_or_pdb_identifier": "2Q32",
+      "candidate_id": "uniprot:P30519",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Heme oxygenase 2 (HO-2) (EC 1.14.14.18) [Cleaved into: Heme oxygenase 2 soluble form]",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 45,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:60344",
+          "ligand_name": "heme b",
+          "position": 45
+        },
+        {
+          "end": 154,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:60344",
+          "ligand_name": "heme b",
+          "position": 154
+        },
+        {
+          "end": 199,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:60344",
+          "ligand_name": "heme b",
+          "position": 199
+        },
+        {
+          "end": 203,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:60344",
+          "ligand_name": "heme b",
+          "position": 203
+        },
+        {
+          "end": 160,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "SITE",
+          "feature_type": "Site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 160
+        },
+        {
+          "end": 2,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 2
+        },
+        {
+          "end": 2,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 2
+        },
+        {
+          "end": 265,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 265
+        },
+        {
+          "end": 282,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 282
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "1.14.14.18"
+        ],
+        "rhea_record_count": 3,
+        "rhea_records": [
+          {
+            "ec_number": "1.14.14.18",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "heme b + 3 reduced [NADPH--hemoprotein reductase] + 3 O2 = biliverdin IXalpha + CO + Fe(2+) + 3 oxidized [NADPH--hemoprotein reductase] + 3 H2O + H(+)",
+            "rhea_id": "RHEA:21764",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "1.14.14.18",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "heme b + 3 reduced [NADPH--hemoprotein reductase] + 3 O2 = biliverdin IXalpha + CO + Fe(2+) + 3 oxidized [NADPH--hemoprotein reductase] + 3 H2O + H(+)",
+            "rhea_id": "RHEA-COMP:11964",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "1.14.14.18",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "heme b + 3 reduced [NADPH--hemoprotein reductase] + 3 O2 = biliverdin IXalpha + CO + Fe(2+) + 3 oxidized [NADPH--hemoprotein reductase] + 3 H2O + H(+)",
+            "rhea_id": "RHEA-COMP:11965",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 316,
+      "source_hashes": {
+        "rhea_records_sha256": "bca2ba6bea98b54645cf68de9d32260eb9180e754b41765955dfbba46f0c5dbf",
+        "uniprot_entry_record_sha256": "654f35ac2831818e7d740a3f8359be3174eaf6667ca8736d83551f659870573e",
+        "uniprot_search_row_sha256": "75a1410112a20cf51b8e90d61684c7b0f3c372ba7d93bb73b5f31a7ff75b0129"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P30519",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "P29082",
+      "afdb_or_pdb_identifier": "2CB2",
+      "candidate_id": "uniprot:P29082",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Acidianus ambivalens (Desulfurolobus ambivalens)",
+      "protein_name": "Sulfur oxygenase/reductase (EC 1.13.11.55) (Sulfur oxygenase reductase) (SOR)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 86,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 86
+        },
+        {
+          "end": 90,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 90
+        },
+        {
+          "end": 114,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 114
+        },
+        {
+          "end": 31,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 31
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "1.13.11.55"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "1.13.11.55",
+            "evidence_codes": [],
+            "reaction": "4 sulfur + O2 + 4 H2O = 2 hydrogen sulfide + 2 sulfite + 6 H(+)",
+            "rhea_id": "RHEA:13957",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 309,
+      "source_hashes": {
+        "rhea_records_sha256": "660910629741d691f770d20bf98b864512b5a1069160fb02706ff9bb881466ea",
+        "uniprot_entry_record_sha256": "d81fbd774f3271046f5bba5e9286f603872514b78aeb990930bf189f87b74ee0",
+        "uniprot_search_row_sha256": "9ce2da579ebcf1aa29c955f8348a4ca03d6227d671de10b307f21533d02629fc"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P29082",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "Q9UGB7",
+      "afdb_or_pdb_identifier": "2IBN",
+      "candidate_id": "uniprot:Q9UGB7",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Inositol oxygenase (EC 1.13.99.1) (Aldehyde reductase-like 6) (Kidney-specific protein 32) (Myo-inositol oxygenase) (MI oxygenase) (Renal-specific oxidoreductase)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 29,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": null,
+          "ligand_name": "substrate",
+          "position": 29
+        },
+        {
+          "end": 87,
+          "evidence_codes": [],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": null,
+          "ligand_name": "substrate",
+          "position": 85
+        },
+        {
+          "end": 98,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 98
+        },
+        {
+          "end": 123,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 123
+        },
+        {
+          "end": 124,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 124
+        },
+        {
+          "end": 127,
+          "evidence_codes": [],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": null,
+          "ligand_name": "substrate",
+          "position": 127
+        },
+        {
+          "end": 142,
+          "evidence_codes": [],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": null,
+          "ligand_name": "substrate",
+          "position": 141
+        },
+        {
+          "end": 194,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 194
+        },
+        {
+          "end": 221,
+          "evidence_codes": [],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": null,
+          "ligand_name": "substrate",
+          "position": 220
+        },
+        {
+          "end": 220,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 220
+        },
+        {
+          "end": 253,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "position": 253
+        },
+        {
+          "end": 33,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 33
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "1.13.99.1"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "1.13.99.1",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "myo-inositol + O2 = D-glucuronate + H2O + H(+)",
+            "rhea_id": "RHEA:23696",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 285,
+      "source_hashes": {
+        "rhea_records_sha256": "db188bad4420d5f751bc0e2f04358d5705e52b58cf7ee53be15cec14ce716628",
+        "uniprot_entry_record_sha256": "26f3e29ea56b3a22fdccb19365e086128a7e656266e5167ae71bb49be41a4540",
+        "uniprot_search_row_sha256": "dd440fb939c1c0a74779ed49b60f4f996fd97d07c311814c50a4668573506fd9"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9UGB7",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "Q9Y617",
+      "afdb_or_pdb_identifier": "3E77",
+      "candidate_id": "uniprot:Q9Y617",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Phosphoserine aminotransferase (EC 2.6.1.52) (Phosphohydroxythreonine aminotransferase) (PSAT)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 44,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57524",
+          "ligand_name": "O-phospho-L-serine",
+          "position": 44
+        },
+        {
+          "end": 45,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57524",
+          "ligand_name": "O-phospho-L-serine",
+          "position": 45
+        },
+        {
+          "end": 79,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 79
+        },
+        {
+          "end": 80,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 80
+        },
+        {
+          "end": 107,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 107
+        },
+        {
+          "end": 156,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 156
+        },
+        {
+          "end": 176,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 176
+        },
+        {
+          "end": 199,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 199
+        },
+        {
+          "end": 241,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 241
+        },
+        {
+          "end": 242,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 242
+        },
+        {
+          "end": 335,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57524",
+          "ligand_name": "O-phospho-L-serine",
+          "position": 335
+        },
+        {
+          "end": 336,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57524",
+          "ligand_name": "O-phospho-L-serine",
+          "position": 336
+        },
+        {
+          "end": 342,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57524",
+          "ligand_name": "O-phospho-L-serine",
+          "position": 342
+        },
+        {
+          "end": 1,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 1
+        },
+        {
+          "end": 51,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 51
+        },
+        {
+          "end": 127,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 127
+        },
+        {
+          "end": 200,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 200
+        },
+        {
+          "end": 269,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 269
+        },
+        {
+          "end": 318,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 318
+        },
+        {
+          "end": 323,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 323
+        },
+        {
+          "end": 331,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 331
+        },
+        {
+          "end": 333,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 333
+        },
+        {
+          "end": 337,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 337
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "2.6.1.52"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "2.6.1.52",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "O-phospho-L-serine + 2-oxoglutarate = 3-phosphooxypyruvate + L-glutamate",
+            "rhea_id": "RHEA:14329",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 370,
+      "source_hashes": {
+        "rhea_records_sha256": "14dbe7f19ed5163baeee57bae2d4b77bede02e3a5c04ca902bdca0d3a3da0181",
+        "uniprot_entry_record_sha256": "d7a9b0bdd6c1bd52662c9e3faace69ec0b7c529224c2c1a3928c1f440a0a017e",
+        "uniprot_search_row_sha256": "66a5ded211b5602ac6dd2fb19f936f84e9e86e9f62bfb5a3dc2d8cca2cbdc262"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Y617",
+      "target_family_lane": "PLP children",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "P04181",
+      "afdb_or_pdb_identifier": "1GBN",
+      "candidate_id": "uniprot:P04181",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Ornithine aminotransferase, mitochondrial (EC 2.6.1.13) (Ornithine delta-aminotransferase) (Ornithine--oxo-acid aminotransferase) [Cleaved into: Ornithine aminotransferase, hepatic form; Ornithine aminotransferase, renal form]",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 49,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 49
+        },
+        {
+          "end": 66,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 66
+        },
+        {
+          "end": 102,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 102
+        },
+        {
+          "end": 107,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 107
+        },
+        {
+          "end": 107,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 107
+        },
+        {
+          "end": 292,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 292
+        },
+        {
+          "end": 362,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 362
+        },
+        {
+          "end": 362,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 362
+        },
+        {
+          "end": 386,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 386
+        },
+        {
+          "end": 392,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 392
+        },
+        {
+          "end": 405,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 405
+        },
+        {
+          "end": 405,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 405
+        },
+        {
+          "end": 421,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 421
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "2.6.1.13"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "2.6.1.13",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "L-ornithine + 2-oxoglutarate = L-glutamate 5-semialdehyde + L-glutamate",
+            "rhea_id": "RHEA:25160",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 439,
+      "source_hashes": {
+        "rhea_records_sha256": "a6939b9e5e7216ae16adf6a1db9dfa52695cbc3bab4a869cc8de41636814f27d",
+        "uniprot_entry_record_sha256": "87d6240de3ddb229b2eb159e070fb2e986a3a7eeb77dc5fd3f60bf41dd9392dd",
+        "uniprot_search_row_sha256": "91a3af4b9ac47af00bea20f545bd8a5e1aa357bb2f0d91c73e97423c344e783b"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P04181",
+      "target_family_lane": "PLP children",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "Q96255",
+      "afdb_or_pdb_identifier": "6CZX",
+      "candidate_id": "uniprot:Q96255",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Phosphoserine aminotransferase 1, chloroplastic (AtPSAT1) (EC 2.6.1.52) (Phosphohydroxythreonine aminotransferase)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 111,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29985",
+          "ligand_name": "L-glutamate",
+          "position": 111
+        },
+        {
+          "end": 146,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 145
+        },
+        {
+          "end": 171,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 171
+        },
+        {
+          "end": 221,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 221
+        },
+        {
+          "end": 241,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 241
+        },
+        {
+          "end": 264,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 264
+        },
+        {
+          "end": 307,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:597326",
+          "ligand_name": "pyridoxal 5'-phosphate",
+          "position": 306
+        },
+        {
+          "end": 52,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 52
+        },
+        {
+          "end": 265,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 265
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 2,
+        "ec_numbers": [
+          "2.6.1.52"
+        ],
+        "rhea_record_count": 2,
+        "rhea_records": [
+          {
+            "ec_number": "2.6.1.52",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "O-phospho-L-serine + 2-oxoglutarate = 3-phosphooxypyruvate + L-glutamate",
+            "rhea_id": "RHEA:14329",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "2.6.1.52",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "4-(phosphooxy)-L-threonine + 2-oxoglutarate = (R)-3-hydroxy-2-oxo-4-phosphooxybutanoate + L-glutamate",
+            "rhea_id": "RHEA:16573",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 430,
+      "source_hashes": {
+        "rhea_records_sha256": "99754598b11e0db151d25ddcc49dec7d92a9371a431bf17c6d617192cca79be1",
+        "uniprot_entry_record_sha256": "e8da8af13527e33209b9c20be5f6a96cf1565e79bc161480bb04c1fb8e2cdeb4",
+        "uniprot_search_row_sha256": "ab69f51bd4695856e9f40a85cbc2299f23788c73fac2bf8958bb39498afb448c"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q96255",
+      "target_family_lane": "PLP children",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "O60502",
+      "afdb_or_pdb_identifier": "2YDQ",
+      "candidate_id": "uniprot:O60502",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Protein O-GlcNAcase (OGA) (EC 3.2.1.169) (Beta-N-acetylglucosaminidase) (Beta-N-acetylhexosaminidase) (Beta-hexosaminidase) (Meningioma-expressed antigen 5) (N-acetyl-beta-D-glucosaminidase) (N-acetyl-beta-glucosaminidase) (Nuclear cytoplasmic O-GlcNAcase and acetyltransferase) (NCOAT)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 175,
+          "evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000305"
+          ],
+          "exact": true,
+          "feature_code": "ACT_SITE",
+          "feature_type": "Active site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 175
+        },
+        {
+          "end": 67,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:16541",
+          "ligand_name": "a protein",
+          "position": 67
+        },
+        {
+          "end": 98,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:16541",
+          "ligand_name": "a protein",
+          "position": 98
+        },
+        {
+          "end": 174,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:16541",
+          "ligand_name": "a protein",
+          "position": 174
+        },
+        {
+          "end": 175,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:16541",
+          "ligand_name": "a protein",
+          "position": 175
+        },
+        {
+          "end": 219,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:16541",
+          "ligand_name": "a protein",
+          "position": 219
+        },
+        {
+          "end": 285,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:16541",
+          "ligand_name": "a protein",
+          "position": 285
+        },
+        {
+          "end": 313,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:16541",
+          "ligand_name": "a protein",
+          "position": 313
+        },
+        {
+          "end": 414,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": false,
+          "feature_code": "SITE",
+          "feature_type": "Site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 413
+        },
+        {
+          "end": 364,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 364
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 2,
+        "ec_numbers": [
+          "3.2.1.169"
+        ],
+        "rhea_record_count": 6,
+        "rhea_records": [
+          {
+            "ec_number": "3.2.1.169",
+            "evidence_codes": [
+              "ECO:0000269",
+              "ECO:0000305"
+            ],
+            "reaction": "3-O-(N-acetyl-beta-D-glucosaminyl)-L-seryl-[protein] + H2O = N-acetyl-D-glucosamine + L-seryl-[protein]",
+            "rhea_id": "RHEA:48876",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "3.2.1.169",
+            "evidence_codes": [
+              "ECO:0000269",
+              "ECO:0000305"
+            ],
+            "reaction": "3-O-(N-acetyl-beta-D-glucosaminyl)-L-seryl-[protein] + H2O = N-acetyl-D-glucosamine + L-seryl-[protein]",
+            "rhea_id": "RHEA-COMP:9863",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "3.2.1.169",
+            "evidence_codes": [
+              "ECO:0000269",
+              "ECO:0000305"
+            ],
+            "reaction": "3-O-(N-acetyl-beta-D-glucosaminyl)-L-seryl-[protein] + H2O = N-acetyl-D-glucosamine + L-seryl-[protein]",
+            "rhea_id": "RHEA-COMP:12251",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "3.2.1.169",
+            "evidence_codes": [
+              "ECO:0000269",
+              "ECO:0000305"
+            ],
+            "reaction": "3-O-(N-acetyl-beta-D-glucosaminyl)-L-threonyl-[protein] + H2O = L-threonyl-[protein] + N-acetyl-D-glucosamine",
+            "rhea_id": "RHEA:48892",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "3.2.1.169",
+            "evidence_codes": [
+              "ECO:0000269",
+              "ECO:0000305"
+            ],
+            "reaction": "3-O-(N-acetyl-beta-D-glucosaminyl)-L-threonyl-[protein] + H2O = L-threonyl-[protein] + N-acetyl-D-glucosamine",
+            "rhea_id": "RHEA-COMP:11060",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "3.2.1.169",
+            "evidence_codes": [
+              "ECO:0000269",
+              "ECO:0000305"
+            ],
+            "reaction": "3-O-(N-acetyl-beta-D-glucosaminyl)-L-threonyl-[protein] + H2O = L-threonyl-[protein] + N-acetyl-D-glucosamine",
+            "rhea_id": "RHEA-COMP:12252",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 916,
+      "source_hashes": {
+        "rhea_records_sha256": "ab3c751369eed7f24ea57bbdcf0b00e208e7504325c7bdcbfff996f8dbbf64af",
+        "uniprot_entry_record_sha256": "73e7ee8cd684607623ae260a42eb4e80f311bf62a8c95271125e475768118c63",
+        "uniprot_search_row_sha256": "202b88b4255150b52ae39e7d616d22f652caf096ba6068c41ea2318c46e7d7f9"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:O60502",
+      "target_family_lane": "glycoside/nucleoside",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "P04062",
+      "afdb_or_pdb_identifier": "1OGS",
+      "candidate_id": "uniprot:P04062",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Lysosomal acid glucosylceramidase (Lysosomal acid GCase) (EC 3.2.1.45) (Acid beta-glucosidase) (Alglucerase) (Beta-glucocerebrosidase) (Beta-GC) (Beta-glucosylceramidase 1) (Cholesterol glucosyltransferase) (SGTase) (EC 2.4.1.-) (Cholesteryl-beta-glucosidase) (EC 3.2.1.-) (D-glucosyl-N-acylsphingosine glucohydrolase) (Glucosylceramidase beta 1) (Imiglucerase) (Lysosomal cholesterol glycosyltransferase) (Lysosomal galactosylceramidase) (EC 3.2.1.46) (Lysosomal glycosylceramidase)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 274,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "ACT_SITE",
+          "feature_type": "Active site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 274
+        },
+        {
+          "end": 379,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "exact": true,
+          "feature_code": "ACT_SITE",
+          "feature_type": "Active site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 379
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 15,
+        "ec_numbers": [
+          "2.4.1.-",
+          "3.2.1.-",
+          "3.2.1.45",
+          "3.2.1.46"
+        ],
+        "rhea_record_count": 15,
+        "rhea_records": [
+          {
+            "ec_number": "3.2.1.45",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "a beta-D-glucosyl-(1<->1')-N-acylsphing-4-enine + H2O = an N-acylsphing-4-enine + D-glucose",
+            "rhea_id": "RHEA:13269",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "3.2.1.46",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "a beta-D-galactosyl-(1<->1')-N-acylsphing-4-enine + H2O = an N-acylsphing-4-enine + D-galactose",
+            "rhea_id": "RHEA:14297",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "cholesteryl 3-beta-D-glucoside + H2O = cholesterol + D-glucose",
+            "rhea_id": "RHEA:11956",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "a beta-D-glucosyl-(1<->1')-N-acylsphing-4-enine + cholesterol = cholesteryl 3-beta-D-glucoside + an N-acylsphing-4-enine",
+            "rhea_id": "RHEA:58264",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "beta-D-glucosyl-N-(9Z-octadecenoyl)-sphing-4E-enine + cholesterol = N-(9Z-octadecenoyl)-sphing-4-enine + cholesteryl 3-beta-D-glucoside",
+            "rhea_id": "RHEA:58324",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "beta-D-glucosyl-(1<->1')-N-hexadecanoylsphing-4-enine + cholesterol = cholesteryl 3-beta-D-glucoside + N-hexadecanoylsphing-4-enine",
+            "rhea_id": "RHEA:58316",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "beta-D-glucosyl-N-octanoylsphing-4E-enine + cholesterol = N-octanoylsphing-4-enine + cholesteryl 3-beta-D-glucoside",
+            "rhea_id": "RHEA:70303",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "beta-D-glucosyl-N-dodecanoylsphing-4-enine + cholesterol = N-dodecanoylsphing-4-enine + cholesteryl 3-beta-D-glucoside",
+            "rhea_id": "RHEA:70307",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "beta-D-glucosyl-(1<->1)-N-octadecanoylsphing-4-enine + cholesterol = cholesteryl 3-beta-D-glucoside + N-octadecanoylsphing-4-enine",
+            "rhea_id": "RHEA:70311",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "beta-D-glucosyl-(1<->1')-N-(15Z-tetracosenoyl)-sphing-4-enine + cholesterol = N-(15Z-tetracosenoyl)-sphing-4-enine + cholesteryl 3-beta-D-glucoside",
+            "rhea_id": "RHEA:70315",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "a beta-D-galactosyl-(1<->1')-N-acylsphing-4-enine + cholesterol = cholesteryl 3-beta-D-galactoside + an N-acylsphing-4-enine",
+            "rhea_id": "RHEA:70235",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1-(beta-D-galactosyl)-N-dodecanoylsphing-4-enine + cholesterol = cholesteryl 3-beta-D-galactoside + N-dodecanoylsphing-4-enine",
+            "rhea_id": "RHEA:70255",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "a beta-D-xylosyl-(1<->1')-N-acylsphing-4-enine + cholesterol = cholesteryl 3-beta-D-xyloside + an N-acylsphing-4-enine",
+            "rhea_id": "RHEA:70239",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "beta-D-xylosyl-(1<->1')-N-(9Z-octadecenoyl)-sphing-4-enine + cholesterol = cholesteryl 3-beta-D-xyloside + N-(9Z-octadecenoyl)-sphing-4-enine",
+            "rhea_id": "RHEA:70251",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "stigmasteryl 3-beta-D-glucoside + H2O = stigmasterol + D-glucose",
+            "rhea_id": "RHEA:62028",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 2
+      },
+      "sequence_length": 536,
+      "source_hashes": {
+        "rhea_records_sha256": "031501523cf2aee03231c81122e806eb98c63202b660cff1b66f74465dec2dd0",
+        "uniprot_entry_record_sha256": "f3e24ef26707fd6da6d9bb63a272eeb1d22c9269b3b12100c7792ae671b8fcd3",
+        "uniprot_search_row_sha256": "86f2cabdd9755e9cc4b3fd54004a100de9685df663dfc542c5daaa00cfa0ba51"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P04062",
+      "target_family_lane": "glycoside/nucleoside",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "Q3T906",
+      "afdb_or_pdb_identifier": "2N6D",
+      "candidate_id": "uniprot:Q3T906",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "N-acetylglucosamine-1-phosphotransferase subunits alpha/beta (EC 2.7.8.17) (GlcNAc-1-phosphotransferase subunits alpha/beta) (Stealth protein GNPTAB) (UDP-N-acetylglucosamine-1-phosphotransferase subunits alpha/beta) [Cleaved into: N-acetylglucosamine-1-phosphotransferase subunit alpha; N-acetylglucosamine-1-phosphotransferase subunit beta]",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 449,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 449
+        },
+        {
+          "end": 464,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 464
+        },
+        {
+          "end": 467,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 467
+        },
+        {
+          "end": 516,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 516
+        },
+        {
+          "end": 531,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 531
+        },
+        {
+          "end": 534,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 534
+        },
+        {
+          "end": 1018,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 1018
+        },
+        {
+          "end": 1020,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 1020
+        },
+        {
+          "end": 1022,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 1022
+        },
+        {
+          "end": 1029,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29108",
+          "ligand_name": "Ca(2+)",
+          "position": 1029
+        },
+        {
+          "end": 929,
+          "evidence_codes": [],
+          "exact": false,
+          "feature_code": "SITE",
+          "feature_type": "Site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 928
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "2.7.8.17"
+        ],
+        "rhea_record_count": 3,
+        "rhea_records": [
+          {
+            "ec_number": "2.7.8.17",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "N(4)-[alpha-D-mannosyl-(1->2)-alpha-D-mannosyl-(glycan)]-L-asparaginyl-[protein] + UDP-N-acetyl-alpha-D-glucosamine = N(4)-[6-(N-acetyl-alpha-D-glucosaminyl-1-phospho)-alpha-D-mannosyl-(1->2)-alpha-D-mannosyl-(glycan)]-L-asparaginyl-[protein] + UMP + H(+)",
+            "rhea_id": "RHEA:13581",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "2.7.8.17",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "N(4)-[alpha-D-mannosyl-(1->2)-alpha-D-mannosyl-(glycan)]-L-asparaginyl-[protein] + UDP-N-acetyl-alpha-D-glucosamine = N(4)-[6-(N-acetyl-alpha-D-glucosaminyl-1-phospho)-alpha-D-mannosyl-(1->2)-alpha-D-mannosyl-(glycan)]-L-asparaginyl-[protein] + UMP + H(+)",
+            "rhea_id": "RHEA-COMP:14507",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "2.7.8.17",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "N(4)-[alpha-D-mannosyl-(1->2)-alpha-D-mannosyl-(glycan)]-L-asparaginyl-[protein] + UDP-N-acetyl-alpha-D-glucosamine = N(4)-[6-(N-acetyl-alpha-D-glucosaminyl-1-phospho)-alpha-D-mannosyl-(1->2)-alpha-D-mannosyl-(glycan)]-L-asparaginyl-[protein] + UMP + H(+)",
+            "rhea_id": "RHEA-COMP:14508",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 1256,
+      "source_hashes": {
+        "rhea_records_sha256": "9aaa827f7eb07431507194e8b13a1905cf4ddb3f630dd8a0af496e0064346617",
+        "uniprot_entry_record_sha256": "3047d1449e397e22b21480c4b331211665c9c77f3f4a2063368400e17519f5f6",
+        "uniprot_search_row_sha256": "2b9b2f6d9c5af28c88ceabaf333e3680bb2a372992fd01d77156fb17efc397f3"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q3T906",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "Q969G6",
+      "afdb_or_pdb_identifier": "1NB0",
+      "candidate_id": "uniprot:Q969G6",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Riboflavin kinase (EC 2.7.1.26) (ATP:riboflavin 5'-phosphotransferase) (Flavokinase)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 79,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "ACT_SITE",
+          "feature_type": "Active site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 79
+        },
+        {
+          "end": 15,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 15
+        },
+        {
+          "end": 21,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 21
+        },
+        {
+          "end": 27,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 27
+        },
+        {
+          "end": 27,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:18420",
+          "ligand_name": "Mg(2+)",
+          "position": 27
+        },
+        {
+          "end": 29,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 29
+        },
+        {
+          "end": 29,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:18420",
+          "ligand_name": "Mg(2+)",
+          "position": 29
+        },
+        {
+          "end": 82,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 82
+        },
+        {
+          "end": 84,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 84
+        },
+        {
+          "end": 91,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 91
+        },
+        {
+          "end": 104,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:58210",
+          "ligand_name": "FMN",
+          "position": 104
+        },
+        {
+          "end": 107,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:58210",
+          "ligand_name": "FMN",
+          "position": 107
+        },
+        {
+          "end": 109,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:58210",
+          "ligand_name": "FMN",
+          "position": 109
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "2.7.1.26"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "2.7.1.26",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "riboflavin + ATP = FMN + ADP + H(+)",
+            "rhea_id": "RHEA:14357",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 155,
+      "source_hashes": {
+        "rhea_records_sha256": "ae3ce7aee5164070890fd9d9d9149c700fdfa379c28410aaa52f0d175b0bc209",
+        "uniprot_entry_record_sha256": "048e2957f442ef7fc337cc47d2496aee4c36438fd72b1bf5badffcf69cfb6348",
+        "uniprot_search_row_sha256": "b702ce0d3315abffbaed99557564732c10e43716e4ee79ed43febd7557db993e"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q969G6",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "P32189",
+      "afdb_or_pdb_identifier": "AF-P32189-F1",
+      "candidate_id": "uniprot:P32189",
+      "confidence_tier": "high",
+      "coordinate_source_status": "afdb_predicted_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 20,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "position": 20
+        },
+        {
+          "end": 20,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 20
+        },
+        {
+          "end": 20,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "position": 20
+        },
+        {
+          "end": 21,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 21
+        },
+        {
+          "end": 22,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 22
+        },
+        {
+          "end": 24,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "position": 24
+        },
+        {
+          "end": 94,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "position": 94
+        },
+        {
+          "end": 94,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "position": 94
+        },
+        {
+          "end": 95,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "position": 95
+        },
+        {
+          "end": 95,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "position": 95
+        },
+        {
+          "end": 148,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "position": 148
+        },
+        {
+          "end": 148,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "position": 148
+        },
+        {
+          "end": 252,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:32966",
+          "ligand_name": "beta-D-fructose 1,6-bisphosphate",
+          "position": 252
+        },
+        {
+          "end": 265,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "position": 265
+        },
+        {
+          "end": 265,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "position": 265
+        },
+        {
+          "end": 266,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "position": 266
+        },
+        {
+          "end": 287,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "position": 287
+        },
+        {
+          "end": 287,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 287
+        },
+        {
+          "end": 332,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "position": 332
+        },
+        {
+          "end": 332,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 332
+        },
+        {
+          "end": 433,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "position": 433
+        },
+        {
+          "end": 433,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "position": 433
+        },
+        {
+          "end": 437,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "position": 437
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "2.7.1.30"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "2.7.1.30",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "glycerol + ATP = sn-glycerol 3-phosphate + ADP + H(+)",
+            "rhea_id": "RHEA:21644",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 559,
+      "source_hashes": {
+        "rhea_records_sha256": "a3699c7353d25c9be2213a717e2e8d891127b3c40696b163e681ff2a127b1c17",
+        "uniprot_entry_record_sha256": "8c1fa507f420e0a4fdbdbfb2e5143e85ebbad18cdda80aa6bb45bdfb1ca0a037",
+        "uniprot_search_row_sha256": "711926a2a920cef5f91a2d0dd6931b7911276a5b5ef4827d86cfc55f048b0145"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P32189",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "Q9Y6K0",
+      "afdb_or_pdb_identifier": "8GYW",
+      "candidate_id": "uniprot:Q9Y6K0",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Choline/ethanolaminephosphotransferase 1 (hCEPT1) (EC 2.7.8.1) (EC 2.7.8.2) (1-alkenyl-2-acylglycerol choline phosphotransferase) (EC 2.7.8.22)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 155,
+          "evidence_codes": [
+            "ECO:0000305"
+          ],
+          "exact": true,
+          "feature_code": "ACT_SITE",
+          "feature_type": "Active site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 155
+        },
+        {
+          "end": 86,
+          "evidence_codes": [
+            "ECO:0000305"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:58779",
+          "ligand_name": "CDP-choline",
+          "position": 86
+        },
+        {
+          "end": 133,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:18420",
+          "ligand_name": "Mg(2+)",
+          "position": 133
+        },
+        {
+          "end": 151,
+          "evidence_codes": [
+            "ECO:0000305"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:58779",
+          "ligand_name": "CDP-choline",
+          "position": 151
+        },
+        {
+          "end": 154,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:18420",
+          "ligand_name": "Mg(2+)",
+          "position": 154
+        },
+        {
+          "end": 158,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:18420",
+          "ligand_name": "Mg(2+)",
+          "position": 158
+        },
+        {
+          "end": 151,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "SITE",
+          "feature_type": "Site",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 151
+        },
+        {
+          "end": 18,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 18
+        },
+        {
+          "end": 40,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 40
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 15,
+        "ec_numbers": [
+          "2.7.8.1",
+          "2.7.8.2",
+          "2.7.8.22"
+        ],
+        "rhea_record_count": 15,
+        "rhea_records": [
+          {
+            "ec_number": "2.7.8.1",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "CDP-ethanolamine + a 1,2-diacyl-sn-glycerol = a 1,2-diacyl-sn-glycero-3-phosphoethanolamine + CMP + H(+)",
+            "rhea_id": "RHEA:32943",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "2.7.8.2",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "CDP-choline + a 1,2-diacyl-sn-glycerol = a 1,2-diacyl-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:32939",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "2.7.8.2",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1-O-alkyl-2-acyl-sn-glycerol + CDP-choline = a 1-O-alkyl-2-acyl-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:36179",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": "2.7.8.22",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "a 1-O-(1Z-alkenyl)-2-acyl-sn-glycerol + CDP-choline = a 1-O-(1Z-alkenyl)-2-acyl-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:36227",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1,2-dioctanoyl-sn-glycerol + CDP-choline = 1,2-dioctanoyl-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:54232",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1,2-didecanoyl-sn-glycerol + CDP-choline = 1,2-didecanoyl-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:54236",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "CDP-choline + 1,2-di-(9Z-octadecenoyl)-sn-glycerol = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:54240",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycerol + CDP-choline = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:54244",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "CDP-ethanolamine + 1,2-di-(9Z-octadecenoyl)-sn-glycerol = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphoethanolamine + CMP + H(+)",
+            "rhea_id": "RHEA:54248",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycerol + CDP-ethanolamine = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphoethanolamine + CMP + H(+)",
+            "rhea_id": "RHEA:54252",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1-hexadecanoyl-2-(4Z,7Z,10Z,13Z,16Z,19Z-docosahexaenoyl)-sn-glycerol + CDP-choline = 1-hexadecanoyl-2-(4Z,7Z,10Z,13Z,16Z,19Z-docosahexaenoyl)-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:54332",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1,2-di-(9Z-hexadecenoyl)-sn-glycerol + CDP-choline = 1,2-di-(9Z-hexadecenoyl)-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:54336",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1,2-di-(9Z-hexadecenoyl)-sn-glycerol + CDP-ethanolamine = 1,2-di-(9Z-hexadecenoyl)-sn-glycero-3-phosphoethanolamine + CMP + H(+)",
+            "rhea_id": "RHEA:54340",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1-O-hexadecyl-2-acetyl-sn-glycerol + CDP-choline = 1-O-hexadecyl-2-acetyl-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:54348",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          },
+          {
+            "ec_number": null,
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "1-O-hexadecyl-2-(5Z,8Z,11Z,14Z-eicosatetraenoyl)-sn-glycerol + CDP-choline = 1-O-hexadecyl-2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphocholine + CMP + H(+)",
+            "rhea_id": "RHEA:54352",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 3
+      },
+      "sequence_length": 416,
+      "source_hashes": {
+        "rhea_records_sha256": "d9cda3ef89c661057f43a71be3258d80bbb6e3043afe7142606e1aac487203f9",
+        "uniprot_entry_record_sha256": "e845b6580a2ac53acb1beae4ea5e2e1ae38a03b250be98c53a5eb710c61213a2",
+        "uniprot_search_row_sha256": "6fe4691814bec40dd346ac54b05dabbc32547ee1361fb42caeaba801b6c23dce"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Y6K0",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "Q99707",
+      "afdb_or_pdb_identifier": "2O2K",
+      "candidate_id": "uniprot:Q99707",
+      "confidence_tier": "high",
+      "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Methionine synthase (MS) (EC 2.1.1.13) (5-methyltetrahydrofolate--homocysteine methyltransferase) (Cobalamin-dependent methionine synthase) (Vitamin-B12 dependent methionine synthase)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 260,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 260
+        },
+        {
+          "end": 323,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 323
+        },
+        {
+          "end": 324,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 324
+        },
+        {
+          "end": 384,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 382
+        },
+        {
+          "end": 449,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 449
+        },
+        {
+          "end": 470,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 470
+        },
+        {
+          "end": 537,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 537
+        },
+        {
+          "end": 579,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 579
+        },
+        {
+          "end": 585,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 585
+        },
+        {
+          "end": 591,
+          "evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 591
+        },
+        {
+          "end": 709,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 709
+        },
+        {
+          "end": 786,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 782
+        },
+        {
+          "end": 785,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 785
+        },
+        {
+          "end": 830,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 830
+        },
+        {
+          "end": 834,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 834
+        },
+        {
+          "end": 886,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 886
+        },
+        {
+          "end": 974,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 974
+        },
+        {
+          "end": 1172,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 1172
+        },
+        {
+          "end": 1228,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 1227
+        },
+        {
+          "end": 1264,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 1264
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "2.1.1.13"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "2.1.1.13",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "(6S)-5-methyl-5,6,7,8-tetrahydrofolate + L-homocysteine = (6S)-5,6,7,8-tetrahydrofolate + L-methionine",
+            "rhea_id": "RHEA:11172",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 1265,
+      "source_hashes": {
+        "rhea_records_sha256": "906ada63258cd63631503ba796b474ed5231a7bbbc2e42173e61a406a8257260",
+        "uniprot_entry_record_sha256": "23aada2e88c6339ab651f79fd8af4742496ae6f6269f76079cf5d7a4a6618247",
+        "uniprot_search_row_sha256": "48c0d73804076a0c1b7d9bbb4b6539c470b48ca8a660587f9a277dc8ce9d2976"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q99707",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "A6H5Y3",
+      "afdb_or_pdb_identifier": "AF-A6H5Y3-F1",
+      "candidate_id": "uniprot:A6H5Y3",
+      "confidence_tier": "high",
+      "coordinate_source_status": "afdb_predicted_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Methionine synthase (MS) (EC 2.1.1.13) (5-methyltetrahydrofolate--homocysteine methyltransferase) (Cobalamin-dependent methionine synthase) (Vitamin-B12 dependent methionine synthase)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 248,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 248
+        },
+        {
+          "end": 311,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 311
+        },
+        {
+          "end": 312,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 312
+        },
+        {
+          "end": 372,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 370
+        },
+        {
+          "end": 437,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 437
+        },
+        {
+          "end": 458,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 458
+        },
+        {
+          "end": 525,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 525
+        },
+        {
+          "end": 567,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 567
+        },
+        {
+          "end": 573,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 573
+        },
+        {
+          "end": 579,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 579
+        },
+        {
+          "end": 697,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 697
+        },
+        {
+          "end": 774,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 770
+        },
+        {
+          "end": 773,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 773
+        },
+        {
+          "end": 818,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 818
+        },
+        {
+          "end": 822,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 822
+        },
+        {
+          "end": 874,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 874
+        },
+        {
+          "end": 962,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 962
+        },
+        {
+          "end": 1160,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 1160
+        },
+        {
+          "end": 1216,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 1215
+        },
+        {
+          "end": 1252,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 1252
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "2.1.1.13"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "2.1.1.13",
+            "evidence_codes": [
+              "ECO:0000250"
+            ],
+            "reaction": "(6S)-5-methyl-5,6,7,8-tetrahydrofolate + L-homocysteine = (6S)-5,6,7,8-tetrahydrofolate + L-methionine",
+            "rhea_id": "RHEA:11172",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 1253,
+      "source_hashes": {
+        "rhea_records_sha256": "4138e68101bc09c0e1cc39f97e7339b65efab66aae825089519dc05e739851cf",
+        "uniprot_entry_record_sha256": "af0fd291bbcb53f336effb60c9f2a58157c23d16a0b13d50d23bb9a79c6fc251",
+        "uniprot_search_row_sha256": "ce28a4215485da36f4980d8fb3dda23614d9d302e1899ec050d600b2104c57e4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:A6H5Y3",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "external_countable_preflight_candidate"
+    },
+    {
+      "accession": "Q9Z2Q4",
+      "afdb_or_pdb_identifier": "AF-Q9Z2Q4-F1",
+      "candidate_id": "uniprot:Q9Z2Q4",
+      "confidence_tier": "high",
+      "coordinate_source_status": "afdb_predicted_coordinate_provenance_available",
+      "duplicate_current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+      "exact_next_action": "Stage in external import-preview artifact; run structural duplicate screen before import.",
+      "import_preview_candidate": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Methionine synthase (MS) (EC 2.1.1.13) (5-methyltetrahydrofolate--homocysteine methyltransferase) (Cobalamin-dependent methionine synthase) (Vitamin-B12 dependent methionine synthase)",
+      "ready_for_production_label_import": false,
+      "remaining_required_before_import": [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "residue_locators": [
+        {
+          "end": 248,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 248
+        },
+        {
+          "end": 311,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 311
+        },
+        {
+          "end": 312,
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:29105",
+          "ligand_name": "Zn(2+)",
+          "position": 312
+        },
+        {
+          "end": 372,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 370
+        },
+        {
+          "end": 437,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 437
+        },
+        {
+          "end": 458,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 458
+        },
+        {
+          "end": 525,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 525
+        },
+        {
+          "end": 567,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 567
+        },
+        {
+          "end": 573,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 573
+        },
+        {
+          "end": 579,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:57453",
+          "ligand_name": "(6S)-5,6,7,8-tetrahydrofolate",
+          "position": 579
+        },
+        {
+          "end": 697,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 697
+        },
+        {
+          "end": 774,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 770
+        },
+        {
+          "end": 773,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 773
+        },
+        {
+          "end": 818,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 818
+        },
+        {
+          "end": 822,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 822
+        },
+        {
+          "end": 874,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:28115",
+          "ligand_name": "methylcob(III)alamin",
+          "position": 874
+        },
+        {
+          "end": 962,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 962
+        },
+        {
+          "end": 1160,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": true,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 1160
+        },
+        {
+          "end": 1216,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "exact": false,
+          "feature_code": "BINDING",
+          "feature_type": "Binding site",
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "position": 1215
+        },
+        {
+          "end": 1252,
+          "evidence_codes": [
+            "ECO:0007744"
+          ],
+          "exact": true,
+          "feature_code": "MOD_RES",
+          "feature_type": "Modified residue",
+          "ligand_id": null,
+          "ligand_name": null,
+          "position": 1252
+        }
+      ],
+      "reviewed_status": "reviewed",
+      "rhea_ec_provenance": {
+        "catalytic_activity_comment_count": 1,
+        "ec_numbers": [
+          "2.1.1.13"
+        ],
+        "rhea_record_count": 1,
+        "rhea_records": [
+          {
+            "ec_number": "2.1.1.13",
+            "evidence_codes": [
+              "ECO:0000269"
+            ],
+            "reaction": "(6S)-5-methyl-5,6,7,8-tetrahydrofolate + L-homocysteine = (6S)-5,6,7,8-tetrahydrofolate + L-methionine",
+            "rhea_id": "RHEA:11172",
+            "source": "uniprot_catalytic_activity_cross_reference"
+          }
+        ],
+        "rhea_status": "rhea_provenance_available",
+        "specific_ec_count": 1
+      },
+      "sequence_length": 1253,
+      "source_hashes": {
+        "rhea_records_sha256": "906ada63258cd63631503ba796b474ed5231a7bbbc2e42173e61a406a8257260",
+        "uniprot_entry_record_sha256": "f6ff99998580ca96b60af5028ae1c57da885db903c2475d9f1b468067f1eb4b2",
+        "uniprot_search_row_sha256": "0a35b0f89ad9f670f09d867f1f1e6aa72fd5af34f712dfab122f7d9adbb0813d"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Z2Q4",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "external_countable_preflight_candidate"
+    }
+  ],
+  "schema_version": "v3.external_source_ingestion_import_preview",
+  "source_artifact_id": "v3_external_source_ingestion_pilot_current702_20260608",
+  "source_artifact_sha256": "d04e91c4835acce90bc1fbf43d8843b084ac3debdf4da272db92d7f71d7d4994",
+  "source_artifacts": {
+    "external_ingestion_pilot": {
+      "bytes": 431281,
+      "path": "artifacts/v3_external_source_ingestion_pilot_current702_20260608.json",
+      "sha256": "d224e15dca0c0f56237510ae1be70b07ab28170dbb088422c2868cb3799e269d"
+    }
+  }
+}

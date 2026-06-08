@@ -86,6 +86,17 @@ artifact-backed mechanism diagnostics.
   `artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json` and
   `work/countable_label_unblocker_matrix_current702_20260608.md`; no import
   preview artifact was written.
+- Current external-source ingestion pilot (2026-06-08): the first rerunnable
+  reviewed Swiss-Prot/UniProt + AFDB/PDB + Rhea/EC ingestion lane samples 28
+  non-M-CSA external candidates across seven scale-out family lanes. Terminal
+  states: 16 `external_countable_preflight_candidate`, 7
+  `locator_ready_candidate`, 4 `coordinate_ready_pending_locator`, and 1
+  `blocked_duplicate_or_current_registry_conflict` (`uniprot:P23721`). A
+  preview-only import artifact was produced for the 16 preflight rows, but no
+  production registry/import/ontology/model/threshold/split edit was made. Use
+  `artifacts/v3_external_source_ingestion_pilot_current702_20260608.json`,
+  `artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json`,
+  and `work/external_source_ingestion_pilot_current702_20260608.md`.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.

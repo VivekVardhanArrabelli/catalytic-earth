@@ -140,6 +140,34 @@ class CliTests(unittest.TestCase):
         )
         self.assertIsNone(args.created_utc)
 
+    def test_external_source_ingestion_pilot_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-external-source-ingestion-pilot"])
+
+        self.assertEqual(
+            args.current_manifest,
+            "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_source_ingestion_pilot_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            "work/external_source_ingestion_pilot_current702_20260608.md",
+        )
+        self.assertEqual(
+            args.import_preview_out,
+            (
+                "artifacts/"
+                "v3_external_source_ingestion_import_preview_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(args.max_records_per_lane, 4)
+        self.assertFalse(args.no_rhea_fallback)
+
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-lever2-mechanism-feature-incremental-readout"]

@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 14,
     "missing_references": 0,
-    "references_checked": 901
+    "references_checked": 908
   },
-  "created_utc": "2026-06-08T21:43:58Z",
+  "created_utc": "2026-06-08T21:56:57Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -193,6 +193,30 @@
       "reference": "artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json"
     },
     {
+      "checked_path": "artifacts/v3_external_source_ingestion_pilot_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_source_ingestion_pilot_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json"
+    },
+    {
+      "checked_path": "work/external_source_ingestion_pilot_current702_20260608.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/external_source_ingestion_pilot_current702_20260608.md"
+    },
+    {
+      "checked_path": "src/catalytic_earth/external_source_ingestion.py",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "src/catalytic_earth/external_source_ingestion.py"
+    },
+    {
       "checked_path": "data/registries/curated_mechanism_labels.json",
       "doc": "docs/artifact_index.md",
       "exists": true,
@@ -311,30 +335,6 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

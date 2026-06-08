@@ -2,26 +2,30 @@
 
 ## Current automation run
 
-- Automation ID: `ce-countable-label-unblocker`
-- STARTED_AT_UTC: `2026-06-08T21:31:27Z`
-- STARTED_AT_LOCAL: `2026-06-08T16:31:27-0500`
-- ENDED_AT_UTC: `2026-06-08T21:45:24Z`
-- ENDED_AT_LOCAL: `2026-06-08T16:45:24-0500`
-- ELAPSED_MINUTES: `13.950`
-- Status: Countable-label unblocker classified all 523 non-reject canonical
-  scale-out candidates into concrete import-preview/blocker actions. Zero
-  rows pass import-preview gates because no source row sets both
-  `ready_for_label_import=True` and `countable_label_candidate=True`.
+- Automation ID: `ce-external-source-ingestion-pilot`
+- STARTED_AT_UTC: `2026-06-08T21:37:21Z`
+- STARTED_AT_LOCAL: `2026-06-08T16:37:21-0500`
+- ENDED_AT_UTC: `2026-06-08T21:51:41Z`
+- ENDED_AT_LOCAL: `2026-06-08T16:51:41-0500`
+- ELAPSED_MINUTES: `14.333`
+- Status: Complete durable output. Built the first rerunnable external-source
+  ingestion pilot for reviewed Swiss-Prot/UniProt, AFDB/PDB coordinate
+  provenance, and Rhea/EC reaction provenance. The artifact has 28 candidate
+  rows across seven family lanes and 16 preview-only preflight rows. This run
+  used the dedicated external-ingestion lock and did not edit production
+  registries/imports.
 - Current output:
-  `artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json`
-  and `work/countable_label_unblocker_matrix_current702_20260608.md`. No
-  import-preview artifact was written.
-- Lock: `work/locks/ce_countable_label_unblocker.lock`; start timestamps
-  written to `/tmp/ce_countable_unblocker_started_at.txt`.
-- Validation passed: JSON parse, focused countable-unblocker/CLI tests, `git
-  diff --check`, `PYTHONPATH=src python -m catalytic_earth.cli validate`, docs
-  artifact-reference check with 0 missing references, source-member
-  reconciliation, and disk free >10 GiB.
+  `artifacts/v3_external_source_ingestion_pilot_current702_20260608.json`
+  and `work/external_source_ingestion_pilot_current702_20260608.md`.
+- Import preview:
+  `artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json`.
+- Lock: `/tmp/ce_external_source_ingestion_current702.lock`; start timestamps
+  written to `/tmp/ce_external_ingestion_started_at.txt`.
+- Validation passed: JSON parse for pilot + import-preview artifacts, count
+  reconciliation assertions, focused pytest, full `unittest discover` (1,670
+  tests), `PYTHONPATH=src python -m catalytic_earth.cli validate`, current docs
+  artifact-reference check with 0 missing references, `git diff --check`,
+  production-edit guardrail check, and disk guardrail.
 
 ## Mission
 
@@ -72,6 +76,92 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 External Source Ingestion Pilot
+
+Automation run: `ce-external-source-ingestion-pilot`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-08T21:37:21Z`
+- STARTED_AT_LOCAL: `2026-06-08T16:37:21-0500`
+- ENDED_AT_UTC: `2026-06-08T21:51:41Z`
+- ENDED_AT_LOCAL: `2026-06-08T16:51:41-0500`
+- ELAPSED_MINUTES: `14.333`
+- Lock: `/tmp/ce_external_source_ingestion_current702.lock`
+
+#### Scope
+
+- Added a rerunnable CLI lane,
+  `build-external-source-ingestion-pilot`, that fetches reviewed
+  UniProtKB/Swiss-Prot records across metal hydrolase, redox oxygen/sulfur,
+  PLP children, glycoside/nucleoside, phosphoryl transfer,
+  radical-SAM/cobalamin, and near-orphan/no-reliable-structure style lanes.
+- Preserves UniProt curated feature evidence (ACT_SITE, BINDING, METAL,
+  SITE, MOD_RES, CROSSLNK where present), evidence codes, residue locators,
+  AFDB/PDB coordinate provenance, Rhea/EC provenance, exact current702
+  accession/sequence conflict status, source hashes, terminal state,
+  confidence, and exact next action.
+- Did not mine M-CSA as an expansion source. Current702/M-CSA context was used
+  only for exact duplicate/current-registry conflict checks.
+- Did not import or promote labels. No production label registry, ontology,
+  train/test split, model weight, production threshold, import registry, or
+  heldout training/tuning surface was changed.
+
+#### Outputs
+
+- Candidate JSON artifact:
+  `artifacts/v3_external_source_ingestion_pilot_current702_20260608.json`.
+- Import-preview JSON artifact:
+  `artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json`.
+- Markdown report:
+  `work/external_source_ingestion_pilot_current702_20260608.md`.
+- Rerunnable code/tests:
+  `src/catalytic_earth/external_source_ingestion.py`,
+  `tests/test_external_source_ingestion.py`, and CLI coverage in
+  `tests/test_cli.py`.
+
+#### Result
+
+- Candidate rows: 28.
+- Terminal states: `external_countable_preflight_candidate=16`,
+  `locator_ready_candidate=7`, `coordinate_ready_pending_locator=4`, and
+  `blocked_duplicate_or_current_registry_conflict=1`.
+- Family/lane coverage: metal hydrolase, redox oxygen/sulfur, PLP children,
+  glycoside/nucleoside, phosphoryl transfer, radical-SAM/cobalamin, and
+  near-orphan/no-reliable-structure.
+- Import-preview rows: 16, preview-only. Each remains blocked from production
+  import until current-countable structural duplicate screening, label-factory
+  gate/review, and explicit production registry authorization.
+- Duplicate/current conflict: `uniprot:P23721` exact current702 accession
+  overlap.
+
+#### Validation
+
+- `python -m json.tool artifacts/v3_external_source_ingestion_pilot_current702_20260608.json`:
+  passed.
+- `python -m json.tool artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json`:
+  passed.
+- Count reconciliation assertions for candidate and import-preview artifacts:
+  passed.
+- `PYTHONPATH=src python -m pytest tests/test_external_source_ingestion.py tests/test_cli.py::CliTests::test_external_source_ingestion_pilot_parser_defaults -q`:
+  2 passed.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1,670 tests passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702
+  curated mechanism labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check ...`:
+  missing 0.
+- `git diff --check`: passed.
+- Production-edit guardrail check: no production registry, import, ontology,
+  model, threshold, or split paths changed.
+- Disk guardrail: `df -h .` reported 19 GiB free.
+
+#### Exact next action
+
+Run the structural duplicate screen and label-factory/review gate on the 16
+preview-only preflight rows before considering any production import. Start
+with the redox oxygen/sulfur and phosphoryl-transfer preview rows because they
+have the cleanest reviewed exact-locator/PDB/Rhea combination in this pilot.
 
 ### 2026-06-08 Countable Label Unblocker Matrix
 
@@ -128,10 +218,14 @@ Automation run: `ce-countable-label-unblocker`
 
 #### Validation
 
-- `python -m json.tool artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json`: passed.
-- `PYTHONPATH=src python -m pytest tests/test_countable_label_unblocker.py tests/test_cli.py::CliTests::test_countable_label_unblocker_parser_defaults -q`: 4 passed.
-- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702 curated mechanism labels.
-- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`: missing 0.
+- `python -m json.tool artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json`:
+  passed.
+- `PYTHONPATH=src python -m pytest tests/test_countable_label_unblocker.py tests/test_cli.py::CliTests::test_countable_label_unblocker_parser_defaults -q`:
+  4 passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702
+  curated mechanism labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`:
+  missing 0.
 - `git diff --check`: passed.
 - Disk free at wrap: 18 GiB.
 

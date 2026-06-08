@@ -38,6 +38,7 @@ from .targeted_expansion_acquisition_conversion import (
     write_targeted_expansion_acquisition_conversion_screens,
 )
 from .countable_label_unblocker import write_countable_label_unblocker_matrix
+from .external_source_ingestion import write_external_source_ingestion_pilot
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .predicted_geometry_recovery import (
@@ -2805,6 +2806,27 @@ def cmd_build_countable_label_unblocker_matrix(args: argparse.Namespace) -> int:
         "Wrote countable label unblocker matrix to "
         f"{args.out} ({artifact['counts']['target_canonical_records']} rows; "
         f"{artifact['counts']['import_preview_candidate_rows']} import-preview candidates)"
+    )
+    return 0
+
+
+def cmd_build_external_source_ingestion_pilot(args: argparse.Namespace) -> int:
+    artifact = write_external_source_ingestion_pilot(
+        current_manifest_path=Path(args.current_manifest),
+        label_registry_path=Path(args.label_registry),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        import_preview_path=Path(args.import_preview_out)
+        if args.import_preview_out
+        else None,
+        created_utc=args.created_utc,
+        max_records_per_lane=args.max_records_per_lane,
+        fetch_rhea_fallback=not args.no_rhea_fallback,
+    )
+    print(
+        "Wrote external source ingestion pilot to "
+        f"{args.out} ({artifact['candidate_count']} rows; "
+        f"{artifact['import_preview_candidate_count']} import-preview preflight)"
     )
     return 0
 
@@ -22164,6 +22186,52 @@ def build_parser() -> argparse.ArgumentParser:
     )
     countable_unblocker.add_argument("--created-utc")
     countable_unblocker.set_defaults(func=cmd_build_countable_label_unblocker_matrix)
+
+    external_source_ingestion = subparsers.add_parser(
+        "build-external-source-ingestion-pilot",
+        help=(
+            "build a read-only reviewed UniProt/AFDB/PDB/Rhea ingestion pilot "
+            "for current702 expansion candidates"
+        ),
+    )
+    external_source_ingestion.add_argument(
+        "--current-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    external_source_ingestion.add_argument(
+        "--label-registry",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_source_ingestion.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_ingestion_pilot_current702_20260608.json"
+        ),
+    )
+    external_source_ingestion.add_argument(
+        "--report",
+        default="work/external_source_ingestion_pilot_current702_20260608.md",
+    )
+    external_source_ingestion.add_argument(
+        "--import-preview-out",
+        default=(
+            "artifacts/"
+            "v3_external_source_ingestion_import_preview_current702_20260608.json"
+        ),
+    )
+    external_source_ingestion.add_argument("--created-utc")
+    external_source_ingestion.add_argument(
+        "--max-records-per-lane",
+        type=int,
+        default=4,
+    )
+    external_source_ingestion.add_argument(
+        "--no-rhea-fallback",
+        action="store_true",
+        help="use UniProt Rhea cross-references only; skip EC-based Rhea fallback lookups",
+    )
+    external_source_ingestion.set_defaults(func=cmd_build_external_source_ingestion_pilot)
 
     external_representation_backend_sample_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-sample",

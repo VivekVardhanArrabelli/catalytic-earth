@@ -390,6 +390,9 @@ def normalize_uniprot_entry_json(payload: dict[str, Any]) -> dict[str, Any]:
         "binding_site_features": [
             feature for feature in features if feature["feature_type"] == "Binding site"
         ],
+        "metal_binding_features": [
+            feature for feature in features if feature["feature_type"] == "Metal binding"
+        ],
         "site_features": [
             feature for feature in features if feature["feature_type"] == "Site"
         ],
@@ -397,6 +400,9 @@ def normalize_uniprot_entry_json(payload: dict[str, Any]) -> dict[str, Any]:
             feature
             for feature in features
             if feature["feature_type"] == "Modified residue"
+        ],
+        "cross_link_features": [
+            feature for feature in features if feature["feature_type"] == "Cross-link"
         ],
         "catalytic_activity_comments": catalytic_activity_comments,
         "cofactor_comments": cofactor_comments,

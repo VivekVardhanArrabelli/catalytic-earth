@@ -38,6 +38,15 @@ ePK NO-GO learnings are archived (not in main): `git checkout archive/epk-<track
 | `README.md` | What is this repo and how do I get started? | Front door |
 | `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json` | Which Lever 2/3/4 mechanical gates are runnable now? | Current active-lever gate; 0 mechanical gates ready, 15 blockers, follow-up Lever 3 proxy axis fully scored but not closure-sufficient |
 
+## 2026-06-08 External Source Ingestion Pilot
+
+| Artifact | Answers | Status |
+| --- | --- | --- |
+| `artifacts/v3_external_source_ingestion_pilot_current702_20260608.json` | Which reviewed Swiss-Prot/UniProt external proteins across seven scale-out lanes have curated feature evidence, coordinate provenance, Rhea/EC provenance, duplicate status, terminal state, confidence, and next action? | Current external ingestion pilot; 28 candidates, 16 preview-only preflight rows, no production import |
+| `artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json` | Which external ingestion rows passed the pilot preflight gate and can enter a preview-only import review queue? | Preview-only; 16 rows, still requires structural duplicate screen, label-factory gate, and explicit production authorization |
+| `work/external_source_ingestion_pilot_current702_20260608.md` | Human-readable terminal-state and family/lane summary for the external ingestion pilot | Current report |
+| `src/catalytic_earth/external_source_ingestion.py` | How is the external ingestion pilot rerun from reviewed UniProt, AFDB/PDB provenance, and Rhea/EC provenance? | Rerunnable CLI implementation; read-only |
+
 ## Current Benchmark Contracts
 
 | Artifact | Answers | Status |
