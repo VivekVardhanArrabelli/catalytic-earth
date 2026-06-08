@@ -1,0 +1,1285 @@
+{
+  "artifact_id": "v3_scaleout_locator_coordinate_repair_current702_20260608",
+  "counts": {
+    "active_site_feature_singleton_insufficient_rows": 1,
+    "binding_context_only_rows": 2,
+    "blocked_coordinate_rows_after_repair_audit": 0,
+    "coordinate_hash_matched_rows": 7,
+    "coordinate_materialized_rows": 7,
+    "import_preview_rows": 0,
+    "input_blocked_locator_rows": 7,
+    "input_conversion_rows": 86,
+    "mapped_source_backed_locator_candidate_payload_rows": 1,
+    "mechanical_reject_oos_recommendation_rows": 1,
+    "no_active_site_feature_candidate_rows": 2,
+    "protein_only_coordinate_rows": 7,
+    "remaining_blocked_locator_recommended_rows": 6,
+    "source_backed_locator_mapping_preflight_candidate_rows": 1,
+    "source_free_locator_materialized_now_rows": 0,
+    "source_free_structure_local_ligand_contact_candidate_rows": 0
+  },
+  "created_utc": "2026-06-08T14:27:57Z",
+  "family_repair_counts": {
+    "glycoside_or_nucleoside_hydrolase_controls": {
+      "blocked_locator": 3,
+      "reject/OOS_preserve_signal": 1
+    },
+    "plp_child_subclasses": {
+      "blocked_locator": 1
+    },
+    "redox_oxygen_transfer_and_sulfur_lipoamide": {
+      "blocked_locator": 2
+    }
+  },
+  "guardrails": {
+    "active_site_feature_positions_recorded_as_locator_preflight_only": true,
+    "active_site_feature_positions_used_for_terminal_recommendation": false,
+    "active_site_feature_text_or_source_ids_used_as_predictive_features": false,
+    "disk_available_gib_at_creation": 10.533,
+    "disk_guardrail_above_10_gib_at_creation": true,
+    "heldout_mcsa_rows_used_for_training_or_tuning": false,
+    "imports_or_promotions_performed": false,
+    "label_registry_edited": false,
+    "mapped_locator_candidate_payloads_copied_to_audited_dir": false,
+    "mechanism_text_or_ids_used_as_scoring_features": false,
+    "model_weights_fit_or_refit": false,
+    "ontology_edited": false,
+    "production_thresholds_changed": false,
+    "source_free_locator_sidecars_materialized_now": false,
+    "source_ids_or_target_names_used_as_scoring_features": false,
+    "source_labels_imported_blindly": false,
+    "structure_local_ligand_contact_sidecars_materialized_now": false,
+    "train_test_splits_changed": false
+  },
+  "input_terminal_state_counts": {
+    "blocked_coordinate": 0,
+    "blocked_family_decision": 50,
+    "blocked_locator": 7,
+    "countable_candidate_preflight_only": 1,
+    "reject/OOS_preserve_signal": 27,
+    "review_only_evidence": 1
+  },
+  "locator_preflight_queue_counts": {
+    "active_site_feature_singleton_insufficient_for_locator_schema": 1,
+    "binding_context_only_active_site_sourcing_required": 2,
+    "no_active_site_feature_candidate_found": 2,
+    "source_backed_active_site_position_mapping_preflight_candidate": 1,
+    "terminal_duplicate_repair_supersedes_locator_preflight": 1
+  },
+  "recommended_terminal_state_counts_for_future_surface": {
+    "blocked_coordinate": 0,
+    "blocked_family_decision": 0,
+    "blocked_locator": 6,
+    "countable_candidate_preflight_only": 0,
+    "reject/OOS_preserve_signal": 1,
+    "review_only_evidence": 0
+  },
+  "repair_decision_counts": {
+    "coordinate_gap_cleared_locator_still_blocked": 5,
+    "mechanical_reject_oos_recommendation": 1,
+    "source_backed_locator_mapping_preflight_candidate": 1
+  },
+  "repair_policy": {
+    "do_not_rewrite_prior_conversion_artifact": true,
+    "locator_materialization_rule": "No active-site locator sidecar is copied or synthesized without approved source-free locator evidence; missing locators remain blocked.",
+    "mechanical_reject_oos_rule": "Only a source-free external structural cluster at/above threshold to a row already reject/OOS-preserved by current-countable structural duplicate evidence may be recommended as reject/OOS-preserve.",
+    "recommendations_apply_to_future_consolidated_acceptance_surface": true,
+    "source_backed_locator_preflight_rule": "Local active-site feature positions may be recorded as non-scoring locator-mapping preflight evidence, but they do not clear blocked_locator until structure mapping and explicit review/approval pass."
+  },
+  "rows": [
+    {
+      "accession": "O60568",
+      "active_site_evidence_sample": {
+        "active_site_feature_count": 0,
+        "active_site_positions": [],
+        "binding_site_feature_count": 13,
+        "binding_site_positions_sample": [
+          112,
+          115,
+          253,
+          599,
+          656,
+          667,
+          669,
+          676,
+          719,
+          729
+        ],
+        "feature_rows_for_accession": 13,
+        "feature_text_or_source_ids_used_as_predictive_features": false,
+        "locator_preflight_blockers": [
+          "binding_context_not_catalytic_locator",
+          "explicit_active_site_residue_source_required"
+        ],
+        "locator_preflight_queue_class": "binding_context_only_active_site_sourcing_required",
+        "locator_preflight_status": "binding_positions_found_no_explicit_active_site_positions",
+        "positions_used_for_terminal_recommendation": false,
+        "source_artifact": "artifacts/v3_external_source_active_site_evidence_sample_1025.json"
+      },
+      "active_site_feature_count": null,
+      "allowed_next_action_after_repair_audit": "source explicit active-site residues or build a source-free locator packet",
+      "alphafold_ids": [
+        "O60568"
+      ],
+      "binding_site_feature_count": null,
+      "broad_sequence_neighborhood_status": "external_all_vs_all_no_near_duplicate_signal",
+      "candidate_id": "uniprot:O60568",
+      "coordinate_files": [
+        {
+          "bytes": 698584,
+          "exists": true,
+          "hash_matches_screen": true,
+          "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_O60568.cif",
+          "sha256": "34806d3884e4213283d30a51af3e3261a6c63e28fc72306a63f816af48492fbc"
+        }
+      ],
+      "coordinate_hashes_match_screen": true,
+      "coordinate_ligand_scan": [
+        {
+          "atom_site_group_counts": {
+            "ATOM": 5992
+          },
+          "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_O60568.cif",
+          "nonstandard_comp_ids": [],
+          "protein_only_coordinate": true,
+          "structure_local_ligand_contact_locator_candidate": false
+        }
+      ],
+      "coordinate_materialized": true,
+      "coordinate_status": "coordinate_materialized_for_external_screen",
+      "current_countable_structural_status": "not_available",
+      "current_reference_sequence_status": "no_near_duplicate_signal",
+      "display_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "external_structural_cluster_status": "external_structural_cluster_assigned_no_neighbor_above_threshold",
+      "external_tm_cluster_ids": [
+        "external_tm_cluster:008"
+      ],
+      "factory_admission_route_basis": "external_source_or_distance_screen_acquisition_needed",
+      "factory_flags": {
+        "cofactor_confounded_signal": true,
+        "coordinate_gap": false,
+        "external_candidate": true,
+        "heldout_sensitive": false,
+        "novel_or_near_orphan_signal": false,
+        "oos_or_hard_negative_signal": true,
+        "source_free_feature_gap": false
+      },
+      "factory_proposed_label_tier": "acquisition_needed_before_admission",
+      "factory_provenance_tier": "tier_D_control_only",
+      "family_axis": "glycoside_or_nucleoside_hydrolase_controls",
+      "input_priority_screen_ready": false,
+      "input_terminal_blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "active_site_or_locator_evidence_missing",
+        "broader_duplicate_screening_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "pilot_explicit_active_site_evidence_missing",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_issue",
+        "representation_control_not_compared"
+      ],
+      "input_terminal_route_basis": "source_free_active_site_locator_not_ready",
+      "input_terminal_state": "blocked_locator",
+      "label_factory_observed_statuses": [
+        "blocked_by_active_site_sourcing",
+        "external_import_readiness_review_only",
+        "external_pilot_representation_adjudication_review_only",
+        "external_transfer_blocker_matrix_review_only",
+        "not_run",
+        "rejected_active_site_evidence_missing",
+        "representation_control_adjudicated_review_only"
+      ],
+      "label_factory_status": "terminal_review_blocked_locator_active_site_missing",
+      "labels_imported_or_promoted_now": false,
+      "locator_coordinate_status": "blocked_locator_active_site_not_sampled|coordinate_materialized_for_external_screen",
+      "locator_status": "blocked_locator_active_site_not_sampled",
+      "mapped_locator_candidate_payload": null,
+      "nearest_external_neighbors": [
+        {
+          "accession": "Q9Y5N5",
+          "tm_score": 0.4844
+        }
+      ],
+      "pdb_ids": [
+        "6FXK",
+        "6FXM",
+        "6FXR",
+        "6FXT",
+        "6FXX",
+        "6FXY",
+        "6TE3",
+        "6TEC",
+        "6TES",
+        "6TEU",
+        "6TEX",
+        "6TEZ",
+        "6WFV",
+        "8ONE",
+        "8ZGC",
+        "8ZGE",
+        "8ZGG",
+        "8ZGH"
+      ],
+      "recommended_terminal_route_basis_for_future_surface": "source_free_active_site_locator_not_ready",
+      "recommended_terminal_state_for_future_surface": "blocked_locator",
+      "remaining_blockers_after_repair_audit": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "active_site_or_locator_evidence_missing",
+        "broader_duplicate_screening_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "pilot_explicit_active_site_evidence_missing",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_issue",
+        "representation_control_not_compared",
+        "source_free_active_site_locator_missing"
+      ],
+      "repair_context_sha256": "d4398649412cfd0bf440f0e77c9ae0d5ebb87e03f82ab7b6cb15f202ce5c129d",
+      "repair_decision": "coordinate_gap_cleared_locator_still_blocked",
+      "repair_rationale": "Coordinate file and provenance are present, but no approved source-free active-site locator is materialized.",
+      "source_evidence_blockers": [
+        "accession_already_in_current_external_pool"
+      ],
+      "source_free_locator_materialized_now": false,
+      "transitive_duplicate_repair_evidence": null
+    },
+    {
+      "accession": "P29372",
+      "active_site_evidence_sample": {
+        "active_site_feature_count": 0,
+        "active_site_positions": [],
+        "binding_site_feature_count": 0,
+        "binding_site_positions_sample": [],
+        "feature_rows_for_accession": 0,
+        "feature_text_or_source_ids_used_as_predictive_features": false,
+        "locator_preflight_blockers": [
+          "explicit_active_site_residue_source_required"
+        ],
+        "locator_preflight_queue_class": "no_active_site_feature_candidate_found",
+        "locator_preflight_status": "no_local_active_site_or_binding_feature_positions",
+        "positions_used_for_terminal_recommendation": false,
+        "source_artifact": "artifacts/v3_external_source_active_site_evidence_sample_1025.json"
+      },
+      "active_site_feature_count": null,
+      "allowed_next_action_after_repair_audit": "source explicit active-site residues or build a source-free locator packet",
+      "alphafold_ids": [
+        "P29372"
+      ],
+      "binding_site_feature_count": null,
+      "broad_sequence_neighborhood_status": "external_all_vs_all_no_near_duplicate_signal",
+      "candidate_id": "uniprot:P29372",
+      "coordinate_files": [
+        {
+          "bytes": 279018,
+          "exists": true,
+          "hash_matches_screen": true,
+          "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_P29372.cif",
+          "sha256": "0779d9307c79054e893b151456fef4b3a33dd9ae82501432fef6f850e56c88b1"
+        }
+      ],
+      "coordinate_hashes_match_screen": true,
+      "coordinate_ligand_scan": [
+        {
+          "atom_site_group_counts": {
+            "ATOM": 2307
+          },
+          "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_P29372.cif",
+          "nonstandard_comp_ids": [],
+          "protein_only_coordinate": true,
+          "structure_local_ligand_contact_locator_candidate": false
+        }
+      ],
+      "coordinate_materialized": true,
+      "coordinate_status": "coordinate_materialized_for_external_screen",
+      "current_countable_structural_status": "not_available",
+      "current_reference_sequence_status": "no_near_duplicate_signal",
+      "display_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+      "external_structural_cluster_status": "external_structural_cluster_assigned_no_neighbor_above_threshold",
+      "external_tm_cluster_ids": [
+        "external_tm_cluster:012"
+      ],
+      "factory_admission_route_basis": "external_source_or_distance_screen_acquisition_needed",
+      "factory_flags": {
+        "cofactor_confounded_signal": false,
+        "coordinate_gap": false,
+        "external_candidate": true,
+        "heldout_sensitive": false,
+        "novel_or_near_orphan_signal": false,
+        "oos_or_hard_negative_signal": true,
+        "source_free_feature_gap": false
+      },
+      "factory_proposed_label_tier": "acquisition_needed_before_admission",
+      "factory_provenance_tier": "tier_C_external_incomplete",
+      "family_axis": "glycoside_or_nucleoside_hydrolase_controls",
+      "input_priority_screen_ready": false,
+      "input_terminal_blockers": [
+        "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+        "active_site_or_locator_evidence_missing",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "primary_active_site_source_required",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "input_terminal_route_basis": "source_free_active_site_locator_not_ready",
+      "input_terminal_state": "blocked_locator",
+      "label_factory_observed_statuses": [
+        "blocked_by_active_site_sourcing",
+        "external_import_readiness_review_only",
+        "external_transfer_blocker_matrix_review_only"
+      ],
+      "label_factory_status": "blocked_by_active_site_sourcing",
+      "labels_imported_or_promoted_now": false,
+      "locator_coordinate_status": "blocked_locator_active_site_not_sampled|coordinate_materialized_for_external_screen",
+      "locator_status": "blocked_locator_active_site_not_sampled",
+      "mapped_locator_candidate_payload": null,
+      "nearest_external_neighbors": [
+        {
+          "accession": "Q969G6",
+          "tm_score": 0.4322
+        }
+      ],
+      "pdb_ids": [
+        "1BNK",
+        "1EWN",
+        "1F4R",
+        "1F6O",
+        "3QI5",
+        "3UBY",
+        "7XFH",
+        "7XFJ",
+        "7XFM"
+      ],
+      "recommended_terminal_route_basis_for_future_surface": "source_free_active_site_locator_not_ready",
+      "recommended_terminal_state_for_future_surface": "blocked_locator",
+      "remaining_blockers_after_repair_audit": [
+        "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+        "active_site_or_locator_evidence_missing",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "primary_active_site_source_required",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared",
+        "source_free_active_site_locator_missing"
+      ],
+      "repair_context_sha256": "f35ff956f875d04a1f39e819d507e2dc89d14cd38230ffcf034d2de4a8c1a578",
+      "repair_decision": "coordinate_gap_cleared_locator_still_blocked",
+      "repair_rationale": "Coordinate file and provenance are present, but no approved source-free active-site locator is materialized.",
+      "source_evidence_blockers": [
+        "accession_already_in_current_external_pool"
+      ],
+      "source_free_locator_materialized_now": false,
+      "transitive_duplicate_repair_evidence": null
+    },
+    {
+      "accession": "P60174",
+      "active_site_evidence_sample": {
+        "active_site_feature_count": 2,
+        "active_site_positions": [
+          96,
+          166
+        ],
+        "binding_site_feature_count": 2,
+        "binding_site_positions_sample": [
+          12,
+          14
+        ],
+        "feature_rows_for_accession": 4,
+        "feature_text_or_source_ids_used_as_predictive_features": false,
+        "locator_preflight_blockers": [
+          "human_or_policy_approval_required_before_locator_copy",
+          "candidate_not_in_audited_locator_dir",
+          "current_countable_structural_screen_still_not_available_for_original_conversion_row"
+        ],
+        "locator_preflight_queue_class": "source_backed_active_site_position_mapping_preflight_candidate",
+        "locator_preflight_status": "candidate_positions_mapped_to_afdb_residues_review_required",
+        "positions_used_for_terminal_recommendation": false,
+        "source_artifact": "artifacts/v3_external_source_active_site_evidence_sample_1025.json"
+      },
+      "active_site_feature_count": null,
+      "allowed_next_action_after_repair_audit": "map explicit active-site positions to the candidate structure, then run review-gated locator copy preflight; do not import",
+      "alphafold_ids": [
+        "P60174"
+      ],
+      "binding_site_feature_count": null,
+      "broad_sequence_neighborhood_status": "external_all_vs_all_no_near_duplicate_signal",
+      "candidate_id": "uniprot:P60174",
+      "coordinate_files": [
+        {
+          "bytes": 229922,
+          "exists": true,
+          "hash_matches_screen": true,
+          "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_P60174.cif",
+          "sha256": "b7017997716e974fec3ace2c42afbb9fb967bd59ab4e657e17fb7dfd1dbe4b59"
+        }
+      ],
+      "coordinate_hashes_match_screen": true,
+      "coordinate_ligand_scan": [
+        {
+          "atom_site_group_counts": {
+            "ATOM": 1876
+          },
+          "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_P60174.cif",
+          "nonstandard_comp_ids": [],
+          "protein_only_coordinate": true,
+          "structure_local_ligand_contact_locator_candidate": false
+        }
+      ],
+      "coordinate_materialized": true,
+      "coordinate_status": "coordinate_materialized_for_external_screen",
+      "current_countable_structural_status": "not_available",
+      "current_reference_sequence_status": "no_near_duplicate_signal",
+      "display_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Methylglyoxal synthase) (EC 4.2.3.3) (Triose-phosphate isomerase)",
+      "external_structural_cluster_status": "external_structural_cluster_assigned_no_neighbor_above_threshold",
+      "external_tm_cluster_ids": [
+        "external_tm_cluster:020"
+      ],
+      "factory_admission_route_basis": "external_source_or_distance_screen_acquisition_needed",
+      "factory_flags": {
+        "cofactor_confounded_signal": false,
+        "coordinate_gap": false,
+        "external_candidate": true,
+        "heldout_sensitive": false,
+        "novel_or_near_orphan_signal": false,
+        "oos_or_hard_negative_signal": true,
+        "source_free_feature_gap": false
+      },
+      "factory_proposed_label_tier": "acquisition_needed_before_admission",
+      "factory_provenance_tier": "tier_D_control_only",
+      "family_axis": "glycoside_or_nucleoside_hydrolase_controls",
+      "input_priority_screen_ready": false,
+      "input_terminal_blockers": [
+        "active_site_or_locator_evidence_missing",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse",
+        "representation_near_duplicate_control_holdout"
+      ],
+      "input_terminal_route_basis": "source_free_active_site_locator_not_ready",
+      "input_terminal_state": "blocked_locator",
+      "label_factory_observed_statuses": [
+        "blocked_by_heuristic_control",
+        "external_import_readiness_review_only",
+        "external_transfer_blocker_matrix_review_only"
+      ],
+      "label_factory_status": "pre_promotion_review_only_or_gate_incomplete",
+      "labels_imported_or_promoted_now": false,
+      "locator_coordinate_status": "blocked_locator_active_site_not_sampled|coordinate_materialized_for_external_screen",
+      "locator_status": "blocked_locator_active_site_not_sampled",
+      "mapped_locator_candidate_payload": {
+        "artifact_id": "v3_scaleout_locator_coordinate_repair_current702_20260608_p60174_candidate",
+        "candidate_blockers": [
+          "human_or_policy_approval_required_before_locator_copy",
+          "candidate_not_in_audited_locator_dir",
+          "current_countable_structural_screen_still_not_available_for_original_conversion_row"
+        ],
+        "candidate_only": true,
+        "candidate_payload_sha256": "4e001471c8b46073c3beb5e62227a2f6e094dc4d99af055eb500f2ba709d30a2",
+        "copied_to_audited_locator_dir": false,
+        "entry_id": "uniprot:P60174",
+        "forbidden_feature_audit": {
+          "benchmark_role": false,
+          "ec_identifiers": false,
+          "entry_name": false,
+          "fingerprint_id": false,
+          "label_type": false,
+          "mechanism_text": false,
+          "panel_id_as_feature": false,
+          "rhea_identifiers": false,
+          "source_prose": false,
+          "source_review_rationale": false
+        },
+        "locator_evidence_class": "human_approved_non_label_locator_annotation",
+        "locator_policy": "source_backed_active_site_positions_mapped_to_afdb_candidate_requires_review",
+        "ready_for_predicted_geometry_scoring": false,
+        "residue_locators": [
+          {
+            "candidate_contact_evidence": {
+              "auth_seq_id": 96,
+              "label_comp_id": "HIS",
+              "label_seq_id": 96,
+              "residue_chain_id": "A",
+              "selected_structure_id": "AF-P60174-F1-model_v6"
+            },
+            "coordinate_independent_provenance": {
+              "afdb_atom_count_at_label_seq_id": 10,
+              "afdb_coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_P60174.cif",
+              "afdb_label_comp_id": "HIS",
+              "afdb_label_seq_id_present": true,
+              "heldout_rows_used": false,
+              "method": "uniprot_active_site_feature_position_mapped_to_afdb_label_seq_id",
+              "sequence_position_source": "uniprot_feature_begin_equal_end",
+              "sequence_position_uniprot_validated": true,
+              "source_ids_used_as_predictive_features": false,
+              "source_text_used": false
+            },
+            "locator_confidence": 0.5,
+            "locator_evidence_class": "human_approved_non_label_locator_annotation",
+            "residue_code": "HIS",
+            "role_hint": "active_site_position_candidate_no_source_role_text",
+            "sequence_position": 96
+          },
+          {
+            "candidate_contact_evidence": {
+              "auth_seq_id": 166,
+              "label_comp_id": "GLU",
+              "label_seq_id": 166,
+              "residue_chain_id": "A",
+              "selected_structure_id": "AF-P60174-F1-model_v6"
+            },
+            "coordinate_independent_provenance": {
+              "afdb_atom_count_at_label_seq_id": 9,
+              "afdb_coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_P60174.cif",
+              "afdb_label_comp_id": "GLU",
+              "afdb_label_seq_id_present": true,
+              "heldout_rows_used": false,
+              "method": "uniprot_active_site_feature_position_mapped_to_afdb_label_seq_id",
+              "sequence_position_source": "uniprot_feature_begin_equal_end",
+              "sequence_position_uniprot_validated": true,
+              "source_ids_used_as_predictive_features": false,
+              "source_text_used": false
+            },
+            "locator_confidence": 0.5,
+            "locator_evidence_class": "human_approved_non_label_locator_annotation",
+            "residue_code": "GLU",
+            "role_hint": "active_site_position_candidate_no_source_role_text",
+            "sequence_position": 166
+          }
+        ],
+        "schema_version": "v3.source_backed_active_site_locator_candidate_preflight",
+        "source_accession": "uniprot:P60174",
+        "source_free_active_site_locator_status": "candidate_mapped_review_required",
+        "split_protection": {
+          "allowed_for_threshold_selection": false,
+          "allowed_for_training": false,
+          "ready_for_label_import": false,
+          "review_only": true
+        }
+      },
+      "nearest_external_neighbors": [
+        {
+          "accession": "Q9BXD5",
+          "tm_score": 0.6714
+        }
+      ],
+      "pdb_ids": [
+        "1HTI",
+        "1KLG",
+        "1KLU",
+        "1WYI",
+        "2IAM",
+        "2IAN",
+        "2JK2",
+        "2VOM",
+        "4BR1",
+        "4E41",
+        "4POC",
+        "4POD",
+        "4UNK",
+        "4UNL",
+        "4ZVJ",
+        "6C2G",
+        "6D43",
+        "6NLH",
+        "6UP1",
+        "6UP5",
+        "6UP8",
+        "6UPF",
+        "7RDE",
+        "7SX1",
+        "7T0Q",
+        "7UXB",
+        "7UXV",
+        "9F69",
+        "9FFC"
+      ],
+      "recommended_terminal_route_basis_for_future_surface": "source_free_active_site_locator_not_ready",
+      "recommended_terminal_state_for_future_surface": "blocked_locator",
+      "remaining_blockers_after_repair_audit": [
+        "active_site_or_locator_evidence_missing",
+        "active_site_positions_not_mapped_to_candidate_structure",
+        "candidate_not_in_audited_locator_dir",
+        "current_countable_structural_screen_still_not_available_for_original_conversion_row",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "human_or_policy_approval_required_before_locator_copy",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse",
+        "representation_near_duplicate_control_holdout",
+        "source_free_active_site_locator_missing"
+      ],
+      "repair_context_sha256": "ef7733619df8a228dcaa609761faae016e5f666338d441e06311d8d2339cac79",
+      "repair_decision": "source_backed_locator_mapping_preflight_candidate",
+      "repair_rationale": "Two explicit active-site feature positions map cleanly to AFDB label_seq_id residues 96/HIS and 166/GLU, but the payload is candidate-only and still requires review-gated locator copy; keep blocked pending approval.",
+      "source_evidence_blockers": [
+        "accession_already_in_current_external_pool"
+      ],
+      "source_free_locator_materialized_now": false,
+      "transitive_duplicate_repair_evidence": null
+    },
+    {
+      "accession": "Q9BXS1",
+      "active_site_evidence_sample": {
+        "active_site_feature_count": 2,
+        "active_site_positions": [
+          86,
+          148
+        ],
+        "binding_site_feature_count": 8,
+        "binding_site_positions_sample": [
+          36,
+          40,
+          51,
+          70,
+          74,
+          87,
+          146,
+          148
+        ],
+        "feature_rows_for_accession": 10,
+        "feature_text_or_source_ids_used_as_predictive_features": false,
+        "locator_preflight_blockers": [],
+        "locator_preflight_queue_class": "terminal_duplicate_repair_supersedes_locator_preflight",
+        "locator_preflight_status": "not_needed_after_reject_oos_recommendation",
+        "positions_used_for_terminal_recommendation": false,
+        "source_artifact": "artifacts/v3_external_source_active_site_evidence_sample_1025.json"
+      },
+      "active_site_feature_count": null,
+      "allowed_next_action_after_repair_audit": "preserve duplicate/OOS signal; do not retry accession without new evidence",
+      "alphafold_ids": [
+        "Q9BXS1"
+      ],
+      "binding_site_feature_count": null,
+      "broad_sequence_neighborhood_status": "external_all_vs_all_no_near_duplicate_signal",
+      "candidate_id": "uniprot:Q9BXS1",
+      "coordinate_files": [
+        {
+          "bytes": 229482,
+          "exists": true,
+          "hash_matches_screen": true,
+          "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_Q9BXS1.cif",
+          "sha256": "02e4e11f6de2556210834b92c7f7fcb53c3ab40fd6ca18df68afc345d6ec06f4"
+        }
+      ],
+      "coordinate_hashes_match_screen": true,
+      "coordinate_ligand_scan": [
+        {
+          "atom_site_group_counts": {
+            "ATOM": 1888
+          },
+          "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_Q9BXS1.cif",
+          "nonstandard_comp_ids": [],
+          "protein_only_coordinate": true,
+          "structure_local_ligand_contact_locator_candidate": false
+        }
+      ],
+      "coordinate_materialized": true,
+      "coordinate_status": "coordinate_materialized_for_external_screen",
+      "current_countable_structural_status": "not_available",
+      "current_reference_sequence_status": "no_near_duplicate_signal",
+      "display_name": "Isopentenyl-diphosphate delta-isomerase 2 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 2) (IPP isomerase 2) (IPPI2)",
+      "external_structural_cluster_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "external_tm_cluster_ids": [
+        "external_tm_cluster:021"
+      ],
+      "factory_admission_route_basis": "external_source_or_distance_screen_acquisition_needed",
+      "factory_flags": {
+        "cofactor_confounded_signal": false,
+        "coordinate_gap": false,
+        "external_candidate": true,
+        "heldout_sensitive": false,
+        "novel_or_near_orphan_signal": false,
+        "oos_or_hard_negative_signal": true,
+        "source_free_feature_gap": false
+      },
+      "factory_proposed_label_tier": "acquisition_needed_before_admission",
+      "factory_provenance_tier": "tier_D_control_only",
+      "family_axis": "glycoside_or_nucleoside_hydrolase_controls",
+      "input_priority_screen_ready": false,
+      "input_terminal_blockers": [
+        "active_site_or_locator_evidence_missing",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse"
+      ],
+      "input_terminal_route_basis": "source_free_active_site_locator_not_ready",
+      "input_terminal_state": "blocked_locator",
+      "label_factory_observed_statuses": [
+        "blocked_by_heuristic_control",
+        "external_import_readiness_review_only",
+        "external_transfer_blocker_matrix_review_only"
+      ],
+      "label_factory_status": "pre_promotion_review_only_or_gate_incomplete",
+      "labels_imported_or_promoted_now": false,
+      "locator_coordinate_status": "blocked_locator_active_site_not_sampled|coordinate_materialized_for_external_screen",
+      "locator_status": "blocked_locator_active_site_not_sampled",
+      "mapped_locator_candidate_payload": null,
+      "nearest_external_neighbors": [
+        {
+          "accession": "Q13907",
+          "tm_score": 0.9843
+        }
+      ],
+      "pdb_ids": [
+        "2PNY"
+      ],
+      "recommended_terminal_route_basis_for_future_surface": "source_free_external_structural_cluster_transitive_current_countable_duplicate",
+      "recommended_terminal_state_for_future_surface": "reject/OOS_preserve_signal",
+      "remaining_blockers_after_repair_audit": [
+        "preserve_transitive_duplicate_oos_signal_no_import"
+      ],
+      "repair_context_sha256": "c5adea99983df5ea503c59732954e0997cbc16d848c5b17f061b9ee815f9d807",
+      "repair_decision": "mechanical_reject_oos_recommendation",
+      "repair_rationale": "External structural cluster is above threshold to a conversion row already rejected/OOS-preserved by current-countable structural duplicate evidence; preserve the signal and do not import.",
+      "source_evidence_blockers": [
+        "accession_already_in_current_external_pool"
+      ],
+      "source_free_locator_materialized_now": false,
+      "transitive_duplicate_repair_evidence": {
+        "external_neighbor_tm_score": 0.9843,
+        "neighbor_candidate_id": "uniprot:Q13907",
+        "neighbor_current_countable_hit": {
+          "alntmscore": 0.8731,
+          "current_entry_ids": [
+            "m_csa:190"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_key": "pdb:1NFS",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:190",
+          "max_pair_tm_score": 0.8686,
+          "qtmscore": 0.6886,
+          "ttmscore": 0.8686
+        },
+        "neighbor_current_countable_structural_status": "current_countable_structural_duplicate_signal",
+        "neighbor_terminal_route_basis": "current_countable_structural_duplicate",
+        "neighbor_terminal_state": "reject/OOS_preserve_signal"
+      }
+    },
+    {
+      "accession": "Q96I15",
+      "active_site_evidence_sample": {
+        "active_site_feature_count": 1,
+        "active_site_positions": [
+          388
+        ],
+        "binding_site_feature_count": 0,
+        "binding_site_positions_sample": [],
+        "feature_rows_for_accession": 1,
+        "feature_text_or_source_ids_used_as_predictive_features": false,
+        "locator_preflight_blockers": [
+          "source_free_locator_schema_requires_at_least_two_residue_locators",
+          "human_or_policy_approval_required_before_locator_copy"
+        ],
+        "locator_preflight_queue_class": "active_site_feature_singleton_insufficient_for_locator_schema",
+        "locator_preflight_status": "single_position_found_minimum_two_required",
+        "positions_used_for_terminal_recommendation": false,
+        "source_artifact": "artifacts/v3_external_source_active_site_evidence_sample_1025.json"
+      },
+      "active_site_feature_count": null,
+      "allowed_next_action_after_repair_audit": "source explicit active-site residues or build a source-free locator packet",
+      "alphafold_ids": [
+        "Q96I15"
+      ],
+      "binding_site_feature_count": null,
+      "broad_sequence_neighborhood_status": "external_all_vs_all_no_near_duplicate_signal",
+      "candidate_id": "uniprot:Q96I15",
+      "coordinate_files": [
+        {
+          "bytes": 402090,
+          "exists": true,
+          "hash_matches_screen": true,
+          "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_Q96I15.cif",
+          "sha256": "3906c71e3ff2542d044f709f3ca58f75144e0a7e8dcac3618d351444517b70e0"
+        }
+      ],
+      "coordinate_hashes_match_screen": true,
+      "coordinate_ligand_scan": [
+        {
+          "atom_site_group_counts": {
+            "ATOM": 3385
+          },
+          "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_Q96I15.cif",
+          "nonstandard_comp_ids": [],
+          "protein_only_coordinate": true,
+          "structure_local_ligand_contact_locator_candidate": false
+        }
+      ],
+      "coordinate_materialized": true,
+      "coordinate_status": "coordinate_materialized_for_external_screen",
+      "current_countable_structural_status": "not_available",
+      "current_reference_sequence_status": "no_near_duplicate_signal",
+      "display_name": "Selenocysteine lyase (hSCL) (EC 4.4.1.16)",
+      "external_structural_cluster_status": "external_structural_cluster_assigned_no_neighbor_above_threshold",
+      "external_tm_cluster_ids": [
+        "external_tm_cluster:025"
+      ],
+      "factory_admission_route_basis": "external_source_or_distance_screen_acquisition_needed",
+      "factory_flags": {
+        "cofactor_confounded_signal": true,
+        "coordinate_gap": false,
+        "external_candidate": true,
+        "heldout_sensitive": false,
+        "novel_or_near_orphan_signal": false,
+        "oos_or_hard_negative_signal": true,
+        "source_free_feature_gap": false
+      },
+      "factory_proposed_label_tier": "acquisition_needed_before_admission",
+      "factory_provenance_tier": "tier_C_external_uncompleted_lead",
+      "family_axis": "plp_child_subclasses",
+      "input_priority_screen_ready": false,
+      "input_terminal_blockers": [
+        "active_site_or_locator_evidence_missing",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse"
+      ],
+      "input_terminal_route_basis": "source_free_active_site_locator_not_ready",
+      "input_terminal_state": "blocked_locator",
+      "label_factory_observed_statuses": [
+        "blocked_by_heuristic_control",
+        "external_import_readiness_review_only",
+        "external_transfer_blocker_matrix_review_only"
+      ],
+      "label_factory_status": "pre_promotion_review_only_or_gate_incomplete",
+      "labels_imported_or_promoted_now": false,
+      "locator_coordinate_status": "blocked_locator_active_site_not_sampled|coordinate_materialized_for_external_screen",
+      "locator_status": "blocked_locator_active_site_not_sampled",
+      "mapped_locator_candidate_payload": null,
+      "nearest_external_neighbors": [
+        {
+          "accession": "Q9Y5N5",
+          "tm_score": 0.5138
+        }
+      ],
+      "pdb_ids": [
+        "3GZC",
+        "3GZD"
+      ],
+      "recommended_terminal_route_basis_for_future_surface": "source_free_active_site_locator_not_ready",
+      "recommended_terminal_state_for_future_surface": "blocked_locator",
+      "remaining_blockers_after_repair_audit": [
+        "active_site_or_locator_evidence_missing",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse",
+        "source_free_active_site_locator_missing"
+      ],
+      "repair_context_sha256": "91db7ac55483f75250af6bdea55da6af22230fa7b9d52ecfd0238824ca1f2cde",
+      "repair_decision": "coordinate_gap_cleared_locator_still_blocked",
+      "repair_rationale": "Coordinate file and provenance are present, but no approved source-free active-site locator is materialized.",
+      "source_evidence_blockers": [
+        "accession_already_in_current_external_pool"
+      ],
+      "source_free_locator_materialized_now": false,
+      "transitive_duplicate_repair_evidence": null
+    },
+    {
+      "accession": "A2RUC4",
+      "active_site_evidence_sample": {
+        "active_site_feature_count": 0,
+        "active_site_positions": [],
+        "binding_site_feature_count": 6,
+        "binding_site_positions_sample": [
+          106,
+          160,
+          162,
+          166,
+          175,
+          235
+        ],
+        "feature_rows_for_accession": 6,
+        "feature_text_or_source_ids_used_as_predictive_features": false,
+        "locator_preflight_blockers": [
+          "binding_context_not_catalytic_locator",
+          "explicit_active_site_residue_source_required"
+        ],
+        "locator_preflight_queue_class": "binding_context_only_active_site_sourcing_required",
+        "locator_preflight_status": "binding_positions_found_no_explicit_active_site_positions",
+        "positions_used_for_terminal_recommendation": false,
+        "source_artifact": "artifacts/v3_external_source_active_site_evidence_sample_1025.json"
+      },
+      "active_site_feature_count": null,
+      "allowed_next_action_after_repair_audit": "source explicit active-site residues or build a source-free locator packet",
+      "alphafold_ids": [
+        "A2RUC4"
+      ],
+      "binding_site_feature_count": null,
+      "broad_sequence_neighborhood_status": "external_all_vs_all_no_near_duplicate_signal",
+      "candidate_id": "uniprot:A2RUC4",
+      "coordinate_files": [
+        {
+          "bytes": 309337,
+          "exists": true,
+          "hash_matches_screen": true,
+          "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_A2RUC4.cif",
+          "sha256": "bfd4dc09055fd1e5d9a1252b3fa95d275ee87e5579939661eb4f6fcd919cf6f7"
+        }
+      ],
+      "coordinate_hashes_match_screen": true,
+      "coordinate_ligand_scan": [
+        {
+          "atom_site_group_counts": {
+            "ATOM": 2585
+          },
+          "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_A2RUC4.cif",
+          "nonstandard_comp_ids": [],
+          "protein_only_coordinate": true,
+          "structure_local_ligand_contact_locator_candidate": false
+        }
+      ],
+      "coordinate_materialized": true,
+      "coordinate_status": "coordinate_materialized_for_external_screen",
+      "current_countable_structural_status": "not_available",
+      "current_reference_sequence_status": "no_near_duplicate_signal",
+      "display_name": "tRNA wybutosine-synthesizing protein 5 (hTYW5) (tRNA yW-synthesizing protein 5) (EC 1.14.11.42) (tRNA(Phe) (7-(3-amino-3-carboxypropyl)wyosine(37)-C(2))-hydroxylase)",
+      "external_structural_cluster_status": "external_structural_cluster_assigned_no_neighbor_above_threshold",
+      "external_tm_cluster_ids": [
+        "external_tm_cluster:002"
+      ],
+      "factory_admission_route_basis": "external_source_or_distance_screen_acquisition_needed",
+      "factory_flags": {
+        "cofactor_confounded_signal": false,
+        "coordinate_gap": false,
+        "external_candidate": true,
+        "heldout_sensitive": false,
+        "novel_or_near_orphan_signal": false,
+        "oos_or_hard_negative_signal": true,
+        "source_free_feature_gap": false
+      },
+      "factory_proposed_label_tier": "acquisition_needed_before_admission",
+      "factory_provenance_tier": "tier_B_external_sourced_review_only",
+      "family_axis": "redox_oxygen_transfer_and_sulfur_lipoamide",
+      "input_priority_screen_ready": false,
+      "input_terminal_blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "active_site_or_locator_evidence_missing",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "input_terminal_route_basis": "source_free_active_site_locator_not_ready",
+      "input_terminal_state": "blocked_locator",
+      "label_factory_observed_statuses": [
+        "blocked_by_active_site_sourcing",
+        "external_import_readiness_review_only",
+        "external_transfer_blocker_matrix_review_only"
+      ],
+      "label_factory_status": "blocked_by_active_site_sourcing",
+      "labels_imported_or_promoted_now": false,
+      "locator_coordinate_status": "blocked_locator_active_site_not_sampled|coordinate_materialized_for_external_screen",
+      "locator_status": "blocked_locator_active_site_not_sampled",
+      "mapped_locator_candidate_payload": null,
+      "nearest_external_neighbors": [
+        {
+          "accession": "P34949",
+          "tm_score": 0.4168
+        }
+      ],
+      "pdb_ids": [
+        "3AL5",
+        "3AL6"
+      ],
+      "recommended_terminal_route_basis_for_future_surface": "source_free_active_site_locator_not_ready",
+      "recommended_terminal_state_for_future_surface": "blocked_locator",
+      "remaining_blockers_after_repair_audit": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "active_site_or_locator_evidence_missing",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared",
+        "source_free_active_site_locator_missing"
+      ],
+      "repair_context_sha256": "07654e78b7f3fc5c65d082a217cba4283ce930a5807d1b9e52a5d119486c6b42",
+      "repair_decision": "coordinate_gap_cleared_locator_still_blocked",
+      "repair_rationale": "Coordinate file and provenance are present, but no approved source-free active-site locator is materialized.",
+      "source_evidence_blockers": [
+        "accession_already_in_current_external_pool"
+      ],
+      "source_free_locator_materialized_now": false,
+      "transitive_duplicate_repair_evidence": null
+    },
+    {
+      "accession": "A5PLL7",
+      "active_site_evidence_sample": {
+        "active_site_feature_count": 0,
+        "active_site_positions": [],
+        "binding_site_feature_count": 0,
+        "binding_site_positions_sample": [],
+        "feature_rows_for_accession": 0,
+        "feature_text_or_source_ids_used_as_predictive_features": false,
+        "locator_preflight_blockers": [
+          "explicit_active_site_residue_source_required"
+        ],
+        "locator_preflight_queue_class": "no_active_site_feature_candidate_found",
+        "locator_preflight_status": "no_local_active_site_or_binding_feature_positions",
+        "positions_used_for_terminal_recommendation": false,
+        "source_artifact": "artifacts/v3_external_source_active_site_evidence_sample_1025.json"
+      },
+      "active_site_feature_count": null,
+      "allowed_next_action_after_repair_audit": "source explicit active-site residues or build a source-free locator packet",
+      "alphafold_ids": [
+        "A5PLL7"
+      ],
+      "binding_site_feature_count": null,
+      "broad_sequence_neighborhood_status": "external_all_vs_all_no_near_duplicate_signal",
+      "candidate_id": "uniprot:A5PLL7",
+      "coordinate_files": [
+        {
+          "bytes": 264427,
+          "exists": true,
+          "hash_matches_screen": true,
+          "path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_A5PLL7.cif",
+          "sha256": "6e2dbe8af355bc888af81501acf1b0a57e29958c0774326f7cc51a4355631805"
+        }
+      ],
+      "coordinate_hashes_match_screen": true,
+      "coordinate_ligand_scan": [
+        {
+          "atom_site_group_counts": {
+            "ATOM": 2204
+          },
+          "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_A5PLL7.cif",
+          "nonstandard_comp_ids": [],
+          "protein_only_coordinate": true,
+          "structure_local_ligand_contact_locator_candidate": false
+        }
+      ],
+      "coordinate_materialized": true,
+      "coordinate_status": "coordinate_materialized_for_external_screen",
+      "current_countable_structural_status": "not_available",
+      "current_reference_sequence_status": "no_near_duplicate_signal",
+      "display_name": "Plasmanylethanolamine desaturase 1 (EC 1.14.19.77) (Transmembrane protein 189)",
+      "external_structural_cluster_status": "external_structural_cluster_assigned_no_neighbor_above_threshold",
+      "external_tm_cluster_ids": [
+        "external_tm_cluster:003"
+      ],
+      "factory_admission_route_basis": "external_source_or_distance_screen_acquisition_needed",
+      "factory_flags": {
+        "cofactor_confounded_signal": false,
+        "coordinate_gap": false,
+        "external_candidate": true,
+        "heldout_sensitive": false,
+        "novel_or_near_orphan_signal": false,
+        "oos_or_hard_negative_signal": true,
+        "source_free_feature_gap": false
+      },
+      "factory_proposed_label_tier": "acquisition_needed_before_admission",
+      "factory_provenance_tier": "tier_B_external_sourced_review_only",
+      "family_axis": "redox_oxygen_transfer_and_sulfur_lipoamide",
+      "input_priority_screen_ready": false,
+      "input_terminal_blockers": [
+        "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+        "active_site_or_locator_evidence_missing",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "primary_active_site_source_required",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "input_terminal_route_basis": "source_free_active_site_locator_not_ready",
+      "input_terminal_state": "blocked_locator",
+      "label_factory_observed_statuses": [
+        "blocked_by_active_site_sourcing",
+        "external_import_readiness_review_only",
+        "external_transfer_blocker_matrix_review_only"
+      ],
+      "label_factory_status": "blocked_by_active_site_sourcing",
+      "labels_imported_or_promoted_now": false,
+      "locator_coordinate_status": "blocked_locator_active_site_not_sampled|coordinate_materialized_for_external_screen",
+      "locator_status": "blocked_locator_active_site_not_sampled",
+      "mapped_locator_candidate_payload": null,
+      "nearest_external_neighbors": [
+        {
+          "accession": "P27144",
+          "tm_score": 0.3945
+        }
+      ],
+      "pdb_ids": [],
+      "recommended_terminal_route_basis_for_future_surface": "source_free_active_site_locator_not_ready",
+      "recommended_terminal_state_for_future_surface": "blocked_locator",
+      "remaining_blockers_after_repair_audit": [
+        "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+        "active_site_or_locator_evidence_missing",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "primary_active_site_source_required",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared",
+        "source_free_active_site_locator_missing"
+      ],
+      "repair_context_sha256": "6946f9ed5e2237b59c0774cb7a66cd66fcd63d549407c3ddf7df7b7e23331d71",
+      "repair_decision": "coordinate_gap_cleared_locator_still_blocked",
+      "repair_rationale": "Coordinate file and provenance are present, but no approved source-free active-site locator is materialized.",
+      "source_evidence_blockers": [
+        "accession_already_in_current_external_pool"
+      ],
+      "source_free_locator_materialized_now": false,
+      "transitive_duplicate_repair_evidence": null
+    }
+  ],
+  "run": {
+    "automation_id": "ce-expansion-merger-qa",
+    "created_on_branch": "ce-expansion-merger-qa-20260608",
+    "head_sha": "fcee1b768934da05f9fc24ac8cc303fe8897b21a",
+    "lock_path": "/tmp/ce_scaleout_merger_repair_current702.lock",
+    "lock_record": [
+      "pid=19625",
+      "started_at_utc=2026-06-08T14:17:14Z",
+      "started_at_local=2026-06-08T09:17:14-0500",
+      "repo=/Users/vivekvardhanarrabelli/.codex/worktrees/7f13/catalytic-earth"
+    ],
+    "origin_main_sha": "ad12659099f3be62586378e60a3ca83e8889164b",
+    "started_at_file": "/tmp/ce_scaleout_merger_started_at.txt",
+    "started_at_local": "2026-06-08T09:17:14-0500",
+    "started_at_utc": "2026-06-08T14:17:14Z"
+  },
+  "schema_version": "v3.scaleout_locator_coordinate_repair",
+  "scope": "non-importing repair audit for current702 scale-out merger lane when fewer than three shard artifacts are available",
+  "shard_readiness": {
+    "merger_surface_blocker": "fewer_than_three_shard_artifacts_available",
+    "merger_surface_built": false,
+    "shard_artifact_paths": [],
+    "shard_artifacts_available": 0,
+    "shard_report_paths": [],
+    "shard_reports_available": 0
+  },
+  "source_artifacts": {
+    "external_hard_negative_second_tranche_current_countable_structural_screen": {
+      "bytes": 23990,
+      "path": "artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json",
+      "sha256": "dfe753f536fa8282c3544f1e9e79840ba15aec9c2b7faa03a3f1e72b28b06ed1"
+    },
+    "external_source_active_site_evidence_sample": {
+      "bytes": 188552,
+      "path": "artifacts/v3_external_source_active_site_evidence_sample_1025.json",
+      "sha256": "af592dfeccf34fd57d3d84f1430f05c36a3c7c8147dd986c4661222036d51139"
+    },
+    "external_source_all_vs_all_sequence_search": {
+      "bytes": 63873,
+      "path": "artifacts/v3_external_source_all_vs_all_sequence_search_1025.json",
+      "sha256": "fe52dcc5612bee63d808b59007dd4f019cbcab77b3ba18c60dc55a355946e74a"
+    },
+    "external_source_backend_sequence_search": {
+      "bytes": 69813,
+      "path": "artifacts/v3_external_source_backend_sequence_search_1025.json",
+      "sha256": "d603b00bc35a2530e9a847a6e3521840010d7ec482fd9fafddadc12807d65b81"
+    },
+    "external_source_import_readiness_audit": {
+      "bytes": 43321,
+      "path": "artifacts/v3_external_source_import_readiness_audit_1025.json",
+      "sha256": "13998abbab244fdf7d58335d81996f66f89dc19dd8ba7305c261115c359a5dbc"
+    },
+    "external_source_sequence_alignment_verification": {
+      "bytes": 59754,
+      "path": "artifacts/v3_external_source_sequence_alignment_verification_1025.json",
+      "sha256": "2cb5b8c60b923355b48b9d5baba9a386ba690e00fc7dd98c041fb7f7fe60660e"
+    },
+    "external_source_sequence_reference_screen_audit": {
+      "bytes": 15188,
+      "path": "artifacts/v3_external_source_sequence_reference_screen_audit_1025.json",
+      "sha256": "58c56e2127660d9d3b70c7b241cb96b4d5b9d5a2847b23837081009ecec94f16"
+    },
+    "external_source_transfer_blocker_matrix": {
+      "bytes": 72221,
+      "path": "artifacts/v3_external_source_transfer_blocker_matrix_1025.json",
+      "sha256": "4aa729a3e3da5c5511ce776046159496708f87545f16f49d603b998fa56f9778"
+    },
+    "external_structural_cluster_index_all30": {
+      "bytes": 161078,
+      "path": "artifacts/v3_external_structural_cluster_index_1025_all30.json",
+      "sha256": "88f67f528a880ca5538466acdc4e6e2987868ff4b2cdc57b44969bf4129ec928"
+    },
+    "external_structural_tm_holdout_path_all30": {
+      "bytes": 27230,
+      "path": "artifacts/v3_external_structural_tm_holdout_path_1025_all30.json",
+      "sha256": "70a9c84311518a12fbe891cc4cd0f8bd6161e8cee746162dd44d7c113bd4aacc"
+    },
+    "sequence_cluster_proxy_1025": {
+      "bytes": 478865,
+      "path": "artifacts/v3_sequence_cluster_proxy_1025.json",
+      "sha256": "2451b2256afcbb8669563744967e519abd62ce1cd55a091a5f1e4119d30386af"
+    },
+    "targeted_expansion_acquisition_conversion_screens": {
+      "bytes": 660870,
+      "path": "artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json",
+      "sha256": "50f2aea5c862787a4f296ed8035ac30a2f064e5e0518a91bdc71784d7cc93066"
+    },
+    "targeted_expansion_factory_batch": {
+      "bytes": 3129187,
+      "path": "artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json",
+      "sha256": "4143170e0c948d5ba60c56e090c5aae0ce0b16e6c5d60caeae9215484531cee2"
+    }
+  },
+  "validation_checks": {
+    "all_blocked_locator_coordinates_materialized": true,
+    "all_coordinate_hashes_match_screen": true,
+    "all_coordinates_protein_only_no_ligand_contact_locator_route": true,
+    "all_input_rows_were_blocked_locator": true,
+    "mapped_locator_candidate_payloads_not_copied_to_audited_dir": true,
+    "no_import_or_promotion_performed": true,
+    "no_locator_sidecar_materialized_without_approval": true,
+    "no_source_backed_locator_promoted_without_mapping_review": true,
+    "p60174_active_site_positions_mapped_to_afdb_residues": true,
+    "p60174_locator_mapping_preflight_recorded": true,
+    "passed": true,
+    "violation_count": 0,
+    "violations": []
+  }
+}

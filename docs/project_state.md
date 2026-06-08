@@ -54,6 +54,19 @@ artifact-backed mechanism diagnostics.
   `artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json`
   and
   `work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md`.
+- Current scale-out repair surface (2026-06-08): no pushed shard artifacts are
+  available yet, so the merger lane produced a non-importing repair artifact
+  for the 7 acquisition-conversion `blocked_locator` rows. All 7 have
+  hash-matched local coordinates; `uniprot:Q9BXS1` is recommended for future
+  consolidated surfaces as `reject/OOS_preserve_signal` through source-free
+  transitive structural duplicate evidence via `uniprot:Q13907` and
+  current-countable `m_csa:190`; the other 6 remain locator-blocked, with
+  `uniprot:P60174` first for review-gated locator copy because the local
+  active-site evidence sample has two active-site feature positions that map to
+  AFDB residues 96/HIS and 166/GLU. Use
+  `artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json`
+  and `work/scaleout_locator_coordinate_repair_current702_20260608.md`. No
+  locator sidecar, import preview, or registry edit was performed.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.
