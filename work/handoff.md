@@ -3,16 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-family-label-admission-pipeline`
-- STARTED_AT_UTC: `2026-06-08T04:21:01Z`
-- STARTED_AT_LOCAL: `Sun Jun  7 23:21:01 CDT 2026`
-- ENDED_AT_UTC: `2026-06-08T05:11:51Z`
-- ENDED_AT_LOCAL: `Mon Jun  8 00:11:51 CDT 2026`
-- ELAPSED_MINUTES: `50.833`
-- Status: Targeted expansion factory output complete; final commit/push/sync
-  and lock release are performed after this handoff update is staged.
+- STARTED_AT_UTC: `2026-06-08T05:21:49Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 00:21:49 CDT 2026`
+- ENDED_AT_UTC: `2026-06-08T05:23:03Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 00:23:03 CDT 2026`
+- ELAPSED_MINUTES: `1.241`
+- Status: Self-stop/no-op verification complete. The first durable targeted
+  expansion-factory batch already exists on `origin/main`, so this run did not
+  launch a second batch and is pausing the automation.
   Canonical automation lock acquired at
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth2/catalytic-earth-automation.lock`;
-  start timestamps were also written to and verified in
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth3/catalytic-earth-automation.lock`;
+  start timestamps were also written to
   `/tmp/catalytic_earth_targeted_expansion_started_at.txt`.
 
 ## Mission
@@ -64,6 +65,88 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 Targeted Expansion Factory Self-Stop Verification
+
+Automation run: `catalytic-earth-family-label-admission-pipeline`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-08T05:21:49Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 00:21:49 CDT 2026`
+- ENDED_AT_UTC: `2026-06-08T05:23:03Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 00:23:03 CDT 2026`
+- ELAPSED_MINUTES: `1.241`
+- Lock: canonical linked-worktree lock directory
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth3/catalytic-earth-automation.lock`
+  with `started_at_utc=2026-06-08T05:21:49Z`.
+- The early stop is intentional under the self-stop rule: the first durable
+  expansion-factory batch already exists and was pushed.
+
+#### Scope
+
+- Continued from current `origin/main`; `HEAD` and `origin/main` were both
+  `28e6168df5d2821c617fcd085191bcdcbfb2f26b` before the handoff-only no-op
+  commit.
+- Verified that the first durable targeted expansion-factory output is already
+  present on `origin/main`.
+- Did not create another batch, did not modify production label registries,
+  ontologies, imports, train/test splits, model weights, production thresholds,
+  or heldout-training/tuning surfaces.
+- Durable docs were not changed because this run only confirmed the existing
+  durable state and paused the automation.
+
+#### Existing durable output confirmed
+
+- JSON artifact:
+  `artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`.
+- Markdown report:
+  `work/targeted_expansion_factory_batch_current702_20260608.md`.
+- Rerunnable factory code and tests:
+  `src/catalytic_earth/targeted_expansion_factory.py`,
+  `src/catalytic_earth/cli.py`, and
+  `tests/test_targeted_expansion_factory.py`.
+
+#### Verification
+
+- `git fetch origin`: passed.
+- `git rev-parse HEAD` and `git rev-parse origin/main`: both
+  `28e6168df5d2821c617fcd085191bcdcbfb2f26b` before this no-op handoff commit.
+- `git ls-tree -r --name-only origin/main` confirmed the JSON artifact,
+  markdown report, factory code, and targeted tests are on `origin/main`.
+- Independent artifact read: 816 candidate rows across 8 family axes.
+- Admission counts: `review_only_evidence=391`,
+  `reject/OOS_preserve_signal=205`, `blocked_locator=90`,
+  `blocked_coordinate=44`, `acquisition_needed=86`,
+  `countable_candidate=0`.
+- `python -m json.tool artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json`:
+  passed.
+- `PYTHONPATH=src python -m pytest tests/test_targeted_expansion_factory.py -q`:
+  4 passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 curated mechanism labels.
+- `git diff --check`: passed.
+- Disk at verification: 15 GiB free, above the 10 GiB guardrail.
+
+#### Commit, sync, and lock
+
+- This run will commit and push only this handoff no-op note.
+- Push/sync status and final commit hash are finalized immediately after this
+  handoff update is staged; verify with `git rev-parse HEAD` and
+  `git rev-parse origin/main`.
+- Lock release status: lock remains held through commit/push/sync and is
+  released as the final repository step; verify the lock directory is absent:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth3/catalytic-earth-automation.lock`.
+
+#### Exact next action
+
+Do not launch a second targeted expansion-factory batch until Vivek or the main
+thread explicitly asks for it after reviewing the first batch. The next useful
+project action remains the first-batch follow-up: run the six required screens
+for the 16 screen-ready `acquisition_needed` rows listed in
+`work/targeted_expansion_factory_batch_current702_20260608.md`, fill
+screen/source evidence for the other 70 acquisition rows, and repair the 134
+locator/coordinate blockers before any countable-promotion discussion.
 
 ### 2026-06-08 Targeted Expansion Factory Batch
 
