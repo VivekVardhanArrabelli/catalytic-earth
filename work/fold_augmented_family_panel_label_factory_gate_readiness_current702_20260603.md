@@ -1,6 +1,6 @@
 # Fold-Augmented Family-Panel Label-Factory Gate Readiness - current702
 
-Run: 2026-06-03T11:08:30Z
+Run: 2026-06-08T03:51:18Z
 
 Fail-closed readiness artifact for the Lever 4 family-panel label-factory gate. It consumes only the accepted import-preview rows and prepares review-only gate inputs; it does not run the label-factory gate, edit imports, or make rows countable.
 

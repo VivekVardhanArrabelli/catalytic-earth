@@ -1,0 +1,192 @@
+{
+  "application_command": "PYTHONPATH=src python -m catalytic_earth.cli apply-fold-augmented-family-panel-expert-import-decision --expert-decisions <v3_family_label_admission_architecture_default_decisions_current702_20260608.json>",
+  "artifact_id": "v3_family_label_admission_architecture_default_decisions_current702_20260608",
+  "counts": {
+    "architecture_default_decision_rows": 6,
+    "decisions": {
+      "keep_family_panel_review_only_require_more_evidence": 2,
+      "reject_family_panel_import_candidate": 4
+    },
+    "proposal_rows_seen": 6,
+    "skipped_rows": 0,
+    "violations": 0
+  },
+  "created_utc": "2026-06-08T03:50:47Z",
+  "expert_import_decisions": [
+    {
+      "architecture_confidence": "high",
+      "architecture_default": true,
+      "architecture_policy_name": "family_admission_architecture_default_v1",
+      "decision": "reject_family_panel_import_candidate",
+      "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+      "decision_rationale": "The row is already framed as an OOS-tier control and the fold/geometry channel abstains below threshold. Default action should preserve the row as non-counting OOS/reject signal instead of escalating it to human import review.",
+      "entry_id": "m_csa:10",
+      "human_review_required_for_countable_promotion": true,
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "review_status": "reviewed_expert_import_decision",
+      "reviewed_at_utc": "2026-06-08T03:50:47Z",
+      "reviewer": "family_admission_architecture_default_v1",
+      "row_context_sha256": "5e106f1e3a1a42a4d7ec1261ab2c5cd64570af1518bfbea11f032da8eebf7e2d",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_4": "83ff67d2a86775fb3d7da5d49cbb1d448d391e1904420b602b68dd114f91095c",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      }
+    },
+    {
+      "architecture_confidence": "medium_high",
+      "architecture_default": true,
+      "architecture_policy_name": "family_admission_architecture_default_v1",
+      "decision": "reject_family_panel_import_candidate",
+      "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+      "decision_rationale": "The row is an OOS boundary/control and abstains under the fold/geometry channel. The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal.",
+      "entry_id": "m_csa:30",
+      "human_review_required_for_countable_promotion": true,
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "review_status": "reviewed_expert_import_decision",
+      "reviewed_at_utc": "2026-06-08T03:50:47Z",
+      "reviewer": "family_admission_architecture_default_v1",
+      "row_context_sha256": "25db03e7096bc339bc77f7115ddf5d76e76710aad34133064b1ac4f328cd0d25",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_2": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      }
+    },
+    {
+      "architecture_confidence": "medium_high",
+      "architecture_default": true,
+      "architecture_policy_name": "family_admission_architecture_default_v1",
+      "decision": "reject_family_panel_import_candidate",
+      "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+      "decision_rationale": "The row is an OOS boundary/control and abstains under the fold/geometry channel. The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal.",
+      "entry_id": "m_csa:31",
+      "human_review_required_for_countable_promotion": true,
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "review_status": "reviewed_expert_import_decision",
+      "reviewed_at_utc": "2026-06-08T03:50:47Z",
+      "reviewer": "family_admission_architecture_default_v1",
+      "row_context_sha256": "b96c466fa184138d944b16fec5cfc82ee81930536efb5ea210009ee9caae47a0",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_2": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      }
+    },
+    {
+      "architecture_confidence": "medium_high",
+      "architecture_default": true,
+      "architecture_policy_name": "family_admission_architecture_default_v1",
+      "decision": "reject_family_panel_import_candidate",
+      "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+      "decision_rationale": "The row is an OOS boundary/control and abstains under the fold/geometry channel. The cofactor signal is not strong enough to justify preserving the row as a family-admission candidate, so the default is non-counting reject/OOS signal.",
+      "entry_id": "m_csa:191",
+      "human_review_required_for_countable_promotion": true,
+      "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+      "review_status": "reviewed_expert_import_decision",
+      "reviewed_at_utc": "2026-06-08T03:50:47Z",
+      "reviewer": "family_admission_architecture_default_v1",
+      "row_context_sha256": "54347489169da61ac9f6aeef526da8d8ea7b0d2d527f998ed8b546b92e28872e",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_6": "a6fe62a2cdd2927e4e0faecf473f6fe5aa2c4bf9616e8086a754f33f4cfa451c",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      }
+    },
+    {
+      "architecture_confidence": "medium",
+      "architecture_default": true,
+      "architecture_policy_name": "family_admission_architecture_default_v1",
+      "decision": "keep_family_panel_review_only_require_more_evidence",
+      "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+      "decision_rationale": "The row is OOS-like and abstains under the fold/geometry channel, but the family axis is a boundary signal worth preserving. Use as review-only evidence unless a future family-specific locator/import gate clears it.",
+      "entry_id": "m_csa:448",
+      "human_review_required_for_countable_promotion": true,
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "review_status": "reviewed_expert_import_decision",
+      "reviewed_at_utc": "2026-06-08T03:50:47Z",
+      "reviewer": "family_admission_architecture_default_v1",
+      "row_context_sha256": "277985525b6f20fa752f1ca8f7bbd928f78ae74d8bd76bdce8a076ce535ab4c1",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_3": "78b3032f6f9b3f381da700cdab3df55f18256d0da9412298e4368637c5d38c1c",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      }
+    },
+    {
+      "architecture_confidence": "medium",
+      "architecture_default": true,
+      "architecture_policy_name": "family_admission_architecture_default_v1",
+      "decision": "keep_family_panel_review_only_require_more_evidence",
+      "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+      "decision_rationale": "FMO/oxygen-transfer is a real boundary against the current flavin redox bucket, but the row should not become countable until coordinate/active-site cleanliness is resolved. Strong cofactor signal alone is not sufficient for family admission.",
+      "entry_id": "m_csa:973",
+      "human_review_required_for_countable_promotion": true,
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "review_status": "reviewed_expert_import_decision",
+      "reviewed_at_utc": "2026-06-08T03:50:47Z",
+      "reviewer": "family_admission_architecture_default_v1",
+      "row_context_sha256": "eb70c21ef5039b9347e3a846007684229ec6017f9cf5cb728a78dcfc22276829",
+      "source_hashes": {
+        "acceptance_scenario_plan": "a440c75a33a69d63e7000f8b581da8ce033541068f458a570d178f1c443342fb",
+        "countability_gate_preflight": "bfffd733840d2003dfe0da80fe7da56815859711631b4252e73111a33f2d6757",
+        "expert_import_decision_application": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c",
+        "expert_import_decision_packet": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8",
+        "family_panel_evidence_packet_1": "814d11f6dfba81eb22525d10566f4f5888e0513e0c437002f9a9eff0d10ea121",
+        "family_set_expansion_targets": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff",
+        "import_preview_blocker_gate": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048",
+        "research_readout": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
+      }
+    }
+  ],
+  "guardrails": {
+    "accept_import_candidate_decisions_allowed": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_ids_used_as_predictive_features": false,
+    "production_thresholds_changed": false,
+    "review_only_or_reject_only": true
+  },
+  "interpretation": {
+    "headline": "6 non-counting architecture default decisions materialized.",
+    "next_action": "Apply this artifact through the existing expert-decision application, then rerun the family label admission pipeline."
+  },
+  "schema_version": "v3.family_label_admission_pipeline.architecture_default_decisions",
+  "scope": "Reviewed decision artifact materialized from architecture non-counting family-admission defaults. It may reject/preserve or keep rows review-only, but it cannot accept/import/promote labels.",
+  "skipped_rows": [],
+  "source_artifacts": {
+    "family_label_admission_pipeline": {
+      "bytes": 504255,
+      "path": "artifacts/v3_family_label_admission_pipeline_current702_20260607.json",
+      "sha256": "37ff3c93abe384117843b3d0f4dcfa74ae1021e9dc62b22233f3d7d3c7d8b65d"
+    }
+  },
+  "status": "architecture_default_decisions_ready",
+  "violations": []
+}

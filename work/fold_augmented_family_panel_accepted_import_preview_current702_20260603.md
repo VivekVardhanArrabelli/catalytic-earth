@@ -1,6 +1,6 @@
 # Fold-Augmented Family-Panel Accepted Import Preview - current702
 
-Run: 2026-06-03T11:08:29Z
+Run: 2026-06-08T03:51:18Z
 
 Review-only accepted import preview for Lever 4 family-panel rows. It consumes the fail-closed expert-decision application and emits only rows with explicit accepted decisions, unchanged row-context hashes, and no remaining pre-preview blockers. It does not run the label-factory gate or make rows countable.
 

@@ -24487,3 +24487,47 @@ Verification:
   8 mechanism fingerprints, 15 ontology families, 702 labels.
 - JSON parse for the regenerated family-admission artifacts passed.
 - `git diff --check` passed.
+
+## Automation/handoff update: architecture defaults materialized 2026-06-08
+
+Scope: Convert architecture-proposed non-counting family-admission defaults into
+the existing reviewed-decision application path, so agents stop treating the
+same six rows as live human blockers.
+
+What changed:
+
+- Added CLI:
+  `PYTHONPATH=src python -m catalytic_earth.cli materialize-family-label-admission-architecture-defaults`.
+- Added artifact:
+  `artifacts/v3_family_label_admission_architecture_default_decisions_current702_20260608.json`
+  and report:
+  `work/family_label_admission_architecture_default_decisions_current702_20260608.md`.
+- Materialized 6 non-counting decisions from
+  `family_admission_architecture_default_v1`:
+  4 `reject_family_panel_import_candidate` and
+  2 `keep_family_panel_review_only_require_more_evidence`.
+- Applied the materialized decisions through the existing expert-decision
+  application:
+  `artifacts/v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603.json`.
+- Regenerated the accepted import preview, label-factory readiness, and family
+  admission pipeline. Final admission-state counts now have
+  `blocked_family_decision = 0`, `reject_preserve_signal = 4`, and
+  `review_only_evidence = 2`.
+
+Guardrails:
+
+- No accept/import/countable promotion decisions were materialized.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, or model weights changed.
+- The materializer refuses architecture defaults that propose
+  `explicit_accept_family_panel_import_candidate`.
+
+Current next action:
+
+- The family-decision blocker is cleared. Do not ask Vivek to review
+  `m_csa:10`, `m_csa:30`, `m_csa:31`, `m_csa:191`, `m_csa:448`, or
+  `m_csa:973` again unless the goal is to override them into countable
+  promotion.
+- The remaining current-family blockers are concrete locator/coordinate
+  blockers: `mh_065`, `mh_072`, `external_glycoside_panel`, `mh_064`, and
+  `secondary_probe::cobalamin_radical_rearrangement`.

@@ -39,6 +39,7 @@ from .embedding_sidecar import write_sequence_embedding_sidecar
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .family_label_admission import (
     DEFAULT_EVIDENCE_PACKET_PATHS,
+    write_family_label_admission_architecture_default_decisions,
     write_family_label_admission_pipeline,
 )
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
@@ -17181,6 +17182,25 @@ def cmd_build_family_label_admission_pipeline(args: argparse.Namespace) -> int:
         "Wrote family label admission pipeline to "
         f"{args.out} (rows: {counts.get('candidate_rows_evaluated')}, "
         f"states: {state_counts})"
+    )
+    return 0
+
+
+def cmd_materialize_family_label_admission_architecture_defaults(
+    args: argparse.Namespace,
+) -> int:
+    artifact = write_family_label_admission_architecture_default_decisions(
+        family_label_admission_pipeline_path=Path(args.family_label_admission_pipeline),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        artifact_id=args.artifact_id,
+        created_utc=args.created_utc,
+    )
+    counts = artifact.get("counts", {})
+    print(
+        "Wrote family label admission architecture default decisions to "
+        f"{args.out} (status: {artifact.get('status')}, decisions: "
+        f"{counts.get('architecture_default_decision_rows')})"
     )
     return 0
 
@@ -41454,6 +41474,50 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     family_label_admission.set_defaults(func=cmd_build_family_label_admission_pipeline)
+
+    family_label_architecture_defaults = subparsers.add_parser(
+        "materialize-family-label-admission-architecture-defaults",
+        help=(
+            "materialize non-counting architecture default family-admission "
+            "decisions for the existing expert-decision application path"
+        ),
+    )
+    family_label_architecture_defaults.add_argument(
+        "--family-label-admission-pipeline",
+        default=(
+            "artifacts/v3_family_label_admission_pipeline_current702_"
+            "20260607.json"
+        ),
+    )
+    family_label_architecture_defaults.add_argument(
+        "--artifact-id",
+        default=(
+            "v3_family_label_admission_architecture_default_decisions_"
+            "current702_20260608"
+        ),
+    )
+    family_label_architecture_defaults.add_argument(
+        "--created-utc",
+        default=None,
+        help="optional fixed UTC timestamp for reproducible artifact metadata",
+    )
+    family_label_architecture_defaults.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_label_admission_architecture_default_"
+            "decisions_current702_20260608.json"
+        ),
+    )
+    family_label_architecture_defaults.add_argument(
+        "--report",
+        default=(
+            "work/family_label_admission_architecture_default_decisions_"
+            "current702_20260608.md"
+        ),
+    )
+    family_label_architecture_defaults.set_defaults(
+        func=cmd_materialize_family_label_admission_architecture_defaults
+    )
 
     active_lever_reviewer_queue = subparsers.add_parser(
         "build-active-lever-reviewer-decision-queue",

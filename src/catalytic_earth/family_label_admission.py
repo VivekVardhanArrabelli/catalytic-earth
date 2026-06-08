@@ -13,6 +13,9 @@ SCHEMA_VERSION = "v3.family_label_admission_pipeline"
 EXPERT_DECISION_TEMPLATE_ARTIFACT_ID = (
     "v3_family_label_admission_expert_decision_template_current702_20260607"
 )
+ARCHITECTURE_DEFAULT_DECISIONS_ARTIFACT_ID = (
+    "v3_family_label_admission_architecture_default_decisions_current702_20260608"
+)
 
 ADMISSION_STATES = (
     "countable_candidate",
@@ -1909,3 +1912,227 @@ def write_family_label_admission_pipeline(
             encoding="utf-8",
         )
     return audit
+
+
+def build_family_label_admission_architecture_default_decisions(
+    *,
+    family_label_admission_pipeline_path: Path,
+    artifact_id: str = ARCHITECTURE_DEFAULT_DECISIONS_ARTIFACT_ID,
+    created_utc: str | None = None,
+) -> dict[str, Any]:
+    run_created_utc = created_utc or _utc_now_iso()
+    pipeline = _read_json_required(family_label_admission_pipeline_path)
+    proposal_packet = pipeline.get("architecture_decision_proposals") or {}
+    proposal_rows = [
+        row
+        for row in proposal_packet.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    decision_rows: list[dict[str, Any]] = []
+    skipped_rows: list[dict[str, Any]] = []
+    violations: list[dict[str, Any]] = []
+    for row in proposal_rows:
+        entry_id = str(row.get("entry_id") or "")
+        proposal = row.get("architecture_decision_proposal") or {}
+        proposed_decision = str(proposal.get("proposed_decision") or "")
+        human_required = bool(proposal.get("human_review_required_for_default"))
+        decision_context_sha256 = str(
+            proposal.get("decision_context_sha256") or ""
+        )
+        if human_required:
+            skipped_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "reason": "human_review_required_for_default",
+                }
+            )
+            continue
+        if proposed_decision == ACCEPT_FAMILY_PANEL_IMPORT_DECISION:
+            violations.append(
+                {
+                    "entry_id": entry_id,
+                    "violation": "architecture_default_must_not_accept_import_candidate",
+                }
+            )
+            continue
+        if proposed_decision not in {
+            REJECT_FAMILY_PANEL_IMPORT_DECISION,
+            REVIEW_ONLY_FAMILY_PANEL_DECISION,
+        }:
+            violations.append(
+                {
+                    "entry_id": entry_id,
+                    "violation": "unknown_architecture_default_decision",
+                    "proposed_decision": proposed_decision,
+                }
+            )
+            continue
+        if len(decision_context_sha256) != 64:
+            violations.append(
+                {
+                    "entry_id": entry_id,
+                    "violation": "decision_context_sha256_missing_or_invalid",
+                }
+            )
+            continue
+        decision_rows.append(
+            {
+                "entry_id": entry_id,
+                "panel_id": row.get("candidate_family_axis"),
+                "decision_context_sha256": decision_context_sha256,
+                "decision": proposed_decision,
+                "review_status": REVIEWED_EXPERT_IMPORT_DECISION_STATUS,
+                "reviewer": "family_admission_architecture_default_v1",
+                "reviewed_at_utc": run_created_utc,
+                "decision_rationale": " ".join(proposal.get("rationale") or []),
+                "architecture_default": True,
+                "architecture_policy_name": proposal.get("policy_name"),
+                "architecture_confidence": proposal.get("confidence"),
+                "human_review_required_for_countable_promotion": proposal.get(
+                    "human_review_required_for_countable_promotion"
+                ),
+                "row_context_sha256": row.get("row_context_sha256"),
+                "source_hashes": row.get("source_hashes") or {},
+            }
+        )
+    decision_counts = Counter(row["decision"] for row in decision_rows)
+    status = (
+        "blocked_architecture_default_decision_violations"
+        if violations
+        else (
+            "architecture_default_decisions_ready"
+            if decision_rows
+            else "no_architecture_default_decisions_available"
+        )
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": f"{SCHEMA_VERSION}.architecture_default_decisions",
+        "created_utc": run_created_utc,
+        "status": status,
+        "scope": (
+            "Reviewed decision artifact materialized from architecture "
+            "non-counting family-admission defaults. It may reject/preserve or "
+            "keep rows review-only, but it cannot accept/import/promote labels."
+        ),
+        "guardrails": {
+            "review_only_or_reject_only": True,
+            "accept_import_candidate_decisions_allowed": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training": False,
+            "mechanism_text_or_ids_used_as_predictive_features": False,
+        },
+        "counts": {
+            "proposal_rows_seen": len(proposal_rows),
+            "architecture_default_decision_rows": len(decision_rows),
+            "skipped_rows": len(skipped_rows),
+            "violations": len(violations),
+            "decisions": dict(sorted(decision_counts.items())),
+        },
+        "expert_import_decisions": decision_rows,
+        "skipped_rows": skipped_rows,
+        "violations": violations,
+        "source_artifacts": {
+            "family_label_admission_pipeline": _source_record(
+                family_label_admission_pipeline_path
+            )
+        },
+        "application_command": (
+            "PYTHONPATH=src python -m catalytic_earth.cli "
+            "apply-fold-augmented-family-panel-expert-import-decision "
+            f"--expert-decisions <{artifact_id}.json>"
+        ),
+        "interpretation": {
+            "headline": (
+                f"{len(decision_rows)} non-counting architecture default "
+                "decisions materialized."
+            ),
+            "next_action": (
+                "Apply this artifact through the existing expert-decision "
+                "application, then rerun the family label admission pipeline."
+            ),
+        },
+    }
+
+
+def render_family_label_admission_architecture_default_decisions_report(
+    artifact: dict[str, Any],
+) -> str:
+    counts = artifact["counts"]
+    lines = [
+        "# Family Admission Architecture Default Decisions - current702",
+        "",
+        f"Run: {artifact['created_utc']}",
+        "",
+        artifact["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {artifact['status']}",
+        f"- Proposal rows seen: {counts['proposal_rows_seen']}",
+        "- Architecture default decision rows: "
+        f"{counts['architecture_default_decision_rows']}",
+        f"- Decisions: {counts['decisions']}",
+        f"- Skipped rows: {counts['skipped_rows']}",
+        f"- Violations: {counts['violations']}",
+        "",
+        "## Decisions",
+        "",
+        "| row | panel | decision | confidence | rationale |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in artifact.get("expert_import_decisions", []):
+        lines.append(
+            f"| {row['entry_id']} | {row.get('panel_id')} | "
+            f"{row['decision']} | {row.get('architecture_confidence')} | "
+            f"{row.get('decision_rationale') or ''} |"
+        )
+    if not artifact.get("expert_import_decisions"):
+        lines.append("| n/a | n/a | n/a | n/a | no decisions materialized |")
+    if artifact.get("violations"):
+        lines += [
+            "",
+            "## Violations",
+            "",
+            "```json",
+            json.dumps(artifact["violations"], indent=2, sort_keys=True),
+            "```",
+        ]
+    lines += [
+        "",
+        "## Next Action",
+        "",
+        f"- {artifact['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_label_admission_architecture_default_decisions(
+    *,
+    family_label_admission_pipeline_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = ARCHITECTURE_DEFAULT_DECISIONS_ARTIFACT_ID,
+    created_utc: str | None = None,
+) -> dict[str, Any]:
+    artifact = build_family_label_admission_architecture_default_decisions(
+        family_label_admission_pipeline_path=family_label_admission_pipeline_path,
+        artifact_id=artifact_id,
+        created_utc=created_utc,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(artifact, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_family_label_admission_architecture_default_decisions_report(
+                artifact
+            ),
+            encoding="utf-8",
+        )
+    return artifact

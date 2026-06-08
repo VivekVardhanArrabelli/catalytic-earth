@@ -9,16 +9,16 @@
     "accepted_import_preview_candidate_rows": 0,
     "blockers": 2,
     "critical_violation_total": 0,
-    "decision_records_total": 22,
-    "explicit_decision_records": 0,
+    "decision_records_total": 6,
+    "explicit_decision_records": 6,
     "packet_stub_rows": 22,
-    "pending_decision_rows": 22,
-    "rejected_rows": 0,
-    "review_only_rows": 0,
-    "reviewed_decision_records": 0,
+    "pending_decision_rows": 16,
+    "rejected_rows": 4,
+    "review_only_rows": 2,
+    "reviewed_decision_records": 6,
     "unmatched_decisions": 0
   },
-  "created_utc": "2026-06-03T11:08:29Z",
+  "created_utc": "2026-06-08T03:50:47Z",
   "decision": {
     "explicit_expert_import_decisions_recorded": false,
     "import_preview_can_run_now": false,
@@ -169,58 +169,58 @@
       "accepted_but_still_blocked": false,
       "accepted_import_preview_candidate": false,
       "critical_violations": [],
-      "decision": "pending_review",
+      "decision": "keep_family_panel_review_only_require_more_evidence",
       "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
-      "decision_present": false,
+      "decision_present": true,
       "entry_id": "m_csa:973",
       "import_preview_candidate_if_accepted_now": true,
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "primary_blocker_class": "expert_family_admission_decision_required",
-      "rejected_or_review_only": false,
+      "rejected_or_review_only": true,
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
       ],
       "required_review_status_after_decision": "reviewed_expert_import_decision",
-      "review_status": "pending_expert_import_decision"
+      "review_status": "reviewed_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
       "accepted_import_preview_candidate": false,
       "critical_violations": [],
-      "decision": "pending_review",
+      "decision": "reject_family_panel_import_candidate",
       "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
-      "decision_present": false,
+      "decision_present": true,
       "entry_id": "m_csa:30",
       "import_preview_candidate_if_accepted_now": true,
       "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
       "primary_blocker_class": "expert_family_admission_decision_required",
-      "rejected_or_review_only": false,
+      "rejected_or_review_only": true,
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
       ],
       "required_review_status_after_decision": "reviewed_expert_import_decision",
-      "review_status": "pending_expert_import_decision"
+      "review_status": "reviewed_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
       "accepted_import_preview_candidate": false,
       "critical_violations": [],
-      "decision": "pending_review",
+      "decision": "reject_family_panel_import_candidate",
       "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
-      "decision_present": false,
+      "decision_present": true,
       "entry_id": "m_csa:31",
       "import_preview_candidate_if_accepted_now": true,
       "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
       "primary_blocker_class": "expert_family_admission_decision_required",
-      "rejected_or_review_only": false,
+      "rejected_or_review_only": true,
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
       ],
       "required_review_status_after_decision": "reviewed_expert_import_decision",
-      "review_status": "pending_expert_import_decision"
+      "review_status": "reviewed_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -246,20 +246,20 @@
       "accepted_but_still_blocked": false,
       "accepted_import_preview_candidate": false,
       "critical_violations": [],
-      "decision": "pending_review",
+      "decision": "keep_family_panel_review_only_require_more_evidence",
       "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
-      "decision_present": false,
+      "decision_present": true,
       "entry_id": "m_csa:448",
       "import_preview_candidate_if_accepted_now": true,
       "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
       "primary_blocker_class": "expert_family_admission_decision_required",
-      "rejected_or_review_only": false,
+      "rejected_or_review_only": true,
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
       ],
       "required_review_status_after_decision": "reviewed_expert_import_decision",
-      "review_status": "pending_expert_import_decision"
+      "review_status": "reviewed_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -286,20 +286,20 @@
       "accepted_but_still_blocked": false,
       "accepted_import_preview_candidate": false,
       "critical_violations": [],
-      "decision": "pending_review",
+      "decision": "reject_family_panel_import_candidate",
       "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
-      "decision_present": false,
+      "decision_present": true,
       "entry_id": "m_csa:10",
       "import_preview_candidate_if_accepted_now": true,
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "primary_blocker_class": "expert_family_admission_decision_required",
-      "rejected_or_review_only": false,
+      "rejected_or_review_only": true,
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
       ],
       "required_review_status_after_decision": "reviewed_expert_import_decision",
-      "review_status": "pending_expert_import_decision"
+      "review_status": "reviewed_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -468,20 +468,20 @@
       "accepted_but_still_blocked": false,
       "accepted_import_preview_candidate": false,
       "critical_violations": [],
-      "decision": "pending_review",
+      "decision": "reject_family_panel_import_candidate",
       "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
-      "decision_present": false,
+      "decision_present": true,
       "entry_id": "m_csa:191",
       "import_preview_candidate_if_accepted_now": true,
       "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
       "primary_blocker_class": "expert_family_admission_decision_required",
-      "rejected_or_review_only": false,
+      "rejected_or_review_only": true,
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
       ],
       "required_review_status_after_decision": "reviewed_expert_import_decision",
-      "review_status": "pending_expert_import_decision"
+      "review_status": "reviewed_expert_import_decision"
     }
   ],
   "schema_version": "northstar_next_levers.v0.family_panel_expert_import_decision_application",
@@ -489,8 +489,8 @@
   "source_artifacts": {
     "expert_decisions": {
       "exists": true,
-      "path": "artifacts/v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603.json",
-      "sha256": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8"
+      "path": "artifacts/v3_family_label_admission_architecture_default_decisions_current702_20260608.json",
+      "sha256": "1fb2996dc8dbfd8883f5cd73ec89e91ca5bb4873f604e8467752e5a87e06ca97"
     },
     "expert_import_decision_packet": {
       "exists": true,

@@ -7,9 +7,11 @@ from pathlib import Path
 
 from catalytic_earth.family_label_admission import (
     ADMISSION_STATES,
+    build_family_label_admission_architecture_default_decisions,
     build_family_label_admission_pipeline,
     classify_family_label_admission_row,
     sha256_path,
+    write_family_label_admission_architecture_default_decisions,
     write_family_label_admission_pipeline,
 )
 from catalytic_earth.northstar_next_levers import (
@@ -581,6 +583,162 @@ class FamilyLabelAdmissionTests(unittest.TestCase):
             "accepted_expert_decision_waiting_import_preview",
         )
         self.assertIn("accepted import-preview", classification["allowed_next_action"])
+
+    def test_architecture_default_decisions_materialize_non_counting_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pipeline = _write(
+                root / "pipeline.json",
+                {
+                    "architecture_decision_proposals": {
+                        "rows": [
+                            {
+                                "entry_id": "row_reject",
+                                "candidate_family_axis": "panel_a",
+                                "row_context_sha256": "b" * 64,
+                                "source_hashes": {"source": "c" * 64},
+                                "architecture_decision_proposal": {
+                                    "policy_name": (
+                                        "family_admission_architecture_default_v1"
+                                    ),
+                                    "proposed_decision": (
+                                        "reject_family_panel_import_candidate"
+                                    ),
+                                    "confidence": "high",
+                                    "human_review_required_for_default": False,
+                                    "human_review_required_for_countable_promotion": (
+                                        True
+                                    ),
+                                    "decision_context_sha256": "d" * 64,
+                                    "rationale": ["reject rationale"],
+                                },
+                            },
+                            {
+                                "entry_id": "row_review",
+                                "candidate_family_axis": "panel_a",
+                                "row_context_sha256": "e" * 64,
+                                "source_hashes": {"source": "f" * 64},
+                                "architecture_decision_proposal": {
+                                    "policy_name": (
+                                        "family_admission_architecture_default_v1"
+                                    ),
+                                    "proposed_decision": (
+                                        "keep_family_panel_review_only_require_more_evidence"
+                                    ),
+                                    "confidence": "medium",
+                                    "human_review_required_for_default": False,
+                                    "human_review_required_for_countable_promotion": (
+                                        True
+                                    ),
+                                    "decision_context_sha256": "1" * 64,
+                                    "rationale": ["review-only rationale"],
+                                },
+                            },
+                            {
+                                "entry_id": "row_skip",
+                                "candidate_family_axis": "panel_a",
+                                "architecture_decision_proposal": {
+                                    "proposed_decision": (
+                                        "explicit_accept_family_panel_import_candidate"
+                                    ),
+                                    "human_review_required_for_default": True,
+                                    "decision_context_sha256": "2" * 64,
+                                },
+                            },
+                        ]
+                    }
+                },
+            )
+            materialized = build_family_label_admission_architecture_default_decisions(
+                family_label_admission_pipeline_path=pipeline,
+                created_utc="2026-06-08T02:00:00Z",
+            )
+            self.assertEqual(
+                materialized["status"],
+                "architecture_default_decisions_ready",
+            )
+            self.assertEqual(
+                materialized["counts"]["architecture_default_decision_rows"],
+                2,
+            )
+            self.assertEqual(materialized["counts"]["skipped_rows"], 1)
+            self.assertEqual(
+                materialized["counts"]["decisions"],
+                {
+                    "keep_family_panel_review_only_require_more_evidence": 1,
+                    "reject_family_panel_import_candidate": 1,
+                },
+            )
+            for decision in materialized["expert_import_decisions"]:
+                self.assertNotEqual(
+                    decision["decision"],
+                    "explicit_accept_family_panel_import_candidate",
+                )
+                self.assertEqual(
+                    decision["review_status"],
+                    "reviewed_expert_import_decision",
+                )
+                self.assertTrue(decision["architecture_default"])
+
+            out = root / "architecture_defaults.json"
+            report = root / "architecture_defaults.md"
+            written = write_family_label_admission_architecture_default_decisions(
+                family_label_admission_pipeline_path=pipeline,
+                out_path=out,
+                report_path=report,
+                created_utc="2026-06-08T02:00:00Z",
+            )
+            self.assertEqual(written["expert_import_decisions"], materialized["expert_import_decisions"])
+            self.assertTrue(out.exists())
+            self.assertTrue(report.exists())
+
+            packet = _write(
+                root / "packet.json",
+                {
+                    "expert_import_decision_stubs": [
+                        {
+                            "entry_id": "row_reject",
+                            "panel_id": "panel_a",
+                            "decision_context_sha256": "d" * 64,
+                            "recommended_review_status_after_decision": (
+                                "reviewed_expert_import_decision"
+                            ),
+                            "import_preview_candidate_if_accepted_now": True,
+                        },
+                        {
+                            "entry_id": "row_review",
+                            "panel_id": "panel_a",
+                            "decision_context_sha256": "1" * 64,
+                            "recommended_review_status_after_decision": (
+                                "reviewed_expert_import_decision"
+                            ),
+                            "import_preview_candidate_if_accepted_now": True,
+                        },
+                    ]
+                },
+            )
+            application = (
+                build_fold_augmented_family_panel_expert_import_decision_application(
+                    expert_import_decision_packet_path=packet,
+                    expert_decisions_path=out,
+                )
+            )
+            self.assertEqual(
+                application["status"],
+                "family_panel_expert_import_decision_application_blocked",
+            )
+            self.assertTrue(
+                application["decision"]["explicit_expert_import_decisions_recorded"]
+            )
+            self.assertFalse(application["decision"]["import_preview_can_run_now"])
+            self.assertEqual(
+                application["counts"]["accepted_import_preview_candidate_rows"],
+                0,
+            )
+            self.assertEqual(application["counts"]["pending_decision_rows"], 0)
+            self.assertEqual(application["counts"]["critical_violation_total"], 0)
+            self.assertEqual(application["counts"]["rejected_rows"], 1)
+            self.assertEqual(application["counts"]["review_only_rows"], 1)
 
     def test_missing_required_input_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

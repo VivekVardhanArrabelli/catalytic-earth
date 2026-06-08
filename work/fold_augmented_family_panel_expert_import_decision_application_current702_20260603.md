@@ -1,6 +1,6 @@
 # Fold-Augmented Family-Panel Expert Import Decision Application - current702
 
-Run: 2026-06-03T11:08:29Z
+Run: 2026-06-08T03:50:47Z
 
 Fail-closed application gate for Lever 4 family-panel expert import decisions. It verifies row-context hashes and exposes accepted rows that may enter a separate import-preview artifact. It does not write an import preview, run label-factory gates, edit labels, change registries, or make rows countable.
 
@@ -8,9 +8,9 @@ Fail-closed application gate for Lever 4 family-panel expert import decisions. I
 
 - family_panel_expert_import_decision_application_blocked
 - Packet stubs: 22
-- Decision records: 22
-- Reviewed decision records: 0
-- Pending decision rows: 22
+- Decision records: 6
+- Reviewed decision records: 6
+- Pending decision rows: 16
 - Accepted import-preview candidates: 0
 - Accepted but still blocked rows: 0
 - Critical violations: 0
@@ -34,13 +34,13 @@ Fail-closed application gate for Lever 4 family-panel expert import decisions. I
 | m_csa:131 | flavin_monooxygenase_and_flavin_oxygen_transfer | pending_review | 0 | 0 | none |
 | m_csa:132 | flavin_monooxygenase_and_flavin_oxygen_transfer | pending_review | 0 | 0 | none |
 | m_csa:551 | flavin_monooxygenase_and_flavin_oxygen_transfer | pending_review | 0 | 0 | none |
-| m_csa:973 | flavin_monooxygenase_and_flavin_oxygen_transfer | pending_review | 0 | 0 | none |
-| m_csa:30 | glycyl_radical_or_thiamine_radical_lyase_boundary | pending_review | 0 | 0 | none |
-| m_csa:31 | glycyl_radical_or_thiamine_radical_lyase_boundary | pending_review | 0 | 0 | none |
+| m_csa:973 | flavin_monooxygenase_and_flavin_oxygen_transfer | keep_family_panel_review_only_require_more_evidence | 0 | 0 | none |
+| m_csa:30 | glycyl_radical_or_thiamine_radical_lyase_boundary | reject_family_panel_import_candidate | 0 | 0 | none |
+| m_csa:31 | glycyl_radical_or_thiamine_radical_lyase_boundary | reject_family_panel_import_candidate | 0 | 0 | none |
 | m_csa:267 | lipoamide_or_sulfur_transfer_redox_boundary | pending_review | 0 | 0 | none |
-| m_csa:448 | lipoamide_or_sulfur_transfer_redox_boundary | pending_review | 0 | 0 | none |
+| m_csa:448 | lipoamide_or_sulfur_transfer_redox_boundary | keep_family_panel_review_only_require_more_evidence | 0 | 0 | none |
 | external_glycoside_panel | near_orphan_glycoside_or_nucleoside_hydrolase_controls | pending_review | 0 | 0 | none |
-| m_csa:10 | near_orphan_glycoside_or_nucleoside_hydrolase_controls | pending_review | 0 | 0 | none |
+| m_csa:10 | near_orphan_glycoside_or_nucleoside_hydrolase_controls | reject_family_panel_import_candidate | 0 | 0 | none |
 | m_csa:116 | near_orphan_glycoside_or_nucleoside_hydrolase_controls | pending_review | 0 | 0 | none |
 | mh_073 | near_orphan_glycoside_or_nucleoside_hydrolase_controls | pending_review | 0 | 0 | none |
 | mh_064 | no_reliable_structure_metal_hydrolase_controls | pending_review | 0 | 0 | none |
@@ -49,7 +49,7 @@ Fail-closed application gate for Lever 4 family-panel expert import decisions. I
 | mh_067 | no_reliable_structure_metal_hydrolase_controls | pending_review | 0 | 0 | none |
 | mh_068 | no_reliable_structure_metal_hydrolase_controls | pending_review | 0 | 0 | none |
 | mh_072 | no_reliable_structure_metal_hydrolase_controls | pending_review | 0 | 0 | none |
-| m_csa:191 | thiol_disulfide_oxidoreductase_isomerase_boundary | pending_review | 0 | 0 | none |
+| m_csa:191 | thiol_disulfide_oxidoreductase_isomerase_boundary | reject_family_panel_import_candidate | 0 | 0 | none |
 
 ## Interpretation
 
