@@ -2,6 +2,75 @@
 
 ## Current automation run
 
+### 2026-06-09 Near-Orphan Diversity External Scaleout Shard
+
+- Automation ID: `ce-scaleout-shard-near-orphan-diversity`
+- STARTED_AT_UTC: `2026-06-09T05:12:53Z`
+- STARTED_AT_LOCAL: `Tue Jun  9 00:12:53 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T05:54:00Z`
+- ENDED_AT_LOCAL: `Tue Jun  9 00:54:00 CDT 2026`
+- ELAPSED_MINUTES: `41.117`
+- Status: Complete validated output under the durable-artifact early-completion
+  allowance. Built the missing reviewed Swiss-Prot near-orphan/diversity
+  external scaleout shard from fresh isolated worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/ce-scaleout-shard-near-orphan-diversity-20260609T051254Z/catalytic-earth`
+  on synced `origin/main` commit
+  `0f5b0b8246b7941cf46269ac1064d04bfe774341`. A full default 4,500-cap live
+  run was stopped after about 16 minutes to preserve wrap budget; the final
+  lane-balanced live pass used 220 records per lane, 3,300 max candidates, 24
+  workers, and 5-second entry timeouts.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`;
+  start timestamps written to
+  `/tmp/ce-scaleout-shard-near-orphan-diversity-run-start.txt`.
+- Current outputs:
+  `artifacts/v3_external_scaleout_shard_near_orphan_diversity_current702_20260609.json`,
+  `artifacts/v3_external_scaleout_shard_near_orphan_diversity_import_ready_preview_current702_20260609.json`,
+  and
+  `work/external_scaleout_shard_near_orphan_diversity_current702_20260609.md`.
+- Code/test outputs:
+  `src/catalytic_earth/external_scaleout_near_orphan_diversity.py`,
+  `src/catalytic_earth/cli.py`, and
+  `tests/test_external_scaleout_near_orphan_diversity.py`.
+- Result: 3,022 candidate rows and 2,821 unique non-duplicate rows were
+  classified (target 2,000 met; stretch 3,500 not met). The shard covers 13
+  diversity bins, including near-orphan uncharacterized/low-annotation,
+  no-reliable-structure tail, terpene/lyase/isomerase/transferase families,
+  ligase/synthetase and transporter ATPase OOS negatives, fold-confounded
+  hydrolase/protease/metal controls, and PLP/SAM cofactor-confounded
+  non-target enzymes.
+- Terminal states: 142 `import_ready_preview`, 7
+  `provisional_external_countable_preflight_candidate`, 50
+  `locator_ready_candidate`, 99 `coordinate_ready_pending_locator`, 2
+  `locator_repair_candidate`, 5 `coordinate_repair_candidate`, 319
+  `reject/OOS_preserve_signal`, 201
+  `blocked_duplicate_or_current_registry_conflict`, and 2,197
+  `hard_blocked_with_next_action`.
+- Diversity/provenance notes: 637 rows carry near-orphan signal; 204 rows carry
+  explicit no-structure/no-reliable-structure routing; 1,306 rows carry
+  OOS/fold/cofactor hard-negative signal. Hard blockers are mostly UniProt
+  entry materialization timeouts from the bounded live pass, preserved as
+  source-retrieval blockers instead of being discarded. Disk was low at about
+  2.0 GiB free; no coordinate downloads or production sidecars were attempted.
+- Commit/push/sync/lock status: final commit, push to `origin/main`, sync
+  verification, and lock release are pending immediately after this handoff
+  write.
+- Validation passed: startup `PYTHONPATH=src python -m unittest discover -s
+  tests` (1,689 tests), shard JSON parse, import-ready preview JSON parse,
+  count/provenance/diversity/no-structure reconciliation, focused near-orphan
+  and redox shard tests (4 tests), `PYTHONPATH=src python -m
+  catalytic_earth.cli validate`, current docs artifact-reference check with 0
+  missing references, production-edit guardrail scan with 0 violations,
+  `git diff --check`, and wrap `PYTHONPATH=src python -m unittest discover -s
+  tests` (1,691 tests).
+- Exact next action: run current-countable structural duplicate screens and
+  label-factory review on the 142 preview-only rows; decide family policy for
+  the 7 provisional near-orphan/no-reliable-structure rows; retry UniProt entry
+  materialization for the 2,197 hard-blocked rows before treating them as
+  final no-structure or locator/coordinate-ready evidence.
+
+## Previous automation run
+
 - Automation ID: `ce-external-materialization-wave-2`
 - STARTED_AT_UTC: `2026-06-09T05:10:41Z`
 - STARTED_AT_LOCAL: `Tue Jun  9 00:10:41 CDT 2026`
@@ -54,8 +123,6 @@
   `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth/catalytic-earth-automation.lock`
 - Run-start file:
   `/tmp/ce_external_materialization_wave2_started_at.txt`
-
-## Previous automation run
 
 - Automation ID: `ce-scaleout-shard-redox-cofactor-confounded`
 - STARTED_AT_UTC: `2026-06-09T03:35:02Z`

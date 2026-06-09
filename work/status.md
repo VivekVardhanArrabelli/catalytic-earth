@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 381
-- Measured elapsed time: 11620.3 minutes (193.67 hours)
+- Entries: 382
+- Measured elapsed time: 11661.4 minutes (194.36 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,7 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- targeted-expansion: 152.4 measured minutes (2.54 hours)
+- targeted-expansion: 193.5 measured minutes (3.23 hours)
 - v3: 2734.9 measured minutes (45.58 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -33,21 +33,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3934
-- Evidence references logged: 3287
+- Artifact references logged: 3939
+- Evidence references logged: 3298
 
 ## Recent Entries
-
-### 2026-06-05T19:06:13.363198+00:00 - northstar-lever3
-
-- Task: Lever 3 finalization stop verification
-- Time mode: measured
-- Measured minutes: 3.517
-- Started: 2026-06-05T19:02:42Z
-- Ended: 2026-06-05T19:06:13Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
-- Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 coordinate candidate or filled provenance found, no provider credentials or local predictor executable route present, JSON parse focused artifact regression validate doc-reference unittest discovery and diff check passed
-- Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
 
 ### 2026-06-05T20:05:21.984184+00:00 - northstar-lever3
 
@@ -128,6 +117,18 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 5132 source surface rows consumed, 4795 unique candidates merged, 318 controlled import-ready preview rows, 4477 repair queue rows, 1970 new locator sidecars and 309 reused locator sidecars, 0 coordinate downloads because disk below 10 GiB, focused tests passed, unittest discovery 1690 passed, validate passed, docs artifact-reference missing 0, diff check and production edit guardrail passed
 - Commit: `pending_final_wrap_commit`
 - Notes: Consumed landed redox/cofactor and PLP/radical/cobalamin previews plus supplemental 20260608 scaleout shards; disk remained below floor so shard-preview rows with locators stay in coordinate continuation.
+
+### 2026-06-09T05:54:43.128126+00:00 - targeted-expansion
+
+- Task: Near-orphan diversity external scaleout shard current702
+- Time mode: measured
+- Measured minutes: 41.117
+- Started: 2026-06-09T05:12:53Z
+- Ended: 2026-06-09T05:54:00Z
+- Artifacts: artifacts/v3_external_scaleout_shard_near_orphan_diversity_current702_20260609.json, artifacts/v3_external_scaleout_shard_near_orphan_diversity_import_ready_preview_current702_20260609.json, work/external_scaleout_shard_near_orphan_diversity_current702_20260609.md, work/handoff.md, work/status.md
+- Evidence: 3022 candidate rows and 2821 unique non-duplicate rows, 142 import-ready preview rows and 7 provisional rows, 13 diversity bins with 637 near-orphan rows and 204 no-structure rows, 1306 OOS fold cofactor hard-negative rows, JSON parse count provenance and no-structure reconciliation passed, focused shard tests passed, unittest discovery 1691 passed, validate passed with 702 labels, docs artifact-reference missing 0, git diff check passed, production edit guardrail scan clean
+- Commit: `pending_final_wrap_commit`
+- Notes: Default 4500-cap live pass was stopped after about 16 minutes to preserve wrap budget; final lane-balanced pass used 220 records per lane with 24 workers and 5-second entry timeouts.
 
 ## Expectation Updates
 
@@ -644,3 +645,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-09T03:49:20.085384+00:00: Defense-ledger artifact and report only; no registry import ontology split threshold model weight production locator sidecar or heldout tuning edit.
 - 2026-06-09T03:50:15.392215+00:00: Preview-only import-review preflight; no production registry import ontology split threshold model weight coordinate download or label import changed.
 - 2026-06-09T05:25:43.402284+00:00: Preview and repair artifacts only; no production registry import ontology split threshold model weight coordinate download or label import changed.
+- 2026-06-09T05:54:43.128126+00:00: Read-only external scaleout shard only; no production registry import ontology split threshold model weight coordinate download or label import changed.
