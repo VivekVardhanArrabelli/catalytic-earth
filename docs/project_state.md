@@ -112,6 +112,23 @@ artifact-backed mechanism diagnostics.
   `artifacts/v3_external_source_admission_validation_16_current702_20260608.json`,
   `artifacts/v3_external_source_admission_ready_preview_current702_20260608.json`,
   and `work/external_source_admission_validation_16_current702_20260608.md`.
+- Current external bulk ingestion scout (2026-06-08): the pilot ingestion
+  pattern now scales to 693 reviewed Swiss-Prot/UniProt candidates across the
+  seven family lanes, with structured residue/cofactor evidence where present,
+  AFDB/PDB coordinate provenance, Rhea/EC provenance, current702 duplicate
+  status, and external-pilot duplicate status. Terminal states: 354
+  `provisional_external_countable_preflight_candidate`, 194
+  `locator_ready_candidate`, 97 `coordinate_ready_pending_locator`, 39
+  `blocked_duplicate_or_current_registry_conflict`, 4
+  `locator_repair_candidate`, 3 `coordinate_repair_candidate`, and 2
+  `hard_blocked_with_next_action`. The provisional preview artifact has 354
+  rows, all still blocked from production import until
+  `ce-external-admission-16-validation` or its scaled successor validates the
+  gates; no production registry/import/ontology/model/threshold/split edit was
+  made. Use
+  `artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json`,
+  `artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json`,
+  and `work/external_bulk_ingestion_scout_current702_20260608.md`.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.

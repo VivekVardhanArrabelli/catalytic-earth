@@ -2,30 +2,30 @@
 
 ## Current automation run
 
-- Automation ID: `ce-external-source-ingestion-pilot`
-- STARTED_AT_UTC: `2026-06-08T21:37:21Z`
-- STARTED_AT_LOCAL: `2026-06-08T16:37:21-0500`
-- ENDED_AT_UTC: `2026-06-08T21:51:41Z`
-- ENDED_AT_LOCAL: `2026-06-08T16:51:41-0500`
-- ELAPSED_MINUTES: `14.333`
-- Status: Complete durable output. Built the first rerunnable external-source
-  ingestion pilot for reviewed Swiss-Prot/UniProt, AFDB/PDB coordinate
-  provenance, and Rhea/EC reaction provenance. The artifact has 28 candidate
-  rows across seven family lanes and 16 preview-only preflight rows. This run
-  used the dedicated external-ingestion lock and did not edit production
-  registries/imports.
+- Automation ID: `ce-external-bulk-ingestion-scout`
+- STARTED_AT_UTC: `2026-06-08T23:39:47Z`
+- STARTED_AT_LOCAL: `2026-06-08T18:39:47-0500`
+- ENDED_AT_UTC: `2026-06-09T00:02:46Z`
+- ENDED_AT_LOCAL: `2026-06-08T19:02:46-0500`
+- ELAPSED_MINUTES: `22.983`
+- Status: Complete durable output. Scaled the reviewed Swiss-Prot/UniProt
+  external-source ingestion pattern from the 28-row pilot into a 693-row
+  provisional candidate matrix with AFDB/PDB coordinate provenance, Rhea/EC
+  provenance, current702 duplicate status, and external-pilot duplicate status.
+  The provisional preview has 354 rows, all still blocked from production
+  import until admission validation and downstream gates.
 - Current output:
-  `artifacts/v3_external_source_ingestion_pilot_current702_20260608.json`
-  and `work/external_source_ingestion_pilot_current702_20260608.md`.
-- Import preview:
-  `artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json`.
-- Lock: `/tmp/ce_external_source_ingestion_current702.lock`; start timestamps
-  written to `/tmp/ce_external_ingestion_started_at.txt`.
-- Validation passed: JSON parse for pilot + import-preview artifacts, count
-  reconciliation assertions, focused pytest, full `unittest discover` (1,670
-  tests), `PYTHONPATH=src python -m catalytic_earth.cli validate`, current docs
-  artifact-reference check with 0 missing references, `git diff --check`,
-  production-edit guardrail check, and disk guardrail.
+  `artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json` and
+  `work/external_bulk_ingestion_scout_current702_20260608.md`.
+- Provisional import preview:
+  `artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json`.
+- Lock: `work/locks/ce_external_bulk_ingestion.lock`; start timestamps written
+  to `/tmp/ce_external_bulk_ingestion_started_at.txt`.
+- Validation passed: JSON parse for bulk scout + provisional preview artifacts,
+  required-row-field invariant check, focused pytest, full `unittest discover`
+  (1,678 tests), `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  current docs artifact-reference check with 0 missing references,
+  `git diff --check`, production-edit guardrail check, and disk guardrail.
 
 ## Mission
 
@@ -25387,3 +25387,82 @@ because their coordinates are already locally hash-matched:
 locator sidecars from the reviewed exact residue locators, then rerun
 `build-external-source-admission-validation-16`. For the other 10 rows, first
 materialize or hash-match the referenced PDB/AFDB coordinates.
+
+## CE External Bulk Ingestion Scout
+- STARTED_AT_UTC: 2026-06-08T23:39:47Z
+- STARTED_AT_LOCAL: 2026-06-08T18:39:47-0500
+- Lock: `work/locks/ce_external_bulk_ingestion.lock`
+- ENDED_AT_UTC: 2026-06-09T00:02:46Z
+- ENDED_AT_LOCAL: 2026-06-08T19:02:46-0500
+- ELAPSED_MINUTES: 22.983
+- Automation ID: `ce-external-bulk-ingestion-scout`
+
+### Result
+
+- Built a rerunnable bulk scout over reviewed Swiss-Prot/UniProt metadata,
+  structured residue/cofactor evidence, AFDB/PDB coordinate provenance, and
+  Rhea/EC provenance.
+- Output artifact:
+  `artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json`.
+- Provisional import-preview artifact:
+  `artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json`.
+- Human report:
+  `work/external_bulk_ingestion_scout_current702_20260608.md`.
+- Rerunnable code/tests:
+  `src/catalytic_earth/external_source_ingestion.py`, CLI command
+  `build-external-bulk-ingestion-scout`, `tests/test_external_source_ingestion.py`,
+  and `tests/test_cli.py`.
+
+### Decision Summary
+
+- Candidate rows: 693 across the seven requested lanes.
+- Provisional preview rows: 354, all explicitly provisional until
+  `ce-external-admission-16-validation` or a scaled successor validates the
+  gates.
+- Terminal states: 354
+  `provisional_external_countable_preflight_candidate`, 194
+  `locator_ready_candidate`, 97 `coordinate_ready_pending_locator`, 39
+  `blocked_duplicate_or_current_registry_conflict`, 4
+  `locator_repair_candidate`, 3 `coordinate_repair_candidate`, and 2
+  `hard_blocked_with_next_action`.
+- Family/lane coverage: metal hydrolase, redox oxygen/sulfur, PLP children,
+  glycoside/nucleoside, phosphoryl transfer, radical-SAM/cobalamin, and
+  near-orphan/no-reliable-structure.
+- Source retrieval failures: 0. UniProt single-query limit is recorded as 500;
+  this run requested 100 records per lane, used no pagination, disabled
+  EC-based Rhea fallback for runtime, and performed no coordinate downloads.
+- Duplicate handling includes both current702 accession/sequence status and
+  exact external-pilot accession/sequence status. Pilot overlaps are blocked as
+  duplicate/current-registry conflicts.
+- No labels were imported and no production registry/import/ontology/model/
+  threshold/split surface was edited.
+
+### Validation
+
+- `python -m json.tool` passed for both bulk JSON artifacts.
+- Required-row-field invariant check passed: every row has provenance,
+  terminal state, duplicate status, evidence basis, blocker basis, source
+  query/hash/timestamp, and next action.
+- Focused pytest:
+  `PYTHONPATH=src python -m pytest tests/test_external_source_ingestion.py tests/test_external_source_admission_validation.py tests/test_cli.py::CliTests::test_external_source_ingestion_pilot_parser_defaults tests/test_cli.py::CliTests::test_external_source_admission_validation_parser_defaults tests/test_cli.py::CliTests::test_external_bulk_ingestion_scout_parser_defaults -q`:
+  6 passed.
+- Full unittest:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1,678 tests passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702
+  curated mechanism labels.
+- Current docs artifact-reference check passed with 0 missing references; the
+  temporary check output was not kept because it is not durable for this run.
+- `git diff --check`: passed.
+- Production-edit guardrail scan: changed paths are limited to docs, handoff,
+  ingestion code/tests, and the new scout/report artifacts; no production
+  registry, import, ontology, model, threshold, or split path changed.
+- Disk guardrail: `df -h .` reported 18 GiB free.
+
+### Exact Next Action
+
+Run a scaled admission-validation lane over a small representative slice from
+the 354 provisional preview rows before any production import discussion. Start
+with rows that have experimental PDB provenance and exact reviewed locators,
+then expand only after coordinate materialization, locator sidecars, structural
+duplicate screening, label-factory gates, and explicit production authorization
+all pass.

@@ -38,7 +38,10 @@ from .targeted_expansion_acquisition_conversion import (
     write_targeted_expansion_acquisition_conversion_screens,
 )
 from .countable_label_unblocker import write_countable_label_unblocker_matrix
-from .external_source_ingestion import write_external_source_ingestion_pilot
+from .external_source_ingestion import (
+    write_external_bulk_ingestion_scout,
+    write_external_source_ingestion_pilot,
+)
 from .external_source_admission_validation import (
     write_external_source_admission_validation,
 )
@@ -2851,6 +2854,30 @@ def cmd_build_external_source_admission_validation(args: argparse.Namespace) -> 
         "Wrote external source admission validation to "
         f"{args.out} ({artifact['counts']['validated_rows']} rows; "
         f"{artifact['counts']['admission_ready_rows']} admission-ready)"
+    )
+    return 0
+
+
+def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
+    artifact = write_external_bulk_ingestion_scout(
+        current_manifest_path=Path(args.current_manifest),
+        label_registry_path=Path(args.label_registry),
+        external_pilot_path=Path(args.external_pilot)
+        if args.external_pilot
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        import_preview_path=Path(args.import_preview_out)
+        if args.import_preview_out
+        else None,
+        created_utc=args.created_utc,
+        max_records_per_lane=args.max_records_per_lane,
+        fetch_rhea_fallback=args.rhea_fallback,
+    )
+    print(
+        "Wrote external bulk ingestion scout to "
+        f"{args.out} ({artifact['candidate_count']} rows; "
+        f"{artifact['import_preview_candidate_count']} provisional preview)"
     )
     return 0
 
@@ -22312,6 +22339,59 @@ def build_parser() -> argparse.ArgumentParser:
     external_admission_validation.set_defaults(
         func=cmd_build_external_source_admission_validation
     )
+
+    external_bulk_ingestion = subparsers.add_parser(
+        "build-external-bulk-ingestion-scout",
+        help=(
+            "scale the reviewed UniProt/AFDB/PDB/Rhea ingestion pilot into a "
+            "provisional bulk candidate scout"
+        ),
+    )
+    external_bulk_ingestion.add_argument(
+        "--current-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    external_bulk_ingestion.add_argument(
+        "--label-registry",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_bulk_ingestion.add_argument(
+        "--external-pilot",
+        default=(
+            "artifacts/"
+            "v3_external_source_ingestion_pilot_current702_20260608.json"
+        ),
+    )
+    external_bulk_ingestion.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_bulk_ingestion_scout_current702_20260608.json"
+        ),
+    )
+    external_bulk_ingestion.add_argument(
+        "--report",
+        default="work/external_bulk_ingestion_scout_current702_20260608.md",
+    )
+    external_bulk_ingestion.add_argument(
+        "--import-preview-out",
+        default=(
+            "artifacts/"
+            "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+        ),
+    )
+    external_bulk_ingestion.add_argument("--created-utc")
+    external_bulk_ingestion.add_argument(
+        "--max-records-per-lane",
+        type=int,
+        default=100,
+    )
+    external_bulk_ingestion.add_argument(
+        "--rhea-fallback",
+        action="store_true",
+        help="also query Rhea by EC when UniProt catalytic activity lacks Rhea links",
+    )
+    external_bulk_ingestion.set_defaults(func=cmd_build_external_bulk_ingestion_scout)
 
     external_representation_backend_sample_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-sample",
