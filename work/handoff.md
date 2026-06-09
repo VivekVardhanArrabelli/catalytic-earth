@@ -2,30 +2,28 @@
 
 ## Current automation run
 
-- Automation ID: `ce-external-bulk-ingestion-scout`
-- STARTED_AT_UTC: `2026-06-08T23:39:47Z`
-- STARTED_AT_LOCAL: `2026-06-08T18:39:47-0500`
-- ENDED_AT_UTC: `2026-06-09T00:02:46Z`
-- ENDED_AT_LOCAL: `2026-06-08T19:02:46-0500`
-- ELAPSED_MINUTES: `22.983`
-- Status: Complete durable output. Scaled the reviewed Swiss-Prot/UniProt
-  external-source ingestion pattern from the 28-row pilot into a 693-row
-  provisional candidate matrix with AFDB/PDB coordinate provenance, Rhea/EC
-  provenance, current702 duplicate status, and external-pilot duplicate status.
-  The provisional preview has 354 rows, all still blocked from production
-  import until admission validation and downstream gates.
-- Current output:
-  `artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json` and
-  `work/external_bulk_ingestion_scout_current702_20260608.md`.
-- Provisional import preview:
-  `artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json`.
-- Lock: `work/locks/ce_external_bulk_ingestion.lock`; start timestamps written
-  to `/tmp/ce_external_bulk_ingestion_started_at.txt`.
-- Validation passed: JSON parse for bulk scout + provisional preview artifacts,
-  required-row-field invariant check, focused pytest, full `unittest discover`
-  (1,678 tests), `PYTHONPATH=src python -m catalytic_earth.cli validate`,
-  current docs artifact-reference check with 0 missing references,
-  `git diff --check`, production-edit guardrail check, and disk guardrail.
+- Automation ID: `ce-external-admission-qa-merger`
+- STARTED_AT_UTC: `2026-06-09T01:24:17Z`
+- STARTED_AT_LOCAL: `2026-06-08T20:24:17-0500`
+- ENDED_AT_UTC: `2026-06-09T01:30:54Z`
+- ENDED_AT_LOCAL: `2026-06-08T20:30:54-0500`
+- ELAPSED_MINUTES: `6.628`
+- Status: Complete durable output. Merged the validated 16-row admission slice
+  over the 693-row bulk scout baseline into a provenance-audited external
+  admission surface, preserved 0 import-ready rows, and routed 23 repairable
+  rows into an explicit repair queue without touching production registries or
+  final import files.
+- Current outputs:
+  `artifacts/v3_external_admission_merged_surface_current702_20260608.json`,
+  `artifacts/v3_external_admission_import_ready_preview_current702_20260608.json`,
+  `artifacts/v3_external_admission_repair_queue_current702_20260608.json`, and
+  `work/external_admission_qa_merger_current702_20260608.md`.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth1/catalytic-earth-automation.lock`.
+- Validation passed: JSON parse for merged/import-ready/repair-queue artifacts,
+  targeted pytest for the new merger lane plus adjacent external ingestion and
+  validation tests (5 passed), focused row-count/terminal-state/repair-bucket
+  reconciliation, `git diff --check`, and production-edit guardrail review.
 
 ## Mission
 
@@ -76,6 +74,105 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 External Admission QA Merger
+
+Automation run: `ce-external-admission-qa-merger`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-09T01:24:17Z`
+- STARTED_AT_LOCAL: `2026-06-08T20:24:17-0500`
+- ENDED_AT_UTC: `2026-06-09T01:30:54Z`
+- ENDED_AT_LOCAL: `2026-06-08T20:30:54-0500`
+- ELAPSED_MINUTES: `6.628`
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth1/catalytic-earth-automation.lock`
+
+#### Scope
+
+- Added a rerunnable merger lane, CLI command, and focused tests that reconcile
+  the durable external admission artifacts already present on current `main`.
+- Upgraded the 16 admission-validated candidates over the 693-row bulk scout
+  baseline by candidate identity and shared source hashes, while preserving the
+  remaining 677 bulk-only rows.
+- Audited overlaps against the current `v3_scaleout_merged_acceptance_surface`
+  as provenance-only review signals and watched for
+  `ce-external-materialization-admission-batch` plus
+  `ce-external-bulk-pagination-scaleout` outputs.
+- Did not edit production registries, ontologies, heldout splits, model
+  weights, production thresholds, final import files, or import labels.
+
+#### Outputs
+
+- Merged surface:
+  `artifacts/v3_external_admission_merged_surface_current702_20260608.json`.
+- Import-ready preview:
+  `artifacts/v3_external_admission_import_ready_preview_current702_20260608.json`.
+- Repair queue:
+  `artifacts/v3_external_admission_repair_queue_current702_20260608.json`.
+- Human report:
+  `work/external_admission_qa_merger_current702_20260608.md`.
+- Rerunnable code/tests:
+  `src/catalytic_earth/external_admission_qa_merger.py`,
+  `tests/test_external_admission_qa_merger.py`, CLI wiring in
+  `src/catalytic_earth/cli.py`, and parser coverage in `tests/test_cli.py`.
+
+#### Result
+
+- Merged rows: 693.
+- Validation upgrades: 16. Bulk-only rows retained: 677.
+- Terminal states reconcile to: 354
+  `provisional_external_countable_preflight_candidate`, 194
+  `locator_ready_candidate`, 97 `coordinate_ready_pending_locator`, 23
+  `blocked_duplicate_or_current_registry_conflict`, 10
+  `admission_ready_pending_coordinate_materialization`, 6
+  `admission_ready_pending_locator_materialization`, 4
+  `locator_repair_candidate`, 3 `coordinate_repair_candidate`, and 2
+  `hard_blocked_with_next_action`.
+- Import-ready preview rows: 0. No row is currently import-ready because the
+  validated slice still needs coordinate and/or locator materialization, while
+  bulk-only rows still need scaled admission validation and downstream
+  duplicate/review gates.
+- Repair queue rows: 23, split into 10 coordinate-materialization, 6
+  locator-materialization, 4 locator-repair, and 3 coordinate-repair rows.
+- Provenance-only overlap audit: 119 merged rows share accessions with members
+  already present in the current scaleout merged acceptance surface.
+- Producer watch: no current-main artifact was found for
+  `ce-external-materialization-admission-batch` or
+  `ce-external-bulk-pagination-scaleout`.
+
+#### Validation
+
+- `python -m json.tool` passed for merged, import-ready preview, and repair
+  queue artifacts.
+- Focused pytest:
+  `PYTHONPATH=src python -m pytest tests/test_external_admission_qa_merger.py tests/test_external_source_ingestion.py tests/test_external_source_admission_validation.py tests/test_cli.py::CliTests::test_external_admission_qa_merger_parser_defaults -q`:
+  5 passed.
+- Focused artifact consistency check passed: 693 merged rows, 16 validation
+  upgrades, 23 repair-queue rows, 0 import-ready rows, and 0 provenance-audit
+  crosscheck issues.
+- `git diff --check`: passed.
+- Production-edit guardrail scan: changed paths are limited to merger code,
+  tests, handoff/report markdown, and new external admission artifacts.
+
+#### Blockers
+
+- `ce-external-materialization-admission-batch` has not yet produced a durable
+  current-main artifact, so the 16 admission-validated rows cannot advance past
+  coordinate/locator materialization from this lane alone.
+- `ce-external-bulk-pagination-scaleout` has not yet produced a durable
+  current-main artifact, so the 354 provisional bulk candidates remain limited
+  to the existing non-paginated scout scope.
+
+#### Exact next action
+
+When `ce-external-materialization-admission-batch` lands on `main`, rerun
+`build-external-admission-qa-merger` first to upgrade the 16 validated rows and
+look for any new import-ready candidates. Separately, when
+`ce-external-bulk-pagination-scaleout` lands, rerun the merger again to
+reconcile any new bulk rows against the current 693-row baseline, preserving
+repairable rows in the explicit repair queue instead of dropping them.
 
 ### 2026-06-08 External Source Ingestion Pilot
 
