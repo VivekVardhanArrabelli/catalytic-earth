@@ -2,69 +2,49 @@
 
 ## Current automation run
 
-- Automation ID: `ce-external-materialization-wave-2`
-- STARTED_AT_UTC: `2026-06-09T03:35:25Z`
-- STARTED_AT_LOCAL: `Mon Jun  8 22:35:25 CDT 2026`
-- ENDED_AT_UTC: `2026-06-09T03:48:29Z`
-- ENDED_AT_LOCAL: `Mon Jun  8 22:48:29 CDT 2026`
-- ELAPSED_MINUTES: `13.067`
-- Status: Complete durable output under the early-stop allowance because the
-  assigned objective is complete and coordinate downloads were blocked by the
-  disk floor. Consumed the 2026-06-09 bulk pagination scaleout branch, the
-  2026-06-09 admission QA merger branch, and the 2026-06-08 materialization
-  admission batch pattern without editing production registries/imports,
-  ontologies, splits, thresholds, or model weights. Input rows: 845.
-  Coordinate materialized new: 0; coordinate rows reused from consumed preview:
-  333. Locator sidecars materialized new: 309 compact low-disk review-only
-  sidecars. Import-ready preview count: 333 carried forward from the consumed
-  admission QA import-ready preview. Duplicate conflicts: 33. Repair/
-  continuation queue count: 512, including 309 coordinate-continuation rows,
-  120 coordinate-ready pending source-free locators, 45 locator repairs,
-  3 coordinate repairs, 33 duplicate no-import rows, and 2 hard blockers.
-- Consumed source branches/artifacts:
-  `origin/ce-external-bulk-pagination-scaleout-20260609` with
-  `artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json`
-  and
-  `artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json`;
-  `origin/ce-external-admission-qa-merger-20260609` with
-  `artifacts/v3_external_admission_merged_surface_current702_20260609.json`,
-  `artifacts/v3_external_admission_import_ready_preview_current702_20260609.json`,
-  and `artifacts/v3_external_admission_repair_queue_current702_20260609.json`;
-  and `origin/ce-external-materialization-admission-batch-20260608` with
-  `artifacts/v3_external_materialization_admission_batch_current702_20260608.json`
-  and
-  `artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json`.
+- Automation ID: `ce-targeted-expansion-defense-ledger`
+- STARTED_AT_UTC: `2026-06-09T03:36:09Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 22:36:09 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T03:49:03Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 22:49:03 CDT 2026`
+- ELAPSED_MINUTES: `12.900`
+- Status: Complete durable output under the work-block early-completion
+  exception. Built a review-ready targeted expansion defense ledger from
+  current main plus completed external scaleout/admission branches, then
+  rebased it over the newly pushed Wave 2 materialization surface so the
+  ledger reflects current main. The ledger records source artifacts, counts,
+  branch commits, family rationale, guardrails, and review-claim boundaries.
+  No production registry, import, ontology, split, threshold, model-weight,
+  production locator sidecar, or heldout tuning edit was made.
 - Current output:
-  `artifacts/v3_external_materialization_wave2_current702_20260609.json`,
-  `artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json`,
-  `artifacts/external_materialization_wave2_source_free_locators_current702_20260609/`,
-  and `work/external_materialization_wave2_current702_20260609.md`.
-- Provisional import preview:
-  `artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json`.
-- Lock: resolved gitdir automation lock
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth4/catalytic-earth-automation.lock`;
-  literal `.git/catalytic-earth-automation.lock` was unavailable because
-  `.git` is a linked-worktree file. Start timestamps written to
-  `/tmp/ce_external_materialization_wave2_started_at.txt`. Lock still held
-  during this handoff write; release after final clean/synced push.
-- Disk: start `df -h .` reported 7.1 GiB free, below the 10 GiB floor; wrap
-  `df -h .` reported 1.4 GiB free. No coordinate downloads were attempted.
-  New Wave 2 sidecars are 3.3 MiB; Wave 2 JSON outputs are about 3.4 MiB.
-- Commit/push/sync: pre-commit sync check confirmed `origin/main` still at
-  `d456eb5df0e152428d44199646e47b240958f190`; final wrap commit/push pending.
-- Validation passed: focused pytest
-  `tests/test_external_materialization_wave2.py` and
-  `tests/test_cli.py::CliTests::test_external_materialization_wave2_parser_defaults`
-  (3 passed), Wave 2 JSON/count reconciliation, 312 Wave 2 JSON parses,
-  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
-  `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check --out /tmp/ce_external_materialization_wave2_docs_artifact_reference_check.json`
-  (missing 0), `PYTHONPATH=src python -m unittest discover -s tests`
-  (1,681 tests OK), `git diff --check`, and production-edit guardrail check
-  with 0 blocked production paths.
-- Exact next action: restore disk free space above 10 GiB, then run coordinate
-  materialization/identity validation for the 309 locator-sidecar continuation
-  rows and the 120 coordinate-ready pending-locator rows before expanding the
-  controlled import-ready preview beyond the 333 carried rows.
+  `artifacts/v3_targeted_expansion_defense_ledger_current702_20260609.json`
+  and `work/targeted_expansion_defense_ledger_current702_20260609.md`.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth6/catalytic-earth-automation.lock`;
+  start timestamps written to
+  `/tmp/ce_targeted_expansion_defense_ledger_started_at.txt`.
+- Validation passed: ledger JSON parse, custom source path and count
+  reconciliation, remote branch artifact access checks, `git diff --check`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` with 702 labels,
+  current docs artifact-reference check with 0 missing references, and full
+  `PYTHONPATH=src python -m unittest discover -s tests` (1,678 tests).
+- Count summary: current countable labels remain 702; current-main targeted
+  factory has 816 non-importing candidates; current-main merged scaleout has
+  4,820 source rows collapsed to 2,463 canonical candidate keys with 0 import
+  preview rows; completed bulk pagination branch has 845 candidates / 442
+  provisional preview rows; completed materialization/admission branch has 370
+  input rows / 333 import-ready preview rows / 37 repairable locator blockers;
+  completed admission QA branch has 845 merged rows / 333 import-ready preview
+  rows / 48 repair-queue rows; current-main Wave 2 carries forward 333
+  import-ready preview rows, materializes 309 low-disk review-only locator
+  sidecars, and records a 512-row repair/continuation queue.
+- Commit/push/sync/lock status: pending final commit and push. Release the
+  automation lock only after `HEAD == origin/main` and the worktree is clean.
+- Exact next action: use the ledger for tomorrow's review. The defensible claim
+  is targeted, artifact-backed lane selection plus a 333-row controlled
+  import-review preview, not 333 new labels; any label growth still requires
+  structural duplicate screening, label-factory gate, explicit review, and
+  production registry-change authorization.
 
 ## Mission
 
@@ -115,6 +95,41 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-09 External Materialization Wave 2
+
+Automation run: `ce-external-materialization-wave-2`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-09T03:35:25Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 22:35:25 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T03:48:29Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 22:48:29 CDT 2026`
+- ELAPSED_MINUTES: `13.067`
+
+#### Scope And Result
+
+- Consumed the 2026-06-09 bulk pagination scaleout branch, the 2026-06-09
+  admission QA merger branch, and the 2026-06-08 materialization admission
+  batch pattern without editing production registries/imports, ontologies,
+  splits, thresholds, or model weights.
+- Input rows: 845. Coordinate materialized new: 0 because disk started below
+  the 10 GiB floor. Coordinate rows reused from consumed preview: 333. Locator
+  sidecars materialized new: 309 compact low-disk review-only sidecars.
+  Import-ready preview count: 333 carried forward from the consumed admission
+  QA import-ready preview. Duplicate conflicts: 33. Repair/continuation queue
+  count: 512.
+- Outputs:
+  `artifacts/v3_external_materialization_wave2_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json`,
+  `artifacts/external_materialization_wave2_source_free_locators_current702_20260609/`,
+  and `work/external_materialization_wave2_current702_20260609.md`.
+- Exact next action: restore disk free space above 10 GiB, then run coordinate
+  materialization/identity validation for the 309 locator-sidecar continuation
+  rows and the 120 coordinate-ready pending-locator rows before expanding the
+  controlled import-ready preview beyond the 333 carried rows.
 
 ### 2026-06-08 External Source Ingestion Pilot
 

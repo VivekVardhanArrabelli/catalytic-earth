@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 14,
     "missing_references": 0,
-    "references_checked": 908
+    "references_checked": 921
   },
-  "created_utc": "2026-06-08T21:56:57Z",
+  "created_utc": "2026-06-09T03:47:31Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -205,16 +205,58 @@
       "reference": "artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json"
     },
     {
+      "checked_path": "artifacts/v3_external_source_admission_validation_16_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_source_admission_validation_16_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_source_admission_ready_preview_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_source_admission_ready_preview_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+    },
+    {
       "checked_path": "work/external_source_ingestion_pilot_current702_20260608.md",
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "work/external_source_ingestion_pilot_current702_20260608.md"
     },
     {
+      "checked_path": "work/external_source_admission_validation_16_current702_20260608.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/external_source_admission_validation_16_current702_20260608.md"
+    },
+    {
+      "checked_path": "work/external_bulk_ingestion_scout_current702_20260608.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/external_bulk_ingestion_scout_current702_20260608.md"
+    },
+    {
       "checked_path": "src/catalytic_earth/external_source_ingestion.py",
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "src/catalytic_earth/external_source_ingestion.py"
+    },
+    {
+      "checked_path": "src/catalytic_earth/external_source_admission_validation.py",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "src/catalytic_earth/external_source_admission_validation.py"
     },
     {
       "checked_path": "data/registries/curated_mechanism_labels.json",
@@ -293,48 +335,6 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_sequence_nn_metrics_current702_20260525.json"
-    },
-    {
-      "checked_path": "artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",
