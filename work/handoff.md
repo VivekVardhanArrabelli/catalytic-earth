@@ -2,6 +2,71 @@
 
 ## Current automation run
 
+- Automation ID: `ce-scaleout-shard-metal-phosphoryl-glycoside`
+- STARTED_AT_UTC: `2026-06-09T05:11:53Z`
+- STARTED_AT_LOCAL: `Tue Jun  9 00:11:53 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T06:11:25Z`
+- ENDED_AT_LOCAL: `Tue Jun  9 01:11:25 CDT 2026`
+- ELAPSED_MINUTES: `59.533`
+- Status: Complete durable output. Added a rerunnable, read-only reviewed
+  Swiss-Prot external scaleout shard for metal hydrolase, phosphoryl-transfer,
+  kinase/phosphatase/phosphotransferase, phosphodiesterase/nuclease,
+  glycoside/nucleoside/glycosyltransferase, and explicit ATPase/GTPase,
+  glycan-binding, and metal-transport OOS/confounded controls. The first live
+  pass was superseded because the broad-family cap starved the control lanes;
+  the final balanced pass uses 320 records/lane and includes all requested
+  family/control lanes. No production registry, import, ontology, split,
+  threshold, or model edit was made.
+- Current outputs:
+  `artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.json`,
+  `artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_import_ready_preview_current702_20260609.json`,
+  and
+  `work/external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.md`.
+- Code/test outputs:
+  `src/catalytic_earth/external_scaleout_metal_phosphoryl_glycoside.py`,
+  `src/catalytic_earth/cli.py`, and
+  `tests/test_external_scaleout_metal_phosphoryl_glycoside.py`.
+- Result: 4,423 candidate rows and 4,060 unique non-duplicate rows were
+  classified (target 2,000 and stretch 4,000 both met). Terminal states:
+  1,049 `import_ready_preview`, 500 `locator_ready_candidate`, 170
+  `coordinate_ready_pending_locator`, 5 `locator_repair_candidate`, 5
+  `coordinate_repair_candidate`, 656 `reject/OOS_preserve_signal`, 363
+  `blocked_duplicate_or_current_registry_conflict`, and 1,675
+  `hard_blocked_with_next_action`.
+- Family/control coverage: all 15 lane queries fetched rows and contributed
+  unique candidates. Covered metal hydrolase subfamilies, phosphoryl
+  hydrolysis/transfer, kinase/phosphotransferase, nucleotidyltransferase/
+  polymerase boundary, glycoside/nucleoside bond cleavage,
+  glycosyltransferase, nucleotide-hydrolysis fold-confounded OOS controls,
+  glycan-binding OOS controls, and metal-binding/transport OOS controls.
+- Duplicate/confounding notes: 363 rows are blocked by exact current702 or
+  prior external artifact/branch accession/sequence conflicts. 2,102 rows
+  carry active-site/ligand-confounded signal. Hard blockers are mostly UniProt
+  entry materialization timeouts preserved as explicit source-retrieval
+  blockers.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth4/catalytic-earth-automation.lock`;
+  start timestamps written to
+  `/tmp/ce-scaleout-shard-metal-phosphoryl-glycoside-run-start.txt`.
+- Commit/push/sync status: final shard commit/push/sync verification is in
+  progress after rebase onto current `origin/main`; release the lock after the
+  final synced push leaves the worktree clean.
+- Validation passed: shard JSON parse, import-ready preview JSON parse, custom
+  count/provenance/family/OOS coverage reconciliation, focused pytest for the
+  new shard plus redox shard regression, `PYTHONPATH=src python -m
+  catalytic_earth.cli validate`, current docs artifact-reference check with 0
+  missing references, `git diff --check`, production-edit guardrail, and full
+  rebased `PYTHONPATH=src python -m unittest discover -s tests` (1,696 tests
+  OK).
+- Exact next action: run current-countable structural duplicate screens and
+  label-factory review on the 1,049 preview-only rows; retry UniProt entry
+  materialization for the 1,670 fetch/source failure rows before treating them
+  as locator/coordinate-ready.
+
+## Previous automation run
+
+### 2026-06-09 External Bulk Scaleout Wave 2
+
 - Automation ID: `ce-external-bulk-scaleout-wave-2`
 - STARTED_AT_UTC: `2026-06-09T05:11:12Z`
 - STARTED_AT_LOCAL: `Tue Jun  9 00:11:12 CDT 2026`
@@ -65,8 +130,6 @@
   phosphoryl-transfer, glycoside/nucleoside, amidase/deaminase, and isomerase
   lanes into new EC/keyword subqueries instead of increasing page depth on the
   same queries.
-
-## Previous automation run
 
 ### 2026-06-09 Near-Orphan Diversity External Scaleout Shard
 
