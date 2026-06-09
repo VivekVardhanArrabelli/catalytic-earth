@@ -218,24 +218,23 @@ class CliTests(unittest.TestCase):
         self.assertEqual(
             args.preview,
             (
-                "origin/ce-external-admission-qa-merger-20260609:"
                 "artifacts/"
-                "v3_external_admission_import_ready_preview_current702_20260609.json"
+                "v3_external_materialization_wave2_import_ready_preview_current702_20260609.json"
             ),
         )
-        self.assertEqual(
-            args.merged_surface,
-            (
-                "origin/ce-external-admission-qa-merger-20260609:"
-                "artifacts/v3_external_admission_merged_surface_current702_20260609.json"
-            ),
-        )
+        self.assertIsNone(args.merged_surface)
         self.assertEqual(
             args.materialization,
             (
-                "origin/ce-external-materialization-admission-batch-20260608:"
                 "artifacts/"
-                "v3_external_materialization_admission_batch_current702_20260608.json"
+                "v3_external_materialization_wave2_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.repair_surface,
+            (
+                "artifacts/"
+                "v3_external_materialization_wave2_repair_queue_current702_20260609.json"
             ),
         )
         self.assertEqual(
@@ -267,7 +266,9 @@ class CliTests(unittest.TestCase):
             args.report,
             "work/external_import_review_preflight_current702_20260609.md",
         )
-        self.assertEqual(args.expected_preview_count, 333)
+        self.assertEqual(args.expected_preview_count, 600)
+        self.assertEqual(args.expected_repair_count, 11895)
+        self.assertEqual(args.expected_review_surface_count, 12495)
         self.assertIsNone(args.tree_ref)
         self.assertIsNone(args.created_utc)
 

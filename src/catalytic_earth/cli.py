@@ -68,6 +68,7 @@ from .external_import_review_preflight import (
     DEFAULT_MATERIALIZATION_SOURCE,
     DEFAULT_MERGED_SURFACE_SOURCE,
     DEFAULT_PREVIEW_SOURCE,
+    DEFAULT_REPAIR_SURFACE_SOURCE,
     DEFAULT_TREE_REFS,
     write_external_import_review_preflight,
 )
@@ -2898,6 +2899,7 @@ def cmd_build_external_import_review_preflight(args: argparse.Namespace) -> int:
         preview_source=args.preview,
         merged_surface_source=args.merged_surface,
         materialization_source=args.materialization,
+        repair_surface_source=args.repair_surface,
         current702_coordinate_manifest_path=Path(args.current702_coordinate_manifest),
         out_path=Path(args.out),
         ready_preview_path=Path(args.ready_preview),
@@ -2905,6 +2907,8 @@ def cmd_build_external_import_review_preflight(args: argparse.Namespace) -> int:
         report_path=Path(args.report),
         tree_refs=tuple(args.tree_ref or DEFAULT_TREE_REFS),
         expected_preview_count=args.expected_preview_count,
+        expected_repair_count=args.expected_repair_count,
+        expected_review_surface_count=args.expected_review_surface_count,
         created_utc=args.created_utc,
     )
     print(
@@ -22602,15 +22606,23 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_import_review_preflight.add_argument(
         "--preview",
-        default=DEFAULT_PREVIEW_SOURCE,
+        default=str(DEFAULT_PREVIEW_SOURCE),
     )
     external_import_review_preflight.add_argument(
         "--merged-surface",
-        default=DEFAULT_MERGED_SURFACE_SOURCE,
+        default=(
+            str(DEFAULT_MERGED_SURFACE_SOURCE)
+            if DEFAULT_MERGED_SURFACE_SOURCE is not None
+            else None
+        ),
     )
     external_import_review_preflight.add_argument(
         "--materialization",
-        default=DEFAULT_MATERIALIZATION_SOURCE,
+        default=str(DEFAULT_MATERIALIZATION_SOURCE),
+    )
+    external_import_review_preflight.add_argument(
+        "--repair-surface",
+        default=str(DEFAULT_REPAIR_SURFACE_SOURCE),
     )
     external_import_review_preflight.add_argument(
         "--current702-coordinate-manifest",
@@ -22650,7 +22662,17 @@ def build_parser() -> argparse.ArgumentParser:
     external_import_review_preflight.add_argument(
         "--expected-preview-count",
         type=int,
-        default=333,
+        default=600,
+    )
+    external_import_review_preflight.add_argument(
+        "--expected-repair-count",
+        type=int,
+        default=11895,
+    )
+    external_import_review_preflight.add_argument(
+        "--expected-review-surface-count",
+        type=int,
+        default=12495,
     )
     external_import_review_preflight.add_argument("--created-utc")
     external_import_review_preflight.set_defaults(

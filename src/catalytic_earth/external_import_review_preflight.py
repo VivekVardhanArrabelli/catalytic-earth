@@ -20,25 +20,20 @@ REPAIR_QUEUE_ARTIFACT_ID = (
 )
 SCHEMA_VERSION = "v3.external_import_review_preflight"
 
-DEFAULT_PREVIEW_SOURCE = (
-    "origin/ce-external-admission-qa-merger-20260609:"
-    "artifacts/v3_external_admission_import_ready_preview_current702_20260609.json"
+DEFAULT_PREVIEW_SOURCE = Path(
+    f"artifacts/v3_external_materialization_wave2_import_ready_preview_current702_{RUN_DATE}.json"
 )
-DEFAULT_MERGED_SURFACE_SOURCE = (
-    "origin/ce-external-admission-qa-merger-20260609:"
-    "artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+DEFAULT_REPAIR_SURFACE_SOURCE = Path(
+    f"artifacts/v3_external_materialization_wave2_repair_queue_current702_{RUN_DATE}.json"
 )
-DEFAULT_MATERIALIZATION_SOURCE = (
-    "origin/ce-external-materialization-admission-batch-20260608:"
-    "artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
+DEFAULT_MATERIALIZATION_SOURCE = Path(
+    f"artifacts/v3_external_materialization_wave2_current702_{RUN_DATE}.json"
 )
+DEFAULT_MERGED_SURFACE_SOURCE: Path | None = None
 DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH = Path(
     "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json"
 )
-DEFAULT_TREE_REFS = (
-    "origin/ce-external-materialization-admission-batch-20260608",
-    "origin/ce-external-admission-qa-merger-20260609",
-)
+DEFAULT_TREE_REFS = ("HEAD",)
 DEFAULT_OUT_PATH = Path(
     f"artifacts/v3_external_import_review_preflight_current702_{RUN_DATE}.json"
 )
@@ -224,18 +219,21 @@ def _current702_structure_index(manifest: Any) -> dict[str, list[dict[str, str]]
     return index
 
 
-def _source_hashes_ok(source_hashes: Any) -> bool:
+def _valid_sha256(value: Any) -> bool:
+    return isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None
+
+
+def _source_hashes_ok(source_hashes: Any, *, strict_preview: bool) -> bool:
     if not isinstance(source_hashes, dict):
         return False
-    required = {
-        "full_row_sha256",
-        "queue_row_sha256",
-        "uniprot_entry_record_sha256",
-        "uniprot_search_row_sha256",
-    }
+    required = {"uniprot_entry_record_sha256", "uniprot_search_row_sha256"}
+    if strict_preview:
+        required.update({"full_row_sha256", "queue_row_sha256"})
     for key in required:
-        value = source_hashes.get(key)
-        if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value):
+        if not _valid_sha256(source_hashes.get(key)):
+            return False
+    for key, value in source_hashes.items():
+        if key.endswith("_sha256") and not _valid_sha256(value):
             return False
     return True
 
@@ -249,6 +247,21 @@ def _source_provenance_ok(source_provenance: Any) -> bool:
     )
 
 
+def _source_occurrences_ok(source_occurrences: Any) -> bool:
+    if not isinstance(source_occurrences, list) or not source_occurrences:
+        return False
+    for occurrence in source_occurrences:
+        if not isinstance(occurrence, dict):
+            return False
+        if not (
+            occurrence.get("source_key")
+            and occurrence.get("source_path")
+            and occurrence.get("terminal_state")
+        ):
+            return False
+    return True
+
+
 def _candidate_key(row: dict[str, Any]) -> str:
     return str(row.get("candidate_id") or row.get("stable_candidate_key") or row.get("accession"))
 
@@ -260,32 +273,160 @@ def _family_policy_review_needed(row: dict[str, Any], lane_counts: Counter[str])
     return False
 
 
+def _is_preview_row(row: dict[str, Any], preview_candidate_ids: set[str]) -> bool:
+    return _candidate_key(row) in preview_candidate_ids or bool(
+        row.get("ready_for_controlled_import_review")
+        and str(row.get("wave2_terminal_state") or row.get("terminal_state") or "")
+        in {"import_ready_preview_carried_forward", "import_ready_preview"}
+    )
+
+
+def _has_exact_current702_duplicate(duplicate_status: Any) -> bool:
+    if not isinstance(duplicate_status, dict):
+        return False
+    status = str(
+        duplicate_status.get("current702_status")
+        or duplicate_status.get("current_registry_conflict_status")
+        or ""
+    )
+    return status.startswith("exact_current702_") or bool(
+        duplicate_status.get("duplicate_or_current_registry_conflict")
+        and (
+            duplicate_status.get("exact_accession_matched_current_entry_ids")
+            or duplicate_status.get("exact_sequence_matched_current_entry_ids")
+        )
+    )
+
+
+def _has_external_duplicate(duplicate_status: Any, non_overlap: Any, row: dict[str, Any]) -> bool:
+    if isinstance(non_overlap, dict) and non_overlap.get("external_duplicate_overlap_present"):
+        return True
+    if row.get("external_duplicate_conflict"):
+        return True
+    if not isinstance(duplicate_status, dict):
+        return False
+    statuses = [
+        duplicate_status.get("external_pilot_status"),
+        duplicate_status.get("prior_external_status"),
+        duplicate_status.get("duplicate_external_pilot_conflict_status"),
+    ]
+    return any(str(status or "").startswith("exact_") for status in statuses)
+
+
+def _repair_terminal_state(row: dict[str, Any]) -> str:
+    bucket = str(row.get("repair_bucket") or "")
+    wave2_state = str(row.get("wave2_terminal_state") or "")
+    source_state = str(row.get("source_terminal_state") or row.get("terminal_state") or "")
+    duplicate_status = _duplicate_status_for_row(row)
+    if _has_exact_current702_duplicate(duplicate_status):
+        return "duplicate_current702_conflict"
+    if _has_external_duplicate(duplicate_status, None, row):
+        return "duplicate_external_conflict"
+    if bucket == "duplicate_conflict_no_import" or wave2_state == "blocked_duplicate_or_current_registry_conflict":
+        return "duplicate_external_conflict"
+    if (
+        "reject/OOS_preserve_signal" in wave2_state
+        or "reject/OOS_preserve_signal" in source_state
+        or bucket.startswith("reject_or_oos")
+    ):
+        return "reject/OOS_preserve_signal"
+    if bucket == "hard_blocker" or "hard_blocked_with_next_action" in {
+        wave2_state,
+        source_state,
+    }:
+        return "hard_blocked_with_next_action"
+    if bucket in {"source_free_locator_materialization_needed", "locator_repair"}:
+        return "repairable_locator_blocker"
+    if bucket in {"coordinate_materialization_continuation_due_disk_floor", "coordinate_repair"}:
+        return "repairable_coordinate_blocker"
+    if "locator" in wave2_state and "coordinate_pending" not in wave2_state:
+        return "repairable_locator_blocker"
+    if "coordinate" in wave2_state or "coordinate" in source_state:
+        return "repairable_coordinate_blocker"
+    return "hard_blocked_with_next_action"
+
+
+def _duplicate_status_for_row(row: dict[str, Any]) -> dict[str, Any]:
+    duplicate_status: dict[str, Any] = {}
+    for key in (
+        "duplicate_status_summary",
+        "duplicate_current_registry_conflict",
+        "duplicate_status",
+    ):
+        value = row.get(key)
+        if isinstance(value, dict):
+            duplicate_status.update(value)
+    external_pilot = duplicate_status.get("external_pilot_conflict")
+    if isinstance(external_pilot, dict):
+        duplicate_status.setdefault(
+            "external_pilot_status",
+            external_pilot.get("external_pilot_conflict_status"),
+        )
+    if row.get("duplicate_current_registry_conflict_status"):
+        duplicate_status.setdefault(
+            "current702_status",
+            row.get("duplicate_current_registry_conflict_status"),
+        )
+        duplicate_status.setdefault(
+            "current_registry_conflict_status",
+            row.get("duplicate_current_registry_conflict_status"),
+        )
+    if row.get("duplicate_external_pilot_conflict_status"):
+        duplicate_status.setdefault(
+            "external_pilot_status",
+            row.get("duplicate_external_pilot_conflict_status"),
+        )
+    return duplicate_status
+
+
 def build_external_import_review_preflight(
     *,
     preview_source: str | Path = DEFAULT_PREVIEW_SOURCE,
-    merged_surface_source: str | Path = DEFAULT_MERGED_SURFACE_SOURCE,
+    merged_surface_source: str | Path | None = DEFAULT_MERGED_SURFACE_SOURCE,
     materialization_source: str | Path = DEFAULT_MATERIALIZATION_SOURCE,
+    repair_surface_source: str | Path | None = DEFAULT_REPAIR_SURFACE_SOURCE,
     current702_coordinate_manifest_path: str | Path = DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH,
     tree_refs: tuple[str, ...] = DEFAULT_TREE_REFS,
-    expected_preview_count: int = 333,
+    expected_preview_count: int = 600,
+    expected_repair_count: int | None = 11895,
+    expected_review_surface_count: int | None = 12495,
     created_utc: str | None = None,
 ) -> dict[str, Any]:
     created_utc = created_utc or _utc_now_iso()
     preview, preview_record = _read_source(preview_source)
-    merged_surface, merged_record = _read_source(merged_surface_source)
     materialization, materialization_record = _read_source(materialization_source)
+    if merged_surface_source is None:
+        merged_rows: list[dict[str, Any]] = []
+        merged_record: dict[str, Any] | None = None
+    else:
+        merged_surface, merged_record = _read_source(merged_surface_source)
+        merged_rows = _source_rows(merged_surface)
+    if repair_surface_source is None:
+        repair_rows: list[dict[str, Any]] = []
+        repair_record: dict[str, Any] | None = None
+    else:
+        repair_surface, repair_record = _read_source(repair_surface_source)
+        repair_rows = _source_rows(repair_surface)
     coordinate_manifest, coordinate_record = _read_source(current702_coordinate_manifest_path)
 
     preview_rows = _source_rows(preview)
-    merged_rows = _source_rows(merged_surface)
     materialization_rows = _source_rows(materialization)
     merged_by_candidate = {_candidate_key(row): row for row in merged_rows}
     materialization_by_candidate = {_candidate_key(row): row for row in materialization_rows}
+    preview_by_candidate = {_candidate_key(row): row for row in preview_rows}
+    preview_candidate_ids = set(preview_by_candidate)
+    review_rows = list(preview_rows)
+    seen_review_candidates = set(preview_candidate_ids)
+    for row in repair_rows:
+        candidate_id = _candidate_key(row)
+        if candidate_id not in seen_review_candidates:
+            review_rows.append(row)
+            seen_review_candidates.add(candidate_id)
     lane_counts = Counter(str(row.get("target_family_lane") or "unknown") for row in preview_rows)
     sequence_hash_counts = Counter(
-        ((row.get("duplicate_status") or {}).get("exact_sequence_sha256"))
+        _duplicate_status_for_row(row).get("exact_sequence_sha256")
         for row in preview_rows
-        if (row.get("duplicate_status") or {}).get("exact_sequence_sha256")
+        if _duplicate_status_for_row(row).get("exact_sequence_sha256")
     )
     tree_paths: set[str] = set()
     for ref in tree_refs:
@@ -294,19 +435,33 @@ def build_external_import_review_preflight(
 
     rows: list[dict[str, Any]] = []
     issues: list[str] = []
-    for row in preview_rows:
+    for row in review_rows:
         candidate_id = _candidate_key(row)
         merged_row = merged_by_candidate.get(candidate_id, {})
         materialization_row = materialization_by_candidate.get(candidate_id, {})
+        preview_row = preview_by_candidate.get(candidate_id, {})
+        is_preview = _is_preview_row(row, preview_candidate_ids)
         lane = str(row.get("target_family_lane") or "unknown")
-        duplicate_status = row.get("duplicate_status") or {}
+        duplicate_status = _duplicate_status_for_row(row)
         non_overlap = row.get("non_overlap_checks") or {}
         source_hashes = row.get("source_hashes") or {}
-        source_provenance = row.get("source_provenance") or merged_row.get("source_provenance")
+        source_provenance = (
+            row.get("source_provenance")
+            or preview_row.get("source_provenance")
+            or merged_row.get("source_provenance")
+        )
+        source_occurrences = (
+            row.get("source_occurrences")
+            or materialization_row.get("source_occurrences")
+            or merged_row.get("source_occurrences")
+        )
         locator_path = row.get("locator_sidecar_path")
         coordinate_path = row.get("coordinate_path")
-        locator_sidecar = _read_json_path_from_sources(
-            str(locator_path) if locator_path else None, tree_refs
+        locator_path_text = str(locator_path) if locator_path else None
+        locator_sidecar = (
+            _read_json_path_from_sources(locator_path_text, tree_refs)
+            if _path_exists_in_sources(locator_path_text, tree_paths)
+            else None
         )
 
         sequence_sha = duplicate_status.get("exact_sequence_sha256")
@@ -333,9 +488,17 @@ def build_external_import_review_preflight(
         locator_rows = locator_sidecar.get("residue_locators") if isinstance(locator_sidecar, dict) else []
         locator_source_free_ok = bool(
             isinstance(locator_sidecar, dict)
-            and locator_sidecar.get("source_free_active_site_locator_status") == "ready"
+            and locator_sidecar.get("source_free_active_site_locator_status")
+            in {
+                "ready",
+                "ready_coordinate_local_residue_identity",
+                "materialized_pending_coordinate_local_residue_identity",
+            }
             and locator_sidecar.get("schema_version")
-            == "v3.external_source_free_active_site_locator_review_only"
+            in {
+                "v3.external_source_free_active_site_locator_review_only",
+                "v3.external_materialization_wave2_source_free_locator_sidecar",
+            }
             and isinstance(locator_guardrails, dict)
             and locator_guardrails.get("production_registry_edited") is False
             and locator_guardrails.get("label_import_performed") is False
@@ -350,8 +513,19 @@ def build_external_import_review_preflight(
         )
 
         checks = {
-            "source_provenance_present": _source_provenance_ok(source_provenance),
-            "source_hashes_present": _source_hashes_ok(source_hashes),
+            "review_scope": (
+                "import_ready_preview"
+                if is_preview
+                else "materialization_repair_surface"
+            ),
+            "source_provenance_present": _source_provenance_ok(source_provenance)
+            or _source_occurrences_ok(source_occurrences),
+            "source_hashes_present": _source_hashes_ok(
+                source_hashes,
+                strict_preview=is_preview
+                and "full_row_sha256" in source_hashes
+                and "queue_row_sha256" in source_hashes,
+            ),
             "locator_sidecar_path_present": bool(locator_path),
             "locator_sidecar_exists": _path_exists_in_sources(
                 str(locator_path) if locator_path else None, tree_paths
@@ -364,20 +538,22 @@ def build_external_import_review_preflight(
                 str(coordinate_path) if coordinate_path else None, tree_paths
             ),
             "coordinate_hash_present": locator_coordinate_hash_present,
-            "exact_current702_non_overlap": bool(non_overlap.get("exact_current702_non_overlap")),
+            "exact_current702_non_overlap": (
+                bool(non_overlap.get("exact_current702_non_overlap"))
+                if isinstance(non_overlap, dict) and non_overlap
+                else not _has_exact_current702_duplicate(duplicate_status)
+            ),
             "sequence_hash_present": bool(sequence_sha),
             "sequence_hash_unique_in_preview": (
                 bool(sequence_sha) and sequence_hash_counts[sequence_sha] == 1
             ),
             "exact_coordinate_or_structure_id_current702_overlap": bool(coordinate_overlap_hits),
         }
-        current702_conflict = bool(
-            duplicate_status.get("duplicate_or_current_registry_conflict")
-            or not checks["exact_current702_non_overlap"]
-        )
-        external_conflict = bool(
-            non_overlap.get("external_duplicate_overlap_present")
-            or merged_row.get("external_duplicate_conflict")
+        current702_conflict = _has_exact_current702_duplicate(
+            duplicate_status
+        ) or bool(is_preview and not checks["exact_current702_non_overlap"])
+        external_conflict = _has_external_duplicate(duplicate_status, non_overlap, row) or bool(
+            merged_row.get("external_duplicate_conflict")
         )
         locator_blocked = not (
             checks["locator_sidecar_path_present"]
@@ -400,7 +576,7 @@ def build_external_import_review_preflight(
             blockers.append("exact_current702_accession_or_sequence_conflict")
         if external_conflict:
             blockers.append("external_duplicate_accession_or_sequence_conflict")
-        if not checks["sequence_hash_unique_in_preview"]:
+        if is_preview and not checks["sequence_hash_unique_in_preview"]:
             blockers.append("sequence_hash_not_unique_in_preview")
         if locator_blocked:
             blockers.append("source_free_locator_sidecar_missing_or_not_ready")
@@ -411,7 +587,9 @@ def build_external_import_review_preflight(
         if _family_policy_review_needed(row, lane_counts):
             blockers.append("singleton_near_orphan_lane_needs_family_policy_review")
 
-        if current702_conflict:
+        if not is_preview:
+            terminal_state = _repair_terminal_state(row)
+        elif current702_conflict:
             terminal_state = "duplicate_current702_conflict"
         elif external_conflict or not checks["sequence_hash_unique_in_preview"]:
             terminal_state = "duplicate_external_conflict"
@@ -428,6 +606,28 @@ def build_external_import_review_preflight(
         else:
             terminal_state = "controlled_import_review_ready"
 
+        if not is_preview:
+            if terminal_state == "duplicate_current702_conflict":
+                blockers = ["exact_current702_accession_or_sequence_conflict"]
+            elif terminal_state == "duplicate_external_conflict":
+                blockers = ["external_duplicate_accession_or_sequence_conflict"]
+            elif terminal_state == "repairable_locator_blocker":
+                blockers = ["source_free_locator_sidecar_missing_or_not_ready"]
+            elif terminal_state == "repairable_coordinate_blocker":
+                blockers = ["coordinate_materialization_or_hash_missing"]
+            elif terminal_state == "reject/OOS_preserve_signal":
+                blockers = ["out_of_scope_or_hard_negative_preserve_signal"]
+            elif terminal_state == "hard_blocked_with_next_action":
+                blockers = ["source_retrieval_or_materialization_hard_blocker"]
+            if not checks["source_provenance_present"]:
+                blockers.append("source_provenance_missing_or_incomplete")
+            if not checks["source_hashes_present"] and terminal_state in {
+                "hard_blocked_with_next_action",
+                "repairable_locator_blocker",
+                "repairable_coordinate_blocker",
+            }:
+                blockers.append("source_hashes_missing_or_malformed")
+
         if terminal_state not in TERMINAL_STATES:
             issues.append(f"unknown terminal state for {candidate_id}: {terminal_state}")
 
@@ -437,7 +637,14 @@ def build_external_import_review_preflight(
                 "accession": row.get("accession"),
                 "stable_candidate_key": row.get("stable_candidate_key"),
                 "target_family_lane": lane,
+                "review_scope": checks["review_scope"],
                 "merge_status": row.get("merge_status"),
+                "source_terminal_state": row.get("source_terminal_state")
+                or row.get("terminal_state"),
+                "wave2_terminal_state": row.get("wave2_terminal_state"),
+                "source_import_ready_preview_consumed": bool(
+                    row.get("source_import_ready_preview_consumed") or is_preview
+                ),
                 "terminal_state": terminal_state,
                 "automated_checks": checks,
                 "blockers": sorted(set(blockers)),
@@ -466,6 +673,10 @@ def build_external_import_review_preflight(
                         else None
                     ),
                 },
+                "source_occurrences": source_occurrences if isinstance(source_occurrences, list) else [],
+                "source_artifacts_consumed": row.get("source_artifacts_consumed")
+                or materialization_row.get("source_artifacts_consumed")
+                or [],
                 "source_hashes": source_hashes,
                 "locator_sidecar_path": locator_path,
                 "coordinate_path": coordinate_path,
@@ -487,6 +698,14 @@ def build_external_import_review_preflight(
                         "locator_sidecar_materialized_now"
                     )
                     or merged_row.get("locator_sidecar_materialized_now"),
+                    "coordinate_materialization_status": row.get(
+                        "coordinate_materialization_status"
+                    )
+                    or materialization_row.get("coordinate_materialization_status"),
+                    "locator_sidecar_status": row.get("locator_sidecar_status")
+                    or materialization_row.get("locator_sidecar_status"),
+                    "repair_bucket": row.get("repair_bucket")
+                    or materialization_row.get("repair_bucket"),
                 },
                 "structural_duplicate_screen_status": (
                     "exact_coordinate_identifier_overlap_screen_clean_full_tm_screen_not_run"
@@ -499,6 +718,8 @@ def build_external_import_review_preflight(
         )
 
     terminal_counts = Counter(row["terminal_state"] for row in rows)
+    review_scope_counts = Counter(row["review_scope"] for row in rows)
+    all_lane_counts = Counter(str(row["target_family_lane"] or "unknown") for row in rows)
     lane_terminal_counts: dict[str, dict[str, int]] = {}
     for row in rows:
         lane_terminal_counts.setdefault(row["target_family_lane"], Counter())
@@ -508,38 +729,76 @@ def build_external_import_review_preflight(
     }
 
     ready_count = terminal_counts["controlled_import_review_ready"]
-    counts_reconcile = sum(terminal_counts.values()) == len(preview_rows)
-    all_preview_rows_have_merged_context = all(
-        _candidate_key(row) in merged_by_candidate for row in preview_rows
+    counts_reconcile = sum(terminal_counts.values()) == len(review_rows)
+    preview_rows_in_review_surface = sum(
+        1 for row in rows if row["review_scope"] == "import_ready_preview"
+    )
+    repair_rows_in_review_surface = sum(
+        1 for row in rows if row["review_scope"] == "materialization_repair_surface"
+    )
+    all_review_rows_have_materialization_context = all(
+        _candidate_key(row) in materialization_by_candidate for row in review_rows
+    )
+    all_preview_rows_have_materialization_context = all(
+        _candidate_key(row) in materialization_by_candidate for row in preview_rows
     )
     all_preview_rows_have_source_provenance = all(
         row["automated_checks"]["source_provenance_present"] for row in rows
+        if row["review_scope"] == "import_ready_preview"
     )
     all_preview_rows_have_source_hashes = all(
+        row["automated_checks"]["source_hashes_present"] for row in rows
+        if row["review_scope"] == "import_ready_preview"
+    )
+    all_review_rows_have_source_provenance = all(
+        row["automated_checks"]["source_provenance_present"] for row in rows
+    )
+    all_review_rows_have_source_hashes = all(
         row["automated_checks"]["source_hashes_present"] for row in rows
     )
     validation_checks = {
         "passed": not issues
         and len(preview_rows) == expected_preview_count
+        and (expected_repair_count is None or len(repair_rows) == expected_repair_count)
+        and (
+            expected_review_surface_count is None
+            or len(review_rows) == expected_review_surface_count
+        )
         and counts_reconcile
-        and all_preview_rows_have_merged_context
-        and all_preview_rows_have_source_provenance
+        and all_review_rows_have_materialization_context
+        and all_review_rows_have_source_provenance
         and all_preview_rows_have_source_hashes,
         "issues": issues,
         "expected_preview_count": expected_preview_count,
+        "expected_repair_count": expected_repair_count,
+        "expected_review_surface_count": expected_review_surface_count,
         "preview_row_count": len(preview_rows),
+        "repair_surface_row_count": len(repair_rows),
+        "review_surface_row_count": len(review_rows),
+        "preview_rows_in_review_surface": preview_rows_in_review_surface,
+        "repair_rows_in_review_surface": repair_rows_in_review_surface,
         "counts_reconcile": counts_reconcile,
-        "all_preview_rows_have_merged_context": all_preview_rows_have_merged_context,
+        "all_review_rows_have_materialization_context": (
+            all_review_rows_have_materialization_context
+        ),
+        "all_preview_rows_have_materialization_context": (
+            all_preview_rows_have_materialization_context
+        ),
         "all_preview_rows_have_source_provenance": all_preview_rows_have_source_provenance,
         "all_preview_rows_have_source_hashes": all_preview_rows_have_source_hashes,
+        "all_review_rows_have_source_provenance": all_review_rows_have_source_provenance,
+        "all_review_rows_have_source_hashes": all_review_rows_have_source_hashes,
         "all_preview_rows_have_source_free_locator": all(
             row["automated_checks"]["locator_source_free_ready"] for row in rows
+            if row["review_scope"] == "import_ready_preview"
         ),
         "all_preview_rows_have_coordinate_hash": all(
             row["automated_checks"]["coordinate_hash_present"] for row in rows
+            if row["review_scope"] == "import_ready_preview"
         ),
         "all_preview_rows_have_materialized_coordinate": all(
             row["automated_checks"]["coordinate_materialized"] for row in rows
+            if row["review_scope"] == "import_ready_preview"
         ),
         "all_ready_rows_have_source_provenance": all(
             row["automated_checks"]["source_provenance_present"]
@@ -557,7 +816,9 @@ def build_external_import_review_preflight(
             if row["terminal_state"] == "controlled_import_review_ready"
         ),
         "sequence_hashes_unique": all(
-            row["automated_checks"]["sequence_hash_unique_in_preview"] for row in rows
+            row["automated_checks"]["sequence_hash_unique_in_preview"]
+            for row in rows
+            if row["review_scope"] == "import_ready_preview"
         ),
         "exact_coordinate_current702_overlap_count": sum(
             row["automated_checks"]["exact_coordinate_or_structure_id_current702_overlap"]
@@ -569,15 +830,27 @@ def build_external_import_review_preflight(
             f"preview row count {len(preview_rows)} != expected {expected_preview_count}"
         )
         validation_checks["passed"] = False
+    if expected_repair_count is not None and len(repair_rows) != expected_repair_count:
+        validation_checks["issues"].append(
+            f"repair row count {len(repair_rows)} != expected {expected_repair_count}"
+        )
+        validation_checks["passed"] = False
+    if expected_review_surface_count is not None and len(review_rows) != expected_review_surface_count:
+        validation_checks["issues"].append(
+            "review surface row count "
+            f"{len(review_rows)} != expected {expected_review_surface_count}"
+        )
+        validation_checks["passed"] = False
 
     artifact = {
         "artifact_id": ARTIFACT_ID,
         "schema_version": SCHEMA_VERSION,
         "created_utc": created_utc,
         "scope": (
-            "Controlled import-review preflight for the 333 external import-ready "
-            "preview rows. This classifies rows for review batching without "
-            "performing a production import."
+            "Controlled import-review preflight for the Wave 2 external "
+            "materialization review surface: carried-forward import-ready preview "
+            "rows plus the expanded materialization repair queue. This classifies "
+            "rows for review batching without performing a production import."
         ),
         "guardrails": {
             "label_import_performed": False,
@@ -589,26 +862,30 @@ def build_external_import_review_preflight(
             "review_only": True,
         },
         "source_artifacts": {
-            "external_admission_import_ready_preview": preview_record,
+            "external_materialization_wave2_import_ready_preview": preview_record,
+            "external_materialization_wave2_repair_queue": repair_record,
+            "external_materialization_wave2_current_surface": materialization_record,
             "external_admission_merged_surface": merged_record,
-            "external_materialization_admission_batch": materialization_record,
             "current702_coordinate_manifest": coordinate_record,
         },
         "counts": {
             "preview_rows": len(preview_rows),
+            "repair_surface_rows": len(repair_rows),
+            "review_surface_rows": len(review_rows),
             "controlled_import_review_ready": ready_count,
-            "not_ready_rows": len(preview_rows) - ready_count,
+            "not_ready_rows": len(review_rows) - ready_count,
             "duplicate_current702_conflict_rows": terminal_counts[
                 "duplicate_current702_conflict"
             ],
             "duplicate_external_conflict_rows": terminal_counts[
                 "duplicate_external_conflict"
             ],
-            "repair_queue_rows": len(preview_rows) - ready_count,
+            "repair_queue_rows": len(review_rows) - ready_count,
             "sequence_hash_duplicate_rows": sum(
                 1
                 for row in rows
-                if not row["automated_checks"]["sequence_hash_unique_in_preview"]
+                if row["review_scope"] == "import_ready_preview"
+                and not row["automated_checks"]["sequence_hash_unique_in_preview"]
             ),
             "exact_coordinate_current702_overlap_rows": validation_checks[
                 "exact_coordinate_current702_overlap_count"
@@ -617,9 +894,12 @@ def build_external_import_review_preflight(
         "terminal_state_counts": {
             state: terminal_counts.get(state, 0) for state in TERMINAL_STATES
         },
-        "lane_counts": dict(sorted(lane_counts.items())),
+        "review_scope_counts": dict(sorted(review_scope_counts.items())),
+        "lane_counts": dict(sorted(all_lane_counts.items())),
+        "preview_lane_counts": dict(sorted(lane_counts.items())),
         "lane_terminal_state_counts": lane_terminal_counts,
-        "lane_balance": _lane_balance_summary(lane_counts),
+        "lane_balance": _lane_balance_summary(all_lane_counts),
+        "preview_lane_balance": _lane_balance_summary(lane_counts),
         "policy_blockers": _policy_blockers(ready_count),
         "batch_approval": {
             "row_by_row_human_review_required_for_ready_rows": False,
@@ -627,10 +907,18 @@ def build_external_import_review_preflight(
             "batch_import_candidate_count": ready_count,
             "production_import_authorized_by_this_artifact": False,
             "statement": (
-                f"A final controlled human batch approval could cover {ready_count} "
-                "machine-clean rows at once rather than row-by-row; production "
-                "registry authorization and label-factory gates remain outside "
-                "this preflight."
+                (
+                    f"A final controlled human batch approval could cover {ready_count} "
+                    "machine-clean rows at once rather than row-by-row; production "
+                    "registry authorization and label-factory gates remain outside "
+                    "this preflight."
+                )
+                if ready_count
+                else (
+                    "No rows are batch-approvable on current main; final human "
+                    "batch approval should wait until source-free locator and "
+                    "coordinate/hash blockers clear."
+                )
             ),
         },
         "validation_checks": validation_checks,
@@ -713,6 +1001,7 @@ def build_external_import_review_ready_preview(
             "accession": row["accession"],
             "stable_candidate_key": row.get("stable_candidate_key"),
             "target_family_lane": row["target_family_lane"],
+            "review_scope": row.get("review_scope"),
             "terminal_state": row["terminal_state"],
             "coordinate_path": row.get("coordinate_path"),
             "locator_sidecar_path": row.get("locator_sidecar_path"),
@@ -756,11 +1045,15 @@ def build_external_import_review_repair_queue(
             "candidate_id": row["candidate_id"],
             "accession": row["accession"],
             "target_family_lane": row["target_family_lane"],
+            "review_scope": row.get("review_scope"),
+            "source_terminal_state": row.get("source_terminal_state"),
+            "wave2_terminal_state": row.get("wave2_terminal_state"),
             "terminal_state": row["terminal_state"],
             "blockers": row.get("blockers", []),
             "next_action": row.get("next_action"),
             "coordinate_path": row.get("coordinate_path"),
             "locator_sidecar_path": row.get("locator_sidecar_path"),
+            "materialization_context": row.get("materialization_context", {}),
         }
         for row in preflight.get("rows", [])
         if row.get("terminal_state") != "controlled_import_review_ready"
@@ -791,14 +1084,17 @@ def render_external_import_review_preflight_report(
         "# External Import Review Preflight - current702",
         "",
         (
-            "Controlled import-review preflight over the 333 external "
-            "import-ready preview rows. No production registry, import file, "
-            "ontology, split, threshold, or model artifact was edited."
+            "Controlled import-review preflight over the Wave 2 external "
+            "materialization review surface: the carried-forward import-ready "
+            "preview rows plus the expanded repair queue. No production registry, "
+            "import file, ontology, split, threshold, or model artifact was edited."
         ),
         "",
         "## Summary",
         "",
         f"- Preview rows: {preflight['counts']['preview_rows']}",
+        f"- Repair-surface rows: {preflight['counts']['repair_surface_rows']}",
+        f"- Total review-surface rows: {preflight['counts']['review_surface_rows']}",
         f"- Controlled import-review ready rows: {preflight['counts']['controlled_import_review_ready']}",
         f"- Repair/conflict queue rows: {repair_queue['candidate_count']}",
         (
@@ -814,9 +1110,23 @@ def render_external_import_review_preflight_report(
     ]
     for state, count in preflight["terminal_state_counts"].items():
         lines.append(f"| `{state}` | {count} |")
+    lines.extend(["", "## Review Scope Counts", "", "| scope | count |", "| --- | ---: |"])
+    for scope, count in preflight["review_scope_counts"].items():
+        lines.append(f"| `{scope}` | {count} |")
     lines.extend(["", "## Lane Counts", "", "| lane | count |", "| --- | ---: |"])
     for lane, count in preflight["lane_counts"].items():
         lines.append(f"| {lane} | {count} |")
+    lines.extend(
+        [
+            "",
+            "## Lane Terminal Counts",
+            "",
+            "| lane | terminal counts |",
+            "| --- | --- |",
+        ]
+    )
+    for lane, terminal_counts in preflight["lane_terminal_state_counts"].items():
+        lines.append(f"| {lane} | `{terminal_counts}` |")
     lines.extend(
         [
             "",
@@ -839,14 +1149,26 @@ def render_external_import_review_preflight_report(
             "",
             "## Validation",
             "",
-            f"- JSON/count reconciliation passed: {preflight['validation_checks']['passed']}",
+            f"- Validation passed: {preflight['validation_checks']['passed']}",
+            (
+                "- JSON/count reconciliation passed: "
+                f"{preflight['validation_checks']['counts_reconcile']}"
+            ),
             (
                 "- Source provenance present for all preview rows: "
                 f"{preflight['validation_checks']['all_preview_rows_have_source_provenance']}"
             ),
             (
+                "- Source provenance present for all review rows: "
+                f"{preflight['validation_checks']['all_review_rows_have_source_provenance']}"
+            ),
+            (
                 "- Source hashes present for all preview rows: "
                 f"{preflight['validation_checks']['all_preview_rows_have_source_hashes']}"
+            ),
+            (
+                "- Source hashes present for all review rows: "
+                f"{preflight['validation_checks']['all_review_rows_have_source_hashes']}"
             ),
             (
                 "- Source-free locators present for all preview rows: "
@@ -902,24 +1224,30 @@ def render_external_import_review_preflight_report(
 def write_external_import_review_preflight(
     *,
     preview_source: str | Path = DEFAULT_PREVIEW_SOURCE,
-    merged_surface_source: str | Path = DEFAULT_MERGED_SURFACE_SOURCE,
+    merged_surface_source: str | Path | None = DEFAULT_MERGED_SURFACE_SOURCE,
     materialization_source: str | Path = DEFAULT_MATERIALIZATION_SOURCE,
+    repair_surface_source: str | Path | None = DEFAULT_REPAIR_SURFACE_SOURCE,
     current702_coordinate_manifest_path: str | Path = DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH,
     out_path: Path = DEFAULT_OUT_PATH,
     ready_preview_path: Path = DEFAULT_READY_PREVIEW_PATH,
     repair_queue_path: Path = DEFAULT_REPAIR_QUEUE_PATH,
     report_path: Path = DEFAULT_REPORT_PATH,
     tree_refs: tuple[str, ...] = DEFAULT_TREE_REFS,
-    expected_preview_count: int = 333,
+    expected_preview_count: int = 600,
+    expected_repair_count: int | None = 11895,
+    expected_review_surface_count: int | None = 12495,
     created_utc: str | None = None,
 ) -> dict[str, Any]:
     preflight = build_external_import_review_preflight(
         preview_source=preview_source,
         merged_surface_source=merged_surface_source,
         materialization_source=materialization_source,
+        repair_surface_source=repair_surface_source,
         current702_coordinate_manifest_path=current702_coordinate_manifest_path,
         tree_refs=tree_refs,
         expected_preview_count=expected_preview_count,
+        expected_repair_count=expected_repair_count,
+        expected_review_surface_count=expected_review_surface_count,
         created_utc=created_utc,
     )
     ready_preview = build_external_import_review_ready_preview(

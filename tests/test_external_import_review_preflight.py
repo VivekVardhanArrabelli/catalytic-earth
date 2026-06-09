@@ -204,9 +204,12 @@ class ExternalImportReviewPreflightTests(unittest.TestCase):
                 preview_source=preview_path,
                 merged_surface_source=merged_path,
                 materialization_source=materialization_path,
+                repair_surface_source=None,
                 current702_coordinate_manifest_path=current_path,
                 tree_refs=(),
                 expected_preview_count=5,
+                expected_repair_count=0,
+                expected_review_surface_count=5,
                 created_utc="2026-06-09T00:00:00Z",
             )
 
@@ -233,6 +236,85 @@ class ExternalImportReviewPreflightTests(unittest.TestCase):
             repair_queue = build_external_import_review_repair_queue(artifact)
             self.assertEqual(ready_preview["candidate_count"], 1)
             self.assertEqual(repair_queue["candidate_count"], 4)
+
+    def test_classifies_wave2_repair_surface_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preview_path = root / "preview.json"
+            repair_path = root / "repair.json"
+            materialization_path = root / "materialization.json"
+            current_path = root / "current.json"
+
+            preview_path.write_text(json.dumps({"rows": []}), encoding="utf-8")
+            repair_rows = [
+                {
+                    "candidate_id": "uniprot:PCUR",
+                    "accession": "PCUR",
+                    "target_family_lane": "metal hydrolase",
+                    "wave2_terminal_state": "blocked_duplicate_or_current_registry_conflict",
+                    "repair_bucket": "duplicate_conflict_no_import",
+                    "duplicate_status": {
+                        "current702_status": "exact_current702_accession_overlap",
+                    },
+                    "source_hashes": _hashes("a"),
+                    "source_occurrences": [
+                        {
+                            "source_key": "source-a",
+                            "source_path": "artifacts/source-a.json",
+                            "terminal_state": "blocked_duplicate_or_current_registry_conflict",
+                        }
+                    ],
+                },
+                {
+                    "candidate_id": "uniprot:PCOORD",
+                    "accession": "PCOORD",
+                    "target_family_lane": "redox oxygen/sulfur",
+                    "wave2_terminal_state": (
+                        "shard_import_ready_preview_locator_sidecar_reused_coordinate_pending"
+                    ),
+                    "repair_bucket": "coordinate_materialization_continuation_due_disk_floor",
+                    "duplicate_status": {
+                        "current702_status": (
+                            "no_exact_current702_accession_or_sequence_sha_overlap"
+                        ),
+                        "prior_external_status": (
+                            "no_exact_prior_external_artifact_or_branch_overlap"
+                        ),
+                    },
+                    "source_hashes": _hashes("b"),
+                    "source_occurrences": [
+                        {
+                            "source_key": "source-b",
+                            "source_path": "artifacts/source-b.json",
+                            "terminal_state": "import_ready_preview",
+                        }
+                    ],
+                },
+            ]
+            repair_path.write_text(json.dumps({"rows": repair_rows}), encoding="utf-8")
+            materialization_path.write_text(
+                json.dumps({"rows": repair_rows}), encoding="utf-8"
+            )
+            current_path.write_text(json.dumps({"rows": [], "structures": []}), encoding="utf-8")
+
+            artifact = build_external_import_review_preflight(
+                preview_source=preview_path,
+                merged_surface_source=None,
+                materialization_source=materialization_path,
+                repair_surface_source=repair_path,
+                current702_coordinate_manifest_path=current_path,
+                tree_refs=(),
+                expected_preview_count=0,
+                expected_repair_count=2,
+                expected_review_surface_count=2,
+                created_utc="2026-06-09T00:00:00Z",
+            )
+
+            states = {row["candidate_id"]: row["terminal_state"] for row in artifact["rows"]}
+            self.assertEqual(states["uniprot:PCUR"], "duplicate_current702_conflict")
+            self.assertEqual(states["uniprot:PCOORD"], "repairable_coordinate_blocker")
+            self.assertTrue(artifact["validation_checks"]["passed"])
+            self.assertEqual(artifact["counts"]["review_surface_rows"], 2)
 
 
 if __name__ == "__main__":
