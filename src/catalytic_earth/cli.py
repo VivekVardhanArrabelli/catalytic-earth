@@ -2885,10 +2885,11 @@ def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
 
 def cmd_build_external_admission_qa_merger(args: argparse.Namespace) -> int:
     artifact = write_external_admission_qa_merger(
-        validation_path=Path(args.validation),
-        bulk_scout_path=Path(args.bulk_scout),
-        bulk_preview_path=Path(args.bulk_preview),
-        scaleout_merged_path=Path(args.scaleout_merged),
+        materialization_batch_spec=args.materialization_batch,
+        materialization_preview_spec=args.materialization_preview,
+        bulk_scaleout_spec=args.bulk_scaleout,
+        bulk_preview_spec=args.bulk_preview,
+        previous_merged_surface_spec=args.previous_merged_surface,
         out_path=Path(args.out),
         import_ready_path=Path(args.import_ready),
         repair_queue_path=Path(args.repair_queue),
@@ -2898,6 +2899,7 @@ def cmd_build_external_admission_qa_merger(args: argparse.Namespace) -> int:
     print(
         "Wrote external admission QA merger to "
         f"{args.out} ({artifact['counts']['merged_rows']} rows; "
+        f"{artifact['counts']['import_ready_rows']} import-ready; "
         f"{artifact['counts']['repair_queue_rows']} repair-queue)"
     )
     return 0
@@ -22417,62 +22419,69 @@ def build_parser() -> argparse.ArgumentParser:
     external_admission_merger = subparsers.add_parser(
         "build-external-admission-qa-merger",
         help=(
-            "merge validated external admission rows over the bulk scout baseline "
-            "and emit audit, import-preview, and repair-queue surfaces"
+            "merge external materialization and bulk scaleout producer outputs "
+            "into the current admission audit, import-preview, and repair-queue surfaces"
         ),
     )
     external_admission_merger.add_argument(
-        "--validation",
+        "--materialization-batch",
         default=(
-            "artifacts/"
-            "v3_external_source_admission_validation_16_current702_20260608.json"
+            "origin/ce-external-materialization-admission-batch-20260608:"
+            "artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
         ),
     )
     external_admission_merger.add_argument(
-        "--bulk-scout",
+        "--materialization-preview",
         default=(
-            "artifacts/"
-            "v3_external_bulk_ingestion_scout_current702_20260608.json"
+            "origin/ce-external-materialization-admission-batch-20260608:"
+            "artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json"
+        ),
+    )
+    external_admission_merger.add_argument(
+        "--bulk-scaleout",
+        default=(
+            "origin/ce-external-bulk-pagination-scaleout-20260609:"
+            "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json"
         ),
     )
     external_admission_merger.add_argument(
         "--bulk-preview",
         default=(
-            "artifacts/"
-            "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+            "origin/ce-external-bulk-pagination-scaleout-20260609:"
+            "artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json"
         ),
     )
     external_admission_merger.add_argument(
-        "--scaleout-merged",
+        "--previous-merged-surface",
         default=(
-            "artifacts/"
-            "v3_scaleout_merged_acceptance_surface_current702_20260608.json"
+            "origin/ce-external-admission-qa-merger-20260608:"
+            "artifacts/v3_external_admission_merged_surface_current702_20260608.json"
         ),
     )
     external_admission_merger.add_argument(
         "--out",
         default=(
             "artifacts/"
-            "v3_external_admission_merged_surface_current702_20260608.json"
+            "v3_external_admission_merged_surface_current702_20260609.json"
         ),
     )
     external_admission_merger.add_argument(
         "--import-ready",
         default=(
             "artifacts/"
-            "v3_external_admission_import_ready_preview_current702_20260608.json"
+            "v3_external_admission_import_ready_preview_current702_20260609.json"
         ),
     )
     external_admission_merger.add_argument(
         "--repair-queue",
         default=(
             "artifacts/"
-            "v3_external_admission_repair_queue_current702_20260608.json"
+            "v3_external_admission_repair_queue_current702_20260609.json"
         ),
     )
     external_admission_merger.add_argument(
         "--report",
-        default="work/external_admission_qa_merger_current702_20260608.md",
+        default="work/external_admission_qa_merger_current702_20260609.md",
     )
     external_admission_merger.add_argument("--created-utc")
     external_admission_merger.set_defaults(func=cmd_build_external_admission_qa_merger)

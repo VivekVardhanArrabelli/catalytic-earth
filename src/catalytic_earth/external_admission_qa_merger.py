@@ -2,13 +2,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 
-RUN_DATE = "20260608"
+RUN_DATE = "20260609"
 ARTIFACT_ID = f"v3_external_admission_merged_surface_current702_{RUN_DATE}"
 IMPORT_READY_ARTIFACT_ID = (
     f"v3_external_admission_import_ready_preview_current702_{RUN_DATE}"
@@ -20,17 +21,25 @@ SCHEMA_VERSION = "v3.external_admission_merged_surface"
 IMPORT_READY_SCHEMA_VERSION = "v3.external_admission_import_ready_preview"
 REPAIR_QUEUE_SCHEMA_VERSION = "v3.external_admission_repair_queue"
 
-DEFAULT_VALIDATION_PATH = Path(
-    "artifacts/v3_external_source_admission_validation_16_current702_20260608.json"
+DEFAULT_MATERIALIZATION_BATCH_SPEC = (
+    "origin/ce-external-materialization-admission-batch-20260608:"
+    "artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
 )
-DEFAULT_BULK_SCOUT_PATH = Path(
-    "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json"
+DEFAULT_MATERIALIZATION_PREVIEW_SPEC = (
+    "origin/ce-external-materialization-admission-batch-20260608:"
+    "artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json"
 )
-DEFAULT_BULK_PREVIEW_PATH = Path(
-    "artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+DEFAULT_BULK_SCALEOUT_SPEC = (
+    "origin/ce-external-bulk-pagination-scaleout-20260609:"
+    "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json"
 )
-DEFAULT_SCALEOUT_MERGED_PATH = Path(
-    "artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json"
+DEFAULT_BULK_PREVIEW_SPEC = (
+    "origin/ce-external-bulk-pagination-scaleout-20260609:"
+    "artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json"
+)
+DEFAULT_PREVIOUS_MERGED_SURFACE_SPEC = (
+    "origin/ce-external-admission-qa-merger-20260608:"
+    "artifacts/v3_external_admission_merged_surface_current702_20260608.json"
 )
 DEFAULT_OUT_PATH = Path(
     f"artifacts/v3_external_admission_merged_surface_current702_{RUN_DATE}.json"
@@ -46,10 +55,9 @@ DEFAULT_REPORT_PATH = Path(
 )
 
 REPAIRABLE_TERMINAL_STATES = {
-    "admission_ready_pending_coordinate_materialization",
-    "admission_ready_pending_locator_materialization",
     "coordinate_repair_candidate",
     "locator_repair_candidate",
+    "repairable_locator_blocker",
 }
 
 
@@ -60,10 +68,6 @@ def _utc_now_iso() -> str:
         .isoformat()
         .replace("+00:00", "Z")
     )
-
-
-def _read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _write_json(path: Path, payload: Any) -> None:
@@ -79,281 +83,241 @@ def _canonical_sha256(payload: Any) -> str:
     ).hexdigest()
 
 
-def sha256_path(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def _sha256_text(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def _source_record(path: Path) -> dict[str, Any]:
-    return {
-        "path": str(path),
-        "sha256": sha256_path(path),
-        "bytes": path.stat().st_size,
+def _load_json_source(source_spec: str | Path) -> tuple[dict[str, Any], dict[str, Any]]:
+    if isinstance(source_spec, Path):
+        path = source_spec
+        text = path.read_text(encoding="utf-8")
+        return json.loads(text), {
+            "source_type": "local_path",
+            "path": str(path),
+            "bytes": len(text.encode("utf-8")),
+            "sha256": _sha256_text(text),
+        }
+
+    spec_text = str(source_spec)
+    local_path = Path(spec_text)
+    if local_path.exists():
+        text = local_path.read_text(encoding="utf-8")
+        return json.loads(text), {
+            "source_type": "local_path",
+            "path": str(local_path),
+            "bytes": len(text.encode("utf-8")),
+            "sha256": _sha256_text(text),
+        }
+
+    if ":" not in spec_text:
+        raise FileNotFoundError(f"unsupported source spec: {spec_text}")
+
+    git_ref, artifact_path = spec_text.split(":", 1)
+    text = subprocess.check_output(["git", "show", spec_text], text=True)
+    commit = subprocess.check_output(["git", "rev-parse", git_ref], text=True).strip()
+    return json.loads(text), {
+        "source_type": "git_ref_path",
+        "git_ref": git_ref,
+        "git_commit": commit,
+        "artifact_path": artifact_path,
+        "spec": spec_text,
+        "bytes": len(text.encode("utf-8")),
+        "sha256": _sha256_text(text),
     }
 
 
-def _normalize_accession(value: Any) -> str:
-    text = str(value or "").strip()
-    return text.split(":", 1)[1] if text.startswith("uniprot:") else text
+def _current702_conflict_from_bulk(row: dict[str, Any]) -> bool:
+    summary = row.get("duplicate_status_summary", {})
+    return (
+        summary.get("current702_status")
+        != "no_exact_current702_accession_or_sequence_sha_overlap"
+    )
 
 
-def _normalize_key(value: Any) -> str | None:
-    text = str(value or "").strip().lower()
-    return text or None
+def _external_duplicate_from_bulk(row: dict[str, Any]) -> bool:
+    summary = row.get("duplicate_status_summary", {})
+    return (
+        summary.get("external_pilot_status")
+        != "no_exact_external_pilot_accession_or_sequence_sha_overlap"
+    )
 
 
-def _build_scaleout_index(scaleout_payload: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
-    index: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    for canonical in scaleout_payload.get("canonical_records", []) or []:
-        canonical_key = str(canonical.get("canonical_key") or "")
-        canonical_terminal_state = str(canonical.get("canonical_terminal_state") or "")
-        for member in canonical.get("source_members", []) or []:
-            if not isinstance(member, dict):
-                continue
-            for raw_value in (
-                member.get("accession"),
-                member.get("candidate_id"),
-                member.get("entry_id"),
-            ):
-                key = _normalize_key(_normalize_accession(raw_value))
-                if not key:
-                    continue
-                index[key].append(
-                    {
-                        "canonical_key": canonical_key,
-                        "canonical_terminal_state": canonical_terminal_state,
-                    }
-                )
-    return {key: value for key, value in index.items()}
+def _current702_conflict_from_materialization(row: dict[str, Any]) -> bool:
+    duplicate_status = row.get("duplicate_status", {})
+    return bool(duplicate_status.get("duplicate_or_current_registry_conflict"))
 
 
-def _watch_status(label: str, pattern: str) -> dict[str, Any]:
-    matches = sorted(str(path) for path in Path("artifacts").glob(pattern))
-    return {
-        "automation_id": label,
-        "status": "present_in_current_main_state" if matches else "missing_in_current_main_state",
-        "artifact_paths": matches,
-    }
+def _repair_bucket(row: dict[str, Any]) -> str | None:
+    terminal_state = str(row.get("terminal_state") or "")
+    if terminal_state == "coordinate_repair_candidate":
+        return "coordinate_repair"
+    if terminal_state in {"locator_repair_candidate", "repairable_locator_blocker"}:
+        return "locator_repair"
+    return None
 
 
-def _current_registry_conflict(row: dict[str, Any]) -> bool:
-    duplicate_status = row.get("duplicate_status")
-    if isinstance(duplicate_status, dict):
-        recomputed = duplicate_status.get("recomputed_current_registry_duplicate_status")
-        if isinstance(recomputed, dict):
-            return bool(recomputed.get("duplicate_or_current_registry_conflict"))
-        artifact = duplicate_status.get("artifact_duplicate_status")
-        if isinstance(artifact, dict):
-            return bool(artifact.get("duplicate_or_current_registry_conflict"))
-    duplicate_summary = row.get("duplicate_status_summary")
-    if isinstance(duplicate_summary, dict):
-        return bool(duplicate_summary.get("blocked_by_duplicate_or_current_registry_conflict"))
-    blocker_basis = row.get("blocker_basis")
-    if isinstance(blocker_basis, dict):
-        return bool(blocker_basis.get("duplicate_or_current_registry_conflict"))
-    return False
-
-
-def _remaining_requirements(row: dict[str, Any]) -> list[str]:
-    terminal_state = row["terminal_state"]
-    if terminal_state == "admission_ready_external_label_candidate":
+def _remaining_required_before_import(row: dict[str, Any]) -> list[str]:
+    terminal_state = str(row.get("terminal_state") or "")
+    if terminal_state == "import_ready_preview":
         return [
             "current_countable_structural_duplicate_screen",
             "label_factory_gate_and_explicit_review_decision",
+            "controlled_import_review_lane_approval",
             "production_registry_change_authorization",
         ]
-    if terminal_state == "admission_ready_pending_coordinate_materialization":
+    if terminal_state == "repairable_locator_blocker":
         return [
-            "coordinate_materialization_or_hash_match",
-            "source_free_locator_materialization",
+            "locator_sidecar_materialization_repair",
             "current_countable_structural_duplicate_screen",
             "label_factory_gate_and_explicit_review_decision",
-            "production_registry_change_authorization",
-        ]
-    if terminal_state == "admission_ready_pending_locator_materialization":
-        return [
-            "source_free_locator_materialization",
-            "current_countable_structural_duplicate_screen",
-            "label_factory_gate_and_explicit_review_decision",
+            "controlled_import_review_lane_approval",
             "production_registry_change_authorization",
         ]
     if terminal_state == "provisional_external_countable_preflight_candidate":
         return [
-            "scaled_external_admission_validation",
+            "materialization_lane",
             "current_countable_structural_duplicate_screen",
             "label_factory_gate_and_explicit_review_decision",
-            "production_registry_change_authorization",
-        ]
-    if terminal_state == "locator_ready_candidate":
-        return [
-            "coordinate_materialization_or_hash_match",
-            "scaled_external_admission_validation",
-            "current_countable_structural_duplicate_screen",
-            "label_factory_gate_and_explicit_review_decision",
+            "controlled_import_review_lane_approval",
             "production_registry_change_authorization",
         ]
     if terminal_state == "coordinate_ready_pending_locator":
         return [
-            "source_free_locator_materialization",
-            "scaled_external_admission_validation",
+            "locator_sidecar_materialization",
             "current_countable_structural_duplicate_screen",
             "label_factory_gate_and_explicit_review_decision",
+            "controlled_import_review_lane_approval",
+            "production_registry_change_authorization",
+        ]
+    if terminal_state == "locator_ready_candidate":
+        return [
+            "coordinate_materialization",
+            "current_countable_structural_duplicate_screen",
+            "label_factory_gate_and_explicit_review_decision",
+            "controlled_import_review_lane_approval",
             "production_registry_change_authorization",
         ]
     if terminal_state in {"coordinate_repair_candidate", "locator_repair_candidate"}:
         return [
             "explicit_repair_lane",
-            "scaled_external_admission_validation",
             "current_countable_structural_duplicate_screen",
             "label_factory_gate_and_explicit_review_decision",
+            "controlled_import_review_lane_approval",
             "production_registry_change_authorization",
         ]
     return []
 
 
-def _repair_bucket(row: dict[str, Any]) -> str | None:
-    terminal_state = row["terminal_state"]
-    if terminal_state == "admission_ready_pending_coordinate_materialization":
-        return "coordinate_materialization"
-    if terminal_state == "admission_ready_pending_locator_materialization":
-        return "locator_materialization"
-    if terminal_state == "coordinate_repair_candidate":
-        return "coordinate_repair"
-    if terminal_state == "locator_repair_candidate":
-        return "locator_repair"
-    return None
+def _materialization_queue_name(row: dict[str, Any]) -> str:
+    return str(row.get("queue_name") or "")
 
 
-def _merge_validation_row(
-    validation_row: dict[str, Any],
+def _merge_materialized_row(
     bulk_row: dict[str, Any],
-    scaleout_hits: list[dict[str, Any]],
-) -> tuple[dict[str, Any], list[str]]:
-    issues: list[str] = []
-    for key in ("stable_candidate_key", "accession", "lane_id", "target_family_lane"):
-        if validation_row.get(key) != bulk_row.get(key):
-            issues.append(f"validation_bulk_{key}_mismatch")
-    for key in (
-        "uniprot_search_row_sha256",
-        "uniprot_entry_record_sha256",
-        "rhea_records_sha256",
-    ):
-        if validation_row.get("source_hashes", {}).get(key) != bulk_row.get("source_hashes", {}).get(key):
-            issues.append(f"validation_bulk_{key}_mismatch")
-
-    merged = dict(validation_row)
-    merged["merge_status"] = "validated_upgrade_from_bulk_provisional"
+    materialization_row: dict[str, Any],
+) -> dict[str, Any]:
+    merged = dict(bulk_row)
+    merged.update(materialization_row)
+    queue_name = _materialization_queue_name(materialization_row)
     merged["bulk_terminal_state"] = bulk_row.get("terminal_state")
     merged["bulk_duplicate_status_summary"] = bulk_row.get("duplicate_status_summary")
     merged["bulk_exact_next_action"] = bulk_row.get("exact_next_action")
-    merged["remaining_required_before_import"] = _remaining_requirements(merged)
-    merged["ready_for_import_preview"] = (
-        merged["terminal_state"] == "admission_ready_external_label_candidate"
-        and not _current_registry_conflict(merged)
-        and not merged["remaining_required_before_import"]
+    merged["materialization_queue_name"] = queue_name
+    merged["merge_status"] = (
+        "materialized_from_validated_queue"
+        if queue_name == "validated_ready_preview"
+        else "materialized_from_provisional_queue"
     )
     merged["repair_bucket"] = _repair_bucket(merged)
+    merged["remaining_required_before_import"] = _remaining_required_before_import(merged)
+    merged["current702_conflict"] = _current702_conflict_from_materialization(merged)
+    merged["external_duplicate_conflict"] = _external_duplicate_from_bulk(bulk_row)
+    merged["ready_for_import_preview"] = (
+        merged["terminal_state"] == "import_ready_preview"
+        and not merged["current702_conflict"]
+    )
+    merged["controlled_import_review_lane_ready"] = merged["ready_for_import_preview"]
     merged["provenance_audit"] = {
-        "validation_bulk_crosscheck_passed": not issues,
-        "validation_bulk_crosscheck_issues": issues,
+        "source_provenance_present": bool(merged.get("source_provenance")),
+        "source_hashes_present": bool(merged.get("source_hashes")),
         "bulk_row_sha256": _canonical_sha256(bulk_row),
-        "validation_row_sha256": _canonical_sha256(validation_row),
+        "materialization_row_sha256": _canonical_sha256(materialization_row),
+        "input_preview_terminal_state": materialization_row.get(
+            "input_preview_terminal_state"
+        ),
     }
-    merged["scaleout_overlap"] = {
-        "overlap_count": len(scaleout_hits),
-        "overlaps_current_main_scaleout_surface": bool(scaleout_hits),
-        "records": scaleout_hits[:10],
-    }
-    return merged, issues
+    return merged
 
 
-def _merge_bulk_only_row(
-    bulk_row: dict[str, Any], scaleout_hits: list[dict[str, Any]]
-) -> dict[str, Any]:
+def _merge_bulk_only_row(bulk_row: dict[str, Any]) -> dict[str, Any]:
     merged = dict(bulk_row)
-    merged["merge_status"] = "bulk_only_candidate"
-    merged["remaining_required_before_import"] = _remaining_requirements(merged)
-    merged["ready_for_import_preview"] = False
+    merged["merge_status"] = "scaleout_bulk_only_candidate"
     merged["repair_bucket"] = _repair_bucket(merged)
-    merged["scaleout_overlap"] = {
-        "overlap_count": len(scaleout_hits),
-        "overlaps_current_main_scaleout_surface": bool(scaleout_hits),
-        "records": scaleout_hits[:10],
+    merged["remaining_required_before_import"] = _remaining_required_before_import(merged)
+    merged["current702_conflict"] = _current702_conflict_from_bulk(merged)
+    merged["external_duplicate_conflict"] = _external_duplicate_from_bulk(merged)
+    merged["ready_for_import_preview"] = False
+    merged["controlled_import_review_lane_ready"] = False
+    merged["provenance_audit"] = {
+        "source_provenance_present": bool(merged.get("source_provenance")),
+        "source_hashes_present": bool(merged.get("source_hashes")),
+        "bulk_row_sha256": _canonical_sha256(bulk_row),
     }
     return merged
 
 
 def build_external_admission_merged_surface(
     *,
-    validation_payload: dict[str, Any],
-    bulk_scout_payload: dict[str, Any],
+    materialization_payload: dict[str, Any],
+    materialization_preview_payload: dict[str, Any],
+    bulk_scaleout_payload: dict[str, Any],
     bulk_preview_payload: dict[str, Any],
-    scaleout_merged_payload: dict[str, Any],
+    previous_merged_surface_payload: dict[str, Any] | None = None,
+    source_artifacts: dict[str, Any] | None = None,
     created_utc: str | None = None,
 ) -> dict[str, Any]:
     created = created_utc or _utc_now_iso()
-    validation_rows = validation_payload.get("rows", []) or []
-    bulk_rows = bulk_scout_payload.get("rows", []) or []
-    bulk_preview_rows = bulk_preview_payload.get("rows", []) or []
-    scaleout_index = _build_scaleout_index(scaleout_merged_payload)
-    validation_by_id = {row["candidate_id"]: row for row in validation_rows}
-    bulk_preview_ids = {row["candidate_id"] for row in bulk_preview_rows}
+    bulk_rows = bulk_scaleout_payload.get("rows", []) or []
+    materialization_rows = materialization_payload.get("rows", []) or []
+    materialization_by_id = {
+        str(row["candidate_id"]): row for row in materialization_rows if isinstance(row, dict)
+    }
+    previous_ids = {
+        str(row["candidate_id"])
+        for row in (previous_merged_surface_payload or {}).get("rows", []) or []
+        if isinstance(row, dict) and row.get("candidate_id")
+    }
 
     merged_rows: list[dict[str, Any]] = []
-    issues: list[str] = []
-    validation_upgrades = 0
-    bulk_only_rows = 0
-
     seen_candidate_ids: set[str] = set()
-    seen_stable_keys: set[str] = set()
+    issues: list[str] = []
+    merge_status_counts: Counter[str] = Counter()
+    materialized_from_queue_counts: Counter[str] = Counter()
 
     for bulk_row in bulk_rows:
         candidate_id = str(bulk_row["candidate_id"])
-        stable_key = str(bulk_row["stable_candidate_key"])
         if candidate_id in seen_candidate_ids:
             issues.append(f"duplicate_candidate_id:{candidate_id}")
             continue
-        if stable_key in seen_stable_keys:
-            issues.append(f"duplicate_stable_candidate_key:{stable_key}")
-            continue
         seen_candidate_ids.add(candidate_id)
-        seen_stable_keys.add(stable_key)
-
-        accession_key = _normalize_key(_normalize_accession(bulk_row.get("accession")))
-        scaleout_hits = scaleout_index.get(accession_key or "", [])
-
-        if candidate_id in validation_by_id:
-            validation_upgrades += 1
-            merged_row, row_issues = _merge_validation_row(
-                validation_by_id[candidate_id],
-                bulk_row,
-                scaleout_hits,
-            )
-            issues.extend(f"{candidate_id}:{issue}" for issue in row_issues)
+        materialization_row = materialization_by_id.get(candidate_id)
+        if materialization_row is not None:
+            merged_row = _merge_materialized_row(bulk_row, materialization_row)
+            materialized_from_queue_counts[merged_row["materialization_queue_name"]] += 1
         else:
-            bulk_only_rows += 1
-            merged_row = _merge_bulk_only_row(bulk_row, scaleout_hits)
+            merged_row = _merge_bulk_only_row(bulk_row)
+        merge_status_counts[merged_row["merge_status"]] += 1
         merged_rows.append(merged_row)
 
-    missing_validation_ids = sorted(set(validation_by_id) - seen_candidate_ids)
-    if missing_validation_ids:
-        issues.extend(f"validation_row_missing_from_bulk:{candidate_id}" for candidate_id in missing_validation_ids)
-
-    provisional_ids = {
-        row["candidate_id"]
-        for row in bulk_rows
-        if row.get("terminal_state") == "provisional_external_countable_preflight_candidate"
-    }
-    if not bulk_preview_ids.issubset(provisional_ids):
-        issues.append("bulk_preview_candidate_ids_not_subset_of_bulk_provisional_rows")
-    if len(bulk_preview_ids) != bulk_preview_payload.get("candidate_count"):
-        issues.append("bulk_preview_candidate_count_mismatch")
+    materialization_only_ids = sorted(set(materialization_by_id) - seen_candidate_ids)
+    if materialization_only_ids:
+        issues.extend(
+            f"materialization_row_missing_from_bulk_scaleout:{candidate_id}"
+            for candidate_id in materialization_only_ids
+        )
 
     terminal_state_counts = dict(
-        sorted(Counter(row["terminal_state"] for row in merged_rows).items())
+        sorted(Counter(str(row["terminal_state"]) for row in merged_rows).items())
     )
     lane_terminal_state_counts: dict[str, dict[str, int]] = {}
     grouped: dict[str, Counter[str]] = defaultdict(Counter)
@@ -362,18 +326,34 @@ def build_external_admission_merged_surface(
     for lane, counts in sorted(grouped.items()):
         lane_terminal_state_counts[lane] = dict(sorted(counts.items()))
 
-    repair_queue_rows = [
-        row for row in merged_rows if row["terminal_state"] in REPAIRABLE_TERMINAL_STATES
-    ]
     import_ready_rows = [row for row in merged_rows if row["ready_for_import_preview"]]
-    blocked_rows = [
+    repair_queue_rows = [row for row in merged_rows if row["repair_bucket"]]
+    duplicate_blocked_rows = [
         row
         for row in merged_rows
         if row["terminal_state"] == "blocked_duplicate_or_current_registry_conflict"
     ]
-    scaleout_overlap_rows = [
-        row for row in merged_rows if row["scaleout_overlap"]["overlaps_current_main_scaleout_surface"]
+    current702_conflict_rows = [row for row in merged_rows if row["current702_conflict"]]
+    external_duplicate_rows = [
+        row for row in merged_rows if row["external_duplicate_conflict"]
     ]
+    newly_added_by_scaleout = [
+        row for row in merged_rows if row["candidate_id"] not in previous_ids
+    ]
+    controlled_import_review_ready = [
+        row for row in merged_rows if row["controlled_import_review_lane_ready"]
+    ]
+
+    preview_candidate_ids = {
+        str(row["candidate_id"])
+        for row in materialization_preview_payload.get("rows", []) or []
+        if isinstance(row, dict) and row.get("candidate_id")
+    }
+    import_ready_candidate_ids = {str(row["candidate_id"]) for row in import_ready_rows}
+    preview_provenance_ok = all(
+        row["provenance_audit"]["source_provenance_present"] for row in import_ready_rows
+    )
+    preview_non_overlap_ok = all(not row["current702_conflict"] for row in import_ready_rows)
 
     return {
         "artifact_id": ARTIFACT_ID,
@@ -381,47 +361,91 @@ def build_external_admission_merged_surface(
         "created_utc": created,
         "counts": {
             "merged_rows": len(merged_rows),
-            "validation_upgrade_rows": validation_upgrades,
-            "bulk_only_rows": bulk_only_rows,
             "import_ready_rows": len(import_ready_rows),
             "repair_queue_rows": len(repair_queue_rows),
-            "blocked_duplicate_or_current_registry_conflict_rows": len(blocked_rows),
-            "scaleout_overlap_rows": len(scaleout_overlap_rows),
+            "blocked_duplicate_or_current_registry_conflict_rows": len(
+                duplicate_blocked_rows
+            ),
+            "current702_conflict_rows": len(current702_conflict_rows),
+            "external_duplicate_conflict_rows": len(external_duplicate_rows),
+            "rows_newly_added_by_scaleout": len(newly_added_by_scaleout),
+            "rows_retained_from_previous_qa_surface": len(merged_rows)
+            - len(newly_added_by_scaleout),
+            "materialized_from_validated_queue_rows": materialized_from_queue_counts.get(
+                "validated_ready_preview", 0
+            ),
+            "materialized_from_provisional_queue_rows": materialized_from_queue_counts.get(
+                "provisional_bulk_preview", 0
+            ),
+            "controlled_import_review_lane_ready_rows": len(
+                controlled_import_review_ready
+            ),
         },
         "terminal_state_counts": terminal_state_counts,
         "lane_terminal_state_counts": lane_terminal_state_counts,
-        "producer_watch": {
-            "ce_external_materialization_admission_batch": _watch_status(
-                "ce-external-materialization-admission-batch",
-                "v3_external*materialization*admission*batch*.json",
-            ),
-            "ce_external_bulk_pagination_scaleout": _watch_status(
-                "ce-external-bulk-pagination-scaleout",
-                "v3_external*bulk*pagination*scaleout*.json",
-            ),
+        "merge_status_counts": dict(sorted(merge_status_counts.items())),
+        "source_artifact_reconciliation": {
+            "materialization_rows": len(materialization_rows),
+            "bulk_scaleout_rows": len(bulk_rows),
+            "materialization_rows_missing_from_bulk_scaleout": materialization_only_ids,
+            "materialization_preview_candidate_count": len(preview_candidate_ids),
+            "import_ready_candidate_count": len(import_ready_candidate_ids),
+            "materialization_preview_matches_import_ready_rows": preview_candidate_ids
+            == import_ready_candidate_ids,
         },
         "validation_checks": {
-            "passed": not issues,
+            "passed": not issues
+            and materialization_payload.get("counts", {}).get("input_rows")
+            == len(materialization_rows)
+            and bulk_scaleout_payload.get("candidate_count") == len(bulk_rows)
+            and bulk_preview_payload.get("candidate_count")
+            == len(bulk_preview_payload.get("rows", []) or [])
+            and materialization_preview_payload.get("candidate_count")
+            == len(materialization_preview_payload.get("rows", []) or [])
+            and preview_provenance_ok
+            and preview_non_overlap_ok,
             "issues": issues,
-            "bulk_candidate_count_matches_rows": bulk_scout_payload.get("candidate_count")
+            "materialization_input_rows_match": materialization_payload.get(
+                "counts", {}
+            ).get("input_rows")
+            == len(materialization_rows),
+            "bulk_scaleout_candidate_count_matches_rows": bulk_scaleout_payload.get(
+                "candidate_count"
+            )
             == len(bulk_rows),
-            "validation_candidate_count_matches_rows": validation_payload.get("counts", {}).get("validated_rows")
-            == len(validation_rows),
-            "bulk_preview_candidate_count_matches_rows": bulk_preview_payload.get("candidate_count")
-            == len(bulk_preview_rows),
+            "bulk_preview_candidate_count_matches_rows": bulk_preview_payload.get(
+                "candidate_count"
+            )
+            == len(bulk_preview_payload.get("rows", []) or []),
+            "materialization_preview_candidate_count_matches_rows": (
+                materialization_preview_payload.get("candidate_count")
+                == len(materialization_preview_payload.get("rows", []) or [])
+            ),
+            "import_ready_rows_have_source_provenance": preview_provenance_ok,
+            "import_ready_rows_clear_current702_non_overlap_check": (
+                preview_non_overlap_ok
+            ),
         },
-        "source_artifact_reconciliation": {
-            "validation_rows": len(validation_rows),
-            "bulk_rows": len(bulk_rows),
-            "bulk_preview_rows": len(bulk_preview_rows),
-            "validation_ids_missing_from_bulk": missing_validation_ids,
-            "bulk_preview_ids_outside_bulk_provisional_rows": sorted(bulk_preview_ids - provisional_ids),
+        "controlled_import_review_lane": {
+            "ready": bool(controlled_import_review_ready),
+            "ready_row_count": len(controlled_import_review_ready),
+            "basis": (
+                "preview-only external import lane is populated with materialized rows "
+                "that carry source provenance and clear exact current702 non-overlap checks"
+                if controlled_import_review_ready
+                else "no row currently clears the preview-only import-review prerequisites"
+            ),
+            "production_import_authorized": False,
         },
         "guardrails": {
             "production_registry_edited": False,
             "label_import_performed": False,
             "final_import_files_edited": False,
+            "heldout_splits_edited": False,
+            "model_weights_edited": False,
+            "production_thresholds_edited": False,
         },
+        "source_artifacts": source_artifacts or {},
         "rows": merged_rows,
     }
 
@@ -439,12 +463,20 @@ def build_external_admission_import_ready_preview(
             "accession": row["accession"],
             "target_family_lane": row["target_family_lane"],
             "terminal_state": row["terminal_state"],
+            "merge_status": row["merge_status"],
+            "coordinate_path": row.get("coordinate_path"),
+            "locator_sidecar_path": row.get("locator_sidecar_path"),
+            "next_action": row.get("next_action"),
+            "ready_for_controlled_import_review": True,
             "ready_for_production_label_import": False,
             "remaining_required_before_import": row["remaining_required_before_import"],
             "source_hashes": row.get("source_hashes"),
             "source_provenance": row.get("source_provenance"),
-            "merge_status": row["merge_status"],
-            "scaleout_overlap": row["scaleout_overlap"],
+            "duplicate_status": row.get("duplicate_status"),
+            "non_overlap_checks": {
+                "exact_current702_non_overlap": not row["current702_conflict"],
+                "external_duplicate_overlap_present": row["external_duplicate_conflict"],
+            },
         }
         for row in merged_surface.get("rows", [])
         if row.get("ready_for_import_preview")
@@ -479,9 +511,9 @@ def build_external_admission_repair_queue(
             "target_family_lane": row["target_family_lane"],
             "terminal_state": row["terminal_state"],
             "repair_bucket": row["repair_bucket"],
-            "exact_next_action": row.get("exact_next_action"),
-            "remaining_required_before_import": row["remaining_required_before_import"],
             "merge_status": row["merge_status"],
+            "next_action": row.get("next_action") or row.get("exact_next_action"),
+            "remaining_required_before_import": row["remaining_required_before_import"],
             "source_hashes": row.get("source_hashes"),
             "source_provenance": row.get("source_provenance"),
         }
@@ -510,38 +542,51 @@ def render_external_admission_qa_merger_report(
     repair_queue: dict[str, Any],
 ) -> str:
     counts = merged_surface["counts"]
+    source_artifacts = merged_surface.get("source_artifacts", {})
     lines = [
         "# External Admission QA Merger - current702",
         "",
-        "Merged the durable external admission surfaces by upgrading the 16-row "
-        "validated admission slice over the bulk scout baseline, auditing "
-        "provenance/hash continuity, and separating repairable rows into an "
-        "explicit queue without touching production registries or final import files.",
+        "Merged the completed producer outputs by overlaying the 370-row "
+        "materialization admission batch onto the 845-row bulk pagination "
+        "scaleout surface, preserving preview-only guardrails and leaving all "
+        "production registries, imports, ontologies, heldout splits, thresholds, "
+        "and model weights untouched.",
         "",
         "## Summary",
         "",
-        f"- Merged rows: {counts['merged_rows']}",
-        f"- Validation upgrades: {counts['validation_upgrade_rows']}",
-        f"- Bulk-only rows: {counts['bulk_only_rows']}",
-        f"- Import-ready preview rows: {import_ready_preview['candidate_count']}",
-        f"- Repair-queue rows: {repair_queue['candidate_count']}",
-        f"- Scaleout-overlap audit rows: {counts['scaleout_overlap_rows']}",
-        f"- Validation passed: {merged_surface['validation_checks']['passed']}",
+        f"- Merged candidate count: {counts['merged_rows']}",
+        f"- Import-ready preview count: {import_ready_preview['candidate_count']}",
+        f"- Repair queue count: {repair_queue['candidate_count']}",
+        f"- Blocked duplicate/current702 conflict rows: {counts['blocked_duplicate_or_current_registry_conflict_rows']}",
+        f"- Exact current702 conflict rows: {counts['current702_conflict_rows']}",
+        f"- Rows newly added by scaleout vs 20260608 QA surface: {counts['rows_newly_added_by_scaleout']}",
+        f"- Rows materialized from validated queue: {counts['materialized_from_validated_queue_rows']}",
+        f"- Rows materialized from provisional queue: {counts['materialized_from_provisional_queue_rows']}",
+        f"- Controlled import-review lane ready: {merged_surface['controlled_import_review_lane']['ready']}",
         "",
-        "## Producer Watch",
+        "## Source Artifact Hashes",
         "",
     ]
-    for value in merged_surface["producer_watch"].values():
-        lines.append(
-            f"- `{value['automation_id']}`: `{value['status']}` "
-            f"({len(value['artifact_paths'])} artifact(s))"
+    for label, metadata in source_artifacts.items():
+        location = metadata.get("spec") or metadata.get("path") or metadata.get(
+            "artifact_path", "unknown"
         )
+        commit = metadata.get("git_commit")
+        if commit:
+            lines.append(
+                f"- `{label}`: `{location}` @ `{commit[:8]}` "
+                f"(sha256 `{metadata['sha256']}`)"
+            )
+        else:
+            lines.append(
+                f"- `{label}`: `{location}` (sha256 `{metadata['sha256']}`)"
+            )
 
     lines.extend(["", "## Terminal State Counts", "", "| terminal state | count |", "| --- | ---: |"])
     for state, count in merged_surface["terminal_state_counts"].items():
         lines.append(f"| `{state}` | {count} |")
 
-    lines.extend(["", "## Lane Counts", "", "| family/lane | terminal state | count |", "| --- | --- | ---: |"])
+    lines.extend(["", "## Lane Counts", "", "| lane | terminal state | count |", "| --- | --- | ---: |"])
     for lane, lane_counts in merged_surface["lane_terminal_state_counts"].items():
         for state, count in lane_counts.items():
             lines.append(f"| {lane} | `{state}` | {count} |")
@@ -549,20 +594,12 @@ def render_external_admission_qa_merger_report(
     lines.extend(
         [
             "",
-            "## Import-Ready Preview",
+            "## Import Review Readiness",
             "",
-            f"- Candidate rows: `{import_ready_preview['candidate_count']}`",
-        ]
-    )
-    if import_ready_preview["candidate_count"] == 0:
-        lines.append(
-            "- No row is import-ready yet. The validated rows still need "
-            "coordinate and/or locator materialization, and bulk-only rows still "
-            "need scaled admission validation plus downstream duplicate and review gates."
-        )
-
-    lines.extend(
-        [
+            f"- Import-ready rows have source provenance: `{merged_surface['validation_checks']['import_ready_rows_have_source_provenance']}`",
+            f"- Import-ready rows clear exact current702 non-overlap: `{merged_surface['validation_checks']['import_ready_rows_clear_current702_non_overlap_check']}`",
+            f"- Production import authorized here: `{merged_surface['controlled_import_review_lane']['production_import_authorized']}`",
+            f"- Lane basis: {merged_surface['controlled_import_review_lane']['basis']}",
             "",
             "## Repair Queue",
             "",
@@ -571,7 +608,7 @@ def render_external_admission_qa_merger_report(
         ]
     )
     for row in repair_queue["rows"][:25]:
-        next_action = str(row.get("exact_next_action") or "").replace("|", "\\|")
+        next_action = str(row.get("next_action") or "").replace("|", "\\|")
         lines.append(
             f"| `{row['candidate_id']}` | {row['target_family_lane']} | "
             f"`{row['terminal_state']}` | `{row['repair_bucket']}` | {next_action} |"
@@ -586,49 +623,63 @@ def render_external_admission_qa_merger_report(
 
 def write_external_admission_qa_merger(
     *,
-    validation_path: Path = DEFAULT_VALIDATION_PATH,
-    bulk_scout_path: Path = DEFAULT_BULK_SCOUT_PATH,
-    bulk_preview_path: Path = DEFAULT_BULK_PREVIEW_PATH,
-    scaleout_merged_path: Path = DEFAULT_SCALEOUT_MERGED_PATH,
+    materialization_batch_spec: str | Path = DEFAULT_MATERIALIZATION_BATCH_SPEC,
+    materialization_preview_spec: str | Path = DEFAULT_MATERIALIZATION_PREVIEW_SPEC,
+    bulk_scaleout_spec: str | Path = DEFAULT_BULK_SCALEOUT_SPEC,
+    bulk_preview_spec: str | Path = DEFAULT_BULK_PREVIEW_SPEC,
+    previous_merged_surface_spec: str | Path = DEFAULT_PREVIOUS_MERGED_SURFACE_SPEC,
     out_path: Path = DEFAULT_OUT_PATH,
     import_ready_path: Path = DEFAULT_IMPORT_READY_PATH,
     repair_queue_path: Path = DEFAULT_REPAIR_QUEUE_PATH,
     report_path: Path | None = DEFAULT_REPORT_PATH,
     created_utc: str | None = None,
 ) -> dict[str, Any]:
+    materialization_payload, materialization_source = _load_json_source(
+        materialization_batch_spec
+    )
+    materialization_preview_payload, materialization_preview_source = _load_json_source(
+        materialization_preview_spec
+    )
+    bulk_scaleout_payload, bulk_scaleout_source = _load_json_source(bulk_scaleout_spec)
+    bulk_preview_payload, bulk_preview_source = _load_json_source(bulk_preview_spec)
+    previous_merged_surface_payload, previous_merged_surface_source = _load_json_source(
+        previous_merged_surface_spec
+    )
+
     merged_surface = build_external_admission_merged_surface(
-        validation_payload=_read_json(validation_path),
-        bulk_scout_payload=_read_json(bulk_scout_path),
-        bulk_preview_payload=_read_json(bulk_preview_path),
-        scaleout_merged_payload=_read_json(scaleout_merged_path),
+        materialization_payload=materialization_payload,
+        materialization_preview_payload=materialization_preview_payload,
+        bulk_scaleout_payload=bulk_scaleout_payload,
+        bulk_preview_payload=bulk_preview_payload,
+        previous_merged_surface_payload=previous_merged_surface_payload,
+        source_artifacts={
+            "external_materialization_admission_batch": materialization_source,
+            "external_materialization_import_ready_preview": (
+                materialization_preview_source
+            ),
+            "external_bulk_ingestion_scaleout": bulk_scaleout_source,
+            "external_bulk_ingestion_scaleout_provisional_import_preview": (
+                bulk_preview_source
+            ),
+            "previous_external_admission_qa_surface": previous_merged_surface_source,
+        },
         created_utc=created_utc,
     )
-    merged_surface["source_artifacts"] = {
-        "external_source_admission_validation": _source_record(validation_path),
-        "external_bulk_ingestion_scout": _source_record(bulk_scout_path),
-        "external_bulk_ingestion_provisional_import_preview": _source_record(
-            bulk_preview_path
-        ),
-        "scaleout_merged_acceptance_surface": _source_record(scaleout_merged_path),
-    }
     import_ready_preview = build_external_admission_import_ready_preview(merged_surface)
     repair_queue = build_external_admission_repair_queue(merged_surface)
-    import_ready_preview["source_artifacts"] = {
-        "external_admission_merged_surface": _source_record(out_path)
-        if out_path.exists()
-        else None
-    }
-    repair_queue["source_artifacts"] = {
-        "external_admission_merged_surface": _source_record(out_path)
-        if out_path.exists()
-        else None
-    }
+
     _write_json(out_path, merged_surface)
     import_ready_preview["source_artifacts"] = {
-        "external_admission_merged_surface": _source_record(out_path)
+        "external_admission_merged_surface": {
+            "path": str(out_path),
+            "sha256": _sha256_text(out_path.read_text(encoding="utf-8")),
+        }
     }
     repair_queue["source_artifacts"] = {
-        "external_admission_merged_surface": _source_record(out_path)
+        "external_admission_merged_surface": {
+            "path": str(out_path),
+            "sha256": _sha256_text(out_path.read_text(encoding="utf-8")),
+        }
     }
     _write_json(import_ready_path, import_ready_preview)
     _write_json(repair_queue_path, repair_queue)

@@ -251,54 +251,64 @@ class CliTests(unittest.TestCase):
         args = build_parser().parse_args(["build-external-admission-qa-merger"])
 
         self.assertEqual(
-            args.validation,
+            args.materialization_batch,
             (
-                "artifacts/"
-                "v3_external_source_admission_validation_16_current702_20260608.json"
+                "origin/ce-external-materialization-admission-batch-20260608:"
+                "artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
             ),
         )
         self.assertEqual(
-            args.bulk_scout,
-            "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json",
+            args.materialization_preview,
+            (
+                "origin/ce-external-materialization-admission-batch-20260608:"
+                "artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.bulk_scaleout,
+            (
+                "origin/ce-external-bulk-pagination-scaleout-20260609:"
+                "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json"
+            ),
         )
         self.assertEqual(
             args.bulk_preview,
             (
-                "artifacts/"
-                "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+                "origin/ce-external-bulk-pagination-scaleout-20260609:"
+                "artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json"
             ),
         )
         self.assertEqual(
-            args.scaleout_merged,
+            args.previous_merged_surface,
             (
-                "artifacts/"
-                "v3_scaleout_merged_acceptance_surface_current702_20260608.json"
+                "origin/ce-external-admission-qa-merger-20260608:"
+                "artifacts/v3_external_admission_merged_surface_current702_20260608.json"
             ),
         )
         self.assertEqual(
             args.out,
             (
                 "artifacts/"
-                "v3_external_admission_merged_surface_current702_20260608.json"
+                "v3_external_admission_merged_surface_current702_20260609.json"
             ),
         )
         self.assertEqual(
             args.import_ready,
             (
                 "artifacts/"
-                "v3_external_admission_import_ready_preview_current702_20260608.json"
+                "v3_external_admission_import_ready_preview_current702_20260609.json"
             ),
         )
         self.assertEqual(
             args.repair_queue,
             (
                 "artifacts/"
-                "v3_external_admission_repair_queue_current702_20260608.json"
+                "v3_external_admission_repair_queue_current702_20260609.json"
             ),
         )
         self.assertEqual(
             args.report,
-            "work/external_admission_qa_merger_current702_20260608.md",
+            "work/external_admission_qa_merger_current702_20260609.md",
         )
         self.assertIsNone(args.created_utc)
 

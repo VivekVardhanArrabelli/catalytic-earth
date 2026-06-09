@@ -27,108 +27,128 @@ def _bulk_row(accession: str, *, terminal_state: str) -> dict[str, object]:
             "uniprot_entry_record_sha256": "b" * 64,
             "rhea_records_sha256": "c" * 64,
         },
-        "source_provenance": {"query_timestamp_utc": "2026-06-08T00:00:00Z"},
+        "source_provenance": {"query_timestamp_utc": "2026-06-09T00:00:00Z"},
         "exact_next_action": "continue gate",
-        "blocker_basis": {
-            "duplicate_or_current_registry_conflict": False,
-        },
     }
 
 
-def _validation_row(accession: str, *, terminal_state: str) -> dict[str, object]:
+def _materialized_row(
+    accession: str,
+    *,
+    terminal_state: str,
+    queue_name: str,
+) -> dict[str, object]:
     return {
         "stable_candidate_key": f"external_source_ingestion:uniprot:{accession}",
         "candidate_id": f"uniprot:{accession}",
         "accession": accession,
         "target_family_lane": "redox oxygen/sulfur",
-        "lane_id": "redox_oxygen_sulfur",
         "terminal_state": terminal_state,
+        "queue_name": queue_name,
         "source_hashes": {
             "uniprot_search_row_sha256": "a" * 64,
             "uniprot_entry_record_sha256": "b" * 64,
             "rhea_records_sha256": "c" * 64,
         },
-        "source_provenance": {"query_timestamp_utc": "2026-06-08T00:00:00Z"},
-        "exact_next_action": "materialize locator",
+        "source_provenance": {"query_timestamp_utc": "2026-06-09T00:00:00Z"},
         "duplicate_status": {
-            "recomputed_current_registry_duplicate_status": {
-                "duplicate_or_current_registry_conflict": False,
-            }
+            "current_registry_conflict_status": "no_exact_current702_accession_or_sequence_sha_overlap",
+            "duplicate_or_current_registry_conflict": False,
         },
+        "next_action": "preview only",
+        "input_preview_terminal_state": (
+            "admission_ready_pending_locator_materialization"
+            if queue_name == "validated_ready_preview"
+            else "provisional_external_countable_preflight_candidate"
+        ),
     }
 
 
 class ExternalAdmissionQaMergerTests(unittest.TestCase):
-    def test_merges_validation_upgrades_and_builds_repair_queue(self) -> None:
-        validation = {
-            "counts": {"validated_rows": 1},
+    def test_merges_materialized_rows_over_bulk_scaleout_surface(self) -> None:
+        materialization = {
+            "counts": {"input_rows": 2},
             "rows": [
-                _validation_row(
+                _materialized_row(
                     "PVALID",
-                    terminal_state="admission_ready_pending_locator_materialization",
-                )
+                    terminal_state="import_ready_preview",
+                    queue_name="validated_ready_preview",
+                ),
+                _materialized_row(
+                    "PREPAIR",
+                    terminal_state="repairable_locator_blocker",
+                    queue_name="provisional_bulk_preview",
+                ),
             ],
+        }
+        materialization_preview = {
+            "candidate_count": 1,
+            "rows": [{"candidate_id": "uniprot:PVALID"}],
         }
         bulk = {
             "candidate_count": 3,
             "rows": [
                 _bulk_row(
                     "PVALID",
+                    terminal_state="blocked_duplicate_or_current_registry_conflict",
+                ),
+                _bulk_row(
+                    "PREPAIR",
                     terminal_state="provisional_external_countable_preflight_candidate",
                 ),
-                _bulk_row("PREPAIR", terminal_state="coordinate_repair_candidate"),
                 _bulk_row("PBULK", terminal_state="locator_ready_candidate"),
             ],
         }
         bulk_preview = {
             "candidate_count": 1,
-            "rows": [
-                {
-                    "candidate_id": "uniprot:PVALID",
-                }
-            ],
+            "rows": [{"candidate_id": "uniprot:PREPAIR"}],
         }
-        scaleout = {
-            "canonical_records": [
-                {
-                    "canonical_key": "canon1",
-                    "canonical_terminal_state": "review_only_evidence",
-                    "source_members": [{"accession": "PBULK"}],
-                }
+        previous_merged = {
+            "rows": [
+                {"candidate_id": "uniprot:PVALID"},
+                {"candidate_id": "uniprot:PREPAIR"},
             ]
         }
 
         merged = build_external_admission_merged_surface(
-            validation_payload=validation,
-            bulk_scout_payload=bulk,
+            materialization_payload=materialization,
+            materialization_preview_payload=materialization_preview,
+            bulk_scaleout_payload=bulk,
             bulk_preview_payload=bulk_preview,
-            scaleout_merged_payload=scaleout,
-            created_utc="2026-06-08T00:00:00Z",
+            previous_merged_surface_payload=previous_merged,
+            created_utc="2026-06-09T02:25:12Z",
         )
 
         self.assertTrue(merged["validation_checks"]["passed"])
         self.assertEqual(merged["counts"]["merged_rows"], 3)
-        self.assertEqual(merged["counts"]["validation_upgrade_rows"], 1)
-        self.assertEqual(merged["counts"]["bulk_only_rows"], 2)
-        self.assertEqual(merged["terminal_state_counts"]["admission_ready_pending_locator_materialization"], 1)
+        self.assertEqual(merged["counts"]["import_ready_rows"], 1)
+        self.assertEqual(merged["counts"]["repair_queue_rows"], 1)
+        self.assertEqual(merged["counts"]["rows_newly_added_by_scaleout"], 1)
+        self.assertEqual(merged["counts"]["materialized_from_validated_queue_rows"], 1)
+        self.assertEqual(
+            merged["counts"]["materialized_from_provisional_queue_rows"], 1
+        )
 
         rows = {row["candidate_id"]: row for row in merged["rows"]}
         self.assertEqual(
             rows["uniprot:PVALID"]["merge_status"],
-            "validated_upgrade_from_bulk_provisional",
+            "materialized_from_validated_queue",
         )
+        self.assertTrue(rows["uniprot:PVALID"]["ready_for_import_preview"])
         self.assertEqual(
             rows["uniprot:PREPAIR"]["repair_bucket"],
-            "coordinate_repair",
+            "locator_repair",
         )
-        self.assertTrue(
-            rows["uniprot:PBULK"]["scaleout_overlap"]["overlaps_current_main_scaleout_surface"]
+        self.assertEqual(
+            rows["uniprot:PBULK"]["merge_status"],
+            "scaleout_bulk_only_candidate",
         )
 
         import_ready = build_external_admission_import_ready_preview(merged)
         repair_queue = build_external_admission_repair_queue(merged)
-        self.assertEqual(import_ready["candidate_count"], 0)
-        self.assertEqual(repair_queue["candidate_count"], 2)
+        self.assertEqual(import_ready["candidate_count"], 1)
+        self.assertEqual(repair_queue["candidate_count"], 1)
+        self.assertTrue(import_ready["rows"][0]["non_overlap_checks"]["exact_current702_non_overlap"])
 
 
 if __name__ == "__main__":
