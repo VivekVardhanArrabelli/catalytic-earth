@@ -3,6 +3,56 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-09: Annotation-Anchored Bronze Is An Accepted External Label Basis (the 10k unlock)
+
+Decision (owner: Vivek): to scale toward 10k labels, **reviewed Swiss-Prot/EC/Rhea/cofactor
+annotation is an accepted bronze label source.** Scope/fingerprint may be decided from
+reviewed annotation; structure/geometry confirmation is demoted from an entry gate to a
+deferred **bronze->silver promotion** signal.
+
+Why this was the real blocker (not ceremony): scoring the 276 coordinate-bearing Wave 2
+rows through the project's own text-free geometry inverse-gate abstained on **100%** of them
+— the AlphaFold **apo** coordinates lack the cofactor, the same predicted-apo degradation the
+step-4 work characterized. So "scope must be geometry-confirmed" is unmeetable on predicted
+structures and produced zero counted labels from thousands of candidates. The fix separates
+the two things the old bar conflated: (1) **predictive leakage discipline** — the benchmark
+scorer must never see EC/name/prose — stays ABSOLUTE; (2) **label evidence basis** — adopt the
+field-standard reviewed annotation, recorded transparently as `evidence_basis` + bronze tier.
+
+**Frozen benchmark stays clean — expansion labels live in a SEPARATE registry.** The
+current702 `curated_mechanism_labels.json` IS the frozen evaluation benchmark: its label
+count, the `mechanism_fingerprint_v1_coherence_audit_702` baseline, and the
+`mechanism_prediction_oos_and_diversity_eval_contract_702` SHA-256 are deliberately pinned
+(regression tests enforce all three). Expansion bronze labels are therefore written to
+`data/registries/external_bronze_labels.json`, NOT the benchmark. Total label count =
+frozen benchmark (702) + expansion; the benchmark and its contracts are byte-unchanged.
+
+Load-bearing gates kept: leakage-safe split (expansion uniprot rows are NOT in the frozen
+702 split — heldout untouched), current702 accession/sequence duplicate screen (deduped
+against BOTH registries), EC/name/prose in `excluded_context` (never predictive), honest
+bronze/automation_curated tiering, and per-lane diversity. Conservative scope policy:
+positives only when an annotation-derived primary lane is corroborated by the matching
+cofactor class (metal/PLP/flavin); clear OOS for non-eight-fingerprint lanes; **hold**
+cofactor-confounded redox and secondary-probe radical-SAM/cobalamin lanes for review. The
+external out_of_scope evidence validator (`labels.py`) now accepts the annotation basis with
+empty `predictive_evidence` (geometry confirmation deferred), keeping the leakage separation.
+
+First batch (applied to the expansion registry): 186 bronze labels (101 seed_fingerprint =
+95 metal_dependent_hydrolase + 6 plp_dependent_enzyme; 85 out_of_scope) -> combined total
+**702 + 186 = 888**; 90 held, 324 skipped (current702 duplicate screen not yet confirmed —
+the next batch). Each label carries rich review-only `mechanism_evidence` (Rhea reaction
+equations, active-site catalytic/binding residues with ligand ChEBI ids, cofactor identities,
+EC) for future representation learning — provenance only, never predictive.
+
+References:
+
+- `src/catalytic_earth/external_annotation_anchored_import.py`,
+  `tests/test_external_annotation_anchored_import.py`, CLI
+  `build-external-annotation-anchored-import` + `apply-external-annotation-anchored-import`.
+- `data/registries/external_bronze_labels.json` (expansion registry, 186 bronze labels).
+- `artifacts/v3_external_annotation_anchored_import_preview_wave2_current702_20260609.json`,
+  `work/external_annotation_anchored_import_preview_wave2_current702_20260609.md`.
+
 ## 2026-06-09: Step-4 Precision Side Measured — Recalibrated-Threshold Dial Beats Suppression (leakage-safe)
 
 Decision: the Problem-2 step-4 operating-point question now has its missing

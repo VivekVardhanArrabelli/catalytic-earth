@@ -86,6 +86,10 @@ from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .cofactor_fusion_operating_point import (
     write_cofactor_fusion_operating_point,
 )
+from .external_annotation_anchored_import import (
+    apply_external_annotation_anchored_import_to_registry,
+    write_external_annotation_anchored_import,
+)
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2768,6 +2772,44 @@ def cmd_build_cofactor_fusion_operating_point(args: argparse.Namespace) -> int:
         f"OOS FP {supp.get('oos_false_positives')}/{supp.get('oos_total')}; "
         f"threshold-dial dominates suppression: "
         f"{audit.get('dial_comparison', {}).get('threshold_dial_dominates_suppression_dial')})"
+    )
+    return 0
+
+
+def cmd_build_external_annotation_anchored_import(args: argparse.Namespace) -> int:
+    audit = write_external_annotation_anchored_import(
+        preview_path=Path(args.preview),
+        registry_path=Path(args.registry),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    c = audit["counts"]
+    print(
+        "Wrote annotation-anchored bronze import preview to "
+        f"{args.out} ({audit.get('status')}; importable {c['importable_new_labels']} "
+        f"({c['label_type_counts']}); registry {c['current_registry_labels']} -> "
+        f"{c['projected_registry_labels_if_merged']} if merged; "
+        f"held {c['hold_count']}, skipped {c['skip_count']}; "
+        "curated registry NOT written)"
+    )
+    return 0
+
+
+def cmd_apply_external_annotation_anchored_import(args: argparse.Namespace) -> int:
+    summary = apply_external_annotation_anchored_import_to_registry(
+        preview_path=Path(args.preview),
+        expansion_registry_path=Path(args.expansion_registry),
+        frozen_benchmark_registry_path=Path(args.frozen_benchmark_registry),
+    )
+    print(
+        "Appended annotation-anchored bronze labels to expansion registry "
+        f"{summary['expansion_registry_path']}: "
+        f"{summary['expansion_registry_before']} -> "
+        f"{summary['expansion_registry_after']} "
+        f"(appended {summary['appended']} {summary['appended_label_type_counts']}; "
+        f"dup-skipped {summary['duplicate_skipped']}). "
+        f"Frozen benchmark untouched ({summary['frozen_benchmark_labels']}); "
+        f"combined total {summary['combined_total_labels']}."
     )
     return 0
 
@@ -22384,6 +22426,70 @@ def build_parser() -> argparse.ArgumentParser:
     )
     cofactor_fusion_operating_point.set_defaults(
         func=cmd_build_cofactor_fusion_operating_point
+    )
+
+    annotation_anchored_import = subparsers.add_parser(
+        "build-external-annotation-anchored-import",
+        help=(
+            "non-destructive annotation-anchored bronze external import preview: "
+            "assign scope from reviewed Swiss-Prot/EC/Rhea/cofactor annotation "
+            "(EC/name/prose excluded from predictive features), tier bronze; "
+            "does NOT write the curated registry"
+        ),
+    )
+    annotation_anchored_import.add_argument(
+        "--preview",
+        default=(
+            "artifacts/"
+            "v3_external_materialization_wave2_import_ready_preview_current702_20260609.json"
+        ),
+    )
+    annotation_anchored_import.add_argument(
+        "--registry", default="data/registries/curated_mechanism_labels.json"
+    )
+    annotation_anchored_import.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_annotation_anchored_import_preview_wave2_current702_20260609.json"
+        ),
+    )
+    annotation_anchored_import.add_argument(
+        "--report",
+        default=(
+            "work/external_annotation_anchored_import_preview_wave2_current702_20260609.md"
+        ),
+    )
+    annotation_anchored_import.set_defaults(
+        func=cmd_build_external_annotation_anchored_import
+    )
+
+    apply_annotation_anchored = subparsers.add_parser(
+        "apply-external-annotation-anchored-import",
+        help=(
+            "append an annotation-anchored bronze import preview to the SEPARATE "
+            "expansion registry (data/registries/external_bronze_labels.json); the "
+            "frozen current702 benchmark registry is never written; dedups by "
+            "entry_id against both registries"
+        ),
+    )
+    apply_annotation_anchored.add_argument(
+        "--preview",
+        default=(
+            "artifacts/"
+            "v3_external_annotation_anchored_import_preview_wave2_current702_20260609.json"
+        ),
+    )
+    apply_annotation_anchored.add_argument(
+        "--expansion-registry",
+        default="data/registries/external_bronze_labels.json",
+    )
+    apply_annotation_anchored.add_argument(
+        "--frozen-benchmark-registry",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    apply_annotation_anchored.set_defaults(
+        func=cmd_apply_external_annotation_anchored_import
     )
 
     embedding_sidecar = subparsers.add_parser(
