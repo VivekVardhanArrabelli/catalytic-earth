@@ -212,6 +212,65 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.artifacts_dir, "artifacts")
         self.assertIsNone(args.created_utc)
 
+    def test_external_import_review_preflight_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-external-import-review-preflight"])
+
+        self.assertEqual(
+            args.preview,
+            (
+                "origin/ce-external-admission-qa-merger-20260609:"
+                "artifacts/"
+                "v3_external_admission_import_ready_preview_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.merged_surface,
+            (
+                "origin/ce-external-admission-qa-merger-20260609:"
+                "artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.materialization,
+            (
+                "origin/ce-external-materialization-admission-batch-20260608:"
+                "artifacts/"
+                "v3_external_materialization_admission_batch_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.current702_coordinate_manifest,
+            "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_import_review_preflight_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.ready_preview,
+            (
+                "artifacts/"
+                "v3_external_import_review_ready_preview_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.repair_queue,
+            (
+                "artifacts/"
+                "v3_external_import_review_repair_queue_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            "work/external_import_review_preflight_current702_20260609.md",
+        )
+        self.assertEqual(args.expected_preview_count, 333)
+        self.assertIsNone(args.tree_ref)
+        self.assertIsNone(args.created_utc)
+
     def test_external_bulk_ingestion_scout_parser_defaults(self) -> None:
         args = build_parser().parse_args(["build-external-bulk-ingestion-scout"])
 

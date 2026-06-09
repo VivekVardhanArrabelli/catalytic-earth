@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 379
-- Measured elapsed time: 11590.0 minutes (193.17 hours)
+- Entries: 380
+- Measured elapsed time: 11605.5 minutes (193.43 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,7 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- targeted-expansion: 122.2 measured minutes (2.04 hours)
+- targeted-expansion: 137.7 measured minutes (2.29 hours)
 - v3: 2734.9 measured minutes (45.58 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -33,21 +33,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3921
-- Evidence references logged: 3262
+- Artifact references logged: 3927
+- Evidence references logged: 3276
 
 ## Recent Entries
-
-### 2026-06-05T17:06:58.568415+00:00 - northstar-lever3
-
-- Task: Lever 3 finalization stop verification
-- Time mode: measured
-- Measured minutes: 2.983
-- Started: 2026-06-05T17:02:39Z
-- Ended: 2026-06-05T17:05:38Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
-- Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 exact coordinate or filled provenance found, no provider credentials or local predictor runtime present, source hash audit 8 of 8 current, git diff check validate and unittest discovery 1495 passed
-- Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
 
 ### 2026-06-05T18:07:16.141465+00:00 - northstar-lever3
 
@@ -127,6 +116,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: ledger JSON parse passed, custom source path and count reconciliation passed including Wave 2, rebased over origin/main 4190c5a2, unittest discovery 1681 passed after rebase, validate passed with 702 curated labels, docs artifact reference check missing 0, git diff check passed, production edit guardrail scan clean, pushed ledger commit 91e13a31 and verified HEAD equals origin/main
 - Commit: `91e13a3198a366759f7b73a22356a80fd22781e9`
 - Notes: Built review-ready ledger tying current702 targeted scaleout choices to prior cofactor geometry fold locator near-orphan OOS and external Swiss-Prot AFDB Rhea lessons; external 333-row import-ready preview remains preview-only.
+
+### 2026-06-09T03:50:15.392215+00:00 - targeted-expansion
+
+- Task: External import-ready review preflight
+- Time mode: measured
+- Measured minutes: 15.483
+- Started: 2026-06-09T03:34:46Z
+- Ended: 2026-06-09T03:50:15Z
+- Artifacts: artifacts/v3_external_import_review_preflight_current702_20260609.json, artifacts/v3_external_import_review_ready_preview_current702_20260609.json, artifacts/v3_external_import_review_repair_queue_current702_20260609.json, work/external_import_review_preflight_current702_20260609.md, work/handoff.md, work/status.md
+- Evidence: 333 preview rows classified, 317 controlled-review ready rows, 15 external duplicate conflicts, 1 family policy review row, 0 current702 exact duplicate conflicts, 0 locator blockers, 0 coordinate blockers, 0 exact coordinate current702 overlaps, JSON parse and count reconciliation passed, focused tests passed, unittest discovery 1683 passed, validate passed with 702 labels, docs artifact-reference missing 0, git diff check passed
+- Notes: Foldseek/TM structural duplicate screen was not recomputed because Foldseek is unavailable and disk free is about 1.4 GiB; exact coordinate/structure-id overlap screen was clean.
 
 ## Expectation Updates
 
@@ -641,3 +641,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-08T13:53:00.862088+00:00: Converted uncertainty to non-importing terminal states; no promotion/import batch started.
 - 2026-06-08T14:19:32.103369+00:00: Self-stop reconciliation only; no duplicate artifact, label import, registry edit, ontology edit, split edit, model change, threshold change, or promotion batch started.
 - 2026-06-09T03:49:20.085384+00:00: Defense-ledger artifact and report only; no registry import ontology split threshold model weight production locator sidecar or heldout tuning edit.
+- 2026-06-09T03:50:15.392215+00:00: Preview-only import-review preflight; no production registry import ontology split threshold model weight coordinate download or label import changed.

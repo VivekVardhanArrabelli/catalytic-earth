@@ -45,6 +45,14 @@ from .external_source_ingestion import (
 from .external_source_admission_validation import (
     write_external_source_admission_validation,
 )
+from .external_import_review_preflight import (
+    DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH,
+    DEFAULT_MATERIALIZATION_SOURCE,
+    DEFAULT_MERGED_SURFACE_SOURCE,
+    DEFAULT_PREVIEW_SOURCE,
+    DEFAULT_TREE_REFS,
+    write_external_import_review_preflight,
+)
 from .external_materialization_wave2 import write_external_materialization_wave2
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
@@ -2855,6 +2863,28 @@ def cmd_build_external_source_admission_validation(args: argparse.Namespace) -> 
         "Wrote external source admission validation to "
         f"{args.out} ({artifact['counts']['validated_rows']} rows; "
         f"{artifact['counts']['admission_ready_rows']} admission-ready)"
+    )
+    return 0
+
+
+def cmd_build_external_import_review_preflight(args: argparse.Namespace) -> int:
+    artifact = write_external_import_review_preflight(
+        preview_source=args.preview,
+        merged_surface_source=args.merged_surface,
+        materialization_source=args.materialization,
+        current702_coordinate_manifest_path=Path(args.current702_coordinate_manifest),
+        out_path=Path(args.out),
+        ready_preview_path=Path(args.ready_preview),
+        repair_queue_path=Path(args.repair_queue),
+        report_path=Path(args.report),
+        tree_refs=tuple(args.tree_ref or DEFAULT_TREE_REFS),
+        expected_preview_count=args.expected_preview_count,
+        created_utc=args.created_utc,
+    )
+    print(
+        "Wrote external import review preflight to "
+        f"{args.out} ({artifact['counts']['controlled_import_review_ready']} "
+        "controlled-review ready)"
     )
     return 0
 
@@ -22360,6 +22390,70 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_admission_validation.set_defaults(
         func=cmd_build_external_source_admission_validation
+    )
+
+    external_import_review_preflight = subparsers.add_parser(
+        "build-external-import-review-preflight",
+        help=(
+            "classify external import-ready preview rows into controlled "
+            "import-review batch decisions"
+        ),
+    )
+    external_import_review_preflight.add_argument(
+        "--preview",
+        default=DEFAULT_PREVIEW_SOURCE,
+    )
+    external_import_review_preflight.add_argument(
+        "--merged-surface",
+        default=DEFAULT_MERGED_SURFACE_SOURCE,
+    )
+    external_import_review_preflight.add_argument(
+        "--materialization",
+        default=DEFAULT_MATERIALIZATION_SOURCE,
+    )
+    external_import_review_preflight.add_argument(
+        "--current702-coordinate-manifest",
+        default=str(DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH),
+    )
+    external_import_review_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_preflight_current702_20260609.json"
+        ),
+    )
+    external_import_review_preflight.add_argument(
+        "--ready-preview",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_ready_preview_current702_20260609.json"
+        ),
+    )
+    external_import_review_preflight.add_argument(
+        "--repair-queue",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_repair_queue_current702_20260609.json"
+        ),
+    )
+    external_import_review_preflight.add_argument(
+        "--report",
+        default="work/external_import_review_preflight_current702_20260609.md",
+    )
+    external_import_review_preflight.add_argument(
+        "--tree-ref",
+        action="append",
+        default=None,
+        help="git ref whose tree can satisfy preview coordinate/locator paths",
+    )
+    external_import_review_preflight.add_argument(
+        "--expected-preview-count",
+        type=int,
+        default=333,
+    )
+    external_import_review_preflight.add_argument("--created-utc")
+    external_import_review_preflight.set_defaults(
+        func=cmd_build_external_import_review_preflight
     )
 
     external_bulk_ingestion = subparsers.add_parser(
