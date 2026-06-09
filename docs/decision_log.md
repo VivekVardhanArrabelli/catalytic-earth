@@ -3,6 +3,56 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-09: Step-4 Precision Side Measured — Recalibrated-Threshold Dial Beats Suppression (leakage-safe)
+
+Decision: the Problem-2 step-4 operating-point question now has its missing
+*precision* side measured on a leakage-safe train/cal surface, and on that surface
+the **recalibrated-abstention-threshold dial dominates the sequence-supported
+suppression dial**. This is a research diagnostic; it changes no production
+threshold and reads no heldout row.
+
+Why this was the open gate: the confirmed heldout one-shot (23 -> 37/45 primary)
+came with a precision cost (OOS/sec FP 12.3% -> 25.9%), but that read is SPENT.
+The in-distribution recovery harness measured the recall side leakage-safe yet had
+**no OOS rows**, so the precision cost was unmeasured on any reusable surface. New
+module `cofactor_fusion_operating_point.py` (CLI
+`build-cofactor-fusion-operating-point`) scores the in-distribution **OOS** rows of
+the train/cal split through the SAME frozen cofactor-fusion router and counts every
+non-abstained primary call as a false positive, so both dials compare on one
+out-of-sample surface.
+
+Result (calibration = out-of-sample for the channel; in-scope 35, OOS 26 scored;
+predicted-apo coordinates from train/cal-safe staged bundles only, heldout bundles
+excluded):
+
+- apo baseline: recall 17/35 (0.486), OOS FP 9/26 (0.346).
+- raw fusion @ frozen 0.4115: recall **30/35** (0.857), OOS FP 9/26 (0.346)
+  — fusion buys +13 in-scope recall; the precision cost shows on the larger train
+  surface (FP 0.402 -> 0.480) and is small on the thin 26-row cal OOS set.
+- **recalibrated threshold @ 0.44**: recall **30/35** (no loss), OOS FP **8/26**
+  (0.308) — reaches the suppression dial's precision for free.
+- suppression dial @ 0.4115: recall **23/35** (0.657), OOS FP 8/26 (0.308) — same
+  precision as the 0.44 threshold but at the cost of **7 in-scope primaries**.
+
+Decision/consequence: prefer the recalibrated abstention threshold over the
+suppression dial as the default precision lever; the suppression dial sacrifices
+recall for precision a small threshold bump achieves at no recall cost. Layer the
+complementary **Lever-2 electron-flow** OOS lift (+0.04 abstain-recall at primary
+retention 1.0, measured on the geometry/fold gate — a *different* surface, not
+merged here). Caveats kept front and center: the cal OOS surface is thin (26 rows,
+1 row = 0.038), coordinate coverage is partial (128/342 OOS rows have staged
+predicted-apo CIFs; gaps are NOT true negatives), and selecting a *deployable*
+operating point is still a separately authorized decision that must not be tuned
+against the spent heldout one-shot.
+
+References:
+
+- `src/catalytic_earth/cofactor_fusion_operating_point.py`,
+  `tests/test_cofactor_fusion_operating_point.py`, CLI
+  `build-cofactor-fusion-operating-point`.
+- `artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609.json`,
+  `work/cofactor_fusion_operating_point_train_cal_oos_current702_20260609.md`.
+
 ## 2026-06-06: Branch Consolidation Complete — `main` Is The Single Source Of Truth
 
 Decision: unify every research track into `main` and stop maintaining parallel branches.

@@ -83,6 +83,9 @@ from .scaleout_plp_radical_cobalamin_external import (
 )
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
+from .cofactor_fusion_operating_point import (
+    write_cofactor_fusion_operating_point,
+)
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2732,6 +2735,39 @@ def cmd_build_in_distribution_predicted_geometry_recovery(
         f"-> fused {cal.get('fused_correct')}; "
         f"recovered {cal.get('fused_recovered_rows')}/{cal.get('apo_lost_primary_rows')}, "
         f"regressed {cal.get('fused_regressed_rows')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_fusion_operating_point(args: argparse.Namespace) -> int:
+    audit = write_cofactor_fusion_operating_point(
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        split_manifest_path=Path(args.split_manifest),
+        channel_path=Path(args.channel),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        lever2_electron_flow_readout_path=(
+            Path(args.lever2_electron_flow_readout)
+            if args.lever2_electron_flow_readout
+            else None
+        ),
+        threshold=args.threshold,
+        alphafold_version=args.alphafold_version,
+    )
+    cal = audit.get("operating_points_by_split", {}).get("calibration", {})
+    fused = cal.get("fused_frozen_threshold", {})
+    supp = cal.get("fused_suppression_dial", {})
+    print(
+        "Wrote cofactor-fusion operating point to "
+        f"{args.out} ({audit.get('status')}; calibration out-of-sample: "
+        f"fused recall {fused.get('inscope_correct')}/{fused.get('inscope_total')} "
+        f"OOS FP {fused.get('oos_false_positives')}/{fused.get('oos_total')}; "
+        f"suppression recall {supp.get('inscope_correct')}/{supp.get('inscope_total')} "
+        f"OOS FP {supp.get('oos_false_positives')}/{supp.get('oos_total')}; "
+        f"threshold-dial dominates suppression: "
+        f"{audit.get('dial_comparison', {}).get('threshold_dial_dominates_suppression_dial')})"
     )
     return 0
 
@@ -22288,6 +22324,66 @@ def build_parser() -> argparse.ArgumentParser:
     )
     in_distribution_recovery.set_defaults(
         func=cmd_build_in_distribution_predicted_geometry_recovery
+    )
+
+    cofactor_fusion_operating_point = subparsers.add_parser(
+        "build-cofactor-fusion-operating-point",
+        help=(
+            "leakage-safe train/cal OOS precision readout for the cofactor-fusion "
+            "router: score in-distribution OOS rows through the frozen router and "
+            "compare the recalibrated-threshold dial vs the suppression dial "
+            "(no production threshold change, no heldout read)"
+        ),
+    )
+    cofactor_fusion_operating_point.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    cofactor_fusion_operating_point.add_argument(
+        "--graph", default="artifacts/v1_graph_1025.json"
+    )
+    cofactor_fusion_operating_point.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_fusion_operating_point.add_argument(
+        "--split-manifest",
+        default=(
+            "artifacts/"
+            "v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json"
+        ),
+    )
+    cofactor_fusion_operating_point.add_argument(
+        "--channel",
+        default="artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+        help="frozen sequence -> cofactor-presence channel artifact",
+    )
+    cofactor_fusion_operating_point.add_argument(
+        "--lever2-electron-flow-readout",
+        default=(
+            "artifacts/"
+            "v3_lever2_source_free_electron_flow_current_split_operating_point_readout_"
+            "current702_20260606.json"
+        ),
+        help="optional complementary Lever-2 electron-flow readout (different surface)",
+    )
+    cofactor_fusion_operating_point.add_argument("--threshold", type=float, default=0.4115)
+    cofactor_fusion_operating_point.add_argument("--alphafold-version", default="6")
+    cofactor_fusion_operating_point.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609.json"
+        ),
+    )
+    cofactor_fusion_operating_point.add_argument(
+        "--report",
+        default=(
+            "work/cofactor_fusion_operating_point_train_cal_oos_current702_20260609.md"
+        ),
+    )
+    cofactor_fusion_operating_point.set_defaults(
+        func=cmd_build_cofactor_fusion_operating_point
     )
 
     embedding_sidecar = subparsers.add_parser(

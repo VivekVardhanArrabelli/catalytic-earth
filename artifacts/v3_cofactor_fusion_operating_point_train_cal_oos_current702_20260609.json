@@ -1,0 +1,339 @@
+{
+  "artifact_id": "v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609",
+  "coverage": {
+    "in_distribution_inscope_rows": 171,
+    "in_distribution_oos_rows": 342,
+    "inscope_predicted_geometry_ok": 168,
+    "inscope_scored": 168,
+    "oos_coverage_gap_rows": 214,
+    "oos_predicted_geometry_ok": 128,
+    "oos_scored": 128
+  },
+  "created_utc": "2026-06-09T20:38:49Z",
+  "dial_comparison": {
+    "decision_note": "On the out-of-sample calibration surface, the recalibrated-threshold dial reaches the suppression dial's OOS precision while retaining more in-scope recall.",
+    "fused_frozen": {
+      "inscope_correct": 30,
+      "inscope_recall": 0.8571,
+      "inscope_total": 35,
+      "oos_false_positive_rate": 0.3462,
+      "oos_false_positives": 9,
+      "oos_total": 26
+    },
+    "suppression_dial": {
+      "inscope_correct": 23,
+      "inscope_recall": 0.6571,
+      "inscope_total": 35,
+      "oos_false_positive_rate": 0.3077,
+      "oos_false_positives": 8,
+      "oos_total": 26
+    },
+    "surface": "calibration_out_of_sample",
+    "threshold_dial_dominates_suppression_dial": true,
+    "threshold_dial_matching_suppression_precision": {
+      "inscope_correct": 30,
+      "inscope_recall": 0.8571,
+      "inscope_total": 35,
+      "oos_false_positive_rate": 0.3077,
+      "oos_false_positives": 8,
+      "oos_total": 26,
+      "threshold": 0.44
+    }
+  },
+  "guardrails": {
+    "calibration_is_out_of_sample_for_channel": true,
+    "cofactor_channel_artifact_id": "v3_cofactor_presence_calibration_current702_20260604",
+    "cofactor_channel_refit": false,
+    "global_threshold_changed": false,
+    "heldout_labels_read": false,
+    "heldout_query_bundles_excluded": [
+      "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout",
+      "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos"
+    ],
+    "heldout_rows_scored": false,
+    "oos_coverage_gaps_counted_as_true_negatives": false,
+    "production_scoring_changed": false,
+    "production_threshold_changed": false,
+    "registries_ontologies_imports_changed": false,
+    "split_assignment_scored": "in_distribution_train_cal_only",
+    "staged_coordinates_train_cal_safe_only": true,
+    "threshold_sweep_is_diagnostic_only": true,
+    "train_is_in_sample_reference_only": true
+  },
+  "inputs": {
+    "alphafold_version": "6",
+    "channel_artifact_id": "v3_cofactor_presence_calibration_current702_20260604",
+    "frozen_router_threshold": 0.4115,
+    "staged_dirs": [
+      "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries",
+      "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution"
+    ],
+    "threshold_grid": [
+      0.4115,
+      0.42,
+      0.44,
+      0.45,
+      0.47,
+      0.5,
+      0.53,
+      0.56,
+      0.6
+    ]
+  },
+  "interpretation": {
+    "discipline": "This is a research diagnostic only. It does not change the frozen production threshold and does not read the spent heldout one-shot. Choosing a deployable operating point remains a separately authorized decision and would need its own (not heldout-tuned) evaluation.",
+    "headline": "The precision side of the cofactor-fusion router is now measured on a leakage-safe train/cal OOS surface (previously unmeasured). Raw fusion raises OOS false positives; both the recalibrated-threshold dial and the sequence-supported suppression dial cut them back.",
+    "step4_decision": "On the out-of-sample calibration surface the recalibrated-threshold dial reaches the suppression dial's OOS precision while keeping more in-scope recall, so the threshold dial is the better default; the suppression dial sacrifices in-scope primaries for the same precision."
+  },
+  "lever2_electron_flow_complementary_lever": {
+    "geometry_fold_baseline_oos_abstain_recall": 0.466667,
+    "is_complementary_lever_on_a_different_surface": true,
+    "measured_incremental_oos_abstain_recall_vs_geometry_fold": 0.04,
+    "primary_retain_recall": 1.0,
+    "source_artifact_id": "v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606",
+    "surface_note": "Lever-2 electron-flow is measured on the geometry/fold combined gate, not the cofactor-fusion router scored here, so its numbers are not merged with this surface. It adds OOS abstention at primary retention 1.0 and is the natural precision complement to the cofactor channel (cofactor adds recall, electron-flow adds OOS abstention).",
+    "with_electron_flow_oos_abstain_recall": 0.506667
+  },
+  "oos_false_positive_called_distribution_fused_frozen": {
+    "flavin_dehydrogenase_reductase": 2,
+    "heme_peroxidase_oxidase": 1,
+    "metal_dependent_hydrolase": 53,
+    "ser_his_acid_hydrolase": 2
+  },
+  "operating_points_by_split": {
+    "calibration": {
+      "apo_baseline": {
+        "inscope_correct": 17,
+        "inscope_recall": 0.4857,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3462,
+        "oos_false_positives": 9,
+        "oos_total": 26
+      },
+      "fused_frozen_threshold": {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3462,
+        "oos_false_positives": 9,
+        "oos_total": 26
+      },
+      "fused_suppression_dial": {
+        "inscope_correct": 23,
+        "inscope_recall": 0.6571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26
+      },
+      "inscope_scored": 35,
+      "is_out_of_sample_for_channel": true,
+      "oos_scored": 26
+    },
+    "train": {
+      "apo_baseline": {
+        "inscope_correct": 76,
+        "inscope_recall": 0.5714,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.402,
+        "oos_false_positives": 41,
+        "oos_total": 102
+      },
+      "fused_frozen_threshold": {
+        "inscope_correct": 132,
+        "inscope_recall": 0.9925,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.4804,
+        "oos_false_positives": 49,
+        "oos_total": 102
+      },
+      "fused_suppression_dial": {
+        "inscope_correct": 123,
+        "inscope_recall": 0.9248,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.2941,
+        "oos_false_positives": 30,
+        "oos_total": 102
+      },
+      "inscope_scored": 133,
+      "is_out_of_sample_for_channel": false,
+      "oos_scored": 102
+    }
+  },
+  "result_class": "research_only_leakage_safe_train_cal_operating_point_readout_no_production_threshold_change_no_heldout_read",
+  "schema_version": "cofactor_fusion_operating_point.v1",
+  "scope": "Precision side of the Problem-2 step-4 operating-point question. Scores the in-distribution train/cal OOS rows through the frozen cofactor-fusion router so the recalibrated-threshold dial and the sequence-supported suppression dial can be compared on a leakage-safe out-of-sample surface, never the spent heldout one-shot.",
+  "status": "complete",
+  "threshold_sweep_by_split": {
+    "calibration": [
+      {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3462,
+        "oos_false_positives": 9,
+        "oos_total": 26,
+        "threshold": 0.4115
+      },
+      {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3462,
+        "oos_false_positives": 9,
+        "oos_total": 26,
+        "threshold": 0.42
+      },
+      {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26,
+        "threshold": 0.44
+      },
+      {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26,
+        "threshold": 0.45
+      },
+      {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26,
+        "threshold": 0.47
+      },
+      {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26,
+        "threshold": 0.5
+      },
+      {
+        "inscope_correct": 29,
+        "inscope_recall": 0.8286,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26,
+        "threshold": 0.53
+      },
+      {
+        "inscope_correct": 28,
+        "inscope_recall": 0.8,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26,
+        "threshold": 0.56
+      },
+      {
+        "inscope_correct": 16,
+        "inscope_recall": 0.4571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.0385,
+        "oos_false_positives": 1,
+        "oos_total": 26,
+        "threshold": 0.6
+      }
+    ],
+    "train": [
+      {
+        "inscope_correct": 132,
+        "inscope_recall": 0.9925,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.4804,
+        "oos_false_positives": 49,
+        "oos_total": 102,
+        "threshold": 0.4115
+      },
+      {
+        "inscope_correct": 131,
+        "inscope_recall": 0.985,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.4314,
+        "oos_false_positives": 44,
+        "oos_total": 102,
+        "threshold": 0.42
+      },
+      {
+        "inscope_correct": 130,
+        "inscope_recall": 0.9774,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.3922,
+        "oos_false_positives": 40,
+        "oos_total": 102,
+        "threshold": 0.44
+      },
+      {
+        "inscope_correct": 130,
+        "inscope_recall": 0.9774,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.3922,
+        "oos_false_positives": 40,
+        "oos_total": 102,
+        "threshold": 0.45
+      },
+      {
+        "inscope_correct": 130,
+        "inscope_recall": 0.9774,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.3922,
+        "oos_false_positives": 40,
+        "oos_total": 102,
+        "threshold": 0.47
+      },
+      {
+        "inscope_correct": 128,
+        "inscope_recall": 0.9624,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.3922,
+        "oos_false_positives": 40,
+        "oos_total": 102,
+        "threshold": 0.5
+      },
+      {
+        "inscope_correct": 122,
+        "inscope_recall": 0.9173,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.3725,
+        "oos_false_positives": 38,
+        "oos_total": 102,
+        "threshold": 0.53
+      },
+      {
+        "inscope_correct": 121,
+        "inscope_recall": 0.9098,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.3627,
+        "oos_false_positives": 37,
+        "oos_total": 102,
+        "threshold": 0.56
+      },
+      {
+        "inscope_correct": 76,
+        "inscope_recall": 0.5714,
+        "inscope_total": 133,
+        "oos_false_positive_rate": 0.049,
+        "oos_false_positives": 5,
+        "oos_total": 102,
+        "threshold": 0.6
+      }
+    ]
+  },
+  "verification": {
+    "calibration_inscope_scored_rows": 35,
+    "calibration_oos_scored_rows": 26
+  }
+}

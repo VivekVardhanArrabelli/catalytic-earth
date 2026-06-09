@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-08
+Last refreshed: 2026-06-09
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -168,6 +168,22 @@ flavin counts directly. Check the decision log and the row-level revision
 artifacts first.
 
 ## Trusted Results
+
+### 2026-06-09 session update — cofactor-fusion precision side measured (step-4)
+
+- **The precision side of the cofactor-fusion router is now measured on a reusable,
+  leakage-safe train/cal OOS surface** (previously unmeasured — the recovery harness had
+  no OOS rows). Scoring the in-distribution OOS rows through the FROZEN router: raw fusion
+  lifts in-scope recall (apo 17/35 -> 30/35 cal) at an OOS-FP cost (train FP 0.402 ->
+  0.480); the recalibrated-threshold dial (0.44) and the suppression dial both cut FP back,
+  but on the out-of-sample calibration surface **the threshold dial dominates** — 0.44
+  keeps recall 30/35 and reaches OOS FP 8/26, while suppression reaches the same 8/26 only
+  by dropping recall to 23/35. Lever-2 electron-flow (+0.04, different surface) is the
+  complementary precision lever. Research diagnostic only: no production threshold change,
+  no heldout read; deployable-point selection stays separately authorized.
+  (`artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609.json`,
+  `work/cofactor_fusion_operating_point_train_cal_oos_current702_20260609.md`,
+  decision_log 2026-06-09 "Step-4 Precision Side Measured".)
 
 ### 2026-06-06 session update — predicted-geometry recovery confirmed (read newest-first)
 
@@ -933,11 +949,19 @@ artifacts first.
 
 ## Active Blockers
 
-- **Precision operating point for cofactor fusion is the live open question.** The
-  confirmed 23 -> 37/45 recovery came with OOS/sec FP rising 12.3% -> 25.9%. Choosing the
-  deployable point (sequence-supported suppression dial vs recalibrated abstention
-  threshold, plus the Lever-2 electron-flow OOS lift) is unresolved and must be decided on
-  a leakage-safe OOS surface; the heldout one-shot is spent and must not be tuned against.
+- **Precision operating point for cofactor fusion — precision side now MEASURED
+  leakage-safe (2026-06-09).** The confirmed 23 -> 37/45 recovery came with OOS/sec FP
+  rising 12.3% -> 25.9%, but that was the spent heldout read. The precision side now has a
+  reusable leakage-safe train/cal OOS surface
+  (`artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609.json`,
+  CLI `build-cofactor-fusion-operating-point`). On the out-of-sample calibration surface
+  the **recalibrated-threshold dial dominates the suppression dial**: threshold 0.44 keeps
+  recall 30/35 while dropping OOS FP 9/26 -> 8/26, whereas the suppression dial reaches the
+  same 8/26 only by sacrificing 7 in-scope primaries (recall 23/35). Prefer the
+  recalibrated threshold; layer the complementary Lever-2 electron-flow OOS lift (+0.04 at
+  primary retention 1.0, a different surface). Still open: choosing a *deployable* point is
+  a separately authorized decision (thin 26-row cal OOS set; partial coordinate coverage)
+  and must not be tuned against the spent heldout one-shot.
 - Fair ProtT5/SaProt logistic-head comparison needs local raw embedding or
   structure-token sidecars and an ESM-2-style train/cal-only head. Existing
   local exports are not equivalent decoders.
@@ -981,11 +1005,16 @@ artifacts first.
    plugs in, and the heldout one-shot moved predicted-apo primary **23/45 -> 37/45** (+14;
    OOS/sec FP 12.3% -> 25.9%); the in-distribution recovery harness predicted it
    out-of-sample (70.6% -> heldout 63.6%). **The heldout one-shot is SPENT — do not re-run
-   or tune against it.** The open next step is **step 4 operating-point selection**: choose
-   the PRECISION point (sequence-supported suppression vs a recalibrated abstention
-   threshold) and layer the complementary **Lever-2 electron-flow** OOS lift (+0.04 abstain
-   at primary retention 1.0), decided on a leakage-safe OOS surface — NOT by peeking at the
-   spent one-shot. NOTE: LOMO already ran as a NEGATIVE baseline that motivates targeted
+   or tune against it.** **Step 4 operating-point selection now has its PRECISION side
+   measured leakage-safe (2026-06-09, `build-cofactor-fusion-operating-point`):** on the
+   out-of-sample calibration surface the recalibrated-abstention-threshold dial DOMINATES
+   the sequence-supported suppression dial (threshold 0.44 keeps recall 30/35 and drops OOS
+   FP to 8/26; suppression reaches 8/26 only by losing 7 in-scope primaries). Default to the
+   recalibrated threshold and layer the complementary **Lever-2 electron-flow** OOS lift
+   (+0.04 abstain at primary retention 1.0, different surface). What remains is selecting a
+   *deployable* point — a separately authorized decision (thin 26-row cal OOS set, partial
+   coordinate coverage), decided on a leakage-safe OOS surface, NOT by peeking at the spent
+   one-shot. NOTE: LOMO already ran as a NEGATIVE baseline that motivates targeted
    expansion (do NOT rerun it); just preserve the frozen pre-expansion snapshot/tag (see
    "Expansion And Generalization Constraints" below). Default deploy path is the feature-channel
    (A); structure-restoration with a CANONICAL/template cofactor (B) is held in
