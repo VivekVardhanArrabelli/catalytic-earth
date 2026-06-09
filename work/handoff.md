@@ -2,30 +2,30 @@
 
 ## Current automation run
 
-- Automation ID: `ce-external-bulk-ingestion-scout`
-- STARTED_AT_UTC: `2026-06-08T23:39:47Z`
-- STARTED_AT_LOCAL: `2026-06-08T18:39:47-0500`
-- ENDED_AT_UTC: `2026-06-09T00:02:46Z`
-- ENDED_AT_LOCAL: `2026-06-08T19:02:46-0500`
-- ELAPSED_MINUTES: `22.983`
-- Status: Complete durable output. Scaled the reviewed Swiss-Prot/UniProt
-  external-source ingestion pattern from the 28-row pilot into a 693-row
-  provisional candidate matrix with AFDB/PDB coordinate provenance, Rhea/EC
-  provenance, current702 duplicate status, and external-pilot duplicate status.
-  The provisional preview has 354 rows, all still blocked from production
-  import until admission validation and downstream gates.
+- Automation ID: `ce-external-materialization-admission-batch`
+- STARTED_AT_UTC: `2026-06-09T00:00:00Z`
+- STARTED_AT_LOCAL: `2026-06-08T19:00:00-0500`
+- ENDED_AT_UTC: `2026-06-09T01:42:01Z`
+- ENDED_AT_LOCAL: `2026-06-08T20:42:01-0500`
+- ELAPSED_MINUTES: `102.017`
+- Status: Complete durable output. Converted the 16-row admission-ready queue
+  plus the 354-row provisional bulk queue into a review-only external
+  materialization/admission batch with fetched AFDB/PDB coordinates, staged
+  source-free locator sidecars, and a 333-row import-ready preview that
+  remains blocked from production import pending structural duplicate screening
+  and explicit production authorization.
 - Current output:
-  `artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json` and
-  `work/external_bulk_ingestion_scout_current702_20260608.md`.
-- Provisional import preview:
-  `artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json`.
-- Lock: `work/locks/ce_external_bulk_ingestion.lock`; start timestamps written
-  to `/tmp/ce_external_bulk_ingestion_started_at.txt`.
-- Validation passed: JSON parse for bulk scout + provisional preview artifacts,
-  required-row-field invariant check, focused pytest, full `unittest discover`
-  (1,678 tests), `PYTHONPATH=src python -m catalytic_earth.cli validate`,
-  current docs artifact-reference check with 0 missing references,
-  `git diff --check`, production-edit guardrail check, and disk guardrail.
+  `artifacts/v3_external_materialization_admission_batch_current702_20260608.json`,
+  `artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json`,
+  and `work/external_materialization_admission_batch_current702_20260608.md`.
+- Materialized directories:
+  `artifacts/external_materialized_coordinates_current702_20260608/` and
+  `artifacts/external_source_free_active_site_locators_current702_20260608/`.
+- Lock: canonical repo automation lock
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`.
+- Validation passed: JSON parse for both new artifacts, focused pytest for the
+  new batch module + CLI parser, `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  and `git diff --check`.
 
 ## Mission
 
@@ -76,6 +76,103 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-08 External Materialization Admission Batch
+
+Automation run: `ce-external-materialization-admission-batch`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-09T00:00:00Z`
+- STARTED_AT_LOCAL: `2026-06-08T19:00:00-0500`
+- ENDED_AT_UTC: `2026-06-09T01:42:01Z`
+- ENDED_AT_LOCAL: `2026-06-08T20:42:01-0500`
+- ELAPSED_MINUTES: `102.017`
+- Lock: canonical repo automation lock
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`
+
+#### Scope
+
+- Added a rerunnable external materialization/admission batch lane,
+  `build-external-materialization-admission-batch`, with dedicated review-only
+  coordinate and source-free locator sidecar materialization outputs.
+- Started from the validated 16-row admission queue plus the 354-row
+  provisional bulk queue and worked the whole 370-row union in lane-priority
+  order.
+- Reused or fetched AFDB/PDB coordinates into
+  `artifacts/external_materialized_coordinates_current702_20260608/`, then
+  wrote review-only source-free locator sidecars into
+  `artifacts/external_source_free_active_site_locators_current702_20260608/`
+  only when duplicate/current702, reviewed provenance, lane/Rhea, local
+  coordinate, and residue-code mapping gates all cleared.
+- Did not edit production registries, ontologies, heldout splits, production
+  thresholds, model weights, or audited production locator directories. No
+  import or promotion was performed.
+
+#### Outputs
+
+- Batch artifact:
+  `artifacts/v3_external_materialization_admission_batch_current702_20260608.json`.
+- Import-ready preview:
+  `artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json`.
+- Markdown report:
+  `work/external_materialization_admission_batch_current702_20260608.md`.
+- Rerunnable code/tests:
+  `src/catalytic_earth/external_materialization_admission_batch.py`,
+  `tests/test_external_materialization_admission_batch.py`, CLI wiring in
+  `src/catalytic_earth/cli.py`, and parser coverage in `tests/test_cli.py`.
+
+#### Result
+
+- Input rows: 370.
+- Coordinate materialized: 337 rows total, including 310 fetched during this
+  run and the remainder matched to existing local CIFs.
+- Locator sidecar materialized: 333 rows total; 333 new review-only external
+  locator sidecars were written this run.
+- Import-ready preview: 333 rows.
+- Repairable coordinate blockers: 0.
+- Repairable locator blockers: 37.
+- Duplicate/current-registry conflicts: 0.
+- Family-decision blockers: 0.
+- Reject/OOS-preserve-signal: 0.
+- Hard blockers: 0.
+- Per-lane counts:
+  PLP children 72 ready / 20 locator blockers; phosphoryl transfer 88 ready /
+  4 locator blockers; redox oxygen/sulfur 64 ready / 1 locator blocker;
+  radical-SAM/cobalamin 50 ready / 5 locator blockers;
+  glycoside/nucleoside 43 ready / 6 locator blockers; metal hydrolase 15 ready
+  / 1 locator blocker; near-orphan/no-reliable-structure 1 ready.
+- The 37 non-ready rows are all locator-side problems: 35 have fewer than two
+  exact reviewed residue locators for safe source-free admission, while
+  `uniprot:Q9Y617` and `uniprot:O60673` need alternate coordinate-to-sequence
+  residue-code mapping because the fetched structure did not expose the exact
+  reviewed positions as resolvable amino-acid identities.
+
+#### Validation
+
+- `python -m json.tool artifacts/v3_external_materialization_admission_batch_current702_20260608.json`:
+  passed.
+- `python -m json.tool artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json`:
+  passed.
+- Count reconciliation from the batch artifact:
+  `input_rows=370`, `coordinate_materialized=337`,
+  `locator_sidecar_materialized=333`, `import_ready_preview=333`,
+  `repairable_locator_blockers=37`, remaining terminal classes `0`.
+- `PYTHONPATH=src python -m pytest tests/test_external_materialization_admission_batch.py tests/test_cli.py::CliTests::test_external_materialization_admission_batch_parser_defaults -q`:
+  2 passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702
+  curated mechanism labels.
+- `git diff --check`: passed.
+
+#### Exact next action
+
+Consume the 333-row preview-only import-ready artifact as the next external
+admission surface, but first run structural duplicate screening and any
+production gate outside this lane. For the 37 non-ready rows, focus first on
+the 35 candidates with fewer than two exact reviewed residue locators and then
+repair the two coordinate-to-sequence mapping outliers
+`uniprot:Q9Y617` and `uniprot:O60673` with alternate AFDB/PDB coordinate
+choices or explicit mapping review.
 
 ### 2026-06-08 External Source Ingestion Pilot
 

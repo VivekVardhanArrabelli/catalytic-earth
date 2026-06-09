@@ -247,6 +247,49 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.max_records_per_lane, 100)
         self.assertFalse(args.rhea_fallback)
 
+    def test_external_materialization_admission_batch_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-external-materialization-admission-batch"]
+        )
+
+        self.assertEqual(
+            args.ready_preview,
+            (
+                "artifacts/"
+                "v3_external_source_admission_ready_preview_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.provisional_preview,
+            (
+                "artifacts/"
+                "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_materialization_admission_batch_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.import_ready_preview,
+            (
+                "artifacts/"
+                "v3_external_materialization_import_ready_preview_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.coordinate_dir,
+            "artifacts/external_materialized_coordinates_current702_20260608",
+        )
+        self.assertEqual(
+            args.locator_dir,
+            "artifacts/external_source_free_active_site_locators_current702_20260608",
+        )
+        self.assertIsNone(args.created_utc)
+
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-lever2-mechanism-feature-incremental-readout"]

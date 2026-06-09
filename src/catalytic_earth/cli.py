@@ -45,6 +45,9 @@ from .external_source_ingestion import (
 from .external_source_admission_validation import (
     write_external_source_admission_validation,
 )
+from .external_materialization_admission_batch import (
+    write_external_materialization_admission_batch,
+)
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .predicted_geometry_recovery import (
@@ -2878,6 +2881,31 @@ def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
         "Wrote external bulk ingestion scout to "
         f"{args.out} ({artifact['candidate_count']} rows; "
         f"{artifact['import_preview_candidate_count']} provisional preview)"
+    )
+    return 0
+
+
+def cmd_build_external_materialization_admission_batch(
+    args: argparse.Namespace,
+) -> int:
+    artifact = write_external_materialization_admission_batch(
+        ready_preview_path=Path(args.ready_preview),
+        provisional_preview_path=Path(args.provisional_preview),
+        pilot_path=Path(args.pilot),
+        bulk_path=Path(args.bulk),
+        current_manifest_path=Path(args.current_manifest),
+        label_registry_path=Path(args.label_registry),
+        out_path=Path(args.out),
+        import_ready_preview_path=Path(args.import_ready_preview),
+        report_path=Path(args.report) if args.report else None,
+        coordinate_dir=Path(args.coordinate_dir),
+        locator_dir=Path(args.locator_dir),
+        created_utc=args.created_utc,
+    )
+    print(
+        "Wrote external materialization admission batch to "
+        f"{args.out} ({artifact['counts']['input_rows']} rows; "
+        f"{artifact['counts']['import_ready_preview']} import-ready preview)"
     )
     return 0
 
@@ -22392,6 +22420,83 @@ def build_parser() -> argparse.ArgumentParser:
         help="also query Rhea by EC when UniProt catalytic activity lacks Rhea links",
     )
     external_bulk_ingestion.set_defaults(func=cmd_build_external_bulk_ingestion_scout)
+
+    external_materialization_admission = subparsers.add_parser(
+        "build-external-materialization-admission-batch",
+        help=(
+            "materialize supported external coordinates and review-only source-free "
+            "locator sidecars, then emit an import-ready preview batch"
+        ),
+    )
+    external_materialization_admission.add_argument(
+        "--ready-preview",
+        default=(
+            "artifacts/"
+            "v3_external_source_admission_ready_preview_current702_20260608.json"
+        ),
+    )
+    external_materialization_admission.add_argument(
+        "--provisional-preview",
+        default=(
+            "artifacts/"
+            "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+        ),
+    )
+    external_materialization_admission.add_argument(
+        "--pilot",
+        default=(
+            "artifacts/"
+            "v3_external_source_ingestion_pilot_current702_20260608.json"
+        ),
+    )
+    external_materialization_admission.add_argument(
+        "--bulk",
+        default=(
+            "artifacts/"
+            "v3_external_bulk_ingestion_scout_current702_20260608.json"
+        ),
+    )
+    external_materialization_admission.add_argument(
+        "--current-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    external_materialization_admission.add_argument(
+        "--label-registry",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_materialization_admission.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_materialization_admission_batch_current702_20260608.json"
+        ),
+    )
+    external_materialization_admission.add_argument(
+        "--import-ready-preview",
+        default=(
+            "artifacts/"
+            "v3_external_materialization_import_ready_preview_current702_20260608.json"
+        ),
+    )
+    external_materialization_admission.add_argument(
+        "--report",
+        default=(
+            "work/"
+            "external_materialization_admission_batch_current702_20260608.md"
+        ),
+    )
+    external_materialization_admission.add_argument(
+        "--coordinate-dir",
+        default="artifacts/external_materialized_coordinates_current702_20260608",
+    )
+    external_materialization_admission.add_argument(
+        "--locator-dir",
+        default="artifacts/external_source_free_active_site_locators_current702_20260608",
+    )
+    external_materialization_admission.add_argument("--created-utc")
+    external_materialization_admission.set_defaults(
+        func=cmd_build_external_materialization_admission_batch
+    )
 
     external_representation_backend_sample_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-sample",
