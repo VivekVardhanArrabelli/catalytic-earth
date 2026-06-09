@@ -1,6 +1,6 @@
 # Annotation-Anchored Bronze External Import — Wave 2 (non-destructive preview)
 
-Run: 2026-06-09T22:04:46Z
+Run: 2026-06-09T22:22:43Z
 
 Reviewed Swiss-Prot/EC/Rhea/cofactor annotation as a bronze label source.
 EC, protein names, and prose are excluded from predictive features (the
@@ -41,4 +41,4 @@ written by this run.
 
 ## Next action
 
-- Review per-lane diversity and the scope assignment. On explicit authorization, merge `applied_labels` into `data/registries/curated_mechanism_labels.json`, refresh the label summary, and assign the new uniprot rows to the in_distribution split (never heldout). Held/skipped rows are the next batch: rerun the current702 duplicate screen for skipped rows and disambiguate the cofactor-confounded redox and secondary-probe radical-SAM/cobalamin lanes.
+- Review per-lane diversity and the scope assignment. On explicit authorization, append `applied_labels` to the SEPARATE expansion registry `data/registries/external_bronze_labels.json` (the frozen current702 benchmark registry is never written). The combined total is frozen-benchmark + expansion. Held/skipped rows are the next batch: rerun the current702 duplicate screen for skipped rows and disambiguate the cofactor-confounded redox and secondary-probe radical-SAM/cobalamin lanes.

@@ -358,21 +358,42 @@ def load_labels(path: Path = LABEL_REGISTRY) -> list[MechanismLabel]:
     return labels
 
 
+ANNOTATION_ANCHORED_EVIDENCE_BASIS = "reviewed_swissprot_ec_rhea_cofactor_annotation"
+
+
 def _validate_external_out_of_scope_evidence_separation(
     entry_id: str, evidence: dict[str, Any]
 ) -> None:
-    required = (
-        "predictive_evidence",
-        "import_gate_evidence",
-        "review_only_context",
-        "excluded_context",
+    annotation_anchored = (
+        evidence.get("evidence_basis") == ANNOTATION_ANCHORED_EVIDENCE_BASIS
     )
+    # Geometry-backed external negatives must carry predictive (inverse-gate)
+    # evidence. Annotation-anchored bronze negatives decide scope from reviewed
+    # Swiss-Prot/EC/Rhea/cofactor annotation and defer geometry confirmation to a
+    # bronze->silver promotion, so predictive_evidence may be empty for them --
+    # but they must still declare the annotation import gate and keep the same
+    # leakage separation (EC/name/prose never predictive).
+    required = ["import_gate_evidence", "review_only_context", "excluded_context"]
+    if not annotation_anchored:
+        required.insert(0, "predictive_evidence")
     for key in required:
         value = evidence.get(key)
         if not isinstance(value, list) or not value:
             raise ValueError(
                 f"{entry_id}: external out_of_scope evidence.{key} must be a non-empty list"
             )
+    if not isinstance(evidence.get("predictive_evidence", []), list):
+        raise ValueError(
+            f"{entry_id}: external out_of_scope evidence.predictive_evidence must be a list"
+        )
+    if annotation_anchored and (
+        "annotation_anchored_scope_assignment"
+        not in evidence.get("import_gate_evidence", [])
+    ):
+        raise ValueError(
+            f"{entry_id}: annotation-anchored external out_of_scope must record "
+            "annotation_anchored_scope_assignment in import_gate_evidence"
+        )
     predictive_blob = json.dumps(
         evidence.get("predictive_evidence", []),
         sort_keys=True,

@@ -1,12 +1,17 @@
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from catalytic_earth.external_annotation_anchored_import import (
+    apply_external_annotation_anchored_import_to_registry,
     build_external_annotation_anchored_import,
     classify_row,
     cofactor_classes,
 )
+from catalytic_earth.labels import MechanismLabel
 
 
 def _row(lane, *, cofactors=(), dup="no_exact_current702_accession_or_sequence_sha_overlap",
@@ -111,6 +116,70 @@ class BuildImportTests(unittest.TestCase):
         self.assertNotIn(
             "uniprot:P09999", {l["entry_id"] for l in audit["applied_labels"]}
         )
+
+
+class ApplyToSeparateRegistryTests(unittest.TestCase):
+    def test_writes_expansion_registry_and_leaves_benchmark_untouched(self) -> None:
+        preview_rows = [
+            _row("metal hydrolase", cofactors=["Zn(2+)"], accession="P00001"),
+            _row("glycoside/nucleoside", accession="P00002"),
+        ]
+        frozen = [
+            {
+                "confidence": "medium",
+                "entry_id": "m_csa:1",
+                "evidence": {"sources": ["curator_rationale"]},
+                "evidence_score": 0.65,
+                "fingerprint_id": None,
+                "label_type": "out_of_scope",
+                "ontology_version_at_decision": "label_factory_v1_8fp",
+                "rationale": "frozen benchmark label kept stable for the contract.",
+                "review_status": "automation_curated",
+                "tier": "bronze",
+            }
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            preview_artifact = build_external_annotation_anchored_import(
+                preview=preview_rows, registry=frozen
+            )
+            preview_path = tmp / "preview.json"
+            preview_path.write_text(json.dumps(preview_artifact), encoding="utf-8")
+            frozen_path = tmp / "frozen.json"
+            frozen_bytes_before = json.dumps(frozen)
+            frozen_path.write_text(frozen_bytes_before, encoding="utf-8")
+            expansion_path = tmp / "expansion.json"
+
+            summary = apply_external_annotation_anchored_import_to_registry(
+                preview_path=preview_path,
+                expansion_registry_path=expansion_path,
+                frozen_benchmark_registry_path=frozen_path,
+            )
+
+            # Frozen benchmark file is never written.
+            self.assertFalse(summary["frozen_benchmark_registry_written"])
+            self.assertEqual(frozen_path.read_text(encoding="utf-8"), frozen_bytes_before)
+
+            # Expansion registry holds the 2 importable labels; combined total = 3.
+            self.assertEqual(summary["appended"], 2)
+            self.assertEqual(summary["expansion_registry_after"], 2)
+            self.assertEqual(summary["combined_total_labels"], 3)
+            expansion = json.loads(expansion_path.read_text(encoding="utf-8"))
+            # Every written label validates through the canonical schema.
+            for label in expansion:
+                MechanismLabel.from_dict(label)
+                self.assertTrue(label["entry_id"].startswith("uniprot:"))
+                self.assertEqual(label["tier"], "bronze")
+
+            # Re-applying dedups (idempotent on entry_id), no double-count.
+            summary2 = apply_external_annotation_anchored_import_to_registry(
+                preview_path=preview_path,
+                expansion_registry_path=expansion_path,
+                frozen_benchmark_registry_path=frozen_path,
+            )
+            self.assertEqual(summary2["appended"], 0)
+            self.assertEqual(summary2["duplicate_skipped"], 2)
+            self.assertEqual(summary2["expansion_registry_after"], 2)
 
 
 if __name__ == "__main__":

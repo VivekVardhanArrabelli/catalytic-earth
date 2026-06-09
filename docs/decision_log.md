@@ -19,25 +19,37 @@ the two things the old bar conflated: (1) **predictive leakage discipline** — 
 scorer must never see EC/name/prose — stays ABSOLUTE; (2) **label evidence basis** — adopt the
 field-standard reviewed annotation, recorded transparently as `evidence_basis` + bronze tier.
 
-Load-bearing gates kept: leakage-safe split (new uniprot rows join in_distribution, NEVER
-heldout — the frozen 140-row benchmark is untouched), current702 accession/sequence duplicate
-screen, EC/name/prose in `excluded_context` (never predictive), honest bronze/automation_curated
-tiering, and per-lane diversity. Conservative scope policy: positives only when an
-annotation-derived primary lane is corroborated by the matching cofactor class (metal/PLP/
-flavin); clear OOS for non-eight-fingerprint lanes; **hold** cofactor-confounded redox and
-secondary-probe radical-SAM/cobalamin lanes for review.
+**Frozen benchmark stays clean — expansion labels live in a SEPARATE registry.** The
+current702 `curated_mechanism_labels.json` IS the frozen evaluation benchmark: its label
+count, the `mechanism_fingerprint_v1_coherence_audit_702` baseline, and the
+`mechanism_prediction_oos_and_diversity_eval_contract_702` SHA-256 are deliberately pinned
+(regression tests enforce all three). Expansion bronze labels are therefore written to
+`data/registries/external_bronze_labels.json`, NOT the benchmark. Total label count =
+frozen benchmark (702) + expansion; the benchmark and its contracts are byte-unchanged.
 
-First batch (non-destructive, registry NOT yet written): 186 importable bronze labels
-(101 seed_fingerprint = 95 metal_dependent_hydrolase + 6 plp_dependent_enzyme; 85 out_of_scope),
-projecting **702 -> 888**; 90 held, 324 skipped (current702 duplicate screen not yet
-confirmed — the next batch). Merging into `curated_mechanism_labels.json` is a separate,
-explicitly authorized step.
+Load-bearing gates kept: leakage-safe split (expansion uniprot rows are NOT in the frozen
+702 split — heldout untouched), current702 accession/sequence duplicate screen (deduped
+against BOTH registries), EC/name/prose in `excluded_context` (never predictive), honest
+bronze/automation_curated tiering, and per-lane diversity. Conservative scope policy:
+positives only when an annotation-derived primary lane is corroborated by the matching
+cofactor class (metal/PLP/flavin); clear OOS for non-eight-fingerprint lanes; **hold**
+cofactor-confounded redox and secondary-probe radical-SAM/cobalamin lanes for review. The
+external out_of_scope evidence validator (`labels.py`) now accepts the annotation basis with
+empty `predictive_evidence` (geometry confirmation deferred), keeping the leakage separation.
+
+First batch (applied to the expansion registry): 186 bronze labels (101 seed_fingerprint =
+95 metal_dependent_hydrolase + 6 plp_dependent_enzyme; 85 out_of_scope) -> combined total
+**702 + 186 = 888**; 90 held, 324 skipped (current702 duplicate screen not yet confirmed —
+the next batch). Each label carries rich review-only `mechanism_evidence` (Rhea reaction
+equations, active-site catalytic/binding residues with ligand ChEBI ids, cofactor identities,
+EC) for future representation learning — provenance only, never predictive.
 
 References:
 
 - `src/catalytic_earth/external_annotation_anchored_import.py`,
   `tests/test_external_annotation_anchored_import.py`, CLI
-  `build-external-annotation-anchored-import`.
+  `build-external-annotation-anchored-import` + `apply-external-annotation-anchored-import`.
+- `data/registries/external_bronze_labels.json` (expansion registry, 186 bronze labels).
 - `artifacts/v3_external_annotation_anchored_import_preview_wave2_current702_20260609.json`,
   `work/external_annotation_anchored_import_preview_wave2_current702_20260609.md`.
 

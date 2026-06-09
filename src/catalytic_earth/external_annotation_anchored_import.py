@@ -208,6 +208,62 @@ def _confidence_and_score(
     return confidence, score
 
 
+def _mechanism_evidence(row: dict[str, Any]) -> dict[str, Any]:
+    """Structured, review-only mechanism evidence a future model can learn from.
+
+    Reaction chemistry (Rhea), catalytic/binding residues, and cofactor dependence
+    are the North Star evidence axes. They are provenance/supervision context, NOT
+    predictive features (see ``excluded_context``).
+    """
+    rhea = row.get("rhea_ec_provenance") or {}
+    reactions = [
+        {
+            "rhea_id": rec.get("rhea_id"),
+            "reaction": rec.get("reaction"),
+            "ec_number": rec.get("ec_number"),
+            "evidence_codes": rec.get("evidence_codes"),
+            "source": rec.get("source"),
+        }
+        for rec in (rhea.get("rhea_records") or [])
+        if isinstance(rec, dict)
+    ]
+    cofactors = [
+        {
+            "name": c.get("name"),
+            "chebi_id": (c.get("cross_reference") or {}).get("id"),
+            "evidence_codes": c.get("evidence_codes"),
+        }
+        for c in (row.get("cofactor_provenance") or [])
+        if isinstance(c, dict)
+    ]
+    residues = [
+        {
+            "position": loc.get("position"),
+            "feature_code": loc.get("feature_code"),
+            "feature_type": loc.get("feature_type"),
+            "ligand_id": loc.get("ligand_id"),
+            "ligand_name": loc.get("ligand_name"),
+            "evidence_codes": loc.get("evidence_codes"),
+            "exact": loc.get("exact"),
+        }
+        for loc in (row.get("residue_locators") or [])
+        if isinstance(loc, dict)
+    ]
+    return {
+        "reaction_equations": reactions,
+        "ec_numbers": rhea.get("ec_numbers") or [],
+        "cofactors": cofactors,
+        "active_site_residues": residues,
+        "active_site_residue_count": len(residues),
+        "catalytic_residue_count": sum(
+            1 for r in residues if r.get("feature_code") == "ACT_SITE"
+        ),
+        "binding_residue_count": sum(
+            1 for r in residues if r.get("feature_code") == "BINDING"
+        ),
+    }
+
+
 def _build_label(row: dict[str, Any], decision: dict[str, Any]) -> dict[str, Any]:
     accession = str(row.get("accession"))
     fingerprint = decision.get("fingerprint_id")
@@ -269,16 +325,21 @@ def _build_label(row: dict[str, Any], decision: dict[str, Any]) -> dict[str, Any
                 "foldseek_structural_near_duplicate_screen",
             ],
             "predictive_evidence": [],
-            "provenance": {
-                "accession": accession,
-                "ec_numbers": ec,
-                "cofactor_names": cofactor_names,
-                "rhea_record_count": (row.get("rhea_ec_provenance") or {}).get(
-                    "rhea_record_count"
-                ),
-                "source_evidence_codes": row.get("source_evidence_codes"),
+            "mechanism_evidence": _mechanism_evidence(row),
+            "structure_provenance": {
                 "structure_handle": handle,
                 "coordinate_status": row.get("coordinate_status"),
+                "coordinate_path": row.get("coordinate_path"),
+                "alphafold_ids": row.get("alphafold_ids"),
+                "pdb_ids": row.get("pdb_ids"),
+            },
+            "source_provenance": {
+                "accession": accession,
+                "organism": row.get("organism"),
+                "sequence_length": row.get("sequence_length"),
+                "protein_name": row.get("protein_name"),
+                "reviewed_status": row.get("reviewed_status"),
+                "source_evidence_codes": row.get("source_evidence_codes"),
                 "source_hashes": row.get("source_hashes"),
                 "target_family_lane": row.get("target_family_lane"),
                 "import_decision_reason": decision.get("reason"),
@@ -373,6 +434,8 @@ def build_external_annotation_anchored_import(
         "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
         "guardrails": {
             "curated_registry_written": False,
+            "frozen_current702_benchmark_preserved": True,
+            "expansion_labels_written_to_separate_registry_not_benchmark": True,
             "predictive_features_use_ec_name_or_prose": False,
             "ec_name_prose_excluded_context_on_every_label": True,
             "all_new_labels_tier": "bronze",
@@ -401,13 +464,13 @@ def build_external_annotation_anchored_import(
         },
         "next_action": (
             "Review per-lane diversity and the scope assignment. On explicit "
-            "authorization, merge `applied_labels` into "
-            "`data/registries/curated_mechanism_labels.json`, refresh the label "
-            "summary, and assign the new uniprot rows to the in_distribution split "
-            "(never heldout). Held/skipped rows are the next batch: rerun the "
-            "current702 duplicate screen for skipped rows and disambiguate the "
-            "cofactor-confounded redox and secondary-probe radical-SAM/cobalamin "
-            "lanes."
+            "authorization, append `applied_labels` to the SEPARATE expansion "
+            "registry `data/registries/external_bronze_labels.json` (the frozen "
+            "current702 benchmark registry is never written). The combined total "
+            "is frozen-benchmark + expansion. Held/skipped rows are the next batch: "
+            "rerun the current702 duplicate screen for skipped rows and "
+            "disambiguate the cofactor-confounded redox and secondary-probe "
+            "radical-SAM/cobalamin lanes."
         ),
         "applied_labels": new_labels,
         "holds_sample": holds[:50],
@@ -466,6 +529,82 @@ def _report(audit: dict[str, Any]) -> str:
         ]
     )
     return "\n".join(lines) + "\n"
+
+
+def apply_external_annotation_anchored_import_to_registry(
+    *,
+    preview_path: Path,
+    expansion_registry_path: Path,
+    frozen_benchmark_registry_path: Path,
+) -> dict[str, Any]:
+    """Append the preview's bronze labels to the SEPARATE expansion registry.
+
+    The frozen current702 benchmark registry
+    (`data/registries/curated_mechanism_labels.json`) is never written: its label
+    count, coherence-audit baseline, and eval-contract hash are deliberately
+    pinned. Expansion bronze labels live in their own registry so the benchmark
+    stays clean while the total label count grows toward 10k. New labels are
+    deduped against BOTH registries and validated through the label schema before
+    being written.
+    """
+    from .labels import MechanismLabel  # local import avoids a module cycle
+
+    preview_artifact = _load_json(preview_path)
+    frozen = _load_json(frozen_benchmark_registry_path)
+    expansion_path = Path(expansion_registry_path)
+    existing_expansion = (
+        _load_json(expansion_path) if expansion_path.exists() else []
+    )
+
+    known_ids = {str(r.get("entry_id")) for r in frozen}
+    known_ids |= {str(r.get("entry_id")) for r in existing_expansion}
+
+    appended: list[dict[str, Any]] = []
+    duplicate_skipped = 0
+    for label in preview_artifact.get("applied_labels", []):
+        entry_id = str(label.get("entry_id"))
+        if entry_id in known_ids:
+            duplicate_skipped += 1
+            continue
+        known_ids.add(entry_id)
+        # Validate through the canonical label schema (annotation-anchored aware).
+        MechanismLabel.from_dict(label)
+        appended.append(label)
+
+    new_expansion = list(existing_expansion) + appended
+    expansion_path.parent.mkdir(parents=True, exist_ok=True)
+    expansion_path.write_text(_dump_registry(new_expansion), encoding="utf-8")
+
+    return {
+        "frozen_benchmark_labels": len(frozen),
+        "frozen_benchmark_registry_written": False,
+        "expansion_registry_before": len(existing_expansion),
+        "appended": len(appended),
+        "duplicate_skipped": duplicate_skipped,
+        "expansion_registry_after": len(new_expansion),
+        "combined_total_labels": len(frozen) + len(new_expansion),
+        "appended_label_type_counts": dict(
+            Counter(label.get("label_type") for label in appended)
+        ),
+        "appended_fingerprint_counts": dict(
+            Counter(
+                label.get("fingerprint_id")
+                for label in appended
+                if label.get("fingerprint_id")
+            )
+        ),
+        "all_appended_bronze": all(label.get("tier") == "bronze" for label in appended),
+        "expansion_registry_path": str(expansion_path),
+    }
+
+
+def _dump_registry(registry: list[dict[str, Any]]) -> str:
+    """Serialize the registry in its canonical one-label-per-line compact format."""
+    body = ",\n".join(
+        "  " + json.dumps(label, separators=(",", ":"), sort_keys=True)
+        for label in registry
+    )
+    return "[\n" + body + "\n]\n"
 
 
 def write_external_annotation_anchored_import(
