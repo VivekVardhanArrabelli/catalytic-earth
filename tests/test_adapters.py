@@ -13,6 +13,7 @@ from catalytic_earth.adapters import (
     build_rhea_ec_url,
     build_rhea_sample_url,
     build_uniprot_accessions_url,
+    build_uniprot_query_url,
     normalize_mcsa_entries,
     normalize_rhea_tsv,
     normalize_uniprot_tsv,
@@ -80,6 +81,8 @@ class AdapterTests(unittest.TestCase):
     def test_uniprot_url_and_normalization(self) -> None:
         url = build_uniprot_accessions_url(["P56868", "P0A9K9"])
         self.assertIn("format=tsv", url)
+        paged_url = build_uniprot_query_url("reviewed:true", size=50, offset=100)
+        self.assertIn("offset=100", paged_url)
         records = normalize_uniprot_tsv(
             "Entry\tEntry Name\tProtein names\tOrganism\tLength\tEC number\tPDB\tAlphaFoldDB\n"
             "P56868\tMURI_AQUPY\tGlutamate racemase\tAquifex pyrophilus\t254\t5.1.1.3\t1B73;1B74;\tP56868;\n"

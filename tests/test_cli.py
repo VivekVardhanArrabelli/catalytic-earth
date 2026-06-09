@@ -247,6 +247,41 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.max_records_per_lane, 100)
         self.assertFalse(args.rhea_fallback)
 
+    def test_external_scaleout_shard_plp_radical_cobalamin_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-external-scaleout-shard-plp-radical-cobalamin"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.import_ready_out,
+            (
+                "artifacts/"
+                "v3_external_scaleout_shard_plp_radical_cobalamin_import_ready_preview_"
+                "current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            (
+                "work/"
+                "external_scaleout_shard_plp_radical_cobalamin_current702_20260609.md"
+            ),
+        )
+        self.assertEqual(args.max_records_per_query, 100)
+        self.assertEqual(args.max_pages_per_query, 5)
+        self.assertEqual(args.max_candidates, 1800)
+        self.assertIsNone(args.max_candidates_per_lane)
+        self.assertEqual(args.target_candidate_floor, 1500)
+
     def test_external_admission_qa_merger_parser_defaults(self) -> None:
         args = build_parser().parse_args(["build-external-admission-qa-merger"])
 

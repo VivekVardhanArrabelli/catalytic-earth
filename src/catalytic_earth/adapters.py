@@ -280,28 +280,61 @@ def normalize_uniprot_tsv(text: str) -> list[dict[str, Any]]:
     return records
 
 
-def build_uniprot_query_url(query: str, fields: str = UNIPROT_DISCOVERY_FIELDS, size: int = 100) -> str:
+def build_uniprot_query_url(
+    query: str,
+    fields: str = UNIPROT_DISCOVERY_FIELDS,
+    size: int = 100,
+    offset: int = 0,
+) -> str:
     if not query.strip():
         raise ValueError("query is required")
     if size < 1 or size > 500:
         raise ValueError("size must be between 1 and 500")
+    if offset < 0:
+        raise ValueError("offset must be non-negative")
     params = {
         "query": query,
         "fields": fields,
         "format": "tsv",
         "size": str(size),
     }
+    if offset:
+        params["offset"] = str(offset)
     return f"{UNIPROT_SEARCH_URL}?{urlencode(params)}"
 
 
-def fetch_uniprot_query(query: str, size: int = 100) -> dict[str, Any]:
-    url = build_uniprot_query_url(query=query, size=size)
-    records = normalize_uniprot_tsv(_fetch_text(url))
+def fetch_uniprot_query(
+    query: str,
+    size: int = 100,
+    max_pages: int = 1,
+) -> dict[str, Any]:
+    if max_pages < 1:
+        raise ValueError("max_pages must be positive")
+    records: list[dict[str, Any]] = []
+    pages: list[dict[str, Any]] = []
+    for page_index in range(max_pages):
+        offset = page_index * size
+        url = build_uniprot_query_url(query=query, size=size, offset=offset)
+        page_records = normalize_uniprot_tsv(_fetch_text(url))
+        records.extend(page_records)
+        pages.append(
+            {
+                "url": url,
+                "offset": offset,
+                "record_count": len(page_records),
+            }
+        )
+        if len(page_records) < size:
+            break
     return {
         "metadata": {
-            **RetrievalMetadata("uniprot", url, len(records)).to_dict(),
+            **RetrievalMetadata("uniprot", UNIPROT_SEARCH_URL, len(records)).to_dict(),
             "query": query,
             "size": size,
+            "max_pages": max_pages,
+            "pages_fetched": len(pages),
+            "pages": pages,
+            "url": pages[0]["url"] if pages else build_uniprot_query_url(query=query, size=size),
         },
         "records": records,
     }

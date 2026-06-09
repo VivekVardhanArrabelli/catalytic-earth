@@ -46,6 +46,9 @@ from .external_source_ingestion import (
 from .external_source_admission_validation import (
     write_external_source_admission_validation,
 )
+from .scaleout_plp_radical_cobalamin_external import (
+    write_external_scaleout_shard_plp_radical_cobalamin,
+)
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .predicted_geometry_recovery import (
@@ -2879,6 +2882,33 @@ def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
         "Wrote external bulk ingestion scout to "
         f"{args.out} ({artifact['candidate_count']} rows; "
         f"{artifact['import_preview_candidate_count']} provisional preview)"
+    )
+    return 0
+
+
+def cmd_build_external_scaleout_shard_plp_radical_cobalamin(
+    args: argparse.Namespace,
+) -> int:
+    artifact = write_external_scaleout_shard_plp_radical_cobalamin(
+        current_manifest_path=Path(args.current_manifest),
+        label_registry_path=Path(args.label_registry),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        import_ready_path=Path(args.import_ready_out)
+        if args.import_ready_out
+        else None,
+        created_utc=args.created_utc,
+        max_records_per_query=args.max_records_per_query,
+        max_pages_per_query=args.max_pages_per_query,
+        max_candidates=args.max_candidates,
+        max_candidates_per_lane=args.max_candidates_per_lane,
+        target_candidate_floor=args.target_candidate_floor,
+        entry_fetch_workers=args.entry_fetch_workers,
+    )
+    print(
+        "Wrote PLP/radical/cobalamin external scaleout shard to "
+        f"{args.out} ({artifact['candidate_count']} rows; "
+        f"{artifact['import_ready_count']} import-ready preview)"
     )
     return 0
 
@@ -22415,6 +22445,78 @@ def build_parser() -> argparse.ArgumentParser:
         help="also query Rhea by EC when UniProt catalytic activity lacks Rhea links",
     )
     external_bulk_ingestion.set_defaults(func=cmd_build_external_bulk_ingestion_scout)
+
+    external_plp_radical_cobalamin = subparsers.add_parser(
+        "build-external-scaleout-shard-plp-radical-cobalamin",
+        help=(
+            "build the targeted reviewed-UniProt PLP/radical-SAM/cobalamin "
+            "external scaleout shard"
+        ),
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--current-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--label-registry",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609.json"
+        ),
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--import-ready-out",
+        default=(
+            "artifacts/"
+            "v3_external_scaleout_shard_plp_radical_cobalamin_import_ready_preview_"
+            "current702_20260609.json"
+        ),
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--report",
+        default=(
+            "work/"
+            "external_scaleout_shard_plp_radical_cobalamin_current702_20260609.md"
+        ),
+    )
+    external_plp_radical_cobalamin.add_argument("--created-utc")
+    external_plp_radical_cobalamin.add_argument(
+        "--max-records-per-query",
+        type=int,
+        default=100,
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--max-pages-per-query",
+        type=int,
+        default=5,
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--max-candidates",
+        type=int,
+        default=1800,
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--max-candidates-per-lane",
+        type=int,
+        default=None,
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--target-candidate-floor",
+        type=int,
+        default=1500,
+    )
+    external_plp_radical_cobalamin.add_argument(
+        "--entry-fetch-workers",
+        type=int,
+        default=16,
+    )
+    external_plp_radical_cobalamin.set_defaults(
+        func=cmd_build_external_scaleout_shard_plp_radical_cobalamin
+    )
 
     external_admission_merger = subparsers.add_parser(
         "build-external-admission-qa-merger",

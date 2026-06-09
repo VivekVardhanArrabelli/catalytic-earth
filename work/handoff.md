@@ -2,32 +2,23 @@
 
 ## Current automation run
 
-- Automation ID: `ce-external-admission-qa-merger`
-- STARTED_AT_UTC: `2026-06-09T02:25:12Z`
-- STARTED_AT_LOCAL: `2026-06-08T21:25:12-0500`
-- ENDED_AT_UTC: `2026-06-09T02:34:23Z`
-- ENDED_AT_LOCAL: `2026-06-08T21:34:23-0500`
-- ELAPSED_MINUTES: `9.183`
-- Status: Complete durable output. Superseded the pre-producer QA surface by
-  overlaying the completed 370-row materialization admission batch onto the
-  845-row bulk pagination scaleout surface, yielding 333 preview-only
-  import-review rows, 48 repair-queue rows, 152 rows newly added by scaleout,
-  and exact branch/hash provenance without touching production registries,
-  imports, ontologies, heldout splits, thresholds, or model weights.
-- Current outputs:
-  `artifacts/v3_external_admission_merged_surface_current702_20260609.json`,
-  `artifacts/v3_external_admission_import_ready_preview_current702_20260609.json`,
-  `artifacts/v3_external_admission_repair_queue_current702_20260609.json`, and
-  `work/external_admission_qa_merger_current702_20260609.md`.
+- Automation ID: `ce-scaleout-shard-plp-radical-cobalamin`
+- STARTED_AT_UTC: `2026-06-09T03:35:43Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 22:35:43 CDT 2026`
+- ENDED_AT_UTC: `pending`
+- ENDED_AT_LOCAL: `pending`
+- ELAPSED_MINUTES: `pending`
+- Status: In progress. Targeted external scaleout for mechanistically
+  information-rich PLP, radical-SAM, and cobalamin families, deduplicated
+  against current702, prior external artifacts, and the merged external
+  admission branch surface from `ce-external-admission-qa-merger-20260609`.
+- Current output: pending
+- Provisional/import-ready preview: pending
 - Lock:
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth/catalytic-earth-automation.lock`.
-- Validation passed: JSON parse for merged/import-ready/repair-queue artifacts,
-  focused pytest for `tests/test_external_admission_qa_merger.py` plus
-  `tests/test_cli.py` (215 passed, 160 subtests passed), targeted artifact
-  reconciliation (`845` merged / `333` import-ready / `48` repair), explicit
-  preview provenance and exact current702 non-overlap assertions,
-  `PYTHONPATH=src python -m catalytic_earth.cli validate`, `git diff --check`,
-  and production-edit guardrail review.
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth5/catalytic-earth-automation.lock`;
+  start timestamps written to
+  `/tmp/ce_scaleout_shard_plp_radical_cobalamin_run_start.txt`.
+- Validation: pending.
 
 ## Mission
 
