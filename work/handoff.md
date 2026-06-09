@@ -3,27 +3,31 @@
 ## Current automation run
 
 - Automation ID: `ce-external-admission-qa-merger`
-- STARTED_AT_UTC: `2026-06-09T01:24:17Z`
-- STARTED_AT_LOCAL: `2026-06-08T20:24:17-0500`
-- ENDED_AT_UTC: `2026-06-09T01:30:54Z`
-- ENDED_AT_LOCAL: `2026-06-08T20:30:54-0500`
-- ELAPSED_MINUTES: `6.628`
-- Status: Complete durable output. Merged the validated 16-row admission slice
-  over the 693-row bulk scout baseline into a provenance-audited external
-  admission surface, preserved 0 import-ready rows, and routed 23 repairable
-  rows into an explicit repair queue without touching production registries or
-  final import files.
+- STARTED_AT_UTC: `2026-06-09T02:25:12Z`
+- STARTED_AT_LOCAL: `2026-06-08T21:25:12-0500`
+- ENDED_AT_UTC: `2026-06-09T02:34:23Z`
+- ENDED_AT_LOCAL: `2026-06-08T21:34:23-0500`
+- ELAPSED_MINUTES: `9.183`
+- Status: Complete durable output. Superseded the pre-producer QA surface by
+  overlaying the completed 370-row materialization admission batch onto the
+  845-row bulk pagination scaleout surface, yielding 333 preview-only
+  import-review rows, 48 repair-queue rows, 152 rows newly added by scaleout,
+  and exact branch/hash provenance without touching production registries,
+  imports, ontologies, heldout splits, thresholds, or model weights.
 - Current outputs:
-  `artifacts/v3_external_admission_merged_surface_current702_20260608.json`,
-  `artifacts/v3_external_admission_import_ready_preview_current702_20260608.json`,
-  `artifacts/v3_external_admission_repair_queue_current702_20260608.json`, and
-  `work/external_admission_qa_merger_current702_20260608.md`.
+  `artifacts/v3_external_admission_merged_surface_current702_20260609.json`,
+  `artifacts/v3_external_admission_import_ready_preview_current702_20260609.json`,
+  `artifacts/v3_external_admission_repair_queue_current702_20260609.json`, and
+  `work/external_admission_qa_merger_current702_20260609.md`.
 - Lock:
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth1/catalytic-earth-automation.lock`.
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth/catalytic-earth-automation.lock`.
 - Validation passed: JSON parse for merged/import-ready/repair-queue artifacts,
-  targeted pytest for the new merger lane plus adjacent external ingestion and
-  validation tests (5 passed), focused row-count/terminal-state/repair-bucket
-  reconciliation, `git diff --check`, and production-edit guardrail review.
+  focused pytest for `tests/test_external_admission_qa_merger.py` plus
+  `tests/test_cli.py` (215 passed, 160 subtests passed), targeted artifact
+  reconciliation (`845` merged / `333` import-ready / `48` repair), explicit
+  preview provenance and exact current702 non-overlap assertions,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, `git diff --check`,
+  and production-edit guardrail review.
 
 ## Mission
 
@@ -74,6 +78,114 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-09 External Admission QA Merger Producer Reconcile
+
+Automation run: `ce-external-admission-qa-merger`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-09T02:25:12Z`
+- STARTED_AT_LOCAL: `2026-06-08T21:25:12-0500`
+- ENDED_AT_UTC: `2026-06-09T02:34:23Z`
+- ENDED_AT_LOCAL: `2026-06-08T21:34:23-0500`
+- ELAPSED_MINUTES: `9.183`
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth/catalytic-earth-automation.lock`
+
+#### Scope
+
+- Superseded the older `20260608` external admission QA surface by consuming
+  the completed producer artifacts directly from
+  `origin/ce-external-materialization-admission-batch-20260608` at
+  `1f61a2dc` and `origin/ce-external-bulk-pagination-scaleout-20260609` at
+  `595c7ac8`, with the earlier QA surface at
+  `origin/ce-external-admission-qa-merger-20260608` (`cac2d937`) used only for
+  delta accounting.
+- Reworked the merger CLI/lane so it can read JSON artifacts from git refs,
+  overlay the 370-row materialization batch on the 845-row bulk scaleout
+  surface, preserve producer/source hashes and provenance, and emit a current
+  `20260609` merged surface plus import-review and repair-queue outputs.
+- Did not edit production registries, ontologies, imports, heldout splits,
+  production thresholds, or model weights.
+
+#### Outputs
+
+- Merged surface:
+  `artifacts/v3_external_admission_merged_surface_current702_20260609.json`.
+- Import-ready preview:
+  `artifacts/v3_external_admission_import_ready_preview_current702_20260609.json`.
+- Repair queue:
+  `artifacts/v3_external_admission_repair_queue_current702_20260609.json`.
+- Human report:
+  `work/external_admission_qa_merger_current702_20260609.md`.
+- Rerunnable code/tests:
+  `src/catalytic_earth/external_admission_qa_merger.py`,
+  `tests/test_external_admission_qa_merger.py`, CLI wiring in
+  `src/catalytic_earth/cli.py`, and parser coverage in `tests/test_cli.py`.
+
+#### Result
+
+- Merged candidate count: `845`.
+- Import-ready preview count: `333`.
+- Repair queue count: `48`.
+- Duplicate/current702 conflict rows: `33` blocked rows, including `22` exact
+  current702 accession conflicts.
+- Rows newly added by scaleout vs the older `20260608` QA surface: `152`.
+- Rows materialized from validated queue: `16`.
+- Rows materialized from provisional queue: `354`.
+- Terminal-state counts:
+  `import_ready_preview=333`,
+  `repairable_locator_blocker=37`,
+  `locator_ready_candidate=221`,
+  `coordinate_ready_pending_locator=120`,
+  `provisional_external_countable_preflight_candidate=88`,
+  `blocked_duplicate_or_current_registry_conflict=33`,
+  `locator_repair_candidate=8`,
+  `coordinate_repair_candidate=3`, and
+  `hard_blocked_with_next_action=2`.
+- Controlled import-review lane readiness: `True` for the preview-only lane.
+  Production import remains unauthorized.
+- Source artifact hashes/provenance recorded in the report for:
+  materialization batch SHA256
+  `ce0cd844c465fcd28181d087f6d807bc90f8b0f47df951572564acca9540f9a6`,
+  materialization preview SHA256
+  `b771d847359392ccc17c472906b8497012071ebc7b5c1d284f1d8fb2313b926e`,
+  bulk scaleout SHA256
+  `3804f45dec32578ddab615abf78a8aadfc6d9591065bcd0ab19a1dbcf23e8592`,
+  bulk preview SHA256
+  `5d37f102a095ee3dfa1a1bcd7fbc62b186232b60f71938499f0db665b4a43001`,
+  and prior QA merged surface SHA256
+  `41f57a9d8c1f2fa317c3cdeb869b18d49c2530c6d9124666a2800266e0fa969a`.
+
+#### Validation
+
+- `PYTHONPATH=src python -m pytest tests/test_external_admission_qa_merger.py tests/test_cli.py -q`:
+  `215 passed, 160 subtests passed`.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-external-admission-qa-merger --created-utc 2026-06-09T02:25:12Z`:
+  wrote the new `20260609` artifacts.
+- `python -m json.tool` for the merged/import-ready/repair-queue artifacts:
+  passed.
+- Focused consistency assertions:
+  merged rows `845`, import-ready rows `333`, repair queue rows `48`, scaleout
+  additions `152`, materialized validated/provisional rows `16/354`, preview
+  provenance present for every row, and exact current702 non-overlap for every
+  preview row.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with `702`
+  curated mechanism labels.
+- `git diff --check`: passed.
+
+#### Commit / push / blockers / next action
+
+- Durable work commit: `28a9ff3d` (`Merge external admission producer outputs`).
+- Pushed branch: `origin/ce-external-admission-qa-merger-20260609`.
+- Blockers: none for the preview-only controlled import-review lane. Remaining
+  non-production blockers are the downstream structural duplicate screen,
+  label-factory/review gate, and explicit production authorization.
+- Exact next action: review the `333` preview-only import-review rows in
+  `artifacts/v3_external_admission_import_ready_preview_current702_20260609.json`
+  first, then run the `48` repair rows through the explicit locator/coordinate
+  repair lane before considering any production import.
 
 ### 2026-06-08 External Admission QA Merger
 
