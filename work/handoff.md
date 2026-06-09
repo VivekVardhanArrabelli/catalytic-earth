@@ -2,6 +2,70 @@
 
 ## Current automation run
 
+- Automation ID: `ce-external-bulk-scaleout-wave-2`
+- STARTED_AT_UTC: `2026-06-09T05:11:12Z`
+- STARTED_AT_LOCAL: `Tue Jun  9 00:11:12 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T06:06:11Z`
+- ENDED_AT_LOCAL: `Tue Jun  9 01:06:11 CDT 2026`
+- ELAPSED_MINUTES: `54.983`
+- Status: Complete durable output. Built the missing Wave 2 broad external
+  bulk scaleout discovery/admission-preflight artifact over reviewed
+  Swiss-Prot/UniProt candidates, deduped against current702 and prior
+  external/scaleout artifacts. No production registry, import, ontology,
+  heldout split, threshold, model-weight, or coordinate-download change was
+  made.
+- Current outputs:
+  `artifacts/v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json`,
+  `artifacts/v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_current702_20260609.json`,
+  `work/external_bulk_ingestion_scaleout_wave2_current702_20260609.md`.
+- Code/test outputs:
+  `src/catalytic_earth/external_bulk_scaleout_wave2.py`,
+  `src/catalytic_earth/cli.py`, and
+  `tests/test_external_bulk_scaleout_wave2.py`.
+- Result: fetched 24,582 UniProt search records across broad Wave 2 lanes.
+  Produced 5,658 unique candidate rows after within-run dedupe; 2,742 are
+  unique non-duplicate candidates after current702/prior-external blocking
+  (target 2,500 met; 4,000 stretch not met). Provisional import-preview rows:
+  1,069. Duplicate/current/prior conflicts: 2,916, including 143 current702
+  exact conflicts and 2,883 prior-external exact conflicts. API/source failure
+  rows: 47. Within-run duplicate search rows skipped: 16,131.
+- Terminal states: 1,069
+  `provisional_external_countable_preflight_candidate`, 650
+  `locator_ready_candidate`, 206 `coordinate_ready_pending_locator`, 21
+  `locator_repair_candidate`, 209 `coordinate_repair_candidate`, 518
+  `reject/OOS_preserve_signal`, 69 `hard_blocked_with_next_action`, and 2,916
+  `blocked_duplicate_or_current_registry_conflict`.
+- Lane coverage: all required review-story lane groups have rows: metal
+  hydrolase, phosphoryl transfer, glycoside/nucleoside,
+  redox/cofactor-confounded, PLP/radical/cobalamin,
+  near-orphan/no-structure/OOS/fold-confounded, FMO/heme/Fe-S/flavin
+  boundary, and lyase/isomerase/amidase/deaminase controls. A focused page-3/4
+  continuation over high-yield lanes produced 2,793 continuation candidates
+  but added 0 new candidate IDs after treating the first pass as prior dedupe;
+  preserve this as evidence that the next continuation should split into new
+  subqueries, not simply increase page count on the same lanes.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth1/catalytic-earth-automation.lock`;
+  start timestamps written to
+  `/tmp/ce-external-bulk-scaleout-wave-2-run-start.txt`.
+- Validation passed: focused pytest for Wave 2/redox/source-ingestion (6
+  tests), JSON parse for main and provisional preview artifacts, custom
+  count/provenance reconciliation, `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  current-docs artifact-reference check with 0 missing references,
+  `PYTHONPATH=src python -m unittest discover -s tests` (1,691 tests), and
+  `git diff --check`.
+- Commit/push/sync/lock status: final commit/push/sync verification is in
+  progress; release the lock only after `HEAD == origin/main` and the worktree
+  is clean.
+- Exact next action: run source-free structural duplicate screens and
+  label-factory review on only the 1,069 provisional preview rows; for further
+  Wave 2 growth, split the high-yield no-structure, metal hydrolase,
+  phosphoryl-transfer, glycoside/nucleoside, amidase/deaminase, and isomerase
+  lanes into new EC/keyword subqueries instead of increasing page depth on the
+  same queries.
+
+## Previous automation run
+
 ### 2026-06-09 Near-Orphan Diversity External Scaleout Shard
 
 - Automation ID: `ce-scaleout-shard-near-orphan-diversity`
@@ -69,7 +133,7 @@
   materialization for the 2,197 hard-blocked rows before treating them as
   final no-structure or locator/coordinate-ready evidence.
 
-## Previous automation run
+### 2026-06-09 External Materialization Wave 2
 
 - Automation ID: `ce-external-materialization-wave-2`
 - STARTED_AT_UTC: `2026-06-09T05:10:41Z`
@@ -123,58 +187,6 @@
   `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth/catalytic-earth-automation.lock`
 - Run-start file:
   `/tmp/ce_external_materialization_wave2_started_at.txt`
-
-- Automation ID: `ce-scaleout-shard-redox-cofactor-confounded`
-- STARTED_AT_UTC: `2026-06-09T03:35:02Z`
-- STARTED_AT_LOCAL: `Mon Jun  8 22:35:03 CDT 2026`
-- ENDED_AT_UTC: `2026-06-09T04:33:20Z`
-- ENDED_AT_LOCAL: `Mon Jun  8 23:33:20 CDT 2026`
-- ELAPSED_MINUTES: `58.300`
-- Status: Complete durable output. Added a rerunnable, read-only targeted
-  external scaleout shard for redox/cofactor-confounded reviewed Swiss-Prot
-  families, deduped against current702, local prior external/scaleout
-  artifacts, and completed external-admission branch artifacts. The balanced
-  final pass covers redox oxygen/sulfur, heme peroxidase/oxidase-like, flavin
-  monooxygenase/dehydrogenase/reductase boundaries, Fe-S/flavin combined
-  systems, sulfur oxidoreductases, oxygenases, dehydrogenases, and
-  cofactor-confounded OOS negatives.
-- Current outputs:
-  `artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_current702_20260609.json`,
-  `artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_import_ready_preview_current702_20260609.json`,
-  and
-  `work/external_scaleout_shard_redox_cofactor_confounded_current702_20260609.md`.
-- Code/test outputs:
-  `src/catalytic_earth/external_scaleout_redox_cofactor_confounded.py`,
-  `src/catalytic_earth/cli.py`, and
-  `tests/test_external_scaleout_redox_cofactor_confounded.py`.
-- Result: 2,681 candidate rows and 2,512 unique non-duplicate rows were
-  classified (target 2,000 met; stretch 4,000 not met). Terminal states:
-  743 `import_ready_preview`, 214 `locator_ready_candidate`, 103
-  `coordinate_ready_pending_locator`, 21 `locator_repair_candidate`, 18
-  `coordinate_repair_candidate`, 119 `reject/OOS_preserve_signal`, 169
-  `blocked_duplicate_or_current_registry_conflict`, and 1,294
-  `hard_blocked_with_next_action`.
-- Cofactor/confounding notes: 1,068 rows carry cofactor-confounded signal.
-  Hard blockers are mostly UniProt entry materialization timeouts preserved as
-  explicit source-retrieval blockers, not silently discarded.
-- Lock:
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`;
-  start timestamps written to
-  `/tmp/ce-scaleout-shard-redox-cofactor-confounded-run-start.txt`.
-- Commit/push/sync status: rebased shard commit
-  `994a2b7b381c2aeb0bd6b136d57e20db3ff01266` was pushed to `origin/main`;
-  final status-correction commit, sync verification, and lock release are in
-  progress.
-- Validation passed: shard JSON parse, import-ready preview JSON parse, count
-  reconciliation (`candidate_rows` 2,681; unique non-duplicate 2,512;
-  `import_ready_preview` 743), required boundary/family coverage assertions,
-  focused pytest, `PYTHONPATH=src python -m catalytic_earth.cli validate`,
-  current docs artifact-reference check with 0 missing references,
-  `git diff --check`, and production-edit guardrail.
-- Exact next action: run current-countable structural duplicate screens and
-  label-factory review on the 743 preview-only rows; retry UniProt entry
-  materialization for the 1,294 hard-blocked rows before treating them as
-  locator/coordinate-ready.
 
 ## Recent upstream automation runs
 

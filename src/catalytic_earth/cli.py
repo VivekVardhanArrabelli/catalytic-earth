@@ -42,6 +42,9 @@ from .external_source_ingestion import (
     write_external_bulk_ingestion_scout,
     write_external_source_ingestion_pilot,
 )
+from .external_bulk_scaleout_wave2 import (
+    write_external_bulk_scaleout_wave2,
+)
 from .external_scaleout_redox_cofactor_confounded import (
     DEFAULT_PRIOR_ARTIFACT_GLOBS as REDOX_COFACTOR_PRIOR_ARTIFACT_GLOBS,
     DEFAULT_PRIOR_GIT_ARTIFACTS as REDOX_COFACTOR_PRIOR_GIT_ARTIFACTS,
@@ -2927,6 +2930,43 @@ def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
         "Wrote external bulk ingestion scout to "
         f"{args.out} ({artifact['candidate_count']} rows; "
         f"{artifact['import_preview_candidate_count']} provisional preview)"
+    )
+    return 0
+
+
+def cmd_build_external_bulk_scaleout_wave2(args: argparse.Namespace) -> int:
+    artifact = write_external_bulk_scaleout_wave2(
+        current_manifest_path=Path(args.current_manifest),
+        label_registry_path=Path(args.label_registry),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        provisional_import_preview_path=(
+            Path(args.provisional_import_preview_out)
+            if args.provisional_import_preview_out
+            else None
+        ),
+        created_utc=args.created_utc,
+        max_records_per_query=args.max_records_per_query,
+        max_pages_per_query=args.max_pages_per_query,
+        max_candidates=args.max_candidates,
+        max_candidates_per_lane=args.max_candidates_per_lane,
+        target_unique_non_duplicate_candidates=(
+            args.target_unique_non_duplicate_candidates
+        ),
+        entry_fetch_workers=args.entry_fetch_workers,
+        fetch_rhea_fallback=args.rhea_fallback,
+        prior_artifact_paths=[
+            Path(path) for path in (args.prior_artifact or [])
+        ],
+        prior_artifact_globs=tuple(args.prior_artifact_glob or []),
+        prior_git_artifacts=tuple(args.prior_git_artifact or []),
+    )
+    counts = artifact["counts"]
+    print(
+        "Wrote external bulk scaleout Wave 2 to "
+        f"{args.out} ({counts['candidate_rows']} rows; "
+        f"{counts['unique_non_duplicate_candidate_rows']} unique non-duplicate; "
+        f"{counts['provisional_import_preview_rows']} provisional preview)"
     )
     return 0
 
@@ -22629,6 +22669,98 @@ def build_parser() -> argparse.ArgumentParser:
         help="also query Rhea by EC when UniProt catalytic activity lacks Rhea links",
     )
     external_bulk_ingestion.set_defaults(func=cmd_build_external_bulk_ingestion_scout)
+
+    external_bulk_scaleout_wave2 = subparsers.add_parser(
+        "build-external-bulk-scaleout-wave2",
+        help=(
+            "build the broad reviewed-UniProt Wave 2 external bulk "
+            "discovery/admission-preflight artifact"
+        ),
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--current-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--label-registry",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json"
+        ),
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--provisional-import-preview-out",
+        default=(
+            "artifacts/"
+            "v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_"
+            "current702_20260609.json"
+        ),
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--report",
+        default="work/external_bulk_ingestion_scaleout_wave2_current702_20260609.md",
+    )
+    external_bulk_scaleout_wave2.add_argument("--created-utc")
+    external_bulk_scaleout_wave2.add_argument(
+        "--max-records-per-query",
+        type=int,
+        default=250,
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--max-pages-per-query",
+        type=int,
+        default=2,
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--max-candidates",
+        type=int,
+        default=9000,
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--max-candidates-per-lane",
+        type=int,
+        default=360,
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--target-unique-non-duplicate-candidates",
+        type=int,
+        default=2500,
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--entry-fetch-workers",
+        type=int,
+        default=16,
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--rhea-fallback",
+        action="store_true",
+        help="also query Rhea by EC when UniProt catalytic activity lacks Rhea links",
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--prior-artifact",
+        action="append",
+        default=[],
+        help="additional local prior external/scaleout JSON artifact for dedupe",
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--prior-artifact-glob",
+        action="append",
+        default=list(REDOX_COFACTOR_PRIOR_ARTIFACT_GLOBS),
+        help="local prior artifact glob; repeat to add multiple globs",
+    )
+    external_bulk_scaleout_wave2.add_argument(
+        "--prior-git-artifact",
+        action="append",
+        default=list(REDOX_COFACTOR_PRIOR_GIT_ARTIFACTS),
+        help="prior branch artifact spec in '<ref>:<path>' form for dedupe",
+    )
+    external_bulk_scaleout_wave2.set_defaults(
+        func=cmd_build_external_bulk_scaleout_wave2
+    )
 
     external_plp_radical_cobalamin = subparsers.add_parser(
         "build-external-scaleout-shard-plp-radical-cobalamin",
