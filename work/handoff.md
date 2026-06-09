@@ -54,9 +54,11 @@
   current-docs artifact-reference check with 0 missing references,
   `PYTHONPATH=src python -m unittest discover -s tests` (1,691 tests), and
   `git diff --check`.
-- Commit/push/sync/lock status: final commit/push/sync verification is in
-  progress; release the lock only after `HEAD == origin/main` and the worktree
-  is clean.
+- Commit/push/sync/lock status: Wave 2 artifact commit
+  `13e2025cbdd0cd42e060ad38535aec9cb78ca7aa` was pushed to `origin/main`,
+  fetched, and verified with `HEAD == origin/main` before this status
+  correction. Release the automation lock after the status-correction commit is
+  pushed, fetched, `HEAD == origin/main`, and the worktree is clean.
 - Exact next action: run source-free structural duplicate screens and
   label-factory review on only the 1,069 provisional preview rows; for further
   Wave 2 growth, split the high-yield no-structure, metal hydrolase,
