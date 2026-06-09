@@ -5,7 +5,7 @@ Generated from `work/progress_log.jsonl`.
 ## Time
 
 - Entries: 379
-- Measured elapsed time: 11581.8 minutes (193.03 hours)
+- Measured elapsed time: 11590.0 minutes (193.17 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,7 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- targeted-expansion: 114.0 measured minutes (1.90 hours)
+- targeted-expansion: 122.2 measured minutes (2.04 hours)
 - v3: 2734.9 measured minutes (45.58 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -34,7 +34,7 @@ Generated from `work/progress_log.jsonl`.
 ## Progress Counters
 
 - Artifact references logged: 3921
-- Evidence references logged: 3260
+- Evidence references logged: 3262
 
 ## Recent Entries
 
@@ -120,12 +120,12 @@ Generated from `work/progress_log.jsonl`.
 
 - Task: Targeted expansion defense ledger current702
 - Time mode: measured
-- Measured minutes: 12.9
+- Measured minutes: 21.117
 - Started: 2026-06-09T03:36:09Z
-- Ended: 2026-06-09T03:49:03Z
+- Ended: 2026-06-09T03:57:16Z
 - Artifacts: artifacts/v3_targeted_expansion_defense_ledger_current702_20260609.json, work/targeted_expansion_defense_ledger_current702_20260609.md, work/handoff.md, work/status.md
-- Evidence: ledger JSON parse passed, custom source path and count reconciliation passed, unittest discovery 1678 passed, validate passed with 702 curated labels, docs artifact reference check missing 0, git diff check passed, production edit guardrail scan clean
-- Commit: `pending_final_wrap_commit`
+- Evidence: ledger JSON parse passed, custom source path and count reconciliation passed including Wave 2, rebased over origin/main 4190c5a2, unittest discovery 1681 passed after rebase, validate passed with 702 curated labels, docs artifact reference check missing 0, git diff check passed, production edit guardrail scan clean, pushed ledger commit 91e13a31 and verified HEAD equals origin/main
+- Commit: `91e13a3198a366759f7b73a22356a80fd22781e9`
 - Notes: Built review-ready ledger tying current702 targeted scaleout choices to prior cofactor geometry fold locator near-orphan OOS and external Swiss-Prot AFDB Rhea lessons; external 333-row import-ready preview remains preview-only.
 
 ## Expectation Updates

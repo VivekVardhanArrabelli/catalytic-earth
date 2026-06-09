@@ -5,9 +5,9 @@
 - Automation ID: `ce-targeted-expansion-defense-ledger`
 - STARTED_AT_UTC: `2026-06-09T03:36:09Z`
 - STARTED_AT_LOCAL: `Mon Jun  8 22:36:09 CDT 2026`
-- ENDED_AT_UTC: `2026-06-09T03:49:03Z`
-- ENDED_AT_LOCAL: `Mon Jun  8 22:49:03 CDT 2026`
-- ELAPSED_MINUTES: `12.900`
+- ENDED_AT_UTC: `2026-06-09T03:57:16Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 22:57:16 CDT 2026`
+- ELAPSED_MINUTES: `21.117`
 - Status: Complete durable output under the work-block early-completion
   exception. Built a review-ready targeted expansion defense ledger from
   current main plus completed external scaleout/admission branches, then
@@ -38,8 +38,11 @@
   rows / 48 repair-queue rows; current-main Wave 2 carries forward 333
   import-ready preview rows, materializes 309 low-disk review-only locator
   sidecars, and records a 512-row repair/continuation queue.
-- Commit/push/sync/lock status: pending final commit and push. Release the
-  automation lock only after `HEAD == origin/main` and the worktree is clean.
+- Commit/push/sync/lock status: ledger commit
+  `91e13a3198a366759f7b73a22356a80fd22781e9` was pushed to `origin/main` and
+  verified with `HEAD == origin/main` before this final status correction.
+  Release the automation lock only after the final status-correction commit is
+  also pushed, `HEAD == origin/main`, and the worktree is clean.
 - Exact next action: use the ledger for tomorrow's review. The defensible claim
   is targeted, artifact-backed lane selection plus a 333-row controlled
   import-review preview, not 333 new labels; any label growth still requires
