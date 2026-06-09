@@ -3,6 +3,44 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-09: Annotation-Anchored Bronze Is An Accepted External Label Basis (the 10k unlock)
+
+Decision (owner: Vivek): to scale toward 10k labels, **reviewed Swiss-Prot/EC/Rhea/cofactor
+annotation is an accepted bronze label source.** Scope/fingerprint may be decided from
+reviewed annotation; structure/geometry confirmation is demoted from an entry gate to a
+deferred **bronze->silver promotion** signal.
+
+Why this was the real blocker (not ceremony): scoring the 276 coordinate-bearing Wave 2
+rows through the project's own text-free geometry inverse-gate abstained on **100%** of them
+— the AlphaFold **apo** coordinates lack the cofactor, the same predicted-apo degradation the
+step-4 work characterized. So "scope must be geometry-confirmed" is unmeetable on predicted
+structures and produced zero counted labels from thousands of candidates. The fix separates
+the two things the old bar conflated: (1) **predictive leakage discipline** — the benchmark
+scorer must never see EC/name/prose — stays ABSOLUTE; (2) **label evidence basis** — adopt the
+field-standard reviewed annotation, recorded transparently as `evidence_basis` + bronze tier.
+
+Load-bearing gates kept: leakage-safe split (new uniprot rows join in_distribution, NEVER
+heldout — the frozen 140-row benchmark is untouched), current702 accession/sequence duplicate
+screen, EC/name/prose in `excluded_context` (never predictive), honest bronze/automation_curated
+tiering, and per-lane diversity. Conservative scope policy: positives only when an
+annotation-derived primary lane is corroborated by the matching cofactor class (metal/PLP/
+flavin); clear OOS for non-eight-fingerprint lanes; **hold** cofactor-confounded redox and
+secondary-probe radical-SAM/cobalamin lanes for review.
+
+First batch (non-destructive, registry NOT yet written): 186 importable bronze labels
+(101 seed_fingerprint = 95 metal_dependent_hydrolase + 6 plp_dependent_enzyme; 85 out_of_scope),
+projecting **702 -> 888**; 90 held, 324 skipped (current702 duplicate screen not yet
+confirmed — the next batch). Merging into `curated_mechanism_labels.json` is a separate,
+explicitly authorized step.
+
+References:
+
+- `src/catalytic_earth/external_annotation_anchored_import.py`,
+  `tests/test_external_annotation_anchored_import.py`, CLI
+  `build-external-annotation-anchored-import`.
+- `artifacts/v3_external_annotation_anchored_import_preview_wave2_current702_20260609.json`,
+  `work/external_annotation_anchored_import_preview_wave2_current702_20260609.md`.
+
 ## 2026-06-09: Step-4 Precision Side Measured — Recalibrated-Threshold Dial Beats Suppression (leakage-safe)
 
 Decision: the Problem-2 step-4 operating-point question now has its missing
