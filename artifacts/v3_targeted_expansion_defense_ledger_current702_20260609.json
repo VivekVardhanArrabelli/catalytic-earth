@@ -1,0 +1,1053 @@
+{
+  "artifact_id": "v3_targeted_expansion_defense_ledger_current702_20260609",
+  "schema_version": "1.0",
+  "created_utc": "2026-06-09T03:54:22Z",
+  "scope": "Review-ready defense ledger for current702 targeted expansion and external scaleout/admission branches; artifact/report only, no production imports.",
+  "current_main_commit_used": "4190c5a27c341d49efc5980041ffea270812ce01",
+  "working_head_at_generation": "4190c5a27c341d49efc5980041ffea270812ce01",
+  "branch_provenance": [
+    {
+      "git_ref": "origin/main",
+      "commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "committed_at": "2026-06-08T22:49:59-05:00",
+      "subject": "Materialize external Wave 2 preview surface"
+    },
+    {
+      "git_ref": "origin/ce-external-bulk-pagination-scaleout-20260609",
+      "commit": "595c7ac850aa32c1fc2f6ba257bf1a370499747f",
+      "committed_at": "2026-06-08T20:48:48-05:00",
+      "subject": "Scale external bulk ingestion pagination"
+    },
+    {
+      "git_ref": "origin/ce-external-materialization-admission-batch-20260608",
+      "commit": "1f61a2dcf4e6268a65ee53d61e508cf878695f27",
+      "committed_at": "2026-06-08T20:43:30-05:00",
+      "subject": "Add external materialization admission batch"
+    },
+    {
+      "git_ref": "origin/ce-external-admission-qa-merger-20260608",
+      "commit": "cac2d937ebed772759a063e41e7b37e6ec403dcf",
+      "committed_at": "2026-06-08T20:32:11-05:00",
+      "subject": "Add external admission QA merger lane"
+    },
+    {
+      "git_ref": "origin/ce-external-admission-qa-merger-20260609",
+      "commit": "ec9deee9c22013659277cf0009a8a4d4eb185671",
+      "committed_at": "2026-06-08T21:35:48-05:00",
+      "subject": "Record external admission merger handoff"
+    }
+  ],
+  "expansion_thesis": [
+    "The 10k path should expand along mechanism, fold, cofactor, and near-orphan/OOS axes that previous experiments identified as brittle, not by random label accumulation.",
+    "Predicted geometry reconstruction showed that deploy-time missing active-site context, especially cofactors, can dominate errors; therefore redox, PLP, radical-SAM/cobalamin, and metal/cofactor lanes are first-class expansion axes.",
+    "Fold/cofactor confounding and decoder-choice artifacts require family-specific review lanes, structural duplicate checks, and source-free active-site locators before any countable import.",
+    "Near-orphan and no-reliable-structure bins are atlas-coverage needs, but they remain review/repair queues until coordinates and locators are source-free and explicit.",
+    "External Swiss-Prot/AFDB/PDB/Rhea ingestion is the current scalable source pattern; branch artifacts show 845 merged candidates and 333 preview-only import-ready rows, not 333 new labels.",
+    "Current main now includes Wave 2 materialization: 333 import-ready preview rows are carried forward, 309 review-only locator sidecars are staged under a disk-floor guardrail, and 512 rows remain repair/continuation work."
+  ],
+  "family_lane_rationale": [
+    {
+      "family_or_lane": "metal_hydrolase",
+      "included_because": "Metal coordination and hydrolase-like folds are a known cofactor/fold confounding axis; the atlas needs subclass breadth and hard duplicate screens rather than one broad metal bucket.",
+      "failure_mode_or_atlas_need": "Separates true metal-dependent hydrolase mechanisms from fold-neighbor and current702 duplicate signals; preserves locator-ready rows that still need Rhea/family review.",
+      "current_counts": {
+        "factory_axis_rows": 394,
+        "scaleout_shard_rows": 411,
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 9,
+          "coordinate_ready_pending_locator": 3,
+          "import_ready_preview": 15,
+          "locator_ready_candidate": 91,
+          "provisional_external_countable_preflight_candidate": 13,
+          "repairable_locator_blocker": 1
+        }
+      },
+      "supporting_artifacts": [
+        "artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json",
+        "artifacts/v3_scaleout_metal_hydrolase_shard_current702_20260608.json",
+        "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json",
+        "artifacts/v3_cofactor_presence_calibration_current702_20260604.json"
+      ]
+    },
+    {
+      "family_or_lane": "redox oxygen/sulfur",
+      "included_because": "Predicted geometry failure analysis showed missing cofactor context can dominate deployment loss; oxygen/sulfur redox lanes are the clearest place to test cofactor reconstruction and electron-flow guardrails.",
+      "failure_mode_or_atlas_need": "Prevents flavin/heme/sulfur-lipoamide rows from becoming random sequence/fold positives; expands redox boundaries with explicit source provenance and no mechanism text as features.",
+      "current_counts": {
+        "factory_axis_rows": 173,
+        "scaleout_shard_rows": 370,
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 5,
+          "coordinate_ready_pending_locator": 4,
+          "import_ready_preview": 64,
+          "locator_ready_candidate": 29,
+          "locator_repair_candidate": 5,
+          "provisional_external_countable_preflight_candidate": 21,
+          "repairable_locator_blocker": 1
+        }
+      },
+      "supporting_artifacts": [
+        "artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json",
+        "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json",
+        "artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json",
+        "origin/ce-external-bulk-pagination-scaleout-20260609:artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json"
+      ]
+    },
+    {
+      "family_or_lane": "PLP children",
+      "included_because": "PLP mechanism children are useful only if the ledger keeps child mechanisms separate from broad PLP family evidence and locator gaps.",
+      "failure_mode_or_atlas_need": "Defends against parent-family collapse, single-locator rows, and ambiguous residue mappings before any import-ready claim.",
+      "current_counts": {
+        "factory_axis_rows": 56,
+        "scaleout_shard_rows": 442,
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 2,
+          "import_ready_preview": 72,
+          "locator_ready_candidate": 5,
+          "provisional_external_countable_preflight_candidate": 3,
+          "repairable_locator_blocker": 20
+        }
+      },
+      "supporting_artifacts": [
+        "artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json",
+        "artifacts/v3_scaleout_plp_children_shard_current702_20260608.json",
+        "origin/ce-external-materialization-admission-batch-20260608:artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
+      ]
+    },
+    {
+      "family_or_lane": "radical-SAM/cobalamin",
+      "included_because": "Radical-SAM and cobalamin were secondary/OOD probes and cofactor-locus sidecars; they stress active-site cofactor evidence, not just fold similarity.",
+      "failure_mode_or_atlas_need": "Adds hard cofactor-locus diversity while preserving coordinate-repair and duplicate blockers.",
+      "current_counts": {
+        "factory_axis_rows": 22,
+        "scaleout_shard_rows": 735,
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 3,
+          "coordinate_ready_pending_locator": 7,
+          "coordinate_repair_candidate": 3,
+          "import_ready_preview": 50,
+          "locator_ready_candidate": 30,
+          "provisional_external_countable_preflight_candidate": 1,
+          "repairable_locator_blocker": 5
+        }
+      },
+      "supporting_artifacts": [
+        "artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_current702_20260601.json",
+        "artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_current702_20260601.json",
+        "artifacts/v3_scaleout_radical_sam_cobalamin_shard_current702_20260608.json",
+        "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+      ]
+    },
+    {
+      "family_or_lane": "glycoside/nucleoside",
+      "included_because": "This lane supplies hydrolase controls, carbohydrate/nucleoside boundary rows, and source-free locator pressure from prior external glycoside panels.",
+      "failure_mode_or_atlas_need": "Separates hard-negative/OOS preserve signals from plausible hydrolase labels and flags active-site locator gaps before review.",
+      "current_counts": {
+        "factory_axis_rows": 80,
+        "scaleout_shard_rows": 835,
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 6,
+          "coordinate_ready_pending_locator": 32,
+          "import_ready_preview": 43,
+          "locator_ready_candidate": 22,
+          "provisional_external_countable_preflight_candidate": 20,
+          "repairable_locator_blocker": 6
+        }
+      },
+      "supporting_artifacts": [
+        "artifacts/v3_scaleout_glycoside_nucleoside_shard_current702_20260608.json",
+        "artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json",
+        "artifacts/v3_family_panel_source_free_locator_external_glycoside_block_decision_current702_20260603.json"
+      ]
+    },
+    {
+      "family_or_lane": "phosphoryl transfer",
+      "included_because": "Earlier ePK and ATP/substrate-role work showed phosphorylation-like rows are especially vulnerable to ligand/protein-substrate confounding.",
+      "failure_mode_or_atlas_need": "Keeps kinase-like, phosphatase, and transfer boundary rows review-gated; import-ready previews remain subject to structural duplicate and label-factory review.",
+      "current_counts": {
+        "factory_axis_rows": 25,
+        "scaleout_shard_rows": 1281,
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 3,
+          "coordinate_ready_pending_locator": 6,
+          "import_ready_preview": 88,
+          "locator_ready_candidate": 4,
+          "locator_repair_candidate": 1,
+          "provisional_external_countable_preflight_candidate": 7,
+          "repairable_locator_blocker": 4
+        }
+      },
+      "supporting_artifacts": [
+        "work/scope.md",
+        "artifacts/v3_scaleout_phosphoryl_transfer_shard_current702_20260608.json",
+        "origin/ce-external-materialization-admission-batch-20260608:artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
+      ]
+    },
+    {
+      "family_or_lane": "near-orphan/no-reliable-structure",
+      "included_because": "Near-orphan and no-reliable-structure rows are the explicit atlas-growth lane for mechanisms not well represented in current702.",
+      "failure_mode_or_atlas_need": "Creates bins for underrepresented mechanisms without treating low-evidence rows as countable labels; requires coordinate/locator repair before review.",
+      "current_counts": {
+        "factory_near_orphan_rows": 43,
+        "factory_no_reliable_structure_rows": 23,
+        "scaleout_shard_rows": 746,
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 4,
+          "coordinate_ready_pending_locator": 67,
+          "hard_blocked_with_next_action": 2,
+          "import_ready_preview": 1,
+          "locator_ready_candidate": 39,
+          "locator_repair_candidate": 2
+        }
+      },
+      "supporting_artifacts": [
+        "artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json",
+        "artifacts/v3_near_orphan_geometry_support_review_packet_702_20260526.json",
+        "artifacts/v3_scaleout_near_orphan_tail_shard_current702_20260608.json"
+      ]
+    },
+    {
+      "family_or_lane": "adjacent high-yield amidase/deaminase",
+      "included_because": "The pagination scaleout added high-yield adjacent external lanes to test whether the Swiss-Prot/AFDB/Rhea pattern can broaden without becoming random.",
+      "failure_mode_or_atlas_need": "Useful for volume toward 10k, but remains provisional until family review and duplicate gates prove these are meaningful mechanism additions.",
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "locator_ready_candidate": 1,
+          "provisional_external_countable_preflight_candidate": 11
+        }
+      },
+      "supporting_artifacts": [
+        "origin/ce-external-bulk-pagination-scaleout-20260609:artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+        "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+      ]
+    },
+    {
+      "family_or_lane": "adjacent high-yield lyase/isomerase",
+      "included_because": "This external-only lane tests adjacent mechanism space while keeping exact current702 conflicts and coordinate/locator blockers visible.",
+      "failure_mode_or_atlas_need": "Candidate volume lane for 10k, not a count claim; needs family/lane review and structural duplicate screening.",
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 1,
+          "coordinate_ready_pending_locator": 1,
+          "provisional_external_countable_preflight_candidate": 12
+        }
+      },
+      "supporting_artifacts": [
+        "origin/ce-external-bulk-pagination-scaleout-20260609:artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+        "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+      ]
+    }
+  ],
+  "count_table": {
+    "current_label_surface": {
+      "countable_labels": 702,
+      "in_distribution_rows": 562,
+      "heldout_rows": 140,
+      "source": "README.md and current702 manifest references"
+    },
+    "current_main_targeted_factory": {
+      "candidate_rows": 816,
+      "admission_state_counts": {
+        "acquisition_needed": 86,
+        "blocked_coordinate": 44,
+        "blocked_family_decision": 0,
+        "blocked_locator": 90,
+        "countable_candidate": 0,
+        "reject/OOS_preserve_signal": 205,
+        "review_only_evidence": 391
+      },
+      "family_axis_counts": {
+        "glycoside_or_nucleoside_hydrolase_controls": 80,
+        "metal_hydrolase_subclasses": 394,
+        "near_orphan_or_unrepresented_mechanism_tail": 43,
+        "no_reliable_structure_or_locator_gap": 23,
+        "phosphoryl_transfer_boundary": 25,
+        "plp_child_subclasses": 56,
+        "radical_cobalamin_sam_like_probes": 22,
+        "redox_oxygen_transfer_and_sulfur_lipoamide": 173
+      },
+      "countable_candidates": 0
+    },
+    "current_main_acquisition_conversion": {
+      "rows": 86,
+      "terminal_state_counts": {
+        "blocked_coordinate": 0,
+        "blocked_family_decision": 50,
+        "blocked_locator": 7,
+        "countable_candidate_preflight_only": 1,
+        "reject/OOS_preserve_signal": 27,
+        "review_only_evidence": 1
+      }
+    },
+    "current_main_scaleout_merged_acceptance": {
+      "source_rows": 4820,
+      "canonical_candidate_keys": 2463,
+      "source_terminal_state_counts": {
+        "blocked_coordinate": 174,
+        "blocked_family_decision": 267,
+        "blocked_locator": 375,
+        "countable_candidate_preflight_only": 4,
+        "reject/OOS_preserve_signal": 2788,
+        "review_only_evidence": 1212
+      },
+      "canonical_terminal_state_counts": {
+        "blocked_coordinate": 24,
+        "blocked_family_decision": 134,
+        "blocked_locator": 85,
+        "countable_candidate_preflight_only": 0,
+        "reject/OOS_preserve_signal": 1940,
+        "review_only_evidence": 280
+      },
+      "import_preview_rows": 0
+    },
+    "current_main_unblocker_matrix": {
+      "target_canonical_records": 523,
+      "target_source_member_count": 1105,
+      "import_preview_candidate_rows": 0,
+      "unblock_classification_counts": {
+        "coordinate_repair_candidate": 2,
+        "family_default_resolved": 102,
+        "hard_blocked_with_next_action": 273,
+        "locator_repair_candidate": 96,
+        "reject/OOS_preserve_signal": 14,
+        "true_expert_only": 36
+      },
+      "current_registry_overlap_blocked_rows": 37,
+      "positive_duplicate_signal_rows": 17
+    },
+    "external_pilot_and_bulk_on_current_main": {
+      "pilot_candidate_rows": 28,
+      "pilot_import_preview_rows": 16,
+      "admission16_validated_rows": 16,
+      "admission16_direct_external_label_candidate_rows": 0,
+      "bulk_scout_candidate_rows": 693,
+      "bulk_provisional_preview_rows": 354
+    },
+    "completed_bulk_pagination_scaleout_branch": {
+      "candidate_rows": 845,
+      "provisional_import_preview_rows": 442,
+      "terminal_state_counts": {
+        "blocked_duplicate_or_current_registry_conflict": 49,
+        "coordinate_ready_pending_locator": 120,
+        "coordinate_repair_candidate": 3,
+        "hard_blocked_with_next_action": 2,
+        "locator_ready_candidate": 221,
+        "locator_repair_candidate": 8,
+        "provisional_external_countable_preflight_candidate": 442
+      },
+      "materialization_bucket_counts": {
+        "coordinate_ready_pending_locator": 120,
+        "duplicate_current_conflict": 49,
+        "hard_blocked": 2,
+        "locator_ready": 221,
+        "provisional_countable_preflight": 442,
+        "repairable": 11
+      },
+      "page_count": 38,
+      "query_count": 19
+    },
+    "completed_materialization_admission_branch": {
+      "input_rows": 370,
+      "coordinate_materialized": 337,
+      "locator_sidecar_materialized": 333,
+      "import_ready_preview": 333,
+      "repairable_locator_blockers": 37,
+      "terminal_state_counts": {
+        "import_ready_preview": 333,
+        "repairable_locator_blocker": 37
+      }
+    },
+    "completed_external_admission_qa_branch": {
+      "merged_rows": 845,
+      "import_ready_rows": 333,
+      "controlled_import_review_lane_ready_rows": 333,
+      "repair_queue_rows": 48,
+      "rows_newly_added_by_scaleout": 152,
+      "current702_conflict_rows": 22,
+      "external_duplicate_conflict_rows": 28,
+      "terminal_state_counts": {
+        "blocked_duplicate_or_current_registry_conflict": 33,
+        "coordinate_ready_pending_locator": 120,
+        "coordinate_repair_candidate": 3,
+        "hard_blocked_with_next_action": 2,
+        "import_ready_preview": 333,
+        "locator_ready_candidate": 221,
+        "locator_repair_candidate": 8,
+        "provisional_external_countable_preflight_candidate": 88,
+        "repairable_locator_blocker": 37
+      }
+    },
+    "active_scaleout_shard_targets": {
+      "source_shard_count": 7,
+      "source_rows": 4820,
+      "shards": [
+        {
+          "shard_name": "glycoside_nucleoside",
+          "row_count": 835,
+          "terminal_state_counts": {
+            "blocked_coordinate": 44,
+            "blocked_family_decision": 50,
+            "blocked_locator": 97,
+            "countable_candidate_preflight_only": 1,
+            "reject/OOS_preserve_signal": 233,
+            "review_only_evidence": 410
+          },
+          "validation_passed": true,
+          "artifact_path": "artifacts/v3_scaleout_glycoside_nucleoside_shard_current702_20260608.json",
+          "artifact_sha256": "1835fa174e43b171c5335b4b7268a99c3619b3f675fbfc19c47b881762c341be",
+          "report_path": "work/scaleout_glycoside_nucleoside_shard_current702_20260608.md",
+          "report_sha256": "d808776e424c48caac6f9247e393772b4927e211290dbda7f709b7414474246d"
+        },
+        {
+          "shard_name": "metal_hydrolase",
+          "row_count": 411,
+          "terminal_state_counts": {
+            "blocked_coordinate": 10,
+            "blocked_family_decision": 2,
+            "blocked_locator": 34,
+            "reject/OOS_preserve_signal": 117,
+            "review_only_evidence": 248
+          },
+          "validation_passed": true,
+          "artifact_path": "artifacts/v3_scaleout_metal_hydrolase_shard_current702_20260608.json",
+          "artifact_sha256": "96ed2f0ea671e257d006669228281b2b2482c87fdf0a7284039e36e3fa6fb465",
+          "report_path": "work/scaleout_metal_hydrolase_shard_current702_20260608.md",
+          "report_sha256": "8fbce879616b02112cf40517e8d0466ee7e5fcf5ef733e69c5b6ca2ce3d4fd89"
+        },
+        {
+          "shard_name": "near_orphan_tail",
+          "row_count": 746,
+          "terminal_state_counts": {
+            "blocked_family_decision": 44,
+            "blocked_locator": 74,
+            "reject/OOS_preserve_signal": 438,
+            "review_only_evidence": 190
+          },
+          "validation_passed": true,
+          "artifact_path": "artifacts/v3_scaleout_near_orphan_tail_shard_current702_20260608.json",
+          "artifact_sha256": "ad52ab2c99fbf5065baca18e3c89cf3fe50d8fc91bcc5fca4e93ddbd40ea733d",
+          "report_path": "work/scaleout_near_orphan_tail_shard_current702_20260608.md",
+          "report_sha256": "5073f8394ae8f38780e23e8228e2a3b3edf7dd04c1495c639c179cb04bedebd8"
+        },
+        {
+          "shard_name": "phosphoryl_transfer",
+          "row_count": 1281,
+          "terminal_state_counts": {
+            "blocked_coordinate": 16,
+            "blocked_family_decision": 142,
+            "blocked_locator": 33,
+            "countable_candidate_preflight_only": 1,
+            "reject/OOS_preserve_signal": 885,
+            "review_only_evidence": 204
+          },
+          "validation_passed": true,
+          "artifact_path": "artifacts/v3_scaleout_phosphoryl_transfer_shard_current702_20260608.json",
+          "artifact_sha256": "7db4ef6fdf747ac66226d1bf8fb7f13efb881c4e69d925eb0ac3dc6d13b80848",
+          "report_path": "work/scaleout_phosphoryl_transfer_shard_current702_20260608.md",
+          "report_sha256": "74d5ed5f75d11b25e8494a4a1e0c0f3545388c9f79168242e6b213bce9857254"
+        },
+        {
+          "shard_name": "plp_children",
+          "row_count": 442,
+          "terminal_state_counts": {
+            "blocked_coordinate": 2,
+            "blocked_family_decision": 2,
+            "blocked_locator": 90,
+            "reject/OOS_preserve_signal": 314,
+            "review_only_evidence": 34
+          },
+          "validation_passed": true,
+          "artifact_path": "artifacts/v3_scaleout_plp_children_shard_current702_20260608.json",
+          "artifact_sha256": "360e8453a6c89c60ddc0789610bdbbb8419c73ba1adfaece282abd545999b701",
+          "report_path": "work/scaleout_plp_children_shard_current702_20260608.md",
+          "report_sha256": "f88a1aad05a5b34b78a9354598f8e5303d59f985ee3881c1b7cb1bf6d2e07f76"
+        },
+        {
+          "shard_name": "radical_sam_cobalamin",
+          "row_count": 735,
+          "terminal_state_counts": {
+            "blocked_coordinate": 23,
+            "blocked_family_decision": 21,
+            "reject/OOS_preserve_signal": 681,
+            "review_only_evidence": 10
+          },
+          "validation_passed": true,
+          "artifact_path": "artifacts/v3_scaleout_radical_sam_cobalamin_shard_current702_20260608.json",
+          "artifact_sha256": "302c47fb5ff0fbd74d1be2a38dff5c47a26428ccc418aeb2427a20864c4ffaa5",
+          "report_path": "work/scaleout_radical_sam_cobalamin_shard_current702_20260608.md",
+          "report_sha256": "f6c8df6faf845ca9045e822b9788ac678045c5a17f08f4572b8a3c1953db1379"
+        },
+        {
+          "shard_name": "redox_oxygen_sulfur",
+          "row_count": 370,
+          "terminal_state_counts": {
+            "blocked_coordinate": 79,
+            "blocked_family_decision": 6,
+            "blocked_locator": 47,
+            "countable_candidate_preflight_only": 2,
+            "reject/OOS_preserve_signal": 120,
+            "review_only_evidence": 116
+          },
+          "validation_passed": true,
+          "artifact_path": "artifacts/v3_scaleout_redox_oxygen_sulfur_shard_current702_20260608.json",
+          "artifact_sha256": "23c602dee83d76d46e2e555e68b7fdd4ba222019063e855430d72ca9f15f3267",
+          "report_path": "work/scaleout_redox_oxygen_sulfur_shard_current702_20260608.md",
+          "report_sha256": "f57177600eaad33f32d9d4c5b150ddd42bcd2eab4ed8c256bc21fb35b09ec542"
+        }
+      ]
+    },
+    "current_main_external_wave2_materialization": {
+      "input_rows": 845,
+      "coordinate_downloads_performed": 0,
+      "coordinate_materialized_new": 0,
+      "coordinate_reused_from_consumed_preview": 333,
+      "locator_sidecars_materialized_new": 309,
+      "locator_sidecars_reused_from_consumed_preview": 333,
+      "import_ready_preview_count": 333,
+      "repair_queue_count": 512,
+      "duplicate_conflict_count": 33,
+      "disk_free_gib_at_start": 7.1,
+      "wave2_terminal_state_counts": {
+        "blocked_duplicate_or_current_registry_conflict": 33,
+        "import_ready_preview_carried_forward": 333,
+        "locator_sidecar_materialized_coordinate_pending": 309,
+        "repair_queue_coordinate_ready_pending_locator": 120,
+        "repair_queue_coordinate_repair_candidate": 3,
+        "repair_queue_hard_blocked_with_next_action": 2,
+        "repair_queue_locator_repair_candidate": 8,
+        "repair_queue_repairable_locator_blocker": 37
+      },
+      "repair_bucket_counts": {
+        "coordinate_materialization_continuation_due_disk_floor": 309,
+        "coordinate_repair": 3,
+        "duplicate_conflict_no_import": 33,
+        "hard_blocker": 2,
+        "locator_repair": 45,
+        "source_free_locator_materialization_needed": 120
+      }
+    },
+    "projected_path_to_10k": {
+      "current_countable_labels": 702,
+      "additional_labels_needed_for_10000": 9298,
+      "strict_preview_if_333_eventually_pass_all_remaining_gates": {
+        "projected_countable_total": 1035,
+        "remaining_to_10000": 8965,
+        "comparable_333_row_waves_needed_for_9298": 28
+      },
+      "broader_provisional_if_all_442_scaleout_preview_rows_eventually_pass_admission": {
+        "projected_countable_total": 1144,
+        "remaining_to_10000": 8856,
+        "comparable_442_row_waves_needed_for_9298": 22
+      },
+      "important_non_additivity_note": "333 import-ready rows are a subset of the 442 scaleout provisional preview after materialization/admission; they must not be added together."
+    }
+  },
+  "guardrails": {
+    "m_csa_eval_only": "M-CSA/current702 is used for evaluation, current-registry overlap checks, and historical lesson artifacts; branch guardrails record m_csa_used_as_expansion_source=false for external ingestion.",
+    "no_heldout_leakage": "No heldout row is used for training/tuning in this ledger; prior heldout one-shot is spent and cited only as historical evidence.",
+    "no_mechanism_text_predictive_feature": "Mechanism text, source prose, EC/Rhea IDs, labels, source IDs, and expert notes remain forbidden predictive scoring features; they are provenance/rationale fields only.",
+    "source_free_coordinate_locator_requirements": "Countable import requires local coordinate provenance plus source-free/approved exact residue locators; materialized branch sidecars are preview-only and do not edit audited production locator directories.",
+    "no_production_edits": "This run and the cited branch outputs do not edit production registries, imports, ontologies, heldout splits, thresholds, or model weights.",
+    "preview_not_import": "Import-ready preview rows still need current-countable structural duplicate screening, label-factory gate, explicit review, controlled import approval, and production registry-change authorization."
+  },
+  "review_narrative": {
+    "honest_claims_for_tomorrow": [
+      "The selected expansion lanes are traceable to prior failure modes: cofactor-loss predicted geometry, fold/cofactor confounding, source-free locator gaps, near-orphan/OOS coverage, and external Swiss-Prot/AFDB/Rhea scalability.",
+      "Current main has a non-importing targeted factory with 816 candidates, a seven-shard merged acceptance surface with 4,820 source rows / 2,463 canonical candidates, and a 523-row unblocker matrix with 0 import-preview candidates.",
+      "Completed external branches demonstrate a larger controlled surface: 845 bulk scaleout candidates, 442 provisional preview rows, a 370-row materialization/admission batch, and a 333-row import-ready preview lane that clears exact current702 non-overlap and source-provenance checks.",
+      "The current countable label surface remains 702; the 333 preview rows are the next controlled review queue, not registered labels.",
+      "Current main also contains Wave 2 materialization outputs: 333 import-ready preview rows carried forward, 309 low-disk review-only locator sidecars, and a 512-row repair/continuation queue."
+    ],
+    "still_preview_or_provisional": [
+      "The 333 import-ready preview rows still require structural duplicate screening, label-factory gate, explicit review, controlled import lane approval, and production registry-change authorization.",
+      "The 88 remaining provisional preflight rows in the admission surface and the 48 repair-queue rows are not ready for import review.",
+      "The current-main scaleout/unblocker surface produced 0 import-preview candidates; it is evidence and repair-routing material.",
+      "No 10k-label claim is available: even perfect downstream acceptance of 333 preview rows would reach only 1,035 countable labels and leave 8,965 labels to source and gate.",
+      "Wave 2 did not download new coordinates because disk free space was below the 10 GiB floor; the 309 locator-sidecar continuation rows and 120 coordinate-ready pending-locator rows remain follow-up work."
+    ]
+  },
+  "source_artifact_provenance": [
+    {
+      "role": "current-main first targeted expansion factory batch",
+      "path": "artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 3129187,
+      "sha256": "4143170e0c948d5ba60c56e090c5aae0ce0b16e6c5d60caeae9215484531cee2"
+    },
+    {
+      "role": "current-main first targeted expansion report",
+      "path": "work/targeted_expansion_factory_batch_current702_20260608.md",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 8058,
+      "sha256": "55d2134a0b719fbb1b636711fd6547a2604507f0339af3e11234b470b767af4b"
+    },
+    {
+      "role": "current-main acquisition conversion screens",
+      "path": "artifacts/v3_targeted_expansion_acquisition_conversion_screens_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 660870,
+      "sha256": "50f2aea5c862787a4f296ed8035ac30a2f064e5e0518a91bdc71784d7cc93066"
+    },
+    {
+      "role": "current-main acquisition conversion report",
+      "path": "work/targeted_expansion_acquisition_conversion_screens_current702_20260608.md",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 27288,
+      "sha256": "f304be04bd54738dba436e6cd8b367354a0c46f67e893b1cc7f44fda8e84c2e3"
+    },
+    {
+      "role": "current-main merged scaleout acceptance surface",
+      "path": "artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 10823818,
+      "sha256": "b3c6523dc74d999c80c89e64859d5917e401cda54507d192338ede2ef5f2e803"
+    },
+    {
+      "role": "current-main merged scaleout report",
+      "path": "work/scaleout_merged_acceptance_surface_current702_20260608.md",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 9486,
+      "sha256": "aa4a73804d8494a7790f5d0d8317fb612cf0e6191a04f3d57f900498392e7734"
+    },
+    {
+      "role": "current-main scaleout locator/coordinate repair overlay",
+      "path": "artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 58367,
+      "sha256": "b27361f058b8f4bf2221dc4e9c9b3c9e977ee71f4585806b499da9f3054ff685"
+    },
+    {
+      "role": "current-main scaleout repair report",
+      "path": "work/scaleout_locator_coordinate_repair_current702_20260608.md",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 10264,
+      "sha256": "c1f18d2f5c3de658b2ecd2e0356b979b63a84ee31f5f6d2431dcc24ce2e8a5ed"
+    },
+    {
+      "role": "current-main countable label unblocker matrix",
+      "path": "artifacts/v3_countable_label_unblocker_matrix_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 3579068,
+      "sha256": "a2a37b6908ddfe9424104332bf1c27f95eccef617c6eb264d8071e071b663231"
+    },
+    {
+      "role": "current-main countable label unblocker report",
+      "path": "work/countable_label_unblocker_matrix_current702_20260608.md",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 3972,
+      "sha256": "ea23a2046f20412216cf3a5cca215f0f30a51edeffb0987884afbabe9e12887d"
+    },
+    {
+      "role": "current-main external Swiss-Prot/AFDB/Rhea pilot",
+      "path": "artifacts/v3_external_source_ingestion_pilot_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 431281,
+      "sha256": "d224e15dca0c0f56237510ae1be70b07ab28170dbb088422c2868cb3799e269d"
+    },
+    {
+      "role": "current-main pilot import preview",
+      "path": "artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 121538,
+      "sha256": "237759dda87fe16872d5db974911180796ef8d1cea085a9bd0ad888322b9bb87"
+    },
+    {
+      "role": "current-main admission validation for 16 pilot preview rows",
+      "path": "artifacts/v3_external_source_admission_validation_16_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 112752,
+      "sha256": "b68ea16fbcffc8cb2cd895db213ce6c74879f1d9536dad4571ac053e172c02c1"
+    },
+    {
+      "role": "current-main admission-ready preview for 16 pilot rows",
+      "path": "artifacts/v3_external_source_admission_ready_preview_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 26794,
+      "sha256": "09d6a3d9c9c38bfcd896f2401a504e2f5f31f83b8291f10864c8f4d2706982d4"
+    },
+    {
+      "role": "current-main external bulk ingestion scout",
+      "path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 10253705,
+      "sha256": "1d0b1637f2d17ad4a72d6f6599b4c67dee4f15267a434a146de67aca048501dc"
+    },
+    {
+      "role": "current-main external bulk provisional preview",
+      "path": "artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 3148075,
+      "sha256": "97b8bfbc48f6b9daeb79742a90493ce7a068ea1ce9511f0f98922bff19f04644"
+    },
+    {
+      "role": "completed branch bulk pagination scaleout",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-bulk-pagination-scaleout-20260609",
+      "git_commit": "595c7ac850aa32c1fc2f6ba257bf1a370499747f",
+      "git_ref_path_spec": "origin/ce-external-bulk-pagination-scaleout-20260609:artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+      "git_ref_path_available": true,
+      "bytes": 12490314,
+      "sha256": "3804f45dec32578ddab615abf78a8aadfc6d9591065bcd0ab19a1dbcf23e8592"
+    },
+    {
+      "role": "completed branch scaleout provisional preview",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-bulk-pagination-scaleout-20260609",
+      "git_commit": "595c7ac850aa32c1fc2f6ba257bf1a370499747f",
+      "git_ref_path_spec": "origin/ce-external-bulk-pagination-scaleout-20260609:artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json",
+      "git_ref_path_available": true,
+      "bytes": 3848253,
+      "sha256": "5d37f102a095ee3dfa1a1bcd7fbc62b186232b60f71938499f0db665b4a43001"
+    },
+    {
+      "role": "completed branch scaleout report",
+      "path": "work/external_bulk_ingestion_scaleout_current702_20260609.md",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-bulk-pagination-scaleout-20260609",
+      "git_commit": "595c7ac850aa32c1fc2f6ba257bf1a370499747f",
+      "git_ref_path_spec": "origin/ce-external-bulk-pagination-scaleout-20260609:work/external_bulk_ingestion_scaleout_current702_20260609.md",
+      "git_ref_path_available": true,
+      "bytes": 307662,
+      "sha256": "1c5a9aef31fefb6a90a2eaa0700b7ee15732e3f97a9877a3859007a31cf89da3"
+    },
+    {
+      "role": "completed branch materialization/admission batch",
+      "path": "artifacts/v3_external_materialization_admission_batch_current702_20260608.json",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-materialization-admission-batch-20260608",
+      "git_commit": "1f61a2dcf4e6268a65ee53d61e508cf878695f27",
+      "git_ref_path_spec": "origin/ce-external-materialization-admission-batch-20260608:artifacts/v3_external_materialization_admission_batch_current702_20260608.json",
+      "git_ref_path_available": true,
+      "bytes": 6914926,
+      "sha256": "ce0cd844c465fcd28181d087f6d807bc90f8b0f47df951572564acca9540f9a6"
+    },
+    {
+      "role": "completed branch materialization import-ready preview",
+      "path": "artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-materialization-admission-batch-20260608",
+      "git_commit": "1f61a2dcf4e6268a65ee53d61e508cf878695f27",
+      "git_ref_path_spec": "origin/ce-external-materialization-admission-batch-20260608:artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json",
+      "git_ref_path_available": true,
+      "bytes": 612912,
+      "sha256": "b771d847359392ccc17c472906b8497012071ebc7b5c1d284f1d8fb2313b926e"
+    },
+    {
+      "role": "completed branch materialization report",
+      "path": "work/external_materialization_admission_batch_current702_20260608.md",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-materialization-admission-batch-20260608",
+      "git_commit": "1f61a2dcf4e6268a65ee53d61e508cf878695f27",
+      "git_ref_path_spec": "origin/ce-external-materialization-admission-batch-20260608:work/external_materialization_admission_batch_current702_20260608.md",
+      "git_ref_path_available": true,
+      "bytes": 1857,
+      "sha256": "3ab20693e7fc5c1a4973fc352a2c2c41d6a368bc34da5fdc81e063ad7eb96c01"
+    },
+    {
+      "role": "completed branch external admission QA merged surface",
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260609.json",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-admission-qa-merger-20260609",
+      "git_commit": "ec9deee9c22013659277cf0009a8a4d4eb185671",
+      "git_ref_path_spec": "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json",
+      "git_ref_path_available": true,
+      "bytes": 19183922,
+      "sha256": "ecf2103e9a95fc5ffa870de63c0faf88022c8cceeda34d4fe774b9c9380a211b"
+    },
+    {
+      "role": "completed branch external admission import-ready preview",
+      "path": "artifacts/v3_external_admission_import_ready_preview_current702_20260609.json",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-admission-qa-merger-20260609",
+      "git_commit": "ec9deee9c22013659277cf0009a8a4d4eb185671",
+      "git_ref_path_spec": "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_import_ready_preview_current702_20260609.json",
+      "git_ref_path_available": true,
+      "bytes": 1048047,
+      "sha256": "07dfa19f68822ffb3fd7a78bfc3b7c5645c6694ef55dc01d6ecdf7c9747bd713"
+    },
+    {
+      "role": "completed branch external admission repair queue",
+      "path": "artifacts/v3_external_admission_repair_queue_current702_20260609.json",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-admission-qa-merger-20260609",
+      "git_commit": "ec9deee9c22013659277cf0009a8a4d4eb185671",
+      "git_ref_path_spec": "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_repair_queue_current702_20260609.json",
+      "git_ref_path_available": true,
+      "bytes": 109501,
+      "sha256": "4e85e665f8097a01df2df35638ad22c2599d6dcf96af4efa276e9d822648c3bd"
+    },
+    {
+      "role": "completed branch admission QA report",
+      "path": "work/external_admission_qa_merger_current702_20260609.md",
+      "local_path_exists": false,
+      "git_ref": "origin/ce-external-admission-qa-merger-20260609",
+      "git_commit": "ec9deee9c22013659277cf0009a8a4d4eb185671",
+      "git_ref_path_spec": "origin/ce-external-admission-qa-merger-20260609:work/external_admission_qa_merger_current702_20260609.md",
+      "git_ref_path_available": true,
+      "bytes": 11406,
+      "sha256": "4e4f6f0144d9421aaec881748be1aa4c843c02d5dcb6f5b5aadec0a5085a8bf5"
+    },
+    {
+      "role": "current-main materialized copy of completed bulk pagination scaleout",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 12490314,
+      "sha256": "3804f45dec32578ddab615abf78a8aadfc6d9591065bcd0ab19a1dbcf23e8592"
+    },
+    {
+      "role": "current-main materialized copy of scaleout provisional preview",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 3848253,
+      "sha256": "5d37f102a095ee3dfa1a1bcd7fbc62b186232b60f71938499f0db665b4a43001"
+    },
+    {
+      "role": "current-main external admission QA merged surface",
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260609.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 19183922,
+      "sha256": "ecf2103e9a95fc5ffa870de63c0faf88022c8cceeda34d4fe774b9c9380a211b"
+    },
+    {
+      "role": "current-main external admission import-ready preview",
+      "path": "artifacts/v3_external_admission_import_ready_preview_current702_20260609.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 1048047,
+      "sha256": "07dfa19f68822ffb3fd7a78bfc3b7c5645c6694ef55dc01d6ecdf7c9747bd713"
+    },
+    {
+      "role": "current-main external admission repair queue",
+      "path": "artifacts/v3_external_admission_repair_queue_current702_20260609.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 109501,
+      "sha256": "4e85e665f8097a01df2df35638ad22c2599d6dcf96af4efa276e9d822648c3bd"
+    },
+    {
+      "role": "current-main external materialization Wave 2 surface",
+      "path": "artifacts/v3_external_materialization_wave2_current702_20260609.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 1593160,
+      "sha256": "73686414677506c7c89922c15637c18cbb8fb4cad2eb4f29348deb91c3c3ab29"
+    },
+    {
+      "role": "current-main external materialization Wave 2 import-ready preview",
+      "path": "artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 1051222,
+      "sha256": "0c7d27e641ba4735076f44a5e85acadb1d64fbbf95650bf133fd9e3101b48655"
+    },
+    {
+      "role": "current-main external materialization Wave 2 repair queue",
+      "path": "artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 918029,
+      "sha256": "8b1b78e41a4c3bc8189418ffb8c7cded0afec85e030989c226ecc8ab5982bb1f"
+    },
+    {
+      "role": "current-main external materialization Wave 2 review-only locator sidecar directory",
+      "path": "artifacts/external_materialization_wave2_source_free_locators_current702_20260609",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "directory_file_count": 309,
+      "directory_total_bytes": 2880543,
+      "sha256": null
+    },
+    {
+      "role": "current-main external materialization Wave 2 report",
+      "path": "work/external_materialization_wave2_current702_20260609.md",
+      "local_path_exists": true,
+      "git_ref": "origin/main",
+      "git_commit": "4190c5a27c341d49efc5980041ffea270812ce01",
+      "bytes": 3562,
+      "sha256": "eab7c848a9f4d6f24b3ac908944ccca3d824adf90e4da3ef5966cb20da88421b"
+    }
+  ],
+  "prior_lesson_artifacts": [
+    {
+      "category": "predicted_geometry_reconstruction",
+      "path": "artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json",
+      "local_path_exists": true,
+      "supporting_reason": "Diagnoses the predicted apo geometry drop as cofactor-loss dominated.",
+      "sha256": "2db6efd342504b84c747adc3afba5c647480058b4c64f45410a6be434e89dc37"
+    },
+    {
+      "category": "predicted_geometry_reconstruction",
+      "path": "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json",
+      "local_path_exists": true,
+      "supporting_reason": "Bounds the recoverable ceiling when missing cofactors are restored.",
+      "sha256": "18285ae29554619909eb52038d25aa07de82d6b07b0e617ae9fc340948dfab14"
+    },
+    {
+      "category": "predicted_geometry_reconstruction",
+      "path": "artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json",
+      "local_path_exists": true,
+      "supporting_reason": "Checks realistic cofactor graft fidelity before deployment claims.",
+      "sha256": "31726dba03c248aaf3be9f5d3cfe8137d153325dbf5cc8f48898f9888869cac8"
+    },
+    {
+      "category": "predicted_geometry_reconstruction",
+      "path": "artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json",
+      "local_path_exists": true,
+      "supporting_reason": "Fits the leakage-safe sequence-to-cofactor reconstruction channel on train/cal only.",
+      "sha256": "5ebb493ac1eec5c3df7d9a8ca1c6bd0e412ef8a09ffcf7f80f356c6cb729a912"
+    },
+    {
+      "category": "predicted_geometry_reconstruction",
+      "path": "artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json",
+      "local_path_exists": true,
+      "supporting_reason": "Confirms the spent heldout one-shot recovery and precision cost.",
+      "sha256": "441fdf6489605b454a288a177cc31aca9044d8689d15d6fba0104eac1773aab6"
+    },
+    {
+      "category": "fold_cofactor_confounding",
+      "path": "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+      "local_path_exists": true,
+      "supporting_reason": "Shows representation decoder/fold joins are confounded without careful readthrough.",
+      "sha256": "e31cb03b68635a2e175fb53127e41c6ca9a37bb217f61b8f693012602e87fa0a"
+    },
+    {
+      "category": "fold_cofactor_confounding",
+      "path": "artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json",
+      "local_path_exists": true,
+      "supporting_reason": "Records deployment-readiness limits for fold-augmented predicted structure channels.",
+      "sha256": "6d50e94e545d90e509d60576ab4328e9a3054d8e4f4c21b36f4fac994a496972"
+    },
+    {
+      "category": "fold_cofactor_confounding",
+      "path": "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json",
+      "local_path_exists": true,
+      "supporting_reason": "Closes the confounded deployment surface before threshold claims.",
+      "sha256": "b5d364c7b9a6d1988b163831f1e78cff2c78d3e6b6b85d53cbab6f8bab351be1"
+    },
+    {
+      "category": "fold_cofactor_confounding",
+      "path": "artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+      "local_path_exists": true,
+      "supporting_reason": "Source-free sequence cofactor heads motivating cofactor-axis expansion.",
+      "sha256": "380a02429cc573c583c59c4468f634e880b14538f9ae7f30af1b7747fd34e284"
+    },
+    {
+      "category": "fold_cofactor_confounding",
+      "path": "artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json",
+      "local_path_exists": true,
+      "supporting_reason": "Electron-flow readout motivates redox precision lanes without heldout retuning.",
+      "sha256": "3793e7ec2393ec5df54933dcc49e809c06b51fbfe24e07bb1941b12ee52db15e"
+    },
+    {
+      "category": "source_free_locator_materialization",
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json",
+      "local_path_exists": true,
+      "supporting_reason": "Defines source-free locator schema expected before countable import.",
+      "sha256": "25aacb9867b227f05f1784e212cfc992762e5edd69d8bebfaa19b23fcea2ed59"
+    },
+    {
+      "category": "source_free_locator_materialization",
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json",
+      "local_path_exists": true,
+      "supporting_reason": "Records the locator materialization plan and no-import gating.",
+      "sha256": "fbac7a1040d6880f3c6c02daa7b140eda8bef437131ec1c7aafea6614afffdfc"
+    },
+    {
+      "category": "near_orphan_oos_bins",
+      "path": "artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json",
+      "local_path_exists": true,
+      "supporting_reason": "Motivates explicit near-orphan/orphan evaluation bins.",
+      "sha256": "71df9869f983b7ea98d454c12b92259136cfa0343071f0260cfba385f930a5a8"
+    },
+    {
+      "category": "near_orphan_oos_bins",
+      "path": "artifacts/v3_near_orphan_geometry_support_review_packet_702_20260526.json",
+      "local_path_exists": true,
+      "supporting_reason": "Captures near-orphan geometry-support review packet.",
+      "sha256": "858d66b750354db7c9d9eb92d832caee15e8bbd93bf7fc2aa7d1c58f4f71acd0"
+    },
+    {
+      "category": "near_orphan_oos_bins",
+      "path": "artifacts/v3_packet2_near_orphan_geometry_support_decision_closure_702_20260527.json",
+      "local_path_exists": true,
+      "supporting_reason": "Closes near-orphan geometry-support decisions used for lane selection.",
+      "sha256": "f6f7c237b7df213f05a9f8b17b5084e57e42eebd2d5c15f3db2f0fced93df633"
+    },
+    {
+      "category": "near_orphan_oos_bins",
+      "path": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "local_path_exists": true,
+      "supporting_reason": "Frames OOS/diversity evaluation as an atlas requirement.",
+      "sha256": "731b94ebd3b4f7ae483a3cca75d2b8c3b88242024ecd9c364d70bdfcda6624ee"
+    }
+  ],
+  "validation": {
+    "factory_candidate_count_matches_rows": true,
+    "factory_admission_counts_sum_to_candidates": true,
+    "acquisition_counts_sum_to_rows": true,
+    "merged_source_rows_reconcile": true,
+    "merged_canonical_rows_reconcile": true,
+    "unblocker_target_rows_reconcile": true,
+    "bulk_scaleout_rows_reconcile": true,
+    "bulk_scaleout_preview_rows_reconcile": true,
+    "materialization_rows_reconcile": true,
+    "materialization_preview_reconcile": true,
+    "admission_rows_reconcile": true,
+    "admission_preview_rows_reconcile": true,
+    "admission_repair_queue_rows_reconcile": true,
+    "all_local_source_paths_exist": true,
+    "all_remote_source_specs_available": true,
+    "all_lesson_paths_exist": true,
+    "passed": true,
+    "wave2_rows_reconcile": true,
+    "wave2_preview_rows_reconcile": true,
+    "wave2_repair_queue_rows_reconcile": true,
+    "wave2_sidecar_count_reconciles": true
+  }
+}

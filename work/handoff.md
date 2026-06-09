@@ -5,20 +5,180 @@
 - Automation ID: `ce-scaleout-shard-plp-radical-cobalamin`
 - STARTED_AT_UTC: `2026-06-09T03:35:43Z`
 - STARTED_AT_LOCAL: `Mon Jun  8 22:35:43 CDT 2026`
-- ENDED_AT_UTC: `pending`
-- ENDED_AT_LOCAL: `pending`
-- ELAPSED_MINUTES: `pending`
-- Status: In progress. Targeted external scaleout for mechanistically
-  information-rich PLP, radical-SAM, and cobalamin families, deduplicated
-  against current702, prior external artifacts, and the merged external
-  admission branch surface from `ce-external-admission-qa-merger-20260609`.
-- Current output: pending
-- Provisional/import-ready preview: pending
+- ENDED_AT_UTC: `2026-06-09T04:25:56Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 23:25:56 CDT 2026`
+- ELAPSED_MINUTES: `50.217`
+- Status: Complete durable output. Built a targeted reviewed-UniProt
+  PLP/radical-SAM/cobalamin external scaleout shard from current main plus
+  completed external admission branches. The shard tests proton-transfer,
+  electron-transfer, radical, cofactor-context, and adjacent cofactor-confounded
+  negative axes without importing rows or editing production
+  registries/imports/ontologies/splits/thresholds/model weights.
+- Current outputs:
+  `artifacts/v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609.json`,
+  `artifacts/v3_external_scaleout_shard_plp_radical_cobalamin_import_ready_preview_current702_20260609.json`,
+  and `work/external_scaleout_shard_plp_radical_cobalamin_current702_20260609.md`.
+- Code/test outputs:
+  `src/catalytic_earth/scaleout_plp_radical_cobalamin_external.py`,
+  `src/catalytic_earth/adapters.py`,
+  `src/catalytic_earth/cli.py`,
+  `tests/test_scaleout_plp_radical_cobalamin_external.py`,
+  `tests/test_adapters.py`, and `tests/test_cli.py`.
+- Result: 1,606 unique candidates were classified. Terminal states:
+  168 `import_ready_preview`, 784
+  `provisional_external_countable_preflight_candidate`, 69
+  `locator_ready_candidate`, 17 `coordinate_ready_pending_locator`, 9
+  `repairable_locator_blocker`, 11 `repairable_coordinate_blocker`, 252
+  `blocked_duplicate_or_current_registry_conflict`, 292
+  `reject/OOS_preserve_signal`, and 4 `hard_blocked_with_next_action`.
+  Duplicate conflicts include 42 exact current702 conflicts and 243 prior
+  external exact conflicts. The importer preview is a non-production preview
+  only.
+- Mechanism-axis coverage: 931 proton-transfer-axis rows, 387
+  electron-transfer-axis rows, 579 radical-axis rows, 1,382 cofactor-context
+  rows, and 341 adjacent cofactor-confounded negative-axis rows.
+- Source/materialization notes: total fetched search records before row
+  materialization were 2,251. UniProt entry fetch recorded 67 timeout failures
+  for continuation. Materialization buckets are 168 import-ready preview, 784
+  provisional preflight, 69 locator-ready, 17 coordinate-ready pending locator,
+  20 repairable locator/coordinate blockers, 252 duplicate conflicts, 292
+  reject/OOS, and 4 hard blocked.
 - Lock:
   `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth5/catalytic-earth-automation.lock`;
   start timestamps written to
   `/tmp/ce_scaleout_shard_plp_radical_cobalamin_run_start.txt`.
-- Validation: pending.
+- Commit/push/sync status: local shard commit `6eacef25` is being merged with
+  current `origin/main` (`5a042316` at wrap). All merge conflicts are resolved;
+  final merge commit, push to `origin/main`, `HEAD == origin/main` verification,
+  and clean/synced lock release are pending this handoff commit.
+- Validation passed: shard JSON parse, import-ready preview JSON parse, count
+  reconciliation (`candidate_count` 1,606; `import_ready_count` 168; duplicate
+  conflicts 252), focused shard/adapters/CLI tests, merged-tree focused pytest,
+  full `PYTHONPATH=src python -m unittest discover -s tests` (1,687 tests),
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, current docs
+  artifact-reference check with 0 missing references, `git diff --check`,
+  conflict-marker scan, and production-edit guardrail. Disk free space at wrap
+  is about 1.2 GiB.
+- Exact next action: review the 168 import-ready preview rows as a batch, then
+  continue materialization for the 69 locator-ready and 17 coordinate-ready
+  pending-locator rows while retrying the 67 UniProt timeout entries.
+
+## Recent upstream automation runs
+
+### Targeted expansion defense ledger
+
+- Automation ID: `ce-targeted-expansion-defense-ledger`
+- STARTED_AT_UTC: `2026-06-09T03:36:09Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 22:36:09 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T03:57:16Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 22:57:16 CDT 2026`
+- ELAPSED_MINUTES: `21.117`
+- Status: Complete durable output under the work-block early-completion
+  exception. Built a review-ready targeted expansion defense ledger from
+  current main plus completed external scaleout/admission branches, then
+  rebased it over the newly pushed Wave 2 materialization surface so the
+  ledger reflects current main. The ledger records source artifacts, counts,
+  branch commits, family rationale, guardrails, and review-claim boundaries.
+  No production registry, import, ontology, split, threshold, model-weight,
+  production locator sidecar, or heldout tuning edit was made.
+- Current output:
+  `artifacts/v3_targeted_expansion_defense_ledger_current702_20260609.json`
+  and `work/targeted_expansion_defense_ledger_current702_20260609.md`.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth6/catalytic-earth-automation.lock`;
+  start timestamps written to
+  `/tmp/ce_targeted_expansion_defense_ledger_started_at.txt`.
+- Validation passed: ledger JSON parse, custom source path and count
+  reconciliation, remote branch artifact access checks, `git diff --check`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` with 702 labels,
+  current docs artifact-reference check with 0 missing references, and full
+  `PYTHONPATH=src python -m unittest discover -s tests` (1,678 tests).
+- Count summary: current countable labels remain 702; current-main targeted
+  factory has 816 non-importing candidates; current-main merged scaleout has
+  4,820 source rows collapsed to 2,463 canonical candidate keys with 0 import
+  preview rows; completed bulk pagination branch has 845 candidates / 442
+  provisional preview rows; completed materialization/admission branch has 370
+  input rows / 333 import-ready preview rows / 37 repairable locator blockers;
+  completed admission QA branch has 845 merged rows / 333 import-ready preview
+  rows / 48 repair-queue rows; current-main Wave 2 carries forward 333
+  import-ready preview rows, materializes 309 low-disk review-only locator
+  sidecars, and records a 512-row repair/continuation queue.
+- Commit/push/sync/lock status: ledger commit
+  `91e13a3198a366759f7b73a22356a80fd22781e9` was pushed to `origin/main` and
+  verified with `HEAD == origin/main` before this final status correction.
+  Release the automation lock only after the final status-correction commit is
+  also pushed, `HEAD == origin/main`, and the worktree is clean.
+- Exact next action: use the ledger for tomorrow's review. The defensible claim
+  is targeted, artifact-backed lane selection plus a 333-row controlled
+  import-review preview, not 333 new labels; any label growth still requires
+  structural duplicate screening, label-factory gate, explicit review, and
+  production registry-change authorization.
+
+### External materialization Wave 2
+
+- Automation ID: `ce-external-materialization-wave-2`
+- STARTED_AT_UTC: `2026-06-09T03:35:25Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 22:35:25 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T03:48:29Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 22:48:29 CDT 2026`
+- ELAPSED_MINUTES: `13.067`
+- Status: Complete durable output under the early-stop allowance because the
+  assigned objective is complete and coordinate downloads were blocked by the
+  disk floor. Consumed the 2026-06-09 bulk pagination scaleout branch, the
+  2026-06-09 admission QA merger branch, and the 2026-06-08 materialization
+  admission batch pattern without editing production registries/imports,
+  ontologies, splits, thresholds, or model weights. Input rows: 845.
+  Coordinate materialized new: 0; coordinate rows reused from consumed preview:
+  333. Locator sidecars materialized new: 309 compact low-disk review-only
+  sidecars. Import-ready preview count: 333 carried forward from the consumed
+  admission QA import-ready preview. Duplicate conflicts: 33. Repair/
+  continuation queue count: 512, including 309 coordinate-continuation rows,
+  120 coordinate-ready pending source-free locators, 45 locator repairs,
+  3 coordinate repairs, 33 duplicate no-import rows, and 2 hard blockers.
+- Consumed source branches/artifacts:
+  `origin/ce-external-bulk-pagination-scaleout-20260609` with
+  `artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json`
+  and
+  `artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json`;
+  `origin/ce-external-admission-qa-merger-20260609` with
+  `artifacts/v3_external_admission_merged_surface_current702_20260609.json`,
+  `artifacts/v3_external_admission_import_ready_preview_current702_20260609.json`,
+  and `artifacts/v3_external_admission_repair_queue_current702_20260609.json`;
+  and `origin/ce-external-materialization-admission-batch-20260608` with
+  `artifacts/v3_external_materialization_admission_batch_current702_20260608.json`
+  and
+  `artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json`.
+- Current output:
+  `artifacts/v3_external_materialization_wave2_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json`,
+  `artifacts/external_materialization_wave2_source_free_locators_current702_20260609/`,
+  and `work/external_materialization_wave2_current702_20260609.md`.
+- Provisional import preview:
+  `artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json`.
+- Lock: resolved gitdir automation lock
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth4/catalytic-earth-automation.lock`;
+  literal `.git/catalytic-earth-automation.lock` was unavailable because
+  `.git` is a linked-worktree file. Start timestamps written to
+  `/tmp/ce_external_materialization_wave2_started_at.txt`. Lock still held
+  during this handoff write; release after final clean/synced push.
+- Disk: start `df -h .` reported 7.1 GiB free, below the 10 GiB floor; wrap
+  `df -h .` reported 1.4 GiB free. No coordinate downloads were attempted.
+  New Wave 2 sidecars are 3.3 MiB; Wave 2 JSON outputs are about 3.4 MiB.
+- Commit/push/sync: pre-commit sync check confirmed `origin/main` still at
+  `d456eb5df0e152428d44199646e47b240958f190`; final wrap commit/push pending.
+- Validation passed: focused pytest
+  `tests/test_external_materialization_wave2.py` and
+  `tests/test_cli.py::CliTests::test_external_materialization_wave2_parser_defaults`
+  (3 passed), Wave 2 JSON/count reconciliation, 312 Wave 2 JSON parses,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check --out /tmp/ce_external_materialization_wave2_docs_artifact_reference_check.json`
+  (missing 0), `PYTHONPATH=src python -m unittest discover -s tests`
+  (1,681 tests OK), `git diff --check`, and production-edit guardrail check
+  with 0 blocked production paths.
+- Exact next action: restore disk free space above 10 GiB, then run coordinate
+  materialization/identity validation for the 309 locator-sidecar continuation
+  rows and the 120 coordinate-ready pending-locator rows before expanding the
+  controlled import-ready preview beyond the 333 carried rows.
 
 ## Mission
 
@@ -70,212 +230,40 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### 2026-06-09 External Admission QA Merger Producer Reconcile
+### 2026-06-09 External Materialization Wave 2
 
-Automation run: `ce-external-admission-qa-merger`
-
-#### Wall-clock ledger
-
-- STARTED_AT_UTC: `2026-06-09T02:25:12Z`
-- STARTED_AT_LOCAL: `2026-06-08T21:25:12-0500`
-- ENDED_AT_UTC: `2026-06-09T02:34:23Z`
-- ENDED_AT_LOCAL: `2026-06-08T21:34:23-0500`
-- ELAPSED_MINUTES: `9.183`
-- Lock:
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth/catalytic-earth-automation.lock`
-
-#### Scope
-
-- Superseded the older `20260608` external admission QA surface by consuming
-  the completed producer artifacts directly from
-  `origin/ce-external-materialization-admission-batch-20260608` at
-  `1f61a2dc` and `origin/ce-external-bulk-pagination-scaleout-20260609` at
-  `595c7ac8`, with the earlier QA surface at
-  `origin/ce-external-admission-qa-merger-20260608` (`cac2d937`) used only for
-  delta accounting.
-- Reworked the merger CLI/lane so it can read JSON artifacts from git refs,
-  overlay the 370-row materialization batch on the 845-row bulk scaleout
-  surface, preserve producer/source hashes and provenance, and emit a current
-  `20260609` merged surface plus import-review and repair-queue outputs.
-- Did not edit production registries, ontologies, imports, heldout splits,
-  production thresholds, or model weights.
-
-#### Outputs
-
-- Merged surface:
-  `artifacts/v3_external_admission_merged_surface_current702_20260609.json`.
-- Import-ready preview:
-  `artifacts/v3_external_admission_import_ready_preview_current702_20260609.json`.
-- Repair queue:
-  `artifacts/v3_external_admission_repair_queue_current702_20260609.json`.
-- Human report:
-  `work/external_admission_qa_merger_current702_20260609.md`.
-- Rerunnable code/tests:
-  `src/catalytic_earth/external_admission_qa_merger.py`,
-  `tests/test_external_admission_qa_merger.py`, CLI wiring in
-  `src/catalytic_earth/cli.py`, and parser coverage in `tests/test_cli.py`.
-
-#### Result
-
-- Merged candidate count: `845`.
-- Import-ready preview count: `333`.
-- Repair queue count: `48`.
-- Duplicate/current702 conflict rows: `33` blocked rows, including `22` exact
-  current702 accession conflicts.
-- Rows newly added by scaleout vs the older `20260608` QA surface: `152`.
-- Rows materialized from validated queue: `16`.
-- Rows materialized from provisional queue: `354`.
-- Terminal-state counts:
-  `import_ready_preview=333`,
-  `repairable_locator_blocker=37`,
-  `locator_ready_candidate=221`,
-  `coordinate_ready_pending_locator=120`,
-  `provisional_external_countable_preflight_candidate=88`,
-  `blocked_duplicate_or_current_registry_conflict=33`,
-  `locator_repair_candidate=8`,
-  `coordinate_repair_candidate=3`, and
-  `hard_blocked_with_next_action=2`.
-- Controlled import-review lane readiness: `True` for the preview-only lane.
-  Production import remains unauthorized.
-- Source artifact hashes/provenance recorded in the report for:
-  materialization batch SHA256
-  `ce0cd844c465fcd28181d087f6d807bc90f8b0f47df951572564acca9540f9a6`,
-  materialization preview SHA256
-  `b771d847359392ccc17c472906b8497012071ebc7b5c1d284f1d8fb2313b926e`,
-  bulk scaleout SHA256
-  `3804f45dec32578ddab615abf78a8aadfc6d9591065bcd0ab19a1dbcf23e8592`,
-  bulk preview SHA256
-  `5d37f102a095ee3dfa1a1bcd7fbc62b186232b60f71938499f0db665b4a43001`,
-  and prior QA merged surface SHA256
-  `41f57a9d8c1f2fa317c3cdeb869b18d49c2530c6d9124666a2800266e0fa969a`.
-
-#### Validation
-
-- `PYTHONPATH=src python -m pytest tests/test_external_admission_qa_merger.py tests/test_cli.py -q`:
-  `215 passed, 160 subtests passed`.
-- `PYTHONPATH=src python -m catalytic_earth.cli build-external-admission-qa-merger --created-utc 2026-06-09T02:25:12Z`:
-  wrote the new `20260609` artifacts.
-- `python -m json.tool` for the merged/import-ready/repair-queue artifacts:
-  passed.
-- Focused consistency assertions:
-  merged rows `845`, import-ready rows `333`, repair queue rows `48`, scaleout
-  additions `152`, materialized validated/provisional rows `16/354`, preview
-  provenance present for every row, and exact current702 non-overlap for every
-  preview row.
-- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with `702`
-  curated mechanism labels.
-- `git diff --check`: passed.
-
-#### Commit / push / blockers / next action
-
-- Durable work commit: `28a9ff3d` (`Merge external admission producer outputs`).
-- Pushed branch: `origin/ce-external-admission-qa-merger-20260609`.
-- Blockers: none for the preview-only controlled import-review lane. Remaining
-  non-production blockers are the downstream structural duplicate screen,
-  label-factory/review gate, and explicit production authorization.
-- Exact next action: review the `333` preview-only import-review rows in
-  `artifacts/v3_external_admission_import_ready_preview_current702_20260609.json`
-  first, then run the `48` repair rows through the explicit locator/coordinate
-  repair lane before considering any production import.
-
-### 2026-06-08 External Admission QA Merger
-
-Automation run: `ce-external-admission-qa-merger`
+Automation run: `ce-external-materialization-wave-2`
 
 #### Wall-clock ledger
 
-- STARTED_AT_UTC: `2026-06-09T01:24:17Z`
-- STARTED_AT_LOCAL: `2026-06-08T20:24:17-0500`
-- ENDED_AT_UTC: `2026-06-09T01:30:54Z`
-- ENDED_AT_LOCAL: `2026-06-08T20:30:54-0500`
-- ELAPSED_MINUTES: `6.628`
-- Lock:
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth1/catalytic-earth-automation.lock`
+- STARTED_AT_UTC: `2026-06-09T03:35:25Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 22:35:25 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T03:48:29Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 22:48:29 CDT 2026`
+- ELAPSED_MINUTES: `13.067`
 
-#### Scope
+#### Scope And Result
 
-- Added a rerunnable merger lane, CLI command, and focused tests that reconcile
-  the durable external admission artifacts already present on current `main`.
-- Upgraded the 16 admission-validated candidates over the 693-row bulk scout
-  baseline by candidate identity and shared source hashes, while preserving the
-  remaining 677 bulk-only rows.
-- Audited overlaps against the current `v3_scaleout_merged_acceptance_surface`
-  as provenance-only review signals and watched for
-  `ce-external-materialization-admission-batch` plus
-  `ce-external-bulk-pagination-scaleout` outputs.
-- Did not edit production registries, ontologies, heldout splits, model
-  weights, production thresholds, final import files, or import labels.
-
-#### Outputs
-
-- Merged surface:
-  `artifacts/v3_external_admission_merged_surface_current702_20260608.json`.
-- Import-ready preview:
-  `artifacts/v3_external_admission_import_ready_preview_current702_20260608.json`.
-- Repair queue:
-  `artifacts/v3_external_admission_repair_queue_current702_20260608.json`.
-- Human report:
-  `work/external_admission_qa_merger_current702_20260608.md`.
-- Rerunnable code/tests:
-  `src/catalytic_earth/external_admission_qa_merger.py`,
-  `tests/test_external_admission_qa_merger.py`, CLI wiring in
-  `src/catalytic_earth/cli.py`, and parser coverage in `tests/test_cli.py`.
-
-#### Result
-
-- Merged rows: 693.
-- Validation upgrades: 16. Bulk-only rows retained: 677.
-- Terminal states reconcile to: 354
-  `provisional_external_countable_preflight_candidate`, 194
-  `locator_ready_candidate`, 97 `coordinate_ready_pending_locator`, 23
-  `blocked_duplicate_or_current_registry_conflict`, 10
-  `admission_ready_pending_coordinate_materialization`, 6
-  `admission_ready_pending_locator_materialization`, 4
-  `locator_repair_candidate`, 3 `coordinate_repair_candidate`, and 2
-  `hard_blocked_with_next_action`.
-- Import-ready preview rows: 0. No row is currently import-ready because the
-  validated slice still needs coordinate and/or locator materialization, while
-  bulk-only rows still need scaled admission validation and downstream
-  duplicate/review gates.
-- Repair queue rows: 23, split into 10 coordinate-materialization, 6
-  locator-materialization, 4 locator-repair, and 3 coordinate-repair rows.
-- Provenance-only overlap audit: 119 merged rows share accessions with members
-  already present in the current scaleout merged acceptance surface.
-- Producer watch: no current-main artifact was found for
-  `ce-external-materialization-admission-batch` or
-  `ce-external-bulk-pagination-scaleout`.
-
-#### Validation
-
-- `python -m json.tool` passed for merged, import-ready preview, and repair
-  queue artifacts.
-- Focused pytest:
-  `PYTHONPATH=src python -m pytest tests/test_external_admission_qa_merger.py tests/test_external_source_ingestion.py tests/test_external_source_admission_validation.py tests/test_cli.py::CliTests::test_external_admission_qa_merger_parser_defaults -q`:
-  5 passed.
-- Focused artifact consistency check passed: 693 merged rows, 16 validation
-  upgrades, 23 repair-queue rows, 0 import-ready rows, and 0 provenance-audit
-  crosscheck issues.
-- `git diff --check`: passed.
-- Production-edit guardrail scan: changed paths are limited to merger code,
-  tests, handoff/report markdown, and new external admission artifacts.
-
-#### Blockers
-
-- `ce-external-materialization-admission-batch` has not yet produced a durable
-  current-main artifact, so the 16 admission-validated rows cannot advance past
-  coordinate/locator materialization from this lane alone.
-- `ce-external-bulk-pagination-scaleout` has not yet produced a durable
-  current-main artifact, so the 354 provisional bulk candidates remain limited
-  to the existing non-paginated scout scope.
-
-#### Exact next action
-
-When `ce-external-materialization-admission-batch` lands on `main`, rerun
-`build-external-admission-qa-merger` first to upgrade the 16 validated rows and
-look for any new import-ready candidates. Separately, when
-`ce-external-bulk-pagination-scaleout` lands, rerun the merger again to
-reconcile any new bulk rows against the current 693-row baseline, preserving
-repairable rows in the explicit repair queue instead of dropping them.
+- Consumed the 2026-06-09 bulk pagination scaleout branch, the 2026-06-09
+  admission QA merger branch, and the 2026-06-08 materialization admission
+  batch pattern without editing production registries/imports, ontologies,
+  splits, thresholds, or model weights.
+- Input rows: 845. Coordinate materialized new: 0 because disk started below
+  the 10 GiB floor. Coordinate rows reused from consumed preview: 333. Locator
+  sidecars materialized new: 309 compact low-disk review-only sidecars.
+  Import-ready preview count: 333 carried forward from the consumed admission
+  QA import-ready preview. Duplicate conflicts: 33. Repair/continuation queue
+  count: 512.
+- Outputs:
+  `artifacts/v3_external_materialization_wave2_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json`,
+  `artifacts/external_materialization_wave2_source_free_locators_current702_20260609/`,
+  and `work/external_materialization_wave2_current702_20260609.md`.
+- Exact next action: restore disk free space above 10 GiB, then run coordinate
+  materialization/identity validation for the 309 locator-sidecar continuation
+  rows and the 120 coordinate-ready pending-locator rows before expanding the
+  controlled import-ready preview beyond the 333 carried rows.
 
 ### 2026-06-08 External Source Ingestion Pilot
 

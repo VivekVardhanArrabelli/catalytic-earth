@@ -1,0 +1,211 @@
+{
+  "artifact_id": "v3_external_import_review_repair_queue_current702_20260609",
+  "candidate_count": 16,
+  "created_utc": "2026-06-09T03:47:49Z",
+  "guardrails": {
+    "label_import_performed": false,
+    "production_registry_edited": false,
+    "queue_only": true
+  },
+  "rows": [
+    {
+      "accession": "P09601",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:P09601",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/pdb_1N3U.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_P09601.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "P30519",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:P30519",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/pdb_2Q32.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_P30519.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "P29082",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:P29082",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/pdb_2CB2.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_P29082.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "Q9UGB7",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:Q9UGB7",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/pdb_2IBN.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_Q9UGB7.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "P04181",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:P04181",
+      "coordinate_path": "artifacts/v3_mcsa_pymol_seventh_materialized_coordinates_20260522/pdb_2OAT.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_P04181.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "PLP children",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "Q96255",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:Q96255",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_6CZX.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_Q96255.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "PLP children",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "P04062",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:P04062",
+      "coordinate_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2F61.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_P04062.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "glycoside/nucleoside",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "O60502",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:O60502",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/pdb_2YDQ.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_O60502.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "glycoside/nucleoside",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "Q969G6",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:Q969G6",
+      "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_Q969G6.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_Q969G6.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "P32189",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:P32189",
+      "coordinate_path": "artifacts/v3_external_structural_coordinates_1025_all30/afdb_P32189.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_P32189.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "Q3T906",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:Q3T906",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/pdb_2N6D.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_Q3T906.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "Q9Y6K0",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:Q9Y6K0",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/pdb_8GYW.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_Q9Y6K0.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "Q99707",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:Q99707",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/pdb_2O2K.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_Q99707.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "A6H5Y3",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:A6H5Y3",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/AF-A6H5Y3-F1-model_v6.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_A6H5Y3.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "Q9Z2Q4",
+      "blockers": [
+        "external_duplicate_accession_or_sequence_conflict"
+      ],
+      "candidate_id": "uniprot:Q9Z2Q4",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/AF-Q9Z2Q4-F1-model_v6.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_Q9Z2Q4.json",
+      "next_action": "Resolve external duplicate provenance before any batch approval.",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "duplicate_external_conflict"
+    },
+    {
+      "accession": "P0C264",
+      "blockers": [
+        "singleton_near_orphan_lane_needs_family_policy_review"
+      ],
+      "candidate_id": "uniprot:P0C264",
+      "coordinate_path": "artifacts/external_materialized_coordinates_current702_20260608/AF-P0C264-F1-model_v6.cif",
+      "locator_sidecar_path": "artifacts/external_source_free_active_site_locators_current702_20260608/uniprot_P0C264.json",
+      "next_action": "Record family/lane policy before batch import approval.",
+      "target_family_lane": "near-orphan/no-reliable-structure",
+      "terminal_state": "needs_family_policy_review"
+    }
+  ],
+  "schema_version": "v3.external_import_review_repair_queue",
+  "source_artifact_id": "v3_external_import_review_preflight_current702_20260609",
+  "source_artifact_sha256": "16214b81dcb8f3ffcc51f57273b6c39fbc467a52c04067decaac9f7de9f7abb5",
+  "terminal_state_counts": {
+    "duplicate_external_conflict": 15,
+    "needs_family_policy_review": 1
+  }
+}

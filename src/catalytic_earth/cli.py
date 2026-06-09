@@ -38,7 +38,6 @@ from .targeted_expansion_acquisition_conversion import (
     write_targeted_expansion_acquisition_conversion_screens,
 )
 from .countable_label_unblocker import write_countable_label_unblocker_matrix
-from .external_admission_qa_merger import write_external_admission_qa_merger
 from .external_source_ingestion import (
     write_external_bulk_ingestion_scout,
     write_external_source_ingestion_pilot,
@@ -46,6 +45,15 @@ from .external_source_ingestion import (
 from .external_source_admission_validation import (
     write_external_source_admission_validation,
 )
+from .external_import_review_preflight import (
+    DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH,
+    DEFAULT_MATERIALIZATION_SOURCE,
+    DEFAULT_MERGED_SURFACE_SOURCE,
+    DEFAULT_PREVIEW_SOURCE,
+    DEFAULT_TREE_REFS,
+    write_external_import_review_preflight,
+)
+from .external_materialization_wave2 import write_external_materialization_wave2
 from .scaleout_plp_radical_cobalamin_external import (
     write_external_scaleout_shard_plp_radical_cobalamin,
 )
@@ -2862,6 +2870,28 @@ def cmd_build_external_source_admission_validation(args: argparse.Namespace) -> 
     return 0
 
 
+def cmd_build_external_import_review_preflight(args: argparse.Namespace) -> int:
+    artifact = write_external_import_review_preflight(
+        preview_source=args.preview,
+        merged_surface_source=args.merged_surface,
+        materialization_source=args.materialization,
+        current702_coordinate_manifest_path=Path(args.current702_coordinate_manifest),
+        out_path=Path(args.out),
+        ready_preview_path=Path(args.ready_preview),
+        repair_queue_path=Path(args.repair_queue),
+        report_path=Path(args.report),
+        tree_refs=tuple(args.tree_ref or DEFAULT_TREE_REFS),
+        expected_preview_count=args.expected_preview_count,
+        created_utc=args.created_utc,
+    )
+    print(
+        "Wrote external import review preflight to "
+        f"{args.out} ({artifact['counts']['controlled_import_review_ready']} "
+        "controlled-review ready)"
+    )
+    return 0
+
+
 def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
     artifact = write_external_bulk_ingestion_scout(
         current_manifest_path=Path(args.current_manifest),
@@ -2913,24 +2943,23 @@ def cmd_build_external_scaleout_shard_plp_radical_cobalamin(
     return 0
 
 
-def cmd_build_external_admission_qa_merger(args: argparse.Namespace) -> int:
-    artifact = write_external_admission_qa_merger(
-        materialization_batch_spec=args.materialization_batch,
-        materialization_preview_spec=args.materialization_preview,
-        bulk_scaleout_spec=args.bulk_scaleout,
-        bulk_preview_spec=args.bulk_preview,
-        previous_merged_surface_spec=args.previous_merged_surface,
+def cmd_build_external_materialization_wave2(args: argparse.Namespace) -> int:
+    artifact = write_external_materialization_wave2(
+        merged_surface_path=Path(args.merged_surface),
+        import_ready_source_path=Path(args.import_ready_source),
         out_path=Path(args.out),
-        import_ready_path=Path(args.import_ready),
+        import_ready_preview_path=Path(args.import_ready_preview),
         repair_queue_path=Path(args.repair_queue),
         report_path=Path(args.report) if args.report else None,
+        locator_dir=Path(args.locator_dir),
         created_utc=args.created_utc,
+        disk_free_gib_at_start=args.disk_free_gib_at_start,
     )
     print(
-        "Wrote external admission QA merger to "
-        f"{args.out} ({artifact['counts']['merged_rows']} rows; "
-        f"{artifact['counts']['import_ready_rows']} import-ready; "
-        f"{artifact['counts']['repair_queue_rows']} repair-queue)"
+        "Wrote external materialization Wave 2 to "
+        f"{args.out} ({artifact['counts']['input_rows']} rows; "
+        f"{artifact['counts']['import_ready_preview_count']} import-ready preview; "
+        f"{artifact['counts']['locator_sidecars_materialized_new']} locator sidecars)"
     )
     return 0
 
@@ -22393,6 +22422,70 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_external_source_admission_validation
     )
 
+    external_import_review_preflight = subparsers.add_parser(
+        "build-external-import-review-preflight",
+        help=(
+            "classify external import-ready preview rows into controlled "
+            "import-review batch decisions"
+        ),
+    )
+    external_import_review_preflight.add_argument(
+        "--preview",
+        default=DEFAULT_PREVIEW_SOURCE,
+    )
+    external_import_review_preflight.add_argument(
+        "--merged-surface",
+        default=DEFAULT_MERGED_SURFACE_SOURCE,
+    )
+    external_import_review_preflight.add_argument(
+        "--materialization",
+        default=DEFAULT_MATERIALIZATION_SOURCE,
+    )
+    external_import_review_preflight.add_argument(
+        "--current702-coordinate-manifest",
+        default=str(DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH),
+    )
+    external_import_review_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_preflight_current702_20260609.json"
+        ),
+    )
+    external_import_review_preflight.add_argument(
+        "--ready-preview",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_ready_preview_current702_20260609.json"
+        ),
+    )
+    external_import_review_preflight.add_argument(
+        "--repair-queue",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_repair_queue_current702_20260609.json"
+        ),
+    )
+    external_import_review_preflight.add_argument(
+        "--report",
+        default="work/external_import_review_preflight_current702_20260609.md",
+    )
+    external_import_review_preflight.add_argument(
+        "--tree-ref",
+        action="append",
+        default=None,
+        help="git ref whose tree can satisfy preview coordinate/locator paths",
+    )
+    external_import_review_preflight.add_argument(
+        "--expected-preview-count",
+        type=int,
+        default=333,
+    )
+    external_import_review_preflight.add_argument("--created-utc")
+    external_import_review_preflight.set_defaults(
+        func=cmd_build_external_import_review_preflight
+    )
+
     external_bulk_ingestion = subparsers.add_parser(
         "build-external-bulk-ingestion-scout",
         help=(
@@ -22518,75 +22611,67 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_external_scaleout_shard_plp_radical_cobalamin
     )
 
-    external_admission_merger = subparsers.add_parser(
-        "build-external-admission-qa-merger",
+    external_materialization_wave2 = subparsers.add_parser(
+        "build-external-materialization-wave2",
         help=(
-            "merge external materialization and bulk scaleout producer outputs "
-            "into the current admission audit, import-preview, and repair-queue surfaces"
+            "carry forward external admission import-ready rows and materialize "
+            "low-disk source-free locator sidecars for Wave 2"
         ),
     )
-    external_admission_merger.add_argument(
-        "--materialization-batch",
-        default=(
-            "origin/ce-external-materialization-admission-batch-20260608:"
-            "artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
-        ),
-    )
-    external_admission_merger.add_argument(
-        "--materialization-preview",
-        default=(
-            "origin/ce-external-materialization-admission-batch-20260608:"
-            "artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json"
-        ),
-    )
-    external_admission_merger.add_argument(
-        "--bulk-scaleout",
-        default=(
-            "origin/ce-external-bulk-pagination-scaleout-20260609:"
-            "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json"
-        ),
-    )
-    external_admission_merger.add_argument(
-        "--bulk-preview",
-        default=(
-            "origin/ce-external-bulk-pagination-scaleout-20260609:"
-            "artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json"
-        ),
-    )
-    external_admission_merger.add_argument(
-        "--previous-merged-surface",
-        default=(
-            "origin/ce-external-admission-qa-merger-20260608:"
-            "artifacts/v3_external_admission_merged_surface_current702_20260608.json"
-        ),
-    )
-    external_admission_merger.add_argument(
-        "--out",
+    external_materialization_wave2.add_argument(
+        "--merged-surface",
         default=(
             "artifacts/"
             "v3_external_admission_merged_surface_current702_20260609.json"
         ),
     )
-    external_admission_merger.add_argument(
-        "--import-ready",
+    external_materialization_wave2.add_argument(
+        "--import-ready-source",
         default=(
             "artifacts/"
             "v3_external_admission_import_ready_preview_current702_20260609.json"
         ),
     )
-    external_admission_merger.add_argument(
+    external_materialization_wave2.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_materialization_wave2_current702_20260609.json"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--import-ready-preview",
+        default=(
+            "artifacts/"
+            "v3_external_materialization_wave2_import_ready_preview_current702_20260609.json"
+        ),
+    )
+    external_materialization_wave2.add_argument(
         "--repair-queue",
         default=(
             "artifacts/"
-            "v3_external_admission_repair_queue_current702_20260609.json"
+            "v3_external_materialization_wave2_repair_queue_current702_20260609.json"
         ),
     )
-    external_admission_merger.add_argument(
+    external_materialization_wave2.add_argument(
         "--report",
-        default="work/external_admission_qa_merger_current702_20260609.md",
+        default="work/external_materialization_wave2_current702_20260609.md",
     )
-    external_admission_merger.add_argument("--created-utc")
-    external_admission_merger.set_defaults(func=cmd_build_external_admission_qa_merger)
+    external_materialization_wave2.add_argument(
+        "--locator-dir",
+        default=(
+            "artifacts/"
+            "external_materialization_wave2_source_free_locators_current702_20260609"
+        ),
+    )
+    external_materialization_wave2.add_argument("--created-utc")
+    external_materialization_wave2.add_argument(
+        "--disk-free-gib-at-start",
+        type=float,
+    )
+    external_materialization_wave2.set_defaults(
+        func=cmd_build_external_materialization_wave2
+    )
 
     external_representation_backend_sample_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-sample",

@@ -212,6 +212,65 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.artifacts_dir, "artifacts")
         self.assertIsNone(args.created_utc)
 
+    def test_external_import_review_preflight_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-external-import-review-preflight"])
+
+        self.assertEqual(
+            args.preview,
+            (
+                "origin/ce-external-admission-qa-merger-20260609:"
+                "artifacts/"
+                "v3_external_admission_import_ready_preview_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.merged_surface,
+            (
+                "origin/ce-external-admission-qa-merger-20260609:"
+                "artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.materialization,
+            (
+                "origin/ce-external-materialization-admission-batch-20260608:"
+                "artifacts/"
+                "v3_external_materialization_admission_batch_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.current702_coordinate_manifest,
+            "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_import_review_preflight_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.ready_preview,
+            (
+                "artifacts/"
+                "v3_external_import_review_ready_preview_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.repair_queue,
+            (
+                "artifacts/"
+                "v3_external_import_review_repair_queue_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            "work/external_import_review_preflight_current702_20260609.md",
+        )
+        self.assertEqual(args.expected_preview_count, 333)
+        self.assertIsNone(args.tree_ref)
+        self.assertIsNone(args.created_utc)
+
     def test_external_bulk_ingestion_scout_parser_defaults(self) -> None:
         args = build_parser().parse_args(["build-external-bulk-ingestion-scout"])
 
@@ -282,70 +341,57 @@ class CliTests(unittest.TestCase):
         self.assertIsNone(args.max_candidates_per_lane)
         self.assertEqual(args.target_candidate_floor, 1500)
 
-    def test_external_admission_qa_merger_parser_defaults(self) -> None:
-        args = build_parser().parse_args(["build-external-admission-qa-merger"])
+    def test_external_materialization_wave2_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-external-materialization-wave2"])
 
         self.assertEqual(
-            args.materialization_batch,
-            (
-                "origin/ce-external-materialization-admission-batch-20260608:"
-                "artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
-            ),
-        )
-        self.assertEqual(
-            args.materialization_preview,
-            (
-                "origin/ce-external-materialization-admission-batch-20260608:"
-                "artifacts/v3_external_materialization_import_ready_preview_current702_20260608.json"
-            ),
-        )
-        self.assertEqual(
-            args.bulk_scaleout,
-            (
-                "origin/ce-external-bulk-pagination-scaleout-20260609:"
-                "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json"
-            ),
-        )
-        self.assertEqual(
-            args.bulk_preview,
-            (
-                "origin/ce-external-bulk-pagination-scaleout-20260609:"
-                "artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json"
-            ),
-        )
-        self.assertEqual(
-            args.previous_merged_surface,
-            (
-                "origin/ce-external-admission-qa-merger-20260608:"
-                "artifacts/v3_external_admission_merged_surface_current702_20260608.json"
-            ),
-        )
-        self.assertEqual(
-            args.out,
+            args.merged_surface,
             (
                 "artifacts/"
                 "v3_external_admission_merged_surface_current702_20260609.json"
             ),
         )
         self.assertEqual(
-            args.import_ready,
+            args.import_ready_source,
             (
                 "artifacts/"
                 "v3_external_admission_import_ready_preview_current702_20260609.json"
             ),
         )
         self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_materialization_wave2_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.import_ready_preview,
+            (
+                "artifacts/"
+                "v3_external_materialization_wave2_import_ready_preview_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
             args.repair_queue,
             (
                 "artifacts/"
-                "v3_external_admission_repair_queue_current702_20260609.json"
+                "v3_external_materialization_wave2_repair_queue_current702_20260609.json"
             ),
         )
         self.assertEqual(
             args.report,
-            "work/external_admission_qa_merger_current702_20260609.md",
+            "work/external_materialization_wave2_current702_20260609.md",
+        )
+        self.assertEqual(
+            args.locator_dir,
+            (
+                "artifacts/"
+                "external_materialization_wave2_source_free_locators_current702_20260609"
+            ),
         )
         self.assertIsNone(args.created_utc)
+        self.assertIsNone(args.disk_free_gib_at_start)
 
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
