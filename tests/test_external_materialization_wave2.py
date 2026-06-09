@@ -306,6 +306,7 @@ class ExternalMaterializationWave2Tests(unittest.TestCase):
                 disk_free_gib_at_start=20.0,
                 max_coordinate_downloads=1,
                 coordinate_fetcher=fake_fetcher,
+                disk_free_gib_provider=lambda _path: 20.0,
             )
 
             self.assertTrue(artifact["validation_checks"]["passed"])

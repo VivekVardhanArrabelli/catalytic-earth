@@ -3,6 +3,69 @@
 ## Current automation run
 
 - Automation ID: `ce-import-ready-review-preflight`
+- STARTED_AT_UTC: `2026-06-09T14:19:22Z`
+- STARTED_AT_LOCAL: `Tue Jun  9 09:19:22 CDT 2026`
+- Source head at run start: `70dec7ee08dc42647f520bbb94614ac2f7708f3e`
+- Worktree:
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/ce-import-ready-review-preflight-20260609T141941Z-66622/catalytic-earth`
+- ENDED_AT_UTC: `2026-06-09T14:27:03Z`
+- ENDED_AT_LOCAL: `Tue Jun  9 09:27:03 CDT 2026`
+- ELAPSED_MINUTES: `7.683` durable-output early completion path because the
+  preflight artifacts were already pushed on `origin/main` and this run
+  revalidated them from a fresh synced worktree.
+- Status: Complete pending commit/push/sync immediately after this handoff
+  write. Verified the current Wave 2 import-review preflight artifacts from
+  `origin/main`, reran the preflight builder deterministically with no artifact
+  diff, and fixed the low-disk-sensitive Wave 2 materialization unit test by
+  injecting the disk-free provider in tests while preserving the production
+  live disk-floor default. No production registry, import, ontology, heldout
+  split, threshold, or model edit was made.
+- Current outputs:
+  `artifacts/v3_external_import_review_preflight_current702_20260609.json`,
+  `artifacts/v3_external_import_review_ready_preview_current702_20260609.json`,
+  `artifacts/v3_external_import_review_repair_queue_current702_20260609.json`,
+  and `work/external_import_review_preflight_current702_20260609.md`.
+- Result: 600 preview rows plus 11,895 repair-surface rows reconcile exactly
+  to the 12,495-row Wave 2 materialization surface. Terminal states: 275
+  `controlled_import_review_ready`, 1 `needs_structural_duplicate_screen`, 0
+  `needs_family_policy_review`, 1,096 `repairable_locator_blocker`, 5,179
+  `repairable_coordinate_blocker`, 203 `duplicate_current702_conflict`, 1,275
+  `duplicate_external_conflict`, 1,562 `reject/OOS_preserve_signal`, and 2,904
+  `hard_blocked_with_next_action`.
+- Batch approval: a final controlled human batch approval could cover 275
+  machine-clean rows at once rather than row-by-row. Production registry
+  authorization, label-factory gates, and explicit controlled import review
+  remain outside this preflight.
+- Validation passed: JSON parse for the three preflight outputs; custom
+  materialization/preflight candidate-ID, terminal-state, lane, provenance,
+  source-hash, ready-path, sequence-duplicate, and exact current702 coordinate
+  overlap reconciliation; deterministic
+  `PYTHONPATH=src python -m catalytic_earth.cli build-external-import-review-preflight --created-utc 2026-06-09T13:18:06Z`
+  with no artifact diff; `git diff --check`; focused preflight/CLI tests
+  (`3 passed`); low-disk materialization regression test (`1 passed`);
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`; production-edit
+  guardrail diff scan; and full
+  `PYTHONPATH=src python -m unittest discover -s tests` (`1,698 tests OK`).
+- Commit/push/sync/lock status: pending immediately after this handoff write.
+  Current dirty files are the handoff plus the low-disk testability fix in
+  `src/catalytic_earth/external_materialization_wave2.py` and
+  `tests/test_external_materialization_wave2.py`; commit, push to
+  `origin/main`, fetch/verify `HEAD == origin/main`, then release the canonical
+  lock.
+- Exact next action: defense ledger should record that current main has 275
+  machine-clean Wave 2 rows ready for final controlled human batch approval,
+  with 1 additional preview row needing structural duplicate screening, 6
+  preview rows blocked by sequence duplication, and 318 carried-forward preview
+  rows still needing locator/coordinate evidence. Do not import until the
+  explicit production authorization and label-factory gates are recorded.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`
+  acquired before writing; run-start marker written to
+  `/tmp/ce-import-ready-review-preflight-run-start.txt`.
+
+## Previous automation run
+
+- Automation ID: `ce-import-ready-review-preflight`
 - STARTED_AT_UTC: `2026-06-09T13:18:06Z`
 - STARTED_AT_LOCAL: `Tue Jun  9 08:18:06 CDT 2026`
 - Source head at run start: `22c6c28fda510139d76cf0f389fa71fcebf5142f`

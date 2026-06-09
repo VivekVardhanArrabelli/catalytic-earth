@@ -1012,6 +1012,7 @@ def _coordinate_ready_materialization_for_row(
     fetcher: Callable[[str, str], str],
     coordinate_budget: dict[str, int],
     coordinate_downloads_enabled: bool,
+    disk_free_gib_provider: Callable[[Path], float],
 ) -> dict[str, Any]:
     result: dict[str, Any] = {
         "ready": False,
@@ -1043,7 +1044,7 @@ def _coordinate_ready_materialization_for_row(
             result["coordinate_status"] = "coordinate_download_budget_exhausted"
             result["blockers"] = ["bounded_coordinate_download_budget_exhausted"]
             return result
-        current_free_gib = _free_gib(coordinate_dir)
+        current_free_gib = disk_free_gib_provider(coordinate_dir)
         if current_free_gib <= COORDINATE_DOWNLOAD_FLOOR_GIB + COORDINATE_DOWNLOAD_STOP_BUFFER_GIB:
             coordinate_budget["skipped_due_floor"] += 1
             result["coordinate_status"] = "coordinate_download_skipped_due_disk_floor"
@@ -1189,6 +1190,7 @@ def build_external_materialization_wave2(
     disk_free_gib_at_start: float | None = None,
     max_coordinate_downloads: int = 0,
     coordinate_fetcher: Callable[[str, str], str] = fetch_external_structure_cif,
+    disk_free_gib_provider: Callable[[Path], float] = _free_gib,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], list[tuple[Path, dict[str, Any]]]]:
     created_utc = created_utc or _utc_now_iso()
     surface_paths = [Path(merged_surface_path)]
@@ -1218,7 +1220,7 @@ def build_external_materialization_wave2(
     disk_reference_gib = (
         float(disk_free_gib_at_start)
         if disk_free_gib_at_start is not None
-        else _free_gib(Path("."))
+        else disk_free_gib_provider(Path("."))
     )
     coordinate_downloads_enabled = (
         max(0, int(max_coordinate_downloads or 0)) > 0
@@ -1347,6 +1349,7 @@ def build_external_materialization_wave2(
                 fetcher=coordinate_fetcher,
                 coordinate_budget=coordinate_budget,
                 coordinate_downloads_enabled=coordinate_downloads_enabled,
+                disk_free_gib_provider=disk_free_gib_provider,
             )
             if materialization_result.get("coordinate_reused_local"):
                 coordinate_reused_local_for_wave2 += 1
