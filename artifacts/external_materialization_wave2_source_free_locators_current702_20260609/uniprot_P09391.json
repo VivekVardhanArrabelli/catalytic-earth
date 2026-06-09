@@ -1,0 +1,153 @@
+{
+  "artifact_id": "v3_external_materialization_wave2_source_free_locator_uniprot_P09391_current702_20260609",
+  "candidate_id": "uniprot:P09391",
+  "coordinate_provenance": {
+    "afdb_or_pdb_identifier": "2IC8",
+    "alphafold_ids": [
+      "P09391"
+    ],
+    "coordinate_download_performed": false,
+    "coordinate_download_policy": "coordinate_downloads_disabled_because_run_started_below_10_gib_floor",
+    "coordinate_local_residue_identity_validated": false,
+    "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+    "coordinate_path": null,
+    "coordinate_sha256": null,
+    "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+    "pdb_ids": [
+      "2IC8",
+      "2IRV",
+      "2LEP",
+      "2NRF",
+      "2O7L",
+      "2XOV",
+      "2XOW",
+      "2XTU",
+      "2XTV",
+      "3B44",
+      "3B45",
+      "3TXT",
+      "3UBB",
+      "3ZEB",
+      "3ZMH",
+      "3ZMI",
+      "3ZMJ",
+      "3ZOT",
+      "4H1D",
+      "4HDD",
+      "4NJN",
+      "4NJP",
+      "5F5B",
+      "5F5D",
+      "5F5G",
+      "5F5J",
+      "5F5K",
+      "5MT6",
+      "5MT7",
+      "5MT8",
+      "5MTF",
+      "6PJ4",
+      "6PJ5",
+      "6PJ7",
+      "6PJ8",
+      "6PJ9",
+      "6PJA",
+      "6PJP",
+      "6PJQ",
+      "6PJR",
+      "6PJU",
+      "6VJ8",
+      "6VJ9",
+      "6XRO",
+      "6XRP",
+      "8AB5"
+    ]
+  },
+  "created_utc": "2026-06-09T13:05:58Z",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "guardrails": {
+    "label_import_performed": false,
+    "production_registry_edited": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "locator_policy": "review_only_exact_position_locator_pending_coordinate_identity",
+  "ready_for_controlled_import_review": false,
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": false,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "reviewed_feature_code": "ACT_SITE",
+        "reviewed_feature_type": "Active site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 201,
+      "evidence_codes": [
+        "ECO:0000305"
+      ],
+      "ligand_id": null,
+      "ligand_name": null,
+      "locator_confidence": 0.5,
+      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "reviewed_feature_code": "ACT_SITE",
+      "reviewed_feature_type": "Active site",
+      "role_hint": "reviewed_active_site_feature",
+      "sequence_position": 201
+    },
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": false,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "reviewed_feature_code": "ACT_SITE",
+        "reviewed_feature_type": "Active site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 254,
+      "evidence_codes": [
+        "ECO:0000305"
+      ],
+      "ligand_id": null,
+      "ligand_name": null,
+      "locator_confidence": 0.5,
+      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "reviewed_feature_code": "ACT_SITE",
+      "reviewed_feature_type": "Active site",
+      "role_hint": "reviewed_active_site_feature",
+      "sequence_position": 254
+    }
+  ],
+  "schema_version": "v3.external_materialization_wave2_source_free_locator_sidecar",
+  "sidecar_path": "artifacts/external_materialization_wave2_source_free_locators_current702_20260609/uniprot_P09391.json",
+  "source_accession": "P09391",
+  "source_family_lane": "metal hydrolase amidase/peptidase boundary",
+  "source_free_active_site_locator_status": "materialized_pending_coordinate_local_residue_identity",
+  "source_hashes": {
+    "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "source_query_sha256": "405ed5537711588e2601190c7742a4d4699e9b26d594d4f5d13152230a37fac3",
+    "uniprot_entry_record_sha256": "1ceecf2d532364242671bfe6b7af3edf91aef02c36628a2572c45fd22a64ec6f",
+    "uniprot_search_row_sha256": "4239dda3914fc10f3ffccb2f45b532f9faa620e9f5147d0587e39557150efcf6"
+  },
+  "source_terminal_state": "locator_ready_candidate",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  }
+}

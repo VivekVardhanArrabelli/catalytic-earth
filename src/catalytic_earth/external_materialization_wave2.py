@@ -33,6 +33,18 @@ DEFAULT_IMPORT_READY_SOURCE_PATH = Path(
 DEFAULT_ADDITIONAL_SURFACE_PATHS = (
     Path(
         "artifacts/"
+        "v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json"
+    ),
+    Path(
+        "artifacts/"
+        "v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.json"
+    ),
+    Path(
+        "artifacts/"
+        "v3_external_scaleout_shard_near_orphan_diversity_current702_20260609.json"
+    ),
+    Path(
+        "artifacts/"
         "v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609.json"
     ),
     Path(
@@ -41,6 +53,18 @@ DEFAULT_ADDITIONAL_SURFACE_PATHS = (
     ),
 )
 DEFAULT_ADDITIONAL_IMPORT_READY_SOURCE_PATHS = (
+    Path(
+        "artifacts/"
+        "v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_current702_20260609.json"
+    ),
+    Path(
+        "artifacts/"
+        "v3_external_scaleout_shard_metal_phosphoryl_glycoside_import_ready_preview_current702_20260609.json"
+    ),
+    Path(
+        "artifacts/"
+        "v3_external_scaleout_shard_near_orphan_diversity_import_ready_preview_current702_20260609.json"
+    ),
     Path(
         "artifacts/"
         "v3_external_scaleout_shard_plp_radical_cobalamin_import_ready_preview_current702_20260609.json"
@@ -907,8 +931,10 @@ def build_external_materialization_wave2(
             "mission": "external_materialization_admission_wave2",
             "coordinate_policy": LOW_DISK_COORDINATE_POLICY,
             "source_pattern": (
-                "merges current Wave 2 admission plus landed redox/cofactor "
-                "and PLP/radical/cobalamin shard previews without coordinate downloads"
+                "merges current Wave 2 admission plus landed broad bulk, "
+                "metal/phosphoryl/glycoside, near-orphan/diversity, "
+                "PLP/radical/cobalamin, and redox/cofactor shard previews "
+                "without coordinate downloads"
             ),
         },
         "source_artifacts": source_artifacts,
@@ -973,7 +999,7 @@ def render_external_materialization_wave2_report(
         "",
         f"Run: {artifact['created_utc']}",
         "",
-        "Wave 2 consumed the 2026-06-09 admission QA surface plus landed redox/cofactor and PLP/radical/cobalamin shard previews. It deduped the surfaces into one review surface, carried only controlled-review-ready rows into the import-ready preview, and avoided coordinate downloads because disk was below the 10 GiB floor.",
+        "Wave 2 consumed the 2026-06-09 admission QA surface plus landed broad bulk, metal/phosphoryl/glycoside, near-orphan/diversity, PLP/radical/cobalamin, and redox/cofactor shard previews. It deduped the surfaces into one review surface, carried only controlled-review-ready rows into the import-ready preview, and avoided coordinate downloads while producing source-free locator sidecars for coordinate-continuation rows.",
         "",
         "## Summary",
         "",

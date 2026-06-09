@@ -2,6 +2,43 @@
 
 ## Current automation run
 
+- Automation ID: `ce-external-materialization-wave-2`
+- STARTED_AT_UTC: `2026-06-09T13:03:15Z`
+- STARTED_AT_LOCAL: `Tue Jun  9 08:03:15 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T13:06:35Z`
+- ENDED_AT_LOCAL: `Tue Jun  9 08:06:35 CDT 2026`
+- ELAPSED_MINUTES: `3.333` heartbeat completion after the automation worktree
+  had already started and patched the consumer input list.
+- Status: Complete durable output. Rebuilt Wave 2 external materialization from
+  current synced main plus later-landed broad bulk, metal/phosphoryl/glycoside,
+  near-orphan/diversity, redox/cofactor-confounded, PLP/radical/cobalamin, and
+  prior admission outputs. No production registry, import, ontology, heldout
+  split, production threshold, or model weight edit was made.
+- Current outputs:
+  `artifacts/v3_external_materialization_wave2_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json`,
+  `artifacts/external_materialization_wave2_source_free_locators_current702_20260609/`,
+  and `work/external_materialization_wave2_current702_20260609.md`.
+- Result: 12,495 unique candidate rows, 18,235 source-surface rows consumed,
+  3,504 import-ready/provisional source rows consumed, 318 controlled
+  import-ready preview rows carried forward, 12,177 repair-queue rows, 2,934
+  newly materialized source-free locator sidecars, 2,279 reused locator
+  sidecars, and 0 coordinate downloads.
+- Validation: JSON parse passed for materialization, import-ready preview, and
+  repair queue artifacts. Focused tests passed:
+  `PYTHONPATH=src python -m pytest tests/test_external_materialization_wave2.py tests/test_cli.py::CliTests::test_external_materialization_wave2_parser_defaults -q`
+  (`4 passed`). Artifact validation checks report `passed: true` and production
+  edit guardrails all false.
+- Exact next action: run `ce-import-ready-review-preflight` against this new
+  materialization surface. It should consume the 318 carried-forward
+  import-ready rows and the expanded repair surface, then classify rows into
+  controlled import-review ready, repairable locator/coordinate blockers,
+  duplicate conflicts, OOS-preserve-signal, and hard blockers before any
+  production import discussion.
+
+## Previous automation run
+
 - Automation ID: `ce-scaleout-shard-metal-phosphoryl-glycoside`
 - STARTED_AT_UTC: `2026-06-09T05:11:53Z`
 - STARTED_AT_LOCAL: `Tue Jun  9 00:11:53 CDT 2026`

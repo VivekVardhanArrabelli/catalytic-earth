@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_external_materialization_wave2_import_ready_preview_current702_20260609",
   "candidate_count": 318,
-  "created_utc": "2026-06-09T05:21:48Z",
+  "created_utc": "2026-06-09T13:05:58Z",
   "guardrails": {
     "coordinate_files_recopied_in_this_run": false,
     "label_import_performed": false,
@@ -15291,6 +15291,54 @@
       "path": "artifacts/v3_external_admission_merged_surface_current702_20260609.json",
       "rows_consumed": 845,
       "sha256": "ecf2103e9a95fc5ffa870de63c0faf88022c8cceeda34d4fe774b9c9380a211b"
+    },
+    "v3_external_bulk_ingestion_scaleout_wave2_current702_20260609": {
+      "artifact_id": "v3_external_bulk_ingestion_scaleout_wave2_current702_20260609",
+      "bytes": 67077595,
+      "consumption_role": "materialization_surface",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json",
+      "rows_consumed": 5658,
+      "sha256": "6ccfbc94adab00c626ae7ec4f23028bda04b4505b570614f9d45bdd23662ed45"
+    },
+    "v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_current702_20260609": {
+      "artifact_id": "v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_current702_20260609",
+      "bytes": 10931526,
+      "consumption_role": "import_ready_preview_source",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_current702_20260609.json",
+      "rows_consumed": 1069,
+      "sha256": "49d89388aa52db8f5d9a1a4895d47f430d5ff765ef3eaad92d5d5b5e90ca24a3"
+    },
+    "v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609": {
+      "artifact_id": "v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609",
+      "bytes": 57349142,
+      "consumption_role": "materialization_surface",
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.json",
+      "rows_consumed": 4423,
+      "sha256": "7539db610432a53786502eae4c0e7ffb2f521460543558c77c48bdec977c9ac5"
+    },
+    "v3_external_scaleout_shard_metal_phosphoryl_glycoside_import_ready_preview_current702_20260609": {
+      "artifact_id": "v3_external_scaleout_shard_metal_phosphoryl_glycoside_import_ready_preview_current702_20260609",
+      "bytes": 9683301,
+      "consumption_role": "import_ready_preview_source",
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_import_ready_preview_current702_20260609.json",
+      "rows_consumed": 1049,
+      "sha256": "74acbe56373f7c89e341fc54f2a94209615e2f2728174d24ce9920cf5c339088"
+    },
+    "v3_external_scaleout_shard_near_orphan_diversity_current702_20260609": {
+      "artifact_id": "v3_external_scaleout_shard_near_orphan_diversity_current702_20260609",
+      "bytes": 27137773,
+      "consumption_role": "materialization_surface",
+      "path": "artifacts/v3_external_scaleout_shard_near_orphan_diversity_current702_20260609.json",
+      "rows_consumed": 3022,
+      "sha256": "28561b355f6759217170a6193e5a436cad0f0a34553a0a58067d28fb59056149"
+    },
+    "v3_external_scaleout_shard_near_orphan_diversity_import_ready_preview_current702_20260609": {
+      "artifact_id": "v3_external_scaleout_shard_near_orphan_diversity_import_ready_preview_current702_20260609",
+      "bytes": 1399210,
+      "consumption_role": "import_ready_preview_source",
+      "path": "artifacts/v3_external_scaleout_shard_near_orphan_diversity_import_ready_preview_current702_20260609.json",
+      "rows_consumed": 142,
+      "sha256": "348f6bd434a1eb0e1bad98e961a370d9a2b294345cfc581c0d8427e17dac8819"
     },
     "v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609": {
       "artifact_id": "v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609",
