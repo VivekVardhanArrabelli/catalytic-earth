@@ -3,6 +3,60 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-09: Scale-Out Drain Of The Annotation-Anchored Engine (888 -> 2269 combined)
+
+Decision: drain the already-materialized import-ready candidate pools through the SAME
+conservative annotation-anchored engine, adding **1,381 bronze expansion labels** (no new
+sourcing, no env-blocked deps). Combined total **702 frozen + 1,567 expansion = 2,269**
+(was 888). The frozen current702 benchmark registry, its coherence-audit baseline, and its
+eval-contract SHA-256 are byte-unchanged (regression tests green).
+
+What was drained and how (module `external_scaleout_bronze_import.py`, CLI
+`build-external-scaleout-bronze-import`; applied via the existing
+`apply-external-annotation-anchored-import` writer):
+
+- **The 324 Wave 2 skipped rows** had been held ONLY because their current702
+  accession/sequence duplicate screen was never promoted to the top-level field the engine
+  reads. Their screen was re-run and independently re-verified — accession overlap re-checked
+  against BOTH registries + current702, sequence-SHA overlap re-checked against current702
+  where the precomputed digest was present, and the upstream current702 sequence screen
+  required to read clear. All 324 cleared (0 registry/sequence collisions). Through the engine
+  they yield 131 labels (4 seed: 2 flavin + 1 metal + 1 PLP; 127 OOS), 193 held.
+- **Four shard pools** classified by the same policy over an extended lane vocabulary
+  (additive, frozen engine untouched): metal_phosphoryl_glycoside (1,049) -> 1,006 import
+  (129 metal seed + 877 OOS), 43 held (no metal corroboration); plp_radical_cobalamin (168)
+  -> 110 PLP seed (specific PLP catalytic lanes corroborated by reviewed
+  `cofactor_family_flags.plp_evidence_present`), 58 held (radical-SAM/cobalamin + broad PLP
+  context); near_orphan_diversity (142) -> 142 OOS (terpene/isomerase/transferase/lyase tail);
+  **redox_cofactor_confounded (743) -> 0 import, fully HELD** (cofactor-confounded redox; the
+  ~64 flavin-redox-boundary + radical lanes are exactly the rows the optional cofactor/EC
+  disambiguation task is meant to make countable later).
+
+New labels by lane diversity (1,381 = 242 seed + 1,139 OOS): seed = 130
+metal_dependent_hydrolase + 110 plp_dependent_enzyme + 2 flavin_dehydrogenase_reductase; OOS
+spans phosphoryl transfer/phosphatase (396), kinase (225), glycoside/nucleoside (296),
+dehydratase/hydratase (37), terpene synthase/lyase (49), isomerase/racemase (30), C-C
+lyase/decarboxylase (12), transferase tail (9), and the near-orphan tail. Cumulative
+expansion registry: 343 seed_fingerprint (225 metal + 116 PLP + 2 flavin) + 1,224 out_of_scope.
+
+Guardrails carried forward verbatim: predictive leakage discipline absolute (EC/name/prose in
+`excluded_context`, `predictive_evidence` empty, scorer never sees them); positives only on an
+annotation-derived primary lane corroborated by the matching cofactor class; clear OOS only
+for non-eight-fingerprint lanes; HOLD cofactor-confounded redox and secondary-probe
+radical-SAM/cobalamin; every label tier=bronze / review_status=automation_curated / uniprot
+namespace with rich review-only `mechanism_evidence`; deduped against BOTH registries and
+schema-validated; frozen 702 benchmark + split/heldout never touched. Full suite green except
+the 6 known env-backend failures.
+
+References:
+
+- `src/catalytic_earth/external_scaleout_bronze_import.py`,
+  `tests/test_external_scaleout_bronze_import.py`, CLI
+  `build-external-scaleout-bronze-import`.
+- `artifacts/v3_external_scaleout_bronze_import_preview_current702_20260609.json`,
+  `work/external_scaleout_bronze_import_preview_current702_20260609.md`.
+- `data/registries/external_bronze_labels.json` (expansion registry, now 1,567 bronze labels).
+
 ## 2026-06-09: Annotation-Anchored Bronze Is An Accepted External Label Basis (the 10k unlock)
 
 Decision (owner: Vivek): to scale toward 10k labels, **reviewed Swiss-Prot/EC/Rhea/cofactor

@@ -90,6 +90,7 @@ from .external_annotation_anchored_import import (
     apply_external_annotation_anchored_import_to_registry,
     write_external_annotation_anchored_import,
 )
+from .external_scaleout_bronze_import import write_scaleout_bronze_import
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2810,6 +2811,24 @@ def cmd_apply_external_annotation_anchored_import(args: argparse.Namespace) -> i
         f"dup-skipped {summary['duplicate_skipped']}). "
         f"Frozen benchmark untouched ({summary['frozen_benchmark_labels']}); "
         f"combined total {summary['combined_total_labels']}."
+    )
+    return 0
+
+
+def cmd_build_external_scaleout_bronze_import(args: argparse.Namespace) -> int:
+    audit = write_scaleout_bronze_import(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    c = audit["counts"]
+    print(
+        "Wrote scale-out annotation-anchored bronze import preview to "
+        f"{args.out} ({audit.get('status')}; importable {c['importable_new_labels']} "
+        f"({c['label_type_counts']}; fingerprints {c['fingerprint_counts']}); "
+        f"expansion registry {c['current_registry_labels']} -> "
+        f"{c['projected_registry_labels_if_merged']} if merged; "
+        f"held {c['hold_count']}, skipped {c['skip_count']}; "
+        "curated registry NOT written)"
     )
     return 0
 
@@ -22490,6 +22509,33 @@ def build_parser() -> argparse.ArgumentParser:
     )
     apply_annotation_anchored.set_defaults(
         func=cmd_apply_external_annotation_anchored_import
+    )
+
+    scaleout_bronze_import = subparsers.add_parser(
+        "build-external-scaleout-bronze-import",
+        help=(
+            "drain the already-materialized import-ready pools (the 324 skipped "
+            "Wave 2 rows with their current702 duplicate screen re-run, plus the "
+            "metal/phosphoryl/glycoside, redox-cofactor-confounded, "
+            "plp/radical/cobalamin, and near-orphan shards) through the same "
+            "conservative annotation-anchored engine; non-destructive preview"
+        ),
+    )
+    scaleout_bronze_import.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_scaleout_bronze_import_preview_current702_20260609.json"
+        ),
+    )
+    scaleout_bronze_import.add_argument(
+        "--report",
+        default=(
+            "work/external_scaleout_bronze_import_preview_current702_20260609.md"
+        ),
+    )
+    scaleout_bronze_import.set_defaults(
+        func=cmd_build_external_scaleout_bronze_import
     )
 
     embedding_sidecar = subparsers.add_parser(
