@@ -2,66 +2,55 @@
 
 ## Current automation run
 
-- Automation ID: `ce-scaleout-shard-plp-radical-cobalamin`
-- STARTED_AT_UTC: `2026-06-09T03:35:43Z`
-- STARTED_AT_LOCAL: `Mon Jun  8 22:35:43 CDT 2026`
-- ENDED_AT_UTC: `2026-06-09T04:25:56Z`
-- ENDED_AT_LOCAL: `Mon Jun  8 23:25:56 CDT 2026`
-- ELAPSED_MINUTES: `50.217`
-- Status: Complete durable output. Built a targeted reviewed-UniProt
-  PLP/radical-SAM/cobalamin external scaleout shard from current main plus
-  completed external admission branches. The shard tests proton-transfer,
-  electron-transfer, radical, cofactor-context, and adjacent cofactor-confounded
-  negative axes without importing rows or editing production
-  registries/imports/ontologies/splits/thresholds/model weights.
+- Automation ID: `ce-scaleout-shard-redox-cofactor-confounded`
+- STARTED_AT_UTC: `2026-06-09T03:35:02Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 22:35:03 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T04:33:20Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 23:33:20 CDT 2026`
+- ELAPSED_MINUTES: `58.300`
+- Status: Complete durable output. Added a rerunnable, read-only targeted
+  external scaleout shard for redox/cofactor-confounded reviewed Swiss-Prot
+  families, deduped against current702, local prior external/scaleout
+  artifacts, and completed external-admission branch artifacts. The balanced
+  final pass covers redox oxygen/sulfur, heme peroxidase/oxidase-like, flavin
+  monooxygenase/dehydrogenase/reductase boundaries, Fe-S/flavin combined
+  systems, sulfur oxidoreductases, oxygenases, dehydrogenases, and
+  cofactor-confounded OOS negatives.
 - Current outputs:
-  `artifacts/v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609.json`,
-  `artifacts/v3_external_scaleout_shard_plp_radical_cobalamin_import_ready_preview_current702_20260609.json`,
-  and `work/external_scaleout_shard_plp_radical_cobalamin_current702_20260609.md`.
+  `artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_current702_20260609.json`,
+  `artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_import_ready_preview_current702_20260609.json`,
+  and
+  `work/external_scaleout_shard_redox_cofactor_confounded_current702_20260609.md`.
 - Code/test outputs:
-  `src/catalytic_earth/scaleout_plp_radical_cobalamin_external.py`,
-  `src/catalytic_earth/adapters.py`,
-  `src/catalytic_earth/cli.py`,
-  `tests/test_scaleout_plp_radical_cobalamin_external.py`,
-  `tests/test_adapters.py`, and `tests/test_cli.py`.
-- Result: 1,606 unique candidates were classified. Terminal states:
-  168 `import_ready_preview`, 784
-  `provisional_external_countable_preflight_candidate`, 69
-  `locator_ready_candidate`, 17 `coordinate_ready_pending_locator`, 9
-  `repairable_locator_blocker`, 11 `repairable_coordinate_blocker`, 252
-  `blocked_duplicate_or_current_registry_conflict`, 292
-  `reject/OOS_preserve_signal`, and 4 `hard_blocked_with_next_action`.
-  Duplicate conflicts include 42 exact current702 conflicts and 243 prior
-  external exact conflicts. The importer preview is a non-production preview
-  only.
-- Mechanism-axis coverage: 931 proton-transfer-axis rows, 387
-  electron-transfer-axis rows, 579 radical-axis rows, 1,382 cofactor-context
-  rows, and 341 adjacent cofactor-confounded negative-axis rows.
-- Source/materialization notes: total fetched search records before row
-  materialization were 2,251. UniProt entry fetch recorded 67 timeout failures
-  for continuation. Materialization buckets are 168 import-ready preview, 784
-  provisional preflight, 69 locator-ready, 17 coordinate-ready pending locator,
-  20 repairable locator/coordinate blockers, 252 duplicate conflicts, 292
-  reject/OOS, and 4 hard blocked.
+  `src/catalytic_earth/external_scaleout_redox_cofactor_confounded.py`,
+  `src/catalytic_earth/cli.py`, and
+  `tests/test_external_scaleout_redox_cofactor_confounded.py`.
+- Result: 2,681 candidate rows and 2,512 unique non-duplicate rows were
+  classified (target 2,000 met; stretch 4,000 not met). Terminal states:
+  743 `import_ready_preview`, 214 `locator_ready_candidate`, 103
+  `coordinate_ready_pending_locator`, 21 `locator_repair_candidate`, 18
+  `coordinate_repair_candidate`, 119 `reject/OOS_preserve_signal`, 169
+  `blocked_duplicate_or_current_registry_conflict`, and 1,294
+  `hard_blocked_with_next_action`.
+- Cofactor/confounding notes: 1,068 rows carry cofactor-confounded signal.
+  Hard blockers are mostly UniProt entry materialization timeouts preserved as
+  explicit source-retrieval blockers, not silently discarded.
 - Lock:
-  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth5/catalytic-earth-automation.lock`;
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`;
   start timestamps written to
-  `/tmp/ce_scaleout_shard_plp_radical_cobalamin_run_start.txt`.
-- Commit/push/sync status: shard merge commit
-  `71ec1e75c09cf5991946bd8adbdf04ddaa9bdfde` was pushed to `origin/main` and
-  verified with `HEAD == origin/main`; this follow-up handoff status correction
-  must be pushed next, then the lock can be released from a clean synced tree.
+  `/tmp/ce-scaleout-shard-redox-cofactor-confounded-run-start.txt`.
+- Commit/push/sync status: pending final rebased commit, push, sync
+  verification, and lock release.
 - Validation passed: shard JSON parse, import-ready preview JSON parse, count
-  reconciliation (`candidate_count` 1,606; `import_ready_count` 168; duplicate
-  conflicts 252), focused shard/adapters/CLI tests, merged-tree focused pytest,
-  full `PYTHONPATH=src python -m unittest discover -s tests` (1,687 tests),
-  `PYTHONPATH=src python -m catalytic_earth.cli validate`, current docs
-  artifact-reference check with 0 missing references, `git diff --check`,
-  conflict-marker scan, and production-edit guardrail. Disk free space at wrap
-  is about 1.2 GiB.
-- Exact next action: review the 168 import-ready preview rows as a batch, then
-  continue materialization for the 69 locator-ready and 17 coordinate-ready
-  pending-locator rows while retrying the 67 UniProt timeout entries.
+  reconciliation (`candidate_rows` 2,681; unique non-duplicate 2,512;
+  `import_ready_preview` 743), required boundary/family coverage assertions,
+  focused pytest, `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  current docs artifact-reference check with 0 missing references,
+  `git diff --check`, and production-edit guardrail.
+- Exact next action: run current-countable structural duplicate screens and
+  label-factory review on the 743 preview-only rows; retry UniProt entry
+  materialization for the 1,294 hard-blocked rows before treating them as
+  locator/coordinate-ready.
 
 ## Recent upstream automation runs
 
@@ -229,6 +218,78 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-09 Redox/Cofactor-Confounded External Scaleout Shard
+
+Automation run: `ce-scaleout-shard-redox-cofactor-confounded`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-09T03:35:02Z`
+- STARTED_AT_LOCAL: `Mon Jun  8 22:35:03 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T04:33:20Z`
+- ENDED_AT_LOCAL: `Mon Jun  8 23:33:20 CDT 2026`
+- ELAPSED_MINUTES: `58.300`
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`
+
+#### Scope
+
+- Added `build-external-scaleout-redox-cofactor-confounded-shard`, a
+  rerunnable read-only external scaleout lane for reviewed Swiss-Prot redox and
+  cofactor-confounded families.
+- Covered redox oxygen/sulfur, heme peroxidase/oxidase-like, flavin
+  monooxygenase versus dehydrogenase/reductase boundaries, Fe-S/flavin combined
+  systems, sulfur oxidoreductases, oxygenases, dehydrogenases, and
+  cofactor-confounded OOS negatives.
+- Deduped against current702, local prior external/scaleout artifact globs, and
+  completed external-admission branch artifacts from
+  `origin/ce-external-bulk-pagination-scaleout-20260609` and
+  `origin/ce-external-admission-qa-merger-20260609`.
+- Did not edit production registries, imports, ontologies, heldout splits,
+  production thresholds, or model weights.
+
+#### Outputs
+
+- `artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_current702_20260609.json`
+- `artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_import_ready_preview_current702_20260609.json`
+- `work/external_scaleout_shard_redox_cofactor_confounded_current702_20260609.md`
+- Rerunnable code/tests:
+  `src/catalytic_earth/external_scaleout_redox_cofactor_confounded.py`,
+  `src/catalytic_earth/cli.py`, and
+  `tests/test_external_scaleout_redox_cofactor_confounded.py`
+
+#### Result
+
+- Candidate rows: 2,681.
+- Unique non-duplicate rows: 2,512; hard target met, stretch target not met.
+- Import-ready preview rows: 743, preview-only and not production imports.
+- Terminal states: 743 `import_ready_preview`, 214
+  `locator_ready_candidate`, 103 `coordinate_ready_pending_locator`, 21
+  `locator_repair_candidate`, 18 `coordinate_repair_candidate`, 119
+  `reject/OOS_preserve_signal`, 169 duplicate/current/prior conflicts, and
+  1,294 `hard_blocked_with_next_action`.
+- Cofactor-confounded signal rows: 1,068.
+- The hard blockers are mostly UniProt entry materialization timeouts from the
+  degraded live source path and are preserved as explicit source-retrieval
+  blockers, not silently discarded.
+
+#### Validation
+
+- JSON parse passed for the shard and import-ready preview artifacts.
+- Count reconciliation and required boundary/family coverage assertions passed.
+- `PYTHONPATH=src python -m pytest tests/test_external_scaleout_redox_cofactor_confounded.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: passed with 702
+  curated labels.
+- Current docs artifact-reference check found 0 missing references.
+
+#### Exact next action
+
+Run current-countable structural duplicate screens and label-factory review on
+the 743 preview-only rows. Retry UniProt entry materialization for the 1,294
+hard-blocked rows before treating them as locator/coordinate-ready.
 
 ### 2026-06-09 External Materialization Wave 2
 

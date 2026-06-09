@@ -129,6 +129,27 @@ artifact-backed mechanism diagnostics.
   `artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json`,
   `artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json`,
   and `work/external_bulk_ingestion_scout_current702_20260608.md`.
+- Current redox/cofactor-confounded external shard (2026-06-09): the targeted
+  reviewed Swiss-Prot scaleout covers redox oxygen/sulfur, heme
+  peroxidase/oxidase-like, flavin monooxygenase versus dehydrogenase/reductase
+  boundaries, Fe-S/flavin combined systems, sulfur oxidoreductases,
+  oxygenases, dehydrogenases, and cofactor-confounded OOS negatives. It
+  dedupes against current702 plus local prior external/scaleout artifacts and
+  completed external-admission branch artifacts. Counts: 2,681 candidate rows,
+  2,512 unique non-duplicate rows, 743 `import_ready_preview`, 214
+  `locator_ready_candidate`, 103 `coordinate_ready_pending_locator`, 21
+  `locator_repair_candidate`, 18 `coordinate_repair_candidate`, 119
+  `reject/OOS_preserve_signal`, 169 duplicate/current/prior conflicts, and
+  1,294 hard blockers, mostly UniProt entry materialization timeouts preserved
+  as explicit source-retrieval blockers. Use
+  `artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_current702_20260609.json`,
+  `artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_import_ready_preview_current702_20260609.json`,
+  and
+  `work/external_scaleout_shard_redox_cofactor_confounded_current702_20260609.md`.
+  No production registry/import/ontology/model/threshold/split edit was made;
+  import-ready preview rows still require current-countable structural
+  duplicate screening, label-factory review, and explicit registry-change
+  authorization.
 - Current v1 primary mechanism targets: `ser_his_acid_hydrolase`,
   `metal_dependent_hydrolase`, `plp_dependent_enzyme`,
   `flavin_dehydrogenase_reductase`, and `heme_peroxidase_oxidase`.

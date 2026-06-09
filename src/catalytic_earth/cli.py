@@ -42,6 +42,11 @@ from .external_source_ingestion import (
     write_external_bulk_ingestion_scout,
     write_external_source_ingestion_pilot,
 )
+from .external_scaleout_redox_cofactor_confounded import (
+    DEFAULT_PRIOR_ARTIFACT_GLOBS as REDOX_COFACTOR_PRIOR_ARTIFACT_GLOBS,
+    DEFAULT_PRIOR_GIT_ARTIFACTS as REDOX_COFACTOR_PRIOR_GIT_ARTIFACTS,
+    write_external_scaleout_redox_cofactor_confounded_shard,
+)
 from .external_source_admission_validation import (
     write_external_source_admission_validation,
 )
@@ -2960,6 +2965,41 @@ def cmd_build_external_materialization_wave2(args: argparse.Namespace) -> int:
         f"{args.out} ({artifact['counts']['input_rows']} rows; "
         f"{artifact['counts']['import_ready_preview_count']} import-ready preview; "
         f"{artifact['counts']['locator_sidecars_materialized_new']} locator sidecars)"
+    )
+    return 0
+
+
+def cmd_build_external_scaleout_redox_cofactor_confounded_shard(
+    args: argparse.Namespace,
+) -> int:
+    artifact = write_external_scaleout_redox_cofactor_confounded_shard(
+        current_manifest_path=Path(args.current_manifest),
+        label_registry_path=Path(args.label_registry),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        import_ready_preview_path=(
+            Path(args.import_ready_preview_out)
+            if args.import_ready_preview_out
+            else None
+        ),
+        created_utc=args.created_utc,
+        max_records_per_lane=args.max_records_per_lane,
+        max_candidates=args.max_candidates,
+        entry_fetch_workers=args.entry_fetch_workers,
+        entry_fetch_timeout_seconds=args.entry_fetch_timeout_seconds,
+        fetch_rhea_fallback=args.rhea_fallback,
+        prior_artifact_paths=[
+            Path(path) for path in (args.prior_artifact or [])
+        ],
+        prior_artifact_globs=tuple(args.prior_artifact_glob or []),
+        prior_git_artifacts=tuple(args.prior_git_artifact or []),
+    )
+    counts = artifact["counts"]
+    print(
+        "Wrote external redox/cofactor-confounded scaleout shard to "
+        f"{args.out} ({counts['candidate_rows']} rows; "
+        f"{counts['unique_non_duplicate_candidate_rows']} unique non-duplicate; "
+        f"{counts['import_ready_preview_rows']} import-ready preview)"
     )
     return 0
 
@@ -22671,6 +22711,93 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_materialization_wave2.set_defaults(
         func=cmd_build_external_materialization_wave2
+    )
+
+    external_redox_cofactor_scaleout = subparsers.add_parser(
+        "build-external-scaleout-redox-cofactor-confounded-shard",
+        help=(
+            "target reviewed UniProt redox/cofactor-confounded families for "
+            "read-only external scaleout"
+        ),
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--current-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--label-registry",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_scaleout_shard_redox_cofactor_confounded_"
+            "current702_20260609.json"
+        ),
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--report",
+        default=(
+            "work/"
+            "external_scaleout_shard_redox_cofactor_confounded_"
+            "current702_20260609.md"
+        ),
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--import-ready-preview-out",
+        default=(
+            "artifacts/"
+            "v3_external_scaleout_shard_redox_cofactor_confounded_"
+            "import_ready_preview_current702_20260609.json"
+        ),
+    )
+    external_redox_cofactor_scaleout.add_argument("--created-utc")
+    external_redox_cofactor_scaleout.add_argument(
+        "--max-records-per-lane",
+        type=int,
+        default=500,
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--max-candidates",
+        type=int,
+        default=4200,
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--entry-fetch-workers",
+        type=int,
+        default=12,
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--entry-fetch-timeout-seconds",
+        type=int,
+        default=8,
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--rhea-fallback",
+        action="store_true",
+        help="also query Rhea by EC when UniProt catalytic activity lacks Rhea links",
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--prior-artifact",
+        action="append",
+        default=[],
+        help="additional local prior external/scaleout JSON artifact for dedupe",
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--prior-artifact-glob",
+        action="append",
+        default=list(REDOX_COFACTOR_PRIOR_ARTIFACT_GLOBS),
+        help="local prior artifact glob; repeat to add multiple globs",
+    )
+    external_redox_cofactor_scaleout.add_argument(
+        "--prior-git-artifact",
+        action="append",
+        default=list(REDOX_COFACTOR_PRIOR_GIT_ARTIFACTS),
+        help="prior branch artifact spec in '<ref>:<path>' form for dedupe",
+    )
+    external_redox_cofactor_scaleout.set_defaults(
+        func=cmd_build_external_scaleout_redox_cofactor_confounded_shard
     )
 
     external_representation_backend_sample_audit = subparsers.add_parser(
