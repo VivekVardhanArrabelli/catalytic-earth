@@ -3019,8 +3019,10 @@ def cmd_build_external_materialization_wave2(args: argparse.Namespace) -> int:
         repair_queue_path=Path(args.repair_queue),
         report_path=Path(args.report) if args.report else None,
         locator_dir=Path(args.locator_dir),
+        coordinate_dir=Path(args.coordinate_dir),
         created_utc=args.created_utc,
         disk_free_gib_at_start=args.disk_free_gib_at_start,
+        max_coordinate_downloads=args.max_coordinate_downloads,
     )
     print(
         "Wrote external materialization Wave 2 to "
@@ -22951,6 +22953,18 @@ def build_parser() -> argparse.ArgumentParser:
             "artifacts/"
             "external_materialization_wave2_source_free_locators_current702_20260609"
         ),
+    )
+    external_materialization_wave2.add_argument(
+        "--coordinate-dir",
+        default=(
+            "artifacts/"
+            "external_materialization_wave2_coordinates_current702_20260609"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--max-coordinate-downloads",
+        type=int,
+        default=0,
     )
     external_materialization_wave2.add_argument("--created-utc")
     external_materialization_wave2.add_argument(

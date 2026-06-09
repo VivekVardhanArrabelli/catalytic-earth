@@ -5,37 +5,66 @@
 - Automation ID: `ce-external-materialization-wave-2`
 - STARTED_AT_UTC: `2026-06-09T13:03:15Z`
 - STARTED_AT_LOCAL: `Tue Jun  9 08:03:15 CDT 2026`
-- ENDED_AT_UTC: `2026-06-09T13:06:35Z`
-- ENDED_AT_LOCAL: `Tue Jun  9 08:06:35 CDT 2026`
-- ELAPSED_MINUTES: `3.333` heartbeat completion after the automation worktree
-  had already started and patched the consumer input list.
-- Status: Complete durable output. Rebuilt Wave 2 external materialization from
-  current synced main plus later-landed broad bulk, metal/phosphoryl/glycoside,
+- ENDED_AT_UTC: `2026-06-09T13:27:25Z`
+- ENDED_AT_LOCAL: `Tue Jun  9 08:27:25 CDT 2026`
+- ELAPSED_MINUTES: `24.167`
+- Status: Complete durable output under the early-completion allowance after
+  validation. Rebuilt Wave 2 external materialization from current synced main
+  plus later-landed broad bulk, metal/phosphoryl/glycoside,
   near-orphan/diversity, redox/cofactor-confounded, PLP/radical/cobalamin, and
-  prior admission outputs. No production registry, import, ontology, heldout
-  split, production threshold, or model weight edit was made.
+  prior admission outputs. Added a bounded coordinate materialization path with
+  a 10 GiB disk-floor guard and promoted only rows with coordinate-local
+  residue identity. No production registry, import, ontology, heldout split,
+  production threshold, label import, or model weight edit was made.
 - Current outputs:
   `artifacts/v3_external_materialization_wave2_current702_20260609.json`,
   `artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json`,
   `artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json`,
   `artifacts/external_materialization_wave2_source_free_locators_current702_20260609/`,
+  `artifacts/external_materialization_wave2_coordinates_current702_20260609/`,
   and `work/external_materialization_wave2_current702_20260609.md`.
-- Result: 12,495 unique candidate rows, 18,235 source-surface rows consumed,
-  3,504 import-ready/provisional source rows consumed, 318 controlled
-  import-ready preview rows carried forward, 12,177 repair-queue rows, 2,934
-  newly materialized source-free locator sidecars, 2,279 reused locator
-  sidecars, and 0 coordinate downloads.
-- Validation: JSON parse passed for materialization, import-ready preview, and
-  repair queue artifacts. Focused tests passed:
-  `PYTHONPATH=src python -m pytest tests/test_external_materialization_wave2.py tests/test_cli.py::CliTests::test_external_materialization_wave2_parser_defaults -q`
-  (`4 passed`). Artifact validation checks report `passed: true` and production
-  edit guardrails all false.
-- Exact next action: run `ce-import-ready-review-preflight` against this new
-  materialization surface. It should consume the 318 carried-forward
-  import-ready rows and the expanded repair surface, then classify rows into
-  controlled import-review ready, repairable locator/coordinate blockers,
-  duplicate conflicts, OOS-preserve-signal, and hard blockers before any
-  production import discussion.
+- Code/test outputs:
+  `src/catalytic_earth/external_materialization_wave2.py`,
+  `src/catalytic_earth/cli.py`,
+  `tests/test_external_materialization_wave2.py`, and `tests/test_cli.py`.
+- Result: 18,235 source-surface rows consumed into 12,495 unique candidates.
+  The import-ready preview now has 600 rows: 318 carried forward from the
+  consumed admission preview and 282 promoted by Wave 2 coordinate-local
+  locator materialization. The repair/continuation queue has 11,895 rows.
+  Duplicate conflicts: 1,420. Cross-source duplicates collapsed: 4,818.
+- Materialization: 248 Wave 2 coordinate files are present in
+  `artifacts/external_materialization_wave2_coordinates_current702_20260609/`
+  (143,908,701 bytes). Final artifact counts record 248 coordinates
+  materialized in the Wave 2 coordinate directory, 287 local coordinate reuses
+  for Wave 2 checks, 5,213 locator sidecars reused from the Wave 2 directory,
+  and 282 coordinate-identity locator sidecars reused in the final
+  reconciliation. The final one-download reconciliation hit a fetch failure
+  before any new write; earlier bounded live passes created the coordinate
+  directory while disk stayed above the floor.
+- Disk: start recorded 24.816 GiB free; final artifact recorded 16.887 GiB
+  free; final `df` reported 17,706,984 KiB free, safely above the 10 GiB
+  floor.
+- Validation passed: Wave 2 JSON/count/provenance reconciliation, all 5,213
+  locator sidecars parsed, preview rows remain `ready_for_production_label_import
+  = false`, focused Wave 2/CLI tests (5 tests), `PYTHONPATH=src python -m
+  catalytic_earth.cli validate`, docs artifact-reference check with 0 missing
+  references, `git diff --check`, production-edit guardrail scan with 0
+  violations, and full `PYTHONPATH=src python -m unittest discover -s tests`
+  (1,697 tests OK).
+- Commit/push/sync/lock status: final materialization commit is the pushed
+  `origin/main` HEAD for this run, `HEAD == origin/main` verification is
+  required immediately after push, and the automation lock is released
+  immediately after that verification.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`;
+  start timestamps written to
+  `/tmp/ce-external-materialization-wave-2-run-start.txt`.
+- Exact next action: continue bounded coordinate materialization from the
+  4,931 locator-sidecar coordinate-continuation rows only while disk remains
+  above 10 GiB, then materialize source-free locators for the 676
+  coordinate-ready pending-locator rows and rerun the controlled import-review
+  preflight on the 600-row preview before any production registry/import
+  discussion.
 
 ## Previous automation run
 

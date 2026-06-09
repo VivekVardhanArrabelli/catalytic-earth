@@ -242,6 +242,85 @@ class ExternalMaterializationWave2Tests(unittest.TestCase):
                 ),
             )
 
+    def test_bounded_coordinate_materialization_promotes_ready_row(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            merged_path = root / "merged.json"
+            import_ready_path = root / "import_ready.json"
+            merged_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "merged",
+                        "source_artifacts": {},
+                        "rows": [_row("PMAT", "locator_ready_candidate")],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            import_ready_path.write_text(
+                json.dumps({"artifact_id": "import_ready", "rows": []}),
+                encoding="utf-8",
+            )
+
+            def fake_fetcher(source: str, structure_id: str) -> str:
+                self.assertEqual(source, "alphafold")
+                self.assertEqual(structure_id, "PMAT")
+                return "\n".join(
+                    [
+                        "data_TEST",
+                        "#",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_alt_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_entity_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.pdbx_PDB_ins_code",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.occupancy",
+                        "_atom_site.B_iso_or_equiv",
+                        "_atom_site.pdbx_formal_charge",
+                        "_atom_site.auth_seq_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.pdbx_PDB_model_num",
+                        "ATOM 1 C CA . SER A 1 10 ? 0.0 0.0 0.0 1.00 1.00 ? 10 SER A CA 1",
+                        "ATOM 2 C CA . THR A 1 11 ? 1.0 0.0 0.0 1.00 1.00 ? 11 THR A CA 1",
+                        "#",
+                    ]
+                )
+
+            artifact, preview, repair, sidecars = build_external_materialization_wave2(
+                merged_surface_path=merged_path,
+                import_ready_source_path=import_ready_path,
+                locator_dir=root / "locators",
+                coordinate_dir=root / "coords",
+                created_utc="2026-06-09T00:00:00Z",
+                disk_free_gib_at_start=20.0,
+                max_coordinate_downloads=1,
+                coordinate_fetcher=fake_fetcher,
+            )
+
+            self.assertTrue(artifact["validation_checks"]["passed"])
+            self.assertEqual(artifact["counts"]["coordinate_downloads_performed"], 1)
+            self.assertEqual(
+                artifact["counts"]["coordinate_ready_promoted_preview_count"], 1
+            )
+            self.assertEqual(preview["candidate_count"], 1)
+            self.assertEqual(repair["candidate_count"], 0)
+            self.assertEqual(len(sidecars), 1)
+            self.assertEqual(
+                preview["rows"][0]["wave2_materialization_state"],
+                "coordinate_and_locator_identity_materialized",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

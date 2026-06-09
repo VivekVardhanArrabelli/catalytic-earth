@@ -6,12 +6,12 @@
     "alphafold_ids": [
       "Q7L8A9"
     ],
-    "coordinate_download_performed": false,
-    "coordinate_download_policy": "coordinate_downloads_disabled_because_run_started_below_10_gib_floor",
-    "coordinate_local_residue_identity_validated": false,
+    "coordinate_download_performed": true,
+    "coordinate_download_policy": "bounded_wave2_materialization_above_10_gib_floor",
+    "coordinate_local_residue_identity_validated": true,
     "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
-    "coordinate_path": null,
-    "coordinate_sha256": null,
+    "coordinate_path": "artifacts/external_materialization_wave2_coordinates_current702_20260609/pdb_6J4U.cif",
+    "coordinate_sha256": "819a34939988b0af24dfb9ac42c6d38efc405851262ee7331ddc8ccb8b450d35",
     "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
     "pdb_ids": [
       "6J4U",
@@ -30,7 +30,7 @@
       "6WSL"
     ]
   },
-  "created_utc": "2026-06-09T03:44:26Z",
+  "created_utc": "2026-06-09T13:03:15Z",
   "forbidden_feature_audit": {
     "benchmark_role": false,
     "ec_identifiers": false,
@@ -49,15 +49,15 @@
     "review_only": true,
     "source_text_or_label_fields_used_as_predictive_features": false
   },
-  "locator_policy": "review_only_exact_position_locator_pending_coordinate_identity",
-  "ready_for_controlled_import_review": false,
+  "locator_policy": "review_only_exact_position_coordinate_local_residue_identity",
+  "ready_for_controlled_import_review": true,
   "ready_for_predicted_geometry_scoring": false,
   "residue_locators": [
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "ACT_SITE",
         "reviewed_feature_type": "Active site",
         "sequence_position_uniprot_declared": true,
@@ -70,8 +70,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
       "reviewed_feature_code": "ACT_SITE",
       "reviewed_feature_type": "Active site",
       "role_hint": "reviewed_active_site_feature",
@@ -79,9 +80,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "ACT_SITE",
         "reviewed_feature_type": "Active site",
         "sequence_position_uniprot_declared": true,
@@ -93,8 +94,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "HIS",
       "reviewed_feature_code": "ACT_SITE",
       "reviewed_feature_type": "Active site",
       "role_hint": "reviewed_active_site_feature",
@@ -102,9 +104,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "ACT_SITE",
         "reviewed_feature_type": "Active site",
         "sequence_position_uniprot_declared": true,
@@ -116,8 +118,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "SER",
       "reviewed_feature_code": "ACT_SITE",
       "reviewed_feature_type": "Active site",
       "role_hint": "reviewed_active_site_feature",
@@ -128,7 +131,7 @@
   "sidecar_path": "artifacts/external_materialization_wave2_source_free_locators_current702_20260609/uniprot_Q7L8A9.json",
   "source_accession": "Q7L8A9",
   "source_family_lane": "metal hydrolase",
-  "source_free_active_site_locator_status": "materialized_pending_coordinate_local_residue_identity",
+  "source_free_active_site_locator_status": "ready_coordinate_local_residue_identity",
   "source_hashes": {
     "rhea_records_sha256": "67604563497826f0d7207955c005989420b490ddc11d81e9ca695203ba5f5a2f",
     "source_query_sha256": "bd244d187a1a7c1123fce43e384e18e3e15243abd33386b0e409b81321f041e1",

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 382
-- Measured elapsed time: 11661.4 minutes (194.36 hours)
+- Entries: 383
+- Measured elapsed time: 11681.4 minutes (194.69 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,7 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- targeted-expansion: 193.5 measured minutes (3.23 hours)
+- targeted-expansion: 213.5 measured minutes (3.56 hours)
 - v3: 2734.9 measured minutes (45.58 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -33,21 +33,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3939
-- Evidence references logged: 3298
+- Artifact references logged: 3947
+- Evidence references logged: 3310
 
 ## Recent Entries
-
-### 2026-06-05T20:05:21.984184+00:00 - northstar-lever3
-
-- Task: Lever 3 finalization stop verification
-- Time mode: measured
-- Measured minutes: 3.583
-- Started: 2026-06-05T20:01:25Z
-- Ended: 2026-06-05T20:05:00Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
-- Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 coordinate candidate or filled provenance found, no provider credentials or local predictor executable route present, JSON parse focused artifact regression validate doc-reference unittest discovery and diff check passed
-- Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
 
 ### 2026-06-08T05:12:17.067792+00:00 - v3
 
@@ -129,6 +118,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 3022 candidate rows and 2821 unique non-duplicate rows, 142 import-ready preview rows and 7 provisional rows, 13 diversity bins with 637 near-orphan rows and 204 no-structure rows, 1306 OOS fold cofactor hard-negative rows, JSON parse count provenance and no-structure reconciliation passed, focused shard tests passed, unittest discovery 1691 passed, validate passed with 702 labels, docs artifact-reference missing 0, git diff check passed, production edit guardrail scan clean
 - Commit: `pending_final_wrap_commit`
 - Notes: Default 4500-cap live pass was stopped after about 16 minutes to preserve wrap budget; final lane-balanced pass used 220 records per lane with 24 workers and 5-second entry timeouts.
+
+### 2026-06-09T13:24:24.360224+00:00 - targeted-expansion
+
+- Task: External materialization Wave 2 current702 scaleout merge
+- Time mode: measured
+- Measured minutes: 19.983
+- Started: 2026-06-09T13:03:15Z
+- Ended: 2026-06-09T13:23:14Z
+- Artifacts: artifacts/v3_external_materialization_wave2_current702_20260609.json, artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json, artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json, artifacts/external_materialization_wave2_source_free_locators_current702_20260609, artifacts/external_materialization_wave2_coordinates_current702_20260609, work/external_materialization_wave2_current702_20260609.md, work/handoff.md, work/status.md
+- Evidence: 18235 source surface rows consumed, 12495 unique candidates merged, 600 import-ready preview rows, 248 Wave 2 coordinate files present, 5213 locator sidecars parsed, 11895 repair queue rows, focused tests passed, unittest discovery 1697 passed, validate passed, docs artifact-reference missing 0, diff check passed, production edit guardrail clean
+- Notes: Consumed broad Wave 2 bulk metal/phosphoryl/glycoside near-orphan/diversity redox/cofactor and PLP/radical/cobalamin outputs; bounded coordinate materialization promoted 282 rows while preserving disk above 10 GiB.
 
 ## Expectation Updates
 
@@ -646,3 +646,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-09T03:50:15.392215+00:00: Preview-only import-review preflight; no production registry import ontology split threshold model weight coordinate download or label import changed.
 - 2026-06-09T05:25:43.402284+00:00: Preview and repair artifacts only; no production registry import ontology split threshold model weight coordinate download or label import changed.
 - 2026-06-09T05:54:43.128126+00:00: Read-only external scaleout shard only; no production registry import ontology split threshold model weight coordinate download or label import changed.
+- 2026-06-09T13:24:24.360224+00:00: Preview and repair artifacts plus review-only coordinate and locator sidecars only; no production registry import ontology split threshold model weight or label import changed.

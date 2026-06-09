@@ -6,12 +6,12 @@
     "alphafold_ids": [
       "P49643"
     ],
-    "coordinate_download_performed": false,
-    "coordinate_download_policy": "coordinate_downloads_disabled_because_run_started_below_10_gib_floor",
-    "coordinate_local_residue_identity_validated": false,
+    "coordinate_download_performed": true,
+    "coordinate_download_policy": "bounded_wave2_materialization_above_10_gib_floor",
+    "coordinate_local_residue_identity_validated": true,
     "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
-    "coordinate_path": null,
-    "coordinate_sha256": null,
+    "coordinate_path": "artifacts/external_materialization_wave2_coordinates_current702_20260609/pdb_3L9Q.cif",
+    "coordinate_sha256": "d02dbe3bbe30daa114cca04eeb8878d48cf7aa09c9efb6e41d2095d63b651625",
     "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
     "pdb_ids": [
       "3L9Q",
@@ -38,7 +38,7 @@
       "9C8V"
     ]
   },
-  "created_utc": "2026-06-09T03:44:26Z",
+  "created_utc": "2026-06-09T13:03:15Z",
   "forbidden_feature_audit": {
     "benchmark_role": false,
     "ec_identifiers": false,
@@ -57,15 +57,15 @@
     "review_only": true,
     "source_text_or_label_fields_used_as_predictive_features": false
   },
-  "locator_policy": "review_only_exact_position_locator_pending_coordinate_identity",
-  "ready_for_controlled_import_review": false,
+  "locator_policy": "review_only_exact_position_coordinate_local_residue_identity",
+  "ready_for_controlled_import_review": true,
   "ready_for_predicted_geometry_scoring": false,
   "residue_locators": [
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "BINDING",
         "reviewed_feature_type": "Binding site",
         "sequence_position_uniprot_declared": true,
@@ -77,8 +77,9 @@
       ],
       "ligand_id": "ChEBI:CHEBI:49883",
       "ligand_name": "[4Fe-4S] cluster",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
       "reviewed_feature_code": "BINDING",
       "reviewed_feature_type": "Binding site",
       "role_hint": "reviewed_binding_feature",
@@ -86,9 +87,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "BINDING",
         "reviewed_feature_type": "Binding site",
         "sequence_position_uniprot_declared": true,
@@ -100,8 +101,9 @@
       ],
       "ligand_id": "ChEBI:CHEBI:49883",
       "ligand_name": "[4Fe-4S] cluster",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
       "reviewed_feature_code": "BINDING",
       "reviewed_feature_type": "Binding site",
       "role_hint": "reviewed_binding_feature",
@@ -109,9 +111,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "BINDING",
         "reviewed_feature_type": "Binding site",
         "sequence_position_uniprot_declared": true,
@@ -123,8 +125,9 @@
       ],
       "ligand_id": "ChEBI:CHEBI:49883",
       "ligand_name": "[4Fe-4S] cluster",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
       "reviewed_feature_code": "BINDING",
       "reviewed_feature_type": "Binding site",
       "role_hint": "reviewed_binding_feature",
@@ -132,9 +135,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "BINDING",
         "reviewed_feature_type": "Binding site",
         "sequence_position_uniprot_declared": true,
@@ -146,8 +149,9 @@
       ],
       "ligand_id": "ChEBI:CHEBI:49883",
       "ligand_name": "[4Fe-4S] cluster",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
       "reviewed_feature_code": "BINDING",
       "reviewed_feature_type": "Binding site",
       "role_hint": "reviewed_binding_feature",
@@ -155,9 +159,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "MOD_RES",
         "reviewed_feature_type": "Modified residue",
         "sequence_position_uniprot_declared": true,
@@ -169,8 +173,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "THR",
       "reviewed_feature_code": "MOD_RES",
       "reviewed_feature_type": "Modified residue",
       "role_hint": "reviewed_modified_residue_feature",
@@ -181,7 +186,7 @@
   "sidecar_path": "artifacts/external_materialization_wave2_source_free_locators_current702_20260609/uniprot_P49643.json",
   "source_accession": "P49643",
   "source_family_lane": "redox oxygen/sulfur",
-  "source_free_active_site_locator_status": "materialized_pending_coordinate_local_residue_identity",
+  "source_free_active_site_locator_status": "ready_coordinate_local_residue_identity",
   "source_hashes": {
     "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_query_sha256": "5781627189b9065d52c5a58b9d4a637b73ddd0cdee7fd5a6790260ed03aade07",

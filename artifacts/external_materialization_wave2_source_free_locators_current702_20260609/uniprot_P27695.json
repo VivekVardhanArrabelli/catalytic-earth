@@ -5,15 +5,15 @@
     "afdb_or_pdb_identifier": "1BIX",
     "alphafold_ids": [],
     "coordinate_download_performed": false,
-    "coordinate_download_policy": "coordinate_downloads_disabled_because_run_started_below_10_gib_floor",
-    "coordinate_local_residue_identity_validated": false,
+    "coordinate_download_policy": "bounded_wave2_materialization_above_10_gib_floor",
+    "coordinate_local_residue_identity_validated": true,
     "coordinate_mapping_basis": null,
-    "coordinate_path": null,
-    "coordinate_sha256": null,
+    "coordinate_path": "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522/pdb_1BIX.cif",
+    "coordinate_sha256": "214d7f06c49658da084462aa3b3254aeb0bfc7af417f603e1fd4fe911ba2924d",
     "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
     "pdb_ids": []
   },
-  "created_utc": "2026-06-09T13:05:58Z",
+  "created_utc": "2026-06-09T13:03:15Z",
   "forbidden_feature_audit": {
     "benchmark_role": false,
     "ec_identifiers": false,
@@ -32,62 +32,15 @@
     "review_only": true,
     "source_text_or_label_fields_used_as_predictive_features": false
   },
-  "locator_policy": "review_only_exact_position_locator_pending_coordinate_identity",
-  "ready_for_controlled_import_review": false,
+  "locator_policy": "review_only_exact_position_coordinate_local_residue_identity",
+  "ready_for_controlled_import_review": true,
   "ready_for_predicted_geometry_scoring": false,
   "residue_locators": [
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "ACT_SITE",
-        "reviewed_feature_type": "Active site",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 171,
-      "evidence_codes": [
-        "ECO:0000269"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "ACT_SITE",
-      "reviewed_feature_type": "Active site",
-      "role_hint": "reviewed_active_site_feature",
-      "sequence_position": 171
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "ACT_SITE",
-        "reviewed_feature_type": "Active site",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 210,
-      "evidence_codes": [
-        "ECO:0000269",
-        "ECO:0007744"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "ACT_SITE",
-      "reviewed_feature_type": "Active site",
-      "role_hint": "reviewed_active_site_feature",
-      "sequence_position": 210
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "ACT_SITE",
         "reviewed_feature_type": "Active site",
         "sequence_position_uniprot_declared": true,
@@ -99,8 +52,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "HIS",
       "reviewed_feature_code": "ACT_SITE",
       "reviewed_feature_type": "Active site",
       "role_hint": "reviewed_active_site_feature",
@@ -108,101 +62,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "BINDING",
-        "reviewed_feature_type": "Binding site",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 68,
-      "evidence_codes": [
-        "ECO:0000255"
-      ],
-      "ligand_id": "ChEBI:CHEBI:18420",
-      "ligand_name": "Mg(2+)",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "BINDING",
-      "reviewed_feature_type": "Binding site",
-      "role_hint": "reviewed_binding_feature",
-      "sequence_position": 68
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "BINDING",
-        "reviewed_feature_type": "Binding site",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 96,
-      "evidence_codes": [
-        "ECO:0000255"
-      ],
-      "ligand_id": "ChEBI:CHEBI:18420",
-      "ligand_name": "Mg(2+)",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "BINDING",
-      "reviewed_feature_type": "Binding site",
-      "role_hint": "reviewed_binding_feature",
-      "sequence_position": 96
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "BINDING",
-        "reviewed_feature_type": "Binding site",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 210,
-      "evidence_codes": [
-        "ECO:0000255"
-      ],
-      "ligand_id": "ChEBI:CHEBI:18420",
-      "ligand_name": "Mg(2+)",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "BINDING",
-      "reviewed_feature_type": "Binding site",
-      "role_hint": "reviewed_binding_feature",
-      "sequence_position": 210
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "BINDING",
-        "reviewed_feature_type": "Binding site",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 212,
-      "evidence_codes": [
-        "ECO:0000255"
-      ],
-      "ligand_id": "ChEBI:CHEBI:18420",
-      "ligand_name": "Mg(2+)",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "BINDING",
-      "reviewed_feature_type": "Binding site",
-      "role_hint": "reviewed_binding_feature",
-      "sequence_position": 212
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "BINDING",
         "reviewed_feature_type": "Binding site",
         "sequence_position_uniprot_declared": true,
@@ -214,8 +76,9 @@
       ],
       "ligand_id": "ChEBI:CHEBI:18420",
       "ligand_name": "Mg(2+)",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "ASP",
       "reviewed_feature_code": "BINDING",
       "reviewed_feature_type": "Binding site",
       "role_hint": "reviewed_binding_feature",
@@ -223,9 +86,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "BINDING",
         "reviewed_feature_type": "Binding site",
         "sequence_position_uniprot_declared": true,
@@ -237,8 +100,9 @@
       ],
       "ligand_id": "ChEBI:CHEBI:18420",
       "ligand_name": "Mg(2+)",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "HIS",
       "reviewed_feature_code": "BINDING",
       "reviewed_feature_type": "Binding site",
       "role_hint": "reviewed_binding_feature",
@@ -246,55 +110,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "SITE",
-        "reviewed_feature_type": "Site",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 212,
-      "evidence_codes": [
-        "ECO:0000269"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "SITE",
-      "reviewed_feature_type": "Site",
-      "role_hint": "reviewed_site_feature",
-      "sequence_position": 212
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "SITE",
-        "reviewed_feature_type": "Site",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 283,
-      "evidence_codes": [
-        "ECO:0000269"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "SITE",
-      "reviewed_feature_type": "Site",
-      "role_hint": "reviewed_site_feature",
-      "sequence_position": 283
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "SITE",
         "reviewed_feature_type": "Site",
         "sequence_position_uniprot_declared": true,
@@ -304,8 +122,9 @@
       "evidence_codes": [],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "HIS",
       "reviewed_feature_code": "SITE",
       "reviewed_feature_type": "Site",
       "role_hint": "reviewed_site_feature",
@@ -313,55 +132,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "MOD_RES",
-        "reviewed_feature_type": "Modified residue",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 6,
-      "evidence_codes": [
-        "ECO:0000269"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "MOD_RES",
-      "reviewed_feature_type": "Modified residue",
-      "role_hint": "reviewed_modified_residue_feature",
-      "sequence_position": 6
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "MOD_RES",
-        "reviewed_feature_type": "Modified residue",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 7,
-      "evidence_codes": [
-        "ECO:0000269"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "MOD_RES",
-      "reviewed_feature_type": "Modified residue",
-      "role_hint": "reviewed_modified_residue_feature",
-      "sequence_position": 7
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "MOD_RES",
         "reviewed_feature_type": "Modified residue",
         "sequence_position_uniprot_declared": true,
@@ -373,8 +146,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "LYS",
       "reviewed_feature_code": "MOD_RES",
       "reviewed_feature_type": "Modified residue",
       "role_hint": "reviewed_modified_residue_feature",
@@ -382,9 +156,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "MOD_RES",
         "reviewed_feature_type": "Modified residue",
         "sequence_position_uniprot_declared": true,
@@ -396,8 +170,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "LEU",
       "reviewed_feature_code": "MOD_RES",
       "reviewed_feature_type": "Modified residue",
       "role_hint": "reviewed_modified_residue_feature",
@@ -405,9 +180,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "MOD_RES",
         "reviewed_feature_type": "Modified residue",
         "sequence_position_uniprot_declared": true,
@@ -419,8 +194,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "LYS",
       "reviewed_feature_code": "MOD_RES",
       "reviewed_feature_type": "Modified residue",
       "role_hint": "reviewed_modified_residue_feature",
@@ -428,9 +204,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "MOD_RES",
         "reviewed_feature_type": "Modified residue",
         "sequence_position_uniprot_declared": true,
@@ -442,8 +218,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "SER",
       "reviewed_feature_code": "MOD_RES",
       "reviewed_feature_type": "Modified residue",
       "role_hint": "reviewed_modified_residue_feature",
@@ -451,78 +228,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "MOD_RES",
-        "reviewed_feature_type": "Modified residue",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 54,
-      "evidence_codes": [
-        "ECO:0007744"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "MOD_RES",
-      "reviewed_feature_type": "Modified residue",
-      "role_hint": "reviewed_modified_residue_feature",
-      "sequence_position": 54
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "MOD_RES",
-        "reviewed_feature_type": "Modified residue",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 65,
-      "evidence_codes": [
-        "ECO:0000269"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "MOD_RES",
-      "reviewed_feature_type": "Modified residue",
-      "role_hint": "reviewed_modified_residue_feature",
-      "sequence_position": 65
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "MOD_RES",
-        "reviewed_feature_type": "Modified residue",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 93,
-      "evidence_codes": [
-        "ECO:0000269"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "MOD_RES",
-      "reviewed_feature_type": "Modified residue",
-      "role_hint": "reviewed_modified_residue_feature",
-      "sequence_position": 93
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "MOD_RES",
         "reviewed_feature_type": "Modified residue",
         "sequence_position_uniprot_declared": true,
@@ -534,8 +242,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "LYS",
       "reviewed_feature_code": "MOD_RES",
       "reviewed_feature_type": "Modified residue",
       "role_hint": "reviewed_modified_residue_feature",
@@ -543,32 +252,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
-        "reviewed_feature_code": "MOD_RES",
-        "reviewed_feature_type": "Modified residue",
-        "sequence_position_uniprot_declared": true,
-        "source_text_used": false
-      },
-      "end": 233,
-      "evidence_codes": [
-        "ECO:0000250"
-      ],
-      "ligand_id": null,
-      "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
-      "reviewed_feature_code": "MOD_RES",
-      "reviewed_feature_type": "Modified residue",
-      "role_hint": "reviewed_modified_residue_feature",
-      "sequence_position": 233
-    },
-    {
-      "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
-        "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "MOD_RES",
         "reviewed_feature_type": "Modified residue",
         "sequence_position_uniprot_declared": true,
@@ -580,8 +266,9 @@
       ],
       "ligand_id": null,
       "ligand_name": null,
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
       "reviewed_feature_code": "MOD_RES",
       "reviewed_feature_type": "Modified residue",
       "role_hint": "reviewed_modified_residue_feature",
@@ -592,7 +279,7 @@
   "sidecar_path": "artifacts/external_materialization_wave2_source_free_locators_current702_20260609/uniprot_P27695.json",
   "source_accession": "P27695",
   "source_family_lane": "metal hydrolase Mg/Mn controls",
-  "source_free_active_site_locator_status": "materialized_pending_coordinate_local_residue_identity",
+  "source_free_active_site_locator_status": "ready_coordinate_local_residue_identity",
   "source_hashes": {
     "rhea_records_sha256": "aca77d3ea2d74d87fddefb99e3849922509876199e92a1750aa9560f45fe3aeb",
     "source_query_sha256": "e4116acdb088b6a15c877d0992be555e7f8ce90dcb93c33dee0f7248ec38d81a",

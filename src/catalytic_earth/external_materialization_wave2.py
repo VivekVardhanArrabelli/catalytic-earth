@@ -3,10 +3,14 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import shutil
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
+
+from .structure import STANDARD_AMINO_ACIDS, parse_atom_site_loop
+from .transfer_scope import fetch_external_structure_cif
 
 
 RUN_DATE = "20260609"
@@ -98,9 +102,17 @@ DEFAULT_REPORT_PATH = Path(
 DEFAULT_LOCATOR_DIR = Path(
     f"artifacts/external_materialization_wave2_source_free_locators_current702_{RUN_DATE}"
 )
+DEFAULT_COORDINATE_DIR = Path(
+    f"artifacts/external_materialization_wave2_coordinates_current702_{RUN_DATE}"
+)
 
 LOW_DISK_COORDINATE_POLICY = (
     "coordinate_downloads_disabled_because_run_started_below_10_gib_floor"
+)
+COORDINATE_DOWNLOAD_FLOOR_GIB = 10.0
+COORDINATE_DOWNLOAD_STOP_BUFFER_GIB = 0.5
+COORDINATE_LOCAL_IDENTITY_CLASS = (
+    "reviewed_exact_position_coordinate_local_residue_identity_without_source_text"
 )
 SIDECAR_ADVANCE_STATES = {
     "locator_ready_candidate",
@@ -293,6 +305,304 @@ def _role_hint(locator: dict[str, Any]) -> str:
     return "reviewed_structured_feature"
 
 
+def _clean_accession(value: Any) -> str:
+    text = str(value or "").strip()
+    return text.split(":", 1)[1] if text.startswith("uniprot:") else text
+
+
+def _coordinate_file_name(row: dict[str, Any]) -> str | None:
+    identifier = str(row.get("afdb_or_pdb_identifier") or "").strip()
+    if not identifier:
+        return None
+    if identifier.upper().startswith("AF-") and "-F1" in identifier.upper():
+        return f"{identifier}-model_v6.cif"
+    cleaned = identifier.upper().removeprefix("PDB:")
+    return f"pdb_{cleaned}.cif"
+
+
+def _best_structure_source(row: dict[str, Any]) -> tuple[str | None, str | None]:
+    alphafold_ids = [
+        str(value).strip()
+        for value in row.get("alphafold_ids", []) or []
+        if str(value).strip()
+    ]
+    if alphafold_ids:
+        return "alphafold", alphafold_ids[0]
+    pdb_ids = [
+        str(value).strip().upper()
+        for value in row.get("pdb_ids", []) or []
+        if str(value).strip()
+    ]
+    if pdb_ids:
+        return "pdb", pdb_ids[0]
+    identifier = str(row.get("afdb_or_pdb_identifier") or "").strip()
+    if identifier.upper().startswith("AF-") and "-F1" in identifier.upper():
+        parts = identifier.split("-")
+        if len(parts) >= 3:
+            return "alphafold", parts[1]
+    if identifier:
+        return "pdb", identifier.upper().removeprefix("PDB:")
+    return None, None
+
+
+def _coordinate_lookup_keys(row: dict[str, Any]) -> set[str]:
+    keys: set[str] = set()
+    accession = _clean_accession(row.get("accession") or row.get("candidate_id"))
+    for value in [
+        row.get("candidate_id"),
+        row.get("accession"),
+        row.get("afdb_or_pdb_identifier"),
+        f"uniprot:{accession}" if accession else None,
+        accession,
+    ]:
+        normalized = str(value or "").strip().lower()
+        if normalized:
+            keys.add(normalized)
+            keys.add(normalized.replace(":", "_"))
+    identifier = str(row.get("afdb_or_pdb_identifier") or "").strip().lower()
+    if identifier:
+        keys.add(identifier.removeprefix("pdb:"))
+        keys.add(f"pdb_{identifier.removeprefix('pdb:')}")
+        if identifier.startswith("af-"):
+            parts = identifier.split("-")
+            if len(parts) >= 3:
+                keys.add(parts[1])
+                keys.add(f"uniprot:{parts[1]}")
+    for value in row.get("pdb_ids", []) or []:
+        normalized = str(value or "").strip().lower()
+        if normalized:
+            keys.add(normalized.removeprefix("pdb:"))
+            keys.add(f"pdb_{normalized.removeprefix('pdb:')}")
+    for value in row.get("alphafold_ids", []) or []:
+        normalized = str(value or "").strip().lower()
+        if normalized:
+            accession = normalized.removeprefix("uniprot:")
+            keys.add(accession)
+            keys.add(f"uniprot:{accession}")
+            keys.add(f"af-{accession}-f1")
+    return keys
+
+
+def _add_coordinate_index_key(
+    index: dict[str, list[dict[str, Any]]],
+    key: Any,
+    record: dict[str, Any],
+) -> None:
+    normalized = str(key or "").strip().lower()
+    if not normalized:
+        return
+    index.setdefault(normalized, []).append(record)
+    index.setdefault(normalized.replace(":", "_"), []).append(record)
+    if normalized.startswith("uniprot:"):
+        index.setdefault(normalized.split(":", 1)[1], []).append(record)
+
+
+def _index_coordinate_files(
+    artifacts_dir: Path = Path("artifacts"),
+) -> dict[str, list[dict[str, Any]]]:
+    index: dict[str, list[dict[str, Any]]] = {}
+    if not artifacts_dir.exists():
+        return index
+    for path in artifacts_dir.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in {".cif", ".pdb", ".bcif"}:
+            continue
+        record = {"path": str(path), "bytes": path.stat().st_size}
+        name = path.name.lower()
+        stem = path.stem.lower()
+        for key in {name, stem}:
+            _add_coordinate_index_key(index, key, record)
+        if name.startswith("pdb_"):
+            _add_coordinate_index_key(index, name[4:].rsplit(".", 1)[0], record)
+        if name.startswith("afdb_"):
+            accession = name[5:].rsplit(".", 1)[0]
+            _add_coordinate_index_key(index, accession, record)
+            _add_coordinate_index_key(index, f"uniprot:{accession}", record)
+            _add_coordinate_index_key(index, f"af-{accession}-f1", record)
+        if name.startswith("af-") and "-f1" in name:
+            parts = name.split("-")
+            if len(parts) >= 3:
+                accession = parts[1]
+                _add_coordinate_index_key(index, accession, record)
+                _add_coordinate_index_key(index, f"uniprot:{accession}", record)
+                _add_coordinate_index_key(index, f"af-{accession}-f1", record)
+    return index
+
+
+def _coordinate_matches(
+    row: dict[str, Any],
+    coordinate_index: dict[str, list[dict[str, Any]]],
+) -> list[dict[str, Any]]:
+    matches: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for key in _coordinate_lookup_keys(row):
+        for record in coordinate_index.get(key, []):
+            path = str(record["path"])
+            if path in seen:
+                continue
+            seen.add(path)
+            matches.append(
+                {
+                    "path": path,
+                    "bytes": record["bytes"],
+                    "sha256": _sha256_path(Path(path)),
+                }
+            )
+    return sorted(matches, key=lambda record: record["path"])
+
+
+def _free_gib(path: Path) -> float:
+    usage_path = path if path.exists() else path.parent
+    while not usage_path.exists() and usage_path.parent != usage_path:
+        usage_path = usage_path.parent
+    usage = shutil.disk_usage(usage_path)
+    return usage.free / (1024 ** 3)
+
+
+def _fetch_coordinate(
+    row: dict[str, Any],
+    *,
+    coordinate_dir: Path,
+    fetcher: Callable[[str, str], str],
+) -> dict[str, Any]:
+    file_name = _coordinate_file_name(row)
+    if not file_name:
+        return {
+            "status": "coordinate_identifier_missing",
+            "coordinate_path": None,
+            "fetched_now": False,
+            "fetch_error": "coordinate_identifier_missing",
+        }
+    coordinate_path = coordinate_dir / file_name
+    if coordinate_path.exists():
+        return {
+            "status": "coordinate_reused_existing_wave2_file",
+            "coordinate_path": str(coordinate_path),
+            "fetched_now": False,
+            "fetch_error": None,
+        }
+    source, structure_id = _best_structure_source(row)
+    if not source or not structure_id:
+        return {
+            "status": "coordinate_fetch_not_possible_no_supported_source",
+            "coordinate_path": None,
+            "fetched_now": False,
+            "fetch_error": "no_supported_structure_source",
+        }
+    try:
+        cif_text = fetcher(source, structure_id)
+    except Exception as exc:  # pragma: no cover - live-source fallback
+        return {
+            "status": "coordinate_fetch_failed",
+            "coordinate_path": None,
+            "fetched_now": False,
+            "fetch_error": f"{type(exc).__name__}: {exc}",
+            "structure_source": source,
+            "structure_id": structure_id,
+        }
+    coordinate_dir.mkdir(parents=True, exist_ok=True)
+    coordinate_path.write_text(cif_text, encoding="utf-8")
+    return {
+        "status": "coordinate_fetched_now",
+        "coordinate_path": str(coordinate_path),
+        "fetched_now": True,
+        "fetch_error": None,
+        "structure_source": source,
+        "structure_id": structure_id,
+    }
+
+
+def _position_to_residue_codes(cif_path: Path) -> dict[int, set[str]]:
+    atoms = parse_atom_site_loop(cif_path.read_text(encoding="utf-8"))
+    position_to_codes: dict[int, set[str]] = defaultdict(set)
+    for atom in atoms:
+        if atom.get("group_PDB") != "ATOM":
+            continue
+        code = str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        if code not in STANDARD_AMINO_ACIDS:
+            continue
+        for raw_position in (atom.get("auth_seq_id"), atom.get("label_seq_id")):
+            try:
+                position = int(str(raw_position))
+            except (TypeError, ValueError):
+                continue
+            position_to_codes[position].add(code)
+    return position_to_codes
+
+
+def _coordinate_ready_sidecar_payload(
+    row: dict[str, Any],
+    *,
+    created_utc: str,
+    sidecar_path: Path,
+    coordinate_path: Path,
+    coordinate_download_performed: bool,
+) -> tuple[dict[str, Any] | None, list[str]]:
+    exact_locators = _exact_locators(row)
+    if len(exact_locators) < 2:
+        return None, ["fewer_than_two_exact_reviewed_residue_locators"]
+    position_codes = _position_to_residue_codes(coordinate_path)
+    residue_locators: list[dict[str, Any]] = []
+    blockers: list[str] = []
+    for locator in exact_locators:
+        position = _position(locator)
+        if position is None:
+            blockers.append("non_integer_exact_locator_position")
+            continue
+        codes = sorted(position_codes.get(position, set()))
+        if len(codes) != 1:
+            blockers.append(f"coordinate_residue_code_unresolved_at_position:{position}")
+            continue
+        residue_locators.append(
+            {
+                "sequence_position": position,
+                "end": locator.get("end"),
+                "residue_code": codes[0],
+                "reviewed_feature_code": locator.get("feature_code"),
+                "reviewed_feature_type": locator.get("feature_type"),
+                "evidence_codes": sorted(
+                    str(code) for code in _as_list(locator.get("evidence_codes"))
+                ),
+                "ligand_id": locator.get("ligand_id"),
+                "ligand_name": locator.get("ligand_name"),
+                "role_hint": _role_hint(locator),
+                "locator_confidence": 1.0,
+                "locator_evidence_class": COORDINATE_LOCAL_IDENTITY_CLASS,
+                "coordinate_independent_provenance": {
+                    "heldout_rows_used": False,
+                    "method": (
+                        "reviewed_exact_position_plus_coordinate_local_residue_identity"
+                    ),
+                    "sequence_position_uniprot_declared": True,
+                    "coordinate_local_residue_identity_validated": True,
+                    "source_text_used": False,
+                    "reviewed_feature_code": locator.get("feature_code"),
+                    "reviewed_feature_type": locator.get("feature_type"),
+                },
+            }
+        )
+    if len(residue_locators) < 2:
+        return None, sorted(set(blockers or ["insufficient_resolved_coordinate_locators"]))
+    payload = _sidecar_payload(row, created_utc=created_utc, sidecar_path=sidecar_path)
+    payload["coordinate_provenance"].update(
+        {
+            "coordinate_path": str(coordinate_path),
+            "coordinate_sha256": _sha256_path(coordinate_path),
+            "coordinate_download_performed": coordinate_download_performed,
+            "coordinate_download_policy": "bounded_wave2_materialization_above_10_gib_floor",
+            "coordinate_local_residue_identity_validated": True,
+        }
+    )
+    payload["locator_policy"] = (
+        "review_only_exact_position_coordinate_local_residue_identity"
+    )
+    payload["ready_for_controlled_import_review"] = True
+    payload["source_free_active_site_locator_status"] = (
+        "ready_coordinate_local_residue_identity"
+    )
+    payload["residue_locators"] = residue_locators
+    return payload, []
+
+
 def _duplicate_status(row: dict[str, Any]) -> dict[str, Any]:
     duplicate_summary = row.get("duplicate_status_summary")
     duplicate_current = row.get("duplicate_current_registry_conflict")
@@ -468,6 +778,8 @@ def _repair_bucket(row: dict[str, Any], wave2_terminal_state: str) -> str:
         return "coordinate_materialization_continuation_due_disk_floor"
     if wave2_terminal_state == "blocked_duplicate_or_current_registry_conflict":
         return "duplicate_conflict_no_import"
+    if wave2_terminal_state == "import_ready_preview_materialized_coordinate_locator":
+        return "controlled_import_review_preview"
     if source_state == COORDINATE_READY_STATE:
         return "source_free_locator_materialization_needed"
     if source_state == "locator_repair_candidate":
@@ -505,6 +817,11 @@ def _next_action(row: dict[str, Any], wave2_terminal_state: str) -> str:
             "Keep in preview-only controlled import-review queue; structural "
             "duplicate screening and explicit production authorization remain."
         )
+    if wave2_terminal_state == "import_ready_preview_materialized_coordinate_locator":
+        return (
+            "Keep in preview-only controlled import-review queue; structural "
+            "duplicate screening and explicit production authorization remain."
+        )
     return str(
         row.get("exact_next_action")
         or row.get("next_action")
@@ -520,13 +837,22 @@ def _compact_wave2_row(
     import_ready_row: dict[str, Any] | None,
     source_occurrences: list[dict[str, Any]],
     cross_source_duplicate_collapsed: bool,
+    coordinate_path_override: str | None = None,
+    coordinate_materialization_status_override: str | None = None,
+    locator_sidecar_status_override: str | None = None,
 ) -> dict[str, Any]:
     exact_locators = _exact_locators(row)
-    coordinate_path = None
+    coordinate_path = coordinate_path_override
     locator_path = locator_sidecar_path
-    if wave2_terminal_state == "import_ready_preview_carried_forward" and import_ready_row:
+    if (
+        coordinate_path is None
+        and wave2_terminal_state == "import_ready_preview_carried_forward"
+        and import_ready_row
+    ):
         coordinate_path = import_ready_row.get("coordinate_path")
         locator_path = locator_sidecar_path or import_ready_row.get("locator_sidecar_path")
+    if locator_path is None:
+        locator_path = locator_sidecar_path
     return {
         "candidate_id": row.get("candidate_id"),
         "accession": row.get("accession"),
@@ -536,12 +862,14 @@ def _compact_wave2_row(
         "repair_bucket": _repair_bucket(row, wave2_terminal_state),
         "coordinate_path": coordinate_path,
         "locator_sidecar_path": locator_path,
-        "coordinate_materialization_status": (
+        "coordinate_materialization_status": coordinate_materialization_status_override
+        or (
             "carried_from_consumed_materialization_preview"
             if wave2_terminal_state == "import_ready_preview_carried_forward"
             else LOW_DISK_COORDINATE_POLICY
         ),
-        "locator_sidecar_status": (
+        "locator_sidecar_status": locator_sidecar_status_override
+        or (
             "carried_from_consumed_materialization_preview"
             if (
                 wave2_terminal_state == "import_ready_preview_carried_forward"
@@ -556,9 +884,13 @@ def _compact_wave2_row(
         "exact_residue_locator_count": len(exact_locators),
         "duplicate_status": _duplicate_status(row),
         "ready_for_controlled_import_review": bool(
-            wave2_terminal_state == "import_ready_preview_carried_forward"
-            and import_ready_row
-            and import_ready_row.get("ready_for_controlled_import_review")
+            (
+                wave2_terminal_state == "import_ready_preview_carried_forward"
+                and import_ready_row
+                and import_ready_row.get("ready_for_controlled_import_review")
+            )
+            or wave2_terminal_state
+            == "import_ready_preview_materialized_coordinate_locator"
         ),
         "ready_for_production_label_import": False,
         "source_artifacts_consumed": sorted(
@@ -624,6 +956,171 @@ def _locator_sidecar_for_row(
     return str(sidecar_path), False
 
 
+def _record_coordinate_file(
+    coordinate_index: dict[str, list[dict[str, Any]]],
+    *,
+    row: dict[str, Any],
+    coordinate_path: Path,
+) -> None:
+    if not coordinate_path.exists():
+        return
+    record = {"path": str(coordinate_path), "bytes": coordinate_path.stat().st_size}
+    for key in {
+        coordinate_path.name,
+        coordinate_path.stem,
+        *_coordinate_lookup_keys(row),
+    }:
+        _add_coordinate_index_key(coordinate_index, key, record)
+    name = coordinate_path.name.lower()
+    if name.startswith("pdb_"):
+        _add_coordinate_index_key(
+            coordinate_index, name[4:].rsplit(".", 1)[0], record
+        )
+    if name.startswith("af-") and "-f1" in name:
+        parts = name.split("-")
+        if len(parts) >= 3:
+            accession = parts[1]
+            _add_coordinate_index_key(coordinate_index, accession, record)
+            _add_coordinate_index_key(coordinate_index, f"uniprot:{accession}", record)
+            _add_coordinate_index_key(coordinate_index, f"af-{accession}-f1", record)
+
+
+def _is_ready_coordinate_sidecar(path: Path, coordinate_path: Path) -> bool:
+    if not path.exists():
+        return False
+    try:
+        payload = _read_json(path)
+    except json.JSONDecodeError:
+        return False
+    provenance = payload.get("coordinate_provenance", {}) or {}
+    return (
+        payload.get("source_free_active_site_locator_status")
+        == "ready_coordinate_local_residue_identity"
+        and provenance.get("coordinate_path") == str(coordinate_path)
+        and provenance.get("coordinate_local_residue_identity_validated") is True
+    )
+
+
+def _coordinate_ready_materialization_for_row(
+    row: dict[str, Any],
+    *,
+    coordinate_index: dict[str, list[dict[str, Any]]],
+    coordinate_dir: Path,
+    locator_dir: Path,
+    created_utc: str,
+    sidecars_to_write: list[tuple[Path, dict[str, Any]]],
+    fetcher: Callable[[str, str], str],
+    coordinate_budget: dict[str, int],
+    coordinate_downloads_enabled: bool,
+) -> dict[str, Any]:
+    result: dict[str, Any] = {
+        "ready": False,
+        "coordinate_path": None,
+        "locator_sidecar_path": None,
+        "coordinate_status": "not_attempted",
+        "locator_status": "not_attempted",
+        "blockers": [],
+        "coordinate_download_performed": False,
+        "coordinate_reused_local": False,
+        "locator_sidecar_reused": False,
+    }
+    if len(_exact_locators(row)) < 2:
+        result["coordinate_status"] = "skipped_fewer_than_two_exact_locators"
+        result["blockers"] = ["fewer_than_two_exact_reviewed_residue_locators"]
+        return result
+
+    coordinate_matches = _coordinate_matches(row, coordinate_index)
+    coordinate_attempt: dict[str, Any] | None = None
+    if not coordinate_matches:
+        if not coordinate_downloads_enabled:
+            result["coordinate_status"] = (
+                "coordinate_downloads_disabled_or_disk_below_floor"
+            )
+            result["blockers"] = [LOW_DISK_COORDINATE_POLICY]
+            return result
+        if coordinate_budget["remaining"] <= 0:
+            coordinate_budget["budget_exhausted"] = 1
+            result["coordinate_status"] = "coordinate_download_budget_exhausted"
+            result["blockers"] = ["bounded_coordinate_download_budget_exhausted"]
+            return result
+        current_free_gib = _free_gib(coordinate_dir)
+        if current_free_gib <= COORDINATE_DOWNLOAD_FLOOR_GIB + COORDINATE_DOWNLOAD_STOP_BUFFER_GIB:
+            coordinate_budget["skipped_due_floor"] += 1
+            result["coordinate_status"] = "coordinate_download_skipped_due_disk_floor"
+            result["blockers"] = [
+                f"disk_free_gib_at_or_below_floor_buffer:{current_free_gib:.3f}"
+            ]
+            return result
+
+        coordinate_budget["remaining"] -= 1
+        coordinate_budget["attempted"] += 1
+        coordinate_attempt = _fetch_coordinate(
+            row,
+            coordinate_dir=coordinate_dir,
+            fetcher=fetcher,
+        )
+        result["coordinate_status"] = str(coordinate_attempt.get("status"))
+        result["coordinate_download_performed"] = bool(
+            coordinate_attempt.get("fetched_now")
+        )
+        if coordinate_attempt.get("fetched_now"):
+            coordinate_budget["performed"] += 1
+        if coordinate_attempt.get("coordinate_path"):
+            _record_coordinate_file(
+                coordinate_index,
+                row=row,
+                coordinate_path=Path(str(coordinate_attempt["coordinate_path"])),
+            )
+            coordinate_matches = _coordinate_matches(row, coordinate_index)
+        else:
+            if coordinate_attempt.get("fetch_error"):
+                result["blockers"] = [str(coordinate_attempt["fetch_error"])]
+            return result
+
+    if not coordinate_matches:
+        result["coordinate_status"] = result["coordinate_status"] or (
+            "coordinate_not_materialized_locally"
+        )
+        result["blockers"] = ["coordinate_not_materialized_locally"]
+        return result
+
+    coordinate_path = Path(str(coordinate_matches[0]["path"]))
+    result["coordinate_path"] = str(coordinate_path)
+    result["coordinate_reused_local"] = coordinate_attempt is None
+    if result["coordinate_status"] == "not_attempted":
+        result["coordinate_status"] = "coordinate_reused_local_artifact"
+
+    candidate_id = str(row.get("candidate_id") or "")
+    sidecar_path = locator_dir / f"{_sidecar_token(candidate_id)}.json"
+    result["locator_sidecar_path"] = str(sidecar_path)
+    if _is_ready_coordinate_sidecar(sidecar_path, coordinate_path):
+        result["ready"] = True
+        result["locator_status"] = "coordinate_identity_sidecar_reused"
+        result["locator_sidecar_reused"] = True
+        return result
+
+    payload, blockers = _coordinate_ready_sidecar_payload(
+        row,
+        created_utc=created_utc,
+        sidecar_path=sidecar_path,
+        coordinate_path=coordinate_path,
+        coordinate_download_performed=bool(result["coordinate_download_performed"]),
+    )
+    if payload is None:
+        result["locator_status"] = "coordinate_identity_sidecar_blocked"
+        result["blockers"] = blockers
+        return result
+
+    sidecars_to_write.append((sidecar_path, payload))
+    result["ready"] = True
+    result["locator_status"] = (
+        "coordinate_identity_sidecar_refreshed"
+        if sidecar_path.exists()
+        else "coordinate_identity_sidecar_materialized"
+    )
+    return result
+
+
 def _preview_row(
     import_ready_row: dict[str, Any],
     *,
@@ -652,6 +1149,33 @@ def _preview_row(
     return row
 
 
+def _materialized_preview_row(
+    source_row: dict[str, Any],
+    *,
+    coordinate_path: str,
+    locator_sidecar_path: str,
+) -> dict[str, Any]:
+    row = dict(source_row)
+    row["terminal_state"] = IMPORT_READY_STATE
+    row["wave2_materialization_state"] = (
+        "coordinate_and_locator_identity_materialized"
+    )
+    row["coordinate_path"] = coordinate_path
+    row["locator_sidecar_path"] = locator_sidecar_path
+    row["ready_for_controlled_import_review"] = True
+    row["ready_for_production_label_import"] = False
+    row["next_action"] = (
+        "Keep in preview-only controlled import-review queue; structural "
+        "duplicate screening and explicit production authorization remain."
+    )
+    row["remaining_required_before_import"] = [
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization",
+    ]
+    return row
+
+
 def build_external_materialization_wave2(
     *,
     merged_surface_path: Path = DEFAULT_MERGED_SURFACE_PATH,
@@ -660,8 +1184,11 @@ def build_external_materialization_wave2(
     additional_import_ready_source_paths: list[Path] | tuple[Path, ...] | None = None,
     supplemental_review_shard_paths: list[Path] | tuple[Path, ...] | None = None,
     locator_dir: Path = DEFAULT_LOCATOR_DIR,
+    coordinate_dir: Path = DEFAULT_COORDINATE_DIR,
     created_utc: str | None = None,
     disk_free_gib_at_start: float | None = None,
+    max_coordinate_downloads: int = 0,
+    coordinate_fetcher: Callable[[str, str], str] = fetch_external_structure_cif,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], list[tuple[Path, dict[str, Any]]]]:
     created_utc = created_utc or _utc_now_iso()
     surface_paths = [Path(merged_surface_path)]
@@ -687,6 +1214,27 @@ def build_external_materialization_wave2(
     selected_source_terminal_counts: Counter[str] = Counter()
     wave2_terminal_counts: Counter[str] = Counter()
     lane_terminal_counts: dict[str, Counter[str]] = defaultdict(Counter)
+    coordinate_index = _index_coordinate_files(Path("artifacts"))
+    disk_reference_gib = (
+        float(disk_free_gib_at_start)
+        if disk_free_gib_at_start is not None
+        else _free_gib(Path("."))
+    )
+    coordinate_downloads_enabled = (
+        max(0, int(max_coordinate_downloads or 0)) > 0
+        and disk_reference_gib > COORDINATE_DOWNLOAD_FLOOR_GIB
+    )
+    coordinate_budget = {
+        "remaining": max(0, int(max_coordinate_downloads or 0)),
+        "attempted": 0,
+        "performed": 0,
+        "skipped_due_floor": 0,
+        "budget_exhausted": 0,
+    }
+    coordinate_reused_local_for_wave2 = 0
+    coordinate_ready_sidecars_reused = 0
+    coordinate_ready_promoted_rows = 0
+    coordinate_materialization_blockers: Counter[str] = Counter()
 
     rows_by_candidate: dict[str, list[dict[str, Any]]] = {}
     source_artifacts: dict[str, dict[str, Any]] = {}
@@ -776,12 +1324,61 @@ def build_external_materialization_wave2(
             and any(_is_prior_external_duplicate_only(candidate_row) for candidate_row in source_rows)
         )
         locator_sidecar_path: str | None = None
+        coordinate_path_override: str | None = None
+        coordinate_status_override: str | None = None
+        locator_status_override: str | None = None
+        materialization_row: dict[str, Any] | None = None
+        if import_ready_row and _exact_locators(import_ready_row):
+            materialization_row = import_ready_row
+        elif (
+            source_state in (SIDECAR_ADVANCE_STATES | {COORDINATE_READY_STATE})
+            and _exact_locators(row)
+        ):
+            materialization_row = row
+        materialization_result: dict[str, Any] | None = None
+        if materialization_row is not None and not exact_current_or_external_duplicate:
+            materialization_result = _coordinate_ready_materialization_for_row(
+                materialization_row,
+                coordinate_index=coordinate_index,
+                coordinate_dir=coordinate_dir,
+                locator_dir=locator_dir,
+                created_utc=created_utc,
+                sidecars_to_write=sidecars,
+                fetcher=coordinate_fetcher,
+                coordinate_budget=coordinate_budget,
+                coordinate_downloads_enabled=coordinate_downloads_enabled,
+            )
+            if materialization_result.get("coordinate_reused_local"):
+                coordinate_reused_local_for_wave2 += 1
+            if materialization_result.get("locator_sidecar_reused"):
+                coordinate_ready_sidecars_reused += 1
+                sidecar_reused += 1
+            if not materialization_result.get("ready"):
+                for blocker in materialization_result.get("blockers") or [
+                    materialization_result.get("coordinate_status") or "unknown"
+                ]:
+                    coordinate_materialization_blockers[str(blocker)] += 1
 
         if exact_current_or_external_duplicate:
             wave2_state = "blocked_duplicate_or_current_registry_conflict"
         elif import_ready_row and _ready_import_preview_row(import_ready_row):
             wave2_state = "import_ready_preview_carried_forward"
             preview_rows.append(_preview_row(import_ready_row, locator_sidecar_path=None))
+        elif materialization_result and materialization_result.get("ready"):
+            wave2_state = "import_ready_preview_materialized_coordinate_locator"
+            row = materialization_row or row
+            locator_sidecar_path = str(materialization_result["locator_sidecar_path"])
+            coordinate_path_override = str(materialization_result["coordinate_path"])
+            coordinate_status_override = str(materialization_result["coordinate_status"])
+            locator_status_override = str(materialization_result["locator_status"])
+            coordinate_ready_promoted_rows += 1
+            preview_rows.append(
+                _materialized_preview_row(
+                    row,
+                    coordinate_path=coordinate_path_override,
+                    locator_sidecar_path=locator_sidecar_path,
+                )
+            )
         elif import_ready_row and _exact_locators(import_ready_row):
             locator_sidecar_path, reused = _locator_sidecar_for_row(
                 import_ready_row,
@@ -824,23 +1421,38 @@ def build_external_materialization_wave2(
             import_ready_row=import_ready_row,
             source_occurrences=occurrences,
             cross_source_duplicate_collapsed=cross_source_duplicate_collapsed,
+            coordinate_path_override=coordinate_path_override,
+            coordinate_materialization_status_override=coordinate_status_override,
+            locator_sidecar_status_override=locator_status_override,
         )
         wave2_rows.append(wave2_row)
         wave2_terminal_counts[wave2_state] += 1
         lane = str(row.get("target_family_lane") or row.get("lane_id") or "unknown")
         lane_terminal_counts[lane][wave2_state] += 1
-        if wave2_state != "import_ready_preview_carried_forward":
+        if wave2_state not in {
+            "import_ready_preview_carried_forward",
+            "import_ready_preview_materialized_coordinate_locator",
+        }:
             repair_rows.append(wave2_row)
 
     sidecar_row_count = sum(
         1
         for row in wave2_rows
         if row.get("locator_sidecar_path")
-        and row.get("locator_sidecar_status")
-        == "materialized_or_reused_pending_coordinate_identity"
+        and row.get("locator_sidecar_status") in {
+            "materialized_or_reused_pending_coordinate_identity",
+            "coordinate_identity_sidecar_materialized",
+            "coordinate_identity_sidecar_refreshed",
+            "coordinate_identity_sidecar_reused",
+        }
     )
+    materialized_preview_rows = [
+        row for row in preview_rows if row.get("wave2_materialization_state")
+    ]
     coordinate_reused_preview_rows = [
-        row for row in preview_rows if row.get("coordinate_path")
+        row
+        for row in preview_rows
+        if row.get("coordinate_path") and not row.get("wave2_materialization_state")
     ]
     local_coordinate_paths_present = sum(
         1
@@ -851,8 +1463,15 @@ def build_external_materialization_wave2(
         1
         for row in preview_rows
         if row.get("locator_sidecar_path")
+        and not row.get("wave2_materialization_state")
         and Path(str(row.get("locator_sidecar_path"))).exists()
     )
+    wave2_coordinate_files = (
+        [path for path in coordinate_dir.glob("*") if path.is_file()]
+        if coordinate_dir.exists()
+        else []
+    )
+    wave2_coordinate_dir_bytes = sum(path.stat().st_size for path in wave2_coordinate_files)
 
     counts = {
         "source_surface_rows_consumed": source_surface_row_count,
@@ -863,13 +1482,32 @@ def build_external_materialization_wave2(
         "supplemental_review_shard_rows_consumed": sum(
             record["rows_consumed"] for record in supplemental_review_shards.values()
         ),
-        "coordinate_downloads_performed": 0,
-        "coordinate_materialized_new": 0,
+        "coordinate_downloads_performed": coordinate_budget["performed"],
+        "coordinate_downloads_performed_this_invocation": coordinate_budget["performed"],
+        "coordinate_downloads_attempted": coordinate_budget["attempted"],
+        "coordinate_download_budget": max(0, int(max_coordinate_downloads or 0)),
+        "coordinate_download_budget_exhausted": bool(
+            coordinate_budget["budget_exhausted"]
+        ),
+        "coordinate_downloads_skipped_due_disk_floor": coordinate_budget[
+            "skipped_due_floor"
+        ],
+        "coordinate_downloads_enabled": coordinate_downloads_enabled,
+        "coordinate_materialized_new": len(wave2_coordinate_files),
+        "coordinate_materialized_new_this_invocation": coordinate_budget["performed"],
+        "wave2_coordinate_files_present": len(wave2_coordinate_files),
+        "wave2_coordinate_dir_bytes": wave2_coordinate_dir_bytes,
+        "coordinate_reused_from_local_artifacts_for_wave2": (
+            coordinate_reused_local_for_wave2
+        ),
         "coordinate_reused_from_consumed_preview": len(coordinate_reused_preview_rows),
         "coordinate_paths_present_from_consumed_preview": local_coordinate_paths_present,
         "locator_sidecars_materialized_new": len(sidecars),
         "locator_sidecars_reused_existing_wave2": sidecar_reused,
+        "locator_sidecars_coordinate_identity_reused": coordinate_ready_sidecars_reused,
         "locator_sidecars_reused_from_consumed_preview": local_locator_sidecar_paths_present,
+        "coordinate_ready_promoted_preview_count": coordinate_ready_promoted_rows,
+        "coordinate_ready_materialized_preview_rows": len(materialized_preview_rows),
         "source_import_ready_preview_rows_consumed": len(import_by_candidate),
         "source_import_ready_preview_coordinate_pending_count": (
             wave2_terminal_counts[
@@ -888,6 +1526,7 @@ def build_external_materialization_wave2(
             1 for row in wave2_rows if row.get("cross_source_duplicate_collapsed")
         ),
         "disk_free_gib_at_start": disk_free_gib_at_start,
+        "disk_free_gib_at_end": round(_free_gib(Path(".")), 3),
     }
     validation_checks = {
         "passed": (
@@ -909,6 +1548,9 @@ def build_external_materialization_wave2(
             == sidecar_row_count
         ),
         "coordinate_download_guardrail_enforced": True,
+        "coordinate_materialization_blocker_counts": dict(
+            sorted(coordinate_materialization_blockers.items())
+        ),
         "missing_optional_source_surface_paths": missing_surface_paths,
         "missing_optional_import_ready_source_paths": missing_import_paths,
         "missing_optional_supplemental_review_shard_paths": missing_supplemental_paths,
@@ -929,7 +1571,11 @@ def build_external_materialization_wave2(
         "scope": {
             "benchmark_surface": "current702",
             "mission": "external_materialization_admission_wave2",
-            "coordinate_policy": LOW_DISK_COORDINATE_POLICY,
+            "coordinate_policy": (
+                "bounded_coordinate_downloads_enabled_above_10_gib_floor"
+                if coordinate_downloads_enabled
+                else LOW_DISK_COORDINATE_POLICY
+            ),
             "source_pattern": (
                 "merges current Wave 2 admission plus landed broad bulk, "
                 "metal/phosphoryl/glycoside, near-orphan/diversity, "
@@ -1007,18 +1653,29 @@ def render_external_materialization_wave2_report(
         f"- Unique input candidates: `{counts['input_rows']}`",
         f"- Import-ready source preview rows consumed: `{counts['import_ready_source_rows_consumed']}`",
         f"- Supplemental review shard rows referenced: `{counts['supplemental_review_shard_rows_consumed']}`",
+        f"- Coordinate download budget: `{counts['coordinate_download_budget']}`",
+        f"- Coordinate downloads attempted: `{counts['coordinate_downloads_attempted']}`",
+        f"- Coordinate downloads performed: `{counts['coordinate_downloads_performed']}`",
+        f"- Coordinate downloads performed this invocation: `{counts['coordinate_downloads_performed_this_invocation']}`",
         f"- Coordinate materialized new: `{counts['coordinate_materialized_new']}`",
+        f"- Coordinate materialized new this invocation: `{counts['coordinate_materialized_new_this_invocation']}`",
+        f"- Wave 2 coordinate files present: `{counts['wave2_coordinate_files_present']}`",
+        f"- Coordinate reused from local artifacts for Wave 2: `{counts['coordinate_reused_from_local_artifacts_for_wave2']}`",
         f"- Coordinate reused from consumed preview metadata: `{counts['coordinate_reused_from_consumed_preview']}`",
         f"- Local coordinate paths present from consumed preview: `{counts['coordinate_paths_present_from_consumed_preview']}`",
         f"- Locator sidecars materialized new: `{counts['locator_sidecars_materialized_new']}`",
         f"- Locator sidecars reused from this Wave 2 directory: `{counts['locator_sidecars_reused_existing_wave2']}`",
+        f"- Coordinate-identity locator sidecars reused: `{counts['locator_sidecars_coordinate_identity_reused']}`",
         f"- Local locator paths present from consumed preview: `{counts['locator_sidecars_reused_from_consumed_preview']}`",
+        f"- Coordinate-ready rows promoted into preview: `{counts['coordinate_ready_promoted_preview_count']}`",
+        f"- Coordinate-ready materialized preview rows: `{counts['coordinate_ready_materialized_preview_rows']}`",
         f"- Source import-ready previews kept in coordinate continuation: `{counts['source_import_ready_preview_coordinate_pending_count']}`",
         f"- Import-ready preview count: `{counts['import_ready_preview_count']}`",
         f"- Repair/continuation queue count: `{counts['repair_queue_count']}`",
         f"- Duplicate conflicts: `{counts['duplicate_conflict_count']}`",
         f"- Cross-source duplicates collapsed: `{counts['cross_source_duplicate_collapsed_count']}`",
         f"- Disk free at start GiB: `{counts['disk_free_gib_at_start']}`",
+        f"- Disk free at end GiB: `{counts['disk_free_gib_at_end']}`",
         "",
         "## Consumed Source Artifacts",
         "",
@@ -1078,8 +1735,11 @@ def write_external_materialization_wave2(
     repair_queue_path: Path = DEFAULT_REPAIR_QUEUE_PATH,
     report_path: Path | None = DEFAULT_REPORT_PATH,
     locator_dir: Path = DEFAULT_LOCATOR_DIR,
+    coordinate_dir: Path = DEFAULT_COORDINATE_DIR,
     created_utc: str | None = None,
     disk_free_gib_at_start: float | None = None,
+    max_coordinate_downloads: int = 0,
+    coordinate_fetcher: Callable[[str, str], str] = fetch_external_structure_cif,
 ) -> dict[str, Any]:
     artifact, import_preview, repair_queue, sidecars = build_external_materialization_wave2(
         merged_surface_path=merged_surface_path,
@@ -1088,8 +1748,11 @@ def write_external_materialization_wave2(
         additional_import_ready_source_paths=additional_import_ready_source_paths,
         supplemental_review_shard_paths=supplemental_review_shard_paths,
         locator_dir=locator_dir,
+        coordinate_dir=coordinate_dir,
         created_utc=created_utc,
         disk_free_gib_at_start=disk_free_gib_at_start,
+        max_coordinate_downloads=max_coordinate_downloads,
+        coordinate_fetcher=coordinate_fetcher,
     )
     for sidecar_path, sidecar in sidecars:
         _write_json(sidecar_path, sidecar)

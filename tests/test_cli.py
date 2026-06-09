@@ -390,6 +390,14 @@ class CliTests(unittest.TestCase):
                 "external_materialization_wave2_source_free_locators_current702_20260609"
             ),
         )
+        self.assertEqual(
+            args.coordinate_dir,
+            (
+                "artifacts/"
+                "external_materialization_wave2_coordinates_current702_20260609"
+            ),
+        )
+        self.assertEqual(args.max_coordinate_downloads, 0)
         self.assertIsNone(args.created_utc)
         self.assertIsNone(args.disk_free_gib_at_start)
 

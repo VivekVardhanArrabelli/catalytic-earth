@@ -1,6 +1,6 @@
 # External Materialization Wave 2 - current702
 
-Run: 2026-06-09T13:05:58Z
+Run: 2026-06-09T13:03:15Z
 
 Wave 2 consumed the 2026-06-09 admission QA surface plus landed broad bulk, metal/phosphoryl/glycoside, near-orphan/diversity, PLP/radical/cobalamin, and redox/cofactor shard previews. It deduped the surfaces into one review surface, carried only controlled-review-ready rows into the import-ready preview, and avoided coordinate downloads while producing source-free locator sidecars for coordinate-continuation rows.
 
@@ -10,18 +10,29 @@ Wave 2 consumed the 2026-06-09 admission QA surface plus landed broad bulk, meta
 - Unique input candidates: `12495`
 - Import-ready source preview rows consumed: `3504`
 - Supplemental review shard rows referenced: `4378`
-- Coordinate materialized new: `0`
+- Coordinate download budget: `1`
+- Coordinate downloads attempted: `1`
+- Coordinate downloads performed: `0`
+- Coordinate downloads performed this invocation: `0`
+- Coordinate materialized new: `248`
+- Coordinate materialized new this invocation: `0`
+- Wave 2 coordinate files present: `248`
+- Coordinate reused from local artifacts for Wave 2: `287`
 - Coordinate reused from consumed preview metadata: `318`
 - Local coordinate paths present from consumed preview: `13`
-- Locator sidecars materialized new: `2934`
-- Locator sidecars reused from this Wave 2 directory: `2279`
+- Locator sidecars materialized new: `0`
+- Locator sidecars reused from this Wave 2 directory: `5213`
+- Coordinate-identity locator sidecars reused: `282`
 - Local locator paths present from consumed preview: `0`
-- Source import-ready previews kept in coordinate continuation: `2811`
-- Import-ready preview count: `318`
-- Repair/continuation queue count: `12177`
+- Coordinate-ready rows promoted into preview: `282`
+- Coordinate-ready materialized preview rows: `282`
+- Source import-ready previews kept in coordinate continuation: `2805`
+- Import-ready preview count: `600`
+- Repair/continuation queue count: `11895`
 - Duplicate conflicts: `1420`
 - Cross-source duplicates collapsed: `4818`
-- Disk free at start GiB: `None`
+- Disk free at start GiB: `24.816`
+- Disk free at end GiB: `16.887`
 
 ## Consumed Source Artifacts
 
@@ -51,8 +62,8 @@ Wave 2 consumed the 2026-06-09 admission QA surface plus landed broad bulk, meta
 | --- | ---: |
 | `blocked_duplicate_or_current_registry_conflict` | 1420 |
 | `import_ready_preview_carried_forward` | 318 |
-| `locator_sidecar_materialized_coordinate_pending` | 1032 |
-| `locator_sidecar_reused_coordinate_pending` | 1370 |
+| `import_ready_preview_materialized_coordinate_locator` | 282 |
+| `locator_sidecar_reused_coordinate_pending` | 2126 |
 | `repair_queue_coordinate_ready_pending_locator` | 676 |
 | `repair_queue_coordinate_repair_candidate` | 237 |
 | `repair_queue_hard_blocked_with_next_action` | 2956 |
@@ -60,14 +71,13 @@ Wave 2 consumed the 2026-06-09 admission QA surface plus landed broad bulk, meta
 | `repair_queue_reject/OOS_preserve_signal` | 1562 |
 | `repair_queue_repairable_coordinate_blocker` | 11 |
 | `repair_queue_repairable_locator_blocker` | 45 |
-| `shard_import_ready_preview_locator_sidecar_materialized_coordinate_pending` | 1902 |
-| `shard_import_ready_preview_locator_sidecar_reused_coordinate_pending` | 909 |
+| `shard_import_ready_preview_locator_sidecar_reused_coordinate_pending` | 2805 |
 
 ## Repair Buckets
 
 | repair bucket | count |
 | --- | ---: |
-| `coordinate_materialization_continuation_due_disk_floor` | 5213 |
+| `coordinate_materialization_continuation_due_disk_floor` | 4931 |
 | `coordinate_repair` | 248 |
 | `duplicate_conflict_no_import` | 1420 |
 | `hard_blocker` | 2956 |
@@ -77,7 +87,7 @@ Wave 2 consumed the 2026-06-09 admission QA surface plus landed broad bulk, meta
 
 ## Import-Ready Preview
 
-- Rows: `318`
+- Rows: `600`
 - Preview-only; no production import, registry, ontology, split, threshold, or model-weight edit was performed.
 
 ## Exact Next Continuation

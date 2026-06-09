@@ -6,12 +6,12 @@
     "alphafold_ids": [
       "P05055"
     ],
-    "coordinate_download_performed": false,
-    "coordinate_download_policy": "coordinate_downloads_disabled_because_run_started_below_10_gib_floor",
-    "coordinate_local_residue_identity_validated": false,
+    "coordinate_download_performed": true,
+    "coordinate_download_policy": "bounded_wave2_materialization_above_10_gib_floor",
+    "coordinate_local_residue_identity_validated": true,
     "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
-    "coordinate_path": null,
-    "coordinate_sha256": null,
+    "coordinate_path": "artifacts/external_materialization_wave2_coordinates_current702_20260609/pdb_1SRO.cif",
+    "coordinate_sha256": "af74aee2962060076bc27c5e575e9c29fb223c33e0e60ec8308247d19356d1b0",
     "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
     "pdb_ids": [
       "1SRO",
@@ -30,7 +30,7 @@
       "9QH0"
     ]
   },
-  "created_utc": "2026-06-09T03:44:26Z",
+  "created_utc": "2026-06-09T13:03:15Z",
   "forbidden_feature_audit": {
     "benchmark_role": false,
     "ec_identifiers": false,
@@ -49,15 +49,15 @@
     "review_only": true,
     "source_text_or_label_fields_used_as_predictive_features": false
   },
-  "locator_policy": "review_only_exact_position_locator_pending_coordinate_identity",
-  "ready_for_controlled_import_review": false,
+  "locator_policy": "review_only_exact_position_coordinate_local_residue_identity",
+  "ready_for_controlled_import_review": true,
   "ready_for_predicted_geometry_scoring": false,
   "residue_locators": [
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "BINDING",
         "reviewed_feature_type": "Binding site",
         "sequence_position_uniprot_declared": true,
@@ -69,8 +69,9 @@
       ],
       "ligand_id": "ChEBI:CHEBI:18420",
       "ligand_name": "Mg(2+)",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "ASP",
       "reviewed_feature_code": "BINDING",
       "reviewed_feature_type": "Binding site",
       "role_hint": "reviewed_binding_feature",
@@ -78,9 +79,9 @@
     },
     {
       "coordinate_independent_provenance": {
-        "coordinate_local_residue_identity_validated": false,
+        "coordinate_local_residue_identity_validated": true,
         "heldout_rows_used": false,
-        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
         "reviewed_feature_code": "BINDING",
         "reviewed_feature_type": "Binding site",
         "sequence_position_uniprot_declared": true,
@@ -92,8 +93,9 @@
       ],
       "ligand_id": "ChEBI:CHEBI:18420",
       "ligand_name": "Mg(2+)",
-      "locator_confidence": 0.5,
-      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "ASP",
       "reviewed_feature_code": "BINDING",
       "reviewed_feature_type": "Binding site",
       "role_hint": "reviewed_binding_feature",
@@ -104,7 +106,7 @@
   "sidecar_path": "artifacts/external_materialization_wave2_source_free_locators_current702_20260609/uniprot_P05055.json",
   "source_accession": "P05055",
   "source_family_lane": "phosphoryl transfer",
-  "source_free_active_site_locator_status": "materialized_pending_coordinate_local_residue_identity",
+  "source_free_active_site_locator_status": "ready_coordinate_local_residue_identity",
   "source_hashes": {
     "rhea_records_sha256": "f6b2d06422084a1eebf691b2f790da2250a001f43571b6f0b4b18f686fe477a3",
     "source_query_sha256": "39b8fb1a653d81862d53d5256a3e5334a9d07232bc500e453a44e4aea6f67513",
