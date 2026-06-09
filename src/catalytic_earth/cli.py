@@ -2865,6 +2865,12 @@ def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
         external_pilot_path=Path(args.external_pilot)
         if args.external_pilot
         else None,
+        prior_bulk_path=Path(args.prior_bulk_scout)
+        if args.prior_bulk_scout
+        else None,
+        prior_bulk_import_preview_path=Path(args.prior_bulk_import_preview)
+        if args.prior_bulk_import_preview
+        else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
         import_preview_path=Path(args.import_preview_out)
@@ -2872,6 +2878,7 @@ def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
         else None,
         created_utc=args.created_utc,
         max_records_per_lane=args.max_records_per_lane,
+        max_pages_per_query=args.max_pages_per_query,
         fetch_rhea_fallback=args.rhea_fallback,
     )
     print(
@@ -22363,21 +22370,35 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     external_bulk_ingestion.add_argument(
-        "--out",
+        "--prior-bulk-scout",
         default=(
             "artifacts/"
             "v3_external_bulk_ingestion_scout_current702_20260608.json"
         ),
     )
     external_bulk_ingestion.add_argument(
+        "--prior-bulk-import-preview",
+        default=(
+            "artifacts/"
+            "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+        ),
+    )
+    external_bulk_ingestion.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_bulk_ingestion_scaleout_current702_20260609.json"
+        ),
+    )
+    external_bulk_ingestion.add_argument(
         "--report",
-        default="work/external_bulk_ingestion_scout_current702_20260608.md",
+        default="work/external_bulk_ingestion_scaleout_current702_20260609.md",
     )
     external_bulk_ingestion.add_argument(
         "--import-preview-out",
         default=(
             "artifacts/"
-            "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+            "v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json"
         ),
     )
     external_bulk_ingestion.add_argument("--created-utc")
@@ -22385,6 +22406,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--max-records-per-lane",
         type=int,
         default=100,
+    )
+    external_bulk_ingestion.add_argument(
+        "--max-pages-per-query",
+        type=int,
+        default=4,
     )
     external_bulk_ingestion.add_argument(
         "--rhea-fallback",

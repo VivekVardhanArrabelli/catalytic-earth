@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 from collections import Counter, defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
@@ -14,15 +15,15 @@ ARTIFACT_ID = "v3_external_source_ingestion_pilot_current702_20260608"
 IMPORT_PREVIEW_ARTIFACT_ID = (
     "v3_external_source_ingestion_import_preview_current702_20260608"
 )
-BULK_ARTIFACT_ID = "v3_external_bulk_ingestion_scout_current702_20260608"
+BULK_ARTIFACT_ID = "v3_external_bulk_ingestion_scaleout_current702_20260609"
 BULK_IMPORT_PREVIEW_ARTIFACT_ID = (
-    "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608"
+    "v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609"
 )
 SCHEMA_VERSION = "v3.external_source_ingestion_pilot"
 IMPORT_PREVIEW_SCHEMA_VERSION = "v3.external_source_ingestion_import_preview"
-BULK_SCHEMA_VERSION = "v3.external_bulk_ingestion_scout"
+BULK_SCHEMA_VERSION = "v3.external_bulk_ingestion_scaleout"
 BULK_IMPORT_PREVIEW_SCHEMA_VERSION = (
-    "v3.external_bulk_ingestion_provisional_import_preview"
+    "v3.external_bulk_ingestion_scaleout_provisional_import_preview"
 )
 
 DEFAULT_OUT_PATH = Path(
@@ -35,12 +36,18 @@ DEFAULT_IMPORT_PREVIEW_PATH = Path(
     "artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json"
 )
 DEFAULT_BULK_OUT_PATH = Path(
-    "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json"
+    "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json"
 )
 DEFAULT_BULK_REPORT_PATH = Path(
-    "work/external_bulk_ingestion_scout_current702_20260608.md"
+    "work/external_bulk_ingestion_scaleout_current702_20260609.md"
 )
 DEFAULT_BULK_IMPORT_PREVIEW_PATH = Path(
+    "artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json"
+)
+DEFAULT_PRIOR_BULK_SCOUT_PATH = Path(
+    "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json"
+)
+DEFAULT_PRIOR_BULK_IMPORT_PREVIEW_PATH = Path(
     "artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
 )
 DEFAULT_EXTERNAL_PILOT_PATH = Path(
@@ -147,42 +154,100 @@ DEFAULT_LANE_QUERIES: tuple[dict[str, str], ...] = (
 
 DEFAULT_BULK_LANE_QUERIES: tuple[dict[str, str], ...] = (
     {
-        "lane_id": "metal_hydrolase",
+        "lane_id": "metal_hydrolase_metalloprotease",
         "target_family_lane": "metal hydrolase",
         "query": (
             "(reviewed:true) AND (ec:3.*) AND "
-            "((protein_name:metallo) OR (protein_name:zinc) OR "
-            "(protein_name:metal) OR (cc_cofactor:zinc))"
+            '((protein_name:metalloprotease) OR (protein_name:metallopeptidase))'
         ),
     },
     {
-        "lane_id": "redox_oxygen_sulfur",
+        "lane_id": "metal_hydrolase_carboxypeptidase",
+        "target_family_lane": "metal hydrolase",
+        "query": (
+            "(reviewed:true) AND ((ec:3.4.17.*) OR (ec:3.4.24.*) OR "
+            '(protein_name:carboxypeptidase) OR (protein_name:aminopeptidase))'
+        ),
+    },
+    {
+        "lane_id": "metal_hydrolase_metallo_beta_lactamase",
+        "target_family_lane": "metal hydrolase",
+        "query": (
+            "(reviewed:true) AND "
+            '((protein_name:"metallo-beta-lactamase") OR (protein_name:"beta-lactamase"))'
+        ),
+    },
+    {
+        "lane_id": "redox_oxygen_sulfur_oxygenase",
         "target_family_lane": "redox oxygen/sulfur",
         "query": (
-            "(reviewed:true) AND ((ec:1.14.*) OR (ec:1.8.*) OR "
-            "(protein_name:oxygenase) OR (protein_name:sulfur) OR "
-            '(keyword:"Iron-sulfur") OR (cc_cofactor:heme))'
+            "(reviewed:true) AND "
+            '((ec:1.14.*) OR (protein_name:oxygenase) OR (protein_name:monooxygenase) '
+            'OR (protein_name:dioxygenase))'
         ),
     },
     {
-        "lane_id": "plp_children",
+        "lane_id": "redox_oxygen_sulfur_sulfur",
+        "target_family_lane": "redox oxygen/sulfur",
+        "query": (
+            "(reviewed:true) AND "
+            '((ec:1.8.*) OR (protein_name:sulfur) OR (protein_name:sulfite) '
+            'OR (protein_name:sulfide) OR (protein_name:thiosulfate))'
+        ),
+    },
+    {
+        "lane_id": "redox_oxygen_sulfur_fe_s",
+        "target_family_lane": "redox oxygen/sulfur",
+        "query": (
+            '(reviewed:true) AND ((keyword:"Iron-sulfur") OR (cc_cofactor:heme) '
+            'OR (protein_name:oxidoreductase))'
+        ),
+    },
+    {
+        "lane_id": "plp_children_aminotransferase",
         "target_family_lane": "PLP children",
         "query": (
             '(reviewed:true) AND ((cc_cofactor:"pyridoxal phosphate") OR '
-            '(keyword:"Pyridoxal phosphate") OR (protein_name:aminotransferase) '
-            "OR (protein_name:decarboxylase))"
+            '(keyword:"Pyridoxal phosphate") OR (protein_name:aminotransferase))'
         ),
     },
     {
-        "lane_id": "glycoside_nucleoside",
+        "lane_id": "plp_children_decarboxylase",
+        "target_family_lane": "PLP children",
+        "query": (
+            '(reviewed:true) AND ((cc_cofactor:"pyridoxal phosphate") OR '
+            '(keyword:"Pyridoxal phosphate") OR (protein_name:decarboxylase) '
+            'OR (protein_name:aldolase))'
+        ),
+    },
+    {
+        "lane_id": "glycoside_nucleoside_glycosidase",
         "target_family_lane": "glycoside/nucleoside",
         "query": (
-            "(reviewed:true) AND ((ec:3.2.*) OR (ec:2.4.*) OR "
-            "(protein_name:glycosidase) OR (protein_name:nucleosidase))"
+            "(reviewed:true) AND "
+            '((ec:3.2.*) OR (protein_name:glycosidase) OR (protein_name:glucosidase) '
+            'OR (protein_name:galactosidase))'
         ),
     },
     {
-        "lane_id": "phosphoryl_transfer",
+        "lane_id": "glycoside_nucleoside_glycosyltransferase",
+        "target_family_lane": "glycoside/nucleoside",
+        "query": (
+            "(reviewed:true) AND "
+            '((ec:2.4.*) OR (protein_name:glycosyltransferase) OR (protein_name:glycosylase))'
+        ),
+    },
+    {
+        "lane_id": "glycoside_nucleoside_nucleoside",
+        "target_family_lane": "glycoside/nucleoside",
+        "query": (
+            "(reviewed:true) AND "
+            '((protein_name:nucleosidase) OR (protein_name:nucleoside) OR '
+            '(protein_name:nucleotidase) OR (protein_name:nucleoside phosphorylase))'
+        ),
+    },
+    {
+        "lane_id": "phosphoryl_transfer_kinase",
         "target_family_lane": "phosphoryl transfer",
         "query": (
             "(reviewed:true) AND ((ec:2.7.*) OR "
@@ -190,20 +255,60 @@ DEFAULT_BULK_LANE_QUERIES: tuple[dict[str, str], ...] = (
         ),
     },
     {
-        "lane_id": "radical_sam_cobalamin",
-        "target_family_lane": "radical-SAM/cobalamin",
+        "lane_id": "phosphoryl_transfer_phosphatase",
+        "target_family_lane": "phosphoryl transfer",
         "query": (
-            '(reviewed:true) AND ((protein_name:"radical SAM") OR '
-            '(keyword:"S-adenosyl-L-methionine") OR (keyword:Cobalamin) OR '
-            "(protein_name:cobalamin) OR (cc_cofactor:cobalamin))"
+            "(reviewed:true) AND "
+            '((protein_name:phosphatase) OR (protein_name:phosphorylase) '
+            'OR (protein_name:nucleotidyltransferase))'
         ),
     },
     {
-        "lane_id": "near_orphan_no_reliable_structure",
+        "lane_id": "radical_sam_cobalamin_radical_sam",
+        "target_family_lane": "radical-SAM/cobalamin",
+        "query": (
+            '(reviewed:true) AND ((protein_name:"radical SAM") OR '
+            '(keyword:"S-adenosyl-L-methionine") OR (protein_name:"SAM-dependent"))'
+        ),
+    },
+    {
+        "lane_id": "radical_sam_cobalamin_cobalamin",
+        "target_family_lane": "radical-SAM/cobalamin",
+        "query": (
+            '(reviewed:true) AND ((keyword:Cobalamin) OR (protein_name:cobalamin) '
+            'OR (cc_cofactor:cobalamin) OR (protein_name:methyltransferase))'
+        ),
+    },
+    {
+        "lane_id": "near_orphan_no_reliable_structure_uncharacterized",
         "target_family_lane": "near-orphan/no-reliable-structure",
         "query": (
             "(reviewed:true) AND ((protein_name:uncharacterized) OR "
             "(protein_name:hypothetical) OR (annotation_score:1))"
+        ),
+    },
+    {
+        "lane_id": "near_orphan_no_reliable_structure_domain_of_unknown_function",
+        "target_family_lane": "near-orphan/no-reliable-structure",
+        "query": (
+            '(reviewed:true) AND ((protein_name:"domain of unknown function") OR '
+            '(protein_name:DUF) OR (annotation_score:2))'
+        ),
+    },
+    {
+        "lane_id": "adjacent_high_yield_amidase_deaminase",
+        "target_family_lane": "adjacent high-yield amidase/deaminase",
+        "query": (
+            "(reviewed:true) AND "
+            '((protein_name:amidase) OR (protein_name:deaminase) OR (ec:3.5.*))'
+        ),
+    },
+    {
+        "lane_id": "adjacent_high_yield_lyase_isomerase",
+        "target_family_lane": "adjacent high-yield lyase/isomerase",
+        "query": (
+            "(reviewed:true) AND "
+            '((protein_name:lyase) OR (protein_name:isomerase) OR (ec:4.*) OR (ec:5.*))'
         ),
     },
 )
@@ -256,6 +361,24 @@ def _as_list(value: Any) -> list[Any]:
     if isinstance(value, list):
         return value
     return [value]
+
+
+def _materialization_bucket_for_terminal_state(terminal_state: str) -> str:
+    mapping = {
+        "external_countable_preflight_candidate": "provisional_countable_preflight",
+        "provisional_external_countable_preflight_candidate": "provisional_countable_preflight",
+        "locator_ready_candidate": "locator_ready",
+        "coordinate_ready_pending_locator": "coordinate_ready_pending_locator",
+        "locator_repair_candidate": "repairable",
+        "coordinate_repair_candidate": "repairable",
+        "blocked_duplicate_or_current_registry_conflict": "duplicate_current_conflict",
+        "reject/OOS_preserve_signal": "OOS_preserve_signal",
+        "hard_blocked_with_next_action": "hard_blocked",
+        "review_only_evidence": "hard_blocked",
+        "blocked_family_decision": "hard_blocked",
+        "blocked_source_retrieval": "hard_blocked",
+    }
+    return mapping.get(terminal_state, "hard_blocked")
 
 
 def _clean_accession(value: Any) -> str:
@@ -827,6 +950,9 @@ def _candidate_row(
                 "source_retrieval_blocker": False,
             },
             "terminal_state": terminal_state,
+            "materialization_bucket": _materialization_bucket_for_terminal_state(
+                terminal_state
+            ),
             "terminal_route_basis": route_basis,
             "confidence_tier": confidence_tier,
             "exact_next_action": next_action,
@@ -847,15 +973,23 @@ def build_external_source_ingestion_pilot(
     label_registry_payload: list[dict[str, Any]],
     created_utc: str | None = None,
     max_records_per_lane: int = 4,
+    max_pages_per_query: int = 1,
     lane_queries: tuple[dict[str, str], ...] = DEFAULT_LANE_QUERIES,
-    query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
+    query_fetcher: Callable[[str, int, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
     fetch_rhea_fallback: bool = True,
     max_reactions_per_ec: int = 2,
+    seed_seen_accessions: set[str] | None = None,
+    seed_seen_sequence_shas: set[str] | None = None,
+    entry_fetch_workers: int = 8,
 ) -> dict[str, Any]:
     if max_records_per_lane < 1 or max_records_per_lane > 500:
         raise ValueError("max_records_per_lane must be between 1 and 500")
+    if max_pages_per_query < 1 or max_pages_per_query > 20:
+        raise ValueError("max_pages_per_query must be between 1 and 20")
+    if entry_fetch_workers < 1 or entry_fetch_workers > 32:
+        raise ValueError("entry_fetch_workers must be between 1 and 32")
     created = created_utc or _utc_now_iso()
     current_index = _current_reference_index(
         current_manifest_payload, label_registry_payload
@@ -863,14 +997,21 @@ def build_external_source_ingestion_pilot(
     rows: list[dict[str, Any]] = []
     lane_summaries: list[dict[str, Any]] = []
     fetch_failures: list[dict[str, Any]] = []
-    seen_accessions: set[str] = set()
+    seen_accessions: set[str] = set(seed_seen_accessions or set())
+    seen_sequence_shas: set[str] = set(seed_seen_sequence_shas or set())
+    query_count = 0
+    page_count = 0
+    total_fetched_records = 0
 
     for lane in lane_queries:
         lane_id = lane["lane_id"]
         query = lane["query"]
         lane_record_count = 0
+        query_count += 1
         try:
-            search_payload = query_fetcher(query, max_records_per_lane)
+            search_payload = query_fetcher(
+                query, max_records_per_lane, max_pages_per_query
+            )
         except Exception as exc:  # pragma: no cover - live source failure path
             fetch_failures.append(
                 {
@@ -886,30 +1027,60 @@ def build_external_source_ingestion_pilot(
                     "target_family_lane": lane["target_family_lane"],
                     "query": query,
                     "record_count": 0,
+                    "pages_fetched": 0,
+                    "fetched_record_count": 0,
+                    "unique_candidate_count": 0,
                     "status": "query_fetch_failed",
                 }
             )
             continue
 
         search_metadata = search_payload.get("metadata", {}) or {}
+        pages_fetched = int(search_metadata.get("pages_fetched") or 1)
+        fetched_record_count = len(search_payload.get("records", []) or [])
+        page_count += pages_fetched
+        total_fetched_records += fetched_record_count
+        lane_search_records: list[dict[str, Any]] = []
         for search_record in search_payload.get("records", []) or []:
             if not isinstance(search_record, dict):
                 continue
             accession = _clean_accession(search_record.get("accession"))
-            if not accession or accession in seen_accessions:
+            sequence_sha = _sequence_sha256(search_record.get("sequence"))
+            if (
+                not accession
+                or accession in seen_accessions
+                or (sequence_sha is not None and sequence_sha in seen_sequence_shas)
+            ):
                 continue
             seen_accessions.add(accession)
+            if sequence_sha is not None:
+                seen_sequence_shas.add(sequence_sha)
             lane_record_count += 1
+            lane_search_records.append(search_record)
+
+        def fetch_entry_payload(
+            search_record: dict[str, Any],
+        ) -> tuple[str, dict[str, Any] | None, Exception | None]:
+            accession = _clean_accession(search_record.get("accession"))
             try:
-                entry_payload = entry_fetcher(accession)
+                return accession, entry_fetcher(accession), None
             except Exception as exc:  # pragma: no cover - live source failure path
+                return accession, None, exc
+
+        with ThreadPoolExecutor(max_workers=entry_fetch_workers) as executor:
+            entry_payloads = list(executor.map(fetch_entry_payload, lane_search_records))
+
+        for search_record, (accession, entry_payload, entry_error) in zip(
+            lane_search_records, entry_payloads
+        ):
+            if entry_error is not None:
                 fetch_failures.append(
                     {
                         "lane_id": lane_id,
                         "accession": accession,
                         "source": "uniprot_entry",
-                        "error_type": type(exc).__name__,
-                        "error": str(exc),
+                        "error_type": type(entry_error).__name__,
+                        "error": str(entry_error),
                     }
                 )
                 continue
@@ -945,7 +1116,21 @@ def build_external_source_ingestion_pilot(
                 "target_family_lane": lane["target_family_lane"],
                 "query": query,
                 "record_count": lane_record_count,
-                "source_url": search_metadata.get("url"),
+                "fetched_record_count": fetched_record_count,
+                "unique_candidate_count": lane_record_count,
+                "pages_fetched": pages_fetched,
+                "page_urls": [
+                    page.get("url")
+                    for page in search_metadata.get("pages", []) or []
+                    if isinstance(page, dict) and page.get("url")
+                ],
+                "source_url": (
+                    (
+                        search_metadata.get("pages", [{}])[0].get("url")
+                        if search_metadata.get("pages")
+                        else search_metadata.get("url")
+                    )
+                ),
                 "status": "query_fetched",
             }
         )
@@ -1018,6 +1203,9 @@ def build_external_source_ingestion_pilot(
         "lane_summaries": lane_summaries,
         "fetch_failures": fetch_failures,
         "fetch_failure_count": len(fetch_failures),
+        "query_count": query_count,
+        "page_count": page_count,
+        "total_fetched_records": total_fetched_records,
         "rows": rows,
         "validation_checks": validation_checks,
         "guardrails": {
@@ -1043,6 +1231,7 @@ def build_external_source_ingestion_import_preview(
             "candidate_id": row["candidate_id"],
             "accession": row["accession"],
             "target_family_lane": row["target_family_lane"],
+            "materialization_bucket": row["materialization_bucket"],
             "terminal_state": row["terminal_state"],
             "confidence_tier": row["confidence_tier"],
             "reviewed_status": row["reviewed_status"],
@@ -1299,6 +1488,10 @@ def _refresh_ingestion_counts(
                 row.get("duplicate_status_summary")
                 for row in artifact.get("rows", [])
             ),
+            "all_rows_have_materialization_bucket": all(
+                row.get("materialization_bucket")
+                for row in artifact.get("rows", [])
+            ),
             "candidate_count_matches_rows": artifact["candidate_count"]
             == sum(terminal_counts.values()),
             "production_registry_edit_count": 0,
@@ -1308,6 +1501,12 @@ def _refresh_ingestion_counts(
         value is True for value in validation_checks.values() if isinstance(value, bool)
     )
     artifact["validation_checks"] = validation_checks
+    artifact["materialization_bucket_counts"] = _materialization_bucket_counts(
+        artifact.get("rows", [])
+    )
+    artifact["top_next_action_buckets"] = _next_action_buckets(
+        artifact.get("rows", [])
+    )
 
 
 def _source_retrieval_summary(fetch_failures: list[dict[str, Any]]) -> dict[str, Any]:
@@ -1319,15 +1518,104 @@ def _source_retrieval_summary(fetch_failures: list[dict[str, Any]]) -> dict[str,
     }
 
 
+def _next_action_buckets(rows: list[dict[str, Any]], limit: int = 10) -> list[dict[str, Any]]:
+    counts = Counter(str(row.get("exact_next_action") or "") for row in rows if row.get("exact_next_action"))
+    return [
+        {"exact_next_action": action, "count": count}
+        for action, count in counts.most_common(limit)
+    ]
+
+
+def _materialization_bucket_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
+    counts = Counter(
+        _materialization_bucket_for_terminal_state(str(row.get("terminal_state") or ""))
+        for row in rows
+    )
+    return dict(sorted(counts.items()))
+
+
+def _row_sequence_sha(row: dict[str, Any]) -> str | None:
+    duplicate = row.get("duplicate_current_registry_conflict", {}) or {}
+    sequence_sha = duplicate.get("exact_sequence_sha256")
+    if sequence_sha:
+        return str(sequence_sha)
+    return None
+
+
+def _merge_prior_bulk_rows(
+    prior_bulk_payload: dict[str, Any] | None,
+    fresh_rows: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    merged: list[dict[str, Any]] = []
+    seen_accessions: set[str] = set()
+    seen_sequence_shas: set[str] = set()
+    seeded_count = 0
+    skipped_prior_duplicates = 0
+    skipped_fresh_duplicates = 0
+
+    def add_row(row: dict[str, Any]) -> bool:
+        row = json.loads(json.dumps(row))
+        row["materialization_bucket"] = _materialization_bucket_for_terminal_state(
+            str(row.get("terminal_state") or "")
+        )
+        accession = _clean_accession(row.get("accession"))
+        sequence_sha = _row_sequence_sha(row)
+        if accession and accession in seen_accessions:
+            return False
+        if sequence_sha and sequence_sha in seen_sequence_shas:
+            return False
+        if accession:
+            seen_accessions.add(accession)
+        if sequence_sha:
+            seen_sequence_shas.add(sequence_sha)
+        merged.append(row)
+        return True
+
+    for row in (prior_bulk_payload or {}).get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        if add_row(row):
+            seeded_count += 1
+        else:
+            skipped_prior_duplicates += 1
+
+    for row in fresh_rows:
+        if add_row(row):
+            continue
+        skipped_fresh_duplicates += 1
+
+    return merged, {
+        "seeded_prior_candidate_count": seeded_count,
+        "skipped_prior_duplicate_count": skipped_prior_duplicates,
+        "skipped_fresh_duplicate_count": skipped_fresh_duplicates,
+        "new_unique_candidate_count": len(merged) - seeded_count,
+    }
+
+
+def _prior_bulk_seed_index(
+    prior_bulk_payload: dict[str, Any] | None,
+) -> tuple[set[str], set[str]]:
+    accessions: set[str] = set()
+    sequence_shas: set[str] = set()
+    for row in (prior_bulk_payload or {}).get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        accession = _clean_accession(row.get("accession"))
+        if accession:
+            accessions.add(accession)
+        sequence_sha = _row_sequence_sha(row)
+        if sequence_sha:
+            sequence_shas.add(sequence_sha)
+    return accessions, sequence_shas
+
+
 def _bulk_query_continuation_plan(
     *,
     lane_queries: tuple[dict[str, str], ...],
     max_records_per_lane: int,
+    max_pages_per_query: int,
     fetch_rhea_fallback: bool,
 ) -> list[dict[str, Any]]:
-    next_size: int | None = min(500, max_records_per_lane * 2)
-    if next_size == max_records_per_lane:
-        next_size = None
     plan: list[dict[str, Any]] = []
     for lane in lane_queries:
         plan.append(
@@ -1337,10 +1625,9 @@ def _bulk_query_continuation_plan(
                 "current_query": lane["query"],
                 "next_query": lane["query"],
                 "next_action": (
-                    f"Rerun this lane with --max-records-per-lane {next_size}; "
-                    "keep Rhea fallback disabled unless reaction provenance is the limiter."
-                    if next_size is not None
-                    else "Add UniProt cursor pagination or split this lane by EC/keyword subquery before increasing beyond the single-query 500-row limit."
+                    f"Rerun this subquery with --max-pages-per-query {max_pages_per_query + 1} "
+                    f"at --max-records-per-lane {max_records_per_lane}; keep Rhea fallback "
+                    "disabled unless reaction provenance is the limiter."
                 ),
                 "rhea_fallback_currently_enabled": fetch_rhea_fallback,
             }
@@ -1352,7 +1639,9 @@ def _apply_bulk_scout_policy(
     artifact: dict[str, Any],
     *,
     external_pilot_payload: dict[str, Any] | None,
+    prior_bulk_payload: dict[str, Any] | None,
     max_records_per_lane: int,
+    max_pages_per_query: int,
     lane_queries: tuple[dict[str, str], ...],
     fetch_rhea_fallback: bool,
 ) -> dict[str, Any]:
@@ -1381,6 +1670,9 @@ def _apply_bulk_scout_policy(
         }
         if pilot_conflict and not current_conflict:
             row["terminal_state"] = "blocked_duplicate_or_current_registry_conflict"
+            row["materialization_bucket"] = _materialization_bucket_for_terminal_state(
+                row["terminal_state"]
+            )
             row["terminal_route_basis"] = (
                 "exact_external_pilot_accession_or_sequence_overlap"
             )
@@ -1404,6 +1696,9 @@ def _apply_bulk_scout_policy(
                 )
         elif row.get("terminal_state") == "external_countable_preflight_candidate":
             row["terminal_state"] = provisional_state
+            row["materialization_bucket"] = _materialization_bucket_for_terminal_state(
+                row["terminal_state"]
+            )
             row["terminal_route_basis"] = (
                 "provisional_reviewed_exact_locator_coordinate_and_rhea_or_specific_ec_preflight_clear"
             )
@@ -1421,6 +1716,11 @@ def _apply_bulk_scout_policy(
             "provisional_until_ce_external_admission_16_validation"
         ] = True
 
+    merged_rows, merge_summary = _merge_prior_bulk_rows(
+        prior_bulk_payload, bulk.get("rows", [])
+    )
+    bulk["rows"] = merged_rows
+
     bulk.update(
         {
             "artifact_id": BULK_ARTIFACT_ID,
@@ -1432,6 +1732,7 @@ def _apply_bulk_scout_policy(
                     "source_artifact_sha256"
                 ),
                 "requested_max_records_per_lane": max_records_per_lane,
+                "requested_max_pages_per_query": max_pages_per_query,
                 "lane_count": len(lane_queries),
             },
             "admission_validation_status": {
@@ -1459,18 +1760,25 @@ def _apply_bulk_scout_policy(
             "api_query_limits": {
                 "uniprot_search_single_query_size_limit": 500,
                 "requested_max_records_per_lane": max_records_per_lane,
-                "pagination_implemented": False,
+                "requested_max_pages_per_query": max_pages_per_query,
+                "pagination_implemented": max_pages_per_query > 1,
                 "rhea_fallback_enabled": fetch_rhea_fallback,
                 "coordinate_downloads_performed": False,
             },
             "query_continuation_plan": _bulk_query_continuation_plan(
                 lane_queries=lane_queries,
                 max_records_per_lane=max_records_per_lane,
+                max_pages_per_query=max_pages_per_query,
                 fetch_rhea_fallback=fetch_rhea_fallback,
             ),
             "source_retrieval_summary": _source_retrieval_summary(
                 bulk.get("fetch_failures", [])
             ),
+            "merge_summary": merge_summary,
+            "materialization_bucket_counts": _materialization_bucket_counts(
+                bulk.get("rows", [])
+            ),
+            "top_next_action_buckets": _next_action_buckets(bulk.get("rows", [])),
         }
     )
     _refresh_ingestion_counts(bulk, provisional_state=provisional_state)
@@ -1482,31 +1790,39 @@ def build_external_bulk_ingestion_scout(
     current_manifest_payload: dict[str, Any],
     label_registry_payload: list[dict[str, Any]],
     external_pilot_payload: dict[str, Any] | None = None,
+    prior_bulk_payload: dict[str, Any] | None = None,
     created_utc: str | None = None,
     max_records_per_lane: int = 100,
+    max_pages_per_query: int = 4,
     lane_queries: tuple[dict[str, str], ...] = DEFAULT_BULK_LANE_QUERIES,
-    query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
+    query_fetcher: Callable[[str, int, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
     fetch_rhea_fallback: bool = False,
     max_reactions_per_ec: int = 1,
 ) -> dict[str, Any]:
+    seed_accessions, seed_sequence_shas = _prior_bulk_seed_index(prior_bulk_payload)
     pilot_artifact = build_external_source_ingestion_pilot(
         current_manifest_payload=current_manifest_payload,
         label_registry_payload=label_registry_payload,
         created_utc=created_utc,
         max_records_per_lane=max_records_per_lane,
+        max_pages_per_query=max_pages_per_query,
         lane_queries=lane_queries,
         query_fetcher=query_fetcher,
         entry_fetcher=entry_fetcher,
         rhea_fetcher=rhea_fetcher,
         fetch_rhea_fallback=fetch_rhea_fallback,
         max_reactions_per_ec=max_reactions_per_ec,
+        seed_seen_accessions=seed_accessions,
+        seed_seen_sequence_shas=seed_sequence_shas,
     )
     return _apply_bulk_scout_policy(
         pilot_artifact,
         external_pilot_payload=external_pilot_payload,
+        prior_bulk_payload=prior_bulk_payload,
         max_records_per_lane=max_records_per_lane,
+        max_pages_per_query=max_pages_per_query,
         lane_queries=lane_queries,
         fetch_rhea_fallback=fetch_rhea_fallback,
     )
@@ -1575,7 +1891,7 @@ def build_external_bulk_ingestion_provisional_import_preview(
 
 def render_external_bulk_ingestion_report(artifact: dict[str, Any]) -> str:
     lines = [
-        "# External Bulk Ingestion Scout - current702",
+        "# External Bulk Ingestion Scaleout - current702",
         "",
         "Read-only scale-out scout over reviewed Swiss-Prot/UniProt rows with "
         "structured residue/cofactor evidence, AFDB/PDB coordinate provenance, "
@@ -1585,10 +1901,15 @@ def render_external_bulk_ingestion_report(artifact: dict[str, Any]) -> str:
         "## Summary",
         "",
         f"- Candidate rows: {artifact['candidate_count']}",
+        f"- Total fetched records before dedupe: {artifact.get('total_fetched_records', artifact['candidate_count'])}",
+        f"- New unique rows added over prior bulk scout: {artifact.get('merge_summary', {}).get('new_unique_candidate_count', artifact['candidate_count'])}",
         f"- Provisional import-preview rows: {artifact['import_preview_candidate_count']}",
         f"- Fetch failures: {artifact['fetch_failure_count']}",
         f"- Validation passed: {artifact['validation_checks']['passed']}",
         f"- Requested max records per lane: {artifact['api_query_limits']['requested_max_records_per_lane']}",
+        f"- Requested max pages per query: {artifact['api_query_limits']['requested_max_pages_per_query']}",
+        f"- Query count: {artifact.get('query_count', len(artifact['lane_summaries']))}",
+        f"- Page count: {artifact.get('page_count', 0)}",
         f"- Rhea fallback enabled: {artifact['api_query_limits']['rhea_fallback_enabled']}",
         "",
         "## Terminal State Counts",
@@ -1606,6 +1927,10 @@ def render_external_bulk_ingestion_report(artifact: dict[str, Any]) -> str:
         values = [str(counts.get(state, 0)) for state in terminal_states]
         lines.append(f"| {family} | " + " | ".join(values) + " |")
 
+    lines.extend(["", "## Materialization Buckets", "", "| bucket | count |", "| --- | ---: |"])
+    for bucket, count in artifact.get("materialization_bucket_counts", {}).items():
+        lines.append(f"| `{bucket}` | {count} |")
+
     lines.extend(
         [
             "",
@@ -1615,6 +1940,19 @@ def render_external_bulk_ingestion_report(artifact: dict[str, Any]) -> str:
             f"- Pagination implemented: {artifact['api_query_limits']['pagination_implemented']}",
             f"- Coordinate downloads performed: {artifact['api_query_limits']['coordinate_downloads_performed']}",
             f"- Failure counts by source: `{artifact['source_retrieval_summary']['failure_counts_by_source']}`",
+            "",
+            "## Next-Action Buckets",
+            "",
+            "| next action | count |",
+            "| --- | ---: |",
+        ]
+    )
+    for bucket in artifact.get("top_next_action_buckets", []):
+        action = str(bucket["exact_next_action"]).replace("|", "\\|")
+        lines.append(f"| {action} | {bucket['count']} |")
+
+    lines.extend(
+        [
             "",
             "## Candidate Matrix",
             "",
@@ -1641,7 +1979,7 @@ def render_external_bulk_ingestion_report(artifact: dict[str, Any]) -> str:
     for lane in artifact["lane_summaries"]:
         query = str(lane.get("query") or "").replace("|", "\\|")
         lines.append(
-            f"| {lane['target_family_lane']} | {lane['record_count']} | `{query}` |"
+            f"| {lane['target_family_lane']} ({lane['lane_id']}) | {lane['record_count']} | `{query}` |"
         )
 
     lines.extend(
@@ -1664,11 +2002,14 @@ def write_external_bulk_ingestion_scout(
     current_manifest_path: Path = DEFAULT_CURRENT_MANIFEST_PATH,
     label_registry_path: Path = DEFAULT_LABEL_REGISTRY_PATH,
     external_pilot_path: Path | None = DEFAULT_EXTERNAL_PILOT_PATH,
+    prior_bulk_path: Path | None = DEFAULT_PRIOR_BULK_SCOUT_PATH,
+    prior_bulk_import_preview_path: Path | None = DEFAULT_PRIOR_BULK_IMPORT_PREVIEW_PATH,
     out_path: Path = DEFAULT_BULK_OUT_PATH,
     report_path: Path | None = DEFAULT_BULK_REPORT_PATH,
     import_preview_path: Path | None = DEFAULT_BULK_IMPORT_PREVIEW_PATH,
     created_utc: str | None = None,
     max_records_per_lane: int = 100,
+    max_pages_per_query: int = 4,
     fetch_rhea_fallback: bool = False,
 ) -> dict[str, Any]:
     current_manifest_payload = _read_json(current_manifest_path)
@@ -1678,12 +2019,19 @@ def write_external_bulk_ingestion_scout(
         if external_pilot_path is not None and external_pilot_path.exists()
         else None
     )
+    prior_bulk_payload = (
+        _read_json(prior_bulk_path)
+        if prior_bulk_path is not None and prior_bulk_path.exists()
+        else None
+    )
     artifact = build_external_bulk_ingestion_scout(
         current_manifest_payload=current_manifest_payload,
         label_registry_payload=label_registry_payload,
         external_pilot_payload=external_pilot_payload,
+        prior_bulk_payload=prior_bulk_payload,
         created_utc=created_utc,
         max_records_per_lane=max_records_per_lane,
+        max_pages_per_query=max_pages_per_query,
         fetch_rhea_fallback=fetch_rhea_fallback,
     )
     source_artifacts = {
@@ -1694,6 +2042,17 @@ def write_external_bulk_ingestion_scout(
         source_artifacts["external_source_ingestion_pilot"] = _source_record(
             external_pilot_path
         )
+    if prior_bulk_path is not None and prior_bulk_path.exists():
+        source_artifacts["prior_external_bulk_ingestion_scout"] = _source_record(
+            prior_bulk_path
+        )
+    if (
+        prior_bulk_import_preview_path is not None
+        and prior_bulk_import_preview_path.exists()
+    ):
+        source_artifacts[
+            "prior_external_bulk_ingestion_provisional_import_preview"
+        ] = _source_record(prior_bulk_import_preview_path)
     artifact["source_artifacts"] = source_artifacts
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(artifact, indent=2, sort_keys=True), encoding="utf-8")

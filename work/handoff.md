@@ -2,30 +2,120 @@
 
 ## Current automation run
 
-- Automation ID: `ce-external-bulk-ingestion-scout`
-- STARTED_AT_UTC: `2026-06-08T23:39:47Z`
-- STARTED_AT_LOCAL: `2026-06-08T18:39:47-0500`
-- ENDED_AT_UTC: `2026-06-09T00:02:46Z`
-- ENDED_AT_LOCAL: `2026-06-08T19:02:46-0500`
-- ELAPSED_MINUTES: `22.983`
-- Status: Complete durable output. Scaled the reviewed Swiss-Prot/UniProt
-  external-source ingestion pattern from the 28-row pilot into a 693-row
-  provisional candidate matrix with AFDB/PDB coordinate provenance, Rhea/EC
-  provenance, current702 duplicate status, and external-pilot duplicate status.
-  The provisional preview has 354 rows, all still blocked from production
-  import until admission validation and downstream gates.
+- Automation ID: `ce-external-bulk-pagination-scaleout`
+- STARTED_AT_UTC: `2026-06-09T01:26:35Z`
+- STARTED_AT_LOCAL: `2026-06-08T20:26:35-0500`
+- ENDED_AT_UTC: `2026-06-09T01:47:10Z`
+- ENDED_AT_LOCAL: `2026-06-08T20:47:10-0500`
+- ELAPSED_MINUTES: `20.600`
+- Status: Complete durable output. Added UniProt pagination support, targeted
+  subquery family expansion, prior-bulk additive seeding, fast-fail entry
+  retrieval, and parallel UniProt entry enrichment for the external bulk lane.
+  The new scaleout artifact grew the surface from 693 seeded rows to 845 total
+  rows with 442 provisional preview rows and preserved provenance-rich routing
+  for downstream materialization.
 - Current output:
-  `artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json` and
-  `work/external_bulk_ingestion_scout_current702_20260608.md`.
+  `artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json` and
+  `work/external_bulk_ingestion_scaleout_current702_20260609.md`.
 - Provisional import preview:
-  `artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json`.
-- Lock: `work/locks/ce_external_bulk_ingestion.lock`; start timestamps written
-  to `/tmp/ce_external_bulk_ingestion_started_at.txt`.
-- Validation passed: JSON parse for bulk scout + provisional preview artifacts,
-  required-row-field invariant check, focused pytest, full `unittest discover`
-  (1,678 tests), `PYTHONPATH=src python -m catalytic_earth.cli validate`,
-  current docs artifact-reference check with 0 missing references,
-  `git diff --check`, production-edit guardrail check, and disk guardrail.
+  `artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json`.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth2/catalytic-earth-automation.lock`.
+- Validation passed: JSON parse for new scaleout + preview artifacts,
+  candidate/preview count reconciliation, focused pytest, full `unittest
+  discover` (1,678 tests), `PYTHONPATH=src python -m catalytic_earth.cli
+  validate`, and `git diff --check`.
+
+## Current Handoff
+
+### 2026-06-09 External Bulk Pagination Scaleout
+
+Automation run: `ce-external-bulk-pagination-scaleout`
+
+#### Wall-clock ledger
+
+- STARTED_AT_UTC: `2026-06-09T01:26:35Z`
+- STARTED_AT_LOCAL: `2026-06-08T20:26:35-0500`
+- ENDED_AT_UTC: `2026-06-09T01:47:10Z`
+- ENDED_AT_LOCAL: `2026-06-08T20:47:10-0500`
+- ELAPSED_MINUTES: `20.600`
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth2/catalytic-earth-automation.lock`
+
+#### Scope
+
+- Added UniProt `offset`/multi-page pagination support in
+  `src/catalytic_earth/adapters.py` and threaded that through the external
+  ingestion builder/CLI.
+- Expanded the bulk lane query set from 7 broad lanes to 19 targeted reviewed
+  subqueries across metal hydrolases, redox oxygen/sulfur, PLP children,
+  glycoside/nucleoside, phosphoryl transfer, radical-SAM/cobalamin,
+  near-orphan/no-reliable-structure, and adjacent amidase/deaminase plus
+  lyase/isomerase families.
+- Seeded the new run from
+  `artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json` so the
+  scaleout artifact is additive over the existing 693-row scout instead of
+  re-fetching and reclassifying those rows from scratch.
+- Added materialization-bucket summaries, merge accounting, query/page counts,
+  and top next-action buckets so the artifact is directly consumable by the
+  materialization/admission lane.
+- Did not edit production registries, ontology, heldout splits, production
+  thresholds, or model weights. No label import was performed. M-CSA was not
+  used as an external expansion source.
+
+#### Outputs
+
+- Scaleout artifact:
+  `artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json`
+- Scaleout provisional preview:
+  `artifacts/v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json`
+- Scaleout report:
+  `work/external_bulk_ingestion_scaleout_current702_20260609.md`
+- Rerunnable code/tests:
+  `src/catalytic_earth/adapters.py`,
+  `src/catalytic_earth/external_source_ingestion.py`,
+  `src/catalytic_earth/cli.py`,
+  `tests/test_external_source_ingestion.py`, and `tests/test_cli.py`
+
+#### Result
+
+- Total fetched search records: 570 across 19 queries and 38 pages.
+- Total unique candidates in the new artifact: 845.
+- Added net-new unique candidates over the seeded prior bulk scout: 152.
+- Provisional preview rows: 442.
+- Terminal states:
+  `provisional_external_countable_preflight_candidate=442`,
+  `locator_ready_candidate=221`,
+  `coordinate_ready_pending_locator=120`,
+  `blocked_duplicate_or_current_registry_conflict=49`,
+  `locator_repair_candidate=8`,
+  `coordinate_repair_candidate=3`,
+  and `hard_blocked_with_next_action=2`.
+- Materialization buckets:
+  `provisional_countable_preflight=442`, `locator_ready=221`,
+  `coordinate_ready_pending_locator=120`, `repairable=11`,
+  `duplicate_current_conflict=49`, and `hard_blocked=2`.
+- Family coverage now includes the original seven northstar families plus
+  `adjacent high-yield amidase/deaminase` and
+  `adjacent high-yield lyase/isomerase`.
+- API failures: 0 in the completed run.
+- Duplicate/current conflicts: 49 rows remain blocked by exact current702 or
+  external-pilot overlap.
+
+#### Blockers
+
+- This work block validated the scaleout path but did not reach multi-thousand
+  candidate count yet; the artifact is 845 total rows, not thousands.
+- The remaining limiter is still UniProt entry enrichment cost per net-new
+  accession even after seeding, concurrency, and fast-fail timeout reduction.
+
+#### Exact next action
+
+Rerun the same scaleout lane with the new parallel/paginated code at a larger
+page envelope or lane-sharded batches, starting with the highest-yield current
+buckets: phosphoryl transfer, PLP children, redox oxygen/sulfur, and
+glycoside/nucleoside. Keep the additive prior-bulk seeding enabled so each
+follow-up artifact only pays for net-new accession enrichment.
 
 ## Mission
 

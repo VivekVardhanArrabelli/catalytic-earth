@@ -227,24 +227,39 @@ class CliTests(unittest.TestCase):
             ),
         )
         self.assertEqual(
-            args.out,
+            args.prior_bulk_scout,
             (
                 "artifacts/"
                 "v3_external_bulk_ingestion_scout_current702_20260608.json"
             ),
         )
         self.assertEqual(
-            args.report,
-            "work/external_bulk_ingestion_scout_current702_20260608.md",
-        )
-        self.assertEqual(
-            args.import_preview_out,
+            args.prior_bulk_import_preview,
             (
                 "artifacts/"
                 "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
             ),
         )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_bulk_ingestion_scaleout_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            "work/external_bulk_ingestion_scaleout_current702_20260609.md",
+        )
+        self.assertEqual(
+            args.import_preview_out,
+            (
+                "artifacts/"
+                "v3_external_bulk_ingestion_scaleout_provisional_import_preview_current702_20260609.json"
+            ),
+        )
         self.assertEqual(args.max_records_per_lane, 100)
+        self.assertEqual(args.max_pages_per_query, 4)
         self.assertFalse(args.rhea_fallback)
 
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:

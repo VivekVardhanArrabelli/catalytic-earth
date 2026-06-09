@@ -124,9 +124,14 @@ class ExternalSourceIngestionTests(unittest.TestCase):
             _search_record("PLOC", sequence="MLOC", alphafold_ids=["PLOC"]),
         ]
 
-        def query_fetcher(query: str, size: int) -> dict[str, object]:
+        def query_fetcher(query: str, size: int, max_pages: int) -> dict[str, object]:
+            self.assertEqual(max_pages, 1)
             return {
-                "metadata": {"url": "https://uniprot.test/search", "record_count": 3},
+                "metadata": {
+                    "url": "https://uniprot.test/search",
+                    "record_count": 3,
+                    "pages_fetched": 1,
+                },
                 "records": search_records[:size],
             }
 
@@ -153,6 +158,7 @@ class ExternalSourceIngestionTests(unittest.TestCase):
             label_registry_payload=labels,
             created_utc="2026-06-08T00:00:00Z",
             max_records_per_lane=3,
+            max_pages_per_query=1,
             lane_queries=LANES,
             query_fetcher=query_fetcher,
             entry_fetcher=entry_fetcher,
@@ -219,9 +225,14 @@ class ExternalSourceIngestionTests(unittest.TestCase):
             ],
         }
 
-        def query_fetcher(query: str, size: int) -> dict[str, object]:
+        def query_fetcher(query: str, size: int, max_pages: int) -> dict[str, object]:
+            self.assertEqual(max_pages, 2)
             return {
-                "metadata": {"url": "https://uniprot.test/search", "record_count": 2},
+                "metadata": {
+                    "url": "https://uniprot.test/search",
+                    "record_count": 2,
+                    "pages_fetched": 2,
+                },
                 "records": search_records[:size],
             }
 
@@ -234,6 +245,7 @@ class ExternalSourceIngestionTests(unittest.TestCase):
             external_pilot_payload=external_pilot,
             created_utc="2026-06-08T00:00:00Z",
             max_records_per_lane=2,
+            max_pages_per_query=2,
             lane_queries=LANES,
             query_fetcher=query_fetcher,
             entry_fetcher=entry_fetcher,
@@ -257,6 +269,10 @@ class ExternalSourceIngestionTests(unittest.TestCase):
         )
         self.assertIn("evidence_basis", rows["PBULK"])
         self.assertIn("blocker_basis", rows["PBULK"])
+        self.assertEqual(
+            rows["PBULK"]["materialization_bucket"],
+            "provisional_countable_preflight",
+        )
         self.assertIn("source_query_sha256", rows["PBULK"]["source_hashes"])
 
         preview = build_external_bulk_ingestion_provisional_import_preview(artifact)
@@ -269,7 +285,7 @@ class ExternalSourceIngestionTests(unittest.TestCase):
         )
 
         report = render_external_bulk_ingestion_report(artifact)
-        self.assertIn("External Bulk Ingestion Scout", report)
+        self.assertIn("External Bulk Ingestion Scaleout", report)
         self.assertIn("Query Plan To Continue", report)
 
 
