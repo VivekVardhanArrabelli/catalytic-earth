@@ -247,6 +247,58 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.max_records_per_lane, 100)
         self.assertFalse(args.rhea_fallback)
 
+    def test_external_materialization_wave2_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-external-materialization-wave2"])
+
+        self.assertEqual(
+            args.merged_surface,
+            (
+                "artifacts/"
+                "v3_external_admission_merged_surface_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.import_ready_source,
+            (
+                "artifacts/"
+                "v3_external_admission_import_ready_preview_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_materialization_wave2_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.import_ready_preview,
+            (
+                "artifacts/"
+                "v3_external_materialization_wave2_import_ready_preview_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.repair_queue,
+            (
+                "artifacts/"
+                "v3_external_materialization_wave2_repair_queue_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            "work/external_materialization_wave2_current702_20260609.md",
+        )
+        self.assertEqual(
+            args.locator_dir,
+            (
+                "artifacts/"
+                "external_materialization_wave2_source_free_locators_current702_20260609"
+            ),
+        )
+        self.assertIsNone(args.created_utc)
+        self.assertIsNone(args.disk_free_gib_at_start)
+
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-lever2-mechanism-feature-incremental-readout"]

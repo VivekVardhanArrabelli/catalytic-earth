@@ -45,6 +45,7 @@ from .external_source_ingestion import (
 from .external_source_admission_validation import (
     write_external_source_admission_validation,
 )
+from .external_materialization_wave2 import write_external_materialization_wave2
 from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .predicted_geometry_recovery import (
@@ -2878,6 +2879,27 @@ def cmd_build_external_bulk_ingestion_scout(args: argparse.Namespace) -> int:
         "Wrote external bulk ingestion scout to "
         f"{args.out} ({artifact['candidate_count']} rows; "
         f"{artifact['import_preview_candidate_count']} provisional preview)"
+    )
+    return 0
+
+
+def cmd_build_external_materialization_wave2(args: argparse.Namespace) -> int:
+    artifact = write_external_materialization_wave2(
+        merged_surface_path=Path(args.merged_surface),
+        import_ready_source_path=Path(args.import_ready_source),
+        out_path=Path(args.out),
+        import_ready_preview_path=Path(args.import_ready_preview),
+        repair_queue_path=Path(args.repair_queue),
+        report_path=Path(args.report) if args.report else None,
+        locator_dir=Path(args.locator_dir),
+        created_utc=args.created_utc,
+        disk_free_gib_at_start=args.disk_free_gib_at_start,
+    )
+    print(
+        "Wrote external materialization Wave 2 to "
+        f"{args.out} ({artifact['counts']['input_rows']} rows; "
+        f"{artifact['counts']['import_ready_preview_count']} import-ready preview; "
+        f"{artifact['counts']['locator_sidecars_materialized_new']} locator sidecars)"
     )
     return 0
 
@@ -22392,6 +22414,68 @@ def build_parser() -> argparse.ArgumentParser:
         help="also query Rhea by EC when UniProt catalytic activity lacks Rhea links",
     )
     external_bulk_ingestion.set_defaults(func=cmd_build_external_bulk_ingestion_scout)
+
+    external_materialization_wave2 = subparsers.add_parser(
+        "build-external-materialization-wave2",
+        help=(
+            "carry forward external admission import-ready rows and materialize "
+            "low-disk source-free locator sidecars for Wave 2"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--merged-surface",
+        default=(
+            "artifacts/"
+            "v3_external_admission_merged_surface_current702_20260609.json"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--import-ready-source",
+        default=(
+            "artifacts/"
+            "v3_external_admission_import_ready_preview_current702_20260609.json"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_materialization_wave2_current702_20260609.json"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--import-ready-preview",
+        default=(
+            "artifacts/"
+            "v3_external_materialization_wave2_import_ready_preview_current702_20260609.json"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--repair-queue",
+        default=(
+            "artifacts/"
+            "v3_external_materialization_wave2_repair_queue_current702_20260609.json"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--report",
+        default="work/external_materialization_wave2_current702_20260609.md",
+    )
+    external_materialization_wave2.add_argument(
+        "--locator-dir",
+        default=(
+            "artifacts/"
+            "external_materialization_wave2_source_free_locators_current702_20260609"
+        ),
+    )
+    external_materialization_wave2.add_argument("--created-utc")
+    external_materialization_wave2.add_argument(
+        "--disk-free-gib-at-start",
+        type=float,
+    )
+    external_materialization_wave2.set_defaults(
+        func=cmd_build_external_materialization_wave2
+    )
 
     external_representation_backend_sample_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-sample",
