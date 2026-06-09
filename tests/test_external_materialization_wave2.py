@@ -165,6 +165,83 @@ class ExternalMaterializationWave2Tests(unittest.TestCase):
             self.assertTrue(report_path.exists())
             self.assertEqual(len(list(locator_dir.glob("*.json"))), 1)
 
+    def test_additional_shard_preview_stays_coordinate_continuation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            merged_path = root / "merged.json"
+            import_ready_path = root / "import_ready.json"
+            shard_path = root / "shard.json"
+            shard_preview_path = root / "shard_preview.json"
+            merged_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "merged",
+                        "source_artifacts": {},
+                        "rows": [_row("PREADY", "import_ready_preview")],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            import_ready_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "import_ready",
+                        "rows": [
+                            {
+                                "candidate_id": "uniprot:PREADY",
+                                "accession": "PREADY",
+                                "coordinate_path": "artifacts/external/pready.cif",
+                                "locator_sidecar_path": "artifacts/locators/pready.json",
+                                "ready_for_controlled_import_review": True,
+                                "ready_for_production_label_import": False,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            shard_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "redox_shard",
+                        "rows": [_row("PSHARD", "import_ready_preview")],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            shard_preview_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "redox_shard_preview",
+                        "rows": [_row("PSHARD", "import_ready_preview")],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            artifact, preview, repair, sidecars = build_external_materialization_wave2(
+                merged_surface_path=merged_path,
+                import_ready_source_path=import_ready_path,
+                additional_surface_paths=[shard_path],
+                additional_import_ready_source_paths=[shard_preview_path],
+                locator_dir=root / "locators",
+                created_utc="2026-06-09T00:00:00Z",
+            )
+
+            self.assertTrue(artifact["validation_checks"]["passed"])
+            self.assertEqual(artifact["counts"]["input_rows"], 2)
+            self.assertEqual(artifact["counts"]["import_ready_preview_count"], 1)
+            self.assertEqual(preview["candidate_count"], 1)
+            self.assertEqual(repair["candidate_count"], 1)
+            self.assertEqual(len(sidecars), 1)
+            self.assertEqual(
+                repair["rows"][0]["wave2_terminal_state"],
+                (
+                    "shard_import_ready_preview_locator_sidecar_"
+                    "materialized_coordinate_pending"
+                ),
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -58,7 +58,12 @@ from .external_import_review_preflight import (
     DEFAULT_TREE_REFS,
     write_external_import_review_preflight,
 )
-from .external_materialization_wave2 import write_external_materialization_wave2
+from .external_materialization_wave2 import (
+    DEFAULT_ADDITIONAL_IMPORT_READY_SOURCE_PATHS,
+    DEFAULT_ADDITIONAL_SURFACE_PATHS,
+    DEFAULT_SUPPLEMENTAL_REVIEW_SHARD_PATHS,
+    write_external_materialization_wave2,
+)
 from .scaleout_plp_radical_cobalamin_external import (
     write_external_scaleout_shard_plp_radical_cobalamin,
 )
@@ -2952,6 +2957,13 @@ def cmd_build_external_materialization_wave2(args: argparse.Namespace) -> int:
     artifact = write_external_materialization_wave2(
         merged_surface_path=Path(args.merged_surface),
         import_ready_source_path=Path(args.import_ready_source),
+        additional_surface_paths=[Path(path) for path in args.additional_surface],
+        additional_import_ready_source_paths=[
+            Path(path) for path in args.additional_import_ready_source
+        ],
+        supplemental_review_shard_paths=[
+            Path(path) for path in args.supplemental_review_shard
+        ],
         out_path=Path(args.out),
         import_ready_preview_path=Path(args.import_ready_preview),
         repair_queue_path=Path(args.repair_queue),
@@ -22670,6 +22682,33 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/"
             "v3_external_admission_import_ready_preview_current702_20260609.json"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--additional-surface",
+        action="append",
+        default=[str(path) for path in DEFAULT_ADDITIONAL_SURFACE_PATHS],
+        help=(
+            "additional landed external scaleout surface to merge; missing "
+            "paths are recorded and skipped"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--additional-import-ready-source",
+        action="append",
+        default=[str(path) for path in DEFAULT_ADDITIONAL_IMPORT_READY_SOURCE_PATHS],
+        help=(
+            "additional landed import-ready preview source to consume; missing "
+            "paths are recorded and skipped"
+        ),
+    )
+    external_materialization_wave2.add_argument(
+        "--supplemental-review-shard",
+        action="append",
+        default=[str(path) for path in DEFAULT_SUPPLEMENTAL_REVIEW_SHARD_PATHS],
+        help=(
+            "older review shard artifact to reference in provenance without "
+            "materializing incompatible rows"
         ),
     )
     external_materialization_wave2.add_argument(

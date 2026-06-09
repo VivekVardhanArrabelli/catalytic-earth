@@ -2,6 +2,61 @@
 
 ## Current automation run
 
+- Automation ID: `ce-external-materialization-wave-2`
+- STARTED_AT_UTC: `2026-06-09T05:10:41Z`
+- STARTED_AT_LOCAL: `Tue Jun  9 00:10:41 CDT 2026`
+- ENDED_AT_UTC: `2026-06-09T05:25:26Z`
+- ENDED_AT_LOCAL: `Tue Jun  9 00:25:26 CDT 2026`
+- ELAPSED_MINUTES: `14.750`
+- Status: Complete durable output under the early-completion allowance after
+  validation, with final commit/push/sync still pending at this handoff write.
+  Merged landed Wave 2 external admission, redox/cofactor, and
+  PLP/radical/cobalamin shard outputs into a deduped import-review surface.
+  Consumed the 2026-06-08 metal, phosphoryl, glycoside/nucleoside,
+  near-orphan, PLP-child, radical-SAM/cobalamin, and redox oxygen/sulfur
+  scaleout shards as supplemental provenance references. No production
+  registry, import, ontology, split, threshold, model-weight, coordinate
+  download, or label-import edit was made.
+- Current outputs:
+  `artifacts/v3_external_materialization_wave2_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json`,
+  `artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json`,
+  `artifacts/external_materialization_wave2_source_free_locators_current702_20260609/`,
+  and `work/external_materialization_wave2_current702_20260609.md`.
+- Result: 5,132 source surface rows collapsed to 4,795 unique candidates.
+  The controlled import-ready preview has 318 rows; the repair/continuation
+  queue has 4,477 rows. Coordinate materialized new: 0. Coordinate reused from
+  consumed preview metadata: 318, with 13 local coordinate paths present.
+  Locator sidecars materialized new: 1,970; existing Wave 2 locator sidecars
+  reused: 309. Source import-ready shard previews kept in coordinate
+  continuation: 909. Duplicate conflicts: 227. Cross-source duplicates
+  collapsed: 531.
+- Disk: materialization build start recorded 3.256 GiB free and wrap reported
+  about 3.2 GiB free, below the 10 GiB floor. No coordinate downloads were
+  attempted; only compact locator sidecars were written.
+- Validation passed: Wave 2 JSON/count/source-provenance reconciliation,
+  all 2,279 Wave 2 locator sidecars parsed with coordinate-download guardrail
+  false, focused pytest for Wave 2 plus CLI parser defaults (4 passed),
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, docs artifact
+  reference check with 0 missing references, full unittest discovery
+  (1,690 tests OK), `git diff --check`, and production-edit guardrail with
+  0 blocked paths.
+- Progress/status refreshed: appended measured entry to
+  `work/progress_log.jsonl` and regenerated `work/status.md`.
+- Commit/push/sync status: pending final wrap commit, push to `origin/main`,
+  `HEAD == origin/main` verification, and lock release after this handoff write.
+- Exact next action: restore disk free space above 10 GiB, then materialize or
+  reuse coordinates for the 2,279 locator-sidecar continuation rows and the
+  240 coordinate-ready pending-locator rows, validate coordinate-local residue
+  identity, and rerun the controlled import-review preflight before any
+  production registry/import action.
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth/catalytic-earth-automation.lock`
+- Run-start file:
+  `/tmp/ce_external_materialization_wave2_started_at.txt`
+
+## Previous automation run
+
 - Automation ID: `ce-scaleout-shard-redox-cofactor-confounded`
 - STARTED_AT_UTC: `2026-06-09T03:35:02Z`
 - STARTED_AT_LOCAL: `Mon Jun  8 22:35:03 CDT 2026`

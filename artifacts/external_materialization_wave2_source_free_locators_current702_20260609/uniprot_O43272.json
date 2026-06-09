@@ -1,0 +1,104 @@
+{
+  "artifact_id": "v3_external_materialization_wave2_source_free_locator_uniprot_O43272_current702_20260609",
+  "candidate_id": "uniprot:O43272",
+  "coordinate_provenance": {
+    "afdb_or_pdb_identifier": "AF-O43272-F1",
+    "alphafold_ids": [],
+    "coordinate_download_performed": false,
+    "coordinate_download_policy": "coordinate_downloads_disabled_because_run_started_below_10_gib_floor",
+    "coordinate_local_residue_identity_validated": false,
+    "coordinate_mapping_basis": null,
+    "coordinate_path": null,
+    "coordinate_sha256": null,
+    "coordinate_source_status": "afdb_predicted_coordinate_provenance_available",
+    "pdb_ids": []
+  },
+  "created_utc": "2026-06-09T05:21:48Z",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "guardrails": {
+    "label_import_performed": false,
+    "production_registry_edited": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "locator_policy": "review_only_exact_position_locator_pending_coordinate_identity",
+  "ready_for_controlled_import_review": false,
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": false,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "reviewed_feature_code": "MOD_RES",
+        "reviewed_feature_type": "Modified residue",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 368,
+      "evidence_codes": [
+        "ECO:0000250"
+      ],
+      "ligand_id": null,
+      "ligand_name": null,
+      "locator_confidence": 0.5,
+      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "reviewed_feature_code": "MOD_RES",
+      "reviewed_feature_type": "Modified residue",
+      "role_hint": "reviewed_modified_residue_feature",
+      "sequence_position": 368
+    },
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": false,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "reviewed_feature_code": "MOD_RES",
+        "reviewed_feature_type": "Modified residue",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 486,
+      "evidence_codes": [
+        "ECO:0000250"
+      ],
+      "ligand_id": null,
+      "ligand_name": null,
+      "locator_confidence": 0.5,
+      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "reviewed_feature_code": "MOD_RES",
+      "reviewed_feature_type": "Modified residue",
+      "role_hint": "reviewed_modified_residue_feature",
+      "sequence_position": 486
+    }
+  ],
+  "schema_version": "v3.external_materialization_wave2_source_free_locator_sidecar",
+  "sidecar_path": "artifacts/external_materialization_wave2_source_free_locators_current702_20260609/uniprot_O43272.json",
+  "source_accession": "O43272",
+  "source_family_lane": "flavin redox boundary",
+  "source_free_active_site_locator_status": "materialized_pending_coordinate_local_residue_identity",
+  "source_hashes": {
+    "rhea_records_sha256": "023276da8ca113b9e58d7934706d1dfbc218580ab73ad4a48ad215a5ba2fa90f",
+    "source_query_sha256": "0ff60853a6d101a7dce89a4154f1a79d104fc4c675ef6ae209c9843beaa03d59",
+    "uniprot_entry_record_sha256": "3a5210d08efacf2539408c1e8e34bf1d554a334375b77293e4e5269633439d4a",
+    "uniprot_search_row_sha256": "65522be84ed2ec5b4f83e34eb5cbf01409be5e80a0b1cd9b560e6f3c2b5a5159"
+  },
+  "source_terminal_state": "import_ready_preview",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  }
+}
