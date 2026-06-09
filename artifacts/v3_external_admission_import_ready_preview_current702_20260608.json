@@ -1,0 +1,21 @@
+{
+  "artifact_id": "v3_external_admission_import_ready_preview_current702_20260608",
+  "candidate_count": 0,
+  "created_utc": "2026-06-09T01:30:24Z",
+  "guardrails": {
+    "label_import_performed": false,
+    "preview_only": true,
+    "production_registry_edited": false
+  },
+  "rows": [],
+  "schema_version": "v3.external_admission_import_ready_preview",
+  "source_artifact_id": "v3_external_admission_merged_surface_current702_20260608",
+  "source_artifact_sha256": "ad5d1154008e9e815d977c14fddadabce60dfa95ab8b3d1069b083e6011019dc",
+  "source_artifacts": {
+    "external_admission_merged_surface": {
+      "bytes": 10460084,
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260608.json",
+      "sha256": "41f57a9d8c1f2fa317c3cdeb869b18d49c2530c6d9124666a2800266e0fa969a"
+    }
+  }
+}

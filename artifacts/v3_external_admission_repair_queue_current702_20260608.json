@@ -1,0 +1,713 @@
+{
+  "artifact_id": "v3_external_admission_repair_queue_current702_20260608",
+  "candidate_count": 23,
+  "created_utc": "2026-06-09T01:30:24Z",
+  "guardrails": {
+    "label_import_performed": false,
+    "production_registry_edited": false,
+    "queue_only": true
+  },
+  "rows": [
+    {
+      "accession": "Q8TB37",
+      "candidate_id": "uniprot:Q8TB37",
+      "exact_next_action": "Repair range/ambiguous locators to exact residue positions before preflight.",
+      "merge_status": "bulk_only_candidate",
+      "remaining_required_before_import": [
+        "explicit_repair_lane",
+        "scaled_external_admission_validation",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_repair",
+      "source_hashes": {
+        "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "source_query_sha256": "5781627189b9065d52c5a58b9d4a637b73ddd0cdee7fd5a6790260ed03aade07",
+        "uniprot_entry_record_sha256": "4eee3c99bc0f8c61989983a63d07361c925240e8d3297bf16edbbcc984325e3b",
+        "uniprot_search_row_sha256": "20252f77a2ff18197f2e31a547316369ea63f915fa094eec795aa8c19728f5cd"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T23:39:47Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "source_query": "(reviewed:true) AND ((ec:1.14.*) OR (ec:1.8.*) OR (protein_name:oxygenase) OR (protein_name:sulfur) OR (keyword:\"Iron-sulfur\") OR (cc_cofactor:heme))",
+        "source_query_sha256": "5781627189b9065d52c5a58b9d4a637b73ddd0cdee7fd5a6790260ed03aade07",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q8TB37.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29+OR+%28keyword%3A%22Iron-sulfur%22%29+OR+%28cc_cofactor%3Aheme%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q8TB37",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "locator_repair_candidate"
+    },
+    {
+      "accession": "P09601",
+      "candidate_id": "uniprot:P09601",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "c1295610daed637ec6ce90a67001cc6706e9ccd6d2e74ec3fe65e43c0bd9ef93",
+        "pilot_row_sha256": "84af83622cb165722100cdc818177d8edba849af8ebfa191bb158c6a54c1b512",
+        "rhea_records_sha256": "bca2ba6bea98b54645cf68de9d32260eb9180e754b41765955dfbba46f0c5dbf",
+        "uniprot_entry_record_sha256": "2496a1008e3eddee67fa31a3aaf76faf7d4a751573130426d2c847e9267a9c0a",
+        "uniprot_search_row_sha256": "2f89fdc3d128c057877608c7ddb148072cd05c92888c768f5ce9f54406cd1332"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P09601.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P09601",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "P30519",
+      "candidate_id": "uniprot:P30519",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "b3dee7bc00d007257e8480d2ccd9bae8513ed537d797a67888f57360bdc277b7",
+        "pilot_row_sha256": "47ad105aaaab74b9add533d9d8f2d35f335915963be560fb9e62e96fa7e31e90",
+        "rhea_records_sha256": "bca2ba6bea98b54645cf68de9d32260eb9180e754b41765955dfbba46f0c5dbf",
+        "uniprot_entry_record_sha256": "654f35ac2831818e7d740a3f8359be3174eaf6667ca8736d83551f659870573e",
+        "uniprot_search_row_sha256": "75a1410112a20cf51b8e90d61684c7b0f3c372ba7d93bb73b5f31a7ff75b0129"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P30519.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P30519",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "P29082",
+      "candidate_id": "uniprot:P29082",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "32fba9312aa2f804e96611e2578977da7d32e4bb37c4925e5a9354fbd2d393a3",
+        "pilot_row_sha256": "110f22151269fe6e1edd6ba8dc568bd7c4e84443aaf4feaf53eba6ccfa6dd471",
+        "rhea_records_sha256": "660910629741d691f770d20bf98b864512b5a1069160fb02706ff9bb881466ea",
+        "uniprot_entry_record_sha256": "d81fbd774f3271046f5bba5e9286f603872514b78aeb990930bf189f87b74ee0",
+        "uniprot_search_row_sha256": "9ce2da579ebcf1aa29c955f8348a4ca03d6227d671de10b307f21533d02629fc"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P29082.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P29082",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q9UGB7",
+      "candidate_id": "uniprot:Q9UGB7",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "34e78578aef27761a9647eec54d2dad6d02f6a0c330dcba980e2aa0a05ce5607",
+        "pilot_row_sha256": "64156fac601e8bec910cc4d5ea0ef765c0c587c4b414ac8e9c155cd34ca6aaed",
+        "rhea_records_sha256": "db188bad4420d5f751bc0e2f04358d5705e52b58cf7ee53be15cec14ce716628",
+        "uniprot_entry_record_sha256": "26f3e29ea56b3a22fdccb19365e086128a7e656266e5167ae71bb49be41a4540",
+        "uniprot_search_row_sha256": "dd440fb939c1c0a74779ed49b60f4f996fd97d07c311814c50a4668573506fd9"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9UGB7.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.%2A%29+OR+%28ec%3A1.8.%2A%29+OR+%28protein_name%3Aoxygenase%29+OR+%28protein_name%3Asulfur%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9UGB7",
+      "target_family_lane": "redox oxygen/sulfur",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q9Y617",
+      "candidate_id": "uniprot:Q9Y617",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "e9712444b76d71544260f5c57ca9cc934a71d5cafd52efe0ac59292d33c82f62",
+        "pilot_row_sha256": "324414a4abeadbc4cebcacd0ab31a7eb19fd7eb21338cbafebf6eef0b71dfa72",
+        "rhea_records_sha256": "14dbe7f19ed5163baeee57bae2d4b77bede02e3a5c04ca902bdca0d3a3da0181",
+        "uniprot_entry_record_sha256": "d7a9b0bdd6c1bd52662c9e3faace69ec0b7c529224c2c1a3928c1f440a0a017e",
+        "uniprot_search_row_sha256": "66a5ded211b5602ac6dd2fb19f936f84e9e86e9f62bfb5a3dc2d8cca2cbdc262"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9Y617.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3A%22pyridoxal+phosphate%22%29+OR+%28keyword%3A%22Pyridoxal+phosphate%22%29+OR+%28protein_name%3Aaminotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Y617",
+      "target_family_lane": "PLP children",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "P04181",
+      "candidate_id": "uniprot:P04181",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "d095818ac7e77bed3c938da4bc0ab87cd7a2f17b18828b5bb88165afc71c7935",
+        "pilot_row_sha256": "75fea65bb890c1b83d58ec430eb6c0e5dc91d3b82ce0fd07f18d0fa1fc040013",
+        "rhea_records_sha256": "a6939b9e5e7216ae16adf6a1db9dfa52695cbc3bab4a869cc8de41636814f27d",
+        "uniprot_entry_record_sha256": "87d6240de3ddb229b2eb159e070fb2e986a3a7eeb77dc5fd3f60bf41dd9392dd",
+        "uniprot_search_row_sha256": "91a3af4b9ac47af00bea20f545bd8a5e1aa357bb2f0d91c73e97423c344e783b"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P04181.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3A%22pyridoxal+phosphate%22%29+OR+%28keyword%3A%22Pyridoxal+phosphate%22%29+OR+%28protein_name%3Aaminotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P04181",
+      "target_family_lane": "PLP children",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "Q96255",
+      "candidate_id": "uniprot:Q96255",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "79ae4c5439c0b023c130fc3ecf6891a94a8ac8c63d1970e5819caab5144c33d5",
+        "pilot_row_sha256": "6adbd52b4b9b21729c48209d2848baab4202df5d66a52c0f1563529e9bf1ed18",
+        "rhea_records_sha256": "99754598b11e0db151d25ddcc49dec7d92a9371a431bf17c6d617192cca79be1",
+        "uniprot_entry_record_sha256": "e8da8af13527e33209b9c20be5f6a96cf1565e79bc161480bb04c1fb8e2cdeb4",
+        "uniprot_search_row_sha256": "ab69f51bd4695856e9f40a85cbc2299f23788c73fac2bf8958bb39498afb448c"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q96255.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3A%22pyridoxal+phosphate%22%29+OR+%28keyword%3A%22Pyridoxal+phosphate%22%29+OR+%28protein_name%3Aaminotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q96255",
+      "target_family_lane": "PLP children",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "P04062",
+      "candidate_id": "uniprot:P04062",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "3bbb5b58d59d5a4d7027bfcbd27531881916aabbca4e59d92fea666b0fb0b516",
+        "pilot_row_sha256": "811be394f42e966bf8eb57997c9a20a9ef9798ccfb94c83da473e6418dbb538a",
+        "rhea_records_sha256": "031501523cf2aee03231c81122e806eb98c63202b660cff1b66f74465dec2dd0",
+        "uniprot_entry_record_sha256": "f3e24ef26707fd6da6d9bb63a272eeb1d22c9269b3b12100c7792ae671b8fcd3",
+        "uniprot_search_row_sha256": "86f2cabdd9755e9cc4b3fd54004a100de9685df663dfc542c5daaa00cfa0ba51"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P04062.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.2.%2A%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P04062",
+      "target_family_lane": "glycoside/nucleoside",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "O60502",
+      "candidate_id": "uniprot:O60502",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "ff5347e526b5fd2d4f1082326268fc12f9683a745b92af3271903ad4efb12caf",
+        "pilot_row_sha256": "7098df22408ecd80733252a0d058f917eb8094249cecfd963b8c4cff6d95a258",
+        "rhea_records_sha256": "ab3c751369eed7f24ea57bbdcf0b00e208e7504325c7bdcbfff996f8dbbf64af",
+        "uniprot_entry_record_sha256": "73e7ee8cd684607623ae260a42eb4e80f311bf62a8c95271125e475768118c63",
+        "uniprot_search_row_sha256": "202b88b4255150b52ae39e7d616d22f652caf096ba6068c41ea2318c46e7d7f9"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/O60502.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.2.%2A%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:O60502",
+      "target_family_lane": "glycoside/nucleoside",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q969G6",
+      "candidate_id": "uniprot:Q969G6",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "3c62b0d1e02f57f8231703a8f6d6353e0e8a8368e15cdb2540fbe0dc6cd32886",
+        "pilot_row_sha256": "d5a2c5f14f0c3cfef5e13724cf102a9bddcedcf7b64c371e08dd46619c3d4fdf",
+        "rhea_records_sha256": "ae3ce7aee5164070890fd9d9d9149c700fdfa379c28410aaa52f0d175b0bc209",
+        "uniprot_entry_record_sha256": "048e2957f442ef7fc337cc47d2496aee4c36438fd72b1bf5badffcf69cfb6348",
+        "uniprot_search_row_sha256": "b702ce0d3315abffbaed99557564732c10e43716e4ee79ed43febd7557db993e"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q969G6.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q969G6",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "P32189",
+      "candidate_id": "uniprot:P32189",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "99ffdf5fb0b15a807de59188f9cf94722642a03ca41d521f0b30f7889de15b06",
+        "pilot_row_sha256": "08848fe59539967c8083218b7777c81776835d670f9f2786e8f516ff40b3b6bb",
+        "rhea_records_sha256": "a3699c7353d25c9be2213a717e2e8d891127b3c40696b163e681ff2a127b1c17",
+        "uniprot_entry_record_sha256": "8c1fa507f420e0a4fdbdbfb2e5143e85ebbad18cdda80aa6bb45bdfb1ca0a037",
+        "uniprot_search_row_sha256": "711926a2a920cef5f91a2d0dd6931b7911276a5b5ef4827d86cfc55f048b0145"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P32189.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P32189",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "admission_ready_pending_locator_materialization"
+    },
+    {
+      "accession": "Q3T906",
+      "candidate_id": "uniprot:Q3T906",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "32c67d282cf66c59a2b70e45755765e70b63a221f8740c37373e485cb20aa6a5",
+        "pilot_row_sha256": "309c77531e7ca42d7f9a71d64e58d5496560704c1e16540427b9e65ecf4fd149",
+        "rhea_records_sha256": "9aaa827f7eb07431507194e8b13a1905cf4ddb3f630dd8a0af496e0064346617",
+        "uniprot_entry_record_sha256": "3047d1449e397e22b21480c4b331211665c9c77f3f4a2063368400e17519f5f6",
+        "uniprot_search_row_sha256": "2b9b2f6d9c5af28c88ceabaf333e3680bb2a372992fd01d77156fb17efc397f3"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q3T906.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q3T906",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q9Y6K0",
+      "candidate_id": "uniprot:Q9Y6K0",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "515a31cb955f056cee95305bc75c3422c0554d4637b901c857fe0978cac98587",
+        "pilot_row_sha256": "f6a2d8097c0d136e3e3eed856e4b19c5e69ffa2b52b8ab3e4d293cc3576f7646",
+        "rhea_records_sha256": "d9cda3ef89c661057f43a71be3258d80bbb6e3043afe7142606e1aac487203f9",
+        "uniprot_entry_record_sha256": "e845b6580a2ac53acb1beae4ea5e2e1ae38a03b250be98c53a5eb710c61213a2",
+        "uniprot_search_row_sha256": "6fe4691814bec40dd346ac54b05dabbc32547ee1361fb42caeaba801b6c23dce"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9Y6K0.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Y6K0",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q96PC2",
+      "candidate_id": "uniprot:Q96PC2",
+      "exact_next_action": "Repair range/ambiguous locators to exact residue positions before preflight.",
+      "merge_status": "bulk_only_candidate",
+      "remaining_required_before_import": [
+        "explicit_repair_lane",
+        "scaled_external_admission_validation",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_repair",
+      "source_hashes": {
+        "rhea_records_sha256": "6c458259e3095e2597eac9e2071ab3dc96d355c64d750d2bbdf484d5b1c910af",
+        "source_query_sha256": "d1421714201a300965cb48ff56b33cd6e4d7fc17bec6f83e25b25497b13e1db3",
+        "uniprot_entry_record_sha256": "238aeb42918ee52c187501c1325f50a316b5ae080045da6dad78409e4a034cb1",
+        "uniprot_search_row_sha256": "dcc5e9eb9310a75774110a40b233d65186e31749718c9fface116c9b4b5d5518"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T23:39:47Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "source_query": "(reviewed:true) AND ((ec:2.7.*) OR (protein_name:phosphotransferase) OR (protein_name:kinase))",
+        "source_query_sha256": "d1421714201a300965cb48ff56b33cd6e4d7fc17bec6f83e25b25497b13e1db3",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q96PC2.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.%2A%29+OR+%28protein_name%3Aphosphotransferase%29+OR+%28protein_name%3Akinase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q96PC2",
+      "target_family_lane": "phosphoryl transfer",
+      "terminal_state": "locator_repair_candidate"
+    },
+    {
+      "accession": "Q99707",
+      "candidate_id": "uniprot:Q99707",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "756cd58b294b7d47f9e4ba4ae9aab03c664bdffd6ab704d1d5535348ec366cca",
+        "pilot_row_sha256": "2c068a952086545378bcf12437f09b699da336162faede4f73f129741d790732",
+        "rhea_records_sha256": "906ada63258cd63631503ba796b474ed5231a7bbbc2e42173e61a406a8257260",
+        "uniprot_entry_record_sha256": "23aada2e88c6339ab651f79fd8af4742496ae6f6269f76079cf5d7a4a6618247",
+        "uniprot_search_row_sha256": "48c0d73804076a0c1b7d9bbb4b6539c470b48ca8a660587f9a277dc8ce9d2976"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q99707.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q99707",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "A6H5Y3",
+      "candidate_id": "uniprot:A6H5Y3",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "8fbd385fb6bc89af84bab4dda489ebf83abeaf2d918b641cd5a0190012e5f10a",
+        "pilot_row_sha256": "bbf2ed08a98605733b5d785d299006064fd57b29896dd32d93f0e57298fffcb4",
+        "rhea_records_sha256": "4138e68101bc09c0e1cc39f97e7339b65efab66aae825089519dc05e739851cf",
+        "uniprot_entry_record_sha256": "af0fd291bbcb53f336effb60c9f2a58157c23d16a0b13d50d23bb9a79c6fc251",
+        "uniprot_search_row_sha256": "ce28a4215485da36f4980d8fb3dda23614d9d302e1899ec050d600b2104c57e4"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/A6H5Y3.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:A6H5Y3",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q9Z2Q4",
+      "candidate_id": "uniprot:Q9Z2Q4",
+      "exact_next_action": null,
+      "merge_status": "validated_upgrade_from_bulk_provisional",
+      "remaining_required_before_import": [
+        "coordinate_materialization_or_hash_match",
+        "source_free_locator_materialization",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_materialization",
+      "source_hashes": {
+        "import_preview_row_sha256": "fe52320a08d3bfafe4189f95aaf11b953dd7e86dc1116c687e55bfc2d5de67d4",
+        "pilot_row_sha256": "3f0c1dc02d94d00666d14082e47b441c960dbad6d767f227908ae4aa6de8b767",
+        "rhea_records_sha256": "906ada63258cd63631503ba796b474ed5231a7bbbc2e42173e61a406a8257260",
+        "uniprot_entry_record_sha256": "f6ff99998580ca96b60af5028ae1c57da885db903c2475d9f1b468067f1eb4b2",
+        "uniprot_search_row_sha256": "0a35b0f89ad9f670f09d867f1f1e6aa72fd5af34f712dfab122f7d9adbb0813d"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T21:48:26Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9Z2Q4.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=4"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9Z2Q4",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "admission_ready_pending_coordinate_materialization"
+    },
+    {
+      "accession": "Q9JLB4",
+      "candidate_id": "uniprot:Q9JLB4",
+      "exact_next_action": "Find AFDB/PDB or alternate coordinate provenance for the exact locators.",
+      "merge_status": "bulk_only_candidate",
+      "remaining_required_before_import": [
+        "explicit_repair_lane",
+        "scaled_external_admission_validation",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_repair",
+      "source_hashes": {
+        "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "source_query_sha256": "8b766711a1b4e60caf9048ce0a54243085a87dfc69df860630b8636ace551fe5",
+        "uniprot_entry_record_sha256": "c8addd8e409c569ca408a9c034c90d64ac6f82d592a9d735ac8a44232e15dcc2",
+        "uniprot_search_row_sha256": "0c2a3269fe4372571052eebbe63ce83cfe7943bd716ebf0c1e76888487d95ec3"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T23:39:47Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "source_query": "(reviewed:true) AND ((protein_name:\"radical SAM\") OR (keyword:\"S-adenosyl-L-methionine\") OR (keyword:Cobalamin) OR (protein_name:cobalamin) OR (cc_cofactor:cobalamin))",
+        "source_query_sha256": "8b766711a1b4e60caf9048ce0a54243085a87dfc69df860630b8636ace551fe5",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/Q9JLB4.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29+OR+%28cc_cofactor%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:Q9JLB4",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "coordinate_repair_candidate"
+    },
+    {
+      "accession": "O70244",
+      "candidate_id": "uniprot:O70244",
+      "exact_next_action": "Find AFDB/PDB or alternate coordinate provenance for the exact locators.",
+      "merge_status": "bulk_only_candidate",
+      "remaining_required_before_import": [
+        "explicit_repair_lane",
+        "scaled_external_admission_validation",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_repair",
+      "source_hashes": {
+        "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "source_query_sha256": "8b766711a1b4e60caf9048ce0a54243085a87dfc69df860630b8636ace551fe5",
+        "uniprot_entry_record_sha256": "a34a276850bd4caf6ff6cc3db27aa43d5247ff9b8209cd776d9d1326fc1b3c71",
+        "uniprot_search_row_sha256": "ff4fb959fd31eba8642a6f9b89882ccc46c0eb0f5da062883358adad0128633b"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T23:39:47Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "source_query": "(reviewed:true) AND ((protein_name:\"radical SAM\") OR (keyword:\"S-adenosyl-L-methionine\") OR (keyword:Cobalamin) OR (protein_name:cobalamin) OR (cc_cofactor:cobalamin))",
+        "source_query_sha256": "8b766711a1b4e60caf9048ce0a54243085a87dfc69df860630b8636ace551fe5",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/O70244.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29+OR+%28cc_cofactor%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:O70244",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "coordinate_repair_candidate"
+    },
+    {
+      "accession": "F1RWC3",
+      "candidate_id": "uniprot:F1RWC3",
+      "exact_next_action": "Find AFDB/PDB or alternate coordinate provenance for the exact locators.",
+      "merge_status": "bulk_only_candidate",
+      "remaining_required_before_import": [
+        "explicit_repair_lane",
+        "scaled_external_admission_validation",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "coordinate_repair",
+      "source_hashes": {
+        "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "source_query_sha256": "8b766711a1b4e60caf9048ce0a54243085a87dfc69df860630b8636ace551fe5",
+        "uniprot_entry_record_sha256": "0a3d6701de0efb7d6f4593de2f94374362fefd4094b1e1b1efd57bbb8f1e374d",
+        "uniprot_search_row_sha256": "6ad3525e96ee1d6e631843ff90ca2cf99b4cec81ab35555e4fce0f8cb543c2ab"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T23:39:47Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "source_query": "(reviewed:true) AND ((protein_name:\"radical SAM\") OR (keyword:\"S-adenosyl-L-methionine\") OR (keyword:Cobalamin) OR (protein_name:cobalamin) OR (cc_cofactor:cobalamin))",
+        "source_query_sha256": "8b766711a1b4e60caf9048ce0a54243085a87dfc69df860630b8636ace551fe5",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/F1RWC3.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22radical+SAM%22%29+OR+%28keyword%3A%22S-adenosyl-L-methionine%22%29+OR+%28keyword%3ACobalamin%29+OR+%28protein_name%3Acobalamin%29+OR+%28cc_cofactor%3Acobalamin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:F1RWC3",
+      "target_family_lane": "radical-SAM/cobalamin",
+      "terminal_state": "coordinate_repair_candidate"
+    },
+    {
+      "accession": "P43610",
+      "candidate_id": "uniprot:P43610",
+      "exact_next_action": "Repair range/ambiguous locators to exact residue positions before preflight.",
+      "merge_status": "bulk_only_candidate",
+      "remaining_required_before_import": [
+        "explicit_repair_lane",
+        "scaled_external_admission_validation",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_repair",
+      "source_hashes": {
+        "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "source_query_sha256": "09b444eac308f001600ef6a2ab2505b2a7baef59f93d685051ceb96c13bc9497",
+        "uniprot_entry_record_sha256": "e1223d0e741e39a9a2747214725c9e32ff0e62d2224c4e774d3cf384c1742d6f",
+        "uniprot_search_row_sha256": "1821da2b4622d776f2ce8d32755fa987f13efab56175526a6ca9cb74bf51e347"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T23:39:47Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "source_query": "(reviewed:true) AND ((protein_name:uncharacterized) OR (protein_name:hypothetical) OR (annotation_score:1))",
+        "source_query_sha256": "09b444eac308f001600ef6a2ab2505b2a7baef59f93d685051ceb96c13bc9497",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/P43610.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3Auncharacterized%29+OR+%28protein_name%3Ahypothetical%29+OR+%28annotation_score%3A1%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:P43610",
+      "target_family_lane": "near-orphan/no-reliable-structure",
+      "terminal_state": "locator_repair_candidate"
+    },
+    {
+      "accession": "O94387",
+      "candidate_id": "uniprot:O94387",
+      "exact_next_action": "Repair range/ambiguous locators to exact residue positions before preflight.",
+      "merge_status": "bulk_only_candidate",
+      "remaining_required_before_import": [
+        "explicit_repair_lane",
+        "scaled_external_admission_validation",
+        "current_countable_structural_duplicate_screen",
+        "label_factory_gate_and_explicit_review_decision",
+        "production_registry_change_authorization"
+      ],
+      "repair_bucket": "locator_repair",
+      "source_hashes": {
+        "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "source_query_sha256": "09b444eac308f001600ef6a2ab2505b2a7baef59f93d685051ceb96c13bc9497",
+        "uniprot_entry_record_sha256": "8a54a873c1f6f812d79e29b4374c44681d6c029948ef6326c4e1dd579ec937ae",
+        "uniprot_search_row_sha256": "abae2bbbca1058c61c80f41bfaafe82ee7705d5377075f2d1cd66ecc1b0eb4ae"
+      },
+      "source_provenance": {
+        "query_timestamp_utc": "2026-06-08T23:39:47Z",
+        "source_hash_basis": "canonical_normalized_source_records",
+        "source_query": "(reviewed:true) AND ((protein_name:uncharacterized) OR (protein_name:hypothetical) OR (annotation_score:1))",
+        "source_query_sha256": "09b444eac308f001600ef6a2ab2505b2a7baef59f93d685051ceb96c13bc9497",
+        "uniprot_entry_url": "https://rest.uniprot.org/uniprotkb/O94387.json",
+        "uniprot_search_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3Auncharacterized%29+OR+%28protein_name%3Ahypothetical%29+OR+%28annotation_score%3A1%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100"
+      },
+      "stable_candidate_key": "external_source_ingestion:uniprot:O94387",
+      "target_family_lane": "near-orphan/no-reliable-structure",
+      "terminal_state": "locator_repair_candidate"
+    }
+  ],
+  "schema_version": "v3.external_admission_repair_queue",
+  "source_artifact_id": "v3_external_admission_merged_surface_current702_20260608",
+  "source_artifact_sha256": "ad5d1154008e9e815d977c14fddadabce60dfa95ab8b3d1069b083e6011019dc",
+  "source_artifacts": {
+    "external_admission_merged_surface": {
+      "bytes": 10460084,
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260608.json",
+      "sha256": "41f57a9d8c1f2fa317c3cdeb869b18d49c2530c6d9124666a2800266e0fa969a"
+    }
+  }
+}

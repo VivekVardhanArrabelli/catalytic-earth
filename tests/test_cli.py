@@ -247,6 +247,61 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.max_records_per_lane, 100)
         self.assertFalse(args.rhea_fallback)
 
+    def test_external_admission_qa_merger_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-external-admission-qa-merger"])
+
+        self.assertEqual(
+            args.validation,
+            (
+                "artifacts/"
+                "v3_external_source_admission_validation_16_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.bulk_scout,
+            "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json",
+        )
+        self.assertEqual(
+            args.bulk_preview,
+            (
+                "artifacts/"
+                "v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.scaleout_merged,
+            (
+                "artifacts/"
+                "v3_scaleout_merged_acceptance_surface_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_admission_merged_surface_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.import_ready,
+            (
+                "artifacts/"
+                "v3_external_admission_import_ready_preview_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.repair_queue,
+            (
+                "artifacts/"
+                "v3_external_admission_repair_queue_current702_20260608.json"
+            ),
+        )
+        self.assertEqual(
+            args.report,
+            "work/external_admission_qa_merger_current702_20260608.md",
+        )
+        self.assertIsNone(args.created_utc)
+
     def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-lever2-mechanism-feature-incremental-readout"]
