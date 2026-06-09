@@ -39,8 +39,10 @@
   `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`;
   start timestamps written to
   `/tmp/ce-scaleout-shard-redox-cofactor-confounded-run-start.txt`.
-- Commit/push/sync status: pending final rebased commit, push, sync
-  verification, and lock release.
+- Commit/push/sync status: rebased shard commit
+  `994a2b7b381c2aeb0bd6b136d57e20db3ff01266` was pushed to `origin/main`;
+  final status-correction commit, sync verification, and lock release are in
+  progress.
 - Validation passed: shard JSON parse, import-ready preview JSON parse, count
   reconciliation (`candidate_rows` 2,681; unique non-duplicate 2,512;
   `import_ready_preview` 743), required boundary/family coverage assertions,
