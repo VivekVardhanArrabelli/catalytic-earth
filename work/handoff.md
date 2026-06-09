@@ -47,10 +47,10 @@
   `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth5/catalytic-earth-automation.lock`;
   start timestamps written to
   `/tmp/ce_scaleout_shard_plp_radical_cobalamin_run_start.txt`.
-- Commit/push/sync status: local shard commit `6eacef25` is being merged with
-  current `origin/main` (`5a042316` at wrap). All merge conflicts are resolved;
-  final merge commit, push to `origin/main`, `HEAD == origin/main` verification,
-  and clean/synced lock release are pending this handoff commit.
+- Commit/push/sync status: shard merge commit
+  `71ec1e75c09cf5991946bd8adbdf04ddaa9bdfde` was pushed to `origin/main` and
+  verified with `HEAD == origin/main`; this follow-up handoff status correction
+  must be pushed next, then the lock can be released from a clean synced tree.
 - Validation passed: shard JSON parse, import-ready preview JSON parse, count
   reconciliation (`candidate_count` 1,606; `import_ready_count` 168; duplicate
   conflicts 252), focused shard/adapters/CLI tests, merged-tree focused pytest,
