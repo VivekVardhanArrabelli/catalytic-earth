@@ -48,9 +48,10 @@
   `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth4/catalytic-earth-automation.lock`;
   start timestamps written to
   `/tmp/ce-scaleout-shard-metal-phosphoryl-glycoside-run-start.txt`.
-- Commit/push/sync status: final shard commit/push/sync verification is in
-  progress after rebase onto current `origin/main`; release the lock after the
-  final synced push leaves the worktree clean.
+- Commit/push/sync status: rebased shard commit
+  `51480f9bb66fa83f7475243a0c492db0390cf367` was pushed to `origin/main`;
+  final status-correction commit, sync verification, and lock release are in
+  progress.
 - Validation passed: shard JSON parse, import-ready preview JSON parse, custom
   count/provenance/family/OOS coverage reconciliation, focused pytest for the
   new shard plus redox shard regression, `PYTHONPATH=src python -m
