@@ -91,6 +91,7 @@ from .external_annotation_anchored_import import (
     write_external_annotation_anchored_import,
 )
 from .external_scaleout_bronze_import import write_scaleout_bronze_import
+from .external_cofactor_ec_disambiguation import write_cofactor_ec_disambiguation
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2828,6 +2829,23 @@ def cmd_build_external_scaleout_bronze_import(args: argparse.Namespace) -> int:
         f"expansion registry {c['current_registry_labels']} -> "
         f"{c['projected_registry_labels_if_merged']} if merged; "
         f"held {c['hold_count']}, skipped {c['skip_count']}; "
+        "curated registry NOT written)"
+    )
+    return 0
+
+
+def cmd_build_external_cofactor_ec_disambiguation(args: argparse.Namespace) -> int:
+    audit = write_cofactor_ec_disambiguation(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    c = audit["counts"]
+    print(
+        "Wrote cofactor/EC disambiguation preview to "
+        f"{args.out} ({audit.get('status')}; disambiguated {c['importable_new_labels']} "
+        f"(fingerprints {c['fingerprint_counts']}); expansion registry "
+        f"{c['current_registry_labels']} -> {c['projected_registry_labels_if_merged']} "
+        f"if merged; still held {c['hold_count']}, skipped {c['skip_count']}; "
         "curated registry NOT written)"
     )
     return 0
@@ -22536,6 +22554,32 @@ def build_parser() -> argparse.ArgumentParser:
     )
     scaleout_bronze_import.set_defaults(
         func=cmd_build_external_scaleout_bronze_import
+    )
+
+    cofactor_ec_disambiguation = subparsers.add_parser(
+        "build-external-cofactor-ec-disambiguation",
+        help=(
+            "make a high-precision subset of the held cofactor-confounded redox "
+            "and secondary-probe radical-SAM/cobalamin rows countable by "
+            "corroborating annotated cofactor against reviewed EC class; "
+            "non-destructive preview"
+        ),
+    )
+    cofactor_ec_disambiguation.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_cofactor_ec_disambiguation_preview_current702_20260609.json"
+        ),
+    )
+    cofactor_ec_disambiguation.add_argument(
+        "--report",
+        default=(
+            "work/external_cofactor_ec_disambiguation_preview_current702_20260609.md"
+        ),
+    )
+    cofactor_ec_disambiguation.set_defaults(
+        func=cmd_build_external_cofactor_ec_disambiguation
     )
 
     embedding_sidecar = subparsers.add_parser(

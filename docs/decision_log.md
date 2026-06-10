@@ -3,6 +3,54 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-09: Cofactor/EC Disambiguation Makes Held Redox + Radical-SAM/Cobalamin Countable (2269 -> 2412)
+
+Decision: the held cofactor-confounded redox and secondary-probe
+radical-SAM/cobalamin rows are made countable where — and only where — an annotated
+cofactor and a uniquely matching reviewed reaction/EC class agree. This adds **143
+seed_fingerprint bronze labels**; combined total **702 frozen + 1,710 expansion =
+2,412** (was 2,269). The frozen current702 benchmark is byte-unchanged.
+
+Why this is not a guess (the held lanes' standing guardrail): scope is still decided
+ONLY from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, and **EC is used for the
+scope assignment only — it stays in `excluded_context` and is NEVER a predictive
+feature** (the benchmark scorer never sees it). A row is assigned a fingerprint only
+when exactly one cofactor+EC rule fires; rows that match two fingerprints' rules
+(7) or none (723) stay held. Each rule is the textbook cofactor + EC-class signature
+of one fingerprint:
+
+- `heme_peroxidase_oxidase` — heme + EC 1.11.1 (peroxidase).
+- `flavin_monooxygenase` — flavin (FAD/FMN), no heme + EC 1.14.13/1.14.14.
+- `flavin_dehydrogenase_reductase` — flavin, no heme + EC 1.3 / 1.6 / 1.8.1
+  (hydride/electron transfer, no oxygen insertion).
+- `radical_sam_enzyme` — CX3CX2C motif, or [4Fe-4S] + SAM both annotated.
+- `cobalamin_radical_rearrangement` — adenosylcobalamin/B12 + mutase/eliminase EC
+  (5.4.99 / 5.4.3 / 4.2.1.28/30 / 4.3.1.7).
+
+Recovered (143): 49 heme_peroxidase_oxidase + 41 flavin_monooxygenase + 39
+flavin_dehydrogenase_reductase + 9 radical_sam_enzyme + 7 cobalamin_radical_
+rearrangement. The cofactor/EC evidence overrides the shard's coarse lane bucket
+(e.g. flavin-redox-boundary rows split into monooxygenase vs dehydrogenase by EC;
+"heme peroxidase/oxidase-like" rows that actually carry flavin + a dehydrogenase EC
+are routed to the flavin reductase fingerprint). The two flavin-redox-boundary
+accessions already imported by the scale-out batch are correctly deduped out. With
+this, the expansion registry now represents **7 of the 8 fingerprints** (only
+ser_his_acid_hydrolase remains absent — not present in these pools). Rows lacking
+clean corroboration (Cu/Mo oxidases, dioxygenases, SOD, etc. — outside the eight
+fingerprints, or ambiguous) stay a review queue. Cumulative expansion: 486
+seed_fingerprint (225 metal + 116 PLP + 49 heme + 41 flavin-mono + 39 flavin-DR + 9
+radical-SAM + 7 cobalamin) + 1,224 out_of_scope. Full suite green except the 6 known
+env-backend failures.
+
+References:
+
+- `src/catalytic_earth/external_cofactor_ec_disambiguation.py`,
+  `tests/test_external_cofactor_ec_disambiguation.py`, CLI
+  `build-external-cofactor-ec-disambiguation`.
+- `artifacts/v3_external_cofactor_ec_disambiguation_preview_current702_20260609.json`,
+  `work/external_cofactor_ec_disambiguation_preview_current702_20260609.md`.
+- `data/registries/external_bronze_labels.json` (expansion registry, now 1,710 bronze).
+
 ## 2026-06-09: Scale-Out Drain Of The Annotation-Anchored Engine (888 -> 2269 combined)
 
 Decision: drain the already-materialized import-ready candidate pools through the SAME
