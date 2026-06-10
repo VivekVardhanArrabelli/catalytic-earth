@@ -92,6 +92,7 @@ from .external_annotation_anchored_import import (
 )
 from .external_scaleout_bronze_import import write_scaleout_bronze_import
 from .external_cofactor_ec_disambiguation import write_cofactor_ec_disambiguation
+from .coverage_redundancy_audit import write_coverage_redundancy_audit
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2847,6 +2848,29 @@ def cmd_build_external_cofactor_ec_disambiguation(args: argparse.Namespace) -> i
         f"{c['current_registry_labels']} -> {c['projected_registry_labels_if_merged']} "
         f"if merged; still held {c['hold_count']}, skipped {c['skip_count']}; "
         "curated registry NOT written)"
+    )
+    return 0
+
+
+def cmd_build_coverage_redundancy_audit(args: argparse.Namespace) -> int:
+    audit = write_coverage_redundancy_audit(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        target_floor=args.target_floor,
+        cap_ceiling=args.cap_ceiling,
+        hole_threshold=args.hole_threshold,
+        cluster_min_size=args.cluster_min_size,
+    )
+    t = audit["totals"]
+    ci = audit["class_imbalance"]
+    at = audit["acquisition_targets"]
+    print(
+        "Wrote coverage/redundancy audit to "
+        f"{args.out} ({audit['status']}; {t['combined']} combined = "
+        f"{t['frozen_current702']} frozen + {t['expansion_bronze']} expansion; "
+        f"fingerprint Gini {ci['fingerprint_gini']}; holes {at['holes']}; "
+        f"over-cap {at['over_cap']}; next-batch floor deficit "
+        f"{at['next_batch_floor_deficit_total']}; no registry written)"
     )
     return 0
 
@@ -22580,6 +22604,55 @@ def build_parser() -> argparse.ArgumentParser:
     )
     cofactor_ec_disambiguation.set_defaults(
         func=cmd_build_external_cofactor_ec_disambiguation
+    )
+
+    coverage_redundancy_audit = subparsers.add_parser(
+        "build-coverage-redundancy-audit",
+        help=(
+            "non-destructive, metadata-only coverage + redundancy audit of all "
+            "combined labels (fingerprint x lane x organism x EC-class x "
+            "sequence-length), with class-imbalance flags, near-duplicate "
+            "clusters, and a prioritized balance-capped acquisition target list; "
+            "writes no registry"
+        ),
+    )
+    coverage_redundancy_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_coverage_redundancy_audit_current702_20260610.json"
+        ),
+    )
+    coverage_redundancy_audit.add_argument(
+        "--report",
+        default="work/coverage_redundancy_audit_current702_20260610.md",
+    )
+    coverage_redundancy_audit.add_argument(
+        "--target-floor",
+        type=int,
+        default=100,
+        help="minimum seed-label count every in-scope fingerprint should reach",
+    )
+    coverage_redundancy_audit.add_argument(
+        "--cap-ceiling",
+        type=int,
+        default=250,
+        help="count above which a fingerprint is over-supplied and should be paused",
+    )
+    coverage_redundancy_audit.add_argument(
+        "--hole-threshold",
+        type=int,
+        default=25,
+        help="combined count at or below which a fingerprint is a HOLE priority",
+    )
+    coverage_redundancy_audit.add_argument(
+        "--cluster-min-size",
+        type=int,
+        default=3,
+        help="minimum near-duplicate cluster size to report",
+    )
+    coverage_redundancy_audit.set_defaults(
+        func=cmd_build_coverage_redundancy_audit
     )
 
     embedding_sidecar = subparsers.add_parser(

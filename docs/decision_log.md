@@ -3,6 +3,67 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-10: Coverage/Redundancy Governor — Balance-Capped Acquisition Policy For The Climb
+
+Decision: before scaling expansion *volume* 4x, install a non-destructive
+diversity/coverage governor. The constraint has shifted from "can we accept
+candidates" (solved) to "diverse, non-redundant supply + honest quality." We had
+deduped only on EXACT accession/sequence-SHA; we had never measured near-duplicate
+redundancy or class balance of the 1,710. This entry records the measurement and
+the policy it implies. **No registry was written** — the audit emits a reporting
+artifact only, so the real distribution can be inspected before the next batch is
+fed.
+
+What was built (module `coverage_redundancy_audit.py`, CLI
+`build-coverage-redundancy-audit`; metadata-only — no network/mmseqs/embeddings):
+an audit of all **2,412** combined labels (702 frozen + 1,710 expansion) by
+fingerprint × lane × organism × EC-class × sequence-length, with (a) class-imbalance
+flags, (b) a metadata-only redundancy/saturation read, and (c) a prioritized,
+balance-capped acquisition target list. EC/lane/organism are coverage-accounting
+metadata only and are never emitted as predictive features (the module emits no
+labels at all); the frozen 702 benchmark is read-only.
+
+Headline findings:
+
+- **Class balance is skewed.** Seed positives 716 vs out_of_scope 1,696
+  (positive:OOS = 0.42); fingerprint Gini 0.51 / normalized entropy 0.78; the
+  largest fingerprint (metal_dependent_hydrolase, 308) outweighs the smallest
+  non-zero (radical_sam / cobalamin, 10 each) **30.8×**.
+- **Holes (sharpest priority):** `ser_his_acid_hydrolase` (42 frozen, **0 in
+  expansion** — still the one fingerprint the expansion never reaches),
+  `radical_sam_enzyme` (10), `cobalamin_radical_rearrangement` (10). Under the
+  100-label floor too: `flavin_monooxygenase` (43), `heme_peroxidase_oxidase` (69),
+  `flavin_dehydrogenase_reductase` (87).
+- **Over-cap:** `metal_dependent_hydrolase` (308, 58 over the 250 ceiling) — and it
+  is the *most redundant* (2.96 labels per distinct reaction). `plp_dependent_enzyme`
+  (147) is the only BALANCED in-scope fingerprint.
+- **Redundancy is real but bounded:** 254 of 1,558 metadata-measurable rows (16.3%)
+  fall in near-duplicate ortholog clusters keyed on
+  `(fingerprint/scope, full-EC, organism, sequence-length bin)`. The biggest are
+  OOS human kinases (EC 2.7.11.1) and Arabidopsis heme peroxidases (EC 1.11.1.7) —
+  i.e. the broad OOS lanes (kinase/phosphatase/glycoside) are saturated.
+
+Policy for the rest of the climb (drives more-sourcing OR a self-feeding model
+loop): **close holes first, raise under-floor fingerprints to the 100 floor
+(next-batch positive deficit ≈ 339), cap/pause + dedup the over-supplied
+metal-hydrolase, and pause broad OOS draining until positive holes close** — the
+binding constraint is diverse positive supply, not raw count. Per-fingerprint
+sourcing hints (EC prefixes + cofactor + lanes, mirroring the 2026-06-09
+disambiguation rules) are emitted for the three holes (notably ser_his: EC
+3.4.21/3.1.1/3.5.1, Ser/Cys-His-Asp triad, no cofactor — which the cofactor-anchored
+engine structurally cannot source, so it needs a triad-geometry route).
+
+The floor/cap (100/250) and hole threshold (25) are explicit, overridable policy
+params, not tuned constants. Full suite green except the 6 known env-backend
+failures.
+
+References:
+
+- `src/catalytic_earth/coverage_redundancy_audit.py`,
+  `tests/test_coverage_redundancy_audit.py`, CLI `build-coverage-redundancy-audit`.
+- `artifacts/v3_coverage_redundancy_audit_current702_20260610.json`,
+  `work/coverage_redundancy_audit_current702_20260610.md`.
+
 ## 2026-06-09: Cofactor/EC Disambiguation Makes Held Redox + Radical-SAM/Cobalamin Countable (2269 -> 2412)
 
 Decision: the held cofactor-confounded redox and secondary-probe
