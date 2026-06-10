@@ -3,6 +3,46 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-10: CORRECTION — Promotion Confirmability Is Cofactor PRESENCE, Not Experimental-vs-Predicted Provenance
+
+Decision: correct the bronze->silver promotion preview's structure-confirmability
+signal. The first version equated `coordinate_status ==
+experimental_pdb_coordinate_provenance_available` with "holo / geometry
+confirmation runnable" and reported **47 silver-ready**. That ignored the standing
+Problem-2 degradation finding (already in this log): the deferred geometry
+inverse-gate **abstains on apo coordinates** because the cofactor is missing
+(predicted-apo: router 45/45 -> 23/45, 100% abstain), and the binding axis is
+therefore **cofactor PRESENCE in the coordinates, not experimental-vs-predicted
+provenance** — an experimental PDB can be apo too.
+
+Empirical check that forced the correction: of the 104 coordinate-bearing seed
+labels, **only 1 actually contains its annotated cofactor in the coordinates**
+(Q8IV48 / MG); the other 103 are apo — including 51/52 of the "experimental" rows.
+So the original 47 "silver-ready" were overwhelmingly apo structures the gate would
+abstain on — the exact degradation the repo documented.
+
+Fix: `structure_confirmability` now parses the coordinates and checks whether the
+annotated cofactor's PDB HETATM comp id is present. `holo` = cofactor present (gate
+meetable); `apo` = coordinates exist but cofactor absent (gate abstains; covers
+experimental-apo AND predicted-apo — unified, as the degradation requires); `none`
+= no coordinates. Corrected result on the 486 seed labels: **silver-ready 0**
+(the one holo row, Q8IV48, has chemistry that disagrees with its label -> review),
+blocked_apo_needs_cofactor_fusion 97 (was 50), blocked_pending_structure 295,
+hold_low_chemistry_cohesion 67, review_chemistry_disagrees 27. The honest takeaway:
+bronze->silver promotion is currently gated by apo cofactor-loss across the whole
+coordinate-bearing set — which is exactly why the project deferred geometry
+confirmation and adopted bronze tier; the lever is **cofactor fusion/restoration**
+(restoration recovers 22/22 lost primaries, per the 2026-06-04 entry), not waiting
+for more predicted structures. Non-destructive; full suite green except the 6 known
+env-backend failures.
+
+References:
+
+- `src/catalytic_earth/bronze_silver_promotion_preview.py` (cofactor-presence
+  confirmability), `tests/test_bronze_silver_promotion_preview.py`.
+- `artifacts/v3_bronze_silver_promotion_preview_current702_20260610.json`,
+  `work/bronze_silver_promotion_preview_current702_20260610.md`.
+
 ## 2026-06-10: Bronze->Silver Promotion Preview — The Queue, Not A Faked Confirmation
 
 Decision: turn the representation loop's promotion triage into an explicit,
