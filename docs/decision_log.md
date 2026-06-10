@@ -3,6 +3,64 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-10: Mechanism Representation Loop — Leakage-Safe Self-Feeding Supply (Phase 3 start)
+
+Decision: begin the self-feeding loop that eventually replaces hand-sourcing (the
+hand pools are drained). We have been banking rich review-only `mechanism_evidence`
+on every bronze label for exactly this. The first iteration learns a representation
+that organises the bronze labels, triages bronze->silver promotion, and proposes
+hole-filling candidates from our own out_of_scope pile — all WITHOUT network.
+
+THE LEAKAGE WALL IS ABSOLUTE AND TEST-ENFORCED. The representation is built ONLY
+from review-only **structural/chemical** evidence — cofactor + binding-ligand
+chemical identities (ChEBI names) and active-site residue role counts. It never
+reads `ec_numbers`, protein name / prose / curated text, `target_family_lane`, the
+`fingerprint_id`/`label_type` target, or the frozen 702 benchmark. A unit test
+mutates EC + protein-name + lane + fingerprint and asserts `featurize` is
+byte-identical, proving none of them enter the representation. Cofactor/ligand
+chemical identity is the legitimate deploy-available structural basis the eight
+fingerprints are *defined* by — distinct from the excluded name/prose/EC fields.
+This loop is for the expansion's self-organisation and promotion triage ONLY; it is
+**never** a benchmark scorer and must not be used as one.
+
+Feature space (12 dims): 9 cofactor classes (flavin, plp, heme, iron_sulfur, sam,
+cobalamin, zinc, divalent_metal_other, calcium) dominating, plus 3 down-weighted
+residue-role ratios (catalytic/binding fraction, log-scaled active-site size).
+
+Results on the 486 expansion seed labels:
+
+- **Leave-one-out self-consistency 0.895** — chemistry alone (no EC/name/label)
+  recovers the assigned fingerprint 89.5% of the time, each row scored against
+  centroids that exclude it. This is an honest coherence/QA read (the centroids
+  encode the cofactor-corroboration assignment policy, so it measures internal
+  coherence, not independent validation).
+- **368 promotion candidates** (cohesion >= 0.92 with the assigned fingerprint) —
+  bronze->silver promotion-ready pending the actual geometry gate.
+- **51 review outliers** — rows whose chemistry points at a *different* fingerprint
+  than their label (possible mislabels / genuinely ambiguous); the highest-value
+  QA targets.
+- **Hole proposals from out_of_scope:** 14 radical_sam_enzyme candidates, each
+  sharing genuine `sam` or `iron_sulfur` chemistry with the radical-SAM centroid —
+  model-proposed re-review candidates to help close that hole, network-free.
+  cobalamin: 0 (no OOS cofactor overlap); ser_his: 0 (no expansion centroid — the
+  known hole). Proposals REQUIRE non-empty cofactor-chemistry overlap with the
+  target (a cofactor-less row is never proposed for a cofactor-defined
+  fingerprint) AND the target must be the candidate's nearest centroid.
+
+How it composes with the climb: the representation triages what the engine already
+imported (promotion vs review) and proposes what to source/predict next for the
+holes, feeding Phase 1; the novelty gate then governs admission of whatever is
+sourced. Non-destructive: writes no registry, emits no label, never touches the
+benchmark. Full suite green except the 6 known env-backend failures.
+
+References:
+
+- `src/catalytic_earth/mechanism_representation_loop.py`,
+  `tests/test_mechanism_representation_loop.py`, CLI
+  `build-mechanism-representation-loop`.
+- `artifacts/v3_mechanism_representation_loop_current702_20260610.json`,
+  `work/mechanism_representation_loop_current702_20260610.md`.
+
 ## 2026-06-10: Novelty / Saturation Admission Gate — The Governor Becomes An Online Filter
 
 Decision: promote the 2026-06-10 governor from a *report* into the *gate* it

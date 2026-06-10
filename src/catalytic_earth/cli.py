@@ -95,6 +95,7 @@ from .external_cofactor_ec_disambiguation import write_cofactor_ec_disambiguatio
 from .coverage_redundancy_audit import write_coverage_redundancy_audit
 from .ser_his_triad_locator import write_ser_his_triad_locator_scan
 from .novelty_admission_gate import write_novelty_admission_gate_audit
+from .mechanism_representation_loop import write_mechanism_representation_loop
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2914,6 +2915,24 @@ def cmd_build_novelty_admission_gate_audit(args: argparse.Namespace) -> int:
         f"rows; decisions {sa['decision_counts']}; would-not-readmit "
         f"{sa['would_not_readmit']} ({sa['would_not_readmit_fraction']}); "
         "no registry written)"
+    )
+    return 0
+
+
+def cmd_build_mechanism_representation_loop(args: argparse.Namespace) -> int:
+    audit = write_mechanism_representation_loop(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        cohesion_threshold=args.cohesion_threshold,
+        proposal_top_k=args.proposal_top_k,
+    )
+    tri = audit["promotion_triage"]
+    print(
+        "Wrote mechanism representation loop to "
+        f"{args.out} ({audit['status']}; {audit['seed_labels']} seed labels; "
+        f"LOO self-consistency {tri['leave_one_out_self_consistency']}; "
+        f"promotion candidates {tri['promotion_candidates']}; review outliers "
+        f"{tri['review_outliers']}; leakage-safe, no registry written)"
     )
     return 0
 
@@ -22767,6 +22786,34 @@ def build_parser() -> argparse.ArgumentParser:
     )
     novelty_admission_gate.set_defaults(
         func=cmd_build_novelty_admission_gate_audit
+    )
+
+    mechanism_representation_loop = subparsers.add_parser(
+        "build-mechanism-representation-loop",
+        help=(
+            "leakage-safe self-feeding representation learned ONLY from review-only "
+            "cofactor/ligand chemistry + active-site residue roles: triages "
+            "bronze->silver promotion and proposes candidates for the governor's "
+            "holes; never reads EC/name/prose/lane/fingerprint or the frozen "
+            "benchmark; writes no registry"
+        ),
+    )
+    mechanism_representation_loop.add_argument(
+        "--out",
+        default="artifacts/v3_mechanism_representation_loop_current702_20260610.json",
+    )
+    mechanism_representation_loop.add_argument(
+        "--report",
+        default="work/mechanism_representation_loop_current702_20260610.md",
+    )
+    mechanism_representation_loop.add_argument(
+        "--cohesion-threshold", type=float, default=0.92,
+    )
+    mechanism_representation_loop.add_argument(
+        "--proposal-top-k", type=int, default=25,
+    )
+    mechanism_representation_loop.set_defaults(
+        func=cmd_build_mechanism_representation_loop
     )
 
     embedding_sidecar = subparsers.add_parser(
