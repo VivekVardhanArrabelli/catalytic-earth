@@ -1,0 +1,466 @@
+{
+  "artifact_id": "v3_targeted_expansion_defense_ledger_current702_20260610",
+  "artifact_sha256": "59b1ebd9cd7c83f64c25393e883d221bd11f7dfe1bd731b896756062a1a663d7",
+  "branch_provenance": [
+    {
+      "commit": "ea907953cd309e2759500f25d75f94510bbb0efd",
+      "committed_at": "2026-06-10T08:47:17-05:00",
+      "git_ref": "HEAD",
+      "subject": "Correct promotion confirmability: cofactor PRESENCE, not provenance (#14)"
+    },
+    {
+      "commit": "ea907953cd309e2759500f25d75f94510bbb0efd",
+      "committed_at": "2026-06-10T08:47:17-05:00",
+      "git_ref": "origin/main",
+      "subject": "Correct promotion confirmability: cofactor PRESENCE, not provenance (#14)"
+    }
+  ],
+  "count_table": {
+    "batch_approval_packet": {
+      "blocked_mechanical_gate_counts": {
+        "coordinate_materialization_hash_or_path_reconciliation": 5179,
+        "current702_duplicate_reconciliation_or_reject": 203,
+        "current702_structural_duplicate_screen": 1,
+        "external_duplicate_reconciliation_or_reject": 1269,
+        "preserve_out_of_scope_or_hard_negative_signal": 1562,
+        "preview_sequence_duplicate_reconciliation": 6,
+        "source_free_locator_sidecar_materialization_or_linkage_repair": 1096,
+        "source_retrieval_or_materialization_hard_blocker_clearance": 2904
+      },
+      "blocked_rows_remaining": 12220,
+      "mechanical_nonproduction_reconciliation_audit": {
+        "coordinate_hash_present_but_coordinate_path_unmaterialized_rows": 4,
+        "count_normalization_reconciles": true,
+        "duplicate_status_reconciled_to_terminal_conflict_rows": 1478,
+        "locator_sidecar_linked_but_coordinate_missing_rows": 4931,
+        "locator_sidecar_linked_repair_surface_rows": 4931,
+        "terminal_state_normalization_total_rows": 12495
+      },
+      "rows_can_become_countable_after_one_batch_approval": 275
+    },
+    "current_label_surface": {
+      "countable_labels": 702,
+      "source": "previous defense ledger/current702 frozen benchmark references"
+    },
+    "post_batch_projection": {
+      "baseline_current702_countable_labels": 702,
+      "if_one_batch_approval_accepts_ready_rows": 977,
+      "remaining_to_10000_after_that_batch": 9023
+    },
+    "wave2_import_review_preflight": {
+      "preview_rows": 600,
+      "repair_surface_rows": 11895,
+      "review_surface_rows": 12495,
+      "terminal_state_counts": {
+        "controlled_import_review_ready": 275,
+        "duplicate_current702_conflict": 203,
+        "duplicate_external_conflict": 1275,
+        "hard_blocked_with_next_action": 2904,
+        "needs_family_policy_review": 0,
+        "needs_structural_duplicate_screen": 1,
+        "reject/OOS_preserve_signal": 1562,
+        "repairable_coordinate_blocker": 5179,
+        "repairable_locator_blocker": 1096
+      }
+    }
+  },
+  "created_utc": "2026-06-10T14:34:17Z",
+  "current_main_commit_used": "ea907953cd309e2759500f25d75f94510bbb0efd",
+  "expansion_thesis": [
+    "The 10k path should expand along mechanism, fold, cofactor, and near-orphan/OOS axes that previous experiments identified as brittle, not by random label accumulation.",
+    "Predicted geometry reconstruction showed that deploy-time missing active-site context, especially cofactors, can dominate errors; therefore redox, PLP, radical-SAM/cobalamin, and metal/cofactor lanes are first-class expansion axes.",
+    "Fold/cofactor confounding and decoder-choice artifacts require family-specific review lanes, structural duplicate checks, and source-free active-site locators before any countable import.",
+    "Near-orphan and no-reliable-structure bins are atlas-coverage needs, but they remain review/repair queues until coordinates and locators are source-free and explicit.",
+    "The latest Wave 2 materialization/preflight surface contains 12,495 unique candidate rows: 600 preview rows and 11,895 repair-surface rows.",
+    "The import-review preflight classifies 275 rows as controlled import-review ready, with all remaining rows routed to explicit duplicate, locator, coordinate, OOS, structural-screen, or hard-blocker gates.",
+    "The selected families remain targeted because they map to prior failure modes: cofactor loss, fold/cofactor confounding, source-free locator gaps, near-orphan coverage, and external Swiss-Prot/AFDB/Rhea scalability."
+  ],
+  "family_lane_rationale": [
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 9,
+          "coordinate_ready_pending_locator": 3,
+          "import_ready_preview": 15,
+          "locator_ready_candidate": 91,
+          "provisional_external_countable_preflight_candidate": 13,
+          "repairable_locator_blocker": 1
+        },
+        "factory_axis_rows": 394,
+        "scaleout_shard_rows": 411
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 110,
+        "matching_lanes": [
+          "metal hydrolase",
+          "metal hydrolase Mg/Mn controls",
+          "metal hydrolase amidase/peptidase boundary"
+        ],
+        "review_surface_rows": 1610,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 110,
+          "duplicate_current702_conflict": 13,
+          "duplicate_external_conflict": 16,
+          "hard_blocked_with_next_action": 581,
+          "repairable_coordinate_blocker": 828,
+          "repairable_locator_blocker": 62
+        }
+      },
+      "failure_mode_or_atlas_need": "Separates true metal-dependent hydrolase mechanisms from fold-neighbor and current702 duplicate signals; preserves locator-ready rows that still need Rhea/family review.",
+      "family_or_lane": "metal_hydrolase",
+      "included_because": "Metal coordination and hydrolase-like folds are a known cofactor/fold confounding axis; the atlas needs subclass breadth and hard duplicate screens rather than one broad metal bucket.",
+      "supporting_artifacts": [
+        "artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json",
+        "artifacts/v3_scaleout_metal_hydrolase_shard_current702_20260608.json",
+        "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json",
+        "artifacts/v3_cofactor_presence_calibration_current702_20260604.json"
+      ]
+    },
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 5,
+          "coordinate_ready_pending_locator": 4,
+          "import_ready_preview": 64,
+          "locator_ready_candidate": 29,
+          "locator_repair_candidate": 5,
+          "provisional_external_countable_preflight_candidate": 21,
+          "repairable_locator_blocker": 1
+        },
+        "factory_axis_rows": 173,
+        "scaleout_shard_rows": 370
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 47,
+        "matching_lanes": [
+          "redox oxygen/sulfur"
+        ],
+        "review_surface_rows": 810,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 47,
+          "duplicate_current702_conflict": 15,
+          "duplicate_external_conflict": 28,
+          "hard_blocked_with_next_action": 254,
+          "repairable_coordinate_blocker": 372,
+          "repairable_locator_blocker": 94
+        }
+      },
+      "failure_mode_or_atlas_need": "Prevents flavin/heme/sulfur-lipoamide rows from becoming random sequence/fold positives; expands redox boundaries with explicit source provenance and no mechanism text as features.",
+      "family_or_lane": "redox oxygen/sulfur",
+      "included_because": "Predicted geometry failure analysis showed missing cofactor context can dominate deployment loss; oxygen/sulfur redox lanes are the clearest place to test cofactor reconstruction and electron-flow guardrails.",
+      "supporting_artifacts": [
+        "artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json",
+        "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json",
+        "artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json",
+        "origin/ce-external-bulk-pagination-scaleout-20260609:artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json"
+      ]
+    },
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 2,
+          "import_ready_preview": 72,
+          "locator_ready_candidate": 5,
+          "provisional_external_countable_preflight_candidate": 3,
+          "repairable_locator_blocker": 20
+        },
+        "factory_axis_rows": 56,
+        "scaleout_shard_rows": 442
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 6,
+        "matching_lanes": [
+          "PLP children"
+        ],
+        "review_surface_rows": 102,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 6,
+          "duplicate_current702_conflict": 2,
+          "duplicate_external_conflict": 3,
+          "repairable_coordinate_blocker": 2,
+          "repairable_locator_blocker": 89
+        }
+      },
+      "failure_mode_or_atlas_need": "Defends against parent-family collapse, single-locator rows, and ambiguous residue mappings before any import-ready claim.",
+      "family_or_lane": "PLP children",
+      "included_because": "PLP mechanism children are useful only if the ledger keeps child mechanisms separate from broad PLP family evidence and locator gaps.",
+      "supporting_artifacts": [
+        "artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json",
+        "artifacts/v3_scaleout_plp_children_shard_current702_20260608.json",
+        "origin/ce-external-materialization-admission-batch-20260608:artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
+      ]
+    },
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 3,
+          "coordinate_ready_pending_locator": 7,
+          "coordinate_repair_candidate": 3,
+          "import_ready_preview": 50,
+          "locator_ready_candidate": 30,
+          "provisional_external_countable_preflight_candidate": 1,
+          "repairable_locator_blocker": 5
+        },
+        "factory_axis_rows": 22,
+        "scaleout_shard_rows": 735
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 27,
+        "matching_lanes": [
+          "radical SAM",
+          "radical-SAM/cobalamin"
+        ],
+        "review_surface_rows": 121,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 27,
+          "duplicate_current702_conflict": 2,
+          "duplicate_external_conflict": 6,
+          "repairable_coordinate_blocker": 27,
+          "repairable_locator_blocker": 59
+        }
+      },
+      "failure_mode_or_atlas_need": "Adds hard cofactor-locus diversity while preserving coordinate-repair and duplicate blockers.",
+      "family_or_lane": "radical-SAM/cobalamin",
+      "included_because": "Radical-SAM and cobalamin were secondary/OOD probes and cofactor-locus sidecars; they stress active-site cofactor evidence, not just fold similarity.",
+      "supporting_artifacts": [
+        "artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_current702_20260601.json",
+        "artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_current702_20260601.json",
+        "artifacts/v3_scaleout_radical_sam_cobalamin_shard_current702_20260608.json",
+        "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+      ]
+    },
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 6,
+          "coordinate_ready_pending_locator": 32,
+          "import_ready_preview": 43,
+          "locator_ready_candidate": 22,
+          "provisional_external_countable_preflight_candidate": 20,
+          "repairable_locator_blocker": 6
+        },
+        "factory_axis_rows": 80,
+        "scaleout_shard_rows": 835
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 39,
+        "matching_lanes": [
+          "glycoside/nucleoside"
+        ],
+        "review_surface_rows": 554,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 39,
+          "duplicate_current702_conflict": 15,
+          "duplicate_external_conflict": 48,
+          "hard_blocked_with_next_action": 111,
+          "repairable_coordinate_blocker": 205,
+          "repairable_locator_blocker": 136
+        }
+      },
+      "failure_mode_or_atlas_need": "Separates hard-negative/OOS preserve signals from plausible hydrolase labels and flags active-site locator gaps before review.",
+      "family_or_lane": "glycoside/nucleoside",
+      "included_because": "This lane supplies hydrolase controls, carbohydrate/nucleoside boundary rows, and source-free locator pressure from prior external glycoside panels.",
+      "supporting_artifacts": [
+        "artifacts/v3_scaleout_glycoside_nucleoside_shard_current702_20260608.json",
+        "artifacts/v3_scaleout_locator_coordinate_repair_current702_20260608.json",
+        "artifacts/v3_family_panel_source_free_locator_external_glycoside_block_decision_current702_20260603.json"
+      ]
+    },
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 3,
+          "coordinate_ready_pending_locator": 6,
+          "import_ready_preview": 88,
+          "locator_ready_candidate": 4,
+          "locator_repair_candidate": 1,
+          "provisional_external_countable_preflight_candidate": 7,
+          "repairable_locator_blocker": 4
+        },
+        "factory_axis_rows": 25,
+        "scaleout_shard_rows": 1281
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 8,
+        "matching_lanes": [
+          "nucleotide phosphoryl-transfer boundary",
+          "phosphoryl transfer",
+          "phosphoryl transfer kinase-like",
+          "phosphoryl transfer/phosphatase"
+        ],
+        "review_surface_rows": 1064,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 8,
+          "duplicate_current702_conflict": 18,
+          "duplicate_external_conflict": 35,
+          "hard_blocked_with_next_action": 154,
+          "repairable_coordinate_blocker": 674,
+          "repairable_locator_blocker": 175
+        }
+      },
+      "failure_mode_or_atlas_need": "Keeps kinase-like, phosphatase, and transfer boundary rows review-gated; import-ready previews remain subject to structural duplicate and label-factory review.",
+      "family_or_lane": "phosphoryl transfer",
+      "included_because": "Earlier ePK and ATP/substrate-role work showed phosphorylation-like rows are especially vulnerable to ligand/protein-substrate confounding.",
+      "supporting_artifacts": [
+        "work/scope.md",
+        "artifacts/v3_scaleout_phosphoryl_transfer_shard_current702_20260608.json",
+        "origin/ce-external-materialization-admission-batch-20260608:artifacts/v3_external_materialization_admission_batch_current702_20260608.json"
+      ]
+    },
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 4,
+          "coordinate_ready_pending_locator": 67,
+          "hard_blocked_with_next_action": 2,
+          "import_ready_preview": 1,
+          "locator_ready_candidate": 39,
+          "locator_repair_candidate": 2
+        },
+        "factory_near_orphan_rows": 43,
+        "factory_no_reliable_structure_rows": 23,
+        "scaleout_shard_rows": 746
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 27,
+        "matching_lanes": [
+          "near-orphan/no-reliable-structure"
+        ],
+        "review_surface_rows": 350,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 27,
+          "duplicate_external_conflict": 4,
+          "hard_blocked_with_next_action": 162,
+          "repairable_coordinate_blocker": 34,
+          "repairable_locator_blocker": 123
+        }
+      },
+      "failure_mode_or_atlas_need": "Creates bins for underrepresented mechanisms without treating low-evidence rows as countable labels; requires coordinate/locator repair before review.",
+      "family_or_lane": "near-orphan/no-reliable-structure",
+      "included_because": "Near-orphan and no-reliable-structure rows are the explicit atlas-growth lane for mechanisms not well represented in current702.",
+      "supporting_artifacts": [
+        "artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json",
+        "artifacts/v3_near_orphan_geometry_support_review_packet_702_20260526.json",
+        "artifacts/v3_scaleout_near_orphan_tail_shard_current702_20260608.json"
+      ]
+    },
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "locator_ready_candidate": 1,
+          "provisional_external_countable_preflight_candidate": 11
+        }
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 0,
+        "matching_lanes": [
+          "adjacent high-yield amidase/deaminase"
+        ],
+        "review_surface_rows": 12,
+        "terminal_state_counts": {
+          "repairable_coordinate_blocker": 12
+        }
+      },
+      "failure_mode_or_atlas_need": "Useful for volume toward 10k, but remains provisional until family review and duplicate gates prove these are meaningful mechanism additions.",
+      "family_or_lane": "adjacent high-yield amidase/deaminase",
+      "included_because": "The pagination scaleout added high-yield adjacent external lanes to test whether the Swiss-Prot/AFDB/Rhea pattern can broaden without becoming random.",
+      "supporting_artifacts": [
+        "origin/ce-external-bulk-pagination-scaleout-20260609:artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+        "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+      ]
+    },
+    {
+      "current_counts": {
+        "external_scaleout_lane_counts": {
+          "blocked_duplicate_or_current_registry_conflict": 1,
+          "coordinate_ready_pending_locator": 1,
+          "provisional_external_countable_preflight_candidate": 12
+        }
+      },
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 10,
+        "matching_lanes": [
+          "adjacent high-yield lyase/isomerase"
+        ],
+        "review_surface_rows": 14,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 10,
+          "duplicate_current702_conflict": 1,
+          "repairable_coordinate_blocker": 2,
+          "repairable_locator_blocker": 1
+        }
+      },
+      "failure_mode_or_atlas_need": "Candidate volume lane for 10k, not a count claim; needs family/lane review and structural duplicate screening.",
+      "family_or_lane": "adjacent high-yield lyase/isomerase",
+      "included_because": "This external-only lane tests adjacent mechanism space while keeping exact current702 conflicts and coordinate/locator blockers visible.",
+      "supporting_artifacts": [
+        "origin/ce-external-bulk-pagination-scaleout-20260609:artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+        "origin/ce-external-admission-qa-merger-20260609:artifacts/v3_external_admission_merged_surface_current702_20260609.json"
+      ]
+    },
+    {
+      "current_wave2_import_review_counts": {
+        "controlled_import_review_ready": 1,
+        "matching_lanes": [
+          "glycoside hydrolase"
+        ],
+        "review_surface_rows": 179,
+        "terminal_state_counts": {
+          "controlled_import_review_ready": 1,
+          "duplicate_current702_conflict": 1,
+          "duplicate_external_conflict": 3,
+          "hard_blocked_with_next_action": 1,
+          "repairable_coordinate_blocker": 159,
+          "repairable_locator_blocker": 14
+        }
+      },
+      "failure_mode_or_atlas_need": "Retain as a targeted import-review lane so batch approval does not collapse distinct mechanisms into a random external pool.",
+      "family_or_lane": "glycoside hydrolase",
+      "included_because": "Wave 2 preflight found machine-clean, source-provenanced rows in this lane after duplicate, locator, and coordinate checks.",
+      "supporting_artifacts": [
+        "v3_external_import_review_preflight_current702_20260610",
+        "v3_external_batch_import_approval_packet_current702_20260610"
+      ]
+    }
+  ],
+  "guardrails": {
+    "final_import_files_edited": false,
+    "heldout_splits_edited": false,
+    "label_import_performed": false,
+    "model_weights_edited": false,
+    "ontology_edited": false,
+    "preview_not_import": true,
+    "production_registry_edited": false,
+    "production_thresholds_edited": false,
+    "source_free_coordinate_locator_requirements_preserved": true
+  },
+  "review_narrative": {
+    "honest_claims_for_review": [
+      "Current main has a full Wave 2 materialization/preflight surface of 12,495 unique external candidates.",
+      "275 rows are machine-clean for one controlled batch approval; they are not imported by this artifact.",
+      "The selected lanes are targeted by prior mechanism failure modes and by lane-specific duplicate/locator/coordinate gates, not random sampling."
+    ],
+    "still_preview_or_provisional": [
+      "Production import still requires an explicit controlled batch approval, label-factory gate, and registry-change authorization.",
+      "12220 rows remain blocked behind concrete mechanical or policy gates.",
+      "Exact coordinate/structure-ID screening is not a full Foldseek/TM structural duplicate screen."
+    ]
+  },
+  "schema_version": "v3.targeted_expansion_defense_ledger",
+  "scope": "Review-ready defense ledger refreshed after Wave 2 import-review preflight; explains targeted family choice and label-closure state without performing imports.",
+  "source_artifacts": {
+    "approval_packet_artifact_id": "v3_external_batch_import_approval_packet_current702_20260610",
+    "approval_packet_artifact_sha256": "48aaf456ba245dfa642b8a6b428796c9b5b6297cabdc4dd7e98d57d92b74a274",
+    "preflight_artifact_id": "v3_external_import_review_preflight_current702_20260610",
+    "preflight_artifact_sha256": "4075c6b9971a8c9d5f28b767aa063ea5ae29477f97d3328691fe4a3532a6511a",
+    "previous_defense_ledger_artifact_id": "v3_targeted_expansion_defense_ledger_current702_20260609"
+  },
+  "validation_checks": {
+    "approval_packet_validation_passed": true,
+    "batch_ready_count_matches_preflight": true,
+    "family_rationale_present": true,
+    "passed": true,
+    "preflight_validation_passed": true,
+    "terminal_counts_reconcile": true
+  }
+}

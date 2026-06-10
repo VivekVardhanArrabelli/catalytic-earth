@@ -18,6 +18,12 @@ READY_PREVIEW_ARTIFACT_ID = (
 REPAIR_QUEUE_ARTIFACT_ID = (
     f"v3_external_import_review_repair_queue_current702_{RUN_DATE}"
 )
+BATCH_APPROVAL_PACKET_ARTIFACT_ID = (
+    f"v3_external_batch_import_approval_packet_current702_{RUN_DATE}"
+)
+TARGETED_EXPANSION_DEFENSE_LEDGER_ARTIFACT_ID = (
+    f"v3_targeted_expansion_defense_ledger_current702_{RUN_DATE}"
+)
 SCHEMA_VERSION = "v3.external_import_review_preflight"
 
 DEFAULT_PREVIEW_SOURCE = Path(
@@ -46,6 +52,21 @@ DEFAULT_REPAIR_QUEUE_PATH = Path(
 DEFAULT_REPORT_PATH = Path(
     f"work/external_import_review_preflight_current702_{RUN_DATE}.md"
 )
+DEFAULT_BATCH_APPROVAL_PACKET_PATH = Path(
+    f"artifacts/v3_external_batch_import_approval_packet_current702_{RUN_DATE}.json"
+)
+DEFAULT_BATCH_APPROVAL_REPORT_PATH = Path(
+    f"work/external_batch_import_approval_packet_current702_{RUN_DATE}.md"
+)
+DEFAULT_DEFENSE_LEDGER_PATH = Path(
+    f"artifacts/v3_targeted_expansion_defense_ledger_current702_{RUN_DATE}.json"
+)
+DEFAULT_DEFENSE_LEDGER_REPORT_PATH = Path(
+    f"work/targeted_expansion_defense_ledger_current702_{RUN_DATE}.md"
+)
+DEFAULT_PREVIOUS_DEFENSE_LEDGER_PATH = Path(
+    "artifacts/v3_targeted_expansion_defense_ledger_current702_20260609.json"
+)
 
 TERMINAL_STATES = (
     "controlled_import_review_ready",
@@ -73,6 +94,42 @@ def _canonical_sha256(payload: Any) -> str:
     return hashlib.sha256(
         json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
+
+
+def _artifact_date(artifact_date: str | None) -> str:
+    return artifact_date or RUN_DATE
+
+
+def _preflight_artifact_id(artifact_date: str | None) -> str:
+    return f"v3_external_import_review_preflight_current702_{_artifact_date(artifact_date)}"
+
+
+def _ready_preview_artifact_id(artifact_date: str | None) -> str:
+    return (
+        "v3_external_import_review_ready_preview_current702_"
+        f"{_artifact_date(artifact_date)}"
+    )
+
+
+def _repair_queue_artifact_id(artifact_date: str | None) -> str:
+    return (
+        "v3_external_import_review_repair_queue_current702_"
+        f"{_artifact_date(artifact_date)}"
+    )
+
+
+def _batch_approval_artifact_id(artifact_date: str | None) -> str:
+    return (
+        "v3_external_batch_import_approval_packet_current702_"
+        f"{_artifact_date(artifact_date)}"
+    )
+
+
+def _defense_ledger_artifact_id(artifact_date: str | None) -> str:
+    return (
+        "v3_targeted_expansion_defense_ledger_current702_"
+        f"{_artifact_date(artifact_date)}"
+    )
 
 
 def _sha256_bytes(payload: bytes) -> str:
@@ -391,8 +448,10 @@ def build_external_import_review_preflight(
     expected_repair_count: int | None = 11895,
     expected_review_surface_count: int | None = 12495,
     created_utc: str | None = None,
+    artifact_date: str | None = None,
 ) -> dict[str, Any]:
     created_utc = created_utc or _utc_now_iso()
+    artifact_id = _preflight_artifact_id(artifact_date)
     preview, preview_record = _read_source(preview_source)
     materialization, materialization_record = _read_source(materialization_source)
     if merged_surface_source is None:
@@ -843,7 +902,7 @@ def build_external_import_review_preflight(
         validation_checks["passed"] = False
 
     artifact = {
-        "artifact_id": ARTIFACT_ID,
+        "artifact_id": artifact_id,
         "schema_version": SCHEMA_VERSION,
         "created_utc": created_utc,
         "scope": (
@@ -994,6 +1053,7 @@ def build_external_import_review_ready_preview(
     preflight: dict[str, Any],
     *,
     created_utc: str | None = None,
+    artifact_date: str | None = None,
 ) -> dict[str, Any]:
     rows = [
         {
@@ -1007,6 +1067,9 @@ def build_external_import_review_ready_preview(
             "locator_sidecar_path": row.get("locator_sidecar_path"),
             "coordinate_hash_sha256": row.get("coordinate_hash_sha256"),
             "source_hashes": row.get("source_hashes"),
+            "source_provenance": row.get("source_provenance"),
+            "source_occurrences": row.get("source_occurrences"),
+            "source_artifacts_consumed": row.get("source_artifacts_consumed"),
             "ready_for_controlled_import_review": True,
             "ready_for_production_label_import": False,
             "remaining_required_before_import": [
@@ -1019,7 +1082,7 @@ def build_external_import_review_ready_preview(
         if row.get("terminal_state") == "controlled_import_review_ready"
     ]
     return {
-        "artifact_id": READY_PREVIEW_ARTIFACT_ID,
+        "artifact_id": _ready_preview_artifact_id(artifact_date),
         "schema_version": "v3.external_import_review_ready_preview",
         "created_utc": created_utc or preflight.get("created_utc") or _utc_now_iso(),
         "candidate_count": len(rows),
@@ -1039,6 +1102,7 @@ def build_external_import_review_repair_queue(
     preflight: dict[str, Any],
     *,
     created_utc: str | None = None,
+    artifact_date: str | None = None,
 ) -> dict[str, Any]:
     rows = [
         {
@@ -1059,7 +1123,7 @@ def build_external_import_review_repair_queue(
         if row.get("terminal_state") != "controlled_import_review_ready"
     ]
     return {
-        "artifact_id": REPAIR_QUEUE_ARTIFACT_ID,
+        "artifact_id": _repair_queue_artifact_id(artifact_date),
         "schema_version": "v3.external_import_review_repair_queue",
         "created_utc": created_utc or preflight.get("created_utc") or _utc_now_iso(),
         "candidate_count": len(rows),
@@ -1079,7 +1143,10 @@ def render_external_import_review_preflight_report(
     preflight: dict[str, Any],
     ready_preview: dict[str, Any],
     repair_queue: dict[str, Any],
+    *,
+    artifact_date: str | None = None,
 ) -> str:
+    output_date = _artifact_date(artifact_date)
     lines = [
         "# External Import Review Preflight - current702",
         "",
@@ -1212,9 +1279,9 @@ def render_external_import_review_preflight_report(
             "",
             "## Outputs",
             "",
-            f"- Preflight artifact: `artifacts/v3_external_import_review_preflight_current702_{RUN_DATE}.json`",
-            f"- Ready preview: `artifacts/v3_external_import_review_ready_preview_current702_{RUN_DATE}.json`",
-            f"- Repair/conflict queue: `artifacts/v3_external_import_review_repair_queue_current702_{RUN_DATE}.json`",
+            f"- Preflight artifact: `artifacts/v3_external_import_review_preflight_current702_{output_date}.json`",
+            f"- Ready preview: `artifacts/v3_external_import_review_ready_preview_current702_{output_date}.json`",
+            f"- Repair/conflict queue: `artifacts/v3_external_import_review_repair_queue_current702_{output_date}.json`",
             "",
         ]
     )
@@ -1237,6 +1304,7 @@ def write_external_import_review_preflight(
     expected_repair_count: int | None = 11895,
     expected_review_surface_count: int | None = 12495,
     created_utc: str | None = None,
+    artifact_date: str | None = None,
 ) -> dict[str, Any]:
     preflight = build_external_import_review_preflight(
         preview_source=preview_source,
@@ -1249,12 +1317,17 @@ def write_external_import_review_preflight(
         expected_repair_count=expected_repair_count,
         expected_review_surface_count=expected_review_surface_count,
         created_utc=created_utc,
+        artifact_date=artifact_date,
     )
     ready_preview = build_external_import_review_ready_preview(
-        preflight, created_utc=preflight["created_utc"]
+        preflight,
+        created_utc=preflight["created_utc"],
+        artifact_date=artifact_date,
     )
     repair_queue = build_external_import_review_repair_queue(
-        preflight, created_utc=preflight["created_utc"]
+        preflight,
+        created_utc=preflight["created_utc"],
+        artifact_date=artifact_date,
     )
     _write_json(out_path, preflight)
     _write_json(ready_preview_path, ready_preview)
@@ -1262,8 +1335,730 @@ def write_external_import_review_preflight(
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(
         render_external_import_review_preflight_report(
-            preflight, ready_preview, repair_queue
+            preflight,
+            ready_preview,
+            repair_queue,
+            artifact_date=artifact_date,
         ),
         encoding="utf-8",
     )
     return preflight
+
+
+def _git_ref_record(ref: str) -> dict[str, str | None]:
+    try:
+        raw = _git_output("show", "-s", "--format=%H%x00%cI%x00%s", ref)
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return {"git_ref": ref, "commit": None, "committed_at": None, "subject": None}
+    commit, committed_at, subject = raw.decode("utf-8").rstrip("\n").split("\x00", 2)
+    return {
+        "git_ref": ref,
+        "commit": commit,
+        "committed_at": committed_at,
+        "subject": subject,
+    }
+
+
+def _mechanical_gate_for_blocked_row(row: dict[str, Any]) -> str:
+    state = row.get("terminal_state")
+    blockers = set(row.get("blockers") or [])
+    if state == "needs_structural_duplicate_screen":
+        return "current702_structural_duplicate_screen"
+    if state == "needs_family_policy_review":
+        return "family_policy_review"
+    if state == "repairable_locator_blocker":
+        return "source_free_locator_sidecar_materialization_or_linkage_repair"
+    if state == "repairable_coordinate_blocker":
+        return "coordinate_materialization_hash_or_path_reconciliation"
+    if state == "duplicate_current702_conflict":
+        return "current702_duplicate_reconciliation_or_reject"
+    if state == "duplicate_external_conflict":
+        if "sequence_hash_not_unique_in_preview" in blockers:
+            return "preview_sequence_duplicate_reconciliation"
+        return "external_duplicate_reconciliation_or_reject"
+    if state == "reject/OOS_preserve_signal":
+        return "preserve_out_of_scope_or_hard_negative_signal"
+    return "source_retrieval_or_materialization_hard_blocker_clearance"
+
+
+def _minimal_ready_row(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "candidate_id": row.get("candidate_id"),
+        "accession": row.get("accession"),
+        "target_family_lane": row.get("target_family_lane"),
+        "review_scope": row.get("review_scope"),
+        "terminal_state": row.get("terminal_state"),
+        "coordinate_path": row.get("coordinate_path"),
+        "locator_sidecar_path": row.get("locator_sidecar_path"),
+        "coordinate_hash_sha256": row.get("coordinate_hash_sha256"),
+        "source_hashes": row.get("source_hashes"),
+        "source_provenance": row.get("source_provenance"),
+        "source_occurrences": row.get("source_occurrences"),
+        "source_artifacts_consumed": row.get("source_artifacts_consumed"),
+        "remaining_required_before_countable_import": [
+            "single_controlled_human_batch_approval",
+            "label_factory_gate_and_explicit_review_decision",
+            "production_registry_change_authorization",
+        ],
+    }
+
+
+def _minimal_blocked_row(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "candidate_id": row.get("candidate_id"),
+        "accession": row.get("accession"),
+        "target_family_lane": row.get("target_family_lane"),
+        "review_scope": row.get("review_scope"),
+        "terminal_state": row.get("terminal_state"),
+        "blockers": row.get("blockers") or [],
+        "mechanical_gate_needed": _mechanical_gate_for_blocked_row(row),
+        "next_action": row.get("next_action"),
+        "coordinate_path": row.get("coordinate_path"),
+        "locator_sidecar_path": row.get("locator_sidecar_path"),
+    }
+
+
+def build_external_batch_import_approval_packet(
+    preflight: dict[str, Any],
+    ready_preview: dict[str, Any] | None = None,
+    repair_queue: dict[str, Any] | None = None,
+    *,
+    created_utc: str | None = None,
+    artifact_date: str | None = None,
+    current_main_commit: str | None = None,
+) -> dict[str, Any]:
+    rows = [row for row in preflight.get("rows", []) if isinstance(row, dict)]
+    ready_rows = [
+        row for row in rows if row.get("terminal_state") == "controlled_import_review_ready"
+    ]
+    blocked_rows = [
+        row for row in rows if row.get("terminal_state") != "controlled_import_review_ready"
+    ]
+    terminal_counts = Counter(str(row.get("terminal_state")) for row in rows)
+    preview_terminal_counts = Counter(
+        str(row.get("terminal_state"))
+        for row in rows
+        if row.get("review_scope") == "import_ready_preview"
+    )
+    repair_terminal_counts = Counter(
+        str(row.get("terminal_state"))
+        for row in rows
+        if row.get("review_scope") == "materialization_repair_surface"
+    )
+    blocked_gate_counts = Counter(
+        _mechanical_gate_for_blocked_row(row) for row in blocked_rows
+    )
+    ready_lane_counts = Counter(str(row.get("target_family_lane")) for row in ready_rows)
+    repair_surface_rows = [
+        row for row in rows if row.get("review_scope") == "materialization_repair_surface"
+    ]
+    mechanical_repair_audit = {
+        "locator_sidecar_linked_repair_surface_rows": sum(
+            1
+            for row in repair_surface_rows
+            if row.get("automated_checks", {}).get("locator_source_free_ready")
+        ),
+        "locator_sidecar_linked_but_coordinate_missing_rows": sum(
+            1
+            for row in repair_surface_rows
+            if row.get("automated_checks", {}).get("locator_source_free_ready")
+            and not row.get("automated_checks", {}).get("coordinate_materialized")
+        ),
+        "coordinate_hash_present_but_coordinate_path_unmaterialized_rows": sum(
+            1
+            for row in repair_surface_rows
+            if row.get("automated_checks", {}).get("coordinate_hash_present")
+            and not row.get("automated_checks", {}).get("coordinate_materialized")
+        ),
+        "duplicate_status_reconciled_to_terminal_conflict_rows": terminal_counts[
+            "duplicate_current702_conflict"
+        ]
+        + terminal_counts["duplicate_external_conflict"],
+        "terminal_state_normalization_total_rows": len(rows),
+    }
+    mechanical_repair_audit["count_normalization_reconciles"] = (
+        mechanical_repair_audit["terminal_state_normalization_total_rows"]
+        == preflight.get("counts", {}).get("review_surface_rows")
+    )
+    expected_ready_count = preflight.get("counts", {}).get(
+        "controlled_import_review_ready"
+    )
+    expected_blocked_count = preflight.get("counts", {}).get("not_ready_rows")
+    validation_checks = {
+        "source_preflight_passed": bool(
+            preflight.get("validation_checks", {}).get("passed")
+        ),
+        "ready_rows_match_preflight_count": len(ready_rows) == expected_ready_count,
+        "blocked_rows_match_preflight_count": len(blocked_rows) == expected_blocked_count,
+        "terminal_counts_reconcile": sum(terminal_counts.values()) == len(rows),
+        "all_ready_rows_have_coordinate_hash": all(
+            row.get("coordinate_hash_sha256") for row in ready_rows
+        ),
+        "all_ready_rows_have_locator_sidecar": all(
+            row.get("locator_sidecar_path") for row in ready_rows
+        ),
+        "all_ready_rows_have_source_hashes": all(
+            isinstance(row.get("source_hashes"), dict) and row.get("source_hashes")
+            for row in ready_rows
+        ),
+        "all_ready_rows_have_source_provenance": all(
+            isinstance(row.get("source_provenance"), dict)
+            and row.get("source_provenance")
+            for row in ready_rows
+        ),
+        "all_blocked_rows_have_mechanical_gate": all(
+            _mechanical_gate_for_blocked_row(row) for row in blocked_rows
+        ),
+    }
+    validation_checks["passed"] = all(validation_checks.values())
+    packet = {
+        "artifact_id": _batch_approval_artifact_id(artifact_date),
+        "schema_version": "v3.external_batch_import_approval_packet",
+        "created_utc": created_utc or preflight.get("created_utc") or _utc_now_iso(),
+        "scope": (
+            "Decision packet for one controlled batch approval over the Wave 2 "
+            "external import-review preflight. It authorizes no production import "
+            "or registry edit by itself."
+        ),
+        "current_main_commit_used": current_main_commit or _git_ref_record("HEAD")["commit"],
+        "source_artifacts": {
+            "preflight_artifact_id": preflight.get("artifact_id"),
+            "preflight_artifact_sha256": preflight.get("artifact_sha256"),
+            "ready_preview_artifact_id": (
+                ready_preview or {}
+            ).get("artifact_id"),
+            "repair_queue_artifact_id": (
+                repair_queue or {}
+            ).get("artifact_id"),
+        },
+        "guardrails": {
+            "decision_packet_only": True,
+            "production_import_authorized_by_this_artifact": False,
+            "label_import_performed": False,
+            "production_registry_edited": False,
+            "final_import_files_edited": False,
+            "heldout_splits_edited": False,
+            "production_thresholds_edited": False,
+            "model_weights_edited": False,
+            "ontology_edited": False,
+            "review_only": True,
+        },
+        "batch_approval": {
+            "rows_that_can_become_countable_after_one_batch_approval": len(ready_rows),
+            "row_by_row_human_review_required_for_ready_rows": False,
+            "blocked_rows_remaining": len(blocked_rows),
+            "approval_statement": (
+                f"One final controlled batch approval can advance {len(ready_rows)} "
+                "machine-clean rows to countable import handling, provided the "
+                "approval also records the label-factory gate and production "
+                "registry-change authorization. This packet does not perform that import."
+            ),
+        },
+        "terminal_state_counts": {
+            state: terminal_counts.get(state, 0) for state in TERMINAL_STATES
+        },
+        "preview_terminal_state_counts": dict(sorted(preview_terminal_counts.items())),
+        "repair_surface_terminal_state_counts": dict(sorted(repair_terminal_counts.items())),
+        "ready_lane_counts": dict(sorted(ready_lane_counts.items())),
+        "blocked_mechanical_gate_counts": dict(sorted(blocked_gate_counts.items())),
+        "mechanical_nonproduction_reconciliation_audit": mechanical_repair_audit,
+        "validation_checks": validation_checks,
+        "ready_rows": [_minimal_ready_row(row) for row in ready_rows],
+        "blocked_rows": [_minimal_blocked_row(row) for row in blocked_rows],
+    }
+    packet["artifact_sha256"] = _canonical_sha256(
+        {key: value for key, value in packet.items() if key != "artifact_sha256"}
+    )
+    return packet
+
+
+def render_external_batch_import_approval_packet_report(packet: dict[str, Any]) -> str:
+    lines = [
+        "# External Batch Import Approval Packet - current702",
+        "",
+        f"Created UTC: `{packet['created_utc']}`",
+        "",
+        "This is a decision packet only. It performs no production import, registry edit, ontology edit, split edit, threshold change, or model change.",
+        "",
+        "## Batch Decision",
+        "",
+        (
+            "- Rows that can become countable after one controlled batch approval: "
+            f"{packet['batch_approval']['rows_that_can_become_countable_after_one_batch_approval']}"
+        ),
+        f"- Blocked rows remaining: {packet['batch_approval']['blocked_rows_remaining']}",
+        f"- Production import authorized here: {packet['guardrails']['production_import_authorized_by_this_artifact']}",
+        "",
+        packet["batch_approval"]["approval_statement"],
+        "",
+        "## Terminal State Counts",
+        "",
+        "| terminal state | count |",
+        "| --- | ---: |",
+    ]
+    for state, count in packet["terminal_state_counts"].items():
+        lines.append(f"| `{state}` | {count} |")
+    lines.extend(["", "## Blocked Mechanical Gates", "", "| gate | rows |", "| --- | ---: |"])
+    for gate, count in packet["blocked_mechanical_gate_counts"].items():
+        lines.append(f"| `{gate}` | {count} |")
+    lines.extend(
+        [
+            "",
+            "## Mechanical Reconciliation Audit",
+            "",
+        ]
+    )
+    for key, value in packet["mechanical_nonproduction_reconciliation_audit"].items():
+        lines.append(f"- `{key}`: `{value}`")
+    lines.extend(["", "## Ready Lane Counts", "", "| lane | ready rows |", "| --- | ---: |"])
+    for lane, count in packet["ready_lane_counts"].items():
+        lines.append(f"| {lane} | {count} |")
+    lines.extend(
+        [
+            "",
+            "## Validation",
+            "",
+        ]
+    )
+    for key, value in packet["validation_checks"].items():
+        lines.append(f"- `{key}`: `{value}`")
+    lines.extend(
+        [
+            "",
+            "## Blocked Row Sample",
+            "",
+            "| candidate | lane | terminal state | gate |",
+            "| --- | --- | --- | --- |",
+        ]
+    )
+    for row in packet["blocked_rows"][:40]:
+        lines.append(
+            "| `{}` | {} | `{}` | `{}` |".format(
+                row["candidate_id"],
+                row["target_family_lane"],
+                row["terminal_state"],
+                row["mechanical_gate_needed"],
+            )
+        )
+    if len(packet["blocked_rows"]) > 40:
+        lines.append(
+            f"| ... | ... | ... | plus {len(packet['blocked_rows']) - 40} more rows |"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _normalize_lane_name(value: Any) -> str:
+    return re.sub(r"[^a-z0-9]", "", str(value or "").lower())
+
+
+def _lane_matches_family(lane: str, family: str) -> bool:
+    normalized_lane = _normalize_lane_name(lane)
+    normalized_family = _normalize_lane_name(family)
+    return bool(
+        normalized_lane
+        and normalized_family
+        and (
+            normalized_lane in normalized_family
+            or normalized_family in normalized_lane
+        )
+    )
+
+
+def _aggregate_lane_counts(
+    lane_terminal_counts: dict[str, dict[str, int]],
+    family_or_lane: str,
+) -> dict[str, Any]:
+    matches = [
+        lane for lane in lane_terminal_counts if _lane_matches_family(lane, family_or_lane)
+    ]
+    terminal_counts: Counter[str] = Counter()
+    for lane in matches:
+        terminal_counts.update(lane_terminal_counts[lane])
+    return {
+        "matching_lanes": matches,
+        "review_surface_rows": sum(terminal_counts.values()),
+        "controlled_import_review_ready": terminal_counts.get(
+            "controlled_import_review_ready", 0
+        ),
+        "terminal_state_counts": dict(sorted(terminal_counts.items())),
+    }
+
+
+def build_targeted_expansion_defense_ledger(
+    preflight: dict[str, Any],
+    approval_packet: dict[str, Any],
+    *,
+    previous_ledger: dict[str, Any] | None = None,
+    created_utc: str | None = None,
+    artifact_date: str | None = None,
+    current_main_commit: str | None = None,
+) -> dict[str, Any]:
+    previous_ledger = previous_ledger or {}
+    lane_terminal_counts = preflight.get("lane_terminal_state_counts") or {}
+    prior_rationale = [
+        row
+        for row in previous_ledger.get("family_lane_rationale", [])
+        if isinstance(row, dict)
+    ]
+    refreshed_rationale: list[dict[str, Any]] = []
+    matched_lanes: set[str] = set()
+    for row in prior_rationale:
+        family = str(row.get("family_or_lane") or "")
+        current_counts = _aggregate_lane_counts(lane_terminal_counts, family)
+        matched_lanes.update(current_counts["matching_lanes"])
+        refreshed = dict(row)
+        refreshed["current_wave2_import_review_counts"] = current_counts
+        refreshed_rationale.append(refreshed)
+    for lane, terminal_counts in sorted(lane_terminal_counts.items()):
+        if lane in matched_lanes:
+            continue
+        if terminal_counts.get("controlled_import_review_ready", 0) == 0:
+            continue
+        refreshed_rationale.append(
+            {
+                "family_or_lane": lane,
+                "included_because": (
+                    "Wave 2 preflight found machine-clean, source-provenanced "
+                    "rows in this lane after duplicate, locator, and coordinate checks."
+                ),
+                "failure_mode_or_atlas_need": (
+                    "Retain as a targeted import-review lane so batch approval "
+                    "does not collapse distinct mechanisms into a random external pool."
+                ),
+                "current_wave2_import_review_counts": {
+                    "matching_lanes": [lane],
+                    "review_surface_rows": sum(terminal_counts.values()),
+                    "controlled_import_review_ready": terminal_counts.get(
+                        "controlled_import_review_ready", 0
+                    ),
+                    "terminal_state_counts": dict(sorted(terminal_counts.items())),
+                },
+                "supporting_artifacts": [
+                    preflight.get("artifact_id"),
+                    approval_packet.get("artifact_id"),
+                ],
+            }
+        )
+
+    previous_thesis = [
+        item
+        for item in previous_ledger.get("expansion_thesis", [])
+        if isinstance(item, str)
+        and "333" not in item
+        and "845" not in item
+        and "Wave 2 materialization" not in item
+    ]
+    expansion_thesis = previous_thesis + [
+        (
+            "The latest Wave 2 materialization/preflight surface contains 12,495 "
+            "unique candidate rows: 600 preview rows and 11,895 repair-surface rows."
+        ),
+        (
+            "The import-review preflight classifies 275 rows as controlled "
+            "import-review ready, with all remaining rows routed to explicit "
+            "duplicate, locator, coordinate, OOS, structural-screen, or hard-blocker gates."
+        ),
+        (
+            "The selected families remain targeted because they map to prior "
+            "failure modes: cofactor loss, fold/cofactor confounding, source-free "
+            "locator gaps, near-orphan coverage, and external Swiss-Prot/AFDB/Rhea scalability."
+        ),
+    ]
+    baseline_labels = (
+        previous_ledger.get("count_table", {})
+        .get("current_label_surface", {})
+        .get("countable_labels", 702)
+    )
+    ready_count = approval_packet["batch_approval"][
+        "rows_that_can_become_countable_after_one_batch_approval"
+    ]
+    projected_after_batch = baseline_labels + ready_count
+    ledger = {
+        "artifact_id": _defense_ledger_artifact_id(artifact_date),
+        "schema_version": "v3.targeted_expansion_defense_ledger",
+        "created_utc": created_utc or preflight.get("created_utc") or _utc_now_iso(),
+        "scope": (
+            "Review-ready defense ledger refreshed after Wave 2 import-review "
+            "preflight; explains targeted family choice and label-closure state "
+            "without performing imports."
+        ),
+        "current_main_commit_used": current_main_commit or _git_ref_record("HEAD")["commit"],
+        "branch_provenance": [_git_ref_record("HEAD"), _git_ref_record("origin/main")],
+        "source_artifacts": {
+            "preflight_artifact_id": preflight.get("artifact_id"),
+            "preflight_artifact_sha256": preflight.get("artifact_sha256"),
+            "approval_packet_artifact_id": approval_packet.get("artifact_id"),
+            "approval_packet_artifact_sha256": approval_packet.get("artifact_sha256"),
+            "previous_defense_ledger_artifact_id": previous_ledger.get("artifact_id"),
+        },
+        "expansion_thesis": expansion_thesis,
+        "family_lane_rationale": refreshed_rationale,
+        "count_table": {
+            "current_label_surface": {
+                "countable_labels": baseline_labels,
+                "source": "previous defense ledger/current702 frozen benchmark references",
+            },
+            "wave2_import_review_preflight": {
+                "preview_rows": preflight["counts"]["preview_rows"],
+                "repair_surface_rows": preflight["counts"]["repair_surface_rows"],
+                "review_surface_rows": preflight["counts"]["review_surface_rows"],
+                "terminal_state_counts": preflight["terminal_state_counts"],
+            },
+            "batch_approval_packet": {
+                "rows_can_become_countable_after_one_batch_approval": ready_count,
+                "blocked_rows_remaining": approval_packet["batch_approval"][
+                    "blocked_rows_remaining"
+                ],
+                "blocked_mechanical_gate_counts": approval_packet[
+                    "blocked_mechanical_gate_counts"
+                ],
+                "mechanical_nonproduction_reconciliation_audit": approval_packet[
+                    "mechanical_nonproduction_reconciliation_audit"
+                ],
+            },
+            "post_batch_projection": {
+                "baseline_current702_countable_labels": baseline_labels,
+                "if_one_batch_approval_accepts_ready_rows": projected_after_batch,
+                "remaining_to_10000_after_that_batch": max(
+                    0, 10000 - projected_after_batch
+                ),
+            },
+        },
+        "guardrails": {
+            "label_import_performed": False,
+            "production_registry_edited": False,
+            "final_import_files_edited": False,
+            "ontology_edited": False,
+            "heldout_splits_edited": False,
+            "production_thresholds_edited": False,
+            "model_weights_edited": False,
+            "preview_not_import": True,
+            "source_free_coordinate_locator_requirements_preserved": True,
+        },
+        "review_narrative": {
+            "honest_claims_for_review": [
+                (
+                    "Current main has a full Wave 2 materialization/preflight "
+                    "surface of 12,495 unique external candidates."
+                ),
+                (
+                    f"{ready_count} rows are machine-clean for one controlled "
+                    "batch approval; they are not imported by this artifact."
+                ),
+                (
+                    "The selected lanes are targeted by prior mechanism failure "
+                    "modes and by lane-specific duplicate/locator/coordinate gates, not random sampling."
+                ),
+            ],
+            "still_preview_or_provisional": [
+                (
+                    "Production import still requires an explicit controlled "
+                    "batch approval, label-factory gate, and registry-change authorization."
+                ),
+                (
+                    f"{approval_packet['batch_approval']['blocked_rows_remaining']} rows remain blocked "
+                    "behind concrete mechanical or policy gates."
+                ),
+                (
+                    "Exact coordinate/structure-ID screening is not a full "
+                    "Foldseek/TM structural duplicate screen."
+                ),
+            ],
+        },
+        "validation_checks": {
+            "preflight_validation_passed": bool(
+                preflight.get("validation_checks", {}).get("passed")
+            ),
+            "approval_packet_validation_passed": bool(
+                approval_packet.get("validation_checks", {}).get("passed")
+            ),
+            "terminal_counts_reconcile": sum(
+                preflight.get("terminal_state_counts", {}).values()
+            )
+            == preflight["counts"]["review_surface_rows"],
+            "batch_ready_count_matches_preflight": ready_count
+            == preflight["counts"]["controlled_import_review_ready"],
+            "family_rationale_present": bool(refreshed_rationale),
+        },
+    }
+    ledger["validation_checks"]["passed"] = all(ledger["validation_checks"].values())
+    ledger["artifact_sha256"] = _canonical_sha256(
+        {key: value for key, value in ledger.items() if key != "artifact_sha256"}
+    )
+    return ledger
+
+
+def render_targeted_expansion_defense_ledger_report(ledger: dict[str, Any]) -> str:
+    count_table = ledger["count_table"]
+    lines = [
+        "# Targeted Expansion Defense Ledger - current702",
+        "",
+        f"Created UTC: `{ledger['created_utc']}`",
+        "",
+        "This ledger refreshes the targeted expansion review story after the Wave 2 import-review preflight. It is not an import artifact.",
+        "",
+        "## Count Ledger",
+        "",
+        "| surface | count | note |",
+        "| --- | ---: | --- |",
+        (
+            "| Current countable labels | {} | Frozen current702 benchmark reference; "
+            "unchanged by this packet. |"
+        ).format(count_table["current_label_surface"]["countable_labels"]),
+        (
+            "| Wave 2 review surface | {} | 600 preview rows plus 11,895 repair-surface rows. |"
+        ).format(count_table["wave2_import_review_preflight"]["review_surface_rows"]),
+        (
+            "| Controlled import-review ready | {} | Can move together after one final controlled batch approval. |"
+        ).format(
+            count_table["batch_approval_packet"][
+                "rows_can_become_countable_after_one_batch_approval"
+            ]
+        ),
+        (
+            "| Blocked rows remaining | {} | Routed to concrete duplicate, locator, coordinate, OOS, structural, or hard-blocker gates. |"
+        ).format(count_table["batch_approval_packet"]["blocked_rows_remaining"]),
+        (
+            "| Projected count after approval | {} | Projection only; no import performed here. |"
+        ).format(
+            count_table["post_batch_projection"][
+                "if_one_batch_approval_accepts_ready_rows"
+            ]
+        ),
+        "",
+        "## Terminal State Counts",
+        "",
+        "| terminal state | count |",
+        "| --- | ---: |",
+    ]
+    for state, count in count_table["wave2_import_review_preflight"][
+        "terminal_state_counts"
+    ].items():
+        lines.append(f"| `{state}` | {count} |")
+    lines.extend(["", "## Blocked Mechanical Gates", "", "| gate | rows |", "| --- | ---: |"])
+    for gate, count in count_table["batch_approval_packet"][
+        "blocked_mechanical_gate_counts"
+    ].items():
+        lines.append(f"| `{gate}` | {count} |")
+    lines.extend(["", "## Mechanical Reconciliation Audit", ""])
+    for key, value in count_table["batch_approval_packet"][
+        "mechanical_nonproduction_reconciliation_audit"
+    ].items():
+        lines.append(f"- `{key}`: `{value}`")
+    lines.extend(
+        [
+            "",
+            "## Family And Lane Rationale",
+            "",
+            "| family/lane | why targeted | current Wave 2 ready rows | current Wave 2 rows |",
+            "| --- | --- | ---: | ---: |",
+        ]
+    )
+    for row in ledger["family_lane_rationale"]:
+        counts = row.get("current_wave2_import_review_counts", {})
+        lines.append(
+            "| `{}` | {} | {} | {} |".format(
+                row.get("family_or_lane"),
+                row.get("included_because"),
+                counts.get("controlled_import_review_ready", 0),
+                counts.get("review_surface_rows", 0),
+            )
+        )
+    lines.extend(["", "## Guardrails", ""])
+    for key, value in ledger["guardrails"].items():
+        lines.append(f"- `{key}`: `{value}`")
+    lines.extend(["", "## Review Narrative", "", "### Honest Claims", ""])
+    for item in ledger["review_narrative"]["honest_claims_for_review"]:
+        lines.append(f"- {item}")
+    lines.extend(["", "### Still Preview Or Provisional", ""])
+    for item in ledger["review_narrative"]["still_preview_or_provisional"]:
+        lines.append(f"- {item}")
+    lines.extend(["", "## Validation", ""])
+    for key, value in ledger["validation_checks"].items():
+        lines.append(f"- `{key}`: `{value}`")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def write_external_import_closure_packet(
+    *,
+    preview_source: str | Path = DEFAULT_PREVIEW_SOURCE,
+    merged_surface_source: str | Path | None = DEFAULT_MERGED_SURFACE_SOURCE,
+    materialization_source: str | Path = DEFAULT_MATERIALIZATION_SOURCE,
+    repair_surface_source: str | Path | None = DEFAULT_REPAIR_SURFACE_SOURCE,
+    current702_coordinate_manifest_path: str | Path = DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH,
+    preflight_path: Path = DEFAULT_OUT_PATH,
+    ready_preview_path: Path = DEFAULT_READY_PREVIEW_PATH,
+    repair_queue_path: Path = DEFAULT_REPAIR_QUEUE_PATH,
+    preflight_report_path: Path = DEFAULT_REPORT_PATH,
+    batch_packet_path: Path = DEFAULT_BATCH_APPROVAL_PACKET_PATH,
+    batch_report_path: Path = DEFAULT_BATCH_APPROVAL_REPORT_PATH,
+    defense_ledger_path: Path = DEFAULT_DEFENSE_LEDGER_PATH,
+    defense_ledger_report_path: Path = DEFAULT_DEFENSE_LEDGER_REPORT_PATH,
+    previous_defense_ledger_path: Path | None = DEFAULT_PREVIOUS_DEFENSE_LEDGER_PATH,
+    tree_refs: tuple[str, ...] = DEFAULT_TREE_REFS,
+    expected_preview_count: int = 600,
+    expected_repair_count: int | None = 11895,
+    expected_review_surface_count: int | None = 12495,
+    created_utc: str | None = None,
+    artifact_date: str | None = None,
+) -> dict[str, Any]:
+    preflight = write_external_import_review_preflight(
+        preview_source=preview_source,
+        merged_surface_source=merged_surface_source,
+        materialization_source=materialization_source,
+        repair_surface_source=repair_surface_source,
+        current702_coordinate_manifest_path=current702_coordinate_manifest_path,
+        out_path=preflight_path,
+        ready_preview_path=ready_preview_path,
+        repair_queue_path=repair_queue_path,
+        report_path=preflight_report_path,
+        tree_refs=tree_refs,
+        expected_preview_count=expected_preview_count,
+        expected_repair_count=expected_repair_count,
+        expected_review_surface_count=expected_review_surface_count,
+        created_utc=created_utc,
+        artifact_date=artifact_date,
+    )
+    ready_preview = json.loads(ready_preview_path.read_text(encoding="utf-8"))
+    repair_queue = json.loads(repair_queue_path.read_text(encoding="utf-8"))
+    current_commit = _git_ref_record("HEAD")["commit"]
+    packet = build_external_batch_import_approval_packet(
+        preflight,
+        ready_preview,
+        repair_queue,
+        created_utc=preflight["created_utc"],
+        artifact_date=artifact_date,
+        current_main_commit=current_commit,
+    )
+    _write_json(batch_packet_path, packet)
+    batch_report_path.parent.mkdir(parents=True, exist_ok=True)
+    batch_report_path.write_text(
+        render_external_batch_import_approval_packet_report(packet),
+        encoding="utf-8",
+    )
+    previous_ledger: dict[str, Any] | None = None
+    if previous_defense_ledger_path and previous_defense_ledger_path.exists():
+        previous_ledger = json.loads(previous_defense_ledger_path.read_text(encoding="utf-8"))
+    ledger = build_targeted_expansion_defense_ledger(
+        preflight,
+        packet,
+        previous_ledger=previous_ledger,
+        created_utc=preflight["created_utc"],
+        artifact_date=artifact_date,
+        current_main_commit=current_commit,
+    )
+    _write_json(defense_ledger_path, ledger)
+    defense_ledger_report_path.parent.mkdir(parents=True, exist_ok=True)
+    defense_ledger_report_path.write_text(
+        render_targeted_expansion_defense_ledger_report(ledger),
+        encoding="utf-8",
+    )
+    return {
+        "preflight": preflight,
+        "ready_preview": ready_preview,
+        "repair_queue": repair_queue,
+        "batch_approval_packet": packet,
+        "defense_ledger": ledger,
+    }

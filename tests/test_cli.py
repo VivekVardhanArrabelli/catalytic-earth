@@ -271,6 +271,45 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.expected_review_surface_count, 12495)
         self.assertIsNone(args.tree_ref)
         self.assertIsNone(args.created_utc)
+        self.assertIsNone(args.artifact_date)
+
+    def test_external_import_closure_packet_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-external-import-closure-packet"])
+
+        self.assertEqual(
+            args.preview,
+            (
+                "artifacts/"
+                "v3_external_materialization_wave2_import_ready_preview_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.preflight_out,
+            (
+                "artifacts/"
+                "v3_external_import_review_preflight_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.batch_packet,
+            (
+                "artifacts/"
+                "v3_external_batch_import_approval_packet_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.defense_ledger,
+            (
+                "artifacts/"
+                "v3_targeted_expansion_defense_ledger_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(args.expected_preview_count, 600)
+        self.assertEqual(args.expected_repair_count, 11895)
+        self.assertEqual(args.expected_review_surface_count, 12495)
+        self.assertEqual(args.artifact_date, "20260609")
+        self.assertIsNone(args.tree_ref)
+        self.assertIsNone(args.created_utc)
 
     def test_external_bulk_ingestion_scout_parser_defaults(self) -> None:
         args = build_parser().parse_args(["build-external-bulk-ingestion-scout"])

@@ -6,9 +6,11 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.external_import_review_preflight import (
+    build_external_batch_import_approval_packet,
     build_external_import_review_preflight,
     build_external_import_review_ready_preview,
     build_external_import_review_repair_queue,
+    build_targeted_expansion_defense_ledger,
 )
 
 
@@ -236,6 +238,70 @@ class ExternalImportReviewPreflightTests(unittest.TestCase):
             repair_queue = build_external_import_review_repair_queue(artifact)
             self.assertEqual(ready_preview["candidate_count"], 1)
             self.assertEqual(repair_queue["candidate_count"], 4)
+
+            packet = build_external_batch_import_approval_packet(
+                artifact,
+                ready_preview,
+                repair_queue,
+                artifact_date="20260610",
+                current_main_commit="test-head",
+            )
+            self.assertEqual(
+                packet["artifact_id"],
+                "v3_external_batch_import_approval_packet_current702_20260610",
+            )
+            self.assertEqual(
+                packet["batch_approval"][
+                    "rows_that_can_become_countable_after_one_batch_approval"
+                ],
+                1,
+            )
+            self.assertEqual(packet["batch_approval"]["blocked_rows_remaining"], 4)
+            self.assertEqual(
+                packet["blocked_mechanical_gate_counts"][
+                    "current702_structural_duplicate_screen"
+                ],
+                1,
+            )
+            self.assertTrue(packet["validation_checks"]["passed"])
+
+            ledger = build_targeted_expansion_defense_ledger(
+                artifact,
+                packet,
+                previous_ledger={
+                    "expansion_thesis": ["Prior non-random family rationale."],
+                    "count_table": {
+                        "current_label_surface": {"countable_labels": 702}
+                    },
+                    "family_lane_rationale": [
+                        {
+                            "family_or_lane": "metal hydrolase",
+                            "included_because": "Known metal/fold confounding lane.",
+                            "failure_mode_or_atlas_need": "Needs duplicate gates.",
+                            "supporting_artifacts": [],
+                        }
+                    ],
+                },
+                artifact_date="20260610",
+                current_main_commit="test-head",
+            )
+            self.assertEqual(
+                ledger["artifact_id"],
+                "v3_targeted_expansion_defense_ledger_current702_20260610",
+            )
+            self.assertEqual(
+                ledger["count_table"]["batch_approval_packet"][
+                    "rows_can_become_countable_after_one_batch_approval"
+                ],
+                1,
+            )
+            self.assertEqual(
+                ledger["count_table"]["post_batch_projection"][
+                    "if_one_batch_approval_accepts_ready_rows"
+                ],
+                703,
+            )
+            self.assertTrue(ledger["validation_checks"]["passed"])
 
     def test_classifies_wave2_repair_surface_rows(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

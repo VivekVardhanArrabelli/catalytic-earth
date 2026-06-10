@@ -2,6 +2,73 @@
 
 ## Current automation run
 
+- Automation ID: `ce-import-closure-driver`
+- STARTED_AT_UTC: `2026-06-10T14:34:17Z`
+- STARTED_AT_LOCAL: `Wed Jun 10 09:34:17 CDT 2026`
+- Source head at run start: `ea907953cd309e2759500f25d75f94510bbb0efd`
+- Worktree:
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/ce-import-closure-driver-20260610T143417Z-2160-sparse/catalytic-earth`
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`
+  acquired after archiving stale same-automation lock from 2026-06-09; run-start marker written to
+  `/tmp/ce-import-closure-driver-run-start.txt`.
+- ENDED_AT_UTC: `2026-06-10T14:50:12Z`
+- ENDED_AT_LOCAL: `Wed Jun 10 09:50:12 CDT 2026`
+- ELAPSED_MINUTES: `15.917` durable-output early-completion path because the
+  assigned closure objective is complete pending commit/push/sync immediately
+  after this handoff write. Full worktree checkout hit the local disk ceiling,
+  so this run used a fresh sparse worktree with source/tests/work/docs plus the
+  Wave 2/preflight artifacts required for label-closure review.
+- Status: Complete pending commit/push/sync immediately after this handoff
+  write. Added a reproducible external import closure packet CLI that emits the
+  June 10 preflight copy, ready preview, repair queue, batch approval packet,
+  and refreshed defense ledger without touching production registries, import
+  files, ontologies, heldout splits, thresholds, or model weights.
+- Current outputs:
+  `artifacts/v3_external_import_review_preflight_current702_20260610.json`,
+  `artifacts/v3_external_import_review_ready_preview_current702_20260610.json`,
+  `artifacts/v3_external_import_review_repair_queue_current702_20260610.json`,
+  `artifacts/v3_external_batch_import_approval_packet_current702_20260610.json`,
+  `artifacts/v3_targeted_expansion_defense_ledger_current702_20260610.json`,
+  `work/external_import_review_preflight_current702_20260610.md`,
+  `work/external_batch_import_approval_packet_current702_20260610.md`, and
+  `work/targeted_expansion_defense_ledger_current702_20260610.md`.
+- Result: The 12,495-row Wave 2 review surface reconciles exactly from 600
+  preview rows plus 11,895 repair-surface rows. Terminal states are 275
+  `controlled_import_review_ready`, 1 `needs_structural_duplicate_screen`, 0
+  `needs_family_policy_review`, 1,096 `repairable_locator_blocker`, 5,179
+  `repairable_coordinate_blocker`, 203 `duplicate_current702_conflict`, 1,275
+  `duplicate_external_conflict`, 1,562 `reject/OOS_preserve_signal`, and 2,904
+  `hard_blocked_with_next_action`.
+- Batch approval packet: one final controlled batch approval can advance 275
+  machine-clean rows to countable import handling, provided the approval also
+  records the label-factory gate and production registry-change authorization.
+  This packet does not authorize or perform import. The remaining 12,220 rows
+  are listed with mechanical gates.
+- Mechanical reconciliation audit: 4,931 repair-surface rows already have
+  source-free locator sidecars linked but remain coordinate/path blocked; 4
+  rows have coordinate hashes without materialized coordinate paths; 1,478 rows
+  are duplicate-status reconciled to terminal duplicate conflicts; terminal
+  state normalization reconciles all 12,495 rows.
+- Validation passed: JSON parse and custom count/provenance/guardrail
+  assertions for all five JSON outputs; ready preview and approval packet rows
+  carry source provenance; focused pytest for import-review preflight plus CLI
+  parser defaults (`4 passed`); deterministic closure regeneration with fixed
+  `--created-utc 2026-06-10T14:34:17Z`; `git diff --check`; focused
+  `compileall`; and forbidden-path scan confirming no data registry, ontology,
+  split, threshold, production import, final import, or model-weight path was
+  edited.
+- Commit/push/sync/lock status: lock held at the path above; commit, push to
+  `origin/main`, verify `HEAD == origin/main`, update automation memory, then
+  release the lock immediately after this handoff write.
+- Exact next action: review the approval packet and, if acceptable, record the
+  single controlled human batch approval plus label-factory and production
+  registry-change authorization for the 275 ready rows; otherwise clear the
+  listed mechanical gates for the 12,220 blocked rows and rerun the closure
+  packet.
+
+## Previous automation run
+
 - Automation ID: `ce-import-ready-review-preflight`
 - STARTED_AT_UTC: `2026-06-09T14:19:22Z`
 - STARTED_AT_LOCAL: `Tue Jun  9 09:19:22 CDT 2026`

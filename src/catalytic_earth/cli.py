@@ -70,6 +70,7 @@ from .external_import_review_preflight import (
     DEFAULT_PREVIEW_SOURCE,
     DEFAULT_REPAIR_SURFACE_SOURCE,
     DEFAULT_TREE_REFS,
+    write_external_import_closure_packet,
     write_external_import_review_preflight,
 )
 from .external_materialization_wave2 import (
@@ -3127,11 +3128,52 @@ def cmd_build_external_import_review_preflight(args: argparse.Namespace) -> int:
         expected_repair_count=args.expected_repair_count,
         expected_review_surface_count=args.expected_review_surface_count,
         created_utc=args.created_utc,
+        artifact_date=getattr(args, "artifact_date", None),
     )
     print(
         "Wrote external import review preflight to "
         f"{args.out} ({artifact['counts']['controlled_import_review_ready']} "
         "controlled-review ready)"
+    )
+    return 0
+
+
+def cmd_build_external_import_closure_packet(args: argparse.Namespace) -> int:
+    outputs = write_external_import_closure_packet(
+        preview_source=args.preview,
+        merged_surface_source=args.merged_surface,
+        materialization_source=args.materialization,
+        repair_surface_source=args.repair_surface,
+        current702_coordinate_manifest_path=Path(args.current702_coordinate_manifest),
+        preflight_path=Path(args.preflight_out),
+        ready_preview_path=Path(args.ready_preview),
+        repair_queue_path=Path(args.repair_queue),
+        preflight_report_path=Path(args.preflight_report),
+        batch_packet_path=Path(args.batch_packet),
+        batch_report_path=Path(args.batch_report),
+        defense_ledger_path=Path(args.defense_ledger),
+        defense_ledger_report_path=Path(args.defense_ledger_report),
+        previous_defense_ledger_path=(
+            Path(args.previous_defense_ledger)
+            if args.previous_defense_ledger
+            else None
+        ),
+        tree_refs=tuple(args.tree_ref or DEFAULT_TREE_REFS),
+        expected_preview_count=args.expected_preview_count,
+        expected_repair_count=args.expected_repair_count,
+        expected_review_surface_count=args.expected_review_surface_count,
+        created_utc=args.created_utc,
+        artifact_date=args.artifact_date,
+    )
+    ready_count = outputs["batch_approval_packet"]["batch_approval"][
+        "rows_that_can_become_countable_after_one_batch_approval"
+    ]
+    blocked_count = outputs["batch_approval_packet"]["batch_approval"][
+        "blocked_rows_remaining"
+    ]
+    print(
+        "Wrote external import closure packet "
+        f"({ready_count} batch-approvable, {blocked_count} blocked)"
     )
     return 0
 
@@ -23242,8 +23284,121 @@ def build_parser() -> argparse.ArgumentParser:
         default=12495,
     )
     external_import_review_preflight.add_argument("--created-utc")
+    external_import_review_preflight.add_argument("--artifact-date")
     external_import_review_preflight.set_defaults(
         func=cmd_build_external_import_review_preflight
+    )
+
+    external_import_closure = subparsers.add_parser(
+        "build-external-import-closure-packet",
+        help=(
+            "write Wave 2 import-review preflight, batch approval packet, "
+            "and refreshed defense ledger artifacts"
+        ),
+    )
+    external_import_closure.add_argument(
+        "--preview",
+        default=str(DEFAULT_PREVIEW_SOURCE),
+    )
+    external_import_closure.add_argument(
+        "--merged-surface",
+        default=(
+            str(DEFAULT_MERGED_SURFACE_SOURCE)
+            if DEFAULT_MERGED_SURFACE_SOURCE is not None
+            else None
+        ),
+    )
+    external_import_closure.add_argument(
+        "--materialization",
+        default=str(DEFAULT_MATERIALIZATION_SOURCE),
+    )
+    external_import_closure.add_argument(
+        "--repair-surface",
+        default=str(DEFAULT_REPAIR_SURFACE_SOURCE),
+    )
+    external_import_closure.add_argument(
+        "--current702-coordinate-manifest",
+        default=str(DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH),
+    )
+    external_import_closure.add_argument(
+        "--preflight-out",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_preflight_current702_20260609.json"
+        ),
+    )
+    external_import_closure.add_argument(
+        "--ready-preview",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_ready_preview_current702_20260609.json"
+        ),
+    )
+    external_import_closure.add_argument(
+        "--repair-queue",
+        default=(
+            "artifacts/"
+            "v3_external_import_review_repair_queue_current702_20260609.json"
+        ),
+    )
+    external_import_closure.add_argument(
+        "--preflight-report",
+        default="work/external_import_review_preflight_current702_20260609.md",
+    )
+    external_import_closure.add_argument(
+        "--batch-packet",
+        default=(
+            "artifacts/"
+            "v3_external_batch_import_approval_packet_current702_20260609.json"
+        ),
+    )
+    external_import_closure.add_argument(
+        "--batch-report",
+        default="work/external_batch_import_approval_packet_current702_20260609.md",
+    )
+    external_import_closure.add_argument(
+        "--defense-ledger",
+        default=(
+            "artifacts/"
+            "v3_targeted_expansion_defense_ledger_current702_20260609.json"
+        ),
+    )
+    external_import_closure.add_argument(
+        "--defense-ledger-report",
+        default="work/targeted_expansion_defense_ledger_current702_20260609.md",
+    )
+    external_import_closure.add_argument(
+        "--previous-defense-ledger",
+        default=(
+            "artifacts/"
+            "v3_targeted_expansion_defense_ledger_current702_20260609.json"
+        ),
+    )
+    external_import_closure.add_argument(
+        "--tree-ref",
+        action="append",
+        default=None,
+        help="git ref whose tree can satisfy preview coordinate/locator paths",
+    )
+    external_import_closure.add_argument(
+        "--expected-preview-count",
+        type=int,
+        default=600,
+    )
+    external_import_closure.add_argument(
+        "--expected-repair-count",
+        type=int,
+        default=11895,
+    )
+    external_import_closure.add_argument(
+        "--expected-review-surface-count",
+        type=int,
+        default=12495,
+    )
+    external_import_closure.add_argument("--created-utc")
+    external_import_closure.add_argument("--artifact-date", default="20260609")
+    external_import_closure.set_defaults(
+        func=cmd_build_external_import_closure_packet
     )
 
     external_bulk_ingestion = subparsers.add_parser(
