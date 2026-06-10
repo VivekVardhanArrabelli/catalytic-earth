@@ -1,11 +1,13 @@
 # Scaling Plan to 10k Mechanism Labels
 
 Status: durable plan (2026-06-10). This is an entry point for future agents. Read
-this first, then verify every claim below against the cited `docs/decision_log.md`
-entries and source modules before acting — two grounding errors in the session that
-produced this plan (ESM2, and apo-vs-holo promotion confirmability) both came from
-asserting decision-claims without first reading the log. Treat any
-performance/promotion/capability claim as requiring a decision-log citation.
+this first, then verify every claim below against its source before acting — see the
+**"Sources & where to verify"** table near the end, which maps every element of this
+plan to the exact `docs/decision_log.md` entry, module, artifact, or test. Two
+grounding errors in the session that produced this plan (ESM2, and apo-vs-holo
+promotion confirmability) both came from asserting decision-claims without first
+reading the log. Treat any performance/promotion/capability claim as requiring a
+decision-log citation.
 
 ---
 
@@ -130,7 +132,13 @@ v2 split is added the same disciplined way:
 2. Add a cofactor+EC rule to `external_cofactor_ec_disambiguation.DISAMBIGUATION_RULES`
    and lane mappings to `external_annotation_anchored_import.LANE_PRIMARY_FINGERPRINT`
    / `COFACTOR_FOR_FINGERPRINT`.
-3. Source annotation-anchored bronze under the governor + novelty gate.
+3. **Declare the family's deploy-missing active-site context type** — what the
+   apo predicted structure *lacks* and how (or whether) to reconstruct it: cofactor,
+   metal, substrate, PTM, oligomeric interface, ordered water, or **none** (e.g. a
+   cofactorless catalytic-triad hydrolase loses nothing on apo). See "Reconstructing
+   deploy-missing active-site context" below; this drives whether/how the family can
+   ever reach silver.
+4. Source annotation-anchored bronze under the governor + novelty gate.
 
 Breadth of chemistry, not depth of one bucket, is where 10k comes from.
 
@@ -143,16 +151,19 @@ true **mmseqs sequence clustering** — a strictly better dedup dimension than
 metadata.
 
 ### Stage 4 — Bronze→silver promotion, the honest way
-Promotion is gated by **cofactor presence in the coordinates**, and 103/104 of our
-coordinate-bearing rows are **apo** — the geometry inverse-gate abstains on 100% of
-apo (the documented Problem-2 degradation; experimental-apo and predicted-apo both
-abstain). So promotion does **not** wait for more predicted structures. The working
-lever is **cofactor restoration/fusion**: restoration recovers 22/22 lost primaries
-(2026-06-04); the fused sequence→cofactor channel lifted heldout 23→37/45 (one-shot,
-**spent** — do not re-run). Run the cofactor-fusion channel (locally, with backends)
-over the promotion preview's chemistry-corroborated queue; resolve the **51
-representation-loop review-outliers** (chemistry disagrees with the label) first.
-Silver is earned per-row, never bulk-flipped.
+Promotion is gated by **deploy-missing active-site context presence in the
+coordinates** — for the current cofactor-dependent families that means the cofactor,
+and 103/104 of our coordinate-bearing rows are **apo** (cofactor absent), so the
+geometry inverse-gate abstains on 100% of apo (the documented Problem-2 degradation;
+experimental-apo and predicted-apo both abstain). So promotion does **not** wait for
+more predicted structures — it waits on **reconstruction** of the missing context.
+For the cofactor families the working lever is cofactor restoration/fusion
+(restoration recovers 22/22 lost primaries; the fused sequence→cofactor channel
+lifted heldout 23→37/45, one-shot **spent** — do not re-run). Run it (locally, with
+backends) over the promotion preview's chemistry-corroborated queue; resolve the
+**51 representation-loop review-outliers** (chemistry disagrees with the label)
+first. Silver is earned per-row, never bulk-flipped. **Reconstruction is not
+"cofactor" for every family** — see the next section.
 
 ### Stage 5 — A v2 benchmark, only when the atlas is broad
 A 702-row benchmark over 8 families cannot validate a 10k atlas across many
@@ -160,6 +171,84 @@ families. When Stage 2 has matured the ontology, freeze a **new** expert-reviewe
 benchmark (its own SHA; conjunctive win condition — mechanism prediction **and**
 calibrated abstention on tail/hard-negative cases; cluster-bootstrapped, not
 entry-bootstrapped). The current 702 stays frozen forever as the v1 anchor.
+
+---
+
+## Reconstructing deploy-missing active-site context (cofactor is the v1 instance, not the whole story)
+
+This is a **parallel axis, not a stage**. The count/diversity stages above reach 10k
+*bronze* labels and **do not need reconstruction at all** — annotation-anchored scope
+decouples the label from geometry. Reconstruction is the **quality/deploy axis**: it
+is what lets a label earn silver and what lets the atlas predict mechanism for novel,
+unannotated sequences (the North Star). Run it where the count climb does not — and
+do not confuse the two.
+
+**The general problem (not "cofactor"):** the router was validated on experimental
+active-site geometry but deploys on a predicted **apo** structure, which lacks
+whatever active-site *context* the experimental one carried. Per the 2026-06-04
+"Problem 2 Solution Architecture — Reconstruct Deploy-Missing Context From Sequence"
+entry, verbatim: *"For the v1 families that context is the cofactor/metal; for future
+classes it will be substrate, metal, PTM, oligomeric interface, or ordered water."*
+So the lever is **"reconstruct the deploy-missing active-site context from the only
+deploy-available signal (sequence), and abstain when you cannot"** — cofactor is the
+first instance because the current eight are mostly cofactor-defined, **not** a
+universal rule.
+
+**Per-family, the missing context differs:**
+
+- **7 cofactor-dependent fingerprints** (metal, PLP, flavin-monooxygenase, flavin-DR,
+  heme, radical-SAM [Fe-S+SAM], cobalamin) — the missing context is the
+  cofactor/metal. This is where the 22/22 `cofactor_apo_loss` came from
+  (2026-06-03 "Predicted-Geometry Degradation Is Cofactor-Loss-Dominated").
+- **`ser_his_acid_hydrolase` is cofactorless** — its catalysis is the Ser-His-Asp
+  protein triad, which is *present in the apo structure*. **Nothing to reconstruct**;
+  it degrades far less on apo, and its confirmation is the triad geometry itself
+  (which is exactly why `build-ser-his-triad-locator-scan` runs on apo coordinates).
+- **Even within cofactor families, not every row needs it.** Control in the
+  decomposition: 13/23 correctly-called primaries also had an experimental cofactor —
+  apo sufficed for them. The loss hits only rows where the cofactor is load-bearing
+  for the geometry signal.
+- **Future families (Stage 2)** declare their own missing-context type (Stage-2
+  checklist item 3), possibly **none**.
+
+**The two reconstruction paths (2026-06-04 architecture):**
+
+- **Path A — sequence→context feature channel (default).** Predict the missing
+  context (for cofactor families: cofactor presence) from sequence, **train/cal
+  only**, and fuse it where the experimental `ligand_context` plugged into the router.
+  Measured: in-distribution out-of-sample recovery **30/35 (70.6%)**, 0 regressions
+  (`cofactor_presence_calibration.py` / `sequence_cofactor_channel.py`); the spent
+  heldout one-shot went **23 → 37/45** (+14; OOS FP 12.3% → 25.9%) — **that read is
+  spent; never re-run or tune against it.**
+- **Path B — structure restoration (in reserve).** Graft a **canonical/template**
+  context (not the experimental one) into the predicted apo pocket and recompute
+  geometry. Idealized restoration recovers **22/22**; realistic rigid graft **19/22**
+  (the 3 failures are distorted-*backbone* rows). numpy is available for the Kabsch
+  superposition; `torch/esm/foldseek` are not in the cloud, so Path B runs locally
+  (`predicted_geometry_recovery.py`).
+
+**The discipline (so reconstruction does not become a leak):**
+
+- **Leakage-safe supervision is non-negotiable:** train the channel on *structural*
+  observations (ligand context), **never** the mechanism fingerprint / EC / Rhea /
+  text — otherwise it is circular and leaky. Fit on train/cal only.
+- **The experimental-cofactor graft is circular** — that cofactor is unavailable at
+  deploy — so it is only an oracle / upper bound, never a deploy input. Deploy uses
+  Path A (sequence-predicted) or Path B (canonical/template).
+- **The metal head is the known systemic weak point** (cal AUC ~0.77, spurious 0.99
+  on true flavin/heme rows) and the main driver of OOS over-opening; the 5 hard
+  misses need cofactor **localization** (predict binding residues) or transplant, not
+  more presence-channel tuning (2026-06-04 "Channel-Recall-Limited").
+- **Precision discipline:** prefer the **recalibrated abstention threshold** (reaches
+  the suppression dial's precision for free) over the suppression dial, which
+  sacrifices in-scope recall (2026-06-09 step-4 entry;
+  `cofactor_fusion_operating_point.py`).
+- Reconstruction stays a **silver/deploy** signal, **never** a bronze entry gate.
+
+**One-liner:** reconstruction does not get us to 10k labels — annotation-anchored
+bronze does — it turns the 10k atlas into a deploy-grade mechanism predictor and lets
+bronze earn silver; and the thing reconstructed is **family-specific** (cofactor
+first, sometimes nothing).
 
 ---
 
@@ -196,8 +285,49 @@ All merged to `main`, all non-destructive, leakage-safe, with tests:
 
 ---
 
+## Sources & where to verify (read before acting)
+
+Do not take any claim in this plan on faith — every one is traceable. `docs/decision_log.md`
+is reverse-chronological (newest at top); cite entries by their **dated title**
+(line numbers drift). The durable human handoff is `docs/project_state.md` +
+`docs/decision_log.md` + `docs/session_decision_record_*.md`; `work/handoff.md` is an
+**auto-generated hourly ledger** (skim for tactical state, do not treat as
+decisions); `docs/artifact_index.md` maps artifact files.
+
+| Plan element | Verify / more info |
+| --- | --- |
+| North Star, values, "done correctly", honesty culture | `docs/MAP.md`, `docs/research_program.md`, `docs/project_state.md`, `README.md` |
+| Leakage discipline + heldout one-shot rule | `docs/agent_runbook.md`; `tests/test_leakage_closure.py`; enforced in `labels._validate_external_out_of_scope_evidence_separation` |
+| Safety scope (beneficial-only, hypothesis language) | `docs/safety_scope.md` |
+| Frozen 702 benchmark: count, coherence baseline, eval contract | `artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json`; `artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json` (hashes to `sha256:731b94ebd3b4f7ae483a3cca75d2b8c3b88242024ecd9c364d70bdfcda6624ee`); pinned by `tests/test_geometry_artifact_regression.py` (`label_count == 702`); split manifest `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json` + `…holdout_eval_1025_current702_split_assignment_repaired_20260525.json` |
+| The 8 fingerprints (5 primary + 3 secondary) | `data/registries/mechanism_fingerprints.json`, `data/registries/mechanism_ontology.json`, `docs/mechanism_fingerprint.md`; primary/secondary split in the coherence-audit artifact |
+| The label gate / code path | `src/catalytic_earth/labels.py` (`MechanismLabel.from_dict`, `load_labels`, `COUNTABLE_REVIEW_STATUSES`); `docs/label_factory.md` |
+| Annotation-anchored bronze = the 10k unlock | `decision_log.md` 2026-06-09 "Annotation-Anchored Bronze Is An Accepted External Label Basis (the 10k unlock)"; engines `external_annotation_anchored_import.py` (`classify_row`, `_build_label`, the apply writer), `external_scaleout_bronze_import.py`, `external_cofactor_ec_disambiguation.py`; `docs/external_source_transfer.md`, `docs/ingestion_plan.md` |
+| Diversity governor (imbalance, holes, caps, redundancy) | `decision_log.md` 2026-06-10 "Coverage/Redundancy Governor"; `coverage_redundancy_audit.py`; `artifacts/v3_coverage_redundancy_audit_current702_20260610.json` + `work/…md` |
+| Novelty / saturation admission gate | `decision_log.md` 2026-06-10 "Novelty / Saturation Admission Gate"; `novelty_admission_gate.py`; its artifact/work |
+| ser_his hole + triad locator | `decision_log.md` 2026-06-10 "Ser/Cys-His-Asp Triad Locator"; `ser_his_triad_locator.py`, `serine_active_site.py`; its artifact/work |
+| Representation loop (chemistry features) | `decision_log.md` 2026-06-10 "Mechanism Representation Loop"; `mechanism_representation_loop.py`; its artifact/work |
+| **Do not scale model size** (ESM2 etc. not decision-grade) | `docs/wave1_representation_shootout.md`; `decision_log.md` 2026-05-31 "…Feature Overlap…(Northstar Pivot)" and "Sobering Operating-Point Reality"; `mechanism_feature_embedding.py` (Lever 2 clean negative) |
+| Promotion preview + the cofactor-presence correction | `decision_log.md` 2026-06-10 "Bronze->Silver Promotion Preview" and "CORRECTION — Promotion Confirmability Is Cofactor PRESENCE…"; `bronze_silver_promotion_preview.py`; its artifact/work |
+| Problem-2 degradation (45/45→23/45, apo cofactor-loss) | `decision_log.md` 2026-06-03 "Predicted-Geometry Degradation Is Cofactor-Loss-Dominated"; `predicted_geometry_robustness.py`; `artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json` |
+| Reconstruction architecture + the two paths | `decision_log.md` 2026-06-04 "Problem 2 Solution Architecture — Reconstruct Deploy-Missing Context From Sequence" |
+| Cofactor restoration 22/22 · realistic graft 19/22 | `decision_log.md` 2026-06-04 "Cofactor Restoration Recovers 22/22…" and "Cofactor Graft Is Realistic For 19/22"; `predicted_geometry_recovery.py`; `artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json` |
+| Sequence→cofactor channel ~70% · heldout one-shot (SPENT) | `decision_log.md` 2026-06-04 "Cofactor Channel Recovers ~70%…", "HELDOUT ONE-SHOT SPENT…", "Leakage-Safe Cofactor-Presence Channel"; `cofactor_presence_calibration.py`, `sequence_cofactor_channel.py`; `artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json`, `…heldout_oneshot_cofactor_fusion_blind_pass…json` |
+| Metal head weak point · hard misses not channel-recoverable | `decision_log.md` 2026-06-04 "Cofactor Recovery Is Channel-Recall-Limited…" |
+| Precision dial (recalibrated threshold > suppression) | `decision_log.md` 2026-06-09 "Step-4 Precision Side Measured…"; `cofactor_fusion_operating_point.py` |
+| Predicted-geometry pipeline runbook | `docs/predicted_geometry_robustness_pipeline_runbook.md` |
+| Sourcing status: drained pools, 275-row queue, page-depth lesson | `work/handoff.md` (latest), `work/NEXT_WORKS_northstar_20260531.md`, `docs/external_source_transfer.md` |
+| ePK NO-GO (do not revive without non-heuristic approach) | `docs/epk_heuristic_geometry_no_go_20260521.md`; `decision_log.md` 2026-06-06 |
+
+If a reference here ever disagrees with the code or a newer decision-log entry,
+**the newer decision-log entry and the code win** — update this plan, don't quietly
+work around it.
+
+---
+
 ## One-line summary
 
 **Unblock sourcing → close the holes → broaden the ontology → diverse
-novelty-gated OOS → earn silver via cofactor fusion → freeze a v2 benchmark when
-ready** — all behind the frozen-702 wall, the leakage wall, and the governor.
+novelty-gated OOS → earn silver by reconstructing each family's deploy-missing
+context (cofactor first, sometimes nothing) → freeze a v2 benchmark when ready** —
+all behind the frozen-702 wall, the leakage wall, and the governor.
