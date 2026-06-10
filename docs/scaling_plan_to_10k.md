@@ -174,6 +174,52 @@ entry-bootstrapped). The current 702 stays frozen forever as the v1 anchor.
 
 ---
 
+## Pending candidate inventory (as of 2026-06-09) — triage these before re-sourcing
+
+A large multi-family intake already ran (Wave 2 + the seven family shards). **Nothing
+was lost and almost nothing was force-imported** — the candidates are preserved as
+preview/queue artifacts and sit behind the gate. Before sourcing anything fresh
+(Stages 1–3), work these queues through the **governor + novelty gate** first; this
+intake predates both, so expect a large fraction to be throttled as near-duplicates
+or dropped as already-covered.
+
+**The 12,495-candidate review surface** (`v3_external_import_review_preflight_current702_20260609.json`,
+`terminal_state_counts`):
+
+| terminal state | count | disposition |
+| --- | --- | --- |
+| `controlled_import_review_ready` | **275** | machine-clean; **queued for explicit human batch approval — not imported** (`v3_external_import_review_ready_preview_current702_20260609.json`) |
+| `repairable_coordinate_blocker` | 5,179 | needs coordinates (network/local) |
+| `hard_blocked_with_next_action` | 2,904 | blocked |
+| `reject/OOS_preserve_signal` | 1,562 | rejected |
+| `duplicate_external_conflict` | 1,275 | already in the expansion registry |
+| `repairable_locator_blocker` | 1,096 | needs an active-site locator |
+| `duplicate_current702_conflict` | 203 | already in the frozen 702 benchmark |
+| `needs_structural_duplicate_screen` | 1 | — |
+
+(275 ready + 12,220 in the repair/blocked queue, `v3_external_import_review_repair_queue_current702_20260609.json`.)
+
+**What was imported from these pipelines (the 1,710 now in the registry)** — only the
+cofactor-corroborated / clear-OOS / clean-screen rows passed the gate:
+- 186 — original Wave 2 annotation-anchored import.
+- 1,381 — scale-out **drain** of the already-materialized import-ready pools (2,426
+  rows → 1,389 import decisions; **1,037 held** = 743 cofactor-confounded redox + 129
+  no-cofactor + 107 ambiguous + 58 unmapped; `v3_external_scaleout_bronze_import_preview_current702_20260609.json`).
+- 143 — cofactor/EC disambiguation recovering held redox/radical lanes (still **~730
+  held** for lacking unique cofactor+EC corroboration;
+  `v3_external_cofactor_ec_disambiguation_preview_current702_20260609.json`).
+
+**Implications for the plan:** (1) the ~6,275 coordinate/locator-blocked rows resolve
+in a **local env** (network/backends) — they are a Stage-0/1 unblock, not lost work;
+(2) the ~1,478 duplicates and the held lanes are exactly what the novelty gate exists
+to screen; (3) the 275 clean rows still require explicit human authorization +
+label-factory gates (review ≠ import) — and should pass the governor/novelty gate
+before any merge, so they grow diversity rather than re-saturate. Do **not** re-run
+deeper-page sourcing on the same lanes (it added 0 new candidates last time); split
+into new EC/keyword subqueries instead.
+
+---
+
 ## Reconstructing deploy-missing active-site context (cofactor is the v1 instance, not the whole story)
 
 This is a **parallel axis, not a stage**. The count/diversity stages above reach 10k
@@ -317,6 +363,7 @@ decisions); `docs/artifact_index.md` maps artifact files.
 | Precision dial (recalibrated threshold > suppression) | `decision_log.md` 2026-06-09 "Step-4 Precision Side Measured…"; `cofactor_fusion_operating_point.py` |
 | Predicted-geometry pipeline runbook | `docs/predicted_geometry_robustness_pipeline_runbook.md` |
 | Sourcing status: drained pools, 275-row queue, page-depth lesson | `work/handoff.md` (latest), `work/NEXT_WORKS_northstar_20260531.md`, `docs/external_source_transfer.md` |
+| Pending candidate inventory (12,495 review surface; what imported vs held/blocked) | `artifacts/v3_external_import_review_preflight_current702_20260609.json` (`terminal_state_counts`), `…import_review_ready_preview…json` (275 ready), `…import_review_repair_queue…json` (12,220), `…scaleout_bronze_import_preview…json` (1,381 import / 1,037 held), `…cofactor_ec_disambiguation_preview…json` (143 / ~730 held) |
 | ePK NO-GO (do not revive without non-heuristic approach) | `docs/epk_heuristic_geometry_no_go_20260521.md`; `decision_log.md` 2026-06-06 |
 
 If a reference here ever disagrees with the code or a newer decision-log entry,
