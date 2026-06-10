@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-09
+Last refreshed: 2026-06-10
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -1100,6 +1100,20 @@ artifacts first.
    acceptance surface is review/control input only; it preserves shard signal
    and repair overlays but does not authorize label import or registry
    mutation.
+7. **Stage-1 hole sourcing (now unblocked by network — the actionable next
+   sourcing step):** with live UniProt egress, run `scripts/stage1_source_holes.py`
+   to source fresh annotation-anchored bronze for the two cofactor-defined holes
+   (`radical_sam_enzyme` 10, `cobalamin_radical_rearrangement` 10) toward the
+   100-label floor. It chains the existing pilot → cofactor/EC disambiguation →
+   novelty-gate pipeline (non-destructive preview; `--apply` appends only to the
+   expansion registry; frozen 702 untouched). Review the preview's
+   `floor_projection` / `novelty_gate` before `--apply`. The cofactorless
+   `ser_his_acid_hydrolase` hole uses `build-ser-his-triad-locator-scan` instead.
+   Before/alongside fresh sourcing, also triage the existing held pools the
+   2026-06-09 pending-candidate inventory describes (~730 disambiguation-held +
+   275 review-ready) through the same governor/novelty gate. Runbook:
+   `docs/stage1_hole_sourcing_runbook.md`; decision-log entry 2026-06-10
+   "Stage-1 Hole-Sourcing Runner".
 
 ## Maintenance Notes
 

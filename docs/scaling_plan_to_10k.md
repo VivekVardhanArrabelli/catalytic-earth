@@ -119,6 +119,15 @@ over the 250 ceiling, most redundant at 2.96 labels/distinct-reaction) — add n
 Everything routes through the governor + novelty gate so orthologs are not
 re-imported.
 
+**Runnable now:** the two **cofactor-defined** holes (`radical_sam_enzyme`,
+`cobalamin_radical_rearrangement`) have an end-to-end runner —
+`scripts/stage1_source_holes.py` (module `stage1_hole_sourcing.py`) — that chains
+fetch → cofactor/EC disambiguation → novelty gate → non-destructive preview
+(`--apply` appends to the expansion registry only). It needs **live UniProt egress**.
+`ser_his_acid_hydrolase` is cofactorless and stays on `build-ser-his-triad-locator-scan`.
+See `docs/stage1_hole_sourcing_runbook.md`. Triage the existing held pools (Pending
+candidate inventory above) through the same gate alongside fresh sourcing.
+
 ### Stage 2 — Grow the ontology (the bulk of the climb)
 8 fingerprints × 250 cap ≈ **2,000 positives max** — so 10k honestly **requires more
 mechanism families**. The coherence audit already flags this: `metal_dependent_hydrolase`
@@ -328,6 +337,11 @@ All merged to `main`, all non-destructive, leakage-safe, with tests:
   proposes hole candidates. CLI `build-mechanism-representation-loop`.
 - `bronze_silver_promotion_preview.py` — promotion queue gated on **cofactor presence
   in coordinates** (not provenance). CLI `build-bronze-silver-promotion-preview`.
+- `stage1_hole_sourcing.py` + `scripts/stage1_source_holes.py` — Stage-1 runner that
+  fetches fresh reviewed Swiss-Prot for the two cofactor-defined holes and chains
+  pilot → cofactor/EC disambiguation → novelty gate → non-destructive preview
+  (`--apply` appends to the expansion registry). Needs live UniProt egress; wiring
+  is offline-tested. Runbook: `docs/stage1_hole_sourcing_runbook.md`.
 
 ---
 
@@ -352,6 +366,7 @@ decisions); `docs/artifact_index.md` maps artifact files.
 | Diversity governor (imbalance, holes, caps, redundancy) | `decision_log.md` 2026-06-10 "Coverage/Redundancy Governor"; `coverage_redundancy_audit.py`; `artifacts/v3_coverage_redundancy_audit_current702_20260610.json` + `work/…md` |
 | Novelty / saturation admission gate | `decision_log.md` 2026-06-10 "Novelty / Saturation Admission Gate"; `novelty_admission_gate.py`; its artifact/work |
 | ser_his hole + triad locator | `decision_log.md` 2026-06-10 "Ser/Cys-His-Asp Triad Locator"; `ser_his_triad_locator.py`, `serine_active_site.py`; its artifact/work |
+| Stage-1 hole-sourcing runner (radical_sam + cobalamin) | `decision_log.md` 2026-06-10 "Stage-1 Hole-Sourcing Runner"; `stage1_hole_sourcing.py`, `scripts/stage1_source_holes.py`, `tests/test_stage1_hole_sourcing.py`; `docs/stage1_hole_sourcing_runbook.md` |
 | Representation loop (chemistry features) | `decision_log.md` 2026-06-10 "Mechanism Representation Loop"; `mechanism_representation_loop.py`; its artifact/work |
 | **Do not scale model size** (ESM2 etc. not decision-grade) | `docs/wave1_representation_shootout.md`; `decision_log.md` 2026-05-31 "…Feature Overlap…(Northstar Pivot)" and "Sobering Operating-Point Reality"; `mechanism_feature_embedding.py` (Lever 2 clean negative) |
 | Promotion preview + the cofactor-presence correction | `decision_log.md` 2026-06-10 "Bronze->Silver Promotion Preview" and "CORRECTION — Promotion Confirmability Is Cofactor PRESENCE…"; `bronze_silver_promotion_preview.py`; its artifact/work |
