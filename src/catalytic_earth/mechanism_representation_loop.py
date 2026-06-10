@@ -223,6 +223,28 @@ def _nearest_fingerprint(
     return best_fp, round(best_sim, 4)
 
 
+def assess_row_against_centroids(
+    row: dict[str, Any], centroids: dict[str, list[float]]
+) -> dict[str, Any]:
+    """Public: nearest fingerprint + cohesion for a row, given full centroids.
+
+    Operational classifier (uses the full centroids) reused by the bronze->silver
+    promotion preview. Leakage-safe -- featurize reads only chemistry, never
+    EC/name/label.
+    """
+    vector = _vector(featurize(row))
+    nearest, nearest_sim = _nearest_fingerprint(vector, centroids)
+    fp = row.get("fingerprint_id")
+    own = round(_cosine(vector, centroids[fp]), 4) if fp in centroids else None
+    return {
+        "assigned_fingerprint": fp,
+        "nearest_fingerprint": nearest,
+        "nearest_similarity": nearest_sim,
+        "own_cohesion": own,
+        "chemistry_agrees_with_label": (nearest == fp) if fp else None,
+    }
+
+
 def promotion_triage(
     seed_labels: list[dict[str, Any]],
     *,

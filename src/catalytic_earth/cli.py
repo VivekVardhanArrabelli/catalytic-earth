@@ -96,6 +96,7 @@ from .coverage_redundancy_audit import write_coverage_redundancy_audit
 from .ser_his_triad_locator import write_ser_his_triad_locator_scan
 from .novelty_admission_gate import write_novelty_admission_gate_audit
 from .mechanism_representation_loop import write_mechanism_representation_loop
+from .bronze_silver_promotion_preview import write_bronze_silver_promotion_preview
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2933,6 +2934,21 @@ def cmd_build_mechanism_representation_loop(args: argparse.Namespace) -> int:
         f"LOO self-consistency {tri['leave_one_out_self_consistency']}; "
         f"promotion candidates {tri['promotion_candidates']}; review outliers "
         f"{tri['review_outliers']}; leakage-safe, no registry written)"
+    )
+    return 0
+
+
+def cmd_build_bronze_silver_promotion_preview(args: argparse.Namespace) -> int:
+    audit = write_bronze_silver_promotion_preview(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        cohesion_threshold=args.cohesion_threshold,
+    )
+    print(
+        "Wrote bronze->silver promotion preview to "
+        f"{args.out} ({audit['status']}; {audit['seed_labels']} seed labels; "
+        f"silver-ready (pending geometry run) {audit['silver_ready_count']}; "
+        f"decisions {audit['decision_counts']}; no tier changed, no registry written)"
     )
     return 0
 
@@ -22814,6 +22830,31 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mechanism_representation_loop.set_defaults(
         func=cmd_build_mechanism_representation_loop
+    )
+
+    bronze_silver_promotion_preview = subparsers.add_parser(
+        "build-bronze-silver-promotion-preview",
+        help=(
+            "stage the bronze->silver promotion QUEUE from the representation loop's "
+            "chemistry corroboration + structure confirmability: marks labels "
+            "silver-ready (pending the geometry-confirmation run), blocked, or "
+            "review; does NOT run/fake the geometry gate, flip tier, or write the "
+            "registry"
+        ),
+    )
+    bronze_silver_promotion_preview.add_argument(
+        "--out",
+        default="artifacts/v3_bronze_silver_promotion_preview_current702_20260610.json",
+    )
+    bronze_silver_promotion_preview.add_argument(
+        "--report",
+        default="work/bronze_silver_promotion_preview_current702_20260610.md",
+    )
+    bronze_silver_promotion_preview.add_argument(
+        "--cohesion-threshold", type=float, default=0.92,
+    )
+    bronze_silver_promotion_preview.set_defaults(
+        func=cmd_build_bronze_silver_promotion_preview
     )
 
     embedding_sidecar = subparsers.add_parser(
