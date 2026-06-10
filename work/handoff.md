@@ -1,5 +1,44 @@
 # Handoff
 
+## Session run — Stage-1 hole sourcing APPLIED (2026-06-10, Claude Code web)
+
+- Session: Claude Code cloud session (not the Mac automation harness below); live
+  UniProt egress enabled. Branch `claude/cool-einstein-mbwvp9`, merged to `main`.
+- Status: **Complete.** Ran `docs/stage1_hole_sourcing_runbook.md` end to end and
+  applied. Frozen current702 benchmark byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`, 702 labels).
+- Result: 548 reviewed Swiss-Prot rows across 10 narrow EC/cofactor lanes (0 fetch
+  failures) → 259 disambiguated bronze (277 held for no cofactor+EC corroboration,
+  12 dup-screened) → **257 novelty-admitted**, appended to the expansion registry only
+  (`data/registries/external_bronze_labels.json` 1710 → 1967; combined 2412 → 2669).
+- Holes (combined = frozen + expansion):
+  - `radical_sam_enzyme` 10 → **133** — closed, floor reached.
+  - `cobalamin_radical_rearrangement` 10 → **144** — closed, floor reached.
+  - `ser_his_acid_hydrolase` stays **42** — `build-ser-his-triad-locator-scan` is
+    coordinate-confirmation-only / network-free; local pool drained, 0 recoveries.
+- Governor regenerated: holes now `['ser_his_acid_hydrolase']` only; fingerprint
+  Gini 0.51 → 0.3408; `metal_dependent_hydrolase` lone over-cap (added none).
+- Load-bearing fix: the cobalamin matcher in
+  `external_cofactor_ec_disambiguation.cofactor_evidence` missed UniProt's
+  inline-oxidation-state names (`adenosylcob(III)alamin`, `cob(II)alamin`), admitting
+  0 cobalamin from 156 genuine rows; now matches the `cob(i/ii/iii)alamin` stems
+  (scope-only annotation read; leakage wall unchanged). Regression test added.
+- Validation: `validate` ok; full unittest suite green except the 6 known env-backend
+  failures (numpy/esm2/mmseqs absent). 4 RealRegistry count pins updated to the new
+  registry state (combined 2412→2669, expansion 1710→1967, seed_labels 486→743).
+  `git diff --check` clean.
+- Guardrails verified: frozen current702 never written; tier=bronze /
+  automation_curated; uniprot namespace; EC/name/prose in `excluded_context`,
+  `predictive_evidence` empty on all 257; deduped + novelty-gated vs both registries.
+- Artifacts: `artifacts/v3_stage1_hole_sourcing_preview_current702.json`,
+  `work/stage1_hole_sourcing_current702.md`,
+  `artifacts/v3_ser_his_triad_locator_scan_current702_20260610.json`.
+- Exact next action: source the cofactorless `ser_his_acid_hydrolase` hole (needs the
+  live fetch + AF/PDB coordinate-staging + `assess_ser_his_candidate` triad-confirm
+  loop the acquisition contract describes; not yet wired into the CLI), and triage the
+  under-floor flavin/heme fingerprints + the ~730 held / 275 review-ready pools through
+  the governor/novelty gate.
+
 ## Current automation run
 
 - Automation ID: `ce-import-closure-driver`

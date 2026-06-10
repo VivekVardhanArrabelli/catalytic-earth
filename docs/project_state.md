@@ -1123,6 +1123,22 @@ artifacts first.
    acceptance surface is review/control input only; it preserves shard signal
    and repair overlays but does not authorize label import or registry
    mutation.
+7. **Stage-1 hole sourcing — two cofactor holes DONE (2026-06-10); ser_his +
+   held-pool triage remain.** With live UniProt egress, `scripts/stage1_source_holes.py
+   --apply` sourced the two cofactor-defined holes to the 100-floor:
+   `radical_sam_enzyme` **10 → 133** and `cobalamin_radical_rearrangement` **10 → 144**
+   (+257 bronze; expansion 1710 → 1967; frozen 702 untouched). Both are off the
+   governor's hole list; fingerprint Gini 0.51 → 0.3408. The **remaining** Stage-1 work:
+   (a) the cofactorless `ser_his_acid_hydrolase` hole is still open at **42** —
+   `build-ser-his-triad-locator-scan` is coordinate-confirmation-only / network-free and
+   the local candidate pool is drained (0 confirmed recoveries), so closing it needs the
+   live fetch + AF/PDB coordinate-staging + triad-confirm loop its acquisition contract
+   describes (not yet wired into the CLI); and (b) the under-floor flavin/heme
+   fingerprints plus the existing held pools the 2026-06-09 pending-candidate inventory
+   describes (~730 disambiguation-held + 275 review-ready) still need triage through the
+   same governor/novelty gate. Runbook: `docs/stage1_hole_sourcing_runbook.md`;
+   decision-log entries 2026-06-10 "Stage-1 Hole Sourcing … Closed To Floor" (the run)
+   and "Stage-1 Hole-Sourcing Runner" (the tool).
 
 ## Maintenance Notes
 

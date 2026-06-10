@@ -68,6 +68,65 @@ References:
   `artifacts/v3_ser_his_triad_locator_scan_current702_20260610.json`.
 - `data/registries/external_bronze_labels.json` (1710 -> 1967).
 
+## 2026-06-10: Stage-1 Hole-Sourcing Runner — Fresh Bronze For The radical_sam + cobalamin Holes (non-destructive)
+
+Decision: add a runnable Stage-1 (close-the-holes) sourcing path for the two
+**cofactor-defined** holes the governor flags below the 100-label floor —
+`radical_sam_enzyme` (combined 10) and `cobalamin_radical_rearrangement` (combined
+10). New code is **orchestration only**; it chains the existing, tested pipeline and
+introduces no new label logic:
+`adapters.fetch_uniprot_query/entry` → `build_external_source_ingestion_pilot`
+(hole-targeted EC/cofactor lane queries → canonical rows) →
+`build_cofactor_ec_disambiguation` (cofactor+EC scope assignment, `_build_label`,
+dedup vs BOTH registries, multi-fingerprint-signal rows held) →
+`novelty_admission_gate.evaluate_batch` (admit only rows that add a new
+cluster/reaction/organism) → non-destructive preview → (separate `--apply`)
+`apply_external_annotation_anchored_import_to_registry`.
+
+`ser_his_acid_hydrolase` is deliberately **excluded** from this runner: it is
+cofactorless, so the cofactor/EC engine structurally cannot reach it (the runner
+raises on it). It routes through the existing `build-ser-his-triad-locator-scan`
+(triad locator + acquisition contract, confirmed against coordinates).
+
+Integration fix found and corrected while wiring this: the ingestion pilot records
+its current702 screen under `duplicate_current_registry_conflict`, but the
+cofactor/EC re-screen reads the upstream verdict from `duplicate_status`. Without
+re-keying, **every fresh pilot row is rejected as upstream-not-confirmed (0
+imports)**. `_bridge_pilot_rows_for_disambiguation` re-exposes the pilot's own
+verdict under the expected key; the authoritative accession/sequence re-check still
+runs vs both registries.
+
+Relationship to the 2026-06-09 pending-candidate inventory (scaling-plan §"Pending
+candidate inventory"): the existing held pools already ran the disambiguation and
+left **~730 held** for lacking unique cofactor+EC corroboration, plus a 275-row
+"controlled_import_review_ready" set awaiting human approval. This runner does
+**fresh, EC+cofactor-targeted** sourcing aimed at cleanly corroborated rows, and
+routes through the **same** governor/novelty gate the inventory says to apply — so it
+is complementary, not a re-source of the same drained lanes. Do not deepen paging on
+drained lanes; split into new EC/keyword subqueries (the runner already does).
+
+Guardrails (asserted on the output): frozen current702 benchmark never written
+(expansion registry only); EC/name/prose stay `excluded_context`, never predictive;
+`tier=bronze`, `review_status=automation_curated`; novelty-gated vs both registries;
+non-destructive without `--apply`. **Live UniProt egress is required to run** (the
+cloud sandbox 403s UniProt/Rhea/AlphaFold by default), so the actual fetch/apply
+happens in a network-enabled session; the wiring is validated offline via injected
+synthetic fetchers. CLI `validate` green (702 labels unchanged); new tests 8/8;
+`git diff --check` clean; full suite unchanged (same 7 pre-existing env-backend
+failures — torch/esm/mmseqs/numpy absent — none from this change). Merged to `main`
+via PR #18.
+
+References:
+
+- `src/catalytic_earth/stage1_hole_sourcing.py` (`HOLE_LANE_QUERIES`,
+  `build_stage1_hole_sourcing`, `_bridge_pilot_rows_for_disambiguation`),
+  `scripts/stage1_source_holes.py` (runner + egress preflight + `--apply`),
+  `tests/test_stage1_hole_sourcing.py`, `docs/stage1_hole_sourcing_runbook.md`.
+- When run it writes a non-destructive preview under `artifacts/` and a report under
+  `work/` (exact paths in the runbook); neither exists until a network-enabled run.
+  **Update (this run):** that network-enabled run has now happened and applied —
+  see the "Closed To Floor" entry above; the preview/report now exist.
+
 ## 2026-06-10: CORRECTION — Promotion Confirmability Is Cofactor PRESENCE, Not Experimental-vs-Predicted Provenance
 
 Decision: correct the bronze->silver promotion preview's structure-confirmability

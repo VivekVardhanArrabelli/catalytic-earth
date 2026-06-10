@@ -110,14 +110,29 @@ over the 250 ceiling, most redundant at 2.96 labels/distinct-reaction) — add n
 | fingerprint | combined | status | route |
 | --- | --- | --- | --- |
 | `ser_his_acid_hydrolase` | 42 (0 expansion) | HOLE | triad locator + acquisition contract: EC 3.4.21/3.4.16/3.1.1, **no cofactor**, coordinate Ser-His-Asp triad corroborated against annotated ACT_SITE (`build-ser-his-triad-locator-scan`). The one fingerprint the cofactor engine structurally can't reach. |
-| `radical_sam_enzyme` | 10 | HOLE | disambiguation rule (Fe-S+SAM / CX3CX2C). The representation loop already proposed **14 candidates from our own OOS pile** — start there + fresh sourcing. |
-| `cobalamin_radical_rearrangement` | 10 | HOLE | disambiguation rule (adenosylcobalamin + mutase EC 5.4.99/5.4.3/4.2.1.28/30/4.3.1.7). |
+| `radical_sam_enzyme` | ~~10~~ **133** | **HOLE CLOSED (2026-06-10)** | disambiguation rule (Fe-S+SAM / CX3CX2C). Sourced to floor by `scripts/stage1_source_holes.py --apply` (+123 bronze); off the governor's hole list. |
+| `cobalamin_radical_rearrangement` | ~~10~~ **144** | **HOLE CLOSED (2026-06-10)** | disambiguation rule (adenosylcobalamin + mutase EC 5.4.99/5.4.3/4.2.1.28/30/4.3.1.7). Sourced to floor (+134 bronze) after fixing the cobalamin matcher to read UniProt's inline-oxidation-state names (`cob(III)alamin`). |
 | `flavin_monooxygenase` | 43 | under-floor | EC 1.14.13/1.14.14, flavin no-heme. |
 | `heme_peroxidase_oxidase` | 69 | under-floor | EC 1.11.1, heme. |
 | `flavin_dehydrogenase_reductase` | 87 | under-floor | EC 1.3/1.6/1.8.1, flavin no-heme. |
 
 Everything routes through the governor + novelty gate so orthologs are not
 re-imported.
+
+**Applied (2026-06-10):** the two **cofactor-defined** holes (`radical_sam_enzyme`,
+`cobalamin_radical_rearrangement`) were sourced to the floor with live UniProt egress
+via `scripts/stage1_source_holes.py --apply` (module `stage1_hole_sourcing.py`) —
+fetch → cofactor/EC disambiguation → novelty gate → non-destructive preview, `--apply`
+appending **257 bronze** to the expansion registry only (1710 → 1967; frozen 702
+untouched). Both are now **off the governor's hole list** (radical_sam 133, cobalamin
+144); fingerprint Gini 0.51 → 0.3408. See decision_log 2026-06-10 "Stage-1 Hole
+Sourcing … Closed To Floor" and `docs/stage1_hole_sourcing_runbook.md`.
+`ser_his_acid_hydrolase` is cofactorless, stays on `build-ser-his-triad-locator-scan`,
+and **remains the lone open hole at 42** — that tool is coordinate-confirmation-only /
+network-free, the local pool is drained (0 recoveries), so closing it needs the live
+fetch + coordinate-staging + triad-confirm loop its acquisition contract describes.
+Still **next:** triage the existing held pools (Pending candidate inventory above)
+through the same governor/novelty gate alongside any fresh sourcing.
 
 ### Stage 2 — Grow the ontology (the bulk of the climb)
 8 fingerprints × 250 cap ≈ **2,000 positives max** — so 10k honestly **requires more
@@ -328,6 +343,11 @@ All merged to `main`, all non-destructive, leakage-safe, with tests:
   proposes hole candidates. CLI `build-mechanism-representation-loop`.
 - `bronze_silver_promotion_preview.py` — promotion queue gated on **cofactor presence
   in coordinates** (not provenance). CLI `build-bronze-silver-promotion-preview`.
+- `stage1_hole_sourcing.py` + `scripts/stage1_source_holes.py` — Stage-1 runner that
+  fetches fresh reviewed Swiss-Prot for the two cofactor-defined holes and chains
+  pilot → cofactor/EC disambiguation → novelty gate → non-destructive preview
+  (`--apply` appends to the expansion registry). Needs live UniProt egress; wiring
+  is offline-tested. Runbook: `docs/stage1_hole_sourcing_runbook.md`.
 
 ---
 
@@ -352,6 +372,7 @@ decisions); `docs/artifact_index.md` maps artifact files.
 | Diversity governor (imbalance, holes, caps, redundancy) | `decision_log.md` 2026-06-10 "Coverage/Redundancy Governor"; `coverage_redundancy_audit.py`; `artifacts/v3_coverage_redundancy_audit_current702_20260610.json` + `work/…md` |
 | Novelty / saturation admission gate | `decision_log.md` 2026-06-10 "Novelty / Saturation Admission Gate"; `novelty_admission_gate.py`; its artifact/work |
 | ser_his hole + triad locator | `decision_log.md` 2026-06-10 "Ser/Cys-His-Asp Triad Locator"; `ser_his_triad_locator.py`, `serine_active_site.py`; its artifact/work |
+| Stage-1 hole-sourcing runner (radical_sam + cobalamin) | `decision_log.md` 2026-06-10 "Stage-1 Hole-Sourcing Runner"; `stage1_hole_sourcing.py`, `scripts/stage1_source_holes.py`, `tests/test_stage1_hole_sourcing.py`; `docs/stage1_hole_sourcing_runbook.md` |
 | Representation loop (chemistry features) | `decision_log.md` 2026-06-10 "Mechanism Representation Loop"; `mechanism_representation_loop.py`; its artifact/work |
 | **Do not scale model size** (ESM2 etc. not decision-grade) | `docs/wave1_representation_shootout.md`; `decision_log.md` 2026-05-31 "…Feature Overlap…(Northstar Pivot)" and "Sobering Operating-Point Reality"; `mechanism_feature_embedding.py` (Lever 2 clean negative) |
 | Promotion preview + the cofactor-presence correction | `decision_log.md` 2026-06-10 "Bronze->Silver Promotion Preview" and "CORRECTION — Promotion Confirmability Is Cofactor PRESENCE…"; `bronze_silver_promotion_preview.py`; its artifact/work |
