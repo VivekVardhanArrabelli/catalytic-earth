@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-09
+Last refreshed: 2026-06-10
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -26,6 +26,29 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **Stage-1 hole sourcing applied (2026-06-10) — two cofactor-defined holes closed to floor.**
+  Ran `docs/stage1_hole_sourcing_runbook.md` with live UniProt egress. 548 reviewed
+  Swiss-Prot rows across 10 narrow EC/cofactor lanes (0 fetch failures) → 259
+  disambiguated bronze (277 held for no cofactor+EC corroboration, 12 dup-screened) →
+  257 novelty-admitted, appended to the SEPARATE expansion registry
+  `data/registries/external_bronze_labels.json` (**1710 → 1967**; combined
+  **2412 → 2669**). Frozen current702 benchmark byte-unchanged (702 labels,
+  `sha256:5eec9bef…`). Per-fingerprint combined (frozen + expansion):
+  `radical_sam_enzyme` **10 → 133** (expansion 9 → 132) and
+  `cobalamin_radical_rearrangement` **10 → 144** (expansion 7 → 141) — both **HOLE
+  closed, 100-floor reached**. The governor now lists holes as
+  `['ser_his_acid_hydrolase']` only (was [ser_his, radical_sam, cobalamin]);
+  fingerprint Gini **0.51 → 0.3408**. A load-bearing fix went in: the cobalamin
+  matcher in `external_cofactor_ec_disambiguation.cofactor_evidence` missed UniProt's
+  inline-oxidation-state cofactor names (`adenosylcob(III)alamin`, `cob(II)alamin`),
+  so it now also matches the `cob(i/ii/iii)alamin` stems (scope-only read; leakage
+  wall unchanged). `ser_his_acid_hydrolase` stays a hole at 42: its triad-locator scan
+  is coordinate-confirmation-only / network-free by design, the local candidate pool is
+  drained (0 confirmed recoveries), and closing it needs the live fetch +
+  coordinate-staging + triad-confirm loop the acquisition contract describes (not yet
+  wired into `build-ser-his-triad-locator-scan`). See decision_log 2026-06-10
+  "Stage-1 Hole Sourcing"; `artifacts/v3_stage1_hole_sourcing_preview_current702.json`,
+  `work/stage1_hole_sourcing_current702.md`.
 - **Current headline result (2026-06-06) — cofactor reconstruction:** the predicted-geometry
   drop is recovered by reconstructing the deploy-missing cofactor from sequence. Predicted-apo
   **23/45 → 37/45** primary (confirmed heldout one-shot, now SPENT; OOS/sec FP 12.3% → 25.9%).

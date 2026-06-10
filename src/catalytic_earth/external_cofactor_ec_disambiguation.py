@@ -150,7 +150,19 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
         "sam": any_name("s-adenosyl-l-methionine", "adenosylmethionine", "adomet")
         or bool(flags.get("sam_or_adomet_evidence_present")),
         "cx3cx2c_motif": bool(flags.get("cx3cx2c_motif_evidence_present")),
-        "cobalamin": any_name("cobalamin", "adenosylcobalamin", "b12", "cobamamide")
+        # UniProt records B12 cofactors with the cobalt oxidation state spelled
+        # inline -- "adenosylcob(III)alamin", "cob(II)alamin", "methylcob(III)alamin"
+        # -- so the bare substring "cobalamin" never matches the canonical names.
+        # Match the cob(I/II/III)alamin stems too (scope-only annotation read).
+        "cobalamin": any_name(
+            "cobalamin",
+            "adenosylcobalamin",
+            "b12",
+            "cobamamide",
+            "cob(i)alamin",
+            "cob(ii)alamin",
+            "cob(iii)alamin",
+        )
         or bool(flags.get("cobalamin_or_b12_evidence_present")),
     }
 

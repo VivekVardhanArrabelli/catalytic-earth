@@ -3,6 +3,71 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-10: Stage-1 Hole Sourcing — radical_sam + cobalamin Holes Closed To Floor (+ cobalamin cofactor-name fix)
+
+Decision: ran `docs/stage1_hole_sourcing_runbook.md` (Stage 1 of
+`docs/scaling_plan_to_10k.md`) with live UniProt egress, sourcing the two
+cofactor-defined holes to the 100-label floor. Verified egress (HTTP 200), previewed
+non-destructively, reviewed, then applied the novelty-admitted bronze to the SEPARATE
+expansion registry. The frozen current702 benchmark is byte-unchanged
+(`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; 702 labels).
+
+Result: 548 reviewed Swiss-Prot rows fetched across 10 narrow EC/cofactor lanes (0
+fetch failures) -> 259 disambiguated bronze (277 held for no cofactor+EC
+corroboration, 12 dup-screened) -> **257 novelty-admitted** (2 throttled as
+redundant). Expansion registry **1710 -> 1967**; combined **2412 -> 2669**.
+Per-fingerprint combined (frozen + expansion):
+
+- `radical_sam_enzyme`: **10 -> 133** (expansion 9 -> 132) — HOLE closed, floor reached.
+- `cobalamin_radical_rearrangement`: **10 -> 144** (expansion 7 -> 141) — HOLE closed, floor reached.
+
+The governor confirms both moved off the hole list: holes are now
+`['ser_his_acid_hydrolase']` only (was [ser_his, radical_sam, cobalamin]); fingerprint
+Gini **0.51 -> 0.3408**; `metal_dependent_hydrolase` stays the lone over-cap (added none).
+
+Cobalamin cofactor-name fix (the load-bearing change): the first preview admitted
+**0** cobalamin despite all 156 fetched rows carrying a genuine adenosylcobalamin
+annotation AND a matching mutase/eliminase EC (5.4.99/5.4.3/4.2.1.28/30/4.3.1.7).
+Root cause: UniProt records B12 cofactors with the cobalt oxidation state spelled
+inline — `adenosylcob(III)alamin`, `cob(II)alamin`, `methylcob(III)alamin` — so the
+substring `"cobalamin"` in `external_cofactor_ec_disambiguation.cofactor_evidence`
+never matched the canonical names (this defeated the cobalamin half of the runbook,
+not the documented conservative-hold caveat). Fix: also match the
+`cob(i/ii/iii)alamin` stems. This is a scope-only read of reviewed cofactor
+annotation; EC/name/prose stay in `excluded_context` and never become predictive
+features — the leakage wall is unchanged. Re-preview then admitted 134 cobalamin.
+Regression test added.
+
+ser_his_acid_hydrolase (separate, cofactorless): ran `build-ser-his-triad-locator-scan`.
+It is coordinate-confirmation-only and **network-free by design**, so live egress does
+not change its outcome (its `blocked_http_403` note is a static string from the
+blocked-network era, left untouched). With the local candidate pool drained it
+confirmed **0** recoveries and the hole stays at **42** (combined). The acquisition
+contract is ready; closing it needs the live fetch + AF/PDB coordinate-staging +
+`assess_ser_his_candidate` triad-confirm loop the contract describes, which is not
+wired into this CLI command.
+
+Guardrails (all asserted on the preview and verified post-apply): frozen current702
+never written; `tier=bronze`, `review_status=automation_curated`; uniprot namespace;
+EC/name/prose in `excluded_context`, `predictive_evidence` empty on all 257; deduped
+and novelty-gated vs BOTH registries; multi-fingerprint-signal rows held.
+
+Validation: `validate` ok (702 frozen intact). Full suite green except the 6 known
+env-backend failures (missing numpy/esm2/mmseqs). The 4 RealRegistry count pins were
+updated to the new registry state (combined 2412->2669, expansion 1710->1967,
+representation/promotion `seed_labels` 486->743). `git diff --check` clean.
+
+References:
+
+- `docs/stage1_hole_sourcing_runbook.md`; `scripts/stage1_source_holes.py`;
+  `src/catalytic_earth/stage1_hole_sourcing.py`.
+- `src/catalytic_earth/external_cofactor_ec_disambiguation.py` (cobalamin oxidation-state
+  name match), `tests/test_external_cofactor_ec_disambiguation.py`.
+- `artifacts/v3_stage1_hole_sourcing_preview_current702.json`,
+  `work/stage1_hole_sourcing_current702.md`;
+  `artifacts/v3_ser_his_triad_locator_scan_current702_20260610.json`.
+- `data/registries/external_bronze_labels.json` (1710 -> 1967).
+
 ## 2026-06-10: CORRECTION — Promotion Confirmability Is Cofactor PRESENCE, Not Experimental-vs-Predicted Provenance
 
 Decision: correct the bronze->silver promotion preview's structure-confirmability

@@ -1,6 +1,6 @@
 # Ser/Cys-His-Asp Catalytic-Triad Locator For The ser_his Hole
 
-Run: 2026-06-10T05:04:59Z
+Run: 2026-06-10T19:38:45Z
 
 `ser_his_acid_hydrolase` is the one seed fingerprint the cofactor-anchored engine cannot reach -- it is cofactorless. This supplies the missing corroborator: a coordinate Ser/Cys/Thr-His-Asp/Glu triad that must coincide with the annotated catalytic ACT_SITE of a serine-hydrolase EC family. Non-destructive: no registry is written, no label emitted.
 

@@ -79,6 +79,18 @@ class DisambiguateRowTests(unittest.TestCase):
         )
         self.assertEqual(d["fingerprint_id"], "cobalamin_radical_rearrangement")
 
+    def test_cobalamin_rearrangement_from_oxidation_state_cofactor_name(self) -> None:
+        # UniProt's canonical B12 cofactor names carry the cobalt oxidation state
+        # inline (e.g. methylmalonyl-CoA mutase annotates "adenosylcob(III)alamin"),
+        # which does not contain the bare substring "cobalamin".
+        d = disambiguate_row(
+            _row(cofactors=["adenosylcob(III)alamin"], ec=["5.4.99.2"])
+        )
+        self.assertEqual(d["fingerprint_id"], "cobalamin_radical_rearrangement")
+        self.assertTrue(
+            cofactor_evidence(_row(cofactors=["cob(II)alamin"]))["cobalamin"]
+        )
+
     def test_no_corroboration_holds(self) -> None:
         # Copper oxidase outside the eight fingerprints -> no rule fires.
         d = disambiguate_row(_row(cofactors=["Cu cation"], ec=["1.10.3.2"]))
