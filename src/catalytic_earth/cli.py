@@ -92,6 +92,10 @@ from .external_annotation_anchored_import import (
 )
 from .external_scaleout_bronze_import import write_scaleout_bronze_import
 from .external_cofactor_ec_disambiguation import write_cofactor_ec_disambiguation
+from .coverage_redundancy_audit import write_coverage_redundancy_audit
+from .ser_his_triad_locator import write_ser_his_triad_locator_scan
+from .novelty_admission_gate import write_novelty_admission_gate_audit
+from .mechanism_representation_loop import write_mechanism_representation_loop
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2847,6 +2851,88 @@ def cmd_build_external_cofactor_ec_disambiguation(args: argparse.Namespace) -> i
         f"{c['current_registry_labels']} -> {c['projected_registry_labels_if_merged']} "
         f"if merged; still held {c['hold_count']}, skipped {c['skip_count']}; "
         "curated registry NOT written)"
+    )
+    return 0
+
+
+def cmd_build_coverage_redundancy_audit(args: argparse.Namespace) -> int:
+    audit = write_coverage_redundancy_audit(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        target_floor=args.target_floor,
+        cap_ceiling=args.cap_ceiling,
+        hole_threshold=args.hole_threshold,
+        cluster_min_size=args.cluster_min_size,
+    )
+    t = audit["totals"]
+    ci = audit["class_imbalance"]
+    at = audit["acquisition_targets"]
+    print(
+        "Wrote coverage/redundancy audit to "
+        f"{args.out} ({audit['status']}; {t['combined']} combined = "
+        f"{t['frozen_current702']} frozen + {t['expansion_bronze']} expansion; "
+        f"fingerprint Gini {ci['fingerprint_gini']}; holes {at['holes']}; "
+        f"over-cap {at['over_cap']}; next-batch floor deficit "
+        f"{at['next_batch_floor_deficit_total']}; no registry written)"
+    )
+    return 0
+
+
+def cmd_build_ser_his_triad_locator_scan(args: argparse.Namespace) -> int:
+    audit = write_ser_his_triad_locator_scan(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        control_sample_limit=args.control_sample_limit,
+        target_floor=args.target_floor,
+    )
+    counts = audit["ser_his_counts"]
+    rs = audit["recovery_scan"]
+    ac = audit["acquisition_contract"]
+    print(
+        "Wrote ser_his triad locator scan to "
+        f"{args.out} ({audit['status']}; ser_his combined {counts['combined']} "
+        f"(floor deficit {ac['deficit_to_floor']}); serine-EC rows "
+        f"{rs['expansion_serine_hydrolase_ec_rows']}; confirmed recoveries "
+        f"{rs['confirmed_ser_his_recoveries']}; acquisition contract ready; "
+        "no registry written)"
+    )
+    return 0
+
+
+def cmd_build_novelty_admission_gate_audit(args: argparse.Namespace) -> int:
+    audit = write_novelty_admission_gate_audit(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        per_cluster_cap=args.per_cluster_cap,
+        target_floor=args.target_floor,
+        cap_ceiling=args.cap_ceiling,
+        hole_threshold=args.hole_threshold,
+    )
+    sa = audit["self_audit"]
+    print(
+        "Wrote novelty admission gate audit to "
+        f"{args.out} ({audit['status']}; replayed {sa['expansion_rows']} expansion "
+        f"rows; decisions {sa['decision_counts']}; would-not-readmit "
+        f"{sa['would_not_readmit']} ({sa['would_not_readmit_fraction']}); "
+        "no registry written)"
+    )
+    return 0
+
+
+def cmd_build_mechanism_representation_loop(args: argparse.Namespace) -> int:
+    audit = write_mechanism_representation_loop(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        cohesion_threshold=args.cohesion_threshold,
+        proposal_top_k=args.proposal_top_k,
+    )
+    tri = audit["promotion_triage"]
+    print(
+        "Wrote mechanism representation loop to "
+        f"{args.out} ({audit['status']}; {audit['seed_labels']} seed labels; "
+        f"LOO self-consistency {tri['leave_one_out_self_consistency']}; "
+        f"promotion candidates {tri['promotion_candidates']}; review outliers "
+        f"{tri['review_outliers']}; leakage-safe, no registry written)"
     )
     return 0
 
@@ -22580,6 +22666,154 @@ def build_parser() -> argparse.ArgumentParser:
     )
     cofactor_ec_disambiguation.set_defaults(
         func=cmd_build_external_cofactor_ec_disambiguation
+    )
+
+    coverage_redundancy_audit = subparsers.add_parser(
+        "build-coverage-redundancy-audit",
+        help=(
+            "non-destructive, metadata-only coverage + redundancy audit of all "
+            "combined labels (fingerprint x lane x organism x EC-class x "
+            "sequence-length), with class-imbalance flags, near-duplicate "
+            "clusters, and a prioritized balance-capped acquisition target list; "
+            "writes no registry"
+        ),
+    )
+    coverage_redundancy_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_coverage_redundancy_audit_current702_20260610.json"
+        ),
+    )
+    coverage_redundancy_audit.add_argument(
+        "--report",
+        default="work/coverage_redundancy_audit_current702_20260610.md",
+    )
+    coverage_redundancy_audit.add_argument(
+        "--target-floor",
+        type=int,
+        default=100,
+        help="minimum seed-label count every in-scope fingerprint should reach",
+    )
+    coverage_redundancy_audit.add_argument(
+        "--cap-ceiling",
+        type=int,
+        default=250,
+        help="count above which a fingerprint is over-supplied and should be paused",
+    )
+    coverage_redundancy_audit.add_argument(
+        "--hole-threshold",
+        type=int,
+        default=25,
+        help="combined count at or below which a fingerprint is a HOLE priority",
+    )
+    coverage_redundancy_audit.add_argument(
+        "--cluster-min-size",
+        type=int,
+        default=3,
+        help="minimum near-duplicate cluster size to report",
+    )
+    coverage_redundancy_audit.set_defaults(
+        func=cmd_build_coverage_redundancy_audit
+    )
+
+    ser_his_triad_locator = subparsers.add_parser(
+        "build-ser-his-triad-locator-scan",
+        help=(
+            "source-free Ser/Cys-His-Asp catalytic-triad locator for the "
+            "cofactorless ser_his hole: corroborates a coordinate triad against "
+            "the annotated catalytic ACT_SITE, runs a non-destructive recovery "
+            "scan, and emits a ready-to-run acquisition contract; writes no registry"
+        ),
+    )
+    ser_his_triad_locator.add_argument(
+        "--out",
+        default="artifacts/v3_ser_his_triad_locator_scan_current702_20260610.json",
+    )
+    ser_his_triad_locator.add_argument(
+        "--report",
+        default="work/ser_his_triad_locator_scan_current702_20260610.md",
+    )
+    ser_his_triad_locator.add_argument(
+        "--control-sample-limit",
+        type=int,
+        default=120,
+        help="number of local CIFs to sample for the incidental-rate control panel",
+    )
+    ser_his_triad_locator.add_argument(
+        "--target-floor",
+        type=int,
+        default=100,
+        help="balance floor the acquisition contract sizes its deficit against",
+    )
+    ser_his_triad_locator.set_defaults(
+        func=cmd_build_ser_his_triad_locator_scan
+    )
+
+    novelty_admission_gate = subparsers.add_parser(
+        "build-novelty-admission-gate-audit",
+        help=(
+            "non-destructive novelty/saturation admission gate that sits after the "
+            "exact-dedup screen: admits incoming candidates only when they add "
+            "diversity (new cluster/reaction/organism or close a hole), throttles "
+            "redundant orthologs, rejects over-cap fingerprints with no new "
+            "chemistry; includes a retrospective self-audit of the existing "
+            "expansion; writes no registry"
+        ),
+    )
+    novelty_admission_gate.add_argument(
+        "--out",
+        default="artifacts/v3_novelty_admission_gate_audit_current702_20260610.json",
+    )
+    novelty_admission_gate.add_argument(
+        "--report",
+        default="work/novelty_admission_gate_audit_current702_20260610.md",
+    )
+    novelty_admission_gate.add_argument(
+        "--per-cluster-cap",
+        type=int,
+        default=3,
+        help="near-duplicate rows allowed per cluster before throttling",
+    )
+    novelty_admission_gate.add_argument(
+        "--target-floor", type=int, default=100,
+    )
+    novelty_admission_gate.add_argument(
+        "--cap-ceiling", type=int, default=250,
+    )
+    novelty_admission_gate.add_argument(
+        "--hole-threshold", type=int, default=25,
+    )
+    novelty_admission_gate.set_defaults(
+        func=cmd_build_novelty_admission_gate_audit
+    )
+
+    mechanism_representation_loop = subparsers.add_parser(
+        "build-mechanism-representation-loop",
+        help=(
+            "leakage-safe self-feeding representation learned ONLY from review-only "
+            "cofactor/ligand chemistry + active-site residue roles: triages "
+            "bronze->silver promotion and proposes candidates for the governor's "
+            "holes; never reads EC/name/prose/lane/fingerprint or the frozen "
+            "benchmark; writes no registry"
+        ),
+    )
+    mechanism_representation_loop.add_argument(
+        "--out",
+        default="artifacts/v3_mechanism_representation_loop_current702_20260610.json",
+    )
+    mechanism_representation_loop.add_argument(
+        "--report",
+        default="work/mechanism_representation_loop_current702_20260610.md",
+    )
+    mechanism_representation_loop.add_argument(
+        "--cohesion-threshold", type=float, default=0.92,
+    )
+    mechanism_representation_loop.add_argument(
+        "--proposal-top-k", type=int, default=25,
+    )
+    mechanism_representation_loop.set_defaults(
+        func=cmd_build_mechanism_representation_loop
     )
 
     embedding_sidecar = subparsers.add_parser(

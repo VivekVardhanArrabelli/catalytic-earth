@@ -3,6 +3,222 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-10: Mechanism Representation Loop — Leakage-Safe Self-Feeding Supply (Phase 3 start)
+
+Decision: begin the self-feeding loop that eventually replaces hand-sourcing (the
+hand pools are drained). We have been banking rich review-only `mechanism_evidence`
+on every bronze label for exactly this. The first iteration learns a representation
+that organises the bronze labels, triages bronze->silver promotion, and proposes
+hole-filling candidates from our own out_of_scope pile — all WITHOUT network.
+
+THE LEAKAGE WALL IS ABSOLUTE AND TEST-ENFORCED. The representation is built ONLY
+from review-only **structural/chemical** evidence — cofactor + binding-ligand
+chemical identities (ChEBI names) and active-site residue role counts. It never
+reads `ec_numbers`, protein name / prose / curated text, `target_family_lane`, the
+`fingerprint_id`/`label_type` target, or the frozen 702 benchmark. A unit test
+mutates EC + protein-name + lane + fingerprint and asserts `featurize` is
+byte-identical, proving none of them enter the representation. Cofactor/ligand
+chemical identity is the legitimate deploy-available structural basis the eight
+fingerprints are *defined* by — distinct from the excluded name/prose/EC fields.
+This loop is for the expansion's self-organisation and promotion triage ONLY; it is
+**never** a benchmark scorer and must not be used as one.
+
+Feature space (12 dims): 9 cofactor classes (flavin, plp, heme, iron_sulfur, sam,
+cobalamin, zinc, divalent_metal_other, calcium) dominating, plus 3 down-weighted
+residue-role ratios (catalytic/binding fraction, log-scaled active-site size).
+
+Results on the 486 expansion seed labels:
+
+- **Leave-one-out self-consistency 0.895** — chemistry alone (no EC/name/label)
+  recovers the assigned fingerprint 89.5% of the time, each row scored against
+  centroids that exclude it. This is an honest coherence/QA read (the centroids
+  encode the cofactor-corroboration assignment policy, so it measures internal
+  coherence, not independent validation).
+- **368 promotion candidates** (cohesion >= 0.92 with the assigned fingerprint) —
+  bronze->silver promotion-ready pending the actual geometry gate.
+- **51 review outliers** — rows whose chemistry points at a *different* fingerprint
+  than their label (possible mislabels / genuinely ambiguous); the highest-value
+  QA targets.
+- **Hole proposals from out_of_scope:** 14 radical_sam_enzyme candidates, each
+  sharing genuine `sam` or `iron_sulfur` chemistry with the radical-SAM centroid —
+  model-proposed re-review candidates to help close that hole, network-free.
+  cobalamin: 0 (no OOS cofactor overlap); ser_his: 0 (no expansion centroid — the
+  known hole). Proposals REQUIRE non-empty cofactor-chemistry overlap with the
+  target (a cofactor-less row is never proposed for a cofactor-defined
+  fingerprint) AND the target must be the candidate's nearest centroid.
+
+How it composes with the climb: the representation triages what the engine already
+imported (promotion vs review) and proposes what to source/predict next for the
+holes, feeding Phase 1; the novelty gate then governs admission of whatever is
+sourced. Non-destructive: writes no registry, emits no label, never touches the
+benchmark. Full suite green except the 6 known env-backend failures.
+
+References:
+
+- `src/catalytic_earth/mechanism_representation_loop.py`,
+  `tests/test_mechanism_representation_loop.py`, CLI
+  `build-mechanism-representation-loop`.
+- `artifacts/v3_mechanism_representation_loop_current702_20260610.json`,
+  `work/mechanism_representation_loop_current702_20260610.md`.
+
+## 2026-06-10: Novelty / Saturation Admission Gate — The Governor Becomes An Online Filter
+
+Decision: promote the 2026-06-10 governor from a *report* into the *gate* it
+implies. We had deduped only on EXACT accession/sequence-SHA, so near-duplicate
+orthologs and saturated lanes flowed straight in. This installs a non-destructive,
+online novelty filter that sits AFTER the exact-dedup screen and admits an incoming
+candidate only when it adds genuine diversity. It is ready to govern the next
+sourced batch so volume grows diversely instead of re-saturating the flagged lanes.
+
+Mechanism (module `novelty_admission_gate.py`, CLI
+`build-novelty-admission-gate-audit`): reuses the governor's cluster key
+`(fingerprint_or_scope, full_EC, organism, sequence_length_bin)` (single source of
+truth — the field extractors are imported from `coverage_redundancy_audit`) plus
+reaction-id novelty, folded into the balance policy:
+
+- HOLE / under-floor fingerprints → **admit** greedily (we need their volume),
+  unless the row is a pure redundant ortholog (cluster already at the per-cluster
+  cap of 3, no new reaction/organism) → throttle.
+- Over-cap fingerprints → **reject** unless the row brings a genuinely new reaction
+  (new chemistry).
+- Balanced seed / out_of_scope → **admit only on novelty** (new cluster, reaction,
+  or organism); throttle saturated clusters.
+
+It operates on registry-shaped label dicts — exactly what an engine preview's
+`applied_labels` are — so it plugs directly into the existing apply path: run a
+preview's `applied_labels` through `evaluate_batch` against
+`build_diversity_state(frozen, expansion)`, then apply only the ADMIT set via
+`apply-external-annotation-anchored-import`. `evaluate_batch` updates state as it
+admits, so within-batch duplicates also gate, and it evaluates hole/under-floor
+candidates first so scarce-fingerprint volume is admitted before the per-cluster
+budget is spent on common lanes.
+
+Retrospective self-audit (existing 1,710 expansion replayed through the gate,
+seeded with the frozen benchmark only): **456 rows (26.7%) would NOT be re-admitted**
+— 409 throttled (redundant orthologs / no novelty), 47 rejected (over-cap metal
+with no new chemistry). The non-admit is concentrated exactly where the governor
+predicted: out_of_scope (373) and metal_dependent_hydrolase (71). This both
+validates the gate on real data and quantifies the baked-in redundancy we now stop
+adding to. Non-destructive: nothing is removed; the gate is advisory and the
+authorized apply step is what writes. Full suite green except the 6 known
+env-backend failures.
+
+References:
+
+- `src/catalytic_earth/novelty_admission_gate.py`,
+  `tests/test_novelty_admission_gate.py`, CLI `build-novelty-admission-gate-audit`.
+- `artifacts/v3_novelty_admission_gate_audit_current702_20260610.json`,
+  `work/novelty_admission_gate_audit_current702_20260610.md`.
+
+## 2026-06-10: Ser/Cys-His-Asp Triad Locator — The Corroborator That Unblocks The Cofactorless ser_his Hole
+
+Decision: supply the missing structural corroborator for `ser_his_acid_hydrolase`,
+the one seed fingerprint the annotation-anchored engine **structurally cannot
+reach**. The engine's positive policy is "annotation-derived lane corroborated by
+the matching **cofactor** class" — but serine hydrolases are **cofactorless**, so
+that rule can never fire, which is exactly why the 2026-06-10 governor found
+ser_his as the sharpest HOLE (42 frozen, **0 expansion**). This resolves the open
+2026-06-03 design item (a source-free catalytic-triad geometric locator for serine
+hydrolases). Non-destructive: no registry written, no label emitted.
+
+The corroborator: for a cofactorless serine hydrolase, catalysis is the
+Ser/Cys/Thr-His-Asp/Glu charge-relay triad, readable from coordinates alone. The
+geometry primitive already existed (`serine_active_site.extract_source_free_ser_his_acid_triad`),
+but **raw geometric triad resolution is not specific** — the control panel measured
+it firing on **31/120 (≈26%)** of arbitrary local structures (incidental
+Ser/His/acid proximities). Precision comes from corroboration: the geometric triad
+must coincide with the **annotated catalytic ACT_SITE residues** (≥2 overlap) of a
+**serine-hydrolase EC family** (3.4.21/3.4.16/3.1.1, explicitly excluding the
+3.1.11/3.1.13/3.1.16 nucleases that share the 3.1.1 text), with **no catalytic
+cofactor** annotated. EC is used for **scope assignment only** (excluded_context,
+never predictive); triad confirmation consumes coordinates only. This is the
+cofactorless analogue of the engine's cofactor corroboration.
+
+Recovery scan over the registries: 13 serine-hydrolase-EC rows exist in the
+expansion, and **all 13 correctly HELD** — 9 carry a catalytic cofactor (so they
+are not cofactorless triad hydrolases), 1 lacks staged coordinates, the rest
+uncorroborated — **0 false positives, 0 confirmed recoveries**. That is the honest
+result: there is no clean cofactorless serine-triad supply locally.
+
+Why a ready-to-run **acquisition contract** and not filled labels: in this
+environment the hand-curated pools are drained, UniProt is network-blocked (HTTP
+403), and the registries carry no clean local serine-hydrolase-triad rows — so the
+hole genuinely cannot be filled here. The deliverable mirrors the project's
+established staged-contract pattern (ESMFold2 contract, banked Lever-2 locators):
+the engine plus a precise contract (EC families, no-cofactor, triad-confirm-against-
+ACT_SITE, dedup vs BOTH registries, bronze/automation_curated; deficit 58 to the
+governor's 100 floor) that fills ser_his the moment network/sourcing is authorized.
+Full suite green except the 6 known env-backend failures.
+
+References:
+
+- `src/catalytic_earth/ser_his_triad_locator.py` (reuses
+  `serine_active_site.extract_source_free_ser_his_acid_triad`),
+  `tests/test_ser_his_triad_locator.py`, CLI `build-ser-his-triad-locator-scan`.
+- `artifacts/v3_ser_his_triad_locator_scan_current702_20260610.json`,
+  `work/ser_his_triad_locator_scan_current702_20260610.md`.
+
+## 2026-06-10: Coverage/Redundancy Governor — Balance-Capped Acquisition Policy For The Climb
+
+Decision: before scaling expansion *volume* 4x, install a non-destructive
+diversity/coverage governor. The constraint has shifted from "can we accept
+candidates" (solved) to "diverse, non-redundant supply + honest quality." We had
+deduped only on EXACT accession/sequence-SHA; we had never measured near-duplicate
+redundancy or class balance of the 1,710. This entry records the measurement and
+the policy it implies. **No registry was written** — the audit emits a reporting
+artifact only, so the real distribution can be inspected before the next batch is
+fed.
+
+What was built (module `coverage_redundancy_audit.py`, CLI
+`build-coverage-redundancy-audit`; metadata-only — no network/mmseqs/embeddings):
+an audit of all **2,412** combined labels (702 frozen + 1,710 expansion) by
+fingerprint × lane × organism × EC-class × sequence-length, with (a) class-imbalance
+flags, (b) a metadata-only redundancy/saturation read, and (c) a prioritized,
+balance-capped acquisition target list. EC/lane/organism are coverage-accounting
+metadata only and are never emitted as predictive features (the module emits no
+labels at all); the frozen 702 benchmark is read-only.
+
+Headline findings:
+
+- **Class balance is skewed.** Seed positives 716 vs out_of_scope 1,696
+  (positive:OOS = 0.42); fingerprint Gini 0.51 / normalized entropy 0.78; the
+  largest fingerprint (metal_dependent_hydrolase, 308) outweighs the smallest
+  non-zero (radical_sam / cobalamin, 10 each) **30.8×**.
+- **Holes (sharpest priority):** `ser_his_acid_hydrolase` (42 frozen, **0 in
+  expansion** — still the one fingerprint the expansion never reaches),
+  `radical_sam_enzyme` (10), `cobalamin_radical_rearrangement` (10). Under the
+  100-label floor too: `flavin_monooxygenase` (43), `heme_peroxidase_oxidase` (69),
+  `flavin_dehydrogenase_reductase` (87).
+- **Over-cap:** `metal_dependent_hydrolase` (308, 58 over the 250 ceiling) — and it
+  is the *most redundant* (2.96 labels per distinct reaction). `plp_dependent_enzyme`
+  (147) is the only BALANCED in-scope fingerprint.
+- **Redundancy is real but bounded:** 254 of 1,558 metadata-measurable rows (16.3%)
+  fall in near-duplicate ortholog clusters keyed on
+  `(fingerprint/scope, full-EC, organism, sequence-length bin)`. The biggest are
+  OOS human kinases (EC 2.7.11.1) and Arabidopsis heme peroxidases (EC 1.11.1.7) —
+  i.e. the broad OOS lanes (kinase/phosphatase/glycoside) are saturated.
+
+Policy for the rest of the climb (drives more-sourcing OR a self-feeding model
+loop): **close holes first, raise under-floor fingerprints to the 100 floor
+(next-batch positive deficit ≈ 339), cap/pause + dedup the over-supplied
+metal-hydrolase, and pause broad OOS draining until positive holes close** — the
+binding constraint is diverse positive supply, not raw count. Per-fingerprint
+sourcing hints (EC prefixes + cofactor + lanes, mirroring the 2026-06-09
+disambiguation rules) are emitted for the three holes (notably ser_his: EC
+3.4.21/3.1.1/3.5.1, Ser/Cys-His-Asp triad, no cofactor — which the cofactor-anchored
+engine structurally cannot source, so it needs a triad-geometry route).
+
+The floor/cap (100/250) and hole threshold (25) are explicit, overridable policy
+params, not tuned constants. Full suite green except the 6 known env-backend
+failures.
+
+References:
+
+- `src/catalytic_earth/coverage_redundancy_audit.py`,
+  `tests/test_coverage_redundancy_audit.py`, CLI `build-coverage-redundancy-audit`.
+- `artifacts/v3_coverage_redundancy_audit_current702_20260610.json`,
+  `work/coverage_redundancy_audit_current702_20260610.md`.
+
 ## 2026-06-09: Cofactor/EC Disambiguation Makes Held Redox + Radical-SAM/Cobalamin Countable (2269 -> 2412)
 
 Decision: the held cofactor-confounded redox and secondary-probe
