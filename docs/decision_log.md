@@ -3,6 +3,55 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-10: Novelty / Saturation Admission Gate — The Governor Becomes An Online Filter
+
+Decision: promote the 2026-06-10 governor from a *report* into the *gate* it
+implies. We had deduped only on EXACT accession/sequence-SHA, so near-duplicate
+orthologs and saturated lanes flowed straight in. This installs a non-destructive,
+online novelty filter that sits AFTER the exact-dedup screen and admits an incoming
+candidate only when it adds genuine diversity. It is ready to govern the next
+sourced batch so volume grows diversely instead of re-saturating the flagged lanes.
+
+Mechanism (module `novelty_admission_gate.py`, CLI
+`build-novelty-admission-gate-audit`): reuses the governor's cluster key
+`(fingerprint_or_scope, full_EC, organism, sequence_length_bin)` (single source of
+truth — the field extractors are imported from `coverage_redundancy_audit`) plus
+reaction-id novelty, folded into the balance policy:
+
+- HOLE / under-floor fingerprints → **admit** greedily (we need their volume),
+  unless the row is a pure redundant ortholog (cluster already at the per-cluster
+  cap of 3, no new reaction/organism) → throttle.
+- Over-cap fingerprints → **reject** unless the row brings a genuinely new reaction
+  (new chemistry).
+- Balanced seed / out_of_scope → **admit only on novelty** (new cluster, reaction,
+  or organism); throttle saturated clusters.
+
+It operates on registry-shaped label dicts — exactly what an engine preview's
+`applied_labels` are — so it plugs directly into the existing apply path: run a
+preview's `applied_labels` through `evaluate_batch` against
+`build_diversity_state(frozen, expansion)`, then apply only the ADMIT set via
+`apply-external-annotation-anchored-import`. `evaluate_batch` updates state as it
+admits, so within-batch duplicates also gate, and it evaluates hole/under-floor
+candidates first so scarce-fingerprint volume is admitted before the per-cluster
+budget is spent on common lanes.
+
+Retrospective self-audit (existing 1,710 expansion replayed through the gate,
+seeded with the frozen benchmark only): **456 rows (26.7%) would NOT be re-admitted**
+— 409 throttled (redundant orthologs / no novelty), 47 rejected (over-cap metal
+with no new chemistry). The non-admit is concentrated exactly where the governor
+predicted: out_of_scope (373) and metal_dependent_hydrolase (71). This both
+validates the gate on real data and quantifies the baked-in redundancy we now stop
+adding to. Non-destructive: nothing is removed; the gate is advisory and the
+authorized apply step is what writes. Full suite green except the 6 known
+env-backend failures.
+
+References:
+
+- `src/catalytic_earth/novelty_admission_gate.py`,
+  `tests/test_novelty_admission_gate.py`, CLI `build-novelty-admission-gate-audit`.
+- `artifacts/v3_novelty_admission_gate_audit_current702_20260610.json`,
+  `work/novelty_admission_gate_audit_current702_20260610.md`.
+
 ## 2026-06-10: Ser/Cys-His-Asp Triad Locator — The Corroborator That Unblocks The Cofactorless ser_his Hole
 
 Decision: supply the missing structural corroborator for `ser_his_acid_hydrolase`,

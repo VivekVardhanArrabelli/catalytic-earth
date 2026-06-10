@@ -94,6 +94,7 @@ from .external_scaleout_bronze_import import write_scaleout_bronze_import
 from .external_cofactor_ec_disambiguation import write_cofactor_ec_disambiguation
 from .coverage_redundancy_audit import write_coverage_redundancy_audit
 from .ser_his_triad_locator import write_ser_his_triad_locator_scan
+from .novelty_admission_gate import write_novelty_admission_gate_audit
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2892,6 +2893,26 @@ def cmd_build_ser_his_triad_locator_scan(args: argparse.Namespace) -> int:
         f"(floor deficit {ac['deficit_to_floor']}); serine-EC rows "
         f"{rs['expansion_serine_hydrolase_ec_rows']}; confirmed recoveries "
         f"{rs['confirmed_ser_his_recoveries']}; acquisition contract ready; "
+        "no registry written)"
+    )
+    return 0
+
+
+def cmd_build_novelty_admission_gate_audit(args: argparse.Namespace) -> int:
+    audit = write_novelty_admission_gate_audit(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        per_cluster_cap=args.per_cluster_cap,
+        target_floor=args.target_floor,
+        cap_ceiling=args.cap_ceiling,
+        hole_threshold=args.hole_threshold,
+    )
+    sa = audit["self_audit"]
+    print(
+        "Wrote novelty admission gate audit to "
+        f"{args.out} ({audit['status']}; replayed {sa['expansion_rows']} expansion "
+        f"rows; decisions {sa['decision_counts']}; would-not-readmit "
+        f"{sa['would_not_readmit']} ({sa['would_not_readmit_fraction']}); "
         "no registry written)"
     )
     return 0
@@ -22708,6 +22729,44 @@ def build_parser() -> argparse.ArgumentParser:
     )
     ser_his_triad_locator.set_defaults(
         func=cmd_build_ser_his_triad_locator_scan
+    )
+
+    novelty_admission_gate = subparsers.add_parser(
+        "build-novelty-admission-gate-audit",
+        help=(
+            "non-destructive novelty/saturation admission gate that sits after the "
+            "exact-dedup screen: admits incoming candidates only when they add "
+            "diversity (new cluster/reaction/organism or close a hole), throttles "
+            "redundant orthologs, rejects over-cap fingerprints with no new "
+            "chemistry; includes a retrospective self-audit of the existing "
+            "expansion; writes no registry"
+        ),
+    )
+    novelty_admission_gate.add_argument(
+        "--out",
+        default="artifacts/v3_novelty_admission_gate_audit_current702_20260610.json",
+    )
+    novelty_admission_gate.add_argument(
+        "--report",
+        default="work/novelty_admission_gate_audit_current702_20260610.md",
+    )
+    novelty_admission_gate.add_argument(
+        "--per-cluster-cap",
+        type=int,
+        default=3,
+        help="near-duplicate rows allowed per cluster before throttling",
+    )
+    novelty_admission_gate.add_argument(
+        "--target-floor", type=int, default=100,
+    )
+    novelty_admission_gate.add_argument(
+        "--cap-ceiling", type=int, default=250,
+    )
+    novelty_admission_gate.add_argument(
+        "--hole-threshold", type=int, default=25,
+    )
+    novelty_admission_gate.set_defaults(
+        func=cmd_build_novelty_admission_gate_audit
     )
 
     embedding_sidecar = subparsers.add_parser(
