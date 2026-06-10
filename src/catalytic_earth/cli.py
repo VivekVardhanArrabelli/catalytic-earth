@@ -93,6 +93,7 @@ from .external_annotation_anchored_import import (
 from .external_scaleout_bronze_import import write_scaleout_bronze_import
 from .external_cofactor_ec_disambiguation import write_cofactor_ec_disambiguation
 from .coverage_redundancy_audit import write_coverage_redundancy_audit
+from .ser_his_triad_locator import write_ser_his_triad_locator_scan
 from .predicted_geometry_recovery import (
     write_in_distribution_predicted_geometry_recovery,
 )
@@ -2871,6 +2872,27 @@ def cmd_build_coverage_redundancy_audit(args: argparse.Namespace) -> int:
         f"fingerprint Gini {ci['fingerprint_gini']}; holes {at['holes']}; "
         f"over-cap {at['over_cap']}; next-batch floor deficit "
         f"{at['next_batch_floor_deficit_total']}; no registry written)"
+    )
+    return 0
+
+
+def cmd_build_ser_his_triad_locator_scan(args: argparse.Namespace) -> int:
+    audit = write_ser_his_triad_locator_scan(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        control_sample_limit=args.control_sample_limit,
+        target_floor=args.target_floor,
+    )
+    counts = audit["ser_his_counts"]
+    rs = audit["recovery_scan"]
+    ac = audit["acquisition_contract"]
+    print(
+        "Wrote ser_his triad locator scan to "
+        f"{args.out} ({audit['status']}; ser_his combined {counts['combined']} "
+        f"(floor deficit {ac['deficit_to_floor']}); serine-EC rows "
+        f"{rs['expansion_serine_hydrolase_ec_rows']}; confirmed recoveries "
+        f"{rs['confirmed_ser_his_recoveries']}; acquisition contract ready; "
+        "no registry written)"
     )
     return 0
 
@@ -22653,6 +22675,39 @@ def build_parser() -> argparse.ArgumentParser:
     )
     coverage_redundancy_audit.set_defaults(
         func=cmd_build_coverage_redundancy_audit
+    )
+
+    ser_his_triad_locator = subparsers.add_parser(
+        "build-ser-his-triad-locator-scan",
+        help=(
+            "source-free Ser/Cys-His-Asp catalytic-triad locator for the "
+            "cofactorless ser_his hole: corroborates a coordinate triad against "
+            "the annotated catalytic ACT_SITE, runs a non-destructive recovery "
+            "scan, and emits a ready-to-run acquisition contract; writes no registry"
+        ),
+    )
+    ser_his_triad_locator.add_argument(
+        "--out",
+        default="artifacts/v3_ser_his_triad_locator_scan_current702_20260610.json",
+    )
+    ser_his_triad_locator.add_argument(
+        "--report",
+        default="work/ser_his_triad_locator_scan_current702_20260610.md",
+    )
+    ser_his_triad_locator.add_argument(
+        "--control-sample-limit",
+        type=int,
+        default=120,
+        help="number of local CIFs to sample for the incidental-rate control panel",
+    )
+    ser_his_triad_locator.add_argument(
+        "--target-floor",
+        type=int,
+        default=100,
+        help="balance floor the acquisition contract sizes its deficit against",
+    )
+    ser_his_triad_locator.set_defaults(
+        func=cmd_build_ser_his_triad_locator_scan
     )
 
     embedding_sidecar = subparsers.add_parser(

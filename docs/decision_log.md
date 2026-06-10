@@ -3,6 +3,54 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-10: Ser/Cys-His-Asp Triad Locator — The Corroborator That Unblocks The Cofactorless ser_his Hole
+
+Decision: supply the missing structural corroborator for `ser_his_acid_hydrolase`,
+the one seed fingerprint the annotation-anchored engine **structurally cannot
+reach**. The engine's positive policy is "annotation-derived lane corroborated by
+the matching **cofactor** class" — but serine hydrolases are **cofactorless**, so
+that rule can never fire, which is exactly why the 2026-06-10 governor found
+ser_his as the sharpest HOLE (42 frozen, **0 expansion**). This resolves the open
+2026-06-03 design item (a source-free catalytic-triad geometric locator for serine
+hydrolases). Non-destructive: no registry written, no label emitted.
+
+The corroborator: for a cofactorless serine hydrolase, catalysis is the
+Ser/Cys/Thr-His-Asp/Glu charge-relay triad, readable from coordinates alone. The
+geometry primitive already existed (`serine_active_site.extract_source_free_ser_his_acid_triad`),
+but **raw geometric triad resolution is not specific** — the control panel measured
+it firing on **31/120 (≈26%)** of arbitrary local structures (incidental
+Ser/His/acid proximities). Precision comes from corroboration: the geometric triad
+must coincide with the **annotated catalytic ACT_SITE residues** (≥2 overlap) of a
+**serine-hydrolase EC family** (3.4.21/3.4.16/3.1.1, explicitly excluding the
+3.1.11/3.1.13/3.1.16 nucleases that share the 3.1.1 text), with **no catalytic
+cofactor** annotated. EC is used for **scope assignment only** (excluded_context,
+never predictive); triad confirmation consumes coordinates only. This is the
+cofactorless analogue of the engine's cofactor corroboration.
+
+Recovery scan over the registries: 13 serine-hydrolase-EC rows exist in the
+expansion, and **all 13 correctly HELD** — 9 carry a catalytic cofactor (so they
+are not cofactorless triad hydrolases), 1 lacks staged coordinates, the rest
+uncorroborated — **0 false positives, 0 confirmed recoveries**. That is the honest
+result: there is no clean cofactorless serine-triad supply locally.
+
+Why a ready-to-run **acquisition contract** and not filled labels: in this
+environment the hand-curated pools are drained, UniProt is network-blocked (HTTP
+403), and the registries carry no clean local serine-hydrolase-triad rows — so the
+hole genuinely cannot be filled here. The deliverable mirrors the project's
+established staged-contract pattern (ESMFold2 contract, banked Lever-2 locators):
+the engine plus a precise contract (EC families, no-cofactor, triad-confirm-against-
+ACT_SITE, dedup vs BOTH registries, bronze/automation_curated; deficit 58 to the
+governor's 100 floor) that fills ser_his the moment network/sourcing is authorized.
+Full suite green except the 6 known env-backend failures.
+
+References:
+
+- `src/catalytic_earth/ser_his_triad_locator.py` (reuses
+  `serine_active_site.extract_source_free_ser_his_acid_triad`),
+  `tests/test_ser_his_triad_locator.py`, CLI `build-ser-his-triad-locator-scan`.
+- `artifacts/v3_ser_his_triad_locator_scan_current702_20260610.json`,
+  `work/ser_his_triad_locator_scan_current702_20260610.md`.
+
 ## 2026-06-10: Coverage/Redundancy Governor — Balance-Capped Acquisition Policy For The Climb
 
 Decision: before scaling expansion *volume* 4x, install a non-destructive

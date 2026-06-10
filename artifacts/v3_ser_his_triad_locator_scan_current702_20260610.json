@@ -1,0 +1,250 @@
+{
+  "acquisition_contract": {
+    "blocked_in_this_environment": {
+      "consequence": "no candidate supply exists locally; the hole cannot be filled here -- this contract is ready to run when sourcing is authorized",
+      "hand_curated_pools": "drained",
+      "local_serine_hydrolase_candidate_rows": 13,
+      "uniprot_network": "blocked_http_403"
+    },
+    "current_combined": 42,
+    "deficit_to_floor": 58,
+    "execution_command_when_authorized": "fetch reviewed Swiss-Prot serine-hydrolase entries (EC 3.4.21/3.4.16/3.1.1, ACT_SITE catalytic triad annotated, no cofactor), stage AF/PDB coordinates, then run assess_ser_his_candidate over them and apply the confirmed labels via apply-external-annotation-anchored-import",
+    "expansion": 0,
+    "fingerprint": "ser_his_acid_hydrolase",
+    "frozen": 42,
+    "sourcing_rule": {
+      "cofactor_requirement": "no_catalytic_cofactor_annotated",
+      "dedup": "against BOTH registries (accession + sequence-SHA)",
+      "ec_usage": "scope_assignment_only_never_predictive_feature",
+      "evidence_basis": "reviewed_swissprot_ec_rhea_annotation + source_free_triad_geometry",
+      "excluded_ec_families": [
+        "3.1.11",
+        "3.1.13",
+        "3.1.16"
+      ],
+      "scope_assignment_ec_families": [
+        "3.4.21",
+        "3.4.16",
+        "3.1.1"
+      ],
+      "structural_corroboration": "coordinate Ser/Cys/Thr-His-Asp/Glu triad must coincide with the annotated catalytic ACT_SITE residues (>=2 overlap)",
+      "tiering": "tier=bronze, review_status=automation_curated, uniprot namespace"
+    },
+    "target_floor": 100
+  },
+  "audit": "ser_his_triad_locator_scan",
+  "control_panel": {
+    "geometric_triad_resolved": 31,
+    "interpretation": "raw geometric triad resolution is NOT specific; this rate is the incidental-trigger surface that the annotated-ACT_SITE corroboration suppresses to make a ser_his assignment precise",
+    "positive_control_triads": [
+      {
+        "structure": "AF-F3YDF1-F1-model_v6.cif",
+        "triad": {
+          "distance_sum_angstrom": 6.329,
+          "his_acid_distance_angstrom": 2.673,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "647"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "651"
+            },
+            {
+              "chain_name": "A",
+              "code": "ASP",
+              "resid": "655"
+            }
+          ],
+          "ser_his_distance_angstrom": 3.656
+        }
+      },
+      {
+        "structure": "AF-O22854-F1-model_v6.cif",
+        "triad": {
+          "distance_sum_angstrom": 6.512,
+          "his_acid_distance_angstrom": 3.584,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "532"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "372"
+            },
+            {
+              "chain_name": "A",
+              "code": "ASP",
+              "resid": "528"
+            }
+          ],
+          "ser_his_distance_angstrom": 2.929
+        }
+      },
+      {
+        "structure": "AF-O43506-F1-model_v6.cif",
+        "triad": {
+          "distance_sum_angstrom": 5.864,
+          "his_acid_distance_angstrom": 3.059,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "62"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "75"
+            },
+            {
+              "chain_name": "A",
+              "code": "GLU",
+              "resid": "116"
+            }
+          ],
+          "ser_his_distance_angstrom": 2.805
+        }
+      },
+      {
+        "structure": "AF-O43847-F1-model_v6.cif",
+        "triad": {
+          "distance_sum_angstrom": 5.542,
+          "his_acid_distance_angstrom": 2.771,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "988"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "1086"
+            },
+            {
+              "chain_name": "A",
+              "code": "ASP",
+              "resid": "992"
+            }
+          ],
+          "ser_his_distance_angstrom": 2.771
+        }
+      },
+      {
+        "structure": "AF-O95450-F1-model_v6.cif",
+        "triad": {
+          "distance_sum_angstrom": 6.841,
+          "his_acid_distance_angstrom": 2.849,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "720"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "721"
+            },
+            {
+              "chain_name": "A",
+              "code": "GLU",
+              "resid": "838"
+            }
+          ],
+          "ser_his_distance_angstrom": 3.992
+        }
+      }
+    ],
+    "raw_incidental_resolution_rate": 0.2583,
+    "structures_checked": 120
+  },
+  "created_utc": "2026-06-10T05:04:59Z",
+  "guardrails": {
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_registry_written": false,
+    "frozen_benchmark_written": false,
+    "labels_emitted_to_registry": 0,
+    "metadata_and_local_coordinates_only_no_network": true,
+    "triad_confirmation_uses_only_coordinates_no_text": true
+  },
+  "non_destructive": true,
+  "recovery_scan": {
+    "apply_ready_labels": [],
+    "confirmed_ser_his_recoveries": 0,
+    "decision_counts": {
+      "hold": 13
+    },
+    "expansion_serine_hydrolase_ec_rows": 13,
+    "held_samples": [
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:Q68FP2",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:Q9L8R8",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:P0CJ63",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:D4GP31",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:Q4A724",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:P0DOV6",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:B9JPK6",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:Q7D3U0",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "entry_id": "uniprot:Q8VPD5",
+        "reason": "catalytic_cofactor_annotated"
+      },
+      {
+        "decision": "hold",
+        "ec_numbers": [
+          "3.1.1.106",
+          "3.2.2.-"
+        ],
+        "entry_id": "uniprot:Q2KHU5",
+        "reason": "no_staged_coordinates_for_triad_confirmation"
+      }
+    ],
+    "note": "recovers genuine cofactorless triad hydrolases mis-binned as OOS only when triad geometry is corroborated against the annotated catalytic ACT_SITE; non-destructive -- nothing is written to any registry"
+  },
+  "ser_his_counts": {
+    "combined": 42,
+    "expansion": 0,
+    "frozen": 42
+  },
+  "status": "ok"
+}
