@@ -1,0 +1,1076 @@
+{
+  "audit": "bronze_silver_promotion_preview",
+  "created_utc": "2026-06-10T05:37:59Z",
+  "decision_counts": {
+    "blocked_apo_needs_cofactor_fusion": 50,
+    "blocked_pending_structure": 295,
+    "hold_low_chemistry_cohesion": 67,
+    "review_chemistry_disagrees": 27,
+    "silver_ready_pending_geometry_run": 47
+  },
+  "decision_counts_by_fingerprint": {
+    "cobalamin_radical_rearrangement": {
+      "blocked_pending_structure": 6,
+      "hold_low_chemistry_cohesion": 1
+    },
+    "flavin_dehydrogenase_reductase": {
+      "blocked_apo_needs_cofactor_fusion": 2,
+      "blocked_pending_structure": 21,
+      "hold_low_chemistry_cohesion": 6,
+      "review_chemistry_disagrees": 10
+    },
+    "flavin_monooxygenase": {
+      "blocked_pending_structure": 27,
+      "hold_low_chemistry_cohesion": 5,
+      "review_chemistry_disagrees": 9
+    },
+    "heme_peroxidase_oxidase": {
+      "blocked_pending_structure": 30,
+      "hold_low_chemistry_cohesion": 19
+    },
+    "metal_dependent_hydrolase": {
+      "blocked_apo_needs_cofactor_fusion": 48,
+      "blocked_pending_structure": 104,
+      "hold_low_chemistry_cohesion": 22,
+      "review_chemistry_disagrees": 8,
+      "silver_ready_pending_geometry_run": 43
+    },
+    "plp_dependent_enzyme": {
+      "blocked_pending_structure": 99,
+      "hold_low_chemistry_cohesion": 13,
+      "silver_ready_pending_geometry_run": 4
+    },
+    "radical_sam_enzyme": {
+      "blocked_pending_structure": 8,
+      "hold_low_chemistry_cohesion": 1
+    }
+  },
+  "guardrails": {
+    "chemistry_corroboration_is_leakage_safe": true,
+    "geometry_confirmation_run_or_faked": false,
+    "promotion_and_geometry_run_are_separate_authorized_steps": true,
+    "registry_written": false,
+    "tier_changed": false
+  },
+  "non_destructive": true,
+  "policy": {
+    "cohesion_threshold": 0.92,
+    "gating_audit_not_run_here": "geometry_inverse_gate_confirmation abstains on predicted-apo coordinates; it is NOT run or faked -- silver_ready rows are staged for that confirmation as a separate authorized step",
+    "silver_ready_definition": "chemistry independently corroborates the assigned fingerprint AND the deferred geometry confirmation is runnable (holo structure), OR ser_his with a confirmed Ser-His-Asp triad"
+  },
+  "review_queue": [
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.1326,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q5D1E8",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.1427,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q8IV48",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.1387,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P27695",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo_only",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.1438,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:A0NLY7",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.1451,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q9D1A2",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.0332,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q68FP2",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "heme_peroxidase_oxidase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.1415,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:D4GP31",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.1415,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P0DOV6",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9879,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P38038",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9883,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P29509",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9879,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q27597",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9879,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q9SUM3",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9879,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q0J705",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.988,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P16549",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9868,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q9LSQ5",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.988,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P17636",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.988,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q06053",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9876,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P54550",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9876,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P86491",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.7701,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q1QYU6",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.7701,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P19734",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9878,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:A3SLM3",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.7701,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:D0C9N8",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9878,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P0DXB2",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.7701,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q9X406",
+      "fingerprint_id": "flavin_monooxygenase",
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "none",
+      "triad_confirmed": null
+    }
+  ],
+  "seed_labels": 486,
+  "silver_ready_count": 47,
+  "silver_ready_preview": [
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:O75844",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9922,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9SAJ3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9922,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P0AAI3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9924,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9H777",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:O43897",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9923,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P14735",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9BXP8",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9UI42",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9907,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9UIQ6",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9923,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9Y4W6",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9913,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P13497",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9918,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P14384",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9924,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P15086",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9924,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P48052",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9906,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P78536",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9892,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q5JRX3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9905,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q96IV0",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9924,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q96IY4",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9918,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9NY33",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9924,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9NZ08",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9922,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9UNA0",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9916,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P46736",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q6HA08",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9924,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q6P179",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9922,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9BZ11",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9924,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9UQ90",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9953,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9ZQI7",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "nearest_fingerprint": "plp_dependent_enzyme",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9969,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:E1CG36",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "nearest_fingerprint": "plp_dependent_enzyme",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9913,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q5F676",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9918,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:O14672",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9881,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q9H040",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P15169",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9924,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P15085",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q68EN5",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q8IVL8",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9907,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:O75976",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P26918",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:C7C422",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q7WYA8",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P52699",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P14488",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:A0A0F7KYQ8",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9918,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q840P9",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9913,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:Q5U7L7",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9919,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:O08498",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9947,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:O95470",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "nearest_fingerprint": "plp_dependent_enzyme",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": true,
+      "chemistry_cohesion": 0.9954,
+      "decision": "silver_ready_pending_geometry_run",
+      "entry_id": "uniprot:P34896",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "nearest_fingerprint": "plp_dependent_enzyme",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "holo",
+      "triad_confirmed": null
+    }
+  ],
+  "status": "ok"
+}

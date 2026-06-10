@@ -3,6 +3,49 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-10: Bronze->Silver Promotion Preview — The Queue, Not A Faked Confirmation
+
+Decision: turn the representation loop's promotion triage into an explicit,
+non-destructive bronze->silver promotion QUEUE. Every expansion label is bronze
+because structure/cofactor-fused geometry confirmation was deferred to a
+bronze->silver promotion signal (2026-06-09). This stages which labels are *ready*
+for that confirmation — but is scrupulous about NOT faking it: the gating
+`geometry_inverse_gate_confirmation` audit **abstains on predicted-apo coordinates**
+(the cofactor is absent — the step-4 finding), so this preview does not run or
+fabricate it and flips no tier.
+
+Silver-ready is defined by signals that ARE checkable here, with the gating geometry
+run kept explicitly separate: (1) **chemistry corroboration** — the representation
+loop's cofactor/ligand chemistry independently agrees with the assigned fingerprint
+(nearest centroid == assigned, cohesion >= 0.92); this is an INDEPENDENT axis from
+the original annotation-anchored scope, so agreement is real corroboration and is
+leakage-safe (chemistry only, never EC/name/label). (2) **structure confirmability**
+— whether the geometry gate can even run: `holo` (experimental coordinates →
+runnable), `apo_only` (AFDB predicted → gate abstains, needs cofactor fusion), or
+`none`. ser_his is handled as the cofactorless special case (its structural
+confirmation is the Ser-His-Asp triad, runnable on apo via the locator).
+
+Result on the 486 expansion seed labels: **47 silver-ready** (chemistry-corroborated
++ holo structure where the confirmation can actually run — 43 metal + 4 PLP), 50
+blocked_apo_needs_cofactor_fusion, 295 blocked_pending_structure (no coordinates), 67
+hold_low_chemistry_cohesion, and **27 review_chemistry_disagrees** (chemistry points
+at a different fingerprint — the QA queue to resolve before any promotion). The
+47-row silver-ready queue is exactly the set to feed the geometry-confirmation run
+when holo structures / backends are available (e.g. locally); the tier flip and that
+confirmation run remain separate authorized steps. Non-destructive: no registry
+written, no tier changed, gate neither run nor faked. Full suite green except the 6
+known env-backend failures.
+
+References:
+
+- `src/catalytic_earth/bronze_silver_promotion_preview.py` (reuses
+  `mechanism_representation_loop.assess_row_against_centroids` and
+  `ser_his_triad_locator.assess_ser_his_candidate`),
+  `tests/test_bronze_silver_promotion_preview.py`, CLI
+  `build-bronze-silver-promotion-preview`.
+- `artifacts/v3_bronze_silver_promotion_preview_current702_20260610.json`,
+  `work/bronze_silver_promotion_preview_current702_20260610.md`.
+
 ## 2026-06-10: Mechanism Representation Loop — Leakage-Safe Self-Feeding Supply (Phase 3 start)
 
 Decision: begin the self-feeding loop that eventually replaces hand-sourcing (the
