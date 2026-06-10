@@ -55,12 +55,44 @@ from .mechanism_representation_loop import (
     fingerprint_centroids,
 )
 from .ser_his_triad_locator import assess_ser_his_candidate
+from .structure import parse_atom_site_loop
 
 DEFAULT_EXPANSION_REGISTRY_PATH = Path("data/registries/external_bronze_labels.json")
 
-# coordinate_status -> confirmability of the deferred geometry gate.
-HOLO_STATUS = "experimental_pdb_coordinate_provenance_available"
-APO_STATUS = "afdb_predicted_coordinate_provenance_available"
+# The deferred geometry confirmation degrades on APO coordinates -- the documented
+# Problem-2 finding: predicted-apo loses the cofactor, the router drops 45/45 ->
+# 23/45, and the geometry inverse-gate ABSTAINS on 100% of apo structures. The
+# binding axis is therefore COFACTOR PRESENCE in the coordinates, NOT experimental
+# vs predicted provenance -- an experimental PDB can be apo too (and in this
+# registry 103/104 coordinate-bearing rows are apo). So confirmability is decided
+# by whether the annotated cofactor is actually present in the coordinates.
+#
+# Annotated cofactor name (substring) -> candidate PDB HETATM comp ids.
+COFACTOR_NAME_TO_PDB_COMP: dict[str, frozenset[str]] = {
+    "zn": frozenset({"ZN"}),
+    "mn": frozenset({"MN", "MN3"}),
+    "mg": frozenset({"MG"}),
+    "fe(3": frozenset({"FE"}),
+    "fe(2": frozenset({"FE2"}),
+    "fe cation": frozenset({"FE", "FE2"}),
+    "ni": frozenset({"NI"}),
+    "ca": frozenset({"CA"}),
+    "co(2": frozenset({"CO", "3CO"}),
+    "cu": frozenset({"CU", "CU1"}),
+    "fad": frozenset({"FAD"}),
+    "fmn": frozenset({"FMN"}),
+    "pyridoxal": frozenset({"PLP", "PMP"}),
+    "heme c": frozenset({"HEC"}),
+    "heme b": frozenset({"HEM"}),
+    "heme": frozenset({"HEM", "HEC"}),
+    "s-adenosyl-l-methionine": frozenset({"SAM"}),
+    "adenosylcobalamin": frozenset({"B12", "COB", "CNC"}),
+    "[4fe-4s]": frozenset({"SF4"}),
+    "[2fe-2s]": frozenset({"FES"}),
+    "[3fe-4s]": frozenset({"F3S"}),
+    "chloride": frozenset({"CL"}),
+}
+_NON_COFACTOR_HET = frozenset({"HOH", "DOD", "WAT"})
 
 
 def _utc_now_iso() -> str:
@@ -76,16 +108,60 @@ def _structure_provenance(row: dict[str, Any]) -> dict[str, Any]:
     return row.get("evidence", {}).get("structure_provenance", {}) or {}
 
 
-def structure_confirmability(row: dict[str, Any]) -> str:
-    """Whether the deferred geometry confirmation can run for this row."""
-    prov = _structure_provenance(row)
-    status = prov.get("coordinate_status")
-    has_path = bool(prov.get("coordinate_path"))
-    if status == HOLO_STATUS:
-        return "holo"
-    if status == APO_STATUS or has_path:
-        return "apo_only"
-    return "none"
+def _mechanism_evidence(row: dict[str, Any]) -> dict[str, Any]:
+    return row.get("evidence", {}).get("mechanism_evidence", {}) or {}
+
+
+def expected_cofactor_comp_ids(row: dict[str, Any]) -> set[str]:
+    """Candidate PDB HETATM comp ids for the row's annotated cofactor(s)."""
+    out: set[str] = set()
+    for cofactor in _mechanism_evidence(row).get("cofactors") or []:
+        name = (cofactor.get("name") or "").lower()
+        for key, comps in COFACTOR_NAME_TO_PDB_COMP.items():
+            if key in name:
+                out |= set(comps)
+    return out
+
+
+def _hetatm_comp_ids(coordinate_path: str) -> set[str]:
+    atoms = parse_atom_site_loop(Path(coordinate_path).read_text(encoding="utf-8"))
+    return {
+        a.get("label_comp_id")
+        for a in atoms
+        if a.get("group_PDB") == "HETATM"
+        and a.get("label_comp_id") not in _NON_COFACTOR_HET
+    }
+
+
+def structure_confirmability(
+    row: dict[str, Any], *, _het_cache: dict[str, set[str]] | None = None
+) -> str:
+    """Whether the deferred geometry confirmation can actually run for this row.
+
+    ``holo``  -- coordinates contain the annotated cofactor (gate is meetable).
+    ``apo``   -- coordinates exist but the cofactor is absent (the gate abstains;
+                 covers BOTH experimental-apo and predicted-apo -- the degradation
+                 regime). Needs cofactor fusion before confirmation.
+    ``none``  -- no usable coordinates staged.
+    """
+    path = _structure_provenance(row).get("coordinate_path")
+    if not path or not Path(path).exists():
+        return "none"
+    expected = expected_cofactor_comp_ids(row)
+    if not expected:
+        # no cofactor to look for (e.g. cofactorless ser_his) -- coordinates exist
+        # but cofactor-presence is not the right confirmation axis for this row
+        return "apo"
+    try:
+        if _het_cache is not None and path in _het_cache:
+            hets = _het_cache[path]
+        else:
+            hets = _hetatm_comp_ids(path)
+            if _het_cache is not None:
+                _het_cache[path] = hets
+    except Exception:  # pragma: no cover - defensive
+        return "none"
+    return "holo" if (hets & expected) else "apo"
 
 
 def assess_promotion(
@@ -93,18 +169,22 @@ def assess_promotion(
     centroids: dict[str, list[float]],
     *,
     cohesion_threshold: float = DEFAULT_PROMOTION_COHESION,
+    _het_cache: dict[str, set[str]] | None = None,
 ) -> dict[str, Any]:
     """Promotion decision for one bronze seed label (non-destructive)."""
     chem = assess_row_against_centroids(row, centroids)
     fp = row.get("fingerprint_id")
-    confirmability = structure_confirmability(row)
+    confirmability = structure_confirmability(row, _het_cache=_het_cache)
     agrees = chem["chemistry_agrees_with_label"]
     cohesion = chem["own_cohesion"] or 0.0
 
-    # ser_his is cofactorless: its structural confirmation is the triad, runnable on
-    # apo too. (No expansion ser_his today, but the path is wired.)
+    # ser_his is cofactorless: its structural confirmation is the Ser-His-Asp triad
+    # (runnable on apo too -- no cofactor needed), not cofactor presence.
     triad_confirmed = None
-    if fp == "ser_his_acid_hydrolase" and confirmability != "none":
+    has_coordinates = bool(_structure_provenance(row).get("coordinate_path")) and Path(
+        _structure_provenance(row)["coordinate_path"]
+    ).exists()
+    if fp == "ser_his_acid_hydrolase" and has_coordinates:
         triad = assess_ser_his_candidate(row)
         triad_confirmed = triad.get("decision") == "assign_ser_his"
 
@@ -112,15 +192,20 @@ def assess_promotion(
         decision = "review_chemistry_disagrees"
     elif cohesion < cohesion_threshold:
         decision = "hold_low_chemistry_cohesion"
-    elif triad_confirmed:
-        decision = "silver_ready_pending_geometry_run"
     elif fp == "ser_his_acid_hydrolase":
-        decision = "blocked_pending_structure" if confirmability == "none" else (
-            "hold_low_chemistry_cohesion"
-        )
+        if triad_confirmed:
+            decision = "silver_ready_pending_geometry_run"
+        elif not has_coordinates:
+            decision = "blocked_pending_structure"
+        else:
+            decision = "hold_triad_not_confirmed"
     elif confirmability == "holo":
+        # annotated cofactor is present in the coordinates -> the geometry
+        # confirmation is meetable (NOT abstaining on apo)
         decision = "silver_ready_pending_geometry_run"
-    elif confirmability == "apo_only":
+    elif confirmability == "apo":
+        # cofactor absent (experimental-apo OR predicted-apo) -> the gate abstains;
+        # needs cofactor fusion before confirmation -- the documented degradation
         decision = "blocked_apo_needs_cofactor_fusion"
     else:
         decision = "blocked_pending_structure"
@@ -149,8 +234,11 @@ def build_bronze_silver_promotion_preview(
     seed = [r for r in expansion if r.get("label_type") == "seed_fingerprint"]
     centroids = fingerprint_centroids(seed)
 
+    het_cache: dict[str, set[str]] = {}
     decisions = [
-        assess_promotion(row, centroids, cohesion_threshold=cohesion_threshold)
+        assess_promotion(
+            row, centroids, cohesion_threshold=cohesion_threshold, _het_cache=het_cache
+        )
         for row in seed
     ]
     decision_counts: Counter = Counter(d["decision"] for d in decisions)
@@ -169,13 +257,21 @@ def build_bronze_silver_promotion_preview(
             "cohesion_threshold": cohesion_threshold,
             "silver_ready_definition": (
                 "chemistry independently corroborates the assigned fingerprint AND "
-                "the deferred geometry confirmation is runnable (holo structure), OR "
-                "ser_his with a confirmed Ser-His-Asp triad"
+                "the annotated cofactor is actually PRESENT in the coordinates (true "
+                "holo, where the geometry gate is meetable), OR ser_his with a "
+                "confirmed Ser-His-Asp triad"
+            ),
+            "confirmability_axis": (
+                "cofactor PRESENCE in coordinates, NOT experimental-vs-predicted "
+                "provenance: the documented Problem-2 degradation is apo cofactor-loss "
+                "(45/45 -> 23/45; geometry inverse-gate abstains on 100% of apo). "
+                "Experimental-apo and predicted-apo are both 'apo' here -- in this "
+                "registry 103/104 coordinate-bearing rows are apo"
             ),
             "gating_audit_not_run_here": (
-                "geometry_inverse_gate_confirmation abstains on predicted-apo "
-                "coordinates; it is NOT run or faked -- silver_ready rows are staged "
-                "for that confirmation as a separate authorized step"
+                "geometry_inverse_gate_confirmation abstains on apo coordinates; it is "
+                "NOT run or faked -- silver_ready rows are staged for that "
+                "confirmation as a separate authorized step"
             ),
         },
         "seed_labels": len(seed),
