@@ -10,3 +10,6 @@ venv/
 # Large future data mirrors should stay local unless explicitly curated.
 data/raw/
 data/cache/
+
+# Python editable-install metadata
+*.egg-info/
