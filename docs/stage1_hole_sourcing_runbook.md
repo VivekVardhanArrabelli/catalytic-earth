@@ -32,11 +32,16 @@ payloads — no network).
 | --- | --- | --- |
 | `radical_sam_enzyme` | 10 | **this runner** — Fe-S + SAM cofactor/EC disambiguation |
 | `cobalamin_radical_rearrangement` | 10 | **this runner** — adenosylcobalamin + mutase-EC disambiguation |
-| `ser_his_acid_hydrolase` | 42 | **NOT this runner** — cofactorless; use `build-ser-his-triad-locator-scan` |
+| `ser_his_acid_hydrolase` | 42 → **129 (CLOSED 2026-06-11)** | **NOT this runner** — cofactorless; use `scripts/source_ser_his_hole.py` |
 
 `ser_his` has no catalytic cofactor to corroborate, so the cofactor/EC engine
-structurally cannot reach it. Source it with the dedicated triad locator, which
-confirms the Ser/Cys-His-Asp triad against coordinates (the plan's Stage-1 route).
+structurally cannot reach it. It is sourced by the dedicated runner
+`scripts/source_ser_his_hole.py` (module `ser_his_hole_sourcing.py`), which fetches
+serine-hydrolase rows (no cofactor), stages the **AlphaFoldDB v6** predicted coordinate,
+and confirms the Ser/Cys-His-Asp triad against the annotated ACT_SITE — the cofactorless
+analogue of cofactor corroboration. It needs live UniProt **and** AlphaFoldDB egress.
+(The older `build-ser-his-triad-locator-scan` is the network-free coordinate-confirmation
+scan + acquisition contract; the runner is the live execution of that contract.)
 
 ## Run it
 
@@ -54,8 +59,9 @@ python -m json.tool artifacts/v3_stage1_hole_sourcing_preview_current702.json | 
 # 3. when the preview looks right, append the novelty-admitted bronze labels
 PYTHONPATH=src python scripts/stage1_source_holes.py --max-records-per-lane 100 --apply
 
-# 4. (separately) the ser_his hole
-PYTHONPATH=src python -m catalytic_earth.cli build-ser-his-triad-locator-scan --help
+# 4. (separately) the cofactorless ser_his hole — needs UniProt + AlphaFoldDB egress
+PYTHONPATH=src python scripts/source_ser_his_hole.py --max-records-per-lane 60          # preview
+PYTHONPATH=src python scripts/source_ser_his_hole.py --max-records-per-lane 60 --apply  # append
 ```
 
 Scale `--max-records-per-lane` up (e.g. 200) to reach the floor; the novelty gate

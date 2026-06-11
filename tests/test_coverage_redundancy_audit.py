@@ -171,16 +171,15 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 2955)
+            self.assertEqual(written["totals"]["combined"], 3042)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 2253)
+            self.assertEqual(written["totals"]["expansion_bronze"], 2340)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
-            # ser_his is the known expansion hole; metal is the known over-cap
-            self.assertIn(
-                "ser_his_acid_hydrolase", audit["class_imbalance"]["expansion_holes"]
-            )
+            # all Stage-1 holes were closed (2026-06-11): no expansion holes remain;
+            # metal_dependent_hydrolase is the known (intentional) over-cap.
+            self.assertEqual(audit["class_imbalance"]["expansion_holes"], [])
             self.assertIn(
                 "metal_dependent_hydrolase",
                 audit["acquisition_targets"]["over_cap"],

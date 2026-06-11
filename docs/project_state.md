@@ -26,6 +26,22 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **STAGE 1 COMPLETE (2026-06-11) — every hole closed; no fingerprint below the floor.**
+  The last open hole, the cofactorless `ser_his_acid_hydrolase`, was sourced **42 → 129**
+  by a new dedicated runner (`scripts/source_ser_his_hole.py` / module
+  `ser_his_hole_sourcing.py`): fetch serine-hydrolase rows (EC 3.4.21/3.4.16/3.1.1, **no
+  cofactor**) → stage the **AlphaFoldDB v6** predicted coordinate → confirm the
+  Ser-His-Asp catalytic triad coincides (≥2 overlap) with the annotated ACT_SITE →
+  novelty gate → apply (+87 bronze; expansion **2340**; combined **3042**; frozen 702
+  untouched). The corroborator is the coordinate **triad**, not a cofactor — and the
+  triad is present in the **apo** predicted structure (UniProt-numbered), which is why
+  ser_his is apo-confirmable. Governor now: **`holes: []`**, **all 8 fingerprints
+  at/above the 100-floor** (7 BALANCED + the intentional `metal_dependent_hydrolase`
+  over-cap 308), fingerprint Gini **0.1917** (was 0.51), next-batch floor deficit **0**,
+  seed positives **1346**. Required AFDB egress (open here alongside UniProt), so the loop
+  is runnable, not just a contract. See decision_log 2026-06-11 "ser_his Hole CLOSED";
+  `artifacts/v3_ser_his_hole_sourcing_preview_current702.json`. **Next is Stage 2**
+  (expand the family set — the real 10k lever; the metal over-cap v2 split is the on-ramp).
 - **Stage-1 cofactor-defined sourcing COMPLETE (2026-06-11) — 7 of 8 fingerprints now BALANCED.**
   After the two holes (below), the three under-floor cofactor fingerprints were sourced
   to the 100-floor by the same runner (now generalized to all five cofactor-defined
@@ -1139,24 +1155,23 @@ artifacts first.
    acceptance surface is review/control input only; it preserves shard signal
    and repair overlays but does not authorize label import or registry
    mutation.
-7. **Stage-1 cofactor-defined sourcing DONE (2026-06-10/11) — ser_his hole + held-pool
-   triage + Stage 2 remain.** All five cofactor-defined Stage-1 fingerprints are sourced
-   to the 100-floor via `scripts/stage1_source_holes.py --apply`: holes `radical_sam_enzyme`
-   10→133 and `cobalamin_radical_rearrangement` 10→144; under-floor `flavin_monooxygenase`
-   43→116, `heme_peroxidase_oxidase` 69→119, `flavin_dehydrogenase_reductase` 87→250
-   (combined 2412→2955; expansion grew to 2253; frozen 702 untouched). 7 of 8 fingerprints
-   BALANCED; fingerprint Gini 0.51→0.2608. The **remaining** work:
-   (a) the cofactorless `ser_his_acid_hydrolase` hole is still open at **42** —
-   `build-ser-his-triad-locator-scan` is coordinate-confirmation-only / network-free and
-   the local candidate pool is drained (0 confirmed recoveries), so closing it needs the
-   live fetch + AF/PDB coordinate-staging + triad-confirm loop its acquisition contract
-   describes (not yet wired into the CLI); (b) the existing held pools the 2026-06-09
-   pending-candidate inventory describes (~730 disambiguation-held + 275 review-ready)
-   still need triage through the governor/novelty gate; and (c) **Stage 2 — the real 10k
-   lever:** 8 fingerprints × 250 cap ≈ 2,000 positives max, so 10k requires expanding the
-   family set (e.g. the `metal_dependent_hydrolase` v2 split). Runbook:
-   `docs/stage1_hole_sourcing_runbook.md`; decision-log entries 2026-06-11 "Stage-1
-   Under-Floor Closure" and 2026-06-10 "Stage-1 Hole Sourcing … Closed To Floor".
+7. **STAGE 1 COMPLETE (2026-06-10/11) — Stage 2 + held-pool triage are next.** All
+   eight fingerprints are at/above the 100-floor; the governor's hole list is empty
+   (`holes: []`); fingerprint Gini 0.51→0.1917; combined 2412→3042 (frozen 702 untouched).
+   Sourced via `scripts/stage1_source_holes.py --apply` (the five cofactor-defined
+   fingerprints) and `scripts/source_ser_his_hole.py --apply` (the cofactorless ser_his
+   triad route): `radical_sam_enzyme` 10→133, `cobalamin_radical_rearrangement` 10→144,
+   `flavin_monooxygenase` 43→116, `heme_peroxidase_oxidase` 69→119,
+   `flavin_dehydrogenase_reductase` 87→250, `ser_his_acid_hydrolase` 42→129. The
+   **remaining** work: (a) **Stage 2 — the real 10k lever:** 8 fingerprints × 250 cap ≈
+   2,000 positives max, so 10k requires expanding the family set; the lone over-cap
+   `metal_dependent_hydrolase` (308) is the on-ramp (split the coarse
+   proteases/nucleases/phosphatases/deaminases bucket into v2 sub-families: fingerprint
+   spec + ontology node + disambiguation rule + missing-context type, then source); and
+   (b) triage the existing held pools the 2026-06-09 pending-candidate inventory describes
+   (~730 disambiguation-held + 275 review-ready) through the governor/novelty gate.
+   Decision-log entries 2026-06-11 "ser_his Hole CLOSED", "Stage-1 Under-Floor Closure",
+   2026-06-10 "Stage-1 Hole Sourcing … Closed To Floor".
 
 ## Maintenance Notes
 

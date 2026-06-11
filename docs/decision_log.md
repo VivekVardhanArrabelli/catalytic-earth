@@ -3,6 +3,67 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-11: ser_his Hole CLOSED — Cofactorless Triad Sourcing (Stage 1 complete)
+
+Decision: built and ran the cofactorless `ser_his_acid_hydrolase` sourcing loop — the
+last open Stage-1 hole, and the one the cofactor/EC engine structurally cannot reach.
+New module `ser_his_hole_sourcing.py` + runner `scripts/source_ser_his_hole.py` wire
+the `ser_his_triad_locator` acquisition contract into a live pipeline: fetch reviewed
+serine-hydrolase Swiss-Prot rows (EC 3.4.21/3.4.16/3.1.1, ACT_SITE annotated, **no
+cofactor**) → stage the **AlphaFoldDB v6** predicted coordinate → confirm the
+Ser/Cys/Thr-His-Asp/Glu catalytic triad coincides (≥2 overlap) with the annotated
+catalytic ACT_SITE → novelty gate → cap guard → preview/apply. Frozen current702
+byte-unchanged (`sha256:5eec9bef…`; 702 labels).
+
+Why this works where the cofactor engine cannot: ser_his is cofactorless, so there is
+no cofactor to corroborate — the corroborator is the **coordinate triad** instead. And
+AlphaFoldDB models are 1:1 with the UniProt sequence (UniProt numbering), so the
+predicted residue numbers equal the annotated ACT_SITE positions; the triad is present
+in the **apo** predicted structure (a protein triad, no ligand needed), which is
+exactly why this fingerprint is apo-confirmable (unlike the cofactor families). This
+also required structure egress (AFDB v6), which is open in this environment alongside
+UniProt — so the loop is both buildable and runnable here, not just a contract.
+
+Result: 180 reviewed rows over 3 EC lanes (0 fetch failures) → 159 AFDB coordinates
+staged (0 unavailable) → **98 triad-confirmed** (held: 48 no-triad, 13
+triad-resolved-but-uncorroborated, 5 dup/non-serine — conservative by design) → **87
+novelty-admitted** (11 throttled) appended to the expansion registry (**2253 →
+2340**; combined **2955 → 3042**). `ser_his_acid_hydrolase` **42 → 129** — HOLE
+CLOSED, floor reached.
+
+**Stage 1 is now complete.** The governor's hole list is **empty** (`holes: []`);
+**all 8 fingerprints are at/above the 100-floor** (7 BALANCED, plus the one intentional
+over-cap `metal_dependent_hydrolase` 308); fingerprint Gini **0.2608 → 0.1917**
+(originally 0.51); next-batch floor deficit **0**. Seed positives 1259 → 1346. The only
+remaining governor action is the metal over-cap, which is the **Stage-2** on-ramp (its
+v2 split), not a sourcing target.
+
+Honesty notes: the corroboration is the coordinate triad, **not** a cofactor — every
+label records `cofactor_evidence_level=cofactorless_triad` and the triad confirmation
+(triad residue ids + ACT_SITE overlap) on `structure_provenance`; the committed label
+carries no transient staged path (the AFDB v6 coordinate is regeneratable from the
+handle). The triad is confirmed on the AFDB **apo** predicted structure — honest as a
+bronze entry gate; structure/geometry confirmation remains a deferred bronze→silver
+signal for the cofactor families. EC stays scope-only (`excluded_context`), never
+predictive. Held rows (no-triad / uncorroborated) are correct conservative behavior,
+not a bug.
+
+Validation: `validate` ok (702 frozen intact). Full suite green except the 6 known
+env-backend failures (numpy/esm2/mmseqs); added 5 ser_his sourcing tests (offline,
+synthetic CIF). Refreshed the RealRegistry pins (combined 2955→3042, expansion
+2253→2340, seed_labels 1029→1116); updated the coverage-redundancy test (no holes
+remain) and the triad-locator scan test (87 ser_his expansion rows). `git diff --check`
+clean. Staged CIFs are written to a temp dir, never committed.
+
+References:
+
+- `src/catalytic_earth/ser_his_hole_sourcing.py`, `scripts/source_ser_his_hole.py`,
+  `tests/test_ser_his_hole_sourcing.py`; primitive `ser_his_triad_locator.py`
+  (`assess_ser_his_candidate`, `confirm_catalytic_triad`).
+- `artifacts/v3_ser_his_hole_sourcing_preview_current702.json`,
+  `work/ser_his_hole_sourcing_current702.md`.
+- `data/registries/external_bronze_labels.json` (2253 → 2340).
+
 ## 2026-06-11: Stage-1 Under-Floor Closure — flavin/heme Fingerprints To Floor (+ runner cap guard)
 
 Decision: finished Stage 1 in-env by sourcing the three **under-floor** cofactor

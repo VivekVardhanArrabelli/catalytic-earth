@@ -1,5 +1,42 @@
 # Handoff
 
+## Session run — ser_his hole CLOSED, STAGE 1 COMPLETE (2026-06-11, Claude Code web)
+
+- Session: Claude Code cloud session; live UniProt **and** AlphaFoldDB egress.
+  Branch `claude/cool-einstein-mbwvp9`, merged to `main`.
+- Status: **Stage 1 complete.** Built and ran the cofactorless `ser_his_acid_hydrolase`
+  runner (the last open hole; the one the cofactor/EC engine can't reach). Frozen
+  current702 byte-unchanged (`sha256:5eec9bef…`, 702 labels).
+- New code: `src/catalytic_earth/ser_his_hole_sourcing.py`,
+  `scripts/source_ser_his_hole.py`, `tests/test_ser_his_hole_sourcing.py` (5 offline
+  tests, synthetic CIF). Pipeline: fetch serine-hydrolase rows (EC 3.4.21/3.4.16/3.1.1,
+  ACT_SITE, no cofactor) → stage AlphaFoldDB v6 coordinate → confirm Ser-His-Asp triad
+  vs annotated ACT_SITE (≥2 overlap) → novelty gate → cap guard → preview/apply.
+- Result: 180 rows over 3 EC lanes (0 fetch failures) → 159 AFDB coordinates staged
+  (0 unavailable) → **98 triad-confirmed** (held: 48 no-triad, 13 uncorroborated, 5
+  dup/non-serine) → **87 novelty-admitted** → expansion 2253 → 2340; combined 2955 →
+  3042. `ser_his_acid_hydrolase` **42 → 129** (floor reached).
+- Governor: **`holes: []`** (none left); **all 8 fingerprints at/above the 100-floor**
+  (7 BALANCED + intentional over-cap `metal_dependent_hydrolase` 308); fingerprint Gini
+  **0.2608 → 0.1917** (was 0.51 originally); next-batch floor deficit **0**; seed
+  positives 1259 → 1346.
+- Honesty: corroboration is the coordinate triad, not a cofactor (cofactorless); each
+  label records `cofactor_evidence_level=cofactorless_triad` + the triad confirmation on
+  `structure_provenance`; triad confirmed on the AFDB **apo** predicted structure
+  (UniProt-numbered); EC scope-only / never predictive. Staged CIFs go to a temp dir,
+  never committed.
+- Validation: `validate` ok; suite green except the 6 known env-backend failures.
+  RealRegistry pins refreshed (combined→3042, expansion→2340, seed_labels→1116);
+  coverage-redundancy test updated (no holes remain); triad-locator scan test updated
+  (87 ser_his expansion rows). `git diff --check` clean.
+- Artifacts: `artifacts/v3_ser_his_hole_sourcing_preview_current702.json`,
+  `work/ser_his_hole_sourcing_current702.md`.
+- Exact next action: **Stage 2** — expand the family set (the real 10k lever; 8×250 ≈
+  2k positives ceiling). Start with the `metal_dependent_hydrolase` v2 split (the lone
+  over-cap): define fingerprint spec + ontology node + disambiguation rule +
+  missing-context type per sub-family, then source. Also triage the ~730 held / 275
+  review-ready pools through the gate.
+
 ## Session run — Stage-1 under-floor closure APPLIED (2026-06-11, Claude Code web)
 
 - Session: Claude Code cloud session (continuation of the 2026-06-10 hole-sourcing run

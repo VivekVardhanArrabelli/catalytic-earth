@@ -247,7 +247,9 @@ class WriteScanRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             self.assertEqual(audit["ser_his_counts"]["frozen"], 42)
-            self.assertEqual(audit["ser_his_counts"]["expansion"], 0)
+            # 87 ser_his expansion labels were sourced 2026-06-11 (ser_his_hole_sourcing);
+            # the recovery scan still confirms 0 here because it is given no coordinates.
+            self.assertEqual(audit["ser_his_counts"]["expansion"], 87)
             self.assertEqual(audit["recovery_scan"]["confirmed_ser_his_recoveries"], 0)
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)

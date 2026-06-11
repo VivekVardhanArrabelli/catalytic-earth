@@ -109,7 +109,7 @@ over the 250 ceiling, most redundant at 2.96 labels/distinct-reaction) — add n
 
 | fingerprint | combined | status | route |
 | --- | --- | --- | --- |
-| `ser_his_acid_hydrolase` | 42 (0 expansion) | HOLE | triad locator + acquisition contract: EC 3.4.21/3.4.16/3.1.1, **no cofactor**, coordinate Ser-His-Asp triad corroborated against annotated ACT_SITE (`build-ser-his-triad-locator-scan`). The one fingerprint the cofactor engine structurally can't reach. |
+| `ser_his_acid_hydrolase` | ~~42~~ **129** | **HOLE CLOSED (2026-06-11)** | cofactorless: EC 3.4.21/3.4.16/3.1.1, **no cofactor**, coordinate Ser-His-Asp triad corroborated against annotated ACT_SITE on the AFDB v6 predicted (apo) structure. Sourced to floor (+87 bronze) by `scripts/source_ser_his_hole.py --apply` (module `ser_his_hole_sourcing.py`). The one fingerprint the cofactor engine structurally can't reach — its corroborator is the triad geometry, not a cofactor. |
 | `radical_sam_enzyme` | ~~10~~ **133** | **HOLE CLOSED (2026-06-10)** | disambiguation rule (Fe-S+SAM / CX3CX2C). Sourced to floor by `scripts/stage1_source_holes.py --apply` (+123 bronze); off the governor's hole list. |
 | `cobalamin_radical_rearrangement` | ~~10~~ **144** | **HOLE CLOSED (2026-06-10)** | disambiguation rule (adenosylcobalamin + mutase EC 5.4.99/5.4.3/4.2.1.28/30/4.3.1.7). Sourced to floor (+134 bronze) after fixing the cobalamin matcher to read UniProt's inline-oxidation-state names (`cob(III)alamin`). |
 | `flavin_monooxygenase` | ~~43~~ **116** | **CLOSED (2026-06-11)** | EC 1.14.13/1.14.14, flavin no-heme. Sourced to floor (+73 bronze). |
@@ -130,13 +130,23 @@ untouched). Two holes (2026-06-10): `radical_sam_enzyme` 10→133,
 `flavin_dehydrogenase_reductase` 87→250 (+286 bronze; 1967→2253). Net: **7 of 8
 fingerprints now BALANCED**; fingerprint Gini **0.51 → 0.2608**; combined 2412 → 2955.
 The runner now enforces a hard per-fingerprint **cap guard** (≤250) so high-yield
-spaces (flavin_DR) fill toward but never past the ceiling. See decision_log
-2026-06-10/2026-06-11 "Stage-1 …" and `docs/stage1_hole_sourcing_runbook.md`.
-`ser_his_acid_hydrolase` is cofactorless, stays on `build-ser-his-triad-locator-scan`,
-and is **the lone remaining open hole at 42** — that tool is coordinate-confirmation-only
-/ network-free, the local pool is drained (0 recoveries), so closing it needs the live
-fetch + AF/PDB coordinate-staging + triad-confirm loop its acquisition contract
-describes. Still **next:** the ser_his loop, plus triaging the existing held pools
+spaces (flavin_DR) fill toward but never past the ceiling.
+
+The cofactorless `ser_his_acid_hydrolase` hole (2026-06-11): sourced **42 → 129**
+(+87 bronze; 2253 → 2340) via the dedicated `scripts/source_ser_his_hole.py --apply`
+(module `ser_his_hole_sourcing.py`) — fetch serine-hydrolase rows (no cofactor) →
+stage the **AlphaFoldDB v6** predicted coordinate → confirm the Ser-His-Asp triad
+against the annotated ACT_SITE → novelty gate → apply. Its corroborator is the
+coordinate triad, not a cofactor; the triad is present in the apo predicted structure,
+which is why this fingerprint is apo-confirmable.
+
+**Stage 1 is COMPLETE (2026-06-11):** the governor's hole list is **empty**; **all 8
+fingerprints are at/above the 100-floor**; fingerprint Gini **0.51 → 0.1917**; combined
+2412 → 3042 (frozen 702 untouched throughout). See decision_log 2026-06-10/2026-06-11
+"Stage-1 …" and `docs/stage1_hole_sourcing_runbook.md`. The only remaining governor
+flag is the intentional `metal_dependent_hydrolase` over-cap (308) — that is the
+**Stage 2** on-ramp (its v2 split below), not a sourcing target. **Next:** Stage 2
+(expand the family set — the real 10k lever), and triaging the existing held pools
 (Pending candidate inventory above) through the same governor/novelty gate.
 
 ### Stage 2 — Grow the ontology (the bulk of the climb)
@@ -349,10 +359,17 @@ All merged to `main`, all non-destructive, leakage-safe, with tests:
 - `bronze_silver_promotion_preview.py` — promotion queue gated on **cofactor presence
   in coordinates** (not provenance). CLI `build-bronze-silver-promotion-preview`.
 - `stage1_hole_sourcing.py` + `scripts/stage1_source_holes.py` — Stage-1 runner that
-  fetches fresh reviewed Swiss-Prot for the two cofactor-defined holes and chains
-  pilot → cofactor/EC disambiguation → novelty gate → non-destructive preview
-  (`--apply` appends to the expansion registry). Needs live UniProt egress; wiring
-  is offline-tested. Runbook: `docs/stage1_hole_sourcing_runbook.md`.
+  fetches fresh reviewed Swiss-Prot for the five cofactor-defined Stage-1 fingerprints
+  (two holes + three under-floor) and chains pilot → cofactor/EC disambiguation →
+  novelty gate → cap guard → non-destructive preview (`--apply` appends to the
+  expansion registry). Needs live UniProt egress; wiring is offline-tested. Runbook:
+  `docs/stage1_hole_sourcing_runbook.md`.
+- `ser_his_hole_sourcing.py` + `scripts/source_ser_his_hole.py` — the cofactorless
+  `ser_his_acid_hydrolase` runner: fetches serine-hydrolase rows (no cofactor), stages
+  the AlphaFoldDB v6 predicted coordinate, confirms the Ser-His-Asp triad against the
+  annotated ACT_SITE (`ser_his_triad_locator`), novelty-gates, and previews/applies.
+  Needs live UniProt **and** AlphaFoldDB egress; wiring is offline-tested with a
+  synthetic CIF.
 
 ---
 
