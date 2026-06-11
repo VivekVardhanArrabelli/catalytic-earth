@@ -26,6 +26,32 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **TRACK 1 (context depth) 1c DONE (2026-06-11) — leakage-safe row-specific BOND-CHANGE feature
+  makes the metal sub-families predictively separable.** The Stage-2 honest finding was that the
+  leakage-safe *chemistry* representation could NOT separate the four metal sub-families (they share
+  the divalent-metal cofactor + water-activator residue roles; repr-loop LOO collapsed to ~0.49
+  metal-only / ~0.68 overall) because they differ only by the reaction-center BOND hydrolysed — not
+  yet a feature. 1c adds that feature: `mechanism_representation_loop` now derives a row-specific
+  bond-change vector (`bc_phosphomonoester`, `bc_phosphodiester`, `bc_peptide_cn`, `bc_amide_cn`)
+  from the **Rhea reaction equation's substrate→product chemistry** — NOT the fingerprint's declared
+  bond_change (that would leak the label), NOT EC, NOT name/prose. It fires only for HYDROLYSIS
+  (water on the substrate side), which keeps non-hydrolase (lyase/transferase) chemistries — e.g.
+  cobalamin ammonia-lyases — out of the bond space. **Measured honestly (LOO self-consistency):
+  overall 0.679 → 0.751; the four v2 sub-families jump to metallopeptidase 0.95,
+  metallophosphoesterase_nuclease 0.93, metallophosphomonoesterase 0.89,
+  metallo_amidohydrolase_deaminase 0.75 (v2-only ≈ 0.88, from ~indistinct); non-metal separability
+  PRESERVED exactly at 0.854** (the water constraint excludes the non-metal lyases that would
+  otherwise pollute). The coarse v1 umbrella `metal_dependent_hydrolase` now (correctly) scatters to
+  its sub-families → its own self-consistency drops to ~0 — that is the split working, not a
+  regression. Bond-change is weighted co-equal with cofactor (1.0; not tuned to the metric).
+  Honest limitation: metallopeptidases largely lack a small-molecule Rhea reaction (110/150 have
+  none — their substrate is a generic protein), so their separation is partly "metal hydrolase with
+  no hydrolysis-reaction bond-change" by elimination; phosphomono/diester/amide are cleanly
+  reaction-driven. This is the discriminator for ALL future fine splits, not just metal. Diagnostic
+  only — the representation organises/triages the expansion's self-supply; it is NEVER a benchmark
+  scorer and the frozen 702 is never read. `validate` ok; full suite green except the 6 known
+  env-backend failures. See decision_log 2026-06-11 "TRACK 1 — 1c";
+  `artifacts/v3_mechanism_representation_loop_current702_20260610.json`.
 - **TRACK 1 (context depth) 1b DONE (2026-06-11) — AlphaFoldDB v6 coordinate provenance staged for
   expansion labels (0%/6% → 98.3%).** With the sequence backfilled (1a), the next missing context is
   STRUCTURE — the predicted coordinate unlocks geometry / active-site context and the bronze→silver

@@ -1,8 +1,14 @@
 {
   "audit": "mechanism_representation_loop",
-  "created_utc": "2026-06-10T05:27:24Z",
+  "created_utc": "2026-06-11T16:12:49Z",
   "feature_space": {
-    "basis": "review_only_cofactor_and_binding_ligand_chemistry + active_site_residue_roles",
+    "basis": "review_only_cofactor_and_binding_ligand_chemistry + rhea_reaction_substrate_product_bond_change + active_site_residue_roles",
+    "bond_change_classes": [
+      "bc_phosphomonoester",
+      "bc_phosphodiester",
+      "bc_peptide_cn",
+      "bc_amide_cn"
+    ],
     "excluded_from_representation": [
       "ec_numbers",
       "fingerprint_id",
@@ -22,6 +28,10 @@
       "zinc",
       "divalent_metal_other",
       "calcium",
+      "bc_phosphomonoester",
+      "bc_phosphodiester",
+      "bc_peptide_cn",
+      "bc_amide_cn",
       "catalytic_fraction",
       "binding_fraction",
       "active_site_size"
@@ -33,32 +43,180 @@
     "flavin_monooxygenase",
     "heme_peroxidase_oxidase",
     "metal_dependent_hydrolase",
+    "metallo_amidohydrolase_deaminase",
+    "metallopeptidase",
+    "metallophosphoesterase_nuclease",
+    "metallophosphomonoesterase",
     "plp_dependent_enzyme",
-    "radical_sam_enzyme"
+    "radical_sam_enzyme",
+    "ser_his_acid_hydrolase"
   ],
   "hole_proposals": {
     "cobalamin_radical_rearrangement": {
       "centroid_available": true,
-      "proposed_from_out_of_scope": []
+      "proposed_from_out_of_scope": [
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q23588",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9184
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q53HV7",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9184
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q5BPS0",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9184
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q5ZC82",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9184
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q84MC2",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9184
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q8GW29",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9184
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q8L8B8",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9184
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9BRR3",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9184
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P45563",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9175
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q96M32",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9175
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:A4Q998",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9158
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9Y3D8",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9158
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q8LBB7",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9157
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P50389",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9137
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9C544",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9128
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q11201",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9114
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q16842",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9114
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:B0BNM1",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9083
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P16662",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9077
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q13508",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9077
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q96QS6",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9077
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9BXU1",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9077
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q5TCS8",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9021
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:F1QWA8",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q92187",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9
+        }
+      ]
     },
     "radical_sam_enzyme": {
       "centroid_available": true,
       "proposed_from_out_of_scope": [
         {
           "current_label_type": "out_of_scope",
-          "entry_id": "uniprot:P40936",
-          "shared_cofactor_classes": [
-            "sam"
-          ],
-          "similarity_to_target": 0.7099
-        },
-        {
-          "current_label_type": "out_of_scope",
           "entry_id": "uniprot:Q42560",
           "shared_cofactor_classes": [
             "iron_sulfur"
           ],
-          "similarity_to_target": 0.7099
+          "similarity_to_target": 0.7129
         },
         {
           "current_label_type": "out_of_scope",
@@ -66,7 +224,15 @@
           "shared_cofactor_classes": [
             "iron_sulfur"
           ],
-          "similarity_to_target": 0.7099
+          "similarity_to_target": 0.7129
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P40936",
+          "shared_cofactor_classes": [
+            "sam"
+          ],
+          "similarity_to_target": 0.7127
         },
         {
           "current_label_type": "out_of_scope",
@@ -74,15 +240,7 @@
           "shared_cofactor_classes": [
             "sam"
           ],
-          "similarity_to_target": 0.7098
-        },
-        {
-          "current_label_type": "out_of_scope",
-          "entry_id": "uniprot:Q9H4Z3",
-          "shared_cofactor_classes": [
-            "sam"
-          ],
-          "similarity_to_target": 0.7096
+          "similarity_to_target": 0.7126
         },
         {
           "current_label_type": "out_of_scope",
@@ -90,39 +248,15 @@
           "shared_cofactor_classes": [
             "iron_sulfur"
           ],
-          "similarity_to_target": 0.7094
+          "similarity_to_target": 0.7125
         },
         {
           "current_label_type": "out_of_scope",
-          "entry_id": "uniprot:P54137",
+          "entry_id": "uniprot:Q9H4Z3",
           "shared_cofactor_classes": [
-            "iron_sulfur"
+            "sam"
           ],
-          "similarity_to_target": 0.7093
-        },
-        {
-          "current_label_type": "out_of_scope",
-          "entry_id": "uniprot:Q9SIC4",
-          "shared_cofactor_classes": [
-            "iron_sulfur"
-          ],
-          "similarity_to_target": 0.7093
-        },
-        {
-          "current_label_type": "out_of_scope",
-          "entry_id": "uniprot:P38859",
-          "shared_cofactor_classes": [
-            "iron_sulfur"
-          ],
-          "similarity_to_target": 0.7092
-        },
-        {
-          "current_label_type": "out_of_scope",
-          "entry_id": "uniprot:Q08214",
-          "shared_cofactor_classes": [
-            "iron_sulfur"
-          ],
-          "similarity_to_target": 0.709
+          "similarity_to_target": 0.7122
         },
         {
           "current_label_type": "out_of_scope",
@@ -130,7 +264,7 @@
           "shared_cofactor_classes": [
             "iron_sulfur"
           ],
-          "similarity_to_target": 0.7089
+          "similarity_to_target": 0.712
         },
         {
           "current_label_type": "out_of_scope",
@@ -138,7 +272,7 @@
           "shared_cofactor_classes": [
             "sam"
           ],
-          "similarity_to_target": 0.7089
+          "similarity_to_target": 0.712
         },
         {
           "current_label_type": "out_of_scope",
@@ -146,7 +280,39 @@
           "shared_cofactor_classes": [
             "iron_sulfur"
           ],
-          "similarity_to_target": 0.7089
+          "similarity_to_target": 0.712
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P54137",
+          "shared_cofactor_classes": [
+            "iron_sulfur"
+          ],
+          "similarity_to_target": 0.7118
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9SIC4",
+          "shared_cofactor_classes": [
+            "iron_sulfur"
+          ],
+          "similarity_to_target": 0.7118
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P38859",
+          "shared_cofactor_classes": [
+            "iron_sulfur"
+          ],
+          "similarity_to_target": 0.7115
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q08214",
+          "shared_cofactor_classes": [
+            "iron_sulfur"
+          ],
+          "similarity_to_target": 0.7114
         },
         {
           "current_label_type": "out_of_scope",
@@ -154,239 +320,438 @@
           "shared_cofactor_classes": [
             "iron_sulfur"
           ],
-          "similarity_to_target": 0.7062
+          "similarity_to_target": 0.708
         }
       ]
     },
     "ser_his_acid_hydrolase": {
-      "centroid_available": false,
-      "proposed_from_out_of_scope": []
+      "centroid_available": true,
+      "proposed_from_out_of_scope": [
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:B0YJ81",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8568
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P35573",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8568
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q2KIP8",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8568
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q8H103",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8568
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P07686",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8566
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P37188",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8566
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P59823",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8566
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q01638",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8566
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q63621",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8566
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q8K4Q6",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8497
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:O00411",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q94502",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q96LT4",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9LFV6",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9NP73",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:O75951",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P56528",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q19426",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q5R8E3",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q5VWC8",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q64244",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q70KH2",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q80UM7",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9ZPI5",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P06280",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8242
+        }
+      ]
     }
   },
   "leakage_guardrails": {
+    "bond_change_derived_from_reaction_substrate_product_only": true,
     "ec_name_prose_lane_used": false,
+    "fingerprint_declared_bond_change_used_as_feature": false,
     "fingerprint_label_used_as_feature": false,
     "frozen_benchmark_read": false,
     "labels_emitted": 0,
+    "reaction_ec_number_used_as_feature": false,
     "registry_written": false,
     "used_only_for_candidate_ranking_and_promotion_triage_not_benchmark_scoring": true
   },
   "non_destructive": true,
   "out_of_scope_labels": 1224,
   "promotion_triage": {
-    "coherent_but_below_threshold": 67,
+    "coherent_but_below_threshold": 397,
     "cohesion_threshold": 0.92,
     "confusion_by_fingerprint": {
       "cobalamin_radical_rearrangement": {
-        "cobalamin_radical_rearrangement": 7
+        "cobalamin_radical_rearrangement": 121,
+        "metal_dependent_hydrolase": 12,
+        "metallophosphoesterase_nuclease": 4,
+        "plp_dependent_enzyme": 4
       },
       "flavin_dehydrogenase_reductase": {
-        "flavin_dehydrogenase_reductase": 21,
-        "flavin_monooxygenase": 18
+        "flavin_dehydrogenase_reductase": 198,
+        "flavin_monooxygenase": 3,
+        "metallophosphoesterase_nuclease": 1
       },
       "flavin_monooxygenase": {
-        "flavin_dehydrogenase_reductase": 25,
-        "flavin_monooxygenase": 16
+        "flavin_dehydrogenase_reductase": 101,
+        "flavin_monooxygenase": 13
       },
       "heme_peroxidase_oxidase": {
-        "heme_peroxidase_oxidase": 49
+        "heme_peroxidase_oxidase": 99
       },
       "metal_dependent_hydrolase": {
-        "cobalamin_radical_rearrangement": 7,
-        "heme_peroxidase_oxidase": 1,
-        "metal_dependent_hydrolase": 217
+        "metallo_amidohydrolase_deaminase": 46,
+        "metallopeptidase": 169,
+        "metallophosphoesterase_nuclease": 9,
+        "ser_his_acid_hydrolase": 1
+      },
+      "metallo_amidohydrolase_deaminase": {
+        "metallo_amidohydrolase_deaminase": 112,
+        "metallopeptidase": 19,
+        "metallophosphoesterase_nuclease": 19
+      },
+      "metallopeptidase": {
+        "metallopeptidase": 143,
+        "metallophosphoesterase_nuclease": 7
+      },
+      "metallophosphoesterase_nuclease": {
+        "metallopeptidase": 8,
+        "metallophosphoesterase_nuclease": 139,
+        "ser_his_acid_hydrolase": 3
+      },
+      "metallophosphomonoesterase": {
+        "metallopeptidase": 7,
+        "metallophosphoesterase_nuclease": 9,
+        "metallophosphomonoesterase": 134
       },
       "plp_dependent_enzyme": {
-        "plp_dependent_enzyme": 116
+        "metallophosphoesterase_nuclease": 2,
+        "plp_dependent_enzyme": 114
       },
       "radical_sam_enzyme": {
-        "radical_sam_enzyme": 9
+        "radical_sam_enzyme": 132
+      },
+      "ser_his_acid_hydrolase": {
+        "cobalamin_radical_rearrangement": 1,
+        "metallopeptidase": 1,
+        "metallophosphoesterase_nuclease": 1,
+        "ser_his_acid_hydrolase": 84
       }
     },
-    "leave_one_out_self_consistency": 0.8951,
+    "leave_one_out_self_consistency": 0.7512,
     "promotion_candidate_samples": [
+      {
+        "entry_id": "uniprot:Q9ZQI7",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9822,
+        "own_cohesion": 0.9822
+      },
+      {
+        "entry_id": "uniprot:E1CG36",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9837,
+        "own_cohesion": 0.9837
+      },
+      {
+        "entry_id": "uniprot:O95470",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9816,
+        "own_cohesion": 0.9816
+      },
+      {
+        "entry_id": "uniprot:P34896",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9822,
+        "own_cohesion": 0.9822
+      },
+      {
+        "entry_id": "uniprot:P28330",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+        "nearest_similarity": 0.9966,
+        "own_cohesion": 0.9966
+      },
+      {
+        "entry_id": "uniprot:P31040",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+        "nearest_similarity": 0.9967,
+        "own_cohesion": 0.9967
+      },
+      {
+        "entry_id": "uniprot:O32148",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9804,
+        "own_cohesion": 0.9804
+      },
+      {
+        "entry_id": "uniprot:O84395",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.982,
+        "own_cohesion": 0.982
+      },
+      {
+        "entry_id": "uniprot:P04693",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9835,
+        "own_cohesion": 0.9835
+      },
+      {
+        "entry_id": "uniprot:P05202",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9801,
+        "own_cohesion": 0.9801
+      }
+    ],
+    "promotion_candidates": 892,
+    "review_outlier_samples": [
       {
         "entry_id": "uniprot:Q96TA2",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9923,
-        "own_cohesion": 0.9923
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9842,
+        "own_cohesion": 0.9711
       },
       {
         "entry_id": "uniprot:O75844",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9918,
-        "own_cohesion": 0.9918
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9845,
+        "own_cohesion": 0.9707
       },
       {
         "entry_id": "uniprot:P0C1T0",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9915,
-        "own_cohesion": 0.9915
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9843,
+        "own_cohesion": 0.9703
       },
       {
         "entry_id": "uniprot:P24155",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9899,
-        "own_cohesion": 0.9899
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9827,
+        "own_cohesion": 0.9687
       },
       {
         "entry_id": "uniprot:Q21432",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9918,
-        "own_cohesion": 0.9918
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9845,
+        "own_cohesion": 0.9707
       },
       {
         "entry_id": "uniprot:Q93243",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9918,
-        "own_cohesion": 0.9918
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9845,
+        "own_cohesion": 0.9707
       },
       {
         "entry_id": "uniprot:F3YDF1",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9922,
-        "own_cohesion": 0.9922
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.971
       },
       {
         "entry_id": "uniprot:Q39102",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9922,
-        "own_cohesion": 0.9922
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.971
       },
       {
         "entry_id": "uniprot:O80983",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9922,
-        "own_cohesion": 0.9922
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.971
       },
       {
         "entry_id": "uniprot:Q8W585",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "metal_dependent_hydrolase",
-        "nearest_similarity": 0.9922,
-        "own_cohesion": 0.9922
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.971
+      },
+      {
+        "entry_id": "uniprot:Q1PDW5",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.971
+      },
+      {
+        "entry_id": "uniprot:Q9SAJ3",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.971
+      },
+      {
+        "entry_id": "uniprot:Q9FGM0",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.971
+      },
+      {
+        "entry_id": "uniprot:P37476",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.971
+      },
+      {
+        "entry_id": "uniprot:P0AAI3",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "metallopeptidase",
+        "nearest_similarity": 0.9846,
+        "own_cohesion": 0.9709
       }
     ],
-    "promotion_candidates": 368,
-    "review_outlier_samples": [
-      {
-        "entry_id": "uniprot:Q5D1E8",
-        "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "cobalamin_radical_rearrangement",
-        "nearest_similarity": 0.1489,
-        "own_cohesion": 0.1281
-      },
-      {
-        "entry_id": "uniprot:Q8IV48",
-        "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "cobalamin_radical_rearrangement",
-        "nearest_similarity": 0.1581,
-        "own_cohesion": 0.1383
-      },
-      {
-        "entry_id": "uniprot:P27695",
-        "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "cobalamin_radical_rearrangement",
-        "nearest_similarity": 0.1532,
-        "own_cohesion": 0.1342
-      },
-      {
-        "entry_id": "uniprot:A0NLY7",
-        "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "cobalamin_radical_rearrangement",
-        "nearest_similarity": 0.1598,
-        "own_cohesion": 0.1394
-      },
-      {
-        "entry_id": "uniprot:Q9D1A2",
-        "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "cobalamin_radical_rearrangement",
-        "nearest_similarity": 0.1602,
-        "own_cohesion": 0.1406
-      },
-      {
-        "entry_id": "uniprot:Q68FP2",
-        "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "heme_peroxidase_oxidase",
-        "nearest_similarity": 0.555,
-        "own_cohesion": 0.0287
-      },
-      {
-        "entry_id": "uniprot:D4GP31",
-        "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "cobalamin_radical_rearrangement",
-        "nearest_similarity": 0.1576,
-        "own_cohesion": 0.137
-      },
-      {
-        "entry_id": "uniprot:P0DOV6",
-        "fingerprint_id": "metal_dependent_hydrolase",
-        "nearest_fingerprint": "cobalamin_radical_rearrangement",
-        "nearest_similarity": 0.1576,
-        "own_cohesion": 0.137
-      },
-      {
-        "entry_id": "uniprot:P31513",
-        "fingerprint_id": "flavin_monooxygenase",
-        "nearest_fingerprint": "flavin_dehydrogenase_reductase",
-        "nearest_similarity": 0.9882,
-        "own_cohesion": 0.9877
-      },
-      {
-        "entry_id": "uniprot:Q8HYJ9",
-        "fingerprint_id": "flavin_monooxygenase",
-        "nearest_fingerprint": "flavin_dehydrogenase_reductase",
-        "nearest_similarity": 0.9882,
-        "own_cohesion": 0.9877
-      },
-      {
-        "entry_id": "uniprot:P36365",
-        "fingerprint_id": "flavin_monooxygenase",
-        "nearest_fingerprint": "flavin_dehydrogenase_reductase",
-        "nearest_similarity": 0.9882,
-        "own_cohesion": 0.9877
-      },
-      {
-        "entry_id": "uniprot:P97501",
-        "fingerprint_id": "flavin_monooxygenase",
-        "nearest_fingerprint": "flavin_dehydrogenase_reductase",
-        "nearest_similarity": 0.9882,
-        "own_cohesion": 0.9877
-      },
-      {
-        "entry_id": "uniprot:P52020",
-        "fingerprint_id": "flavin_monooxygenase",
-        "nearest_fingerprint": "flavin_dehydrogenase_reductase",
-        "nearest_similarity": 0.9882,
-        "own_cohesion": 0.9877
-      },
-      {
-        "entry_id": "uniprot:P38169",
-        "fingerprint_id": "flavin_monooxygenase",
-        "nearest_fingerprint": "flavin_dehydrogenase_reductase",
-        "nearest_similarity": 0.9879,
-        "own_cohesion": 0.9876
-      },
-      {
-        "entry_id": "uniprot:P38038",
-        "fingerprint_id": "flavin_dehydrogenase_reductase",
-        "nearest_fingerprint": "flavin_monooxygenase",
-        "nearest_similarity": 0.9881,
-        "own_cohesion": 0.9873
-      }
-    ],
-    "review_outliers": 51,
-    "seed_labels_triaged": 486
+    "review_outliers": 427,
+    "seed_labels_triaged": 1716,
+    "self_consistency_by_fingerprint": {
+      "cobalamin_radical_rearrangement": 0.8582,
+      "flavin_dehydrogenase_reductase": 0.9802,
+      "flavin_monooxygenase": 0.114,
+      "heme_peroxidase_oxidase": 1.0,
+      "metal_dependent_hydrolase": 0.0,
+      "metallo_amidohydrolase_deaminase": 0.7467,
+      "metallopeptidase": 0.9533,
+      "metallophosphoesterase_nuclease": 0.9267,
+      "metallophosphomonoesterase": 0.8933,
+      "plp_dependent_enzyme": 0.9828,
+      "radical_sam_enzyme": 1.0,
+      "ser_his_acid_hydrolase": 0.9655
+    }
   },
-  "seed_labels": 486,
+  "seed_labels": 1716,
   "status": "ok"
 }

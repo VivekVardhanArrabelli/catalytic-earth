@@ -3,6 +3,76 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-11: TRACK 1 (context depth) — 1c Leakage-Safe Row-Specific Bond-Change Feature (Metal Sub-Families Now Separable)
+
+Decision: closed the Stage-2 deferred-feature gap. The Stage-2 split was honest at the
+EC/reaction/bronze level, but the leakage-safe CHEMISTRY representation
+(`mechanism_representation_loop`) could not separate the four metal sub-families — they share
+the divalent-metal cofactor and His/Asp/Glu water-activator residue roles, and differ only by
+the reaction-center BOND hydrolysed (peptide C-N vs phosphodiester P-O vs phosphomonoester P-O
+vs non-peptide amide/amidine C-N). 1c adds that bond change as a leakage-safe, row-specific
+feature derived from the Rhea reaction.
+
+Leakage discipline (the crux): the feature is derived ONLY from the reaction equation's
+substrate→product chemistry (`evidence.mechanism_evidence.reaction_equations[].reaction`) — the
+legitimate North Star axis, exactly like cofactor identity. It is NOT:
+- the fingerprint's DECLARED bond_change (`mechanism_fingerprints.json`) — using that would
+  leak the label directly;
+- the EC number (an excluded predictive field; the co-stored `reaction_equations[].ec_number`
+  is never read);
+- protein name / prose / lane / fingerprint id.
+The classifier fires only for HYDROLYSIS (water on the substrate side), which is precisely what
+the four metal hydrolase sub-families do and what distinguishes them; non-hydrolase chemistries
+(lyases/transferases — e.g. cobalamin ethanolamine ammonia-lyase, "ethanolamine = acetaldehyde
++ NH4(+)", no water) yield NO bond-change class and stay out of the bond space.
+
+What was built/changed:
+- `mechanism_representation_loop.py`: four bond-change feature dimensions
+  (`bc_phosphomonoester`, `bc_phosphodiester`, `bc_peptide_cn`, `bc_amide_cn`) added to
+  `FEATURE_NAMES` (after the cofactor classes, which stay the prefix the centroid helpers
+  index). A deterministic `classify_reaction_bond_change(reaction)` reads only the reaction
+  string; `featurize` sets the bond-change features at full weight (co-equal with cofactor —
+  NOT tuned to the metric). `promotion_triage` now also reports
+  `self_consistency_by_fingerprint`. The feature_space basis and leakage guardrails record the
+  new axis explicitly (`bond_change_derived_from_reaction_substrate_product_only: true`,
+  `fingerprint_declared_bond_change_used_as_feature: false`,
+  `reaction_ec_number_used_as_feature: false`).
+- Tests: `tests/test_mechanism_representation_loop.py` gained classifier unit tests (the four
+  hydrolysis classes; lyase-without-water → no class; featurize sets bond-change and ignores
+  the co-stored reaction ec_number) and the real-registry guard was rewritten to assert the
+  measured win.
+
+Result (LOO self-consistency, measured honestly — not forced): overall **0.679 → 0.751**;
+metal-only **0.49 → 0.64** (dragged down only by the v1 umbrella, see below). The four v2
+sub-families, ~indistinct before, are now strongly separable: metallopeptidase **0.95**,
+metallophosphoesterase_nuclease **0.93**, metallophosphomonoesterase **0.89**,
+metallo_amidohydrolase_deaminase **0.75** (v2-only ≈ **0.88**). Non-metal separability is
+PRESERVED exactly at **0.854** (the water constraint excludes the non-metal lyase reactions
+that would otherwise pollute the bond space). The coarse v1 umbrella `metal_dependent_hydrolase`
+now (correctly) scatters to its sub-families — it has no single bond-change signature — so its
+own self-consistency drops to ~0; that is the split working as intended, not a regression.
+
+Honest limitations (disclosed, not hidden): (1) reviewed metallopeptidase entries largely lack
+a small-molecule Rhea reaction (110/150 have none — the substrate is a generic protein), so
+their separation is partly "metal hydrolase with NO hydrolysis-reaction bond-change" by
+elimination; phosphomono/diester/amide are cleanly reaction-driven. (2) The flavin
+monooxygenase vs dehydrogenase/reductase confusion (a pre-existing flavin-subtype issue, same
+"needs a reaction-derived feature" shape but for redox, not hydrolysis) is unchanged — the
+hydrolysis-only bond-change does not touch it.
+
+This is the discriminator for ALL future fine splits, not just the metal family. It is a
+research/triage diagnostic for the expansion's self-organisation (promotion triage + hole
+proposal); it is NEVER a benchmark scorer, and the frozen 702 benchmark is never read.
+
+Validation: `validate` ok (702/12/15). Full suite green except the 6 known env-backend
+failures. Frozen current702 untouched (`sha256:5eec9bef…`); this commit writes no registry.
+
+References:
+- `src/catalytic_earth/mechanism_representation_loop.py`,
+  `tests/test_mechanism_representation_loop.py`,
+  `artifacts/v3_mechanism_representation_loop_current702_20260610.json`,
+  `work/mechanism_representation_loop_current702_20260610.md`.
+
 ## 2026-06-11: TRACK 1 (context depth) — 1b Stage AlphaFoldDB v6 Coordinate Provenance For Expansion Labels
 
 Decision: continued Track 1 (rich per-label context) by staging the predicted STRUCTURE for

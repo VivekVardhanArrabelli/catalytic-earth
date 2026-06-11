@@ -43,6 +43,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -71,14 +72,34 @@ COFACTOR_CLASS_PATTERNS: dict[str, tuple[str, ...]] = {
 }
 
 COFACTOR_CLASSES = tuple(COFACTOR_CLASS_PATTERNS.keys())
-# Ordered numeric feature names (cofactor classes weighted to dominate; residue
-# role ratios are secondary structural context).
+
+# Row-specific reaction-center BOND-CHANGE classes (Track 1 / 1c). Derived ONLY from the
+# Rhea reaction equation's substrate->product chemistry -- the legitimate North Star axis,
+# exactly like cofactor identity. It is NOT the fingerprint's declared bond_change (that
+# would leak the label), NOT the EC number, NOT protein name/prose. The four metal
+# sub-families share the same cofactor (a divalent metal) and water-activator residue
+# roles, so cofactor chemistry ALONE cannot separate them; they differ only by the
+# reaction-center bond hydrolysed. These features are that discriminator. They fire only
+# for HYDROLYSIS reactions (water on the substrate side), which keeps non-hydrolase
+# (lyase/transferase) chemistries -- e.g. cobalamin ammonia-lyases -- out of the bond
+# space and preserves the non-metal families' cofactor-based separability.
+BOND_CHANGE_CLASSES = (
+    "bc_phosphomonoester",  # phosphomonoester P-O hydrolysis (free phosphate released)
+    "bc_phosphodiester",    # phosphodiester P-O hydrolysis (nuclease / cyclic-nucleotide)
+    "bc_peptide_cn",        # peptide C-N hydrolysis (peptide-fragment products, no Pi)
+    "bc_amide_cn",          # non-peptide amide/amidine C-N hydrolysis / deamination
+)
+
+# Ordered numeric feature names. Cofactor classes lead (their positional index is reused
+# by the centroid-cofactor helpers, so they MUST stay the prefix). Bond-change classes are
+# co-equal mechanistic features (full weight, like cofactor); residue role ratios are
+# secondary structural context (down-weighted in ``_vector``).
 RESIDUE_FEATURES = (
     "catalytic_fraction",
     "binding_fraction",
     "active_site_size",
 )
-FEATURE_NAMES = COFACTOR_CLASSES + RESIDUE_FEATURES
+FEATURE_NAMES = COFACTOR_CLASSES + BOND_CHANGE_CLASSES + RESIDUE_FEATURES
 
 # Fields that must never enter the representation -- asserted by featurize.
 EXCLUDED_FROM_REPRESENTATION = (
@@ -131,18 +152,95 @@ def _chemical_identity_terms(row: dict[str, Any]) -> list[str]:
     return terms
 
 
+def _reaction_equations(row: dict[str, Any]) -> list[str]:
+    """The Rhea reaction-equation STRINGS only (substrate->product chemistry).
+
+    Reads ``reaction`` strings exclusively -- never the co-stored ``ec_number`` (EC is an
+    excluded predictive field), never the fingerprint label.
+    """
+    mech = _mechanism_evidence(row)
+    return [
+        str(rec.get("reaction") or "")
+        for rec in (mech.get("reaction_equations") or [])
+        if isinstance(rec, dict) and rec.get("reaction")
+    ]
+
+
+def classify_reaction_bond_change(reaction: str) -> set[str]:
+    """Classify a single reaction string into reaction-center bond-change classes.
+
+    Leakage-safe: reads only the substrate->product chemistry. Fires only for HYDROLYSIS
+    (water on the substrate side), which is what the four metal hydrolase sub-families do
+    and what distinguishes them; lyases/transferases (no water) yield no bond-change class,
+    keeping non-hydrolase chemistries out of this space.
+    """
+    low = reaction.lower()
+    if "=" not in low:
+        return set()
+    lhs, rhs = low.split("=", 1)
+    lhs_tokens = [token.strip() for token in lhs.split("+")]
+    rhs_tokens = [token.strip() for token in rhs.split("+")]
+    if "h2o" not in lhs_tokens:  # hydrolases only
+        return set()
+
+    classes: set[str] = set()
+    free_phosphate = any(
+        token in ("phosphate", "diphosphate", "hydrogenphosphate") for token in rhs_tokens
+    )
+    phospho_substrate = ("phospho" in lhs) or ("phosphate" in lhs)
+    anhydride = bool(
+        re.search(r"\b(atp|gtp|ctp|utp|itp)\b", lhs)
+        and re.search(r"\b(adp|gdp|cdp|udp|idp)\b", rhs)
+    )
+    diester = "phosphodiester" in low or bool(
+        re.search(r"\b(dna|rna|oligonucleotide|nucleic|cyclic)\b", low)
+    )
+    if diester and "phosphate monoester" not in lhs:
+        classes.add("bc_phosphodiester")
+    if "phosphate monoester" in lhs or ("an alcohol" in rhs and free_phosphate):
+        classes.add("bc_phosphomonoester")
+    elif free_phosphate and phospho_substrate and not anhydride and not diester:
+        classes.add("bc_phosphomonoester")
+
+    peptide_like = bool(
+        re.search(r"\bpeptide\b", lhs)
+        or re.search(r"\(\d+-\d+\)", rhs)
+        or re.search(r"l-[a-z]{3}-l-[a-z]{3}", rhs)
+    )
+    if peptide_like and not free_phosphate and not phospho_substrate:
+        classes.add("bc_peptide_cn")
+
+    deamination = bool(re.search(r"\bnh3\b|nh4\(\+\)|ammonia", rhs)) or "deaminat" in low
+    amide_ring = "carbamoyl" in rhs or "formimidoyl" in rhs or "imidazolone" in lhs
+    if (deamination or amide_ring) and not free_phosphate:
+        classes.add("bc_amide_cn")
+    return classes
+
+
+def reaction_bond_change_classes(row: dict[str, Any]) -> set[str]:
+    """The union of bond-change classes over all of a row's reaction equations."""
+    classes: set[str] = set()
+    for reaction in _reaction_equations(row):
+        classes |= classify_reaction_bond_change(reaction)
+    return classes
+
+
 def featurize(row: dict[str, Any]) -> dict[str, float]:
     """Deterministic leakage-safe chemical/structural feature vector for a label.
 
-    Cofactor-class presence (from chemical identities) dominates; active-site
-    residue role ratios provide secondary structural context. EC / name / prose /
-    lane / fingerprint are never consulted.
+    Cofactor-class presence (from chemical identities) and reaction-center bond change
+    (from Rhea substrate->product chemistry) are the co-equal mechanistic features;
+    active-site residue role ratios provide secondary structural context. EC / name /
+    prose / lane / fingerprint are never consulted.
     """
     features = {name: 0.0 for name in FEATURE_NAMES}
     for term in _chemical_identity_terms(row):
         cls = _classify_cofactor(term)
         if cls is not None:
             features[cls] = 1.0
+
+    for bond_class in reaction_bond_change_classes(row):
+        features[bond_class] = 1.0
 
     mech = _mechanism_evidence(row)
     active = mech.get("active_site_residue_count") or 0
@@ -312,9 +410,15 @@ def promotion_triage(
             review_outlier.append(record)
 
     total = sum(len(rows) for rows in by_fp.values())
+    self_consistency_by_fp = {
+        fp: round(counts.get(fp, 0) / sum(counts.values()), 4)
+        for fp, counts in confusion.items()
+        if sum(counts.values())
+    }
     return {
         "seed_labels_triaged": total,
         "leave_one_out_self_consistency": round(loo_agree / total, 4) if total else 0.0,
+        "self_consistency_by_fingerprint": dict(sorted(self_consistency_by_fp.items())),
         "promotion_candidates": len(promote),
         "review_outliers": len(review_outlier),
         "coherent_but_below_threshold": len(low_cohesion),
@@ -409,7 +513,11 @@ def build_mechanism_representation_loop(
         "non_destructive": True,
         "feature_space": {
             "names": list(FEATURE_NAMES),
-            "basis": "review_only_cofactor_and_binding_ligand_chemistry + active_site_residue_roles",
+            "basis": (
+                "review_only_cofactor_and_binding_ligand_chemistry + "
+                "rhea_reaction_substrate_product_bond_change + active_site_residue_roles"
+            ),
+            "bond_change_classes": list(BOND_CHANGE_CLASSES),
             "excluded_from_representation": list(EXCLUDED_FROM_REPRESENTATION),
         },
         "seed_labels": len(seed),
@@ -421,6 +529,9 @@ def build_mechanism_representation_loop(
             "frozen_benchmark_read": False,
             "ec_name_prose_lane_used": False,
             "fingerprint_label_used_as_feature": False,
+            "fingerprint_declared_bond_change_used_as_feature": False,
+            "bond_change_derived_from_reaction_substrate_product_only": True,
+            "reaction_ec_number_used_as_feature": False,
             "used_only_for_candidate_ranking_and_promotion_triage_not_benchmark_scoring": True,
             "registry_written": False,
             "labels_emitted": 0,

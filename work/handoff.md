@@ -1,5 +1,41 @@
 # Handoff
 
+## Session run — TRACK 1 / 1c: leakage-safe bond-change feature (metal sub-families separable) (2026-06-11, Claude Code web)
+
+- Session: Claude Code cloud (web) session. Branch `claude/trusting-knuth-l0trap`. Not a Mac
+  automation-harness run — no harness metadata.
+- Status: **Track 1 step 1c complete — Track 1 done (1a+1b+1c).** Added the leakage-safe
+  row-specific reaction-center BOND-CHANGE feature to `mechanism_representation_loop`, the
+  discriminator the Stage-2 split was missing. This commit writes NO registry (the repr-loop is
+  non-destructive); frozen current702 untouched (`sha256:5eec9bef…`).
+- Code: `mechanism_representation_loop.py` gains four bond-change feature dims
+  (`bc_phosphomonoester`, `bc_phosphodiester`, `bc_peptide_cn`, `bc_amide_cn`) derived ONLY from
+  the Rhea reaction equation's substrate→product chemistry — NOT the fingerprint's declared
+  bond_change (would leak), NOT EC, NOT name/prose. `classify_reaction_bond_change` fires only
+  for HYDROLYSIS (water on the substrate side), so non-hydrolase lyases/transferases stay out of
+  the bond space. Co-equal weight with cofactor (1.0; not tuned). `promotion_triage` now reports
+  `self_consistency_by_fingerprint`.
+- Result (LOO self-consistency, measured honestly): overall **0.679 → 0.751**; the four v2
+  sub-families jump to peptidase **0.95**, phosphoesterase **0.93**, phosphomono **0.89**,
+  amide **0.75** (v2-only ≈ 0.88, from ~indistinct); **non-metal preserved exactly at 0.854**.
+  The coarse v1 umbrella correctly scatters to its sub-families (self-consistency → 0) — the
+  split working, not a regression.
+- Honest limitations: metallopeptidases largely lack a small-molecule Rhea reaction (110/150),
+  so their separation is partly by elimination ("metal hydrolase with no hydrolysis bond-change");
+  phosphomono/diester/amide are cleanly reaction-driven. The pre-existing flavin
+  monooxygenase↔dehydrogenase confusion is unchanged (same shape, but redox — out of scope here).
+- Tests: classifier unit tests + the real-registry guard rewritten to assert the measured win
+  (overall > 0.70; each v2 sub-family separable; non-metal still > 0.8). `validate` ok; full
+  suite green except the 6 known env-backend failures.
+- Artifacts: `artifacts/v3_mechanism_representation_loop_current702_20260610.json`,
+  `work/mechanism_representation_loop_current702_20260610.md`.
+- Exact next action: Track 1 (context depth) is complete. Next is breadth (Stage 2 continued):
+  non-hydrolase families (glycosidases, oxidoreductase/transferase) — hydrolysis now holds 6 of
+  12 fingerprints; and the deferred Stage-3 items (re-freeze the OOS hard-negative tranche to
+  12fp; clean `label_factory_v1` version bump). 10k still needs sustained family breadth, not
+  just depth — say so plainly. The same bond-change pattern can split the flavin redox subtypes
+  next (a reaction-derived redox feature, analogous to this hydrolysis one).
+
 ## Session run — TRACK 1 / 1b: AlphaFoldDB v6 coordinate provenance staged (2026-06-11, Claude Code web)
 
 - Session: Claude Code cloud (web) session; live AlphaFoldDB v6 egress confirmed. Branch
