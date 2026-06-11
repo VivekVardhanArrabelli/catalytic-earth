@@ -41,6 +41,13 @@ def _fetch_text(url: str, timeout: int = 30) -> str:
         return response.read().decode("utf-8", errors="replace")
 
 
+def _fetch_header_int(url: str, header: str, timeout: int = 30) -> int | None:
+    """Fetch only a response header value as an int (the body is not consumed)."""
+    request = Request(url, headers={"User-Agent": USER_AGENT})
+    with urlopen(request, timeout=timeout) as response:
+        return _safe_int(response.headers.get(header))
+
+
 def _fetch_json(url: str, timeout: int = 30) -> Any:
     return json.loads(_fetch_text(url, timeout=timeout))
 
@@ -337,6 +344,72 @@ def fetch_uniprot_query(
             "url": pages[0]["url"] if pages else build_uniprot_query_url(query=query, size=size),
         },
         "records": records,
+    }
+
+
+def build_uniprot_count_url(query: str) -> str:
+    """A minimal one-row search URL; the total is read from the x-total-results header."""
+    if not query.strip():
+        raise ValueError("query is required")
+    params = {
+        "query": query,
+        "fields": "accession",
+        "format": "tsv",
+        "size": "1",
+    }
+    return f"{UNIPROT_SEARCH_URL}?{urlencode(params)}"
+
+
+def fetch_uniprot_query_count(query: str) -> dict[str, Any]:
+    """Reviewed-Swiss-Prot result count for a query, read from the response header.
+
+    This is the cheap recon primitive: UniProt returns the full match count in the
+    ``x-total-results`` header, so a single one-row request answers "how many reviewed
+    entries match this lane" without paging the whole result set.
+    """
+    url = build_uniprot_count_url(query)
+    total = _fetch_header_int(url, "x-total-results")
+    return {
+        "metadata": {
+            **RetrievalMetadata("uniprot", UNIPROT_SEARCH_URL, 1).to_dict(),
+            "query": query,
+            "url": url,
+        },
+        "total_results": total,
+    }
+
+
+def fetch_uniprot_ec_sample(query: str, size: int = 200) -> dict[str, Any]:
+    """A light EC-only sample for reaction-diversity estimation (no sequence transfer).
+
+    Returns one ``ec_numbers`` list per sampled reviewed entry. Distinct full-EC counts
+    over this sample are a (sampled) lower bound on a lane's reaction diversity -- enough
+    to estimate the labels/distinct-reaction redundancy ratio the Stage-2 cap-math lesson
+    turns on, without paging or downloading sequences.
+    """
+    if size < 1 or size > 500:
+        raise ValueError("size must be between 1 and 500")
+    params = {
+        "query": query,
+        "fields": "accession,ec",
+        "format": "tsv",
+        "size": str(size),
+    }
+    url = f"{UNIPROT_SEARCH_URL}?{urlencode(params)}"
+    reader = csv.DictReader(StringIO(_fetch_text(url)), delimiter="\t")
+    ec_per_row: list[list[str]] = []
+    for row in reader:
+        if not row or not (row.get("Entry") or "").strip():
+            continue
+        ec_per_row.append(_split_semicolon_field(row.get("EC number")))
+    return {
+        "metadata": {
+            **RetrievalMetadata("uniprot", UNIPROT_SEARCH_URL, len(ec_per_row)).to_dict(),
+            "query": query,
+            "size": size,
+            "url": url,
+        },
+        "ec_per_row": ec_per_row,
     }
 
 

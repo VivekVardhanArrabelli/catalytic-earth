@@ -1,5 +1,43 @@
 # Handoff
 
+## Session run — BREADTH FEASIBILITY SCOUT: 10k diverse positive bronze NOT reachable from reviewed Swiss-Prot alone (2026-06-11, Claude Code web)
+
+- Session: Claude Code cloud (web) session; live UniProt egress confirmed. Branch
+  `claude/lucid-hypatia-wb855e`. Not a Mac automation-harness run — no harness metadata.
+- Status: **TASK 1 (breadth feasibility scout) complete.** Built a reusable, non-destructive recon
+  that REPLACES the scaling-plan cap-math estimate with real reviewed-Swiss-Prot numbers, so the
+  user can decide whether 10k is the right target before sourcing more bronze. Writes NO registry,
+  creates NO labels; frozen current702 untouched (`sha256:5eec9bef…`).
+- New code: `src/catalytic_earth/breadth_feasibility_scout.py`,
+  `scripts/scout_breadth_feasibility.py`, `tests/test_breadth_feasibility_scout.py` (8 offline tests,
+  injected fetchers). Two new cheap-recon adapters: `fetch_uniprot_query_count` (reads the
+  `x-total-results` header — count without paging) and `fetch_uniprot_ec_sample` (EC-only sample, no
+  sequence transfer). 18 curated candidate families beyond the 12 (non-hydrolase first), each with a
+  narrow EC/cofactor count query, EC ceiling, reaction-diversity sample, 150/250 cap, and the
+  cofactor/EC disambiguation handle.
+- Result (live UniProt): **VERDICT `ten_k_diverse_positive_bronze_NOT_reachable_from_reviewed_swissprot_alone`.**
+  Current positives 1946 (12 fp). Of 18 candidates, **15 clean** (distinct + floor-reachable +
+  non-redundant), 0 redundant → projected ~4737 positive bronze, **gap 5263 to 10k**. Honest
+  discounts: **9/15 clean are reaction-poor** (ortholog padding → diversity-discounted new bronze
+  ~1936); **8/18 weak cofactor handle** (<25% EC ceiling). Decision-grade: NAD(P) dehydrogenases
+  (EC 1.1.1, ~7804 reviewed) capture only 7 under `cc_cofactor:nad/nadp` (NAD is a cosubstrate, not a
+  UniProt COFACTOR comment) — the biggest oxidoreductase pool is NOT reachable by the cofactor-anchored
+  gate without a sequence-motif/EC-only handle.
+- Honest read: reviewed Swiss-Prot yields low thousands of diverse POSITIVE bronze, not 10k. Re-scope
+  10k as positives + diverse novelty-gated OOS + bronze→silver depth, OR admit sources beyond reviewed
+  Swiss-Prot. Cleanest first non-hydrolase families: non_heme_iron_2og_dioxygenase,
+  cytochrome_p450_monooxygenase, copper_oxidoreductase, molybdopterin_oxidoreductase,
+  glycosyltransferase, coa_acyltransferase, cofactor_independent_isomerase (cofactorless,
+  apo-confirmable like ser_his).
+- Validation: `validate` ok (702/12/15); full suite green except the 6 known env-backend failures.
+- Artifacts: `artifacts/v3_breadth_feasibility_scout_current702.json`,
+  `work/breadth_feasibility_scout_current702.md`.
+- Exact next action: **TASK 2** (Stage-3 prereqs, REQUIRED before any new OOS import) — re-freeze the
+  OOS hard-negative pre-registration to the 12fp universe + the clean `label_factory_v1` ontology
+  version bump (the gate checks `ontology_version_at_decision == DEFAULT_ONTOLOGY_VERSION_AT_DECISION`
+  AND `fingerprint_universe == live 12`). Then **TASK 3** (source one new non-hydrolase family) ONLY
+  if the user approves scope after this verdict.
+
 ## Session run — TRACK 1 / 1c: leakage-safe bond-change feature (metal sub-families separable) (2026-06-11, Claude Code web)
 
 - Session: Claude Code cloud (web) session. Branch `claude/trusting-knuth-l0trap`. Not a Mac

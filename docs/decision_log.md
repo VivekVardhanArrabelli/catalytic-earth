@@ -3,6 +3,59 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-11: BREADTH FEASIBILITY SCOUT — Real Numbers Say 10k Diverse POSITIVE Bronze Is NOT Reachable From Reviewed Swiss-Prot Alone
+
+Decision: before spending more windows sourcing bronze, REPLACED the scaling-plan cap-math
+*estimate* ("~2k positives + diverse OOS") with REAL reviewed-Swiss-Prot numbers. New reusable,
+non-destructive recon module `breadth_feasibility_scout.py` + `scripts/scout_breadth_feasibility.py`
+(offline-tested with injected fetchers) probes 18 curated candidate mechanism families BEYOND the
+current 12 (non-hydrolase first), measuring per narrow EC/cofactor lane: reviewed-entry supply (the
+cheap `x-total-results` header count — no paging, no sequence transfer), the EC supply ceiling
+(same EC prefixes with NO cofactor filter), reaction diversity (distinct full-EC over a ≤200-row
+sample = a sampled LOWER bound → labels/reaction is a conservative UPPER bound on redundancy), the
+150-vs-250 cap (Stage-2 lesson: 150 when chemistry is confusable), and EC-overlap redundancy vs
+`coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES`. It writes NO registry and creates NO
+labels (nothing for the leakage wall to gate); EC/cofactor are used for supply/scope estimation
+only, never as predictive features.
+
+Headline verdict (live UniProt): **`ten_k_diverse_positive_bronze_NOT_reachable_from_reviewed_swissprot_alone`.**
+Current combined positive bronze is **1946** across 12 fingerprints. Beyond those, **15 of 18**
+candidate families are "clean" (distinct + floor-reachable + non-redundant) and **0** are redundant
+with an existing lane — so breadth genuinely exists. But the honest discounts are large: the clean
+families' capped, novelty-discounted supply projects to only **~4737** diverse positive bronze
+(cap-sum +2791), a **gap of 5263** to 10k; and **9 of 15** clean families are reaction-poor
+(ortholog padding — many entries, few distinct reactions), dropping the diversity-discounted new
+bronze to **~1936**; and **8 of 18** families have a WEAK cofactor handle (it reaches <25% of the EC
+supply ceiling). The biggest weak-handle case is decision-grade: **NAD(P)-dependent dehydrogenases
+(EC 1.1.1) have ~7804 reviewed entries but the `cc_cofactor:nad/nadp` handle captures only 7**
+(0.001) — NAD(P) is a *cosubstrate*, not a UniProt COFACTOR comment, so the entire largest
+oxidoreductase pool is unreachable by the current cofactor-anchored import gate without a new
+**sequence-motif / EC-only handle** (Rossmann GxxxGxG). SOD (EC 1.15.1.1) and biotin carboxylases
+are similarly handle-blocked.
+
+What this means for the target (honest, plainly): reviewed Swiss-Prot yields **low thousands of
+diverse POSITIVE bronze, not 10k**. 10k is reachable only if it is DEFINED as positives + diverse
+novelty-gated OOS + bronze→silver depth (not positive bronze alone), OR if sources beyond reviewed
+Swiss-Prot are admitted (TrEMBL/UniRef cluster representatives, BRENDA, structure-anchored families).
+The clean non-hydrolase families worth sourcing first (real chemistry breadth, defensible handles):
+`non_heme_iron_2og_dioxygenase`, `cytochrome_p450_monooxygenase`, `copper_oxidoreductase`,
+`molybdopterin_oxidoreductase`, `glycosyltransferase`, `coa_acyltransferase`,
+`cofactor_independent_isomerase` (cofactorless → apo-confirmable like ser_his). Reaction-poor or
+weak-handle lanes (`enolase_superfamily`, `sam_methyltransferase` EC 2.1.1.- partial-EC,
+`nad_p_sdr`) are NOT clean wins by volume.
+
+This is the artifact the user uses to decide scope; TASK 3 (source one new non-hydrolase family) is
+gated on that decision. New `fetch_uniprot_query_count` / `fetch_uniprot_ec_sample` adapters
+(header-count + EC-only sample) are the reusable cheap-recon primitives. `validate` ok (702/12/15);
+full suite green except the 6 known env-backend failures. Frozen current702 untouched
+(`sha256:5eec9bef…`); no registry written.
+
+References:
+- `src/catalytic_earth/breadth_feasibility_scout.py`, `scripts/scout_breadth_feasibility.py`,
+  `tests/test_breadth_feasibility_scout.py`, `src/catalytic_earth/adapters.py` (count + EC sampler),
+  `artifacts/v3_breadth_feasibility_scout_current702.json`,
+  `work/breadth_feasibility_scout_current702.md`.
+
 ## 2026-06-11: TRACK 1 (context depth) — 1c Leakage-Safe Row-Specific Bond-Change Feature (Metal Sub-Families Now Separable)
 
 Decision: closed the Stage-2 deferred-feature gap. The Stage-2 split was honest at the

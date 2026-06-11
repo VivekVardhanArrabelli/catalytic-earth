@@ -26,6 +26,32 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **BREADTH FEASIBILITY SCOUT (2026-06-11) — real numbers say 10k diverse POSITIVE bronze is NOT
+  reachable from reviewed Swiss-Prot alone; the target should be re-scoped.** Before sourcing more
+  bronze, replaced the scaling-plan cap-math *estimate* with REAL reviewed-Swiss-Prot supply +
+  reaction-diversity numbers. New non-destructive recon (`breadth_feasibility_scout.py` /
+  `scripts/scout_breadth_feasibility.py`, offline-tested with injected fetchers) probed 18 curated
+  candidate families beyond the current 12 (non-hydrolase first) via the cheap `x-total-results`
+  header count + an EC-only reaction-diversity sample; it writes NO registry and creates NO labels.
+  **Verdict (live UniProt): `ten_k_diverse_positive_bronze_NOT_reachable_from_reviewed_swissprot_alone`.**
+  Current combined positive bronze 1946 (12 fingerprints); beyond those **15/18 candidate families
+  are clean** (distinct + floor-reachable + non-redundant), 0 redundant — breadth genuinely exists —
+  but the clean families' capped, novelty-discounted supply projects to only **~4737** positive
+  bronze (**gap 5263 to 10k**), and the honest discounts cut deeper: **9/15 clean families are
+  reaction-poor** (ortholog padding → diversity-discounted new bronze ~1936) and **8/18 have a weak
+  cofactor handle** (<25% of the EC ceiling). The decision-grade weak-handle case: NAD(P)
+  dehydrogenases (EC 1.1.1, ~7804 reviewed) capture only **7** under `cc_cofactor:nad/nadp` (NAD(P)
+  is a cosubstrate, not a UniProt COFACTOR comment) — the largest oxidoreductase pool is unreachable
+  by the current cofactor-anchored gate without a **sequence-motif/EC-only handle**. **Re-scope
+  implication:** reviewed Swiss-Prot yields low thousands of diverse POSITIVE bronze, not 10k; 10k
+  needs to be defined as positives + diverse novelty-gated OOS + bronze→silver depth, or admit
+  sources beyond reviewed Swiss-Prot. Cleanest first non-hydrolase families to source:
+  `non_heme_iron_2og_dioxygenase`, `cytochrome_p450_monooxygenase`, `copper_oxidoreductase`,
+  `molybdopterin_oxidoreductase`, `glycosyltransferase`, `coa_acyltransferase`,
+  `cofactor_independent_isomerase`. `validate` ok; full suite green except the 6 known env-backend
+  failures; frozen current702 untouched (`sha256:5eec9bef…`). See decision_log 2026-06-11 "BREADTH
+  FEASIBILITY SCOUT"; `artifacts/v3_breadth_feasibility_scout_current702.json`,
+  `work/breadth_feasibility_scout_current702.md`.
 - **TRACK 1 (context depth) 1c DONE (2026-06-11) — leakage-safe row-specific BOND-CHANGE feature
   makes the metal sub-families predictively separable.** The Stage-2 honest finding was that the
   leakage-safe *chemistry* representation could NOT separate the four metal sub-families (they share
