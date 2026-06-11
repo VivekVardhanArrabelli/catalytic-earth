@@ -3,6 +3,65 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-11: TRACK 1 (context depth) — 1b Stage AlphaFoldDB v6 Coordinate Provenance For Expansion Labels
+
+Decision: continued Track 1 (rich per-label context) by staging the predicted STRUCTURE for
+every expansion label. With the deploy-input sequence on every label (1a), the next missing
+context is the coordinate — it unlocks geometry / active-site context and the bronze→silver
+promotion path for all families (the geometry inverse-gate, foldseek near-duplicate screen,
+etc.). Recorded under `evidence.structure_provenance.afdb_v6_coordinate`. Frozen current702
+byte-unchanged (`sha256:5eec9bef…`; 702 labels) before and after.
+
+Why hash-only (regeneratable, not committed): the AFDB v6 CIFs are ~0.5 MB each and are
+fully regeneratable from the handle (`AF-{accession}-F1-model_v6.cif`). Committing ~2.9k CIFs
+(~2 GB) would bloat the repo for zero information gain. So each CIF is staged to a temp dir,
+hashed (sha256) + measured (bytes, atom-record count), and discarded; only the hash + handle
++ provenance are stored. This is the `ser_his_hole_sourcing.py` staging pattern generalized.
+
+What was built/changed:
+- **New reusable module** `src/catalytic_earth/label_structure_backfill.py` +
+  `scripts/backfill_label_structures.py`. The `afdb_v6_coordinate` block carries
+  structure_handle, model_url, model_version (`v6`), coordinate_sha256, coordinate_bytes,
+  atom_record_count, retrieved_utc, status (`afdb_v6_predicted_coordinate_staged` or
+  `afdb_v6_unavailable`), and `coordinate_committed=false` / `regeneratable_from_handle=true`.
+  A retry-aware fetcher distinguishes a genuine 404 (no AFDB prediction → recorded
+  `unavailable`) from transient errors (retried with backoff; raises rather than caching a
+  blip as permanent). Non-destructive: a small summary preview artifact + work report are
+  written always; `--apply` writes the expansion registry ONLY (via the canonical compact
+  `_dump_registry`), and the writer refuses to target the frozen benchmark. A resumable cache
+  under the git-ignored `data/cache/` (flushed every 100 fetches) shares one network pass
+  across preview→apply and survives interruption; `--limit` supports chunked runs.
+- **Additive to existing structure_provenance:** the block is nested under each row's existing
+  `structure_provenance`; the existing `coordinate_status` / `coordinate_path` (incl. the
+  ser_his triad-confirmed status and the 317 committed wave2 paths) are preserved untouched.
+- **Tests:** new `tests/test_label_structure_backfill.py` (offline, injected CIF fetcher:
+  stage+hash without keeping the CIF, 404→unavailable, additive-preserve, `--limit` deferral,
+  idempotent re-run, resumable cache, preview-non-destructive vs apply-writes-expansion-only,
+  refuses-frozen-target).
+
+Result (live AFDB egress): 2940 expansion labels → **2890 staged (98.3%); 50
+`afdb_v6_unavailable`** (AFDB has no v6 prediction — typically very long sequences; recorded
+honestly, never fabricated). Row counts UNCHANGED; the count-pins (combined 3642, expansion
+2940, seed_labels 1716) stay valid. The only registry diff is the added
+`structure_provenance.afdb_v6_coordinate` key per row (verified: stripping it makes all 2940
+rows byte-identical to HEAD); no CIFs committed; `git diff --check` clean.
+
+Validation: `validate` ok (702 frozen intact; 12 fingerprints; 15 families). Full suite green
+except the 6 known env-backend failures. Frozen current702 sha `5eec9bef…` before and after.
+
+Honesty: structure is review-only mechanism context (a deferred bronze→silver confirmation
+signal), NEVER a predictive feature — bronze stays honest. The staged coordinate is the AFDB
+**apo** prediction (cofactor-missing), so the geometry inverse-gate still abstains on it; the
+hash provenance is what makes the bronze→silver geometry/foldseek work *runnable* later, not a
+silver promotion itself.
+
+References:
+- `src/catalytic_earth/label_structure_backfill.py`,
+  `scripts/backfill_label_structures.py`,
+  `tests/test_label_structure_backfill.py`,
+  `artifacts/v3_label_structure_backfill_preview_current702.json`,
+  `work/label_structure_backfill_current702.md`.
+
 ## 2026-06-11: TRACK 1 (context depth) — 1a Backfill The Deploy-Input Sequence Onto Every Expansion Label
 
 Decision: began Track 1 of the scaling plan (rich per-label context / depth — the user

@@ -1,5 +1,33 @@
 # Handoff
 
+## Session run — TRACK 1 / 1b: AlphaFoldDB v6 coordinate provenance staged (2026-06-11, Claude Code web)
+
+- Session: Claude Code cloud (web) session; live AlphaFoldDB v6 egress confirmed. Branch
+  `claude/trusting-knuth-l0trap`. Not a Mac automation-harness run — no harness metadata.
+- Status: **Track 1 step 1b complete.** Staged the AFDB v6 predicted coordinate for every
+  expansion label and recorded `evidence.structure_provenance.afdb_v6_coordinate` (handle +
+  sha256 + provenance). Frozen current702 byte-unchanged (`sha256:5eec9bef…`) before/after.
+- New code: `src/catalytic_earth/label_structure_backfill.py`,
+  `scripts/backfill_label_structures.py`, `tests/test_label_structure_backfill.py` (8 offline
+  tests, injected CIF fetcher). The CIFs are regeneratable from the handle → NEVER committed
+  (staged to temp, hashed, discarded; hash+handle stored). Retry-aware fetcher distinguishes a
+  genuine 404 (→ `afdb_v6_unavailable`) from transient errors. Resumable cache under the
+  git-ignored `data/cache/` (flushed every 100 fetches); `--limit` for chunked runs.
+- Result (live AFDB): **2890/2940 staged (98.3%); 50 `afdb_v6_unavailable`** (AFDB has no v6
+  prediction — long sequences; recorded honestly, not fabricated). Additive: existing
+  `coordinate_status`/`coordinate_path` (incl. ser_his triad-confirmed) preserved. Row counts
+  UNCHANGED; count-pins hold. Only diff is the new nested key (verified: stripping it →
+  byte-identical to HEAD); no CIFs committed; `git diff --check` clean.
+- Honesty: structure is review-only mechanism context (a bronze→silver signal), never a
+  predictive feature. The staged coordinate is the AFDB **apo** prediction (cofactor-missing),
+  so the geometry inverse-gate still abstains on it; the hash provenance makes the
+  bronze→silver geometry/foldseek work *runnable*, it is not itself a silver promotion.
+- Validation: `validate` ok; full suite green except the 6 known env-backend failures.
+- Artifacts: `artifacts/v3_label_structure_backfill_preview_current702.json` (small summary),
+  `work/label_structure_backfill_current702.md`. Cache (`data/cache/`) git-ignored.
+- Exact next action: Track 1 **1c** — the leakage-safe row-specific BOND-CHANGE feature from
+  Rhea reactions (the discriminator that makes the metal sub-families predictively separable).
+
 ## Session run — TRACK 1 / 1a: deploy-input sequence backfilled (2026-06-11, Claude Code web)
 
 - Session: Claude Code cloud (web) session; live UniProt egress confirmed (and AlphaFoldDB

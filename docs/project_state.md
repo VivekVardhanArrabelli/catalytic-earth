@@ -26,6 +26,27 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **TRACK 1 (context depth) 1b DONE (2026-06-11) — AlphaFoldDB v6 coordinate provenance staged for
+  expansion labels (0%/6% → 98.3%).** With the sequence backfilled (1a), the next missing context is
+  STRUCTURE — the predicted coordinate unlocks geometry / active-site context and the bronze→silver
+  promotion path for all families. A new reusable module
+  (`src/catalytic_earth/label_structure_backfill.py` / `scripts/backfill_label_structures.py`)
+  derives the AFDB v6 handle from each label's accession (`AF-{acc}-F1-model_v6.cif`), fetches the
+  predicted CIF, hashes it, and records `evidence.structure_provenance.afdb_v6_coordinate`
+  (structure_handle, model_url, model_version, **coordinate_sha256**, coordinate_bytes,
+  atom_record_count, retrieved_utc, status). Live AFDB: **2890/2940 staged (98.3%); 50 unavailable**
+  (AFDB excludes some very long sequences — recorded honestly as `afdb_v6_unavailable`, not
+  fabricated). Coordinates are **regeneratable from the handle**, so the large CIFs are NEVER
+  committed: each is staged to a temp dir, hashed, and discarded (only hash + handle stored); a
+  resumable cache lives under the git-ignored `data/cache/`. The provenance is **additive** — the
+  existing `coordinate_status` / `coordinate_path` (incl. the ser_his triad-confirmed status) are
+  preserved. Row counts UNCHANGED (combined 3642 / expansion 2940 / seed_labels 1716 pins hold); the
+  only registry diff is the new nested key; frozen current702 byte-unchanged (`sha256:5eec9bef…`)
+  before and after. Structure is review-only mechanism context (a bronze→silver signal), NEVER a
+  predictive feature; the leakage wall is unchanged. `validate` ok; full suite green except the 6
+  known env-backend failures. See decision_log 2026-06-11 "TRACK 1 — 1b";
+  `artifacts/v3_label_structure_backfill_preview_current702.json`,
+  `work/label_structure_backfill_current702.md`.
 - **TRACK 1 (context depth) 1a DONE (2026-06-11) — deploy-input SEQUENCE backfilled onto every
   expansion label (0% → 100%).** The North Star maps a raw SEQUENCE → mechanism, but the expansion
   atlas stored only the UniProt handle + length — the one input a deployed model predicts FROM was
