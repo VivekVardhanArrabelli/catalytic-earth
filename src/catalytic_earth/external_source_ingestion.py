@@ -741,6 +741,11 @@ def _candidate_row(
             "reviewed_status": "reviewed" if reviewed else str(search_record.get("reviewed")),
             "protein_name": search_record.get("protein_name"),
             "organism": search_record.get("organism"),
+            # The raw sequence is the legitimate DEPLOY INPUT (what a model predicts FROM).
+            # Carrying it on the canonical row lets `_build_label` record it natively under
+            # evidence.sequence_provenance; it is stored DATA, never a predictive feature.
+            "sequence": search_record.get("sequence"),
+            "sequence_sha256": _sequence_sha256(search_record.get("sequence")),
             "sequence_length": search_record.get("length")
             or entry_record.get("sequence_length"),
             "target_family_lane": lane["target_family_lane"],

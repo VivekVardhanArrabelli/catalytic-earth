@@ -1,5 +1,52 @@
 # Handoff
 
+## Session run — TRACK 1 / 1a: deploy-input sequence backfilled (2026-06-11, Claude Code web)
+
+- Session: Claude Code cloud (web) session; live UniProt egress confirmed (and AlphaFoldDB
+  v6 200, for the upcoming 1b). Branch `claude/trusting-knuth-l0trap` (the active dev
+  branch in this environment; it already carried the Stage-2 commit). Not a Mac
+  automation-harness run — no harness metadata.
+- Status: **Track 1 step 1a complete.** Backfilled the deploy-input SEQUENCE onto every
+  expansion bronze label. The atlas maps SEQUENCE → mechanism, but the expansion registry
+  stored only the UniProt handle + length, so the model's actual input was absent for all
+  2940 expansion labels. Frozen current702 byte-unchanged (`sha256:5eec9bef…`, 702 labels)
+  before AND after the apply — printed both times, it did not move.
+- New code: `src/catalytic_earth/label_sequence_backfill.py`,
+  `scripts/backfill_label_sequences.py`, `tests/test_label_sequence_backfill.py` (9 offline
+  tests, injected fetcher). Sequence recorded under **`evidence.sequence_provenance`**
+  (sequence, sha256, length, source_accession, source=`reviewed_uniprot`, retrieval
+  provenance, retrieved_utc). Fetch reuses the `adapters` primitives with a field set that
+  includes the sequence (the default `fetch_uniprot_accessions` omits it), batched 25;
+  fetch cache under the git-ignored `data/cache/` shares one network pass across
+  preview→apply.
+- Source-time wiring (so future sourced labels get it natively):
+  `external_source_ingestion._candidate_row` now carries `sequence`+`sequence_sha256`, and
+  `external_annotation_anchored_import._build_label` populates `sequence_provenance` from
+  the row (omitted gracefully when the row has no sequence). Updated the stage1/stage2 +
+  anchored offline tests' synthetic rows/assertions intentionally.
+- Result (live UniProt): **2940/2940 backfilled (100% coverage, 0 fetch-missing, 0
+  length-conflicts)**; seed 1716/1716 and OOS 1224/1224. Row counts UNCHANGED — count-pins
+  (combined 3642 / expansion 2940 / seed_labels 1716) untouched. The ONLY registry diff is
+  the new key per row (verified: stripping `sequence_provenance` makes all 2940 rows
+  byte-identical to HEAD); re-serialized with the same compact `_dump_registry`;
+  `git diff --check` clean.
+- Leakage discipline: the sequence is the DEPLOY INPUT (not EC/name/prose) → stored as
+  DATA, never in `predictive_evidence` (stays `[]`) or `excluded_context`. Round-trip
+  through `MechanismLabel.from_dict().to_dict()` verified for all 2940 (seed + OOS); the OOS
+  leakage validator accepts it.
+- Validation: `validate` ok (702/12/15); full suite green except the 6 known env-backend
+  failures (numpy/esm2/mmseqs).
+- Artifacts: `artifacts/v3_label_sequence_backfill_preview_current702.json` (small summary,
+  not the full registry), `work/label_sequence_backfill_current702.md`. The fetch cache
+  (`data/cache/`) is git-ignored, not committed.
+- Exact next action: continue Track 1 — **1b** stage AlphaFoldDB v6 coordinates
+  (`.../AF-{acc}-F1-model_v6.cif`) for expansion labels with a handle; record
+  `evidence.structure_provenance` (hash + path-handle; do NOT commit large CIFs — stage to
+  temp, store hash+handle; `ser_his_hole_sourcing.py` already proved the staging pattern).
+  Then **1c** the leakage-safe row-specific BOND-CHANGE feature from Rhea (substrate→product
+  chemistry; NOT the fingerprint's own bond_change — that leaks) so the metal sub-families
+  become predictively separable.
+
 ## Session run — STAGE 2 STARTED: metal_dependent_hydrolase v2 split (2026-06-11, Claude Code web)
 
 - Session: Claude Code cloud session; live UniProt **and** AlphaFoldDB egress (confirmed

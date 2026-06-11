@@ -182,5 +182,43 @@ class ApplyToSeparateRegistryTests(unittest.TestCase):
             self.assertEqual(summary2["expansion_registry_after"], 2)
 
 
+class SourceTimeSequenceProvenanceTests(unittest.TestCase):
+    def test_build_label_records_deploy_input_sequence_when_row_carries_it(self) -> None:
+        # A canonical ingestion-pilot row that carries the raw sequence (the deploy
+        # input). _build_label records it under evidence.sequence_provenance natively.
+        sequence = "M" + "Q" * 80
+        row = _row("metal hydrolase", cofactors=["Zn(2+)"], accession="P12345")
+        row.update(
+            {
+                "sequence": sequence,
+                "sequence_length": len(sequence),
+                "reviewed_status": "reviewed",
+                "source_provenance": {"query_timestamp_utc": "2026-06-11T00:00:00Z"},
+                "source_hashes": {"source_query_sha256": "deadbeef"},
+            }
+        )
+        audit = build_external_annotation_anchored_import(preview=[row], registry=[])
+        label = audit["applied_labels"][0]
+        provenance = label["evidence"]["sequence_provenance"]
+        self.assertEqual(provenance["sequence"], sequence)
+        self.assertEqual(provenance["sequence_length"], len(sequence))
+        self.assertEqual(provenance["source_accession"], "P12345")
+        self.assertEqual(provenance["source"], "reviewed_uniprot")
+        self.assertEqual(len(provenance["sequence_sha256"]), 64)
+        # Sequence is stored data only; the leakage channels are unchanged.
+        self.assertEqual(label["evidence"]["predictive_evidence"], [])
+        self.assertNotIn(
+            "sequence_provenance", label["evidence"]["excluded_context"]
+        )
+        # Round-trips through the canonical (leakage-aware) schema.
+        MechanismLabel.from_dict(label)
+
+    def test_build_label_omits_sequence_provenance_when_row_has_no_sequence(self) -> None:
+        row = _row("metal hydrolase", cofactors=["Zn(2+)"], accession="P54321")
+        audit = build_external_annotation_anchored_import(preview=[row], registry=[])
+        label = audit["applied_labels"][0]
+        self.assertNotIn("sequence_provenance", label["evidence"])
+
+
 if __name__ == "__main__":
     unittest.main()

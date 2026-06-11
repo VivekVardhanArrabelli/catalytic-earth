@@ -314,7 +314,7 @@ def _build_label(row: dict[str, Any], decision: dict[str, Any]) -> dict[str, Any
             "re-audited on positive fingerprint expansion"
         )
 
-    return {
+    label = {
         "confidence": confidence,
         "entry_id": f"uniprot:{accession}",
         "evidence": {
@@ -373,6 +373,33 @@ def _build_label(row: dict[str, Any], decision: dict[str, Any]) -> dict[str, Any
         "review_status": "automation_curated",
         "tier": "bronze",
     }
+
+    # Wire the deploy-input sequence at SOURCE time: the canonical ingestion-pilot row
+    # carries the raw sequence, which is the legitimate model INPUT (not EC/name/prose),
+    # so future sourced labels get evidence.sequence_provenance natively. It is stored
+    # DATA -- never a predictive feature -- so the leakage wall is unchanged.
+    sequence = row.get("sequence")
+    if isinstance(sequence, str) and sequence:
+        from .label_sequence_backfill import sequence_provenance_block
+
+        label["evidence"]["sequence_provenance"] = sequence_provenance_block(
+            sequence=sequence,
+            accession=accession,
+            retrieved_utc=(row.get("source_provenance") or {}).get("query_timestamp_utc")
+            or _utc_now_iso(),
+            retrieval={
+                "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+                "fields": "accession,sequence,length,reviewed",
+                "format": "tsv",
+                "source_query_sha256": (row.get("source_hashes") or {}).get(
+                    "source_query_sha256"
+                ),
+                "reviewed_status": row.get("reviewed_status"),
+            },
+            stored_length=row.get("sequence_length"),
+        )
+
+    return label
 
 
 def build_external_annotation_anchored_import(

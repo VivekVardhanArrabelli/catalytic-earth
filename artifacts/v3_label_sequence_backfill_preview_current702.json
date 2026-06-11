@@ -1,0 +1,46 @@
+{
+  "artifact_id": "v3_label_sequence_backfill_preview_current702",
+  "counts": {
+    "already_backfilled": 0,
+    "backfilled_this_run": 2940,
+    "coverage_fraction_after": 1.0,
+    "distinct_accessions_fetched": 2940,
+    "expansion_labels": 2940,
+    "fetch_missing": 0,
+    "length_conflicts": 0,
+    "needed_fetch": 2940,
+    "rows_with_sequence_after": 2940
+  },
+  "coverage_by_fingerprint_this_run": {
+    "__out_of_scope__": 1224,
+    "cobalamin_radical_rearrangement": 141,
+    "flavin_dehydrogenase_reductase": 202,
+    "flavin_monooxygenase": 114,
+    "heme_peroxidase_oxidase": 99,
+    "metal_dependent_hydrolase": 225,
+    "metallo_amidohydrolase_deaminase": 150,
+    "metallopeptidase": 150,
+    "metallophosphoesterase_nuclease": 150,
+    "metallophosphomonoesterase": 150,
+    "plp_dependent_enzyme": 116,
+    "radical_sam_enzyme": 132,
+    "ser_his_acid_hydrolase": 87
+  },
+  "created_utc": "2026-06-11T15:37:09Z",
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "frozen_current702_benchmark_preserved": true,
+    "predictive_evidence_unchanged_empty_for_annotation_anchored": true,
+    "row_count_unchanged": true,
+    "sequence_is_deploy_input_not_predictive_feature": true,
+    "sequence_never_fabricated_when_fetch_missing": true,
+    "stored_source_provenance_never_overwritten": true,
+    "writes_expansion_registry_only": true
+  },
+  "length_conflicts": [],
+  "next_action": "Review counts/conflicts, then on explicit authorization re-run with --apply to write data/registries/external_bronze_labels.json (frozen current702 never written; row count unchanged; only evidence.sequence_provenance added).",
+  "schema_version": "label_sequence_backfill.v1",
+  "status": "non_destructive_preview_pending_explicit_registry_write",
+  "what": "backfill the deploy-input sequence (evidence.sequence_provenance) onto every expansion bronze label; the sequence is the legitimate model INPUT, not a predictive feature -- the leakage wall (EC/name/prose) is unchanged"
+}

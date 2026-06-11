@@ -26,6 +26,33 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **TRACK 1 (context depth) 1a DONE (2026-06-11) — deploy-input SEQUENCE backfilled onto every
+  expansion label (0% → 100%).** The North Star maps a raw SEQUENCE → mechanism, but the expansion
+  atlas stored only the UniProt handle + length — the one input a deployed model predicts FROM was
+  absent for all 2940 expansion labels (the frozen-702 sequences live in a separate manifest). A new
+  reusable module (`src/catalytic_earth/label_sequence_backfill.py` /
+  `scripts/backfill_label_sequences.py`) fetches the reviewed UniProt sequence by accession (TSV
+  `fields=accession,sequence,length,reviewed`, batched 25, reusing the `adapters` primitives) and
+  records it under **`evidence.sequence_provenance`** (sequence, sha256, length, source_accession,
+  source=`reviewed_uniprot`, retrieval provenance, retrieved_utc). Live UniProt: **2940/2940
+  backfilled (100% coverage, 0 fetch-missing, 0 length-conflicts)**; seed 1716/1716 and OOS
+  1224/1224 both carry the sequence. The sequence is the legitimate DEPLOY INPUT (it is NOT
+  EC/name/prose) — stored as DATA under `sequence_provenance`, **never** in `predictive_evidence`
+  (stays `[]`) or `excluded_context`; the leakage wall is unchanged and the OOS leakage validator
+  accepts it (round-trip through `MechanismLabel.from_dict().to_dict()` verified for all 2940 rows).
+  Row counts are **UNCHANGED** (a block added in place; combined 3642 / expansion 2940 / seed_labels
+  1716 pins all hold); the only diff is the new key, re-serialized with the same compact
+  `_dump_registry` serializer (`git diff --check` clean). Frozen current702 byte-unchanged
+  (`sha256:5eec9bef…`) before and after. Sequence wired at SOURCE time too:
+  `external_annotation_anchored_import._build_label` now populates `sequence_provenance` from the
+  canonical ingestion-pilot row (`external_source_ingestion._candidate_row` carries `sequence` +
+  `sequence_sha256`), so future sourced labels get it natively. `validate` ok (702/12/15); full
+  suite green except the 6 known env-backend failures. See decision_log 2026-06-11 "TRACK 1 — 1a";
+  `artifacts/v3_label_sequence_backfill_preview_current702.json`,
+  `work/label_sequence_backfill_current702.md`. **Next (Track 1):** 1b stage AlphaFoldDB v6
+  coordinates (`evidence.structure_provenance`, hash+handle, no committed CIFs) and 1c the
+  leakage-safe row-specific BOND-CHANGE feature from Rhea (the discriminator that makes the metal
+  sub-families predictively separable).
 - **STAGE 2 STARTED (2026-06-11) — `metal_dependent_hydrolase` split into four v2 sub-families (+600 bronze).**
   The coarse over-cap umbrella was split (by reaction-center bond change, not metal alone)
   into `metallopeptidase` (peptide C-N), `metallophosphoesterase_nuclease` (phosphodiester

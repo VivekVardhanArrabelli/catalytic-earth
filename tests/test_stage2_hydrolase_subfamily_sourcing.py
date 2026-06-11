@@ -8,6 +8,7 @@ cap guard -> preview) is exercised end to end and the routing/guardrails asserte
 
 from __future__ import annotations
 
+import json
 import unittest
 
 from catalytic_earth.stage2_hydrolase_subfamily_sourcing import (
@@ -157,6 +158,24 @@ class Stage2SubfamilySourcingTest(unittest.TestCase):
             self.assertEqual(label["evidence"]["predictive_evidence"], [])
             for excluded in ("ec_label", "protein_name", "uniprot_prose", "target_family_lane"):
                 self.assertIn(excluded, label["evidence"]["excluded_context"])
+
+    def test_admitted_labels_carry_deploy_input_sequence_provenance(self):
+        # Source-time wiring: the deploy-input sequence is recorded natively under
+        # evidence.sequence_provenance (the model input), NOT as a predictive feature.
+        audit = self._run()
+        for label in audit["applied_labels"]:
+            provenance = label["evidence"]["sequence_provenance"]
+            accession = label["entry_id"].split(":", 1)[1]
+            self.assertEqual(provenance["source_accession"], accession)
+            self.assertEqual(provenance["source"], "reviewed_uniprot")
+            self.assertEqual(provenance["sequence"], "M" + "A" * 399)
+            self.assertEqual(provenance["sequence_length"], 400)
+            self.assertEqual(len(provenance["sequence_sha256"]), 64)
+            # The sequence never leaks into the predictive/excluded channels.
+            self.assertEqual(label["evidence"]["predictive_evidence"], [])
+            self.assertNotIn(
+                "sequence", json.dumps(label["evidence"]["excluded_context"])
+            )
 
     def test_floor_projection_counts_admitted(self):
         audit = self._run()

@@ -188,6 +188,15 @@ class Stage1HoleSourcingTest(unittest.TestCase):
             self.assertEqual(label["evidence"]["predictive_evidence"], [])
             for excluded in ("ec_label", "protein_name", "uniprot_prose"):
                 self.assertIn(excluded, label["evidence"]["excluded_context"])
+            # The deploy-input sequence is recorded natively at source time (data, not
+            # a predictive feature).
+            provenance = label["evidence"]["sequence_provenance"]
+            self.assertEqual(provenance["sequence"], "M" + "A" * 399)
+            self.assertEqual(provenance["sequence_length"], 400)
+            self.assertEqual(provenance["source"], "reviewed_uniprot")
+            self.assertEqual(
+                provenance["source_accession"], label["entry_id"].split(":", 1)[1]
+            )
 
     def test_floor_projection_counts_admitted(self):
         audit = self._run()

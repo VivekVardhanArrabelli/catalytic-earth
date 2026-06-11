@@ -3,6 +3,77 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-11: TRACK 1 (context depth) — 1a Backfill The Deploy-Input Sequence Onto Every Expansion Label
+
+Decision: began Track 1 of the scaling plan (rich per-label context / depth — the user
+approved "depth first") by closing the most basic gap: the atlas maps a raw protein
+**SEQUENCE → mechanism**, yet the expansion registry stored only the UniProt handle +
+length — never the sequence. So the one input a deployed model actually predicts FROM was
+absent for all 2940 expansion labels (the frozen-702 sequences live in a separate
+manifest, `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`). Backfilled
+the reviewed UniProt sequence onto every expansion label under
+**`evidence.sequence_provenance`**. Frozen current702 byte-unchanged
+(`sha256:5eec9bef…`; 702 labels) before and after.
+
+Why the sequence is allowed (the leakage distinction, restated): the leakage wall keeps
+EC / protein name / UniProt prose / `target_family_lane` in `excluded_context`, never
+predictive (`predictive_evidence` stays `[]`; `tests/test_leakage_closure.py` enforces
+it). The raw **sequence is the deploy INPUT** — what we predict FROM — and is NOT
+EC/name/prose, so it is stored as DATA under `evidence.sequence_provenance`. It must never
+appear in `excluded_context` or `predictive_evidence`; the wall is unchanged. Proven: the
+block survives `MechanismLabel.from_dict().to_dict()` for both seed and out_of_scope
+labels, and the OOS leakage validator accepts it (re-verified by round-trip on all 2940).
+
+What was built/changed:
+- **New reusable module** `src/catalytic_earth/label_sequence_backfill.py` +
+  `scripts/backfill_label_sequences.py`. The `sequence_provenance` block carries: `sequence`,
+  `sequence_sha256`, `sequence_length`, `source_accession`, `source` (=`reviewed_uniprot`),
+  `retrieval` provenance (endpoint/fields/batch/reviewed_status), and `retrieved_utc`. The
+  fetched length is cross-checked against the stored `source_provenance.sequence_length`; on
+  mismatch a `length_conflict_note` is recorded and the stored length is **preserved, not
+  overwritten** (0 conflicts on this run). Fetching reuses
+  `adapters._fetch_text/_chunked/_split_accessions/USER_AGENT/UNIPROT_SEARCH_URL` with a field
+  set that INCLUDES the sequence (the default `fetch_uniprot_accessions` omits it), batched 25;
+  a small fetch cache under the git-ignored `data/cache/` lets preview and `--apply` share one
+  network pass. Non-destructive: a small **summary** preview artifact + work report are written
+  always; `--apply` writes the expansion registry ONLY, via the same compact `_dump_registry`
+  serializer, and the writer refuses to target the frozen benchmark path.
+- **Source-time wiring** so future sourced labels get the sequence natively:
+  `external_source_ingestion._candidate_row` now carries `sequence` + `sequence_sha256` from the
+  reviewed search record, and `external_annotation_anchored_import._build_label` populates
+  `evidence.sequence_provenance` from the row when present (omitted gracefully when absent — the
+  synthetic anchored-import test rows that lack a sequence are unaffected).
+- **Tests:** new `tests/test_label_sequence_backfill.py` (offline, injected fetcher: seed+OOS
+  backfill, row-count/frozen guardrails, length-conflict note, fetch-miss never fabricated,
+  idempotent re-run, fetch-cache reuse, preview-non-destructive vs apply-writes-expansion-only,
+  refuses-frozen-target, canonical-serializer round-trip). Updated the stage1/stage2 + anchored
+  offline tests' synthetic rows + assertions intentionally to assert the source-time block.
+
+Result (live UniProt egress): 2940 expansion labels → **2940/2940 backfilled (100% coverage,
+0 fetch-missing, 0 length-conflicts)**; seed 1716/1716 and OOS 1224/1224 both carry the
+sequence. Row counts UNCHANGED (a block added in place); the count-pins (combined 3642,
+expansion 2940, seed_labels 1716) stay valid and were not changed. The only registry diff is
+the added `sequence_provenance` key per row (verified: stripping it makes all 2940 rows
+byte-identical to HEAD); `git diff --check` clean.
+
+Validation: `validate` ok (702 frozen intact; 12 fingerprints; 15 ontology families). Full
+suite green except the 6 known env-backend failures (numpy/esm2/mmseqs). Frozen current702 sha
+printed before AND after the apply — `5eec9bef…` both times (it did not move).
+
+Next (Track 1, separate commits): 1b stage AlphaFoldDB v6 coordinates
+(`.../AF-{acc}-F1-model_v6.cif`) for expansion labels with a handle and record
+`evidence.structure_provenance` (hash + path-handle; coordinates are regeneratable so large
+CIFs are NOT committed); 1c build the leakage-safe row-specific BOND-CHANGE feature from Rhea
+reactions (substrate→product chemistry, NOT the fingerprint's own bond_change — that would
+leak) — the discriminator that makes the four metal sub-families predictively separable.
+
+References:
+- `src/catalytic_earth/label_sequence_backfill.py`,
+  `scripts/backfill_label_sequences.py`,
+  `tests/test_label_sequence_backfill.py`,
+  `artifacts/v3_label_sequence_backfill_preview_current702.json`,
+  `work/label_sequence_backfill_current702.md`.
+
 ## 2026-06-11: STAGE 2 STARTED — metal_dependent_hydrolase v2 Split Into Four Sub-Families (+600 bronze)
 
 Decision: began Stage 2 (grow the ontology — the real 10k lever) by splitting the
