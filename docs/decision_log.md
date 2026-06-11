@@ -3,6 +3,63 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-11: Stage-1 Under-Floor Closure — flavin/heme Fingerprints To Floor (+ runner cap guard)
+
+Decision: finished Stage 1 in-env by sourcing the three **under-floor** cofactor
+fingerprints to the 100-floor, via the same `scripts/stage1_source_holes.py` runner
+(now generalized from the two holes to all five cofactor-defined Stage-1 fingerprints).
+Frozen current702 byte-unchanged
+(`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; 702 labels).
+
+Result: 602 reviewed Swiss-Prot rows over 8 narrow EC/cofactor lanes (0 fetch
+failures) -> 390 disambiguated bronze (106 held no-cofactor-EC, 10 multi-signal) ->
+**286 novelty-admitted** appended to the expansion registry (1967 -> 2253; combined
+2669 -> 2955). Per-fingerprint combined:
+
+- `flavin_monooxygenase`: **43 -> 116** (UNDER -> BALANCED).
+- `heme_peroxidase_oxidase`: **69 -> 119** (UNDER -> BALANCED).
+- `flavin_dehydrogenase_reductase`: **87 -> 250** (UNDER -> BALANCED, at the cap).
+
+Governor: fingerprint Gini **0.3408 -> 0.2608** (originally 0.51); **7 of 8
+fingerprints now at/above floor and BALANCED**; the only remaining hole is
+`ser_his_acid_hydrolase` (42) and the only over-cap is `metal_dependent_hydrolase`
+(308, untouched). Seed positives 973 -> 1259.
+
+Cap guard (the load-bearing fix this batch): the novelty gate admits diverse rows
+greedily above the floor and even permits `over_cap_but_new_reaction_chemistry`, so
+the first under-floor preview pushed `flavin_dehydrogenase_reductase` to **253 —
+over the 250 ceiling**. Stage 1 must close to the FLOOR, never manufacture an
+over-cap fingerprint, so the runner now enforces a hard per-fingerprint cap guard
+(`cap_ceiling=DEFAULT_CAP_CEILING=250`): each fingerprint's admitted set is trimmed
+so projected combined never exceeds the cap; the surplus stays HELD (a review queue),
+not imported. Re-run landed flavin_DR at exactly 250 (3 held at cap),
+`no_fingerprint_pushed_over_cap=True`. Note flavin_DR is highly diverse (~0.5
+labels/distinct-reaction), so filling it toward the cap is honest supply, not the
+redundancy the cap guards against — and balance (Gini) **improved**, confirming it.
+
+Guardrails (verified post-apply): frozen current702 never written; `tier=bronze`,
+`review_status=automation_curated`; uniprot namespace; EC/name/prose in
+`excluded_context`, `predictive_evidence` empty on all 286; deduped + novelty-gated
+vs BOTH registries; multi-fingerprint-signal rows held.
+
+Validation: `validate` ok (702 frozen intact). Full suite green except the 6 known
+env-backend failures (numpy/esm2/mmseqs). RealRegistry count pins refreshed (combined
+2669->2955, expansion 1967->2253, seed_labels 743->1029); new stage1 tests added
+(under-floor routing + the SOURCEABLE_FINGERPRINTS coverage). `git diff --check` clean.
+
+Stage 1 is now complete except `ser_his_acid_hydrolase` (the cofactorless hole),
+which needs the live fetch + AF/PDB coordinate-staging + triad-confirm loop its
+acquisition contract describes — not reachable by the cofactor/EC runner.
+
+References:
+
+- `src/catalytic_earth/stage1_hole_sourcing.py` (`UNDER_FLOOR_LANE_QUERIES`,
+  `STAGE1_LANE_QUERIES`, `SOURCEABLE_FINGERPRINTS`, the cap guard),
+  `scripts/stage1_source_holes.py`, `tests/test_stage1_hole_sourcing.py`.
+- `artifacts/v3_stage1_underfloor_sourcing_preview_current702.json`,
+  `work/stage1_underfloor_sourcing_current702.md`.
+- `data/registries/external_bronze_labels.json` (1967 -> 2253).
+
 ## 2026-06-10: Stage-1 Hole Sourcing — radical_sam + cobalamin Holes Closed To Floor (+ cobalamin cofactor-name fix)
 
 Decision: ran `docs/stage1_hole_sourcing_runbook.md` (Stage 1 of

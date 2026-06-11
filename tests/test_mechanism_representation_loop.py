@@ -123,7 +123,7 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
     def test_build_on_real_registry_is_leakage_safe(self) -> None:
         expansion = json.loads(EXPANSION_PATH.read_text())
         audit = build_mechanism_representation_loop(expansion)
-        self.assertEqual(audit["seed_labels"], 743)
+        self.assertEqual(audit["seed_labels"], 1029)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])

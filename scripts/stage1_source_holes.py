@@ -38,7 +38,7 @@ from catalytic_earth.external_scaleout_bronze_import import (  # noqa: E402
     DEFAULT_FROZEN_BENCHMARK_PATH,
 )
 from catalytic_earth.stage1_hole_sourcing import (  # noqa: E402
-    SOURCEABLE_HOLES,
+    SOURCEABLE_FINGERPRINTS,
     write_stage1_hole_sourcing,
 )
 
@@ -62,10 +62,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--holes",
+        "--fingerprints",
+        dest="holes",
         nargs="+",
-        default=list(SOURCEABLE_HOLES),
-        choices=list(SOURCEABLE_HOLES),
-        help="which cofactor-defined holes to source",
+        default=list(SOURCEABLE_FINGERPRINTS),
+        choices=list(SOURCEABLE_FINGERPRINTS),
+        help=(
+            "which cofactor-defined Stage-1 fingerprints to source "
+            "(the two holes radical_sam_enzyme/cobalamin_radical_rearrangement plus the "
+            "three under-floor fingerprints flavin_monooxygenase/heme_peroxidase_oxidase/"
+            "flavin_dehydrogenase_reductase); default = all five"
+        ),
     )
     parser.add_argument("--max-records-per-lane", type=int, default=50)
     parser.add_argument("--out", default=DEFAULT_OUT)

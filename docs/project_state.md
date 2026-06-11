@@ -26,6 +26,22 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **Stage-1 cofactor-defined sourcing COMPLETE (2026-06-11) — 7 of 8 fingerprints now BALANCED.**
+  After the two holes (below), the three under-floor cofactor fingerprints were sourced
+  to the 100-floor by the same runner (now generalized to all five cofactor-defined
+  Stage-1 fingerprints): `flavin_monooxygenase` **43 → 116**, `heme_peroxidase_oxidase`
+  **69 → 119**, `flavin_dehydrogenase_reductase` **87 → 250** (+286 bronze; expansion
+  **1967 → 2253**; combined **2669 → 2955**; frozen 702 untouched). Governor: fingerprint
+  Gini **0.3408 → 0.2608** (originally 0.51); seed positives 973 → 1259; the only HOLE
+  is `ser_his_acid_hydrolase` (42) and the only OVER_CAP is `metal_dependent_hydrolase`
+  (308, untouched). Load-bearing fix: the runner now enforces a hard per-fingerprint
+  **cap guard** (`cap_ceiling=250`) — the novelty gate had pushed `flavin_dehydrogenase_reductase`
+  to 253 (over cap) because it admits diverse rows greedily and permits
+  `over_cap_but_new_reaction_chemistry`; the guard trims each fingerprint's admitted set
+  so combined never exceeds the cap (surplus held, not imported), landing flavin_DR at
+  exactly 250. flavin_DR is highly diverse (~0.5 labels/reaction), so filling it toward
+  cap is honest supply and balance improved. See decision_log 2026-06-11 "Stage-1
+  Under-Floor Closure"; `artifacts/v3_stage1_underfloor_sourcing_preview_current702.json`.
 - **Stage-1 hole sourcing applied (2026-06-10) — two cofactor-defined holes closed to floor.**
   Ran `docs/stage1_hole_sourcing_runbook.md` with live UniProt egress. 548 reviewed
   Swiss-Prot rows across 10 narrow EC/cofactor lanes (0 fetch failures) → 259
@@ -1123,22 +1139,24 @@ artifacts first.
    acceptance surface is review/control input only; it preserves shard signal
    and repair overlays but does not authorize label import or registry
    mutation.
-7. **Stage-1 hole sourcing — two cofactor holes DONE (2026-06-10); ser_his +
-   held-pool triage remain.** With live UniProt egress, `scripts/stage1_source_holes.py
-   --apply` sourced the two cofactor-defined holes to the 100-floor:
-   `radical_sam_enzyme` **10 → 133** and `cobalamin_radical_rearrangement` **10 → 144**
-   (+257 bronze; expansion 1710 → 1967; frozen 702 untouched). Both are off the
-   governor's hole list; fingerprint Gini 0.51 → 0.3408. The **remaining** Stage-1 work:
+7. **Stage-1 cofactor-defined sourcing DONE (2026-06-10/11) — ser_his hole + held-pool
+   triage + Stage 2 remain.** All five cofactor-defined Stage-1 fingerprints are sourced
+   to the 100-floor via `scripts/stage1_source_holes.py --apply`: holes `radical_sam_enzyme`
+   10→133 and `cobalamin_radical_rearrangement` 10→144; under-floor `flavin_monooxygenase`
+   43→116, `heme_peroxidase_oxidase` 69→119, `flavin_dehydrogenase_reductase` 87→250
+   (combined 2412→2955; expansion grew to 2253; frozen 702 untouched). 7 of 8 fingerprints
+   BALANCED; fingerprint Gini 0.51→0.2608. The **remaining** work:
    (a) the cofactorless `ser_his_acid_hydrolase` hole is still open at **42** —
    `build-ser-his-triad-locator-scan` is coordinate-confirmation-only / network-free and
    the local candidate pool is drained (0 confirmed recoveries), so closing it needs the
    live fetch + AF/PDB coordinate-staging + triad-confirm loop its acquisition contract
-   describes (not yet wired into the CLI); and (b) the under-floor flavin/heme
-   fingerprints plus the existing held pools the 2026-06-09 pending-candidate inventory
-   describes (~730 disambiguation-held + 275 review-ready) still need triage through the
-   same governor/novelty gate. Runbook: `docs/stage1_hole_sourcing_runbook.md`;
-   decision-log entries 2026-06-10 "Stage-1 Hole Sourcing … Closed To Floor" (the run)
-   and "Stage-1 Hole-Sourcing Runner" (the tool).
+   describes (not yet wired into the CLI); (b) the existing held pools the 2026-06-09
+   pending-candidate inventory describes (~730 disambiguation-held + 275 review-ready)
+   still need triage through the governor/novelty gate; and (c) **Stage 2 — the real 10k
+   lever:** 8 fingerprints × 250 cap ≈ 2,000 positives max, so 10k requires expanding the
+   family set (e.g. the `metal_dependent_hydrolase` v2 split). Runbook:
+   `docs/stage1_hole_sourcing_runbook.md`; decision-log entries 2026-06-11 "Stage-1
+   Under-Floor Closure" and 2026-06-10 "Stage-1 Hole Sourcing … Closed To Floor".
 
 ## Maintenance Notes
 

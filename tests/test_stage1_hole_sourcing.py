@@ -11,6 +11,7 @@ from __future__ import annotations
 import unittest
 
 from catalytic_earth.stage1_hole_sourcing import (
+    SOURCEABLE_FINGERPRINTS,
     SOURCEABLE_HOLES,
     build_stage1_hole_sourcing,
 )
@@ -100,6 +101,7 @@ _EC_BY_ACCESSION = {
     "RS0001": "2.8.4.3",
     "CB0001": "5.4.99.2",
     "NM0001": "3.1.1.1",
+    "FM0001": "1.14.13.8",
 }
 
 
@@ -256,6 +258,51 @@ class Stage1HoleSourcingTest(unittest.TestCase):
         self.assertIn("radical_sam_enzyme", SOURCEABLE_HOLES)
         self.assertIn("cobalamin_radical_rearrangement", SOURCEABLE_HOLES)
         self.assertNotIn("ser_his_acid_hydrolase", SOURCEABLE_HOLES)
+
+    def test_sourceable_fingerprints_cover_holes_and_under_floor(self):
+        # The runner now sources the two holes AND the three under-floor cofactor
+        # fingerprints; ser_his (cofactorless) is still excluded.
+        for fingerprint in (
+            "radical_sam_enzyme",
+            "cobalamin_radical_rearrangement",
+            "flavin_monooxygenase",
+            "heme_peroxidase_oxidase",
+            "flavin_dehydrogenase_reductase",
+        ):
+            self.assertIn(fingerprint, SOURCEABLE_FINGERPRINTS)
+        self.assertNotIn("ser_his_acid_hydrolase", SOURCEABLE_FINGERPRINTS)
+
+    def test_under_floor_flavin_monooxygenase_routes_to_bronze(self):
+        # A genuine flavin monooxygenase (FAD + EC 1.14.13) disambiguates to the
+        # flavin_monooxygenase under-floor fingerprint via the same engine/guardrails.
+        search = _search_record("FM0001", ["1.14.13.8"], "Flavin monooxygenase test")
+        entry = _entry_record("FM0001", cofactor_names=["FAD"], rhea_id="RHEA:444")
+
+        def query_fetcher(query, size):
+            records = [search] if "1.14.13" in query else []
+            return {"metadata": {"url": "test://uniprot", "query": query}, "records": records}
+
+        def entry_fetcher(accession):
+            return {"metadata": {"url": f"test://{accession}"}, "record": entry}
+
+        audit = build_stage1_hole_sourcing(
+            holes=("flavin_monooxygenase",),
+            max_records_per_lane=10,
+            current_manifest_payload={"rows": []},
+            frozen_benchmark_payload=[],
+            expansion_payload=[],
+            created_utc="2026-06-10T00:00:00Z",
+            query_fetcher=query_fetcher,
+            entry_fetcher=entry_fetcher,
+            rhea_fetcher=_fake_rhea_fetcher,
+        )
+        self.assertEqual(
+            audit["counts"]["admitted_fingerprint_counts"], {"flavin_monooxygenase": 1}
+        )
+        label = audit["applied_labels"][0]
+        self.assertEqual(label["fingerprint_id"], "flavin_monooxygenase")
+        self.assertEqual(label["tier"], "bronze")
+        self.assertEqual(label["evidence"]["predictive_evidence"], [])
 
 
 if __name__ == "__main__":

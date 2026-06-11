@@ -1,10 +1,13 @@
 """Stage-1 hole sourcing for the scaling-plan-to-10k climb (non-destructive).
 
-`docs/scaling_plan_to_10k.md` Stage 1 closes the governor's HOLE fingerprints to
-the 100-label floor. Three fingerprints are holes: `ser_his_acid_hydrolase`,
-`radical_sam_enzyme`, and `cobalamin_radical_rearrangement`. This module sources
-the **two cofactor-defined holes** end to end by chaining the existing, tested
-pipeline -- it adds orchestration and hole-targeted queries, not new label logic:
+`docs/scaling_plan_to_10k.md` Stage 1 closes the governor's HOLE and UNDER-FLOOR
+fingerprints to the 100-label floor. This module sources the **five cofactor-defined
+Stage-1 fingerprints** end to end by chaining the existing, tested pipeline -- it
+adds orchestration and fingerprint-targeted queries, not new label logic. The two
+holes are `radical_sam_enzyme` and `cobalamin_radical_rearrangement`; the three
+under-floor fingerprints are `flavin_monooxygenase`, `heme_peroxidase_oxidase`, and
+`flavin_dehydrogenase_reductase`. (`ser_his_acid_hydrolase` is the third hole but is
+cofactorless -- see below.) The chain:
 
     fetch_uniprot_query / fetch_uniprot_entry   (adapters, live UniProt REST)
       -> build_external_source_ingestion_pilot  (lane queries -> canonical rows)
@@ -54,6 +57,7 @@ from .external_source_ingestion import (
     build_external_source_ingestion_pilot,
 )
 from .novelty_admission_gate import (
+    DEFAULT_CAP_CEILING,
     DEFAULT_PER_CLUSTER_CAP,
     build_diversity_state,
     evaluate_batch,
@@ -156,17 +160,102 @@ HOLE_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
 
 SOURCEABLE_HOLES: tuple[str, ...] = tuple(HOLE_LANE_QUERIES)
 
+# The three cofactor-defined UNDER-FLOOR fingerprints (below the 100-label floor but
+# not holes). Same engine, same guardrails as the holes -- only the lane queries
+# differ. Each lane is a NARROW EC + cofactor subquery (the 2026-06-09 page-depth
+# lesson: split into subqueries, do not deepen paging). Scope is still decided by the
+# cofactor/EC disambiguation rules (heme + 1.11.1; flavin no-heme + 1.14.13/14 vs
+# 1.3/1.6/1.8.1); cc_cofactor filters bias the fetch toward annotated-cofactor rows.
+UNDER_FLOOR_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    "flavin_monooxygenase": (
+        {
+            "lane_id": "fmo_ec_1_14_13",
+            "target_family_lane": "flavin-monooxygenase",
+            "query": (
+                "(reviewed:true) AND (ec:1.14.13.*) AND "
+                "((cc_cofactor:FAD) OR (cc_cofactor:FMN))"
+            ),
+        },
+        {
+            "lane_id": "fmo_ec_1_14_14",
+            "target_family_lane": "flavin-monooxygenase",
+            "query": (
+                "(reviewed:true) AND (ec:1.14.14.*) AND "
+                "((cc_cofactor:FAD) OR (cc_cofactor:FMN))"
+            ),
+        },
+        {
+            "lane_id": "fmo_kw_monooxygenase_flavoprotein",
+            "target_family_lane": "flavin-monooxygenase",
+            "query": (
+                "(reviewed:true) AND (ec:1.14.13.*) AND "
+                "(keyword:Monooxygenase) AND (keyword:Flavoprotein)"
+            ),
+        },
+    ),
+    "heme_peroxidase_oxidase": (
+        {
+            "lane_id": "heme_peroxidase_ec_1_11_1_cofactor",
+            "target_family_lane": "heme-peroxidase/oxidase",
+            "query": (
+                "(reviewed:true) AND (ec:1.11.1.*) AND "
+                "((cc_cofactor:heme) OR (keyword:Heme))"
+            ),
+        },
+        {
+            "lane_id": "heme_peroxidase_ec_1_11_1_kw",
+            "target_family_lane": "heme-peroxidase/oxidase",
+            "query": "(reviewed:true) AND (ec:1.11.1.*) AND (keyword:Peroxidase)",
+        },
+    ),
+    "flavin_dehydrogenase_reductase": (
+        {
+            "lane_id": "fdr_ec_1_3",
+            "target_family_lane": "flavin-dehydrogenase/reductase",
+            "query": (
+                "(reviewed:true) AND (ec:1.3.*) AND "
+                "((cc_cofactor:FAD) OR (cc_cofactor:FMN))"
+            ),
+        },
+        {
+            "lane_id": "fdr_ec_1_6",
+            "target_family_lane": "flavin-dehydrogenase/reductase",
+            "query": (
+                "(reviewed:true) AND (ec:1.6.*) AND "
+                "((cc_cofactor:FAD) OR (cc_cofactor:FMN))"
+            ),
+        },
+        {
+            "lane_id": "fdr_ec_1_8_1",
+            "target_family_lane": "flavin-dehydrogenase/reductase",
+            "query": (
+                "(reviewed:true) AND (ec:1.8.1.*) AND "
+                "((cc_cofactor:FAD) OR (cc_cofactor:FMN))"
+            ),
+        },
+    ),
+}
 
-def _lane_queries_for(holes: tuple[str, ...]) -> tuple[dict[str, str], ...]:
+# All five cofactor-defined Stage-1 fingerprints this runner can source. ser_his is
+# intentionally absent (cofactorless -> dedicated triad-locator tool).
+STAGE1_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    **HOLE_LANE_QUERIES,
+    **UNDER_FLOOR_LANE_QUERIES,
+}
+
+SOURCEABLE_FINGERPRINTS: tuple[str, ...] = tuple(STAGE1_LANE_QUERIES)
+
+
+def _lane_queries_for(fingerprints: tuple[str, ...]) -> tuple[dict[str, str], ...]:
     lanes: list[dict[str, str]] = []
-    for hole in holes:
-        if hole not in HOLE_LANE_QUERIES:
+    for fingerprint in fingerprints:
+        if fingerprint not in STAGE1_LANE_QUERIES:
             raise ValueError(
-                f"{hole!r} is not a cofactor-sourceable hole; "
-                f"choose from {SOURCEABLE_HOLES} "
+                f"{fingerprint!r} is not a cofactor-sourceable Stage-1 fingerprint; "
+                f"choose from {SOURCEABLE_FINGERPRINTS} "
                 "(ser_his uses build-ser-his-triad-locator-scan)"
             )
-        lanes.extend(HOLE_LANE_QUERIES[hole])
+        lanes.extend(STAGE1_LANE_QUERIES[fingerprint])
     return tuple(lanes)
 
 
@@ -204,7 +293,7 @@ def _fingerprint_counts(labels: list[dict[str, Any]]) -> Counter:
 
 def build_stage1_hole_sourcing(
     *,
-    holes: tuple[str, ...] = SOURCEABLE_HOLES,
+    holes: tuple[str, ...] = SOURCEABLE_FINGERPRINTS,
     max_records_per_lane: int = 50,
     current_manifest_payload: dict[str, Any],
     frozen_benchmark_payload: list[dict[str, Any]],
@@ -212,6 +301,7 @@ def build_stage1_hole_sourcing(
     created_utc: str | None = None,
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
+    cap_ceiling: int = DEFAULT_CAP_CEILING,
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
@@ -271,17 +361,36 @@ def build_stage1_hole_sourcing(
         target_floor=target_floor,
     )
     admit_ids = set(gate["admit_entry_ids"])
-    admitted = [
+    gate_admitted = [
         label for label in disambiguated_labels if label.get("entry_id") in admit_ids
     ]
     throttled = [
         label for label in disambiguated_labels if label.get("entry_id") not in admit_ids
     ]
 
-    # 4. Per-hole floor projection from the admitted set.
+    # 3b. Cap guard. Stage 1 closes holes/under-floor to the FLOOR; it must never
+    #     manufacture an OVER-CAP fingerprint. The novelty gate admits diverse rows
+    #     greedily above the floor and even permits "over_cap_but_new_reaction_chemistry"
+    #     admissions, so a high-yield space (e.g. flavin_dehydrogenase_reductase via
+    #     EC 1.3/1.6/1.8.1) can be pushed past the 250 ceiling. Trim each fingerprint's
+    #     admitted set so projected combined never exceeds cap_ceiling; the surplus stays
+    #     held (a review queue), it is not imported.
     combined_counts = _fingerprint_counts(frozen_benchmark_payload) + _fingerprint_counts(
         expansion_payload
     )
+    admitted: list[dict[str, Any]] = []
+    cap_trimmed: list[dict[str, Any]] = []
+    kept_per_fp: Counter = Counter()
+    for label in gate_admitted:
+        fp = label.get("fingerprint_id")
+        if combined_counts.get(fp, 0) + kept_per_fp[fp] >= cap_ceiling:
+            cap_trimmed.append(label)
+            continue
+        kept_per_fp[fp] += 1
+        admitted.append(label)
+    cap_trimmed_counts = _fingerprint_counts(cap_trimmed)
+
+    # 4. Per-fingerprint floor projection from the (cap-guarded) admitted set.
     admitted_counts = _fingerprint_counts(admitted)
     floor_projection = {}
     for hole in holes:
@@ -295,6 +404,9 @@ def build_stage1_hole_sourcing(
             "deficit_to_floor_before": max(target_floor - before, 0),
             "deficit_to_floor_after": max(target_floor - projected, 0),
             "floor_reached": projected >= target_floor,
+            "cap_ceiling": cap_ceiling,
+            "held_at_cap_this_run": cap_trimmed_counts.get(hole, 0),
+            "projected_over_cap": projected > cap_ceiling,
         }
 
     combined_total = len(frozen_benchmark_payload) + len(expansion_payload)
@@ -324,6 +436,10 @@ def build_stage1_hole_sourcing(
             "multi_fingerprint_signal_rows_held": True,
             "novelty_gated_against_both_registries": True,
             "structure_geometry_confirmation_is_deferred_promotion_signal": True,
+            "per_fingerprint_cap_ceiling_enforced": cap_ceiling,
+            "no_fingerprint_pushed_over_cap": all(
+                not p["projected_over_cap"] for p in floor_projection.values()
+            ),
         },
         "floor_projection": floor_projection,
         "counts": {
@@ -333,6 +449,9 @@ def build_stage1_hole_sourcing(
             "disambiguated_bronze_labels": len(disambiguated_labels),
             "novelty_admitted_labels": len(admitted),
             "novelty_throttled_or_rejected": len(throttled),
+            "gate_admitted_before_cap_guard": len(gate_admitted),
+            "held_at_cap_ceiling": len(cap_trimmed),
+            "held_at_cap_ceiling_by_fingerprint": dict(sorted(cap_trimmed_counts.items())),
             "admitted_fingerprint_counts": dict(sorted(admitted_counts.items())),
             "disambiguation_hold_count": disambig["counts"]["hold_count"],
             "disambiguation_skip_count": disambig["counts"]["skip_count"],
@@ -387,13 +506,14 @@ def _report(audit: dict[str, Any]) -> str:
         "",
         "## Floor projection (100-label floor)",
         "",
-        "| Hole | combined before | admitted | projected | floor reached |",
-        "| --- | --- | --- | --- | --- |",
+        "| Fingerprint | combined before | admitted | projected | floor reached | held@cap | over cap |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
     ]
     for hole, proj in audit["floor_projection"].items():
         lines.append(
             f"| {hole} | {proj['combined_before']} | {proj['admitted_this_run']} | "
-            f"{proj['projected_combined']} | {proj['floor_reached']} |"
+            f"{proj['projected_combined']} | {proj['floor_reached']} | "
+            f"{proj.get('held_at_cap_this_run', 0)} | {proj.get('projected_over_cap', False)} |"
         )
     lines.extend(
         [
@@ -423,13 +543,14 @@ def write_stage1_hole_sourcing(
     *,
     out_path: Path,
     report_path: Path | None = None,
-    holes: tuple[str, ...] = SOURCEABLE_HOLES,
+    holes: tuple[str, ...] = SOURCEABLE_FINGERPRINTS,
     max_records_per_lane: int = 50,
     current_manifest_path: Path = DEFAULT_CURRENT_MANIFEST_PATH,
     frozen_benchmark_path: Path = DEFAULT_FROZEN_BENCHMARK_PATH,
     expansion_registry_path: Path = DEFAULT_EXPANSION_REGISTRY_PATH,
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
+    cap_ceiling: int = DEFAULT_CAP_CEILING,
 ) -> dict[str, Any]:
     """Build the preview and write it (non-destructive: no registry is touched)."""
     expansion_path = Path(expansion_registry_path)
@@ -441,6 +562,7 @@ def write_stage1_hole_sourcing(
         expansion_payload=_read_json(expansion_path) if expansion_path.exists() else [],
         target_floor=target_floor,
         per_cluster_cap=per_cluster_cap,
+        cap_ceiling=cap_ceiling,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

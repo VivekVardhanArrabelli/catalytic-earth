@@ -112,27 +112,32 @@ over the 250 ceiling, most redundant at 2.96 labels/distinct-reaction) — add n
 | `ser_his_acid_hydrolase` | 42 (0 expansion) | HOLE | triad locator + acquisition contract: EC 3.4.21/3.4.16/3.1.1, **no cofactor**, coordinate Ser-His-Asp triad corroborated against annotated ACT_SITE (`build-ser-his-triad-locator-scan`). The one fingerprint the cofactor engine structurally can't reach. |
 | `radical_sam_enzyme` | ~~10~~ **133** | **HOLE CLOSED (2026-06-10)** | disambiguation rule (Fe-S+SAM / CX3CX2C). Sourced to floor by `scripts/stage1_source_holes.py --apply` (+123 bronze); off the governor's hole list. |
 | `cobalamin_radical_rearrangement` | ~~10~~ **144** | **HOLE CLOSED (2026-06-10)** | disambiguation rule (adenosylcobalamin + mutase EC 5.4.99/5.4.3/4.2.1.28/30/4.3.1.7). Sourced to floor (+134 bronze) after fixing the cobalamin matcher to read UniProt's inline-oxidation-state names (`cob(III)alamin`). |
-| `flavin_monooxygenase` | 43 | under-floor | EC 1.14.13/1.14.14, flavin no-heme. |
-| `heme_peroxidase_oxidase` | 69 | under-floor | EC 1.11.1, heme. |
-| `flavin_dehydrogenase_reductase` | 87 | under-floor | EC 1.3/1.6/1.8.1, flavin no-heme. |
+| `flavin_monooxygenase` | ~~43~~ **116** | **CLOSED (2026-06-11)** | EC 1.14.13/1.14.14, flavin no-heme. Sourced to floor (+73 bronze). |
+| `heme_peroxidase_oxidase` | ~~69~~ **119** | **CLOSED (2026-06-11)** | EC 1.11.1, heme. Sourced to floor (+50 bronze). |
+| `flavin_dehydrogenase_reductase` | ~~87~~ **250** | **CLOSED (2026-06-11)** | EC 1.3/1.6/1.8.1, flavin no-heme. Sourced (+163 bronze) — high-yield/diverse space, filled to the 250 cap by the runner's cap guard (held the surplus rather than going over). |
 
 Everything routes through the governor + novelty gate so orthologs are not
 re-imported.
 
-**Applied (2026-06-10):** the two **cofactor-defined** holes (`radical_sam_enzyme`,
-`cobalamin_radical_rearrangement`) were sourced to the floor with live UniProt egress
-via `scripts/stage1_source_holes.py --apply` (module `stage1_hole_sourcing.py`) —
-fetch → cofactor/EC disambiguation → novelty gate → non-destructive preview, `--apply`
-appending **257 bronze** to the expansion registry only (1710 → 1967; frozen 702
-untouched). Both are now **off the governor's hole list** (radical_sam 133, cobalamin
-144); fingerprint Gini 0.51 → 0.3408. See decision_log 2026-06-10 "Stage-1 Hole
-Sourcing … Closed To Floor" and `docs/stage1_hole_sourcing_runbook.md`.
+**Applied (2026-06-10 / 2026-06-11):** all five **cofactor-defined** Stage-1
+fingerprints were sourced to the floor with live UniProt egress via
+`scripts/stage1_source_holes.py --apply` (module `stage1_hole_sourcing.py`) —
+fetch → cofactor/EC disambiguation → novelty gate → cap guard → non-destructive
+preview, `--apply` appending bronze to the expansion registry only (frozen 702
+untouched). Two holes (2026-06-10): `radical_sam_enzyme` 10→133,
+`cobalamin_radical_rearrangement` 10→144 (+257 bronze; 1710→1967). Three under-floor
+(2026-06-11): `flavin_monooxygenase` 43→116, `heme_peroxidase_oxidase` 69→119,
+`flavin_dehydrogenase_reductase` 87→250 (+286 bronze; 1967→2253). Net: **7 of 8
+fingerprints now BALANCED**; fingerprint Gini **0.51 → 0.2608**; combined 2412 → 2955.
+The runner now enforces a hard per-fingerprint **cap guard** (≤250) so high-yield
+spaces (flavin_DR) fill toward but never past the ceiling. See decision_log
+2026-06-10/2026-06-11 "Stage-1 …" and `docs/stage1_hole_sourcing_runbook.md`.
 `ser_his_acid_hydrolase` is cofactorless, stays on `build-ser-his-triad-locator-scan`,
-and **remains the lone open hole at 42** — that tool is coordinate-confirmation-only /
-network-free, the local pool is drained (0 recoveries), so closing it needs the live
-fetch + coordinate-staging + triad-confirm loop its acquisition contract describes.
-Still **next:** triage the existing held pools (Pending candidate inventory above)
-through the same governor/novelty gate alongside any fresh sourcing.
+and is **the lone remaining open hole at 42** — that tool is coordinate-confirmation-only
+/ network-free, the local pool is drained (0 recoveries), so closing it needs the live
+fetch + AF/PDB coordinate-staging + triad-confirm loop its acquisition contract
+describes. Still **next:** the ser_his loop, plus triaging the existing held pools
+(Pending candidate inventory above) through the same governor/novelty gate.
 
 ### Stage 2 — Grow the ontology (the bulk of the climb)
 8 fingerprints × 250 cap ≈ **2,000 positives max** — so 10k honestly **requires more

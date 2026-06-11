@@ -1,5 +1,35 @@
 # Handoff
 
+## Session run — Stage-1 under-floor closure APPLIED (2026-06-11, Claude Code web)
+
+- Session: Claude Code cloud session (continuation of the 2026-06-10 hole-sourcing run
+  below); live UniProt egress. Branch `claude/cool-einstein-mbwvp9`, merged to `main`.
+- Status: **Complete.** Sourced the three under-floor cofactor fingerprints to the
+  100-floor via the same (now generalized) runner. Frozen current702 byte-unchanged
+  (`sha256:5eec9bef…`, 702 labels).
+- Result: 602 reviewed Swiss-Prot rows over 8 EC/cofactor lanes (0 fetch failures) →
+  390 disambiguated bronze (106 no-cofactor-EC, 10 multi-signal held) → **286
+  novelty-admitted** → expansion 1967 → 2253; combined 2669 → 2955.
+  - `flavin_monooxygenase` 43 → 116, `heme_peroxidase_oxidase` 69 → 119,
+    `flavin_dehydrogenase_reductase` 87 → 250 — all UNDER → BALANCED.
+- Governor: fingerprint Gini **0.3408 → 0.2608**; **7 of 8 fingerprints BALANCED**;
+  only HOLE is `ser_his_acid_hydrolase` (42); only OVER_CAP is `metal_dependent_hydrolase`
+  (308, untouched). Seed positives 973 → 1259.
+- Cap guard added: the novelty gate first pushed flavin_DR to 253 (over the 250 cap)
+  via `over_cap_but_new_reaction_chemistry`; the runner now enforces a hard
+  per-fingerprint cap guard (≤250, surplus held not imported), landing flavin_DR at
+  exactly 250. flavin_DR is diverse (~0.5 labels/reaction) so this is honest supply,
+  and balance improved.
+- Validation: `validate` ok; suite green except the 6 known env-backend failures.
+  RealRegistry pins refreshed (combined→2955, expansion→2253, seed_labels→1029); new
+  stage1 tests added (under-floor routing + SOURCEABLE_FINGERPRINTS). `git diff --check` clean.
+- Artifacts: `artifacts/v3_stage1_underfloor_sourcing_preview_current702.json`,
+  `work/stage1_underfloor_sourcing_current702.md`.
+- Exact next action: Stage 1 is complete except the cofactorless `ser_his_acid_hydrolase`
+  hole (needs the live fetch + AF/PDB coordinate-staging + triad-confirm loop). Then
+  Stage 2 (family expansion — the real 10k lever; 8×250 ≈ 2k positives ceiling) and
+  triaging the ~730 held / 275 review-ready pools through the gate.
+
 ## Session run — Stage-1 hole sourcing APPLIED (2026-06-10, Claude Code web)
 
 - Session: Claude Code cloud session (not the Mac automation harness below); live

@@ -187,7 +187,7 @@ class RealRegistryTests(unittest.TestCase):
                 report_path=report,
                 expansion_registry_path=EXPANSION_PATH,
             )
-            self.assertEqual(audit["seed_labels"], 743)
+            self.assertEqual(audit["seed_labels"], 1029)
             # honest: confirmability is cofactor-presence based; the registry's
             # coordinate-bearing rows are overwhelmingly apo, so silver-ready is
             # tiny/zero and apo-blocked dominates -- this must NOT be inflated.
