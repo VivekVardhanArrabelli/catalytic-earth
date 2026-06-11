@@ -3,6 +3,57 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-11: STAGE-3 PREREQS — OOS Hard-Negative Pre-Registration Re-Frozen To The 12fp Universe + Clean Ontology Version Bump (Decoupled)
+
+Decision: completed the two deferred Stage-3 prerequisites the Stage-2 split created, so a NEW
+OOS hard-negative tranche can be imported. Both are required BEFORE any new OOS import; neither
+writes a label or touches the frozen 702 (`sha256:5eec9bef…` unchanged; registries unchanged).
+
+**(1) Re-froze the OOS hard-negative pre-registration to the 12fp universe.** New governance
+artifact `artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json`
+(generated from the 8fp template + the LIVE `load_fingerprints()`, so its `fingerprint_universe`
+is guaranteed to equal the gate's `expected`): `fingerprint_universe` = the live 12,
+`ontology_version_at_decision` = `label_factory_v1_12fp`, `registration_status` =
+`frozen_before_candidate_selection`, `candidate_selection_started` = false, same
+`version`/`threshold_policy_version`/`abstain_threshold`/`inverse_gate_rule`, plus `supersedes`
++ `re_freeze_reason`. The 8fp-era artifact
+(`v3_external_hard_negative_next_tranche_preregistration_1025.json`) is KEPT on disk as the
+superseded historical record (the two existing supersession leakage tests stay green; it is now
+blocked by BOTH the universe-match AND the ontology-version checks).
+
+**(2) Clean ontology version bump — DECOUPLED, not a global rename (the load-bearing decision).**
+`label_factory_v1_8fp` is NOT a free-floating string: it is stamped as `ontology_version_at_decision`
+on EVERY existing label (frozen 702 + 2940 expansion), on the spent-heldout / threshold leakage
+contracts, and on 60+ `transfer_scope` decision/gate artifacts; ~20 tests pin it. Globally renaming
+it would rewrite history and (via the `MechanismLabel` field default + re-dumps) risk the frozen-702
+hash. So the bump is decoupled: `labels.DEFAULT_ONTOLOGY_VERSION_AT_DECISION` STAYS
+`label_factory_v1_8fp` (the historical label/decision stamp, retained for provenance), and a NEW
+constant `labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_12fp"` denotes
+the CURRENT live positive universe. The OOS hard-negative import gate
+(`transfer_scope._validate_pre_registration`) now requires the pre-registration to declare the
+CURRENT version (`…ontology_version_at_decision != CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION`
+→ blocker), so a new tranche must be pre-registered against the live 12fp universe. The candidate-row
+ontology-consistency checks (`…!= DEFAULT_ONTOLOGY_VERSION_AT_DECISION` at the terminal-row level)
+correctly STAY `_8fp` — they verify a row matches the registry's label stamp, a different concept
+from the inverse-gate universe version.
+
+Tests (updated intentionally): the accept-test now loads the real 12fp artifact and asserts the gate
+accepts it (universe + ontology both current); a new `test_12fp_pre_registration_is_frozen_for_live_universe`
+asserts the artifact is frozen-before-selection against the live 12 with `_12fp`; the stale-8fp test
+now asserts BOTH the `fingerprint_mismatch` AND `ontology_mismatch` blockers fire. The historical
+`_8fp` assertions (threshold-policy pins, migration, transfer/scaling fixtures) are untouched.
+
+Validation: `validate` ok (702/12/15). Full suite green except the 6 known env-backend failures.
+Frozen current702 `sha256:5eec9bef…` before and after; registries unchanged; `git diff --check` clean.
+Stage 3's OOS hard-negative import is now unblocked (still gated by the full label-factory +
+external-transfer gates and explicit authorization — re-freeze ≠ import).
+
+References:
+- `src/catalytic_earth/labels.py` (`CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION`),
+  `src/catalytic_earth/transfer_scope.py` (gate check + the 12fp artifact path constant),
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json`,
+  `tests/test_leakage_closure.py`.
+
 ## 2026-06-11: BREADTH FEASIBILITY SCOUT — Real Numbers Say 10k Diverse POSITIVE Bronze Is NOT Reachable From Reviewed Swiss-Prot Alone
 
 Decision: before spending more windows sourcing bronze, REPLACED the scaling-plan cap-math

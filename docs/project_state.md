@@ -26,6 +26,23 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **STAGE-3 PREREQS DONE (2026-06-11) — OOS hard-negative pre-registration re-frozen to the 12fp
+  universe + a clean (decoupled) ontology version bump; the next OOS import is unblocked.** Two
+  deferred Stage-2 follow-ups, both REQUIRED before any new OOS import; neither writes a label or
+  touches the frozen 702 (`sha256:5eec9bef…` unchanged; registries unchanged). (1) New governance
+  artifact `v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json` re-freezes the
+  tranche pre-registration against the LIVE 12-fingerprint universe (`ontology_version_at_decision`
+  = `label_factory_v1_12fp`, generated from `load_fingerprints()` so the universe matches the gate);
+  the 8fp artifact is kept as the superseded historical record. (2) The ontology version bump is
+  DECOUPLED, not a global rename: `DEFAULT_ONTOLOGY_VERSION_AT_DECISION` STAYS `label_factory_v1_8fp`
+  (the historical stamp on every existing label + spent/threshold contracts + 60+ transfer_scope
+  artifacts — renaming would rewrite history and risk the frozen-702 hash), and a NEW
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_12fp"` is what the OOS prereg
+  gate now requires. Candidate-row ontology checks correctly stay `_8fp` (registry stamp, a different
+  concept from the inverse-gate universe). Tests updated intentionally (accept-test loads the real
+  12fp artifact; new frozen-for-12 test; stale-8fp test now asserts both universe + ontology blockers);
+  historical `_8fp` assertions untouched. `validate` ok (702/12/15); full suite green except the 6
+  known env-backend failures. See decision_log 2026-06-11 "STAGE-3 PREREQS".
 - **BREADTH FEASIBILITY SCOUT (2026-06-11) — real numbers say 10k diverse POSITIVE bronze is NOT
   reachable from reviewed Swiss-Prot alone; the target should be re-scoped.** Before sourcing more
   bronze, replaced the scaling-plan cap-math *estimate* with REAL reviewed-Swiss-Prot supply +

@@ -49,7 +49,18 @@ REVIEW_STATUSES = {
     "rejected",
 }
 COUNTABLE_REVIEW_STATUSES = {"automation_curated", "expert_reviewed"}
+# The HISTORICAL 8-fingerprint-era label/decision stamp. It is retained, never rewritten,
+# on every existing label (frozen 702 + expansion) and on the spent-heldout / threshold
+# leakage contracts as the ontology version "at decision" -- so the frozen-702 hash and all
+# historical decision artifacts stay byte-stable. Do NOT repurpose it to mean "current".
 DEFAULT_ONTOLOGY_VERSION_AT_DECISION = "label_factory_v1_8fp"
+# The CURRENT positive-fingerprint-universe version. The Stage-2 metal_dependent_hydrolase
+# v2 split (2026-06-11) expanded the positive universe 8 -> 12, so the inverse gate now spans
+# 12 fingerprints. A NEW OOS hard-negative tranche must be pre-registered against THIS version
+# (and the 12-fingerprint universe); the 8fp-era pre-registration is correctly superseded.
+# This is intentionally distinct from the historical label stamp above (which stays _8fp for
+# the existing rows / spent contracts) -- bumping the historical stamp would rewrite history.
+CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_12fp"
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,

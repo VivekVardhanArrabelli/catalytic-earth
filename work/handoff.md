@@ -1,5 +1,37 @@
 # Handoff
 
+## Session run — STAGE-3 PREREQS: OOS prereg re-frozen to 12fp + decoupled ontology version bump (2026-06-11, Claude Code web)
+
+- Session: Claude Code cloud (web) session. Branch `claude/lucid-hypatia-wb855e`. Not a Mac
+  automation-harness run — no harness metadata.
+- Status: **TASK 2 complete — Stage-3 prerequisites done.** Both required before any new OOS import;
+  neither writes a label or touches the frozen 702 (`sha256:5eec9bef…` unchanged; registries
+  unchanged; `git diff --check` clean).
+- (1) Re-froze the OOS hard-negative pre-registration to the 12fp universe: new artifact
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json` (generated from
+  `load_fingerprints()` → universe guaranteed to match the gate; `ontology_version_at_decision` =
+  `label_factory_v1_12fp`; frozen-before-selection; supersedes the 8fp one, which stays as the
+  historical record).
+- (2) Clean ontology version bump — DECOUPLED (the load-bearing call): `label_factory_v1_8fp` is
+  stamped on every existing label (702 frozen + 2940 expansion) + spent/threshold contracts + 60+
+  transfer_scope artifacts (~20 test pins), so a global rename would rewrite history and risk the
+  frozen-702 hash. Kept `DEFAULT_ONTOLOGY_VERSION_AT_DECISION = label_factory_v1_8fp` (historical
+  stamp); added `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = label_factory_v1_12fp` (current live
+  universe). The OOS prereg gate (`transfer_scope._validate_pre_registration`) now requires the
+  prereg to declare the CURRENT version + the live 12-fingerprint universe. Candidate-row ontology
+  checks stay `_8fp` (registry stamp ≠ inverse-gate universe).
+- Tests: accept-test loads the real 12fp artifact; new `test_12fp_pre_registration_is_frozen_for_live_universe`;
+  stale-8fp test now asserts BOTH `fingerprint_mismatch` + `ontology_mismatch`. Two existing
+  supersession tests stay green; historical `_8fp` assertions untouched.
+- Validation: `validate` ok (702/12/15); full suite green except the 6 known env-backend failures.
+- Exact next action: **TASK 3** (source ONE new non-hydrolase family via the proven pipeline) — ONLY
+  if the user approves scope after the breadth-scout verdict (10k diverse positive bronze NOT
+  reachable from reviewed Swiss-Prot alone). The scout's clean first families: non_heme_iron_2og_dioxygenase,
+  cytochrome_p450_monooxygenase, copper_oxidoreductase, molybdopterin_oxidoreductase, glycosyltransferase,
+  coa_acyltransferase, cofactor_independent_isomerase. Batch several family SPECS in one window to
+  amortize setup (user is budget-constrained). Stage 3's OOS import is now unblocked (re-freeze ≠ import;
+  still gated by the full label-factory + external-transfer gates + explicit authorization).
+
 ## Session run — BREADTH FEASIBILITY SCOUT: 10k diverse positive bronze NOT reachable from reviewed Swiss-Prot alone (2026-06-11, Claude Code web)
 
 - Session: Claude Code cloud (web) session; live UniProt egress confirmed. Branch

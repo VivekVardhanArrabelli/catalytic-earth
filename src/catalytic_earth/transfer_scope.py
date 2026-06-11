@@ -17,7 +17,10 @@ from urllib.request import Request, urlopen
 
 from .adapters import fetch_rhea_by_ec, fetch_uniprot_entry, fetch_uniprot_query
 from .fingerprints import load_fingerprints
-from .labels import DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+from .labels import (
+    CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION,
+    DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+)
 from .structure import (
     atom_position,
     fetch_pdb_cif,
@@ -64,6 +67,12 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_VERSION = (
 )
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json"
+)
+# The 8fp-era artifact above is SUPERSEDED (kept on disk as the historical record). The
+# re-frozen tranche pre-registration for the current 12-fingerprint universe lives here; it
+# is the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_12FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",
@@ -12393,7 +12402,14 @@ def _external_hard_negative_pre_registration_reference(
         blockers.append("external_hard_negative_pre_registration_version_mismatch")
     if metadata.get("registration_status") != "frozen_before_candidate_selection":
         blockers.append("external_hard_negative_pre_registration_not_frozen")
-    if metadata.get("ontology_version_at_decision") != DEFAULT_ONTOLOGY_VERSION_AT_DECISION:
+    # A NEW OOS hard-negative tranche must be pre-registered against the CURRENT positive
+    # universe version (12fp), not the historical 8fp label stamp. The Stage-2 split expanded
+    # the inverse gate to 12 fingerprints; the 8fp-era pre-registration is correctly superseded
+    # (it also fails the fingerprint_universe check below).
+    if (
+        metadata.get("ontology_version_at_decision")
+        != CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION
+    ):
         blockers.append("external_hard_negative_pre_registration_ontology_mismatch")
     if (
         round(float(metadata.get("abstain_threshold", -1.0) or -1.0), 4)
