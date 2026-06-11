@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-10
+Last refreshed: 2026-06-11
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -26,6 +26,34 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **STAGE 2 STARTED (2026-06-11) — `metal_dependent_hydrolase` split into four v2 sub-families (+600 bronze).**
+  The coarse over-cap umbrella was split (by reaction-center bond change, not metal alone)
+  into `metallopeptidase` (peptide C-N), `metallophosphoesterase_nuclease` (phosphodiester
+  P-O), `metallophosphomonoesterase` (phosphomonoester P-O), and
+  `metallo_amidohydrolase_deaminase` (non-peptide amide/amidine C-N). Each got a fingerprint
+  spec (`mechanism_fingerprints.json`, with a declared **deploy-missing context = metal**),
+  an ontology node (`mechanism_ontology.json` hydrolysis family), a metal+EC disambiguation
+  rule, lane maps, and a governor signature. A new runner
+  (`stage2_hydrolase_subfamily_sourcing.py` / `scripts/source_stage2_hydrolase_subfamilies.py`)
+  sourced each to the floor via the Stage-1 chain (fetch → metal/EC disambiguation → novelty
+  gate → cap guard). Live UniProt: 1530 rows → 1167 disambiguated → **600 admitted** (150
+  per sub-family, `--cap-ceiling 150`) → expansion **2340 → 2940**, combined **3042 → 3642**;
+  frozen 702 untouched (`sha256:5eec9bef…`). Governor: holes `[]`; fingerprint Gini
+  **0.1917 → 0.1518** (most balanced yet); seed positives **1346 → 1946**; positive:OOS
+  **0.79 → 1.15**; the coarse umbrella stays the lone over-cap (308, **no new labels added**).
+  Cap=150 (not 250) on purpose: filling chemistry-confusable sub-families to the ceiling
+  manufactures redundancy (a 250-cap dry run put metallopeptidase at 7.14 labels/distinct-rxn,
+  worse than the 2.96 parent). **Honest finding:** the leakage-safe *chemistry* representation
+  CANNOT yet separate the four metal sub-families (repr-loop LOO self-consistency 0.90 → 0.68,
+  the drop entirely within the metal super-family; non-metal stays 0.85) — they differ by
+  reaction-center bond change, which needs the **deferred row-specific bond-change feature**
+  (using the fingerprint's own bond-change would leak the label). Expanding the positive
+  universe 8 → 12 correctly invalidates the 8fp OOS hard-negative pre-registration (must be
+  re-frozen for 12fp before the next OOS import — Stage 3). The ontology version key stays
+  `label_factory_v1_8fp` (a deferred clean bump). **Cap math, plainly:** +600 from one split;
+  10k still needs sustained family breadth (incl. non-hydrolase chemistries — hydrolysis now
+  holds 6 of 12 fingerprints). See decision_log 2026-06-11 "STAGE 2 STARTED";
+  `artifacts/v3_stage2_hydrolase_subfamily_sourcing_preview_current702.json`.
 - **STAGE 1 COMPLETE (2026-06-11) — every hole closed; no fingerprint below the floor.**
   The last open hole, the cofactorless `ser_his_acid_hydrolase`, was sourced **42 → 129**
   by a new dedicated runner (`scripts/source_ser_his_hole.py` / module

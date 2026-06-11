@@ -11,11 +11,19 @@
       "parent_id": "mechanism",
       "fingerprint_ids": [
         "ser_his_acid_hydrolase",
-        "metal_dependent_hydrolase"
+        "metal_dependent_hydrolase",
+        "metallopeptidase",
+        "metallophosphoesterase_nuclease",
+        "metallophosphomonoesterase",
+        "metallo_amidohydrolase_deaminase"
       ],
+      "v2_split_note": "metal_dependent_hydrolase is the coarse v1 umbrella (kept for the frozen-702 and pre-2026-06-11 expansion rows). Its v2 sub-families separate the distinct reaction-center bond change + metal architecture: metallopeptidase (peptide C-N), metallophosphoesterase_nuclease (phosphodiester P-O, two-metal), metallophosphomonoesterase (phosphomonoester P-O, di-metal), metallo_amidohydrolase_deaminase (non-peptide amide/amidine C-N). New bronze is sourced to the sub-families, not the umbrella.",
       "family_boundary_guardrails": [
         "Do not propagate labels across glycosidase, thiol protease, phosphorolysis, or nonhydrolytic metal-transfer chemistry without mechanism-text support.",
-        "Treat metal ligation as insufficient for hydrolase propagation unless water activation or hydrolytic bond cleavage is explicit."
+        "Treat metal ligation as insufficient for hydrolase propagation unless water activation or hydrolytic bond cleavage is explicit.",
+        "Keep the four metal sub-families separated by reaction-center bond change, not by metal alone: peptide C-N (peptidase) vs phosphodiester P-O (phosphoesterase/nuclease) vs phosphomonoester P-O (phosphomonoesterase) vs non-peptide amide/amidine C-N (amidohydrolase/deaminase).",
+        "Require an annotated catalytic divalent metal before assigning any metal sub-family; this excludes Cys-based protein-tyrosine phosphatases (3.1.3.48) and serine hydrolases, which carry no catalytic metal.",
+        "Do not add new labels to the coarse metal_dependent_hydrolase umbrella; route new metal-hydrolase bronze to the matching v2 sub-family."
       ]
     },
     {

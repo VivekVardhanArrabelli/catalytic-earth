@@ -1,5 +1,59 @@
 # Handoff
 
+## Session run — STAGE 2 STARTED: metal_dependent_hydrolase v2 split (2026-06-11, Claude Code web)
+
+- Session: Claude Code cloud session; live UniProt **and** AlphaFoldDB egress (confirmed
+  200). Branch `claude/stage2-hydrolase-subfamilies-ezthe6`. (Not a Mac automation-harness
+  run — no harness metadata.)
+- Status: **Stage 2 started.** Split the coarse over-cap `metal_dependent_hydrolase`
+  umbrella into **four v2 sub-families** (by reaction-center bond change, not metal alone)
+  and sourced each to the floor. Frozen current702 byte-unchanged (`sha256:5eec9bef…`,
+  702 labels) before and after — proven with sha before/after the apply.
+- Sub-families: `metallopeptidase` (peptide C-N, EC 3.4.24/17/11), `metallophosphoesterase_nuclease`
+  (phosphodiester P-O, EC 3.1.4 + nucleases), `metallophosphomonoesterase` (phosphomonoester
+  P-O, EC 3.1.3), `metallo_amidohydrolase_deaminase` (non-peptide amide/amidine C-N, EC 3.5.2/4/1).
+- New code: `src/catalytic_earth/stage2_hydrolase_subfamily_sourcing.py`,
+  `scripts/source_stage2_hydrolase_subfamilies.py`,
+  `tests/test_stage2_hydrolase_subfamily_sourcing.py` (8 offline tests). Registry/engine:
+  4 fingerprint specs (`mechanism_fingerprints.json`, each with `deploy_missing_active_site_context`
+  = metal), 4 ontology nodes (`mechanism_ontology.json`), metal evidence + 4 metal+EC rules
+  (`external_cofactor_ec_disambiguation.py`), lane maps (`external_annotation_anchored_import.py`),
+  governor signatures (`coverage_redundancy_audit.py`). Pipeline = the Stage-1 chain
+  (fetch → metal/EC disambiguation → novelty gate → cap guard → preview/apply).
+- Result (`--cap-ceiling 150`): 1530 rows / 13 lanes (1 fetch failure) → 1167 disambiguated
+  → **600 novelty-admitted** (150 per sub-family) → expansion 2340 → 2940; combined 3042 → 3642.
+  Each sub-family 0 → 150 (floor reached).
+- Governor: **holes `[]`**; fingerprint Gini **0.1917 → 0.1518** (most balanced yet); seed
+  positives 1346 → 1946; positive:OOS 0.79 → 1.15; the coarse umbrella stays the lone
+  over-cap (308, **no new labels added to it**).
+- Cap=150 (not the 250 ceiling) on purpose: a 250-cap dry run made metallopeptidase 7.14
+  labels/distinct-reaction — *more* redundant than the 2.96 parent. At 150: peptidase 5.56
+  (reviewed metallo-peptidase reaction diversity is genuinely ~27 reactions; floor needs
+  ortholog breadth), nuclease 2.88, phosphomono 1.25, amidohydrolase 2.63.
+- **Honest finding:** the leakage-safe *chemistry* representation can't yet separate the
+  metal sub-families — repr-loop LOO self-consistency 0.90 → 0.68, drop entirely within the
+  metal super-family (metal-only 0.49; non-metal 0.85). They differ by reaction-center bond
+  change → needs the **deferred row-specific bond-change feature** (the fingerprint's own
+  bond-change can't be a feature — it would leak the label). repr-loop test now guards
+  non-metal > 0.8 + overall > 0.6.
+- **OOS re-audit (guardrail fired):** expanding the positive universe 8 → 12 invalidates the
+  8fp OOS hard-negative pre-registration (gate now blocks it with
+  `external_hard_negative_pre_registration_fingerprint_mismatch`). Must be **re-frozen for
+  12fp** before the next OOS import (Stage 3). Ontology version key kept `label_factory_v1_8fp`
+  (a deferred clean bump; it's referenced by the spent-heldout/threshold contracts).
+- Validation: `validate` ok (702 frozen; 12 fingerprints; 15 families); full suite green
+  except the 6 known env-backend failures (numpy/esm2/mmseqs); docs reference check missing 0;
+  `git diff --check` clean. Count-pins refreshed (combined→3642, expansion→2940,
+  seed_labels→1716); cli/leakage/automation/repr-loop/transfer-scope tests updated for 12fp.
+- Artifacts: `artifacts/v3_stage2_hydrolase_subfamily_sourcing_preview_current702.json`,
+  `work/stage2_hydrolase_subfamily_sourcing_current702.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260611_stage2.json`.
+- Exact next action: continue Stage 2 with **non-hydrolase** families (hydrolysis now holds
+  6 of 12 fingerprints) — glycosidases, oxidoreductase/transferase breadth; **re-freeze the
+  OOS hard-negative tranche to 12fp** + clean `label_factory_v1` version bump (Stage 3); and
+  the deferred row-specific bond-change feature so the metal sub-families become predictively
+  separable. Cap math, plainly: +600 from one split; 10k still needs sustained family breadth.
+
 ## Session run — ser_his hole CLOSED, STAGE 1 COMPLETE (2026-06-11, Claude Code web)
 
 - Session: Claude Code cloud session; live UniProt **and** AlphaFoldDB egress.

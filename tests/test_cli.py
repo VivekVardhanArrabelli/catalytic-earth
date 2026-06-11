@@ -6883,7 +6883,9 @@ class CliTests(unittest.TestCase):
             self.assertFalse(
                 packet["metadata"]["ready_to_expand_positive_fingerprint_universe"]
             )
-            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 8)
+            # 12 after the Stage-2 metal_dependent_hydrolase v2 split (was 8): the
+            # readiness packet counts the live positive fingerprint universe.
+            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 12)
             self.assertEqual(packet["metadata"]["epk_boundary_row_count"], 3)
             self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
             self.assertIn(

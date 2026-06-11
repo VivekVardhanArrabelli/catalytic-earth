@@ -56,6 +56,29 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "catalytic divalent metal (Zn2+/Mn2+/Mg2+/Ni2+)",
         "lanes": ["metal hydrolase"],
     },
+    # Stage-2 v2 sub-families of metal_dependent_hydrolase (the over-cap umbrella).
+    # Separated by reaction-center bond change; each carries a catalytic divalent
+    # metal. Accounting metadata only, never predictive features.
+    "metallopeptidase": {
+        "ec_prefixes": ["3.4.24", "3.4.17", "3.4.11"],
+        "cofactor": "catalytic Zn2+ (HExxH / co-catalytic dizinc); peptide C-N hydrolysis",
+        "lanes": ["metallopeptidase"],
+    },
+    "metallophosphoesterase_nuclease": {
+        "ec_prefixes": ["3.1.4", "3.1.11", "3.1.21", "3.1.26", "3.1.27", "3.1.31"],
+        "cofactor": "two-metal Mg2+/Mn2+ (sometimes Zn2+); phosphodiester P-O hydrolysis",
+        "lanes": ["metallophosphoesterase/nuclease"],
+    },
+    "metallophosphomonoesterase": {
+        "ec_prefixes": ["3.1.3"],
+        "cofactor": "dinuclear Zn/Mg/Mn/Fe; phosphomonoester P-O hydrolysis (not Cys-PTP)",
+        "lanes": ["metallophosphomonoesterase"],
+    },
+    "metallo_amidohydrolase_deaminase": {
+        "ec_prefixes": ["3.5.2", "3.5.4", "3.5.1"],
+        "cofactor": "catalytic Zn2+ (mono/di-nuclear); non-peptide amide/amidine C-N hydrolysis",
+        "lanes": ["metallo amidohydrolase/deaminase"],
+    },
     "ser_his_acid_hydrolase": {
         "ec_prefixes": ["3.4.21", "3.1.1", "3.5.1"],
         "cofactor": "no cofactor; Ser/Cys-His-Asp/Glu catalytic triad",

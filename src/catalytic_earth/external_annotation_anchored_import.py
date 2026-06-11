@@ -48,12 +48,22 @@ LANE_PRIMARY_FINGERPRINT: dict[str, str] = {
     "metal hydrolase amidase/peptidase boundary": "metal_dependent_hydrolase",
     "metal hydrolase Mg/Mn controls": "metal_dependent_hydrolase",
     "metal hydrolase amino/carboxypeptidase": "metal_dependent_hydrolase",
+    # Stage-2 metal_dependent_hydrolase v2 sub-families (cofactor still = metal; the
+    # bond-change distinction is enforced by the EC-class disambiguation rules).
+    "metallopeptidase": "metallopeptidase",
+    "metallophosphoesterase/nuclease": "metallophosphoesterase_nuclease",
+    "metallophosphomonoesterase": "metallophosphomonoesterase",
+    "metallo amidohydrolase/deaminase": "metallo_amidohydrolase_deaminase",
     "PLP children": "plp_dependent_enzyme",
     "PLP lyase/eliminase": "plp_dependent_enzyme",
     "flavin redox boundary": "flavin_dehydrogenase_reductase",
 }
 COFACTOR_FOR_FINGERPRINT: dict[str, str] = {
     "metal_dependent_hydrolase": "metal",
+    "metallopeptidase": "metal",
+    "metallophosphoesterase_nuclease": "metal",
+    "metallophosphomonoesterase": "metal",
+    "metallo_amidohydrolase_deaminase": "metal",
     "plp_dependent_enzyme": "plp",
     "flavin_dehydrogenase_reductase": "flavin",
     "heme_peroxidase_oxidase": "heme",

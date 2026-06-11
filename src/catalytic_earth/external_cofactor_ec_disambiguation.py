@@ -143,6 +143,32 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
         return any(any(k in n for k in keys) for n in names)
 
     return {
+        # Catalytic divalent metal (Zn/Mn/Mg/Fe/Ni/Co/Cu/Ca/Cd). UniProt spells the
+        # oxidation state inline ("Zn(2+)", "Co(2+)"), so match the element stems.
+        # "cob(...)alamin" is matched by the cobalamin key below, not here ("cob" !=
+        # "cobalt"), so B12 enzymes do not read as bare metal.
+        "metal": any_name(
+            "zn",
+            "zinc",
+            "mn",
+            "manganese",
+            "mg",
+            "magnesium",
+            "fe(",
+            "fe2",
+            "fe3",
+            "iron",
+            "ni(",
+            "nickel",
+            "cobalt",
+            "co(2",
+            "cu",
+            "copper",
+            "ca(2",
+            "calcium",
+            "cadmium",
+            "divalent metal",
+        ),
         "heme": any_name("heme", "haem"),
         "flavin": any_name("fad", "fmn", "flavin"),
         "fe_s": any_name("fe-s", "4fe-4s", "2fe-2s", "3fe-4s", "iron-sulfur")
@@ -167,11 +193,57 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
     }
 
 
+# EC-prefix signatures for the metal_dependent_hydrolase v2 sub-families (Stage 2).
+# Mutually exclusive prefixes + an annotated catalytic metal keep "exactly one rule
+# fires"; the metal requirement excludes Ser/Cys peptidases (3.4.21/22/23), Cys-based
+# protein-tyrosine phosphatases (3.1.3.48 carry no catalytic metal), and serine
+# amidases. EC is used for SCOPE only and stays in excluded_context (never predictive).
+_METALLOPEPTIDASE_EC = ("3.4.24", "3.4.17", "3.4.11")
+_METALLOPHOSPHOESTERASE_NUCLEASE_EC = (
+    "3.1.4",
+    "3.1.11",
+    "3.1.12",
+    "3.1.13",
+    "3.1.14",
+    "3.1.15",
+    "3.1.16",
+    "3.1.21",
+    "3.1.22",
+    "3.1.23",
+    "3.1.24",
+    "3.1.25",
+    "3.1.26",
+    "3.1.27",
+    "3.1.30",
+    "3.1.31",
+)
+_METALLOPHOSPHOMONOESTERASE_EC = ("3.1.3",)
+_METALLO_AMIDOHYDROLASE_DEAMINASE_EC = ("3.5.2", "3.5.4", "3.5.1")
+
+
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
 DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]], bool]], ...] = (
     (
         "heme_peroxidase_oxidase",
         lambda c, row: c["heme"] and _ec_has_prefix(row, ("1.11.1",)),
+    ),
+    (
+        "metallopeptidase",
+        lambda c, row: c["metal"] and _ec_has_prefix(row, _METALLOPEPTIDASE_EC),
+    ),
+    (
+        "metallophosphoesterase_nuclease",
+        lambda c, row: c["metal"]
+        and _ec_has_prefix(row, _METALLOPHOSPHOESTERASE_NUCLEASE_EC),
+    ),
+    (
+        "metallophosphomonoesterase",
+        lambda c, row: c["metal"] and _ec_has_prefix(row, _METALLOPHOSPHOMONOESTERASE_EC),
+    ),
+    (
+        "metallo_amidohydrolase_deaminase",
+        lambda c, row: c["metal"]
+        and _ec_has_prefix(row, _METALLO_AMIDOHYDROLASE_DEAMINASE_EC),
     ),
     (
         "flavin_monooxygenase",
@@ -237,6 +309,8 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "heme", "cross_reference": {"id": None}}]
     elif evidence.get("flavin"):
         records = [{"name": "FAD", "cross_reference": {"id": None}}]
+    elif evidence.get("metal"):
+        records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:
         record["evidence_codes"] = []
         record["provenance"] = tag

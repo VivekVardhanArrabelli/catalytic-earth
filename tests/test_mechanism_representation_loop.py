@@ -123,15 +123,41 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
     def test_build_on_real_registry_is_leakage_safe(self) -> None:
         expansion = json.loads(EXPANSION_PATH.read_text())
         audit = build_mechanism_representation_loop(expansion)
-        self.assertEqual(audit["seed_labels"], 1116)
+        self.assertEqual(audit["seed_labels"], 1716)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
         self.assertFalse(g["fingerprint_label_used_as_feature"])
-        # chemistry alone recovers the fingerprint strongly (honest LOO)
-        self.assertGreater(
-            audit["promotion_triage"]["leave_one_out_self_consistency"], 0.8
-        )
+        triage = audit["promotion_triage"]
+        conf = triage["confusion_by_fingerprint"]
+        # FINDING (Stage-2 metal v2 split, 2026-06-11): overall LOO self-consistency
+        # fell from ~0.90 (8fp) to ~0.68 (12fp). The drop is ENTIRELY within the four
+        # metal sub-families, which share the leakage-safe chemistry features (metal
+        # cofactor + His/Asp/Glu water-activator roles) and are separated only by
+        # reaction-center bond change -- not yet a feature (the deferred row-specific
+        # bond-change work; using the fingerprint's own bond-change would leak the
+        # label). So chemistry ALONE cannot yet distinguish them. This is honest and
+        # expected: the split is real at the EC/reaction level; the chemistry
+        # representation needs the bond-change feature to separate the sub-families.
+        metal_family = {
+            "metal_dependent_hydrolase",
+            "metallopeptidase",
+            "metallophosphoesterase_nuclease",
+            "metallophosphomonoesterase",
+            "metallo_amidohydrolase_deaminase",
+        }
+        # Overall is lower but well above chance (1/12 ~= 0.08).
+        self.assertGreater(triage["leave_one_out_self_consistency"], 0.6)
+        # The NON-metal fingerprints remain strongly chemistry-separable (the guard
+        # the original > 0.8 assertion protected, now scoped to the families chemistry
+        # can actually distinguish).
+        nonmetal_correct = nonmetal_total = 0
+        for fp, row in conf.items():
+            if fp in metal_family:
+                continue
+            nonmetal_total += sum(row.values())
+            nonmetal_correct += row.get(fp, 0)
+        self.assertGreater(nonmetal_correct / nonmetal_total, 0.8)
 
     def test_write_non_destructive(self) -> None:
         expansion_before = EXPANSION_PATH.read_bytes()

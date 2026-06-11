@@ -7619,6 +7619,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                             {"fingerprint_id": "plp_dependent_enzyme", "score": 0.18},
                             {"fingerprint_id": "radical_sam_enzyme", "score": 0.16},
                             {"fingerprint_id": "cobalamin_radical_rearrangement", "score": 0.12},
+                            {"fingerprint_id": "metallopeptidase", "score": 0.11},
+                            {"fingerprint_id": "metallophosphoesterase_nuclease", "score": 0.1},
+                            {"fingerprint_id": "metallophosphomonoesterase", "score": 0.09},
+                            {"fingerprint_id": "metallo_amidohydrolase_deaminase", "score": 0.08},
                         ],
                     }
                 ],

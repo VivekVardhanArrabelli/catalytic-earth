@@ -37,7 +37,118 @@
     "evidence_features": ["conserved metal-binding motif", "metal density or modeled coordination", "nearby water channel", "family-specific fold"],
     "counterevidence_features": ["metal ligands absent", "coordination geometry impossible", "active-site loop missing", "conflicting cofactor annotation"],
     "uncertainty_axes": ["metal identity", "physiological substrate", "promiscuity", "pH dependence"],
-    "seed_examples": ["metallo-beta-lactamases", "phosphatases", "amidohydrolases"]
+    "seed_examples": ["metallo-beta-lactamases", "phosphatases", "amidohydrolases"],
+    "v2_split_note": "Coarse v1 umbrella. The frozen-702 rows and the pre-2026-06-11 expansion rows keep this id; new bronze is sourced to the four v2 sub-families below (metallopeptidase, metallophosphoesterase_nuclease, metallophosphomonoesterase, metallo_amidohydrolase_deaminase). Add no new labels here.",
+    "deploy_missing_active_site_context": {
+      "type": "metal",
+      "detail": "catalytic divalent metal ion (Zn2+/Mn2+/Mg2+/Fe/Ni) absent in the apo predicted structure",
+      "reconstruction_path": "Path A sequence->metal-presence channel (cofactor_presence_calibration metal head)",
+      "silver_reachability": "hard; the metal head is the documented systemic weak point (cal AUC ~0.77)"
+    }
+  },
+  {
+    "id": "metallopeptidase",
+    "name": "Metal-dependent peptidase",
+    "enzyme_space": ["metalloendopeptidases", "metallocarboxypeptidases", "metalloaminopeptidases", "gluzincins", "metzincins"],
+    "active_site_signature": [
+      {"role": "metal_ligand", "residue": "His/His/Glu or His/Asp/His", "constraints": ["HExxH or co-catalytic dizinc motif coordinates the catalytic Zn2+"]},
+      {"role": "water_activator", "residue": "Glu", "constraints": ["general base that deprotonates the metal-bound water for nucleophilic attack on the carbonyl"]},
+      {"role": "transition_state_stabilizer", "residue": "Tyr/Arg/His", "constraints": ["stabilizes the tetrahedral gem-diolate intermediate"]}
+    ],
+    "cofactors": ["Zn2+", "Mn2+", "Co2+"],
+    "reaction_center": {
+      "bond_changes": ["hydrolysis of the scissile peptide C(=O)-N bond"],
+      "chemical_operation": "metal-activated water attack on a peptide amide bond"
+    },
+    "substrate_constraints": ["accessible peptide backbone in the catalytic cleft", "S1/S1' pocket compatible with the flanking side chains", "scissile carbonyl polarized toward the metal"],
+    "evidence_features": ["HExxH / inverzincin / metzincin metal-binding motif", "modeled or annotated catalytic Zn2+", "extended substrate-binding groove", "peptidase-clan fold"],
+    "counterevidence_features": ["metal ligands absent", "Ser/Cys/Asp nucleophile triad instead of a catalytic metal", "no peptide-accommodating cleft", "phosphoryl or glycosidic substrate context"],
+    "uncertainty_axes": ["endo- vs exo-peptidase mode", "metal identity and stoichiometry", "physiological substrate specificity", "zymogen / propeptide activation state"],
+    "seed_examples": ["thermolysin", "matrix metalloproteinases", "carboxypeptidase A", "leucine aminopeptidase"],
+    "deploy_missing_active_site_context": {
+      "type": "metal",
+      "detail": "the catalytic Zn2+ (or co-catalytic dizinc) is absent in the apo predicted structure",
+      "reconstruction_path": "Path A sequence->metal-presence channel",
+      "silver_reachability": "hard; depends on the weak metal presence head plus metal localization"
+    }
+  },
+  {
+    "id": "metallophosphoesterase_nuclease",
+    "name": "Metal-dependent phosphodiesterase / nuclease",
+    "enzyme_space": ["phosphodiesterases", "endonucleases", "exonucleases", "ribonucleases", "two-metal-ion phosphoesterases"],
+    "active_site_signature": [
+      {"role": "metal_ligand", "residue": "Asp/Glu/His", "constraints": ["two carboxylate/His ligands position the catalytic metal pair (metal A and metal B)"]},
+      {"role": "nucleophile_activator", "residue": "His/Asp", "constraints": ["general base activating the water/hydroxide or 3'-OH nucleophile"]},
+      {"role": "leaving_group_stabilizer", "residue": "Lys/Arg/metal_B", "constraints": ["protonates/stabilizes the departing 3'- or 5'-oxyanion"]}
+    ],
+    "cofactors": ["Mg2+", "Mn2+", "Zn2+"],
+    "reaction_center": {
+      "bond_changes": ["hydrolysis of a phosphodiester P-O bond"],
+      "chemical_operation": "two-metal-ion-activated water attack on a phosphodiester"
+    },
+    "substrate_constraints": ["phosphodiester backbone (nucleic acid or cyclic/linear diester) bridging two metals", "scissile phosphate within transfer distance of metal A and B", "leaving-group oxygen oriented toward the second metal"],
+    "evidence_features": ["DDE / DEDD / PD-(D/E)xK / HD two-metal motif", "modeled or annotated Mg2+/Mn2+ pair", "polynucleotide- or diester-binding channel", "phosphoesterase-superfamily fold"],
+    "counterevidence_features": ["only a single metal site with a phosphomonoester substrate", "Ser/Thr/Cys covalent phospho-intermediate chemistry", "no diester-accommodating groove", "peptide or amide substrate context"],
+    "uncertainty_axes": ["endo- vs exo-nuclease mode", "one- vs two-metal mechanism", "substrate polymer (DNA/RNA) vs small-molecule diester", "metal identity"],
+    "seed_examples": ["DNase I", "RNase H", "exonuclease III", "cyclic-nucleotide phosphodiesterases"],
+    "deploy_missing_active_site_context": {
+      "type": "metal",
+      "detail": "TWO catalytic metals (Mg2+/Mn2+ pair) plus the bridging water are absent in the apo predicted structure",
+      "reconstruction_path": "Path A sequence->metal-presence channel (two-metal site)",
+      "silver_reachability": "hard; two-metal reconstruction is harder than a single-metal site"
+    }
+  },
+  {
+    "id": "metallophosphomonoesterase",
+    "name": "Metal-dependent phosphomonoesterase (phosphatase)",
+    "enzyme_space": ["alkaline phosphatases", "purple acid phosphatases", "PPP/PPM Ser/Thr protein phosphatases", "dinuclear metallophosphatases"],
+    "active_site_signature": [
+      {"role": "metal_ligand", "residue": "Asp/His/Asn", "constraints": ["bridging and terminal ligands hold the di-metal (M1-M2) center"]},
+      {"role": "nucleophile", "residue": "bridging_hydroxide_or_Ser/Thr", "constraints": ["metal-bridging hydroxide (or threonine in some clans) attacks the phosphorus"]},
+      {"role": "transition_state_stabilizer", "residue": "Arg/His", "constraints": ["stabilizes the pentacovalent phosphorane and the leaving alkoxide"]}
+    ],
+    "cofactors": ["Zn2+", "Mg2+", "Mn2+", "Fe2+/Fe3+"],
+    "reaction_center": {
+      "bond_changes": ["hydrolysis of a phosphomonoester P-O bond releasing inorganic phosphate"],
+      "chemical_operation": "di-metal-activated hydroxide attack on a phosphomonoester"
+    },
+    "substrate_constraints": ["phosphomonoester (single esterified oxygen) bound to the di-metal center", "phosphate oxygens coordinated to M1/M2", "leaving alkoxide oriented for protonation"],
+    "evidence_features": ["dinuclear metal-binding motif (GDxHG / GDxVDRG / DxH PPP signature, or alkaline-phosphatase metal triad)", "modeled or annotated di-metal center", "shallow phosphate pocket", "metallophosphatase fold"],
+    "counterevidence_features": ["Cys-based protein-tyrosine-phosphatase loop (CX5R) with no catalytic metal", "phosphodiester (two ester oxygens) substrate", "ATP/GTP gamma-phosphoryl-transfer context", "no metal coordination"],
+    "uncertainty_axes": ["metal identity and redox state", "substrate (small-molecule vs phosphoprotein)", "mono- vs di-nuclear occupancy", "regulatory subunit dependence"],
+    "seed_examples": ["E. coli alkaline phosphatase", "purple acid phosphatase", "protein phosphatase 1 (PPP)", "PP2C (PPM)"],
+    "deploy_missing_active_site_context": {
+      "type": "metal",
+      "detail": "the dinuclear metal center (Zn/Mg/Mn/Fe pair) and the bridging hydroxide are absent in the apo predicted structure",
+      "reconstruction_path": "Path A sequence->metal-presence channel (di-metal site)",
+      "silver_reachability": "hard; di-metal reconstruction plus Cys-phosphatase disambiguation"
+    }
+  },
+  {
+    "id": "metallo_amidohydrolase_deaminase",
+    "name": "Metal-dependent amidohydrolase / deaminase",
+    "enzyme_space": ["metallo-beta-lactamases", "cyclic amidohydrolases", "adenosine/cytidine deaminases", "amidohydrolase-superfamily hydrolases"],
+    "active_site_signature": [
+      {"role": "metal_ligand", "residue": "His/His/Asp", "constraints": ["His-rich motif (HxH...H / metallo-beta-lactamase HxHxD) coordinates the catalytic Zn2+ (mono- or di-nuclear)"]},
+      {"role": "water_activator", "residue": "Asp/Glu/His", "constraints": ["general base deprotonating the metal-bound water for attack on the amide/amidine carbon"]},
+      {"role": "oxyanion_stabilizer", "residue": "Asn/His/second_Zn", "constraints": ["stabilizes the tetrahedral intermediate and the departing amine/ammonia"]}
+    ],
+    "cofactors": ["Zn2+", "Mn2+", "Fe2+"],
+    "reaction_center": {
+      "bond_changes": ["hydrolysis of a non-peptide amide or amidine C-N bond (cyclic-amide ring opening or deamination with NH3 release)"],
+      "chemical_operation": "metal-activated water attack on an amide / amidine carbon"
+    },
+    "substrate_constraints": ["amide/amidine carbon polarized toward the catalytic metal", "ring or small-molecule substrate fitting the pocket", "leaving nitrogen oriented for protonation"],
+    "evidence_features": ["amidohydrolase TIM-barrel HxH metal motif or metallo-beta-lactamase HxHxD motif", "modeled or annotated catalytic Zn2+", "compact small-molecule pocket", "amidohydrolase / MBL fold"],
+    "counterevidence_features": ["Ser/Cys peptidase or serine-beta-lactamase nucleophile with no metal", "phosphoester substrate context", "peptide-backbone (protease) substrate", "no metal coordination"],
+    "uncertainty_axes": ["cyclic-amide vs deaminase vs linear-amide subtype", "mono- vs di-nuclear metal", "substrate identity", "metal selectivity"],
+    "seed_examples": ["metallo-beta-lactamase (IMP/VIM/NDM)", "adenosine deaminase", "cytosine deaminase", "dihydroorotase"],
+    "deploy_missing_active_site_context": {
+      "type": "metal",
+      "detail": "the catalytic Zn2+ (mono- or di-nuclear) is absent in the apo predicted structure",
+      "reconstruction_path": "Path A sequence->metal-presence channel",
+      "silver_reachability": "hard; depends on the weak metal presence head"
+    }
   },
   {
     "id": "plp_dependent_enzyme",

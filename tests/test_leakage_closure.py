@@ -5,6 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from catalytic_earth.fingerprints import load_fingerprints
+
 from catalytic_earth.labels import (
     build_epk_5hvk_local_polymer_entity_role_audit,
     build_epk_5hvk_protein_substrate_axis_generalization_audit,
@@ -181,10 +183,25 @@ class LeakageClosureTests(unittest.TestCase):
             / "v3_external_hard_negative_next_tranche_preregistration_1025.json"
         )
         metadata = artifact["metadata"]
-        fingerprints = _load_json(
-            ROOT / "data" / "registries" / "mechanism_fingerprints.json"
+        # This pre-registration was frozen in the 8-fingerprint era. The Stage-2
+        # metal_dependent_hydrolase v2 split (2026-06-11) expanded the positive
+        # fingerprint universe, so the frozen artifact's universe is now a STRICT
+        # SUBSET of the live registry -- it must be re-frozen against the expanded
+        # universe before the next OOS hard-negative tranche (Stage-3 work). We pin
+        # the frozen 8fp universe here and assert the split only ADDED fingerprints.
+        frozen_8fp_universe = sorted(
+            [
+                "cobalamin_radical_rearrangement",
+                "flavin_dehydrogenase_reductase",
+                "flavin_monooxygenase",
+                "heme_peroxidase_oxidase",
+                "metal_dependent_hydrolase",
+                "plp_dependent_enzyme",
+                "radical_sam_enzyme",
+                "ser_his_acid_hydrolase",
+            ]
         )
-        expected_fingerprints = sorted(row["id"] for row in fingerprints)
+        live_fingerprints = sorted(fp.id for fp in load_fingerprints())
 
         self.assertEqual(
             metadata["version"],
@@ -194,9 +211,10 @@ class LeakageClosureTests(unittest.TestCase):
             metadata["registration_status"], "frozen_before_candidate_selection"
         )
         self.assertFalse(metadata["candidate_selection_started"])
-        self.assertEqual(
-            sorted(metadata["fingerprint_universe"]), expected_fingerprints
-        )
+        self.assertEqual(sorted(metadata["fingerprint_universe"]), frozen_8fp_universe)
+        # Supersession: the frozen 8fp universe is a strict subset of the live 12fp
+        # registry (the split only added the four metal sub-families, removed none).
+        self.assertTrue(set(frozen_8fp_universe) < set(live_fingerprints))
         self.assertEqual(
             metadata["ontology_version_at_decision"], "label_factory_v1_8fp"
         )
@@ -230,10 +248,17 @@ class LeakageClosureTests(unittest.TestCase):
         )
 
     def test_factory_import_gate_accepts_frozen_preregistration(self) -> None:
+        # Happy path: a pre-registration frozen against the CURRENT fingerprint
+        # universe is accepted. After the Stage-2 split the on-disk 8fp artifact is
+        # stale (see test_factory_import_gate_blocks_stale_preregistration_after_split),
+        # so we re-freeze its universe to the live registry to exercise acceptance.
         prereg = _load_json(
             ROOT
             / "artifacts"
             / "v3_external_hard_negative_next_tranche_preregistration_1025.json"
+        )
+        prereg["metadata"]["fingerprint_universe"] = sorted(
+            fp.id for fp in load_fingerprints()
         )
         gate = build_external_hard_negative_next_candidate_factory_import_gate(
             terminal_review_decisions=_terminal_review_decisions(),
@@ -260,6 +285,35 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertIn("import_gate_evidence", separation)
         self.assertIn("review_only_context", separation)
         self.assertIn("excluded_context", separation)
+
+    def test_factory_import_gate_blocks_stale_preregistration_after_split(self) -> None:
+        # The on-disk 8fp pre-registration predates the Stage-2 metal_dependent_hydrolase
+        # v2 split. Expanding the positive fingerprint universe MUST invalidate it: the
+        # gate's universe-match check fires, proving an OOS hard-negative tranche cannot
+        # be imported against a stale (smaller) inverse-gate universe.
+        prereg = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_next_tranche_preregistration_1025.json"
+        )
+        gate = build_external_hard_negative_next_candidate_factory_import_gate(
+            terminal_review_decisions=_terminal_review_decisions(),
+            label_factory_gate_check=_passed_label_factory_gate(),
+            external_transfer_gate=_passed_external_transfer_gate(),
+            existing_label_entry_ids=[],
+            max_imports=1,
+            pre_registration=prereg,
+            pre_registration_artifact_path=(
+                "artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json"
+            ),
+            require_pre_registration=True,
+        )
+
+        self.assertFalse(gate["metadata"]["ready_for_label_import"])
+        self.assertIn(
+            "external_hard_negative_pre_registration_fingerprint_mismatch",
+            gate["rows"][0]["remaining_import_blockers"],
+        )
 
     def test_threshold_policy_pins_external_import_floor(self) -> None:
         policy = _load_json(

@@ -172,6 +172,29 @@ v2 split is added the same disciplined way:
 
 Breadth of chemistry, not depth of one bucket, is where 10k comes from.
 
+**Applied (2026-06-11) — first v2 split done:** `metal_dependent_hydrolase` was split into
+four sub-families by reaction-center bond change — `metallopeptidase` (peptide C-N),
+`metallophosphoesterase_nuclease` (phosphodiester P-O), `metallophosphomonoesterase`
+(phosphomonoester P-O), `metallo_amidohydrolase_deaminase` (non-peptide amide/amidine C-N).
+All four checklist items done: specs in `mechanism_fingerprints.json` (each declaring
+deploy-missing context = **metal**) + ontology nodes; metal+EC disambiguation rules + lane
+maps; governor signatures; and sourced to floor by `stage2_hydrolase_subfamily_sourcing.py`
+(`scripts/source_stage2_hydrolase_subfamilies.py`) — 600 bronze admitted (150 each,
+`--cap-ceiling 150`), expansion 2340 → 2940, combined 3042 → 3642, frozen 702 untouched,
+Gini 0.1917 → 0.1518, seed positives 1346 → 1946. The coarse umbrella is KEPT for the
+frozen-702 + pre-split expansion rows and gets **no new labels**. See decision_log
+2026-06-11 "STAGE 2 STARTED". **Two honest caveats that gate further work:** (1) the
+leakage-safe *chemistry* representation cannot yet separate the metal sub-families (they
+differ by bond change, the deferred row-specific bond-change feature) — so these sub-families
+are bronze-honest but not yet predictively separable; (2) the 8 → 12 positive-universe
+expansion invalidated the 8fp OOS hard-negative pre-registration — it must be **re-frozen
+for the 12fp universe** before the next OOS hard-negative import (Stage 3), and a clean
+`label_factory_v1` ontology-version bump (currently still keyed `_8fp`) should accompany it.
+A first split is sourced to **cap 150, not 250** — filling chemistry-confusable sub-families
+to the ceiling manufactures the redundancy the plan warns against. Next splits/families:
+glycosidases, and non-hydrolase chemistries (oxidoreductase/transferase) to keep chemical
+breadth — hydrolysis now holds 6 of 12 fingerprints.
+
 ### Stage 3 — Diverse OOS, novelty-gated
 OOS is the abstention target and must keep growing in **coverage**, not redundancy.
 Route every candidate through the novelty gate's cluster key
