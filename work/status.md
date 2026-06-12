@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 383
-- Measured elapsed time: 11681.4 minutes (194.69 hours)
+- Entries: 384
+- Measured elapsed time: 11688.0 minutes (194.80 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,7 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- targeted-expansion: 213.5 measured minutes (3.56 hours)
+- targeted-expansion: 220.1 measured minutes (3.67 hours)
 - v3: 2734.9 measured minutes (45.58 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -33,22 +33,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3947
-- Evidence references logged: 3310
+- Artifact references logged: 3953
+- Evidence references logged: 3320
 
 ## Recent Entries
-
-### 2026-06-08T05:12:17.067792+00:00 - v3
-
-- Task: targeted expansion factory batch current702
-- Time mode: measured
-- Measured minutes: 50.833
-- Started: 2026-06-08T04:21:01Z
-- Ended: 2026-06-08T05:11:51Z
-- Artifacts: artifacts/v3_targeted_expansion_factory_batch_current702_20260608.json, work/targeted_expansion_factory_batch_current702_20260608.md
-- Evidence: pytest 1703 passed, unittest 1658 passed, validate 702 labels, docs refs missing 0, row/source hash mismatches 0
-- Commit: `pending_final_wrap_commit`
-- Notes: Integrated over origin/main targeted factory; upgraded batch to 816 non-importing candidates across 8 axes with six architecture-default rows carried over.
 
 ### 2026-06-08T13:53:00.862088+00:00 - targeted-expansion
 
@@ -129,6 +117,18 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_materialization_wave2_current702_20260609.json, artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json, artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json, artifacts/external_materialization_wave2_source_free_locators_current702_20260609, artifacts/external_materialization_wave2_coordinates_current702_20260609, work/external_materialization_wave2_current702_20260609.md, work/handoff.md, work/status.md
 - Evidence: 18235 source surface rows consumed, 12495 unique candidates merged, 600 import-ready preview rows, 248 Wave 2 coordinate files present, 5213 locator sidecars parsed, 11895 repair queue rows, focused tests passed, unittest discovery 1697 passed, validate passed, docs artifact-reference missing 0, diff check passed, production edit guardrail clean
 - Notes: Consumed broad Wave 2 bulk metal/phosphoryl/glycoside near-orphan/diversity redox/cofactor and PLP/radical/cobalamin outputs; bounded coordinate materialization promoted 282 rows while preserving disk above 10 GiB.
+
+### 2026-06-12T20:23:39.935995+00:00 - targeted-expansion
+
+- Task: External import-ready review preflight current main
+- Time mode: measured
+- Measured minutes: 6.617
+- Started: 2026-06-12T20:17:02Z
+- Ended: 2026-06-12T20:23:39Z
+- Artifacts: artifacts/v3_external_import_review_preflight_current702_20260612.json, artifacts/v3_external_import_review_ready_preview_current702_20260612.json, artifacts/v3_external_import_review_repair_queue_current702_20260612.json, work/external_import_review_preflight_current702_20260612.md, work/handoff.md, work/status.md
+- Evidence: 12495 review rows reconciled, 600 materialized preview rows including 318 carried-forward coordinate-reused rows plus 282 promoted rows, 275 controlled-review ready rows, 12220 repair/conflict rows, ready-row provenance locator coordinate hash duplicate checks passed, focused preflight tests passed, CLI/preflight tests 219 passed, validate passed, diff check passed, production edit guardrail scan clean
+- Commit: `pending_final_wrap_commit`
+- Notes: Preflight report now records source-surface reconciliation and defense-ledger next action; one final controlled human batch approval could cover 275 machine-clean rows if production authorization and label-factory gates are recorded.
 
 ## Expectation Updates
 
@@ -647,3 +647,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-09T05:25:43.402284+00:00: Preview and repair artifacts only; no production registry import ontology split threshold model weight coordinate download or label import changed.
 - 2026-06-09T05:54:43.128126+00:00: Read-only external scaleout shard only; no production registry import ontology split threshold model weight coordinate download or label import changed.
 - 2026-06-09T13:24:24.360224+00:00: Preview and repair artifacts plus review-only coordinate and locator sidecars only; no production registry import ontology split threshold model weight or label import changed.
+- 2026-06-12T20:23:39.935995+00:00: Controlled import-review classification only; no production registry import ontology heldout split threshold model weight or label import changed.

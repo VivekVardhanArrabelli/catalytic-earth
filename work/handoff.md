@@ -1,5 +1,66 @@
 # Handoff
 
+## Current automation run
+
+- Automation ID: `ce-import-ready-review-preflight`
+- STARTED_AT_UTC: `2026-06-12T20:17:02Z`
+- STARTED_AT_LOCAL: `2026-06-12T15:17:02-0500`
+- Source head at run start: `bd22e76406b5145d85a0daac9d65b3a1ca08ea06`
+- Worktree:
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/ce-import-ready-review-preflight-20260612T201702Z/catalytic-earth`
+- Branch: `ce-import-ready-review-preflight-20260612T201702Z`
+- Lock:
+  `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-automation.lock`
+  acquired before writing; run-start marker written to
+  `/tmp/ce-import-ready-review-preflight-run-start.txt`.
+- ENDED_AT_UTC: `2026-06-12T20:23:39Z`
+- ENDED_AT_LOCAL: `2026-06-12T15:23:39-0500`
+- ELAPSED_MINUTES: `6.617` durable-output early-completion path because the
+  assigned controlled import-review preflight is complete and will be committed
+  and pushed immediately after this handoff write.
+- Status: Complete pending commit/push/sync/lock-release immediately after this
+  handoff write. Re-ran current-main Wave 2 import-review preflight from the
+  fresh branch worktree, kept the lane non-production/review-only, and added
+  source-surface reconciliation plus an explicit defense-ledger next action to
+  the preflight artifact/report.
+- Current outputs:
+  `artifacts/v3_external_import_review_preflight_current702_20260612.json`,
+  `artifacts/v3_external_import_review_ready_preview_current702_20260612.json`,
+  `artifacts/v3_external_import_review_repair_queue_current702_20260612.json`,
+  and `work/external_import_review_preflight_current702_20260612.md`.
+- Result: 12,495 review-surface rows reconcile exactly: 600 materialized
+  import-ready preview rows and 11,895 repair-surface rows. The 600 preview
+  rows explicitly reconcile to 318 coordinate-reused consumed-preview rows plus
+  282 coordinate-ready rows promoted during Wave 2 materialization. Terminal
+  states: 275 `controlled_import_review_ready`, 1
+  `needs_structural_duplicate_screen`, 0 `needs_family_policy_review`, 1,096
+  `repairable_locator_blocker`, 5,179 `repairable_coordinate_blocker`, 203
+  `duplicate_current702_conflict`, 1,275 `duplicate_external_conflict`, 1,562
+  `reject/OOS_preserve_signal`, and 2,904 `hard_blocked_with_next_action`.
+- Batch approval: a final controlled human batch approval could cover 275
+  machine-clean rows at once rather than row-by-row. The approval must still
+  record production registry authorization and label-factory gates; this run
+  performed no registry/import/ontology/heldout split/threshold/model edit.
+- Validation passed: JSON/count reconciliation; ready-row source provenance,
+  source hash, source-free locator, coordinate materialization/hash, sequence
+  uniqueness, duplicate/current702 conflict, and exact structure-ID overlap
+  invariants; `PYTHONPATH=src python -m unittest tests.test_external_import_review_preflight`;
+  `PYTHONPATH=src python -m unittest tests.test_cli tests.test_external_import_review_preflight`
+  (`219` tests OK); `PYTHONPATH=src python -m catalytic_earth.cli validate`;
+  `git diff --check`; and production-edit guardrail scan.
+- Documentation checked: `README.md`, `docs/project_state.md`, `work/scope.md`,
+  and generated `work/status.md`; no README/project-state/scope content changes
+  were needed for this review-only preflight.
+- Commit/push/sync/lock status at handoff write: pending final commit; lock
+  still held and must be released only after push and `HEAD == origin/main`
+  verification.
+- Exact next action: defense ledger should record that current main has 275
+  machine-clean Wave 2 rows ready for one final controlled human batch approval;
+  preserve the remaining rows under their terminal duplicate, locator,
+  coordinate, OOS, structural-screen, family-policy, or hard-blocker gates and
+  do not import until production authorization and label-factory gates are
+  recorded.
+
 ## Session run — broadened evidence handles wired into the admission engine (2026-06-12, Claude Code web)
 
 - Session: Claude Code cloud (web) session; live UniProt egress confirmed. Branch

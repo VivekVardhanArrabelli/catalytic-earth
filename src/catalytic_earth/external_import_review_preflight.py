@@ -470,6 +470,9 @@ def build_external_import_review_preflight(
 
     preview_rows = _source_rows(preview)
     materialization_rows = _source_rows(materialization)
+    materialization_counts = (
+        materialization.get("counts", {}) if isinstance(materialization, dict) else {}
+    )
     merged_by_candidate = {_candidate_key(row): row for row in merged_rows}
     materialization_by_candidate = {_candidate_key(row): row for row in materialization_rows}
     preview_by_candidate = {_candidate_key(row): row for row in preview_rows}
@@ -950,6 +953,39 @@ def build_external_import_review_preflight(
                 "exact_coordinate_current702_overlap_count"
             ],
         },
+        "source_surface_reconciliation": {
+            "materialization_unique_candidate_rows": materialization_counts.get(
+                "unique_candidate_rows", len(materialization_rows)
+            ),
+            "materialization_input_rows": materialization_counts.get("input_rows"),
+            "source_surface_rows_consumed": materialization_counts.get(
+                "source_surface_rows_consumed"
+            ),
+            "import_ready_source_rows_consumed": materialization_counts.get(
+                "import_ready_source_rows_consumed"
+            ),
+            "source_import_ready_preview_rows_consumed": materialization_counts.get(
+                "source_import_ready_preview_rows_consumed"
+            ),
+            "coordinate_reused_from_consumed_preview": materialization_counts.get(
+                "coordinate_reused_from_consumed_preview"
+            ),
+            "coordinate_ready_promoted_preview_count": materialization_counts.get(
+                "coordinate_ready_promoted_preview_count"
+            ),
+            "import_ready_preview_rows_reviewed": len(preview_rows),
+            "repair_surface_rows_reviewed": len(repair_rows),
+            "review_surface_rows": len(review_rows),
+            "explanation": (
+                "The preflight reviews the materialized import-ready preview "
+                "surface, not only the source preview artifact before Wave 2 "
+                "coordinate promotion. On the current Wave 2 artifact, the 600 "
+                "preview rows equal the carried-forward consumed-preview "
+                "coordinate rows plus additional coordinate-ready rows promoted "
+                "during materialization; the remaining unique candidates are "
+                "classified through the repair/conflict queue."
+            ),
+        },
         "terminal_state_counts": {
             state: terminal_counts.get(state, 0) for state in TERMINAL_STATES
         },
@@ -980,6 +1016,14 @@ def build_external_import_review_preflight(
                 )
             ),
         },
+        "defense_ledger_next_action": (
+            f"Record that current main has {ready_count} machine-clean Wave 2 "
+            "rows ready for one final controlled human batch approval; preserve "
+            "the remaining rows under their terminal duplicate, locator, "
+            "coordinate, OOS, structural-screen, family-policy, or hard-blocker "
+            "gates and do not import until production authorization and "
+            "label-factory gates are recorded."
+        ),
         "validation_checks": validation_checks,
         "rows": rows,
     }
@@ -1180,6 +1224,33 @@ def render_external_import_review_preflight_report(
     lines.extend(["", "## Review Scope Counts", "", "| scope | count |", "| --- | ---: |"])
     for scope, count in preflight["review_scope_counts"].items():
         lines.append(f"| `{scope}` | {count} |")
+    source_reconciliation = preflight.get("source_surface_reconciliation") or {}
+    lines.extend(
+        [
+            "",
+            "## Source Surface Reconciliation",
+            "",
+            "| measure | count |",
+            "| --- | ---: |",
+        ]
+    )
+    for key in (
+        "materialization_unique_candidate_rows",
+        "materialization_input_rows",
+        "source_surface_rows_consumed",
+        "import_ready_source_rows_consumed",
+        "source_import_ready_preview_rows_consumed",
+        "coordinate_reused_from_consumed_preview",
+        "coordinate_ready_promoted_preview_count",
+        "import_ready_preview_rows_reviewed",
+        "repair_surface_rows_reviewed",
+        "review_surface_rows",
+    ):
+        value = source_reconciliation.get(key)
+        if value is not None:
+            lines.append(f"| `{key}` | {value} |")
+    if source_reconciliation.get("explanation"):
+        lines.extend(["", str(source_reconciliation["explanation"])])
     lines.extend(["", "## Lane Counts", "", "| lane | count |", "| --- | ---: |"])
     for lane, count in preflight["lane_counts"].items():
         lines.append(f"| {lane} | {count} |")
@@ -1253,6 +1324,10 @@ def render_external_import_review_preflight_report(
                 "- Exact current702 coordinate/structure-ID overlaps: "
                 f"{preflight['validation_checks']['exact_coordinate_current702_overlap_count']}"
             ),
+            "",
+            "## Defense Ledger Next Action",
+            "",
+            str(preflight.get("defense_ledger_next_action") or ""),
             "",
             "## Review Queue",
             "",
