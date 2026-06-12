@@ -69,17 +69,20 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json"
 )
 # The 8fp-era artifact above is SUPERSEDED (kept on disk as the historical record). The 12fp
-# re-freeze (Stage-2 metal v2 split) is now ALSO superseded by the 14fp re-freeze below (the
-# 2026-06-12 nad_p_dehydrogenase + glycosyltransferase broadened-handle batch). Both are kept
-# on disk as historical records.
+# re-freeze (Stage-2 metal v2 split) and 14fp re-freeze (the 2026-06-12 nad_p_dehydrogenase
+# + glycosyltransferase broadened-handle batch) are also historical after the SAM
+# methyltransferase universe bump. They are kept on disk as records.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_12FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 14-fingerprint universe lives here; it
-# is the one a NEW OOS hard-negative import must reference (subject to the new fingerprints
-# gaining atlas coverage before the inverse gate can certify a clean hard-negative).
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_14FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_14fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 15-fingerprint universe lives here; it
+# is the one a NEW OOS hard-negative import must reference (subject to the new fingerprint
+# gaining atlas coverage before the inverse gate can certify a clean hard-negative).
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_15FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_15fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",
@@ -12410,9 +12413,9 @@ def _external_hard_negative_pre_registration_reference(
     if metadata.get("registration_status") != "frozen_before_candidate_selection":
         blockers.append("external_hard_negative_pre_registration_not_frozen")
     # A NEW OOS hard-negative tranche must be pre-registered against the CURRENT positive
-    # universe version (12fp), not the historical 8fp label stamp. The Stage-2 split expanded
-    # the inverse gate to 12 fingerprints; the 8fp-era pre-registration is correctly superseded
-    # (it also fails the fingerprint_universe check below).
+    # universe version, not the historical 8fp label stamp. Positive-universe expansions
+    # (12fp -> 14fp -> 15fp) deliberately supersede older OOS pre-registrations; stale
+    # artifacts also fail the fingerprint_universe check below.
     if (
         metadata.get("ontology_version_at_decision")
         != CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION

@@ -236,6 +236,20 @@
         "Do not propagate from a glycoside hydrolase (EC 3.2) or a phosphoryl-transfer enzyme; the donor must be a nucleotide sugar.",
         "The nucleotide-sugar donor (and GT-A bridging metal) is a dissociable substrate, not a prosthetic cofactor; its absence in the apo structure is the declared deploy-missing context."
       ]
+    },
+    {
+      "id": "methyl_transfer",
+      "name": "SAM-dependent methyl transfer chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "sam_methyltransferase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by SAM/SAH methyl-donor evidence (Rhea participant, SAM/SAH binding evidence, or Methyltransferase keyword) plus EC 2.1.1 scope, NOT by EC scope alone.",
+        "Do not propagate radical-SAM methylases into this family; Fe-S cluster evidence or a CxxxCxxC radical-SAM motif blocks the polar SAM methyltransferase label.",
+        "Do not merge folate/PLP one-carbon transfer, glycine hydroxymethyltransferase, or phosphoryl/glycosyl transfer chemistry into SAM methyl transfer solely by methyl-transfer wording.",
+        "The SAM methyl donor and SAH product are dissociable ligands; their absence in the apo structure is the declared deploy-missing context."
+      ]
     }
   ],
   "propagation_guardrails": [

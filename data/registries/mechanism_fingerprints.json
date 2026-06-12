@@ -321,5 +321,31 @@
       "reconstruction_path": "Path A sequence->donor/keyword-presence channel (DxD motif + family signature), or canonical nucleotide-sugar graft (Path B)",
       "silver_reachability": "hard; the donor pose and acceptor pocket both require reconstruction"
     }
+  },
+  {
+    "id": "sam_methyltransferase",
+    "name": "SAM-dependent methyltransferase",
+    "enzyme_space": ["small-molecule methyltransferases", "DNA/RNA methyltransferases", "protein lysine/arginine methyltransferases", "natural-product methyltransferases"],
+    "active_site_signature": [
+      {"role": "methyl_donor_binding", "residue": "SAM/SAH-binding glycine-rich or acidic motif", "constraints": ["positions the S-adenosyl-L-methionine sulfonium methyl group for in-line transfer"]},
+      {"role": "acceptor_activation", "residue": "Asp/Glu/His/Lys/Cys or metal-assisted base", "constraints": ["deprotonates or polarizes the O/N/S/C acceptor without radical-SAM Fe-S chemistry"]},
+      {"role": "product_stabilizer", "residue": "polar_or_aromatic_residue", "constraints": ["stabilizes S-adenosyl-L-homocysteine and the methylated product after SN2 transfer"]}
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": ["methyl transfer from S-adenosyl-L-methionine to an O, N, S, or C acceptor with S-adenosyl-L-homocysteine release"],
+      "chemical_operation": "SAM-dependent polar methyl transfer"
+    },
+    "substrate_constraints": ["SAM/SAH donor pocket adjacent to the acceptor atom", "acceptor lone pair or activated carbon positioned for SN2-like methyl transfer", "no Fe-S cluster or radical-SAM CxxxCxxC context"],
+    "evidence_features": ["Methyltransferase functional keyword (KW-0488)", "S-adenosyl-L-methionine / S-adenosyl-L-homocysteine Rhea participant", "SAM/SAH binding-site annotation", "Class I Rossmann-like or SET/other methyltransferase fold"],
+    "counterevidence_features": ["Fe-S cluster or radical-SAM motif present", "folate/PLP one-carbon transfer instead of SAM methyl transfer", "no SAM/SAH participant or methyltransferase family evidence", "phosphoryl/glycosyl/hydrolase chemistry"],
+    "uncertainty_axes": ["acceptor atom class (O/N/S/C)", "mono- vs iterative methylation", "metal-assisted vs metal-independent activation", "SAM vs alternative methyl donor specificity"],
+    "seed_examples": ["catechol O-methyltransferase", "DNA cytosine methyltransferase", "protein arginine methyltransferase", "caffeoyl-CoA O-methyltransferase"],
+    "deploy_missing_active_site_context": {
+      "type": "cosubstrate",
+      "detail": "the SAM methyl donor and SAH product are dissociable ligands absent from the apo predicted structure, so donor-acceptor methyl-transfer geometry is unconstrained",
+      "reconstruction_path": "Path A sequence->SAM/SAH donor-presence channel plus no-Fe-S guard, or canonical SAM/SAH graft (Path B)",
+      "silver_reachability": "moderate; SAM-binding motifs are often sequence-detectable but acceptor pose and atom identity require reconstruction"
+    }
   }
 ]

@@ -77,6 +77,7 @@ COFACTOR_FOR_FINGERPRINT: dict[str, str] = {
 DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "nad_p_dehydrogenase": "nad_p_cosubstrate",
     "glycosyltransferase": "sugar_nucleotide_donor",
+    "sam_methyltransferase": "sam_sah_methyl_donor",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

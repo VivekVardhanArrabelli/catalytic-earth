@@ -13,6 +13,29 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-12 automation update: SAM methyltransferase 15fp expansion is now applied.**
+After the NAD(P)/glyco floor/cap work below completed, the next documented scaling lane was wired as
+a deliberate 15-fingerprint universe change and sourced through the same evidence-rich admission
+machinery. Added `sam_methyltransferase` fingerprint + ontology family, EC 2.1.1 scope, SAM/SAH Rhea
+participant or Methyltransferase keyword mechanism handles, explicit no-Fe-S/radical-SAM guard,
+15fp OOS preregistration re-freeze, offline tests, non-destructive preview, then explicit apply.
+Live preview/apply (`scripts/source_sam_methyltransferase_family.py --max-records-per-lane 120
+--apply`) fetched **315** reviewed Swiss-Prot rows, mechanism-corroborated **304**, admitted **264**
+before cap, appended **250** bronze rows, and held **14** at the cap; **2** multi-fingerprint-signal
+rows were held, **28** throttled as redundant, **12** rejected over-cap/no-new-chemistry, **9** skipped,
+and fetch failures were **0**. External bronze is now **3590** (was 3340); combined label surface is
+**4292**; frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after apply. Honest
+counters after the apply stay separate: **positive_bronze 2579**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k:
+**7421**. Post-apply audit: **15 fingerprints**, fingerprint Gini **0.1657**, holes `[]`, only
+`metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. The new low-risk within-15fp
+cap space for SAM is exhausted. Next recommended lane: **cytochrome P450 monooxygenase** as a
+deliberate 16fp universe change because it has strong reviewed Swiss-Prot mechanism handles
+(heme/thiolate cofactor + monooxygenase Rhea participant/EC 1.14 scope + P450 keyword/domain) and is
+mechanistically distinct from `heme_peroxidase_oxidase`; wire spec/ontology/rule/tests/OOS re-freeze
+before any preview/apply.
+
 **2026-06-12 automation update: NAD(P)/glyco broadened-handle rows are now applied.** The
 existing NAD(P)-dehydrogenase + glycosyltransferase runner was rerun deeper and applied to
 the separate external bronze registry only. Batch 1 (`--max-records-per-lane 100`) applied
@@ -26,14 +49,9 @@ is now **3340** (was 2940); frozen current702 remains **702** with sha
 **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**, **projected 0**. Remaining
 gap to a 10k positive-bronze surface is **7671**; do not fill it by padding capped families.
 The after-apply coverage audit reports fingerprint Gini **0.1578**, holes `[]`, only
-`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **0**. The current
-14-fingerprint low-risk cap space is exhausted for these two families. Next
-recommended lane: **SAM methyltransferase** because the evidence-handle scout found EC 2.1.1
-reviewed supply is large (`keyword:Methyltransferase` 14279 vs `cc_cofactor:SAM` 691), floor
-and cap are reachable, and the mechanism can be separated from radical-SAM by requiring
-SAM/SAH methyl-transfer evidence with a no-Fe-S guard. Treat it as a deliberate **15fp universe
-change**: spec + ontology + disambiguation rule + leakage/trust-tier tests + OOS prereg
-re-freeze before preview/apply.
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **0**. The 14-fingerprint
+low-risk cap space for these two families was exhausted; the SAM methyltransferase 15fp lane above
+is the completed follow-on.
 
 Three findings from live recon refine the path below (none of them redefine the count to
 make it "work"; see decision_log 2026-06-11/12):
@@ -258,15 +276,16 @@ to the ceiling manufactures the redundancy the plan warns against. Next splits/f
 glycosidases, and non-hydrolase chemistries (oxidoreductase/transferase) to keep chemical
 breadth — hydrolysis now holds 6 of 12 fingerprints.
 
-**Applied (2026-06-12) — broadened-handle transferase/redox families filled:** the first two
+**Applied (2026-06-12) — broadened-handle transferase/redox families filled:** the first three
 non-hydrolase broadened-handle families are now countable bronze, not just previews.
-`nad_p_dehydrogenase` is capped at **150** and `glycosyltransferase` is capped at **250**;
-both meet the 100-floor and neither should be sourced further without a new chemistry split.
-The coverage governor now reports no expansion holes; `metal_dependent_hydrolase` remains the
-intentional over-cap. This raises positive_bronze to **2329** while keeping OOS/silver/projected
-counters separate. The next breadth step should open **one new family** rather than deepen these:
-SAM methyltransferase is the best next candidate, but it must include the 15fp governance update
-and OOS pre-registration supersession before any registry apply.
+`nad_p_dehydrogenase` is capped at **150**, `glycosyltransferase` at **250**, and
+`sam_methyltransferase` at **250**; all meet the 100-floor and none should be sourced further
+without a new chemistry split. The coverage governor reports no expansion holes;
+`metal_dependent_hydrolase` remains the intentional over-cap. This raises positive_bronze to
+**2579** while keeping OOS/silver/projected counters separate. The next breadth step should open
+**one new family** rather than deepen these: cytochrome P450 monooxygenase is the best next
+candidate, but it must include a 16fp governance update and OOS pre-registration supersession
+before any registry apply.
 
 ### Stage 3 — Diverse OOS, novelty-gated
 OOS is the abstention target and must keep growing in **coverage**, not redundancy.

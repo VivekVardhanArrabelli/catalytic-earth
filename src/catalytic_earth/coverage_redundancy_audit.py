@@ -133,6 +133,11 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "nucleotide-sugar donor (UDP/GDP/dTDP/CMP-sugar; GT-A DxD metal or GT-B cleft)",
         "lanes": ["glycosyltransferase"],
     },
+    "sam_methyltransferase": {
+        "ec_prefixes": ["2.1.1"],
+        "cofactor": "SAM methyl donor / SAH product (dissociable methyl-transfer cosubstrate); no Fe-S radical-SAM context",
+        "lanes": ["sam_methyltransferase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

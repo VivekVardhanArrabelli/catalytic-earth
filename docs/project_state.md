@@ -26,6 +26,40 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SAM METHYLTRANSFERASE 15FP BRONZE EXPANSION APPLIED (2026-06-12 automation).**
+  The documented post-NAD/glyco scaling lane was wired as a deliberate 15-fingerprint universe
+  change and applied through the canonical external bronze writer, not the frozen benchmark. New
+  family/gate surface: `sam_methyltransferase` fingerprint + `methyl_transfer` ontology node,
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = label_factory_v1_15fp`, OOS preregistration
+  re-frozen as `artifacts/v3_external_hard_negative_next_tranche_preregistration_15fp_1025.json`,
+  EC 2.1.1 scope-only rule with SAM/SAH Rhea participant or Methyltransferase keyword mechanism
+  corroboration, explicit no-Fe-S/radical-SAM guard, and off-target fingerprint matches held by
+  the runner. Live apply:
+  `PYTHONPATH=src python scripts/source_sam_methyltransferase_family.py --max-records-per-lane 120 --apply`
+  fetched **315** rows -> target mechanism-corroborated **304** -> gate-admitted before cap **264** ->
+  appended **250** bronze rows; `sam_methyltransferase` **0 -> 250** (cap 250; floor reached);
+  **14 held at cap**, **28 throttled**, **12 rejected over-cap/no-new-chemistry**,
+  **2 multi-fingerprint-signal rows held**, **9 skipped**, fetch failures **0**. Net registry result:
+  external bronze **3340 -> 3590** (+250); combined surface **4042 -> 4292**; frozen current702 stayed
+  702 with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after
+  apply. Honest counters remain separate after apply: **positive_bronze 2579**, **oos_bronze 1696**,
+  **silver_ready 0**, **silver_confirmed 17**, **projected 0**. Guardrails verified: EC scope-only
+  and never counted; SAM/SAH/keyword handles admission/excluded context only; `predictive_evidence []`;
+  all added labels are `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup vs both
+  registries; caps held. Fresh coverage audit: fingerprint Gini **0.1657**, holes `[]`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Validation: targeted pytest
+  **82 passed** over SAM/NAD sourcing, disambiguation/import, trust-tier, leakage-prereg, coverage,
+  novelty, fingerprints, and CLI readiness tests; `validate` ok
+  (12 source / 15 fingerprints / 18 ontology families / 702 labels); `git diff --check` and JSON
+  parse checks clean. Artifacts/reports:
+  `artifacts/v3_sam_methyltransferase_sourcing_preview_current702.json`,
+  `work/sam_methyltransferase_sourcing_current702.md`,
+  `work/sam_methyltransferase_apply_current702_20260612.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260612_sam_methyl_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260612_sam_methyl_applied.md`.
+  Next scaling action: wire **cytochrome P450 monooxygenase** as a deliberate 16-fingerprint universe
+  change (spec + ontology + heme/thiolate + oxygenase/Rhea or P450 keyword/domain mechanism handles +
+  non-peroxidase guard + tests + OOS prereg re-freeze) before preview/apply.
 - **NAD(P)-DEHYDROGENASE + GLYCOSYLTRANSFERASE BRONZE EXPANSION APPLIED (2026-06-12 automation).**
   The prior broadened-handle preview was rerun with deeper lanes and applied through the canonical
   external bronze writer, not the frozen benchmark. Main floor run (`--max-records-per-lane 100`):

@@ -1,5 +1,55 @@
 # Handoff
 
+## Session run - SAM methyltransferase 15fp bronze expansion applied (2026-06-12, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock`. Primary NAD(P)/glyco task was already complete on
+  current `origin/main`, so this run continued the documented next 10k-path lane.
+- Status: **APPLIED gated SAM methyltransferase bronze growth to the separate external registry.**
+  Frozen current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before and after
+  apply. External bronze **3340 -> 3590** (+250); combined label surface **4042 -> 4292**.
+- Family/gate setup: added `sam_methyltransferase` fingerprint + `methyl_transfer` ontology node;
+  bumped `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_15fp`; added
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_15fp_1025.json` superseding
+  14fp; added SAM sourcing runner/script/tests. EC 2.1.1 is scope-only; counted mechanism
+  corroboration comes from SAM/SAH Rhea participant/cofactor/cosubstrate, Methyltransferase
+  keyword/domain, active/binding-site evidence, or Rhea participant axes. Fe-S/radical-SAM rows are
+  guarded out of `sam_methyltransferase`; off-target matches are held.
+- Live command:
+  `PYTHONPATH=src python scripts/source_sam_methyltransferase_family.py --max-records-per-lane 120 --apply`.
+  Result: fetched 315, target mechanism-corroborated 304, gate-admitted-before-cap 264, appended
+  250 rows. `sam_methyltransferase` 0->250 (cap 250; floor reached); 14 held at cap; 28 throttled;
+  12 rejected over-cap/no-new-chemistry; 2 multi-fingerprint-signal rows held; 9 skipped; fetch
+  failures 0; duplicate skipped at apply 0.
+- Guardrails verified: EC is scope-only (`ec_scope_hint`) and never counted; SAM/SAH/keyword handles
+  are admission/excluded-context only; `predictive_evidence []`; every added row is `tier=bronze`,
+  `review_status=automation_curated`, `uniprot:*`; dedup vs both frozen current702 and external
+  bronze; multi-fingerprint-signal rows held; per-fingerprint cap enforced.
+- Honest counters after apply: `positive_bronze=2579`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`. Do not merge them. Remaining positive-bronze gap to 10k:
+  7421.
+- Fresh governor audit:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260612_sam_methyl_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260612_sam_methyl_applied.md`; 4292 combined,
+  fingerprint Gini 0.1657, holes `[]`, over-cap `['metal_dependent_hydrolase']`, next-batch floor
+  deficit 0.
+- Validation: targeted pytest over SAM/NAD sourcing, disambiguation/import, trust-tier,
+  leakage-preregistration, coverage, novelty, fingerprints, and CLI readiness passed
+  (`82 passed`); `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source records,
+  15 mechanism fingerprints, 18 ontology families, 702 curated labels); `git diff --check` and JSON
+  parse checks clean.
+- Key artifacts: `artifacts/v3_sam_methyltransferase_sourcing_preview_current702.json`,
+  `work/sam_methyltransferase_sourcing_current702.md`,
+  `work/sam_methyltransferase_apply_current702_20260612.md`,
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_15fp_1025.json`,
+  `artifacts/v3_source_trust_tier_policy_current702.json`.
+- Next exact action: wire **cytochrome P450 monooxygenase** as a deliberate 16-fingerprint universe
+  change: add fingerprint spec + ontology node; add heme/thiolate + oxygenase Rhea participant or
+  P450 keyword/domain mechanism corroborator with a non-peroxidase guard; add offline leakage /
+  trust-tier tests; re-freeze the OOS preregistration to 16fp; then run a non-destructive preview
+  and apply only if novelty/governor/dedup/trust-tier gates pass.
+
 ## Session run - NAD(P)/glyco bronze floor and cap expansion applied (2026-06-12, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; isolated detached worktree at origin/main

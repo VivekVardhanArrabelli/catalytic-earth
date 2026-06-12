@@ -3,6 +3,65 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-12: SAM METHYLTRANSFERASE 15FP BRONZE EXPANSION APPLIED
+
+Decision: after the NAD(P)-dehydrogenase + glycosyltransferase floor/cap expansion was already
+complete, the next documented scaling lane was wired and applied as a deliberate **15-fingerprint
+universe change**. Growth still went only to the separate external bronze registry. The frozen
+current702 registry stayed byte-unchanged: sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before and after apply.
+
+**Family/gate surface.** Added `sam_methyltransferase` fingerprint spec and `methyl_transfer`
+ontology node; bumped `labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to
+`label_factory_v1_15fp`; re-froze the OOS next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_15fp_1025.json` (supersedes the
+14fp preregistration; 14fp/12fp/8fp remain historical). The admission rule uses EC 2.1.1 as
+scope-only (`ec_scope_hint`, never counted), with SAM/SAH Rhea participant/cofactor/cosubstrate or
+Methyltransferase keyword/domain as mechanism corroboration. A no-Fe-S/radical-SAM guard blocks
+radical-SAM methylases from `sam_methyltransferase`; the runner also holds off-target fingerprint
+matches instead of importing them from this family lane.
+
+**Live preview/apply.** Command:
+`PYTHONPATH=src python scripts/source_sam_methyltransferase_family.py --max-records-per-lane 120 --apply`.
+Result: fetched **315** reviewed Swiss-Prot rows -> target mechanism-corroborated **304** ->
+gate-admitted before cap **264** -> appended **250** rows. Per-family result:
+`sam_methyltransferase` **0 -> 250** (cap 250, floor reached, **14 held at cap**). Other holds:
+**2** multi-fingerprint-signal rows held, **28** throttled as redundant, **12** rejected over-cap/no
+new chemistry, **9** skipped, fetch failures **0**. External bronze **3340 -> 3590**; combined
+surface **4042 -> 4292**; duplicate skipped at registry apply **0**.
+
+Guardrails held: every added row is `tier=bronze`, `review_status=automation_curated`, entry
+namespace `uniprot`; broadened SAM/SAH/keyword handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; dedup ran against both frozen current702 and external bronze;
+multi-fingerprint-signal rows were held; per-fingerprint cap held. Honest counters after apply are
+**positive_bronze 2579**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**; do not merge them. Fresh coverage/redundancy audit after the apply reports
+**4292** combined labels, fingerprint Gini **0.1657**, expansion holes `[]`, over-cap
+`['metal_dependent_hydrolase']`, and next-batch floor deficit **0**.
+
+Validation: targeted pytest over SAM/NAD sourcing, disambiguation/import, trust-tier,
+leakage-preregistration, coverage, novelty, fingerprints, and CLI readiness passed (**82 passed**);
+`PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source records, 15 mechanism
+fingerprints, 18 ontology families, 702 curated labels); `git diff --check` and JSON parse checks
+clean.
+
+Next decision: the immediate low-risk within-15fp cap fill is exhausted; the next high-value scaling
+lane is **cytochrome P450 monooxygenase**. Treat it as a deliberate **16-fingerprint universe
+change**: add fingerprint spec + ontology node; add heme/thiolate + oxygenase Rhea participant or
+P450 keyword/domain mechanism corroborator with a non-peroxidase guard; add offline
+leakage/trust-tier tests; re-freeze the OOS pre-registration to 16fp; then run a non-destructive
+preview before any apply.
+
+References:
+`artifacts/v3_sam_methyltransferase_sourcing_preview_current702.json`,
+`work/sam_methyltransferase_sourcing_current702.md`,
+`work/sam_methyltransferase_apply_current702_20260612.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_15fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260612_sam_methyl_applied.json`,
+`work/coverage_redundancy_audit_current702_20260612_sam_methyl_applied.md`,
+`artifacts/v3_source_trust_tier_policy_current702.json`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-12: NAD(P)-DEHYDROGENASE + GLYCOSYLTRANSFERASE BRONZE EXPANSION APPLIED
 
 Decision: the prior broadened-handle NAD(P)/glyco preview was authorized by this automation prompt

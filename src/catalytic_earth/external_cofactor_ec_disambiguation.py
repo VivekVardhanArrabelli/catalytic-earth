@@ -230,6 +230,16 @@ _SUGAR_NUCLEOTIDE_DONOR_TOKENS = (
     "+ dtdp",
     "+ cmp",
 )
+# SAM/SAH methyl-donor/product tokens. These are Rhea reaction participants, so they are
+# mechanism evidence for admission only. They are never predictive features.
+_SAM_SAH_METHYL_DONOR_TOKENS = (
+    "s-adenosyl-l-methionine",
+    "s-adenosylmethionine",
+    "adomet",
+    "s-adenosyl-l-homocysteine",
+    "s-adenosylhomocysteine",
+    "adohcy",
+)
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
 
@@ -289,6 +299,8 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     )
     sugar_nucleotide_donor = in_any(reactions, *_SUGAR_NUCLEOTIDE_DONOR_TOKENS)
     keyword_glycosyltransferase = any("glycosyltransferase" in kw for kw in keywords)
+    sam_sah_methyl_donor_reaction = in_any(reactions, *_SAM_SAH_METHYL_DONOR_TOKENS)
+    keyword_methyltransferase = any("methyltransferase" in kw for kw in keywords)
 
     evidence.update(
         {
@@ -298,6 +310,10 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "cosubstrate_nad_p": cosubstrate_nad_p,
             "sugar_nucleotide_donor": sugar_nucleotide_donor,
             "keyword_glycosyltransferase": keyword_glycosyltransferase,
+            "sam_sah_methyl_donor_reaction": sam_sah_methyl_donor_reaction,
+            "sam_sah_methyl_donor": sam_sah_methyl_donor_reaction
+            or evidence.get("sam", False),
+            "keyword_methyltransferase": keyword_methyltransferase,
             "active_or_binding_site_present": bool(
                 _feature_codes(row) & _ACTIVE_OR_BINDING_FEATURE_CODES
             ),
@@ -322,13 +338,22 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("cobalamin")
         or evidence.get("cosubstrate_nad_p")
         or evidence.get("sugar_nucleotide_donor")
+        or evidence.get("sam_sah_methyl_donor")
     ):
         axes.add("cofactor_or_cosubstrate")
-    if evidence.get("cosubstrate_nad_p_reaction") or evidence.get("sugar_nucleotide_donor"):
+    if (
+        evidence.get("cosubstrate_nad_p_reaction")
+        or evidence.get("sugar_nucleotide_donor")
+        or evidence.get("sam_sah_methyl_donor_reaction")
+    ):
         axes.add("rhea_reaction_or_participant_pattern")
     if evidence.get("active_or_binding_site_present") or evidence.get("cx3cx2c_motif"):
         axes.add("active_site_motif_or_residue_role")
-    if evidence.get("keyword_glycosyltransferase") or evidence.get("keyword_nad_p"):
+    if (
+        evidence.get("keyword_glycosyltransferase")
+        or evidence.get("keyword_nad_p")
+        or evidence.get("keyword_methyltransferase")
+    ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
         axes.add("ec_scope_hint")  # non-counted: EC decides scope only
@@ -367,6 +392,7 @@ _METALLO_AMIDOHYDROLASE_DEAMINASE_EC = ("3.5.2", "3.5.4", "3.5.1")
 # the EC prefix only selects the lane and stays in excluded_context (never predictive).
 _NAD_P_DEHYDROGENASE_EC = ("1.1.1",)  # CH-OH donor, NAD(P) acceptor
 _GLYCOSYLTRANSFERASE_EC = ("2.4",)    # glycosyl/hexosyl/pentosyl/sialyl transferases
+_SAM_METHYLTRANSFERASE_EC = ("2.1.1",)  # methyl group transfer, mostly SAM/SAH donor/product
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -427,6 +453,13 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         "glycosyltransferase",
         lambda c, row: (c["sugar_nucleotide_donor"] or c["keyword_glycosyltransferase"])
         and _ec_has_prefix(row, _GLYCOSYLTRANSFERASE_EC),
+    ),
+    (
+        "sam_methyltransferase",
+        lambda c, row: (c["sam_sah_methyl_donor"] or c["keyword_methyltransferase"])
+        and not c["fe_s"]
+        and not c["cx3cx2c_motif"]
+        and _ec_has_prefix(row, _SAM_METHYLTRANSFERASE_EC),
     ),
 )
 

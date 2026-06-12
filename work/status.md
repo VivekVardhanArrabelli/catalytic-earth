@@ -660,3 +660,12 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-09T05:25:43.402284+00:00: Preview and repair artifacts only; no production registry import ontology split threshold model weight coordinate download or label import changed.
 - 2026-06-09T05:54:43.128126+00:00: Read-only external scaleout shard only; no production registry import ontology split threshold model weight coordinate download or label import changed.
 - 2026-06-09T13:24:24.360224+00:00: Preview and repair artifacts plus review-only coordinate and locator sidecars only; no production registry import ontology split threshold model weight or label import changed.
+
+## Automation run - ce-nad-glyco-floor-expansion (2026-06-12T23:09:11Z)
+- STARTED_AT: `2026-06-12T23:09:11Z`
+- STARTED_LOCAL: `Fri Jun 12 18:09:11 CDT 2026`
+- Status: starting; handoff and automation memory read; acquiring automation lock next.
+
+- 2026-06-12T23:27:14Z: SAM methyltransferase apply completed; appended 250 bronze; external bronze 3340 -> 3590; combined 4042 -> 4292; frozen current702 sha unchanged. Running post-apply validation/audit next.
+
+- 2026-06-12T23:34:16Z: Validation complete: targeted pytest 82 passed; validate passed (12 source records, 15 fingerprints, 18 ontology families, 702 labels); git diff --check and JSON parse checks clean; SAM guardrail spot check passed. Elapsed seconds: 1505.
