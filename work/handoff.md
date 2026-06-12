@@ -1,5 +1,41 @@
 # Handoff
 
+## Session run — EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY (2026-06-12, Claude Code web)
+
+- Session: Claude Code cloud (web) session; live UniProt egress confirmed. Branch
+  `claude/lucid-hypatia-wb855e`. Not a Mac automation-harness run — no harness metadata.
+- Status: **User direction implemented (within-Swiss-Prot handle fix first, then honest source
+  expansion via trust tiers; counters stay separate; don't redefine 10k).** Two non-destructive,
+  offline-tested modules; no registry/label written; frozen current702 untouched (`sha256:5eec9bef…`).
+- (1) `evidence_handle_expansion.py` / `scripts/scout_evidence_handle_expansion.py` /
+  `tests/test_evidence_handle_expansion.py` (6 tests): measures reviewed supply recovered per family
+  under broader corroborator handles (cc_cofactor vs keyword vs binding-site vs active-site; EC is
+  scope, not a corroborator). Live result: **NAD(P) EC 1.1.1 — cc_cofactor 7 → keyword:NAD/NADP
+  7700** (of 7804); SAM-MTase 691 → keyword 14279; broad NAD(P) oxidoreductase 50 → ft_binding
+  28669; biotin 60 → ft_binding 3831; glycosyltransferase (no cofactor handle) → keyword 10281.
+  Across 6 families: ~64k raw reviewed recovered (RAW/overlapping, not additive), **~741 reachable
+  POSITIVE bronze uplift** (bounded, capped+discounted); 4 families cross the floor only with the
+  better handle. Artifact `artifacts/v3_evidence_handle_expansion_current702.json`,
+  report `work/evidence_handle_expansion_current702.md`.
+- (2) `source_trust_tiers.py` / `tests/test_source_trust_tiers.py` (9 tests): durable policy —
+  trust tiers 0–4 (only 0–2 bronze-eligible, N-of-M corroboration 1/2/3; tiers 3–4 hypotheses,
+  never countable bronze), 6 corroborator axes + `evaluate_corroboration`, and the SEPARATE honest
+  counters (positive_bronze/oos_bronze/silver_ready/silver_confirmed/projected) that must never be
+  merged. Current ledger: positive_bronze 1929, oos_bronze 1696, silver_confirmed 17, rest 0.
+  Artifact `artifacts/v3_source_trust_tier_policy_current702.json`. Trust tiers ADD a gate; governor
+  + novelty gate stay mandatory.
+- Leakage: every handle is reviewed annotation used for SCOPE/admission only (excluded_context,
+  never predictive) — same basis as the existing cofactor+EC handle.
+- Validation: `validate` ok (702/12/15); full suite green except the 6 known env-backend failures.
+- Exact next action (proposed, not yet done — needs the user's go on which family): WIRE a winning
+  handle into the import gate for ONE new family and source it through the proven pipeline
+  (fingerprint spec + ontology node + disambiguation rule using the keyword/active-site corroborator
+  + lane queries + governor signature + offline tests + non-destructive preview → --apply expansion
+  only). Best first picks from the two scouts: NAD(P)-dehydrogenase EC-subclass lanes (keyword
+  handle), glycosyltransferase (keyword), cytochrome_p450 / coa_acyltransferase. Then beyond
+  Swiss-Prot via tier-1 curated sources (M-CSA/BRENDA) with N-of-M corroboration. Stage-3 OOS import
+  is already unblocked (12fp prereg).
+
 ## Session run — STAGE-3 PREREQS: OOS prereg re-frozen to 12fp + decoupled ontology version bump (2026-06-11, Claude Code web)
 
 - Session: Claude Code cloud (web) session. Branch `claude/lucid-hypatia-wb855e`. Not a Mac

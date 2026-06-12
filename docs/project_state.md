@@ -26,6 +26,31 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY (2026-06-12) — fix within-Swiss-Prot
+  handles first, then expand sources honestly; counters stay separate.** User direction: the
+  breadth scout's shortfall is partly a HANDLE problem (fix before leaving Swiss-Prot) and partly a
+  real supply gap (expand sources via trust tiers); do NOT redefine 10k to paper over a positive
+  gap. Two non-destructive, offline-tested modules; no registry/label written; frozen current702
+  untouched (`sha256:5eec9bef…`). (1) `evidence_handle_expansion.py` measures, per family, how much
+  reviewed supply each within-Swiss-Prot corroborator handle recovers (cc_cofactor vs keyword vs
+  binding-site vs active-site; EC is scope, not a corroborator). Decision-grade (live UniProt):
+  **NAD(P) dehydrogenases EC 1.1.1 — `cc_cofactor:nad/nadp` reaches 7 of 7804; `keyword:NAD/NADP`
+  reaches 7700** (NAD is a cosubstrate keyword, not a cofactor comment). Across 6 families the
+  broader handles recover ~64k raw reviewed entries the cofactor handle misses (RAW/overlapping, not
+  additive) and **~741 additional reachable POSITIVE bronze** after cap+novelty discount (the bounded
+  figure); the big pools must be split by EC-subclass into capped lanes. These winning handles are
+  what to wire into the import gate per family before sourcing beyond Swiss-Prot. (2)
+  `source_trust_tiers.py` encodes the durable policy: trust tiers 0–4 (only 0–2 bronze-eligible,
+  escalating N-of-M corroboration 1/2/3; tiers 3–4 are hypotheses, never countable bronze), 6
+  independent corroborator axes + `evaluate_corroboration`, and the SEPARATE honest counters
+  (`positive_bronze`/`oos_bronze`/`silver_ready`/`silver_confirmed`/`projected`) that must never be
+  merged. Current ledger: **positive_bronze 1929, oos_bronze 1696, silver_confirmed 17** (1929
+  bronze + 17 silver = 1946 positives). Trust tiers ADD a gate; governor + novelty gate stay
+  mandatory. `validate` ok (702/12/15); full suite green except the 6 known env-backend failures.
+  See decision_log 2026-06-12 "EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY";
+  `artifacts/v3_evidence_handle_expansion_current702.json`,
+  `artifacts/v3_source_trust_tier_policy_current702.json`,
+  `work/evidence_handle_expansion_current702.md`.
 - **STAGE-3 PREREQS DONE (2026-06-11) — OOS hard-negative pre-registration re-frozen to the 12fp
   universe + a clean (decoupled) ontology version bump; the next OOS import is unblocked.** Two
   deferred Stage-2 follow-ups, both REQUIRED before any new OOS import; neither writes a label or

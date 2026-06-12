@@ -3,6 +3,65 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-12: EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY — Fix Within-Swiss-Prot Handles First, Then Expand Sources Honestly (Separate Counters)
+
+Decision (user direction, 2026-06-12): the breadth scout's "reviewed Swiss-Prot can't reach 10k
+positive bronze" is TWO findings, and they get two different responses. (1) Some apparent shortage
+is an EVIDENCE-HANDLE problem, not a supply problem — fix the within-Swiss-Prot corroborators
+BEFORE leaving Swiss-Prot. (2) The genuine remainder needs source expansion beyond Swiss-Prot, but
+through trust tiers with escalating multi-corroborator requirements — and the 10k target must NOT
+be redefined to paper over a positive-label gap (positives / OOS / silver depth stay separate
+counters). Two non-destructive modules deliver this; neither writes a registry or a label; frozen
+current702 untouched (`sha256:5eec9bef…`).
+
+**(1) Evidence-handle expansion (measured).** New `evidence_handle_expansion.py` /
+`scripts/scout_evidence_handle_expansion.py` (offline-tested) measures, per family, how much
+reviewed supply each alternative within-Swiss-Prot corroborator handle recovers — `cc_cofactor`
+vs `keyword` (controlled-vocab functional/family) vs `ft_binding` (binding-site) vs `ft_act_site`
+(active-site). EC scope is the ceiling but is NOT counted as a corroborator (EC decides scope only,
+stays excluded). The decision-grade result (live UniProt): **NAD(P) dehydrogenases (EC 1.1.1):
+`cc_cofactor:nad/nadp` reaches 7 of 7804 reviewed; `keyword:NAD/NADP` reaches 7700** (NAD(P) is a
+cosubstrate recorded as KW-0520/0521, not a cofactor comment — exactly the ser_his lesson: a
+family whose defining evidence isn't a cofactor needs a different corroborator). Also SAM-MTase
+`cc_cofactor` 691 → `keyword:Methyltransferase` 14279; broad NAD(P) oxidoreductase 50 →
+`ft_binding` 28669; biotin carboxylase 60 → `ft_binding` 3831; glycosyltransferase (no cofactor
+handle) → `keyword` 10281. Across 6 families the broader handles recover **~64k raw reviewed
+entries** the cofactor handle misses (RAW/illustrative — the broad EC 1.* lane OVERLAPS EC 1.1.1,
+so pools overlap, not additive) and **~741 additional reachable POSITIVE bronze** once cap +
+novelty discount are applied (the bounded figure); 4 families cross the 100-floor only with the
+better handle. These winning handles are the corroborators to wire into the import gate per family;
+the big pools (broad oxidoreductase) must be split by EC-subclass into capped lanes, not sourced as
+one bucket. Leakage: every handle is reviewed annotation used for SCOPE/admission only
+(`excluded_context`, never predictive) — same basis as the existing cofactor+EC handle.
+
+**(2) Source trust-tier + N-of-M corroboration + separate-counters policy.** New
+`source_trust_tiers.py` (offline-tested) encodes the durable governance the future admission engine
+consumes: `SOURCE_TRUST_TIERS` 0–4 (0 reviewed Swiss-Prot → 4 model projection), only **0–2
+bronze-eligible** with escalating `min_independent_corroborators` (1 / 2 / 3), tiers **3–4 are
+hypotheses, never countable bronze** (upgrade-only); `CORROBORATOR_AXES` (6 independent evidence
+axes) + `evaluate_corroboration` (the N-of-M rule, distinct axes only); and `HONEST_COUNTER_AXES`
+— `positive_bronze` / `oos_bronze` / `silver_ready` / `silver_confirmed` / `projected_provisional`,
+which **must never be merged into one victory number**. `build_counter_ledger` over the current
+registries: **positive_bronze 1929, oos_bronze 1696, silver_ready 0, silver_confirmed 17,
+projected 0** (the 17 silver are the already-promoted positives; 1929 bronze + 17 silver = 1946
+total positives — the counters separate tiers honestly). Trust tiers ADD a gate; the governor,
+novelty gate, dedup-vs-both-registries, and leakage gate stay mandatory for every candidate.
+
+Net plan (replaces "reviewed Swiss-Prot → 10k bronze", which the scout disproved): reviewed
+Swiss-Prot with broadened family-specific evidence handles + curated external (tier 1) + carefully
+gated TrEMBL/UniRef (tier 2, N-of-M) + new family ontology breadth (Stage 2) + the mandatory
+governor/novelty gate = a path to 10k DIVERSE positive bronze, with OOS and silver tracked
+separately, never count-inflated. `validate` ok (702/12/15); full suite green except the 6 known
+env-backend failures; no registry written.
+
+References:
+- `src/catalytic_earth/evidence_handle_expansion.py`, `scripts/scout_evidence_handle_expansion.py`,
+  `tests/test_evidence_handle_expansion.py`,
+  `artifacts/v3_evidence_handle_expansion_current702.json`,
+  `work/evidence_handle_expansion_current702.md`.
+- `src/catalytic_earth/source_trust_tiers.py`, `tests/test_source_trust_tiers.py`,
+  `artifacts/v3_source_trust_tier_policy_current702.json`.
+
 ## 2026-06-11: STAGE-3 PREREQS — OOS Hard-Negative Pre-Registration Re-Frozen To The 12fp Universe + Clean Ontology Version Bump (Decoupled)
 
 Decision: completed the two deferred Stage-3 prerequisites the Stage-2 split created, so a NEW

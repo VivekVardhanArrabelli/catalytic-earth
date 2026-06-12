@@ -1,0 +1,76 @@
+{
+  "artifact_id": "v3_source_trust_tier_policy_current702",
+  "corroborator_axes": [
+    "reaction_or_rhea_or_ec_family",
+    "cofactor_or_cosubstrate",
+    "active_site_motif_or_residue_role",
+    "domain_or_family_profile",
+    "sequence_cluster_proximity_to_anchor",
+    "structure_or_pocket_support"
+  ],
+  "corroborator_axis_count_M": 6,
+  "created_utc": "2026-06-12T01:16:38Z",
+  "current_honest_counter_ledger": {
+    "_note": "These are reported SEPARATELY and must never be merged into one number. Silver tiers are 0 today (bronze->silver promotion is a deferred, per-row earned signal); projected is 0 today (no tier-3/4 hypotheses are imported as labels).",
+    "oos_bronze_count": 1696,
+    "positive_bronze_count": 1929,
+    "projected_provisional_count": 0,
+    "silver_confirmed_count": 17,
+    "silver_ready_count": 0
+  },
+  "honest_counter_axes": [
+    "positive_bronze_count",
+    "oos_bronze_count",
+    "silver_ready_count",
+    "silver_confirmed_count",
+    "projected_provisional_count"
+  ],
+  "honest_counters_must_not_be_merged": true,
+  "principles": [
+    "Do NOT redefine 10k to make a number work; positives, OOS, and silver depth are different axes and stay separately counted.",
+    "Fix within-Swiss-Prot evidence handles BEFORE expanding source classes (see evidence_handle_expansion).",
+    "Only tiers 0-2 are bronze-eligible; the further from reviewed Swiss-Prot, the more independent corroborators required. Tiers 3-4 are hypotheses, not countable bronze.",
+    "Trust tiers ADD a gate; the governor, novelty gate, dedup, and leakage gate stay mandatory for every candidate.",
+    "EC / protein-name / UniProt prose stay in excluded_context, never predictive features."
+  ],
+  "purpose": "Durable policy for honest growth beyond reviewed Swiss-Prot: source trust tiers with escalating N-of-M corroboration, and the separate honest counters that must never be merged into one victory number.",
+  "schema_version": "source_trust_tiers.v1",
+  "source_trust_tiers": {
+    "source_tier_0": {
+      "bronze_eligible": true,
+      "description": "Reviewed UniProtKB/Swiss-Prot with EC/Rhea/cofactor/active-site annotation -- the current annotation-anchored basis (incl. the broadened evidence handles).",
+      "min_independent_corroborators": 1,
+      "name": "reviewed Swiss-Prot annotation",
+      "upgrade_only": false
+    },
+    "source_tier_1": {
+      "bronze_eligible": true,
+      "description": "Curated external source (e.g. M-CSA / BRENDA-grade) with a stable accession AND explicit reaction evidence; cross-referenced to a UniProt accession.",
+      "min_independent_corroborators": 2,
+      "name": "curated external enzyme/reaction source",
+      "upgrade_only": false
+    },
+    "source_tier_2": {
+      "bronze_eligible": true,
+      "description": "Unreviewed TrEMBL admitted ONLY with multiple independent corroborators -- stronger corroboration than reviewed Swiss-Prot, because the annotation is not expert-curated.",
+      "min_independent_corroborators": 3,
+      "name": "unreviewed UniProt/TrEMBL with multiple independent corroborators",
+      "upgrade_only": false
+    },
+    "source_tier_3": {
+      "bronze_eligible": false,
+      "description": "Label propagated across a UniRef/sequence cluster from a trusted bronze/silver anchor. A HYPOTHESIS, not countable bronze; may be upgraded to tier 0-2 if independent evidence is attached to the specific entry.",
+      "min_independent_corroborators": 3,
+      "name": "UniRef/cluster propagation from a trusted anchor",
+      "upgrade_only": true
+    },
+    "source_tier_4": {
+      "bronze_eligible": false,
+      "description": "A model- or projection-derived mechanism hypothesis. NEVER countable bronze; tracked separately as a projected/provisional hypothesis until upgraded by evidence.",
+      "min_independent_corroborators": 4,
+      "name": "model/projected mechanism hypothesis",
+      "upgrade_only": true
+    }
+  },
+  "status": "non_destructive_policy_spec_no_registry_or_labels_written"
+}
