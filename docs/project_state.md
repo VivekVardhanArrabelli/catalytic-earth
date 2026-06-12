@@ -26,6 +26,35 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NAD(P)-DEHYDROGENASE + GLYCOSYLTRANSFERASE BRONZE EXPANSION APPLIED (2026-06-12 automation).**
+  The prior broadened-handle preview was rerun with deeper lanes and applied through the canonical
+  external bronze writer, not the frozen benchmark. Main floor run (`--max-records-per-lane 100`):
+  fetched **794** rows -> mechanism-corroborated **709** -> gate-admitted-before-cap **486** ->
+  applied **373** rows (**nad_p_dehydrogenase 150**, **glycosyltransferase 223**); no fetch failures.
+  NAD(P) is now at its chemistry-confusable **150 cap** with **113 held at cap**. Follow-on glyco
+  cap-fill (`--families glycosyltransferase --max-records-per-lane 150`): fetched **445** ->
+  mechanism-corroborated **157** -> applied **27** more glyco rows, with **10 held at cap**, taking
+  glycosyltransferase **223 -> 250**. Net registry result: external bronze **2940 -> 3340** (+400);
+  combined surface **3642 -> 4042**; frozen current702 stayed 702 with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after both applies.
+  Honest counters remain separate after apply: **positive_bronze 2329**, **oos_bronze 1696**,
+  **silver_ready 0**, **silver_confirmed 17**, **projected 0**. Guardrails verified: EC scope-only
+  and never counted; broadened handles are admission/excluded context only; `predictive_evidence []`;
+  all added labels are `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup vs both
+  registries; caps held. Fresh coverage audit: fingerprint Gini **0.1578**, holes `[]`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Validation: targeted pytest
+  **231 passed, 14 subtests**, `validate` ok
+  (12 source / 14 fingerprints / 17 ontology families / 702 labels), `git diff --check` clean.
+  Artifacts/reports: `artifacts/v3_nad_glycosyltransferase_subfamily_sourcing_preview_current702.json`,
+  `artifacts/v3_glycosyltransferase_cap_fill_preview_current702.json`,
+  `work/nad_glycosyltransferase_subfamily_sourcing_current702.md`,
+  `work/glycosyltransferase_cap_fill_current702.md`,
+  `work/nad_glyco_floor_expansion_apply_current702_20260612.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260612_nad_glyco_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260612_nad_glyco_applied.md`.
+  Next scaling action: wire **SAM methyltransferase** as a deliberate 15-fingerprint universe change
+  (spec + ontology + EC 2.1.1/SAM-SAH or Methyltransferase keyword corroborator + no-Fe-S guard +
+  tests + OOS prereg re-freeze) before preview/apply.
 - **BROADENED EVIDENCE HANDLES WIRED INTO THE ADMISSION ENGINE (2026-06-12) — nad_p_dehydrogenase
   + glycosyltransferase admitted via mechanism corroborators, not cofactor comments; PREVIEW only.**
   The evidence-handle scout proved the recovery (NAD(P) EC 1.1.1: `cc_cofactor` 7 → `keyword:NAD/NADP`
@@ -79,7 +108,8 @@ artifact-backed mechanism diagnostics.
   (`positive_bronze`/`oos_bronze`/`silver_ready`/`silver_confirmed`/`projected`) that must never be
   merged. **EC is `ec_scope_hint` — non-counted (scope / fetch / stratification + excluded_context
   only); EC alone can never satisfy N-of-M** (the counted reaction axis is
-  `rhea_reaction_or_participant_pattern`, mechanism, not EC). Current ledger: **positive_bronze 1929, oos_bronze 1696, silver_confirmed 17** (1929
+  `rhea_reaction_or_participant_pattern`, mechanism, not EC). Ledger at that point:
+  **positive_bronze 1929, oos_bronze 1696, silver_confirmed 17** (1929
   bronze + 17 silver = 1946 positives). Trust tiers ADD a gate; governor + novelty gate stay
   mandatory. `validate` ok (702/12/15); full suite green except the 6 known env-backend failures.
   See decision_log 2026-06-12 "EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY";

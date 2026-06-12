@@ -3,6 +3,65 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-12: NAD(P)-DEHYDROGENASE + GLYCOSYLTRANSFERASE BRONZE EXPANSION APPLIED
+
+Decision: the prior broadened-handle NAD(P)/glyco preview was authorized by this automation prompt
+and applied to the **separate external bronze registry only**. The frozen current702 registry stayed
+byte-unchanged: sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before
+and after both applies. The apply path was the canonical
+`catalytic_earth.cli apply-external-annotation-anchored-import`, wrapped with explicit frozen-sha
+checks.
+
+**Applied batch 1 (floor run).** Reran `scripts/source_nad_glycosyltransferase_families.py` with
+`--max-records-per-lane 100` over both families. Live UniProt result: fetched **794** rows ->
+mechanism-corroborated **709** -> gate-admitted before cap **486** -> applied **373** rows.
+Per-family result: **nad_p_dehydrogenase 0 -> 150** (chemistry-confusable cap 150, floor reached,
+**113 held at cap**) and **glycosyltransferase 0 -> 223** (cap 250, floor reached). No fetch
+failures. External bronze **2940 -> 3313**; combined **3642 -> 4015**; duplicate skipped 0.
+
+**Applied batch 2 (glycosyltransferase cap fill).** After batch 1, reran glycosyltransferase only at
+`--max-records-per-lane 150` to use the remaining cap space without opening a new universe version.
+Result: fetched **445** -> mechanism-corroborated **157** -> gate-admitted before cap **37** ->
+applied **27** rows; glycosyltransferase **223 -> 250** and **10 held at cap**. No fetch failures.
+External bronze **3313 -> 3340**; combined **4015 -> 4042**; duplicate skipped 0.
+
+Guardrails held on both previews/applies: EC remained scope-only (`ec_scope_hint`, never counted);
+every added row is `tier=bronze`, `review_status=automation_curated`, `entry_id` namespace
+`uniprot`; broadened keyword/cosubstrate/Rhea/active-site handles are admission/excluded-context
+evidence only; `predictive_evidence` is `[]`; dedup ran against both frozen current702 and external
+bronze; multi-fingerprint-signal rows were not forced; per-fingerprint caps held (NAD(P) 150, glyco
+250). Honest counters after apply are **positive_bronze 2329**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**; do not merge them.
+Fresh coverage/redundancy audit after the applies reports **4042** combined labels, fingerprint
+Gini **0.1578**, expansion holes `[]`, over-cap `['metal_dependent_hydrolase']`, and next-batch
+floor deficit **0**.
+
+Validation: targeted pytest
+`tests/test_nad_glycosyltransferase_subfamily_sourcing.py tests/test_source_trust_tiers.py
+tests/test_leakage_closure.py tests/test_external_annotation_anchored_import.py
+tests/test_coverage_redundancy_audit.py tests/test_novelty_admission_gate.py tests/test_fingerprints.py`
+passed (**231 passed, 14 subtests**); `PYTHONPATH=src python -m catalytic_earth.cli validate` passed
+(12 source records, 14 mechanism fingerprints, 17 mechanism ontology families, 702 curated labels);
+`git diff --check` clean. Real-registry test pins were updated from expansion 2940 / combined 3642 to
+expansion 3340 / combined 4042.
+
+Next decision: the immediate low-risk within-14fp cap fill is exhausted; the next high-value scaling
+lane is **SAM methyltransferase**. Treat it as a deliberate **15-fingerprint universe change**:
+add fingerprint spec + ontology node; add EC 2.1.1 scope with SAM/SAH Rhea participant or
+Methyltransferase keyword corroborator and a **no Fe-S** guard to keep radical-SAM separate; add
+offline leakage/trust-tier tests; re-freeze the OOS pre-registration to 15fp; then run a
+non-destructive preview before any apply.
+
+References:
+`artifacts/v3_nad_glycosyltransferase_subfamily_sourcing_preview_current702.json`,
+`artifacts/v3_glycosyltransferase_cap_fill_preview_current702.json`,
+`work/nad_glycosyltransferase_subfamily_sourcing_current702.md`,
+`work/glycosyltransferase_cap_fill_current702.md`,
+`work/nad_glyco_floor_expansion_apply_current702_20260612.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260612_nad_glyco_applied.json`,
+`work/coverage_redundancy_audit_current702_20260612_nad_glyco_applied.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-12: BROADENED EVIDENCE HANDLES WIRED INTO THE ADMISSION ENGINE — nad_p_dehydrogenase + glycosyltransferase (preview only)
 
 Decision: wired the broadened (non-cofactor) MECHANISM handles into the admission engine
@@ -136,7 +195,7 @@ hypotheses, never countable bronze** (upgrade-only); `CORROBORATOR_AXES` (6 inde
 axes) + `evaluate_corroboration` (the N-of-M rule, distinct axes only); and `HONEST_COUNTER_AXES`
 — `positive_bronze` / `oos_bronze` / `silver_ready` / `silver_confirmed` / `projected_provisional`,
 which **must never be merged into one victory number**. `build_counter_ledger` over the current
-registries: **positive_bronze 1929, oos_bronze 1696, silver_ready 0, silver_confirmed 17,
+registries at that decision point: **positive_bronze 1929, oos_bronze 1696, silver_ready 0, silver_confirmed 17,
 projected 0** (the 17 silver are the already-promoted positives; 1929 bronze + 17 silver = 1946
 total positives — the counters separate tiers honestly). Trust tiers ADD a gate; the governor,
 novelty gate, dedup-vs-both-registries, and leakage gate stay mandatory for every candidate.

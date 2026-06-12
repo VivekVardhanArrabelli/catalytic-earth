@@ -2,6 +2,19 @@
 
 Generated from `work/progress_log.jsonl`.
 
+## Active Automation Run
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-12T21:53:53Z`
+- Started local: `Fri Jun 12 16:53:53 CDT 2026`
+- Focus: gated NAD(P)-dehydrogenase + glycosyltransferase bronze floor expansion, then next 10k scaling action if complete.
+- Result: applied +400 external bronze rows (`nad_p_dehydrogenase` +150, `glycosyltransferase` +250 total across two applies); external bronze 2940 -> 3340; combined surface 3642 -> 4042.
+- Guardrails: frozen current702 sha stayed `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; EC scope-only; `predictive_evidence []`; tier bronze / automation_curated / uniprot namespace.
+- Coverage audit: fingerprint Gini 0.1578; holes `[]`; over-cap `['metal_dependent_hydrolase']`; next-batch floor deficit 0.
+- Validation: targeted pytest 231 passed + 14 subtests; `catalytic_earth.cli validate` passed; `git diff --check` clean.
+- Next action: SAM methyltransferase as a deliberate 15fp universe change with OOS prereg re-freeze before preview/apply.
+- Lock release note: required release with `--require-synced` blocked on `head_not_equal_origin_main` because the completed work is pushed to branch `ce-nad-glyco-floor-expansion-20260612`, not merged to `origin/main`; lock release proceeds with clean/no-merge checks after recording this.
+
 ## Time
 
 - Entries: 383

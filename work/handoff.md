@@ -1,5 +1,51 @@
 # Handoff
 
+## Session run - NAD(P)/glyco bronze floor and cap expansion applied (2026-06-12, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; isolated detached worktree at origin/main
+  `5f6047cf`. Lock acquired under the actual worktree gitdir because `.git` is a gitdir pointer
+  file in this worktree. Live UniProt egress worked.
+- Status: **APPLIED gated bronze growth to the separate external registry.** Frozen current702 stayed
+  byte-unchanged (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before
+  and after both applies. External bronze **2940 -> 3340** (+400); combined label surface
+  **3642 -> 4042**.
+- Primary rerun: `PYTHONPATH=src python scripts/source_nad_glycosyltransferase_families.py
+  --max-records-per-lane 100` wrote
+  `artifacts/v3_nad_glycosyltransferase_subfamily_sourcing_preview_current702.json` and
+  `work/nad_glycosyltransferase_subfamily_sourcing_current702.md`: fetched 794, mechanism-corroborated
+  709, gate-admitted-before-cap 486, applied 373 rows. Family results:
+  `nad_p_dehydrogenase` 0->150 (confusable cap 150; 113 held at cap) and `glycosyltransferase`
+  0->223 (cap 250). Fetch failures 0; duplicate skipped 0.
+- Follow-on scaling action in the same 14fp universe: `PYTHONPATH=src python
+  scripts/source_nad_glycosyltransferase_families.py --families glycosyltransferase
+  --max-records-per-lane 150 --out artifacts/v3_glycosyltransferase_cap_fill_preview_current702.json
+  --report work/glycosyltransferase_cap_fill_current702.md`: fetched 445, mechanism-corroborated 157,
+  gate-admitted-before-cap 37, applied 27 rows, `glycosyltransferase` 223->250; 10 held at cap;
+  fetch failures 0; duplicate skipped 0.
+- Guardrails verified: EC is scope-only (`ec_scope_hint`) and never counted; broadened keyword /
+  cosubstrate / Rhea / active-site handles are admission and excluded-context evidence only;
+  `predictive_evidence []`; every added row is `tier=bronze`, `review_status=automation_curated`,
+  `uniprot:*`; dedup against both frozen current702 and external bronze; multi-fingerprint-signal
+  rows held; per-fingerprint caps enforced.
+- Honest counters after apply: `positive_bronze=2329`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`. Do not merge them. Remaining positive-bronze gap to 10k:
+  7671.
+- Fresh governor audit:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260612_nad_glyco_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260612_nad_glyco_applied.md`; fingerprint Gini 0.1578,
+  holes `[]`, over-cap `['metal_dependent_hydrolase']`, next-batch floor deficit 0.
+- Validation: targeted pytest over sourcing/trust/leakage/import/coverage/novelty/fingerprint tests
+  passed (`231 passed, 14 subtests`); `PYTHONPATH=src python -m catalytic_earth.cli validate` passed
+  (12 source records, 14 mechanism fingerprints, 17 ontology families, 702 curated labels);
+  `git diff --check` clean.
+- Real-registry count pins updated: `tests/test_coverage_redundancy_audit.py` and
+  `tests/test_novelty_admission_gate.py` now expect expansion 3340 / combined 4042.
+- Next exact action: wire **SAM methyltransferase** as a deliberate 15-fingerprint universe change:
+  add fingerprint spec and ontology node; add EC 2.1.1 scope plus SAM/SAH Rhea participant or
+  Methyltransferase keyword mechanism corroborator with a no-Fe-S guard against radical-SAM; add
+  offline leakage/trust-tier tests; re-freeze the OOS pre-registration to 15fp; then run a
+  non-destructive preview and apply only if novelty/governor/dedup/trust-tier gates pass.
+
 ## Session run — broadened evidence handles wired into the admission engine (2026-06-12, Claude Code web)
 
 - Session: Claude Code cloud (web) session; live UniProt egress confirmed. Branch

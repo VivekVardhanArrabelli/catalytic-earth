@@ -1,6 +1,6 @@
 # NAD(P)-dehydrogenase + Glycosyltransferase Sourcing — broadened evidence handles (non-destructive preview)
 
-Run: 2026-06-12T11:15:22Z
+Run: 2026-06-12T21:56:27Z
 
 Sources fresh reviewed Swiss-Prot bronze for two families whose defining evidence is
 NOT a UniProt cofactor comment, via the broadened mechanism corroborator (cosubstrate /
@@ -11,23 +11,23 @@ novelty gate and a per-family cap guard. EC / keyword / cosubstrate are scope-on
 ## Result
 
 - Families sourced: nad_p_dehydrogenase, glycosyltransferase.
-- Lanes queried: 8 (<= 25 rows each).
-- Fetched candidate rows: 149.
-- Mechanism-corroborated bronze labels: 128 (held 0, skipped 21).
-- **Novelty-admitted labels: 127** (throttled/rejected 1; held@cap 0).
-- Combined registry 3642 -> **3769** if merged.
+- Lanes queried: 8 (<= 100 rows each).
+- Fetched candidate rows: 794.
+- Mechanism-corroborated bronze labels: 709 (held 0, skipped 85).
+- **Novelty-admitted labels: 373** (throttled/rejected 223; held@cap 113).
+- Combined registry 3642 -> **4015** if merged.
 
 ## Floor projection (100-label floor; per-family cap)
 
 | Family | missing-context | combined before | admitted | projected | cap | floor | held@cap |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| nad_p_dehydrogenase | nad_p_cosubstrate | 0 | 93 | 93 | 150 | False | 0 |
-| glycosyltransferase | sugar_nucleotide_donor | 0 | 34 | 34 | 250 | False | 0 |
+| nad_p_dehydrogenase | nad_p_cosubstrate | 0 | 150 | 150 | 150 | True | 113 |
+| glycosyltransferase | sugar_nucleotide_donor | 0 | 223 | 223 | 250 | True | 0 |
 
 ## Novelty gate
 
-- Decisions: {'admit': 127, 'throttle': 1}.
-- Reasons: {'closes_hole_fingerprint': 52, 'closes_under_floor_fingerprint': 75, 'needed_fingerprint_but_redundant_ortholog': 1}.
+- Decisions: {'admit': 486, 'reject': 167, 'throttle': 56}.
+- Reasons: {'adds_diversity': 274, 'closes_hole_fingerprint': 52, 'closes_under_floor_fingerprint': 148, 'fingerprint_over_cap_no_new_chemistry': 167, 'needed_fingerprint_but_redundant_ortholog': 3, 'over_cap_but_new_reaction_chemistry': 12, 'redundant_no_novelty_signal': 53}.
 
 ## Disambiguation holds (mechanism corroboration)
 

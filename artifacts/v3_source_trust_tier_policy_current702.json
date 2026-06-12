@@ -9,11 +9,11 @@
     "structure_or_pocket_support"
   ],
   "corroborator_axis_count_M": 6,
-  "created_utc": "2026-06-12T02:08:17Z",
+  "created_utc": "2026-06-12T22:23:56Z",
   "current_honest_counter_ledger": {
     "_note": "These are reported SEPARATELY and must never be merged into one number. Silver tiers are 0 today (bronze->silver promotion is a deferred, per-row earned signal); projected is 0 today (no tier-3/4 hypotheses are imported as labels).",
     "oos_bronze_count": 1696,
-    "positive_bronze_count": 1929,
+    "positive_bronze_count": 2329,
     "projected_provisional_count": 0,
     "silver_confirmed_count": 17,
     "silver_ready_count": 0
