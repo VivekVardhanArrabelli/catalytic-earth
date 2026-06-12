@@ -41,16 +41,25 @@ from .coverage_redundancy_audit import (
 ARTIFACT_ID = "v3_source_trust_tier_policy_current702"
 SCHEMA_VERSION = "source_trust_tiers.v1"
 
-# Independent evidence axes. A candidate "satisfies" an axis when it carries that annotated/structural
-# evidence. The N-of-M corroboration rule counts DISTINCT satisfied axes (EC scope is NOT an axis --
-# it decides scope only and stays excluded). These mirror the corroborators the user enumerated.
+# COUNTED corroborator axes -- independent MECHANISM evidence. A candidate "satisfies" an axis when
+# it carries that annotated/structural evidence; the N-of-M rule counts DISTINCT satisfied axes.
+# EC is deliberately NOT here: EC decides SCOPE only (fetch / stratification / excluded_context) and
+# must never count toward corroboration -- a row's EC alone cannot make it a corroborated mechanism
+# label. (Rhea, by contrast, IS mechanism evidence: the reaction transformation / participants.)
 CORROBORATOR_AXES: tuple[str, ...] = (
-    "reaction_or_rhea_or_ec_family",       # specific reaction / Rhea participant / EC reaction family
-    "cofactor_or_cosubstrate",             # cofactor comment OR cosubstrate (e.g. NAD(P)) keyword/ligand
-    "active_site_motif_or_residue_role",   # active-site / binding-site residue or sequence motif
-    "domain_or_family_profile",            # Pfam/InterPro/family signature or functional keyword
-    "sequence_cluster_proximity_to_anchor",# UniRef/cluster proximity to a trusted bronze/silver anchor
-    "structure_or_pocket_support",         # AFDB/PDB coordinate or active-site pocket geometry
+    "rhea_reaction_or_participant_pattern", # Rhea reaction transformation / participant (mechanism, NOT EC)
+    "cofactor_or_cosubstrate",              # cofactor comment OR cosubstrate (e.g. NAD(P)) keyword/ligand
+    "active_site_motif_or_residue_role",    # active-site / binding-site residue or sequence motif
+    "domain_or_family_profile",             # Pfam/InterPro/family signature or functional keyword
+    "sequence_cluster_proximity_to_anchor", # UniRef/cluster proximity to a trusted bronze/silver anchor
+    "structure_or_pocket_support",          # AFDB/PDB coordinate or active-site pocket geometry
+)
+
+# Allowed scope axes that are NEVER counted toward corroboration. EC stays a first-class
+# SCOPE / fetch / stratification signal and lives in excluded_context; it is recognized here so that
+# passing it is not an "unknown axis" error, but it can never satisfy any part of the N-of-M rule.
+NON_COUNTED_SCOPE_AXES: tuple[str, ...] = (
+    "ec_scope_hint",                        # EC class: fetch / scope / stratification only, never counted
 )
 
 # Trust tiers. `bronze_eligible` gates whether a tier may ever produce a COUNTABLE bronze label.
@@ -143,7 +152,15 @@ def evaluate_corroboration(
         )
     tier = SOURCE_TRUST_TIERS[source_tier]
     distinct_axes = sorted({a for a in present_axes if a in CORROBORATOR_AXES})
-    unknown_axes = sorted({a for a in present_axes if a not in CORROBORATOR_AXES})
+    # EC (and any non-counted scope axis) is recognized but never counts toward N-of-M.
+    scope_hint_axes = sorted({a for a in present_axes if a in NON_COUNTED_SCOPE_AXES})
+    unknown_axes = sorted(
+        {
+            a
+            for a in present_axes
+            if a not in CORROBORATOR_AXES and a not in NON_COUNTED_SCOPE_AXES
+        }
+    )
     required = int(tier["min_independent_corroborators"])
     meets_n_of_m = len(distinct_axes) >= required
 
@@ -160,6 +177,7 @@ def evaluate_corroboration(
         "required_independent_corroborators": required,
         "distinct_corroborator_axes": distinct_axes,
         "distinct_corroborator_count": len(distinct_axes),
+        "scope_hint_axes_present_not_counted": scope_hint_axes,
         "unknown_axes_ignored": unknown_axes,
         "meets_n_of_m": meets_n_of_m,
         "decision": decision,
@@ -241,10 +259,15 @@ def build_source_trust_tier_policy(
             "Trust tiers ADD a gate; the governor, novelty gate, dedup, and leakage gate stay "
             "mandatory for every candidate.",
             "EC / protein-name / UniProt prose stay in excluded_context, never predictive features.",
+            "EC stays allowed for fetch / scope / stratification, but is NEVER a counted "
+            "corroborator: EC alone cannot satisfy N-of-M. Mechanism evidence (Rhea, cofactor, "
+            "active-site, domain, cluster, structure) is what corroborates.",
         ],
         "source_trust_tiers": SOURCE_TRUST_TIERS,
         "corroborator_axes": list(CORROBORATOR_AXES),
         "corroborator_axis_count_M": len(CORROBORATOR_AXES),
+        "non_counted_scope_axes": list(NON_COUNTED_SCOPE_AXES),
+        "ec_is_scope_only_not_a_counted_corroborator": True,
         "honest_counter_axes": list(HONEST_COUNTER_AXES),
         "honest_counters_must_not_be_merged": True,
         "current_honest_counter_ledger": ledger,
