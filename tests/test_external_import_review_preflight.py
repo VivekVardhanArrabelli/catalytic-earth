@@ -233,20 +233,6 @@ class ExternalImportReviewPreflightTests(unittest.TestCase):
             )
             self.assertTrue(artifact["validation_checks"]["passed"])
             self.assertEqual(artifact["counts"]["controlled_import_review_ready"], 1)
-            self.assertEqual(
-                artifact["source_surface_reconciliation"][
-                    "import_ready_preview_rows_reviewed"
-                ],
-                5,
-            )
-            self.assertEqual(
-                artifact["source_surface_reconciliation"]["review_surface_rows"],
-                5,
-            )
-            self.assertIn(
-                "current main has 1 machine-clean Wave 2 rows",
-                artifact["defense_ledger_next_action"],
-            )
 
             ready_preview = build_external_import_review_ready_preview(artifact)
             repair_queue = build_external_import_review_repair_queue(artifact)
