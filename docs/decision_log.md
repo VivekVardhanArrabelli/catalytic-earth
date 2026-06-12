@@ -3,6 +3,29 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-12: EC IS SCOPE-ONLY, NEVER A COUNTED CORROBORATOR — Trust-Tier Axis Split + Mechanism-First Affirmation
+
+Decision: after a review of "why do we depend so much on EC," affirmed the principle and fixed one
+genuine inconsistency. EC stays ALLOWED for fetch / scope / stratification and `excluded_context` —
+that is the deliberate, sound leakage-wall design (EC decides scope, is never a predictive feature),
+NOT a drift to refactor away. The predictor/atlas is already EC-free by that wall (features = cofactor
+identity, Rhea bond-change, active-site roles, geometry; 1c reads Rhea, not EC). What WAS inconsistent:
+the new `source_trust_tiers.CORROBORATOR_AXES` lumped Rhea with EC under `reaction_or_rhea_or_ec_family`,
+contradicting its own rule that EC is not a corroborator. Split it — counted MECHANISM axis
+`rhea_reaction_or_participant_pattern`; non-counted scope axis `ec_scope_hint` (recognized + allowed,
+but can never satisfy any part of the N-of-M rule). `evaluate_corroboration` now reports
+`scope_hint_axes_present_not_counted` separately from unknown axes; new tests prove EC alone cannot
+admit a label even at tier_0 and cannot inflate the corroborator count at any tier. Net principle
+(durable): **fetch broadly (EC/keyword), decide membership by MECHANISM evidence (Rhea, cofactor/
+cosubstrate, active-site, domain, cluster, structure); EC is the scope selector + stratifier only.**
+Next step (prompt handed to the user): wire the broadened mechanism handles (keyword / binding-site /
+active-site / cosubstrate-Rhea) into the admission engine family-by-family, with EC as the scope
+selector and the trust-tier N-of-M requiring ≥1 mechanism corroborator. Non-destructive; no registry/
+label written; frozen current702 untouched (`sha256:5eec9bef…`); module tests green.
+
+References: `src/catalytic_earth/source_trust_tiers.py`, `tests/test_source_trust_tiers.py`,
+`artifacts/v3_source_trust_tier_policy_current702.json`.
+
 ## 2026-06-12: EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY — Fix Within-Swiss-Prot Handles First, Then Expand Sources Honestly (Separate Counters)
 
 Decision (user direction, 2026-06-12): the breadth scout's "reviewed Swiss-Prot can't reach 10k

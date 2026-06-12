@@ -41,10 +41,12 @@ artifact-backed mechanism diagnostics.
   figure); the big pools must be split by EC-subclass into capped lanes. These winning handles are
   what to wire into the import gate per family before sourcing beyond Swiss-Prot. (2)
   `source_trust_tiers.py` encodes the durable policy: trust tiers 0–4 (only 0–2 bronze-eligible,
-  escalating N-of-M corroboration 1/2/3; tiers 3–4 are hypotheses, never countable bronze), 6
-  independent corroborator axes + `evaluate_corroboration`, and the SEPARATE honest counters
+  escalating N-of-M corroboration 1/2/3; tiers 3–4 are hypotheses, never countable bronze), 6 counted
+  MECHANISM corroborator axes + `evaluate_corroboration`, and the SEPARATE honest counters
   (`positive_bronze`/`oos_bronze`/`silver_ready`/`silver_confirmed`/`projected`) that must never be
-  merged. Current ledger: **positive_bronze 1929, oos_bronze 1696, silver_confirmed 17** (1929
+  merged. **EC is `ec_scope_hint` — non-counted (scope / fetch / stratification + excluded_context
+  only); EC alone can never satisfy N-of-M** (the counted reaction axis is
+  `rhea_reaction_or_participant_pattern`, mechanism, not EC). Current ledger: **positive_bronze 1929, oos_bronze 1696, silver_confirmed 17** (1929
   bronze + 17 silver = 1946 positives). Trust tiers ADD a gate; governor + novelty gate stay
   mandatory. `validate` ok (702/12/15); full suite green except the 6 known env-backend failures.
   See decision_log 2026-06-12 "EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY";

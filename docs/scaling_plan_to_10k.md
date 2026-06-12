@@ -11,6 +11,47 @@ decision-log citation.
 
 ---
 
+## 2026-06-12 update — measured re-scope of the path (read this first)
+
+Three findings from live recon refine the path below (none of them redefine the count to
+make it "work"; see decision_log 2026-06-11/12):
+
+1. **"Reviewed Swiss-Prot → 10k positive bronze" is false** (breadth feasibility scout):
+   15/18 candidate families beyond the 12 are clean, but the clean capped supply projects
+   to only ~4.7k positive bronze (gap ~5.3k). So 10k diverse POSITIVE bronze needs either
+   broadened handles + source expansion, or honest re-scoping — **not** padding.
+2. **Some shortage is an evidence-HANDLE problem, not supply** (evidence-handle scout):
+   e.g. NAD(P) dehydrogenases (EC 1.1.1) have ~7800 reviewed entries but the `cc_cofactor`
+   handle reaches 7; `keyword:NAD/NADP` reaches 7700 (NAD is a cosubstrate keyword, not a
+   cofactor comment). **Fix within-Swiss-Prot handles BEFORE expanding source classes.**
+3. **The honest counters stay SEPARATE.** Do NOT merge positives / OOS / silver depth /
+   projections into one victory number; OOS and silver are different axes, projections are
+   not real yet (`source_trust_tiers.HONEST_COUNTER_AXES`).
+
+The refined path (replaces "reviewed Swiss-Prot → 10k bronze"):
+**reviewed Swiss-Prot with broadened, family-specific MECHANISM handles + curated external
+(tier 1) + carefully gated TrEMBL/UniRef (tier 2, N-of-M corroboration) + new family
+ontology breadth (Stage 2) + the mandatory governor/novelty gate = diverse positive bronze,
+with OOS and silver tracked separately.**
+
+Discipline that makes this honest (do not violate):
+- **Source trust tiers** (`source_trust_tiers.py`): only tiers 0–2 are bronze-eligible, with
+  escalating N-of-M corroboration (1/2/3); tiers 3–4 (cluster/model projection) are
+  hypotheses, never countable bronze. Trust tiers ADD a gate; the governor + novelty gate
+  + dedup + leakage gate stay mandatory.
+- **EC is scope-only, never a counted corroborator.** EC stays allowed for fetch / scope /
+  stratification and `excluded_context`; the predictor is EC-free (features = cofactor
+  identity, Rhea bond-change, active-site roles, geometry). Fetch broadly (EC/keyword),
+  decide membership by **mechanism** evidence (Rhea, cofactor/cosubstrate, active-site,
+  domain, cluster, structure). `evaluate_corroboration`'s counted axes exclude EC
+  (`ec_scope_hint` is non-counted).
+- **Next concrete step:** wire the broadened mechanism handles into the admission engine
+  family-by-family (NAD(P)-dehydrogenase EC-subclass lanes, glycosyltransferase, …), via
+  non-destructive preview → explicit `--apply`. See decision_log 2026-06-12 entries and
+  `artifacts/v3_evidence_handle_expansion_current702.json` for the per-family winning handle.
+
+---
+
 ## The one reframe everything depends on
 
 **10k is not 10k rows. It is a balanced, non-redundant mechanism atlas where the

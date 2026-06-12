@@ -1,5 +1,22 @@
 # Handoff
 
+## Session run — EC-axis split (scope-only) + merged to main (2026-06-12, Claude Code web)
+
+- Session: Claude Code cloud (web) session. Branch `claude/lucid-hypatia-wb855e`, fast-forward merged
+  to `main` (user authorized the merge). Not a Mac automation-harness run — no harness metadata.
+- Split EC out of the counted corroborator axes in `source_trust_tiers`: counted MECHANISM axis
+  `rhea_reaction_or_participant_pattern`; non-counted scope axis `ec_scope_hint` (allowed for
+  fetch/scope/stratification + excluded_context, but can NEVER satisfy N-of-M). `evaluate_corroboration`
+  reports `scope_hint_axes_present_not_counted`; new tests prove EC alone can't admit a label at any
+  tier and can't inflate the count. Affirmed (after an EC-dependence review) that EC-for-scope is the
+  deliberate, sound leakage-wall design — not a drift to refactor away; the predictor stays EC-free.
+- Non-destructive; frozen current702 untouched (`sha256:5eec9bef…`); validate ok; module tests green.
+- Exact next action: wire the broadened MECHANISM handles (keyword / binding-site / active-site /
+  cosubstrate-Rhea) into the admission engine FAMILY-BY-FAMILY (a ready prompt was handed to the user).
+  EC stays the scope selector only; trust-tier N-of-M requires ≥1 mechanism corroborator. First batch:
+  NAD(P)-dehydrogenase (EC 1.1.1, split into capped EC-subclass lanes; keyword:NAD/NADP handle) and
+  glycosyltransferase (keyword:Glycosyltransferase). Non-destructive preview → explicit --apply only.
+
 ## Session run — EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY (2026-06-12, Claude Code web)
 
 - Session: Claude Code cloud (web) session; live UniProt egress confirmed. Branch
