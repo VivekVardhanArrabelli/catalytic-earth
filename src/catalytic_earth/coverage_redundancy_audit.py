@@ -120,6 +120,19 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "adenosylcobalamin / vitamin B12 (radical rearrangement)",
         "lanes": ["cobalamin radical", "plp_radical_cobalamin"],
     },
+    # Broadened-handle families (2026-06-12). Their defining corroborator is a dissociable
+    # COSUBSTRATE / donor (read as a Rhea participant or functional keyword), NOT a cofactor
+    # comment -- `cofactor` below records that deploy-missing context. Accounting metadata only.
+    "nad_p_dehydrogenase": {
+        "ec_prefixes": ["1.1.1"],
+        "cofactor": "NAD(P) cosubstrate (dissociable nicotinamide dinucleotide; Rossmann GxGxxG)",
+        "lanes": ["nad_p_dehydrogenase"],
+    },
+    "glycosyltransferase": {
+        "ec_prefixes": ["2.4"],
+        "cofactor": "nucleotide-sugar donor (UDP/GDP/dTDP/CMP-sugar; GT-A DxD metal or GT-B cleft)",
+        "lanes": ["glycosyltransferase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

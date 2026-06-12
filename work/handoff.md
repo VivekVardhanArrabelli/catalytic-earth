@@ -1,5 +1,37 @@
 # Handoff
 
+## Session run — broadened evidence handles wired into the admission engine (2026-06-12, Claude Code web)
+
+- Session: Claude Code cloud (web) session; live UniProt egress confirmed. Branch
+  `claude/catalytic-earth-evidence-handles-i49gyr`. Not a Mac automation-harness run.
+- Status: **Wired the broadened (non-cofactor) MECHANISM handles into the admission engine for the
+  first two families; NON-DESTRUCTIVE preview only (no --apply, no registry/label write).** Frozen
+  current702 byte-unchanged (`sha256:5eec9bef…`); expansion stays 2940.
+- Engine: generalized `external_cofactor_ec_disambiguation` from a cofactor-only corroborator to a
+  per-family MECHANISM corroborator (`mechanism_corroborator_axes`) reading cosubstrate / Rhea
+  participant, functional keyword (UniProt `keywords`, now extracted in `adapters` + on the ingestion
+  row), and binding-/active-site presence. EC-prefix = SCOPE selector; a mechanism axis CONFIRMS;
+  admission gated by `source_trust_tiers.evaluate_corroboration(source_tier_0, …)` (≥1 mechanism
+  axis); EC = `ec_scope_hint`, NEVER counted. Broadened handles → excluded_context, never predictive
+  (`predictive_evidence []`).
+- Families: `nad_p_dehydrogenase` (EC 1.1.1, capped EC-subclass lanes, NAD(P) cosubstrate handle,
+  confusable cap 150) and `glycosyltransferase` (EC 2.4, sugar-nucleotide donor / Glycosyltransferase
+  keyword, cap 250). Each: fingerprint spec + ontology node + disambiguation rule + lane queries +
+  `DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT` + governor signature + offline tests + runner
+  (`nad_glycosyltransferase_subfamily_sourcing.py` / `scripts/source_nad_glycosyltransferase_families.py`).
+- Live preview (real UniProt, 25/lane): fetched 149 → corroborated 128 → novelty-admitted 127 →
+  cap-guarded 127; nad_p 0→93 (cap 150), glyco 0→34 (cap 250); combined 3642→3769 if merged; 2 lane
+  search timeouts; **neither hit the 100-floor at 25/lane** (re-run higher to reach floor).
+- Universe 12→14: `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` → `label_factory_v1_14fp`; OOS prereg
+  re-frozen (`…preregistration_14fp_1025.json`, supersedes 12fp); historical `_8fp` stamp unchanged.
+  OOS inverse gate now reports `incomplete_current_fingerprint_coverage` (new fps lack atlas) —
+  Stage-3-style; OOS tranche blocked until they gain atlas. `validate` ok (14/17/702); suite green
+  except the 6 known env-backend failures; `git diff --check` clean.
+- Exact next action: AUTHORIZE the registry merge (`--apply`) to source nad_p/glyco bronze to the
+  100-floor (re-run the runner at a higher `--max-records-per-lane` to clear the floor, then `--apply`
+  prints the frozen sha before/after). Then continue wiring the remaining broadened-handle families
+  (SAM-MTase keyword, non-heme-iron 2OG, etc.). Counters stay separate (positive_bronze / oos / silver).
+
 ## Session run — EC-axis split (scope-only) + merged to main (2026-06-12, Claude Code web)
 
 - Session: Claude Code cloud (web) session. Branch `claude/lucid-hypatia-wb855e`, fast-forward merged

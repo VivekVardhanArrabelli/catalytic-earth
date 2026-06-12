@@ -7675,12 +7675,25 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             row["ontology_version_at_decision"], "label_factory_v1_8fp"
         )
-        self.assertEqual(row["out_of_scope_inverse_gate"]["inverse_gate_status"], "passed")
-        self.assertTrue(
-            row["out_of_scope_inverse_gate"][
-                "all_current_fingerprint_scores_below_threshold"
-            ]
+        # After the 2026-06-12 universe expansion (12 -> 14: nad_p_dehydrogenase +
+        # glycosyltransferase) the OOS inverse gate is BLOCKED on incomplete current-fingerprint
+        # coverage -- the two new positive fingerprints have no atlas yet, so they cannot be
+        # scored. The SDR row's max scored fingerprint stays below threshold (it is NOT a false
+        # non-abstention); it simply cannot be CERTIFIED as a clean hard-negative until the new
+        # fingerprints gain atlas coverage. This is the documented consequence of growing the
+        # positive universe (a new OOS hard-negative tranche stays blocked until then).
+        inverse_gate = row["out_of_scope_inverse_gate"]
+        self.assertEqual(inverse_gate["inverse_gate_status"], "blocked")
+        self.assertIn(
+            "out_of_scope_inverse_gate_incomplete_current_fingerprint_coverage",
+            inverse_gate["blockers"],
         )
+        self.assertEqual(
+            sorted(inverse_gate["missing_current_fingerprint_ids"]),
+            ["glycosyltransferase", "nad_p_dehydrogenase"],
+        )
+        self.assertNotIn("out_of_scope_false_non_abstention", inverse_gate["blockers"])
+        self.assertFalse(inverse_gate["all_current_fingerprint_scores_below_threshold"])
         self.assertNotIn(
             "representation_stability_changed_requires_review",
             row["remaining_import_blockers"],

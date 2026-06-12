@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-11
+Last refreshed: 2026-06-12
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -26,6 +26,39 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **BROADENED EVIDENCE HANDLES WIRED INTO THE ADMISSION ENGINE (2026-06-12) — nad_p_dehydrogenase
+  + glycosyltransferase admitted via mechanism corroborators, not cofactor comments; PREVIEW only.**
+  The evidence-handle scout proved the recovery (NAD(P) EC 1.1.1: `cc_cofactor` 7 → `keyword:NAD/NADP`
+  7700); this wires that fix into the gate. `external_cofactor_ec_disambiguation` was generalized
+  from a cofactor-only corroborator to a per-family MECHANISM corroborator (`mechanism_corroborator_axes`)
+  reading, in addition to cofactor: cosubstrate / Rhea reaction participant, functional keyword
+  (UniProt `keywords`, now extracted in `adapters` + carried on the ingestion row), and
+  binding-/active-site presence. "Exactly one rule fires": the EC-prefix predicate is the SCOPE
+  selector, a mechanism axis CONFIRMS membership, and admission requires
+  `source_trust_tiers.evaluate_corroboration(source_tier_0, …)` to admit (≥1 counted MECHANISM axis);
+  **EC is `ec_scope_hint`, NEVER counted** (EC alone can never admit). Broadened handles are
+  SCOPE/ADMISSION evidence → `evidence.source_trust_tier`/`excluded_context`, never predictive
+  (`predictive_evidence []`; leakage wall unchanged). Two families added end-to-end: fingerprint
+  specs (`mechanism_fingerprints.json`, deploy-missing context = NAD(P) cosubstrate / sugar-nucleotide
+  donor), ontology nodes (`nicotinamide_redox`, `glycosyl_transfer`), disambiguation rules
+  (nad_p EC 1.1.1, glyco EC 2.4), capped EC-subclass lane queries + `DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT`,
+  governor signatures, OFFLINE tests, and a runner
+  (`nad_glycosyltransferase_subfamily_sourcing.py` / `scripts/source_nad_glycosyltransferase_families.py`,
+  modeled on the Stage-2 runner; per-family cap 150 confusable / 250 else). **Live preview (real
+  UniProt, 25/lane, non-destructive):** fetched **149** → mechanism-corroborated **128** →
+  novelty-admitted **127** → cap-guarded **127** → projected **nad_p_dehydrogenase 0→93** (cap 150),
+  **glycosyltransferase 0→34** (cap 250); combined 3642 → **3769 if merged**; 2 lane search timeouts,
+  neither family hit the 100-floor at 25/lane (re-run higher to reach floor). Universe 12 → **14**:
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` → `label_factory_v1_14fp`, OOS prereg re-frozen
+  (`…preregistration_14fp_1025.json`, supersedes 12fp), historical `_8fp` label stamp unchanged; the
+  OOS inverse gate now reports `incomplete_current_fingerprint_coverage` until the new fingerprints
+  gain atlas (Stage-3-style; OOS tranche stays blocked until then). Frozen current702 byte-unchanged
+  (`sha256:5eec9bef…`); expansion stays 2940; **no `--apply`, no registry write**. `validate` ok
+  (14 fp / 17 ontology families / 702 labels); full suite green except the 6 known env-backend
+  failures; `git diff --check` clean. **STOP before --apply — preview reported for authorization.**
+  See decision_log 2026-06-12 "BROADENED EVIDENCE HANDLES WIRED INTO THE ADMISSION ENGINE";
+  `artifacts/v3_nad_glycosyltransferase_subfamily_sourcing_preview_current702.json`,
+  `work/nad_glycosyltransferase_subfamily_sourcing_current702.md`.
 - **EVIDENCE-HANDLE EXPANSION + SOURCE TRUST-TIER POLICY (2026-06-12) — fix within-Swiss-Prot
   handles first, then expand sources honestly; counters stay separate.** User direction: the
   breadth scout's shortfall is partly a HANDLE problem (fix before leaving Swiss-Prot) and partly a

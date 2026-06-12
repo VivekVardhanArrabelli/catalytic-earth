@@ -3,6 +3,77 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-12: BROADENED EVIDENCE HANDLES WIRED INTO THE ADMISSION ENGINE — nad_p_dehydrogenase + glycosyltransferase (preview only)
+
+Decision: wired the broadened (non-cofactor) MECHANISM handles into the admission engine
+family-by-family, so families whose defining evidence is NOT a UniProt cofactor comment can be
+admitted honestly. NON-DESTRUCTIVE preview only — no `--apply`, no registry/label write; the frozen
+current702 benchmark is byte-unchanged (`sha256:5eec9bef…`); the separate expansion registry stays
+2940. This is the concrete next step the prior EC-axis-split entry handed off.
+
+**Engine generalization (the core).** `external_cofactor_ec_disambiguation` corroborated family
+scope ONLY via `cofactor_evidence` (the UniProt COFACTOR comment). Generalized it to a per-family
+MECHANISM CORROBORATOR (`mechanism_corroborator_axes`) that, in addition to cofactor, reads:
+cosubstrate / Rhea reaction participant (from the catalytic-activity reaction text already on the
+ingestion row), functional keyword (UniProt entry `keywords`, now extracted in
+`adapters.normalize_uniprot_entry_json` and carried on the ingestion row), and binding-/active-site
+feature presence (normalized residue locators). "Exactly one rule fires" is preserved: the EC-prefix
+predicate stays the SCOPE selector (which lane), and a mechanism axis CONFIRMS membership. Each
+admission now maps to `source_trust_tiers.evaluate_corroboration(source_tier="source_tier_0",
+present_axes=[…])` and must ADMIT (≥1 counted MECHANISM axis) before a label is built; **EC is passed
+as `ec_scope_hint` and is NEVER a counted corroborator** (tier_0 still needs ≥1 mechanism axis, so
+EC alone can never admit a row). The broadened handles (keyword / binding / active-site / cosubstrate
+Rhea participant) are SCOPE/ADMISSION evidence → recorded under `evidence.source_trust_tier` +
+`import_gate_evidence` + `excluded_context`, **never predictive features** (`predictive_evidence`
+stays `[]`; the leakage wall is unchanged).
+
+**First batch (two families).** (1) `nad_p_dehydrogenase` — EC 1.1.1, SPLIT into capped EC-subclass
+lanes (the scout's "huge, ortholog-padded pool"); corroborator = NAD(P) cosubstrate (Rhea
+nicotinamide participant or NAD/NADP keyword) + active-site/Rossmann; deploy-missing context =
+NAD(P) cosubstrate; chemistry-confusable → cap 150. (2) `glycosyltransferase` — EC 2.4; corroborator
+= sugar-nucleotide donor (Rhea participant) or Glycosyltransferase keyword; deploy-missing context =
+sugar-nucleotide donor; cap 250. For EACH: fingerprint spec (`mechanism_fingerprints.json`, with the
+declared deploy-missing context), ontology node (`mechanism_ontology.json`: `nicotinamide_redox`,
+`glycosyl_transfer`), disambiguation rule (broadened corroborator + EC-scope predicate), lane queries
++ the `DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT` analog (`external_annotation_anchored_import.py`),
+governor signature (`coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES`), and OFFLINE tests
+(injected fetchers). Runner modeled on the Stage-2 hydrolase runner:
+`nad_glycosyltransferase_subfamily_sourcing.py` / `scripts/source_nad_glycosyltransferase_families.py`.
+
+**Live preview (real UniProt, `--max-records-per-lane 25`, non-destructive).** fetched **149** rows →
+mechanism-corroborated **128** (EC scope + ≥1 mechanism axis) → novelty-admitted **127** →
+cap-guarded **127** (0 held@cap) → projected: **nad_p_dehydrogenase 0→93** (cap 150),
+**glycosyltransferase 0→34** (cap 250); combined 3642 → **3769 if merged**; 2 lane search timeouts
+(sandbox network), so true supply is higher and **neither family reached the 100-floor at 25/lane**
+— re-run at a higher per-lane size (and retry the 2 timed-out lanes) to reach the floor. The recovery
+is real: e.g. P16152 (an SDR) — invisible to the cofactor-only handle — is admitted via 4 mechanism
+axes (active-site, cofactor_or_cosubstrate=NAD, domain/keyword, Rhea participant) with EC as a
+non-counted scope hint and `predictive_evidence []`. Counters stay SEPARATE (this is positive_bronze;
+OOS/silver untouched).
+
+**Universe 12 → 14 (Stage-3-style re-freeze, mirrors the 8→12 Stage-2 bump).** Adding two positive
+fingerprints expanded the live universe to 14, which invalidated the 12fp OOS hard-negative
+pre-registration. Per the established pattern: bumped
+`labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` → `label_factory_v1_14fp`; re-froze the OOS
+prereg as `artifacts/v3_external_hard_negative_next_tranche_preregistration_14fp_1025.json`
+(supersedes the 12fp one; 12fp/8fp kept as historical records); added
+`transfer_scope.EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_14FP_ARTIFACT`. The historical
+label stamp `DEFAULT_ONTOLOGY_VERSION_AT_DECISION` STAYS `label_factory_v1_8fp` (decoupled, never
+rewrites history). Consequence (documented, not a regression): the OOS inverse gate now reports
+`incomplete_current_fingerprint_coverage` until the two new positive fingerprints gain atlas
+coverage, so a NEW OOS hard-negative tranche stays blocked until then — exactly the Stage-3
+behavior. Governor correctly lists the two new families as expansion holes (by construction, until
+the preview is applied). `validate` ok (14 fingerprints / 17 ontology families / 702 frozen labels);
+full offline suite green except the 6 known env-backend failures; `git diff --check` clean.
+
+**STOP before --apply.** The preview is reported for authorization of the registry merge; nothing is
+applied. References: `src/catalytic_earth/external_cofactor_ec_disambiguation.py` (broadened
+corroborator), `src/catalytic_earth/nad_glycosyltransferase_subfamily_sourcing.py`,
+`scripts/source_nad_glycosyltransferase_families.py`,
+`tests/test_nad_glycosyltransferase_subfamily_sourcing.py`,
+`artifacts/v3_nad_glycosyltransferase_subfamily_sourcing_preview_current702.json`,
+`work/nad_glycosyltransferase_subfamily_sourcing_current702.md`.
+
 ## 2026-06-12: EC IS SCOPE-ONLY, NEVER A COUNTED CORROBORATOR — Trust-Tier Axis Split + Mechanism-First Affirmation
 
 Decision: after a review of "why do we depend so much on EC," affirmed the principle and fixed one

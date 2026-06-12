@@ -269,5 +269,57 @@
     "counterevidence_features": ["heme ligand absent", "heme pocket inaccessible", "missing distal residues", "incorrect compartment context"],
     "uncertainty_axes": ["substrate range", "electron transfer route", "peroxide tolerance", "physiological redox partner"],
     "seed_examples": ["DyP-type peroxidases", "lignin-associated peroxidases", "cytochrome P450-like oxidases"]
+  },
+  {
+    "id": "nad_p_dehydrogenase",
+    "name": "NAD(P)-dependent dehydrogenase/reductase",
+    "enzyme_space": ["short-chain dehydrogenases/reductases (SDR)", "medium-chain dehydrogenases/reductases (MDR)", "aldo-keto reductases (AKR)", "Rossmann-fold oxidoreductases"],
+    "active_site_signature": [
+      {"role": "cosubstrate_binding", "residue": "Gly-rich GxGxxG / GxxGxxG", "constraints": ["Rossmann dinucleotide-binding loop positions the NAD(P) nicotinamide for hydride transfer"]},
+      {"role": "catalytic_acid_base", "residue": "Tyr/Lys or Ser/His", "constraints": ["Tyr-Lys couple (SDR) or Zn-bound water (MDR) polarizes the substrate carbonyl/hydroxyl"]},
+      {"role": "hydride_acceptor_donor", "residue": "nicotinamide C4", "constraints": ["nicotinamide C4 receives or donates the pro-R/pro-S hydride to the substrate"]}
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": ["reversible hydride transfer between a substrate C-H/C-OH and the NAD(P) nicotinamide C4"],
+      "chemical_operation": "NAD(P)-dependent hydride transfer (oxidation/reduction)"
+    },
+    "substrate_constraints": ["substrate carbonyl/hydroxyl positioned opposite the nicotinamide face", "binding pocket selecting NAD vs NADP via the 2'-phosphate basic patch", "proton relay to bulk solvent"],
+    "evidence_features": ["Rossmann GxGxxG dinucleotide-binding motif", "annotated NAD/NADP cosubstrate (KW-0520/KW-0521)", "NAD(P)(+)/NAD(P)H Rhea reaction participant", "Tyr-Lys catalytic couple or catalytic Zn"],
+    "counterevidence_features": ["no nicotinamide cosubstrate (flavin/PQQ/F420 instead)", "no dinucleotide-binding fold", "oxygen-incorporating (oxygenase) reaction", "phosphoryl/glycosyl transfer chemistry"],
+    "uncertainty_axes": ["NAD vs NADP specificity", "oxidation vs reduction physiological direction", "substrate scope", "SDR vs MDR vs AKR scaffold"],
+    "seed_examples": ["alcohol dehydrogenase", "3-oxoacyl-(ACP) reductase", "glucose 1-dehydrogenase", "aldo-keto reductase family members"],
+    "deploy_missing_active_site_context": {
+      "type": "cosubstrate",
+      "detail": "the NAD(P) cosubstrate (a dissociable nicotinamide dinucleotide, not a prosthetic group) is absent in the apo predicted structure, so the nicotinamide hydride-transfer geometry is unconstrained",
+      "reconstruction_path": "Path A sequence->NAD(P)-cosubstrate-presence channel (dinucleotide-binding motif), or canonical NAD(P) graft (Path B)",
+      "silver_reachability": "moderate; the Rossmann motif is sequence-detectable but the bound nicotinamide pose must be reconstructed"
+    }
+  },
+  {
+    "id": "glycosyltransferase",
+    "name": "Sugar-nucleotide-dependent glycosyltransferase",
+    "enzyme_space": ["GT-A fold glycosyltransferases", "GT-B fold glycosyltransferases", "Leloir-pathway glycosyltransferases", "nucleotide-sugar-dependent transferases"],
+    "active_site_signature": [
+      {"role": "donor_binding", "residue": "DxD motif (GT-A) or N-terminal Rossmann (GT-B)", "constraints": ["DxD coordinates the divalent metal that bridges the nucleotide-sugar diphosphate (GT-A), or the GT-B cleft binds the donor directly"]},
+      {"role": "catalytic_base", "residue": "Asp/Glu/His", "constraints": ["deprotonates the acceptor hydroxyl for nucleophilic attack on the anomeric carbon"]},
+      {"role": "acceptor_binding", "residue": "variable pocket", "constraints": ["positions the acceptor hydroxyl toward the sugar anomeric center"]}
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": ["formation of a glycosidic bond by transfer of a sugar from a nucleotide-sugar donor to an acceptor hydroxyl, releasing the nucleotide diphosphate/monophosphate"],
+      "chemical_operation": "nucleotide-sugar-dependent glycosyl transfer (inverting or retaining)"
+    },
+    "substrate_constraints": ["nucleotide-sugar donor (UDP-/GDP-/dTDP-/CMP-sugar) in the donor pocket", "acceptor hydroxyl aligned with the anomeric carbon", "GT-A divalent metal or GT-B donor cleft compatible with the diphosphate leaving group"],
+    "evidence_features": ["Glycosyltransferase functional keyword (KW-0328)", "UDP/GDP/dTDP/CMP-sugar donor Rhea participant", "DxD donor/metal motif (GT-A) or GT-B two-domain signature", "released nucleotide diphosphate product"],
+    "counterevidence_features": ["no nucleotide-sugar donor (glycoside hydrolase EC 3.2 instead)", "phosphoryl-transfer-only chemistry", "no glycosyl-accommodating acceptor pocket", "cofactor-dependent redox context"],
+    "uncertainty_axes": ["inverting vs retaining mechanism", "donor sugar identity", "acceptor specificity", "GT-A vs GT-B fold"],
+    "seed_examples": ["UDP-glucuronosyltransferase", "glycogen synthase", "MurG", "sucrose synthase"],
+    "deploy_missing_active_site_context": {
+      "type": "cosubstrate",
+      "detail": "the nucleotide-sugar donor (and the GT-A bridging metal) is a dissociable substrate absent in the apo predicted structure, so the donor/acceptor alignment is unconstrained",
+      "reconstruction_path": "Path A sequence->donor/keyword-presence channel (DxD motif + family signature), or canonical nucleotide-sugar graft (Path B)",
+      "silver_reachability": "hard; the donor pose and acceptor pocket both require reconstruction"
+    }
   }
 ]

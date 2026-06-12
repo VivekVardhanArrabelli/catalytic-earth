@@ -483,12 +483,18 @@ def normalize_uniprot_entry_json(payload: dict[str, Any]) -> dict[str, Any]:
         for comment in comments
         if comment.get("commentType") == "COFACTOR"
     ]
+    keywords = [
+        str(keyword.get("name"))
+        for keyword in payload.get("keywords", []) or []
+        if isinstance(keyword, dict) and keyword.get("name")
+    ]
     return {
         "source": "uniprot",
         "accession": payload.get("primaryAccession"),
         "entry_name": payload.get("uniProtkbId"),
         "entry_type": payload.get("entryType"),
         "annotation_score": payload.get("annotationScore"),
+        "keywords": keywords,
         "sequence_length": payload.get("sequence", {}).get("length"),
         "active_site_features": [
             feature for feature in features if feature["feature_type"] == "Active site"

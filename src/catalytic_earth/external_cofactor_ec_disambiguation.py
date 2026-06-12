@@ -58,6 +58,7 @@ from .external_scaleout_bronze_import import (
     build_current702_reference_index,
     rerun_current702_duplicate_screen,
 )
+from .source_trust_tiers import evaluate_corroboration
 
 # ChEBI ids used only to record a synthesized cofactor on rows that carry their
 # cofactor evidence as family flags + residue ligands rather than a cofactor list.
@@ -193,6 +194,147 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
     }
 
 
+# ---------------------------------------------------------------------------
+# Broadened MECHANISM corroborators (the per-family generalization, 2026-06-12).
+#
+# This engine originally corroborated family scope ONLY via the UniProt COFACTOR comment
+# (`cofactor_evidence`). Many families annotate their defining mechanism evidence elsewhere:
+# NAD(P) dehydrogenases record NAD(P) as a *cosubstrate* (a Rhea reaction participant + the
+# KW-0520/0521 keyword, NOT a cofactor comment), and glycosyltransferases record a
+# *sugar-nucleotide donor* (a Rhea participant) plus the Glycosyltransferase keyword. These
+# readers add cosubstrate / functional-keyword / binding-or-active-site presence as
+# corroborator axes so a family whose defining evidence is NOT a cofactor comment can still
+# be admitted honestly (the same lesson as cofactorless ser_his, which needed a triad route).
+#
+# Every axis is reviewed annotation used for SCOPE/admission ONLY -- it goes in
+# `excluded_context`, never a predictive feature, exactly like the cofactor handle. EC stays
+# the SCOPE selector (which lane); a mechanism axis CONFIRMS membership. EC is NEVER counted
+# toward corroboration (`source_trust_tiers.NON_COUNTED_SCOPE_AXES`).
+
+# NAD(P) nicotinamide cosubstrate token (Rhea reaction participant text / functional keyword).
+# "nad" as a substring covers NAD(+)/NADP(+)/NADH/NADPH; reaction equations effectively never
+# contain "nad" for any other reason.
+_NAD_P_COSUBSTRATE_TOKEN = "nad"
+# Nucleotide-sugar donor tokens -- the glycosyltransferase donor (UDP-/GDP-/dTDP-/CDP-/CMP-sugar)
+# or the released nucleotide diphosphate. Matched in the Rhea reaction participant text.
+_SUGAR_NUCLEOTIDE_DONOR_TOKENS = (
+    "udp-",
+    "gdp-",
+    "dtdp-",
+    "cdp-",
+    "cmp-",
+    "ump-",
+    "adp-d-glucose",
+    "+ udp",
+    "+ gdp",
+    "+ dtdp",
+    "+ cmp",
+)
+# Feature codes that count as an annotated active-site / binding / metal residue role.
+_ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
+
+
+def _row_keywords(row: dict[str, Any]) -> list[str]:
+    return [str(k).lower() for k in (row.get("keywords") or []) if k]
+
+
+def _reaction_texts(row: dict[str, Any]) -> list[str]:
+    """Lower-cased Rhea reaction-participant text already on the ingestion row.
+
+    Reads both the UniProt catalytic-activity ``reaction`` name and the Rhea fallback
+    ``equation`` -- the cosubstrate / nucleotide-sugar donor is a reaction PARTICIPANT, so
+    it is mechanism evidence (NOT EC), readable without an extra fetch.
+    """
+    texts: list[str] = []
+    for rec in (row.get("rhea_ec_provenance") or {}).get("rhea_records") or []:
+        if not isinstance(rec, dict):
+            continue
+        for key in ("reaction", "equation"):
+            value = rec.get(key)
+            if value:
+                texts.append(str(value).lower())
+    return texts
+
+
+def _feature_codes(row: dict[str, Any]) -> set[str]:
+    return {
+        str(loc.get("feature_code") or "")
+        for loc in (row.get("residue_locators") or [])
+        if isinstance(loc, dict)
+    }
+
+
+def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
+    """Annotated mechanism evidence fused across cofactor + cosubstrate + keyword + residue.
+
+    Returns the existing `cofactor_evidence` booleans PLUS the broadened axes the new families
+    need. The broadened axes are reviewed annotation read for SCOPE/admission only.
+    """
+    evidence = dict(cofactor_evidence(row))
+    keywords = _row_keywords(row)
+    reactions = _reaction_texts(row)
+    cofactor_names = [
+        str(c.get("name") or "").lower() for c in (row.get("cofactor_provenance") or [])
+    ]
+
+    def in_any(haystacks: list[str], *tokens: str) -> bool:
+        return any(any(tok in text for tok in tokens) for text in haystacks)
+
+    keyword_nad_p = any(_NAD_P_COSUBSTRATE_TOKEN in kw for kw in keywords)
+    cosubstrate_nad_p_reaction = in_any(reactions, _NAD_P_COSUBSTRATE_TOKEN)
+    cosubstrate_nad_p = (
+        keyword_nad_p
+        or cosubstrate_nad_p_reaction
+        or in_any(cofactor_names, _NAD_P_COSUBSTRATE_TOKEN)
+    )
+    sugar_nucleotide_donor = in_any(reactions, *_SUGAR_NUCLEOTIDE_DONOR_TOKENS)
+    keyword_glycosyltransferase = any("glycosyltransferase" in kw for kw in keywords)
+
+    evidence.update(
+        {
+            "keyword_nad_p": keyword_nad_p,
+            # NAD(P) read specifically from a reaction participant (mechanism, not EC/keyword).
+            "cosubstrate_nad_p_reaction": cosubstrate_nad_p_reaction,
+            "cosubstrate_nad_p": cosubstrate_nad_p,
+            "sugar_nucleotide_donor": sugar_nucleotide_donor,
+            "keyword_glycosyltransferase": keyword_glycosyltransferase,
+            "active_or_binding_site_present": bool(
+                _feature_codes(row) & _ACTIVE_OR_BINDING_FEATURE_CODES
+            ),
+        }
+    )
+    return evidence
+
+
+def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) -> list[str]:
+    """Trust-tier corroborator axes a row satisfies + the non-counted EC scope hint.
+
+    Maps the row's annotated mechanism evidence onto `source_trust_tiers.CORROBORATOR_AXES`
+    (counted) plus `ec_scope_hint` (recognized but NEVER counted toward the N-of-M rule).
+    """
+    axes: set[str] = set()
+    if (
+        evidence.get("metal")
+        or evidence.get("heme")
+        or evidence.get("flavin")
+        or evidence.get("fe_s")
+        or evidence.get("sam")
+        or evidence.get("cobalamin")
+        or evidence.get("cosubstrate_nad_p")
+        or evidence.get("sugar_nucleotide_donor")
+    ):
+        axes.add("cofactor_or_cosubstrate")
+    if evidence.get("cosubstrate_nad_p_reaction") or evidence.get("sugar_nucleotide_donor"):
+        axes.add("rhea_reaction_or_participant_pattern")
+    if evidence.get("active_or_binding_site_present") or evidence.get("cx3cx2c_motif"):
+        axes.add("active_site_motif_or_residue_role")
+    if evidence.get("keyword_glycosyltransferase") or evidence.get("keyword_nad_p"):
+        axes.add("domain_or_family_profile")
+    if _ec_numbers(row):
+        axes.add("ec_scope_hint")  # non-counted: EC decides scope only
+    return sorted(axes)
+
+
 # EC-prefix signatures for the metal_dependent_hydrolase v2 sub-families (Stage 2).
 # Mutually exclusive prefixes + an annotated catalytic metal keep "exactly one rule
 # fires"; the metal requirement excludes Ser/Cys peptidases (3.4.21/22/23), Cys-based
@@ -219,6 +361,12 @@ _METALLOPHOSPHOESTERASE_NUCLEASE_EC = (
 )
 _METALLOPHOSPHOMONOESTERASE_EC = ("3.1.3",)
 _METALLO_AMIDOHYDROLASE_DEAMINASE_EC = ("3.5.2", "3.5.4", "3.5.1")
+
+# EC scope selectors for the broadened-handle families (2026-06-12). The mechanism
+# corroborator (NAD(P) cosubstrate / sugar-nucleotide donor + keyword) confirms membership;
+# the EC prefix only selects the lane and stays in excluded_context (never predictive).
+_NAD_P_DEHYDROGENASE_EC = ("1.1.1",)  # CH-OH donor, NAD(P) acceptor
+_GLYCOSYLTRANSFERASE_EC = ("2.4",)    # glycosyl/hexosyl/pentosyl/sialyl transferases
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -266,23 +414,63 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         lambda c, row: c["cobalamin"]
         and _ec_has_prefix(row, ("5.4.99", "5.4.3", "4.2.1.28", "4.2.1.30", "4.3.1.7")),
     ),
+    # Broadened-handle families: the corroborator is a COSUBSTRATE / functional keyword, not a
+    # cofactor comment. NAD(P) is read as a Rhea reaction participant or NAD/NADP keyword;
+    # the sugar-nucleotide donor as a Rhea participant or the Glycosyltransferase keyword.
+    # EC 1.1.1 / 2.4 select the lane only (scope, never predictive).
+    (
+        "nad_p_dehydrogenase",
+        lambda c, row: c["cosubstrate_nad_p"]
+        and _ec_has_prefix(row, _NAD_P_DEHYDROGENASE_EC),
+    ),
+    (
+        "glycosyltransferase",
+        lambda c, row: (c["sugar_nucleotide_donor"] or c["keyword_glycosyltransferase"])
+        and _ec_has_prefix(row, _GLYCOSYLTRANSFERASE_EC),
+    ),
 )
 
 
 def disambiguate_row(row: dict[str, Any]) -> dict[str, Any]:
-    """Assign a fingerprint only when exactly one rule fires (else stay held)."""
-    evidence = cofactor_evidence(row)
+    """Assign a fingerprint only when exactly one rule fires (else stay held).
+
+    Scope is selected by the EC-prefix predicate; membership is CONFIRMED by a mechanism
+    corroborator (cofactor OR cosubstrate/Rhea participant OR functional keyword OR
+    active-site/binding residue). The trust-tier N-of-M rule
+    (`source_trust_tiers.evaluate_corroboration`, source_tier_0) must ADMIT -- i.e. at least
+    one counted MECHANISM axis is present -- before the row can be built into a label. EC is
+    a scope hint and never counts toward N-of-M.
+    """
+    evidence = mechanism_corroborator_axes(row)
     matched = [fp for fp, rule in DISAMBIGUATION_RULES if rule(evidence, row)]
     distinct = sorted(set(matched))
     if not distinct:
-        return {"decision": "hold", "reason": "no_cofactor_ec_corroboration"}
+        return {"decision": "hold", "reason": "no_mechanism_corroboration"}
     if len(distinct) > 1:
         return {
             "decision": "hold",
             "reason": "multi_fingerprint_signal_conflict",
             "candidates": distinct,
         }
-    return {"decision": "import", "fingerprint_id": distinct[0], "cofactor_evidence": evidence}
+    present_axes = corroborator_axes_present(evidence, row)
+    corroboration = evaluate_corroboration(
+        source_tier="source_tier_0", present_axes=present_axes
+    )
+    if not str(corroboration["decision"]).startswith("admit"):
+        return {
+            "decision": "hold",
+            "reason": "trust_tier_corroboration_insufficient",
+            "candidates": distinct,
+            "present_axes": present_axes,
+            "corroboration": corroboration,
+        }
+    return {
+        "decision": "import",
+        "fingerprint_id": distinct[0],
+        "cofactor_evidence": evidence,
+        "present_axes": present_axes,
+        "corroboration": corroboration,
+    }
 
 
 def _synthesize_cofactor_provenance(
@@ -431,12 +619,31 @@ def build_cofactor_ec_disambiguation(
             evidence.setdefault("source_provenance", {})["disambiguation_pool"] = pool
             evidence["source_provenance"]["disambiguation_source_artifact"] = source_artifact
             evidence.setdefault("import_gate_evidence", []).append(
-                "cofactor_ec_disambiguation_unique_fingerprint_match"
+                "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match"
             )
+            # Record the broadened mechanism corroboration as SCOPE/admission evidence only --
+            # the counted axes (cofactor/cosubstrate, Rhea participant, active-site, domain) and
+            # the non-counted EC scope hint. This is excluded_context, never a predictive feature.
+            present_axes = verdict.get("present_axes") or []
+            corroboration = verdict.get("corroboration") or {}
+            evidence["source_trust_tier"] = {
+                "source_tier": "source_tier_0",
+                "mechanism_corroborator_axes_present": corroboration.get(
+                    "distinct_corroborator_axes", []
+                ),
+                "ec_scope_hint_axes_not_counted": corroboration.get(
+                    "scope_hint_axes_present_not_counted", []
+                ),
+                "meets_n_of_m": corroboration.get("meets_n_of_m"),
+                "present_axes": present_axes,
+            }
+            for axis in corroboration.get("distinct_corroborator_axes", []):
+                evidence["import_gate_evidence"].append(f"mechanism_axis:{axis}")
             evidence.setdefault("notes", []).append(
-                "cofactor/EC disambiguation of a previously-held "
-                f"cofactor-confounded/secondary-probe row: {pool}; EC class used "
-                "for scope assignment only (review-only; never a predictive feature)"
+                "mechanism-corroborator/EC disambiguation of a previously-held or freshly "
+                f"sourced row: {pool}; membership confirmed by mechanism evidence "
+                f"({', '.join(corroboration.get('distinct_corroborator_axes', [])) or 'n/a'}); "
+                "EC class used for scope assignment only (review-only; never a predictive feature)"
             )
             new_labels.append(label)
             decision_counts["import"] += 1

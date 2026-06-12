@@ -55,12 +55,14 @@ COUNTABLE_REVIEW_STATUSES = {"automation_curated", "expert_reviewed"}
 # historical decision artifacts stay byte-stable. Do NOT repurpose it to mean "current".
 DEFAULT_ONTOLOGY_VERSION_AT_DECISION = "label_factory_v1_8fp"
 # The CURRENT positive-fingerprint-universe version. The Stage-2 metal_dependent_hydrolase
-# v2 split (2026-06-11) expanded the positive universe 8 -> 12, so the inverse gate now spans
-# 12 fingerprints. A NEW OOS hard-negative tranche must be pre-registered against THIS version
-# (and the 12-fingerprint universe); the 8fp-era pre-registration is correctly superseded.
-# This is intentionally distinct from the historical label stamp above (which stays _8fp for
-# the existing rows / spent contracts) -- bumping the historical stamp would rewrite history.
-CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_12fp"
+# v2 split (2026-06-11) expanded the positive universe 8 -> 12; the 2026-06-12 broadened-handle
+# batch added nad_p_dehydrogenase + glycosyltransferase, expanding it 12 -> 14, so the inverse
+# gate now spans 14 fingerprints. A NEW OOS hard-negative tranche must be pre-registered against
+# THIS version (and the 14-fingerprint universe); the 8fp- and 12fp-era pre-registrations are
+# correctly superseded. This is intentionally distinct from the historical label stamp above
+# (which stays _8fp for the existing rows / spent contracts) -- bumping the historical stamp
+# would rewrite history.
+CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_14fp"
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,

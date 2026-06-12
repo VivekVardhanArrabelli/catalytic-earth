@@ -210,6 +210,32 @@
       "family_boundary_guardrails": [
         "Do not propagate from generic heme or electron-transfer proteins into peroxide activation without distal activation residue or peroxide/oxygen chemistry support."
       ]
+    },
+    {
+      "id": "nicotinamide_redox",
+      "name": "NAD(P)-dependent hydride-transfer redox chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "nad_p_dehydrogenase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by the NAD(P) cosubstrate (Rhea nicotinamide participant or NAD/NADP keyword) plus a dinucleotide-binding signature, NOT by EC scope alone (EC 1.1.1 selects the lane only).",
+        "Do not propagate from a flavin/PQQ/F420 hydride donor or from an oxygen-incorporating oxygenase reaction; the cosubstrate must be NAD(P).",
+        "NAD(P) is a dissociable cosubstrate, not a prosthetic cofactor; its absence in the apo structure is the declared deploy-missing context."
+      ]
+    },
+    {
+      "id": "glycosyl_transfer",
+      "name": "Nucleotide-sugar-dependent glycosyl transfer chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "glycosyltransferase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by the nucleotide-sugar donor (Rhea UDP/GDP/dTDP/CMP-sugar participant) or the Glycosyltransferase family keyword plus a donor/acceptor signature, NOT by EC scope alone (EC 2.4 selects the lane only).",
+        "Do not propagate from a glycoside hydrolase (EC 3.2) or a phosphoryl-transfer enzyme; the donor must be a nucleotide sugar.",
+        "The nucleotide-sugar donor (and GT-A bridging metal) is a dissociable substrate, not a prosthetic cofactor; its absence in the apo structure is the declared deploy-missing context."
+      ]
     }
   ],
   "propagation_guardrails": [

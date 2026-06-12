@@ -297,7 +297,7 @@ def _utc_now_iso() -> str:
 
 
 def _existing_ec_prefixes() -> list[tuple[str, str]]:
-    """(fingerprint_id, ec_prefix) pairs for the live 12 fingerprints' sourcing lanes."""
+    """(fingerprint_id, ec_prefix) pairs for the live fingerprints' sourcing lanes."""
     pairs: list[tuple[str, str]] = []
     for fp, sig in FINGERPRINT_SOURCING_SIGNATURES.items():
         for prefix in sig.get("ec_prefixes", []):

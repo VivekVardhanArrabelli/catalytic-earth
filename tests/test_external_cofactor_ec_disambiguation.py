@@ -95,7 +95,7 @@ class DisambiguateRowTests(unittest.TestCase):
         # Copper oxidase outside the eight fingerprints -> no rule fires.
         d = disambiguate_row(_row(cofactors=["Cu cation"], ec=["1.10.3.2"]))
         self.assertEqual(d["decision"], "hold")
-        self.assertEqual(d["reason"], "no_cofactor_ec_corroboration")
+        self.assertEqual(d["reason"], "no_mechanism_corroboration")
 
     def test_heme_without_peroxidase_ec_holds(self) -> None:
         d = disambiguate_row(_row(cofactors=["heme b"], ec=["1.14.99.1"]))

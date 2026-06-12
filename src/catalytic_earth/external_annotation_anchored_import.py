@@ -68,6 +68,16 @@ COFACTOR_FOR_FINGERPRINT: dict[str, str] = {
     "flavin_dehydrogenase_reductase": "flavin",
     "heme_peroxidase_oxidase": "heme",
 }
+# Analog of COFACTOR_FOR_FINGERPRINT for the broadened-handle families whose defining
+# admission evidence is NOT a UniProt cofactor comment but a dissociable COSUBSTRATE / donor
+# (2026-06-12). This is the per-family "deploy-missing active-site context" the apo predicted
+# structure lacks (Stage-2 checklist item 3) -- recorded as SCOPE/admission metadata only,
+# never a predictive feature. These families are admitted via the broadened mechanism
+# corroborator in `external_cofactor_ec_disambiguation`, not via `classify_row`.
+DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
+    "nad_p_dehydrogenase": "nad_p_cosubstrate",
+    "glycosyltransferase": "sugar_nucleotide_donor",
+}
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {
         "phosphoryl transfer",

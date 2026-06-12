@@ -748,6 +748,11 @@ def _candidate_row(
             "sequence_sha256": _sequence_sha256(search_record.get("sequence")),
             "sequence_length": search_record.get("length")
             or entry_record.get("sequence_length"),
+            # Reviewed UniProt functional keywords (controlled vocabulary). A SCOPE/admission
+            # corroborator for families whose defining evidence is a keyword (e.g. NAD/NADP,
+            # Glycosyltransferase), read by the broadened mechanism corroborator. Never a
+            # predictive feature.
+            "keywords": entry_record.get("keywords") or [],
             "target_family_lane": lane["target_family_lane"],
             "lane_id": lane["lane_id"],
             "source_query": lane["query"],
