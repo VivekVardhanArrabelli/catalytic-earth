@@ -26593,3 +26593,22 @@ with rows that have experimental PDB provenance and exact reviewed locators,
 then expand only after coordinate materialization, locator sidecars, structural
 duplicate screening, label-factory gates, and explicit production authorization
 all pass.
+
+## CE Import Closure Driver - 2026-06-12
+- STARTED_AT_UTC: 2026-06-12T20:14:14Z
+- STARTED_AT_LOCAL: 2026-06-12T15:14:14-0500
+- Automation ID: `ce-import-closure-driver`
+- Worktree: `/Users/vivekvardhanarrabelli/.codex/worktrees/ce-import-closure-driver-20260612T201342Z/catalytic-earth`
+- Lock: `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth21/catalytic-earth-automation.lock`
+- `/tmp` run-start file: `/tmp/ce-import-closure-driver-run-start-20260612T201414Z.txt`
+- ENDED_AT_UTC: 2026-06-12T20:19:18Z
+- ENDED_AT_LOCAL: 2026-06-12T15:19:18-0500
+- ELAPSED_MINUTES: 5.1
+- Current main status: `origin/main` was already at `bd22e76406b5145d85a0daac9d65b3a1ca08ea06`; no fast-forward was needed in this worktree. This is newer than the prompted Wave 2 merge commit `22c6c28f`.
+- Generated closure outputs: `artifacts/v3_external_import_review_preflight_current702_20260612.json`, `artifacts/v3_external_import_review_ready_preview_current702_20260612.json`, `artifacts/v3_external_import_review_repair_queue_current702_20260612.json`, `artifacts/v3_external_batch_import_approval_packet_current702_20260612.json`, `artifacts/v3_targeted_expansion_defense_ledger_current702_20260612.json`, `work/external_import_review_preflight_current702_20260612.md`, `work/external_batch_import_approval_packet_current702_20260612.md`, and `work/targeted_expansion_defense_ledger_current702_20260612.md`.
+- Count status: 12,495 review-surface rows reconcile to the Wave 2 materialization; the current preflight split is 600 preview rows (318 carried forward plus 282 Wave 2 materialized coordinate/locator rows) and 11,895 repair-surface rows. Terminal counts are 275 `controlled_import_review_ready`, 1 `needs_structural_duplicate_screen`, 0 `needs_family_policy_review`, 1,096 `repairable_locator_blocker`, 5,179 `repairable_coordinate_blocker`, 203 `duplicate_current702_conflict`, 1,275 `duplicate_external_conflict`, 1,562 `reject/OOS_preserve_signal`, and 2,904 `hard_blocked_with_next_action`.
+- Batch approval/import plan: one controlled batch approval could make 275 rows countable after label-factory gate and production registry-change authorization; 12,220 rows remain blocked, each with a per-row mechanical gate in the batch packet. Projected count after approval is 977 current702 labels.
+- Mechanical non-production repair audit: 4,931 repair-surface rows have source-free locator sidecars linked but remain coordinate-materialization/hash blocked; 4 rows have coordinate hashes but unmaterialized coordinate paths; 1,478 duplicate rows were normalized to terminal duplicate conflicts; count normalization reconciles across all 12,495 rows. The 318 carried-forward preview rows still point at unavailable 2026-06-08 locator/coordinate paths and had no candidate-ID match in the current Wave 2 sidecar directory, so they remain `repairable_locator_blocker` rather than being silently counted.
+- Validation: JSON parse passed for all five JSON outputs; invariant check passed; `PYTHONPATH=src python -m pytest tests/test_external_import_review_preflight.py tests/test_cli.py::CliTests::test_external_import_review_preflight_parser_defaults tests/test_cli.py::CliTests::test_external_import_closure_packet_parser_defaults -q` passed 4 tests; `git diff --check` passed; changed-path guardrail found only generated `artifacts/`, `work/`, and this handoff path, with no heldout/split/threshold/model/ontology/production registry/import edits.
+- Commit/push/sync/lock status at handoff write: branch `ce-import-closure-driver-20260612T201342Z` is ready to commit and push; lock is active at the resolved gitdir path and should be released immediately after a clean pushed branch is confirmed.
+- Exact next action: review the 275-row batch approval packet; if approving, record explicit controlled batch approval plus label-factory gate and production registry-change authorization. Otherwise clear the largest blocked gates first: 5,179 coordinate materialization/hash/path reconciliations and 1,096 source-free locator sidecar linkage repairs.
