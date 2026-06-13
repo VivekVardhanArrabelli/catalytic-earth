@@ -464,6 +464,35 @@ _BIOTIN_CARBOXYLATION_ATP_TOKENS = (
     "orthophosphate",
     "phosphate",
 )
+# Nucleoside diphosphate kinase handles. EC 2.7.4.6 scopes the candidate
+# supply only; counted corroboration comes from NTP/NDP phosphoryl-transfer Rhea
+# text, NDK family text, and active-site/phosphohistidine/binding-site context.
+_NDK_FAMILY_TEXT_TOKENS = (
+    "nucleoside diphosphate kinase",
+    "nucleoside-diphosphate kinase",
+    "nucleoside diphosphate phosphotransferase",
+    "ndpk",
+    "ndp kinase",
+)
+_NDK_NTP_NDP_REACTION_TOKENS = (
+    "nucleoside triphosphate",
+    "nucleoside diphosphate",
+    "atp",
+    "adp",
+    "gtp",
+    "gdp",
+    "phosphate",
+    "phospho",
+    "diphosphate",
+    "triphosphate",
+)
+_NDK_ACTIVE_HISTIDINE_TOKENS = (
+    "phosphohistidine",
+    "phospho-l-histidine",
+    "pros-phosphohistidine",
+    "tele-phosphohistidine",
+    "histidine",
+)
 # Class-II metal aldolase handles. EC 4.1.2/4.1.3 scopes lyase candidates only;
 # counted corroboration comes from metal cofactor/site evidence, Lyase/aldolase
 # family text, Rhea C-C/oxoacid reaction context, or active-/binding-/metal-site
@@ -743,6 +772,22 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     ) and in_any(
         reactions, *_BIOTIN_CARBOXYLATION_ATP_TOKENS
     )
+    ndk_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts, *_NDK_FAMILY_TEXT_TOKENS
+    )
+    ndk_ntp_ndp_reaction = in_any(reactions, *_NDK_NTP_NDP_REACTION_TOKENS)
+    ndk_active_his_context = in_any(feature_texts, *_NDK_ACTIVE_HISTIDINE_TOKENS)
+    ndk_protein_kinase_boundary = _ec_has_prefix(row, ("2.7.11",)) or in_any(
+        keywords + [protein_name], "protein kinase"
+    )
+    ndk_two_component_histidine_kinase_boundary = _ec_has_prefix(
+        row, ("2.7.13",)
+    ) or in_any(keywords + [protein_name], "histidine kinase")
+    ndk_hydrolase_nuclease_side_ec_boundary = _ec_has_prefix(row, ("3.",))
+    ndk_other_nmp_kinase_side_ec_boundary = any(
+        ec in {"2.7.4.3", "2.7.4.4", "2.7.4.14", "2.7.4.18"}
+        for ec in _ec_numbers(row)
+    )
     kinase_boundary = in_any(keywords + [protein_name], *_KINASE_BOUNDARY_TOKENS) or _ec_has_prefix(
         row, ("2.7.",)
     )
@@ -866,6 +911,13 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "biotin_keyword_or_name": biotin_keyword_or_name,
             "biotin_carboxylase_text": biotin_carboxylase_text,
             "biotin_carboxylation_reaction": biotin_carboxylation_reaction,
+            "ndk_family_text": ndk_family_text,
+            "ndk_ntp_ndp_reaction": ndk_ntp_ndp_reaction,
+            "ndk_active_his_context": ndk_active_his_context,
+            "ndk_protein_kinase_boundary": ndk_protein_kinase_boundary,
+            "ndk_two_component_histidine_kinase_boundary": ndk_two_component_histidine_kinase_boundary,
+            "ndk_hydrolase_nuclease_side_ec_boundary": ndk_hydrolase_nuclease_side_ec_boundary,
+            "ndk_other_nmp_kinase_side_ec_boundary": ndk_other_nmp_kinase_side_ec_boundary,
             "kinase_boundary": kinase_boundary,
             "non_6_3_side_ec": non_6_3_side_ec,
             "non_biotin_carboxylase_scope_side_ec": non_biotin_carboxylase_scope_side_ec,
@@ -931,6 +983,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
             evidence.get("biotin_carboxylation_reaction")
             and evidence.get("biotin_carboxylase_text")
         )
+        or evidence.get("ndk_ntp_ndp_reaction")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -959,6 +1012,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("thdp_reaction_context")
         or evidence.get("zinc_hydration_elimination_reaction")
         or evidence.get("biotin_carboxylation_reaction")
+        or evidence.get("ndk_ntp_ndp_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -969,6 +1023,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("copper_feature_or_ligand")
         or evidence.get("zinc_feature_or_ligand")
         or evidence.get("biotin_feature_or_ligand")
+        or evidence.get("ndk_active_his_context")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -991,6 +1046,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("zinc_lyase_hydratase_text")
         or evidence.get("biotin_keyword_or_name")
         or evidence.get("biotin_carboxylase_text")
+        or evidence.get("ndk_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -1053,6 +1109,7 @@ _THIAMINE_DIPHOSPHATE_ENZYME_EC = (
     "1.2.4",
 )  # ThDP ylide/carbonyl chemistry; EC is scope only
 _ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
+_NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -1228,6 +1285,17 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["flavin"],
     ),
     (
+        "nucleoside_diphosphate_kinase",
+        lambda c, row: _ec_has_prefix(row, _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC)
+        and c["ndk_family_text"]
+        and c["ndk_ntp_ndp_reaction"]
+        and (c["ndk_active_his_context"] or c["active_or_binding_site_present"])
+        and not c["ndk_protein_kinase_boundary"]
+        and not c["ndk_two_component_histidine_kinase_boundary"]
+        and not c["ndk_hydrolase_nuclease_side_ec_boundary"]
+        and not c["ndk_other_nmp_kinase_side_ec_boundary"],
+    ),
+    (
         "atp_amide_ligase",
         lambda c, row: _ec_has_prefix(row, _ATP_AMIDE_LIGASE_EC)
         and c["keyword_ligase"]
@@ -1375,6 +1443,8 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "zinc", "cross_reference": {"id": None}}]
     elif fingerprint == "biotin_dependent_carboxylase" and evidence.get("biotin_feature_or_ligand"):
         records = [{"name": "biotin", "cross_reference": {"id": None}}]
+    elif fingerprint == "nucleoside_diphosphate_kinase" and evidence.get("ndk_ntp_ndp_reaction"):
+        records = [{"name": "nucleoside triphosphate/diphosphate", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

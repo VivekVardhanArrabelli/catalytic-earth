@@ -557,6 +557,32 @@
     }
   },
   {
+    "id": "nucleoside_diphosphate_kinase",
+    "name": "Nucleoside diphosphate kinase",
+    "enzyme_space": ["NDP kinases", "NM23/NME-family nucleoside diphosphate kinases", "bacterial and organellar NDK enzymes"],
+    "active_site_signature": [
+      {"role": "phosphohistidine_relay", "residue": "conserved catalytic His", "constraints": ["forms a transient phosphohistidine intermediate during phosphoryl transfer between nucleoside diphosphates and triphosphates"]},
+      {"role": "nucleotide_phosphate_binding", "residue": "Lys/Arg/Ser/Thr phosphate-binding loop and Mg2+-assisted contacts", "constraints": ["positions NTP donor and NDP acceptor phosphates for in-line transfer"]},
+      {"role": "base_or_ribose_positioning", "residue": "nucleotide-binding pocket residues", "constraints": ["orients the nucleoside base/ribose while maintaining broad nucleotide specificity"]}
+    ],
+    "cofactors": ["Mg2+", "nucleoside triphosphate", "nucleoside diphosphate"],
+    "reaction_center": {
+      "bond_changes": ["phosphoryl transfer from a nucleoside triphosphate to a nucleoside diphosphate through an enzyme phosphohistidine intermediate"],
+      "chemical_operation": "NTP/NDP phosphoryl transfer"
+    },
+    "substrate_constraints": ["EC 2.7.4.6 NTP/NDP exchange context present", "nucleoside diphosphate kinase family context present", "active-site phosphohistidine or catalytic His/binding-site evidence present", "no protein kinase, two-component histidine kinase, hydrolase/nuclease, adenylate/guanylate/nucleoside-monophosphate kinase side-EC, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Rhea or reviewed catalytic activity text for NTP/NDP phosphoryl transfer under EC 2.7.4.6 scope", "Nucleoside diphosphate kinase family/domain/name text", "active-site phosphohistidine, catalytic His, ATP/ADP/GTP/GDP binding-site, Mg2+, or structure evidence"],
+    "counterevidence_features": ["protein kinase EC 2.7.11 side rows", "two-component histidine kinase EC 2.7.13 side rows", "hydrolase or nuclease EC 3 side rows", "adenylate kinase, guanylate kinase, nucleoside-monophosphate kinase, or other EC 2.7.4 side rows", "EC-only evidence with no Rhea, family, active-site, binding-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["nucleotide donor/acceptor identity", "phosphohistidine tautomer/protonation state", "Mg2+ dependence and occupancy", "oligomeric state and nucleotide-binding pocket conformation"],
+    "seed_examples": ["nucleoside diphosphate kinase A/NME1", "nucleoside diphosphate kinase B/NME2", "mitochondrial NDP kinase D", "bacterial nucleoside diphosphate kinase"],
+    "deploy_missing_active_site_context": {
+      "type": "phosphohistidine_ntp_ndp_cosubstrate",
+      "detail": "the NTP/NDP cosubstrates, Mg2+, and transient phosphohistidine intermediate are absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->NDK/Rhea/phosphohistidine channel, or canonical nucleotide/Mg2+/phosphohistidine graft (Path B)",
+      "silver_reachability": "moderate; active-site His, Rhea reaction, and many structures are available, but nucleotide/Mg2+ occupancy and phosphohistidine state need reconstruction"
+    }
+  },
+  {
     "id": "thiamine_diphosphate_enzyme",
     "name": "Thiamine-diphosphate ylide enzyme",
     "enzyme_space": ["ThDP-dependent decarboxylases", "transketolases", "2-oxoacid dehydrogenase E1 components", "acetohydroxyacid synthases", "phosphoketolases"],

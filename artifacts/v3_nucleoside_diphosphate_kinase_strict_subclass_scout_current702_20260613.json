@@ -1,0 +1,5768 @@
+{
+  "artifact_id": "v3_nucleoside_diphosphate_kinase_strict_subclass_scout_current702_20260613",
+  "boundary_keys": [
+    "protein_kinase_boundary",
+    "two_component_histidine_kinase_boundary",
+    "hydrolase_or_nuclease_side_ec_boundary",
+    "other_nmp_kinase_side_ec_boundary",
+    "non_2_7_side_ec_boundary"
+  ],
+  "candidate_family": "nucleoside_diphosphate_kinase",
+  "created_utc": "2026-06-13T07:48:29Z",
+  "entries_examined": 80,
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only_never_predictive": true,
+    "labels_emitted": 0,
+    "mechanism_first_required_before_any_apply": true,
+    "predictive_evidence_emitted": [],
+    "registry_written": false,
+    "rhea_name_keyword_features_admission_only": true
+  },
+  "handle_counts": {
+    "active_or_binding_site_context": 80,
+    "ec_2_7_4_6_scope": 80,
+    "likely_wireable_by_non_ec_handles": 80,
+    "mg_or_metal_context": 79,
+    "ndk_family_text": 80,
+    "ntp_ndp_reaction_text": 80,
+    "phosphohistidine_or_active_his_context": 80,
+    "phosphoryl_transfer_text": 80,
+    "rhea_cross_reference_present": 80
+  },
+  "query": "(reviewed:true) AND (ec:2.7.4.6) AND ((protein_name:\"nucleoside diphosphate kinase\") OR (protein_name:\"nucleoside-diphosphate kinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (ec:2.7.4.3) OR (ec:2.7.4.4) OR (ec:2.7.4.14) OR (ec:2.7.4.18))",
+  "recommendation": {
+    "counted_mechanism_axes_candidate": [
+      "Rhea NTP/NDP phosphoryl-transfer participants",
+      "Nucleoside diphosphate kinase family/domain/name text as admission context",
+      "active-site phosphohistidine or catalytic His feature",
+      "ATP/ADP/GTP/GDP binding-site context or structure provenance"
+    ],
+    "guards": [
+      "hold protein kinase EC 2.7.11 side rows",
+      "hold two-component histidine kinase EC 2.7.13 side rows",
+      "hold hydrolase/nuclease EC 3.* side rows",
+      "hold adenylate/guanylate/nucleoside-monophosphate kinase side EC rows",
+      "hold multi-fingerprint signals rather than forcing subclass assignment"
+    ],
+    "next_action": "wire_guarded_nucleoside_diphosphate_kinase_28fp_lane",
+    "reason": "Strict NDK supply remains floor-reachable after excluding side ECs; sampled entries have EC 2.7.4.6, NDK family text, Rhea-backed NTP/NDP phosphoryl-transfer text, active/binding-site context, and no sampled side-EC boundaries.",
+    "scope_only": [
+      "EC 2.7.4.6",
+      "Rhea/UniProt query text"
+    ]
+  },
+  "reviewed_supply_count": 714,
+  "rows": [
+    {
+      "accession": "O00746",
+      "alphafold_ids": [
+        "O00746"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 151,
+          "description": "Pros-phosphohistidine intermediatee",
+          "end": 151,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 45,
+          "description": "",
+          "end": 45,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 45,
+          "description": "",
+          "end": 45,
+          "feature_type": "Binding site",
+          "ligand_name": "GDP"
+        },
+        {
+          "begin": 45,
+          "description": "",
+          "end": 45,
+          "feature_type": "Binding site",
+          "ligand_name": "UDP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [
+        "1EHW"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase D, mitochondrial (NDPK-D) (EC 2.7.4.6) (Nucleoside diphosphate kinase 4) (NDK4) (nm23-H4)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 187
+    },
+    {
+      "accession": "Q9PTF3",
+      "alphafold_ids": [
+        "Q9PTF3"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 135,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 135,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "3',5'-cyclic AMP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "GDP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "UDP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase C (NDPK-C) (EC 2.7.4.6) (NM23 nucleoside diphosphate kinase 3) (Nucleoside diphosphate kinase 3) (NDK3)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 169
+    },
+    {
+      "accession": "Q13232",
+      "alphafold_ids": [
+        "Q13232"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 135,
+          "description": "Pros-phosphohistidine intermediatee",
+          "end": 135,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "3',5'-cyclic AMP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "GDP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "UDP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [
+        "1ZS6",
+        "8QVY",
+        "8QVZ",
+        "8QW0",
+        "8QW1",
+        "8QW2",
+        "8QW3"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase C (NDPK-C) (EC 2.7.4.6) (DR-nm23) (Nucleoside diphosphate kinase 3) (NDK3) (nm23-H3)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 169
+    },
+    {
+      "accession": "Q66KP0",
+      "alphafold_ids": [
+        "Q66KP0"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 135,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 135,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "3',5'-cyclic AMP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "GDP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "UDP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Xenopus laevis (African clawed frog)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase C-B (EC 2.7.4.6) (Nucleoside diphosphate kinase 3-B)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 169
+    },
+    {
+      "accession": "A2VD68",
+      "alphafold_ids": [
+        "A2VD68"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 135,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 135,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "3',5'-cyclic AMP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "GDP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "UDP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Xenopus laevis (African clawed frog)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase C-A (EC 2.7.4.6) (Nucleoside diphosphate kinase 3-A)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 169
+    },
+    {
+      "accession": "Q9WV84",
+      "alphafold_ids": [
+        "Q9WV84"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 150,
+          "description": "Pros-phosphohistidine intermediatee",
+          "end": 150,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 44,
+          "description": "",
+          "end": 44,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 44,
+          "description": "",
+          "end": 44,
+          "feature_type": "Binding site",
+          "ligand_name": "GDP"
+        },
+        {
+          "begin": 44,
+          "description": "",
+          "end": 44,
+          "feature_type": "Binding site",
+          "ligand_name": "UDP"
+        },
+        {
+          "begin": 90,
+          "description": "",
+          "end": 90,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Mus musculus (Mouse)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase D, mitochondrial (NDPK-D) (EC 2.7.4.6) (Nucleoside diphosphate kinase 4) (NDK4) (nm23-M4)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 186
+    },
+    {
+      "accession": "Q9WV85",
+      "alphafold_ids": [
+        "Q9WV85"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 135,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 135,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "3',5'-cyclic AMP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "GDP"
+        },
+        {
+          "begin": 29,
+          "description": "",
+          "end": 29,
+          "feature_type": "Binding site",
+          "ligand_name": "UDP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Mus musculus (Mouse)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase C (NDPK-C) (EC 2.7.4.6) (DR-nm23) (Nucleoside diphosphate kinase 3) (NDK3) (nm23-M3)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 169
+    },
+    {
+      "accession": "P87355",
+      "alphafold_ids": [
+        "P87355"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 146,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 146,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 146,
+          "description": "Pros-phosphohistidine intermediatee",
+          "end": 146,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 40,
+          "description": "",
+          "end": 40,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 40,
+          "description": "",
+          "end": 40,
+          "feature_type": "Binding site",
+          "ligand_name": "GDP"
+        },
+        {
+          "begin": 40,
+          "description": "",
+          "end": 40,
+          "feature_type": "Binding site",
+          "ligand_name": "UDP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Columba livia (Rock dove)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase D, mitochondrial (NDPK-D) (EC 2.7.4.6) (Nucleoside diphosphate kinase 4) (NDK4)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 181
+    },
+    {
+      "accession": "P39207",
+      "alphafold_ids": [
+        "P39207"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [
+        "1U8W"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "P36010",
+      "alphafold_ids": [
+        "P36010"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 119,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 119,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 13,
+          "description": "",
+          "end": 13,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 61,
+          "description": "",
+          "end": 61,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 89,
+          "description": "",
+          "end": 89,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "pdb_ids": [
+        "3B54"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 153
+    },
+    {
+      "accession": "P22887",
+      "alphafold_ids": [
+        "P22887"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 122,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 122,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 16,
+          "description": "",
+          "end": 16,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 64,
+          "description": "",
+          "end": 64,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 98,
+          "description": "",
+          "end": 98,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "pdb_ids": [
+        "1B4S",
+        "1B99",
+        "1BUX",
+        "1F3F",
+        "1F6T",
+        "1HHQ",
+        "1HIY",
+        "1HLW",
+        "1KDN",
+        "1LEO",
+        "1LWX",
+        "1MN7",
+        "1MN9",
+        "1NCL",
+        "1NDC",
+        "1NDK",
+        "1NDP",
+        "1NPK",
+        "1NSP",
+        "1PAE",
+        "1S5Z",
+        "2BEF",
+        "3FKB",
+        "4C6A",
+        "4CP5"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase, cytosolic (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 155
+    },
+    {
+      "accession": "P34093",
+      "alphafold_ids": [
+        "P34093"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 186,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 186,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 80,
+          "description": "",
+          "end": 80,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 128,
+          "description": "",
+          "end": 128,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 156,
+          "description": "",
+          "end": 156,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 162,
+          "description": "",
+          "end": 162,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase, mitochondrial (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 220
+    },
+    {
+      "accession": "Q5UQL3",
+      "alphafold_ids": [],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 112,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 112,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 99,
+          "description": "",
+          "end": 99,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Acanthamoeba polyphaga mimivirus (APMV)",
+      "pdb_ids": [
+        "2B8P",
+        "2B8Q",
+        "3B6B",
+        "3DDI",
+        "3DKD",
+        "3EE3",
+        "3EIC",
+        "3EJM",
+        "3ELH",
+        "3EM1",
+        "3EMT",
+        "3ENA",
+        "3ETM",
+        "3EVM",
+        "3EVO",
+        "3EVW",
+        "3FBB",
+        "3FBC",
+        "3FBE",
+        "3FBF",
+        "3FC9",
+        "3FCV",
+        "3FCW",
+        "3G2X",
+        "3GP9",
+        "3GPA"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 137
+    },
+    {
+      "accession": "B4FK49",
+      "alphafold_ids": [
+        "B4FK49"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Zea mays (Maize)",
+      "pdb_ids": [
+        "1VYA"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I) (ZmNDPK1)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "P0A763",
+      "alphafold_ids": [
+        "P0A763"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_ids": [
+        "2HUR"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "A0A3Q0KJ78",
+      "alphafold_ids": [
+        "A0A3Q0KJ78"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 109,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 109,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 3,
+          "description": "",
+          "end": 3,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 3,
+          "description": "",
+          "end": 3,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 51,
+          "description": "",
+          "end": 51,
+          "feature_type": "Binding site",
+          "ligand_name": "ADP"
+        },
+        {
+          "begin": 51,
+          "description": "",
+          "end": 51,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Schistosoma mansoni (Blood fluke)",
+      "pdb_ids": [
+        "5IOL",
+        "5IOM",
+        "5KK8"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (NDPK) (EC 2.7.4.6) (SmNDPK)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "O75414",
+      "alphafold_ids": [
+        "O75414"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 129,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 129,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 19,
+          "description": "",
+          "end": 19,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 68,
+          "description": "",
+          "end": 68,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 96,
+          "description": "",
+          "end": 96,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 102,
+          "description": "",
+          "end": 102,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 6, mitochondrial (NDK6) (NDP kinase 6) (EC 2.7.4.6) (Inhibitor of p53-induced apoptosis-alpha) (IPIA-alpha) (nm23-H6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 186
+    },
+    {
+      "accession": "O49203",
+      "alphafold_ids": [
+        "O49203"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 202,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 202,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 96,
+          "description": "",
+          "end": 96,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 144,
+          "description": "",
+          "end": 144,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 172,
+          "description": "",
+          "end": 172,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 178,
+          "description": "",
+          "end": 178,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase III, chloroplastic/mitochondrial (NDK III) (NDP kinase III) (NDPK III) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 238
+    },
+    {
+      "accession": "Q59636",
+      "alphafold_ids": [
+        "Q59636"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "O64903",
+      "alphafold_ids": [
+        "O64903"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 197,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 197,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 139,
+          "description": "",
+          "end": 139,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 167,
+          "description": "",
+          "end": 167,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 173,
+          "description": "",
+          "end": 173,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [
+        "1S57",
+        "1S59"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase II, chloroplastic (NDK II) (NDP kinase II) (NDPK II) (NDPK Ia) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 231
+    },
+    {
+      "accession": "P08879",
+      "alphafold_ids": [
+        "P08879"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 119,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 119,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 13,
+          "description": "",
+          "end": 13,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 61,
+          "description": "",
+          "end": 61,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 89,
+          "description": "",
+          "end": 89,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Drosophila melanogaster (Fruit fly)",
+      "pdb_ids": [
+        "1NDL",
+        "1NSQ",
+        "3WX8"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Abnormal wing disks protein) (Killer of prune protein)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 153
+    },
+    {
+      "accession": "P9WJH7",
+      "alphafold_ids": [
+        "P9WJH7"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 10,
+          "description": "",
+          "end": 10,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "pdb_ids": [
+        "1K44",
+        "4ANC",
+        "4AND",
+        "4ANE",
+        "6QA2"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDKA) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 136
+    },
+    {
+      "accession": "Q07661",
+      "alphafold_ids": [
+        "Q07661"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "pdb_ids": [
+        "1PKU"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "Q8RXA8",
+      "alphafold_ids": [
+        "Q8RXA8"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 199,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 199,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 141,
+          "description": "",
+          "end": 141,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 169,
+          "description": "",
+          "end": 169,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 175,
+          "description": "",
+          "end": 175,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Spinacia oleracea (Spinach)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 4, chloroplastic (EC 2.7.4.6) (Nucleoside diphosphate kinase III) (Nucleoside diphosphate kinase IV) (NDK IV) (NDP kinase IV) (NDPK IV)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 235
+    },
+    {
+      "accession": "Q8LAH8",
+      "alphafold_ids": [
+        "Q8LAH8"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 201,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 201,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 143,
+          "description": "",
+          "end": 143,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 171,
+          "description": "",
+          "end": 171,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 177,
+          "description": "",
+          "end": 177,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase IV, chloroplastic/mitochondrial (NDK IV) (NDP kinase IV) (NDPK IV) (EC 2.7.4.6) (Nucleoside diphosphate kinase 4)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 237
+    },
+    {
+      "accession": "Q01402",
+      "alphafold_ids": [
+        "Q01402"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 199,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 199,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 141,
+          "description": "",
+          "end": 141,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 169,
+          "description": "",
+          "end": 169,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 175,
+          "description": "",
+          "end": 175,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Spinacia oleracea (Spinach)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 2, chloroplastic (EC 2.7.4.6) (Nucleoside diphosphate kinase II) (NDK II) (NDP kinase II) (NDPK II) [Cleaved into: Nucleoside diphosphate kinase 2 high molecular weight; Nucleoside diphosphate kinase 2 low molecular weight]",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 233
+    },
+    {
+      "accession": "P47923",
+      "alphafold_ids": [
+        "P47923"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 196,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 196,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 90,
+          "description": "",
+          "end": 90,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 138,
+          "description": "",
+          "end": 138,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 166,
+          "description": "",
+          "end": 166,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 172,
+          "description": "",
+          "end": 172,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Pisum sativum (Garden pea) (Lathyrus oleraceus)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 2, chloroplastic (EC 2.7.4.6) (Nucleoside diphosphate kinase II) (NDK II) (NDP kinase II) (NDPK II) [Cleaved into: Nucleoside diphosphate kinase 2 high molecular weight; Nucleoside diphosphate kinase 2 low molecular weight]",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 230
+    },
+    {
+      "accession": "A6N0M9",
+      "alphafold_ids": [
+        "A6N0M9"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Oryza sativa subsp. indica (Rice)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "P81766",
+      "alphafold_ids": [
+        "P81766"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Spinacia oleracea (Spinach)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 3 (EC 2.7.4.6) (Nucleoside diphosphate kinase III) (NDK III) (NDP kinase III) (NDPK III)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 153
+    },
+    {
+      "accession": "Q90380",
+      "alphafold_ids": [
+        "Q90380"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 119,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 119,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 13,
+          "description": "",
+          "end": 13,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 61,
+          "description": "",
+          "end": 61,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 89,
+          "description": "",
+          "end": 89,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Columba livia (Rock dove)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 153
+    },
+    {
+      "accession": "O57535",
+      "alphafold_ids": [
+        "O57535"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 119,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 119,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 13,
+          "description": "",
+          "end": 13,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 61,
+          "description": "",
+          "end": 61,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 89,
+          "description": "",
+          "end": 89,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Gallus gallus (Chicken)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 153
+    },
+    {
+      "accession": "P49740",
+      "alphafold_ids": [
+        "P49740"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 104,
+          "description": "",
+          "end": 104,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 151
+    },
+    {
+      "accession": "Q6DI51",
+      "alphafold_ids": [
+        "Q6DI51"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 124,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 124,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 15,
+          "description": "",
+          "end": 15,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 63,
+          "description": "",
+          "end": 63,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 97,
+          "description": "",
+          "end": 97,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 6, mitochondrial (NDK6) (NDP kinase 6) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 175
+    },
+    {
+      "accession": "Q852S5",
+      "alphafold_ids": [
+        "Q852S5"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 198,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 198,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 140,
+          "description": "",
+          "end": 140,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 168,
+          "description": "",
+          "end": 168,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 174,
+          "description": "",
+          "end": 174,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Nicotiana tabacum (Common tobacco)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 2, chloroplastic (EC 2.7.4.6) (Nucleoside diphosphate kinase II) (NDK II) (NDP kinase II) (NDPK II)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 232
+    },
+    {
+      "accession": "Q8TFN0",
+      "alphafold_ids": [
+        "Q8TFN0"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Emericella nidulans (strain FGSC A4 / ATCC 38163 / CBS 112.46 / NRRL 194 / M139) (Aspergillus nidulans)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDP kinase) (EC 2.7.4.6) (AnNDK) (NDK)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 153
+    },
+    {
+      "accession": "P31103",
+      "alphafold_ids": [
+        "P31103"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 116,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 116,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 10,
+          "description": "",
+          "end": 10,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Bacillus subtilis (strain 168)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "O88425",
+      "alphafold_ids": [
+        "O88425"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 129,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 129,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 19,
+          "description": "",
+          "end": 19,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 68,
+          "description": "",
+          "end": 68,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 96,
+          "description": "",
+          "end": 96,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 102,
+          "description": "",
+          "end": 102,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Mus musculus (Mouse)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 6, mitochondrial (NDK6) (NDP kinase 6) (EC 2.7.4.6) (nm23-M6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 189
+    },
+    {
+      "accession": "O88426",
+      "alphafold_ids": [
+        "O88426"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 129,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 129,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 19,
+          "description": "",
+          "end": 19,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 68,
+          "description": "",
+          "end": 68,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 96,
+          "description": "",
+          "end": 96,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 102,
+          "description": "",
+          "end": 102,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 6, mitochondrial (NDK6) (NDP kinase 6) (EC 2.7.4.6) (nm23-R6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 186
+    },
+    {
+      "accession": "B3DL53",
+      "alphafold_ids": [
+        "B3DL53"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 128,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 128,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 18,
+          "description": "",
+          "end": 18,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 67,
+          "description": "",
+          "end": 67,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 101,
+          "description": "",
+          "end": 101,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Xenopus tropicalis (Western clawed frog) (Silurana tropicalis)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 6, mitochondrial (NDK6) (NDP kinase 6) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 179
+    },
+    {
+      "accession": "A5GPE9",
+      "alphafold_ids": [
+        "A5GPE9"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Synechococcus sp. (strain WH7803)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 152
+    },
+    {
+      "accession": "B1XIE7",
+      "alphafold_ids": [
+        "B1XIE7"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Picosynechococcus sp. (strain ATCC 27264 / PCC 7002 / PR-6) (Agmenellum quadruplicatum)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "Q2JPL4",
+      "alphafold_ids": [
+        "Q2JPL4"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Synechococcus sp. (strain JA-2-3B'a(2-13)) (Cyanobacteria bacterium Yellowstone B-Prime)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "Q7U3S1",
+      "alphafold_ids": [
+        "Q7U3S1"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 116,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 116,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 10,
+          "description": "",
+          "end": 10,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Parasynechococcus marenigrum (strain WH8102)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 151
+    },
+    {
+      "accession": "B7I5G3",
+      "alphafold_ids": [
+        "B7I5G3"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Acinetobacter baumannii (strain AB0057)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "C0PYM7",
+      "alphafold_ids": [
+        "C0PYM7"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Salmonella paratyphi C (strain RKS4594)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "P15266",
+      "alphafold_ids": [
+        "P15266"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Myxococcus xanthus",
+      "pdb_ids": [
+        "1NHK",
+        "1NLK",
+        "2NCK"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 145
+    },
+    {
+      "accession": "Q0I6J3",
+      "alphafold_ids": [
+        "Q0I6J3"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Synechococcus sp. (strain CC9311)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 152
+    },
+    {
+      "accession": "Q3AVV5",
+      "alphafold_ids": [
+        "Q3AVV5"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 116,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 116,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 10,
+          "description": "",
+          "end": 10,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Synechococcus sp. (strain CC9902)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 151
+    },
+    {
+      "accession": "Q9KTX4",
+      "alphafold_ids": [
+        "Q9KTX4"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Vibrio cholerae serotype O1 (strain ATCC 39315 / El Tor Inaba N16961)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 142
+    },
+    {
+      "accession": "B7UGW4",
+      "alphafold_ids": [
+        "B7UGW4"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Escherichia coli O127:H6 (strain E2348/69 / EPEC)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "P50590",
+      "alphafold_ids": [
+        "P50590"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Synechococcus elongatus (strain ATCC 33912 / PCC 7942 / FACHB-805) (Anacystis nidulans R2)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "Q2JVI1",
+      "alphafold_ids": [
+        "Q2JVI1"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Synechococcus sp. (strain JA-3-3Ab) (Cyanobacteria bacterium Yellowstone A-Prime)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "Q3AGP0",
+      "alphafold_ids": [
+        "Q3AGP0"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 116,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 116,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 10,
+          "description": "",
+          "end": 10,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Synechococcus sp. (strain CC9605)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 151
+    },
+    {
+      "accession": "Q5N1M1",
+      "alphafold_ids": [
+        "Q5N1M1"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Synechococcus sp. (strain ATCC 27144 / PCC 6301 / SAUG 1402/1) (Anacystis nidulans)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "A3M207",
+      "alphafold_ids": [
+        "A3M207"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Acinetobacter baumannii (strain ATCC 17978 / DSM 105126 / CIP 53.77 / LMG 1025 / NCDC KC755 / 5377)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "A5F3F7",
+      "alphafold_ids": [
+        "A5F3F7"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Vibrio cholerae serotype O1 (strain ATCC 39541 / Classical Ogawa 395 / O395)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 142
+    },
+    {
+      "accession": "B0V4U1",
+      "alphafold_ids": [
+        "B0V4U1"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Acinetobacter baumannii (strain AYE)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "B0VKS3",
+      "alphafold_ids": [
+        "B0VKS3"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Acinetobacter baumannii (strain SDF)",
+      "pdb_ids": [
+        "4W98",
+        "4WBF"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "B2I3E1",
+      "alphafold_ids": [
+        "B2I3E1"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Acinetobacter baumannii (strain ACICU)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "B7H073",
+      "alphafold_ids": [
+        "B7H073"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Acinetobacter baumannii (strain AB307-0294)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "C3LT09",
+      "alphafold_ids": [
+        "C3LT09"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Vibrio cholerae serotype O1 (strain M66-2)",
+      "pdb_ids": [
+        "5X00"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 142
+    },
+    {
+      "accession": "O85501",
+      "alphafold_ids": [
+        "O85501"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 10,
+          "description": "",
+          "end": 10,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Mycolicibacterium smegmatis (strain ATCC 700084 / mc(2)155) (Mycobacterium smegmatis)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 139
+    },
+    {
+      "accession": "Q57LI3",
+      "alphafold_ids": [
+        "Q57LI3"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Salmonella choleraesuis (strain SC-B67)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6) (Nucleoside-2-P kinase)",
+      "reaction_sample": [
+        "dZDP + ATP = dZTP + ADP",
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 143
+    },
+    {
+      "accession": "Q6NLG3",
+      "alphafold_ids": [
+        "Q6NLG3"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 112,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 112,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 3,
+          "description": "",
+          "end": 3,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 51,
+          "description": "",
+          "end": 51,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 79,
+          "description": "",
+          "end": 79,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": false,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [],
+      "protein_name": "Probable nucleoside diphosphate kinase 5 (EC 2.7.4.6) (Nucleoside diphosphate kinase V)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 144
+    },
+    {
+      "accession": "P70011",
+      "alphafold_ids": [
+        "P70011"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 119,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 119,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 13,
+          "description": "",
+          "end": 13,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 61,
+          "description": "",
+          "end": 61,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 89,
+          "description": "",
+          "end": 89,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Xenopus laevis (African clawed frog)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase A2 (NDK A2) (NDP kinase A2) (EC 2.7.4.6) (NM23/nucleoside diphosphate kinase A2)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 154
+    },
+    {
+      "accession": "P70010",
+      "alphafold_ids": [
+        "P70010"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 119,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 119,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 13,
+          "description": "",
+          "end": 13,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 61,
+          "description": "",
+          "end": 61,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 89,
+          "description": "",
+          "end": 89,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Xenopus laevis (African clawed frog)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase A1 (NDK A1) (NDP kinase A1) (EC 2.7.4.6) (NM23/nucleoside diphosphate kinase A1)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 154
+    },
+    {
+      "accession": "P47922",
+      "alphafold_ids": [
+        "P47922"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 116,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 116,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 10,
+          "description": "",
+          "end": 10,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Pisum sativum (Garden pea) (Lathyrus oleraceus)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "Q39839",
+      "alphafold_ids": [
+        "Q39839"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 116,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 116,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 10,
+          "description": "",
+          "end": 10,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 58,
+          "description": "",
+          "end": 58,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 92,
+          "description": "",
+          "end": 92,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Glycine max (Soybean) (Glycine hispida)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    },
+    {
+      "accession": "O81372",
+      "alphafold_ids": [
+        "O81372"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Mesembryanthemum crystallinum (Common ice plant) (Cryophytum crystallinum)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 148
+    },
+    {
+      "accession": "Q02254",
+      "alphafold_ids": [
+        "Q02254"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Spinacia oleracea (Spinach)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 148
+    },
+    {
+      "accession": "Q56E62",
+      "alphafold_ids": [
+        "Q56E62"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Nicotiana tabacum (Common tobacco)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 148
+    },
+    {
+      "accession": "Q7Z8P9",
+      "alphafold_ids": [
+        "Q7Z8P9"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Aspergillus fumigatus (strain ATCC MYA-4609 / CBS 101355 / FGSC A1100 / Af293) (Neosartorya fumigata)",
+      "pdb_ids": [
+        "6AGY",
+        "6XP4",
+        "6XP7",
+        "6XPS",
+        "6XPT",
+        "6XPU",
+        "6XPV",
+        "6XPW"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 153
+    },
+    {
+      "accession": "P48817",
+      "alphafold_ids": [
+        "P48817"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 119,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 119,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 13,
+          "description": "",
+          "end": 13,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 61,
+          "description": "",
+          "end": 61,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 89,
+          "description": "",
+          "end": 89,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Brugia malayi (Filarial nematode worm)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 153
+    },
+    {
+      "accession": "P47921",
+      "alphafold_ids": [
+        "P47921"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 111,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 111,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 5,
+          "description": "",
+          "end": 5,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 53,
+          "description": "",
+          "end": 53,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 81,
+          "description": "",
+          "end": 81,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Solanum lycopersicum (Tomato) (Lycopersicon esculentum)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 144
+    },
+    {
+      "accession": "P27950",
+      "alphafold_ids": [
+        "P27950"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Ginglymostoma cirratum (Nurse shark) (Squalus cirratus)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 151
+    },
+    {
+      "accession": "Q75DD1",
+      "alphafold_ids": [
+        "Q75DD1"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 117,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 117,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 11,
+          "description": "",
+          "end": 11,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 59,
+          "description": "",
+          "end": 59,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 87,
+          "description": "",
+          "end": 87,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 93,
+          "description": "",
+          "end": 93,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Eremothecium gossypii (strain ATCC 10895 / CBS 109.51 / FGSC 9923 / NRRL Y-1056) (Yeast) (Ashbya gossypii)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 151
+    },
+    {
+      "accession": "Q96559",
+      "alphafold_ids": [
+        "Q96559"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Helianthus annuus (Common sunflower)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 148
+    },
+    {
+      "accession": "Q9M7P6",
+      "alphafold_ids": [
+        "Q9M7P6"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Capsicum annuum (Capsicum pepper)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 148
+    },
+    {
+      "accession": "Q9UUY8",
+      "alphafold_ids": [
+        "Q9UUY8"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 118,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 118,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 12,
+          "description": "",
+          "end": 12,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 60,
+          "description": "",
+          "end": 60,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 88,
+          "description": "",
+          "end": 88,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 94,
+          "description": "",
+          "end": 94,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Neurospora crassa (strain ATCC 24698 / 74-OR23-1A / CBS 708.71 / DSM 1257 / FGSC 987)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase (NDK) (NDP kinase) (EC 2.7.4.6)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 152
+    },
+    {
+      "accession": "P93554",
+      "alphafold_ids": [
+        "P93554"
+      ],
+      "ec_numbers": [
+        "2.7.4.6"
+      ],
+      "feature_sample": [
+        {
+          "begin": 115,
+          "description": "Pros-phosphohistidine intermediate",
+          "end": 115,
+          "feature_type": "Active site",
+          "ligand_name": null
+        },
+        {
+          "begin": 9,
+          "description": "",
+          "end": 9,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 57,
+          "description": "",
+          "end": 57,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 85,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        },
+        {
+          "begin": 91,
+          "description": "",
+          "end": 91,
+          "feature_type": "Binding site",
+          "ligand_name": "ATP"
+        }
+      ],
+      "flags": {
+        "active_or_binding_site_context": true,
+        "ec_2_7_4_6_scope": true,
+        "hydrolase_or_nuclease_side_ec_boundary": false,
+        "likely_wireable_by_non_ec_handles": true,
+        "mg_or_metal_context": true,
+        "ndk_family_text": true,
+        "non_2_7_side_ec_boundary": false,
+        "ntp_ndp_reaction_text": true,
+        "other_nmp_kinase_side_ec_boundary": false,
+        "phosphohistidine_or_active_his_context": true,
+        "phosphoryl_transfer_text": true,
+        "protein_kinase_boundary": false,
+        "rhea_cross_reference_present": true,
+        "two_component_histidine_kinase_boundary": false
+      },
+      "organism": "Saccharum officinarum (Sugarcane)",
+      "pdb_ids": [],
+      "protein_name": "Nucleoside diphosphate kinase 1 (EC 2.7.4.6) (Nucleoside diphosphate kinase I) (NDK I) (NDP kinase I) (NDPK I) (PP18)",
+      "reaction_sample": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ],
+      "sequence_length": 149
+    }
+  ],
+  "schema_version": "kinase_subclass_mechanism_handle_scout.v1",
+  "status": "non_destructive_scout_no_registry_write_no_labels_emitted",
+  "wire_28fp_lane": true
+}

@@ -63,6 +63,14 @@ def main() -> int:
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
     parser.add_argument(
+        "--include-floor-closure-lanes",
+        action="store_true",
+        help=(
+            "prepend Rhea-first ATP/hydrogencarbonate carboxylation lanes for "
+            "non-destructive biotin floor-closure scouting"
+        ),
+    )
+    parser.add_argument(
         "--apply",
         action="store_true",
         help="append the novelty-admitted bronze labels to the expansion registry",
@@ -89,6 +97,7 @@ def main() -> int:
         families=tuple(args.families),
         max_records_per_lane=args.max_records_per_lane,
         cap_ceiling=args.cap_ceiling,
+        include_floor_closure_lanes=args.include_floor_closure_lanes,
     )
 
     c = audit["counts"]

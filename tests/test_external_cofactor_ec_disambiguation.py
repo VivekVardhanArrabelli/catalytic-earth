@@ -762,6 +762,70 @@ class DisambiguateRowTests(unittest.TestCase):
         ]
         self.assertEqual(disambiguate_row(biotin_ligase)["decision"], "hold")
 
+    def test_nucleoside_diphosphate_kinase_requires_mechanism_handles(self) -> None:
+        row = _row(ec=["2.7.4.6"])
+        row["protein_name"] = "Nucleoside diphosphate kinase"
+        row["keywords"] = ["Kinase", "Transferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:NK0001",
+                "reaction": "ATP + nucleoside diphosphate = ADP + nucleoside triphosphate",
+                "ec_number": "2.7.4.6",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 118,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Pros-phosphohistidine intermediate",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "nucleoside_diphosphate_kinase")
+        axes = d["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("cofactor_or_cosubstrate", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_nucleoside_diphosphate_kinase_controls_hold(self) -> None:
+        ec_only = _row(ec=["2.7.4.6"])
+        ec_only["protein_name"] = "Nucleoside diphosphate kinase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        for ec_numbers, name in (
+            (["2.7.4.6", "2.7.11.1"], "Nucleoside diphosphate protein kinase"),
+            (["2.7.4.6", "2.7.13.3"], "Nucleoside diphosphate histidine kinase"),
+            (["2.7.4.6", "3.1.11.1"], "Nucleoside diphosphate nuclease boundary"),
+            (["2.7.4.6", "2.7.4.3"], "Nucleoside diphosphate adenylate kinase"),
+        ):
+            row = _row(ec=ec_numbers)
+            row["protein_name"] = name
+            row["rhea_ec_provenance"]["rhea_records"] = [
+                {
+                    "rhea_id": "RHEA:NK0002",
+                    "reaction": "ATP + nucleoside diphosphate = ADP + nucleoside triphosphate",
+                    "ec_number": "2.7.4.6",
+                }
+            ]
+            row["residue_locators"] = [
+                {
+                    "position": 118,
+                    "feature_code": "ACT_SITE",
+                    "feature_type": "Active site",
+                    "ligand_name": None,
+                    "ligand_id": None,
+                    "description": "Pros-phosphohistidine intermediate",
+                    "evidence_codes": ["ECO:0000269"],
+                }
+            ]
+            self.assertEqual(disambiguate_row(row)["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

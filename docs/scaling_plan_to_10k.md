@@ -13,6 +13,39 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: biotin floor closure partially applied; strict NDK 28fp expansion is
+now applied.** The latest handoff required a biotin floor-closure scout first. A new optional
+Rhea-first lane for ATP/hydrogencarbonate carboxylation reactions found only **3** additional safe
+biotin rows under the existing mechanism-first gate. `biotin_dependent_carboxylase` is now **84/100**
+and remains under floor by **16**; do not relax the carboxylation requirement or admit EC 6.3.4.15
+biotin-protein ligase rows to force closure.
+
+The fallback narrow kinase-subclass path split strict `nucleoside_diphosphate_kinase` from broad
+EC 2.7. The broad EC 2.7 lane remains blocked by subclass mixing. Strict NDK excludes protein kinase
+EC 2.7.11, two-component histidine kinase EC 2.7.13, hydrolase/nuclease EC 3.*, and adenylate/
+guanylate/NMP kinase side ECs. Added `nucleoside_diphosphate_kinase` fingerprint +
+`phosphohistidine_ntp_transfer` ontology family, bumped
+`CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_28fp`, and re-froze OOS
+preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_28fp_1025.json`.
+EC 2.7.4.6 is scope-only; counted handles are Rhea NTP/NDP phosphoryl-transfer participant text,
+NDK family text, active-site phosphohistidine/catalytic-His or binding-site evidence, and structure.
+Live apply
+(`scripts/source_nucleoside_diphosphate_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **240**, mechanism-corroborated **238**, gate-admitted **237**, applied **150**, held@cap
+**87**, novelty-throttled **1**, off-target held **0**, duplicate skipped **0**. External bronze is
+now **5433**; combined label surface is **6135**; frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters stay separate:
+**positive_bronze 4439**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**. Remaining positive-bronze gap to 10k: **5561**. Post-apply audit: **28
+fingerprints**, fingerprint Gini **0.1608**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase']`, only `metal_dependent_hydrolase` over-cap, next-batch floor
+deficit **16**. Novelty replay: **5433** expansion rows, decisions
+`{'admit': 4977, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0839). All added rows
+keep `predictive_evidence []`; EC/name/keyword/Rhea/prose/feature handles remain excluded-context
+admission evidence and are never predictive. Next useful action: continue strict kinase-subclass
+scouts/splits such as `deoxynucleoside_kinase`, `ghmp_small_molecule_kinase`, or
+`askha_sugar_acetate_kinase`; do **not** broad-wire EC 2.7.
+
 **2026-06-13 automation update: biotin-dependent carboxylase 27fp expansion is now applied but
 under floor.** The latest handoff blocked broad EC 2.7 kinase wiring and recommended either a
 narrow kinase subclass or a guarded biotin-carboxylase handle. This run followed the biotin lane

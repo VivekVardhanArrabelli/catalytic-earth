@@ -3,6 +3,79 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: BIOTIN FLOOR-CLOSURE + STRICT NDK 28FP BRONZE EXPANSION APPLIED
+
+Decision: the biotin floor-closure scout did not find enough reviewed source supply to close the
+100-label floor under the mandatory ATP + hydrogencarbonate/CO2/carboxylation gate, so the run
+applied only the 3 safe biotin rows and then followed the handoff fallback: split a strict kinase
+subclass instead of broad-wiring EC 2.7. Growth went only to
+`data/registries/external_bronze_labels.json`; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+**Biotin floor closure.** Added an optional Rhea-first source lane to
+`scripts/source_biotin_dependent_carboxylase_family.py` and
+`src/catalytic_earth/biotin_dependent_carboxylase_sourcing.py`. Command:
+`PYTHONPATH=src python scripts/source_biotin_dependent_carboxylase_family.py --include-floor-closure-lanes --max-records-per-lane 500 --cap-ceiling 150 --out artifacts/v3_biotin_dependent_carboxylase_floor_closure_scout_current702_20260613.json --report work/biotin_dependent_carboxylase_floor_closure_scout_current702_20260613.md --apply`.
+The Rhea-first lane fetched 105 reviewed rows already inside the existing candidate universe.
+Result: fetched **126**, applied **3**, held **42** no-corroboration rows, skipped **81** duplicates,
+off-target held **0**. `biotin_dependent_carboxylase` **81 -> 84**; floor deficit **16** remains.
+Do not admit EC 6.3.4.15 biotin-protein ligase rows, and do not relax the carboxylation gate to
+close this floor.
+
+**Strict NDK lane.** Broad EC 2.7 remains blocked. A strict NDK scout excluding protein-kinase
+EC 2.7.11, two-component histidine kinase EC 2.7.13, hydrolase/nuclease EC 3.*, and NMP kinase side
+ECs found **714** reviewed rows with **80/80** sampled entries wireable and **0** sampled side-EC
+boundaries. Added `nucleoside_diphosphate_kinase` fingerprint spec and
+`phosphohistidine_ntp_transfer` ontology family; bumped
+`labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_28fp`; re-froze OOS
+next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_28fp_1025.json`. EC 2.7.4.6 is
+scope-only (`ec_scope_hint`, never counted). Counted corroboration comes from Rhea NTP/NDP
+phosphoryl-transfer participant text, NDK family/domain/name text, active-site phosphohistidine or
+catalytic-His evidence, ATP/ADP/GTP/GDP binding-site context, or structure. Protein kinases,
+two-component histidine kinases, hydrolase/nuclease side rows, adenylate/guanylate/NMP kinase side
+rows, and multi-fingerprint rows are held.
+
+NDK apply command:
+`PYTHONPATH=src python scripts/source_nucleoside_diphosphate_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+Result: fetched **240**, target mechanism-corroborated **238**, gate-admitted **237**, applied
+**150**, held@cap **87**, novelty-throttled **1**, disambiguation holds **0**, off-target held
+**0**, duplicate skipped **0**. `nucleoside_diphosphate_kinase` **0 -> 150** (chemistry-confusable
+cap 150; floor reached). External bronze **5280 -> 5433** across the run; combined surface
+**5982 -> 6135**.
+
+Guardrails held: all new rows are `tier=bronze`, `review_status=automation_curated`, namespace
+`uniprot`; EC/name/keyword/Rhea/prose/feature handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; per-fingerprint cap 150 held. Row audits found **0** problems across
+all **84** biotin and **150** NDK rows. Honest counters after apply are
+**positive_bronze 4439**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**; do not merge them. Fresh post-NDK coverage/redundancy audit reports **6135**
+combined labels, **28** fingerprints, seed positives **4439**, fingerprint Gini **0.1608**, holes
+`[]`, under-floor `['biotin_dependent_carboxylase']`, over-cap `['metal_dependent_hydrolase']`, and
+next-batch floor deficit **16**. Novelty replay reports **5433** expansion rows, decisions
+`{'admit': 4977, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0839).
+
+Next decision: continue strict kinase-subclass source scouts/splits such as
+`deoxynucleoside_kinase`, `ghmp_small_molecule_kinase`, or `askha_sugar_acetate_kinase`. Do **not**
+broad-wire EC 2.7, and do not spend time trying to force the remaining biotin 16-row deficit unless
+a genuinely new source can satisfy the same mechanism-first gate.
+
+References:
+`src/catalytic_earth/nucleoside_diphosphate_kinase_sourcing.py`,
+`scripts/source_nucleoside_diphosphate_kinase_family.py`,
+`tests/test_nucleoside_diphosphate_kinase_sourcing.py`,
+`artifacts/v3_biotin_dependent_carboxylase_floor_closure_scout_current702_20260613.json`,
+`artifacts/v3_nucleoside_diphosphate_kinase_strict_subclass_scout_current702_20260613.json`,
+`artifacts/v3_nucleoside_diphosphate_kinase_sourcing_preview_current702.json`,
+`work/nucleoside_diphosphate_kinase_sourcing_current702.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_28fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_ndk_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_ndk_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_ndk_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_ndk_applied.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-13: BIOTIN-DEPENDENT CARBOXYLASE 27FP BRONZE EXPANSION APPLIED
 
 Decision: broad EC 2.7 kinase remains blocked by subclass mixing, so this run selected the guarded

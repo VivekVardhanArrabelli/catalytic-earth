@@ -38,6 +38,26 @@ SCHEMA_VERSION = "external_annotation_anchored_import.v1"
 FAMILY = "biotin_dependent_carboxylase"
 FAMILIES: tuple[str, ...] = (FAMILY,)
 
+# Rhea-first floor-closure scout: reviewed UniProt entries mapped to the
+# ATP/hydrogencarbonate carboxylation reactions for EC 6.4.1 plus the
+# biotin-carboxylase half-reaction RHEA:13501 / EC 6.3.4.14. This is source
+# supply only; EC/Rhea/name handles remain excluded-context admission evidence.
+_RHEA_CARBOXYLATION_IDS = (
+    "11308",  # acetyl-CoA carboxylase, EC 6.4.1.2
+    "13501",  # biotin carboxylase half-reaction, EC 6.3.4.14
+    "13589",  # 3-methylcrotonyl-CoA carboxylase, EC 6.4.1.4
+    "17701",  # geranoyl-CoA carboxylase, EC 6.4.1.5
+    "18385",  # acetone carboxylase, EC 6.4.1.6
+    "20425",  # 2-oxoglutarate carboxylase, EC 6.4.1.7
+    "20844",  # pyruvate carboxylase, EC 6.4.1.1
+    "23720",  # propionyl-CoA carboxylase, EC 6.4.1.3
+    "28647",  # acetophenone carboxylase, EC 6.4.1.8
+    "65292",  # butan-2-one carboxylase, EC 6.4.1.6
+)
+_RHEA_CARBOXYLATION_QUERY = " OR ".join(
+    f"(rhea:{rhea_id})" for rhea_id in _RHEA_CARBOXYLATION_IDS
+)
+
 # EC 6.4.1 / 6.3.4 scopes reviewed biotin carboxylase candidates only.
 # Admission requires non-EC biotin/biotinyl-Lys context, Rhea ATP/hydrogencarbonate/
 # carboxybiotin participant text, carboxylase family text, or active-/binding-site
@@ -65,13 +85,33 @@ FAMILY_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
         },
     )
 }
+FLOOR_CLOSURE_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    FAMILY: (
+        {
+            "lane_id": "biotin_carboxylase_reviewed_rhea_carboxylation_floor_closure",
+            "target_family_lane": FAMILY,
+            "query": (
+                f"(reviewed:true) AND ({_RHEA_CARBOXYLATION_QUERY}) AND "
+                "((keyword:Biotin) OR (protein_name:biotin) OR "
+                "(protein_name:carboxylase) OR (protein_name:carboxyltransferase) OR "
+                "(cc_cofactor:biotin))"
+            ),
+        },
+    )
+}
 
 
-def _lane_queries_for(families: tuple[str, ...]) -> tuple[dict[str, str], ...]:
+def _lane_queries_for(
+    families: tuple[str, ...],
+    *,
+    include_floor_closure_lanes: bool = False,
+) -> tuple[dict[str, str], ...]:
     lanes: list[dict[str, str]] = []
     for family in families:
         if family not in FAMILY_LANE_QUERIES:
             raise ValueError(f"{family!r} is not a biotin carboxylase sourcing family")
+        if include_floor_closure_lanes:
+            lanes.extend(FLOOR_CLOSURE_LANE_QUERIES[family])
         lanes.extend(FAMILY_LANE_QUERIES[family])
     return tuple(lanes)
 
@@ -90,10 +130,13 @@ def build_biotin_dependent_carboxylase_sourcing(
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
+    include_floor_closure_lanes: bool = False,
 ) -> dict[str, Any]:
     created = created_utc or _utc_now_iso()
     families = tuple(families)
-    lane_queries = _lane_queries_for(families)
+    lane_queries = _lane_queries_for(
+        families, include_floor_closure_lanes=include_floor_closure_lanes
+    )
     caps_by_family = {family: cap_ceiling for family in families}
 
     pilot = build_external_source_ingestion_pilot(
@@ -209,6 +252,7 @@ def build_biotin_dependent_carboxylase_sourcing(
             "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": True,
             "kinase_ligase_hydrolase_transferase_side_ec_boundary_guard": True,
             "off_target_fingerprint_matches_held": True,
+            "rhea_first_floor_closure_source_lane_enabled": include_floor_closure_lanes,
             "all_new_labels_tier": "bronze",
             "all_new_labels_review_status": "automation_curated",
             "external_entry_id_namespace": "uniprot",
@@ -227,6 +271,7 @@ def build_biotin_dependent_carboxylase_sourcing(
         "floor_projection": floor_projection,
         "counts": {
             "lanes_queried": len(lane_queries),
+            "rhea_first_floor_closure_lanes_enabled": include_floor_closure_lanes,
             "max_records_per_lane": max_records_per_lane,
             "fetched_candidate_rows": pilot["candidate_count"],
             "mechanism_corroborated_bronze_labels": len(target_labels),
@@ -361,6 +406,7 @@ def write_biotin_dependent_carboxylase_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = 150,
+    include_floor_closure_lanes: bool = False,
 ) -> dict[str, Any]:
     expansion_path = Path(expansion_registry_path)
     audit = build_biotin_dependent_carboxylase_sourcing(
@@ -372,6 +418,7 @@ def write_biotin_dependent_carboxylase_sourcing(
         target_floor=target_floor,
         per_cluster_cap=per_cluster_cap,
         cap_ceiling=cap_ceiling,
+        include_floor_closure_lanes=include_floor_closure_lanes,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

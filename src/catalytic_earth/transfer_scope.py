@@ -142,10 +142,15 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_25FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_26FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_26fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 27-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The re-frozen tranche pre-registration for the 27-fingerprint universe is historical after the
+# nucleoside diphosphate kinase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_27FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 28-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_28FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_28fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

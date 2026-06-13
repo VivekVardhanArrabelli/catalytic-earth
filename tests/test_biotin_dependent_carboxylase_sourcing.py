@@ -212,6 +212,19 @@ class BiotinDependentCarboxylaseSourcingTest(unittest.TestCase):
         self.assertGreaterEqual(audit["counts"]["disambiguation_hold_count"], 5)
         self.assertEqual(audit["counts"]["off_target_fingerprint_matches_held"], 0)
 
+    def test_rhea_first_floor_closure_lane_is_optional_and_non_predictive(self):
+        audit = self._run(include_floor_closure_lanes=True)
+        self.assertEqual(audit["counts"]["lanes_queried"], 3)
+        self.assertTrue(audit["counts"]["rhea_first_floor_closure_lanes_enabled"])
+        self.assertTrue(audit["guardrails"]["rhea_first_floor_closure_source_lane_enabled"])
+        self.assertEqual(
+            audit["lane_summaries"][0]["lane_id"],
+            "biotin_carboxylase_reviewed_rhea_carboxylation_floor_closure",
+        )
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 8)
+        for label in audit["applied_labels"]:
+            self.assertEqual(label["evidence"]["predictive_evidence"], [])
+
     def test_admitted_labels_are_bronze_and_leakage_safe(self):
         audit = self._run()
         self.assertEqual(

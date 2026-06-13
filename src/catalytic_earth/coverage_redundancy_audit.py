@@ -198,6 +198,11 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "protein-bound biotin / biotinyl-Lys plus ATP/Mg and hydrogencarbonate/CO2 carboxylation chemistry",
         "lanes": ["biotin_dependent_carboxylase"],
     },
+    "nucleoside_diphosphate_kinase": {
+        "ec_prefixes": ["2.7.4.6"],
+        "cofactor": "NTP/NDP phosphoryl-transfer cosubstrates with active-site phosphohistidine relay",
+        "lanes": ["nucleoside_diphosphate_kinase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

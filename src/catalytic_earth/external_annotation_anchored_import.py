@@ -90,6 +90,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "thiamine_diphosphate_enzyme": "thdp_mg_ylide_carbonyl_substrate_context",
     "zinc_lyase_hydratase": "zinc_water_elimination_addition_context",
     "biotin_dependent_carboxylase": "biotinyl_lysine_atp_hydrogencarbonate_context",
+    "nucleoside_diphosphate_kinase": "phosphohistidine_ntp_ndp_transfer_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

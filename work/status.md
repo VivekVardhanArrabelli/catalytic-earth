@@ -5,6 +5,52 @@ Generated from `work/progress_log.jsonl`.
 ## Active Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T07:30:33Z`
+- Started local: `Sat Jun 13 02:30:36 CDT 2026`
+- Focus: biotin floor-closure scout/apply followed by the fallback narrow kinase-subclass lane from
+  the latest handoff. Broad EC 2.7 kinase stayed blocked; strict `nucleoside_diphosphate_kinase`
+  was split out as a guarded 28fp lane.
+- Result: applied +3 corrected external bronze rows for `biotin_dependent_carboxylase` and +150
+  rows for `nucleoside_diphosphate_kinase`; external bronze **5280 -> 5433**; combined surface
+  **5982 -> 6135**; frozen current702 sha stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Family/gate setup: added optional Rhea-first biotin floor-closure lane; added
+  `nucleoside_diphosphate_kinase` fingerprint + `phosphohistidine_ntp_transfer` ontology family
+  (`label_factory_v1_28fp`); re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_28fp_1025.json`.
+- Biotin floor-closure command:
+  `PYTHONPATH=src python scripts/source_biotin_dependent_carboxylase_family.py --include-floor-closure-lanes --max-records-per-lane 500 --cap-ceiling 150 --out artifacts/v3_biotin_dependent_carboxylase_floor_closure_scout_current702_20260613.json --report work/biotin_dependent_carboxylase_floor_closure_scout_current702_20260613.md --apply`.
+  Result: fetched 126, Rhea-first lane found 105 reviewed rows already inside the candidate universe,
+  admitted/applied 3 new pyruvate-carboxylase subunit A rows, held 42 no-corroboration rows, skipped
+  81 duplicates; `biotin_dependent_carboxylase` **81 -> 84**, still under floor by 16.
+- NDK apply command:
+  `PYTHONPATH=src python scripts/source_nucleoside_diphosphate_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched 240, mechanism-corroborated 238, gate-admitted 237, novelty-throttled 1,
+  held@cap 87, off-target held 0, duplicate skipped 0, applied 150; `nucleoside_diphosphate_kinase`
+  **0 -> 150** (chemistry-confusable cap 150; floor reached).
+- Guardrails: EC remains scope-only and never counted; Rhea/name/keyword/feature handles are
+  admission/excluded-context only; `predictive_evidence []`; every added row is tier bronze /
+  automation_curated / uniprot namespace; dedup ran against frozen current702 and external bronze;
+  NDK side-EC guards hold protein kinases, two-component histidine kinases, hydrolase/nuclease rows,
+  NMP kinases, and multi-fingerprint signals.
+- Coverage audit: 6135 combined labels; 28 fingerprints; fingerprint Gini 0.1608; holes `[]`;
+  under-floor `['biotin_dependent_carboxylase']`; over-cap `['metal_dependent_hydrolase']`;
+  next-batch floor deficit 16. Novelty replay: 5433 expansion rows, decisions
+  `{'admit': 4977, 'reject': 47, 'throttle': 409}`, would-not-readmit 456 (0.0839).
+- Honest counters: `positive_bronze=4439`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 5561.
+- Validation: focused pytest `230 passed, 14 subtests passed`; `validate` passed (12 source records,
+  28 mechanism fingerprints, 30 ontology families, 702 curated labels); row guardrail audits found
+  0 problems across all 84 biotin and all 150 NDK rows; JSON/JSONL parse checks and
+  `git diff --check` passed.
+- Follow-on: biotin remains below floor but reviewed Rhea-first source supply is exhausted under the
+  current gate. Next highest-impact lane is another strict kinase subclass scout/split such as
+  deoxynucleoside kinase, GHMP small-molecule kinase, or ASKHA sugar/acetate kinase; do not broad-wire
+  EC 2.7.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T06:28:39Z`
 - Started local: `Sat Jun 13 01:28:39 CDT 2026`
 - Focus: guarded `biotin_dependent_carboxylase` 27fp setup/apply from the latest handoff after the

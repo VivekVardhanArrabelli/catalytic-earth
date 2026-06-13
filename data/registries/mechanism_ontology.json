@@ -408,6 +408,21 @@
         "Hold multi-fingerprint-signal rows rather than forcing a biotin carboxylase label.",
         "The biotinyl-Lys carrier, ATP/Mg2+, hydrogencarbonate/CO2, carboxybiotin intermediate, acceptor substrate, and carrier-domain pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "phosphohistidine_ntp_transfer",
+      "name": "Phosphohistidine-mediated NTP/NDP phosphoryl transfer",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "nucleoside_diphosphate_kinase"
+      ],
+      "scope_note": "Nucleoside diphosphate kinase EC 2.7.4.6 enzymes that transfer phosphoryl groups between nucleoside triphosphates and diphosphates through a catalytic phosphohistidine relay.",
+      "family_boundary_guardrails": [
+        "Membership is decided by Rhea/reviewed NTP/NDP phosphoryl-transfer participant text, nucleoside diphosphate kinase family text, and active-site phosphohistidine/catalytic His/binding-site evidence; EC 2.7.4.6 is scope only.",
+        "Do not admit protein kinases, two-component histidine kinases, hydrolase/nuclease side rows, adenylate/guanylate/nucleoside-monophosphate kinase side rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing an NDK label.",
+        "The NTP/NDP cosubstrates, Mg2+, transient phosphohistidine, and nucleotide-binding pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

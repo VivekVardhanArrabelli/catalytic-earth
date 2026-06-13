@@ -1,0 +1,764 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q58626",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 4,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 291
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 116
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 200
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 235
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [],
+              "name": "Mn(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:48828",
+              "evidence_codes": [],
+              "name": "Co(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "6.4.1.1"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "6.4.1.1",
+              "evidence_codes": [],
+              "reaction": "hydrogencarbonate + pyruvate + ATP = oxaloacetate + ADP + phosphate + H(+)",
+              "rhea_id": "RHEA:20844",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: biotin_dependent_carboxylase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ea46893daa5c69ca5854dfbc1392eb149db0026293b5a35f994ba6733bdd07ba"
+          },
+          "retrieved_utc": "2026-06-13T07:40:52Z",
+          "sequence": "MFNKVLIANRGEIAIRIIRACWELGIKTVAVYSEADKRSLHATLADEAYCIGPAPAAKSYLNIDAILNVAEKAKVDAIHPGYGFLAENAEFARAVKKAGFEFIGPNPDAIEAMGSKINAKKIMKKAGVPLIPGSEGAIEDIDEAIEIAEAIGFPVVVKASAGGGGMGMSVAYSKEELKEVIESARNIAKSAFGDPTVFIEKYLENPRHIEIQLLGDKHGNIIHLGDRECSIQRRHQKLIEEAPSPIMTEELRERMGEAAIKAGKAINYDSAGTVEFLYENGNFYFLEMNTRIQVEHTVTEQVTGIDLVKAMIKIAAGEELTLKQEDVKIRGHAIECRINAEDPLNDFVPCPGKIKLYRSPGGPGVRIDSGVYGGAEIPPYYDSMIAKLITYGNSREEAIARMKRALREYVIIGVKTNIPFHRAVLEEENFLKGNISTHYVEQNMHKLREKMVKYALESRDLYSVVSEKVFEKNKKIAAAVGGLTMYISQIMKENEVNNKEW",
+          "sequence_length": 501,
+          "sequence_sha256": "3e8b3b449fc4661cf22f169efc96b66ecb42793fb38dd960fc147510f1890247",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q58626"
+        },
+        "source_provenance": {
+          "accession": "Q58626",
+          "disambiguation_pool": "biotin_dependent_carboxylase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "biotin_dependent_carboxylase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_biotin_dependent_carboxylase_from_annotated_cofactor_and_ec_class_['6.4.1.1']",
+          "organism": "Methanocaldococcus jannaschii (strain ATCC 43067 / DSM 2661 / JAL-1 / JCM 10045 / NBRC 100440) (Methanococcus jannaschii)",
+          "protein_name": "Pyruvate carboxylase subunit A (EC 6.4.1.1) (Pyruvic carboxylase A)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 501,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "05479876ae4e94618b8f432208605ca3cc2c073e4608cee0903d50ba5e752f1a",
+            "source_query_sha256": "ea46893daa5c69ca5854dfbc1392eb149db0026293b5a35f994ba6733bdd07ba",
+            "uniprot_entry_record_sha256": "873faaaa5c9fb7006a858c4db1bf462f69fa5aa248502daed581dc670818b1c4",
+            "uniprot_search_row_sha256": "f8a5e9abc2d2e6b0dcd73247d80928e9871c3d0376151930a9c29a4e23bdcdb6"
+          },
+          "target_family_lane": "biotin_dependent_carboxylase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q58626"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q58626-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q58626 imported as annotation-anchored bronze in-scope biotin_dependent_carboxylase: reviewed Swiss-Prot EC ['6.4.1.1'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:O27939",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 4,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 291
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 116
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 200
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 235
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [],
+              "name": "Mn(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:48828",
+              "evidence_codes": [],
+              "name": "Co(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "6.4.1.1"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "6.4.1.1",
+              "evidence_codes": [],
+              "reaction": "hydrogencarbonate + pyruvate + ATP = oxaloacetate + ADP + phosphate + H(+)",
+              "rhea_id": "RHEA:20844",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: biotin_dependent_carboxylase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ea46893daa5c69ca5854dfbc1392eb149db0026293b5a35f994ba6733bdd07ba"
+          },
+          "retrieved_utc": "2026-06-13T07:40:52Z",
+          "sequence": "MFSKILVANRGEIAIRVMRACRELGIKSVAVYSEADKNALFTRYADEAYEIGKPAPSQSYLRIDRILEVAEKAGAEAIHPGYGFLAENPRLGEECEKQGIKLIGPKGSVIEAMGDKITSKKLMKKAGVPVIPGTDQGVSDPDEAARIADSIGYPVIIKASAGGGGIGMRAVYEEDELIRAMESTQSVAASAFGDPTVYIEKYLERPRHIEFQVMADESGNVIHLADRECSIQRRHQKLIEEAPSPIMTPELRERMGSAAVKAAEYIGYENAGTVEFLYSNGDFYFLEMNTRIQVEHPITEVITGVDLVKEQIRVASGEELRFTQKDINIRGHAIECRINAENPLADFAPNPGKITGYRSPGGIGVRVDSGVYMNYEIPPFYDSMISKLIVWGMDRQEAINRMKRALSEYIILGVKTTIPFHKAIMRNEAFRRGELHTHFVDEYRRGIDAEMRKIVKEDQEMVERLQSTFLPSKKVAAISAAIGTYMHSRRG",
+          "sequence_length": 491,
+          "sequence_sha256": "306e07cdbc46e266b24aa8553092b6d9336289f70bbce15f0ac4ac44be406a73",
+          "source": "reviewed_uniprot",
+          "source_accession": "O27939"
+        },
+        "source_provenance": {
+          "accession": "O27939",
+          "disambiguation_pool": "biotin_dependent_carboxylase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "biotin_dependent_carboxylase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_biotin_dependent_carboxylase_from_annotated_cofactor_and_ec_class_['6.4.1.1']",
+          "organism": "Methanothermobacter thermautotrophicus (strain ATCC 29096 / DSM 1053 / JCM 10044 / NBRC 100330 / Delta H) (Methanobacterium thermoautotrophicum)",
+          "protein_name": "Pyruvate carboxylase subunit A (EC 6.4.1.1) (Pyruvic carboxylase A)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 491,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "05479876ae4e94618b8f432208605ca3cc2c073e4608cee0903d50ba5e752f1a",
+            "source_query_sha256": "ea46893daa5c69ca5854dfbc1392eb149db0026293b5a35f994ba6733bdd07ba",
+            "uniprot_entry_record_sha256": "bf9fe6f7fd68aab70ea09103f10fe49898461170f935510a7bbecd5918e73834",
+            "uniprot_search_row_sha256": "e9599f12d621df2c336aecd5cd63660540bb0fef7acf4e97a77db9b0ee4a2582"
+          },
+          "target_family_lane": "biotin_dependent_carboxylase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O27939"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O27939-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O27939 imported as annotation-anchored bronze in-scope biotin_dependent_carboxylase: reviewed Swiss-Prot EC ['6.4.1.1'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:O30019",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 4,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 290
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 116
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 199
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 234
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:48828",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Co(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "6.4.1.1"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "6.4.1.1",
+              "evidence_codes": [],
+              "reaction": "hydrogencarbonate + pyruvate + ATP = oxaloacetate + ADP + phosphate + H(+)",
+              "rhea_id": "RHEA:20844",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: biotin_dependent_carboxylase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ea46893daa5c69ca5854dfbc1392eb149db0026293b5a35f994ba6733bdd07ba"
+          },
+          "retrieved_utc": "2026-06-13T07:40:52Z",
+          "sequence": "MFSKILVANRGEIAVRVMRACRELGIKTVGVYSSADKRAFHRVYADECYYIGKADPRDSYLNIDRIIEVAKKSGAEAIHPGYGFLAENAEFAERCEEEGIVFIGPSPEVIRIAGSKVRSRESMQRAGVPVIPGSPKIDTVDEAKEWAEKIGYPVAVKASGGGGGIGIVVVNSQEELEEAFRKSKKLGESYFKDSTVYLEKYLARPRHIEVQILADQHGNVIHLGERECSIQRRHQKLIEEAPSPALNEEMREELGKLAVKGAREIGYTNAGTFEFLYENGNFYFLEINSRLQVEHTITEVVTGIDIVKYQIRIAYGEELRHGQEDVAIRGHAIECRINAEDPVNFYPRSGRILHYRSPGGIGIRVDSGIHMGYRIPEEYDSMISKLIAYGETREEAIARMKRALYEYIIEGVETNIPFHFAVLNDEEFVRGNIHTKFVEERNIAEKVKEYLRIFRPIKARLDEIFMESEFTWEEISAIVTAIDAYEQELERGIEERIWQAIFSLGA",
+          "sequence_length": 506,
+          "sequence_sha256": "df81fe954ccfbdd9fbee96634d73c944f88bc118150dbd27040015bbce1adb2c",
+          "source": "reviewed_uniprot",
+          "source_accession": "O30019"
+        },
+        "source_provenance": {
+          "accession": "O30019",
+          "disambiguation_pool": "biotin_dependent_carboxylase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "biotin_dependent_carboxylase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_biotin_dependent_carboxylase_from_annotated_cofactor_and_ec_class_['6.4.1.1']",
+          "organism": "Archaeoglobus fulgidus (strain ATCC 49558 / DSM 4304 / JCM 9628 / NBRC 100126 / VC-16)",
+          "protein_name": "Pyruvate carboxylase subunit A (EC 6.4.1.1) (Pyruvic carboxylase A)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 506,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "05479876ae4e94618b8f432208605ca3cc2c073e4608cee0903d50ba5e752f1a",
+            "source_query_sha256": "ea46893daa5c69ca5854dfbc1392eb149db0026293b5a35f994ba6733bdd07ba",
+            "uniprot_entry_record_sha256": "dbe3116f009c0fdac5aa0a17d4c7ebaf652b7e1280568b3bad3e4c47bcd73055",
+            "uniprot_search_row_sha256": "412223d19d6c433d2018b7676b5dc892248f1809e361d411d2da72f17cecbf45"
+          },
+          "target_family_lane": "biotin_dependent_carboxylase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O30019"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O30019-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O30019 imported as annotation-anchored bronze in-scope biotin_dependent_carboxylase: reviewed Swiss-Prot EC ['6.4.1.1'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_biotin_dependent_carboxylase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "biotin_dependent_carboxylase": 3
+    },
+    "current_combined_labels": 5982,
+    "disambiguation_hold_count": 42,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 42
+    },
+    "disambiguation_skip_count": 81,
+    "fetched_candidate_rows": 126,
+    "gate_admitted_before_cap_guard": 3,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 3,
+    "max_records_per_lane": 500,
+    "mechanism_corroborated_bronze_labels": 3,
+    "novelty_admitted_labels": 3,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 5985,
+    "rhea_first_floor_closure_lanes_enabled": true
+  },
+  "created_utc": "2026-06-13T07:40:52Z",
+  "deploy_missing_active_site_context_per_family": {
+    "biotin_dependent_carboxylase": "biotinyl_lysine_atp_hydrogencarbonate_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "medium": 3
+    },
+    "current_registry_labels": 5280,
+    "decision_counts": {
+      "hold": 42,
+      "import": 3,
+      "skip": 81
+    },
+    "examined_rows": 126,
+    "fingerprint_counts": {
+      "biotin_dependent_carboxylase": 3
+    },
+    "hold_count": 42,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 42
+    },
+    "importable_new_labels": 3,
+    "per_pool_decision_counts": {
+      "biotin_dependent_carboxylase_broadened_handle_fresh_fetch": {
+        "hold": 42,
+        "import": 3,
+        "skip_screen": 81
+      }
+    },
+    "projected_registry_labels_if_merged": 5283,
+    "skip_count": 81
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_biotin_carboxylase_annotation",
+  "families_sourced": [
+    "biotin_dependent_carboxylase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "biotin_dependent_carboxylase": {
+      "admitted_this_run": 3,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 81,
+      "deficit_to_floor_after": 16,
+      "deficit_to_floor_before": 19,
+      "deploy_missing_active_site_context": "biotinyl_lysine_atp_hydrogencarbonate_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 84,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "biotin_carboxylase_handles_scope_admission_only": true,
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "kinase_ligase_hydrolase_transferase_side_ec_boundary_guard": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "biotin_dependent_carboxylase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "rhea_first_floor_closure_source_lane_enabled": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "biotin_carboxylase_reviewed_rhea_carboxylation_floor_closure",
+      "query": "(reviewed:true) AND ((rhea:11308) OR (rhea:13501) OR (rhea:13589) OR (rhea:17701) OR (rhea:18385) OR (rhea:20425) OR (rhea:20844) OR (rhea:23720) OR (rhea:28647) OR (rhea:65292)) AND ((keyword:Biotin) OR (protein_name:biotin) OR (protein_name:carboxylase) OR (protein_name:carboxyltransferase) OR (cc_cofactor:biotin))",
+      "record_count": 105,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28rhea%3A11308%29+OR+%28rhea%3A13501%29+OR+%28rhea%3A13589%29+OR+%28rhea%3A17701%29+OR+%28rhea%3A18385%29+OR+%28rhea%3A20425%29+OR+%28rhea%3A20844%29+OR+%28rhea%3A23720%29+OR+%28rhea%3A28647%29+OR+%28rhea%3A65292%29%29+AND+%28%28keyword%3ABiotin%29+OR+%28protein_name%3Abiotin%29+OR+%28protein_name%3Acarboxylase%29+OR+%28protein_name%3Acarboxyltransferase%29+OR+%28cc_cofactor%3Abiotin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "biotin_dependent_carboxylase"
+    },
+    {
+      "lane_id": "biotin_carboxylase_reviewed_ec_6_4_1",
+      "query": "(reviewed:true) AND (ec:6.4.1.*) AND ((keyword:Biotin) OR (protein_name:biotin) OR (protein_name:carboxylase) OR (cc_cofactor:biotin))",
+      "record_count": 1,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A6.4.1.%2A%29+AND+%28%28keyword%3ABiotin%29+OR+%28protein_name%3Abiotin%29+OR+%28protein_name%3Acarboxylase%29+OR+%28cc_cofactor%3Abiotin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "biotin_dependent_carboxylase"
+    },
+    {
+      "lane_id": "biotin_carboxylase_reviewed_ec_6_3_4",
+      "query": "(reviewed:true) AND (ec:6.3.4.*) AND ((keyword:Biotin) OR (protein_name:biotin) OR (protein_name:carboxylase) OR (cc_cofactor:biotin))",
+      "record_count": 20,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A6.3.4.%2A%29+AND+%28%28keyword%3ABiotin%29+OR+%28protein_name%3Abiotin%29+OR+%28protein_name%3Acarboxylase%29+OR+%28cc_cofactor%3Abiotin%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "biotin_dependent_carboxylase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 3
+    },
+    "reason_counts": {
+      "closes_under_floor_fingerprint": 3
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_biotin_dependent_carboxylase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}
