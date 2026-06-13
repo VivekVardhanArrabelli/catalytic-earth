@@ -78,6 +78,8 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "nad_p_dehydrogenase": "nad_p_cosubstrate",
     "glycosyltransferase": "sugar_nucleotide_donor",
     "sam_methyltransferase": "sam_sah_methyl_donor",
+    "cytochrome_p450_monooxygenase": "heme_thiolate_oxygen_cosubstrate",
+    "non_heme_iron_2og_dioxygenase": "fe_ii_2og_o2_cosubstrate",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

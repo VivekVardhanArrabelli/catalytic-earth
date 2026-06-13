@@ -13,6 +13,56 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: non-heme iron 2OG 17fp expansion is now applied.**
+After the P450 work below completed, the next documented scaling lane was wired as a deliberate
+17-fingerprint universe change and sourced through the same evidence-rich admission machinery. Added
+`non_heme_iron_2og_dioxygenase` fingerprint + `non_heme_iron_oxygenation` ontology family, EC 1.14.11
+scope, Fe(II) plus 2-oxoglutarate/succinate/CO2 Rhea participant or Dioxygenase keyword/domain or
+active/binding-site mechanism handles, heme/flavin/peroxide guards, 17fp OOS preregistration
+re-freeze, offline tests, non-destructive preview, then explicit apply. Live preview/apply
+(`scripts/source_non_heme_iron_2og_family.py --max-records-per-lane 80 --apply`) fetched **212**
+reviewed Swiss-Prot rows, mechanism-corroborated **198**, admitted **172** before cap, and appended
+**172** bronze rows; **26** were novelty-throttled, **12** were disambiguation holds
+(`multi_fingerprint_signal_conflict` 5, `no_mechanism_corroboration` 7), **2** were skipped, and
+fetch failures were **0**. External bronze is now **3872** (was 3700 after P450); combined label
+surface is **4574**; frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after apply. Honest
+counters after the apply stay separate: **positive_bronze 2861**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k:
+**7139**. Post-apply audit: **17 fingerprints**, fingerprint Gini **0.1657**, holes `[]`, only
+`metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. A follow-on current
+source-supply scout recommends **CoA acyltransferase** as the next lane: **7728** reviewed rows and
+**82** distinct full EC labels in a 200-row sample, no reaction-poor warning. A CoA lane-design scout
+then showed Acyltransferase keyword supply **7728**, `cc_cofactor:coa` supply only **23**, EC-only
+ceiling **9981**, and **108** distinct EC labels in a 500-row sample. An 80-entry mechanism-handle
+scout found Rhea cross-references **80/80**, CoA/acyl-CoA reaction text **72/80**,
+active/binding-site context **56/80**, and fetch failures **0**. Next recommended lane: wire
+`coa_acyltransferase` as a deliberate 18fp universe change with EC 2.3.1 scope-only lanes plus
+CoA/acyl-CoA Rhea participant or Acyltransferase keyword/domain and catalytic His/Cys/active-site
+mechanism corroboration; do not rely on UniProt `cc_cofactor:coa` alone. Add non-CoA transferase and
+multi-fingerprint-signal guards, OOS re-freeze, offline tests, preview, then apply only if gates pass.
+
+**2026-06-13 automation update: cytochrome P450 16fp expansion is now applied.**
+After the SAM methyltransferase work below completed, the next documented scaling lane was wired as
+a deliberate 16-fingerprint universe change and sourced through the same evidence-rich admission
+machinery. Added `cytochrome_p450_monooxygenase` fingerprint + `heme_monooxygenation` ontology
+family, EC 1.14 scope, heme plus O2/Rhea participant or P450/monooxygenase keyword/domain or
+heme-thiolate mechanism handles, explicit non-peroxidase guard, 16fp OOS preregistration re-freeze,
+offline tests, non-destructive preview, then explicit apply. Live preview/apply
+(`scripts/source_cytochrome_p450_family.py --max-records-per-lane 80 --apply`) fetched **142**
+reviewed Swiss-Prot rows, mechanism-corroborated **128**, admitted **110** before cap, and appended
+**110** bronze rows; **18** were novelty-throttled/rejected, **14** were disambiguation holds, and
+fetch failures were **0**. External bronze is now **3700** (was 3590); combined label surface is
+**4402**; frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after apply. Honest
+counters after the apply stay separate: **positive_bronze 2689**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k:
+**7311**. Post-apply audit: **16 fingerprints**, fingerprint Gini **0.1657**, holes `[]`, only
+`metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. A follow-on focused scout
+confirmed **non-heme iron 2OG dioxygenase** as the next strong lane: EC 1.14.11 + iron/dioxygenase
+handle has **870** reviewed rows and a 200-row sample has **36** distinct specific ECs. That 17fp
+follow-on is now applied in the update above; use the non-heme iron 2OG entry for current guidance.
+
 **2026-06-12 automation update: SAM methyltransferase 15fp expansion is now applied.**
 After the NAD(P)/glyco floor/cap work below completed, the next documented scaling lane was wired as
 a deliberate 15-fingerprint universe change and sourced through the same evidence-rich admission
@@ -276,16 +326,17 @@ to the ceiling manufactures the redundancy the plan warns against. Next splits/f
 glycosidases, and non-hydrolase chemistries (oxidoreductase/transferase) to keep chemical
 breadth — hydrolysis now holds 6 of 12 fingerprints.
 
-**Applied (2026-06-12) — broadened-handle transferase/redox families filled:** the first three
+**Applied (2026-06-12/13) — broadened-handle transferase/redox families filled:** the first five
 non-hydrolase broadened-handle families are now countable bronze, not just previews.
 `nad_p_dehydrogenase` is capped at **150**, `glycosyltransferase` at **250**, and
-`sam_methyltransferase` at **250**; all meet the 100-floor and none should be sourced further
-without a new chemistry split. The coverage governor reports no expansion holes;
+`sam_methyltransferase` at **250**; `cytochrome_p450_monooxygenase` is at **110** and
+`non_heme_iron_2og_dioxygenase` is at **172**. All meet the 100-floor and none should be sourced
+further without a new chemistry split. The coverage governor reports no expansion holes;
 `metal_dependent_hydrolase` remains the intentional over-cap. This raises positive_bronze to
-**2579** while keeping OOS/silver/projected counters separate. The next breadth step should open
-**one new family** rather than deepen these: cytochrome P450 monooxygenase is the best next
-candidate, but it must include a 16fp governance update and OOS pre-registration supersession
-before any registry apply.
+**2861** while keeping OOS/silver/projected counters separate. The next breadth step should open
+**one new family** rather than deepen these: the current scout ranks `coa_acyltransferase` as the
+best next candidate, and it must include an 18fp governance update and OOS pre-registration
+supersession before any registry apply.
 
 ### Stage 3 — Diverse OOS, novelty-gated
 OOS is the abstention target and must keep growing in **coverage**, not redundancy.

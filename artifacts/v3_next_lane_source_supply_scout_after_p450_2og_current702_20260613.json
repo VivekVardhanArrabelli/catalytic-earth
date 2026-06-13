@@ -1,0 +1,164 @@
+{
+  "artifact_id": "v3_next_lane_source_supply_scout_after_p450_2og_current702_20260613",
+  "candidate_records": [
+    {
+      "applied_cap_if_wired": 250,
+      "candidate_family": "copper_oxidoreductase",
+      "count_metadata": {
+        "query": "(reviewed:true) AND ((ec:1.10.3.*) OR (ec:1.4.3.*)) AND ((cc_cofactor:copper) OR (keyword:Copper))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.10.3.%2A%29+OR+%28ec%3A1.4.3.%2A%29%29+AND+%28%28cc_cofactor%3Acopper%29+OR+%28keyword%3ACopper%29%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_sample": 12,
+      "ec_only_supply_ceiling_20260611": null,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_at_cap_upper_bound": 18.5,
+      "mechanism_handle": "copper (type-1/2/3) + EC 1.10.3/1.4.3 (no heme, no flavin)",
+      "notes": "Distinct copper cofactor; small-to-moderate supply.",
+      "prior_reviewed_entry_supply_20260611": null,
+      "query": "(reviewed:true) AND ((ec:1.10.3.*) OR (ec:1.4.3.*)) AND ((cc_cofactor:copper) OR (keyword:Copper))",
+      "reaction_poor_warning": true,
+      "reviewed_entry_supply_current": 222,
+      "sample_metadata": {
+        "query": "(reviewed:true) AND ((ec:1.10.3.*) OR (ec:1.4.3.*)) AND ((cc_cofactor:copper) OR (keyword:Copper))",
+        "record_count": 200,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.10.3.%2A%29+OR+%28ec%3A1.4.3.%2A%29%29+AND+%28%28cc_cofactor%3Acopper%29+OR+%28keyword%3ACopper%29%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 200,
+      "sample_rows_with_full_ec": 164
+    },
+    {
+      "applied_cap_if_wired": 250,
+      "candidate_family": "molybdopterin_oxidoreductase",
+      "count_metadata": {
+        "query": "(reviewed:true) AND (ec:1.*) AND ((cc_cofactor:molybdopterin) OR (cc_cofactor:molybdenum) OR (keyword:Molybdenum))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.%2A%29+AND+%28%28cc_cofactor%3Amolybdopterin%29+OR+%28cc_cofactor%3Amolybdenum%29+OR+%28keyword%3AMolybdenum%29%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_sample": 33,
+      "ec_only_supply_ceiling_20260611": null,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_at_cap_upper_bound": 7.576,
+      "mechanism_handle": "molybdopterin / Mo-cofactor + EC 1.1.3/1.2.3/1.8.3/1.97 (distinct Mo center)",
+      "notes": "Distinct Mo-pterin center; spans several EC 1 subclasses.",
+      "prior_reviewed_entry_supply_20260611": null,
+      "query": "(reviewed:true) AND (ec:1.*) AND ((cc_cofactor:molybdopterin) OR (cc_cofactor:molybdenum) OR (keyword:Molybdenum))",
+      "reaction_poor_warning": true,
+      "reviewed_entry_supply_current": 460,
+      "sample_metadata": {
+        "query": "(reviewed:true) AND (ec:1.*) AND ((cc_cofactor:molybdopterin) OR (cc_cofactor:molybdenum) OR (keyword:Molybdenum))",
+        "record_count": 200,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.%2A%29+AND+%28%28cc_cofactor%3Amolybdopterin%29+OR+%28cc_cofactor%3Amolybdenum%29+OR+%28keyword%3AMolybdenum%29%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 200,
+      "sample_rows_with_full_ec": 182
+    },
+    {
+      "applied_cap_if_wired": 250,
+      "candidate_family": "coa_acyltransferase",
+      "count_metadata": {
+        "query": "(ec:2.3.1.*) AND (reviewed:true) AND ((cc_cofactor:coa) OR (keyword:Acyltransferase))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28ec%3A2.3.1.%2A%29+AND+%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3Acoa%29+OR+%28keyword%3AAcyltransferase%29%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_sample": 82,
+      "ec_only_supply_ceiling_20260611": null,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_at_cap_upper_bound": 3.049,
+      "mechanism_handle": "coenzyme A / acyl-CoA + EC 2.3.1.*",
+      "notes": "Distinct CoA chemistry; large supply.",
+      "prior_reviewed_entry_supply_20260611": null,
+      "query": "(ec:2.3.1.*) AND (reviewed:true) AND ((cc_cofactor:coa) OR (keyword:Acyltransferase))",
+      "reaction_poor_warning": false,
+      "reviewed_entry_supply_current": 7728,
+      "sample_metadata": {
+        "query": "(ec:2.3.1.*) AND (reviewed:true) AND ((cc_cofactor:coa) OR (keyword:Acyltransferase))",
+        "record_count": 200,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28ec%3A2.3.1.%2A%29+AND+%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3Acoa%29+OR+%28keyword%3AAcyltransferase%29%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 200,
+      "sample_rows_with_full_ec": 183
+    },
+    {
+      "applied_cap_if_wired": 250,
+      "candidate_family": "cofactor_independent_isomerase",
+      "count_metadata": {
+        "query": "(ec:5.3.*) AND (reviewed:true) AND (keyword:Isomerase)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28ec%3A5.3.%2A%29+AND+%28reviewed%3Atrue%29+AND+%28keyword%3AIsomerase%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_sample": 51,
+      "ec_only_supply_ceiling_20260611": null,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_at_cap_upper_bound": 4.902,
+      "mechanism_handle": "no cofactor; catalytic Glu/His/Lys acid-base + EC 5.3.* (apo-confirmable)",
+      "notes": "Cofactorless (like ser_his): apo-confirmable; corroborator is the active-site triad, not a cofactor.",
+      "prior_reviewed_entry_supply_20260611": null,
+      "query": "(ec:5.3.*) AND (reviewed:true) AND (keyword:Isomerase)",
+      "reaction_poor_warning": true,
+      "reviewed_entry_supply_current": 5273,
+      "sample_metadata": {
+        "query": "(ec:5.3.*) AND (reviewed:true) AND (keyword:Isomerase)",
+        "record_count": 200,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28ec%3A5.3.%2A%29+AND+%28reviewed%3Atrue%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 200,
+      "sample_rows_with_full_ec": 199
+    }
+  ],
+  "created_utc": "2026-06-13T00:33:32Z",
+  "decision_basis": "Prefer a floor-reachable, high-diversity, mechanism-distinct family with strong non-cofactor handle before smaller/reaction-poor oxidoreductase lanes.",
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_used_for_scope_supply_estimation_only": true,
+    "external_bronze_registry_written": false,
+    "frozen_current702_benchmark_preserved": true,
+    "no_labels_emitted": true
+  },
+  "purpose": "Choose the next 10k-path lane after P450 and non-heme iron 2OG were applied.",
+  "ranking": [
+    {
+      "candidate_family": "coa_acyltransferase",
+      "distinct_full_ec_in_sample": 82,
+      "rank": 1,
+      "reaction_poor_warning": false,
+      "reviewed_entry_supply_current": 7728
+    },
+    {
+      "candidate_family": "cofactor_independent_isomerase",
+      "distinct_full_ec_in_sample": 51,
+      "rank": 2,
+      "reaction_poor_warning": true,
+      "reviewed_entry_supply_current": 5273
+    },
+    {
+      "candidate_family": "molybdopterin_oxidoreductase",
+      "distinct_full_ec_in_sample": 33,
+      "rank": 3,
+      "reaction_poor_warning": true,
+      "reviewed_entry_supply_current": 460
+    },
+    {
+      "candidate_family": "copper_oxidoreductase",
+      "distinct_full_ec_in_sample": 12,
+      "rank": 4,
+      "reaction_poor_warning": true,
+      "reviewed_entry_supply_current": 222
+    }
+  ],
+  "recommended_next_lane": "coa_acyltransferase",
+  "schema_version": "next_lane_source_supply_scout.v1",
+  "status": "non_destructive_source_supply_scout_no_registry_write"
+}

@@ -212,6 +212,34 @@
       ]
     },
     {
+      "id": "heme_monooxygenation",
+      "name": "Cytochrome P450 heme-thiolate monooxygenation",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "cytochrome_p450_monooxygenase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by heme plus P450/monooxygenase mechanism evidence (keyword/domain, heme-thiolate binding, or O2 monooxygenase Rhea participant) with EC 1.14 as scope only.",
+        "Do not merge peroxidases, peroxide-substrate EC 1.11 chemistry, or generic heme electron-transfer proteins into P450 labels.",
+        "Do not merge flavin-only monooxygenases into P450; the heme-thiolate axis must be present or the row stays held.",
+        "Heme/O2/reductant/substrate context is deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
+      "id": "non_heme_iron_oxygenation",
+      "name": "Non-heme iron 2-oxoglutarate oxygenation",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "non_heme_iron_2og_dioxygenase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by Fe(II)/non-heme metal plus 2-oxoglutarate/succinate/CO2 or Dioxygenase mechanism evidence with EC 1.14.11 as scope only.",
+        "Do not merge heme/P450 monooxygenases, flavin monooxygenases, or peroxide/peroxidase chemistry into this family.",
+        "Do not merge generic iron proteins into 2OG dioxygenase without 2-oxoglutarate or dioxygenase mechanism evidence.",
+        "Fe(II), 2-oxoglutarate, O2, and substrate are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "nicotinamide_redox",
       "name": "NAD(P)-dependent hydride-transfer redox chemistry",
       "parent_id": "mechanism",

@@ -1,0 +1,180 @@
+{
+  "artifact_id": "v3_coa_acyltransferase_lane_design_scout_current702_20260613",
+  "candidate_family": "coa_acyltransferase",
+  "counts": {
+    "coa_acyltransferase_broad": 7728,
+    "coa_acyltransferase_broad_ec_only": 9981,
+    "coa_acyltransferase_cofactor_only": 23,
+    "coa_acyltransferase_keyword_only": 7728
+  },
+  "created_utc": "2026-06-13T00:38:44Z",
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_used_for_scope_supply_estimation_only": true,
+    "external_bronze_registry_written": false,
+    "frozen_current702_benchmark_preserved": true,
+    "no_labels_emitted": true
+  },
+  "lane_sketches": [
+    {
+      "lane_id": "coa_ec_2_3_1_acyltransferase_keyword",
+      "query": "(ec:2.3.1.*) AND (reviewed:true) AND (keyword:Acyltransferase)",
+      "role": "high-recall Acyltransferase keyword scope lane",
+      "supply": 7728
+    },
+    {
+      "lane_id": "coa_ec_2_3_1_coa_comment",
+      "query": "(ec:2.3.1.*) AND (reviewed:true) AND (cc_cofactor:coa)",
+      "role": "high-precision UniProt cofactor-comment lane",
+      "supply": 23
+    },
+    {
+      "lane_id": "coa_ec_2_3_1_broad_union",
+      "query": "(ec:2.3.1.*) AND (reviewed:true) AND ((cc_cofactor:coa) OR (keyword:Acyltransferase))",
+      "role": "union scope lane; must be capped and novelty-gated",
+      "supply": 7728
+    }
+  ],
+  "next_action": "Wire coa_acyltransferase as 18fp with EC 2.3.1 scope-only lanes and counted CoA/acyl-CoA Rhea participant, Acyltransferase/domain keyword, or catalytic His/Cys active-site evidence; preview before apply.",
+  "sample": {
+    "distinct_full_ec_in_sample": 108,
+    "query": "(ec:2.3.1.*) AND (reviewed:true) AND ((cc_cofactor:coa) OR (keyword:Acyltransferase))",
+    "sample_rows": 500,
+    "sample_rows_with_full_ec": 457,
+    "sample_size_requested": 500,
+    "top_ec_prefixes": [
+      [
+        "2.3.1",
+        579
+      ],
+      [
+        "3.1.1",
+        25
+      ],
+      [
+        "3.1.2",
+        13
+      ],
+      [
+        "2.7.11",
+        4
+      ],
+      [
+        "2.3.2",
+        2
+      ],
+      [
+        "3.5.1",
+        2
+      ],
+      [
+        "2.7.7",
+        2
+      ]
+    ],
+    "top_full_ec": [
+      [
+        "2.3.1.225",
+        66
+      ],
+      [
+        "2.3.1.48",
+        56
+      ],
+      [
+        "2.3.1.51",
+        37
+      ],
+      [
+        "2.3.1.23",
+        23
+      ],
+      [
+        "2.3.1.20",
+        22
+      ],
+      [
+        "2.3.1.16",
+        21
+      ],
+      [
+        "2.3.1.9",
+        17
+      ],
+      [
+        "2.3.1.15",
+        16
+      ],
+      [
+        "2.3.1.n7",
+        16
+      ],
+      [
+        "2.3.1.n6",
+        13
+      ],
+      [
+        "2.3.1.50",
+        12
+      ],
+      [
+        "2.3.1.22",
+        11
+      ],
+      [
+        "2.3.1.12",
+        11
+      ],
+      [
+        "2.3.1.21",
+        10
+      ],
+      [
+        "2.3.1.76",
+        10
+      ],
+      [
+        "2.3.1.155",
+        9
+      ],
+      [
+        "3.1.1.4",
+        9
+      ],
+      [
+        "2.3.1.67",
+        9
+      ],
+      [
+        "2.3.1.61",
+        8
+      ],
+      [
+        "2.3.1.75",
+        8
+      ],
+      [
+        "3.1.1.32",
+        7
+      ],
+      [
+        "2.3.1.87",
+        7
+      ],
+      [
+        "2.3.1.37",
+        7
+      ],
+      [
+        "2.3.1.25",
+        7
+      ],
+      [
+        "2.3.1.108",
+        6
+      ]
+    ]
+  },
+  "schema_version": "coa_acyltransferase_lane_design_scout.v1",
+  "status": "non_destructive_source_supply_scout_no_registry_write"
+}

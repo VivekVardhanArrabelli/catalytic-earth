@@ -5,15 +5,29 @@ Generated from `work/progress_log.jsonl`.
 ## Active Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
-- Started UTC: `2026-06-12T21:53:53Z`
-- Started local: `Fri Jun 12 16:53:53 CDT 2026`
-- Focus: gated NAD(P)-dehydrogenase + glycosyltransferase bronze floor expansion, then next 10k scaling action if complete.
-- Result: applied +400 external bronze rows (`nad_p_dehydrogenase` +150, `glycosyltransferase` +250 total across two applies); external bronze 2940 -> 3340; combined surface 3642 -> 4042.
-- Guardrails: frozen current702 sha stayed `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; EC scope-only; `predictive_evidence []`; tier bronze / automation_curated / uniprot namespace.
-- Coverage audit: fingerprint Gini 0.1578; holes `[]`; over-cap `['metal_dependent_hydrolase']`; next-batch floor deficit 0.
-- Validation: targeted pytest 231 passed + 14 subtests; `catalytic_earth.cli validate` passed; `git diff --check` clean.
-- Next action: SAM methyltransferase as a deliberate 15fp universe change with OOS prereg re-freeze before preview/apply.
-- Lock release note: required release with `--require-synced` blocked on `head_not_equal_origin_main` because the completed work is pushed to branch `ce-nad-glyco-floor-expansion-20260612`, not merged to `origin/main`; lock release proceeds with clean/no-merge checks after recording this.
+- Started UTC: `2026-06-12T23:57:53Z`
+- Started local: `Fri Jun 12 18:57:53 CDT 2026`
+- Focus: cytochrome P450 monooxygenase and non-heme iron 2OG dioxygenase as the next 10k scaling lanes.
+- Result: applied +110 external bronze rows for `cytochrome_p450_monooxygenase` and +172 for
+  `non_heme_iron_2og_dioxygenase`; external bronze 3590 -> 3872; combined surface 4292 -> 4574;
+  frozen current702 sha stayed `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Guardrails: EC scope-only; P450/O2/heme and Fe(II)/2OG/dioxygenase handles admission/excluded-context
+  only; `predictive_evidence []`; tier bronze / automation_curated / uniprot namespace; dedup vs both
+  registries; non-peroxidase plus heme/flavin/peroxide guards; caps held.
+- Coverage audit: 4574 combined labels; fingerprint Gini 0.1657; holes `[]`; over-cap
+  `['metal_dependent_hydrolase']`; next-batch floor deficit 0.
+- Honest counters: `positive_bronze=2861`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 7139.
+- Follow-on: current next-lane scout recommends `coa_acyltransferase` next (7728 reviewed rows, 82
+  distinct full EC labels in a 200-row sample, no reaction-poor warning); lane-design scout shows
+  Acyltransferase keyword supply 7728 vs `cc_cofactor:coa` supply 23, with 108 distinct EC labels in
+  a 500-row sample; mechanism-handle scout found Rhea present 80/80, CoA/acyl-CoA reaction text
+  72/80, active/binding-site context 56/80, and fetch failures 0.
+- Validation: targeted pytest 275 passed + 14 subtests; `validate` passed with 17 fingerprints and
+  20 ontology families; JSON parse checks passed for 13 touched registries/artifacts; `git diff
+  --check` passed.
+- Next action: wire CoA acyltransferase as a deliberate 18fp universe change after this run is
+  committed/pushed and lock released.
 
 ## Time
 

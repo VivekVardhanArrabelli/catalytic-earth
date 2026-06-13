@@ -57,11 +57,13 @@ DEFAULT_ONTOLOGY_VERSION_AT_DECISION = "label_factory_v1_8fp"
 # The CURRENT positive-fingerprint-universe version. The Stage-2 metal_dependent_hydrolase
 # v2 split (2026-06-11) expanded the positive universe 8 -> 12; the 2026-06-12 broadened-handle
 # batch added nad_p_dehydrogenase + glycosyltransferase, expanding it 12 -> 14; the follow-on
-# SAM methyltransferase lane expands it 14 -> 15. A NEW OOS hard-negative tranche must be
+# SAM methyltransferase lane expands it 14 -> 15; the cytochrome P450 monooxygenase lane
+# expands it 15 -> 16; the non-heme iron 2OG dioxygenase lane expands it 16 -> 17. A NEW
+# OOS hard-negative tranche must be
 # pre-registered against THIS version (and the current fingerprint universe). This is
 # intentionally distinct from the historical label stamp above (which stays _8fp for existing
 # rows / spent contracts) -- bumping the historical stamp would rewrite history.
-CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_15fp"
+CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_17fp"
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,

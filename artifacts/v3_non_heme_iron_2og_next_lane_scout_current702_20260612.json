@@ -1,0 +1,67 @@
+{
+  "artifact_id": "v3_non_heme_iron_2og_next_lane_scout_current702_20260612",
+  "created_utc": "2026-06-13T00:12:35Z",
+  "status": "non_destructive_next_lane_supply_scout_no_labels_no_registry_write",
+  "candidate_family": "non_heme_iron_2og_dioxygenase",
+  "recommended_action": "wire_as_next_17_fingerprint_universe_change",
+  "rationale": [
+    "P450 has now been applied to the 100-floor, so the next 10k-path family should add chemically distinct non-heme oxygenation rather than deepen a capped heme lane.",
+    "The existing breadth and evidence-handle scouts ranked non-heme iron 2OG dioxygenase as a clean next family; this focused live check confirms reviewed Swiss-Prot supply is still sufficient.",
+    "Mechanism handles are strong and non-EC: Fe(II)/non-heme metal cofactor or binding-site evidence, 2-oxoglutarate/succinate/CO2 Rhea participants, Dioxygenase functional keyword, and active-site/facial-triad residue roles. EC 1.14.11 remains scope-only."
+  ],
+  "guardrails": {
+    "curated_registry_written": false,
+    "expansion_registry_written": false,
+    "labels_emitted": 0,
+    "ec_scope_only": true,
+    "mechanism_first_required": true,
+    "predictive_features_added": false,
+    "next_apply_requires_fingerprint_spec_ontology_rule_tests_prereg_preview": true
+  },
+  "live_uniprot_supply_counts": {
+    "2og_ec_1_14_11_iron_dioxygenase": {
+      "query": "(reviewed:true) AND (ec:1.14.11.*) AND ((cc_cofactor:fe) OR (cc_cofactor:iron) OR (keyword:Dioxygenase))",
+      "total_results": 870
+    },
+    "2og_ec_1_14_11_keyword_dioxygenase": {
+      "query": "(reviewed:true) AND (ec:1.14.11.*) AND (keyword:Dioxygenase)",
+      "total_results": 825
+    },
+    "2og_ec_1_14_11_iron_only": {
+      "query": "(reviewed:true) AND (ec:1.14.11.*) AND ((cc_cofactor:fe) OR (cc_cofactor:iron))",
+      "total_results": 854
+    },
+    "2og_ec_1_14_11_broad": {
+      "query": "(reviewed:true) AND (ec:1.14.11.*)",
+      "total_results": 874
+    }
+  },
+  "reaction_diversity_sample": {
+    "sample_query": "(reviewed:true) AND (ec:1.14.11.*) AND ((cc_cofactor:fe) OR (cc_cofactor:iron) OR (keyword:Dioxygenase))",
+    "sample_rows": 200,
+    "distinct_specific_ec": 36,
+    "top_specific_ec_counts": [
+      ["1.14.11.67", 13],
+      ["1.14.11.66", 13],
+      ["1.14.11.27", 13],
+      ["1.14.11.29", 12],
+      ["1.14.11.33", 11],
+      ["1.14.11.65", 11],
+      ["1.14.11.53", 10],
+      ["1.14.11.2", 10],
+      ["1.14.11.68", 8],
+      ["1.14.11.51", 7],
+      ["1.14.11.79", 7],
+      ["1.14.11.7", 7]
+    ]
+  },
+  "next_exact_steps": [
+    "Add `non_heme_iron_2og_dioxygenase` fingerprint spec with Fe(II)/2OG/O2/succinate chemistry and deploy-missing metal+cosubstrate context.",
+    "Add an ontology node for non-heme iron 2OG oxygenation.",
+    "Extend the broadened mechanism corroborator with 2-oxoglutarate/succinate/CO2 Rhea participant, iron/binding-site, Dioxygenase keyword, and active-site/facial-triad axes; keep EC 1.14.11 scope-only and excluded.",
+    "Add offline leakage/trust-tier/source tests proving EC alone cannot admit and heme/flavin/peroxide oxygenases stay held or off-target.",
+    "Re-freeze the OOS preregistration to the resulting 17fp universe before preview.",
+    "Run a non-destructive preview and apply only if novelty/governor/dedup/trust-tier gates pass."
+  ],
+  "blocked": false
+}

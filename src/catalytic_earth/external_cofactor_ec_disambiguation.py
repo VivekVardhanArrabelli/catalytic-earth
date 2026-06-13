@@ -240,6 +240,23 @@ _SAM_SAH_METHYL_DONOR_TOKENS = (
     "s-adenosylhomocysteine",
     "adohcy",
 )
+# Cytochrome P450 monooxygenase handles. EC 1.14 selects scope only; counted mechanism
+# corroboration comes from heme, O2/Rhea participant text, P450/monooxygenase keyword,
+# or heme-thiolate binding evidence. Peroxide/peroxidase rows are guarded out.
+_P450_KEYWORD_TOKENS = ("cytochrome p450", "p450")
+_MONOOXYGENASE_KEYWORD_TOKENS = ("monooxygenase", "hydroxylase")
+_OXYGENASE_REACTION_TOKENS = (" o2", "o(2)", "dioxygen", "oxygen")
+_PEROXIDE_REACTION_TOKENS = ("h2o2", "hydrogen peroxide", "peroxide")
+# Non-heme Fe(II)/2-oxoglutarate dioxygenase handles.
+_DIOXYGENASE_KEYWORD_TOKENS = ("dioxygenase", "2-oxoglutarate")
+_TWO_OG_REACTION_TOKENS = (
+    "2-oxoglutarate",
+    "2-oxoglutarate(2-)",
+    "2-oxoglutaric",
+    "alpha-ketoglutarate",
+    "oxoglutarate",
+)
+_TWO_OG_PRODUCT_TOKENS = ("succinate", "co2", "co(2)", "carbon dioxide")
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
 
@@ -274,6 +291,25 @@ def _feature_codes(row: dict[str, Any]) -> set[str]:
     }
 
 
+def _feature_texts(row: dict[str, Any]) -> list[str]:
+    texts: list[str] = []
+    for feature in row.get("source_evidence_features") or []:
+        if not isinstance(feature, dict):
+            continue
+        for key in ("description", "ligand_name", "ligand_note", "feature_type"):
+            value = feature.get(key)
+            if value:
+                texts.append(str(value).lower())
+    for locator in row.get("residue_locators") or []:
+        if not isinstance(locator, dict):
+            continue
+        for key in ("ligand_name", "feature_type"):
+            value = locator.get(key)
+            if value:
+                texts.append(str(value).lower())
+    return texts
+
+
 def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     """Annotated mechanism evidence fused across cofactor + cosubstrate + keyword + residue.
 
@@ -286,6 +322,7 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     cofactor_names = [
         str(c.get("name") or "").lower() for c in (row.get("cofactor_provenance") or [])
     ]
+    feature_texts = _feature_texts(row)
 
     def in_any(haystacks: list[str], *tokens: str) -> bool:
         return any(any(tok in text for tok in tokens) for text in haystacks)
@@ -301,6 +338,18 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     keyword_glycosyltransferase = any("glycosyltransferase" in kw for kw in keywords)
     sam_sah_methyl_donor_reaction = in_any(reactions, *_SAM_SAH_METHYL_DONOR_TOKENS)
     keyword_methyltransferase = any("methyltransferase" in kw for kw in keywords)
+    keyword_p450 = in_any(keywords, *_P450_KEYWORD_TOKENS)
+    keyword_monooxygenase = in_any(keywords, *_MONOOXYGENASE_KEYWORD_TOKENS)
+    oxygenase_reaction = in_any(reactions, *_OXYGENASE_REACTION_TOKENS)
+    peroxide_reaction = in_any(reactions, *_PEROXIDE_REACTION_TOKENS)
+    heme_thiolate_binding = bool(evidence.get("heme")) and any(
+        "thiolate" in text
+        or ("heme" in text and ("cys" in text or "cysteine" in text))
+        for text in feature_texts + cofactor_names
+    )
+    keyword_dioxygenase = in_any(keywords, *_DIOXYGENASE_KEYWORD_TOKENS)
+    two_og_reaction = in_any(reactions, *_TWO_OG_REACTION_TOKENS)
+    succinate_co2_product = in_any(reactions, *_TWO_OG_PRODUCT_TOKENS)
 
     evidence.update(
         {
@@ -314,6 +363,14 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "sam_sah_methyl_donor": sam_sah_methyl_donor_reaction
             or evidence.get("sam", False),
             "keyword_methyltransferase": keyword_methyltransferase,
+            "keyword_p450": keyword_p450,
+            "keyword_monooxygenase": keyword_monooxygenase,
+            "oxygenase_reaction": oxygenase_reaction,
+            "peroxide_reaction": peroxide_reaction,
+            "heme_thiolate_binding": heme_thiolate_binding,
+            "keyword_dioxygenase": keyword_dioxygenase,
+            "two_og_reaction": two_og_reaction,
+            "succinate_co2_product": succinate_co2_product,
             "active_or_binding_site_present": bool(
                 _feature_codes(row) & _ACTIVE_OR_BINDING_FEATURE_CODES
             ),
@@ -339,20 +396,31 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("cosubstrate_nad_p")
         or evidence.get("sugar_nucleotide_donor")
         or evidence.get("sam_sah_methyl_donor")
+        or evidence.get("two_og_reaction")
     ):
         axes.add("cofactor_or_cosubstrate")
     if (
         evidence.get("cosubstrate_nad_p_reaction")
         or evidence.get("sugar_nucleotide_donor")
         or evidence.get("sam_sah_methyl_donor_reaction")
+        or evidence.get("oxygenase_reaction")
+        or evidence.get("two_og_reaction")
+        or evidence.get("succinate_co2_product")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
-    if evidence.get("active_or_binding_site_present") or evidence.get("cx3cx2c_motif"):
+    if (
+        evidence.get("active_or_binding_site_present")
+        or evidence.get("cx3cx2c_motif")
+        or evidence.get("heme_thiolate_binding")
+    ):
         axes.add("active_site_motif_or_residue_role")
     if (
         evidence.get("keyword_glycosyltransferase")
         or evidence.get("keyword_nad_p")
         or evidence.get("keyword_methyltransferase")
+        or evidence.get("keyword_p450")
+        or evidence.get("keyword_monooxygenase")
+        or evidence.get("keyword_dioxygenase")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -393,6 +461,8 @@ _METALLO_AMIDOHYDROLASE_DEAMINASE_EC = ("3.5.2", "3.5.4", "3.5.1")
 _NAD_P_DEHYDROGENASE_EC = ("1.1.1",)  # CH-OH donor, NAD(P) acceptor
 _GLYCOSYLTRANSFERASE_EC = ("2.4",)    # glycosyl/hexosyl/pentosyl/sialyl transferases
 _SAM_METHYLTRANSFERASE_EC = ("2.1.1",)  # methyl group transfer, mostly SAM/SAH donor/product
+_P450_MONOOXYGENASE_EC = ("1.14.",)  # paired-donor oxidoreductases incorporating one O atom
+_NON_HEME_IRON_2OG_EC = ("1.14.11",)  # 2-oxoglutarate-dependent dioxygenases
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -430,6 +500,27 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         lambda c, row: c["flavin"]
         and not c["heme"]
         and _ec_has_prefix(row, ("1.3.", "1.6.", "1.8.1")),
+    ),
+    (
+        "cytochrome_p450_monooxygenase",
+        lambda c, row: c["heme"]
+        and _ec_has_prefix(row, _P450_MONOOXYGENASE_EC)
+        and not _ec_has_prefix(row, ("1.11.1",))
+        and not c["peroxide_reaction"]
+        and (
+            c["keyword_p450"]
+            or c["heme_thiolate_binding"]
+            or (c["keyword_monooxygenase"] and c["oxygenase_reaction"])
+        ),
+    ),
+    (
+        "non_heme_iron_2og_dioxygenase",
+        lambda c, row: c["metal"]
+        and not c["heme"]
+        and not c["flavin"]
+        and not c["peroxide_reaction"]
+        and _ec_has_prefix(row, _NON_HEME_IRON_2OG_EC)
+        and (c["two_og_reaction"] or c["keyword_dioxygenase"])
     ),
     (
         "radical_sam_enzyme",

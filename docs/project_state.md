@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-12
+Last refreshed: 2026-06-13
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -26,6 +26,82 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NON-HEME IRON 2OG 17FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  After the P450 lane below completed early in the same productive block, the documented next lane
+  was wired as a deliberate 17-fingerprint universe change and applied through the canonical
+  external bronze writer. New family/gate surface: `non_heme_iron_2og_dioxygenase` fingerprint +
+  `non_heme_iron_oxygenation` ontology node,
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = label_factory_v1_17fp`, OOS preregistration
+  re-frozen as `artifacts/v3_external_hard_negative_next_tranche_preregistration_17fp_1025.json`,
+  EC 1.14.11 scope-only rule with Fe(II), 2-oxoglutarate/succinate/CO2 Rhea participant,
+  Dioxygenase keyword/domain, and active/binding-site mechanism corroboration, plus heme/flavin/
+  peroxide guards. Live apply:
+  `PYTHONPATH=src python scripts/source_non_heme_iron_2og_family.py --max-records-per-lane 80 --apply`
+  fetched **212** rows -> target mechanism-corroborated **198** -> gate-admitted before cap
+  **172** -> appended **172** bronze rows; `non_heme_iron_2og_dioxygenase` **0 -> 172** (cap 250;
+  floor reached); **0 held at cap**, **26 novelty-throttled**, **12 disambiguation holds**
+  (`multi_fingerprint_signal_conflict` 5, `no_mechanism_corroboration` 7), **2 skipped**, fetch
+  failures **0**. Net registry result across the P450 + 2OG run: external bronze **3590 -> 3872**
+  (+282); combined surface **4292 -> 4574**; frozen current702 stayed 702 with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after both applies.
+  Honest counters remain separate after apply: **positive_bronze 2861**, **oos_bronze 1696**,
+  **silver_ready 0**, **silver_confirmed 17**, **projected 0**. Guardrails verified: EC scope-only
+  and never counted; 2OG/keyword/Rhea/active-site handles admission/excluded-context only;
+  `predictive_evidence []`; all added labels are `tier=bronze`, `review_status=automation_curated`,
+  `uniprot:*`; dedup vs both registries; caps held. Fresh coverage audit: **4574** combined,
+  fingerprint Gini **0.1657**, holes `[]`, only `metal_dependent_hydrolase` over-cap, next-batch
+  floor deficit **0**. Validation so far: targeted pytest **275 passed, 14 subtests** over
+  P450/2OG/NAD/SAM sourcing, disambiguation/import, trust-tier, leakage-prereg, coverage, novelty,
+  and fingerprints. Artifacts/reports:
+  `artifacts/v3_non_heme_iron_2og_sourcing_preview_current702.json`,
+  `work/non_heme_iron_2og_sourcing_current702.md`,
+  `work/non_heme_iron_2og_apply_current702_20260612.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260612_2og_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260612_2og_applied.md`.
+  Follow-on current source-supply scout recommends **CoA acyltransferase** next (7728 reviewed rows,
+  82 distinct full EC labels in a 200-row sample, no reaction-poor warning), via
+  `artifacts/v3_next_lane_source_supply_scout_after_p450_2og_current702_20260613.json`. A lane-design
+  scout adds that the Acyltransferase keyword lane has **7728** rows while UniProt
+  `cc_cofactor:coa` alone has only **23**, with **108** distinct EC labels in a 500-row sample; use
+  keyword/domain plus CoA/acyl-CoA Rhea participant or active-site evidence as admission handles, not
+  `cc_cofactor:coa` alone. A mechanism-handle scout over 80 reviewed entries found Rhea present
+  **80/80**, CoA/acyl-CoA reaction text **72/80**, active/binding-site context **56/80**, and fetch
+  failures **0**; it also surfaced multi-EC boundary rows, so the next runner needs explicit
+  multi-fingerprint-signal holds.
+- **CYTOCHROME P450 16FP BRONZE EXPANSION APPLIED (2026-06-12/13 automation).**
+  The documented post-SAM scaling lane was wired as a deliberate 16-fingerprint universe change and
+  applied through the canonical external bronze writer, not the frozen benchmark. New family/gate
+  surface: `cytochrome_p450_monooxygenase` fingerprint + `heme_monooxygenation` ontology node,
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = label_factory_v1_16fp`, OOS preregistration
+  re-frozen as `artifacts/v3_external_hard_negative_next_tranche_preregistration_16fp_1025.json`,
+  EC 1.14 scope-only rule with heme plus O2/Rhea participant, P450/monooxygenase keyword/domain, or
+  heme-thiolate/active-site evidence as mechanism corroboration, explicit non-peroxidase guard, and
+  off-target fingerprint matches held by the runner. Live apply:
+  `PYTHONPATH=src python scripts/source_cytochrome_p450_family.py --max-records-per-lane 80 --apply`
+  fetched **142** rows -> target mechanism-corroborated **128** -> gate-admitted before cap **110** ->
+  appended **110** bronze rows; `cytochrome_p450_monooxygenase` **0 -> 110** (cap 250; floor
+  reached); **0 held at cap**, **18 throttled/rejected**, **14 disambiguation holds**, fetch failures
+  **0**. Net registry result: external bronze **3590 -> 3700** (+110); combined surface **4292 ->
+  4402**; frozen current702 stayed 702 with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after apply. Honest
+  counters remain separate after apply: **positive_bronze 2689**, **oos_bronze 1696**,
+  **silver_ready 0**, **silver_confirmed 17**, **projected 0**. Guardrails verified: EC scope-only
+  and never counted; P450/O2/heme handles admission/excluded context only; `predictive_evidence []`;
+  all added labels are `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup vs both
+  registries; caps held. Fresh coverage audit: fingerprint Gini **0.1657**, holes `[]`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Validation: targeted pytest
+  **264 passed, 14 subtests** over P450/NAD/SAM sourcing, disambiguation/import, trust-tier,
+  leakage-prereg, coverage, novelty, and fingerprints; `validate` ok
+  (12 source / 16 fingerprints / 19 ontology families / 702 labels). Artifacts/reports:
+  `artifacts/v3_cytochrome_p450_sourcing_preview_current702.json`,
+  `work/cytochrome_p450_sourcing_current702.md`,
+  `work/cytochrome_p450_apply_current702_20260612.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260612_p450_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260612_p450_applied.md`.
+  Next scaling action: wire **non-heme iron 2OG dioxygenase** as a deliberate 17-fingerprint universe
+  change. A focused scout already confirmed the lane has **870** reviewed rows on the EC 1.14.11 +
+  iron/dioxygenase handle and **36** distinct specific ECs in a 200-row sample
+  (`artifacts/v3_non_heme_iron_2og_next_lane_scout_current702_20260612.json`).
 - **SAM METHYLTRANSFERASE 15FP BRONZE EXPANSION APPLIED (2026-06-12 automation).**
   The documented post-NAD/glyco scaling lane was wired as a deliberate 15-fingerprint universe
   change and applied through the canonical external bronze writer, not the frozen benchmark. New

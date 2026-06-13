@@ -71,18 +71,29 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
 # The 8fp-era artifact above is SUPERSEDED (kept on disk as the historical record). The 12fp
 # re-freeze (Stage-2 metal v2 split) and 14fp re-freeze (the 2026-06-12 nad_p_dehydrogenase
 # + glycosyltransferase broadened-handle batch) are also historical after the SAM
-# methyltransferase universe bump. They are kept on disk as records.
+# methyltransferase, cytochrome P450 monooxygenase, and non-heme iron 2OG dioxygenase universe
+# bumps. They are kept on disk as records.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_12FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json"
 )
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_14FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_14fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 15-fingerprint universe lives here; it
-# is the one a NEW OOS hard-negative import must reference (subject to the new fingerprint
-# gaining atlas coverage before the inverse gate can certify a clean hard-negative).
+# The re-frozen tranche pre-registration for the 15-fingerprint universe is historical after the
+# P450 universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_15FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_15fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the 16-fingerprint universe is historical after the
+# non-heme iron 2OG universe bump.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_16FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_16fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 17-fingerprint universe lives here; it
+# is the one a NEW OOS hard-negative import must reference (subject to the new fingerprint
+# gaining atlas coverage before the inverse gate can certify a clean hard-negative).
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_17FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_17fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

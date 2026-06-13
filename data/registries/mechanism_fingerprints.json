@@ -271,6 +271,58 @@
     "seed_examples": ["DyP-type peroxidases", "lignin-associated peroxidases", "cytochrome P450-like oxidases"]
   },
   {
+    "id": "cytochrome_p450_monooxygenase",
+    "name": "Cytochrome P450 heme-thiolate monooxygenase",
+    "enzyme_space": ["cytochrome P450 monooxygenases", "heme-thiolate hydroxylases", "P450 demethylases", "P450 epoxidases"],
+    "active_site_signature": [
+      {"role": "heme_thiolate_ligand", "residue": "Cys", "constraints": ["coordinates the heme iron as the conserved proximal thiolate ligand"]},
+      {"role": "oxygen_activation_network", "residue": "Thr/Ser/Asp/Glu or acid-alcohol pair", "constraints": ["supports O2 activation and proton delivery to the ferryl-oxo intermediate"]},
+      {"role": "substrate_positioning", "residue": "variable hydrophobic/polar pocket", "constraints": ["positions the target C-H, heteroatom, or pi bond near compound I"]}
+    ],
+    "cofactors": ["heme", "O2", "NAD(P)H-dependent redox partner"],
+    "reaction_center": {
+      "bond_changes": ["oxygen insertion, hydroxylation, epoxidation, or oxidative demethylation using one atom of O2"],
+      "chemical_operation": "heme-thiolate monooxygenation"
+    },
+    "substrate_constraints": ["substrate atom positioned above the heme iron-oxo center", "paired electron donor route from a reductase or ferredoxin", "non-peroxide oxygen activation context"],
+    "evidence_features": ["Cytochrome P450 or monooxygenase keyword", "heme cofactor annotation", "heme-thiolate/Cys ligand binding-site annotation", "O2/monooxygenase Rhea participant"],
+    "counterevidence_features": ["peroxidase EC 1.11 or peroxide substrate chemistry", "heme-only electron-transfer protein without oxygen insertion", "flavin-only monooxygenase with no heme", "no P450 family/domain/thiolate evidence"],
+    "uncertainty_axes": ["substrate class and regioselectivity", "redox partner identity", "uncoupling/peroxide shunt propensity", "membrane vs soluble scaffold"],
+    "seed_examples": ["camphor 5-monooxygenase", "sterol 14-alpha demethylase", "CYP102A1/BM3", "alkane hydroxylase P450s"],
+    "deploy_missing_active_site_context": {
+      "type": "cofactor_and_cosubstrate",
+      "detail": "the heme may be absent or incompletely modeled in apo predicted structures, and O2/reductant/substrate are dissociable partners absent from deploy-time coordinates",
+      "reconstruction_path": "Path A sequence->heme-thiolate/P450-family channel plus O2/Rhea admission evidence, or canonical heme/O2/substrate graft (Path B)",
+      "silver_reachability": "moderate; the Cys-heme family signal is strong, but substrate pose and redox partner geometry require reconstruction"
+    }
+  },
+  {
+    "id": "non_heme_iron_2og_dioxygenase",
+    "name": "Non-heme Fe(II)/2-oxoglutarate dioxygenase",
+    "enzyme_space": ["2-oxoglutarate-dependent dioxygenases", "JmjC demethylases", "AlkB-family nucleic-acid demethylases", "prolyl/lysyl hydroxylases"],
+    "active_site_signature": [
+      {"role": "facial_triad_metal_ligand", "residue": "His/Asp/Glu/His", "constraints": ["2-His-1-carboxylate facial triad binds non-heme Fe(II)"]},
+      {"role": "2og_binding", "residue": "Arg/Ser/Thr/Tyr/Lys", "constraints": ["positions 2-oxoglutarate for oxidative decarboxylation to succinate and CO2"]},
+      {"role": "substrate_positioning", "residue": "variable pocket", "constraints": ["positions the target C-H, N-methyl, or hydroxylation site near the Fe(IV)-oxo intermediate"]}
+    ],
+    "cofactors": ["Fe(II)", "2-oxoglutarate", "O2"],
+    "reaction_center": {
+      "bond_changes": ["oxidative hydroxylation or demethylation coupled to 2-oxoglutarate decarboxylation to succinate and CO2"],
+      "chemical_operation": "non-heme iron oxygen activation coupled to 2-oxoglutarate"
+    },
+    "substrate_constraints": ["2-oxoglutarate chelated to Fe(II)", "O2 access to the open metal coordination site", "substrate C-H/N-methyl/hydroxylation target close to the ferryl-oxo"],
+    "evidence_features": ["Dioxygenase functional keyword", "Fe(II)/iron binding or metal-site annotation", "2-oxoglutarate/succinate/CO2 Rhea participant", "2-His-1-carboxylate facial-triad active-site evidence"],
+    "counterevidence_features": ["heme/P450 monooxygenase cofactor", "flavin monooxygenase cofactor", "peroxide/peroxidase chemistry", "generic iron protein with no 2-oxoglutarate or dioxygenase evidence"],
+    "uncertainty_axes": ["substrate class", "hydroxylation vs demethylation outcome", "Fe(II) occupancy", "2OG analog/inhibitor state"],
+    "seed_examples": ["taurine dioxygenase", "prolyl hydroxylase", "AlkB DNA repair dioxygenase", "JmjC histone demethylase"],
+    "deploy_missing_active_site_context": {
+      "type": "metal_and_cosubstrate",
+      "detail": "Fe(II), 2-oxoglutarate, O2, and substrate are absent from apo predicted structures, so ferryl-oxo formation and target-atom geometry are unconstrained",
+      "reconstruction_path": "Path A sequence->Fe(II)/2OG/dioxygenase-presence channel plus facial-triad evidence, or canonical Fe/2OG/O2/substrate graft (Path B)",
+      "silver_reachability": "moderate; facial-triad and 2OG motifs are often detectable, but substrate pose and metal occupancy require reconstruction"
+    }
+  },
+  {
     "id": "nad_p_dehydrogenase",
     "name": "NAD(P)-dependent dehydrogenase/reductase",
     "enzyme_space": ["short-chain dehydrogenases/reductases (SDR)", "medium-chain dehydrogenases/reductases (MDR)", "aldo-keto reductases (AKR)", "Rossmann-fold oxidoreductases"],

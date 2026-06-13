@@ -101,6 +101,72 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(_row(cofactors=["heme b"], ec=["1.14.99.1"]))
         self.assertEqual(d["decision"], "hold")
 
+    def test_cytochrome_p450_requires_heme_and_non_peroxidase_oxygenase_handle(self) -> None:
+        row = _row(
+            cofactors=["heme b"],
+            ec=["1.14.14.1"],
+        )
+        row["keywords"] = ["Cytochrome P450", "Monooxygenase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CP0001",
+                "reaction": (
+                    "RH + O2 + reduced [NADPH--hemoprotein reductase] = "
+                    "ROH + H2O + oxidized [NADPH--hemoprotein reductase]"
+                ),
+                "ec_number": "1.14.14.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "cytochrome_p450_monooxygenase")
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_cytochrome_p450_peroxide_control_held(self) -> None:
+        row = _row(cofactors=["heme b"], ec=["1.14.14.1"])
+        row["keywords"] = ["Cytochrome P450", "Monooxygenase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PX0001",
+                "reaction": "a donor + H2O2 = an oxidized donor + 2 H2O",
+                "ec_number": "1.14.14.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_non_heme_iron_2og_requires_iron_and_2og_handle(self) -> None:
+        row = _row(cofactors=["Fe(2+)"], ec=["1.14.11.2"])
+        row["keywords"] = ["Dioxygenase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:OG0001",
+                "reaction": "L-proline + 2-oxoglutarate + O2 = hydroxyproline + succinate + CO2",
+                "ec_number": "1.14.11.2",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "non_heme_iron_2og_dioxygenase")
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_non_heme_iron_2og_heme_control_held(self) -> None:
+        row = _row(cofactors=["heme b"], ec=["1.14.11.2"])
+        row["keywords"] = ["Dioxygenase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:HX0001",
+                "reaction": "substrate + 2-oxoglutarate + O2 = product + succinate + CO2",
+                "ec_number": "1.14.11.2",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

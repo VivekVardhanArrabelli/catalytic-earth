@@ -1,0 +1,640 @@
+{
+  "artifact_id": "v3_coa_acyltransferase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "coa_acyltransferase",
+  "counts": {
+    "active_or_binding_site_context": 56,
+    "feature_coa_or_acyl_coa": 24,
+    "keyword_acyltransferase": 80,
+    "reaction_coa_or_acyl_coa": 72,
+    "rhea_cross_reference_present": 80
+  },
+  "created_utc": "2026-06-13T00:41:33Z",
+  "entry_records_examined": 80,
+  "fetch_failures": [],
+  "fractions": {
+    "active_or_binding_site_context": 0.7,
+    "feature_coa_or_acyl_coa": 0.3,
+    "keyword_acyltransferase": 1.0,
+    "reaction_coa_or_acyl_coa": 0.9,
+    "rhea_cross_reference_present": 1.0
+  },
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_used_for_scope_supply_estimation_only": true,
+    "external_bronze_registry_written": false,
+    "frozen_current702_benchmark_preserved": true,
+    "handles_are_admission_context_not_predictive_features": true,
+    "no_labels_emitted": true
+  },
+  "next_action": "Use keyword/domain as high-recall scope/admission evidence, require CoA/acyl-CoA Rhea participant or active/binding-site corroboration when available, and keep all handles in excluded_context/present_axes only.",
+  "query": "(ec:2.3.1.*) AND (reviewed:true) AND (keyword:Acyltransferase)",
+  "records_sample": [
+    {
+      "accession": "O15120",
+      "active_or_binding_site_context": false,
+      "ec_numbers": [
+        "2.3.1.51"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "1-acyl-sn-glycerol-3-phosphate acyltransferase beta (EC 2.3.1.51) (1-acylglycerol-3-phosphate O-acyltransferase 2) (1-AGP acyltransferase 2) (1-AGPAT 2) (Lysophosphatidic acid acyltransferase beta) (LPAAT-beta)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 17,
+      "rhea_ids_sample": [
+        "RHEA:19709",
+        "RHEA:33187",
+        "RHEA:35899",
+        "RHEA:35903",
+        "RHEA:35907"
+      ],
+      "sequence_length": 278
+    },
+    {
+      "accession": "O15269",
+      "active_or_binding_site_context": false,
+      "ec_numbers": [
+        "2.3.1.50"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Serine palmitoyltransferase 1 (EC 2.3.1.50) (Long chain base biosynthesis protein 1) (LCB 1) (Serine-palmitoyl-CoA transferase 1) (SPT 1) (SPT1)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 4,
+      "rhea_ids_sample": [
+        "RHEA:14761",
+        "RHEA:33683",
+        "RHEA:35675",
+        "RHEA:35679"
+      ],
+      "sequence_length": 473
+    },
+    {
+      "accession": "O95237",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.135"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Lecithin retinol acyltransferase (EC 2.3.1.135) (Phosphatidylcholine--retinol O-acyltransferase)",
+      "reaction_coa_or_acyl_coa": false,
+      "rhea_cross_reference_count": 8,
+      "rhea_ids_sample": [
+        "RHEA-COMP:14426",
+        "RHEA-COMP:14428",
+        "RHEA:17469",
+        "RHEA:43904",
+        "RHEA:55320"
+      ],
+      "sequence_length": 230
+    },
+    {
+      "accession": "P04180",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.43",
+        "3.1.1.47"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Phosphatidylcholine-sterol acyltransferase (EC 2.3.1.43) (1-alkyl-2-acetylglycerophosphocholine esterase) (EC 3.1.1.47) (Lecithin-cholesterol acyltransferase) (Phospholipid-cholesterol acyltransferase) (Platelet-activating factor acetylhydrolase) (PAF acetylhydrolase)",
+      "reaction_coa_or_acyl_coa": false,
+      "rhea_cross_reference_count": 16,
+      "rhea_ids_sample": [
+        "RHEA:17777",
+        "RHEA:21204",
+        "RHEA:40427",
+        "RHEA:40811",
+        "RHEA:43216"
+      ],
+      "sequence_length": 440
+    },
+    {
+      "accession": "P18440",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.5"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Arylamine N-acetyltransferase 1 (EC 2.3.1.5) (Arylamide acetylase 1) (Monomorphic arylamine N-acetyltransferase) (MNAT) (N-acetyltransferase type 1) (NAT-1)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 1,
+      "rhea_ids_sample": [
+        "RHEA:16613"
+      ],
+      "sequence_length": 290
+    },
+    {
+      "accession": "P21675",
+      "active_or_binding_site_context": false,
+      "ec_numbers": [
+        "2.3.1.48",
+        "2.7.11.1"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Transcription initiation factor TFIID subunit 1 (EC 2.3.1.48) (EC 2.7.11.1) (Cell cycle gene 1 protein) (TBP-associated factor 250 kDa) (p250) (Transcription initiation factor TFIID 250 kDa subunit) (TAF(II)250) (TAFII-250) (TAFII250)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 9,
+      "rhea_ids_sample": [
+        "RHEA-COMP:10731",
+        "RHEA-COMP:11060",
+        "RHEA-COMP:11604",
+        "RHEA-COMP:11605",
+        "RHEA-COMP:9752"
+      ],
+      "sequence_length": 1893
+    },
+    {
+      "accession": "P21980",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.-",
+        "2.3.2.13",
+        "3.4.-.-",
+        "3.5.1.44"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Protein-glutamine gamma-glutamyltransferase 2 (EC 2.3.2.13) (Erythrocyte transglutaminase) (Heart G alpha(h)) (hhG alpha(h)) (Isopeptidase TGM2) (EC 3.4.-.-) (Protein G alpha(h)) (G(h)) (Protein-glutamine deamidase TGM2) (EC 3.5.1.44) (Protein-glutamine dopaminyltransferase TGM2) (EC 2.3.1.-) (Protein-glutamine histaminyltransferase TGM2) (EC 2.3.1.-) (Protein-glutamine noradrenalinyltransferase TGM2) (EC 2.3.1.-) (Protein-glutamine serotonyltransferase TGM2) (EC 2.3.1.-) (Tissue transglutaminase) (tTG) (tTgase) (Transglutaminase C) (TG(C)) (TGC) (TGase C) (Transglutaminase H) (TGase H) (Transglutaminase II) (TGase II) (Transglutaminase-2) (TG2) (TGase-2) (hTG2)",
+      "reaction_coa_or_acyl_coa": false,
+      "rhea_cross_reference_count": 14,
+      "rhea_ids_sample": [
+        "RHEA-COMP:10207",
+        "RHEA-COMP:10208",
+        "RHEA-COMP:14005",
+        "RHEA-COMP:17052",
+        "RHEA-COMP:17053"
+      ],
+      "sequence_length": 687
+    },
+    {
+      "accession": "P22307",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.155",
+        "2.3.1.16",
+        "2.3.1.176"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Sterol carrier protein 2 (SCP-2) (Acetyl-CoA C-myristoyltransferase) (EC 2.3.1.155) (Non-specific lipid-transfer protein) (NSL-TP) (Propanoyl-CoA C-acyltransferase) (EC 2.3.1.176) (SCP-2/3-oxoacyl-CoA thiolase) (SCP-2/thiolase) (EC 2.3.1.16) (SCP-chi) (SCPX) (Sterol carrier protein X) (SCP-X)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 14,
+      "rhea_ids_sample": [
+        "RHEA:10408",
+        "RHEA:16865",
+        "RHEA:18161",
+        "RHEA:21564",
+        "RHEA:31087"
+      ],
+      "sequence_length": 547
+    },
+    {
+      "accession": "P23786",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.21"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carnitine O-palmitoyltransferase 2, mitochondrial (EC 2.3.1.21) (Carnitine palmitoyltransferase II) (CPT II)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 11,
+      "rhea_ids_sample": [
+        "RHEA:12661",
+        "RHEA:17177",
+        "RHEA:40279",
+        "RHEA:44828",
+        "RHEA:44832"
+      ],
+      "sequence_length": 658
+    },
+    {
+      "accession": "P50416",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.-",
+        "2.3.1.21"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carnitine O-palmitoyltransferase 1, liver isoform (CPT1-L) (EC 2.3.1.21) (Carnitine O-palmitoyltransferase I, liver isoform) (CPT I) (CPTI-L) (Carnitine palmitoyltransferase 1A) (Succinyltransferase CPT1A) (EC 2.3.1.-)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 4,
+      "rhea_ids_sample": [
+        "RHEA-COMP:11877",
+        "RHEA-COMP:9752",
+        "RHEA:12661",
+        "RHEA:16261"
+      ],
+      "sequence_length": 773
+    },
+    {
+      "accession": "Q5SQI0",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.108"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Alpha-tubulin N-acetyltransferase 1 (Alpha-TAT) (Alpha-TAT1) (TAT) (EC 2.3.1.108) (Acetyltransferase mec-17 homolog)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 3,
+      "rhea_ids_sample": [
+        "RHEA-COMP:11278",
+        "RHEA-COMP:11279",
+        "RHEA:15277"
+      ],
+      "sequence_length": 421
+    },
+    {
+      "accession": "Q5VTY9",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.-"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Protein-cysteine N-palmitoyltransferase HHAT (EC 2.3.1.-) (Hedgehog acyltransferase) (Melanoma antigen recognized by T-cells 2) (MART-2) (Skinny hedgehog protein 1)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 6,
+      "rhea_ids_sample": [
+        "RHEA-COMP:12707",
+        "RHEA-COMP:15376",
+        "RHEA-COMP:15388",
+        "RHEA-COMP:15389",
+        "RHEA:59528"
+      ],
+      "sequence_length": 493
+    },
+    {
+      "accession": "Q6NUI2",
+      "active_or_binding_site_context": false,
+      "ec_numbers": [
+        "2.3.1.15",
+        "2.3.1.51"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Glycerol-3-phosphate acyltransferase 2, mitochondrial (GPAT-2) (EC 2.3.1.15) (1-acylglycerol-3-phosphate O-acyltransferase GPAT2) (EC 2.3.1.51) (xGPAT1)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 5,
+      "rhea_ids_sample": [
+        "RHEA:15325",
+        "RHEA:19709",
+        "RHEA:37131",
+        "RHEA:37443",
+        "RHEA:37463"
+      ],
+      "sequence_length": 795
+    },
+    {
+      "accession": "Q6UWP7",
+      "active_or_binding_site_context": false,
+      "ec_numbers": [
+        "2.3.1.-",
+        "2.3.1.51"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Lysocardiolipin acyltransferase 1 (EC 2.3.1.-) (1-acylglycerol-3-phosphate O-acyltransferase 8) (1-AGP acyltransferase 8) (1-AGPAT 8) (EC 2.3.1.51) (Acyl-CoA:lysocardiolipin acyltransferase 1)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 40,
+      "rhea_ids_sample": [
+        "RHEA:19709",
+        "RHEA:33187",
+        "RHEA:33195",
+        "RHEA:33203",
+        "RHEA:35851"
+      ],
+      "sequence_length": 414
+    },
+    {
+      "accession": "Q6ZNC8",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.-",
+        "2.3.1.23",
+        "2.3.1.n6",
+        "2.3.1.n7"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Membrane-bound glycerophospholipid O-acyltransferase 1 (EC 2.3.1.-) (1-acylglycerophosphocholine O-acyltransferase) (EC 2.3.1.23) (1-acylglycerophosphoethanolamine O-acyltransferase) (EC 2.3.1.n7) (1-acylglycerophosphoserine O-acyltransferase) (EC 2.3.1.n6) (Lysophosphatidylserine acyltransferase) (LPSAT) (Lyso-PS acyltransferase) (Lysophospholipid acyltransferase 1) (LPLAT 1) (Membrane-bound O-acyltransferase domain-containing protein 1) (O-acyltransferase domain-containing protein 1)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 14,
+      "rhea_ids_sample": [
+        "RHEA:12937",
+        "RHEA:32995",
+        "RHEA:33191",
+        "RHEA:35991",
+        "RHEA:36015"
+      ],
+      "sequence_length": 495
+    },
+    {
+      "accession": "Q6ZPD8",
+      "active_or_binding_site_context": false,
+      "ec_numbers": [
+        "2.3.1.-"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Diacylglycerol O-acyltransferase 2-like protein 6 (EC 2.3.1.-) (Diacylglycerol O-acyltransferase candidate 3) (hDC3)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 3,
+      "rhea_ids_sample": [
+        "RHEA:37915",
+        "RHEA:38219",
+        "RHEA:55340"
+      ],
+      "sequence_length": 337
+    },
+    {
+      "accession": "Q86UL3",
+      "active_or_binding_site_context": false,
+      "ec_numbers": [
+        "2.3.1.15"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Glycerol-3-phosphate acyltransferase 4 (EC 2.3.1.15) (1-acylglycerol-3-phosphate O-acyltransferase 6) (1-AGP acyltransferase 6) (1-AGPAT 6) (Acyl-CoA:glycerol-3-phosphate acyltransferase 4) (Lysophosphatidic acid acyltransferase zeta) (LPAAT-zeta) (Testis spermatogenesis apoptosis-related protein 7) (TSARG7)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 6,
+      "rhea_ids_sample": [
+        "RHEA:15325",
+        "RHEA:35723",
+        "RHEA:35727",
+        "RHEA:37195",
+        "RHEA:37199"
+      ],
+      "sequence_length": 456
+    },
+    {
+      "accession": "Q86UY6",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.257"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "N-alpha-acetyltransferase 40 (EC 2.3.1.257) (N-acetyltransferase 11) (N-alpha-acetyltransferase D) (NatD) (hNatD) (Protein acetyltransferase 1)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 6,
+      "rhea_ids_sample": [
+        "RHEA-COMP:12740",
+        "RHEA-COMP:12742",
+        "RHEA-COMP:12743",
+        "RHEA-COMP:12744",
+        "RHEA:50596"
+      ],
+      "sequence_length": 237
+    },
+    {
+      "accession": "Q8N159",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.1"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "N-acetylglutamate synthase, mitochondrial (EC 2.3.1.1) (Amino-acid acetyltransferase) [Cleaved into: N-acetylglutamate synthase long form; N-acetylglutamate synthase short form; N-acetylglutamate synthase conserved domain form]",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 1,
+      "rhea_ids_sample": [
+        "RHEA:24292"
+      ],
+      "sequence_length": 534
+    },
+    {
+      "accession": "Q8WU03",
+      "active_or_binding_site_context": false,
+      "ec_numbers": [
+        "2.3.1.13"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Glycine N-acyltransferase-like protein 2 (EC 2.3.1.13) (Acyl-CoA:glycine N-acyltransferase-like protein 2)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 11,
+      "rhea_ids_sample": [
+        "RHEA:19869",
+        "RHEA:51272",
+        "RHEA:51364",
+        "RHEA:51368",
+        "RHEA:51372"
+      ],
+      "sequence_length": 294
+    },
+    {
+      "accession": "Q92794",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.48"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Histone acetyltransferase KAT6A (EC 2.3.1.48) (MOZ, YBF2/SAS3, SAS2 and TIP60 protein 3) (MYST-3) (Monocytic leukemia zinc finger protein) (MOZ) (Runt-related transcription factor-binding protein 2) (Zinc finger protein 220)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 3,
+      "rhea_ids_sample": [
+        "RHEA-COMP:10731",
+        "RHEA-COMP:9752",
+        "RHEA:45948"
+      ],
+      "sequence_length": 2004
+    },
+    {
+      "accession": "Q92830",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.-",
+        "2.3.1.48"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Histone acetyltransferase KAT2A (EC 2.3.1.48) (General control of amino acid synthesis protein 5-like 2) (Histone acetyltransferase GCN5) (hGCN5) (Histone glutaryltransferase KAT2A) (EC 2.3.1.-) (Histone succinyltransferase KAT2A) (EC 2.3.1.-) (Lysine acetyltransferase 2A) (Protein lactyltransferase KAT2A) (EC 2.3.1.-) (STAF97)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 18,
+      "rhea_ids_sample": [
+        "RHEA-COMP:10731",
+        "RHEA-COMP:11338",
+        "RHEA-COMP:11875",
+        "RHEA-COMP:11877",
+        "RHEA-COMP:13707"
+      ],
+      "sequence_length": 837
+    },
+    {
+      "accession": "Q93015",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.-"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "N-alpha-acetyltransferase 80 (HsNAAA80) (EC 2.3.1.-) (N-acetyltransferase 6) (Protein fusion-2) (Protein fus-2)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 6,
+      "rhea_ids_sample": [
+        "RHEA-COMP:14863",
+        "RHEA-COMP:14864",
+        "RHEA-COMP:14865",
+        "RHEA-COMP:14866",
+        "RHEA:57324"
+      ],
+      "sequence_length": 286
+    },
+    {
+      "accession": "Q96F10",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.-",
+        "2.3.1.57"
+      ],
+      "feature_coa_or_acyl_coa": true,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Thialysine N-epsilon-acetyltransferase (EC 2.3.1.-) (Diamine acetyltransferase 2) (EC 2.3.1.57) (Spermidine/spermine N(1)-acetyltransferase 2) (SSAT-2)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 4,
+      "rhea_ids_sample": [
+        "RHEA-COMP:9766",
+        "RHEA-COMP:9767",
+        "RHEA:11116",
+        "RHEA:64804"
+      ],
+      "sequence_length": 170
+    },
+    {
+      "accession": "Q96GR4",
+      "active_or_binding_site_context": true,
+      "ec_numbers": [
+        "2.3.1.225"
+      ],
+      "feature_coa_or_acyl_coa": false,
+      "keyword_acyltransferase": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Palmitoyltransferase ZDHHC12 (EC 2.3.1.225) (DHHC domain-containing cysteine-rich protein 12) (DHHC-12) (Zinc finger DHHC domain-containing protein 12) (Zinc finger protein 400)",
+      "reaction_coa_or_acyl_coa": true,
+      "rhea_cross_reference_count": 3,
+      "rhea_ids_sample": [
+        "RHEA-COMP:10131",
+        "RHEA-COMP:11032",
+        "RHEA:36683"
+      ],
+      "sequence_length": 267
+    }
+  ],
+  "sample_records_fetched": 80,
+  "sample_size_requested": 80,
+  "schema_version": "coa_acyltransferase_mechanism_handle_scout.v1",
+  "status": "non_destructive_mechanism_handle_scout_no_registry_write",
+  "top_ec_numbers": [
+    [
+      "2.3.1.-",
+      25
+    ],
+    [
+      "2.3.1.48",
+      13
+    ],
+    [
+      "2.3.1.225",
+      12
+    ],
+    [
+      "2.3.1.51",
+      8
+    ],
+    [
+      "2.3.1.57",
+      3
+    ],
+    [
+      "3.1.1.4",
+      3
+    ],
+    [
+      "2.3.1.22",
+      3
+    ],
+    [
+      "2.3.1.50",
+      2
+    ],
+    [
+      "2.3.1.5",
+      2
+    ],
+    [
+      "2.3.1.155",
+      2
+    ],
+    [
+      "2.3.1.16",
+      2
+    ],
+    [
+      "2.3.1.21",
+      2
+    ],
+    [
+      "2.3.1.15",
+      2
+    ],
+    [
+      "2.3.1.23",
+      2
+    ],
+    [
+      "2.3.1.n6",
+      2
+    ],
+    [
+      "2.3.1.n7",
+      2
+    ],
+    [
+      "3.1.1.32",
+      2
+    ],
+    [
+      "2.3.1.97",
+      2
+    ],
+    [
+      "2.3.1.20",
+      2
+    ],
+    [
+      "2.3.1.135",
+      1
+    ]
+  ]
+}
