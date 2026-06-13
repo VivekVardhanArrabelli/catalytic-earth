@@ -78,6 +78,14 @@ def main() -> int:
         default=1,
         help="fetch this many UniProt search pages per lane before applying the row window",
     )
+    parser.add_argument(
+        "--include-alternate-name-lanes",
+        action="store_true",
+        help=(
+            "prepend EC 3.2.1 chitinase/beta-glucanase/glycoside-hydrolase name lanes; "
+            "admission still requires non-EC mechanism corroboration"
+        ),
+    )
     parser.add_argument("--cap-ceiling", type=int, default=DEFAULT_GLYCOSIDE_HYDROLASE_CAP_CEILING)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
@@ -110,6 +118,7 @@ def main() -> int:
         record_offset_per_lane=args.record_offset_per_lane,
         record_limit_per_lane=args.record_limit_per_lane,
         query_pages_per_lane=args.query_pages_per_lane,
+        include_alternate_name_lanes=args.include_alternate_name_lanes,
         cap_ceiling=args.cap_ceiling,
     )
 

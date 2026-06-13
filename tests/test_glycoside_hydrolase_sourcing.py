@@ -27,6 +27,16 @@ _ROWS = {
         "Proton donor Glu",
         "Binding site",
     ),
+    # Alternate name-lane supply: chitinase is already an accepted family-text
+    # handle, but it is not named in the original source query.
+    "GH0003": (
+        ["3.2.1.14"],
+        ["Hydrolase"],
+        "Chitinase",
+        "chitin + H2O = chitin oligosaccharides",
+        "General acid/base Glu nucleophile",
+        "Active site",
+    ),
     # EC 3.2.1 + glycosidase text but no hydrolysis reaction or active-site handle: EC/keyword alone holds.
     "NX0001": (
         ["3.2.1.4"],
@@ -123,7 +133,11 @@ def _entry_record(accession):
 
 
 def _fake_query_fetcher(query, size, max_pages=1):
-    records = [_search_record(a) for a in sorted(_ROWS)]
+    if "protein_name:chitinase" in query:
+        accessions = ["GH0003"]
+    else:
+        accessions = [a for a in sorted(_ROWS) if a != "GH0003"]
+    records = [_search_record(a) for a in accessions]
     return {
         "metadata": {"url": "test://uniprot", "query": query, "max_pages": max_pages},
         "records": records,
@@ -240,6 +254,19 @@ class GlycosideHydrolaseSourcingTest(unittest.TestCase):
         self.assertEqual(audit["counts"]["query_pages_per_lane"], 2)
         self.assertEqual(audit["lane_summaries"][0]["records_returned_by_query"], 5)
         self.assertEqual(audit["counts"]["fetched_candidate_rows"], 1)
+
+    def test_alternate_name_lane_is_optional_and_non_predictive(self):
+        audit = self._run(include_alternate_name_lanes=True)
+        self.assertEqual(audit["counts"]["lanes_queried"], 2)
+        self.assertTrue(audit["counts"]["alternate_name_lanes_enabled"])
+        self.assertTrue(audit["guardrails"]["alternate_name_source_lanes_enabled"])
+        self.assertEqual(
+            audit["lane_summaries"][0]["lane_id"],
+            "glycoside_hydrolase_reviewed_chitinase_glucanase_name",
+        )
+        labels = {label["entry_id"]: label for label in audit["applied_labels"]}
+        self.assertIn("uniprot:GH0003", labels)
+        self.assertEqual(labels["uniprot:GH0003"]["evidence"]["predictive_evidence"], [])
 
     def test_guardrails_non_destructive(self):
         audit = self._run()

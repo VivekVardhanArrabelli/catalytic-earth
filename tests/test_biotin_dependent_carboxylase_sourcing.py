@@ -37,6 +37,17 @@ _ROWS = {
         "Binding site",
         "Biotin",
     ),
+    # Alternate floor-closure supply: search-row scope lacks a biotin/name filter,
+    # but the fetched entry still carries non-EC biotin mechanism evidence.
+    "BC0004": (
+        ["6.4.1.8"],
+        ["Ligase"],
+        ["Biotin"],
+        "Acetophenone carboxylase",
+        "acetophenone + ATP + hydrogencarbonate = acetophenone-carboxylate + ADP + phosphate",
+        "Binding site",
+        "Biotin",
+    ),
     # EC + carboxylase text only: hold because EC/name without biotin evidence is insufficient.
     "NX0001": (
         ["6.4.1.2"],
@@ -171,10 +182,14 @@ def _entry_record(accession):
 
 
 def _fake_query_fetcher(query, size):
-    if "6.3.4" in query:
+    if query == "(reviewed:true) AND (ec:6.4.1.*)":
+        accessions = ["BC0004"]
+    elif "rhea:" in query and "keyword:Biotin" not in query and "protein_name:biotin" not in query:
+        accessions = ["BC0004"]
+    elif "6.3.4" in query:
         accessions = ["BC0002", "BL0001"]
     else:
-        accessions = [a for a in sorted(_ROWS) if a != "BC0002"]
+        accessions = [a for a in sorted(_ROWS) if a not in {"BC0002", "BC0004"}]
     records = [_search_record(a) for a in accessions]
     return {"metadata": {"url": "test://uniprot", "query": query}, "records": records}
 
@@ -222,6 +237,20 @@ class BiotinDependentCarboxylaseSourcingTest(unittest.TestCase):
             "biotin_carboxylase_reviewed_rhea_carboxylation_floor_closure",
         )
         self.assertEqual(audit["counts"]["fetched_candidate_rows"], 8)
+        for label in audit["applied_labels"]:
+            self.assertEqual(label["evidence"]["predictive_evidence"], [])
+
+    def test_alternate_floor_closure_lanes_are_optional_and_still_mechanism_gated(self):
+        audit = self._run(include_alternate_floor_closure_lanes=True)
+        self.assertEqual(audit["counts"]["lanes_queried"], 5)
+        self.assertTrue(audit["counts"]["alternate_floor_closure_lanes_enabled"])
+        self.assertTrue(audit["guardrails"]["alternate_floor_closure_source_lanes_enabled"])
+        self.assertEqual(
+            audit["lane_summaries"][0]["lane_id"],
+            "biotin_carboxylase_reviewed_rhea_carboxylation_no_name_filter",
+        )
+        admitted_ids = {label["entry_id"] for label in audit["applied_labels"]}
+        self.assertIn("uniprot:BC0004", admitted_ids)
         for label in audit["applied_labels"]:
             self.assertEqual(label["evidence"]["predictive_evidence"], [])
 

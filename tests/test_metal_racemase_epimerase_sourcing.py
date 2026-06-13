@@ -230,6 +230,17 @@ class MetalRacemaseEpimeraseSourcingTest(unittest.TestCase):
             self.assertEqual(len(provenance["sequence_sha256"]), 64)
             self.assertNotIn("sequence", json.dumps(label["evidence"]["excluded_context"]))
 
+    def test_record_window_processes_slice_before_entry_fetch(self):
+        audit = self._run(record_offset_per_lane=2, record_limit_per_lane=2)
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 2)
+        self.assertEqual(audit["counts"]["record_offset_per_lane"], 2)
+        self.assertEqual(audit["counts"]["record_limit_per_lane"], 2)
+        self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 0)
+        self.assertEqual(audit["counts"]["disambiguation_hold_count"], 2)
+        lane = audit["lane_summaries"][0]
+        self.assertEqual(lane["records_returned_by_query"], 5)
+        self.assertEqual(lane["records_in_window_before_dedup"], 2)
+
     def test_guardrails_non_destructive(self):
         audit = self._run()
         g = audit["guardrails"]

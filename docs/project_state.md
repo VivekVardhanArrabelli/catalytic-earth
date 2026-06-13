@@ -26,6 +26,40 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **RACEMASE WINDOWED TOP-UP APPLIED; UNDER-FLOOR ALTERNATE SCOUTS NO-YIELD (2026-06-13 automation).**
+  The latest run first tried the remaining under-floor path without relaxing mechanism-first gates:
+  optional biotin alternate floor-closure lanes fetched **139** reviewed candidates but admitted
+  **0** because all registry-new rows lacked non-EC mechanism corroboration; optional glycoside
+  alternate-name lanes fetched **80** and admitted **0** for the same reason; zinc hydratase
+  under-cap preview fetched **160**, mechanism-corroborated **3**, but novelty-throttled all 3 as
+  redundant. No labels from those previews were applied.
+
+  The run then added row-window support to the non-PLP metal racemase/epimerase source runner and
+  applied the previously unprocessed rows **321-400** via
+  `scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 500 --record-offset-per-lane 320 --record-limit-per-lane 80 --cap-ceiling 150 --apply`.
+  Result: fetched **80**, mechanism-corroborated **21**, applied **21**, held **49** off-target
+  `nad_p_dehydrogenase` rows, held **10** no-corroboration rows, skipped **0**, novelty-throttled
+  **0**, held@cap **0**, and had **0** fetch failures. Frozen current702 stayed byte-unchanged
+  with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went
+  only to `data/registries/external_bronze_labels.json`.
+
+  External bronze is now **6509**; combined label surface is **7211**;
+  `metal_racemase_epimerase_non_plp` is **129/150** under cap. Honest counters remain separate:
+  **positive_bronze 5515**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+  **projected 0**. External-only bronze split is **5285** seed-fingerprint rows and **1224** OOS
+  rows. Remaining positive-bronze gap to 10k is **4485**. Row audit
+  `artifacts/v3_metal_racemase_epimerase_non_plp_window_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across all **129** racemase rows. Post-apply coverage audit
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_racemase_window320_80_applied.json`
+  reports **35** fingerprints, fingerprint Gini **0.1643**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, only
+  `metal_dependent_hydrolase` over-cap, and next-batch floor deficit **86**. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_racemase_window320_80_applied.json`
+  reports **6509** expansion rows, decisions `{'admit': 6053, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0701). Next action: remaining floors PfkB **46/100**, biotin
+  **84/100**, and glycoside hydrolase **84/100** still require genuinely new non-EC
+  corroborator/source paths; racemase may continue only as a bounded cap-fill window
+  (`--record-offset-per-lane 400 --record-limit-per-lane 80`) with cap 150 inspected first.
 - **GLYCOSIDE HYDROLASE FLOOR-WINDOW APPLIED; PAGING SUPPORT ADDED (2026-06-13 automation).**
   The latest run continued the under-floor `glycoside_hydrolase` lane and added row-window/paging
   support to the glycoside source path so durable slices of UniProt search results can be processed

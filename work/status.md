@@ -1406,3 +1406,17 @@ Generated from `work/progress_log.jsonl`.
 - STARTED_LOCAL: `Sat Jun 13 05:31:51 CDT 2026`
 - Initial lane: latest handoff directs strict `pfka_phosphofructokinase` 32fp setup/apply if mechanism-first gates pass.
 - Status: lock acquisition in progress.
+## Automation Run: ce-nad-glyco-floor-expansion
+
+- STARTED_AT: 2026-06-13T19:01:19Z
+- STARTED_LOCAL: Sat Jun 13 14:01:19 CDT 2026
+- BUDGET_SECONDS: 3300
+
+### Closeout: 2026-06-13T19:29:50Z
+
+- Result: applied 21 gated bronze rows for `metal_racemase_epimerase_non_plp` via window 320:80 after biotin/glycoside/zinc previews produced no safe labels.
+- External bronze: 6488 -> 6509; combined label surface: 7190 -> 7211.
+- Honest counters: positive_bronze=5515, oos_bronze=1696, silver_ready=0, silver_confirmed=17, projected=0.
+- Remaining positive-bronze gap to 10k: 4485.
+- Guardrails: frozen current702 sha unchanged (`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`); predictive_evidence stays [] on added rows; EC remains excluded context only.
+- Validation: focused pytest 322 passed + 14 subtests; `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.

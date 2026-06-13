@@ -99,12 +99,32 @@ FLOOR_CLOSURE_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
         },
     )
 }
+ALTERNATE_FLOOR_CLOSURE_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    FAMILY: (
+        {
+            "lane_id": "biotin_carboxylase_reviewed_rhea_carboxylation_no_name_filter",
+            "target_family_lane": FAMILY,
+            "query": f"(reviewed:true) AND ({_RHEA_CARBOXYLATION_QUERY})",
+        },
+        {
+            "lane_id": "biotin_carboxylase_reviewed_raw_ec_6_4_1_no_biotin_filter",
+            "target_family_lane": FAMILY,
+            "query": "(reviewed:true) AND (ec:6.4.1.*)",
+        },
+        {
+            "lane_id": "biotin_carboxylase_reviewed_ec_6_3_4_carboxylase_no_biotin_filter",
+            "target_family_lane": FAMILY,
+            "query": "(reviewed:true) AND (ec:6.3.4.*) AND (protein_name:carboxylase)",
+        },
+    )
+}
 
 
 def _lane_queries_for(
     families: tuple[str, ...],
     *,
     include_floor_closure_lanes: bool = False,
+    include_alternate_floor_closure_lanes: bool = False,
 ) -> tuple[dict[str, str], ...]:
     lanes: list[dict[str, str]] = []
     for family in families:
@@ -112,6 +132,8 @@ def _lane_queries_for(
             raise ValueError(f"{family!r} is not a biotin carboxylase sourcing family")
         if include_floor_closure_lanes:
             lanes.extend(FLOOR_CLOSURE_LANE_QUERIES[family])
+        if include_alternate_floor_closure_lanes:
+            lanes.extend(ALTERNATE_FLOOR_CLOSURE_LANE_QUERIES[family])
         lanes.extend(FAMILY_LANE_QUERIES[family])
     return tuple(lanes)
 
@@ -131,11 +153,14 @@ def build_biotin_dependent_carboxylase_sourcing(
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
     include_floor_closure_lanes: bool = False,
+    include_alternate_floor_closure_lanes: bool = False,
 ) -> dict[str, Any]:
     created = created_utc or _utc_now_iso()
     families = tuple(families)
     lane_queries = _lane_queries_for(
-        families, include_floor_closure_lanes=include_floor_closure_lanes
+        families,
+        include_floor_closure_lanes=include_floor_closure_lanes,
+        include_alternate_floor_closure_lanes=include_alternate_floor_closure_lanes,
     )
     caps_by_family = {family: cap_ceiling for family in families}
 
@@ -253,6 +278,9 @@ def build_biotin_dependent_carboxylase_sourcing(
             "kinase_ligase_hydrolase_transferase_side_ec_boundary_guard": True,
             "off_target_fingerprint_matches_held": True,
             "rhea_first_floor_closure_source_lane_enabled": include_floor_closure_lanes,
+            "alternate_floor_closure_source_lanes_enabled": (
+                include_alternate_floor_closure_lanes
+            ),
             "all_new_labels_tier": "bronze",
             "all_new_labels_review_status": "automation_curated",
             "external_entry_id_namespace": "uniprot",
@@ -272,6 +300,7 @@ def build_biotin_dependent_carboxylase_sourcing(
         "counts": {
             "lanes_queried": len(lane_queries),
             "rhea_first_floor_closure_lanes_enabled": include_floor_closure_lanes,
+            "alternate_floor_closure_lanes_enabled": include_alternate_floor_closure_lanes,
             "max_records_per_lane": max_records_per_lane,
             "fetched_candidate_rows": pilot["candidate_count"],
             "mechanism_corroborated_bronze_labels": len(target_labels),
@@ -407,6 +436,7 @@ def write_biotin_dependent_carboxylase_sourcing(
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = 150,
     include_floor_closure_lanes: bool = False,
+    include_alternate_floor_closure_lanes: bool = False,
 ) -> dict[str, Any]:
     expansion_path = Path(expansion_registry_path)
     audit = build_biotin_dependent_carboxylase_sourcing(
@@ -419,6 +449,7 @@ def write_biotin_dependent_carboxylase_sourcing(
         per_cluster_cap=per_cluster_cap,
         cap_ceiling=cap_ceiling,
         include_floor_closure_lanes=include_floor_closure_lanes,
+        include_alternate_floor_closure_lanes=include_alternate_floor_closure_lanes,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

@@ -57,13 +57,36 @@ FAMILY_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
         },
     )
 }
+ALTERNATE_NAME_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    FAMILY: (
+        {
+            "lane_id": "glycoside_hydrolase_reviewed_chitinase_glucanase_name",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:true) AND (ec:3.2.1.*) AND "
+                "((protein_name:chitinase) OR (protein_name:\"beta-glucanase\") OR "
+                "(protein_name:\"glycoside hydrolase\") OR "
+                "(protein_name:\"glycosyl hydrolase\")) NOT "
+                "((ec:2.4.*) OR (ec:4.*) OR (protein_name:transferase) OR "
+                "(protein_name:lyase) OR (protein_name:phosphorylase) OR "
+                "(protein_name:transglycosylase))"
+            ),
+        },
+    )
+}
 
 
-def _lane_queries_for(families: tuple[str, ...]) -> tuple[dict[str, str], ...]:
+def _lane_queries_for(
+    families: tuple[str, ...],
+    *,
+    include_alternate_name_lanes: bool = False,
+) -> tuple[dict[str, str], ...]:
     lanes: list[dict[str, str]] = []
     for family in families:
         if family not in FAMILY_LANE_QUERIES:
             raise ValueError(f"{family!r} is not a glycoside hydrolase family")
+        if include_alternate_name_lanes:
+            lanes.extend(ALTERNATE_NAME_LANE_QUERIES[family])
         lanes.extend(FAMILY_LANE_QUERIES[family])
     return tuple(lanes)
 
@@ -82,13 +105,16 @@ def build_glycoside_hydrolase_sourcing(
     record_offset_per_lane: int = 0,
     record_limit_per_lane: int | None = None,
     query_pages_per_lane: int = 1,
+    include_alternate_name_lanes: bool = False,
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
 ) -> dict[str, Any]:
     created = created_utc or _utc_now_iso()
     families = tuple(families)
-    lane_queries = _lane_queries_for(families)
+    lane_queries = _lane_queries_for(
+        families, include_alternate_name_lanes=include_alternate_name_lanes
+    )
     caps_by_family = {family: cap_ceiling for family in families}
     if query_pages_per_lane < 1:
         raise ValueError("query_pages_per_lane must be positive")
@@ -219,6 +245,7 @@ def build_glycoside_hydrolase_sourcing(
             "heldout_benchmark_unchanged": True,
             "current702_accession_sequence_duplicate_screen_required": True,
             "multi_fingerprint_signal_rows_held": True,
+            "alternate_name_source_lanes_enabled": include_alternate_name_lanes,
             "novelty_gated_against_both_registries": True,
             "structure_geometry_confirmation_is_deferred_promotion_signal": True,
             "per_fingerprint_cap_ceiling_enforced_per_family": dict(
@@ -235,6 +262,7 @@ def build_glycoside_hydrolase_sourcing(
             "record_offset_per_lane": record_offset_per_lane,
             "record_limit_per_lane": record_limit_per_lane,
             "query_pages_per_lane": query_pages_per_lane,
+            "alternate_name_lanes_enabled": include_alternate_name_lanes,
             "fetched_candidate_rows": pilot["candidate_count"],
             "mechanism_corroborated_bronze_labels": len(target_labels),
             "off_target_fingerprint_matches_held": len(off_target_labels),
@@ -374,6 +402,7 @@ def write_glycoside_hydrolase_sourcing(
     record_offset_per_lane: int = 0,
     record_limit_per_lane: int | None = None,
     query_pages_per_lane: int = 1,
+    include_alternate_name_lanes: bool = False,
 ) -> dict[str, Any]:
     expansion_path = Path(expansion_registry_path)
     audit = build_glycoside_hydrolase_sourcing(
@@ -388,6 +417,7 @@ def write_glycoside_hydrolase_sourcing(
         record_offset_per_lane=record_offset_per_lane,
         record_limit_per_lane=record_limit_per_lane,
         query_pages_per_lane=query_pages_per_lane,
+        include_alternate_name_lanes=include_alternate_name_lanes,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

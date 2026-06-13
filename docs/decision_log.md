@@ -3,6 +3,69 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: RACEMASE WINDOWED BRONZE TOP-UP APPLIED AFTER UNDER-FLOOR NO-YIELD SCOUTS
+
+Decision: keep PfkB/biotin/glycoside floor work mechanism-first and do not relax EC-scope rules.
+The run added optional source selectors for biotin alternate floor closure and glycoside alternate
+names, but both are source/admission handles only and did not change predictive features or counted
+corroboration. Biotin alternate preview fetched **139** and admitted **0**; glycoside alternate-name
+window fetched **80** and admitted **0**; zinc hydratase under-cap preview fetched **160** and
+admitted **0** because all **3** target rows were novelty-throttled as redundant. Do not apply those
+artifacts.
+
+Decision: add row-window support to the non-PLP metal racemase/epimerase source runner so unspent
+UniProt search slices can be processed without refetching the already-applied 320-row prefix. The
+new controls (`--record-offset-per-lane`, `--record-limit-per-lane`) are source-fetch controls
+only. EC 5.1, protein names, Rhea equations, keywords, UniProt prose, and feature annotations remain
+scope/admission excluded-context evidence; counted mechanism axes remain racemase/epimerase
+mechanism text, Rhea isomerization/racemization context, active-/binding-site evidence, metal or
+cofactorless context. EC is never a counted corroborator and `predictive_evidence` remains `[]`.
+
+Apply:
+`PYTHONPATH=src python scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 500 --record-offset-per-lane 320 --record-limit-per-lane 80 --cap-ceiling 150 --out artifacts/v3_metal_racemase_epimerase_non_plp_window320_80_sourcing_preview_current702_20260613.json --report work/metal_racemase_epimerase_non_plp_window320_80_sourcing_current702_20260613.md --apply`.
+Result: fetched **80**, mechanism-corroborated **21**, applied **21**, held **49** off-target
+`nad_p_dehydrogenase` rows, held **10** no-corroboration rows, skipped **0**, novelty-throttled
+**0**, held@cap **0**, and recorded **0** fetch failures. Final
+`metal_racemase_epimerase_non_plp` count is **129/150**.
+
+Counts after apply: external bronze **6488 -> 6509**; combined label surface **7190 -> 7211**.
+Honest counters stay separate: **positive_bronze 5515**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. External-only bronze split is **5285** seed-fingerprint
+rows and **1224** OOS rows; remaining positive-bronze gap to 10k is **4485**.
+
+Guardrails held: every added row is bronze, automation-curated, `uniprot:*`, with
+`predictive_evidence []`; dedup and novelty ran against frozen current702 and the external bronze
+registry; EC was not counted as a mechanism axis; row audit found **0** problems across all **129**
+racemase rows. Coverage audit reports **35** fingerprints, Gini **0.1643**, holes `[]`,
+under-floor `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`,
+over-cap `['metal_dependent_hydrolase']`, and next-batch floor deficit **86**. Novelty replay
+reports **6509** expansion rows, decisions `{'admit': 6053, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0701).
+
+Follow-on decision: remaining under-floor lanes are still PfkB **46/100**, biotin **84/100**, and
+glycoside hydrolase **84/100**. Prefer genuinely new non-EC mechanism corroborator/source paths for
+those lanes. If no floor path is ready, a bounded racemase cap-fill continuation can start at
+`--record-offset-per-lane 400 --record-limit-per-lane 80`, but cap 150 and novelty gates must be
+inspected before any apply.
+
+References:
+`artifacts/v3_biotin_dependent_carboxylase_alt_floor_closure_sourcing_preview_current702_20260613.json`,
+`work/biotin_dependent_carboxylase_alt_floor_closure_sourcing_current702_20260613.md`,
+`artifacts/v3_glycoside_hydrolase_alt_name_window40_sourcing_preview_current702_20260613.json`,
+`work/glycoside_hydrolase_alt_name_window40_sourcing_current702_20260613.md`,
+`artifacts/v3_zinc_lyase_hydratase_under_cap_sourcing_preview_current702_20260613.json`,
+`work/zinc_lyase_hydratase_under_cap_sourcing_current702_20260613.md`,
+`artifacts/v3_metal_racemase_epimerase_topup_live_fetch_blocker_current702_20260613.json`,
+`work/metal_racemase_epimerase_topup_live_fetch_blocker_current702_20260613.md`,
+`artifacts/v3_metal_racemase_epimerase_non_plp_window320_80_sourcing_preview_current702_20260613.json`,
+`work/metal_racemase_epimerase_non_plp_window320_80_sourcing_current702_20260613.md`,
+`artifacts/v3_metal_racemase_epimerase_non_plp_window_row_guardrail_audit_current702_20260613.json`,
+`work/metal_racemase_epimerase_non_plp_window_row_guardrail_audit_current702_20260613.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_racemase_window320_80_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_racemase_window320_80_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_racemase_window320_80_applied.json`,
+and `work/novelty_admission_gate_audit_current702_20260613_racemase_window320_80_applied.md`.
+
 ## 2026-06-13: GLYCOSIDE HYDROLASE FLOOR-WINDOW BRONZE APPLY COMPLETED
 
 Decision: continue `glycoside_hydrolase` as an under-floor `label_factory_v1_35fp` family through

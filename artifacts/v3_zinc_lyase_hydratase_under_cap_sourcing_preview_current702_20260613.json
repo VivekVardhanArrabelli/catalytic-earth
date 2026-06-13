@@ -1,0 +1,354 @@
+{
+  "applied_labels": [],
+  "artifact_id": "v3_zinc_lyase_hydratase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {},
+    "current_combined_labels": 7190,
+    "disambiguation_hold_count": 8,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 8
+    },
+    "disambiguation_skip_count": 94,
+    "fetched_candidate_rows": 160,
+    "gate_admitted_before_cap_guard": 0,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 1,
+    "max_records_per_lane": 160,
+    "mechanism_corroborated_bronze_labels": 3,
+    "novelty_admitted_labels": 0,
+    "novelty_throttled_or_rejected": 3,
+    "off_target_fingerprint_counts": {
+      "metallo_amidohydrolase_deaminase": 3,
+      "metallophosphomonoesterase": 5,
+      "nad_p_dehydrogenase": 47
+    },
+    "off_target_fingerprint_matches_held": 55,
+    "projected_combined_labels_if_merged": 7190
+  },
+  "created_utc": "2026-06-13T19:14:48Z",
+  "deploy_missing_active_site_context_per_family": {
+    "zinc_lyase_hydratase": "zinc_water_elimination_addition_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 2,
+      "medium": 56
+    },
+    "current_registry_labels": 6488,
+    "decision_counts": {
+      "hold": 8,
+      "import": 58,
+      "skip": 94
+    },
+    "examined_rows": 160,
+    "fingerprint_counts": {
+      "metallo_amidohydrolase_deaminase": 3,
+      "metallophosphomonoesterase": 5,
+      "nad_p_dehydrogenase": 47,
+      "zinc_lyase_hydratase": 3
+    },
+    "hold_count": 8,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 8
+    },
+    "importable_new_labels": 58,
+    "per_pool_decision_counts": {
+      "zinc_lyase_hydratase_broadened_handle_fresh_fetch": {
+        "hold": 8,
+        "import": 58,
+        "skip_screen": 94
+      }
+    },
+    "projected_registry_labels_if_merged": 6546,
+    "skip_count": 94
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_zinc_lyase_hydratase_annotation",
+  "families_sourced": [
+    "zinc_lyase_hydratase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "zinc_lyase_hydratase": {
+      "admitted_this_run": 0,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 113,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "zinc_water_elimination_addition_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 113,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "zinc_lyase_hydratase": 150
+    },
+    "plp_thdp_hydrolase_transferase_aldolase_isomerase_side_ec_boundary_guard": true,
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true,
+    "zinc_hydratase_handles_scope_admission_only": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "zinc_ec_4_2_1_reviewed",
+      "query": "(ec:4.2.1.*) AND (reviewed:true) AND ((cc_cofactor:zinc) OR (keyword:Zinc))",
+      "record_count": 160,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 160,
+      "records_returned_by_query": 160,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28ec%3A4.2.1.%2A%29+AND+%28reviewed%3Atrue%29+AND+%28%28cc_cofactor%3Azinc%29+OR+%28keyword%3AZinc%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=160",
+      "status": "query_fetched",
+      "target_family_lane": "zinc_lyase_hydratase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "throttle": 3
+    },
+    "reason_counts": {
+      "redundant_no_novelty_signal": 3
+    }
+  },
+  "off_target_fingerprint_matches_sample": [
+    {
+      "entry_id": "uniprot:P31658",
+      "fingerprint_id": "metallo_amidohydrolase_deaminase"
+    },
+    {
+      "entry_id": "uniprot:P08566",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B2B223",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B6QWH9",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C0S433",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C4Y9D5",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C5FQ73",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C6HCG7",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C7GIN5",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q6C1X5",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A4RD09",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A5H2Q8",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B6JVD0",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B6QCA7",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B9WFG1",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C4R4R8",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C5DN02",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C5PA86",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C7YZ74",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q0D0F3",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q12659",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q9S5G5",
+      "fingerprint_id": "metallophosphomonoesterase"
+    },
+    {
+      "entry_id": "uniprot:C5G8R4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C5M1X2",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P0CM23",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q4P8F6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q5AME2",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A1CP85",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A1D244",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A6ZY89",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A7F7H0",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B6HAA7",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B8N4Q9",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C1FYJ9",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C1H8L1",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:D1ZA70",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P0CM22",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q0V3H0",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q5XNP0",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q6CJC4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q8J294",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q9P7R0",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A6R8Q8",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B3LGE9",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C4JYG6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C5JKE6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:C9SE96",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q2UCP6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q4WS76",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q9FN41",
+      "fingerprint_id": "metallophosphomonoesterase"
+    }
+  ],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_zinc_lyase_hydratase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:Q99N23",
+      "fingerprint_id": "zinc_lyase_hydratase"
+    },
+    {
+      "entry_id": "uniprot:F4JIK2",
+      "fingerprint_id": "zinc_lyase_hydratase"
+    },
+    {
+      "entry_id": "uniprot:Q9FYE3",
+      "fingerprint_id": "zinc_lyase_hydratase"
+    }
+  ]
+}

@@ -13,6 +13,45 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: racemase windowed top-up applied after under-floor scouts
+no-yielded.** The latest run respected the remaining-floor priority before cap-fill work. A new
+biotin alternate floor-closure source flag
+(`scripts/source_biotin_dependent_carboxylase_family.py --include-alternate-floor-closure-lanes`)
+tested Rhea/raw-EC selectors from the prior PfkB/biotin scout and produced **0** admissible rows
+from **139** fetched candidates because the registry-new rows lacked non-EC mechanism
+corroboration. A new glycoside alternate-name source flag
+(`scripts/source_glycoside_hydrolase_family.py --include-alternate-name-lanes`) searched EC 3.2.1
+chitinase/beta-glucanase/glycoside-hydrolase names using already-recognized family-text handles;
+the bounded 40-row window fetched **80** across two lanes and admitted **0**. Zinc hydratase
+cap-fill fetched **160**, found **3** target mechanism-corroborated rows, and admitted **0** because
+all 3 were novelty-throttled as redundant. These previews are durable no-apply artifacts, not label
+growth.
+
+The productive continuation was a non-PLP metal racemase/epimerase cap-fill. A monolithic 500-row
+top-up blocked before artifact write in live UniProt entry fetch, so the run added
+`--record-offset-per-lane` and `--record-limit-per-lane` to the racemase source runner and processed
+the unspent **320:80** search-row window. Apply:
+`scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 500 --record-offset-per-lane 320 --record-limit-per-lane 80 --cap-ceiling 150 --apply`.
+It fetched **80**, mechanism-corroborated **21**, applied **21**, held **49** off-target
+`nad_p_dehydrogenase` rows, held **10** no-corroboration rows, skipped **0**, novelty-throttled
+**0**, held@cap **0**, and kept frozen current702 byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+External bronze is now **6509**; combined label surface is **7211**; honest counters stay separate:
+**positive_bronze 5515**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**. External-only bronze split is **5285** seed-fingerprint rows and **1224** OOS rows.
+Remaining positive-bronze gap to 10k: **4485**. `metal_racemase_epimerase_non_plp` is **129/150**.
+Coverage audit reports **35** fingerprints, fingerprint Gini **0.1643**, holes `[]`, under-floor
+`['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, only
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **86**. Novelty replay over
+**6509** expansion rows reports decisions `{'admit': 6053, 'reject': 47, 'throttle': 409}` and
+would-not-readmit **456** (0.0701). Guardrails remain active: EC/name/Rhea/keyword/prose/feature
+handles are excluded-context admission evidence only, EC is never counted, and
+`predictive_evidence []`. Next work should still prefer genuinely new non-EC corroborator/source
+paths for PfkB **46/100**, biotin **84/100**, or glycoside hydrolase **84/100**; if no such path is
+ready, the racemase cap-fill can continue with the next bounded window **400:80** only after cap and
+novelty gates are inspected.
+
 **2026-06-13 automation update: glycoside hydrolase floor-window applied and paging support
 added.** The latest run continued `glycoside_hydrolase` as an under-floor 35fp family. To avoid
 repeating the previous no-artifact monolithic 500-row fetch, the run added row-window support to

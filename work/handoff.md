@@ -1,5 +1,80 @@
 # Handoff
 
+## Session run - Racemase windowed top-up applied; floor scouts no-yield (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This run first followed the
+  latest handoff's under-floor instruction: build genuinely new strict PfkB/biotin or alternate
+  glycoside source/corroborator paths before using cap-fill lanes.
+- Status: **APPLIED a gated non-PLP metal racemase/epimerase windowed top-up to the separate
+  external registry after under-floor source paths produced no admissible rows.** Frozen current702
+  stayed byte-unchanged before/after apply with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`.
+- Source-path work before the apply:
+  - Added optional biotin alternate floor-closure lanes
+    (`--include-alternate-floor-closure-lanes`) using Rhea/raw-EC source selectors from the prior
+    PfkB/biotin scout. Preview
+    `artifacts/v3_biotin_dependent_carboxylase_alt_floor_closure_sourcing_preview_current702_20260613.json`
+    fetched **139**, mechanism-corroborated **0**, admitted **0**, held **55** no-corroboration
+    rows, skipped **84**, and had **0** fetch failures. Do not apply.
+  - Added optional glycoside alternate-name lanes (`--include-alternate-name-lanes`) using existing
+    chitinase/beta-glucanase/glycoside-hydrolase family-text handles without changing admission
+    rules. Bounded preview
+    `artifacts/v3_glycoside_hydrolase_alt_name_window40_sourcing_preview_current702_20260613.json`
+    fetched **80**, mechanism-corroborated **0**, admitted **0**, held **55** no-corroboration rows,
+    skipped **25**, and had **1** Rhea HTTP 500 fetch failure (`Q9LIR6`). Do not apply.
+  - Zinc hydratase under-cap preview
+    `artifacts/v3_zinc_lyase_hydratase_under_cap_sourcing_preview_current702_20260613.json`
+    fetched **160**, mechanism-corroborated **3**, admitted **0** after novelty throttled all 3 as
+    redundant, held **55** off-target rows, held **8** no-corroboration rows, and skipped **94**.
+    Do not apply.
+- Implementation change: added row-window support to
+  `scripts/source_metal_racemase_epimerase_family.py` /
+  `src/catalytic_earth/metal_racemase_epimerase_sourcing.py` as
+  `--record-offset-per-lane` and `--record-limit-per-lane`, mirroring the glycoside windowing
+  pattern. The monolithic racemase 500-row top-up was interrupted before artifact write while in
+  live UniProt entry TLS/connect work; blocker/resolution artifact:
+  `artifacts/v3_metal_racemase_epimerase_topup_live_fetch_blocker_current702_20260613.json`.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 500 --record-offset-per-lane 320 --record-limit-per-lane 80 --cap-ceiling 150 --out artifacts/v3_metal_racemase_epimerase_non_plp_window320_80_sourcing_preview_current702_20260613.json --report work/metal_racemase_epimerase_non_plp_window320_80_sourcing_current702_20260613.md --apply`.
+  Result: fetched **80**, mechanism-corroborated **21**, applied **21**, held **49** off-target
+  `nad_p_dehydrogenase` rows, held **10** no-corroboration rows, skipped **0**, novelty-throttled
+  **0**, held@cap **0**, fetch failures **0**. `metal_racemase_epimerase_non_plp` moved
+  **108 -> 129** under the chemistry-confusable cap 150.
+- Counts after apply: external bronze **6488 -> 6509** (+21); combined label surface
+  **7190 -> 7211**. Honest counters remain separate: `positive_bronze=5515`,
+  `oos_bronze=1696`, `silver_ready=0`, `silver_confirmed=17`, `projected=0`.
+  External-only bronze split is **5285** seed-fingerprint rows and **1224** OOS rows. Remaining
+  positive-bronze gap to 10k: **4485**. Remaining floors are still PfkB **46/100**, biotin
+  **84/100**, and glycoside hydrolase **84/100**.
+- Guardrails verified: all 21 added rows are `tier=bronze`, `review_status=automation_curated`,
+  `entry_id` namespace `uniprot:*`; dedup + novelty gates ran against frozen current702 and the
+  external bronze registry; EC/name/Rhea/keyword/prose/feature handles remain admission/
+  excluded-context evidence only; EC is never a counted corroborator; `predictive_evidence []`.
+  Row audit
+  `artifacts/v3_metal_racemase_epimerase_non_plp_window_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across all **129** racemase/epimerase rows.
+- Fresh post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_racemase_window320_80_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_racemase_window320_80_applied.md`;
+  **7211** combined, **35** fingerprints, fingerprint Gini **0.1643**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **86**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_racemase_window320_80_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260613_racemase_window320_80_applied.md`;
+  **6509** expansion rows, decisions `{'admit': 6053, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0701).
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_metal_racemase_epimerase_sourcing.py tests/test_glycoside_hydrolase_sourcing.py tests/test_biotin_dependent_carboxylase_sourcing.py tests/test_external_source_ingestion.py tests/test_external_cofactor_ec_disambiguation.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_coverage_redundancy_audit.py tests/test_leakage_closure.py tests/test_source_only_contract.py tests/test_fingerprints.py -q`
+  -> **322 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels).
+- Next exact action: remaining under-floor lanes need a genuinely new non-EC mechanism corroborator
+  source path; the new biotin and glycoside alternate source lanes should not be applied unless a
+  later window changes the mechanism-corroboration result. The racemase window can safely continue
+  with `--record-offset-per-lane 400 --record-limit-per-lane 80` only if cap 150 and novelty gates
+  are inspected first; current racemase is **129/150** with at most 21 rows of cap room.
+
 ## Session run - Glycoside hydrolase floor-window applied; paging support added (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
