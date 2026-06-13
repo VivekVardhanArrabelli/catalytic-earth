@@ -344,6 +344,20 @@
       ]
     },
     {
+      "id": "glycosidic_bond_hydrolysis",
+      "name": "Glycosidic bond hydrolysis chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "glycoside_hydrolase"
+      ],
+      "scope_note": "Reviewed EC 3.2.1 glycoside hydrolases that cleave glycosidic C-O bonds by water with acid/base carboxylate or sugar-binding active-site support.",
+      "family_boundary_guardrails": [
+        "Membership is decided by glycosidase family/domain text plus reviewed glycosidic hydrolysis reaction context and active-/binding-site acid/base or nucleophile evidence; EC 3.2.1 is scope only.",
+        "Do not admit glycosyltransferases, transglycosylases, phosphorylases, polysaccharide lyases, esterase/peptidase/nuclease side rows, EC-only rows, or multi-fingerprint-signal rows.",
+        "The glycosidic substrate, catalytic water/protonation state, and sometimes covalent glycosyl intermediate are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "methyl_transfer",
       "name": "SAM-dependent methyl transfer chemistry",
       "parent_id": "mechanism",

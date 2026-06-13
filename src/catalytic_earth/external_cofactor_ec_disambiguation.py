@@ -259,6 +259,55 @@ _SUGAR_NUCLEOTIDE_DONOR_TOKENS = (
     "+ dtdp",
     "+ cmp",
 )
+# Glycoside hydrolase handles. EC 3.2.1 selects scope only; counted mechanism
+# corroboration comes from reviewed glycosidic hydrolysis reaction text,
+# glycosidase family/domain text, and active-site acid/base or nucleophile
+# residue annotations. Glycosyltransferase, transglycosylase, phosphorylase,
+# lyase/isomerase, and side-EC boundary rows stay held.
+_GLYCOSIDE_HYDROLASE_FAMILY_TOKENS = (
+    "glycosidase",
+    "glycoside hydrolase",
+    "glycosyl hydrolase",
+    "glucosidase",
+    "galactosidase",
+    "mannosidase",
+    "xylanase",
+    "cellulase",
+    "amylase",
+    "chitinase",
+    "beta-glucanase",
+)
+_GLYCOSIDE_HYDROLYSIS_REACTION_TOKENS = (
+    "h2o",
+    "h(2)o",
+    "water",
+    "hydrolysis",
+    "glycoside",
+    "glycosidic",
+    "oligosaccharide",
+    "polysaccharide",
+)
+_GLYCOSIDE_HYDROLASE_ACTIVE_SITE_TOKENS = (
+    "proton donor",
+    "nucleophile",
+    "acid/base",
+    "general acid",
+    "general base",
+    "glutamate",
+    "aspartate",
+)
+_GLYCOSIDE_HYDROLASE_BOUNDARY_TOKENS = (
+    "glycosyltransferase",
+    "transferase",
+    "transglycosylase",
+    "phosphorylase",
+    "lyase",
+    "isomerase",
+    "mutase",
+    "esterase",
+    "peptidase",
+    "nuclease",
+)
 # SAM/SAH methyl-donor/product tokens. These are Rhea reaction participants, so they are
 # mechanism evidence for admission only. They are never predictive features.
 _SAM_SAH_METHYL_DONOR_TOKENS = (
@@ -911,6 +960,23 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     coa_acyl_coa_feature = in_any(feature_texts + cofactor_names, *_COA_ACYL_COA_TOKENS)
     keyword_acyltransferase = in_any(keywords, *_ACYLTRANSFERASE_KEYWORD_TOKENS)
     hydrolase_side_ec = _ec_has_prefix(row, ("3.1.", "3.4.", "3.5."))
+    glycoside_hydrolase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_GLYCOSIDE_HYDROLASE_FAMILY_TOKENS,
+    )
+    glycoside_hydrolysis_reaction = in_any(
+        reactions, *_GLYCOSIDE_HYDROLYSIS_REACTION_TOKENS
+    )
+    glycoside_hydrolase_active_site_context = in_any(
+        feature_texts, *_GLYCOSIDE_HYDROLASE_ACTIVE_SITE_TOKENS
+    )
+    glycoside_hydrolase_boundary_signal = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_GLYCOSIDE_HYDROLASE_BOUNDARY_TOKENS,
+    )
+    non_glycoside_hydrolase_scope_side_ec = any(
+        ec and not ec.startswith("3.2.1") for ec in _ec_numbers(row)
+    )
     keyword_isomerase = in_any(keywords, *_ISOMERASE_KEYWORD_TOKENS)
     isomerization_reaction = in_any(reactions, *_ISOMERIZATION_REACTION_TOKENS)
     racemase_epimerase_text = in_any(
@@ -1243,6 +1309,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "coa_acyl_coa_feature": coa_acyl_coa_feature,
             "keyword_acyltransferase": keyword_acyltransferase,
             "hydrolase_side_ec": hydrolase_side_ec,
+            "glycoside_hydrolase_family_text": glycoside_hydrolase_family_text,
+            "glycoside_hydrolysis_reaction": glycoside_hydrolysis_reaction,
+            "glycoside_hydrolase_active_site_context": glycoside_hydrolase_active_site_context,
+            "glycoside_hydrolase_boundary_signal": glycoside_hydrolase_boundary_signal,
+            "non_glycoside_hydrolase_scope_side_ec": non_glycoside_hydrolase_scope_side_ec,
             "keyword_isomerase": keyword_isomerase,
             "isomerization_reaction": isomerization_reaction,
             "racemase_epimerase_text": racemase_epimerase_text,
@@ -1434,6 +1505,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("two_og_reaction")
         or evidence.get("succinate_co2_product")
         or evidence.get("coa_acyl_coa_reaction")
+        or evidence.get("glycoside_hydrolysis_reaction")
         or evidence.get("isomerization_reaction")
         or evidence.get("molybdopterin_redox_reaction")
         or evidence.get("molybdopterin_oxo_transfer_reaction")
@@ -1459,6 +1531,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         axes.add("rhea_reaction_or_participant_pattern")
     if (
         evidence.get("active_or_binding_site_present")
+        or evidence.get("glycoside_hydrolase_active_site_context")
         or evidence.get("cx3cx2c_motif")
         or evidence.get("heme_thiolate_binding")
         or evidence.get("molybdopterin_feature_or_ligand")
@@ -1494,6 +1567,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         axes.add("active_site_motif_or_residue_role")
     if (
         evidence.get("keyword_glycosyltransferase")
+        or evidence.get("glycoside_hydrolase_family_text")
         or evidence.get("keyword_nad_p")
         or evidence.get("keyword_methyltransferase")
         or evidence.get("keyword_p450")
@@ -1558,6 +1632,7 @@ _METALLO_AMIDOHYDROLASE_DEAMINASE_EC = ("3.5.2", "3.5.4", "3.5.1")
 # the EC prefix only selects the lane and stays in excluded_context (never predictive).
 _NAD_P_DEHYDROGENASE_EC = ("1.1.1",)  # CH-OH donor, NAD(P) acceptor
 _GLYCOSYLTRANSFERASE_EC = ("2.4",)    # glycosyl/hexosyl/pentosyl/sialyl transferases
+_GLYCOSIDE_HYDROLASE_EC = ("3.2.1",)  # glycosidic bond hydrolysis; EC scope only
 _SAM_METHYLTRANSFERASE_EC = ("2.1.1",)  # methyl group transfer, mostly SAM/SAH donor/product
 _P450_MONOOXYGENASE_EC = ("1.14.",)  # paired-donor oxidoreductases incorporating one O atom
 _NON_HEME_IRON_2OG_EC = ("1.14.11",)  # 2-oxoglutarate-dependent dioxygenases
@@ -1669,6 +1744,21 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         "glycosyltransferase",
         lambda c, row: (c["sugar_nucleotide_donor"] or c["keyword_glycosyltransferase"])
         and _ec_has_prefix(row, _GLYCOSYLTRANSFERASE_EC),
+    ),
+    (
+        "glycoside_hydrolase",
+        lambda c, row: _ec_has_prefix(row, _GLYCOSIDE_HYDROLASE_EC)
+        and c["glycoside_hydrolase_family_text"]
+        and c["glycoside_hydrolysis_reaction"]
+        and (
+            c["active_or_binding_site_present"]
+            or c["glycoside_hydrolase_active_site_context"]
+        )
+        and not c["glycoside_hydrolase_boundary_signal"]
+        and not c["transferase_side_ec"]
+        and not c["oxidoreductase_side_ec"]
+        and not c["kinase_boundary"]
+        and not c["non_glycoside_hydrolase_scope_side_ec"],
     ),
     (
         "sam_methyltransferase",

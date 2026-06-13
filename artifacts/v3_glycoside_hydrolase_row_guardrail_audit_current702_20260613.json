@@ -1,0 +1,28 @@
+{
+  "artifact_id": "v3_glycoside_hydrolase_row_guardrail_audit_current702_20260613",
+  "axis_counts": {
+    "active_site_motif_or_residue_role": 45,
+    "cofactor_or_cosubstrate": 25,
+    "domain_or_family_profile": 45,
+    "rhea_reaction_or_participant_pattern": 45
+  },
+  "boundary_token_counts": {},
+  "combined_label_surface": 7151,
+  "created_utc": "2026-06-13T16:31:40Z",
+  "external_bronze_total": 6449,
+  "fingerprint_id": "glycoside_hydrolase",
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "guardrails": {
+    "all_rows_bronze_automation_curated_uniprot": true,
+    "ec_scope_hint_not_counted": true,
+    "explicit_boundary_tokens_absent_from_mechanism_evidence": true,
+    "predictive_evidence_empty": true,
+    "required_mechanism_axes_present_on_all_rows": true
+  },
+  "problem_count": 0,
+  "problems": [],
+  "row_count": 45,
+  "source_trust_tier_counts": {},
+  "status": "passed",
+  "unique_entry_ids": 45
+}

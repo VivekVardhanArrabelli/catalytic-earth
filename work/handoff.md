@@ -1,5 +1,63 @@
 # Handoff
 
+## Session run - Glycoside hydrolase 35fp bronze lane applied (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This run chose a new clean
+  10k-path family after the handoff's remaining PfkB/biotin strict reviewed paths were still
+  source-limited and a GHKL histidine-kinase scout found only **1** likely wireable reviewed row.
+- Source scouting: `artifacts/v3_ghkl_histidine_kinase_mechanism_handle_scout_current702_20260613.json`
+  / `work/ghkl_histidine_kinase_mechanism_handle_scout_current702_20260613.md` showed GHKL was not
+  a productive immediate apply lane. `artifacts/v3_glycoside_hydrolase_mechanism_handle_scout_current702_20260613.json`
+  / `work/glycoside_hydrolase_mechanism_handle_scout_current702_20260613.md` sampled **240**
+  reviewed EC 3.2.1 rows with **194** registry-new and **178** likely wireable by non-EC mechanism
+  handles, so glycoside hydrolase was routed through the full pipeline.
+- Status: **APPLIED a gated glycoside hydrolase bronze expansion to the separate external registry.**
+  Added `glycoside_hydrolase` fingerprint, ontology node `glycosidic_bond_hydrolysis`, deploy-missing
+  context `glycosidic_substrate_ordered_water_hydrolysis_context`, coverage source signature,
+  source module/script, disambiguation/trust-tier/leakage/coverage tests, and OOS preregistration
+  re-freeze `artifacts/v3_external_hard_negative_next_tranche_preregistration_35fp_1025.json`.
+  Frozen current702 stayed byte-unchanged before/after apply with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_glycoside_hydrolase_family.py --max-records-per-lane 240 --cap-ceiling 150 --out artifacts/v3_glycoside_hydrolase_sourcing_preview_current702_20260613.json --report work/glycoside_hydrolase_sourcing_current702_20260613.md --apply`.
+  Result: fetched **240**, mechanism-corroborated **45**, applied **45**, disambiguation holds
+  **155**, skipped **40**, off-target held **0**, novelty-throttled **0**, held@cap **0**,
+  fetch failures **1** (`P19531` Rhea timeout). Glycoside hydrolase moved **0 -> 45** under the
+  chemistry-confusable cap 150 and remains below the 100 floor.
+- Counts after apply: external bronze **6404 -> 6449** (+45); combined label surface
+  **7106 -> 7151**. Honest counters stay separate: `positive_bronze=5438`,
+  `oos_bronze=1696`, `silver_ready=0`, `silver_confirmed=17`, `projected=0`.
+  External-only bronze split is **5225** seed-fingerprint rows and **1224** OOS rows. Remaining
+  positive-bronze gap to 10k: **4562**.
+- Guardrails verified: all 45 added rows are `tier=bronze`, `review_status=automation_curated`,
+  `entry_id` namespace `uniprot:*`; dedup + novelty gates ran against frozen current702 and the
+  external bronze registry; EC/protein-name/Rhea/keyword/prose/feature handles remain
+  admission/excluded-context evidence only; EC is never a counted corroborator;
+  `predictive_evidence []`; glycosyltransferase, transglycosylase, phosphorylase, lyase, side-EC,
+  EC-only, and multi-fingerprint rows are held. Row audit
+  `artifacts/v3_glycoside_hydrolase_row_guardrail_audit_current702_20260613.json` found **0**
+  problems across **45** rows; every row has active-site/residue-role, domain/family, and
+  Rhea reaction/participant axes, with no boundary tokens in mechanism evidence.
+- Fresh post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_applied.md`; **7151**
+  combined, **35** fingerprints, fingerprint Gini **0.1753**, holes `[]`, under-floor
+  `['biotin_dependent_carboxylase', 'glycoside_hydrolase', 'pfkb_ribokinase_family']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **125**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_applied.md`; **6449**
+  expansion rows, decisions `{'admit': 5993, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0707).
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_glycoside_hydrolase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_ontology.py tests/test_leakage_closure.py tests/test_coverage_redundancy_audit.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_external_annotation_anchored_import.py tests/test_fingerprints.py tests/test_source_only_contract.py -q`
+  -> **313 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels).
+- Next exact action: close the remaining floors without relaxing the leakage wall. First try a
+  deeper strict glycoside hydrolase continuation/top-up to reach 100 only if the same gates hold;
+  otherwise return to PfkB **46/100** and biotin **84/100** with genuinely new source/corroborator
+  paths. Do not count EC as evidence, and do not repeat the weak GHKL scout as a production lane.
+
 ## Session run - Mn/Fe SOD 34fp bronze expansion applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

@@ -231,6 +231,116 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertEqual(d["decision"], "hold")
 
+    def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
+        row = _row(ec=["3.2.1.4"])
+        row["protein_name"] = "Endoglucanase"
+        row["keywords"] = ["Glycosidase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GH0001",
+                "reaction": "cellulose + H2O = cellooligosaccharides",
+                "ec_number": "3.2.1.4",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 200,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "glycoside_hydrolase")
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "domain_or_family_profile",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "active_site_motif_or_residue_role",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_glycoside_hydrolase_ec_keyword_only_control_held(self) -> None:
+        row = _row(ec=["3.2.1.4"])
+        row["protein_name"] = "Endoglucanase"
+        row["keywords"] = ["Glycosidase"]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_glycoside_hydrolase_boundary_controls_held(self) -> None:
+        transferase = _row(ec=["3.2.1.4", "2.4.1.1"])
+        transferase["protein_name"] = "Transglycosylase boundary enzyme"
+        transferase["keywords"] = ["Glycosidase"]
+        transferase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GH0002",
+                "reaction": "cellulose + H2O = cellooligosaccharides",
+                "ec_number": "3.2.1.4",
+            }
+        ]
+        transferase["residue_locators"] = [
+            {
+                "position": 201,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        self.assertEqual(disambiguate_row(transferase)["decision"], "hold")
+
+        phosphorylase = _row(ec=["3.2.1.4"])
+        phosphorylase["protein_name"] = "Cellobiose phosphorylase"
+        phosphorylase["keywords"] = ["Glycosidase"]
+        phosphorylase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GH0003",
+                "reaction": "cellobiose + phosphate = alpha-D-glucose 1-phosphate + D-glucose",
+                "ec_number": "3.2.1.4",
+            }
+        ]
+        phosphorylase["residue_locators"] = transferase["residue_locators"]
+        self.assertEqual(disambiguate_row(phosphorylase)["decision"], "hold")
+
+        non_scope = _row(ec=["3.1.1.1"])
+        non_scope["protein_name"] = "Glycosidase-like esterase"
+        non_scope["keywords"] = ["Glycosidase"]
+        non_scope["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GH0004",
+                "reaction": "glycoside + H2O = sugar + alcohol",
+                "ec_number": "3.1.1.1",
+            }
+        ]
+        non_scope["residue_locators"] = transferase["residue_locators"]
+        self.assertEqual(disambiguate_row(non_scope)["decision"], "hold")
+
+    def test_glycosyltransferase_not_collapsed_to_glycoside_hydrolase(self) -> None:
+        row = _row(ec=["2.4.1.1"])
+        row["protein_name"] = "Glycosyltransferase"
+        row["keywords"] = ["Glycosyltransferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GT0001",
+                "reaction": "UDP-glucose + acceptor = UDP + glycosylated acceptor",
+                "ec_number": "2.4.1.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "glycosyltransferase")
+
     def test_cofactor_independent_isomerase_requires_reaction_or_active_site_handle(self) -> None:
         row = _row(ec=["5.3.1.1"])
         row["keywords"] = ["Isomerase"]

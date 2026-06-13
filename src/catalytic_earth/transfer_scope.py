@@ -76,7 +76,8 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
 # oxidoreductase, non-PLP racemase/epimerase, ATP amide ligase, class-II metal aldolase,
 # ThDP ylide enzyme, zinc lyase/hydratase, biotin-dependent carboxylase, nucleoside diphosphate
 # kinase, ASKHA sugar/acetate kinase, GHMP small-molecule kinase, deoxynucleoside kinase,
-# PfkA phosphofructokinase, PfkB/ribokinase-family, and Mn/Fe superoxide dismutase universe bumps.
+# PfkA phosphofructokinase, PfkB/ribokinase-family, Mn/Fe superoxide dismutase, and glycoside
+# hydrolase universe bumps.
 # They are kept on disk as records.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_12FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json"
@@ -179,10 +180,15 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_32FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_33FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_33fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 34-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The re-frozen tranche pre-registration for the 34-fingerprint universe is historical after the
+# glycoside hydrolase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_34FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_34fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 35-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_35FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_35fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

@@ -791,6 +791,32 @@
     }
   },
   {
+    "id": "glycoside_hydrolase",
+    "name": "Glycoside hydrolase",
+    "enzyme_space": ["retaining glycosidases", "inverting glycosidases", "cellulases", "xylanases", "amylases", "mannosidases", "galactosidases"],
+    "active_site_signature": [
+      {"role": "general_acid_base", "residue": "Glu/Asp", "constraints": ["protonates the glycosidic leaving group or activates water depending on retaining/inverting class"]},
+      {"role": "nucleophile_or_water_activator", "residue": "Glu/Asp or catalytic water", "constraints": ["forms the covalent glycosyl-enzyme intermediate in retaining enzymes or activates water in inverting enzymes"]},
+      {"role": "sugar_binding_pocket", "residue": "aromatic/polar pocket residues", "constraints": ["positions the anomeric center and flanking hydroxyls for glycosidic bond cleavage"]}
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": ["hydrolysis of a glycosidic C-O bond by water, releasing sugar hemiacetal products"],
+      "chemical_operation": "acid/base-catalyzed glycosidic bond hydrolysis"
+    },
+    "substrate_constraints": ["glycosidic bond positioned across the catalytic acid/base pair", "water or catalytic carboxylate aligned for anomeric attack", "no nucleotide-sugar donor transfer, phosphorylase, lyase, or transglycosylase chemistry"],
+    "evidence_features": ["Glycosidase functional keyword or glycoside-hydrolase family text", "Rhea or reviewed catalytic activity text for glycoside + water hydrolysis", "annotated catalytic Glu/Asp proton donor, nucleophile, or acid/base active-site residues", "sugar-binding pocket annotations"],
+    "counterevidence_features": ["nucleotide-sugar donor or glycosyltransferase EC 2.4 context", "phosphorolysis/phosphorylase reaction", "polysaccharide lyase elimination chemistry", "esterase/peptidase/nuclease side EC", "EC-only evidence with no reaction, family, or active-site corroborator", "multi-fingerprint signal where transferase or hydrolase subtype rules independently fire"],
+    "uncertainty_axes": ["retaining vs inverting mechanism", "substrate polysaccharide identity", "processivity and accessory carbohydrate-binding modules", "catalytic water and protonation state"],
+    "seed_examples": ["beta-glucosidase", "beta-galactosidase", "cellulase", "xylanase", "alpha-amylase"],
+    "deploy_missing_active_site_context": {
+      "type": "substrate_and_ordered_water",
+      "detail": "the glycosidic substrate, catalytic water/protonation state, and sometimes the covalent glycosyl intermediate are absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->glycoside-hydrolase family plus catalytic acid/base locator, or canonical sugar/water graft (Path B)",
+      "silver_reachability": "moderate; catalytic carboxylates are often annotated, but substrate identity and water/protonation geometry require reconstruction"
+    }
+  },
+  {
     "id": "sam_methyltransferase",
     "name": "SAM-dependent methyltransferase",
     "enzyme_space": ["small-molecule methyltransferases", "DNA/RNA methyltransferases", "protein lysine/arginine methyltransferases", "natural-product methyltransferases"],

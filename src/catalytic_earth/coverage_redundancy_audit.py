@@ -133,6 +133,14 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "nucleotide-sugar donor (UDP/GDP/dTDP/CMP-sugar; GT-A DxD metal or GT-B cleft)",
         "lanes": ["glycosyltransferase"],
     },
+    "glycoside_hydrolase": {
+        "ec_prefixes": ["3.2.1"],
+        "cofactor": (
+            "glycosidic substrate plus catalytic water/protonation context; "
+            "glycosyltransferase, transglycosylase, phosphorylase, and lyase boundaries are held"
+        ),
+        "lanes": ["glycoside_hydrolase"],
+    },
     "sam_methyltransferase": {
         "ec_prefixes": ["2.1.1"],
         "cofactor": "SAM methyl donor / SAH product (dissociable methyl-transfer cosubstrate); no Fe-S radical-SAM context",

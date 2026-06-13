@@ -3,6 +3,67 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: GLYCOSIDE HYDROLASE 35FP BRONZE LANE APPLIED
+
+Decision: add `glycoside_hydrolase` as a deliberate `label_factory_v1_35fp` fingerprint only through
+the mechanism-first admission pipeline. EC 3.2.1, protein names, glycosidase keywords, Rhea
+equations, and active-/binding-site annotations remain scope/admission context only; counted
+mechanism axes are reviewed glycosidic-bond hydrolysis reaction context, glycosidase family/domain
+text, and active-/binding-site acid/base or nucleophile evidence. Growth goes only to
+`data/registries/external_bronze_labels.json`; frozen current702 remains byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Implementation: added `glycoside_hydrolase` fingerprint, ontology node
+`glycosidic_bond_hydrolysis`, deploy-missing context
+`glycosidic_substrate_ordered_water_hydrolysis_context`, coverage source signature, source
+module/script, disambiguation/trust-tier rules, leakage/coverage/ontology/source tests, and OOS
+preregistration re-freeze
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_35fp_1025.json`.
+
+Apply:
+`PYTHONPATH=src python scripts/source_glycoside_hydrolase_family.py --max-records-per-lane 240 --cap-ceiling 150 --out artifacts/v3_glycoside_hydrolase_sourcing_preview_current702_20260613.json --report work/glycoside_hydrolase_sourcing_current702_20260613.md --apply`.
+Result: fetched **240**, mechanism-corroborated **45**, applied **45**, held **155**
+no-corroboration rows, skipped **40**, off-target held **0**, novelty-throttled **0**, held@cap
+**0**, and recorded **1** Rhea timeout (`P19531`). Final glycoside hydrolase count is **45/150**
+and below floor.
+
+Counts after apply: external bronze **6404 -> 6449**; combined label surface **7106 -> 7151**.
+Honest counters stay separate: **positive_bronze 5438**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. External-only bronze split is
+**5225** seed-fingerprint rows and **1224** OOS rows; remaining positive-bronze gap to 10k is
+**4562**.
+
+Guardrails held: every added row is bronze, automation-curated, `uniprot:*`, with
+`predictive_evidence []`; EC/name/Rhea/keyword/prose/feature handles are excluded-context
+admission evidence only; EC is never a counted corroborator; dedup and novelty ran against frozen
+current702 and the external registry; glycosyltransferase, transglycosylase, phosphorylase, lyase,
+side-EC, EC-only, and multi-signal rows are held. Row audit found **0** problems across **45**
+rows. Coverage audit reports **35** fingerprints, Gini **0.1753**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase', 'glycoside_hydrolase', 'pfkb_ribokinase_family']`, over-cap
+`['metal_dependent_hydrolase']`, and next-batch floor deficit **125**. Novelty replay reports
+**6449** expansion rows, decisions `{'admit': 5993, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0707).
+
+Follow-on decision: glycoside hydrolase is now a valid but still under-floor positive family. The
+next 10k-path work should close remaining floors through a gated glycoside hydrolase top-up/new
+source path (**45/100**), PfkB (**46/100**), or biotin (**84/100**). Do not repeat the weak GHKL
+histidine-kinase scout as a production lane; it found only **1** likely wireable reviewed row.
+
+References:
+`artifacts/v3_ghkl_histidine_kinase_mechanism_handle_scout_current702_20260613.json`,
+`work/ghkl_histidine_kinase_mechanism_handle_scout_current702_20260613.md`,
+`artifacts/v3_glycoside_hydrolase_mechanism_handle_scout_current702_20260613.json`,
+`work/glycoside_hydrolase_mechanism_handle_scout_current702_20260613.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_35fp_1025.json`,
+`artifacts/v3_glycoside_hydrolase_sourcing_preview_current702_20260613.json`,
+`work/glycoside_hydrolase_sourcing_current702_20260613.md`,
+`artifacts/v3_glycoside_hydrolase_row_guardrail_audit_current702_20260613.json`,
+`work/glycoside_hydrolase_row_guardrail_audit_current702_20260613.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_applied.md`.
+
 ## 2026-06-13: MN/FE SUPEROXIDE DISMUTASE 34FP BRONZE EXPANSION APPLIED
 
 Decision: promote the prior Mn/Fe SOD source/spec lane into a deliberate

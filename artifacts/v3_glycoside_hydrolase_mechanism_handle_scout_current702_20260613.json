@@ -1,0 +1,3557 @@
+{
+  "artifact_id": "v3_glycoside_hydrolase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "glycoside_hydrolase",
+  "counts": {
+    "acid_base_or_nucleophile_context": 221,
+    "active_or_binding_site_context": 230,
+    "boundary_signal": 6,
+    "glycosidase_family_text": 239,
+    "glycoside_hydrolysis_reaction": 240,
+    "likely_wireable_by_non_ec_handles": 178,
+    "non_scope_ec_boundary": 7,
+    "registry_new": 194,
+    "rhea_cross_reference": 83
+  },
+  "created_utc": "2026-06-13T16:07:13Z",
+  "entries_examined": 240,
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only": true,
+    "labels_emitted": false,
+    "mechanism_handle_scout_before_wiring": true,
+    "predictive_features_emitted": false,
+    "registry_written": false
+  },
+  "lane_queries": [
+    {
+      "lane_id": "glycoside_hydrolase_reviewed_ec_3_2_1",
+      "max_records": 240,
+      "query": "(reviewed:true) AND (ec:3.2.1.*) AND ((keyword:Glycosidase) OR (protein_name:glycosidase) OR (protein_name:glucosidase) OR (protein_name:galactosidase) OR (protein_name:xylanase) OR (protein_name:cellulase) OR (protein_name:amylase) OR (protein_name:mannosidase)) NOT ((ec:2.4.*) OR (ec:4.*) OR (protein_name:transferase) OR (protein_name:lyase) OR (protein_name:phosphorylase) OR (protein_name:transglycosylase))",
+      "target_family_lane": "glycoside_hydrolase"
+    }
+  ],
+  "recommendation": {
+    "next_exact_action": "If wire_next_lane is true, add glycoside_hydrolase fingerprint/ontology node, disambiguation guards/tests, 35fp OOS preregistration, non-destructive preview, and gated apply with cap 150.",
+    "reason": "Reviewed EC 3.2.1 glycosidases show glycosidase family text plus glycosidic hydrolysis/Rhea/active-site acid-base handles; transferase/lyase/phosphorylase boundaries must be held.",
+    "wire_next_lane": true
+  },
+  "sample_rows": [
+    {
+      "accession": "Q6NSJ0",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.22"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disease variant",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Nucleus",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-galactose residues in alpha-D-galactosides, including galactose oligosaccharides, galactomannans and galactolipids."
+      ],
+      "registry_new": false,
+      "rhea_ids": [],
+      "sequence_length": 714,
+      "sequence_sha256": "fe79aaa633115da4e9a2e3f35972d18beabb5be72ae58ecd6ec85ef24e798695",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P0DTE8",
+      "active_binding_feature_count": 14,
+      "ec_numbers": [
+        "3.2.1.1"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Calcium",
+        "Carbohydrate metabolism",
+        "Chloride",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Pyrrolidone carboxylic acid",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-amylase 1C (EC 3.2.1.1)",
+      "reaction_text_sample": [
+        "Endohydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides containing three or more (1->4)-alpha-linked D-glucose units."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 511,
+      "sequence_sha256": "d754a3734dc702979e25f1f6dccf5e21516277d5bb1f48b22afe17fda3602ad2",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P0DTE7",
+      "active_binding_feature_count": 14,
+      "ec_numbers": [
+        "3.2.1.1"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Calcium",
+        "Carbohydrate metabolism",
+        "Chloride",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Pyrrolidone carboxylic acid",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-amylase 1B (EC 3.2.1.1)",
+      "reaction_text_sample": [
+        "Endohydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides containing three or more (1->4)-alpha-linked D-glucose units."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 511,
+      "sequence_sha256": "d754a3734dc702979e25f1f6dccf5e21516277d5bb1f48b22afe17fda3602ad2",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "O00754",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Zinc",
+        "Zymogen"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Lysosomal alpha-mannosidase (Laman) (EC 3.2.1.24) (Lysosomal acid alpha-mannosidase) (Mannosidase alpha class 2B member 1) (Mannosidase alpha-B) [Cleaved into: Lysosomal alpha-mannosidase A peptide; Lysosomal alpha-mannosidase B peptide; Lysosomal alpha-mannosidase C peptide; Lysosomal alpha-mannosidase D peptide; Lysosomal alpha-mannosidase E peptide]",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides.",
+        "alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-D-GlcNAc + H2O = alpha-D-Man-(1->6)-beta-D-Man-(1->4)-D-GlcNAc + D-mannose",
+        "alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-D-GlcNAc + H2O = alpha-D-Man-(1->6)-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-D-GlcNAc + D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:84975",
+        "RHEA:84979"
+      ],
+      "sequence_length": 1011,
+      "sequence_sha256": "5bb8a08e43567ae3f6f41578f190d1d224de14c5f7094097ecc267899fddcda5",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "O00462",
+      "active_binding_feature_count": 4,
+      "ec_numbers": [
+        "3.2.1.25"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-mannosidase (EC 3.2.1.25) (Lysosomal beta A mannosidase) (Mannanase) (Mannase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-mannose residues in beta-D-mannosides."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 879,
+      "sequence_sha256": "cb2c360ade0d444a4e0e80b05e899c04c3660bb5d23e11f6b15efb714fe43c58",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P33908",
+      "active_binding_feature_count": 1,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Calcium",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide 1,2-alpha-mannosidase IA (EC 3.2.1.113) (Man(9)-alpha-mannosidase) (Man9-mannosidase) (Mannosidase alpha class 1A member 1) (Processing alpha-1,2-mannosidase IA) (Alpha-1,2-mannosidase IA)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 653,
+      "sequence_sha256": "c1e38cc291bd990dba517168cf021a3785e89e49bc31f89c68af8a44d30ce396",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q9UKM7",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Disease variant",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycosidase",
+        "Hydrolase",
+        "Intellectual disability",
+        "Membrane",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Endoplasmic reticulum mannosyl-oligosaccharide 1,2-alpha-mannosidase (EC 3.2.1.113) (ER alpha-1,2-mannosidase) (ER mannosidase 1) (ERMan1) (Man9GlcNAc2-specific-processing alpha-mannosidase) (Mannosidase alpha class 1B member 1)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 699,
+      "sequence_sha256": "d7a2d8db6c843884094d1ffb0ac65d2db5aa3fd0ec0853ac4700b467570b3a81",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P49641",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.114"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2x (EC 3.2.1.114) (Alpha-mannosidase IIx) (Man IIx) (Mannosidase alpha class 2A member 2) (Mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase)",
+      "reaction_text_sample": [
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + 2 H2O = 2 alpha-D-mannopyranose + an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein]"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56052",
+        "RHEA-COMP:14368",
+        "RHEA-COMP:14369"
+      ],
+      "sequence_length": 1150,
+      "sequence_sha256": "dfb9b2d180d8ce476843aa8f950d0935d5556e665fa607ea8eddbfaa8b68b89b",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q9Y2E5",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Congenital disorder of glycosylation",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Zinc"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Epididymis-specific alpha-mannosidase (Epman) (EC 3.2.1.24) (Alpha-1,6-mannosidase) (Core-specific lysosomal alpha-1,6-Mannosidase) (Mannosidase alpha class 2B member 2)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides.",
+        "alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-D-GlcNAc + H2O = alpha-D-Man-(1->3)-beta-D-Man-(1->4)-D-GlcNAc + D-mannose",
+        "alpha-D-Man-(1->6)-beta-D-Man-(1->4)-D-GlcNAc + H2O = 4-O-beta-D-mannopyranosyl-N-acetyl-D-glucosamine + D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:84971",
+        "RHEA:84987"
+      ],
+      "sequence_length": 1009,
+      "sequence_sha256": "f3f5f49fa4a5255c03bf71889c98cf2bdf5cba852e982e1df173289b988cc73e",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P16278",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.23"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Gangliosidosis",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Mucopolysaccharidosis",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal",
+        "Zymogen"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-galactosidase (EC 3.2.1.23) (Acid beta-galactosidase) (Lactase) (Elastin receptor 1)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal non-reducing beta-D-galactose residues in beta-D-galactosides."
+      ],
+      "registry_new": false,
+      "rhea_ids": [],
+      "sequence_length": 677,
+      "sequence_sha256": "30ae540d47dc1251315dbbd90ec597d69fddefc1839a5e91832887e41ca3abe9",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P54803",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.46"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Leukodystrophy",
+        "Lipid degradation",
+        "Lipid metabolism",
+        "Lysosome",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal",
+        "Sphingolipid metabolism"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Galactocerebrosidase (GALCERase) (EC 3.2.1.46) (Galactocerebroside beta-galactosidase) (Galactosylceramidase) (Galactosylceramide beta-galactosidase)",
+      "reaction_text_sample": [
+        "a beta-D-galactosyl-(1<->1')-N-acylsphing-4-enine + H2O = D-galactose + an N-acylsphing-4-enine",
+        "beta-D-galactosyl-(1<->1)-sphing-4-enine + H2O = sphing-4-enine + D-galactose",
+        "a D-galactosylceramide + H2O = an N-acyl-sphingoid base + D-galactose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:14297",
+        "RHEA:43908",
+        "RHEA:43412"
+      ],
+      "sequence_length": 685,
+      "sequence_sha256": "55188539d4fbeb25c276d298cf4ba7aa3a40e85a981409aca4221d1da2399dad",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q9NTJ4",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Cobalt",
+        "Cytoplasm",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2C1 (EC 3.2.1.24) (Alpha mannosidase 6A8B) (Alpha-D-mannoside mannohydrolase) (Mannosidase alpha class 2C member 1)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 1040,
+      "sequence_sha256": "9b2d3d5d3b7da133ee4bb0ab48bfbfc4d3b2607b7a4464f71a622de3665baf1c",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q14697",
+      "active_binding_feature_count": 7,
+      "ec_numbers": [
+        "3.2.1.207"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Neutral alpha-glucosidase AB (EC 3.2.1.207) (Alpha-glucosidase 2) (Glucosidase II subunit alpha)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + beta-D-glucose",
+        "N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56000",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14357",
+        "RHEA:55996",
+        "RHEA-COMP:14355",
+        "RHEA-COMP:14357"
+      ],
+      "sequence_length": 944,
+      "sequence_sha256": "6eed86a4315b324651203d7c9b0f3e0184e92499d33e322ece9762c04b92dd36",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P0DUB6",
+      "active_binding_feature_count": 14,
+      "ec_numbers": [
+        "3.2.1.1"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Carbohydrate metabolism",
+        "Chloride",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Pyrrolidone carboxylic acid",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-amylase 1A (EC 3.2.1.1) (1,4-alpha-D-glucan glucanohydrolase 1) (Salivary alpha-amylase)",
+      "reaction_text_sample": [
+        "Endohydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides containing three or more (1->4)-alpha-linked D-glucose units."
+      ],
+      "registry_new": false,
+      "rhea_ids": [],
+      "sequence_length": 511,
+      "sequence_sha256": "d754a3734dc702979e25f1f6dccf5e21516277d5bb1f48b22afe17fda3602ad2",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "O60476",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Acetylation",
+        "Calcium",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide 1,2-alpha-mannosidase IB (EC 3.2.1.113) (Mannosidase alpha class 1A member 2) (Processing alpha-1,2-mannosidase IB) (Alpha-1,2-mannosidase IB)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 641,
+      "sequence_sha256": "1f5756ae925bdd1871af22fd2c39340b3069fcb4a81c266d452b3c2159c37d95",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q13724",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [
+        "3.2.1.106"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Disease variant",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide glucosidase (EC 3.2.1.106) (Processing A-glucosidase I)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->2)-alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:55988",
+        "RHEA-COMP:12806",
+        "RHEA-COMP:14355"
+      ],
+      "sequence_length": 837,
+      "sequence_sha256": "cfda4a398452169f637e9ddb4ffb8ea02bc4f761becb93c8cbe3721f3c95e0e7",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q69ZQ1",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.22"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Nucleus",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-galactose residues in alpha-D-galactosides, including galactose oligosaccharides, galactomannans and galactolipids."
+      ],
+      "registry_new": false,
+      "rhea_ids": [],
+      "sequence_length": 716,
+      "sequence_sha256": "5b3060d5e7386554ab385085a7375d4895d4f30d893b91e1a079355a51ad474f",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q9NR34",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Calcium",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide 1,2-alpha-mannosidase IC (EC 3.2.1.113) (HMIC) (Mannosidase alpha class 1C member 1) (Processing alpha-1,2-mannosidase IC) (Alpha-1,2-mannosidase IC)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 630,
+      "sequence_sha256": "c5c8b1d16cbf8d237ef5842f86872ebf9bcf66eba11248a600843ca7845bfdcc",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q16706",
+      "active_binding_feature_count": 7,
+      "ec_numbers": [
+        "3.2.1.114"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2 (EC 3.2.1.114) (Golgi alpha-mannosidase II) (AMan II) (Man II) (Mannosidase alpha class 2A member 1) (Mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase)",
+      "reaction_text_sample": [
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + 2 H2O = 2 alpha-D-mannopyranose + an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein]"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56052",
+        "RHEA-COMP:14368",
+        "RHEA-COMP:14369"
+      ],
+      "sequence_length": 1144,
+      "sequence_sha256": "bca9eaef726f5393b8e50ea8005598be4c3da3e8ee6680d1eb02dd23213c7599",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P10253",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.20"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Glycogen storage disease",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Membrane",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Lysosomal alpha-glucosidase (EC 3.2.1.20) (Acid maltase) (Aglucosidase alfa) [Cleaved into: 76 kDa lysosomal alpha-glucosidase; 70 kDa lysosomal alpha-glucosidase]",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing (1->4)-linked alpha-D-glucose residues with release of alpha-D-glucose."
+      ],
+      "registry_new": false,
+      "rhea_ids": [],
+      "sequence_length": 952,
+      "sequence_sha256": "70dda9e7bae131bb456a3b38859dd051dafc31855b16c33df9289fc7c396099b",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P17050",
+      "active_binding_feature_count": 9,
+      "ec_numbers": [
+        "3.2.1.49"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Epilepsy",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lipid metabolism",
+        "Lysosome",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-N-acetylgalactosaminidase (EC 3.2.1.49) (Alpha-galactosidase B)",
+      "reaction_text_sample": [
+        "Cleavage of non-reducing alpha-(1->3)-N-acetylgalactosamine residues from human blood group A and AB mucin glycoproteins, Forssman hapten and blood group A lacto series glycolipids.",
+        "a neolactoside IV(3)-alpha-GalNAc,IV(2)-alpha-Fuc-nLc4Cer(d18:1(4E)) + H2O = a neolactoside IV(2)-alpha-Fuc-nLc4Cer(d18:1(4E)) + N-acetyl-alpha-D-galactosamine",
+        "a neolactoside IV(3)-alpha-GalNAc,IV(2)-alpha-Fuc-nLc4Cer(d18:0) + H2O = a neolactoside IV(2)-alpha-Fuc-nLc4Cer(d18:0) + N-acetyl-alpha-D-galactosamine"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:48212",
+        "RHEA:49304",
+        "RHEA:48412"
+      ],
+      "sequence_length": 411,
+      "sequence_sha256": "fbd54afa6a882b3d4910fd63e2a030e105dc1e5b08272df76bd5ab2097a833e3",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P06280",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [
+        "3.2.1.22"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lipid metabolism",
+        "Lysosome",
+        "Pharmaceutical",
+        "Proteomics identification",
+        "Reference proteome",
+        "RNA editing",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-galactosidase A (EC 3.2.1.22) (Alpha-D-galactosidase A) (Alpha-D-galactoside galactohydrolase) (Galactosylgalactosylglucosylceramidase GLA) (Melibiase) (Agalsidase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-galactose residues in alpha-D-galactosides, including galactose oligosaccharides, galactomannans and galactolipids.",
+        "a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+        "a globoside Gb3Cer + H2O = a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:21112",
+        "RHEA:48020"
+      ],
+      "sequence_length": 429,
+      "sequence_sha256": "a3757f6fbdeed39e8596df6cc5a20fd246063146afc4cbe937193a64fcc3e99e",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P04746",
+      "active_binding_feature_count": 11,
+      "ec_numbers": [
+        "3.2.1.1"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Calcium",
+        "Carbohydrate metabolism",
+        "Chloride",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Proteomics identification",
+        "Pyrrolidone carboxylic acid",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Pancreatic alpha-amylase (PA) (EC 3.2.1.1) (1,4-alpha-D-glucan glucanohydrolase)",
+      "reaction_text_sample": [
+        "Endohydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides containing three or more (1->4)-alpha-linked D-glucose units."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 511,
+      "sequence_sha256": "427556ee7e35633327c1f10323a53d0dd5f99eadf9f9c82b9eeac4ca4690350f",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "O43451",
+      "active_binding_feature_count": 13,
+      "ec_numbers": [
+        "3.2.1.20"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Cell membrane",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Multifunctional enzyme",
+        "Proteomics identification",
+        "Reference proteome",
+        "Repeat",
+        "Signal-anchor",
+        "Sulfation",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Maltase-glucoamylase (Alpha-1,4-glucosidase) (EC 3.2.1.20)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing (1->4)-linked alpha-D-glucose residues with release of alpha-D-glucose.",
+        "D-maltoheptaose + H2O = D-maltohexaose + alpha-D-glucose",
+        "D-maltohexaose + H2O = D-maltopentaose + alpha-D-glucose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:29643",
+        "RHEA:29639",
+        "RHEA:29635",
+        "RHEA:29631",
+        "RHEA:27970",
+        "RHEA:68796",
+        "RHEA:68800",
+        "RHEA:68804",
+        "RHEA:68864",
+        "RHEA:68808"
+      ],
+      "sequence_length": 2753,
+      "sequence_sha256": "be19ce51c4f3249082c6b7afdfafccaeace5a2a13254f2238c619aeebf5300c4",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q9H227",
+      "active_binding_feature_count": 8,
+      "ec_numbers": [
+        "3.2.1.21",
+        "3.2.1.45",
+        "3.2.1.46"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Cytoplasm",
+        "Glycosidase",
+        "Hydrolase",
+        "Lipid metabolism",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Cytosolic beta-glucosidase (EC 3.2.1.21) (Cytosolic beta-glucosidase-like protein 1) (Cytosolic galactosylceramidase) (EC 3.2.1.46) (Cytosolic glucosylceramidase) (EC 3.2.1.45) (Cytosolic glycosylceramidase) (Cytosolic GCase) (Glucosidase beta acid 3) (Glucosylceramidase beta 3) (Klotho-related protein) (KLrP)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose.",
+        "a beta-D-glucosyl-(1<->1')-N-acylsphing-4-enine + H2O = an N-acylsphing-4-enine + D-glucose",
+        "a beta-D-galactosyl-(1<->1')-N-acylsphing-4-enine + H2O = D-galactose + an N-acylsphing-4-enine"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:13269",
+        "RHEA:14297",
+        "RHEA:59288",
+        "RHEA:59284",
+        "RHEA:43908",
+        "RHEA:59292",
+        "RHEA:70239"
+      ],
+      "sequence_length": 469,
+      "sequence_sha256": "085c3182089b94015013f0db9968ed23a635fdc1b61ccdeac56505bb7ae26b15",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q32M88",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [
+        "3.2.1.107"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Glycosidase",
+        "Hydrolase",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "predictive_evidence": [],
+      "protein_name": "Protein-glucosylgalactosylhydroxylysine glucosidase (EC 3.2.1.107) (Acid trehalase-like protein 1)",
+      "reaction_text_sample": [
+        "(5R)-5-O-[alpha-D-glucosyl-(1->2)-beta-D-galactosyl]-5-hydroxy-L-lysyl-[collagen] + H2O = (5R)-5-O-(beta-D-galactosyl)-5-hydroxy-L-lysyl-[collagen] + D-glucose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:11068",
+        "RHEA-COMP:12753",
+        "RHEA-COMP:12754"
+      ],
+      "sequence_length": 737,
+      "sequence_sha256": "41af92c4e71e3e65c8a596120de2a2c3a13d647e965711328e3a7fc9df794667",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P23780",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.23"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Reference proteome",
+        "Signal",
+        "Zymogen"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-galactosidase (EC 3.2.1.23) (Acid beta-galactosidase) (Lactase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal non-reducing beta-D-galactose residues in beta-D-galactosides."
+      ],
+      "registry_new": false,
+      "rhea_ids": [],
+      "sequence_length": 647,
+      "sequence_sha256": "4af1c97226e2d3a4f3f564e31931211a45eae01fbe0b3cc718611654bc57f395",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q29451",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Metal-binding",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Zinc",
+        "Zymogen"
+      ],
+      "organism": "Bos taurus (Bovine)",
+      "predictive_evidence": [],
+      "protein_name": "Lysosomal alpha-mannosidase (Laman) (EC 3.2.1.24) (Lysosomal acid alpha-mannosidase) (Mannosidase alpha class 2B member 1) (Mannosidase alpha-B) [Cleaved into: Lysosomal alpha-mannosidase A peptide; Lysosomal alpha-mannosidase B peptide; Lysosomal alpha-mannosidase C peptide; Lysosomal alpha-mannosidase D peptide; Lysosomal alpha-mannosidase E peptide]",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides.",
+        "alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-D-GlcNAc + H2O = alpha-D-Man-(1->6)-beta-D-Man-(1->4)-D-GlcNAc + D-mannose",
+        "alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-D-GlcNAc + H2O = alpha-D-Man-(1->6)-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-D-GlcNAc + D-mannose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:84975",
+        "RHEA:84979"
+      ],
+      "sequence_length": 999,
+      "sequence_sha256": "1d9022fe074fc3298cb82a5d5fe5ca0e88ca22a3989466b1eb9d2ec60d7e3ffc",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "O09159",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Metal-binding",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Zinc"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Lysosomal alpha-mannosidase (Laman) (EC 3.2.1.24) (Lysosomal acid alpha-mannosidase) (Mannosidase alpha class 2B member 1) (Mannosidase alpha-B)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides.",
+        "alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-D-GlcNAc + H2O = alpha-D-Man-(1->6)-beta-D-Man-(1->4)-D-GlcNAc + D-mannose",
+        "alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-D-GlcNAc + H2O = alpha-D-Man-(1->6)-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-D-GlcNAc + D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:84975",
+        "RHEA:84979"
+      ],
+      "sequence_length": 1013,
+      "sequence_sha256": "8a31cda7a0d4a6b37089f0ae20583003925749dea6ada825e334895e186127a8",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P53624",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative promoter usage",
+        "Calcium",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Drosophila melanogaster (Fruit fly)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide alpha-1,2-mannosidase IA (EC 3.2.1.113) (Man(9)-alpha-mannosidase) (Mannosidase-1)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 667,
+      "sequence_sha256": "096beae29cf0d77c447585251eed4c504dc4b3a4d741ce8208826b4f77cae16b",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q29444",
+      "active_binding_feature_count": 4,
+      "ec_numbers": [
+        "3.2.1.25"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Bos taurus (Bovine)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-mannosidase (EC 3.2.1.25) (Lysosomal beta A mannosidase) (Mannanase) (Mannase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-mannose residues in beta-D-mannosides."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 879,
+      "sequence_sha256": "51a4bcf32e02f87e8226abaa9e1bb95c87061eb142ec8d63e445c3b9c425d5e1",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P45700",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide 1,2-alpha-mannosidase IA (EC 3.2.1.113) (Man(9)-alpha-mannosidase) (Man9-mannosidase) (Mannosidase alpha class 1A member 1) (Processing alpha-1,2-mannosidase IA) (Alpha-1,2-mannosidase IA)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 655,
+      "sequence_sha256": "df2864ac6f514268ca568a95d6fa972a6af58b718724c56ff46d2d59891d280e",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q8K2I4",
+      "active_binding_feature_count": 4,
+      "ec_numbers": [
+        "3.2.1.25"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-mannosidase (EC 3.2.1.25) (Lysosomal beta A mannosidase) (Mannanase) (Mannase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-mannose residues in beta-D-mannosides."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 879,
+      "sequence_sha256": "a65865d73053164ae2a62c0bcaaec0bc768aa60150eae2e61308268e0403b793",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "O23553",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.2"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Carbohydrate metabolism",
+        "Chloroplast",
+        "Glycosidase",
+        "Hydrolase",
+        "Plastid",
+        "Polysaccharide degradation",
+        "Reference proteome",
+        "Transit peptide"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-amylase 3, chloroplastic (EC 3.2.1.2) (1,4-alpha-D-glucan maltohydrolase) (Beta-amylase 8) (Chloroplast beta-amylase) (CT-BMY)",
+      "reaction_text_sample": [
+        "Hydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides so as to remove successive maltose units from the non-reducing ends of the chains."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 548,
+      "sequence_sha256": "0b51f203eba57ceb23c22e10e3bd3bb8cbb17a79173ba6441cd2536414bc99a4",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P53008",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.106"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide glucosidase (EC 3.2.1.106) (Processing A-glucosidase I) (Glucosidase I)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->2)-alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:55988",
+        "RHEA-COMP:12806",
+        "RHEA-COMP:14355"
+      ],
+      "sequence_length": 833,
+      "sequence_sha256": "234019fdea8d893e411e91812421bced9cb2bfe0f7881a14a2bddf7583116005",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q9LIR6",
+      "active_binding_feature_count": 12,
+      "ec_numbers": [
+        "3.2.1.2"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Carbohydrate metabolism",
+        "Chloroplast",
+        "Disulfide bond",
+        "Glycosidase",
+        "Hydrolase",
+        "Phosphoprotein",
+        "Plastid",
+        "Polysaccharide degradation",
+        "Reference proteome",
+        "Transit peptide"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-amylase 1, chloroplastic (EC 3.2.1.2) (1,4-alpha-D-glucan maltohydrolase) (Beta-amylase 7) (Thioredoxin-regulated beta-amylase) (TR-BAMY)",
+      "reaction_text_sample": [
+        "Hydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides so as to remove successive maltose units from the non-reducing ends of the chains."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 575,
+      "sequence_sha256": "80a4367f06d7422ec75f21f74d91cc844c5b4633a82c73f148d6e9c590317d42",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P34098",
+      "active_binding_feature_count": 8,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal",
+        "Zinc",
+        "Zymogen"
+      ],
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "predictive_evidence": [],
+      "protein_name": "Lysosomal alpha-mannosidase (Laman) (EC 3.2.1.24) (Alpha-D-mannoside mannohydrolase) (Alpha-mannosidase A) [Cleaved into: Alpha-mannosidase 60 kDa subunit; Alpha-mannosidase 58 kDa subunit]",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 1010,
+      "sequence_sha256": "e3090d67b51789a1f9e2707d8ee12e40a4bd1e1ef637d819b57396e611b08e27",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P17654",
+      "active_binding_feature_count": 32,
+      "ec_numbers": [
+        "3.2.1.1"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Carbohydrate metabolism",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-amylase (EC 3.2.1.1) (1,4-alpha-D-glucan glucanohydrolase) (Alpha-amylase isozyme 1B)",
+      "reaction_text_sample": [
+        "Endohydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides containing three or more (1->4)-alpha-linked D-glucose units."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 434,
+      "sequence_sha256": "d4067e354d8bb5352a1499d095bd1eded326b4fc6854217055053c630bf5ed10",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "A2AJ15",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Calcium",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Endoplasmic reticulum mannosyl-oligosaccharide 1,2-alpha-mannosidase (EC 3.2.1.113) (ER alpha-1,2-mannosidase) (ER mannosidase 1) (ERMan1) (Man9GlcNAc2-specific-processing alpha-mannosidase) (Mannosidase alpha class 1B member 1)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 658,
+      "sequence_sha256": "9d3e91067b60f96767dd017e33c8497bd05ba5161275881426950c6f0f970310",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q8BRK9",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.114"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Coiled coil",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2x (EC 3.2.1.114) (Alpha-mannosidase IIx) (Man IIx) (Mannosidase alpha class 2A member 2) (Mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase)",
+      "reaction_text_sample": [
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + 2 H2O = 2 alpha-D-mannopyranose + an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein]"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56052",
+        "RHEA-COMP:14368",
+        "RHEA-COMP:14369"
+      ],
+      "sequence_length": 1152,
+      "sequence_sha256": "ff54b210bb380d49da10bca1ffa986f02299972bbf9d4ed89068b769ad352815",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P54818",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.46"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lipid degradation",
+        "Lipid metabolism",
+        "Lysosome",
+        "Reference proteome",
+        "Signal",
+        "Sphingolipid metabolism"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Galactocerebrosidase (GALCERase) (EC 3.2.1.46) (Galactocerebroside beta-galactosidase) (Galactosylceramidase) (Galactosylceramide beta-galactosidase)",
+      "reaction_text_sample": [
+        "a beta-D-galactosyl-(1<->1')-N-acylsphing-4-enine + H2O = D-galactose + an N-acylsphing-4-enine",
+        "a D-galactosylceramide + H2O = an N-acyl-sphingoid base + D-galactose",
+        "beta-D-galactosyl-(1<->1)-sphing-4-enine + H2O = sphing-4-enine + D-galactose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:14297",
+        "RHEA:43412",
+        "RHEA:43908"
+      ],
+      "sequence_length": 684,
+      "sequence_sha256": "7a4f0aeb993301ddf7d99714b700e7037d291782f0b1747197d6cf5d57284a6b",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q8BHN3",
+      "active_binding_feature_count": 7,
+      "ec_numbers": [
+        "3.2.1.207"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Neutral alpha-glucosidase AB (EC 3.2.1.207) (Alpha-glucosidase 2) (Glucosidase II subunit alpha)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + beta-D-glucose",
+        "N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56000",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14357",
+        "RHEA:55996",
+        "RHEA-COMP:14355",
+        "RHEA-COMP:14357"
+      ],
+      "sequence_length": 944,
+      "sequence_sha256": "34277a369b3a3905b6300e1a1e7d0dbbafdc2f8f4f749cdb8737113868697d19",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "B2GUY0",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Calcium",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Rattus norvegicus (Rat)",
+      "predictive_evidence": [],
+      "protein_name": "Endoplasmic reticulum mannosyl-oligosaccharide 1,2-alpha-mannosidase (EC 3.2.1.113) (ER alpha-1,2-mannosidase) (ER mannosidase 1) (ERMan1) (Mannosidase alpha class 1B member 1)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 657,
+      "sequence_sha256": "50c84644eb29870a7079301e033ad3d627569549ed822378de6995fb718952f8",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q24451",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.114"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "organism": "Drosophila melanogaster (Fruit fly)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2 (EC 3.2.1.114) (Golgi alpha-mannosidase II) (AMan II) (Man II) (Golgi alpha-mannosidase IIa) (Mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase)",
+      "reaction_text_sample": [
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + 2 H2O = 2 alpha-D-mannopyranose + an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein]"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56052",
+        "RHEA-COMP:14368",
+        "RHEA-COMP:14369"
+      ],
+      "sequence_length": 1108,
+      "sequence_sha256": "c9adc660f0a8f88edf839615c955e2bac3bde14a330ad17b30f0ad69a6ae863a",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "O65258",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.2"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Carbohydrate metabolism",
+        "Chloroplast",
+        "Glycosidase",
+        "Hydrolase",
+        "Plastid",
+        "Polysaccharide degradation",
+        "Reference proteome",
+        "Transit peptide"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-amylase 2, chloroplastic (EC 3.2.1.2) (1,4-alpha-D-glucan maltohydrolase) (Beta-amylase 9)",
+      "reaction_text_sample": [
+        "Hydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides so as to remove successive maltose units from the non-reducing ends of the chains."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 542,
+      "sequence_sha256": "ea6bec309f2bcf740038a1d68dfadde1745618a017f2ee9b6f222a250c145caa",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q91W89",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Cobalt",
+        "Cytoplasm",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Reference proteome"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2C1 (EC 3.2.1.24) (Alpha-D-mannoside mannohydrolase) (Mannosidase alpha class 2C member 1) (Neutral/cytosolic alpha-mannosidase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 1039,
+      "sequence_sha256": "663ae9a4cfa7ab85c4b0b1ff7cd372eef2bebd0329d681e92d492fd41e9dd563",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P32906",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [
+        "3.2.1.113",
+        "3.2.1.209"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "predictive_evidence": [],
+      "protein_name": "Endoplasmic reticulum mannosyl-oligosaccharide 1,2-alpha-mannosidase (EC 3.2.1.113) (EC 3.2.1.209) (ER alpha-1,2-mannosidase) (Man(9)-alpha-mannosidase)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + H2O = N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + beta-D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367",
+        "RHEA:56004",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14358"
+      ],
+      "sequence_length": 549,
+      "sequence_sha256": "e992a560d3072b7b6aa8ad6674306dc2d4284f0b8cd9246c819bb407e714ce50",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P39098",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [
+        "3.2.1.113"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "Calcium",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide 1,2-alpha-mannosidase IB (EC 3.2.1.113) (Mannosidase alpha class 1A member 2) (Processing alpha-1,2-mannosidase IB) (Alpha-1,2-mannosidase IB)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56008",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14367",
+        "RHEA:56028",
+        "RHEA-COMP:14358",
+        "RHEA-COMP:14367"
+      ],
+      "sequence_length": 641,
+      "sequence_sha256": "bc534a2b0a76abcf1b4571efb8c3a4f91a19864e84602dcfc2215b948de65f8d",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q80UM7",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [
+        "3.2.1.106"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide glucosidase (EC 3.2.1.106) (Endoplasmic reticulum alpha-glucosidase I) (ER glu I) (Glucosidase 1) (Glycoprotein-processing glucosidase I)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->2)-alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:55988",
+        "RHEA-COMP:12806",
+        "RHEA-COMP:14355"
+      ],
+      "sequence_length": 834,
+      "sequence_sha256": "402364bb6c4d74e980d7da9cd0da3c00cc1dcafc007b48136f57cb0de0be68b9",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q19426",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [
+        "3.2.1.106"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Caenorhabditis elegans",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide glucosidase (EC 3.2.1.106) (Processing A-glucosidase I)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->2)-alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:55988",
+        "RHEA-COMP:12806",
+        "RHEA-COMP:14355"
+      ],
+      "sequence_length": 796,
+      "sequence_sha256": "58a285908d9104d5fbcdb2421fa5893e1537a0835d5bfefdc2cafd8f959c786a",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P27046",
+      "active_binding_feature_count": 7,
+      "ec_numbers": [
+        "3.2.1.114"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2 (EC 3.2.1.114) (Golgi alpha-mannosidase II) (AMan II) (Man II) (Mannosidase alpha class 2A member 1) (Mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase)",
+      "reaction_text_sample": [
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + 2 H2O = 2 alpha-D-mannopyranose + an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein]"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56052",
+        "RHEA-COMP:14368",
+        "RHEA-COMP:14369"
+      ],
+      "sequence_length": 1150,
+      "sequence_sha256": "d6407ce8a8678e77263f0f7530bb884784f01eccb5989aadb0fa62058c583191",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "O54782",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Zinc"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Epididymis-specific alpha-mannosidase (Epman) (EC 3.2.1.24) (Core-specific lysosomal alpha-1,6-Mannosidase) (Mannosidase alpha class 2B member 2)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides.",
+        "alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-D-GlcNAc + H2O = alpha-D-Man-(1->3)-beta-D-Man-(1->4)-D-GlcNAc + D-mannose",
+        "alpha-D-Man-(1->6)-beta-D-Man-(1->4)-D-GlcNAc + H2O = 4-O-beta-D-mannopyranosyl-N-acetyl-D-glucosamine + D-mannose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:84971",
+        "RHEA:84987"
+      ],
+      "sequence_length": 1018,
+      "sequence_sha256": "49363a80f04deaa4f52af5945d799d817872dcc23aa58a1b85c53e64bb6ac561",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P28494",
+      "active_binding_feature_count": 7,
+      "ec_numbers": [
+        "3.2.1.114"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Coiled coil",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "organism": "Rattus norvegicus (Rat)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2 (EC 3.2.1.114) (Golgi alpha-mannosidase II) (AMan II) (Man II) (Mannosidase alpha class 2A member 1) (Mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase)",
+      "reaction_text_sample": [
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + 2 H2O = 2 alpha-D-mannopyranose + an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein]"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56052",
+        "RHEA-COMP:14368",
+        "RHEA-COMP:14369"
+      ],
+      "sequence_length": 1148,
+      "sequence_sha256": "da31902dd1c7c57bb5f0866446ff6eaf241bbeb3471674a5efc1fbe40fcd449a",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "F4HTM3",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [
+        "3.2.1.106"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Membrane",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Mannosyl-oligosaccharide glucosidase GCS1 (EC 3.2.1.106) (Alpha-glucosidase 1) (Glucosidase 1) (Protein KNOPF) (Protein MUNCHKIN)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->2)-alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:55988",
+        "RHEA-COMP:12806",
+        "RHEA-COMP:14355"
+      ],
+      "sequence_length": 852,
+      "sequence_sha256": "f58e643fa6559544bab1805523d9c804d827d36b0c0d0b0123aa00babcee3bb6",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q9SE50",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.175"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Abscisic acid signaling pathway",
+        "Alternative splicing",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-D-glucopyranosyl abscisate beta-glucosidase (EC 3.2.1.175) (Beta-glucosidase 1) (AtBG1) (Beta-glucosidase 18) (AtBGLU18) (Beta-glucosidase homolog 1)",
+      "reaction_text_sample": [
+        "(+)-abscisic acid D-glucopyranosyl ester + H2O = 2-cis-(+)-abscisate + beta-D-glucose + H(+)"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:31347"
+      ],
+      "sequence_length": 528,
+      "sequence_sha256": "cad26fed5f9769e254b313e41be4ee3d21df7056260580ffa6bd29a931456729",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P00687",
+      "active_binding_feature_count": 11,
+      "ec_numbers": [
+        "3.2.1.1"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Calcium",
+        "Carbohydrate metabolism",
+        "Chloride",
+        "Disulfide bond",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Pyrrolidone carboxylic acid",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-amylase 1 (EC 3.2.1.1) (1,4-alpha-D-glucan glucanohydrolase 1) (Salivary and hepatic alpha-amylase)",
+      "reaction_text_sample": [
+        "Endohydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides containing three or more (1->4)-alpha-linked D-glucose units."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 511,
+      "sequence_sha256": "4560c8fbe99634a68618bb512f4765c3f72644e34809ee3d68c9d07f34836797",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P21543",
+      "active_binding_feature_count": 13,
+      "ec_numbers": [
+        "3.2.1.1",
+        "3.2.1.2"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Carbohydrate metabolism",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Polysaccharide degradation",
+        "Repeat",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Paenibacillus polymyxa (Bacillus polymyxa)",
+      "predictive_evidence": [],
+      "protein_name": "Beta/alpha-amylase [Includes: Beta-amylase (EC 3.2.1.2); Alpha-amylase (EC 3.2.1.1)]",
+      "reaction_text_sample": [
+        "Hydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides so as to remove successive maltose units from the non-reducing ends of the chains.",
+        "Endohydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides containing three or more (1->4)-alpha-linked D-glucose units."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 1196,
+      "sequence_sha256": "eafce8e3a717bb768eb0293da2ff5557cc807f24bb94e92aff09900b2c5bd7d2",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P25853",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.2"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Carbohydrate metabolism",
+        "Cytoplasm",
+        "Glycosidase",
+        "Hydrolase",
+        "Polysaccharide degradation",
+        "Reference proteome"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-amylase 5 (AtBeta-Amy) (EC 3.2.1.2) (1,4-alpha-D-glucan maltohydrolase) (Protein REDUCED BETA AMYLASE 1)",
+      "reaction_text_sample": [
+        "Hydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides so as to remove successive maltose units from the non-reducing ends of the chains."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 498,
+      "sequence_sha256": "01c6e59ceafbcb36df3689110343c1898de9dc92ab1e7b831e12e686b169acfb",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P53051",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [
+        "3.2.1.10"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Glycosidase",
+        "Hydrolase",
+        "Maltose metabolism",
+        "Mitochondrion",
+        "Reference proteome"
+      ],
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "predictive_evidence": [],
+      "protein_name": "Oligo-1,6-glucosidase IMA1 (EC 3.2.1.10) (Alpha-glucosidase) (Isomaltase 1)",
+      "reaction_text_sample": [
+        "Hydrolysis of (1->6)-alpha-D-glucosidic linkages in some oligosaccharides produced from starch and glycogen by alpha-amylase, and in isomaltose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 589,
+      "sequence_sha256": "b00d7a8f5b64a0453cdb612190553893402eda54581955af26aa07b415ab2147",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P00722",
+      "active_binding_feature_count": 18,
+      "ec_numbers": [
+        "3.2.1.23"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Glycosidase",
+        "Hydrolase",
+        "Magnesium",
+        "Manganese",
+        "Metal-binding",
+        "Reference proteome",
+        "Sodium"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-galactosidase (Beta-gal) (EC 3.2.1.23) (Lactase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal non-reducing beta-D-galactose residues in beta-D-galactosides."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 1024,
+      "sequence_sha256": "d192d45958b03c26f677259276df226f5442462bf8c0a20fea4a10f0f426ad39",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P83513",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [
+        "3.2.1.8",
+        "3.5.1.-"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Carbohydrate metabolism",
+        "Direct protein sequencing",
+        "Glycosidase",
+        "Hydrolase",
+        "Multifunctional enzyme",
+        "Polysaccharide degradation",
+        "Secreted",
+        "Signal",
+        "Xylan degradation"
+      ],
+      "organism": "Pseudobutyrivibrio xylanivorans",
+      "predictive_evidence": [],
+      "protein_name": "Bifunctional xylanase/deacetylase [Includes: Endo-1,4-beta-xylanase 11A (EC 3.2.1.8) (Xylanase XynT) (Xylanase xyn11A); Acetylated xylan deacetylase (EC 3.5.1.-)]",
+      "reaction_text_sample": [
+        "Endohydrolysis of (1->4)-beta-D-xylosidic linkages in xylans."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 602,
+      "sequence_sha256": "e7f0409889029d6b0f6c91d46de53a3adec8c17f466e17c3dc6de50f7ddec8ee",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": true,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q94502",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [
+        "3.2.1.207"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "predictive_evidence": [],
+      "protein_name": "Neutral alpha-glucosidase AB (EC 3.2.1.207) (Alpha-glucosidase 2) (Glucosidase II subunit alpha) (Protein post-translational modification mutant A)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + beta-D-glucose",
+        "N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56000",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14357",
+        "RHEA:55996",
+        "RHEA-COMP:14355",
+        "RHEA-COMP:14357"
+      ],
+      "sequence_length": 943,
+      "sequence_sha256": "45b7eb636f285f0b955bf0c9b8948b2bfa81d7ca85075492bbd38a720dbc5dd6",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P51569",
+      "active_binding_feature_count": 4,
+      "ec_numbers": [
+        "3.2.1.22"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lipid metabolism",
+        "Lysosome",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-galactosidase A (EC 3.2.1.22) (Alpha-D-galactosidase A) (Alpha-D-galactoside galactohydrolase) (Galactosylgalactosylglucosylceramidase GLA) (Melibiase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-galactose residues in alpha-D-galactosides, including galactose oligosaccharides, galactomannans and galactolipids.",
+        "a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+        "a globoside Gb3Cer + H2O = a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:21112",
+        "RHEA:48020"
+      ],
+      "sequence_length": 419,
+      "sequence_sha256": "36b6598d7cb726f51c76bc017420756b1d4dad3a0f08784ee823ba808335f050",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P22855",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.24"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Reference proteome",
+        "Vacuole",
+        "Zinc"
+      ],
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase (EC 3.2.1.24) (Alpha-D-mannoside mannohydrolase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing alpha-D-mannose residues in alpha-D-mannosides."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 1083,
+      "sequence_sha256": "e32917d138502052852beb07aed4056b6626f70ae2d16943b7182cc0b930be0c",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "O64879",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Apoplast",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 15 (AtBGLU15) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 506,
+      "sequence_sha256": "ead4daea61c9b7c41f73c1624f5ceb1b19321b53016642c0689b86aae6063a53",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q75I94",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 8 (Os3bglu8) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 568,
+      "sequence_sha256": "65c4de54491dcc8c4d804aad87aeb69a6fd84fd6e3a607b94be8192d76071746",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q7XSK0",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 18 (Os4bglu18) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 505,
+      "sequence_sha256": "d6f510839efe800ff5cd97fd8289b60ca8a155241f5e7eaa490363565f373c0a",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q7XSK2",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 16 (Os4bglu16) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 516,
+      "sequence_sha256": "8d21ef58e2f90c9978dcb17c04eba837d7f3c007af64e2a65f4f9fb0233e4e54",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q7XKV4",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 12 (Os4bglu12) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 510,
+      "sequence_sha256": "b3c498ac34b90abd9f6f3cdf8be78453f8a9f77de6bfcccd4ad20a929a905c48",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q9C8Y9",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Alternative splicing",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 22 (AtBGLU22) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 524,
+      "sequence_sha256": "ec5196e6adbdf5b8fe144ebbd95787c31421d2212ef2d69c53e17aaefc00bae8",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q9FIW4",
+      "active_binding_feature_count": 11,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Plant defense",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 42 (AtBGLU42) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 490,
+      "sequence_sha256": "c000c89d8051da6ec7192d36c7465b1e7de69339353f00a1e8a8a07b9e383760",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q9LV33",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Metal-binding",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Zinc"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 44 (AtBGLU44) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 512,
+      "sequence_sha256": "dc3b5fc92846a04ad9f1288d01970ae71c81c43d1c85f93cb8d4ba07ebfcf9d7",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "A3BMZ5",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 26 (Os7bglu26) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 510,
+      "sequence_sha256": "675248271f26b620537dd5a29a0acc356d5e29779b3ea67b441bb19ef9b11ce9",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q75I93",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 7 (Os3bglu7) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 504,
+      "sequence_sha256": "ab13e3cea9881252fe12bdf6e0d96fa0357c34de56280d9af236e171ec2a9b72",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q8L7J2",
+      "active_binding_feature_count": 10,
+      "ec_numbers": [
+        "3.2.1.21"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "predictive_evidence": [],
+      "protein_name": "Beta-glucosidase 6 (Os3bglu6) (EC 3.2.1.21)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 521,
+      "sequence_sha256": "648277bc2fa871f55a6d74b39ec22e26a469d948b14b97a87c11e5c4f48b2390",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q9QWR8",
+      "active_binding_feature_count": 9,
+      "ec_numbers": [
+        "3.2.1.49"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lipid metabolism",
+        "Lysosome",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-N-acetylgalactosaminidase (EC 3.2.1.49) (Alpha-galactosidase B)",
+      "reaction_text_sample": [
+        "Cleavage of non-reducing alpha-(1->3)-N-acetylgalactosamine residues from human blood group A and AB mucin glycoproteins, Forssman hapten and blood group A lacto series glycolipids.",
+        "a neolactoside IV(3)-alpha-GalNAc,IV(2)-alpha-Fuc-nLc4Cer(d18:1(4E)) + H2O = a neolactoside IV(2)-alpha-Fuc-nLc4Cer(d18:1(4E)) + N-acetyl-alpha-D-galactosamine",
+        "a neolactoside IV(3)-alpha-GalNAc,IV(2)-alpha-Fuc-nLc4Cer(d18:0) + H2O = a neolactoside IV(2)-alpha-Fuc-nLc4Cer(d18:0) + N-acetyl-alpha-D-galactosamine"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:48212",
+        "RHEA:49304",
+        "RHEA:48412"
+      ],
+      "sequence_length": 415,
+      "sequence_sha256": "9555567f547937441826abd090b6f18a5dbcc753babb53bb6020fd532811e906",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "P38138",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [
+        "3.2.1.207"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "predictive_evidence": [],
+      "protein_name": "Glucosidase 2 subunit alpha (EC 3.2.1.207) (Alpha-glucosidase II subunit alpha) (Glucosidase II subunit alpha) (Reversal of TOR2 lethality protein 2)",
+      "reaction_text_sample": [
+        "N(4)-(alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + beta-D-glucose",
+        "N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose"
+      ],
+      "registry_new": true,
+      "rhea_ids": [
+        "RHEA:56000",
+        "RHEA-COMP:14356",
+        "RHEA-COMP:14357",
+        "RHEA:55996",
+        "RHEA-COMP:14355",
+        "RHEA-COMP:14357"
+      ],
+      "sequence_length": 954,
+      "sequence_sha256": "c8d1ae23c2a880c8f09c07c2fe5d3d878ccb795961f42e8e3eb5bc96af6a1ed7",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q9LFR0",
+      "active_binding_feature_count": 5,
+      "ec_numbers": [
+        "3.2.1.114"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Golgi apparatus",
+        "Hydrolase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "predictive_evidence": [],
+      "protein_name": "Alpha-mannosidase 2 (EC 3.2.1.114) (Golgi alpha-mannosidase II) (AMan II) (AtGMII) (Man II) (Protein hybrid glycosylation 1)",
+      "reaction_text_sample": [
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + 2 H2O = 2 alpha-D-mannopyranose + an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein]"
+      ],
+      "registry_new": false,
+      "rhea_ids": [
+        "RHEA:56052",
+        "RHEA-COMP:14368",
+        "RHEA-COMP:14369"
+      ],
+      "sequence_length": 1173,
+      "sequence_sha256": "eb35f271fd53aaefdcb5a3de5ece16c549467922e2513f0b52391c24b5fbd81d",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": false,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": true
+      }
+    },
+    {
+      "accession": "Q6P7A9",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.20"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Membrane",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Rattus norvegicus (Rat)",
+      "predictive_evidence": [],
+      "protein_name": "Lysosomal alpha-glucosidase (EC 3.2.1.20) (Acid maltase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing (1->4)-linked alpha-D-glucose residues with release of alpha-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 953,
+      "sequence_sha256": "9d52859005595574a2e3dc2af272d603ab93228607a9e67c69a406a1f5193997",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "Q9MYM4",
+      "active_binding_feature_count": 6,
+      "ec_numbers": [
+        "3.2.1.20"
+      ],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Disulfide bond",
+        "Glycoprotein",
+        "Glycosidase",
+        "Hydrolase",
+        "Lysosome",
+        "Membrane",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Bos taurus (Bovine)",
+      "predictive_evidence": [],
+      "protein_name": "Lysosomal alpha-glucosidase (EC 3.2.1.20) (Acid maltase)",
+      "reaction_text_sample": [
+        "Hydrolysis of terminal, non-reducing (1->4)-linked alpha-D-glucose residues with release of alpha-D-glucose."
+      ],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 937,
+      "sequence_sha256": "829196364c15f777dd4a594fdadae68d65927341b7ce2fab3ecff63d9f173276",
+      "signals": {
+        "acid_base_or_nucleophile_context": true,
+        "active_or_binding_site_context": true,
+        "boundary_signal": false,
+        "glycosidase_family_text": true,
+        "glycoside_hydrolysis_reaction": true,
+        "likely_wireable": true,
+        "non_scope_ec_boundary": false,
+        "rhea_cross_reference": false
+      }
+    }
+  ],
+  "schema_version": "mechanism_handle_scout.v1",
+  "status": "non_destructive_mechanism_handle_scout_no_registry_write"
+}

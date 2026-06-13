@@ -13,6 +13,43 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: glycoside hydrolase 35fp bronze lane applied.** The run chose a
+new clean 10k-path family after PfkB/biotin remained source-limited and a GHKL histidine-kinase
+scout found only **1** likely wireable reviewed row. A glycoside hydrolase scout over **240**
+reviewed EC 3.2.1 rows found **194** registry-new rows and **178** likely wireable by non-EC
+mechanism handles. The family was completed through the full pipeline: added
+`glycoside_hydrolase` fingerprint, `glycosidic_bond_hydrolysis` ontology node, deploy-missing
+context `glycosidic_substrate_ordered_water_hydrolysis_context`, coverage source signature,
+`label_factory_v1_35fp`, OOS preregistration
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_35fp_1025.json`,
+disambiguation/trust-tier/leakage/coverage tests, non-destructive preview, and explicit `--apply`
+with frozen current702 sha checks. Frozen current702 remained byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Production apply
+(`scripts/source_glycoside_hydrolase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **240**, mechanism-corroborated **45**, applied **45**, held **155** no-corroboration rows,
+skipped **40**, off-target held **0**, novelty-throttled **0**, held@cap **0**, and recorded **1**
+Rhea timeout (`P19531`). Glycoside hydrolase is now **45/150** and remains below the 100 floor.
+
+External bronze is now **6449**; combined label surface is **7151**; honest counters stay separate:
+**positive_bronze 5438**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**. External-only bronze split is **5225** seed-fingerprint rows and **1224** OOS rows.
+Remaining positive-bronze gap to 10k: **4562**. Post-apply coverage audit reports **35**
+fingerprints, fingerprint Gini **0.1753**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase', 'glycoside_hydrolase', 'pfkb_ribokinase_family']`, only
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **125**. Novelty replay over
+**6449** expansion rows reports decisions `{'admit': 5993, 'reject': 47, 'throttle': 409}` and
+would-not-readmit **456** (0.0707). Row audit found **0** problems across **45** glycoside
+hydrolase rows.
+
+Guardrails remain active: EC/name/Rhea/keyword/prose/feature handles are admission/excluded-context
+evidence only; EC is never counted; `predictive_evidence []`; glycosyltransferase,
+transglycosylase, phosphorylase, lyase, side-EC, EC-only, and multi-fingerprint-signal rows are
+held. Next concrete work should close the remaining floors through gated top-up/new-source work:
+glycoside hydrolase **45/100**, PfkB **46/100**, or biotin **84/100**. Do not repeat the weak GHKL
+scout as a production lane.
+
 **2026-06-13 automation update: Mn/Fe SOD 34fp bronze expansion applied.** The spec-only
 `manganese_iron_superoxide_dismutase` lane from the latest handoff was completed through the full
 mechanism-first pipeline. The run added the fingerprint and `metal_superoxide_dismutation` ontology

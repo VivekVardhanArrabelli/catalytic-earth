@@ -1,0 +1,112 @@
+{
+  "artifact_id": "v3_ghkl_histidine_kinase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "ghkl_histidine_kinase",
+  "counts": {
+    "active_or_binding_site_context": 2,
+    "atp_adp_phosphate_context": 1,
+    "boundary_signal": 1,
+    "histidine_family_text": 1,
+    "likely_wireable_by_non_ec_handles": 1,
+    "mg_or_atp_context": 1,
+    "phosphohistidine_context": 1,
+    "registry_new": 2
+  },
+  "created_utc": "2026-06-13T16:03:57Z",
+  "entries_examined": 2,
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only": true,
+    "epk_no_go_not_reopened": true,
+    "labels_emitted": false,
+    "mechanism_handle_scout_before_wiring": true,
+    "predictive_features_emitted": false,
+    "registry_written": false
+  },
+  "lane_queries": [
+    {
+      "lane_id": "ghkl_histidine_kinase_reviewed_strict",
+      "query": "(reviewed:true) AND ((ec:2.7.13.*) OR (protein_name:\"histidine kinase\") OR (protein_name:\"two-component sensor kinase\") OR (protein_name:\"sensor histidine kinase\")) AND ((keyword:Kinase) OR (keyword:Transferase) OR (protein_name:kinase)) NOT ((ec:2.7.11.*) OR (ec:2.7.10.*) OR (ec:2.7.1.*) OR (ec:2.7.4.*) OR (ec:3.*) OR (protein_name:\"serine/threonine-protein kinase\") OR (protein_name:\"tyrosine-protein kinase\") OR (protein_name:\"protein kinase\") OR (protein_name:\"nucleoside diphosphate kinase\") OR (protein_name:\"deoxynucleoside kinase\") OR (protein_name:\"phosphofructokinase\") OR (protein_name:\"ribokinase\") OR (protein_name:\"hexokinase\") OR (protein_name:\"glucokinase\"))",
+      "target_family_lane": "ghkl_histidine_kinase"
+    }
+  ],
+  "recommendation": {
+    "next_exact_action": "If wire_next_lane is true, add ghkl_histidine_kinase fingerprint, map ontology ghkl child, add disambiguation guards/tests, re-freeze 35fp OOS preregistration, preview, and apply only if novelty/trust/cap gates pass.",
+    "reason": "Wire only if reviewed GHKL/two-component rows show non-EC histidine-family, phosphohistidine/ATP, and active-site/Rhea evidence with low boundary signal.",
+    "wire_next_lane": false
+  },
+  "sample_rows": [
+    {
+      "accession": "Q7WY62",
+      "active_binding_feature_count": 3,
+      "ec_numbers": [],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "3D-structure",
+        "Alternative initiation",
+        "Protein kinase inhibitor",
+        "Reference proteome",
+        "Sporulation"
+      ],
+      "organism": "Bacillus subtilis (strain 168)",
+      "predictive_evidence": [],
+      "protein_name": "Sporulation inhibitor sda (Histidine kinase KinA inhibitor)",
+      "reaction_text_sample": [],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 52,
+      "sequence_sha256": "954c46d479daa4ac567c7bdec4cdb9c4b6c739254619bf99c21fc799d4e91523",
+      "signals": {
+        "active_or_binding_site_context": true,
+        "atp_adp_phosphate_context": false,
+        "boundary_signal": true,
+        "histidine_family_text": false,
+        "likely_wireable": false,
+        "mg_or_atp_context": false,
+        "non_scope_ec_boundary": false,
+        "phosphohistidine_context": false,
+        "rhea_cross_reference": false
+      }
+    },
+    {
+      "accession": "P9WGK0",
+      "active_binding_feature_count": 2,
+      "ec_numbers": [],
+      "excluded_context_note": "EC/name/Rhea/keyword/feature handles are scout-only admission context, not predictive features",
+      "keywords": [
+        "Cytoplasm",
+        "Heme",
+        "Iron",
+        "Kinase",
+        "Magnesium",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Repeat",
+        "Transferase",
+        "Two-component regulatory system"
+      ],
+      "organism": "Mycobacterium tuberculosis (strain CDC 1551 / Oshkosh)",
+      "predictive_evidence": [],
+      "protein_name": "Oxygen sensor histidine kinase response regulator DosT",
+      "reaction_text_sample": [],
+      "registry_new": true,
+      "rhea_ids": [],
+      "sequence_length": 573,
+      "sequence_sha256": "3114b3472300de30ae95423da3e4ae66def6abd6732930ec9ca7ed83a0666610",
+      "signals": {
+        "active_or_binding_site_context": true,
+        "atp_adp_phosphate_context": true,
+        "boundary_signal": false,
+        "histidine_family_text": true,
+        "likely_wireable": true,
+        "mg_or_atp_context": true,
+        "non_scope_ec_boundary": false,
+        "phosphohistidine_context": true,
+        "rhea_cross_reference": false
+      }
+    }
+  ],
+  "schema_version": "mechanism_handle_scout.v1",
+  "status": "non_destructive_mechanism_handle_scout_no_registry_write"
+}
