@@ -7700,6 +7700,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "nad_p_dehydrogenase",
                 "non_heme_iron_2og_dioxygenase",
                 "sam_methyltransferase",
+                "thiamine_diphosphate_enzyme",
             ],
         )
         self.assertNotIn("out_of_scope_false_non_abstention", inverse_gate["blockers"])

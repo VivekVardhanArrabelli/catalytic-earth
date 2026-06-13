@@ -34,8 +34,9 @@ Generated from `work/progress_log.jsonl`.
   carbonic text 79/80, active/binding/metal-site 76/80, side-EC/boundary rows 30/80. Next action is
   guarded 26fp wiring, not broad EC 4.2.1 admission.
 - Validation: focused pytest `80 passed`; leakage prereg/import-gate subset `5 passed, 181
-  deselected`; `validate` passed (12 source records, 25 mechanism fingerprints, 27 ontology
-  families, 702 curated labels); JSON parse checks passed.
+  deselected`; broader external import/transfer-scope suite `136 passed`; `validate` passed (12
+  source records, 25 mechanism fingerprints, 27 ontology families, 702 curated labels); JSON parse
+  checks passed.
 
 ## Previous Automation Snapshot
 

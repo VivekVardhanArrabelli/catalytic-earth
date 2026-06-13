@@ -62,8 +62,9 @@
   ontology, coverage, novelty, trust-tier, and source-only contract (`80 passed`); leakage
   prereg/import-gate subset passed (`5 passed, 181 deselected`); `PYTHONPATH=src python -m
   catalytic_earth.cli validate` passed (12 source records, 25 fingerprints, 27 ontology families,
-  702 curated labels); JSON parse checks passed for touched registries/artifacts. Run `git diff
-  --check` again during final closeout after docs.
+  702 curated labels); broader external import/transfer-scope suite passed after updating the
+  expected missing-coverage fixture for the new ThDP fingerprint (`136 passed`); JSON parse checks
+  passed for touched registries/artifacts; `git diff --check` passed.
 - Key new artifacts/files this run:
   `src/catalytic_earth/thiamine_diphosphate_sourcing.py`,
   `scripts/source_thiamine_diphosphate_family.py`,
