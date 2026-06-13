@@ -5,6 +5,65 @@ Generated from `work/progress_log.jsonl`.
 ## Active Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T09:31:37Z`
+- Started local: `Sat Jun 13 04:31:37 CDT 2026`
+- Focus/result: strict `deoxynucleoside_kinase` 31fp continuation from the latest handoff and
+  scaling docs. Applied the gated dNK lane through the existing mechanism-first pipeline, then ran a
+  non-destructive PfkA/PfkB source-supply scout as a small durable continuation. Broad EC 2.7 remains
+  blocked and EC must stay scope-only.
+- Family/gate setup: added `deoxynucleoside_kinase` fingerprint and mapped it to ontology family
+  `dnk`; bumped `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_31fp`; re-froze
+  OOS preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_31fp_1025.json`.
+  Counted mechanism handles are ATP/ADP phosphoryl-transfer Rhea participant text with
+  deoxynucleoside substrates, dNK/thymidine/deoxycytidine/deoxyguanosine kinase family text,
+  ATP/substrate active-/binding-site evidence, cofactor/cosubstrate handles, and structure-compatible
+  evidence. Protein kinase, histidine kinase, hydrolase/nuclease, NDK, ASKHA, GHMP, Pfk, and
+  multi-fingerprint rows are held.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_deoxynucleoside_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched 240, mechanism-corroborated 237, applied 150, disambiguation holds 0,
+  off-target held 0, novelty-throttled/rejected 0, held@cap 87, duplicate skipped 0;
+  `deoxynucleoside_kinase` **0 -> 150**.
+- Registry/counts: external bronze **5733 -> 5883** (+150); combined label surface
+  **6435 -> 6585**; frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate: `positive_bronze=4889`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap to 10k is **5111**.
+- Guardrails: EC/Rhea/name/keyword/prose/feature handles are admission/excluded-context evidence
+  only; EC is never counted; `predictive_evidence []`; every added row is tier bronze /
+  automation_curated / `uniprot:*`; dedup/novelty/governor/trust-tier gates ran against frozen
+  current702 and existing external bronze; chemistry-confusable cap 150 was enforced. Row guardrail
+  audit `artifacts/v3_deoxynucleoside_kinase_row_guardrail_audit_current702_20260613.json` found
+  0 problems across 150 dNK rows and all four mechanism axes present on every row.
+- Post-apply audits: `artifacts/v3_coverage_redundancy_audit_current702_20260613_dnk_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_dnk_applied.md` report **6585** combined,
+  **31** fingerprints, fingerprint Gini **0.1534**, holes `[]`, under-floor
+  `['biotin_dependent_carboxylase']`, over-cap `['metal_dependent_hydrolase']`, next-batch floor
+  deficit **16**. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_dnk_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_dnk_applied.md` reports **5883**
+  expansion rows, decisions `{'admit': 5427, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0775).
+- Validation: focused suite passed
+  (`PYTHONPATH=src pytest tests/test_deoxynucleoside_kinase_sourcing.py tests/test_nucleoside_diphosphate_kinase_sourcing.py tests/test_askha_sugar_acetate_kinase_sourcing.py tests/test_ghmp_small_molecule_kinase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_ontology.py tests/test_leakage_closure.py tests/test_coverage_redundancy_audit.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py`
+  -> **293 passed**); `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source
+  records, 31 mechanism fingerprints, 30 ontology families, 702 curated labels); JSON/JSONL parse
+  checks and `git diff --check` passed.
+- Small durable continuation: wrote
+  `artifacts/v3_strict_kinase_subclass_source_scout_after_dnk_current702_20260613.json` /
+  `work/strict_kinase_subclass_source_scout_after_dnk_current702_20260613.md`, with 0 labels and no
+  registry writes. PfkA reviewed supply **386**, sampled **40/40** likely wireable, **0/40** boundary
+  signals; PfkB reviewed supply **85**, sampled **28/40** likely wireable, **0/40** boundary signals.
+  Next exact action: full strict `pfka_phosphofructokinase` 32fp pipeline, not broad EC 2.7.
+- Closeout budget check: at final ledger write, elapsed **31.1** minutes from `STARTED_AT`
+  with **23.9** minutes remaining in the expected 55-minute work block. Decision:
+  `closeout_after_dnk_apply_and_pfk_scout`; reason: dNK apply/audits/validation and PfkA/PfkB scout
+  are complete, while full PfkA wiring/preregistration/preview/apply is too large to start safely
+  while preserving docs/tests/push/lock-release closeout.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T08:29:42Z`
 - Started local: `Sat Jun 13 03:29:42 CDT 2026`
 - Focus/result: strict kinase-subclass continuation from the latest handoff. Applied two gated

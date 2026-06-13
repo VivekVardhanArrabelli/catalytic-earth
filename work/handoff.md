@@ -1,5 +1,91 @@
 # Handoff
 
+## Session run - dNK 31fp bronze expansion applied + PfkA scout completed (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`
+  (`94a3beb372a293ad5d3979ff4818a9c2cf91578b` before local edits). The latest handoff selected
+  strict `deoxynucleoside_kinase` after ASKHA/GHMP; this run followed that lane through the full
+  mechanism-first pipeline, then ran a bounded PfkA/PfkB source-supply scout because enough time
+  remained for a safe non-importing continuation.
+- Status: **APPLIED a gated `deoxynucleoside_kinase` bronze expansion to the separate external
+  bronze registry.** Frozen current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before/after apply.
+  External bronze **5733 -> 5883** (+150); combined label surface **6435 -> 6585**.
+- Family/gate setup: added `deoxynucleoside_kinase` fingerprint and mapped it to the existing
+  ontology family `dnk`; bumped `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to
+  `label_factory_v1_31fp`; re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_31fp_1025.json`. EC 2.7.1 is
+  scope-only. Counted mechanism corroboration comes from ATP/ADP phosphoryl-transfer Rhea
+  participant context with deoxynucleoside substrates, dNK/thymidine/deoxycytidine/deoxyguanosine
+  kinase family text, ATP/substrate active- or binding-site evidence, cofactor/cosubstrate handles,
+  and structure-compatible evidence. Protein kinases, two-component histidine kinases,
+  hydrolase/nuclease rows, NDK, ASKHA, GHMP, PfkA/PfkB, and multi-fingerprint rows are held.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_deoxynucleoside_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched **240**, target mechanism-corroborated **237**, applied **150**,
+  disambiguation holds **0**, off-target held **0**, novelty-throttled/rejected **0**,
+  held@cap **87**, duplicate skipped **0**; `deoxynucleoside_kinase` **0 -> 150**
+  (chemistry-confusable cap 150; floor reached).
+- Guardrails verified: EC/Rhea/name/keyword/prose/feature handles are scope/admission evidence only
+  and remain in `excluded_context`; EC is never a counted corroborator; `predictive_evidence []`;
+  every added row is `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup ran
+  against frozen current702 and external bronze; per-fingerprint cap 150 was enforced. Row audit
+  `artifacts/v3_deoxynucleoside_kinase_row_guardrail_audit_current702_20260613.json` found
+  **0** problems across all **150** dNK rows; all four independent mechanism axes are present on
+  every row: active-site/residue role, cofactor/cosubstrate, domain/family profile, and Rhea
+  reaction/participant pattern.
+- Honest counters after apply: `positive_bronze=4889`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`. Do not merge them. Remaining positive-bronze gap to 10k:
+  **5111**.
+- Fresh post-dNK audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_dnk_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_dnk_applied.md`; **6585** combined,
+  **31** fingerprints, fingerprint Gini **0.1534**, holes `[]`, under-floor
+  `['biotin_dependent_carboxylase']`, over-cap `['metal_dependent_hydrolase']`,
+  next-batch floor deficit **16**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_dnk_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_dnk_applied.md`; **5883** expansion rows,
+  decisions `{'admit': 5427, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0775).
+- Validation:
+  `PYTHONPATH=src pytest tests/test_deoxynucleoside_kinase_sourcing.py tests/test_nucleoside_diphosphate_kinase_sourcing.py tests/test_askha_sugar_acetate_kinase_sourcing.py tests/test_ghmp_small_molecule_kinase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_ontology.py tests/test_leakage_closure.py tests/test_coverage_redundancy_audit.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py`
+  passed (**293 passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate` passed
+  (12 source records, 31 mechanism fingerprints, 30 ontology families, 702 curated labels).
+  JSON/JSONL parse checks and `git diff --check` passed before closeout.
+- Small durable continuation:
+  `artifacts/v3_strict_kinase_subclass_source_scout_after_dnk_current702_20260613.json` /
+  `work/strict_kinase_subclass_source_scout_after_dnk_current702_20260613.md` generated **0**
+  labels and wrote **no** registry. Corrected scout results: `pfka_phosphofructokinase` reviewed
+  supply **386**, sampled **40/40** likely wireable, **0/40** boundary signals; `pfkb_ribokinase_family`
+  reviewed supply **85**, sampled **28/40** likely wireable, **0/40** boundary signals. The scout
+  selects PfkA as the next strict kinase-subclass lane, not broad EC 2.7.
+- Closeout budget check: appended to `work/progress_log.jsonl` before commit/push/release. At
+  final ledger write, elapsed time was **31.1** minutes from `STARTED_AT` with **23.9** minutes
+  remaining in the expected 55-minute block. Decision:
+  `closeout_after_dnk_apply_and_pfk_scout`; reason: full dNK 31fp apply, row audit, coverage/novelty
+  audits, validation, and PfkA/PfkB scout were complete, while the next safe action is full PfkA
+  32fp wiring/preregistration/preview/apply, too large to start safely while preserving required
+  docs/tests/push/lock-release closeout.
+- Key new artifacts/files this run:
+  `src/catalytic_earth/deoxynucleoside_kinase_sourcing.py`,
+  `scripts/source_deoxynucleoside_kinase_family.py`,
+  `tests/test_deoxynucleoside_kinase_sourcing.py`,
+  `artifacts/v3_deoxynucleoside_kinase_sourcing_preview_current702.json`,
+  `work/deoxynucleoside_kinase_sourcing_current702.md`,
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_31fp_1025.json`,
+  `artifacts/v3_deoxynucleoside_kinase_row_guardrail_audit_current702_20260613.json`,
+  `work/deoxynucleoside_kinase_row_guardrail_audit_current702_20260613.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_dnk_applied.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_dnk_applied.json`,
+  `artifacts/v3_strict_kinase_subclass_source_scout_after_dnk_current702_20260613.json`, and
+  matching `work/*.md` reports.
+- Next exact action: do **not** broad-wire EC 2.7 or merge kinase subclasses. Continue with strict
+  `pfka_phosphofructokinase`: add a fingerprint spec and ontology node, re-freeze OOS
+  preregistration for 32fp, add disambiguation guards/tests, run a non-destructive preview with
+  chemistry-confusable `--cap-ceiling 150`, and apply only if novelty/governor/dedup/trust-tier/
+  leakage gates pass. Biotin remains under floor by 16, but current reviewed Rhea-first supply is
+  exhausted under the carboxylation gate.
+
 ## Session run - ASKHA + GHMP 30fp bronze expansion applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

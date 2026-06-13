@@ -22,6 +22,7 @@ class OntologyTests(unittest.TestCase):
             fingerprint_family("flavin_dehydrogenase_reductase", ontology),
             "flavin_redox",
         )
+        self.assertEqual(fingerprint_family("deoxynucleoside_kinase", ontology), "dnk")
 
     def test_rejects_unknown_parent(self) -> None:
         ontology = load_mechanism_ontology()

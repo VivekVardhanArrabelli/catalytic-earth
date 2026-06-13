@@ -112,12 +112,16 @@
       "id": "dnk",
       "name": "Deoxynucleoside kinases",
       "parent_id": "atp_phosphoryl_transfer",
-      "fingerprint_ids": [],
+      "fingerprint_ids": [
+        "deoxynucleoside_kinase"
+      ],
       "scope_note": "dNK-fold nucleoside kinases that transfer ATP gamma-phosphate to deoxynucleoside 5-prime hydroxyl acceptors. Kept separate from NDK phosphohistidine exchange.",
       "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "ndk", "pfka", "pfkb", "ghmp"],
       "family_boundary_guardrails": [
+        "Membership is decided by reviewed ATP/ADP phosphoryl-transfer context plus deoxynucleoside/thymidine/deoxyguanosine/deoxycytidine kinase family text and active-/binding-site evidence; EC 2.7.1 is scope only.",
         "Do not merge dNK substrate hydroxyl phosphorylation with NDK ping-pong phosphohistidine chemistry.",
-        "Keep dNK lanes review-only until substrate-class and local phosphoryl-transfer evidence are explicit."
+        "Do not merge dNK rows with ASKHA, GHMP, PfkA, PfkB, protein kinase, histidine kinase, hydrolase, side-EC, or EC-only rows solely by ATP wording.",
+        "ATP/Mg2+, deoxynucleoside acceptor, phosphorylated product, and in-line gamma-phosphate transfer pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
     },
     {

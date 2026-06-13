@@ -13,6 +13,42 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: strict deoxynucleoside kinase 31fp expansion is now applied.** The
+post-ASKHA/GHMP handoff selected strict `deoxynucleoside_kinase`, and this run completed that full
+pipeline. Added `deoxynucleoside_kinase` fingerprint + existing `dnk` ontology mapping, bumped to
+`label_factory_v1_31fp`, and re-froze OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_31fp_1025.json`. EC 2.7.1 is
+scope-only, chemistry-confusable, capped at 150, and separated from broad EC 2.7 and the NDK/ASKHA/
+GHMP/Pfk subclasses.
+
+dNK apply
+(`scripts/source_deoxynucleoside_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **240**, mechanism-corroborated **237**, applied **150**, held **87** at cap, and held
+**0** off-target rows. External bronze is now **5883**; combined label surface is **6585**; frozen
+current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters stay
+separate: **positive_bronze 4889**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k: **5111**.
+Post-apply audit: **31 fingerprints**, fingerprint Gini **0.1534**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase']`, only `metal_dependent_hydrolase` over-cap, next-batch floor
+deficit **16**. Novelty replay: **5883** expansion rows, decisions
+`{'admit': 5427, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0775). Row audit
+`artifacts/v3_deoxynucleoside_kinase_row_guardrail_audit_current702_20260613.json` found **0**
+problems across all 150 dNK rows and all four mechanism axes present on every row.
+
+All added rows keep `predictive_evidence []`; EC/name/keyword/Rhea/prose/feature handles remain
+excluded-context admission evidence and are never predictive. Counted corroboration comes from
+ATP/ADP phosphoryl-transfer Rhea participant text with deoxynucleoside substrates, dNK family text,
+ATP/substrate active-/binding-site evidence, cofactor/cosubstrate handles, and structure-compatible
+evidence. Do **not** broad-wire EC 2.7 or merge kinase subclasses. Follow-on scout
+`artifacts/v3_strict_kinase_subclass_source_scout_after_dnk_current702_20260613.json` generated
+**0** labels and wrote no registry; it found strict `pfka_phosphofructokinase` reviewed supply
+**386** with **40/40** sampled likely wireable and **0/40** sampled boundary signals, versus
+`pfkb_ribokinase_family` **85** reviewed supply with **28/40** sampled likely wireable. The next
+concrete lane is strict `pfka_phosphofructokinase`: fingerprint + ontology node -> 32fp OOS prereg
+re-freeze -> disambiguation guards/tests -> non-destructive preview -> gated apply only if
+novelty/governor/dedup/trust-tier/leakage gates pass.
+
 **2026-06-13 automation update: strict ASKHA 29fp and GHMP 30fp kinase-subclass expansions are now
 applied.** The post-NDK scout selected strict `askha_sugar_acetate_kinase`, and this run continued
 to strict `ghmp_small_molecule_kinase` after ASKHA because time remained and the reviewed source

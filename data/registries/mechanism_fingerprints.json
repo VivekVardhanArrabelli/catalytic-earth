@@ -557,6 +557,32 @@
     }
   },
   {
+    "id": "deoxynucleoside_kinase",
+    "name": "Deoxynucleoside kinase",
+    "enzyme_space": ["thymidine kinases", "deoxyguanosine kinases", "deoxycytidine kinases", "broad-specificity deoxyribonucleoside kinases"],
+    "active_site_signature": [
+      {"role": "atp_mg_binding", "residue": "ATP/Mg2+ phosphate-binding residues", "constraints": ["positions ATP gamma-phosphate and Mg2+ for transfer to a deoxynucleoside 5-prime hydroxyl"]},
+      {"role": "deoxynucleoside_acceptor_positioning", "residue": "Asp/Glu/Arg/Lys/Ser/Thr or family-specific polar pocket residues", "constraints": ["orients thymidine, deoxycytidine, deoxyguanosine, deoxyadenosine, or related acceptor for 5-prime phosphorylation"]},
+      {"role": "phosphoryl_transfer_stabilization", "residue": "basic and backbone phosphate-stabilizing residues", "constraints": ["stabilizes ADP and the deoxynucleoside monophosphate product while excluding NDK phosphohistidine exchange and other small-molecule kinase folds"]}
+    ],
+    "cofactors": ["Mg2+", "ATP"],
+    "reaction_center": {
+      "bond_changes": ["ATP gamma-phosphoryl transfer to the 5-prime hydroxyl of a deoxynucleoside acceptor"],
+      "chemical_operation": "dNK-family ATP-dependent deoxynucleoside phosphoryl transfer"
+    },
+    "substrate_constraints": ["EC 2.7.1 deoxynucleoside kinase scope present", "deoxynucleoside/thymidine/deoxyguanosine/deoxycytidine kinase family context present", "ATP/ADP phosphoryl-transfer reaction context present", "active-site or binding-site evidence present", "no NDK, ASKHA, GHMP, PfkA/PfkB, protein kinase, histidine kinase, hydrolase, side-EC, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Rhea or reviewed catalytic activity text for ATP/ADP phosphoryl transfer under EC 2.7.1 scope", "deoxynucleoside kinase, thymidine kinase, deoxyguanosine kinase, deoxycytidine kinase, or deoxyribonucleoside kinase family/name/domain text", "ATP/ADP/Mg2+ active-site or binding-site annotations", "reviewed binding-site or structure evidence for ATP and the deoxynucleoside acceptor"],
+    "counterevidence_features": ["NDK EC 2.7.4.6 or nucleoside-diphosphate kinase phosphohistidine wording", "protein kinase EC 2.7.11 or protein-substrate wording", "two-component histidine kinase EC 2.7.13", "ASKHA, GHMP, PfkA/PfkB, ribokinase, or other neighboring small-molecule kinase wording", "hydrolase EC 3 or nucleoside-monophosphate kinase EC 2.7.4 side rows", "EC-only evidence with no Rhea, family, active-site, binding-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["substrate specificity across thymidine/deoxycytidine/deoxyguanosine/deoxyadenosine", "ATP/Mg2+ stoichiometry", "acceptor sugar/base pose", "dNK fold subclass and open/closed conformational state"],
+    "seed_examples": ["thymidine kinase", "deoxycytidine kinase", "deoxyguanosine kinase", "Drosophila deoxyribonucleoside kinase"],
+    "deploy_missing_active_site_context": {
+      "type": "atp_mg_deoxynucleoside_acceptor_and_monophosphate_product",
+      "detail": "ATP, Mg2+, the deoxynucleoside acceptor, and the deoxynucleoside monophosphate product state are dissociable or transient contexts absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->dNK/Rhea/ATP-Mg channel, or canonical ATP/Mg/deoxynucleoside acceptor graft in the kinase active conformation (Path B)",
+      "silver_reachability": "moderate; Rhea and ATP/binding-site evidence are common, but acceptor pose and conformational state require reconstruction"
+    }
+  },
+  {
     "id": "nucleoside_diphosphate_kinase",
     "name": "Nucleoside diphosphate kinase",
     "enzyme_space": ["NDP kinases", "NM23/NME-family nucleoside diphosphate kinases", "bacterial and organellar NDK enzymes"],
