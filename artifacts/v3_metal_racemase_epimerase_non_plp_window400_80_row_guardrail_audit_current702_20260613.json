@@ -1,0 +1,25 @@
+{
+  "artifact_id": "v3_metal_racemase_epimerase_non_plp_window400_80_row_guardrail_audit_current702_20260613",
+  "created_utc": "2026-06-13T20:06:28Z",
+  "family_rows_examined": 150,
+  "fingerprint_id": "metal_racemase_epimerase_non_plp",
+  "guardrails": {
+    "all_rows_automation_curated": true,
+    "all_rows_bronze": true,
+    "all_rows_uniprot_namespace": true,
+    "ec_not_counted_as_mechanism_axis": true,
+    "predictive_evidence_empty_for_all_rows": true,
+    "source_trust_tier_met_for_all_rows": true
+  },
+  "mechanism_axis_counts": {
+    "active_site_motif_or_residue_role": 132,
+    "cofactor_or_cosubstrate": 96,
+    "domain_or_family_profile": 150,
+    "rhea_reaction_or_participant_pattern": 150
+  },
+  "problem_count": 0,
+  "problems": [],
+  "source_trust_tier_counts": {
+    "source_tier_0": 150
+  }
+}

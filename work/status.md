@@ -5,6 +5,62 @@ Generated from `work/progress_log.jsonl`.
 ## Current Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T20:01:16Z`
+- Started local: `Sat Jun 13 15:01:16 CDT 2026`
+- Budget seconds: `3300`
+- Focus/result: applied the gated non-PLP metal racemase/epimerase `400:80` window through the
+  existing mechanism-first pipeline, then wrote a strict-kinase next-lane source-supply scaffold.
+  Growth went only to `data/registries/external_bronze_labels.json`; frozen current702 stayed
+  byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Registry/counts: external bronze **6509 -> 6530** (+21); combined label surface
+  **7211 -> 7232**; `metal_racemase_epimerase_non_plp` **129 -> 150**, exactly at the
+  chemistry-confusable cap 150. External-only split is **5306** seed-fingerprint rows and **1224**
+  OOS rows. Combined seed-fingerprint label surface is **5536**, leaving **4464** to 10k by that
+  surface convention. Strict source-trust counters remain separate:
+  `positive_bronze_count=5519`, `oos_bronze_count=1696`, `silver_ready_count=0`,
+  `silver_confirmed_count=17`, `projected_provisional_count=0`.
+- Artifacts:
+  `artifacts/v3_metal_racemase_epimerase_non_plp_window400_80_sourcing_preview_current702_20260613.json`,
+  `work/metal_racemase_epimerase_non_plp_window400_80_sourcing_current702_20260613.md`,
+  `artifacts/v3_metal_racemase_epimerase_non_plp_window400_80_row_guardrail_audit_current702_20260613.json`,
+  `work/metal_racemase_epimerase_non_plp_window400_80_row_guardrail_audit_current702_20260613.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_racemase_window400_80_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_racemase_window400_80_applied.md`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_racemase_window400_80_applied.json`,
+  `work/novelty_admission_gate_audit_current702_20260613_racemase_window400_80_applied.md`,
+  `artifacts/v3_strict_kinase_subclass_entry_fetch_blocker_after_racemase_cap_current702_20260613.json`,
+  `work/strict_kinase_subclass_entry_fetch_blocker_after_racemase_cap_current702_20260613.md`,
+  `artifacts/v3_strict_kinase_subclass_source_supply_scout_after_racemase_cap_current702_20260613.json`, and
+  `work/strict_kinase_subclass_source_supply_scout_after_racemase_cap_current702_20260613.md`.
+- Guardrails: apply fetched **80**, mechanism-corroborated **34**, novelty gate admitted **28**
+  before cap, applied **21**, held@cap **7**, novelty-throttled/rejected **6**, held **23**
+  off-target `nad_p_dehydrogenase` rows, held **22** no-corroboration rows, skipped **1**, fetch
+  failures **0**. Row audit found **0** problems across all **150** racemase rows; all rows are
+  bronze, automation-curated, `uniprot:*`, source-tier-met, EC not counted, and
+  `predictive_evidence []`.
+- Post-apply audits: coverage reports **7232** combined, **35** fingerprints, fingerprint Gini
+  **0.1619**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **86**. Novelty replay reports
+  **6530** expansion rows, decisions `{'admit': 6074, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0698).
+- Continuation: strict-kinase entry/Rhea scout blocked before artifact write in
+  `fetch_uniprot_entry` TLS handshake; source-supply TSV scout completed with **60** sampled rows,
+  **0** fetch failures, and **0** labels. It ranks `galactokinase_mevalonate_homoserine` first by
+  reviewed supply (**613** total), but the first 20-row sample was only **1/20 registry-new**.
+- Validation: focused pytest passed (**314 passed, 14 subtests passed**);
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source records, 35
+  fingerprints, 32 ontology families, 702 curated labels).
+- Next exact action: remaining floors are `pfkb_ribokinase_family` **46/100**,
+  `biotin_dependent_carboxylase` **84/100**, and `glycoside_hydrolase` **84/100**. Racemase is
+  capped at **150/150**. Build a genuinely new non-EC source/corroborator path for those floors,
+  or run a deeper windowed strict-kinase source scout plus a small entry/Rhea mechanism scout before
+  any full pipeline wiring.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T18:01:16Z`
 - Started local: `Sat Jun 13 13:01:16 CDT 2026`
 - Budget seconds: `3300`

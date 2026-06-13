@@ -1,0 +1,1619 @@
+{
+  "artifact_id": "v3_strict_kinase_subclass_source_supply_scout_after_racemase_cap_current702_20260613",
+  "counts": {
+    "candidate_lanes": 3,
+    "fetch_failure_count": 0,
+    "sample_rows_total": 60
+  },
+  "created_utc": "2026-06-13T20:13:39Z",
+  "fetch_failures": [],
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_never_counted_as_corroborator": true,
+    "ec_used_for_scope_only": true,
+    "entry_rhea_mechanism_scout_required_before_wiring": true,
+    "external_bronze_registry_written": false,
+    "labels_generated": 0,
+    "tsv_sample_not_predictive_features": true
+  },
+  "lane_summaries": [
+    {
+      "afdb_crossref_count": 0,
+      "description": "strict reviewed hexokinase/glucokinase ATP sugar kinase candidate",
+      "entry_rhea_fetch_required_before_wiring": true,
+      "lane_id": "hexokinase_glucokinase",
+      "pdb_crossref_count": 0,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"hexokinase\") OR (protein_name:\"glucokinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\") OR (protein_name:\"histidine kinase\") OR (protein_name:\"phosphofructokinase\") OR (protein_name:\"ribokinase\") OR (protein_name:\"deoxynucleoside kinase\") OR (protein_name:\"nucleoside diphosphate kinase\"))",
+      "rank": 3,
+      "registry_new_fraction": 0.15,
+      "registry_new_in_sample": 3,
+      "reviewed_total_results": 223,
+      "sample_rows": [
+        {
+          "accession": "P35557",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+          "sequence_length": 465
+        },
+        {
+          "accession": "P17712",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+          "sequence_length": 465
+        },
+        {
+          "accession": "P52792",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+          "sequence_length": 465
+        },
+        {
+          "accession": "P19367",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Brain form hexokinase) (Hexokinase type I) (HK I) (Hexokinase-A)",
+          "sequence_length": 917
+        },
+        {
+          "accession": "P52789",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II) (Hexokinase-B) (Muscle form hexokinase)",
+          "sequence_length": 917
+        },
+        {
+          "accession": "P52790",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-3 (EC 2.7.1.1) (Hexokinase type III) (HK III) (Hexokinase-C)",
+          "sequence_length": 923
+        },
+        {
+          "accession": "Q2TB90",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": false,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase HKDC1 (EC 2.7.1.1) (Hexokinase domain-containing protein 1)",
+          "sequence_length": 917
+        },
+        {
+          "accession": "Q92407",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1",
+            "2.7.1.2"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glucokinase (EC 2.7.1.2) (Glucose kinase) (GLK) (Hexokinase glkA) (EC 2.7.1.1)",
+          "sequence_length": 495
+        },
+        {
+          "accession": "P04807",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": false,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase PII) (Hexokinase-B)",
+          "sequence_length": 486
+        },
+        {
+          "accession": "P04806",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Hexokinase PI) (Hexokinase-A)",
+          "sequence_length": 485
+        },
+        {
+          "accession": "Q2KNB7",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-9 (EC 2.7.1.1) (Hexokinase-5)",
+          "sequence_length": 502
+        },
+        {
+          "accession": "Q2KNB5",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-10 (EC 2.7.1.1) (Hexokinase-7)",
+          "sequence_length": 504
+        },
+        {
+          "accession": "Q8LQ68",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-6 (EC 2.7.1.1) (Hexokinase-2)",
+          "sequence_length": 506
+        },
+        {
+          "accession": "Q1WM15",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-8 (EC 2.7.1.1) (Hexokinase-4)",
+          "sequence_length": 458
+        },
+        {
+          "accession": "Q1WM16",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-7 (EC 2.7.1.1) (Hexokinase-6)",
+          "sequence_length": 463
+        },
+        {
+          "accession": "Q2KNB9",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase-3)",
+          "sequence_length": 494
+        },
+        {
+          "accession": "Q5W676",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": false,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-5 (EC 2.7.1.1) (Hexokinase I)",
+          "sequence_length": 507
+        },
+        {
+          "accession": "Q9NFT7",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase testis)",
+          "sequence_length": 486
+        },
+        {
+          "accession": "P05708",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Brain form hexokinase) (Hexokinase type I) (HK I) (Hexokinase-A)",
+          "sequence_length": 918
+        },
+        {
+          "accession": "P27881",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II) (Hexokinase-B)",
+          "sequence_length": 917
+        }
+      ],
+      "sampled_rows": 20,
+      "sequence_length_range": [
+        458,
+        923
+      ],
+      "top_ec_numbers": {
+        "2.7.1.1": 20,
+        "2.7.1.2": 1
+      },
+      "top_organisms": {}
+    },
+    {
+      "afdb_crossref_count": 0,
+      "description": "strict reviewed glycerol kinase ATP small-molecule kinase candidate",
+      "entry_rhea_fetch_required_before_wiring": true,
+      "lane_id": "glycerol_kinase",
+      "pdb_crossref_count": 0,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND (protein_name:\"glycerol kinase\") NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\") OR (protein_name:\"histidine kinase\"))",
+      "rank": 2,
+      "registry_new_fraction": 0.0,
+      "registry_new_in_sample": 0,
+      "reviewed_total_results": 443,
+      "sample_rows": [
+        {
+          "accession": "Q14410",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 2 (GK 2) (Glycerokinase 2) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 2) (Glycerol kinase, testis specific 2)",
+          "sequence_length": 553
+        },
+        {
+          "accession": "P32189",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 559
+        },
+        {
+          "accession": "Q9WU65",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 2 (GK 2) (Glycerokinase 2) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 2) (Glycerol kinase, testis specific 2)",
+          "sequence_length": 554
+        },
+        {
+          "accession": "Q64516",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 559
+        },
+        {
+          "accession": "P0A6F3",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 502
+        },
+        {
+          "accession": "Q8BX05",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 5 (GK 5) (Glycerokinase 5) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 5)",
+          "sequence_length": 534
+        },
+        {
+          "accession": "Q63060",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP-stimulated glucocorticoid-receptor translocation promoter) (ASTP) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 559
+        },
+        {
+          "accession": "Q9M8L4",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Protein GLYCEROL INSENSITIVE 1) (Protein NONHOST RESISTANCE TO P. S. PHASEOLICOLA 1)",
+          "sequence_length": 522
+        },
+        {
+          "accession": "O34153",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 506
+        },
+        {
+          "accession": "O34154",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 501
+        },
+        {
+          "accession": "Q9NJP9",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase, glycosomal (GK) (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 512
+        },
+        {
+          "accession": "Q14409",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 3 (GK 3) (Glycerokinase 3) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 3) (Glycerol kinase 3 pseudogene) (Glycerol kinase, testis specific 1)",
+          "sequence_length": 553
+        },
+        {
+          "accession": "Q6ZS86",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 5 (GK 5) (Glycerokinase 5) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 5)",
+          "sequence_length": 529
+        },
+        {
+          "accession": "P18157",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 496
+        },
+        {
+          "accession": "P32190",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (GK) (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 709
+        },
+        {
+          "accession": "Q4R4D5",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 2 (GK 2) (Glycerokinase 2) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 2) (Glycerol kinase, testis specific 2)",
+          "sequence_length": 553
+        },
+        {
+          "accession": "D4GYI5",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase)",
+          "sequence_length": 510
+        },
+        {
+          "accession": "O66131",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 496
+        },
+        {
+          "accession": "Q9WX53",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 496
+        },
+        {
+          "accession": "O93623",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 497
+        }
+      ],
+      "sampled_rows": 20,
+      "sequence_length_range": [
+        496,
+        709
+      ],
+      "top_ec_numbers": {
+        "2.7.1.30": 20
+      },
+      "top_organisms": {}
+    },
+    {
+      "afdb_crossref_count": 0,
+      "description": "strict reviewed GHMP-like galactokinase/mevalonate/homoserine kinase candidate",
+      "entry_rhea_fetch_required_before_wiring": true,
+      "lane_id": "galactokinase_mevalonate_homoserine",
+      "pdb_crossref_count": 0,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"galactokinase\") OR (protein_name:\"homoserine kinase\") OR (protein_name:\"mevalonate kinase\") OR (protein_name:\"phosphomevalonate kinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\") OR (protein_name:\"histidine kinase\"))",
+      "rank": 1,
+      "registry_new_fraction": 0.05,
+      "registry_new_in_sample": 1,
+      "reviewed_total_results": 613,
+      "sample_rows": [
+        {
+          "accession": "Q03426",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 396
+        },
+        {
+          "accession": "P17256",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 395
+        },
+        {
+          "accession": "Q9R008",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 395
+        },
+        {
+          "accession": "P51570",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 392
+        },
+        {
+          "accession": "Q01415",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.157"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "N-acetylgalactosamine kinase (EC 2.7.1.157) (GalNAc kinase) (Galactokinase 2)",
+          "sequence_length": 458
+        },
+        {
+          "accession": "P17423",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.39"
+          ],
+          "existing_registry_entry": false,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+          "sequence_length": 357
+        },
+        {
+          "accession": "Q58487",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+          "sequence_length": 312
+        },
+        {
+          "accession": "P04385",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 528
+        },
+        {
+          "accession": "Q9R0N0",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 392
+        },
+        {
+          "accession": "Q9SEE5",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 496
+        },
+        {
+          "accession": "P0A6T3",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 382
+        },
+        {
+          "accession": "Q8L7R2",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.39"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Homoserine kinase (EC 2.7.1.39) (Protein DOWNY MILDEW RESISTANT 1)",
+          "sequence_length": 370
+        },
+        {
+          "accession": "P07277",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (MvK) (EC 2.7.1.36) (Ergosterol biosynthesis protein 12) (Regulation of autonomous replication protein 1)",
+          "sequence_length": 443
+        },
+        {
+          "accession": "Q9HHB6",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 352
+        },
+        {
+          "accession": "P46086",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 378
+        },
+        {
+          "accession": "Q09780",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 404
+        },
+        {
+          "accession": "P00547",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.39"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+          "sequence_length": 310
+        },
+        {
+          "accession": "Q4WP25",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase erg12 (MK) (MvK) (EC 2.7.1.36) (Ergosterol biosynthesis protein 12)",
+          "sequence_length": 538
+        },
+        {
+          "accession": "O58107",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 350
+        },
+        {
+          "accession": "P31767",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 384
+        }
+      ],
+      "sampled_rows": 20,
+      "sequence_length_range": [
+        310,
+        538
+      ],
+      "top_ec_numbers": {
+        "2.7.1.157": 1,
+        "2.7.1.36": 8,
+        "2.7.1.39": 3,
+        "2.7.1.6": 8
+      },
+      "top_organisms": {}
+    }
+  ],
+  "ranked_candidates": [
+    {
+      "afdb_crossref_count": 0,
+      "description": "strict reviewed GHMP-like galactokinase/mevalonate/homoserine kinase candidate",
+      "entry_rhea_fetch_required_before_wiring": true,
+      "lane_id": "galactokinase_mevalonate_homoserine",
+      "pdb_crossref_count": 0,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"galactokinase\") OR (protein_name:\"homoserine kinase\") OR (protein_name:\"mevalonate kinase\") OR (protein_name:\"phosphomevalonate kinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\") OR (protein_name:\"histidine kinase\"))",
+      "rank": 1,
+      "registry_new_fraction": 0.05,
+      "registry_new_in_sample": 1,
+      "reviewed_total_results": 613,
+      "sample_rows": [
+        {
+          "accession": "Q03426",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 396
+        },
+        {
+          "accession": "P17256",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 395
+        },
+        {
+          "accession": "Q9R008",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 395
+        },
+        {
+          "accession": "P51570",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 392
+        },
+        {
+          "accession": "Q01415",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.157"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "N-acetylgalactosamine kinase (EC 2.7.1.157) (GalNAc kinase) (Galactokinase 2)",
+          "sequence_length": 458
+        },
+        {
+          "accession": "P17423",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.39"
+          ],
+          "existing_registry_entry": false,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+          "sequence_length": 357
+        },
+        {
+          "accession": "Q58487",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+          "sequence_length": 312
+        },
+        {
+          "accession": "P04385",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 528
+        },
+        {
+          "accession": "Q9R0N0",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 392
+        },
+        {
+          "accession": "Q9SEE5",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 496
+        },
+        {
+          "accession": "P0A6T3",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 382
+        },
+        {
+          "accession": "Q8L7R2",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.39"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Homoserine kinase (EC 2.7.1.39) (Protein DOWNY MILDEW RESISTANT 1)",
+          "sequence_length": 370
+        },
+        {
+          "accession": "P07277",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (MvK) (EC 2.7.1.36) (Ergosterol biosynthesis protein 12) (Regulation of autonomous replication protein 1)",
+          "sequence_length": 443
+        },
+        {
+          "accession": "Q9HHB6",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 352
+        },
+        {
+          "accession": "P46086",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 378
+        },
+        {
+          "accession": "Q09780",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+          "sequence_length": 404
+        },
+        {
+          "accession": "P00547",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.39"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+          "sequence_length": 310
+        },
+        {
+          "accession": "Q4WP25",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.36"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Mevalonate kinase erg12 (MK) (MvK) (EC 2.7.1.36) (Ergosterol biosynthesis protein 12)",
+          "sequence_length": 538
+        },
+        {
+          "accession": "O58107",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 350
+        },
+        {
+          "accession": "P31767",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.6"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+          "sequence_length": 384
+        }
+      ],
+      "sampled_rows": 20,
+      "sequence_length_range": [
+        310,
+        538
+      ],
+      "top_ec_numbers": {
+        "2.7.1.157": 1,
+        "2.7.1.36": 8,
+        "2.7.1.39": 3,
+        "2.7.1.6": 8
+      },
+      "top_organisms": {}
+    },
+    {
+      "afdb_crossref_count": 0,
+      "description": "strict reviewed glycerol kinase ATP small-molecule kinase candidate",
+      "entry_rhea_fetch_required_before_wiring": true,
+      "lane_id": "glycerol_kinase",
+      "pdb_crossref_count": 0,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND (protein_name:\"glycerol kinase\") NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\") OR (protein_name:\"histidine kinase\"))",
+      "rank": 2,
+      "registry_new_fraction": 0.0,
+      "registry_new_in_sample": 0,
+      "reviewed_total_results": 443,
+      "sample_rows": [
+        {
+          "accession": "Q14410",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 2 (GK 2) (Glycerokinase 2) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 2) (Glycerol kinase, testis specific 2)",
+          "sequence_length": 553
+        },
+        {
+          "accession": "P32189",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 559
+        },
+        {
+          "accession": "Q9WU65",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 2 (GK 2) (Glycerokinase 2) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 2) (Glycerol kinase, testis specific 2)",
+          "sequence_length": 554
+        },
+        {
+          "accession": "Q64516",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 559
+        },
+        {
+          "accession": "P0A6F3",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 502
+        },
+        {
+          "accession": "Q8BX05",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 5 (GK 5) (Glycerokinase 5) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 5)",
+          "sequence_length": 534
+        },
+        {
+          "accession": "Q63060",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP-stimulated glucocorticoid-receptor translocation promoter) (ASTP) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 559
+        },
+        {
+          "accession": "Q9M8L4",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Protein GLYCEROL INSENSITIVE 1) (Protein NONHOST RESISTANCE TO P. S. PHASEOLICOLA 1)",
+          "sequence_length": 522
+        },
+        {
+          "accession": "O34153",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 506
+        },
+        {
+          "accession": "O34154",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 501
+        },
+        {
+          "accession": "Q9NJP9",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase, glycosomal (GK) (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 512
+        },
+        {
+          "accession": "Q14409",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 3 (GK 3) (Glycerokinase 3) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 3) (Glycerol kinase 3 pseudogene) (Glycerol kinase, testis specific 1)",
+          "sequence_length": 553
+        },
+        {
+          "accession": "Q6ZS86",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 5 (GK 5) (Glycerokinase 5) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 5)",
+          "sequence_length": 529
+        },
+        {
+          "accession": "P18157",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 496
+        },
+        {
+          "accession": "P32190",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (GK) (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+          "sequence_length": 709
+        },
+        {
+          "accession": "Q4R4D5",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase 2 (GK 2) (Glycerokinase 2) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 2) (Glycerol kinase, testis specific 2)",
+          "sequence_length": 553
+        },
+        {
+          "accession": "D4GYI5",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase)",
+          "sequence_length": 510
+        },
+        {
+          "accession": "O66131",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 496
+        },
+        {
+          "accession": "Q9WX53",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 496
+        },
+        {
+          "accession": "O93623",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.30"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glycerol kinase (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase) (Glycerokinase) (GK)",
+          "sequence_length": 497
+        }
+      ],
+      "sampled_rows": 20,
+      "sequence_length_range": [
+        496,
+        709
+      ],
+      "top_ec_numbers": {
+        "2.7.1.30": 20
+      },
+      "top_organisms": {}
+    },
+    {
+      "afdb_crossref_count": 0,
+      "description": "strict reviewed hexokinase/glucokinase ATP sugar kinase candidate",
+      "entry_rhea_fetch_required_before_wiring": true,
+      "lane_id": "hexokinase_glucokinase",
+      "pdb_crossref_count": 0,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"hexokinase\") OR (protein_name:\"glucokinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\") OR (protein_name:\"histidine kinase\") OR (protein_name:\"phosphofructokinase\") OR (protein_name:\"ribokinase\") OR (protein_name:\"deoxynucleoside kinase\") OR (protein_name:\"nucleoside diphosphate kinase\"))",
+      "rank": 3,
+      "registry_new_fraction": 0.15,
+      "registry_new_in_sample": 3,
+      "reviewed_total_results": 223,
+      "sample_rows": [
+        {
+          "accession": "P35557",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+          "sequence_length": 465
+        },
+        {
+          "accession": "P17712",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+          "sequence_length": 465
+        },
+        {
+          "accession": "P52792",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+          "sequence_length": 465
+        },
+        {
+          "accession": "P19367",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Brain form hexokinase) (Hexokinase type I) (HK I) (Hexokinase-A)",
+          "sequence_length": 917
+        },
+        {
+          "accession": "P52789",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II) (Hexokinase-B) (Muscle form hexokinase)",
+          "sequence_length": 917
+        },
+        {
+          "accession": "P52790",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-3 (EC 2.7.1.1) (Hexokinase type III) (HK III) (Hexokinase-C)",
+          "sequence_length": 923
+        },
+        {
+          "accession": "Q2TB90",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": false,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase HKDC1 (EC 2.7.1.1) (Hexokinase domain-containing protein 1)",
+          "sequence_length": 917
+        },
+        {
+          "accession": "Q92407",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1",
+            "2.7.1.2"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Glucokinase (EC 2.7.1.2) (Glucose kinase) (GLK) (Hexokinase glkA) (EC 2.7.1.1)",
+          "sequence_length": 495
+        },
+        {
+          "accession": "P04807",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": false,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase PII) (Hexokinase-B)",
+          "sequence_length": 486
+        },
+        {
+          "accession": "P04806",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Hexokinase PI) (Hexokinase-A)",
+          "sequence_length": 485
+        },
+        {
+          "accession": "Q2KNB7",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-9 (EC 2.7.1.1) (Hexokinase-5)",
+          "sequence_length": 502
+        },
+        {
+          "accession": "Q2KNB5",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-10 (EC 2.7.1.1) (Hexokinase-7)",
+          "sequence_length": 504
+        },
+        {
+          "accession": "Q8LQ68",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-6 (EC 2.7.1.1) (Hexokinase-2)",
+          "sequence_length": 506
+        },
+        {
+          "accession": "Q1WM15",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-8 (EC 2.7.1.1) (Hexokinase-4)",
+          "sequence_length": 458
+        },
+        {
+          "accession": "Q1WM16",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-7 (EC 2.7.1.1) (Hexokinase-6)",
+          "sequence_length": 463
+        },
+        {
+          "accession": "Q2KNB9",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase-3)",
+          "sequence_length": 494
+        },
+        {
+          "accession": "Q5W676",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": false,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-5 (EC 2.7.1.1) (Hexokinase I)",
+          "sequence_length": 507
+        },
+        {
+          "accession": "Q9NFT7",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase testis)",
+          "sequence_length": 486
+        },
+        {
+          "accession": "P05708",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Brain form hexokinase) (Hexokinase type I) (HK I) (Hexokinase-A)",
+          "sequence_length": 918
+        },
+        {
+          "accession": "P27881",
+          "afdb_crossref_present": false,
+          "ec_numbers": [
+            "2.7.1.1"
+          ],
+          "existing_registry_entry": true,
+          "organism": "",
+          "pdb_crossref_present": false,
+          "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II) (Hexokinase-B)",
+          "sequence_length": 917
+        }
+      ],
+      "sampled_rows": 20,
+      "sequence_length_range": [
+        458,
+        923
+      ],
+      "top_ec_numbers": {
+        "2.7.1.1": 20,
+        "2.7.1.2": 1
+      },
+      "top_organisms": {}
+    }
+  ],
+  "recommendation": {
+    "next_lane": "galactokinase_mevalonate_homoserine",
+    "reason": "source-supply only scout; run smaller entry/Rhea mechanism corroborator scout before fingerprint/ontology wiring",
+    "wire_full_pipeline_next": false
+  },
+  "schema_version": "strict_kinase_source_supply_scout.v1",
+  "selection_basis": "Racemase cap-fill is saturated at 150; remaining floors need new source/corroborator paths, so this scout identifies strict kinase subclasses for a later mechanism-handle scout.",
+  "status": "non_destructive_source_supply_scout_no_registry_write"
+}

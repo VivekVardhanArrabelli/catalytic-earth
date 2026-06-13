@@ -1,5 +1,70 @@
 # Handoff
 
+## Session run - Racemase cap reached; strict kinase scout scaffolded (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main` after reading automation memory
+  and current state docs. This run followed the latest handoff: remaining PfkB/biotin/glycoside
+  floor paths are still source-limited/no-yield, so the bounded non-PLP metal racemase/epimerase
+  cap-fill continuation was inspected first.
+- Status: **APPLIED the gated non-PLP metal racemase/epimerase window400:80 cap-fill to the
+  separate external registry.** Frozen current702 stayed byte-unchanged before/after apply with
+  sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 500 --record-offset-per-lane 400 --record-limit-per-lane 80 --cap-ceiling 150 --out artifacts/v3_metal_racemase_epimerase_non_plp_window400_80_sourcing_preview_current702_20260613.json --report work/metal_racemase_epimerase_non_plp_window400_80_sourcing_current702_20260613.md --apply`.
+  Result: fetched **80**, mechanism-corroborated **34**, novelty gate admitted **28** before cap,
+  applied **21**, held@cap **7**, novelty-throttled/rejected **6**, held **23** off-target
+  `nad_p_dehydrogenase` rows, held **22** no-corroboration rows, skipped **1**, fetch failures
+  **0**. `metal_racemase_epimerase_non_plp` moved **129 -> 150**, exactly at the chemistry-
+  confusable cap 150; do not continue this cap-fill lane unless the cap policy changes.
+- Counts after apply: external bronze **6509 -> 6530** (+21); combined label surface
+  **7211 -> 7232**. External-only bronze split is **5306** seed-fingerprint rows and **1224** OOS
+  rows. Combined seed-fingerprint label surface is **5536**, leaving **4464** to a 10k
+  seed-fingerprint surface. Strict source-trust counter ledger remains separate:
+  `positive_bronze_count=5519`, `oos_bronze_count=1696`, `silver_ready_count=0`,
+  `silver_confirmed_count=17`, `projected_provisional_count=0`.
+- Guardrails verified: all 21 added rows are `tier=bronze`, `review_status=automation_curated`,
+  `entry_id` namespace `uniprot:*`; dedup + novelty gates ran against frozen current702 and the
+  external bronze registry; EC/name/Rhea/keyword/prose/feature handles remain admission/
+  excluded-context evidence only; EC is never a counted corroborator; `predictive_evidence []`.
+  Row audit
+  `artifacts/v3_metal_racemase_epimerase_non_plp_window400_80_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across all **150** racemase/epimerase rows.
+- Fresh post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_racemase_window400_80_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_racemase_window400_80_applied.md`;
+  **7232** combined, **35** fingerprints, fingerprint Gini **0.1619**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **86**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_racemase_window400_80_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260613_racemase_window400_80_applied.md`;
+  **6530** expansion rows, decisions `{'admit': 6074, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0698).
+- Continuation work: a bounded strict-kinase subclass entry/Rhea scout over
+  hexokinase/glucokinase, glycerol kinase, and galactokinase/mevalonate/homoserine was interrupted
+  before artifact write while `fetch_uniprot_entry` was blocked in TLS handshake. Blocker artifact:
+  `artifacts/v3_strict_kinase_subclass_entry_fetch_blocker_after_racemase_cap_current702_20260613.json`
+  / `work/strict_kinase_subclass_entry_fetch_blocker_after_racemase_cap_current702_20260613.md`.
+  A cheaper source-supply TSV scout completed:
+  `artifacts/v3_strict_kinase_subclass_source_supply_scout_after_racemase_cap_current702_20260613.json`
+  / `work/strict_kinase_subclass_source_supply_scout_after_racemase_cap_current702_20260613.md`.
+  It sampled **60** rows with **0** fetch failures and generated **0** labels. It ranked
+  `galactokinase_mevalonate_homoserine` first by reviewed supply (**613** total) but its first
+  20-row TSV window was only **1/20 registry-new**; `glycerol_kinase` was **443** total and **0/20
+  registry-new**; `hexokinase_glucokinase` was **223** total and **3/20 registry-new**. This is
+  source-supply only; do **not** wire a full fingerprint from it without a smaller/deeper
+  entry/Rhea mechanism corroborator scout.
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_metal_racemase_epimerase_sourcing.py tests/test_external_source_ingestion.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_coverage_redundancy_audit.py tests/test_leakage_closure.py tests/test_source_only_contract.py tests/test_fingerprints.py -q`
+  -> **314 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels).
+- Next exact action: remaining floors are PfkB **46/100**, biotin **84/100**, and glycoside
+  hydrolase **84/100**. Racemase is capped at **150/150**. Build a genuinely new non-EC
+  corroborator/source path for those floors, or run a deeper windowed strict-kinase TSV scout plus
+  a **small** entry/Rhea mechanism scout for `galactokinase_mevalonate_homoserine` before any
+  fingerprint/ontology/OOS-prereg work. Keep EC scope-only and keep `predictive_evidence []`.
+
 ## Session run - Racemase windowed top-up applied; floor scouts no-yield (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

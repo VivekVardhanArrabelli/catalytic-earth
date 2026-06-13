@@ -1,0 +1,19 @@
+{
+  "artifact_id": "v3_strict_kinase_subclass_entry_fetch_blocker_after_racemase_cap_current702_20260613",
+  "attempted_artifact": "artifacts/v3_strict_kinase_subclass_source_scout_after_racemase_cap_current702_20260613.json",
+  "attempted_report": "work/strict_kinase_subclass_source_scout_after_racemase_cap_current702_20260613.md",
+  "automation_id": "ce-nad-glyco-floor-expansion",
+  "created_utc": "2026-06-13T20:12:52Z",
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_used_for_scope_only": true,
+    "external_bronze_registry_written": false,
+    "predictive_features_emitted": false
+  },
+  "labels_generated": 0,
+  "next_safe_action": "rerun a smaller entry/Rhea scout per strict kinase lane, or add row-window/checkpoint writes before per-entry UniProt fetches",
+  "phase": "fetch_uniprot_entry_tls_handshake",
+  "registry_written": false,
+  "result": "interrupted_after_multiple_polling_intervals_before_artifact_write",
+  "status": "blocked_no_registry_write"
+}

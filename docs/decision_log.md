@@ -3,6 +3,66 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: RACEMASE WINDOW400:80 BRONZE CAP-FILL APPLIED; RACEMASE NOW PAUSED AT CAP
+
+Decision: after under-floor PfkB/biotin/glycoside source paths remained documented no-yield or
+source-limited under mechanism-first gates, continue only the bounded non-PLP metal
+racemase/epimerase cap-fill window identified in the previous handoff. EC 5.1, protein names,
+Rhea equations, keywords, UniProt prose, and feature annotations remain scope/admission
+excluded-context evidence. Counted mechanism axes remain non-EC racemase/epimerase mechanism text,
+Rhea reaction/participant context, active-/binding-site evidence, metal/cofactor/cosubstrate
+context, and domain/family profile. EC is never a counted corroborator and `predictive_evidence`
+remains `[]`.
+
+Apply:
+`PYTHONPATH=src python scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 500 --record-offset-per-lane 400 --record-limit-per-lane 80 --cap-ceiling 150 --out artifacts/v3_metal_racemase_epimerase_non_plp_window400_80_sourcing_preview_current702_20260613.json --report work/metal_racemase_epimerase_non_plp_window400_80_sourcing_current702_20260613.md --apply`.
+Result: fetched **80**, mechanism-corroborated **34**, novelty gate admitted **28** before cap,
+applied **21**, held@cap **7**, novelty-throttled/rejected **6**, held **23** off-target
+`nad_p_dehydrogenase` rows, held **22** no-corroboration rows, skipped **1**, and recorded **0**
+fetch failures. Final `metal_racemase_epimerase_non_plp` count is **150/150** under the
+chemistry-confusable cap; do not continue this lane under the current cap policy.
+
+Counts after apply: external bronze **6509 -> 6530**; combined label surface **7211 -> 7232**.
+External-only split is **5306** seed-fingerprint rows and **1224** OOS rows. Combined
+seed-fingerprint label surface is **5536**, leaving **4464** to 10k by that surface convention.
+Strict source-trust counters remain separate: **positive_bronze_count 5519**,
+**oos_bronze_count 1696**, **silver_ready_count 0**, **silver_confirmed_count 17**,
+**projected_provisional_count 0**.
+
+Guardrails held: every added row is bronze, automation-curated, `uniprot:*`, with
+`predictive_evidence []`; dedup and novelty ran against frozen current702 and the external bronze
+registry; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; row audit found **0**
+problems across all **150** racemase rows. Coverage audit reports **35** fingerprints, Gini
+**0.1619**, holes `[]`, under-floor
+`['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+`['metal_dependent_hydrolase']`, and next-batch floor deficit **86**. Novelty replay reports
+**6530** expansion rows, decisions `{'admit': 6074, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0698).
+
+Follow-on decision: a broad strict-kinase fingerprint should not be forced. A bounded entry/Rhea
+scout over hexokinase/glucokinase, glycerol kinase, and galactokinase/mevalonate/homoserine
+blocked in UniProt entry TLS handshake before artifact write; the completed source-supply TSV scout
+is only a source scaffold and generated **0** labels. It ranks
+`galactokinase_mevalonate_homoserine` first by reviewed supply (**613** total), but its first
+20-row sample was only **1/20 registry-new**. Future work must run a deeper windowed source scout
+and a small entry/Rhea mechanism corroborator scout before any fingerprint/ontology/OOS prereg work,
+or return to genuinely new PfkB/biotin/glycoside source paths.
+
+References:
+`artifacts/v3_metal_racemase_epimerase_non_plp_window400_80_sourcing_preview_current702_20260613.json`,
+`work/metal_racemase_epimerase_non_plp_window400_80_sourcing_current702_20260613.md`,
+`artifacts/v3_metal_racemase_epimerase_non_plp_window400_80_row_guardrail_audit_current702_20260613.json`,
+`work/metal_racemase_epimerase_non_plp_window400_80_row_guardrail_audit_current702_20260613.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_racemase_window400_80_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_racemase_window400_80_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_racemase_window400_80_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_racemase_window400_80_applied.md`,
+`artifacts/v3_strict_kinase_subclass_entry_fetch_blocker_after_racemase_cap_current702_20260613.json`,
+`work/strict_kinase_subclass_entry_fetch_blocker_after_racemase_cap_current702_20260613.md`,
+`artifacts/v3_strict_kinase_subclass_source_supply_scout_after_racemase_cap_current702_20260613.json`,
+and `work/strict_kinase_subclass_source_supply_scout_after_racemase_cap_current702_20260613.md`.
+
 ## 2026-06-13: RACEMASE WINDOWED BRONZE TOP-UP APPLIED AFTER UNDER-FLOOR NO-YIELD SCOUTS
 
 Decision: keep PfkB/biotin/glycoside floor work mechanism-first and do not relax EC-scope rules.

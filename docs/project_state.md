@@ -26,6 +26,46 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **RACEMASE WINDOW400:80 CAP-FILL APPLIED; STRICT KINASE SOURCE-SUPPLY SCOUT WRITTEN (2026-06-13 automation).**
+  The latest run applied the bounded non-PLP metal racemase/epimerase continuation from the prior
+  handoff after the remaining under-floor source paths were documented no-yield/source-limited.
+  Command:
+  `scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 500 --record-offset-per-lane 400 --record-limit-per-lane 80 --cap-ceiling 150 --apply`.
+  Result: fetched **80**, mechanism-corroborated **34**, novelty gate admitted **28** before cap,
+  applied **21**, held@cap **7**, novelty-throttled/rejected **6**, held **23** off-target
+  `nad_p_dehydrogenase` rows, held **22** no-corroboration rows, skipped **1**, and had **0** fetch
+  failures. Frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`.
+
+  External bronze is now **6530**; combined label surface is **7232**;
+  `metal_racemase_epimerase_non_plp` is **150/150** and should not continue under the current
+  chemistry-confusable cap. External-only split is **5306** seed-fingerprint rows and **1224** OOS
+  rows. Combined seed-fingerprint label surface is **5536**, leaving **4464** to 10k by that
+  surface convention. Strict source-trust counters remain separate:
+  **positive_bronze_count 5519**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+  **silver_confirmed_count 17**, **projected_provisional_count 0**. Row audit
+  `artifacts/v3_metal_racemase_epimerase_non_plp_window400_80_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across all **150** racemase rows. Post-apply coverage audit
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_racemase_window400_80_applied.json`
+  reports **35** fingerprints, fingerprint Gini **0.1619**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, only
+  `metal_dependent_hydrolase` over-cap, and next-batch floor deficit **86**. Novelty replay over
+  **6530** expansion rows reports decisions `{'admit': 6074, 'reject': 47, 'throttle': 409}` and
+  would-not-readmit **456** (0.0698).
+
+  Continuation work wrote a strict-kinase source-supply scaffold after a bounded entry/Rhea scout
+  blocked before artifact write in `fetch_uniprot_entry` TLS handshake. Blocker:
+  `artifacts/v3_strict_kinase_subclass_entry_fetch_blocker_after_racemase_cap_current702_20260613.json`.
+  Source-supply scout:
+  `artifacts/v3_strict_kinase_subclass_source_supply_scout_after_racemase_cap_current702_20260613.json`
+  sampled **60** TSV rows with **0** fetch failures and generated **0** labels; it ranks
+  `galactokinase_mevalonate_homoserine` first by reviewed supply (**613** total) but the first
+  sample window was only **1/20 registry-new**. Next action: do not wire a full kinase fingerprint
+  from this scout alone. Run a deeper windowed source scout plus a small entry/Rhea mechanism
+  corroborator scout, or return to genuinely new PfkB/biotin/glycoside source paths. Guardrails:
+  EC/name/Rhea/keyword/prose/feature handles stay excluded-context admission evidence only, EC is
+  never counted, and `predictive_evidence []`.
 - **RACEMASE WINDOWED TOP-UP APPLIED; UNDER-FLOOR ALTERNATE SCOUTS NO-YIELD (2026-06-13 automation).**
   The latest run first tried the remaining under-floor path without relaxing mechanism-first gates:
   optional biotin alternate floor-closure lanes fetched **139** reviewed candidates but admitted
