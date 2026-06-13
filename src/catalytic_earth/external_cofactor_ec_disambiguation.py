@@ -385,6 +385,56 @@ _COPPER_OXIDASE_REACTION_TOKENS = (
     "hydroquinone",
     "dioxygen",
 )
+# Mn/Fe superoxide dismutase handles. EC 1.15.1.1 scopes the reviewed supply only;
+# counted mechanism corroboration comes from superoxide dismutation Rhea text,
+# Mn/Fe metal or metal-site evidence, SOD keyword/domain text, and
+# active-/binding-/metal-site evidence. Protein-name tokens are used only as
+# scope/admission context and are not counted as a domain/family axis.
+_SOD_FAMILY_TEXT_TOKENS = (
+    "superoxide dismutase",
+    "manganese superoxide dismutase",
+    "iron superoxide dismutase",
+    "mnsod",
+    "fesod",
+)
+_SOD_REACTION_TOKENS = ("superoxide",)
+_SOD_PRODUCT_TOKENS = (
+    "h2o2",
+    "hydrogen peroxide",
+    "o2",
+    "o(2)",
+    "dioxygen",
+)
+_MN_FE_SOD_METAL_TOKENS = (
+    "manganese",
+    "mn(",
+    "mn2",
+    "mn(2",
+    "iron",
+    "fe(",
+    "fe2",
+    "fe3",
+)
+_MN_FE_SOD_BOUNDARY_TOKENS = (
+    "cu-zn",
+    "cu/zinc",
+    "cu/zn",
+    "cuzn",
+    "copper-zinc",
+    "copper/zinc",
+    "copper",
+    "zinc",
+    "superoxide reductase",
+    "hemoglobin",
+    "haemoglobin",
+    "cytoglobin",
+    "myoglobin",
+    "peroxidase",
+    "nitrite",
+    "nitric oxide",
+    "nitric-oxide",
+    "dioxygenase",
+)
 # Non-PLP racemase/epimerase handles. EC 5.1 scopes the candidate supply only;
 # counted mechanism corroboration comes from racemase/epimerase/mutarotase text,
 # Rhea isomerization/racemization equations, active-/binding-site annotations,
@@ -905,6 +955,30 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         or evidence.get("flavin", False)
         or molybdopterin_moco
     )
+    mn_fe_sod_family_text = in_any(keywords + feature_texts, *_SOD_FAMILY_TEXT_TOKENS)
+    mn_fe_sod_family_or_name_context = mn_fe_sod_family_text or in_any(
+        [protein_name], *_SOD_FAMILY_TEXT_TOKENS
+    )
+    mn_fe_sod_superoxide_dismutation_reaction = in_any(
+        reactions, *_SOD_REACTION_TOKENS
+    ) and in_any(reactions, *_SOD_PRODUCT_TOKENS)
+    mn_fe_sod_metal_context = in_any(
+        cofactor_names + feature_texts, *_MN_FE_SOD_METAL_TOKENS
+    )
+    mn_fe_sod_boundary_signal = (
+        evidence.get("copper", False)
+        or evidence.get("zinc", False)
+        or evidence.get("heme", False)
+        or evidence.get("flavin", False)
+        or molybdopterin_moco
+        or in_any(
+            cofactor_names + feature_texts + keywords + [protein_name],
+            *_MN_FE_SOD_BOUNDARY_TOKENS,
+        )
+    )
+    non_mn_fe_sod_scope_side_ec = any(
+        ec and ec != "1.15.1.1" for ec in _ec_numbers(row)
+    )
     atp_ligase_atp_or_adp_phosphate = in_any(
         reactions + cofactor_names + feature_texts, *_ATP_LIGASE_NUCLEOTIDE_TOKENS
     )
@@ -1188,6 +1262,12 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "copper_redox_reaction": copper_redox_reaction,
             "copper_oxidase_reaction": copper_oxidase_reaction,
             "copper_boundary_heme_flavin_molybdopterin": copper_boundary_heme_flavin_molybdopterin,
+            "mn_fe_sod_family_text": mn_fe_sod_family_text,
+            "mn_fe_sod_family_or_name_context": mn_fe_sod_family_or_name_context,
+            "mn_fe_sod_superoxide_dismutation_reaction": mn_fe_sod_superoxide_dismutation_reaction,
+            "mn_fe_sod_metal_context": mn_fe_sod_metal_context,
+            "mn_fe_sod_boundary_signal": mn_fe_sod_boundary_signal,
+            "non_mn_fe_sod_scope_side_ec": non_mn_fe_sod_scope_side_ec,
             "atp_ligase_atp_or_adp_phosphate": atp_ligase_atp_or_adp_phosphate,
             "atp_ligase_mg_context": atp_ligase_mg_context,
             "keyword_ligase": keyword_ligase,
@@ -1314,6 +1394,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("coa_acyl_coa_feature")
         or evidence.get("molybdopterin_moco")
         or evidence.get("copper_feature_or_ligand")
+        or evidence.get("mn_fe_sod_metal_context")
         or evidence.get("atp_ligase_atp_or_adp_phosphate")
         or evidence.get("atp_ligase_mg_context")
         or evidence.get("thdp")
@@ -1358,6 +1439,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("molybdopterin_oxo_transfer_reaction")
         or evidence.get("copper_redox_reaction")
         or evidence.get("copper_oxidase_reaction")
+        or evidence.get("mn_fe_sod_superoxide_dismutation_reaction")
         or evidence.get("racemase_epimerase_text")
         or evidence.get("atp_ligase_atp_or_adp_phosphate")
         or evidence.get("atp_amide_ligation_text")
@@ -1404,6 +1486,10 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
             evidence.get("active_or_binding_site_present")
             and evidence.get("pfkb_family_text")
         )
+        or (
+            evidence.get("active_or_binding_site_present")
+            and evidence.get("mn_fe_sod_family_or_name_context")
+        )
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -1432,6 +1518,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("dnk_family_text")
         or evidence.get("pfka_family_text")
         or evidence.get("pfkb_family_text")
+        or evidence.get("mn_fe_sod_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -1481,6 +1568,7 @@ _COPPER_OXIDOREDUCTASE_EC = (
     "1.10.3",
     "1.4.3",
 )  # copper oxidases; copper/Rhea handles confirm
+_MN_FE_SUPEROXIDE_DISMUTASE_EC = ("1.15.1.1",)  # Mn/Fe SOD; EC scope only
 _METAL_RACEMASE_EPIMERASE_NON_PLP_EC = ("5.1.",)  # racemase/epimerase scope only
 _ATP_AMIDE_LIGASE_EC = ("6.3.",)  # C-N ligases; ATP/Mg/Rhea handles confirm
 _BIOTIN_DEPENDENT_CARBOXYLASE_EC = (
@@ -1636,6 +1724,16 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
             or c["copper_oxidase_reaction"]
             or c["active_or_binding_site_present"]
         ),
+    ),
+    (
+        "manganese_iron_superoxide_dismutase",
+        lambda c, row: _ec_has_prefix(row, _MN_FE_SUPEROXIDE_DISMUTASE_EC)
+        and c["mn_fe_sod_family_or_name_context"]
+        and c["mn_fe_sod_superoxide_dismutation_reaction"]
+        and c["mn_fe_sod_metal_context"]
+        and c["active_or_binding_site_present"]
+        and not c["mn_fe_sod_boundary_signal"]
+        and not c["non_mn_fe_sod_scope_side_ec"],
     ),
     (
         "metal_racemase_epimerase_non_plp",
@@ -1927,6 +2025,8 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "ATP/Mg2+ fructose-6-phosphate phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
     elif fingerprint == "pfkb_ribokinase_family" and evidence.get("pfkb_atp_mg_context"):
         records = [{"name": "ATP/Mg2+ PfkB/ribokinase-family phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
+    elif fingerprint == "manganese_iron_superoxide_dismutase" and evidence.get("mn_fe_sod_metal_context"):
+        records = [{"name": "manganese/iron catalytic redox metal", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

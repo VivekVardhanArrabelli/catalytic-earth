@@ -815,5 +815,31 @@
       "reconstruction_path": "Path A sequence->SAM/SAH donor-presence channel plus no-Fe-S guard, or canonical SAM/SAH graft (Path B)",
       "silver_reachability": "moderate; SAM-binding motifs are often sequence-detectable but acceptor pose and atom identity require reconstruction"
     }
+  },
+  {
+    "id": "manganese_iron_superoxide_dismutase",
+    "name": "Manganese/iron superoxide dismutase",
+    "enzyme_space": ["Mn-superoxide dismutases", "Fe-superoxide dismutases", "Mn/Fe cambialistic superoxide dismutases"],
+    "active_site_signature": [
+      {"role": "redox_metal_center", "residue": "His/His/Asp/Glu plus solvent ligand", "constraints": ["coordinates the Mn or Fe center for cyclic one-electron superoxide oxidation and reduction"]},
+      {"role": "proton_relay", "residue": "Tyr/Gln/His/Asp/Glu and bound solvent network", "constraints": ["supports proton-coupled conversion of superoxide to hydrogen peroxide and dioxygen"]},
+      {"role": "superoxide_channel", "residue": "basic and polar access-channel residues", "constraints": ["guides superoxide toward the metal center while excluding Cu/Zn SOD and heme/peroxidase chemistry"]}
+    ],
+    "cofactors": ["Mn2+/Mn3+", "Fe2+/Fe3+"],
+    "reaction_center": {
+      "bond_changes": ["two superoxide radicals are disproportionated to hydrogen peroxide and dioxygen by Mn/Fe redox cycling"],
+      "chemical_operation": "Mn/Fe metal-center superoxide dismutation"
+    },
+    "substrate_constraints": ["EC 1.15.1.1 superoxide dismutase scope present", "Rhea superoxide dismutation reaction context present", "Mn or Fe metal/cofactor/site evidence present", "active-, binding-, or metal-site evidence present", "no Cu/Zn SOD, heme, peroxidase, cytoglobin/hemoglobin, superoxide reductase, side-EC, EC-only, or multi-fingerprint boundary signal"],
+    "evidence_features": ["RHEA:20696 or reviewed catalytic activity text for superoxide dismutation", "manganese or iron cofactor, ligand, or metal-site annotation", "Superoxide dismutase keyword or domain/family text", "active-site, binding-site, or metal-site residue annotations"],
+    "counterevidence_features": ["Cu/Zn superoxide dismutase or copper/zinc cofactor evidence", "heme/cytoglobin/hemoglobin/peroxidase/nitrite/nitric-oxide dioxygenase wording", "superoxide reductase rows", "side EC rows other than EC 1.15.1.1", "EC-only or protein-name-only evidence with no Rhea, metal, site, or domain corroborator", "multi-fingerprint signal where another redox fingerprint independently fires"],
+    "uncertainty_axes": ["Mn versus Fe occupancy", "redox/protonation state of the metal-solvent complex", "oligomeric assembly and electrostatic channel state", "cambialistic metal usage across organisms"],
+    "seed_examples": ["human mitochondrial MnSOD", "Escherichia coli FeSOD", "Thermus thermophilus Mn/Fe SOD", "chloroplastic FeSOD"],
+    "deploy_missing_active_site_context": {
+      "type": "metal_redox_center_and_superoxide_substrate",
+      "detail": "the Mn/Fe redox metal occupancy, bound solvent/protonation state, and superoxide substrate are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->Mn/Fe SOD family plus metal-site/Rhea channel, or canonical Mn/Fe metal-solvent/superoxide graft (Path B)",
+      "silver_reachability": "moderate; metal-site and Rhea evidence are common, but metal identity, protonation, and substrate-channel geometry require reconstruction"
+    }
   }
 ]

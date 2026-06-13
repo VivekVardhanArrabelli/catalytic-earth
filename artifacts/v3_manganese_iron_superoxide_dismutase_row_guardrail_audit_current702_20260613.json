@@ -1,0 +1,22 @@
+{
+  "artifact_id": "v3_manganese_iron_superoxide_dismutase_row_guardrail_audit_current702_20260613",
+  "axis_counts": {
+    "active_site_motif_or_residue_role": 166,
+    "cofactor_or_cosubstrate": 166,
+    "rhea_reaction_or_participant_pattern": 166
+  },
+  "boundary_token_counts": {},
+  "created_utc": "2026-06-13T15:39:37Z",
+  "fingerprint_id": "manganese_iron_superoxide_dismutase",
+  "guardrails": {
+    "all_rows_bronze_automation_curated_uniprot": true,
+    "ec_scope_hint_not_counted": true,
+    "explicit_boundary_tokens_absent": true,
+    "predictive_evidence_empty": true,
+    "required_mechanism_axes_present_on_all_rows": true
+  },
+  "problem_count": 0,
+  "problems": [],
+  "registry": "data/registries/external_bronze_labels.json",
+  "row_count": 166
+}

@@ -26,6 +26,40 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **MN/FE SUPEROXIDE DISMUTASE 34FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  The previous handoff's `manganese_iron_superoxide_dismutase` lane was wired through the full
+  mechanism-first pipeline: fingerprint + `metal_superoxide_dismutation` ontology node,
+  `label_factory_v1_34fp`, OOS preregistration re-freeze
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_34fp_1025.json`,
+  disambiguation/trust-tier/leakage tests, non-destructive preview, and explicit `--apply` with
+  frozen current702 sha checks. Growth went only to `data/registries/external_bronze_labels.json`;
+  frozen current702 remains **702** with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+  Initial apply fetched **240**, mechanism-corroborated **181**, applied **164**, held **59**
+  no-corroboration rows, novelty-throttled **17**, and moved SOD **0 -> 164**. A bounded top-up
+  fetched **252**, skipped **164** already-existing rows, mechanism-corroborated **19**, applied
+  **2**, held **69** no-corroboration rows, novelty-throttled **17**, and moved SOD **164 -> 166**
+  under the non-confusable cap 250. External bronze is now **6404**; combined surface is **7106**.
+  Honest counters remain separate: **positive_bronze 5393**, **oos_bronze 1696**,
+  **silver_ready 0**, **silver_confirmed 17**, **projected 0**; remaining positive-bronze gap to
+  10k is **4607**. External-only bronze split is **5180** seed-fingerprint rows and **1224** OOS
+  rows. Row audit
+  `artifacts/v3_manganese_iron_superoxide_dismutase_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across **166** rows, with active-site/residue-role, cofactor/cosubstrate,
+  and Rhea axes on every row. Post-apply coverage audit
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_mn_fe_sod_applied.json` reports
+  **34** fingerprints, fingerprint Gini **0.1608**, holes `[]`, under-floor
+  `['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **70**. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_mn_fe_sod_applied.json` reports
+  **6404** expansion rows, decisions `{'admit': 5948, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0712). Guardrails: EC/name/Rhea/keyword/prose/feature handles are
+  excluded-context admission evidence only, EC is never counted, `predictive_evidence []`, and
+  Cu/Zn SOD/heme/peroxidase/superoxide-reductase/side-EC/multi-signal rows are held. Validation:
+  focused pytest **301 passed + 14 subtests**, `validate` ok (12 source / 34 fingerprints /
+  31 ontology families / 702 labels). Next action: do not repeat the exhausted SOD previews; build a
+  new strict source/corroborator path for PfkB **46/100** or biotin **84/100**, or scout/spec the
+  next clean fingerprint family through the same gated pipeline.
 - **MN/FE SUPEROXIDE DISMUTASE SOURCE BLOCKER CLEARED; 34FP NEXT-LANE SPEC WRITTEN (2026-06-13 automation).**
   Follow-up to the bounded no-yield previews: a PfkB/biotin alternate-source scout found only limited
   registry-new reviewed supply and boundary-heavy rows, so this run switched to a cleaner new-family

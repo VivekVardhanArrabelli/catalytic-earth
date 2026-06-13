@@ -1,0 +1,589 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:O13401",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 4,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 60
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 108
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 198
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 202
+            }
+          ],
+          "binding_residue_count": 4,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.15.1.1"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.15.1.1",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "2 superoxide + 2 H(+) = H2O2 + O2",
+              "rhea_id": "RHEA:20696",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: mn_fe_sod_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "848b7857ed35faa855018daa1d4defbd721c71e888c888af53cf6416637aec65"
+          },
+          "retrieved_utc": "2026-06-13T15:35:43Z",
+          "sequence": "MFSIRSSSRVLLKASSATTRATLNAAASKTFTRSKYSLPELDYEFSATEPYISGQINEIHYTKHHQTYVNNLNASIEQAVEAKSKGEVKKLVALEKAINFNGGGYLNHCLWWKNLAPVSQGGGQPPSEDSKLGKQIVKQFGSLDKLIEITNGKLAGIQGSGWAFIVKNKANGDTIDVITTANQDTVTDPNLVPLIAIDAWEHAYYLQYQNVKADYFKNLWHVINWKEAERRFEF",
+          "sequence_length": 234,
+          "sequence_sha256": "7d59f7084bea21ad5fac3cab7fd8d6656a9ff11fa1a6b6b660ab93c6f7016f70",
+          "source": "reviewed_uniprot",
+          "source_accession": "O13401"
+        },
+        "source_provenance": {
+          "accession": "O13401",
+          "disambiguation_pool": "mn_fe_sod_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "mn_fe_sod_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_manganese_iron_superoxide_dismutase_from_annotated_cofactor_and_ec_class_['1.15.1.1']",
+          "organism": "Candida albicans (Yeast)",
+          "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 234,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "e7adbd9bbc9a9d67352a89646f81f65c5711794ceb8c5389042ec00ad0d9fd34",
+            "source_query_sha256": "848b7857ed35faa855018daa1d4defbd721c71e888c888af53cf6416637aec65",
+            "uniprot_entry_record_sha256": "d3f26500b2d946fed4e09c99583d7caed8a17b7c502f4bf148438185af8de25d",
+            "uniprot_search_row_sha256": "e89b12cad0880c7d0b7e1006eb1b606f2d5184c6cb34a4d676e0a59d6bae911f"
+          },
+          "target_family_lane": "manganese_iron_superoxide_dismutase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O13401"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O13401-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O13401 imported as annotation-anchored bronze in-scope manganese_iron_superoxide_dismutase: reviewed Swiss-Prot EC ['1.15.1.1'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q6BQZ1",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 4,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 36
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 84
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 173
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 177
+            }
+          ],
+          "binding_residue_count": 4,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.15.1.1"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.15.1.1",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "2 superoxide + 2 H(+) = H2O2 + O2",
+              "rhea_id": "RHEA:20696",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: mn_fe_sod_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "848b7857ed35faa855018daa1d4defbd721c71e888c888af53cf6416637aec65"
+          },
+          "retrieved_utc": "2026-06-13T15:35:43Z",
+          "sequence": "MSNSPAFGKNKIELPQLDWAYDSLEPYISGKINEIHHKKHHQTYVNGYNSAIEQLIEAESQGDVKKAIVIQQNIKFHGGGHTNHVLFWKSLAPNSQNGGKHPGSDTNLGKKIIEQYGSIDNLISITNAKLASIQGSGWAFIVKNKQNGGNLDVVTTYNQDTVTDPLVPLIAIDAWEHAYYLQYQNVKADYFKAIWNVINWEEASKRFDSHL",
+          "sequence_length": 211,
+          "sequence_sha256": "ed4330942ec7bc9c7d33ce52abd49278bab22ce597d0a30656b80e4a7a7b2a95",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q6BQZ1"
+        },
+        "source_provenance": {
+          "accession": "Q6BQZ1",
+          "disambiguation_pool": "mn_fe_sod_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "mn_fe_sod_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_manganese_iron_superoxide_dismutase_from_annotated_cofactor_and_ec_class_['1.15.1.1']",
+          "organism": "Debaryomyces hansenii (strain ATCC 36239 / CBS 767 / BCRC 21394 / JCM 1990 / NBRC 0083 / IGC 2968) (Yeast) (Torulaspora hansenii)",
+          "protein_name": "Probable superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 211,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "e7adbd9bbc9a9d67352a89646f81f65c5711794ceb8c5389042ec00ad0d9fd34",
+            "source_query_sha256": "848b7857ed35faa855018daa1d4defbd721c71e888c888af53cf6416637aec65",
+            "uniprot_entry_record_sha256": "6c7fdb55b85db72b1cea42a6fb92d96862980845be4db28ecece113b7d17e635",
+            "uniprot_search_row_sha256": "e5dbccb5d1444c45e6fbe6b78c961a87d841dd2ef4face01dffe3c6703d35fd6"
+          },
+          "target_family_lane": "manganese_iron_superoxide_dismutase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q6BQZ1"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q6BQZ1-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q6BQZ1 imported as annotation-anchored bronze in-scope manganese_iron_superoxide_dismutase: reviewed Swiss-Prot EC ['1.15.1.1'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_manganese_iron_superoxide_dismutase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "manganese_iron_superoxide_dismutase": 2
+    },
+    "current_combined_labels": 7104,
+    "disambiguation_hold_count": 69,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 69
+    },
+    "disambiguation_skip_count": 164,
+    "fetched_candidate_rows": 252,
+    "gate_admitted_before_cap_guard": 2,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 1,
+    "max_records_per_lane": 320,
+    "mechanism_corroborated_bronze_labels": 19,
+    "novelty_admitted_labels": 2,
+    "novelty_throttled_or_rejected": 17,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 7106
+  },
+  "created_utc": "2026-06-13T15:35:43Z",
+  "deploy_missing_active_site_context_per_family": {
+    "manganese_iron_superoxide_dismutase": "mn_fe_superoxide_redox_dismutation_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 1,
+      "medium": 18
+    },
+    "current_registry_labels": 6402,
+    "decision_counts": {
+      "hold": 69,
+      "import": 19,
+      "skip": 164
+    },
+    "examined_rows": 252,
+    "fingerprint_counts": {
+      "manganese_iron_superoxide_dismutase": 19
+    },
+    "hold_count": 69,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 69
+    },
+    "importable_new_labels": 19,
+    "per_pool_decision_counts": {
+      "mn_fe_sod_broadened_handle_fresh_fetch": {
+        "hold": 69,
+        "import": 19,
+        "skip_screen": 164
+      }
+    },
+    "projected_registry_labels_if_merged": 6421,
+    "skip_count": 164
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_mn_fe_sod_annotation",
+  "families_sourced": [
+    "manganese_iron_superoxide_dismutase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "manganese_iron_superoxide_dismutase": {
+      "admitted_this_run": 2,
+      "cap_ceiling": 250,
+      "chemistry_confusable": false,
+      "combined_before": 164,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "mn_fe_superoxide_redox_dismutation_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 166,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "cu_zn_heme_superoxide_reductase_side_ec_boundary_guard": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "manganese_iron_superoxide_dismutase": 250
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "sod_handles_scope_admission_only": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "mn_fe_sod_reviewed_ec_1_15_1_1_guarded",
+      "query": "(reviewed:true) AND (ec:1.15.1.1) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron) OR (protein_name:manganese) OR (protein_name:iron) OR (protein_name:Mn) OR (protein_name:Fe)) NOT ((cc_cofactor:copper) OR (cc_cofactor:zinc) OR (protein_name:\"Cu-Zn\") OR (protein_name:\"Cu/Zn\") OR (protein_name:copper) OR (protein_name:zinc))",
+      "record_count": 252,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.15.1.1%29+AND+%28%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Airon%29+OR+%28protein_name%3Amanganese%29+OR+%28protein_name%3Airon%29+OR+%28protein_name%3AMn%29+OR+%28protein_name%3AFe%29%29+NOT+%28%28cc_cofactor%3Acopper%29+OR+%28cc_cofactor%3Azinc%29+OR+%28protein_name%3A%22Cu-Zn%22%29+OR+%28protein_name%3A%22Cu%2FZn%22%29+OR+%28protein_name%3Acopper%29+OR+%28protein_name%3Azinc%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=320",
+      "status": "query_fetched",
+      "target_family_lane": "manganese_iron_superoxide_dismutase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 2,
+      "throttle": 17
+    },
+    "reason_counts": {
+      "adds_diversity": 2,
+      "redundant_no_novelty_signal": 17
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_manganese_iron_superoxide_dismutase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:P0A0J3",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:P50058",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:Q81JK8",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:Q9SPV5",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:P41979",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:P41980",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:P41978",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:Q5HFK7",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:Q2FGH0",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:Q6GCZ1",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:P0A0J1",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:P66831",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:P0A0J2",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:Q2YUU9",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:Q6GKH2",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:P09224",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    },
+    {
+      "entry_id": "uniprot:O08460",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase"
+    }
+  ]
+}

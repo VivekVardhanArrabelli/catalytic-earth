@@ -1,5 +1,62 @@
 # Handoff
 
+## Session run - Mn/Fe SOD 34fp bronze expansion applied (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This run followed the latest
+  handoff's `manganese_iron_superoxide_dismutase` lane through the full gated 34fp pipeline.
+- Status: **APPLIED a gated Mn/Fe superoxide dismutase bronze expansion to the separate external
+  registry.** Frozen current702 stayed byte-unchanged before/after both applies with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. External bronze
+  **6238 -> 6404** (+166); combined label surface **6940 -> 7106**.
+- Family/gate setup: added `manganese_iron_superoxide_dismutase` fingerprint, added ontology node
+  `metal_superoxide_dismutation`, bumped the positive fingerprint universe to
+  `label_factory_v1_34fp`, and re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_34fp_1025.json`.
+- Initial SOD apply:
+  `PYTHONPATH=src python scripts/source_manganese_iron_superoxide_dismutase_family.py --max-records-per-lane 240 --cap-ceiling 250 --out artifacts/v3_manganese_iron_superoxide_dismutase_sourcing_preview_current702_20260613.json --report work/manganese_iron_superoxide_dismutase_sourcing_current702_20260613.md --apply`.
+  Result: fetched **240**, mechanism-corroborated **181**, applied **164**, held **59**
+  no-corroboration rows, skipped **0**, off-target held **0**, novelty-throttled **17**,
+  held@cap **0**; SOD **0 -> 164**.
+- Bounded top-up apply:
+  `PYTHONPATH=src python scripts/source_manganese_iron_superoxide_dismutase_family.py --max-records-per-lane 320 --cap-ceiling 250 --out artifacts/v3_manganese_iron_superoxide_dismutase_topup_sourcing_preview_current702_20260613.json --report work/manganese_iron_superoxide_dismutase_topup_sourcing_current702_20260613.md --apply`.
+  Result: fetched **252**, skipped **164** already-existing rows, mechanism-corroborated **19**,
+  applied **2**, held **69** no-corroboration rows, off-target held **0**, novelty-throttled
+  **17**, held@cap **0**; SOD **164 -> 166** under cap 250 and above floor.
+- Guardrails verified: all added rows are `tier=bronze`, `review_status=automation_curated`,
+  `entry_id` namespace `uniprot:*`; dedup + novelty gates ran against frozen current702 and the
+  external bronze registry; EC/protein-name/Rhea/keyword/prose/feature handles remain
+  admission/excluded-context evidence only; EC is never a counted corroborator;
+  `predictive_evidence []`; Cu/Zn SOD, heme/peroxidase/cytoglobin/hemoglobin, nitrite/nitric-oxygen
+  dioxygenase, superoxide-reductase, side-EC, EC-only, and multi-fingerprint rows were held.
+  Row audit `artifacts/v3_manganese_iron_superoxide_dismutase_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across **166** rows, with active-site/residue-role, cofactor/cosubstrate,
+  and Rhea reaction/participant axes present on every row.
+- Honest counters remain separate: `positive_bronze=5393`, `oos_bronze=1696`,
+  `silver_ready=0`, `silver_confirmed=17`, `projected=0`. External-only bronze split is
+  **5180** seed-fingerprint rows and **1224** OOS rows. Remaining positive-bronze gap to 10k:
+  **4607**.
+- Fresh post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_mn_fe_sod_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_mn_fe_sod_applied.md`; **7106** combined,
+  **34** fingerprints, fingerprint Gini **0.1608**, holes `[]`, under-floor
+  `['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **70**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_mn_fe_sod_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_mn_fe_sod_applied.md`; **6404**
+  expansion rows, decisions `{'admit': 5948, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0712).
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_manganese_iron_superoxide_dismutase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_ontology.py tests/test_leakage_closure.py tests/test_coverage_redundancy_audit.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_external_annotation_anchored_import.py tests/test_source_only_contract.py -q`
+  -> **301 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 34 fingerprints, 31 ontology families, 702 curated labels). JSON parse
+  checks and `git diff --check` passed.
+- Next exact action: do not repeat the SOD first-window or top-up previews; the guarded reviewed
+  source is now largely exhausted at **166/250** with only redundant or no-corroboration rows left
+  in this query. The remaining floor deficit is still PfkB **46/100** and biotin **84/100**; build a
+  genuinely new strict source/corroborator path for those lanes, or scout/spec the next clean
+  fingerprint family through fingerprint/ontology/OOS-prereg/preview/apply gates.
+
 ## Session run - Mn/Fe SOD source blocker cleared; 34fp next-lane spec written (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

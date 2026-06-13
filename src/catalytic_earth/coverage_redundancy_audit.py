@@ -232,6 +232,14 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         ),
         "lanes": ["pfkb_ribokinase_family"],
     },
+    "manganese_iron_superoxide_dismutase": {
+        "ec_prefixes": ["1.15.1.1"],
+        "cofactor": (
+            "Mn or Fe redox metal center for superoxide dismutation; Cu/Zn SOD, "
+            "heme/peroxidase, and superoxide-reductase boundaries are held"
+        ),
+        "lanes": ["manganese_iron_superoxide_dismutase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

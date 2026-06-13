@@ -304,6 +304,20 @@
       ]
     },
     {
+      "id": "metal_superoxide_dismutation",
+      "name": "Mn/Fe metal-center superoxide dismutation",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "manganese_iron_superoxide_dismutase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by Rhea/reviewed superoxide dismutation reaction text plus Mn/Fe metal or metal-site evidence and active-/binding-/metal-site evidence; EC 1.15.1.1 is scope only.",
+        "Do not admit Cu/Zn superoxide dismutases, heme/cytoglobin/hemoglobin/peroxidase/nitrite/nitric-oxygen dioxygenase rows, superoxide reductases, side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a Mn/Fe SOD label.",
+        "The Mn/Fe redox metal occupancy, bound solvent/protonation state, and superoxide substrate are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "nicotinamide_redox",
       "name": "NAD(P)-dependent hydride-transfer redox chemistry",
       "parent_id": "mechanism",

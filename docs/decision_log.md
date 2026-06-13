@@ -3,6 +3,68 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: MN/FE SUPEROXIDE DISMUTASE 34FP BRONZE EXPANSION APPLIED
+
+Decision: promote the prior Mn/Fe SOD source/spec lane into a deliberate
+`label_factory_v1_34fp` fingerprint only through the existing mechanism-first admission pipeline.
+EC 1.15.1.1 and protein-name tokens remain scope/admission context only; counted mechanism axes are
+Rhea/reaction superoxide dismutation, Mn/Fe metal or metal-site evidence, active/binding/metal-site
+evidence, and SOD family/domain text. Growth goes only to
+`data/registries/external_bronze_labels.json`; frozen current702 remains byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Implementation: added `manganese_iron_superoxide_dismutase` fingerprint, ontology node
+`metal_superoxide_dismutation`, deploy-missing context
+`mn_fe_superoxide_redox_dismutation_context`, source module/script, disambiguation/trust-tier rules,
+leakage/ontology/source tests, and OOS preregistration re-freeze
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_34fp_1025.json`.
+
+Initial apply:
+`PYTHONPATH=src python scripts/source_manganese_iron_superoxide_dismutase_family.py --max-records-per-lane 240 --cap-ceiling 250 --out artifacts/v3_manganese_iron_superoxide_dismutase_sourcing_preview_current702_20260613.json --report work/manganese_iron_superoxide_dismutase_sourcing_current702_20260613.md --apply`.
+Result: fetched **240**, mechanism-corroborated **181**, applied **164**, held **59**
+no-corroboration rows, novelty-throttled **17**, off-target held **0**, held@cap **0**.
+
+Bounded top-up:
+`PYTHONPATH=src python scripts/source_manganese_iron_superoxide_dismutase_family.py --max-records-per-lane 320 --cap-ceiling 250 --out artifacts/v3_manganese_iron_superoxide_dismutase_topup_sourcing_preview_current702_20260613.json --report work/manganese_iron_superoxide_dismutase_topup_sourcing_current702_20260613.md --apply`.
+Result: fetched **252**, skipped **164** already-existing rows, mechanism-corroborated **19**,
+applied **2**, held **69** no-corroboration rows, novelty-throttled **17**, off-target held **0**,
+held@cap **0**. Final SOD count is **166/250** and above floor.
+
+Counts after apply: external bronze **6238 -> 6404**; combined label surface **6940 -> 7106**.
+Honest counters stay separate: **positive_bronze 5393**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. External-only bronze split is
+**5180** seed-fingerprint rows and **1224** OOS rows; remaining positive-bronze gap to 10k is
+**4607**.
+
+Guardrails held: every added row is bronze, automation-curated, `uniprot:*`, with
+`predictive_evidence []`; EC/name/Rhea/keyword/prose/feature handles are excluded-context
+admission evidence only; EC is never a counted corroborator; dedup and novelty ran against frozen
+current702 and the external registry; Cu/Zn SOD, heme/peroxidase/cytoglobin/hemoglobin,
+nitrite/nitric-oxygen dioxygenase, superoxide reductase, side-EC, EC-only, and multi-signal rows
+are held. Row audit found **0** problems across **166** SOD rows. Coverage audit reports **34**
+fingerprints, Gini **0.1608**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, over-cap
+`['metal_dependent_hydrolase']`, and next-batch floor deficit **70**. Novelty replay reports
+**6404** expansion rows, decisions `{'admit': 5948, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0712).
+
+Follow-on decision: do not repeat the SOD first-window or top-up previews. The current guarded
+reviewed query is largely exhausted at **166** useful rows; the next 10k-path work should build a
+new strict source/corroborator path for PfkB **46/100** or biotin **84/100**, or scout/spec the next
+clean fingerprint family through fingerprint/ontology/OOS-preregistration/preview/apply gates.
+
+References:
+`artifacts/v3_manganese_iron_superoxide_dismutase_sourcing_preview_current702_20260613.json`,
+`work/manganese_iron_superoxide_dismutase_sourcing_current702_20260613.md`,
+`artifacts/v3_manganese_iron_superoxide_dismutase_topup_sourcing_preview_current702_20260613.json`,
+`work/manganese_iron_superoxide_dismutase_topup_sourcing_current702_20260613.md`,
+`artifacts/v3_manganese_iron_superoxide_dismutase_row_guardrail_audit_current702_20260613.json`,
+`work/manganese_iron_superoxide_dismutase_row_guardrail_audit_current702_20260613.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_mn_fe_sod_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_mn_fe_sod_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_mn_fe_sod_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_mn_fe_sod_applied.md`.
+
 ## 2026-06-13: MN/FE SUPEROXIDE DISMUTASE SOURCE BLOCKER CLEARED; 34FP SPEC WRITTEN
 
 Decision: do not force the remaining PfkB/biotin floor deficits or repeat the bounded no-yield

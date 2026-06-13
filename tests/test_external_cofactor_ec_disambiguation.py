@@ -414,6 +414,77 @@ class DisambiguateRowTests(unittest.TestCase):
         ]
         self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
 
+    def test_mn_fe_superoxide_dismutase_requires_mechanism_handles(self) -> None:
+        row = _row(cofactors=["Manganese"], ec=["1.15.1.1"])
+        row["protein_name"] = "Superoxide dismutase [Mn]"
+        row["keywords"] = ["Superoxide dismutase", "Metal-binding"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:20696",
+                "reaction": "2 superoxide + 2 H(+) = H2O2 + O2",
+                "ec_number": "1.15.1.1",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 27,
+                "feature_code": "METAL",
+                "feature_type": "Metal binding",
+                "ligand_name": "Manganese",
+                "ligand_id": None,
+                "description": "Manganese",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "manganese_iron_superoxide_dismutase")
+        axes = d["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("cofactor_or_cosubstrate", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_mn_fe_superoxide_dismutase_controls_hold(self) -> None:
+        ec_only = _row(ec=["1.15.1.1"])
+        ec_only["protein_name"] = "Superoxide dismutase [Mn]"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        base_reaction = {
+            "rhea_id": "RHEA:20696",
+            "reaction": "2 superoxide + 2 H(+) = H2O2 + O2",
+            "ec_number": "1.15.1.1",
+        }
+        hold_cases = (
+            (["Copper", "Zinc"], ["Superoxide dismutase"], "Superoxide dismutase [Cu-Zn]", ["1.15.1.1"]),
+            (["heme b"], ["Superoxide dismutase"], "Peroxidase-like superoxide dismutase", ["1.15.1.1"]),
+            (["Iron"], ["Superoxide dismutase"], "Superoxide reductase", ["1.15.1.1"]),
+            (["Iron"], ["Superoxide dismutase"], "Superoxide dismutase [Fe]", ["1.15.1.1", "1.11.1.7"]),
+        )
+        for cofactors, keywords, name, ec_numbers in hold_cases:
+            row = _row(cofactors=cofactors, ec=ec_numbers)
+            row["protein_name"] = name
+            row["keywords"] = keywords
+            row["rhea_ec_provenance"]["rhea_records"] = [base_reaction]
+            row["residue_locators"] = [
+                {
+                    "position": 27,
+                    "feature_code": "METAL",
+                    "feature_type": "Metal binding",
+                    "ligand_name": cofactors[0],
+                    "ligand_id": None,
+                    "description": cofactors[0],
+                    "evidence_codes": ["ECO:0000269"],
+                }
+            ]
+            self.assertEqual(disambiguate_row(row)["decision"], "hold")
+
+        missing_site = _row(cofactors=["Iron"], ec=["1.15.1.1"])
+        missing_site["protein_name"] = "Superoxide dismutase [Fe]"
+        missing_site["keywords"] = ["Superoxide dismutase"]
+        missing_site["rhea_ec_provenance"]["rhea_records"] = [base_reaction]
+        self.assertEqual(disambiguate_row(missing_site)["decision"], "hold")
+
     def test_non_plp_racemase_epimerase_requires_mechanism_handle(self) -> None:
         row = _row(ec=["5.1.3.3"])
         row["protein_name"] = "Galactose mutarotase (Aldose 1-epimerase)"

@@ -5,6 +5,45 @@ Generated from `work/progress_log.jsonl`.
 ## Current Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T15:10:09Z`
+- Started local: `Sat Jun 13 10:10:09 CDT 2026`
+- Focus/result: applied the previous handoff's `manganese_iron_superoxide_dismutase` 10k-path lane
+  through the full 34fp mechanism-first pipeline, then ran a bounded top-up over the remaining
+  reviewed source window. Growth went only to `data/registries/external_bronze_labels.json`;
+  frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Registry/counts: external bronze **6238 -> 6404** (+166); combined label surface
+  **6940 -> 7106**; `manganese_iron_superoxide_dismutase` **0 -> 166** under cap 250 and above
+  floor. Honest counters remain separate: `positive_bronze=5393`, `oos_bronze=1696`,
+  `silver_ready=0`, `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap to 10k
+  **4607**. External-only registry split is **5180** seed-fingerprint bronze and **1224** OOS
+  bronze.
+- Artifacts: `artifacts/v3_external_hard_negative_next_tranche_preregistration_34fp_1025.json`,
+  `artifacts/v3_manganese_iron_superoxide_dismutase_sourcing_preview_current702_20260613.json`,
+  `work/manganese_iron_superoxide_dismutase_sourcing_current702_20260613.md`,
+  `artifacts/v3_manganese_iron_superoxide_dismutase_topup_sourcing_preview_current702_20260613.json`,
+  `work/manganese_iron_superoxide_dismutase_topup_sourcing_current702_20260613.md`,
+  `artifacts/v3_manganese_iron_superoxide_dismutase_row_guardrail_audit_current702_20260613.json`,
+  `work/manganese_iron_superoxide_dismutase_row_guardrail_audit_current702_20260613.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_mn_fe_sod_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_mn_fe_sod_applied.md`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_mn_fe_sod_applied.json`, and
+  `work/novelty_admission_gate_audit_current702_20260613_mn_fe_sod_applied.md`.
+- Guardrails: row audit found **0** problems across **166** SOD rows; all rows have active-site/
+  residue-role, cofactor/cosubstrate, and Rhea mechanism axes; EC/name/Rhea/keyword/prose/feature
+  handles remain excluded-context admission evidence only; EC is never counted;
+  `predictive_evidence []`; boundary SOD/heme/peroxidase/superoxide-reductase/side-EC/multi-signal
+  rows were held.
+- Validation: focused pytest passed (**301 passed, 14 subtests passed**); `PYTHONPATH=src python -m
+  catalytic_earth.cli validate` passed (12 source records, 34 fingerprints, 31 ontology families,
+  702 curated labels); JSON parse checks and `git diff --check` passed.
+- Next exact action: do not repeat the SOD first-window/top-up previews. Build a genuinely new
+  strict source/corroborator path for PfkB **46/100** or biotin **84/100**, or scout/spec the next
+  clean fingerprint family through the same gated pipeline.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T14:53:41Z`
 - Started local: `Sat Jun 13 09:53:41 CDT 2026`
 - Focus/result: no registry write. Continued after user feedback instead of stopping at the bounded

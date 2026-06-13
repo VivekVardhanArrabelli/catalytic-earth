@@ -13,6 +13,42 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: Mn/Fe SOD 34fp bronze expansion applied.** The spec-only
+`manganese_iron_superoxide_dismutase` lane from the latest handoff was completed through the full
+mechanism-first pipeline. The run added the fingerprint and `metal_superoxide_dismutation` ontology
+node, bumped the universe to `label_factory_v1_34fp`, re-froze OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_34fp_1025.json`, added
+disambiguation/trust-tier/leakage/source tests, ran non-destructive previews, and applied only
+after dedup/novelty/governor/cap/trust-tier gates passed. Frozen current702 remained byte-unchanged
+with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Initial apply
+(`scripts/source_manganese_iron_superoxide_dismutase_family.py --max-records-per-lane 240 --cap-ceiling 250 --apply`)
+fetched **240**, mechanism-corroborated **181**, applied **164**, held **59** no-corroboration rows,
+novelty-throttled **17**, and held **0** off-target/cap rows. A bounded top-up
+(`--max-records-per-lane 320 --cap-ceiling 250 --apply`) fetched **252**, skipped **164**
+already-existing rows, mechanism-corroborated **19**, applied **2**, held **69** no-corroboration
+rows, novelty-throttled **17**, and held **0** off-target/cap rows. SOD is now **166/250** and
+above floor.
+
+External bronze is now **6404**; combined label surface is **7106**; honest counters stay separate:
+**positive_bronze 5393**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**. External-only bronze split is **5180** seed-fingerprint rows and **1224** OOS rows.
+Remaining positive-bronze gap to 10k: **4607**. Post-apply coverage audit reports **34**
+fingerprints, fingerprint Gini **0.1608**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, only `metal_dependent_hydrolase`
+over-cap, and next-batch floor deficit **70**. Novelty replay over **6404** expansion rows reports
+decisions `{'admit': 5948, 'reject': 47, 'throttle': 409}` and would-not-readmit **456** (0.0712).
+Row audit found **0** problems across **166** SOD rows.
+
+Guardrails remain active: EC/name/Rhea/keyword/prose/feature handles are admission/excluded-context
+evidence only; EC is never counted; `predictive_evidence []`; Cu/Zn SOD, heme/peroxidase/
+cytoglobin/hemoglobin, nitrite/nitric-oxygen dioxygenase, superoxide reductase, side-EC, EC-only,
+and multi-fingerprint-signal rows are held. Next concrete work should not repeat the exhausted SOD
+first-window or top-up previews. Build a genuinely new strict source/corroborator path for
+PfkB **46/100** or biotin **84/100**, or scout/spec the next clean fingerprint family through the
+same gated pipeline.
+
 **2026-06-13 automation update: Mn/Fe SOD source blocker cleared and 34fp next-lane spec
 written.** After bounded under-cap previews admitted 0 rows, this run did not repeat those same
 first-window probes. A PfkB/biotin alternate-source scout found limited registry-new reviewed
