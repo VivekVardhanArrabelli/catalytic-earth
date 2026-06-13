@@ -158,6 +158,11 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "no cofactor; Rhea isomerization equation plus active-site/base context",
         "lanes": ["cofactor_independent_isomerase"],
     },
+    "molybdopterin_oxidoreductase": {
+        "ec_prefixes": ["1"],
+        "cofactor": "molybdopterin / molybdenum cofactor redox center; Mo/W oxo-transfer or electron-transfer chemistry",
+        "lanes": ["molybdopterin_oxidoreductase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

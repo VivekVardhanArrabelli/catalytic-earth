@@ -295,6 +295,73 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertEqual(d["decision"], "hold")
 
+    def test_molybdopterin_requires_moco_and_mechanism_handle(self) -> None:
+        row = _row(
+            cofactors=["Mo-bis(molybdopterin guanine dinucleotide)"],
+            ec=["1.7.5.1"],
+        )
+        row["keywords"] = ["Molybdenum", "Oxidoreductase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:MO0001",
+                "reaction": "nitrate + a quinol = a quinone + nitrite + H2O",
+                "ec_number": "1.7.5.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "molybdopterin_oxidoreductase")
+        self.assertIn(
+            "cofactor_or_cosubstrate",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_molybdopterin_ec_only_control_held(self) -> None:
+        row = _row(
+            cofactors=["Mo-bis(molybdopterin guanine dinucleotide)"],
+            ec=["1.7.5.1"],
+        )
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_molybdopterin_side_ec_and_peroxide_controls_hold(self) -> None:
+        row = _row(
+            cofactors=["Mo-bis(molybdopterin guanine dinucleotide)"],
+            ec=["1.7.5.1", "3.1.1.1"],
+        )
+        row["keywords"] = ["Molybdenum", "Oxidoreductase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:MO0002",
+                "reaction": "nitrate + a quinol = a quinone + nitrite + H2O",
+                "ec_number": "1.7.5.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+        peroxide = _row(
+            cofactors=["Mo-bis(molybdopterin guanine dinucleotide)"],
+            ec=["1.7.5.1"],
+        )
+        peroxide["keywords"] = ["Molybdenum", "Oxidoreductase"]
+        peroxide["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:MO0003",
+                "reaction": "a donor + H2O2 = an oxidized donor + 2 H2O",
+                "ec_number": "1.7.5.1",
+            }
+        ]
+        d2 = disambiguate_row(peroxide)
+        self.assertEqual(d2["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

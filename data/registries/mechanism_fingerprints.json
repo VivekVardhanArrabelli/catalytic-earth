@@ -375,6 +375,32 @@
     }
   },
   {
+    "id": "molybdopterin_oxidoreductase",
+    "name": "Molybdopterin/Mo-cofactor oxidoreductase",
+    "enzyme_space": ["molybdenum cofactor oxidoreductases", "molybdopterin-dependent hydroxylases and dehydrogenases", "xanthine oxidase/dehydrogenase-family enzymes", "sulfite/nitrate/formate/DMSO reductase-family Mo enzymes"],
+    "active_site_signature": [
+      {"role": "molybdopterin_metal_center", "residue": "Cys/Sec/Asp/Glu/Ser or terminal oxo/sulfido ligands depending on family", "constraints": ["positions the molybdenum/tungsten center and pyranopterin dithiolene for substrate redox chemistry"]},
+      {"role": "oxo_or_hydroxo_transfer_site", "residue": "Mo=O/Mo-OH/Mo-S plus family-specific acid-base residue", "constraints": ["supports oxygen-atom, hydride, or electron-transfer chemistry at the Mo center"]},
+      {"role": "electron_relay", "residue": "Fe-S cluster, heme, flavin, or cytochrome partner depending on subclass", "constraints": ["connects the Mo redox center to external acceptor/donor without becoming the defining fingerprint by itself"]}
+    ],
+    "cofactors": ["molybdopterin", "molybdenum cofactor"],
+    "reaction_center": {
+      "bond_changes": ["two-electron substrate oxidation/reduction, hydroxylation/dehydroxylation, or oxo-transfer coupled to a molybdenum/tungsten pterin center"],
+      "chemical_operation": "molybdopterin metal-center redox / oxo-transfer chemistry"
+    },
+    "substrate_constraints": ["substrate positioned directly at the Mo/W pterin center", "redox partner route through Fe-S, heme, flavin, or quinone/cytochrome acceptor as subclass context", "Mo-cofactor / molybdopterin evidence present independently of generic metal or flavin annotation"],
+    "evidence_features": ["molybdopterin or molybdenum-cofactor annotation", "Molybdenum keyword or Mo-pterin family/domain profile", "Rhea redox or oxo-transfer reaction participant/equation under oxidoreductase scope", "Mo/molybdopterin binding-site, metal-site, or active-site residue annotation"],
+    "counterevidence_features": ["heme/P450, flavin-only, copper-only, peroxidase, or generic metal redox row without Mo-cofactor evidence", "hydrolase or non-oxidoreductase side EC with no explicit Mo redox subclass rule", "molybdenum transport, cofactor biosynthesis, or scaffold proteins without catalytic redox/Rhea context", "EC-only evidence with no Mo-cofactor, Rhea, domain, active-site, or structure corroborator"],
+    "uncertainty_axes": ["Mo vs W metal center", "hydroxylase/dehydrogenase vs reductase physiological direction", "electron relay class (Fe-S/heme/flavin/cytochrome/quinone)", "terminal oxo/sulfido/selenocysteine ligand state"],
+    "seed_examples": ["xanthine dehydrogenase/oxidase", "sulfite oxidase", "nitrate reductase", "formate dehydrogenase", "DMSO reductase-family enzymes"],
+    "deploy_missing_active_site_context": {
+      "type": "metal_cofactor_and_redox_substrate",
+      "detail": "the molybdopterin/Mo-cofactor redox center, terminal oxo/sulfido ligands, electron relay, and substrate are often absent or incomplete in apo predicted structures, so metal-center redox geometry is unconstrained",
+      "reconstruction_path": "Path A sequence->Mo-cofactor/family channel plus Rhea redox/oxo-transfer evidence, or canonical Mo-pterin/electron-relay/substrate graft (Path B)",
+      "silver_reachability": "moderate; Mo-cofactor and binding-site evidence is often annotated, but subclass ligand state and substrate/electron-relay geometry require reconstruction"
+    }
+  },
+  {
     "id": "nad_p_dehydrogenase",
     "name": "NAD(P)-dependent dehydrogenase/reductase",
     "enzyme_space": ["short-chain dehydrogenases/reductases (SDR)", "medium-chain dehydrogenases/reductases (MDR)", "aldo-keto reductases (AKR)", "Rossmann-fold oxidoreductases"],

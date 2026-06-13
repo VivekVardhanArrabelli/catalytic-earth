@@ -191,6 +191,13 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
             "cob(iii)alamin",
         )
         or bool(flags.get("cobalamin_or_b12_evidence_present")),
+        "molybdopterin": any_name(
+            "molybdopterin",
+            "molybdenum cofactor",
+            "mo-molybdopterin",
+            "moco",
+        )
+        or bool(flags.get("molybdopterin_or_moco_evidence_present")),
     }
 
 
@@ -282,6 +289,51 @@ _ACYLTRANSFERASE_KEYWORD_TOKENS = ("acyltransferase",)
 # non-5.3 side ECs stay held until a subclass rule explicitly owns them.
 _ISOMERASE_KEYWORD_TOKENS = ("isomerase",)
 _ISOMERIZATION_REACTION_TOKENS = (" = ", "isomer", "epimer", "racem", "mutase")
+# Molybdopterin/Mo-cofactor oxidoreductase handles. EC 1.* scopes the candidate pool
+# only; counted mechanism corroboration comes from Mo-cofactor/molybdopterin annotation,
+# Mo-pterin feature text, Rhea redox/oxo-transfer participants, Molybdenum keyword/domain,
+# or active-/binding-/metal-site residue evidence. Heme/flavin/copper electron relays can
+# be legitimate subclass context, but if they independently satisfy another fingerprint the
+# existing multi-fingerprint conflict guard holds the row.
+_MOLYBDOPTERIN_TOKENS = (
+    "molybdopterin",
+    "molybdenum cofactor",
+    "mo-molybdopterin",
+    "moco",
+    "molybd",
+)
+_MOLYBDENUM_KEYWORD_TOKENS = ("molybdenum", "molybdopterin")
+_MOLYBDOPTERIN_REDOX_REACTION_TOKENS = (
+    "nad(+)",
+    "nadp(+)",
+    "nadh",
+    "nadph",
+    "quinone",
+    "quinol",
+    "cytochrome",
+    "ferredoxin",
+    "electron",
+    "reduced",
+    "oxidized",
+    "acceptor",
+    "donor",
+)
+_MOLYBDOPTERIN_OXO_TRANSFER_REACTION_TOKENS = (
+    "nitrate",
+    "nitrite",
+    "formate",
+    "co2",
+    "co(2)",
+    "sulfite",
+    "sulfate",
+    "dimethyl sulfoxide",
+    "dimethyl sulfide",
+    "trimethylamine n-oxide",
+    "xanthine",
+    "uric acid",
+    "h2o",
+    "h(2)o",
+)
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
 
@@ -382,6 +434,31 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     keyword_isomerase = in_any(keywords, *_ISOMERASE_KEYWORD_TOKENS)
     isomerization_reaction = in_any(reactions, *_ISOMERIZATION_REACTION_TOKENS)
     non_5_3_side_ec = any(ec and not ec.startswith("5.3") for ec in _ec_numbers(row))
+    keyword_molybdenum = in_any(keywords, *_MOLYBDENUM_KEYWORD_TOKENS)
+    molybdopterin_moco = bool(evidence.get("molybdopterin")) or in_any(
+        cofactor_names + feature_texts, *_MOLYBDOPTERIN_TOKENS
+    )
+    molybdopterin_feature_or_ligand = in_any(feature_texts, *_MOLYBDOPTERIN_TOKENS)
+    molybdopterin_redox_reaction = in_any(
+        reactions, *_MOLYBDOPTERIN_REDOX_REACTION_TOKENS
+    )
+    molybdopterin_oxo_transfer_reaction = in_any(
+        reactions, *_MOLYBDOPTERIN_OXO_TRANSFER_REACTION_TOKENS
+    )
+    non_oxidoreductase_side_ec = any(
+        ec and not ec.startswith("1.") for ec in _ec_numbers(row)
+    )
+    protein_name = str(row.get("protein_name") or "").lower()
+    molybdopterin_biosynthesis_boundary = any(
+        token in protein_name
+        for token in (
+            "cofactor biosynthesis",
+            "molybdopterin synthase",
+            "molybdopterin adenylyltransferase",
+            "molybdenum cofactor sulfurase",
+            "moco sulfurase",
+        )
+    ) and not any("oxidoreductase" in kw for kw in keywords)
 
     evidence.update(
         {
@@ -410,6 +487,13 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "keyword_isomerase": keyword_isomerase,
             "isomerization_reaction": isomerization_reaction,
             "non_5_3_side_ec": non_5_3_side_ec,
+            "keyword_molybdenum": keyword_molybdenum,
+            "molybdopterin_moco": molybdopterin_moco,
+            "molybdopterin_feature_or_ligand": molybdopterin_feature_or_ligand,
+            "molybdopterin_redox_reaction": molybdopterin_redox_reaction,
+            "molybdopterin_oxo_transfer_reaction": molybdopterin_oxo_transfer_reaction,
+            "non_oxidoreductase_side_ec": non_oxidoreductase_side_ec,
+            "molybdopterin_biosynthesis_boundary": molybdopterin_biosynthesis_boundary,
             "active_or_binding_site_present": bool(
                 _feature_codes(row) & _ACTIVE_OR_BINDING_FEATURE_CODES
             ),
@@ -438,6 +522,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("two_og_reaction")
         or evidence.get("coa_acyl_coa_reaction")
         or evidence.get("coa_acyl_coa_feature")
+        or evidence.get("molybdopterin_moco")
     ):
         axes.add("cofactor_or_cosubstrate")
     if (
@@ -449,12 +534,15 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("succinate_co2_product")
         or evidence.get("coa_acyl_coa_reaction")
         or evidence.get("isomerization_reaction")
+        or evidence.get("molybdopterin_redox_reaction")
+        or evidence.get("molybdopterin_oxo_transfer_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
         evidence.get("active_or_binding_site_present")
         or evidence.get("cx3cx2c_motif")
         or evidence.get("heme_thiolate_binding")
+        or evidence.get("molybdopterin_feature_or_ligand")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -466,6 +554,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("keyword_dioxygenase")
         or evidence.get("keyword_acyltransferase")
         or evidence.get("keyword_isomerase")
+        or evidence.get("keyword_molybdenum")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -510,6 +599,7 @@ _P450_MONOOXYGENASE_EC = ("1.14.",)  # paired-donor oxidoreductases incorporatin
 _NON_HEME_IRON_2OG_EC = ("1.14.11",)  # 2-oxoglutarate-dependent dioxygenases
 _COA_ACYLTRANSFERASE_EC = ("2.3.1",)  # acyltransferases using CoA/acyl-CoA donors
 _COFACTOR_INDEPENDENT_ISOMERASE_EC = ("5.3.",)  # intramolecular isomerases
+_MOLYBDOPTERIN_OXIDOREDUCTASE_EC = ("1.",)  # oxidoreductases; Mo-cofactor handles confirm
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -616,6 +706,22 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["non_5_3_side_ec"]
         and c["keyword_isomerase"]
         and (c["isomerization_reaction"] or c["active_or_binding_site_present"]),
+    ),
+    (
+        "molybdopterin_oxidoreductase",
+        lambda c, row: _ec_has_prefix(row, _MOLYBDOPTERIN_OXIDOREDUCTASE_EC)
+        and c["molybdopterin_moco"]
+        and not c["hydrolase_side_ec"]
+        and not c["non_oxidoreductase_side_ec"]
+        and not c["peroxide_reaction"]
+        and not c["molybdopterin_biosynthesis_boundary"]
+        and (
+            c["molybdopterin_redox_reaction"]
+            or c["molybdopterin_oxo_transfer_reaction"]
+            or c["molybdopterin_feature_or_ligand"]
+            or c["keyword_molybdenum"]
+            or c["active_or_binding_site_present"]
+        ),
     ),
 )
 

@@ -26,6 +26,45 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **MOLYBDOPTERIN OXIDOREDUCTASE 20FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  The post-isomerase recommended lane was scouted, wired, re-frozen, previewed, and applied as a
+  deliberate 20-fingerprint universe change. Mechanism-handle scout:
+  `artifacts/v3_molybdopterin_oxidoreductase_mechanism_handle_scout_current702_20260613.json`
+  examined 80 reviewed UniProt entries with **0 fetch failures**; handles were Mo-cofactor
+  **80/80**, Rhea cross-reference **78/80**, Mo feature/ligand context **65/80**, redox reaction
+  text **49/80**, and oxo-transfer reaction text **71/80**, with heme/flavin/peroxidase boundary
+  signals recorded as guards. New family/gate surface: `molybdopterin_oxidoreductase` fingerprint +
+  `molybdopterin_redox` ontology node,
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = label_factory_v1_20fp`, OOS preregistration
+  re-frozen as `artifacts/v3_external_hard_negative_next_tranche_preregistration_20fp_1025.json`,
+  EC 1.* oxidoreductase scope-only rule with molybdopterin/Mo-cofactor, Rhea redox/oxo-transfer,
+  Molybdenum keyword/domain, Mo-pterin feature/ligand, and active-/binding-/metal-site mechanism
+  corroboration; hydrolase, non-oxidoreductase side-EC, peroxide/peroxidase, biosynthesis, and
+  multi-fingerprint-signal rows stay held. Live apply:
+  `PYTHONPATH=src python scripts/source_molybdopterin_oxidoreductase_family.py --max-records-per-lane 80 --apply`
+  fetched **255** rows -> target mechanism-corroborated **210** -> gate-admitted before cap **207**
+  -> appended **207** bronze rows; `molybdopterin_oxidoreductase` **0 -> 207** (cap 250; floor
+  reached); **0 held at cap**, **3 novelty-throttled**, **41 disambiguation holds**
+  (`no_mechanism_corroboration`), **0 off-target matches held**, **4 skipped**, duplicate skipped at
+  apply **0**. External bronze **4202 -> 4409**; combined surface **4904 -> 5111**; frozen current702
+  stayed 702 with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`
+  before/after apply. Honest counters remain separate after apply: **positive_bronze 3398**,
+  **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**, **projected 0**. Fresh coverage
+  audit: **5111** combined, fingerprint Gini **0.1613**, holes `[]`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Novelty replay: **4409**
+  expansion rows, decisions `{'admit': 3953, 'reject': 47, 'throttle': 409}`, would-not-readmit
+  **456** (0.1034). Spot-check over all 207 Mo rows found **0** leakage/trust-tier problems; axes:
+  cofactor/cosubstrate 207, active-site/residue-role 206, domain/family 206, Rhea participant 206.
+  Validation: focused pytest **111 passed**, selected leakage prereg/import-gate pytest
+  **10 passed, 171 deselected**, JSON parse checks ok, and `validate` ok
+  (12 source / 20 fingerprints / 23 ontology families / 702 labels). Next concrete action:
+  use the copper mechanism-handle scout
+  (`artifacts/v3_copper_oxidoreductase_mechanism_handle_scout_current702_20260613.json`) as design
+  input for possible 21fp wiring. It examined 80 entries with 0 fetch failures and found Rhea
+  78/80, redox text 77/80, copper feature/ligand context 31/80, and explicit copper cofactor
+  comments 20/80, plus small heme/side-EC/glycosyltransferase boundary signals. Keep EC scope-only
+  and design explicit heme/flavin/molybdopterin/hydrolase/glycosyltransferase guards before any
+  copper preview/apply.
 - **COFACTOR-INDEPENDENT ISOMERASE 19FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
   In the same productive block as the CoA lane below, the post-CoA recommended lane was wired as a
   deliberate 19-fingerprint universe change and applied through the canonical external bronze writer.

@@ -3,6 +3,80 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: MOLYBDOPTERIN OXIDOREDUCTASE 20FP BRONZE EXPANSION APPLIED
+
+Decision: after the cofactor-independent isomerase 19fp lane was applied, the current
+source-supply scout recommended molybdopterin oxidoreductase over copper. A focused
+mechanism-handle scout confirmed enough non-EC mechanism evidence, so the lane was wired and applied
+as a deliberate **20-fingerprint universe change**. Growth went only to the separate external bronze
+registry. The frozen current702 registry stayed byte-unchanged: sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before and after apply.
+
+**Family/gate surface.** Added `molybdopterin_oxidoreductase` fingerprint spec and
+`molybdopterin_redox` ontology node; bumped
+`labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_20fp`; re-froze the OOS
+next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_20fp_1025.json` (supersedes 19fp;
+older preregistration files remain historical). The admission rule uses EC 1.* oxidoreductase as
+scope-only (`ec_scope_hint`, never counted), with molybdopterin/Mo-cofactor, Rhea redox/oxo-transfer,
+Molybdenum keyword/domain, Mo-pterin feature/ligand, and active-/binding-/metal-site evidence as
+mechanism corroboration. Hydrolase, non-oxidoreductase side-EC, peroxide/peroxidase, biosynthesis,
+and off-target multi-fingerprint rows are held.
+
+**Mechanism scout.** `artifacts/v3_molybdopterin_oxidoreductase_mechanism_handle_scout_current702_20260613.json`
+examined **80** reviewed UniProt entries with **0** fetch failures. Handles in sample:
+Mo-cofactor **80/80**, Molybdenum keyword **80/80**, Rhea cross-reference **78/80**, catalytic
+activity **78/80**, Mo feature/ligand context **65/80**, redox reaction text **49/80**, oxo-transfer
+reaction text **71/80**. Boundary signals were present (flavin 33/80, heme 13/80, peroxide/peroxidase
+26/80), so the apply path required explicit boundary and multi-signal holds rather than broad EC
+admission.
+
+**Live preview/apply.** Command:
+`PYTHONPATH=src python scripts/source_molybdopterin_oxidoreductase_family.py --max-records-per-lane 80 --apply`.
+Result: fetched **255** reviewed Swiss-Prot rows -> target mechanism-corroborated **210** ->
+gate-admitted before cap **207** -> appended **207** rows. Per-family result:
+`molybdopterin_oxidoreductase` **0 -> 207** (cap 250, floor reached, **0 held at cap**). Other
+holds: **3** novelty-throttled, **41** disambiguation holds (`no_mechanism_corroboration`), **0**
+off-target fingerprint matches held, **4** skipped, duplicate skipped at registry apply **0**.
+External bronze **4202 -> 4409**; combined surface **4904 -> 5111**.
+
+Guardrails held: every added row is `tier=bronze`, `review_status=automation_curated`, entry
+namespace `uniprot`; molybdopterin handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; off-target/multi-signal rows are held; per-fingerprint cap held.
+Spot-check over all 207 added rows found **0** leakage/trust-tier problems; axes present:
+cofactor/cosubstrate **207**, active-site/residue-role **206**, domain/family **206**, Rhea
+participant **206**. Honest counters after apply are **positive_bronze 3398**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**; do not merge them. Fresh
+coverage/redundancy audit after the apply reports **5111** combined labels, fingerprint Gini
+**0.1613**, expansion holes `[]`, over-cap `['metal_dependent_hydrolase']`, and next-batch floor
+deficit **0**. Novelty replay reports **4409** expansion rows, decisions
+`{'admit': 3953, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.1034).
+
+Next decision: the next 10k-path lane is **copper oxidoreductase** if the completed scout can be
+turned into a clean guarded design. Follow-on scout
+`artifacts/v3_copper_oxidoreductase_mechanism_handle_scout_current702_20260613.json` examined 80
+entries with 0 fetch failures and found Rhea 78/80, redox text 77/80, copper feature/ligand context
+31/80, and explicit copper cofactor comments 20/80, plus heme/side-EC/glycosyltransferase boundary
+signals. Use EC as scope only; counted corroborators should be copper cofactor/keyword/domain, Rhea
+redox participants, active-/binding-/metal-site evidence, or structure. Add guards versus heme,
+flavin, molybdopterin, hydrolase, and glycosyltransferase side rows; re-freeze OOS preregistration to
+21fp before any registry apply.
+
+References:
+`artifacts/v3_molybdopterin_oxidoreductase_mechanism_handle_scout_current702_20260613.json`,
+`work/molybdopterin_oxidoreductase_mechanism_handle_scout_current702_20260613.md`,
+`artifacts/v3_molybdopterin_oxidoreductase_sourcing_preview_current702.json`,
+`work/molybdopterin_oxidoreductase_sourcing_current702.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_20fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_molybdopterin_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_molybdopterin_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_molybdopterin_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_molybdopterin_applied.md`,
+`artifacts/v3_copper_oxidoreductase_mechanism_handle_scout_current702_20260613.json`,
+`work/copper_oxidoreductase_mechanism_handle_scout_current702_20260613.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-13: COFACTOR-INDEPENDENT ISOMERASE 19FP BRONZE EXPANSION APPLIED
 
 Decision: after the CoA acyltransferase 18fp lane was applied, the current scout-recommended next

@@ -1,0 +1,845 @@
+{
+  "artifact_id": "v3_copper_oxidoreductase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "copper_oxidoreductase",
+  "created_utc": "2026-06-13T02:27:58Z",
+  "entries_examined": 80,
+  "examples": [
+    {
+      "accession": "P19801",
+      "cofactors": [
+        "Cu(2+)",
+        "Ca(2+)",
+        "L-topaquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.22"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 12
+      },
+      "handles": {
+        "active_site_context": true,
+        "amine_oxidase_text": true,
+        "binding_site_context": true,
+        "cofactor_copper": true,
+        "copper_feature_or_ligand_context": true,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Calcium",
+        "Cell membrane",
+        "Copper",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Heparin-binding",
+        "Membrane",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "TPQ"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Diamine oxidase [copper-containing] (Diamine oxidase) (EC 1.4.3.22) (Amiloride-binding protein) (Amiloride-binding protein 1) (Amine oxidase copper domain-containing protein 1) (Histaminase) (Kidney amine oxidase) (KAO) (KDAO)",
+      "reaction_sample": "histamine + o2 + h2o = imidazole-4-acetaldehyde + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:25625",
+        "RHEA:78367",
+        "RHEA:18273",
+        "RHEA:69132"
+      ]
+    },
+    {
+      "accession": "O75106",
+      "cofactors": [
+        "Cu(2+)",
+        "Ca(2+)",
+        "L-topaquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.21"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 13
+      },
+      "handles": {
+        "active_site_context": true,
+        "amine_oxidase_text": true,
+        "binding_site_context": true,
+        "cofactor_copper": true,
+        "copper_feature_or_ligand_context": true,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "Alternative splicing",
+        "Calcium",
+        "Catecholamine metabolism",
+        "Cell membrane",
+        "Copper",
+        "Cytoplasm",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Membrane",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "TPQ",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Amine oxidase [copper-containing] 2 (EC 1.4.3.21) (Amine oxidase copper-containing 2) (Retina-specific copper amine oxidase) (RAO) (Semicarbazide-sensitive amine oxidase) (SSAO)",
+      "reaction_sample": "2-phenylethylamine + o2 + h2o = 2-phenylacetaldehyde + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:25265",
+        "RHEA:59416",
+        "RHEA:30591"
+      ]
+    },
+    {
+      "accession": "Q16853",
+      "cofactors": [
+        "Cu(2+)",
+        "Ca(2+)",
+        "L-topaquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.21"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 13
+      },
+      "handles": {
+        "active_site_context": true,
+        "amine_oxidase_text": true,
+        "binding_site_context": true,
+        "cofactor_copper": true,
+        "copper_feature_or_ligand_context": true,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Calcium",
+        "Cell adhesion",
+        "Cell membrane",
+        "Copper",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Membrane",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "TPQ",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Amine oxidase [copper-containing] 3 (EC 1.4.3.21) (Amine oxidase copper-containing 3) (Copper amine oxidase) (HPAO) (Semicarbazide-sensitive amine oxidase) (SSAO) (Vascular adhesion protein 1) (VAP-1)",
+      "reaction_sample": "methylamine + o2 + h2o = formaldehyde + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:59420",
+        "RHEA:59424",
+        "RHEA:25265"
+      ]
+    },
+    {
+      "accession": "P07788",
+      "cofactors": [
+        "Cu(2+)"
+      ],
+      "ec_numbers": [
+        "1.10.3.2",
+        "1.3.3.5"
+      ],
+      "feature_type_counts": {
+        "Binding site": 12,
+        "Site": 2
+      },
+      "handles": {
+        "active_site_context": false,
+        "amine_oxidase_text": false,
+        "binding_site_context": true,
+        "cofactor_copper": true,
+        "copper_feature_or_ligand_context": true,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "Copper",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Repeat",
+        "Sporulation"
+      ],
+      "organism": "Bacillus subtilis (strain 168)",
+      "protein_name": "Laccase (EC 1.10.3.2) (Bilirubin oxidase) (EC 1.3.3.5) (Spore coat protein A)",
+      "reaction_sample": "4 hydroquinone + o2 = 4 benzosemiquinone + 2 h2o",
+      "rhea_ids": [
+        "RHEA:11276",
+        "RHEA:20980"
+      ]
+    },
+    {
+      "accession": "Q96JB6",
+      "cofactors": [
+        "Cu cation",
+        "lysine tyrosylquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.13"
+      ],
+      "feature_type_counts": {
+        "Binding site": 3,
+        "Site": 1
+      },
+      "handles": {
+        "active_site_context": false,
+        "amine_oxidase_text": false,
+        "binding_site_context": true,
+        "cofactor_copper": false,
+        "copper_feature_or_ligand_context": false,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "Copper",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "LTQ",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Repeat",
+        "Secreted",
+        "Signal",
+        "TPQ"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Lysyl oxidase homolog 4 (EC 1.4.3.13) (Lysyl oxidase-like protein 4) (Lysyl oxidase-related protein C)",
+      "reaction_sample": "l-lysyl-[protein] + o2 + h2o = (s)-2-amino-6-oxohexanoyl-[protein] + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:24544",
+        "RHEA-COMP:9752",
+        "RHEA-COMP:12448"
+      ]
+    },
+    {
+      "accession": "P28300",
+      "cofactors": [
+        "Cu cation",
+        "lysine tyrosylquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.13"
+      ],
+      "feature_type_counts": {
+        "Binding site": 3,
+        "Site": 1
+      },
+      "handles": {
+        "active_site_context": false,
+        "amine_oxidase_text": false,
+        "binding_site_context": true,
+        "cofactor_copper": false,
+        "copper_feature_or_ligand_context": false,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "Aortic aneurysm",
+        "Copper",
+        "Disease variant",
+        "Disulfide bond",
+        "Glycoprotein",
+        "LTQ",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Sulfation",
+        "TPQ"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Protein-lysine 6-oxidase (EC 1.4.3.13) (Lysyl oxidase) [Cleaved into: Protein-lysine 6-oxidase, long form; Protein-lysine 6-oxidase, short form]",
+      "reaction_sample": "l-lysyl-[protein] + o2 + h2o = (s)-2-amino-6-oxohexanoyl-[protein] + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:24544",
+        "RHEA-COMP:9752",
+        "RHEA-COMP:12448"
+      ]
+    },
+    {
+      "accession": "P58215",
+      "cofactors": [
+        "Cu cation",
+        "lysine tyrosylquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.-",
+        "1.4.3.13"
+      ],
+      "feature_type_counts": {
+        "Binding site": 3
+      },
+      "handles": {
+        "active_site_context": false,
+        "amine_oxidase_text": false,
+        "binding_site_context": true,
+        "cofactor_copper": false,
+        "copper_feature_or_ligand_context": false,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "Alternative splicing",
+        "Copper",
+        "Cytoplasm",
+        "Deafness",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Inflammatory response",
+        "LTQ",
+        "Metal-binding",
+        "Nucleus",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Repeat",
+        "Secreted",
+        "Signal",
+        "Stickler syndrome",
+        "TPQ"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Lysyl oxidase homolog 3 (EC 1.4.3.-) (EC 1.4.3.13) (Lysyl oxidase-like protein 3)",
+      "reaction_sample": "l-lysyl-[protein] + o2 + h2o = (s)-2-amino-6-oxohexanoyl-[protein] + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:24544",
+        "RHEA-COMP:9752",
+        "RHEA-COMP:12448",
+        "RHEA:51648",
+        "RHEA-COMP:10731",
+        "RHEA-COMP:12448"
+      ]
+    },
+    {
+      "accession": "Q08397",
+      "cofactors": [
+        "Cu cation",
+        "lysine tyrosylquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.13"
+      ],
+      "feature_type_counts": {
+        "Binding site": 3,
+        "Site": 5
+      },
+      "handles": {
+        "active_site_context": false,
+        "amine_oxidase_text": false,
+        "binding_site_context": true,
+        "cofactor_copper": false,
+        "copper_feature_or_ligand_context": false,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "Cleavage on pair of basic residues",
+        "Copper",
+        "Disulfide bond",
+        "Extracellular matrix",
+        "Glaucoma",
+        "LTQ",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "TPQ"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Lysyl oxidase homolog 1 (EC 1.4.3.13) (Lysyl oxidase-like protein 1) (LOL)",
+      "reaction_sample": "l-lysyl-[protein] + o2 + h2o = (s)-2-amino-6-oxohexanoyl-[protein] + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:24544",
+        "RHEA-COMP:9752",
+        "RHEA-COMP:12448"
+      ]
+    },
+    {
+      "accession": "Q9Y4K0",
+      "cofactors": [
+        "Cu cation",
+        "lysine tyrosylquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.13"
+      ],
+      "feature_type_counts": {
+        "Binding site": 9
+      },
+      "handles": {
+        "active_site_context": false,
+        "amine_oxidase_text": false,
+        "binding_site_context": true,
+        "cofactor_copper": false,
+        "copper_feature_or_ligand_context": false,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "Basement membrane",
+        "Calcium",
+        "Chromatin regulator",
+        "Chromosome",
+        "Copper",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Extracellular matrix",
+        "Glycoprotein",
+        "LTQ",
+        "Metal-binding",
+        "Nucleus",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Repeat",
+        "Repressor",
+        "Secreted",
+        "Signal"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Lysyl oxidase homolog 2 (EC 1.4.3.13) (Lysyl oxidase-like protein 2) (Lysyl oxidase-related protein 2) (Lysyl oxidase-related protein WS9-14)",
+      "reaction_sample": "l-lysyl-[protein] + o2 + h2o = (s)-2-amino-6-oxohexanoyl-[protein] + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:24544",
+        "RHEA-COMP:9752",
+        "RHEA-COMP:12448"
+      ]
+    },
+    {
+      "accession": "P36633",
+      "cofactors": [
+        "Cu(2+)",
+        "Ca(2+)",
+        "L-topaquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.22"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 11
+      },
+      "handles": {
+        "active_site_context": true,
+        "amine_oxidase_text": true,
+        "binding_site_context": true,
+        "cofactor_copper": true,
+        "copper_feature_or_ligand_context": true,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "Calcium",
+        "Cell membrane",
+        "Copper",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Heparin-binding",
+        "Membrane",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "TPQ"
+      ],
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Diamine oxidase [copper-containing] (Diamine oxidase) (EC 1.4.3.22) (Amiloride-binding protein 1) (Amine oxidase copper domain-containing protein 1) (Histaminase)",
+      "reaction_sample": "histamine + o2 + h2o = imidazole-4-acetaldehyde + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:25625",
+        "RHEA:78367",
+        "RHEA:18273",
+        "RHEA:69132"
+      ]
+    },
+    {
+      "accession": "Q29437",
+      "cofactors": [
+        "Cu cation",
+        "Ca(2+)",
+        "L-topaquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.21"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 14
+      },
+      "handles": {
+        "active_site_context": true,
+        "amine_oxidase_text": true,
+        "binding_site_context": true,
+        "cofactor_copper": false,
+        "copper_feature_or_ligand_context": false,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Copper",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "TPQ"
+      ],
+      "organism": "Bos taurus (Bovine)",
+      "protein_name": "Primary amine oxidase, liver isozyme (EC 1.4.3.21) (Amine oxidase [copper-containing]) (Copper amine oxidase) (Serum amine oxidase) (SAO)",
+      "reaction_sample": "a primary methyl amine + o2 + h2o = an aldehyde + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:16153"
+      ]
+    },
+    {
+      "accession": "Q8JZQ5",
+      "cofactors": [
+        "Cu(2+)",
+        "Ca(2+)",
+        "L-topaquinone residue"
+      ],
+      "ec_numbers": [
+        "1.4.3.22"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 12
+      },
+      "handles": {
+        "active_site_context": true,
+        "amine_oxidase_text": true,
+        "binding_site_context": true,
+        "cofactor_copper": true,
+        "copper_feature_or_ligand_context": true,
+        "flavin_boundary_signal": false,
+        "glycosyltransferase_side_ec_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_copper": true,
+        "metal_binding_context": false,
+        "molybdopterin_boundary_signal": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxygen_reduction_or_oxidase_text": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "Calcium",
+        "Cell membrane",
+        "Copper",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Heparin-binding",
+        "Membrane",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "TPQ"
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Diamine oxidase [copper-containing] (Diamine oxidase) (EC 1.4.3.22) (Amine oxidase copper domain-containing protein 1) (Histaminase)",
+      "reaction_sample": "histamine + o2 + h2o = imidazole-4-acetaldehyde + h2o2 + nh4(+)",
+      "rhea_ids": [
+        "RHEA:25625",
+        "RHEA:78367",
+        "RHEA:18273",
+        "RHEA:69132"
+      ]
+    }
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only_for_supply_estimation": true,
+    "labels_emitted": 0,
+    "mechanism_handles_counted_separately_from_ec": true,
+    "predictive_features_added": false,
+    "registry_written": false
+  },
+  "handle_counts": {
+    "active_site_context": {
+      "count": 28,
+      "fraction": 0.35
+    },
+    "amine_oxidase_text": {
+      "count": 29,
+      "fraction": 0.362
+    },
+    "binding_site_context": {
+      "count": 77,
+      "fraction": 0.963
+    },
+    "catalytic_activity_context": {
+      "count": 78,
+      "fraction": 0.975
+    },
+    "cofactor_copper": {
+      "count": 20,
+      "fraction": 0.25
+    },
+    "copper_feature_or_ligand_context": {
+      "count": 31,
+      "fraction": 0.388
+    },
+    "glycosyltransferase_side_ec_signal": {
+      "count": 1,
+      "fraction": 0.013
+    },
+    "heme_boundary_signal": {
+      "count": 2,
+      "fraction": 0.025
+    },
+    "hydrolase_side_ec_signal": {
+      "count": 2,
+      "fraction": 0.025
+    },
+    "keyword_copper": {
+      "count": 80,
+      "fraction": 1.0
+    },
+    "non_oxidoreductase_side_ec_signal": {
+      "count": 2,
+      "fraction": 0.025
+    },
+    "oxygen_reduction_or_oxidase_text": {
+      "count": 78,
+      "fraction": 0.975
+    },
+    "redox_reaction_text": {
+      "count": 77,
+      "fraction": 0.963
+    },
+    "rhea_cross_reference_present": {
+      "count": 78,
+      "fraction": 0.975
+    }
+  },
+  "next_action": "If wire_21fp_lane is true, add copper_oxidoreductase fingerprint/ontology/gates/tests, re-freeze OOS preregistration to 21fp, preview, and apply only if novelty/governor/dedup/trust-tier gates pass.",
+  "query": "(reviewed:true) AND ((ec:1.10.3.*) OR (ec:1.4.3.*)) AND ((cc_cofactor:copper) OR (keyword:Copper))",
+  "recommendation": {
+    "cap_ceiling": 250,
+    "must_guard_boundary_signals": [
+      "heme_boundary_signal",
+      "flavin_boundary_signal",
+      "molybdopterin_boundary_signal",
+      "glycosyltransferase_side_ec_signal",
+      "hydrolase_side_ec_signal",
+      "non_oxidoreductase_side_ec_signal"
+    ],
+    "wire_21fp_lane": true
+  },
+  "schema_version": "mechanism_handle_scout.v1",
+  "search_rows_fetched": 80,
+  "status": "non_destructive_mechanism_handle_scout_no_registry_or_labels_written",
+  "top_ec_numbers_in_search_rows": [
+    {
+      "count": 24,
+      "ec": "1.4.3.13"
+    },
+    {
+      "count": 22,
+      "ec": "1.4.3.21"
+    },
+    {
+      "count": 16,
+      "ec": "1.10.3.2"
+    },
+    {
+      "count": 6,
+      "ec": "1.4.3.-"
+    },
+    {
+      "count": 6,
+      "ec": "1.10.3.-"
+    },
+    {
+      "count": 5,
+      "ec": "1.4.3.22"
+    },
+    {
+      "count": 3,
+      "ec": "1.10.3.3"
+    },
+    {
+      "count": 2,
+      "ec": "1.10.3.4"
+    },
+    {
+      "count": 2,
+      "ec": "1.10.3.1"
+    },
+    {
+      "count": 2,
+      "ec": "3.5.-.-"
+    },
+    {
+      "count": 1,
+      "ec": "1.3.3.5"
+    },
+    {
+      "count": 1,
+      "ec": "1.10.3.15"
+    },
+    {
+      "count": 1,
+      "ec": "1.14.18.-"
+    },
+    {
+      "count": 1,
+      "ec": "2.4.2.1"
+    },
+    {
+      "count": 1,
+      "ec": "2.4.2.28"
+    },
+    {
+      "count": 1,
+      "ec": "3.5.4.4"
+    }
+  ]
+}

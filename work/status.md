@@ -698,3 +698,22 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-12T23:27:14Z: SAM methyltransferase apply completed; appended 250 bronze; external bronze 3340 -> 3590; combined 4042 -> 4292; frozen current702 sha unchanged. Running post-apply validation/audit next.
 
 - 2026-06-12T23:34:16Z: Validation complete: targeted pytest 82 passed; validate passed (12 source records, 15 fingerprints, 18 ontology families, 702 labels); git diff --check and JSON parse checks clean; SAM guardrail spot check passed. Elapsed seconds: 1505.
+
+## Automation run start - 2026-06-13T01:57:51Z
+
+- STARTED_AT: `2026-06-13T01:57:51Z`
+- STARTED_LOCAL: `Fri Jun 12 20:57:51 CDT 2026`
+- Automation ID: `ce-nad-glyco-floor-expansion`
+- Initial lane from latest handoff: `molybdopterin_oxidoreductase` mechanism-handle scout before any 20fp wiring/apply.
+
+- Lock acquired: `.git/catalytic-earth-automation.lock` at `2026-06-13T01:58:17Z`; proceeding with origin sync and molybdopterin scout.
+
+- Molybdopterin apply succeeded at `2026-06-13T02:21:10Z`: external bronze `4202 -> 4409` (+207), combined `4904 -> 5111`; frozen current702 sha unchanged `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+- Validation complete at `2026-06-13T02:26:52Z`: focused pytest `111 passed`; leakage prereg/import-gate `10 passed, 171 deselected`; validate passed (12 source, 20 fingerprints, 23 ontology families, 702 labels); JSON parse checks passed.
+
+- Copper mechanism-handle scout completed at `2026-06-13T02:29:20Z`: 80 entries, 0 fetch failures, Rhea 78/80, redox text 77/80, copper feature/ligand 31/80, explicit copper cofactor 20/80; no registry/ontology change.
+
+- Closeout integrity checks passed at `2026-06-13T02:35:47Z`: targeted pytest `111 passed`; leakage prereg/import-gate `10 passed, 171 deselected`; CLI validate passed; JSON parse checks passed; `git diff --check` passed. Ready for fetch, commit, push, and release-lock after the required productive block window.
+
+- Additional import/transfer-scope coverage passed at `2026-06-13T02:37:23Z`: `PYTHONPATH=src pytest tests/test_external_annotation_anchored_import.py tests/test_transfer_scope.py -q` -> `133 passed` after updating the stale 20fp inverse-gate fixture expectation for `molybdopterin_oxidoreductase`.

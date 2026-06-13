@@ -171,16 +171,16 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 4904)
+            self.assertEqual(written["totals"]["combined"], 5111)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 4202)
+            self.assertEqual(written["totals"]["expansion_bronze"], 4409)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
             # The 2026-06-12/13 broadened-handle expansion applied NAD(P)-dehydrogenase,
             # glycosyltransferase, SAM methyltransferase, cytochrome P450,
-            # non-heme iron 2OG dioxygenase, CoA acyltransferase, and cofactor-independent
-            # isomerase to their
+            # non-heme iron 2OG dioxygenase, CoA acyltransferase, cofactor-independent
+            # isomerase, and molybdopterin oxidoreductase to their
             # floors/caps, so no expansion holes remain. metal_dependent_hydrolase
             # remains the known intentional over-cap.
             self.assertEqual(audit["class_imbalance"]["expansion_holes"], [])

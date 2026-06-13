@@ -1,0 +1,813 @@
+{
+  "artifact_id": "v3_molybdopterin_oxidoreductase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "molybdopterin_oxidoreductase",
+  "created_utc": "2026-06-13T02:02:09Z",
+  "entries_examined": 80,
+  "examples": [
+    {
+      "accession": "P33225",
+      "cofactors": [
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "ec_numbers": [
+        "1.7.2.3"
+      ],
+      "feature_type_counts": {
+        "Binding site": 15
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Metal-binding",
+        "Molybdenum",
+        "Oxidoreductase",
+        "Periplasm",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Trimethylamine-N-oxide reductase 1 (TMAO reductase 1) (Trimethylamine oxidase 1) (EC 1.7.2.3)",
+      "reaction_sample": "trimethylamine + 2 fe(iii)-[cytochrome c] + h2o = trimethylamine n-oxide + 2 fe(ii)-[cytochrome c] + 3 h(+)",
+      "rhea_ids": [
+        "RHEA:24236",
+        "RHEA-COMP:10350",
+        "RHEA-COMP:14399"
+      ]
+    },
+    {
+      "accession": "Q5VT66",
+      "cofactors": [
+        "Mo-molybdopterin"
+      ],
+      "ec_numbers": [
+        "1.7.-.-"
+      ],
+      "feature_type_counts": {
+        "Binding site": 11
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Lipoprotein",
+        "Membrane",
+        "Metal-binding",
+        "Mitochondrion",
+        "Mitochondrion outer membrane",
+        "Molybdenum",
+        "Myristate",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Mitochondrial amidoxime-reducing component 1 (mARC1) (EC 1.7.-.-) (Molybdenum cofactor sulfurase C-terminal domain-containing protein 1) (MOSC domain-containing protein 1) (Moco sulfurase C-terminal domain-containing protein 1)",
+      "reaction_sample": "n(omega)-hydroxy-l-arginine + 2 fe(ii)-[cytochrome b5] + 2 h(+) = l-arginine + 2 fe(iii)-[cytochrome b5] + h2o",
+      "rhea_ids": [
+        "RHEA:61644",
+        "RHEA-COMP:10438",
+        "RHEA-COMP:10439"
+      ]
+    },
+    {
+      "accession": "Q969Z3",
+      "cofactors": [
+        "Mo-molybdopterin"
+      ],
+      "ec_numbers": [
+        "1.7.-.-"
+      ],
+      "feature_type_counts": {},
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": false,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "Isopeptide bond",
+        "Membrane",
+        "Mitochondrion",
+        "Mitochondrion outer membrane",
+        "Molybdenum",
+        "Oxidoreductase",
+        "Peroxisome",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transit peptide",
+        "Ubl conjugation"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Mitochondrial amidoxime reducing component 2 (mARC2) (EC 1.7.-.-) (Molybdenum cofactor sulfurase C-terminal domain-containing protein 2) (MOSC domain-containing protein 2) (Moco sulfurase C-terminal domain-containing protein 2)",
+      "reaction_sample": "n(omega)-hydroxy-l-arginine + 2 fe(ii)-[cytochrome b5] + 2 h(+) = l-arginine + 2 fe(iii)-[cytochrome b5] + h2o",
+      "rhea_ids": [
+        "RHEA:61644",
+        "RHEA-COMP:10438",
+        "RHEA-COMP:10439"
+      ]
+    },
+    {
+      "accession": "P33937",
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "ec_numbers": [
+        "1.9.6.1"
+      ],
+      "feature_type_counts": {
+        "Binding site": 21
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "4Fe-4S",
+        "Direct protein sequencing",
+        "Electron transport",
+        "Iron",
+        "Iron-sulfur",
+        "Metal-binding",
+        "Molybdenum",
+        "Nitrate assimilation",
+        "Oxidoreductase",
+        "Periplasm",
+        "Reference proteome",
+        "Signal",
+        "Transport"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Periplasmic nitrate reductase (EC 1.9.6.1)",
+      "reaction_sample": "2 fe(ii)-[cytochrome] + nitrate + 2 h(+) = 2 fe(iii)-[cytochrome] + nitrite + h2o",
+      "rhea_ids": [
+        "RHEA:12909",
+        "RHEA-COMP:11777",
+        "RHEA-COMP:11778"
+      ]
+    },
+    {
+      "accession": "P18775",
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "ec_numbers": [
+        "1.8.5.3"
+      ],
+      "feature_type_counts": {
+        "Binding site": 17
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "4Fe-4S",
+        "Cell membrane",
+        "Direct protein sequencing",
+        "Iron",
+        "Iron-sulfur",
+        "Membrane",
+        "Metal-binding",
+        "Molybdenum",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Signal"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Dimethyl sulfoxide reductase DmsA (DMSO reductase) (DMSOR) (Me2SO reductase) (EC 1.8.5.3)",
+      "reaction_sample": "dimethyl sulfide + a menaquinone + h2o = dimethyl sulfoxide + a menaquinol",
+      "rhea_ids": [
+        "RHEA:28494",
+        "RHEA-COMP:9537",
+        "RHEA-COMP:9539"
+      ]
+    },
+    {
+      "accession": "P32176",
+      "cofactors": [
+        "Mo-bis(molybdopterin guanine dinucleotide)",
+        "[4Fe-4S] cluster"
+      ],
+      "ec_numbers": [
+        "1.17.1.9"
+      ],
+      "feature_type_counts": {
+        "Binding site": 4
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": false,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": false,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "4Fe-4S",
+        "Iron",
+        "Iron-sulfur",
+        "Metal-binding",
+        "Molybdenum",
+        "NAD",
+        "Oxidoreductase",
+        "Periplasm",
+        "Reference proteome",
+        "Selenocysteine",
+        "Signal"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Formate dehydrogenase-O major subunit (EC 1.17.1.9) (Aerobic formate dehydrogenase major subunit) (FDH-Z subunit alpha) (Formate dehydrogenase-O subunit alpha)",
+      "reaction_sample": "formate + nad(+) = co2 + nadh",
+      "rhea_ids": [
+        "RHEA:15985"
+      ]
+    },
+    {
+      "accession": "P07658",
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "ec_numbers": [
+        "1.17.98.4"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 28,
+        "Site": 2
+      },
+      "handles": {
+        "active_site_context": true,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": false,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": false,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "4Fe-4S",
+        "Direct protein sequencing",
+        "Iron",
+        "Iron-sulfur",
+        "Metal-binding",
+        "Molybdenum",
+        "NAD",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Selenocysteine"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Formate dehydrogenase H (EC 1.17.98.4) (Formate dehydrogenase-H subunit alpha) (FDH-H) (Formate-hydrogen-lyase-linked, selenocysteine-containing polypeptide)",
+      "reaction_sample": "formate + a + h(+) = ah2 + co2",
+      "rhea_ids": [
+        "RHEA:27290"
+      ]
+    },
+    {
+      "accession": "P09152",
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "ec_numbers": [
+        "1.7.5.1"
+      ],
+      "feature_type_counts": {
+        "Binding site": 5
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "4Fe-4S",
+        "Cell membrane",
+        "Direct protein sequencing",
+        "Electron transport",
+        "Iron",
+        "Iron-sulfur",
+        "Membrane",
+        "Metal-binding",
+        "Molybdenum",
+        "Nitrate assimilation",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transport"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Respiratory nitrate reductase 1 alpha chain (EC 1.7.5.1) (Nitrate reductase A subunit alpha) (Quinol-nitrate oxidoreductase subunit alpha)",
+      "reaction_sample": "nitrate + a quinol = a quinone + nitrite + h2o",
+      "rhea_ids": [
+        "RHEA:56144"
+      ]
+    },
+    {
+      "accession": "P19319",
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "ec_numbers": [
+        "1.7.5.1"
+      ],
+      "feature_type_counts": {
+        "Binding site": 5
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "4Fe-4S",
+        "Cell membrane",
+        "Direct protein sequencing",
+        "Electron transport",
+        "Iron",
+        "Iron-sulfur",
+        "Membrane",
+        "Metal-binding",
+        "Molybdenum",
+        "Nitrate assimilation",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transport"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Respiratory nitrate reductase 2 alpha chain (EC 1.7.5.1)",
+      "reaction_sample": "nitrate + a quinol = a quinone + nitrite + h2o",
+      "rhea_ids": [
+        "RHEA:56144"
+      ]
+    },
+    {
+      "accession": "P24183",
+      "cofactors": [
+        "Mo-bis(molybdopterin guanine dinucleotide)",
+        "[4Fe-4S] cluster"
+      ],
+      "ec_numbers": [
+        "1.17.5.3"
+      ],
+      "feature_type_counts": {
+        "Binding site": 5
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": false,
+        "peroxidase_boundary_signal": false,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "4Fe-4S",
+        "Iron",
+        "Iron-sulfur",
+        "Metal-binding",
+        "Molybdenum",
+        "NAD",
+        "Oxidoreductase",
+        "Periplasm",
+        "Reference proteome",
+        "Selenocysteine",
+        "Signal"
+      ],
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Formate dehydrogenase, nitrate-inducible, major subunit (EC 1.17.5.3) (Anaerobic formate dehydrogenase major subunit) (Formate dehydrogenase-N subunit alpha) (FDH-N subunit alpha)",
+      "reaction_sample": "a quinone + formate + h(+) = a quinol + co2",
+      "rhea_ids": [
+        "RHEA:48592"
+      ]
+    },
+    {
+      "accession": "P47989",
+      "cofactors": [
+        "[2Fe-2S] cluster",
+        "FAD",
+        "Mo-molybdopterin"
+      ],
+      "ec_numbers": [
+        "1.17.1.4",
+        "1.17.3.2"
+      ],
+      "feature_type_counts": {
+        "Active site": 1,
+        "Binding site": 22
+      },
+      "handles": {
+        "active_site_context": true,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": true,
+        "heme_boundary_signal": false,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": true,
+        "redox_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "2Fe-2S",
+        "3D-structure",
+        "Cytoplasm",
+        "Disease variant",
+        "Disulfide bond",
+        "FAD",
+        "Flavoprotein",
+        "Iron",
+        "Iron-sulfur",
+        "Metal-binding",
+        "Molybdenum",
+        "NAD",
+        "Oxidoreductase",
+        "Peroxisome",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Xanthine dehydrogenase/oxidase [Includes: Xanthine dehydrogenase (XD) (EC 1.17.1.4); Xanthine oxidase (XO) (EC 1.17.3.2) (Xanthine oxidoreductase) (XOR)]",
+      "reaction_sample": "xanthine + nad(+) + h2o = urate + nadh + h(+)",
+      "rhea_ids": [
+        "RHEA:16669",
+        "RHEA:24670",
+        "RHEA:21132"
+      ]
+    },
+    {
+      "accession": "P51687",
+      "cofactors": [
+        "heme b",
+        "Mo-molybdopterin"
+      ],
+      "ec_numbers": [
+        "1.7.-.-",
+        "1.8.3.1"
+      ],
+      "feature_type_counts": {
+        "Binding site": 10
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactor_molybdenum": false,
+        "cofactor_molybdopterin_or_moco": true,
+        "copper_boundary_signal": false,
+        "flavin_boundary_signal": false,
+        "heme_boundary_signal": true,
+        "hydrolase_side_ec_signal": false,
+        "keyword_molybdenum": true,
+        "keyword_molybdopterin_or_moco": false,
+        "metal_binding_context": false,
+        "mo_feature_or_ligand_context": true,
+        "non_oxidoreductase_side_ec_signal": false,
+        "oxo_transfer_reaction_text": true,
+        "peroxidase_boundary_signal": true,
+        "redox_reaction_text": false,
+        "rhea_cross_reference_present": true
+      },
+      "keywords": [
+        "3D-structure",
+        "Disease variant",
+        "Epilepsy",
+        "Heme",
+        "Intellectual disability",
+        "Iron",
+        "Metal-binding",
+        "Mitochondrion",
+        "Molybdenum",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transit peptide"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Sulfite oxidase, mitochondrial (HSO) (EC 1.8.3.1) (Nitrite reductase, mitochondrial) (EC 1.7.-.-)",
+      "reaction_sample": "sulfite + o2 + h2o = sulfate + h2o2",
+      "rhea_ids": [
+        "RHEA:24600",
+        "RHEA:57488"
+      ]
+    }
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only_for_supply_estimation": true,
+    "labels_emitted": 0,
+    "mechanism_handles_counted_separately_from_ec": true,
+    "predictive_features_added": false,
+    "registry_written": false
+  },
+  "handle_counts": {
+    "active_site_context": {
+      "count": 23,
+      "fraction": 0.287
+    },
+    "binding_site_context": {
+      "count": 78,
+      "fraction": 0.975
+    },
+    "catalytic_activity_context": {
+      "count": 78,
+      "fraction": 0.975
+    },
+    "cofactor_molybdopterin_or_moco": {
+      "count": 80,
+      "fraction": 1.0
+    },
+    "flavin_boundary_signal": {
+      "count": 33,
+      "fraction": 0.412
+    },
+    "heme_boundary_signal": {
+      "count": 13,
+      "fraction": 0.163
+    },
+    "keyword_molybdenum": {
+      "count": 80,
+      "fraction": 1.0
+    },
+    "mo_feature_or_ligand_context": {
+      "count": 65,
+      "fraction": 0.812
+    },
+    "oxo_transfer_reaction_text": {
+      "count": 71,
+      "fraction": 0.887
+    },
+    "peroxidase_boundary_signal": {
+      "count": 26,
+      "fraction": 0.325
+    },
+    "redox_reaction_text": {
+      "count": 49,
+      "fraction": 0.613
+    },
+    "rhea_cross_reference_present": {
+      "count": 78,
+      "fraction": 0.975
+    }
+  },
+  "next_action": "If wire_20fp_lane is true, add molybdopterin_oxidoreductase fingerprint/ontology/gates/tests, re-freeze OOS preregistration to 20fp, preview, and apply only if novelty/governor/dedup/trust-tier gates pass.",
+  "query": "(reviewed:true) AND (ec:1.*) AND ((cc_cofactor:molybdopterin) OR (cc_cofactor:molybdenum) OR (keyword:Molybdenum))",
+  "recommendation": {
+    "cap_ceiling": 250,
+    "must_guard_boundary_signals": [
+      "heme_boundary_signal",
+      "flavin_boundary_signal",
+      "copper_boundary_signal",
+      "peroxidase_boundary_signal",
+      "hydrolase_side_ec_signal",
+      "non_oxidoreductase_side_ec_signal"
+    ],
+    "wire_20fp_lane": true
+  },
+  "schema_version": "mechanism_handle_scout.v1",
+  "search_rows_fetched": 80,
+  "status": "non_destructive_mechanism_handle_scout_no_registry_or_labels_written",
+  "top_ec_numbers_in_search_rows": [
+    {
+      "count": 11,
+      "ec": "1.2.3.1"
+    },
+    {
+      "count": 10,
+      "ec": "1.17.3.-"
+    },
+    {
+      "count": 9,
+      "ec": "1.17.1.4"
+    },
+    {
+      "count": 6,
+      "ec": "1.7.-.-"
+    },
+    {
+      "count": 6,
+      "ec": "1.17.3.2"
+    },
+    {
+      "count": 6,
+      "ec": "1.7.1.1"
+    },
+    {
+      "count": 5,
+      "ec": "1.8.5.3"
+    },
+    {
+      "count": 5,
+      "ec": "1.8.3.1"
+    },
+    {
+      "count": 5,
+      "ec": "1.2.3.7"
+    },
+    {
+      "count": 4,
+      "ec": "1.7.2.3"
+    },
+    {
+      "count": 4,
+      "ec": "1.9.6.1"
+    },
+    {
+      "count": 4,
+      "ec": "1.7.5.1"
+    },
+    {
+      "count": 3,
+      "ec": "1.-.-.-"
+    },
+    {
+      "count": 2,
+      "ec": "1.17.1.9"
+    },
+    {
+      "count": 2,
+      "ec": "1.17.5.-"
+    },
+    {
+      "count": 2,
+      "ec": "1.20.99.1"
+    },
+    {
+      "count": 2,
+      "ec": "1.17.1.5"
+    },
+    {
+      "count": 2,
+      "ec": "1.7.1.2"
+    },
+    {
+      "count": 1,
+      "ec": "1.17.98.4"
+    },
+    {
+      "count": 1,
+      "ec": "1.17.5.3"
+    }
+  ]
+}

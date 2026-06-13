@@ -240,6 +240,20 @@
       ]
     },
     {
+      "id": "molybdopterin_redox",
+      "name": "Molybdopterin metal-center redox chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "molybdopterin_oxidoreductase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by molybdopterin/Mo-cofactor or Mo-pterin feature evidence plus Rhea redox/oxo-transfer, Molybdenum keyword/domain, active-/binding-/metal-site, or structure support; EC 1.* is scope only.",
+        "Do not merge heme/P450, flavin-only, copper-only, peroxidase, hydrolase, or non-oxidoreductase boundary rows into this family without explicit Mo-cofactor mechanism evidence.",
+        "Hold multi-fingerprint-signal rows where heme/flavin/copper/peroxidase chemistry independently satisfies another fingerprint.",
+        "Mo-cofactor, terminal oxo/sulfido ligand, electron relay, and substrate context are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "nicotinamide_redox",
       "name": "NAD(P)-dependent hydride-transfer redox chemistry",
       "parent_id": "mechanism",
