@@ -5,6 +5,41 @@ Generated from `work/progress_log.jsonl`.
 ## Active Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T06:28:39Z`
+- Started local: `Sat Jun 13 01:28:39 CDT 2026`
+- Focus: guarded `biotin_dependent_carboxylase` 27fp setup/apply from the latest handoff after the
+  zinc lyase/hydratase apply. Broad EC 2.7 kinase remains blocked by subclass mixing.
+- Result: applied +81 corrected external bronze rows for `biotin_dependent_carboxylase`; external
+  bronze 5199 -> 5280; combined surface 5901 -> 5982; frozen current702 sha stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Family/gate setup: added `biotin_dependent_carboxylase` fingerprint +
+  `biotin_carboxyl_transfer` ontology family (`label_factory_v1_27fp`); re-froze OOS
+  preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json`.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_biotin_dependent_carboxylase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Corrected result after removing 12 EC 6.3.4.15 biotin-protein ligase boundary rows: fetched 126,
+  mechanism-corroborated/admitted/applied 81, disambiguation holds 44, off-target held 0,
+  novelty-throttled/rejected 0, held at cap 0, duplicate skipped 1.
+- Guardrails: EC 6.4.1 / 6.3.4 scope-only and never counted; ATP + hydrogencarbonate/CO2/
+  carboxybiotin chemistry is mandatory; `predictive_evidence []`; tier bronze /
+  automation_curated / uniprot namespace; dedup vs both registries; multi-fingerprint-signal and
+  biotin-protein ligase rows held; chemistry-confusable cap 150 enforced.
+- Coverage audit: 5982 combined labels; 27 fingerprints; fingerprint Gini 0.1655; holes `[]`;
+  under-floor `['biotin_dependent_carboxylase']`; over-cap `['metal_dependent_hydrolase']`;
+  next-batch floor deficit 19. Novelty replay: 5280 expansion rows, decisions
+  `{'admit': 4824, 'reject': 47, 'throttle': 409}`, would-not-readmit 456 (0.0864).
+- Honest counters: `positive_bronze=4269`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 5731.
+- Validation: focused pytest `391 passed, 14 subtests passed`; `validate` passed (12 source records,
+  27 mechanism fingerprints, 29 ontology families, 702 curated labels); JSON/JSONL parse checks and
+  `git diff --check` passed.
+- Follow-on: run a non-destructive biotin floor-closure source scout for the remaining 19 rows
+  without relaxing the ATP/hydrogencarbonate/carboxybiotin chemistry requirement; if reviewed supply
+  cannot safely close the deficit, return to a narrow kinase-subclass scout.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T05:53:52Z`
 - Started local: `Sat Jun 13 00:53:52 CDT 2026`
 - Focus: guarded `zinc_lyase_hydratase` 26fp wiring/apply from the latest handoff after the ThDP

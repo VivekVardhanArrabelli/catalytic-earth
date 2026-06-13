@@ -393,6 +393,21 @@
         "Hold multi-fingerprint-signal rows rather than forcing a ThDP label.",
         "The ThDP/Mg cofactor, thiazolium ylide state, carbonyl substrate, and enamine/acyl-anion intermediate are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "biotin_carboxyl_transfer",
+      "name": "Biotin-dependent carboxyl transfer chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "biotin_dependent_carboxylase"
+      ],
+      "scope_note": "Biotin-dependent EC 6.4.1 / 6.3.4 carboxylases using protein-bound biotin, ATP/Mg2+, and hydrogencarbonate/CO2 to form carboxybiotin and transfer CO2 to an acceptor.",
+      "family_boundary_guardrails": [
+        "Membership is decided by biotin or biotinyl-Lys evidence plus Rhea ATP/hydrogencarbonate/carboxybiotin participant text, biotin-carboxylase/carboxyltransferase family text, active-/binding-site evidence, or structure; EC 6.4.1 / 6.3.4 is scope only.",
+        "Do not admit non-biotin ATP amide ligases, kinases/phosphotransferases, hydrolases, transferase side-EC rows, non-6.4.1/6.3.4 side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a biotin carboxylase label.",
+        "The biotinyl-Lys carrier, ATP/Mg2+, hydrogencarbonate/CO2, carboxybiotin intermediate, acceptor substrate, and carrier-domain pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

@@ -193,6 +193,11 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "catalytic Zn2+; reversible water elimination/addition, carbonic anhydrase, or hydro-lyase chemistry",
         "lanes": ["zinc_lyase_hydratase"],
     },
+    "biotin_dependent_carboxylase": {
+        "ec_prefixes": ["6.4.1", "6.3.4"],
+        "cofactor": "protein-bound biotin / biotinyl-Lys plus ATP/Mg and hydrogencarbonate/CO2 carboxylation chemistry",
+        "lanes": ["biotin_dependent_carboxylase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

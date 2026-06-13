@@ -531,6 +531,32 @@
     }
   },
   {
+    "id": "biotin_dependent_carboxylase",
+    "name": "Biotin-dependent carboxylase",
+    "enzyme_space": ["acetyl-CoA and propionyl-CoA carboxylases", "pyruvate carboxylases", "methylcrotonoyl-CoA carboxylases", "biotin carboxylase / carboxyltransferase systems"],
+    "active_site_signature": [
+      {"role": "biotinyl_lysine_carboxyl_carrier", "residue": "biotinylated Lys on a biotin carboxyl carrier domain or subunit", "constraints": ["carries CO2 as carboxybiotin between the ATP-dependent biotin carboxylase site and the carboxyltransferase site"]},
+      {"role": "atp_hydrogencarbonate_activation", "residue": "ATP/Mg2+ phosphate-binding residues plus bicarbonate-positioning residues", "constraints": ["forms carboxyphosphate/carboxybiotin using ATP, Mg2+, and hydrogencarbonate/CO2"]},
+      {"role": "acceptor_carboxyltransfer_site", "residue": "subclass-specific acid/base or metal-independent carboxyltransferase residues", "constraints": ["positions acetyl-CoA, propionyl-CoA, pyruvate, urea, or related acceptors for carboxyl transfer without reducing to generic ATP ligase or kinase chemistry"]}
+    ],
+    "cofactors": ["biotin", "Mg2+", "ATP"],
+    "reaction_center": {
+      "bond_changes": ["ATP-dependent carboxylation of enzyme-bound biotin followed by carboxyl transfer to a carbon acceptor"],
+      "chemical_operation": "biotin-mediated ATP/hydrogencarbonate carboxyl transfer"
+    },
+    "substrate_constraints": ["protein-bound biotin or biotinyl-Lys context present", "ATP/Mg2+ plus hydrogencarbonate/CO2 participant context present", "carboxyl acceptor positioned for transfer from carboxybiotin", "no kinase/phosphotransferase, non-biotin ATP amide ligase, hydrolase, transferase side-EC, non-6.4.1/6.3.4 side-EC, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Biotin cofactor, biotin keyword, or biotinyl-Lys modified-residue annotation", "Rhea ATP/hydrogencarbonate/carboxybiotin reaction participant context under EC 6.4.1 / 6.3.4 scope", "Biotin carboxylase, carboxyltransferase, or carboxylase family/domain text", "active-site or binding-site annotations for ATP, bicarbonate, biotin, or substrate"],
+    "counterevidence_features": ["non-biotin ATP-dependent amide ligase EC 6.3 rows", "kinase/phosphotransferase EC 2.7 or keyword signal", "hydrolase or transferase side EC without explicit biotin carboxylase ownership", "EC-only evidence with no biotin, Rhea, family, active-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["single-chain versus multi-subunit carboxylase architecture", "biotin carboxylase versus carboxyltransferase domain boundary", "acceptor substrate class", "carboxybiotin/CO2/hydrogencarbonate state and ATP/Mg2+ pose"],
+    "seed_examples": ["acetyl-CoA carboxylase", "propionyl-CoA carboxylase", "pyruvate carboxylase", "3-methylcrotonyl-CoA carboxylase", "urea carboxylase"],
+    "deploy_missing_active_site_context": {
+      "type": "protein_bound_biotin_cosubstrate_and_acceptor",
+      "detail": "the biotinyl-Lys carrier, ATP/Mg2+, hydrogencarbonate/CO2, carboxybiotin intermediate, and acceptor substrate are mobile or dissociable contexts absent from many apo predicted structures",
+      "reconstruction_path": "Path A sequence->biotinyl-Lys/carboxylase/Rhea ATP-hydrogencarbonate channel, or canonical biotin/ATP/Mg2+/acceptor graft across the carrier and transfer domains (Path B)",
+      "silver_reachability": "moderate; biotinyl-Lys and Rhea evidence are often annotated, but the mobile carrier-domain pose and acceptor geometry require reconstruction"
+    }
+  },
+  {
     "id": "thiamine_diphosphate_enzyme",
     "name": "Thiamine-diphosphate ylide enzyme",
     "enzyme_space": ["ThDP-dependent decarboxylases", "transketolases", "2-oxoacid dehydrogenase E1 components", "acetohydroxyacid synthases", "phosphoketolases"],

@@ -218,6 +218,8 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
             "tpp",
         )
         or bool(flags.get("thdp_or_thiamine_evidence_present")),
+        "biotin": any_name("biotin", "biocytin", "biotinyl")
+        or bool(flags.get("biotin_or_biocytin_evidence_present")),
     }
 
 
@@ -427,6 +429,41 @@ _ATP_ACYL_PHOSPHATE_TOKENS = (
 )
 _BIOTIN_CARBOXYLASE_BOUNDARY_TOKENS = ("biotin", "carboxylase", "carboxybiotin")
 _KINASE_BOUNDARY_TOKENS = ("kinase", "phosphotransferase")
+# Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
+# candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
+# cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
+# carboxylation participant text, carboxylase/biotin-carboxylase family text, or
+# active-/binding-site annotations. Kinases, biotin-protein ligases, hydrolases,
+# transferase side rows, and non-scope side ECs stay held.
+_BIOTIN_FEATURE_TOKENS = (
+    "biotin",
+    "biocytin",
+    "biotinyl",
+    "n6-biotinyl-l-lysine",
+    "n6-biotinyllysine",
+)
+_BIOTIN_CARBOXYLASE_TEXT_TOKENS = (
+    "biotin carboxylase",
+    "biotin-dependent carboxylase",
+    "carboxylase",
+    "carboxyltransferase",
+    "carboxybiotin",
+)
+_BIOTIN_CARBOXYLATION_CARBON_TOKENS = (
+    "hydrogencarbonate",
+    "bicarbonate",
+    "carbon dioxide",
+    "co2",
+    "co(2)",
+    "carboxybiotin",
+    "carboxylated biotin",
+)
+_BIOTIN_CARBOXYLATION_ATP_TOKENS = (
+    "atp",
+    "adp",
+    "orthophosphate",
+    "phosphate",
+)
 # Class-II metal aldolase handles. EC 4.1.2/4.1.3 scopes lyase candidates only;
 # counted corroboration comes from metal cofactor/site evidence, Lyase/aldolase
 # family text, Rhea C-C/oxoacid reaction context, or active-/binding-/metal-site
@@ -691,10 +728,29 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         in_any(cofactor_names + feature_texts + keywords + [protein_name], *_BIOTIN_CARBOXYLASE_BOUNDARY_TOKENS)
         or _ec_has_prefix(row, ("6.3.4", "6.4.1"))
     )
+    biotin_feature_or_ligand = bool(evidence.get("biotin")) or in_any(
+        cofactor_names + feature_texts, *_BIOTIN_FEATURE_TOKENS
+    )
+    biotin_keyword_or_name = in_any(
+        keywords + [protein_name], "biotin", "biocytin", "biotinyl"
+    )
+    biotin_carboxylase_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_BIOTIN_CARBOXYLASE_TEXT_TOKENS,
+    )
+    biotin_carboxylation_reaction = in_any(
+        reactions, *_BIOTIN_CARBOXYLATION_CARBON_TOKENS
+    ) and in_any(
+        reactions, *_BIOTIN_CARBOXYLATION_ATP_TOKENS
+    )
     kinase_boundary = in_any(keywords + [protein_name], *_KINASE_BOUNDARY_TOKENS) or _ec_has_prefix(
         row, ("2.7.",)
     )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
+    non_biotin_carboxylase_scope_side_ec = any(
+        ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
+        for ec in _ec_numbers(row)
+    )
     class_ii_metal_aldolase_text = in_any(
         reactions + keywords + [protein_name], *_CLASS_II_ALDOLASE_TEXT_TOKENS
     )
@@ -806,8 +862,13 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "atp_amide_ligation_text": atp_amide_ligation_text,
             "atp_acyl_phosphate_intermediate": atp_acyl_phosphate_intermediate,
             "biotin_carboxylase_boundary": biotin_carboxylase_boundary,
+            "biotin_feature_or_ligand": biotin_feature_or_ligand,
+            "biotin_keyword_or_name": biotin_keyword_or_name,
+            "biotin_carboxylase_text": biotin_carboxylase_text,
+            "biotin_carboxylation_reaction": biotin_carboxylation_reaction,
             "kinase_boundary": kinase_boundary,
             "non_6_3_side_ec": non_6_3_side_ec,
+            "non_biotin_carboxylase_scope_side_ec": non_biotin_carboxylase_scope_side_ec,
             "class_ii_metal_aldolase_text": class_ii_metal_aldolase_text,
             "keyword_lyase": keyword_lyase,
             "class_ii_aldolase_cc_reaction": class_ii_aldolase_cc_reaction,
@@ -861,6 +922,15 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("thdp")
         or evidence.get("thdp_mg_context")
         or evidence.get("zinc_feature_or_ligand")
+        or evidence.get("biotin_feature_or_ligand")
+        or (
+            evidence.get("biotin_keyword_or_name")
+            and evidence.get("biotin_carboxylation_reaction")
+        )
+        or (
+            evidence.get("biotin_carboxylation_reaction")
+            and evidence.get("biotin_carboxylase_text")
+        )
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -888,6 +958,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("class_ii_metal_aldolase_text")
         or evidence.get("thdp_reaction_context")
         or evidence.get("zinc_hydration_elimination_reaction")
+        or evidence.get("biotin_carboxylation_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -897,6 +968,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("molybdopterin_feature_or_ligand")
         or evidence.get("copper_feature_or_ligand")
         or evidence.get("zinc_feature_or_ligand")
+        or evidence.get("biotin_feature_or_ligand")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -917,6 +989,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("class_ii_metal_aldolase_text")
         or evidence.get("thdp_family_text")
         or evidence.get("zinc_lyase_hydratase_text")
+        or evidence.get("biotin_keyword_or_name")
+        or evidence.get("biotin_carboxylase_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -968,6 +1042,10 @@ _COPPER_OXIDOREDUCTASE_EC = (
 )  # copper oxidases; copper/Rhea handles confirm
 _METAL_RACEMASE_EPIMERASE_NON_PLP_EC = ("5.1.",)  # racemase/epimerase scope only
 _ATP_AMIDE_LIGASE_EC = ("6.3.",)  # C-N ligases; ATP/Mg/Rhea handles confirm
+_BIOTIN_DEPENDENT_CARBOXYLASE_EC = (
+    "6.4.1",
+    "6.3.4",
+)  # biotin carboxylases; EC is scope only
 _CLASS_II_METAL_ALDOLASE_EC = ("4.1.2", "4.1.3")  # metal aldol lyases; EC is scope only
 _THIAMINE_DIPHOSPHATE_ENZYME_EC = (
     "2.2.1",
@@ -1130,6 +1208,26 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         ),
     ),
     (
+        "biotin_dependent_carboxylase",
+        lambda c, row: _ec_has_prefix(row, _BIOTIN_DEPENDENT_CARBOXYLASE_EC)
+        and c["biotin_carboxylation_reaction"]
+        and c["biotin_carboxylase_text"]
+        and (
+            c["biotin_feature_or_ligand"]
+            or c["biotin_keyword_or_name"]
+            or c["active_or_binding_site_present"]
+        )
+        and not c["kinase_boundary"]
+        and not c["hydrolase_side_ec"]
+        and not c["transferase_side_ec"]
+        and not c["non_biotin_carboxylase_scope_side_ec"]
+        and not c["plp_boundary_signal"]
+        and not c["thdp_boundary_signal"]
+        and not c["molybdopterin_moco"]
+        and not c["heme"]
+        and not c["flavin"],
+    ),
+    (
         "atp_amide_ligase",
         lambda c, row: _ec_has_prefix(row, _ATP_AMIDE_LIGASE_EC)
         and c["keyword_ligase"]
@@ -1275,6 +1373,8 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "thiamine diphosphate", "cross_reference": {"id": None}}]
     elif fingerprint == "zinc_lyase_hydratase" and evidence.get("zinc_feature_or_ligand"):
         records = [{"name": "zinc", "cross_reference": {"id": None}}]
+    elif fingerprint == "biotin_dependent_carboxylase" and evidence.get("biotin_feature_or_ligand"):
+        records = [{"name": "biotin", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

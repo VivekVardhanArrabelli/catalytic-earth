@@ -7689,6 +7689,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             sorted(inverse_gate["missing_current_fingerprint_ids"]),
             [
                 "atp_amide_ligase",
+                "biotin_dependent_carboxylase",
                 "class_ii_metal_aldolase",
                 "coa_acyltransferase",
                 "cofactor_independent_isomerase",

@@ -3,6 +3,69 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: BIOTIN-DEPENDENT CARBOXYLASE 27FP BRONZE EXPANSION APPLIED
+
+Decision: broad EC 2.7 kinase remains blocked by subclass mixing, so this run selected the guarded
+`biotin_dependent_carboxylase` lane from the latest handoff. Growth went only to
+`data/registries/external_bronze_labels.json`; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before and after apply.
+
+**Family/gate surface.** Added `biotin_dependent_carboxylase` fingerprint spec and
+`biotin_carboxyl_transfer` ontology family; bumped
+`labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_27fp`; re-froze OOS
+next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json`. EC 6.4.1 /
+6.3.4 is scope-only (`ec_scope_hint`, never counted). Counted mechanism corroboration comes from
+biotin/biotinyl-Lys cofactor or modified-residue evidence, Rhea ATP/hydrogencarbonate/
+carboxybiotin participant text, carboxylase family text, active-/binding-site evidence, or
+structure. Kinase/phosphotransferase, hydrolase, transferase side EC, non-scope side EC,
+PLP/ThDP/Mo/heme/flavin, multi-fingerprint rows, and EC 6.3.4.15 biotin-protein ligases are held.
+
+**Live apply and correction.** Command:
+`PYTHONPATH=src python scripts/source_biotin_dependent_carboxylase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+The first pass fetched **126** and admitted 93, but row audit caught **12** EC 6.3.4.15
+biotin-protein ligase rows with biotin/ATP annotations and no hydrogencarbonate/carboxybiotin
+carboxylation reaction. The rule now requires ATP-dependent carboxylation chemistry for every
+`biotin_dependent_carboxylase` import, and those 12 rows were removed from both the registry append
+and preview artifact. Corrected result: target mechanism-corroborated **81**, novelty-admitted/
+applied **81**, **44** no-corroboration holds, off-target held **0**, novelty-throttled/rejected
+**0**, held at cap **0**, duplicate skipped **1**. `biotin_dependent_carboxylase` **0 -> 81**
+(chemistry-confusable cap 150, floor not reached; deficit **19**). External bronze **5199 -> 5280**;
+combined surface **5901 -> 5982**.
+
+Guardrails held: every added row is `tier=bronze`, `review_status=automation_curated`, namespace
+`uniprot`; EC/name/keyword/Rhea/prose handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; off-target/multi-signal rows are held; per-fingerprint cap 150 held.
+Row audit found **0** leakage/trust-tier/tier/namespace/reaction problems across 81 biotin rows;
+mechanism axes present: cofactor/cosubstrate **81**, domain/family **81**, Rhea participant **81**,
+active-site/residue-role **74**. Honest counters after apply are **positive_bronze 4269**,
+**oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**, **projected 0**; do not merge
+them. Fresh post-biotin coverage/redundancy audit reports **5982** combined labels, **27**
+fingerprints, seed positives **4286**, fingerprint Gini **0.1655**, expansion holes `[]`,
+under-floor `['biotin_dependent_carboxylase']`, over-cap `['metal_dependent_hydrolase']`, and
+next-batch floor deficit **19**. Novelty replay reports **5280** expansion rows, decisions
+`{'admit': 4824, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0864).
+
+Next decision: run a **non-destructive biotin floor-closure source scout** before any further apply.
+The scout must keep ATP + hydrogencarbonate/CO2/carboxybiotin reaction chemistry mandatory and must
+not admit EC 6.3.4.15 biotin-protein ligases. If reviewed source supply cannot safely close the
+19-row deficit, leave `biotin_dependent_carboxylase` under floor and return to a narrow kinase
+subclass scout; do not broad-wire EC 2.7.
+
+References:
+`src/catalytic_earth/biotin_dependent_carboxylase_sourcing.py`,
+`scripts/source_biotin_dependent_carboxylase_family.py`,
+`tests/test_biotin_dependent_carboxylase_sourcing.py`,
+`artifacts/v3_biotin_dependent_carboxylase_sourcing_preview_current702.json`,
+`work/biotin_dependent_carboxylase_sourcing_current702.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_biotin_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_biotin_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_biotin_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_biotin_applied.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-13: ZINC LYASE/HYDRATASE 26FP BRONZE EXPANSION APPLIED
 
 Decision: the latest handoff explicitly recommended guarded `zinc_lyase_hydratase` wiring after

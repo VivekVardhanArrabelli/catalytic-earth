@@ -13,6 +13,41 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: biotin-dependent carboxylase 27fp expansion is now applied but
+under floor.** The latest handoff blocked broad EC 2.7 kinase wiring and recommended either a
+narrow kinase subclass or a guarded biotin-carboxylase handle. This run followed the biotin lane
+because ATP/hydrogencarbonate/carboxybiotin Rhea chemistry plus biotin/biotinyl-Lys evidence is a
+clean mechanism-first handle. Added `biotin_dependent_carboxylase` fingerprint +
+`biotin_carboxyl_transfer` ontology family, bumped
+`CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_27fp`, and re-froze OOS
+preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json`.
+EC 6.4.1 / 6.3.4 is scope-only; counted mechanism handles are biotin or biotinyl-Lys cofactor/
+modified-residue evidence, Rhea ATP/hydrogencarbonate/carboxybiotin participant text, carboxylase
+family text, active-/binding-site evidence, or structure. Kinase/phosphotransferase, hydrolase,
+transferase side EC, non-scope side EC, PLP/ThDP/Mo/heme/flavin, multi-fingerprint signals, and
+EC 6.3.4.15 biotin-protein ligase rows are held.
+
+Live apply
+(`scripts/source_biotin_dependent_carboxylase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **126**. An initial 93-row apply exposed 12 EC 6.3.4.15 biotin-protein ligase boundary rows;
+the gate was corrected to require ATP-dependent carboxylation chemistry, and those rows were removed
+from both the registry append and preview artifact. Corrected result: mechanism-corroborated/
+admitted/applied **81**, disambiguation holds **44**, off-target held **0**, novelty-throttled/
+rejected **0**, skipped **1**, held at cap **0**. External bronze is now **5280**; combined label
+surface is **5982**; frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters stay
+separate: **positive_bronze 4269**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k: **5731**.
+Post-apply audit: **27 fingerprints**, fingerprint Gini **0.1655**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase']`, only `metal_dependent_hydrolase` over-cap, next-batch floor
+deficit **19**. Novelty replay: **5280** expansion rows, decisions
+`{'admit': 4824, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0864). All added
+rows keep `predictive_evidence []`; EC/name/keyword/Rhea/prose handles remain excluded-context
+admission evidence and are never predictive. Next useful action: run a non-destructive biotin
+floor-closure source scout for the remaining **19** rows while keeping ATP + hydrogencarbonate/CO2/
+carboxybiotin chemistry mandatory; if reviewed source supply cannot close the deficit, leave biotin
+under floor and return to a narrow kinase-subclass scout. Do **not** broad-wire EC 2.7.
+
 **2026-06-13 automation update: zinc lyase/hydratase 26fp expansion is now applied.** The latest
 handoff explicitly recommended `zinc_lyase_hydratase` after the ThDP apply. The guarded lane added
 `zinc_lyase_hydratase` fingerprint + `zinc_hydro_lyase` ontology family, bumped

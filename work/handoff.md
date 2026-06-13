@@ -1,5 +1,78 @@
 # Handoff
 
+## Session run - biotin-dependent carboxylase 27fp bronze expansion applied (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`
+  (`d4dd3180e3752f9f237206d9851f0ef04c0bca7f` before local edits). The latest handoff blocked
+  broad EC 2.7 kinase wiring and suggested either a narrow kinase subclass or a guarded
+  biotin-carboxylase handle. This run chose the biotin lane because it had clean non-EC mechanism
+  handles around biotinyl-Lys and Rhea ATP/hydrogencarbonate/carboxybiotin chemistry.
+- Status: **APPLIED gated biotin-dependent carboxylase bronze growth to the separate external
+  bronze registry.** Frozen current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before/after apply.
+  External bronze **5199 -> 5280** (+81); combined label surface **5901 -> 5982**.
+- Family/gate setup: added `biotin_dependent_carboxylase` fingerprint +
+  `biotin_carboxyl_transfer` ontology family; bumped
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_27fp`; re-froze OOS
+  preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json`.
+  EC 6.4.1 / 6.3.4 is scope-only. Counted mechanism corroboration comes from biotin/biotinyl-Lys
+  cofactor or modified-residue evidence, ATP/hydrogencarbonate/carboxybiotin Rhea participant text,
+  carboxylase family text, active-/binding-site evidence, or structure. Kinase/phosphotransferase,
+  hydrolase, transferase side EC, non-scope side EC, PLP/ThDP/Mo/heme/flavin, and multi-fingerprint
+  signals are held.
+- Biotin apply command:
+  `PYTHONPATH=src python scripts/source_biotin_dependent_carboxylase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Initial apply admitted 93, then the gate audit caught 12 EC 6.3.4.15 biotin-protein ligase rows
+  that had biotin/ATP annotations but no hydrogencarbonate/carboxybiotin carboxylation reaction.
+  The rule now requires an ATP-dependent carboxylation reaction for this fingerprint, and those 12
+  rows were removed from both the registry append and preview artifact. Corrected result: fetched
+  **126**, target mechanism-corroborated/admitted/applied **81**, disambiguation holds **44**
+  (`no_mechanism_corroboration`), off-target held **0**, novelty-throttled/rejected **0**, held at
+  cap **0**, duplicate skipped **1**; `biotin_dependent_carboxylase` **0 -> 81** (chemistry-confusable
+  cap 150; floor not reached, deficit 19).
+- Guardrails verified: EC is scope/fetch context only and never counted; broadened biotin/Rhea/
+  keyword/prose/active-site handles are admission/excluded-context only; `predictive_evidence []`;
+  every added row is `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup ran
+  against frozen current702 and external bronze; biotin-protein ligase and other boundary rows are
+  held; per-fingerprint cap 150 was enforced. Row audit found **0** leakage/trust-tier/tier/
+  namespace/reaction problems across all 81 biotin rows. Mechanism axes: cofactor/cosubstrate 81,
+  domain/family 81, Rhea participant 81, active-site/residue-role 74.
+- Honest counters after apply: `positive_bronze=4269`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`. Do not merge them. Remaining positive-bronze gap to 10k:
+  **5731**.
+- Fresh post-biotin audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_biotin_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_biotin_applied.md`; **5982** combined,
+  **27** fingerprints, fingerprint Gini **0.1655**, holes `[]`, under-floor
+  `['biotin_dependent_carboxylase']`, over-cap `['metal_dependent_hydrolase']`,
+  next-batch floor deficit **19**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_biotin_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_biotin_applied.md`; **5280** expansion rows,
+  decisions `{'admit': 4824, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0864).
+- Validation: focused biotin/shared suite passed (`391 passed, 14 subtests passed`);
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source records, 27 fingerprints,
+  29 ontology families, 702 curated labels); JSON/JSONL parse checks passed for touched registries,
+  artifacts, and `work/progress_log.jsonl`; `git diff --check` passed.
+- Key new artifacts/files this run:
+  `src/catalytic_earth/biotin_dependent_carboxylase_sourcing.py`,
+  `scripts/source_biotin_dependent_carboxylase_family.py`,
+  `tests/test_biotin_dependent_carboxylase_sourcing.py`,
+  `artifacts/v3_biotin_dependent_carboxylase_sourcing_preview_current702.json`,
+  `work/biotin_dependent_carboxylase_sourcing_current702.md`,
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_biotin_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_biotin_applied.md`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_biotin_applied.json`, and
+  `work/novelty_admission_gate_audit_current702_20260613_biotin_applied.md`.
+- Next exact action: first try a **non-destructive biotin floor-closure scout** for the remaining
+  19 rows without relaxing the carboxylation requirement. Add a Rhea-first or reviewed-UniProt
+  source-supply lane that explicitly requires ATP + hydrogencarbonate/CO2/carboxybiotin reaction
+  text plus biotin/biotinyl-Lys/family evidence, and write to an alternate `--out`/`--report` before
+  any apply. If reviewed source supply cannot safely close the 19-row deficit, leave
+  `biotin_dependent_carboxylase` under floor and return to the narrow kinase-subclass scout. Do
+  **not** broad-wire EC 2.7 kinase, and do **not** admit EC 6.3.4.15 biotin-protein ligase rows.
+
 ## Session run - zinc lyase/hydratase 26fp bronze expansion applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

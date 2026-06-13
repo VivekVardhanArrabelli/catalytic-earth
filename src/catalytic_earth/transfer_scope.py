@@ -74,7 +74,8 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
 # methyltransferase, cytochrome P450 monooxygenase, non-heme iron 2OG dioxygenase, CoA
 # acyltransferase, cofactor-independent isomerase, molybdopterin oxidoreductase, copper
 # oxidoreductase, non-PLP racemase/epimerase, ATP amide ligase, class-II metal aldolase,
-# ThDP ylide enzyme, and zinc lyase/hydratase universe bumps. They are kept on disk as records.
+# ThDP ylide enzyme, zinc lyase/hydratase, and biotin-dependent carboxylase universe bumps. They
+# are kept on disk as records.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_12FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json"
 )
@@ -136,10 +137,15 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_24FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_25FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_25fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 26-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The re-frozen tranche pre-registration for the 26-fingerprint universe is historical after the
+# biotin-dependent carboxylase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_26FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_26fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 27-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_27FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

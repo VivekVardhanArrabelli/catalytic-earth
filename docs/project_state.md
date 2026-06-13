@@ -26,6 +26,29 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **BIOTIN-DEPENDENT CARBOXYLASE 27FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  Latest handoff blocked broad EC 2.7 kinase and recommended a guarded biotin-carboxylase lane if
+  mechanism-first handles were clean. Added `biotin_dependent_carboxylase` fingerprint +
+  `biotin_carboxyl_transfer` ontology family, bumped the universe to `label_factory_v1_27fp`, and
+  re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json`. EC 6.4.1 /
+  6.3.4 is scope-only; counted handles require biotin/biotinyl-Lys evidence plus ATP/
+  hydrogencarbonate/carboxybiotin reaction context, carboxylase family text, or active-/binding-site
+  evidence. A guardrail correction removed **12** EC 6.3.4.15 biotin-protein ligase rows that lacked
+  carboxylation chemistry, leaving **81** valid bronze rows. External bronze **5199 -> 5280**;
+  combined surface **5901 -> 5982**; frozen current702 remains 702 with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate: **positive_bronze 4269**, **oos_bronze 1696**, **silver_ready 0**,
+  **silver_confirmed 17**, **projected 0**; remaining positive-bronze gap to 10k: **5731**. Fresh
+  post-biotin coverage audit: **5982** combined, **27** fingerprints, fingerprint Gini **0.1655**,
+  holes `[]`, under-floor `['biotin_dependent_carboxylase']`, only `metal_dependent_hydrolase`
+  over-cap, next-batch floor deficit **19**. Novelty replay: **5280** expansion rows, decisions
+  `{'admit': 4824, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0864). Validation:
+  focused pytest **391 passed + 14 subtests**, `validate` ok (12 source / 27 fingerprints /
+  29 ontology families / 702 labels), JSON/JSONL parse checks, and `git diff --check` passed.
+  Follow-on: try a non-destructive biotin floor-closure scout that keeps ATP + hydrogencarbonate/
+  CO2/carboxybiotin chemistry mandatory; if reviewed supply cannot close the 19-row deficit, return
+  to a narrow kinase-subclass scout. Do not broad-wire EC 2.7 or admit biotin-protein ligases.
 - **ZINC LYASE/HYDRATASE 26FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
   Latest handoff recommended guarded `zinc_lyase_hydratase` after the ThDP apply. Added the
   `zinc_lyase_hydratase` fingerprint + `zinc_hydro_lyase` ontology family, bumped the universe to

@@ -655,6 +655,113 @@ class DisambiguateRowTests(unittest.TestCase):
         ]
         self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
 
+    def test_biotin_dependent_carboxylase_requires_biotin_and_mechanism_handle(self) -> None:
+        row = _row(cofactors=["Biotin", "Mg(2+)"], ec=["6.4.1.2"])
+        row["protein_name"] = "Acetyl-CoA carboxylase"
+        row["keywords"] = ["Biotin", "Ligase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:BC0001",
+                "reaction": "acetyl-CoA + ATP + hydrogencarbonate = malonyl-CoA + ADP + phosphate",
+                "ec_number": "6.4.1.2",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "biotin_dependent_carboxylase")
+        self.assertIn(
+            "cofactor_or_cosubstrate",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_biotin_dependent_carboxylase_biotinyl_lysine_fallback(self) -> None:
+        row = _row(ec=["6.3.4.14"])
+        row["protein_name"] = "Biotin carboxylase"
+        row["keywords"] = ["Biotin", "Ligase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:BC0005",
+                "reaction": "N(6)-biotinyl-L-lysyl-[protein] + hydrogencarbonate + ATP = N(6)-carboxybiotinyl-L-lysyl-[protein] + ADP + phosphate + H(+)",
+                "ec_number": "6.3.4.14",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 32,
+                "feature_code": "MOD_RES",
+                "feature_type": "Modified residue",
+                "ligand_name": "N6-biotinyl-L-lysine",
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            },
+            {
+                "position": 122,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "ATP",
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            },
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "biotin_dependent_carboxylase")
+        self.assertIn(
+            "active_site_motif_or_residue_role",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "domain_or_family_profile",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_biotin_dependent_carboxylase_controls_hold(self) -> None:
+        ec_only = _row(ec=["6.4.1.2"])
+        ec_only["protein_name"] = "Acetyl-CoA carboxylase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        kinase = _row(cofactors=["Biotin"], ec=["6.4.1.2", "2.7.1.1"])
+        kinase["protein_name"] = "Biotin carboxylase kinase boundary"
+        kinase["keywords"] = ["Biotin", "Kinase"]
+        kinase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:BC0002",
+                "reaction": "ATP + hydrogencarbonate + biotin = ADP + carboxybiotin + phosphate",
+                "ec_number": "6.4.1.2",
+            }
+        ]
+        self.assertEqual(disambiguate_row(kinase)["decision"], "hold")
+
+        side_ec = _row(cofactors=["Biotin"], ec=["6.4.1.2", "3.1.1.1"])
+        side_ec["protein_name"] = "Biotin carboxylase hydrolase boundary"
+        side_ec["keywords"] = ["Biotin", "Ligase"]
+        side_ec["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:BC0003",
+                "reaction": "ATP + hydrogencarbonate + biotin = ADP + carboxybiotin + phosphate",
+                "ec_number": "6.4.1.2",
+            }
+        ]
+        self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
+
+        biotin_ligase = _row(cofactors=["Biotin"], ec=["6.3.4.15"])
+        biotin_ligase["protein_name"] = "Biotin--[acetyl-CoA-carboxylase] ligase"
+        biotin_ligase["keywords"] = ["Biotin", "Ligase"]
+        biotin_ligase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:BC0004",
+                "reaction": "biotin + L-lysyl-[protein] + ATP = N(6)-biotinyl-L-lysyl-[protein] + AMP + diphosphate + H(+)",
+                "ec_number": "6.3.4.15",
+            }
+        ]
+        self.assertEqual(disambiguate_row(biotin_ligase)["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true
