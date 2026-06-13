@@ -64,12 +64,12 @@ DEFAULT_ONTOLOGY_VERSION_AT_DECISION = "label_factory_v1_8fp"
 # copper oxidoreductase lane expands it 20 -> 21; the non-PLP racemase/epimerase
 # lane expands it 21 -> 22; the ATP-dependent amide ligase lane expands it 22 -> 23; the
 # class-II metal aldolase lane expands it 23 -> 24; the ThDP ylide enzyme lane expands it
-# 24 -> 25. A NEW
+# 24 -> 25; the zinc lyase/hydratase lane expands it 25 -> 26. A NEW
 # OOS hard-negative tranche must be
 # pre-registered against THIS version (and the current fingerprint universe). This is
 # intentionally distinct from the historical label stamp above (which stays _8fp for existing
 # rows / spent contracts) -- bumping the historical stamp would rewrite history.
-CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_25fp"
+CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_26fp"
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,

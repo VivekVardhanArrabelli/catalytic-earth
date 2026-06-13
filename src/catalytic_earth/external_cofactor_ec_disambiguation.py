@@ -200,6 +200,8 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
         or bool(flags.get("molybdopterin_or_moco_evidence_present")),
         "copper": any_name("copper", "cu cation", "cu(2", "cu2", "cu+")
         or bool(flags.get("copper_or_cu_evidence_present")),
+        "zinc": any_name("zinc", "zn", "zn(2", "zn2")
+        or bool(flags.get("zinc_or_zn_evidence_present")),
         "plp": any_name(
             "pyridoxal",
             "pyridoxal phosphate",
@@ -495,6 +497,38 @@ _THDP_KINASE_HYDROLASE_BOUNDARY_TOKENS = (
     "hydrolase",
 )
 _SCHIFF_CLASS_I_BOUNDARY_TOKENS = ("schiff", "class i aldolase")
+# Zinc hydratase / hydro-lyase handles. EC 4.2.1 scopes reviewed hydro-lyase
+# candidates only; counted mechanism corroboration comes from Zn cofactor/site,
+# Rhea water elimination/addition/carbonic chemistry, lyase/hydratase family text,
+# or active-/binding-/metal-site evidence. PLP/ThDP, hydrolase/transferase/
+# aldolase/isomerase boundary rows, and non-4.2.1 side ECs stay held.
+_ZINC_FEATURE_TOKENS = ("zinc", "zn", "zn(2", "zn2")
+_ZINC_LYASE_HYDRATASE_TEXT_TOKENS = (
+    "lyase",
+    "hydratase",
+    "dehydratase",
+    "anhydrase",
+    "hydro-lyase",
+    "hydro lyase",
+    "carbonate dehydratase",
+)
+_ZINC_HYDRATION_REACTION_TOKENS = (
+    "h2o",
+    "h(2)o",
+    "water",
+    "hydrogencarbonate",
+    "bicarbonate",
+    "co2",
+    "co(2)",
+    "carbon dioxide",
+    "cyanamide",
+)
+_ZINC_LYASE_BOUNDARY_TEXT_TOKENS = (
+    "hydrolase",
+    "transferase",
+    "aldolase",
+    "isomerase",
+)
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
 
@@ -677,6 +711,20 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     thdp_kinase_hydrolase_boundary = in_any(
         keywords + [protein_name], *_THDP_KINASE_HYDROLASE_BOUNDARY_TOKENS
     )
+    zinc_feature_or_ligand = bool(evidence.get("zinc")) or in_any(
+        cofactor_names + feature_texts, *_ZINC_FEATURE_TOKENS
+    )
+    zinc_lyase_hydratase_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_ZINC_LYASE_HYDRATASE_TEXT_TOKENS,
+    )
+    zinc_hydration_elimination_reaction = in_any(
+        reactions, *_ZINC_HYDRATION_REACTION_TOKENS
+    )
+    zinc_lyase_boundary_text = in_any(
+        keywords + [protein_name], *_ZINC_LYASE_BOUNDARY_TEXT_TOKENS
+    )
+    non_4_2_1_side_ec = any(ec and not ec.startswith("4.2.1") for ec in _ec_numbers(row))
     non_thdp_scope_side_ec = any(
         ec
         and not (
@@ -768,6 +816,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "thdp_family_text": thdp_family_text,
             "thdp_reaction_context": thdp_reaction_context,
             "thdp_kinase_hydrolase_boundary": thdp_kinase_hydrolase_boundary,
+            "zinc_feature_or_ligand": zinc_feature_or_ligand,
+            "zinc_lyase_hydratase_text": zinc_lyase_hydratase_text,
+            "zinc_hydration_elimination_reaction": zinc_hydration_elimination_reaction,
+            "zinc_lyase_boundary_text": zinc_lyase_boundary_text,
+            "non_4_2_1_side_ec": non_4_2_1_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
             "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
@@ -807,6 +860,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("atp_ligase_mg_context")
         or evidence.get("thdp")
         or evidence.get("thdp_mg_context")
+        or evidence.get("zinc_feature_or_ligand")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -833,6 +887,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("class_ii_aldolase_cc_reaction")
         or evidence.get("class_ii_metal_aldolase_text")
         or evidence.get("thdp_reaction_context")
+        or evidence.get("zinc_hydration_elimination_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -841,6 +896,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("heme_thiolate_binding")
         or evidence.get("molybdopterin_feature_or_ligand")
         or evidence.get("copper_feature_or_ligand")
+        or evidence.get("zinc_feature_or_ligand")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -860,6 +916,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("keyword_lyase")
         or evidence.get("class_ii_metal_aldolase_text")
         or evidence.get("thdp_family_text")
+        or evidence.get("zinc_lyase_hydratase_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -917,6 +974,7 @@ _THIAMINE_DIPHOSPHATE_ENZYME_EC = (
     "4.1.1",
     "1.2.4",
 )  # ThDP ylide/carbonyl chemistry; EC is scope only
+_ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -1125,6 +1183,23 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
             or c["active_or_binding_site_present"]
         ),
     ),
+    (
+        "zinc_lyase_hydratase",
+        lambda c, row: _ec_has_prefix(row, _ZINC_LYASE_HYDRATASE_EC)
+        and c["zinc_feature_or_ligand"]
+        and c["zinc_lyase_hydratase_text"]
+        and not c["plp_boundary_signal"]
+        and not c["thdp_boundary_signal"]
+        and not c["hydrolase_side_ec"]
+        and not c["transferase_side_ec"]
+        and not c["keyword_isomerase"]
+        and not c["zinc_lyase_boundary_text"]
+        and not c["non_4_2_1_side_ec"]
+        and (
+            c["zinc_hydration_elimination_reaction"]
+            or c["active_or_binding_site_present"]
+        ),
+    ),
 )
 
 
@@ -1198,6 +1273,8 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "copper", "cross_reference": {"id": None}}]
     elif fingerprint == "thiamine_diphosphate_enzyme" and evidence.get("thdp"):
         records = [{"name": "thiamine diphosphate", "cross_reference": {"id": None}}]
+    elif fingerprint == "zinc_lyase_hydratase" and evidence.get("zinc_feature_or_ligand"):
+        records = [{"name": "zinc", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

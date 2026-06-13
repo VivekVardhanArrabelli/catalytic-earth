@@ -5,38 +5,38 @@ Generated from `work/progress_log.jsonl`.
 ## Active Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
-- Started UTC: `2026-06-13T04:59:16Z`
-- Started local: `Fri Jun 12 23:59:16 CDT 2026`
-- Focus: `thiamine_diphosphate_enzyme` as the next clean 10k-path fallback after broad EC 2.7 kinase
-  was blocked by subclass mixing, then a bounded scout for the next unapplied lane.
-- Result: applied +150 external bronze rows for `thiamine_diphosphate_enzyme`; external bronze
-  4936 -> 5086; combined surface 5638 -> 5788; frozen current702 sha stayed
+- Started UTC: `2026-06-13T05:53:52Z`
+- Started local: `Sat Jun 13 00:53:52 CDT 2026`
+- Focus: guarded `zinc_lyase_hydratase` 26fp wiring/apply from the latest handoff after the ThDP
+  apply. Older P450/2OG/CoA/copper/ATP/class-II/ThDP lanes were already applied.
+- Result: applied +113 external bronze rows for `zinc_lyase_hydratase`; external bronze
+  5086 -> 5199; combined surface 5788 -> 5901; frozen current702 sha stayed
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
-- Family/gate setup: added `thiamine_diphosphate_enzyme` fingerprint +
-  `thiamine_diphosphate_ylide` ontology family (`label_factory_v1_25fp`); re-froze OOS
-  preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_25fp_1025.json`.
+- Family/gate setup: added `zinc_lyase_hydratase` fingerprint + `zinc_hydro_lyase` ontology family
+  (`label_factory_v1_26fp`); re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_26fp_1025.json`.
 - Apply command:
-  `PYTHONPATH=src python scripts/source_thiamine_diphosphate_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
-  Fetched 240, mechanism-corroborated 181, admitted/applied 150, held 14 off-target
-  `coa_acyltransferase` rows, held 37 no-corroboration rows, duplicate skipped 0.
-- Guardrails: EC scope-only and never counted; ThDP/Mg/Rhea/family/active-site handles are
-  admission/excluded-context only; `predictive_evidence []`; tier bronze / automation_curated /
+  `PYTHONPATH=src python scripts/source_zinc_lyase_hydratase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Fetched 240, mechanism-corroborated 116, admitted/applied 113, held 57 off-target rows
+  (`nad_p_dehydrogenase` 47, `metallophosphomonoesterase` 6,
+  `metallo_amidohydrolase_deaminase` 4), held 10 no-corroboration rows, novelty-throttled 3,
+  duplicate skipped 0.
+- Guardrails: EC 4.2.1 scope-only and never counted; zinc/Rhea/Lyase/hydratase/active-site handles
+  are admission/excluded-context only; `predictive_evidence []`; tier bronze / automation_curated /
   uniprot namespace; dedup vs both registries; multi-fingerprint-signal/off-target rows held;
   chemistry-confusable cap 150 enforced.
-- Coverage audit: 5788 combined labels; fingerprint Gini 0.1541; holes `[]`; over-cap
-  `['metal_dependent_hydrolase']`; next-batch floor deficit 0. Novelty replay: 5086 expansion rows,
-  decisions `{'admit': 4630, 'reject': 47, 'throttle': 409}`, would-not-readmit 456 (0.0897).
-- Honest counters: `positive_bronze=4075`, `oos_bronze=1696`, `silver_ready=0`,
-  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 5925.
-- Follow-on: zinc lyase/hydratase scout found a viable but guarded next lane:
-  `artifacts/v3_zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.json` examined
-  80 entries, fetch failures 0, likely wireable 50/80, zinc 80/80, Rhea hydration/elimination/
-  carbonic text 79/80, active/binding/metal-site 76/80, side-EC/boundary rows 30/80. Next action is
-  guarded 26fp wiring, not broad EC 4.2.1 admission.
-- Validation: focused pytest `80 passed`; leakage prereg/import-gate subset `5 passed, 181
-  deselected`; broader external import/transfer-scope suite `136 passed`; `validate` passed (12
-  source records, 25 mechanism fingerprints, 27 ontology families, 702 curated labels); JSON parse
-  checks passed.
+- Coverage audit: 5901 combined labels; fingerprint Gini 0.1559; holes `[]`; over-cap
+  `['metal_dependent_hydrolase']`; next-batch floor deficit 0. Novelty replay: 5199 expansion rows,
+  decisions `{'admit': 4743, 'reject': 47, 'throttle': 409}`, would-not-readmit 456 (0.0877).
+- Honest counters: `positive_bronze=4188`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 5812.
+- Follow-on: do not broad-wire EC 2.7 kinase; latest scout had 75/80 multi-subclass boundary rows
+  and only 4 clean rows. Next useful action is a focused scout that either splits a narrow kinase
+  subclass with clean non-EC handles or designs a guarded biotin-carboxylase handle around
+  biotinyl-Lys/Rhea ATP-hydrogencarbonate/carboxybiotin evidence.
+- Validation: focused pytest `387 passed, 14 subtests passed`; `validate` passed (12 source records,
+  26 mechanism fingerprints, 28 ontology families, 702 curated labels); JSON parse checks and
+  `git diff --check` passed during closeout.
 
 ## Previous Automation Snapshot
 
@@ -807,4 +807,12 @@ Generated from `work/progress_log.jsonl`.
 - Automation ID: ce-nad-glyco-floor-expansion
 - STARTED_AT: `2026-06-13T04:59:16Z`
 - STARTED_LOCAL: `Fri Jun 12 23:59:16 CDT 2026`
+- Status: lock acquisition in progress.
+
+## Automation run 2026-06-13T05:53:52Z
+
+- Automation ID: ce-nad-glyco-floor-expansion
+- STARTED_AT: `2026-06-13T05:53:52Z`
+- STARTED_LOCAL: `Sat Jun 13 00:53:52 CDT 2026`
+- Initial lane: latest handoff directs guarded `zinc_lyase_hydratase` 26fp setup/apply if mechanism-first gates pass.
 - Status: lock acquisition in progress.

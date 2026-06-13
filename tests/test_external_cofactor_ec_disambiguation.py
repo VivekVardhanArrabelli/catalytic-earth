@@ -571,6 +571,90 @@ class DisambiguateRowTests(unittest.TestCase):
         ]
         self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
 
+    def test_zinc_lyase_hydratase_requires_zinc_and_mechanism_handle(self) -> None:
+        row = _row(cofactors=["Zn(2+)"], ec=["4.2.1.1"])
+        row["protein_name"] = "Carbonic anhydrase 2"
+        row["keywords"] = ["Lyase", "Zinc", "Metal-binding"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:ZL0001",
+                "reaction": "hydrogencarbonate + H(+) = CO2 + H2O",
+                "ec_number": "4.2.1.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "zinc_lyase_hydratase")
+        self.assertIn(
+            "cofactor_or_cosubstrate",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_zinc_lyase_hydratase_active_site_fallback(self) -> None:
+        row = _row(cofactors=["Zn(2+)"], ec=["4.2.1.109"])
+        row["protein_name"] = "Methylthioribulose-1-phosphate dehydratase"
+        row["keywords"] = ["Lyase", "Zinc"]
+        row["residue_locators"] = [
+            {
+                "position": 101,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "Zn(2+)",
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "zinc_lyase_hydratase")
+        self.assertIn(
+            "active_site_motif_or_residue_role",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_zinc_lyase_hydratase_controls_hold(self) -> None:
+        no_zinc = _row(ec=["4.2.1.1"])
+        no_zinc["protein_name"] = "Carbonic anhydrase"
+        no_zinc["keywords"] = ["Lyase"]
+        no_zinc["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:ZL0002",
+                "reaction": "hydrogencarbonate + H(+) = CO2 + H2O",
+                "ec_number": "4.2.1.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(no_zinc)["decision"], "hold")
+
+        plp = _row(cofactors=["Zn(2+)", "pyridoxal 5'-phosphate"], ec=["4.2.1.24"])
+        plp["protein_name"] = "PLP zinc dehydratase boundary"
+        plp["keywords"] = ["Lyase", "Zinc"]
+        plp["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:ZL0003",
+                "reaction": "substrate = product + H2O",
+                "ec_number": "4.2.1.24",
+            }
+        ]
+        self.assertEqual(disambiguate_row(plp)["decision"], "hold")
+
+        side_ec = _row(cofactors=["Zn(2+)"], ec=["4.2.1.1", "3.1.1.1"])
+        side_ec["protein_name"] = "Hydrolase side-activity zinc dehydratase"
+        side_ec["keywords"] = ["Lyase", "Zinc"]
+        side_ec["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:ZL0004",
+                "reaction": "hydrogencarbonate + H(+) = CO2 + H2O",
+                "ec_number": "4.2.1.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

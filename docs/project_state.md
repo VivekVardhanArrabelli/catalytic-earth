@@ -26,6 +26,31 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **ZINC LYASE/HYDRATASE 26FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  Latest handoff recommended guarded `zinc_lyase_hydratase` after the ThDP apply. Added the
+  `zinc_lyase_hydratase` fingerprint + `zinc_hydro_lyase` ontology family, bumped the universe to
+  `label_factory_v1_26fp`, and re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_26fp_1025.json`. EC 4.2.1 is
+  scope-only; counted handles come from Zn cofactor/site evidence, Rhea hydration/dehydration/
+  carbonic reaction text, Lyase/hydratase family text, or active-/binding-/metal-site evidence. PLP,
+  ThDP, hydrolase/transferase/aldolase/isomerase side rows, non-4.2.1 side ECs, and multi-signal
+  rows are held. Live apply
+  `PYTHONPATH=src python scripts/source_zinc_lyase_hydratase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`
+  fetched **240**, mechanism-corroborated **116**, admitted/applied **113**, held **57** off-target
+  rows (`nad_p_dehydrogenase` 47, `metallophosphomonoesterase` 6,
+  `metallo_amidohydrolase_deaminase` 4), held **10** no-corroboration rows, throttled **3**, and
+  skipped **0** duplicates. External bronze **5086 -> 5199**; combined surface **5788 -> 5901**;
+  frozen current702 remains 702 with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate: **positive_bronze 4188**, **oos_bronze 1696**, **silver_ready 0**,
+  **silver_confirmed 17**, **projected 0**; remaining positive-bronze gap to 10k: **5812**. Fresh
+  post-zinc coverage audit: **5901** combined, fingerprint Gini **0.1559**, holes `[]`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Novelty replay: **5199**
+  expansion rows, decisions `{'admit': 4743, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0877). Validation: focused pytest **387 passed + 14 subtests**,
+  `validate` ok (12 source / 26 fingerprints / 28 ontology families / 702 labels), JSON parse
+  checks, and `git diff --check` passed. Follow-on: do not broad-wire EC 2.7 kinase; next scout
+  should split a narrow kinase subclass or test a guarded biotin-carboxylase handle.
 - **THIAMINE DIPHOSPHATE 25FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
   The broad EC 2.7 kinase lane remains blocked by subclass mixing, so this run selected the next
   clean fallback from the post-class-II scout: `thiamine_diphosphate_enzyme`. Mechanism scout

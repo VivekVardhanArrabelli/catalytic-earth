@@ -505,6 +505,32 @@
     }
   },
   {
+    "id": "zinc_lyase_hydratase",
+    "name": "Zinc-dependent hydro-lyase / hydratase",
+    "enzyme_space": ["carbonic anhydrases", "zinc-dependent dehydratases", "porphobilinogen synthase-like hydro-lyases", "metal-dependent EC 4.2.1 hydration/dehydration enzymes"],
+    "active_site_signature": [
+      {"role": "zinc_water_activation", "residue": "Zn2+ liganded by His/Cys/Asp/Glu depending on subclass", "constraints": ["polarizes a zinc-bound water or hydroxide for reversible hydration/dehydration"]},
+      {"role": "general_acid_base", "residue": "His/Glu/Asp/Lys or metal-bound water relay", "constraints": ["shuttles the proton during water elimination/addition without hydrolase bond scission"]},
+      {"role": "substrate_positioning", "residue": "polar or charged pocket residue", "constraints": ["aligns CO2/bicarbonate, amino-ketone, sugar-phosphate, or related hydro-lyase substrate next to the zinc-water center"]}
+    ],
+    "cofactors": ["Zn2+"],
+    "reaction_center": {
+      "bond_changes": ["reversible water elimination from or addition to a substrate under EC 4.2.1 hydro-lyase chemistry"],
+      "chemical_operation": "zinc-activated hydration/dehydration"
+    },
+    "substrate_constraints": ["catalytic zinc or zinc-bound water context present", "Rhea equation supports hydration/dehydration, carbonic anhydrase, or water elimination/addition chemistry", "no PLP, ThDP, hydrolase, transferase, aldolase, isomerase, non-4.2.1 side-EC, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Zinc cofactor or Zn2+ binding-site annotation", "Lyase, hydratase, dehydratase, anhydrase, or hydro-lyase functional keyword/domain text", "Rhea hydration/dehydration/carbonic reaction context under EC 4.2.1 scope", "active-site, binding-site, or metal-site residue evidence"],
+    "counterevidence_features": ["hydrolase EC 3 chemistry where water cleaves a bond rather than a lyase hydration/dehydration step", "transferase, aldolase, isomerase, PLP, ThDP, or non-4.2.1 side EC", "EC-only evidence with no zinc, Rhea, family, active-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["carbonic anhydrase vs non-carbonic hydro-lyase subclass", "zinc ligand set and water/hydroxide protonation state", "hydration vs dehydration physiological direction", "substrate identity and leaving-group geometry"],
+    "seed_examples": ["carbonic anhydrase", "delta-aminolevulinic acid dehydratase", "methylthioribulose-1-phosphate dehydratase", "urea carboxylase-associated cyanamide hydratase activity"],
+    "deploy_missing_active_site_context": {
+      "type": "metal_water_and_substrate",
+      "detail": "the catalytic Zn2+ water/hydroxide, substrate, proton-transfer state, and hydration/dehydration trajectory are absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->zinc/lyase/hydratase channel plus Rhea water-addition/elimination evidence, or canonical Zn2+/water/substrate graft (Path B)",
+      "silver_reachability": "moderate; zinc-site and Rhea evidence are common, but water/protonation and substrate geometry require reconstruction"
+    }
+  },
+  {
     "id": "thiamine_diphosphate_enzyme",
     "name": "Thiamine-diphosphate ylide enzyme",
     "enzyme_space": ["ThDP-dependent decarboxylases", "transketolases", "2-oxoacid dehydrogenase E1 components", "acetohydroxyacid synthases", "phosphoketolases"],

@@ -13,6 +13,33 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: zinc lyase/hydratase 26fp expansion is now applied.** The latest
+handoff explicitly recommended `zinc_lyase_hydratase` after the ThDP apply. The guarded lane added
+`zinc_lyase_hydratase` fingerprint + `zinc_hydro_lyase` ontology family, bumped
+`CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_26fp`, and re-froze OOS
+preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_26fp_1025.json`.
+EC 4.2.1 is scope-only; counted mechanism handles are Zn cofactor/site evidence, Rhea hydration/
+dehydration/carbonic reaction context, Lyase/hydratase family text, active-/binding-/metal-site
+evidence, or structure. PLP, ThDP, hydrolase/transferase/aldolase/isomerase side rows,
+non-4.2.1 side ECs, and multi-fingerprint signals are held. Live apply
+(`scripts/source_zinc_lyase_hydratase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **240**, mechanism-corroborated **116**, admitted/applied **113**, held **57** off-target
+fingerprint matches (`nad_p_dehydrogenase` 47, `metallophosphomonoesterase` 6,
+`metallo_amidohydrolase_deaminase` 4), held **10** no-corroboration rows, novelty-throttled **3**,
+and skipped **0** duplicates. External bronze is now **5199**; combined label surface is **5901**;
+frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters stay separate:
+**positive_bronze 4188**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**. Remaining positive-bronze gap to 10k: **5812**. Post-apply audit: **26
+fingerprints**, fingerprint Gini **0.1559**, holes `[]`, only `metal_dependent_hydrolase` over-cap,
+next-batch floor deficit **0**. All added rows keep `predictive_evidence []`; EC/name/keyword/Rhea/
+prose handles remain excluded-context admission evidence and are never predictive. The broad EC 2.7
+kinase lane remains blocked by its mechanism scout; with ThDP and zinc applied, remaining
+post-class-II candidates are weaker (`enolase_superfamily_lyase` reaction-poor, biotin
+carboxylase below floor under current handles, Mn/Fe SOD not floor-reachable). Next useful action:
+run a focused scout that either splits a narrow kinase subclass with clean non-EC handles or designs
+a guarded biotin-carboxylase handle around biotinyl-Lys/Rhea ATP-hydrogencarbonate evidence.
+
 **2026-06-13 automation update: ThDP enzyme 25fp expansion is now applied.** The broad EC 2.7
 kinase lane remains blocked by its own mechanism scout, so this run followed the next cleaner
 fallback from the post-class-II ranking: `thiamine_diphosphate_enzyme`. A focused mechanism scout

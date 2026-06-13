@@ -88,6 +88,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "atp_amide_ligase": "atp_mg_acyl_phosphate_amide_ligation_context",
     "class_ii_metal_aldolase": "metal_stabilized_aldol_c_c_bond_context",
     "thiamine_diphosphate_enzyme": "thdp_mg_ylide_carbonyl_substrate_context",
+    "zinc_lyase_hydratase": "zinc_water_elimination_addition_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

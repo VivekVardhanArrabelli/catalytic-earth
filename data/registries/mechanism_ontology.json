@@ -366,6 +366,21 @@
       ]
     },
     {
+      "id": "zinc_hydro_lyase",
+      "name": "Zinc-dependent hydration/dehydration chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "zinc_lyase_hydratase"
+      ],
+      "scope_note": "Zinc-dependent EC 4.2.1 hydro-lyases, hydratases, dehydratases, and carbonic anhydrase-like enzymes using a zinc-water center for reversible water addition or elimination.",
+      "family_boundary_guardrails": [
+        "Membership is decided by zinc cofactor/site evidence plus Rhea hydration/dehydration/carbonic reaction text, Lyase/hydratase keyword/domain, active-/binding-/metal-site evidence, or structure; EC 4.2.1 is scope only.",
+        "Do not admit PLP-dependent lyases, ThDP-dependent enzymes, hydrolases, transferases, aldolases, isomerases, non-4.2.1 side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a zinc hydro-lyase label.",
+        "The Zn2+ water/hydroxide, substrate, proton-transfer state, and hydration/dehydration trajectory are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "thiamine_diphosphate_ylide",
       "name": "Thiamine-diphosphate ylide carbonyl chemistry",
       "parent_id": "mechanism",

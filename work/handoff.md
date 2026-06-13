@@ -1,5 +1,71 @@
 # Handoff
 
+## Session run - zinc lyase/hydratase 26fp bronze expansion applied (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`
+  (`a5443d753d736680921d313209dcb90baf4d318c` before local edits). The latest handoff explicitly
+  recommended guarded `zinc_lyase_hydratase` wiring after the ThDP apply, so this run followed that
+  lane instead of reopening older P450/2OG/CoA/copper/ATP/class-II/ThDP lanes that were already
+  applied.
+- Status: **APPLIED gated zinc lyase/hydratase bronze growth to the separate external bronze
+  registry.** Frozen current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before/after apply.
+  External bronze **5086 -> 5199** (+113); combined label surface **5788 -> 5901**.
+- Family/gate setup: added `zinc_lyase_hydratase` fingerprint + `zinc_hydro_lyase` ontology family;
+  bumped `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_26fp`; re-froze OOS
+  preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_26fp_1025.json`.
+  EC 4.2.1 is scope-only. Counted mechanism corroboration comes from Zn cofactor/metal-site
+  evidence, Rhea hydration/dehydration/carbonic reaction text, Lyase/hydratase family text,
+  active-/binding-/metal-site evidence, or structure. PLP, ThDP, hydrolase/transferase/aldolase/
+  isomerase side rows, non-4.2.1 side ECs, and multi-fingerprint signals are held.
+- Zinc apply command:
+  `PYTHONPATH=src python scripts/source_zinc_lyase_hydratase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched **240**, target mechanism-corroborated **116**, novelty-admitted/applied **113**,
+  off-target held **57** (`nad_p_dehydrogenase` 47, `metallophosphomonoesterase` 6,
+  `metallo_amidohydrolase_deaminase` 4), disambiguation holds **10** (`no_mechanism_corroboration`),
+  novelty-throttled **3**, held at cap **0**, duplicate skipped **0**; `zinc_lyase_hydratase`
+  **0 -> 113** (chemistry-confusable cap 150; floor reached).
+- Guardrails verified: EC is scope/fetch context only and never counted; broadened zinc/Rhea/
+  keyword/prose/active-site handles are admission/excluded-context only; `predictive_evidence []`;
+  every added row is `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup ran
+  against frozen current702 and external bronze; off-target/multi-signal rows were held;
+  per-fingerprint cap 150 was enforced. Row audit found **0** leakage/trust-tier/tier/namespace
+  problems across all 113 zinc rows.
+- Honest counters after apply: `positive_bronze=4188`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`. Do not merge them. Remaining positive-bronze gap to 10k:
+  **5812**.
+- Fresh post-zinc audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_zinc_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_zinc_applied.md`; **5901** combined,
+  fingerprint Gini **0.1559**, holes `[]`, over-cap `['metal_dependent_hydrolase']`,
+  next-batch floor deficit **0**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_zinc_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_zinc_applied.md`; **5199** expansion rows,
+  decisions `{'admit': 4743, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0877).
+- Validation: focused zinc/shared suite passed (`387 passed, 14 subtests passed`);
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source records, 26 fingerprints,
+  28 ontology families, 702 curated labels); JSON parse checks passed for touched registries and
+  artifacts; `git diff --check` passed.
+- Key new artifacts/files this run:
+  `src/catalytic_earth/zinc_lyase_hydratase_sourcing.py`,
+  `scripts/source_zinc_lyase_hydratase_family.py`,
+  `tests/test_zinc_lyase_hydratase_sourcing.py`,
+  `artifacts/v3_zinc_lyase_hydratase_sourcing_preview_current702.json`,
+  `work/zinc_lyase_hydratase_sourcing_current702.md`,
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_26fp_1025.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_zinc_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_zinc_applied.md`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_zinc_applied.json`, and
+  `work/novelty_admission_gate_audit_current702_20260613_zinc_applied.md`.
+- Next exact action: do **not** broad-wire ATP phosphotransferase/kinase from EC 2.7; its latest
+  scout had 75/80 multi-subclass boundary rows and only 4 clean rows. With ThDP and zinc applied,
+  run a focused scout that either splits a narrow kinase subclass with clean non-EC mechanism handles
+  or designs a guarded biotin-carboxylase handle around biotinyl-Lys and Rhea
+  ATP/hydrogencarbonate/carboxybiotin evidence. `enolase_superfamily_lyase` is reaction-poor,
+  current biotin cofactor/keyword supply is below floor without better handles, and Mn/Fe SOD is not
+  floor-reachable.
+
 ## Session run - ThDP enzyme 25fp bronze expansion applied + zinc hydratase scout (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

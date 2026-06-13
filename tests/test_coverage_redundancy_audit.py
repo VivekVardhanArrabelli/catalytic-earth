@@ -171,9 +171,9 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 5788)
+            self.assertEqual(written["totals"]["combined"], 5901)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 5086)
+            self.assertEqual(written["totals"]["expansion_bronze"], 5199)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -182,7 +182,7 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # non-heme iron 2OG dioxygenase, CoA acyltransferase, cofactor-independent
             # isomerase, molybdopterin oxidoreductase, copper oxidoreductase,
             # non-PLP racemase/epimerase, ATP amide ligase, class-II metal
-            # aldolase, and ThDP enzyme to their
+            # aldolase, ThDP enzyme, and zinc lyase/hydratase to their
             # floors/caps, so no expansion holes remain. metal_dependent_hydrolase
             # remains the known intentional over-cap.
             self.assertEqual(audit["class_imbalance"]["expansion_holes"], [])
