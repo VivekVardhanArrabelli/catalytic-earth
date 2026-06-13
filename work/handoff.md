@@ -1,5 +1,59 @@
 # Handoff
 
+## Session run - Glycoside hydrolase top-up applied; floor still open (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This run followed the latest
+  handoff's under-floor `glycoside_hydrolase` continuation rather than switching families.
+- Status: **APPLIED a gated glycoside hydrolase top-up to the separate external registry.** Frozen
+  current702 stayed byte-unchanged before/after apply with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Growth went only to
+  `data/registries/external_bronze_labels.json`.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_glycoside_hydrolase_family.py --max-records-per-lane 420 --cap-ceiling 150 --out artifacts/v3_glycoside_hydrolase_topup_sourcing_preview_current702_20260613.json --report work/glycoside_hydrolase_topup_sourcing_current702_20260613.md --apply`.
+  Result: fetched **420**, mechanism-corroborated **27**, applied **27**, disambiguation holds
+  **290**, skipped **103**, off-target held **0**, novelty-throttled **0**, held@cap **0**, fetch
+  failures **0**. Glycoside hydrolase moved **45 -> 72** under the chemistry-confusable cap 150 and
+  remains below the 100 floor.
+- Counts after apply: external bronze **6449 -> 6476** (+27); combined label surface
+  **7151 -> 7178**. Honest counters stay separate: `positive_bronze=5482`,
+  `oos_bronze=1696`, `silver_ready=0`, `silver_confirmed=17`, `projected=0`.
+  External-only bronze split is **5252** seed-fingerprint rows and **1224** OOS rows. Remaining
+  positive-bronze gap to 10k: **4518**.
+- Guardrails verified: all 27 top-up rows are `tier=bronze`, `review_status=automation_curated`,
+  `entry_id` namespace `uniprot:*`; dedup + novelty gates ran against frozen current702 and the
+  external bronze registry; EC/protein-name/Rhea/keyword/prose/feature handles remain
+  admission/excluded-context evidence only; EC is never a counted corroborator;
+  `predictive_evidence []`; row audit
+  `artifacts/v3_glycoside_hydrolase_topup_row_guardrail_audit_current702_20260613.json` found
+  **0** problems across all **72** glycoside hydrolase rows; every row has active-site/residue-role,
+  domain/family, and Rhea reaction/participant axes, with no boundary tokens in mechanism evidence.
+- Fresh post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_topup_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_topup_applied.md`;
+  **7178** combined, **35** fingerprints, fingerprint Gini **0.1699**, holes `[]`, under-floor
+  `['biotin_dependent_carboxylase', 'glycoside_hydrolase', 'pfkb_ribokinase_family']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **98**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_topup_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_topup_applied.md`;
+  **6476** expansion rows, decisions `{'admit': 6020, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0704).
+- Continuation attempt: `--max-records-per-lane 650` is invalid because the ingestion runner caps
+  values at 500. A follow-on 500-row preview was stopped for closeout after no artifact was written;
+  traceback showed it in `fetch_uniprot_entry` TLS/connect work. Blocker artifact:
+  `artifacts/v3_glycoside_hydrolase_floor_topup_live_fetch_blocker_current702_20260613.json` /
+  `work/glycoside_hydrolase_floor_topup_live_fetch_blocker_current702_20260613.md`.
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_glycoside_hydrolase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_ontology.py tests/test_leakage_closure.py tests/test_coverage_redundancy_audit.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_external_annotation_anchored_import.py tests/test_fingerprints.py tests/test_source_only_contract.py -q`
+  -> **313 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels). JSON/JSONL
+  parse checks and `git diff --check` passed.
+- Next exact action: retry the glycoside hydrolase 500-row floor top-up preview early in a run, or
+  add paging/resume support before deeper windows. Remaining floors are PfkB **46/100**, glycoside
+  hydrolase **72/100**, and biotin **84/100**. Do not count EC as evidence, do not loosen
+  glycosyltransferase/transglycosylase/phosphorylase/lyase/side-EC/multi-signal holds, and keep
+  `predictive_evidence []`.
+
 ## Session run - Glycoside hydrolase 35fp bronze lane applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

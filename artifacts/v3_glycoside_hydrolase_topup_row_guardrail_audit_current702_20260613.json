@@ -1,0 +1,58 @@
+{
+  "audit": "glycoside_hydrolase_topup_row_guardrail_audit",
+  "axis_counts": {
+    "active_site_motif_or_residue_role": 72,
+    "cofactor_or_cosubstrate": 30,
+    "domain_or_family_profile": 72,
+    "rhea_reaction_or_participant_pattern": 72
+  },
+  "created_utc": "2026-06-13T17:18:29Z",
+  "family": "glycoside_hydrolase",
+  "family_registry_rows": 72,
+  "guardrails": {
+    "all_new_labels_review_status_automation_curated": true,
+    "all_new_labels_tier_bronze": true,
+    "all_new_labels_uniprot_namespace": true,
+    "ec_not_counted_as_mechanism_axis": true,
+    "no_boundary_tokens_in_mechanism_evidence": true,
+    "predictive_evidence_empty_for_all_family_rows": true,
+    "required_mechanism_axes_present_for_all_family_rows": true
+  },
+  "preview_path": "artifacts/v3_glycoside_hydrolase_topup_sourcing_preview_current702_20260613.json",
+  "problem_count": 0,
+  "problems": [],
+  "registry_path": "data/registries/external_bronze_labels.json",
+  "structure_counts": {
+    "structure_or_afdb_handle_present": 71
+  },
+  "topup_ids": [
+    "uniprot:B5THE3",
+    "uniprot:P04824",
+    "uniprot:P05804",
+    "uniprot:P06720",
+    "uniprot:P06760",
+    "uniprot:P12265",
+    "uniprot:P13482",
+    "uniprot:P23739",
+    "uniprot:P32138",
+    "uniprot:P32356",
+    "uniprot:P48016",
+    "uniprot:Q01460",
+    "uniprot:Q02401",
+    "uniprot:Q0V8R6",
+    "uniprot:Q1XH04",
+    "uniprot:Q2HXL6",
+    "uniprot:Q5RF65",
+    "uniprot:Q641X3",
+    "uniprot:Q8BZL1",
+    "uniprot:Q8R242",
+    "uniprot:Q8VIJ5",
+    "uniprot:Q93Y37",
+    "uniprot:Q99PW5",
+    "uniprot:Q9EQQ9",
+    "uniprot:Q9JMH3",
+    "uniprot:Q9SU50",
+    "uniprot:Q9W2M2"
+  ],
+  "topup_preview_rows": 27
+}

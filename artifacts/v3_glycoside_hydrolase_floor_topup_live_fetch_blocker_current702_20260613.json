@@ -1,0 +1,54 @@
+{
+  "artifact_id": "v3_glycoside_hydrolase_floor_topup_live_fetch_blocker_current702_20260613",
+  "attempts": [
+    {
+      "error": "ValueError: max_records_per_lane must be between 1 and 500",
+      "max_records_per_lane": 650,
+      "result": "rejected_by_runner_before_network_or_artifact"
+    },
+    {
+      "error": "KeyboardInterrupt during fetch_uniprot_entry TLS/connect phase after no artifact was written",
+      "max_records_per_lane": 500,
+      "result": "terminated_no_preview_artifact_for_closeout"
+    }
+  ],
+  "automation_id": "ce-nad-glyco-floor-expansion",
+  "completed_apply_before_blocker": {
+    "applied": 27,
+    "artifact": "artifacts/v3_glycoside_hydrolase_topup_sourcing_preview_current702_20260613.json",
+    "combined_after": 7178,
+    "external_bronze_after": 6476,
+    "external_bronze_before": 6449,
+    "glycoside_hydrolase_after": 72,
+    "glycoside_hydrolase_before": 45,
+    "report": "work/glycoside_hydrolase_topup_sourcing_current702_20260613.md"
+  },
+  "created_utc": "2026-06-13T17:29:16Z",
+  "current_floor_state": {
+    "biotin_dependent_carboxylase": {
+      "cap_ceiling": 150,
+      "combined": 84,
+      "deficit_to_floor": 16
+    },
+    "glycoside_hydrolase": {
+      "cap_ceiling": 150,
+      "combined": 72,
+      "deficit_to_floor": 28
+    },
+    "pfkb_ribokinase_family": {
+      "cap_ceiling": 150,
+      "combined": 46,
+      "deficit_to_floor": 54
+    }
+  },
+  "guardrails": {
+    "ec_scope_only": true,
+    "first_topup_applied_through_explicit_apply_with_sha_checks": true,
+    "frozen_current702_written": false,
+    "predictive_evidence_unchanged_empty": true,
+    "second_preview_registry_written": false
+  },
+  "next_exact_action": "Retry glycoside hydrolase max-records 500 preview early in a run, or add paging/resume support so the top-up can inspect rows beyond the 420 window without losing closeout time.",
+  "registry_written": false,
+  "status": "blocked_optional_second_topup_no_registry_write"
+}
