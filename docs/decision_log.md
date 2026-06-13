@@ -3,6 +3,58 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: TIER-2 PFKB/BIOTIN/GLYCOSIDE FLOOR EXPANSION CAPPED
+
+Decision: use unreviewed UniProt only through an explicit tier-2 source path, not by relaxing the
+default reviewed/tier-0 mechanism-first pipeline. The cofactor/EC disambiguation path now accepts a
+`source_tier` parameter; default behavior remains `source_tier_0`. Opt-in unreviewed lanes for
+`glycoside_hydrolase`, `biotin_dependent_carboxylase`, and `pfkb_ribokinase_family` require
+`--source-tier source_tier_2` and the existing `source_trust_tiers.evaluate_corroboration`
+three-axis mechanism gate. EC/name/Rhea/keyword/prose/feature handles remain excluded-context
+admission evidence only; EC is never counted as a mechanism corroborator and `predictive_evidence`
+remains `[]`.
+
+Apply results:
+- `glycoside_hydrolase` windows `0:40`, `40:40`, and `80:40` applied **66** rows and moved
+  **84 -> 150**. The final window admitted exactly the remaining **9** rows to cap.
+- `biotin_dependent_carboxylase` windows `0:40` and `40:40` applied **66** rows and moved
+  **84 -> 150**. PfkB/biotin row-window controls were added before continuation windows so
+  already-applied source rows were skipped without changing admission.
+- `pfkb_ribokinase_family` windows `0:80` and `80:40` applied **104** rows and moved
+  **46 -> 150**.
+
+Counts after apply: external bronze **6645 -> 6881**; combined label surface **7347 -> 7583**.
+External-only split is **5657** seed-fingerprint rows and **1224** OOS rows. Combined
+seed-fingerprint label surface is **5887**, leaving **4113** to 10k by that surface convention.
+Strict counters remain separate: **positive_bronze_count 5870**, **oos_bronze_count 1696**,
+**silver_ready_count 0**, **silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+Guardrails held: all **236** added rows are bronze, automation-curated, `uniprot:*`,
+`source_tier_2`, with `predictive_evidence []`; dedup and novelty ran against frozen current702 and
+the external bronze registry; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; row audit found **0**
+problems. Coverage audit reports **35** fingerprints, Gini **0.1312**, holes `[]`, under-floor
+`[]`, over-cap `['metal_dependent_hydrolase']`, and next-batch floor deficit **0**. Novelty replay
+reports **6881** expansion rows, decisions `{'admit': 6425, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0663).
+
+Follow-on decision: all three former floor lanes are now **150/150** and should stay paused under
+the current chemistry-confusable cap. Do not treat tier-2 bronze rows as silver, silver-ready, or
+projected rows. The next 10k-path action should be a clean new family/source scout or spec, with
+OOS preregistration if the fingerprint universe changes.
+
+References:
+`artifacts/v3_glycoside_hydrolase_tier2_unreviewed_window0_40_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_glycoside_hydrolase_tier2_unreviewed_window40_40_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_glycoside_hydrolase_tier2_unreviewed_window80_40_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_biotin_dependent_carboxylase_tier2_unreviewed_window0_40_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_biotin_dependent_carboxylase_tier2_unreviewed_window40_40_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_pfkb_ribokinase_family_tier2_unreviewed_window0_80_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_pfkb_ribokinase_family_tier2_unreviewed_window80_40_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_tier2_floor_expansion_row_guardrail_audit_current702_20260613.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_tier2_floor_expansion_capped_applied.json`,
+and `artifacts/v3_novelty_admission_gate_audit_current702_20260613_tier2_floor_expansion_capped_applied.json`.
+
 ## 2026-06-13: WINDOWED COA/P450/MOLYBDOPTERIN CAP-FILLS APPLIED; ALL THREE NOW PAUSED AT CAP
 
 Decision: use existing mechanism-first family pipelines and add only source-window controls to avoid

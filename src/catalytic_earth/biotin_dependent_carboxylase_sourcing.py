@@ -118,6 +118,23 @@ ALTERNATE_FLOOR_CLOSURE_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
         },
     )
 }
+UNREVIEWED_TIER2_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    FAMILY: (
+        {
+            "lane_id": "biotin_carboxylase_unreviewed_tier2_site_annotated",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:false) AND ((ec:6.4.1.*) OR (ec:6.3.4.*)) AND "
+                "((keyword:Biotin) OR (protein_name:biotin) OR "
+                "(protein_name:carboxylase) OR (protein_name:carboxyltransferase) OR "
+                "(cc_cofactor:biotin)) AND ((ft_act_site:*) OR (ft_binding:*)) NOT "
+                "((ec:2.7.*) OR (ec:3.*) OR (ec:2.4.*) OR "
+                "(protein_name:kinase) OR (protein_name:hydrolase) OR "
+                "(protein_name:transferase))"
+            ),
+        },
+    )
+}
 
 
 def _lane_queries_for(
@@ -125,11 +142,17 @@ def _lane_queries_for(
     *,
     include_floor_closure_lanes: bool = False,
     include_alternate_floor_closure_lanes: bool = False,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
 ) -> tuple[dict[str, str], ...]:
     lanes: list[dict[str, str]] = []
     for family in families:
         if family not in FAMILY_LANE_QUERIES:
             raise ValueError(f"{family!r} is not a biotin carboxylase sourcing family")
+        if include_unreviewed_tier2_lanes or only_unreviewed_tier2_lanes:
+            lanes.extend(UNREVIEWED_TIER2_LANE_QUERIES[family])
+        if only_unreviewed_tier2_lanes:
+            continue
         if include_floor_closure_lanes:
             lanes.extend(FLOOR_CLOSURE_LANE_QUERIES[family])
         if include_alternate_floor_closure_lanes:
@@ -142,6 +165,8 @@ def build_biotin_dependent_carboxylase_sourcing(
     *,
     families: tuple[str, ...] = FAMILIES,
     max_records_per_lane: int = 80,
+    record_offset_per_lane: int = 0,
+    record_limit_per_lane: int | None = None,
     current_manifest_payload: dict[str, Any],
     frozen_benchmark_payload: list[dict[str, Any]],
     expansion_payload: list[dict[str, Any]],
@@ -154,13 +179,20 @@ def build_biotin_dependent_carboxylase_sourcing(
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
     include_floor_closure_lanes: bool = False,
     include_alternate_floor_closure_lanes: bool = False,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+    source_tier: str = "source_tier_0",
 ) -> dict[str, Any]:
     created = created_utc or _utc_now_iso()
+    if (include_unreviewed_tier2_lanes or only_unreviewed_tier2_lanes) and source_tier != "source_tier_2":
+        raise ValueError("unreviewed tier-2 lanes must use source_tier='source_tier_2'")
     families = tuple(families)
     lane_queries = _lane_queries_for(
         families,
         include_floor_closure_lanes=include_floor_closure_lanes,
         include_alternate_floor_closure_lanes=include_alternate_floor_closure_lanes,
+        include_unreviewed_tier2_lanes=include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=only_unreviewed_tier2_lanes,
     )
     caps_by_family = {family: cap_ceiling for family in families}
 
@@ -169,6 +201,8 @@ def build_biotin_dependent_carboxylase_sourcing(
         label_registry_payload=list(frozen_benchmark_payload) + list(expansion_payload),
         created_utc=created,
         max_records_per_lane=max_records_per_lane,
+        record_offset_per_lane=record_offset_per_lane,
+        record_limit_per_lane=record_limit_per_lane,
         lane_queries=lane_queries,
         query_fetcher=query_fetcher,
         entry_fetcher=entry_fetcher,
@@ -189,6 +223,7 @@ def build_biotin_dependent_carboxylase_sourcing(
         ],
         registry=expansion_payload,
         index=index,
+        source_tier=source_tier,
     )
 
     family_set = set(families)
@@ -259,7 +294,11 @@ def build_biotin_dependent_carboxylase_sourcing(
         "schema_version": SCHEMA_VERSION,
         "created_utc": created,
         "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
-        "evidence_basis": "reviewed_swissprot_ec_rhea_biotin_carboxylase_annotation",
+        "evidence_basis": (
+            "unreviewed_uniprot_tier2_ec_rhea_biotin_carboxylase_annotation"
+            if source_tier == "source_tier_2"
+            else "reviewed_swissprot_ec_rhea_biotin_carboxylase_annotation"
+        ),
         "stage": "scaling_plan_to_10k:wire_biotin_dependent_carboxylase_broadened_handle",
         "families_sourced": list(families),
         "deploy_missing_active_site_context_per_family": {
@@ -281,6 +320,10 @@ def build_biotin_dependent_carboxylase_sourcing(
             "alternate_floor_closure_source_lanes_enabled": (
                 include_alternate_floor_closure_lanes
             ),
+            "unreviewed_tier2_source_lanes_enabled": include_unreviewed_tier2_lanes,
+            "only_unreviewed_tier2_source_lanes_enabled": only_unreviewed_tier2_lanes,
+            "source_trust_tier": source_tier,
+            "source_tier_2_requires_three_independent_mechanism_axes": True,
             "all_new_labels_tier": "bronze",
             "all_new_labels_review_status": "automation_curated",
             "external_entry_id_namespace": "uniprot",
@@ -301,7 +344,12 @@ def build_biotin_dependent_carboxylase_sourcing(
             "lanes_queried": len(lane_queries),
             "rhea_first_floor_closure_lanes_enabled": include_floor_closure_lanes,
             "alternate_floor_closure_lanes_enabled": include_alternate_floor_closure_lanes,
+            "unreviewed_tier2_lanes_enabled": include_unreviewed_tier2_lanes,
+            "only_unreviewed_tier2_lanes_enabled": only_unreviewed_tier2_lanes,
+            "source_trust_tier": source_tier,
             "max_records_per_lane": max_records_per_lane,
+            "record_offset_per_lane": record_offset_per_lane,
+            "record_limit_per_lane": record_limit_per_lane,
             "fetched_candidate_rows": pilot["candidate_count"],
             "mechanism_corroborated_bronze_labels": len(target_labels),
             "off_target_fingerprint_matches_held": len(off_target_labels),
@@ -364,6 +412,11 @@ def _report(audit: dict[str, Any]) -> str:
         "",
         f"- Families sourced: {', '.join(audit['families_sourced'])}.",
         f"- Lanes queried: {c['lanes_queried']} (<= {c['max_records_per_lane']} rows each).",
+        f"- Per-lane record window: offset {c['record_offset_per_lane']}, "
+        f"limit {c['record_limit_per_lane']}.",
+        f"- Source trust tier: {c['source_trust_tier']}.",
+        f"- Unreviewed tier-2 lanes enabled: {c['unreviewed_tier2_lanes_enabled']} "
+        f"(only: {c['only_unreviewed_tier2_lanes_enabled']}).",
         f"- Fetched candidate rows: {c['fetched_candidate_rows']}.",
         f"- Target mechanism-corroborated bronze labels: {c['mechanism_corroborated_bronze_labels']} "
         f"(off-target held {c['off_target_fingerprint_matches_held']}; disambiguation holds "
@@ -408,6 +461,9 @@ def _report(audit: dict[str, Any]) -> str:
             f"{audit['guardrails']['broadened_handles_never_predictive_features']}.",
             "- EC never a counted corroborator: "
             f"{audit['guardrails']['ec_never_a_counted_corroborator']}.",
+            "- Source trust tier: "
+            f"{audit['guardrails']['source_trust_tier']}; tier-2 three-axis gate: "
+            f"{audit['guardrails']['source_tier_2_requires_three_independent_mechanism_axes']}.",
             "- Kinase/non-biotin ATP ligase/hydrolase/transferase/side-EC boundary guards: "
             f"{audit['guardrails']['kinase_ligase_hydrolase_transferase_side_ec_boundary_guard']}.",
             "- Per-family cap ceiling: "
@@ -429,6 +485,8 @@ def write_biotin_dependent_carboxylase_sourcing(
     report_path: Path | None = None,
     families: tuple[str, ...] = FAMILIES,
     max_records_per_lane: int = 80,
+    record_offset_per_lane: int = 0,
+    record_limit_per_lane: int | None = None,
     current_manifest_path: Path = DEFAULT_CURRENT_MANIFEST_PATH,
     frozen_benchmark_path: Path = DEFAULT_FROZEN_BENCHMARK_PATH,
     expansion_registry_path: Path = DEFAULT_EXPANSION_REGISTRY_PATH,
@@ -437,11 +495,16 @@ def write_biotin_dependent_carboxylase_sourcing(
     cap_ceiling: int = 150,
     include_floor_closure_lanes: bool = False,
     include_alternate_floor_closure_lanes: bool = False,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+    source_tier: str = "source_tier_0",
 ) -> dict[str, Any]:
     expansion_path = Path(expansion_registry_path)
     audit = build_biotin_dependent_carboxylase_sourcing(
         families=families,
         max_records_per_lane=max_records_per_lane,
+        record_offset_per_lane=record_offset_per_lane,
+        record_limit_per_lane=record_limit_per_lane,
         current_manifest_payload=_read_json(Path(current_manifest_path)),
         frozen_benchmark_payload=_read_json(Path(frozen_benchmark_path)),
         expansion_payload=_read_json(expansion_path) if expansion_path.exists() else [],
@@ -450,6 +513,9 @@ def write_biotin_dependent_carboxylase_sourcing(
         cap_ceiling=cap_ceiling,
         include_floor_closure_lanes=include_floor_closure_lanes,
         include_alternate_floor_closure_lanes=include_alternate_floor_closure_lanes,
+        include_unreviewed_tier2_lanes=include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=only_unreviewed_tier2_lanes,
+        source_tier=source_tier,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

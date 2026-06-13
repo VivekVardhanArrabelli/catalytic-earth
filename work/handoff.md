@@ -1,5 +1,68 @@
 # Handoff
 
+## Session run - Tier-2 floor expansion capped (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This run followed the latest
+  state docs: CoA/P450/molybdopterin and other cap-fill lanes were already capped or paused, while
+  PfkB, biotin carboxylase, and glycoside hydrolase were still under the 100-label floor under
+  reviewed tier-0 source paths.
+- Implementation: added an explicit source-trust tier parameter to the cofactor/EC disambiguation
+  path, preserving default `source_tier_0` behavior while allowing selected callers to pass
+  `source_tier_2`. Tier 2 uses the existing `source_trust_tiers.evaluate_corroboration` policy and
+  therefore requires **3 independent counted mechanism axes**; EC remains a non-counted scope hint.
+  Added source-fetch-only unreviewed tier-2 lanes to the existing glycoside hydrolase, biotin
+  carboxylase, and PfkB/ribokinase runners. These lanes require explicit
+  `--source-tier source_tier_2`; attempting to run them as tier 0 fails closed. After the first
+  three applies, added `--record-offset-per-lane` and `--record-limit-per-lane` controls to PfkB
+  and biotin so bounded continuation windows can skip already-applied source rows without changing
+  admission, trust-tier, novelty, caps, or leakage rules.
+- Applied gated tier-2 rows:
+  - Glycoside tier2 `window0:40`: fetched **40**, mechanism **30**, novelty-applied **23**.
+  - Biotin tier2 `window0:40`: fetched **40**, mechanism **39**, novelty-applied **39**.
+  - PfkB tier2 `window0:80`: fetched **80**, mechanism **80**, novelty-applied **79**.
+  - Glycoside tier2 `window40:40`: fetched **40**, mechanism **40**, novelty-applied **34**.
+  - Glycoside tier2 `window80:40`: fetched **40**, mechanism **26**, novelty-applied **9**.
+  - Biotin tier2 `window40:40`: fetched **40**, mechanism **40**, novelty-applied **27**.
+  - PfkB tier2 `window80:40`: fetched **40**, mechanism **40**, novelty-applied **25**.
+  Net family movement: `glycoside_hydrolase` **84 -> 150** (+66),
+  `biotin_dependent_carboxylase` **84 -> 150** (+66), and
+  `pfkb_ribokinase_family` **46 -> 150** (+104). All three former floors are now closed and exactly
+  at their chemistry-confusable cap **150**; do not continue them under current cap policy.
+- Net registry change: external bronze **6645 -> 6881** (+236); combined label surface
+  **7347 -> 7583**. External-only split is **5657** seed-fingerprint rows and **1224** OOS rows.
+  Combined seed-fingerprint label surface is **5887**, leaving **4113** to 10k by that surface
+  convention. Strict source-trust counters remain separate: `positive_bronze_count=5870`,
+  `oos_bronze_count=1696`, `silver_ready_count=0`, `silver_confirmed_count=17`,
+  `projected_provisional_count=0`.
+- Guardrails verified: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`; all **236** added rows are `tier=bronze`,
+  `review_status=automation_curated`, `entry_id` namespace `uniprot:*`, `source_tier_2`, and have
+  `predictive_evidence []`. EC/name/Rhea/keyword/prose/feature handles remain excluded-context
+  admission evidence only; EC is never counted as a mechanism corroborator. Row audit
+  `artifacts/v3_tier2_floor_expansion_row_guardrail_audit_current702_20260613.json` found **0**
+  problems.
+- Fresh audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_tier2_floor_expansion_capped_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_tier2_floor_expansion_capped_applied.md`:
+  **7583** combined, **6881** expansion, fingerprint Gini **0.1312**, holes `[]`, under-floor
+  `[]`, next-batch floor deficit **0**, over-cap `['metal_dependent_hydrolase']`. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_tier2_floor_expansion_capped_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260613_tier2_floor_expansion_capped_applied.md`:
+  **6881** expansion rows, decisions `{'admit': 6425, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0663).
+- Validation: targeted pytest passed
+  (`PYTHONPATH=src pytest tests/test_pfkb_ribokinase_family_sourcing.py tests/test_biotin_dependent_carboxylase_sourcing.py tests/test_glycoside_hydrolase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_source_ingestion.py tests/test_external_annotation_anchored_import.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_coverage_redundancy_audit.py tests/test_leakage_closure.py tests/test_source_only_contract.py -q`
+  -> **337 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels). JSON parse
+  checks for touched registry/artifacts and `git diff --check` passed.
+- Next exact action: do **not** treat tier-2 rows as silver or projected rows; they are bronze only
+  because they satisfy the stricter three-axis gate. The former floor lanes are now capped, not just
+  floor-closed. The next 10k-path action should be a clean new family/source lane scout or spec,
+  with OOS preregistration if the fingerprint universe changes. Keep EC scope-only, keep
+  `predictive_evidence []`, and keep honest counters separate.
+
 ## Session run - Windowed CoA/P450/Molybdopterin cap-fills applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

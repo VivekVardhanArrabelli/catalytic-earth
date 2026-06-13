@@ -73,6 +73,13 @@ _ROWS = {
         "Active site",
         "Pros-phosphohistidine intermediate",
     ),
+    "RU0001": (
+        ["2.7.1.15"],
+        "Unreviewed ribokinase",
+        "ATP + D-ribose = ADP + D-ribose 5-phosphate + H(+)",
+        "Binding site",
+        "ATP",
+    ),
 }
 
 
@@ -89,7 +96,7 @@ def _search_record(accession):
         "ec_numbers": ec,
         "pdb_ids": [],
         "alphafold_ids": [accession],
-        "reviewed": "reviewed",
+        "reviewed": "unreviewed" if accession.startswith("RU") else "reviewed",
         "evidence_level": "protein_cross_reference",
     }
 
@@ -127,7 +134,11 @@ def _entry_record(accession):
     return {
         "source": "uniprot",
         "accession": accession,
-        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "entry_type": (
+            "UniProtKB unreviewed (TrEMBL)"
+            if accession.startswith("RU")
+            else "UniProtKB reviewed (Swiss-Prot)"
+        ),
         "protein_name": protein_name,
         "sequence_length": 160,
         "keywords": ["Kinase", "Transferase"],
@@ -144,7 +155,11 @@ def _entry_record(accession):
 
 
 def _fake_query_fetcher(query, size):
-    records = [_search_record(accession) for accession in sorted(_ROWS)]
+    if "reviewed:false" in query:
+        accessions = ["RU0001"]
+    else:
+        accessions = [accession for accession in sorted(_ROWS) if accession != "RU0001"]
+    records = [_search_record(accession) for accession in accessions]
     return {"metadata": {"url": "test://uniprot", "query": query}, "records": records}
 
 
@@ -207,6 +222,48 @@ class PfkbRibokinaseFamilySourcingTest(unittest.TestCase):
             self.assertEqual(tier["source_tier"], "source_tier_0")
             self.assertTrue(tier["meets_n_of_m"])
             self.assertNotIn("ec_scope_hint", tier["mechanism_corroborator_axes_present"])
+
+    def test_unreviewed_tier2_lane_requires_source_tier_2(self):
+        with self.assertRaises(ValueError):
+            self._run(only_unreviewed_tier2_lanes=True)
+
+    def test_unreviewed_tier2_lane_is_three_axis_and_leakage_safe(self):
+        audit = self._run(
+            only_unreviewed_tier2_lanes=True,
+            source_tier="source_tier_2",
+        )
+        self.assertEqual(audit["counts"]["lanes_queried"], 1)
+        self.assertEqual(audit["counts"]["source_trust_tier"], "source_tier_2")
+        self.assertTrue(audit["counts"]["only_unreviewed_tier2_lanes_enabled"])
+        self.assertTrue(audit["guardrails"]["only_unreviewed_tier2_source_lanes_enabled"])
+        self.assertEqual(
+            audit["lane_summaries"][0]["lane_id"],
+            "pfkb_ribokinase_family_unreviewed_tier2_site_annotated",
+        )
+        self.assertEqual(
+            audit["counts"]["admitted_fingerprint_counts"],
+            {"pfkb_ribokinase_family": 1},
+        )
+        label = audit["applied_labels"][0]
+        self.assertEqual(label["entry_id"], "uniprot:RU0001")
+        self.assertEqual(label["evidence"]["predictive_evidence"], [])
+        tier = label["evidence"]["source_trust_tier"]
+        self.assertEqual(tier["source_tier"], "source_tier_2")
+        self.assertGreaterEqual(len(tier["mechanism_corroborator_axes_present"]), 3)
+        self.assertNotIn("ec_scope_hint", tier["mechanism_corroborator_axes_present"])
+
+    def test_record_window_limits_rows_before_entry_fetch(self):
+        audit = self._run(record_offset_per_lane=8, record_limit_per_lane=1)
+        self.assertEqual(audit["counts"]["record_offset_per_lane"], 8)
+        self.assertEqual(audit["counts"]["record_limit_per_lane"], 1)
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 1)
+        self.assertEqual(audit["lane_summaries"][0]["record_count"], 1)
+        self.assertEqual(audit["lane_summaries"][0]["records_in_window_before_dedup"], 1)
+        self.assertEqual(
+            audit["counts"]["admitted_fingerprint_counts"],
+            {"pfkb_ribokinase_family": 1},
+        )
+        self.assertEqual([label["entry_id"] for label in audit["applied_labels"]], ["uniprot:RB0001"])
 
     def test_axes_are_mechanism_not_ec(self):
         audit = self._run()

@@ -26,6 +26,40 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **TIER-2 FLOOR EXPANSION CAPPED (2026-06-13 automation).**
+  The latest run added an explicit trust-tier parameter to the existing cofactor/EC
+  disambiguation path and wired opt-in unreviewed UniProt tier-2 lanes for the three remaining
+  under-floor families. Defaults remain `source_tier_0`; unreviewed lanes require
+  `--source-tier source_tier_2` and the existing `source_trust_tiers.evaluate_corroboration`
+  three-axis gate. EC remains scope-only and non-counted. The run also added source-window controls
+  to PfkB and biotin after the first applies so continuation windows could skip already-applied
+  source rows without changing admission or leakage behavior.
+
+  Applied rows: `glycoside_hydrolase` **84 -> 150** (+66 across windows `0:40`, `40:40`, and
+  `80:40`), `biotin_dependent_carboxylase` **84 -> 150** (+66 across windows `0:40` and `40:40`),
+  and `pfkb_ribokinase_family` **46 -> 150** (+104 across windows `0:80` and `80:40`). All three
+  former under-floor fingerprints are now exactly at their chemistry-confusable **150** cap.
+  External bronze is now **6881**; combined label surface is **7583**. External-only split is
+  **5657** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+  **5887**, leaving **4113** to 10k by that surface convention. Strict counters remain separate:
+  **positive_bronze_count 5870**,
+  **oos_bronze_count 1696**, **silver_ready_count 0**, **silver_confirmed_count 17**,
+  **projected_provisional_count 0**.
+
+  Guardrails held: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; all **236** new rows are
+  bronze, automation-curated, `uniprot:*`, `source_tier_2`, and have `predictive_evidence []`.
+  EC/name/Rhea/keyword/prose/feature handles remain excluded-context admission evidence only and
+  EC is never counted. Row audit
+  `artifacts/v3_tier2_floor_expansion_row_guardrail_audit_current702_20260613.json` found **0**
+  problems. Coverage audit reports **35** fingerprints, Gini **0.1312**, holes `[]`,
+  under-floor `[]`, next-batch floor deficit **0**, and only `metal_dependent_hydrolase` over-cap.
+  Novelty replay over **6881** expansion rows reports decisions
+  `{'admit': 6425, 'reject': 47, 'throttle': 409}` and would-not-readmit **456** (0.0663).
+
+  Next action: floor closure is no longer the urgent lane, and these three families should not
+  continue under current cap policy. Scout/spec a clean new family/source lane next. Do not count
+  tier-2 bronze rows as silver or projected rows.
 - **WINDOWED COA/P450/MOLYBDOPTERIN CAP-FILLS APPLIED (2026-06-13 automation).**
   The latest run added source-window controls to the CoA acyltransferase, cytochrome P450, and
   molybdopterin source runners, then used bounded windows to avoid monolithic live UniProt entry

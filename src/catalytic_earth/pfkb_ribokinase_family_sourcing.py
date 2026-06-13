@@ -72,13 +72,57 @@ FAMILY_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
         },
     )
 }
+UNREVIEWED_TIER2_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    FAMILY: (
+        {
+            "lane_id": "pfkb_ribokinase_family_unreviewed_tier2_site_annotated",
+            "target_family_lane": FAMILY,
+            "query": (
+                '(reviewed:false) AND (ec:2.7.1.*) AND '
+                '((protein_name:"ribokinase") OR '
+                '(protein_name:"adenosine kinase") OR '
+                '(protein_name:"inosine kinase") OR '
+                '(protein_name:"fructokinase") OR '
+                '(protein_name:"1-phosphofructokinase") OR '
+                '(protein_name:"hydroxymethylpyrimidine kinase")) AND '
+                '((ft_act_site:*) OR (ft_binding:*)) NOT '
+                '((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR '
+                '(ec:2.7.4.*) OR '
+                '(protein_name:"protein kinase") OR (protein_name:"histidine kinase") OR '
+                '(protein_name:"nucleoside diphosphate kinase") OR '
+                '(protein_name:"nucleoside-diphosphate kinase") OR '
+                '(protein_name:"deoxynucleoside kinase") OR '
+                '(protein_name:"thymidine kinase") OR '
+                '(protein_name:"deoxyguanosine kinase") OR '
+                '(protein_name:"deoxycytidine kinase") OR '
+                '(protein_name:"hexokinase") OR (protein_name:"glucokinase") OR '
+                '(protein_name:"glycerol kinase") OR (protein_name:"acetate kinase") OR '
+                '(protein_name:"homoserine kinase") OR '
+                '(protein_name:"mevalonate kinase") OR '
+                '(protein_name:"phosphomevalonate kinase") OR '
+                '(protein_name:"galactokinase") OR '
+                '(protein_name:"6-phosphofructokinase") OR '
+                '(protein_name:"ATP-dependent 6-phosphofructokinase"))'
+            ),
+        },
+    )
+}
 
 
-def _lane_queries_for(families: tuple[str, ...]) -> tuple[dict[str, str], ...]:
+def _lane_queries_for(
+    families: tuple[str, ...],
+    *,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+) -> tuple[dict[str, str], ...]:
     lanes: list[dict[str, str]] = []
     for family in families:
         if family not in FAMILY_LANE_QUERIES:
             raise ValueError(f"{family!r} is not a PfkB/ribokinase sourcing family")
+        if include_unreviewed_tier2_lanes or only_unreviewed_tier2_lanes:
+            lanes.extend(UNREVIEWED_TIER2_LANE_QUERIES[family])
+        if only_unreviewed_tier2_lanes:
+            continue
         lanes.extend(FAMILY_LANE_QUERIES[family])
     return tuple(lanes)
 
@@ -87,6 +131,8 @@ def build_pfkb_ribokinase_family_sourcing(
     *,
     families: tuple[str, ...] = FAMILIES,
     max_records_per_lane: int = 80,
+    record_offset_per_lane: int = 0,
+    record_limit_per_lane: int | None = None,
     current_manifest_payload: dict[str, Any],
     frozen_benchmark_payload: list[dict[str, Any]],
     expansion_payload: list[dict[str, Any]],
@@ -94,13 +140,22 @@ def build_pfkb_ribokinase_family_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = 150,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+    source_tier: str = "source_tier_0",
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
 ) -> dict[str, Any]:
     created = created_utc or _utc_now_iso()
+    if (include_unreviewed_tier2_lanes or only_unreviewed_tier2_lanes) and source_tier != "source_tier_2":
+        raise ValueError("unreviewed tier-2 lanes must use source_tier='source_tier_2'")
     families = tuple(families)
-    lane_queries = _lane_queries_for(families)
+    lane_queries = _lane_queries_for(
+        families,
+        include_unreviewed_tier2_lanes=include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=only_unreviewed_tier2_lanes,
+    )
     caps_by_family = {family: cap_ceiling for family in families}
 
     pilot = build_external_source_ingestion_pilot(
@@ -108,6 +163,8 @@ def build_pfkb_ribokinase_family_sourcing(
         label_registry_payload=list(frozen_benchmark_payload) + list(expansion_payload),
         created_utc=created,
         max_records_per_lane=max_records_per_lane,
+        record_offset_per_lane=record_offset_per_lane,
+        record_limit_per_lane=record_limit_per_lane,
         lane_queries=lane_queries,
         query_fetcher=query_fetcher,
         entry_fetcher=entry_fetcher,
@@ -128,6 +185,7 @@ def build_pfkb_ribokinase_family_sourcing(
         ],
         registry=expansion_payload,
         index=index,
+        source_tier=source_tier,
     )
 
     family_set = set(families)
@@ -198,7 +256,11 @@ def build_pfkb_ribokinase_family_sourcing(
         "schema_version": SCHEMA_VERSION,
         "created_utc": created,
         "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
-        "evidence_basis": "reviewed_swissprot_ec_rhea_pfkb_ribokinase_annotation",
+        "evidence_basis": (
+            "unreviewed_uniprot_tier2_ec_rhea_pfkb_ribokinase_annotation"
+            if source_tier == "source_tier_2"
+            else "reviewed_swissprot_ec_rhea_pfkb_ribokinase_annotation"
+        ),
         "stage": "scaling_plan_to_10k:wire_pfkb_ribokinase_family_broadened_handle",
         "families_sourced": list(families),
         "deploy_missing_active_site_context_per_family": {
@@ -216,6 +278,10 @@ def build_pfkb_ribokinase_family_sourcing(
             "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": True,
             "neighboring_kinase_subclass_boundary_guard": True,
             "off_target_fingerprint_matches_held": True,
+            "unreviewed_tier2_source_lanes_enabled": include_unreviewed_tier2_lanes,
+            "only_unreviewed_tier2_source_lanes_enabled": only_unreviewed_tier2_lanes,
+            "source_trust_tier": source_tier,
+            "source_tier_2_requires_three_independent_mechanism_axes": True,
             "all_new_labels_tier": "bronze",
             "all_new_labels_review_status": "automation_curated",
             "external_entry_id_namespace": "uniprot",
@@ -232,7 +298,12 @@ def build_pfkb_ribokinase_family_sourcing(
         "floor_projection": floor_projection,
         "counts": {
             "lanes_queried": len(lane_queries),
+            "unreviewed_tier2_lanes_enabled": include_unreviewed_tier2_lanes,
+            "only_unreviewed_tier2_lanes_enabled": only_unreviewed_tier2_lanes,
+            "source_trust_tier": source_tier,
             "max_records_per_lane": max_records_per_lane,
+            "record_offset_per_lane": record_offset_per_lane,
+            "record_limit_per_lane": record_limit_per_lane,
             "fetched_candidate_rows": pilot["candidate_count"],
             "mechanism_corroborated_bronze_labels": len(target_labels),
             "off_target_fingerprint_matches_held": len(off_target_labels),
@@ -291,6 +362,11 @@ def _report(audit: dict[str, Any]) -> str:
         "",
         f"- Families sourced: {', '.join(audit['families_sourced'])}.",
         f"- Lanes queried: {c['lanes_queried']} (<= {c['max_records_per_lane']} rows each).",
+        f"- Per-lane record window: offset {c['record_offset_per_lane']}, "
+        f"limit {c['record_limit_per_lane']}.",
+        f"- Source trust tier: {c['source_trust_tier']}.",
+        f"- Unreviewed tier-2 lanes enabled: {c['unreviewed_tier2_lanes_enabled']} "
+        f"(only: {c['only_unreviewed_tier2_lanes_enabled']}).",
         f"- Fetched candidate rows: {c['fetched_candidate_rows']}.",
         f"- Target mechanism-corroborated bronze labels: {c['mechanism_corroborated_bronze_labels']} "
         f"(off-target held {c['off_target_fingerprint_matches_held']}; disambiguation holds "
@@ -335,6 +411,9 @@ def _report(audit: dict[str, Any]) -> str:
             f"{audit['guardrails']['broadened_handles_never_predictive_features']}.",
             "- EC never a counted corroborator: "
             f"{audit['guardrails']['ec_never_a_counted_corroborator']}.",
+            "- Source trust tier: "
+            f"{audit['guardrails']['source_trust_tier']}; tier-2 three-axis gate: "
+            f"{audit['guardrails']['source_tier_2_requires_three_independent_mechanism_axes']}.",
             "- Neighboring kinase subclass boundary guards: "
             f"{audit['guardrails']['neighboring_kinase_subclass_boundary_guard']}.",
             "- Per-family cap ceiling: "
@@ -356,23 +435,33 @@ def write_pfkb_ribokinase_family_sourcing(
     report_path: Path | None = None,
     families: tuple[str, ...] = FAMILIES,
     max_records_per_lane: int = 80,
+    record_offset_per_lane: int = 0,
+    record_limit_per_lane: int | None = None,
     current_manifest_path: Path = DEFAULT_CURRENT_MANIFEST_PATH,
     frozen_benchmark_path: Path = DEFAULT_FROZEN_BENCHMARK_PATH,
     expansion_registry_path: Path = DEFAULT_EXPANSION_REGISTRY_PATH,
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = 150,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+    source_tier: str = "source_tier_0",
 ) -> dict[str, Any]:
     expansion_path = Path(expansion_registry_path)
     audit = build_pfkb_ribokinase_family_sourcing(
         families=families,
         max_records_per_lane=max_records_per_lane,
+        record_offset_per_lane=record_offset_per_lane,
+        record_limit_per_lane=record_limit_per_lane,
         current_manifest_payload=_read_json(Path(current_manifest_path)),
         frozen_benchmark_payload=_read_json(Path(frozen_benchmark_path)),
         expansion_payload=_read_json(expansion_path) if expansion_path.exists() else [],
         target_floor=target_floor,
         per_cluster_cap=per_cluster_cap,
         cap_ceiling=cap_ceiling,
+        include_unreviewed_tier2_lanes=include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=only_unreviewed_tier2_lanes,
+        source_tier=source_tier,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

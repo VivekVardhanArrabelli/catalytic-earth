@@ -271,6 +271,43 @@ class DisambiguateRowTests(unittest.TestCase):
             d["corroboration"]["distinct_corroborator_axes"],
         )
 
+    def test_tier2_requires_three_independent_mechanism_axes(self) -> None:
+        row = _row(cofactors=["heme b"], ec=["1.11.1.7"])
+        d = disambiguate_row(row, source_tier="source_tier_2")
+        self.assertEqual(d["decision"], "hold")
+        self.assertEqual(d["reason"], "trust_tier_corroboration_insufficient")
+        self.assertEqual(d["corroboration"]["required_independent_corroborators"], 3)
+        self.assertEqual(
+            d["corroboration"]["distinct_corroborator_axes"],
+            ["cofactor_or_cosubstrate"],
+        )
+
+    def test_tier2_admits_only_when_three_mechanism_axes_present(self) -> None:
+        row = _row(ec=["3.2.1.4"])
+        row["protein_name"] = "Endoglucanase"
+        row["keywords"] = ["Glycosidase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GH0001",
+                "reaction": "cellulose + H2O = cellooligosaccharides",
+                "ec_number": "3.2.1.4",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 200,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row, source_tier="source_tier_2")
+        self.assertEqual(d["fingerprint_id"], "glycoside_hydrolase")
+        self.assertEqual(d["corroboration"]["source_tier"], "source_tier_2")
+        self.assertEqual(d["corroboration"]["distinct_corroborator_count"], 3)
+
     def test_glycoside_hydrolase_ec_keyword_only_control_held(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"
@@ -1628,6 +1665,42 @@ class BuildDisambiguationTests(unittest.TestCase):
             self.assertEqual(
                 label["evidence"]["sources"], ["external_cofactor_ec_disambiguation"]
             )
+
+    def test_requested_source_tier_is_recorded_on_imported_label(self) -> None:
+        row = _row(accession="G20001", ec=["3.2.1.4"])
+        row["protein_name"] = "Endoglucanase"
+        row["keywords"] = ["Glycosidase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GH0001",
+                "reaction": "cellulose + H2O = cellooligosaccharides",
+                "ec_number": "3.2.1.4",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 200,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        audit = build_cofactor_ec_disambiguation(
+            pools=[{"pool": "tier2_test", "path": "artifacts/tier2.json", "rows": [row]}],
+            registry=[],
+            index=_empty_index(),
+            source_tier="source_tier_2",
+        )
+        self.assertEqual(audit["counts"]["importable_new_labels"], 1)
+        label = audit["applied_labels"][0]
+        self.assertEqual(label["evidence"]["source_trust_tier"]["source_tier"], "source_tier_2")
+        self.assertEqual(
+            len(label["evidence"]["source_trust_tier"]["mechanism_corroborator_axes_present"]),
+            3,
+        )
+        self.assertEqual(label["evidence"]["predictive_evidence"], [])
 
 
 if __name__ == "__main__":

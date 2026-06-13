@@ -13,6 +13,42 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: tier-2 PfkB/biotin/glycoside floors closed and capped.** The
+latest run added a source-trust tier parameter to the existing cofactor/EC disambiguation path and
+opt-in unreviewed UniProt tier-2 lanes for `glycoside_hydrolase`,
+`biotin_dependent_carboxylase`, and `pfkb_ribokinase_family`. Defaults remain `source_tier_0`.
+The unreviewed lanes require `--source-tier source_tier_2`, and tier 2 uses the existing
+`source_trust_tiers.evaluate_corroboration` three-axis mechanism gate. EC/name/Rhea/keyword/prose/
+feature handles remain excluded-context admission evidence only; EC is never counted; and
+`predictive_evidence []`.
+
+Bounded applies added **236** bronze rows through the existing mechanism-first path:
+`glycoside_hydrolase` **84 -> 150** (+66), `biotin_dependent_carboxylase` **84 -> 150** (+66), and
+`pfkb_ribokinase_family` **46 -> 150** (+104). PfkB and biotin gained `--record-offset-per-lane`
+and `--record-limit-per-lane` source-window controls after the first applies; these are fetch-only
+controls and do not alter admission, trust tiers, novelty, caps, or predictive evidence. All three
+former floor families are now exactly at their chemistry-confusable **150/150** caps and should not
+continue under current cap policy.
+
+External bronze is now **6881**; combined label surface is **7583**. External-only split is
+**5657** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+**5887**, leaving **4113** to 10k by that surface convention. The strict counter ledger remains
+separate: **positive_bronze_count 5870**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**. Frozen current702 stayed
+byte-unchanged with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`;
+growth went only to `data/registries/external_bronze_labels.json`.
+
+Fresh audits: row guardrail audit over all **236** tier-2 rows found **0** problems. Coverage audit
+reports **35** fingerprints, Gini **0.1312**, holes `[]`, under-floor `[]`, only
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **0**. Novelty replay over
+**6881** expansion rows reports decisions `{'admit': 6425, 'reject': 47, 'throttle': 409}` and
+would-not-readmit **456** (0.0663).
+
+Next work: do **not** continue PfkB, biotin, glycoside, CoA, P450, molybdopterin, racemase,
+isomerase, or other capped lanes without a cap-policy change or a real new chemistry split with
+OOS preregistration if the fingerprint universe changes. The next 10k-path lane should be a clean
+new family/source scout or spec with non-EC mechanism corroborators.
+
 **2026-06-13 automation update: windowed CoA/P450/molybdopterin cap-fills applied.** The latest
 run added `--record-offset-per-lane` / `--record-limit-per-lane` source-window controls to
 `scripts/source_coa_acyltransferase_family.py`, `scripts/source_cytochrome_p450_family.py`, and

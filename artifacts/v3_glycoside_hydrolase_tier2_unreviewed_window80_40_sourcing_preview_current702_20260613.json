@@ -1,0 +1,2464 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0A8C6VST0",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 287
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 420
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 529
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 554
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 640
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "MPAVSLLPLFGSPTNPGPLGGSLGGGPLGGPGSRKGPGPSGAFRLTEKFVLLLVFSAFITLCFGAIFFLPDSPKLLSGVFFHSTTLQQPPPPPAQGDPHVPPPAGAGSSSSFGAGSAAAAEAAANLAKIREDHERALREAKETLQKLPDEIRRDIHQDKVNLLPQDKLGRGEPGAPGLPDLPFRKPIGAVGTQPSDPAVQQKREKIREMMSHAWNNYKHYAWGLNELKPISKQGHSSNLFGNIQGATIVDALDTLYIMEMKEEFKEAKKWVEKNLNFNVNAEISVFEVNIRFVGGLLSAYYLSGEEIFRKKAVELGEKLLPAFNTPTGIPWALLNIKSGIGRNWPWASGGSSILAEFGTLHLEFIHLSYLSGNPLFAEKVMNIRKVLNRLDKPEGLYPNYLNPNSGQWGQHHVSVGGLGDSFYEYLLKAWLMSDKTDEEAKEMYYNAVQSIETHLIRKSSNGLMYIAEWKGGLLEHKMGHLTCFAGGMFVLGADGAPADQTGHHTELGAEIARTCHESYDRTGMKLGPEAFRFDGGVEAIATRQNEKYYILRPEVIETYMYMWRFTHDPKYRQWGWEAVEALEKYCRVDGGYSGLRDVYSSRKSHDDVQQSFFLSETLKYLYLLFSEDDILPFEHWVFNTEAHPLPIVKRGKEEKESK",
+          "sequence_length": 658,
+          "sequence_sha256": "7253610ad8b99bfdb4baa34fa3c2cd072d2aa087cac839b33d0eb08200bc3aba",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0A8C6VST0"
+        },
+        "source_provenance": {
+          "accession": "A0A8C6VST0",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Naja naja (Indian cobra)",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 658,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "02dda3289b619ba5d9b6a03494713059c1d2ab3bda509306f5f76f964d2d76b5",
+            "uniprot_search_row_sha256": "7a4801be7e2bed501f2ff7c1a2adabf9c9a540d38bc52af518c24495f030dd7c"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0A8C6VST0"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0A8C6VST0-F1"
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0A8C6VST0 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0A8C7ED98",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 268
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 401
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 510
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 535
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 621
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "MTTPALLPLSGRRLPALNLGTSSFPHHRATLRLSEKFILLLILSAFITLCFGAFFFLPDSSKHKRFDLGLEDVLIPHVDTSKGDKTLGSFLIHGQGHDEHRHREEEERLRNKIRADHEKALEEAKEKLKKSRDEIQAEIQTEKSKVVQELKKKESKPLPPVPLPNLIGINSGEPADPDVREKRDKIKEMMKHAWDNYRQYGWGHNELKPIARKGHSTNIFGNSQMGATIVDALDTLYIMGLHDEFREGQEWIDKNLDFSVNSEVSVFEVNIRFIGGLLAAYYLSGQEVFKIKAVQLAGKLLPAFNTPTGIPWAMVNLKSGVGRNWGWASAGSSILAEFGTLHMEFVHLSYLTGDPVYYNKVMHIRKLLQKMDRPNGLYPNYLNPRTGRWGQHHTSVGGLGDSFYEYLLKAWLMSDKTDVEARKMYDDAIEAIEKHLIRKSNGGLTFIGEWKNGHLERKMGHLTCFAGGMFALGADGSRDDKAGHYLQLGAEIAHTCHESYDRTTLKLGPEAFKFDGGVEAVAVRQNEKYYILRPEVIETYWYMWRFTHDPKYRQWGWEATQAIDKYCRVSGGFSGVKDVYSSSPAYDDVQQSFFLAETLKYLYLLFSNDDLLPLDNWVFNTEAHPLPVLHLANTTLSGNPAYR",
+          "sequence_length": 643,
+          "sequence_sha256": "bcf6a5804f4a881aa57a36b553e042a9c75c47526340bf9469e8136b4399fb4f",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0A8C7ED98"
+        },
+        "source_provenance": {
+          "accession": "A0A8C7ED98",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Nothoprocta perdicaria (Chilean tinamou) (Crypturus perdicarius)",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 643,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "38e5e7e79f94d139c1fd693fd5400383b3db3a64149aa14d2d94a5c76f129006",
+            "uniprot_search_row_sha256": "a2de61c1914b5a6e5dba93aa4c5f4f3498b222d8a5c8e53c7067025c790a19fe"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0A8C7ED98"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0A8C7ED98-F1"
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0A8C7ED98 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0A8C8UAT6",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 373
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 506
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 615
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 640
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 726
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "MENLTNSDEGLQPAVCRACLFAKGATPARRAGGEPLPAGRPAAQTRALGGLDAQEPAPQLLTAGGSEVWLLSGSASGPWTDCQPAAATTGAMPVGGLLPLFSSPGGGGLGGGLGGGLSGSRKGSGPAAFRLTEKFVLLLVFSAFITLCFGAIFFLPDSSKLLSGVLFHSNPALQPAAEHKPGPGARAEDVAEGRVRHREEGVPGDPGAVLEDNLARIRENHERALREAKETLQKLPEEIQRDILLEKEKVAQDQLRDKELFGGLPKVDFIPPIGIENREPADASIREKRAKIKEMMNHAWNNYKRYAWGLNELKPISKEGHSSSLFGSIKGATIVDALDTLFIMGMKTEFQEAKSWIKKYLDFNVNAEVSVFEVNIRFVGGLLSAYYLSGEEIFRKKAVELGVKLLPAFHTPSGIPWALLNMKSGIGRNWPWASGGSSILAEFGTLHLEFMHLSHLSGNPIFAEKVMNIRTVLNKLEKPEGLYPNYLNPSSGQWGQHHVSVGGLGDSFYEYLLKAWLMSDRTDVEAKKMYFDAVQAIETHLIRKSSGGLTYIAEWKGGLLEHKMGHLTCFAGGMFALGADGAPEALAQHYLELGAEIARTCHESYNRTFMKLGPEAFRFDGGVEAIATRQNEKYYILRPEVIETYMYMWRLTHDPKYRTWAWEAVEALESHCRVNGGYSGLRDVYFANESYDDVQQSFFLAETLKYLYLIFSDDDLLPLEHWIFNTEAHPFPVLREEKKEIEVK",
+          "sequence_length": 744,
+          "sequence_sha256": "d1debe12acb348e166829c15e70786ef7d264d5dfc29a668e451f5a9d77d3710",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0A8C8UAT6"
+        },
+        "source_provenance": {
+          "accession": "A0A8C8UAT6",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Peromyscus maniculatus bairdii (Prairie deer mouse)",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 744,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "7930801e88fb3e4897071a39782ab80cace6e985f47919059bb2fd13fe7cd957",
+            "uniprot_search_row_sha256": "9daec164ec0acfc1bcde9d3b54b25a884eb9b61b7d20646bf6fc7291da8c2227"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0A8C8UAT6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0A8C8UAT6-F1"
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0A8C8UAT6 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0A8D0GWH1",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 266
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 399
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 508
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 533
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 619
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "TPVVSLLLLFSSPPGPGTLGGPLGGGPGNGRKASGPSAFRLTEKFVLLLVFSAFITLCFGAIFFLPDSSKLLSGVFFHSAALQPPPPPPPPEAAVAAAVAAAENLARIREDHERALREAKETLQKLPEEINMDIRKEKETILRLGNLGKKEAAAAGLPSLQFRKPIGAVGQEPTDPAVQQQRAKIKEMMKHAWDNYKRYAWGLNELKPISKQGHSSNLFGNIQGATIVDALDTLYIMEMRDEFKEAKEWVEKNLDFNVNAEISVFEVNIRFVGGLLSAYYLSGEEIFRKKAVELGEKLLLAFNTPTGIPWALLNIKSGIGRNWPWASGGSSILAEFGTLHLEFIHLSHLSGNPLFAEKVMNIRKVLNRLDKPEGLYPNYLNPSSGQWGQHHVSIGGLGDSFYEYLLKAWLMSDKTDEEGKKMYYDAVQSIENHLIRKSSGGLTYIAEWKGGLLEHKMGHLTCFAGGMFVLGANGAPADKTGHHIELGAEIARTCHESYDRTSTKLGPEAFRFDGGVEAIATRQNEKYYILRPEVIETYMYMWRFTHDPKYRQWGWEAVEALEKYCRIDGGYSGLRDVYSNRQSHDDVQQSFFLSETLKYLYLLFSEDDLLPFEHWVFNTEAHPLPVLHREDGKKEEKHK",
+          "sequence_length": 639,
+          "sequence_sha256": "b1e11b8c2a0bfe879a0046b55b3c9db48f832838dd8dadcc3cb4b4eefbda722b",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0A8D0GWH1"
+        },
+        "source_provenance": {
+          "accession": "A0A8D0GWH1",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Sphenodon punctatus (Tuatara) (Hatteria punctata)",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 639,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "06f2b00cc21c6d43a4f7e0bd5fdd67e09cb1c892f7a8c3f783125e352b12e461",
+            "uniprot_search_row_sha256": "4a3bf843f6ddac2c4d8db3b9108a77d02a9a6a0dd4e59109c4ffea0ea2389570"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0A8D0GWH1"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0A8D0GWH1-F1"
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0A8D0GWH1 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0A8D2IWI2",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 289
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 422
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 531
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 556
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 642
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "MPAVSLLPLFGSPTGPGALGGSLGGGPLGGPGGRKVPSPSGAFRLTEKFVLLLVFSAFITLCFGAIFFLPDSPKLLSGVFFHSSTLQQQPSPPAQGDQRAPQPPGAGAGSSAGYGVGPGSAGEAAENLAKIREDHERALREAKETLQKLPEEIRRDIHQDKAKFLLQDKLGRKEAGGAELPDLPFRKPIGAVGAEPSDPVIRQKRAKIKEMMKHAWDNYKHYAWGLNELKPISKQGHSSNLFGNIQGATIVDALDTLYIMEMKDEFKEAKEWVEKNLDFNVNAEVSVFEVNIRFVGGLLSAYCLSGEEIFRKKAVELGEKLLPAFNTPTGIPWALLNIKSGIGRNWPWASGGSSILAEFGTLHLEFIHLSHLSGNPVFAEKVMNIRKVLNQLDKPEGLYPNYLNPNSGQWGQHHVSIGGLGDSFYEYLLKAWLMSDKTDEEGKQMYYDAVQSIETHLIRKSSTGLMYIAEWKGGLLEHKMGHLTCFAGGMFVLGADGAPDDKTGRHIELGAEIARTCHESYDRTSMKLGPEAFRFDGGVEAIATRQNEKYYILRPEVIETYMYMWRFTHDPKYRQWGWEAVEALEKYCKVDGGYSGIRDVYSNHQSHDDVQQSFFLSETLKYLYLLFSEDDLLPFEHWVFNTEAHPLPVLTRGEEEKSKSK",
+          "sequence_length": 661,
+          "sequence_sha256": "eda0610f9735ba49a310c5cc21edef6d7a58c0b3ea530a0be48fa282fd20d6a1",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0A8D2IWI2"
+        },
+        "source_provenance": {
+          "accession": "A0A8D2IWI2",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Varanus komodoensis (Komodo dragon)",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 661,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "08f992c80e67d3761c22b3b31ccd2751964e619fa8892bfc08ac56ecb0898d15",
+            "uniprot_search_row_sha256": "e37af66db5b3cdd22682ba5f11d6b9037426acea90ca2c3ce612e4adf6baf432"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0A8D2IWI2"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0A8D2IWI2-F1"
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0A8D2IWI2 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0A8V1ABV1",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 306
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 439
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 546
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 575
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 664
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "MYAAAAAAVAASPPRRDFISVTLSPEEAVGAGGYNNSKAWRRRSCWRKWKQLSRLQRSIILFLFAFLTVCGVISYTSVGEPWKSLTSKSSDEHGTEPDAPGLRLANPAVLPAPQKADANAGDYPELSPQKKPKLPHGRRNPSNFQIKPPWGDVRLQTRHDTRKAVEDPAQADKQEKTEKSVISWRGAVIEPDQSSEPPSSRVKEPEKPSSVEGESQKEPVPINERQMAVIEAFRHAWKGYKDFAWGHDELKPLSKSYSEWFGLGLTLIDALDTMWILGLREEFEEARKWVANDLAFDKNVDVNLFESTIRILGGLLSTYHLSGDSLFLEKAKDIGNRLMPAFKTPSKIPYSDVNIGRGTAHPPRWTSDSTVAEVTSIQLEFRELSRLTGDEKYQKAVDEVMKHVHTLSGKNDGLVPMFINTNSGQFTHLGVYTLGARADSYYEYLLKQWIQGGKTENELLEDYMKAIEGVKKHLLQRSQPKKLTFVGELAHGHFSAKMDHLVCFLPGTLALGAHNGLTADHMKLAEALIETCYQMYAQVETGLSPEIVHFNLHAQKGHKDVEIKPADRHNLLRPETVESLFYMYRFTGDKKYQDWGWEILQNFNKYTRVPTGGYTSINNVQNPSNPEPRDKMESFFLGETLKYMFLLFSDDIDLINLDKYVFNTEAHPLPIWVPA",
+          "sequence_length": 675,
+          "sequence_sha256": "ffdaa0f633b47b26c3d2172d0260044757ca2e51921f6144db3d1dba1d0d4677",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0A8V1ABV1"
+        },
+        "source_provenance": {
+          "accession": "A0A8V1ABV1",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Gallus gallus (Chicken)",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 675,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "bf8d22b78eb68549ddb137767170951453e0ea75a696eab85d7d2a4d763b14d9",
+            "uniprot_search_row_sha256": "4b6ea7ff7730d82c98b0735a93613cb076cfae697307aaa150fff97c72ecaf3a"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0A8V1ABV1"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0A8V1ABV1-F1"
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0A8V1ABV1 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0AAV1QRS0",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 181
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 313
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 424
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 446
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 530
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "MPRGRSSSSSSKWRYCNPSYYLKRPKRLASLFIVFVCASFFVWDRQTLVREHEVEISRLSEEVNQLKNMLEELKSGDGDAVKLISGKKDLPDEPIDVERRQKVKEAMIHAWSSYEKYAWGHDELQPQSKKGIDSFGGLGATLIDALDTLFIMGLDEQFQRARDWVAKSLDFNKDYDASVFETTIRVVGGLLSAYDLSGDKVFLEKAREIADRLLPAWDTPTGIPYNTINLAHGNAHNPGWTGGDSILADSGTEQLEFIALSQRTGDLKYQLKAENVISELNKTFPDDGLLPIYISPERGTGSYSTITFGAMGDSFYEYLLKVWIQGNKTSAVRKYREMWEKSMKGLLSLVRKTTPSSFTYICEKNGDSLSDKMDELACFAPGMLALGSSGYGPADAQKIFSLAEELAWTCYNFYQSTPTKLAGENYFFRPGEDMSVGTSWNILRPETVESLFYLWRLTGNRTYREWGWNIFQAFEKNSRIETGYVGLKDVNTGVKDDMMQSFFLAETLKYLYLLFSPSSEISLDEWVFNTEAHPLRIVTRHDGEHIEKSKNRQTGRARGRKVGHFGNGRTLITLEANQSPGREEGENVDDDIFGRTYGRLRALAHKLDPNALKCKPNKTCDDRWGFDVIGSTVNVPKTKKTYCKNKECKKHTLHKVTQYKKGKDSLAAQGKRRYDRKQSGYGGQTKPVFHKKAKTTKKIVLRLQCQSCKHVSQHPIKRCKHFEIGGDKKGKGTSLF",
+          "sequence_length": 736,
+          "sequence_sha256": "6456a1dc140457282771e0b0c6d065186cc8dad318fe2e356be92e2fd7279ef0",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0AAV1QRS0"
+        },
+        "source_provenance": {
+          "accession": "A0AAV1QRS0",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Dovyalis caffra",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 736,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "22b6102d6b917f64da86a2147029f5452f1766b22fa4a19fa11097a974ad3f10",
+            "uniprot_search_row_sha256": "bab886b72f3016ed9b6178c4d9f44cb722fd695c8d98e435c788a1d0fed28bc1"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0AAV1QRS0"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0AAV1QRS0-F1"
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0AAV1QRS0 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0AAV9ME20",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 188
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 320
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 431
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 453
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 537
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "MARSRSSSTVRRYINPAYYLKRPKRLALLFIVFVFATFFFWDRQTLLRDHEEEISKLKEEVIHLRNLLEELKNGGDMSVEKKKYSGEGGQAVKNLDSPDNILDAQRREKVKDAMLHAWSSYEKYAWGHDELQPQTKNGVDSFGGLGATLIDSLDTLYIMGLDEQFQRARKWVANSLDFNKNYDASVFETTIRVVGGLLSTYDLSGDKLFLDKAQDIADRLLPAWNTESGIPYNIINLAHGNPHNPGWTGGDSILADSGTEQLEFIALSQRTGDRKYQQKVENVILELNRTFPDDGLLPIYINPHKGTTSYSAITFGAMGDSFYEYLLKVWIQGNRTAAVSHYRKMWETSMKGLVSLVRRTTPSSFAYLGEKMGSSINDKMDELACFAPGMLALGSSGYSPDEAQKFLSLAEELAWTCYNFYQSTPTKLAGENYFFNDGQDMSVGTSWNILRPETVESLFYLWRLTGNKTYQEWGWNIFQAFEKNSRVESGYVGLKDVNTGVKDNMMQSFFLAETLKYLYLLFSPSSVIPLDEWVFNTEAHPIKIVTRNDWAVSSGSSGGSQESDRQLRTRKEGRFRVHH",
+          "sequence_length": 579,
+          "sequence_sha256": "629caf5e6ade8ddbbdc6b5f91e7910962616229cbfa1ae80a59d70b92ec2cdfe",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0AAV9ME20"
+        },
+        "source_provenance": {
+          "accession": "A0AAV9ME20",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Solanum pinnatisectum (tansyleaf nightshade)",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 579,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "2875352f7c05b4b38e16d254a07cfdeacf0c3941a2bd2e5c2fb77407cdef720f",
+            "uniprot_search_row_sha256": "6ba109f8d90e0d72ee63588906dc78ad22eb3d2dc6f54592c3a9cbcc86d3eacc"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0AAV9ME20"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0AAV9ME20-F1"
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0AAV9ME20 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A0ABU6Z3H9",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 174
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 306
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 417
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 439
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 523
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Ca(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144"
+          },
+          "retrieved_utc": "2026-06-13T23:24:54Z",
+          "sequence": "MARASRSVTSSGKWKYCNPTYYLKRPKRLALLFIVFVFGSFIVWDRQTLVREHEVEIEGLRKEITEMQNMLEELNKAKSSKEVIDDPLDIERREKVKEAMLHAWGSYEKYAWGQDELQPQSKSGVNSFGGLGATLIDSLDTLYIMGLDQQFQKARDWVANTLDFNKDYEASVFETTIRVVGGLLSAYDLSGDKVFLDKAKDIADRLLPAWDTATGIPYNIINLSHGRAHNPSWTGGDSILADSGTEQIEFIALSQRTGDPKYQQKVENVITQINKTFPDDGLLPIYINPHSGKAGYSPVTFGAMGDSFYEYLLKVWIQGNKTSAVKLYREMWEKSMKGLLSLVRRSTPSSFTYICEKNGGYLSDKMDELACFAPGMVALGSFGYGPEDSQKFLSLAEELAWTCYNFYQSTPTKLAGENYFFHDGQDMSVGTSWNILRPETIESLFYLWRLTGNKTYKEWGWNIFQAFEKNSRTESGYVGLKDVNSGVKDNMMQSFFLAETLKYLYLLFSPPTVIPLDQWVFNTEAHPLRIVARKEGGSVENTNEKQKPPFRIGGRKEGRIG",
+          "sequence_length": 561,
+          "sequence_sha256": "ce6aa29140f13f2b3f800dc5f21a8abf552104d1395be79a82ad14bbd7f11565",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0ABU6Z3H9"
+        },
+        "source_provenance": {
+          "accession": "A0ABU6Z3H9",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Stylosanthes scabra",
+          "protein_name": "alpha-1,2-Mannosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 561,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "df21de00f7fe175f6027e343f65aa158ca69918a2054f2de08972953948d3076",
+            "source_query_sha256": "4ccce54a3958702cc861325afe96dfc5148e74352875205cbaff4382d46f6144",
+            "uniprot_entry_record_sha256": "9e997b7e4d50111975fc75b5206cce20f5d8fe4c075aac2f68da0db1ce0b2572",
+            "uniprot_search_row_sha256": "c5abdd5758726031bd410ea0b0993077f87d03f82bc3d8c2298b62184699ea83"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [],
+          "coordinate_path": null,
+          "coordinate_status": "coordinate_provenance_missing",
+          "pdb_ids": [],
+          "structure_handle": null
+        }
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0ABU6Z3H9 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_glycoside_hydrolase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "glycoside_hydrolase": 9
+    },
+    "alternate_name_lanes_enabled": false,
+    "current_combined_labels": 7522,
+    "disambiguation_hold_count": 14,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 14
+    },
+    "disambiguation_skip_count": 0,
+    "fetched_candidate_rows": 40,
+    "gate_admitted_before_cap_guard": 25,
+    "held_at_cap_ceiling": 16,
+    "held_at_cap_ceiling_by_fingerprint": {
+      "glycoside_hydrolase": 16
+    },
+    "lanes_queried": 1,
+    "max_records_per_lane": 120,
+    "mechanism_corroborated_bronze_labels": 26,
+    "novelty_admitted_labels": 9,
+    "novelty_throttled_or_rejected": 1,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "only_alternate_name_lanes_enabled": false,
+    "only_unreviewed_tier2_lanes_enabled": true,
+    "projected_combined_labels_if_merged": 7531,
+    "query_pages_per_lane": 1,
+    "record_limit_per_lane": 40,
+    "record_offset_per_lane": 80,
+    "source_trust_tier": "source_tier_2",
+    "unreviewed_tier2_lanes_enabled": false
+  },
+  "created_utc": "2026-06-13T23:24:54Z",
+  "deploy_missing_active_site_context_per_family": {
+    "glycoside_hydrolase": "glycosidic_substrate_ordered_water_hydrolysis_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "medium": 26
+    },
+    "current_registry_labels": 6820,
+    "decision_counts": {
+      "hold": 14,
+      "import": 26
+    },
+    "examined_rows": 40,
+    "fingerprint_counts": {
+      "glycoside_hydrolase": 26
+    },
+    "hold_count": 14,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 14
+    },
+    "importable_new_labels": 26,
+    "per_pool_decision_counts": {
+      "glycoside_hydrolase_broadened_handle_fresh_fetch": {
+        "hold": 14,
+        "import": 26
+      }
+    },
+    "projected_registry_labels_if_merged": 6846,
+    "skip_count": 0
+  },
+  "evidence_basis": "unreviewed_uniprot_tier2_ec_rhea_glycosidase_active_site_annotation",
+  "families_sourced": [
+    "glycoside_hydrolase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "glycoside_hydrolase": {
+      "admitted_this_run": 9,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 141,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "glycosidic_substrate_ordered_water_hydrolysis_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 16,
+      "projected_combined": 150,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "alternate_name_source_lanes_enabled": false,
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "glycoside_hydrolase_handles_scope_admission_only": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "only_alternate_name_source_lanes_enabled": false,
+    "only_unreviewed_tier2_source_lanes_enabled": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "glycoside_hydrolase": 150
+    },
+    "predictive_features_use_ec_name_keyword_glycosidase_or_prose": false,
+    "source_tier_2_requires_three_independent_mechanism_axes": true,
+    "source_trust_tier": "source_tier_2",
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "transferase_phosphorylase_lyase_side_ec_guard": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true,
+    "unreviewed_tier2_source_lanes_enabled": false
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "glycoside_hydrolase_unreviewed_tier2_site_annotated",
+      "query": "(reviewed:false) AND (ec:3.2.1.*) AND ((keyword:Glycosidase) OR (protein_name:glycosidase) OR (protein_name:glucosidase) OR (protein_name:galactosidase) OR (protein_name:xylanase) OR (protein_name:cellulase) OR (protein_name:amylase) OR (protein_name:mannosidase) OR (protein_name:chitinase) OR (protein_name:\"beta-glucanase\") OR (protein_name:\"glycoside hydrolase\") OR (protein_name:\"glycosyl hydrolase\")) AND ((ft_act_site:*) OR (ft_binding:*)) NOT ((ec:2.4.*) OR (ec:4.*) OR (protein_name:transferase) OR (protein_name:lyase) OR (protein_name:phosphorylase) OR (protein_name:transglycosylase))",
+      "record_count": 40,
+      "record_limit_per_lane": 40,
+      "record_offset_per_lane": 80,
+      "records_in_window_before_dedup": 40,
+      "records_returned_by_query": 120,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28ec%3A3.2.1.%2A%29+AND+%28%28keyword%3AGlycosidase%29+OR+%28protein_name%3Aglycosidase%29+OR+%28protein_name%3Aglucosidase%29+OR+%28protein_name%3Agalactosidase%29+OR+%28protein_name%3Axylanase%29+OR+%28protein_name%3Acellulase%29+OR+%28protein_name%3Aamylase%29+OR+%28protein_name%3Amannosidase%29+OR+%28protein_name%3Achitinase%29+OR+%28protein_name%3A%22beta-glucanase%22%29+OR+%28protein_name%3A%22glycoside+hydrolase%22%29+OR+%28protein_name%3A%22glycosyl+hydrolase%22%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29+NOT+%28%28ec%3A2.4.%2A%29+OR+%28ec%3A4.%2A%29+OR+%28protein_name%3Atransferase%29+OR+%28protein_name%3Alyase%29+OR+%28protein_name%3Aphosphorylase%29+OR+%28protein_name%3Atransglycosylase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=120",
+      "status": "query_fetched",
+      "target_family_lane": "glycoside_hydrolase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via `apply-external-annotation-anchored-import` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 25,
+      "throttle": 1
+    },
+    "reason_counts": {
+      "adds_diversity": 25,
+      "redundant_no_novelty_signal": 1
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_glycoside_hydrolase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:A0A8D0H270",
+      "fingerprint_id": "glycoside_hydrolase"
+    }
+  ]
+}

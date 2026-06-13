@@ -74,6 +74,28 @@ ALTERNATE_NAME_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
         },
     )
 }
+UNREVIEWED_TIER2_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    FAMILY: (
+        {
+            "lane_id": "glycoside_hydrolase_unreviewed_tier2_site_annotated",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:false) AND (ec:3.2.1.*) AND "
+                "((keyword:Glycosidase) OR (protein_name:glycosidase) OR "
+                "(protein_name:glucosidase) OR (protein_name:galactosidase) OR "
+                "(protein_name:xylanase) OR (protein_name:cellulase) OR "
+                "(protein_name:amylase) OR (protein_name:mannosidase) OR "
+                "(protein_name:chitinase) OR (protein_name:\"beta-glucanase\") OR "
+                "(protein_name:\"glycoside hydrolase\") OR "
+                "(protein_name:\"glycosyl hydrolase\")) AND "
+                "((ft_act_site:*) OR (ft_binding:*)) NOT "
+                "((ec:2.4.*) OR (ec:4.*) OR (protein_name:transferase) OR "
+                "(protein_name:lyase) OR (protein_name:phosphorylase) OR "
+                "(protein_name:transglycosylase))"
+            ),
+        },
+    )
+}
 
 
 def _lane_queries_for(
@@ -81,11 +103,17 @@ def _lane_queries_for(
     *,
     include_alternate_name_lanes: bool = False,
     only_alternate_name_lanes: bool = False,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
 ) -> tuple[dict[str, str], ...]:
     lanes: list[dict[str, str]] = []
     for family in families:
         if family not in FAMILY_LANE_QUERIES:
             raise ValueError(f"{family!r} is not a glycoside hydrolase family")
+        if include_unreviewed_tier2_lanes or only_unreviewed_tier2_lanes:
+            lanes.extend(UNREVIEWED_TIER2_LANE_QUERIES[family])
+        if only_unreviewed_tier2_lanes:
+            continue
         if include_alternate_name_lanes or only_alternate_name_lanes:
             lanes.extend(ALTERNATE_NAME_LANE_QUERIES[family])
         if not only_alternate_name_lanes:
@@ -109,16 +137,23 @@ def build_glycoside_hydrolase_sourcing(
     query_pages_per_lane: int = 1,
     include_alternate_name_lanes: bool = False,
     only_alternate_name_lanes: bool = False,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+    source_tier: str = "source_tier_0",
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
 ) -> dict[str, Any]:
     created = created_utc or _utc_now_iso()
+    if (include_unreviewed_tier2_lanes or only_unreviewed_tier2_lanes) and source_tier != "source_tier_2":
+        raise ValueError("unreviewed tier-2 lanes must use source_tier='source_tier_2'")
     families = tuple(families)
     lane_queries = _lane_queries_for(
         families,
         include_alternate_name_lanes=include_alternate_name_lanes,
         only_alternate_name_lanes=only_alternate_name_lanes,
+        include_unreviewed_tier2_lanes=include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=only_unreviewed_tier2_lanes,
     )
     caps_by_family = {family: cap_ceiling for family in families}
     if query_pages_per_lane < 1:
@@ -156,6 +191,7 @@ def build_glycoside_hydrolase_sourcing(
         ],
         registry=expansion_payload,
         index=index,
+        source_tier=source_tier,
     )
 
     family_set = set(families)
@@ -226,7 +262,11 @@ def build_glycoside_hydrolase_sourcing(
         "schema_version": SCHEMA_VERSION,
         "created_utc": created,
         "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
-        "evidence_basis": "reviewed_swissprot_ec_rhea_glycosidase_active_site_annotation",
+        "evidence_basis": (
+            "unreviewed_uniprot_tier2_ec_rhea_glycosidase_active_site_annotation"
+            if source_tier == "source_tier_2"
+            else "reviewed_swissprot_ec_rhea_glycosidase_active_site_annotation"
+        ),
         "stage": "scaling_plan_to_10k:wire_glycoside_hydrolase_broadened_handle",
         "families_sourced": list(families),
         "deploy_missing_active_site_context_per_family": {
@@ -252,6 +292,10 @@ def build_glycoside_hydrolase_sourcing(
             "multi_fingerprint_signal_rows_held": True,
             "alternate_name_source_lanes_enabled": include_alternate_name_lanes,
             "only_alternate_name_source_lanes_enabled": only_alternate_name_lanes,
+            "unreviewed_tier2_source_lanes_enabled": include_unreviewed_tier2_lanes,
+            "only_unreviewed_tier2_source_lanes_enabled": only_unreviewed_tier2_lanes,
+            "source_trust_tier": source_tier,
+            "source_tier_2_requires_three_independent_mechanism_axes": True,
             "novelty_gated_against_both_registries": True,
             "structure_geometry_confirmation_is_deferred_promotion_signal": True,
             "per_fingerprint_cap_ceiling_enforced_per_family": dict(
@@ -270,6 +314,9 @@ def build_glycoside_hydrolase_sourcing(
             "query_pages_per_lane": query_pages_per_lane,
             "alternate_name_lanes_enabled": include_alternate_name_lanes,
             "only_alternate_name_lanes_enabled": only_alternate_name_lanes,
+            "unreviewed_tier2_lanes_enabled": include_unreviewed_tier2_lanes,
+            "only_unreviewed_tier2_lanes_enabled": only_unreviewed_tier2_lanes,
+            "source_trust_tier": source_tier,
             "fetched_candidate_rows": pilot["candidate_count"],
             "mechanism_corroborated_bronze_labels": len(target_labels),
             "off_target_fingerprint_matches_held": len(off_target_labels),
@@ -335,6 +382,9 @@ def _report(audit: dict[str, Any]) -> str:
         f"- Query pages per lane: {c['query_pages_per_lane']}.",
         f"- Per-lane record window: offset {c['record_offset_per_lane']}, "
         f"limit {c['record_limit_per_lane']}.",
+        f"- Source trust tier: {c['source_trust_tier']}.",
+        f"- Unreviewed tier-2 lanes enabled: {c['unreviewed_tier2_lanes_enabled']} "
+        f"(only: {c['only_unreviewed_tier2_lanes_enabled']}).",
         f"- Fetched candidate rows: {c['fetched_candidate_rows']}.",
         f"- Target mechanism-corroborated bronze labels: {c['mechanism_corroborated_bronze_labels']} "
         f"(off-target held {c['off_target_fingerprint_matches_held']}; disambiguation holds "
@@ -379,6 +429,9 @@ def _report(audit: dict[str, Any]) -> str:
             f"{audit['guardrails']['broadened_handles_never_predictive_features']}.",
             "- EC never a counted corroborator: "
             f"{audit['guardrails']['ec_never_a_counted_corroborator']}.",
+            "- Source trust tier: "
+            f"{audit['guardrails']['source_trust_tier']}; tier-2 three-axis gate: "
+            f"{audit['guardrails']['source_tier_2_requires_three_independent_mechanism_axes']}.",
             "- Transferase/phosphorylase/lyase/side-EC guard: "
             f"{audit['guardrails']['transferase_phosphorylase_lyase_side_ec_guard']}.",
             "- Per-family cap ceiling: "
@@ -411,6 +464,9 @@ def write_glycoside_hydrolase_sourcing(
     query_pages_per_lane: int = 1,
     include_alternate_name_lanes: bool = False,
     only_alternate_name_lanes: bool = False,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+    source_tier: str = "source_tier_0",
 ) -> dict[str, Any]:
     expansion_path = Path(expansion_registry_path)
     audit = build_glycoside_hydrolase_sourcing(
@@ -427,6 +483,9 @@ def write_glycoside_hydrolase_sourcing(
         query_pages_per_lane=query_pages_per_lane,
         include_alternate_name_lanes=include_alternate_name_lanes,
         only_alternate_name_lanes=only_alternate_name_lanes,
+        include_unreviewed_tier2_lanes=include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=only_unreviewed_tier2_lanes,
+        source_tier=source_tier,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

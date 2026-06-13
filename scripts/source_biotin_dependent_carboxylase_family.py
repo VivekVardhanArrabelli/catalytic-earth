@@ -59,6 +59,18 @@ def main() -> int:
         help="which broadened-handle families to source; default = biotin_dependent_carboxylase",
     )
     parser.add_argument("--max-records-per-lane", type=int, default=160)
+    parser.add_argument(
+        "--record-offset-per-lane",
+        type=int,
+        default=0,
+        help="skip this many returned UniProt rows per lane before entry/Rhea fetch",
+    )
+    parser.add_argument(
+        "--record-limit-per-lane",
+        type=int,
+        default=None,
+        help="process at most this many returned UniProt rows per lane after the offset",
+    )
     parser.add_argument("--cap-ceiling", type=int, default=150)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
@@ -77,6 +89,28 @@ def main() -> int:
             "prepend stricter alternate Rhea/raw-EC source lanes found by the "
             "PfkB/biotin scout; admission still requires non-EC mechanism evidence"
         ),
+    )
+    parser.add_argument(
+        "--include-unreviewed-tier2-lanes",
+        action="store_true",
+        help=(
+            "prepend unreviewed UniProt site-annotated biotin carboxylase lanes; "
+            "requires --source-tier source_tier_2 and the stricter three-axis trust gate"
+        ),
+    )
+    parser.add_argument(
+        "--only-unreviewed-tier2-lanes",
+        action="store_true",
+        help=(
+            "source only unreviewed UniProt site-annotated biotin carboxylase lanes; "
+            "requires --source-tier source_tier_2 and the stricter three-axis trust gate"
+        ),
+    )
+    parser.add_argument(
+        "--source-tier",
+        default="source_tier_0",
+        choices=("source_tier_0", "source_tier_2"),
+        help="trust tier passed to mechanism corroboration; tier 2 requires three axes",
     )
     parser.add_argument(
         "--apply",
@@ -104,9 +138,14 @@ def main() -> int:
         report_path=Path(args.report),
         families=tuple(args.families),
         max_records_per_lane=args.max_records_per_lane,
+        record_offset_per_lane=args.record_offset_per_lane,
+        record_limit_per_lane=args.record_limit_per_lane,
         cap_ceiling=args.cap_ceiling,
         include_floor_closure_lanes=args.include_floor_closure_lanes,
         include_alternate_floor_closure_lanes=args.include_alternate_floor_closure_lanes,
+        include_unreviewed_tier2_lanes=args.include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=args.only_unreviewed_tier2_lanes,
+        source_tier=args.source_tier,
     )
 
     c = audit["counts"]

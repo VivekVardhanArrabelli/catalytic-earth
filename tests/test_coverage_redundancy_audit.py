@@ -171,9 +171,9 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 7347)
+            self.assertEqual(written["totals"]["combined"], 7583)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 6645)
+            self.assertEqual(written["totals"]["expansion_bronze"], 6881)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -191,22 +191,13 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # tranche, a capped P450 extension tranche, a copper extension
             # tranche, a Mn/Fe superoxide dismutase tranche, and a glycoside
             # hydrolase tranche, followed by windowed CoA, P450, and
-            # molybdopterin cap-fills. Glycoside hydrolase, biotin carboxylase, and
-            # PfkB are below floor but no longer absent; metal_dependent_hydrolase
+            # molybdopterin cap-fills, then tier-2 unreviewed floor-closure windows
+            # for glycoside hydrolase, biotin carboxylase, and PfkB. Those three
+            # floors are now closed; metal_dependent_hydrolase
             # remains the known intentional over-cap.
             self.assertEqual(audit["class_imbalance"]["expansion_holes"], [])
-            self.assertIn(
-                "glycoside_hydrolase",
-                audit["class_imbalance"]["fingerprints_below_floor"],
-            )
-            self.assertIn(
-                "biotin_dependent_carboxylase",
-                audit["class_imbalance"]["fingerprints_below_floor"],
-            )
-            self.assertIn(
-                "pfkb_ribokinase_family",
-                audit["class_imbalance"]["fingerprints_below_floor"],
-            )
+            self.assertEqual(audit["class_imbalance"]["fingerprints_below_floor"], [])
+            self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 0)
             self.assertIn(
                 "metal_dependent_hydrolase",
                 audit["acquisition_targets"]["over_cap"],

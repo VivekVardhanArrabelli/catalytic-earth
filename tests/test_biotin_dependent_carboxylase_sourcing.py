@@ -95,6 +95,15 @@ _ROWS = {
         "Binding site",
         "Biotin",
     ),
+    "BT0001": (
+        ["6.4.1.2"],
+        ["Biotin", "Ligase"],
+        ["Biotin"],
+        "Unreviewed acetyl-CoA carboxylase",
+        "acetyl-CoA + ATP + hydrogencarbonate = malonyl-CoA + ADP + phosphate",
+        "Binding site",
+        "Biotin",
+    ),
 }
 
 
@@ -111,7 +120,7 @@ def _search_record(accession):
         "ec_numbers": ec,
         "pdb_ids": [],
         "alphafold_ids": [accession],
-        "reviewed": "reviewed",
+        "reviewed": "unreviewed" if accession.startswith("BT") else "reviewed",
         "evidence_level": "protein_cross_reference",
     }
 
@@ -154,7 +163,11 @@ def _entry_record(accession):
     return {
         "source": "uniprot",
         "accession": accession,
-        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "entry_type": (
+            "UniProtKB unreviewed (TrEMBL)"
+            if accession.startswith("BT")
+            else "UniProtKB reviewed (Swiss-Prot)"
+        ),
         "protein_name": protein_name,
         "sequence_length": 360,
         "keywords": keywords,
@@ -182,14 +195,16 @@ def _entry_record(accession):
 
 
 def _fake_query_fetcher(query, size):
-    if query == "(reviewed:true) AND (ec:6.4.1.*)":
+    if "reviewed:false" in query:
+        accessions = ["BT0001"]
+    elif query == "(reviewed:true) AND (ec:6.4.1.*)":
         accessions = ["BC0004"]
     elif "rhea:" in query and "keyword:Biotin" not in query and "protein_name:biotin" not in query:
         accessions = ["BC0004"]
     elif "6.3.4" in query:
         accessions = ["BC0002", "BL0001"]
     else:
-        accessions = [a for a in sorted(_ROWS) if a not in {"BC0002", "BC0004"}]
+        accessions = [a for a in sorted(_ROWS) if a not in {"BC0002", "BC0004", "BT0001"}]
     records = [_search_record(a) for a in accessions]
     return {"metadata": {"url": "test://uniprot", "query": query}, "records": records}
 
@@ -272,6 +287,51 @@ class BiotinDependentCarboxylaseSourcingTest(unittest.TestCase):
             self.assertEqual(tier["source_tier"], "source_tier_0")
             self.assertTrue(tier["meets_n_of_m"])
             self.assertNotIn("ec_scope_hint", tier["mechanism_corroborator_axes_present"])
+
+    def test_unreviewed_tier2_lane_requires_source_tier_2(self):
+        with self.assertRaises(ValueError):
+            self._run(only_unreviewed_tier2_lanes=True)
+
+    def test_unreviewed_tier2_lane_is_three_axis_and_leakage_safe(self):
+        audit = self._run(
+            only_unreviewed_tier2_lanes=True,
+            source_tier="source_tier_2",
+        )
+        self.assertEqual(audit["counts"]["lanes_queried"], 1)
+        self.assertEqual(audit["counts"]["source_trust_tier"], "source_tier_2")
+        self.assertTrue(audit["counts"]["only_unreviewed_tier2_lanes_enabled"])
+        self.assertTrue(audit["guardrails"]["only_unreviewed_tier2_source_lanes_enabled"])
+        self.assertEqual(
+            audit["lane_summaries"][0]["lane_id"],
+            "biotin_carboxylase_unreviewed_tier2_site_annotated",
+        )
+        self.assertEqual(
+            audit["counts"]["admitted_fingerprint_counts"],
+            {"biotin_dependent_carboxylase": 1},
+        )
+        label = audit["applied_labels"][0]
+        self.assertEqual(label["entry_id"], "uniprot:BT0001")
+        self.assertEqual(label["evidence"]["predictive_evidence"], [])
+        tier = label["evidence"]["source_trust_tier"]
+        self.assertEqual(tier["source_tier"], "source_tier_2")
+        self.assertGreaterEqual(len(tier["mechanism_corroborator_axes_present"]), 3)
+        self.assertNotIn("ec_scope_hint", tier["mechanism_corroborator_axes_present"])
+
+    def test_record_window_limits_rows_before_entry_fetch(self):
+        audit = self._run(record_offset_per_lane=1, record_limit_per_lane=1)
+        self.assertEqual(audit["counts"]["record_offset_per_lane"], 1)
+        self.assertEqual(audit["counts"]["record_limit_per_lane"], 1)
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 2)
+        self.assertEqual([summary["record_count"] for summary in audit["lane_summaries"]], [1, 1])
+        self.assertEqual(
+            [summary["records_in_window_before_dedup"] for summary in audit["lane_summaries"]],
+            [1, 1],
+        )
+        self.assertEqual(
+            audit["counts"]["admitted_fingerprint_counts"],
+            {"biotin_dependent_carboxylase": 1},
+        )
+        self.assertEqual([label["entry_id"] for label in audit["applied_labels"]], ["uniprot:BC0003"])
 
     def test_axes_are_mechanism_not_ec(self):
         audit = self._run()

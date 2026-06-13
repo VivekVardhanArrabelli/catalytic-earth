@@ -64,6 +64,14 @@ _ROWS = {
         "UDP-glucose binding",
         "Binding site",
     ),
+    "TU0001": (
+        ["3.2.1.4"],
+        ["Glycosidase"],
+        "Unreviewed endoglucanase",
+        "cellulose + H2O = cellooligosaccharides",
+        "Proton donor Glu nucleophile",
+        "Active site",
+    ),
 }
 
 
@@ -80,7 +88,7 @@ def _search_record(accession):
         "ec_numbers": ec,
         "pdb_ids": [],
         "alphafold_ids": [accession],
-        "reviewed": "reviewed",
+        "reviewed": "unreviewed" if accession.startswith("TU") else "reviewed",
         "evidence_level": "protein_cross_reference",
     }
 
@@ -109,7 +117,11 @@ def _entry_record(accession):
     return {
         "source": "uniprot",
         "accession": accession,
-        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "entry_type": (
+            "UniProtKB unreviewed (TrEMBL)"
+            if accession.startswith("TU")
+            else "UniProtKB reviewed (Swiss-Prot)"
+        ),
         "protein_name": protein_name,
         "sequence_length": 330,
         "keywords": keywords,
@@ -133,10 +145,12 @@ def _entry_record(accession):
 
 
 def _fake_query_fetcher(query, size, max_pages=1):
-    if "protein_name:chitinase" in query:
+    if "reviewed:false" in query:
+        accessions = ["TU0001"]
+    elif "protein_name:chitinase" in query:
         accessions = ["GH0003"]
     else:
-        accessions = [a for a in sorted(_ROWS) if a != "GH0003"]
+        accessions = [a for a in sorted(_ROWS) if a not in {"GH0003", "TU0001"}]
     records = [_search_record(a) for a in accessions]
     return {
         "metadata": {"url": "test://uniprot", "query": query, "max_pages": max_pages},
@@ -281,6 +295,38 @@ class GlycosideHydrolaseSourcingTest(unittest.TestCase):
         labels = {label["entry_id"]: label for label in audit["applied_labels"]}
         self.assertEqual(set(labels), {"uniprot:GH0003"})
         self.assertEqual(labels["uniprot:GH0003"]["evidence"]["predictive_evidence"], [])
+
+    def test_unreviewed_tier2_lane_requires_source_tier_2(self):
+        with self.assertRaises(ValueError):
+            self._run(only_unreviewed_tier2_lanes=True)
+
+    def test_unreviewed_tier2_lane_is_three_axis_and_leakage_safe(self):
+        audit = self._run(
+            only_unreviewed_tier2_lanes=True,
+            source_tier="source_tier_2",
+        )
+        self.assertEqual(audit["counts"]["lanes_queried"], 1)
+        self.assertEqual(audit["counts"]["source_trust_tier"], "source_tier_2")
+        self.assertTrue(audit["counts"]["only_unreviewed_tier2_lanes_enabled"])
+        self.assertTrue(audit["guardrails"]["only_unreviewed_tier2_source_lanes_enabled"])
+        self.assertTrue(
+            audit["guardrails"]["source_tier_2_requires_three_independent_mechanism_axes"]
+        )
+        self.assertEqual(
+            audit["lane_summaries"][0]["lane_id"],
+            "glycoside_hydrolase_unreviewed_tier2_site_annotated",
+        )
+        self.assertEqual(
+            audit["counts"]["admitted_fingerprint_counts"],
+            {"glycoside_hydrolase": 1},
+        )
+        label = audit["applied_labels"][0]
+        self.assertEqual(label["entry_id"], "uniprot:TU0001")
+        self.assertEqual(label["evidence"]["predictive_evidence"], [])
+        tier = label["evidence"]["source_trust_tier"]
+        self.assertEqual(tier["source_tier"], "source_tier_2")
+        self.assertGreaterEqual(len(tier["mechanism_corroborator_axes_present"]), 3)
+        self.assertNotIn("ec_scope_hint", tier["mechanism_corroborator_axes_present"])
 
     def test_guardrails_non_destructive(self):
         audit = self._run()

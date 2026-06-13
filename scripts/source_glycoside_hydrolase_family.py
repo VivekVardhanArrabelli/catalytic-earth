@@ -94,6 +94,28 @@ def main() -> int:
             "name lanes; admission still requires non-EC mechanism corroboration"
         ),
     )
+    parser.add_argument(
+        "--include-unreviewed-tier2-lanes",
+        action="store_true",
+        help=(
+            "prepend unreviewed UniProt site-annotated glycoside lanes; requires "
+            "--source-tier source_tier_2 and the stricter three-axis trust gate"
+        ),
+    )
+    parser.add_argument(
+        "--only-unreviewed-tier2-lanes",
+        action="store_true",
+        help=(
+            "source only unreviewed UniProt site-annotated glycoside lanes; requires "
+            "--source-tier source_tier_2 and the stricter three-axis trust gate"
+        ),
+    )
+    parser.add_argument(
+        "--source-tier",
+        default="source_tier_0",
+        choices=("source_tier_0", "source_tier_2"),
+        help="trust tier passed to mechanism corroboration; tier 2 requires three axes",
+    )
     parser.add_argument("--cap-ceiling", type=int, default=DEFAULT_GLYCOSIDE_HYDROLASE_CAP_CEILING)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
@@ -128,6 +150,9 @@ def main() -> int:
         query_pages_per_lane=args.query_pages_per_lane,
         include_alternate_name_lanes=args.include_alternate_name_lanes,
         only_alternate_name_lanes=args.only_alternate_name_lanes,
+        include_unreviewed_tier2_lanes=args.include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=args.only_unreviewed_tier2_lanes,
+        source_tier=args.source_tier,
         cap_ceiling=args.cap_ceiling,
     )
 

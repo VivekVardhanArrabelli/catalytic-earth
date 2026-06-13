@@ -2029,15 +2029,15 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
 )
 
 
-def disambiguate_row(row: dict[str, Any]) -> dict[str, Any]:
+def disambiguate_row(row: dict[str, Any], *, source_tier: str = "source_tier_0") -> dict[str, Any]:
     """Assign a fingerprint only when exactly one rule fires (else stay held).
 
     Scope is selected by the EC-prefix predicate; membership is CONFIRMED by a mechanism
     corroborator (cofactor OR cosubstrate/Rhea participant OR functional keyword OR
     active-site/binding residue). The trust-tier N-of-M rule
-    (`source_trust_tiers.evaluate_corroboration`, source_tier_0) must ADMIT -- i.e. at least
-    one counted MECHANISM axis is present -- before the row can be built into a label. EC is
-    a scope hint and never counts toward N-of-M.
+    (`source_trust_tiers.evaluate_corroboration`) must ADMIT before the row can be built into
+    a label. Tier 0 requires at least one counted MECHANISM axis; tier 2 requires three
+    independent mechanism axes. EC is a scope hint and never counts toward N-of-M.
     """
     evidence = mechanism_corroborator_axes(row)
     matched = [fp for fp, rule in DISAMBIGUATION_RULES if rule(evidence, row)]
@@ -2051,9 +2051,7 @@ def disambiguate_row(row: dict[str, Any]) -> dict[str, Any]:
             "candidates": distinct,
         }
     present_axes = corroborator_axes_present(evidence, row)
-    corroboration = evaluate_corroboration(
-        source_tier="source_tier_0", present_axes=present_axes
-    )
+    corroboration = evaluate_corroboration(source_tier=source_tier, present_axes=present_axes)
     if not str(corroboration["decision"]).startswith("admit"):
         return {
             "decision": "hold",
@@ -2161,6 +2159,7 @@ def build_cofactor_ec_disambiguation(
     pools: list[dict[str, Any]],
     registry: list[dict[str, Any]],
     index,
+    source_tier: str = "source_tier_0",
 ) -> dict[str, Any]:
     existing_entry_ids = {str(label.get("entry_id")) for label in registry}
     seen_accessions: set[str] = set()
@@ -2183,7 +2182,7 @@ def build_cofactor_ec_disambiguation(
         per_pool.setdefault(pool, Counter())
         for raw in spec["rows"]:
             total_rows += 1
-            verdict = disambiguate_row(raw)
+            verdict = disambiguate_row(raw, source_tier=source_tier)
             if verdict["decision"] == "hold":
                 decision_counts["hold"] += 1
                 per_pool[pool]["hold"] += 1
@@ -2247,7 +2246,7 @@ def build_cofactor_ec_disambiguation(
             present_axes = verdict.get("present_axes") or []
             corroboration = verdict.get("corroboration") or {}
             evidence["source_trust_tier"] = {
-                "source_tier": "source_tier_0",
+                "source_tier": source_tier,
                 "mechanism_corroborator_axes_present": corroboration.get(
                     "distinct_corroborator_axes", []
                 ),
