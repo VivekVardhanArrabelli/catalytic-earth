@@ -1,0 +1,96 @@
+{
+  "frozen_rules": {
+    "abstention_threshold": "Use threshold policy external_hard_negative_threshold_policy_v1_2026_05_17 at floor 0.4115 unless a separately justified global calibration creates a new threshold policy version.",
+    "admissible_source_evidence": [
+      "explicit active-site or catalytic residue evidence",
+      "specific catalytic activity or reaction evidence",
+      "coordinate mapping for the scored local active-site features",
+      "bounded duplicate evidence",
+      "UniRef current-reference screening",
+      "external structural-neighborhood review evidence"
+    ],
+    "duplicate_rules": [
+      "reject exact current-reference overlaps",
+      "reject near-duplicate sequence evidence at the active threshold",
+      "reject current-countable structural duplicate signals",
+      "screen external candidates all-vs-all before terminal import"
+    ],
+    "excluded_context": [
+      "protein_name",
+      "ec_label",
+      "uniprot_prose",
+      "source_annotation",
+      "curated_mechanism_text",
+      "candidate-specific repair rationale"
+    ],
+    "failure_criteria": [
+      "any current fingerprint score reaches or exceeds 0.4115",
+      "duplicate or structural-neighborhood controls flag a current-countable neighbor",
+      "source evidence is review-only or incomplete",
+      "review-only context is required for scoring",
+      "ontology version or threshold policy is unrecorded"
+    ],
+    "structural_neighborhood_rules": [
+      "native M-CSA strict TM-diverse holdout claims stay disabled",
+      "strict TM-diverse evaluation belongs on external fold-diverse structural data",
+      "structure clusters must be assigned before split construction"
+    ],
+    "success_criteria": [
+      "all current fingerprint scores are below 0.4115",
+      "terminal review accepts out-of-scope only for label_factory_v1_25fp",
+      "full label-factory and external-transfer gates pass",
+      "post-import litmus invariants remain green"
+    ]
+  },
+  "metadata": {
+    "abstain_floor": 0.4115,
+    "abstain_threshold": 0.4115,
+    "candidate_selection_started": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-06-13T05:20:00Z",
+    "fingerprint_universe": [
+      "atp_amide_ligase",
+      "class_ii_metal_aldolase",
+      "coa_acyltransferase",
+      "cobalamin_radical_rearrangement",
+      "cofactor_independent_isomerase",
+      "copper_oxidoreductase",
+      "cytochrome_p450_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "flavin_monooxygenase",
+      "glycosyltransferase",
+      "heme_peroxidase_oxidase",
+      "metal_dependent_hydrolase",
+      "metal_racemase_epimerase_non_plp",
+      "metallo_amidohydrolase_deaminase",
+      "metallopeptidase",
+      "metallophosphoesterase_nuclease",
+      "metallophosphomonoesterase",
+      "molybdopterin_oxidoreductase",
+      "nad_p_dehydrogenase",
+      "non_heme_iron_2og_dioxygenase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "sam_methyltransferase",
+      "ser_his_acid_hydrolase",
+      "thiamine_diphosphate_enzyme"
+    ],
+    "inverse_gate_rule": "all_current_fingerprints_below_floor",
+    "method": "external_hard_negative_next_tranche_pre_registration",
+    "ontology_version_at_decision": "label_factory_v1_25fp",
+    "re_freeze_reason": "The 2026-06-13 ThDP setup wires a new mechanism family into the admission engine -- thiamine_diphosphate_enzyme (EC 2.2.1/4.1.1/1.2.4 scope, ThDP/Mg cofactor or binding-site evidence, Rhea decarboxylation/carbonyl-transfer/ThDP participant context, ThDP-family keyword/domain text, or active-/binding-site corroboration, with PLP, molybdopterin/flavin/heme, kinase/phosphotransferase, hydrolase, side-EC, and multi-fingerprint guards) -- expanding the positive fingerprint universe 24 -> 25. The 24fp-era pre-registration inverse-gate universe is now a strict subset of the live registry, so it is re-frozen against the 25-fingerprint universe before the next OOS hard-negative tranche. NOTE: the OOS inverse gate cannot certify a clean hard-negative until the new positive fingerprint has atlas coverage, so a new OOS tranche stays blocked on coverage until then.",
+    "ready_for_label_import": false,
+    "registration_status": "frozen_before_candidate_selection",
+    "slice_id": "1025",
+    "supersedes": "v3_external_hard_negative_next_tranche_preregistration_24fp_1025.json",
+    "supersedes_ontology_version": "label_factory_v1_24fp",
+    "threshold_policy_version": "external_hard_negative_threshold_policy_v1_2026_05_17",
+    "version": "external_hard_negative_tranche_v2_2026_05_17"
+  },
+  "warnings": [
+    "This artifact re-freezes the next external hard-negative tranche against the current 25-fingerprint universe before candidate selection; it does not import labels.",
+    "The 24fp-era pre-registration (v3_external_hard_negative_next_tranche_preregistration_24fp_1025.json) is SUPERSEDED and kept on disk only as the historical record; older preregistration files remain superseded as well.",
+    "External out_of_scope labels remain scoped to ontology_version_at_decision and must be re-audited after any further positive fingerprint expansion.",
+    "The OOS inverse gate requires every current fingerprint scored; the new positive fingerprint (thiamine_diphosphate_enzyme) has no atlas coverage yet, so the next OOS tranche remains blocked until coverage exists."
+  ]
+}

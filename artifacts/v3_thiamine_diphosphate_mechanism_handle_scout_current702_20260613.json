@@ -1,0 +1,4170 @@
+{
+  "artifact_id": "v3_thiamine_diphosphate_mechanism_handle_scout_current702",
+  "candidate_family": "thiamine_diphosphate_enzyme",
+  "counts": {
+    "active_or_binding_site_context": 73,
+    "flavin_boundary": 11,
+    "keyword_or_family_text": 80,
+    "kinase_hydrolase_boundary": 48,
+    "likely_wireable": 65,
+    "mg_context": 77,
+    "not_likely_or_boundary": 15,
+    "rhea_carbonyl_decarboxylation_or_transfer": 62,
+    "rhea_cross_reference": 80,
+    "side_ec_boundary": 15,
+    "thdp_context": 80
+  },
+  "created_utc": "2026-06-13T05:08:00Z",
+  "entries_examined": 80,
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "chemistry_confusable_cap": 150,
+    "ec_scope_only_never_counted": true,
+    "plp_molybdopterin_heme_flavin_hydrolase_kinase_side_ec_boundary_rows_held": true,
+    "predictive_evidence_stays_empty_for_future_labels": true,
+    "thdp_keyword_cofactor_rhea_active_site_are_admission_only": true
+  },
+  "lane_queries": [
+    {
+      "lane_id": "thdp_ec_2_2_1_4_1_1_1_2_4_reviewed",
+      "query": "(reviewed:true) AND ((ec:2.2.1.*) OR (ec:4.1.1.*) OR (ec:1.2.4.*)) AND ((cc_cofactor:thiamine) OR (keyword:Thiamine\\ pyrophosphate))"
+    }
+  ],
+  "recommendation": {
+    "reason": "ThDP/Mg/Rhea/active-site handles are frequent enough for a guarded lane; overlap with PLP/Mo/oxidoreductase EC requires explicit boundary guards.",
+    "wire_25fp_lane": true
+  },
+  "sample_rows": [
+    {
+      "accession": "P06169",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.-",
+        "4.1.1.43",
+        "4.1.1.72",
+        "4.1.1.74"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Allosteric enzyme",
+        "Branched-chain amino acid catabolism",
+        "Cytoplasm",
+        "Decarboxylase",
+        "Direct protein sequencing",
+        "Isopeptide bond",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Methylation",
+        "Nucleus",
+        "Phenylalanine catabolism",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Tryptophan catabolism",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Pyruvate decarboxylase isozyme 1 (EC 4.1.1.-) (EC 4.1.1.43) (EC 4.1.1.72) (EC 4.1.1.74) (Thiamine pyrophosphate-dependent 2-oxo-acid decarboxylase) (2ODC)",
+      "reaction_sample": [
+        "pyruvate + h(+) = acetaldehyde + co2",
+        "3-methyl-2-oxobutanoate + h(+) = 2-methylpropanal + co2"
+      ]
+    },
+    {
+      "accession": "P08559",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Carbohydrate metabolism",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Glucose metabolism",
+        "Leigh syndrome",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Primary mitochondrial disease",
+        "Proteomics identification",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit alpha, somatic form, mitochondrial (EC 1.2.4.1) (PDHE1-A type I)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P11177",
+      "cofactors": [
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": false,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "k(+) binding site",
+        "k(+) binding site",
+        "k(+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Carbohydrate metabolism",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Glucose metabolism",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Potassium",
+        "Proteomics identification",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit beta, mitochondrial (PDHE1-B) (EC 1.2.4.1)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P26263",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.-",
+        "4.1.1.43",
+        "4.1.1.72",
+        "4.1.1.74"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Branched-chain amino acid catabolism",
+        "Cytoplasm",
+        "Decarboxylase",
+        "Isopeptide bond",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Phenylalanine catabolism",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Tryptophan catabolism",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Pyruvate decarboxylase isozyme 3 (EC 4.1.1.-) (EC 4.1.1.43) (EC 4.1.1.72) (EC 4.1.1.74) (Thiamine pyrophosphate-dependent 2-oxo-acid decarboxylase) (2ODC)",
+      "reaction_sample": [
+        "pyruvate + h(+) = acetaldehyde + co2",
+        "3-methyl-2-oxobutanoate + h(+) = 2-methylpropanal + co2"
+      ]
+    },
+    {
+      "accession": "P16467",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.-",
+        "4.1.1.43",
+        "4.1.1.72",
+        "4.1.1.74"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "Allosteric enzyme",
+        "Branched-chain amino acid catabolism",
+        "Cytoplasm",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Nucleus",
+        "Phenylalanine catabolism",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Tryptophan catabolism"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Pyruvate decarboxylase isozyme 2 (EC 4.1.1.-) (EC 4.1.1.43) (EC 4.1.1.72) (EC 4.1.1.74) (Thiamine pyrophosphate-dependent 2-oxo-acid decarboxylase) (2ODC)",
+      "reaction_sample": [
+        "pyruvate + h(+) = acetaldehyde + co2",
+        "3-methyl-2-oxobutanoate + h(+) = 2-methylpropanal + co2"
+      ]
+    },
+    {
+      "accession": "P77488",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.7"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site",
+        "mg(2+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Isoprene biosynthesis",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine biosynthesis",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "1-deoxy-D-xylulose-5-phosphate synthase (EC 2.2.1.7) (1-deoxyxylulose-5-phosphate synthase) (DXP synthase) (DXPS)",
+      "reaction_sample": [
+        "d-glyceraldehyde 3-phosphate + pyruvate + h(+) = 1-deoxy-d-xylulose 5-phosphate + co2"
+      ]
+    },
+    {
+      "accession": "P17597",
+      "cofactors": [
+        "mg(2+)",
+        "fad",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "thiamine diphosphate binding site",
+        "(r)-imazaquin binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "Chloroplast",
+        "Coiled coil",
+        "FAD",
+        "Flavoprotein",
+        "Genetically modified food",
+        "Herbicide resistance",
+        "Magnesium",
+        "Metal-binding",
+        "Oxidation",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Acetolactate synthase, chloroplastic (AtALS) (EC 2.2.1.6) (Acetohydroxy-acid synthase) (Protein CHLORSULFURON RESISTANT 1)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "Q07471",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.72"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": false,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [],
+      "keywords": [
+        "Branched-chain amino acid catabolism",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Nucleus",
+        "Reference proteome",
+        "Thiamine pyrophosphate"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Thiamine metabolism regulatory protein THI3 (EC 4.1.1.72) (Keto isocaproate decarboxylase 1) (Thiamine pyrophosphate-dependent 2-oxo-acid decarboxylase) (2ODC)",
+      "reaction_sample": [
+        "4-methyl-2-oxopentanoate + h(+) = 3-methylbutanal + co2",
+        "(s)-3-methyl-2-oxopentanoate + h(+) = 2-methylbutanal + co2"
+      ]
+    },
+    {
+      "accession": "Q06408",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.-",
+        "4.1.1.43",
+        "4.1.1.72",
+        "4.1.1.74",
+        "4.1.1.80"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": false,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [],
+      "keywords": [
+        "Branched-chain amino acid catabolism",
+        "Cytoplasm",
+        "Decarboxylase",
+        "Direct protein sequencing",
+        "Isopeptide bond",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Phenylalanine catabolism",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Tryptophan catabolism",
+        "Tyrosine catabolism",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Transaminated amino acid decarboxylase (EC 4.1.1.-) (EC 4.1.1.43) (EC 4.1.1.72) (EC 4.1.1.74) (EC 4.1.1.80) (Thiamine diphosphate-dependent phenylpyruvate decarboxylase) (PPDC) (Thiamine pyrophosphate-dependent 2-oxo-acid decarboxylase) (2ODC) (Transaminated branched-chain amino acid decarboxylase)",
+      "reaction_sample": [
+        "4-methyl-2-oxopentanoate + h(+) = 3-methylbutanal + co2",
+        "(s)-3-methyl-2-oxopentanoate + h(+) = 2-methylbutanal + co2"
+      ]
+    },
+    {
+      "accession": "Q96HY7",
+      "cofactors": [
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.-"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": false,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": false,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "n6-succinyllysine modified residue",
+        "n6-succinyllysine modified residue",
+        "n6-succinyllysine modified residue",
+        "n6-succinyllysine modified residue"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Charcot-Marie-Tooth disease",
+        "Disease variant",
+        "Glycolysis",
+        "Mitochondrion",
+        "Neurodegeneration",
+        "Neuropathy",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "2-oxoadipate dehydrogenase complex component E1 (E1a) (OADC-E1) (OADH-E1) (EC 1.2.4.-) (2-oxoadipate dehydrogenase, mitochondrial) (Alpha-ketoadipate dehydrogenase) (Alpha-KADH-E1) (Dehydrogenase E1 and transketolase domain-containing protein 1) (Probable 2-oxoglutarate dehydrogenase E1 component DHKTD1, mitochondrial)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 2-oxoadipate + h(+) = n(6)-[(r)-s(8)-glutaryldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P12694",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.4"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site",
+        "k(+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Maple syrup urine disease",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Potassium",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "2-oxoisovalerate dehydrogenase subunit alpha, mitochondrial (EC 1.2.4.4) (Branched-chain alpha-keto acid dehydrogenase E1 component alpha chain) (BCKDE1A) (BCKDH E1-alpha)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 3-methyl-2-oxobutanoate + h(+) = n(6)-[(r)-s(8)-2-methylpropanoyldihydrolipoyl]-l-lysyl-[protein] + co2",
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 4-methyl-2-oxopentanoate + h(+) = n(6)-[(r)-s(8)-3-methylbutanoyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "Q02218",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.2"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "ca(2+) binding site",
+        "ca(2+) binding site",
+        "ca(2+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Calcium",
+        "Glycolysis",
+        "Isopeptide bond",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Nucleus",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "2-oxoglutarate dehydrogenase complex component E1 (E1o) (HsOGDH) (OGDC-E1) (OGDH-E1) (EC 1.2.4.2) (2-oxoglutarate dehydrogenase, mitochondrial) (Alpha-ketoglutarate dehydrogenase) (Alpha-KGDH-E1) (Thiamine diphosphate (ThDP)-dependent 2-oxoglutarate dehydrogenase)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 2-oxoglutarate + h(+) = n(6)-[(r)-s(8)-succinyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P29803",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "Carbohydrate metabolism",
+        "Glucose metabolism",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit alpha, testis-specific form, mitochondrial (EC 1.2.4.1) (PDHE1-A type II)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "Q9ULD0",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.2"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "ca(2+) binding site",
+        "ca(2+) binding site",
+        "ca(2+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Calcium",
+        "Disease variant",
+        "Glycolysis",
+        "Intellectual disability",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "2-oxoglutarate dehydrogenase-like, mitochondrial (EC 1.2.4.2) (2-oxoglutarate dehydrogenase complex component E1-like) (OGDC-E1-like) (Alpha-ketoglutarate dehydrogenase-like)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 2-oxoglutarate + h(+) = n(6)-[(r)-s(8)-succinyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P51854",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Calcium",
+        "Cytoplasm",
+        "Developmental protein",
+        "Magnesium",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Transketolase-like protein 1 (EC 2.2.1.1) (Transketolase 2) (TK 2) (Transketolase-related protein)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P29401",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-fructose 6-phosphate binding site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Calcium",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Dwarfism",
+        "Isopeptide bond",
+        "Magnesium",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Transketolase (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "Q38854",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.7"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site",
+        "mg(2+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Chloroplast",
+        "Isoprene biosynthesis",
+        "Magnesium",
+        "Metal-binding",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine biosynthesis",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "1-deoxy-D-xylulose-5-phosphate synthase, chloroplastic (1-deoxyxylulose-5-phosphate synthase) (DXP synthase) (DXPS) (EC 2.2.1.7) (Protein CLOROPLASTOS ALTERADOS 1)",
+      "reaction_sample": [
+        "d-glyceraldehyde 3-phosphate + pyruvate + h(+) = 1-deoxy-d-xylulose 5-phosphate + co2"
+      ]
+    },
+    {
+      "accession": "P0AFG3",
+      "cofactors": [
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": false,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": false,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "o-amp-threonine; by ydiu modified residue"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "2-oxoglutarate dehydrogenase E1 component (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 2-oxoglutarate + h(+) = n(6)-[(r)-s(8)-succinyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P9WIS4",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium tuberculosis (strain CDC 1551 / Oshkosh)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "A0PVU7",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium ulcerans (strain Agy99)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "A5U1U6",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25177 / H37Ra)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "Q73WX4",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycolicibacterium paratuberculosis (strain ATCC BAA-968 / K-10) (Mycobacterium paratuberculosis)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "Q15KI9",
+      "cofactors": [
+        "mg(2+)",
+        "mn(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.9",
+        "4.2.1.113",
+        "4.2.99.20"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor; for the o-succinylbenzoate synthase activity active site",
+        "proton acceptor; for the o-succinylbenzoate synthase activity active site",
+        "mg(2+) binding site",
+        "mg(2+) binding site"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Chloroplast",
+        "Lyase",
+        "Magnesium",
+        "Manganese",
+        "Membrane",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "likely_wireable": false,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Protein PHYLLO, chloroplastic [Includes: Inactive isochorismate synthase (MENF); 2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylate synthase (EC 2.2.1.9) (MEND); o-succinylbenzoate synthase (EC 4.2.1.113) (MENC); 2-succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate synthase (EC 4.2.99.20) (MENH)]",
+      "reaction_sample": [
+        "isochorismate + 2-oxoglutarate + h(+) = 5-enolpyruvoyl-6-hydroxy-2-succinyl-cyclohex-3-ene-1-carboxylate + co2",
+        "(1r,6r)-6-hydroxy-2-succinyl-cyclohexa-2,4-diene-1-carboxylate = 2-succinylbenzoate + h2o"
+      ]
+    },
+    {
+      "accession": "A1UK81",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium sp. (strain KMS)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "A3Q3N5",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium sp. (strain JLS)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "Q1B4V6",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium sp. (strain MCS)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "Q9CC97",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium leprae (strain TN)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "A0R2B1",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycolicibacterium smegmatis (strain ATCC 700084 / mc(2)155) (Mycobacterium smegmatis)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "A1KI36",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium bovis (strain BCG / Pasteur 1173P2)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "P9WIS5",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "Q7U0A6",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycobacterium bovis (strain ATCC BAA-935 / AF2122/97)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "A1TDK2",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.2.1.5",
+        "2.3.1.61",
+        "4.1.1.71"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "Acyltransferase",
+        "Allosteric enzyme",
+        "Coiled coil",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Mycolicibacterium vanbaalenii (strain DSM 7251 / JCM 13017 / BCRC 16820 / KCTC 9966 / NRRL B-24157 / PYR-1) (Mycobacterium vanbaalenii)",
+      "protein_name": "Multifunctional 2-oxoglutarate metabolism enzyme (2-hydroxy-3-oxoadipate synthase) (HOA synthase) (HOAS) (EC 2.2.1.5) (2-oxoglutarate carboxy-lyase) (2-oxoglutarate decarboxylase) (Alpha-ketoglutarate decarboxylase) (KG decarboxylase) (KGD) (EC 4.1.1.71) (Alpha-ketoglutarate-glyoxylate carboligase) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "glyoxylate + 2-oxoglutarate + h(+) = 2-hydroxy-3-oxoadipate + co2",
+        "2-oxoglutarate + h(+) = succinate semialdehyde + co2"
+      ]
+    },
+    {
+      "accession": "P0AFI0",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.8"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "substrate binding site",
+        "substrate binding site",
+        "adp binding site",
+        "adp binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Nucleotide-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Oxalyl-CoA decarboxylase (EC 4.1.1.8)",
+      "reaction_sample": [
+        "oxalyl-coa + h(+) = formyl-coa + co2"
+      ]
+    },
+    {
+      "accession": "Q6K2E8",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "Chloroplast",
+        "Disulfide bond",
+        "FAD",
+        "Flavoprotein",
+        "Herbicide resistance",
+        "Magnesium",
+        "Metal-binding",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "protein_name": "Acetolactate synthase 1, chloroplastic (EC 2.2.1.6) (Acetohydroxy-acid synthase 1)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "P17109",
+      "cofactors": [
+        "mg(2+)",
+        "mn(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.9"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": false,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [],
+      "keywords": [
+        "3D-structure",
+        "Magnesium",
+        "Manganese",
+        "Menaquinone biosynthesis",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylate synthase (SEPHCHC synthase) (EC 2.2.1.9) (Menaquinone biosynthesis protein MenD)",
+      "reaction_sample": [
+        "isochorismate + 2-oxoglutarate + h(+) = 5-enolpyruvoyl-6-hydroxy-2-succinyl-cyclohex-3-ene-1-carboxylate + co2"
+      ]
+    },
+    {
+      "accession": "O82647",
+      "cofactors": [
+        "a metal cation",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "substrate binding site",
+        "substrate binding site",
+        "mg(2+) binding site",
+        "mg(2+) binding site"
+      ],
+      "keywords": [
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Pyruvate",
+        "Reference proteome",
+        "Stress response",
+        "Thiamine pyrophosphate"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Pyruvate decarboxylase 1 (AtPDC1) (EC 4.1.1.1)",
+      "reaction_sample": [
+        "a 2-oxocarboxylate + h(+) = an aldehyde + co2"
+      ]
+    },
+    {
+      "accession": "P0AEP7",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.47"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": false,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [],
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Lyase",
+        "Magnesium",
+        "Reference proteome",
+        "Thiamine pyrophosphate"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Glyoxylate carboligase (EC 4.1.1.47) (Tartronate-semialdehyde synthase)",
+      "reaction_sample": [
+        "2 glyoxylate + h(+) = 2-hydroxy-3-oxopropanoate + co2"
+      ]
+    },
+    {
+      "accession": "P00893",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "Direct protein sequencing",
+        "FAD",
+        "Flavoprotein",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Acetolactate synthase isozyme 3 large subunit (EC 2.2.1.6) (AHAS-III) (ALS-III) (Acetohydroxy-acid synthase III large subunit)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "P07342",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Acetolactate synthase catalytic subunit, mitochondrial (EC 2.2.1.6) (Acetohydroxy-acid synthase catalytic subunit) (AHAS) (ALS)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2",
+        "2-oxobutanoate + pyruvate + h(+) = (s)-2-ethyl-2-hydroxy-3-oxobutanoate + co2"
+      ]
+    },
+    {
+      "accession": "P08142",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "FAD",
+        "Flavoprotein",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Acetolactate synthase isozyme 1 large subunit (AHAS-I) (EC 2.2.1.6) (Acetohydroxy-acid synthase I large subunit) (ALS-I)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "P16387",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "Direct protein sequencing",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit alpha, mitochondrial (EC 1.2.4.1) (Pyruvate dehydrogenase complex component E1 alpha) (PDHE1-A)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P20967",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.2"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "mg(2+) binding site",
+        "thiamine diphosphate binding site",
+        "mg(2+) binding site"
+      ],
+      "keywords": [
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Mitochondrion nucleoid",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "2-oxoglutarate dehydrogenase, mitochondrial (OGDH) (EC 1.2.4.2) (2-oxoglutarate dehydrogenase complex component E1) (OGDC-E1) (OGDHC subunit E1) (Alpha-ketoglutarate dehydrogenase complex subunit E1) (alpha-KGDHC subunit E1)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 2-oxoglutarate + h(+) = n(6)-[(r)-s(8)-succinyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "Q06437",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "Carbohydrate metabolism",
+        "Glucose metabolism",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit alpha, testis-specific form, mitochondrial (EC 1.2.4.1) (PDHE1-A type II)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P11178",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.4"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site",
+        "k(+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Potassium",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Bos taurus (Bovine)",
+      "protein_name": "2-oxoisovalerate dehydrogenase subunit alpha, mitochondrial (EC 1.2.4.4) (Branched-chain alpha-keto acid dehydrogenase E1 component alpha chain) (BCKDE1A) (BCKDH E1-alpha)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 3-methyl-2-oxobutanoate + h(+) = n(6)-[(r)-s(8)-2-methylpropanoyldihydrolipoyl]-l-lysyl-[protein] + co2",
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 4-methyl-2-oxopentanoate + h(+) = n(6)-[(r)-s(8)-3-methylbutanoyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "Q8H1Y0",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit alpha-2, mitochondrial (PDHE1-A) (EC 1.2.4.1) (Protein IAA-CONJUGATE-RESISTANT 4)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P11960",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.4"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site",
+        "k(+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Potassium",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "2-oxoisovalerate dehydrogenase subunit alpha, mitochondrial (EC 1.2.4.4) (Branched-chain alpha-keto acid dehydrogenase E1 component alpha chain) (BCKDE1A) (BCKDH E1-alpha)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 3-methyl-2-oxobutanoate + h(+) = n(6)-[(r)-s(8)-2-methylpropanoyldihydrolipoyl]-l-lysyl-[protein] + co2",
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 4-methyl-2-oxopentanoate + h(+) = n(6)-[(r)-s(8)-3-methylbutanoyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P35486",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Carbohydrate metabolism",
+        "Direct protein sequencing",
+        "Glucose metabolism",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit alpha, somatic form, mitochondrial (EC 1.2.4.1) (PDHE1-A type I)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "Q60597",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.2"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "ca(2+) binding site",
+        "ca(2+) binding site",
+        "ca(2+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Calcium",
+        "Direct protein sequencing",
+        "Glycolysis",
+        "Isopeptide bond",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Nucleus",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "2-oxoglutarate dehydrogenase complex component E1 (E1o) (OGDC-E1) (OGDH-E1) (EC 1.2.4.2) (2-oxoglutarate dehydrogenase, mitochondrial) (Alpha-ketoglutarate dehydrogenase) (Alpha-KGDH-E1) (Thiamine diphosphate (ThDP)-dependent 2-oxoglutarate dehydrogenase)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 2-oxoglutarate + h(+) = n(6)-[(r)-s(8)-succinyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P26284",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Carbohydrate metabolism",
+        "Direct protein sequencing",
+        "Glucose metabolism",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit alpha, somatic form, mitochondrial (EC 1.2.4.1) (PDHE1-A type I)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "Q5XI78",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.2"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "ca(2+) binding site",
+        "ca(2+) binding site",
+        "ca(2+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Calcium",
+        "Direct protein sequencing",
+        "Glycolysis",
+        "Isopeptide bond",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Nucleus",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "2-oxoglutarate dehydrogenase complex component E1 (E1o) (OGDC-E1) (OGDH-E1) (EC 1.2.4.2) (2-oxoglutarate dehydrogenase, mitochondrial) (Alpha-ketoglutarate dehydrogenase) (Alpha-KGDH-E1) (Thiamine diphosphate (ThDP)-dependent 2-oxoglutarate dehydrogenase)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 2-oxoglutarate + h(+) = n(6)-[(r)-s(8)-succinyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P0AFG8",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "mg(2+) binding site",
+        "mg(2+) binding site",
+        "mg(2+) binding site",
+        "n6-acetyllysine modified residue"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Direct protein sequencing",
+        "Magnesium",
+        "Metal-binding",
+        "Oxidoreductase",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Pyruvate dehydrogenase E1 component (PDH E1 component) (EC 1.2.4.1)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "P33570",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Calcium",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Transketolase 2 (TK 2) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P40142",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Calcium",
+        "Direct protein sequencing",
+        "Isopeptide bond",
+        "Magnesium",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Transketolase (TK) (EC 2.2.1.1) (P68)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P50137",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Calcium",
+        "Direct protein sequencing",
+        "Isopeptide bond",
+        "Magnesium",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Transketolase (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "Q8RWV0",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "Calcium",
+        "Chloroplast",
+        "Magnesium",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Transketolase-1, chloroplastic (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P23254",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Direct protein sequencing",
+        "Isopeptide bond",
+        "Magnesium",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Transketolase 1 (TK 1) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "F4IW47",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Calcium",
+        "Chloroplast",
+        "Magnesium",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Thylakoid",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Transketolase-2, chloroplastic (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P27302",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-ribose 5-phosphate binding site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Calcium",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Transketolase 1 (TK 1) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P0DP90",
+      "cofactors": [
+        "fad",
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "Direct protein sequencing",
+        "FAD",
+        "Flavoprotein",
+        "Magnesium",
+        "Metal-binding",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Acetolactate synthase isozyme 2 large subunit (AHAS-II) (EC 2.2.1.6) (ALS-II) (Acetohydroxy-acid synthase II large subunit)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "P9WG41",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "FAD",
+        "Flavoprotein",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "protein_name": "Acetolactate synthase large subunit IlvB1 (ALS) (EC 2.2.1.6) (Acetohydroxy-acid synthase large subunit) (AHAS)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "P36620",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "FAD",
+        "Flavoprotein",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)",
+      "protein_name": "Acetolactate synthase, mitochondrial (EC 2.2.1.6) (AHAS) (ALS) (Acetohydroxy-acid synthase)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "P9WG39",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "mg(2+) binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "FAD",
+        "Flavoprotein",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "protein_name": "Acetolactate synthase large subunit IlvG (ALS) (EC 2.2.1.6) (Acetohydroxy-acid synthase large subunit) (AHAS)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "A0A2I2F2I5",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "FAD",
+        "Flavoprotein",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Aspergillus candidus",
+      "protein_name": "Acetolactate synthase catalytic subunit, mitochondrial (EC 2.2.1.6) (Acetohydroxy-acid synthase catalytic subunit) (AHAS) (ALS) (Chlorflavonin biosynthesis cluster protein L)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2",
+        "2-oxobutanoate + pyruvate + h(+) = (s)-2-ethyl-2-hydroxy-3-oxobutanoate + co2"
+      ]
+    },
+    {
+      "accession": "P09342",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.6"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": true,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "fad binding site",
+        "fad binding site",
+        "fad binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Branched-chain amino acid biosynthesis",
+        "Chloroplast",
+        "Disulfide bond",
+        "FAD",
+        "Flavoprotein",
+        "Herbicide resistance",
+        "Magnesium",
+        "Metal-binding",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Nicotiana tabacum (Common tobacco)",
+      "protein_name": "Acetolactate synthase 1, chloroplastic (EC 2.2.1.6) (ALS I) (Acetohydroxy-acid synthase I) (Acetolactate synthase I)",
+      "reaction_sample": [
+        "2 pyruvate + h(+) = (2s)-2-acetolactate + co2"
+      ]
+    },
+    {
+      "accession": "P40149",
+      "cofactors": [
+        "a metal cation",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.8"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "substrate binding site",
+        "substrate binding site",
+        "adp binding site",
+        "adp binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Decarboxylase",
+        "Direct protein sequencing",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Nucleotide-binding",
+        "Thiamine pyrophosphate"
+      ],
+      "likely_wireable": true,
+      "organism": "Oxalobacter formigenes",
+      "protein_name": "Oxalyl-CoA decarboxylase (EC 4.1.1.8)",
+      "reaction_sample": [
+        "oxalyl-coa + h(+) = formyl-coa + co2"
+      ]
+    },
+    {
+      "accession": "P33287",
+      "cofactors": [
+        "a metal cation",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "substrate binding site",
+        "substrate binding site",
+        "mg(2+) binding site",
+        "mg(2+) binding site"
+      ],
+      "keywords": [
+        "Cytoplasm",
+        "Decarboxylase",
+        "Direct protein sequencing",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate"
+      ],
+      "likely_wireable": true,
+      "organism": "Neurospora crassa (strain ATCC 24698 / 74-OR23-1A / CBS 708.71 / DSM 1257 / FGSC 987)",
+      "protein_name": "Pyruvate decarboxylase (EC 4.1.1.1) (8-10 nm cytoplasmic filament-associated protein) (P59NC)",
+      "reaction_sample": [
+        "a 2-oxocarboxylate + h(+) = an aldehyde + co2"
+      ]
+    },
+    {
+      "accession": "P29804",
+      "cofactors": [
+        "thiamine diphosphate",
+        "mg(2+)"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "pyruvate binding site",
+        "pyruvate binding site",
+        "thiamine diphosphate binding site",
+        "pyruvate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Carbohydrate metabolism",
+        "Glucose metabolism",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transit peptide",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": true,
+      "organism": "Sus scrofa (Pig)",
+      "protein_name": "Pyruvate dehydrogenase E1 component subunit alpha, somatic form, mitochondrial (EC 1.2.4.1) (PDHE1-A type I)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "Q8NRC3",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.2",
+        "2.3.1.61"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": true,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton acceptor; for succinyltransferase activity active site",
+        "thiamine diphosphate binding site",
+        "2-oxoglutarate binding site",
+        "2-oxoglutarate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acyltransferase",
+        "Direct protein sequencing",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase",
+        "Tricarboxylic acid cycle"
+      ],
+      "likely_wireable": false,
+      "organism": "Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / BCRC 11384 / CCUG 27702 / LMG 3730 / NBRC 12168 / NCIMB 10025 / NRRL B-2784 / 534)",
+      "protein_name": "2-oxoglutarate dehydrogenase E1/E2 component (ODH E1/E2 component) [Includes: 2-oxoglutarate dehydrogenase E1 component (ODH E1 component) (EC 1.2.4.2) (Alpha-ketoglutarate dehydrogenase E1 component) (KDH E1 component); Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61) (2-oxoglutarate dehydrogenase complex E2 component) (ODH E2 component) (OGDC-E2) (Dihydrolipoamide succinyltransferase)]",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + 2-oxoglutarate + h(+) = n(6)-[(r)-s(8)-succinyldihydrolipoyl]-l-lysyl-[protein] + co2",
+        "n(6)-[(r)-dihydrolipoyl]-l-lysyl-[protein] + succinyl-coa = n(6)-[(r)-s(8)-succinyldihydrolipoyl]-l-lysyl-[protein] + coa"
+      ]
+    },
+    {
+      "accession": "P9WIS9",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "1.2.4.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": false,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [],
+      "keywords": [
+        "Direct protein sequencing",
+        "Isopeptide bond",
+        "Magnesium",
+        "Oxidoreductase",
+        "Pyruvate",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Ubl conjugation"
+      ],
+      "likely_wireable": true,
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "protein_name": "Pyruvate dehydrogenase E1 component (PDH E1 component) (EC 1.2.4.1)",
+      "reaction_sample": [
+        "n(6)-[(r)-lipoyl]-l-lysyl-[protein] + pyruvate + h(+) = n(6)-[(r)-s(8)-acetyldihydrolipoyl]-l-lysyl-[protein] + co2"
+      ]
+    },
+    {
+      "accession": "Q7SIC9",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Chloroplast",
+        "Direct protein sequencing",
+        "Magnesium",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Thylakoid",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Zea mays (Maize)",
+      "protein_name": "Transketolase, chloroplastic (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "Q9RUB5",
+      "cofactors": [
+        "mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.7"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site",
+        "mg(2+) binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Isoprene biosynthesis",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine biosynthesis",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Deinococcus radiodurans (strain ATCC 13939 / DSM 20539 / JCM 16871 / CCUG 27074 / LMG 4051 / NBRC 15346 / NCIMB 9279 / VKM B-1422 / R1)",
+      "protein_name": "1-deoxy-D-xylulose-5-phosphate synthase (EC 2.2.1.7) (1-deoxyxylulose-5-phosphate synthase) (DXP synthase) (DXPS)",
+      "reaction_sample": [
+        "d-glyceraldehyde 3-phosphate + pyruvate + h(+) = 1-deoxy-d-xylulose 5-phosphate + co2"
+      ]
+    },
+    {
+      "accession": "Q7MDD4",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Magnesium",
+        "Metal-binding",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Vibrio vulnificus (strain YJ016)",
+      "protein_name": "Transketolase 2 (TK 2) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P22976",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "DNA recombination",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Streptococcus pneumoniae serotype 4 (strain ATCC BAA-334 / TIGR4)",
+      "protein_name": "Probable transketolase (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "O20250",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Calcium",
+        "Chloroplast",
+        "Direct protein sequencing",
+        "Magnesium",
+        "Membrane",
+        "Metal-binding",
+        "Plastid",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Thylakoid",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "likely_wireable": true,
+      "organism": "Spinacia oleracea (Spinach)",
+      "protein_name": "Transketolase, chloroplastic (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P99161",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "DNA recombination",
+        "Magnesium",
+        "Metal-binding",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Staphylococcus aureus (strain N315)",
+      "protein_name": "Transketolase (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P34736",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-erythrose 4-phosphate binding site",
+        "d-fructose 6-phosphate binding site",
+        "d-ribose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Scheffersomyces stipitis (strain ATCC 58785 / CBS 6054 / NBRC 10063 / NRRL Y-11545) (Yeast) (Pichia stipitis)",
+      "protein_name": "Transketolase (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "A0A0I9QGZ2",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "d-xylulose 5-phosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Magnesium",
+        "Metal-binding",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Geobacillus stearothermophilus (Bacillus stearothermophilus)",
+      "protein_name": "Transketolase (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P9WG25",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "d-xylulose 5-phosphate binding site",
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Calcium",
+        "Magnesium",
+        "Metal-binding",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "protein_name": "Transketolase (TK) (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    },
+    {
+      "accession": "P23234",
+      "cofactors": [
+        "a metal cation",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.1.74"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": false,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": true,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "thiamine diphosphate binding site",
+        "mg(2+) binding site",
+        "mg(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Decarboxylase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Thiamine pyrophosphate"
+      ],
+      "likely_wireable": true,
+      "organism": "Enterobacter cloacae",
+      "protein_name": "Indole-3-pyruvate decarboxylase (Indolepyruvate decarboxylase) (EC 4.1.1.74)",
+      "reaction_sample": [
+        "indole-3-pyruvate + h(+) = indole-3-acetaldehyde + co2"
+      ]
+    },
+    {
+      "accession": "Q9H0I9",
+      "cofactors": [
+        "mg(2+)",
+        "ca(2+)",
+        "mn(2+)",
+        "co(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "2.2.1.1"
+      ],
+      "evidence": {
+        "active_or_binding_site_context": true,
+        "flavin_boundary": false,
+        "heme_boundary": false,
+        "keyword_or_family_text": true,
+        "kinase_hydrolase_boundary": true,
+        "mg_context": true,
+        "molybdopterin_boundary": false,
+        "plp_boundary": false,
+        "rhea_carbonyl_decarboxylation_or_transfer": false,
+        "rhea_cross_reference": true,
+        "rhea_thdp_participant": false,
+        "side_ec_boundary": false,
+        "thdp_context": true
+      },
+      "features_sample": [
+        "proton donor active site",
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site",
+        "thiamine diphosphate binding site"
+      ],
+      "keywords": [
+        "Calcium",
+        "Magnesium",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transferase"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Transketolase-like protein 2 (EC 2.2.1.1)",
+      "reaction_sample": [
+        "d-sedoheptulose 7-phosphate + d-glyceraldehyde 3-phosphate = aldehydo-d-ribose 5-phosphate + d-xylulose 5-phosphate"
+      ]
+    }
+  ],
+  "schema_version": "mechanism_handle_scout.v1",
+  "selection_basis": "post-class-II source-supply scout ranked ThDP second; broad kinase lane was blocked by subclass mixing",
+  "status": "non_destructive_mechanism_handle_scout_no_registry_write"
+}

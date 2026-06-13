@@ -13,6 +13,37 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: ThDP enzyme 25fp expansion is now applied.** The broad EC 2.7
+kinase lane remains blocked by its own mechanism scout, so this run followed the next cleaner
+fallback from the post-class-II ranking: `thiamine_diphosphate_enzyme`. A focused mechanism scout
+(`artifacts/v3_thiamine_diphosphate_mechanism_handle_scout_current702_20260613.json`) examined
+**80** reviewed UniProt entries with **0** fetch failures and found ThDP context **80/80**, Rhea
+cross-reference **80/80**, Mg context **77/80**, active/binding-site context **73/80**, Rhea
+carbonyl/decarboxylation/transfer text **62/80**, and likely wireable rows **65/80**; flavin,
+side-EC, and kinase/hydrolase boundary signals required explicit guards. The lane was wired as a
+deliberate 25-fingerprint universe change: `thiamine_diphosphate_enzyme` fingerprint +
+`thiamine_diphosphate_ylide` ontology family, EC 2.2.1/4.1.1/1.2.4 scope-only rule, ThDP/Mg, Rhea
+decarboxylation/carbonyl-transfer/ThDP participant, ThDP-family keyword/domain, and active-/
+binding-site corroborators, PLP/molybdopterin/flavin/heme/kinase/hydrolase/side-EC/multi-signal
+guards, 25fp OOS preregistration re-freeze, offline leakage/trust-tier tests, non-destructive
+preview, then explicit apply. Live apply
+(`scripts/source_thiamine_diphosphate_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **240**, mechanism-corroborated **181**, admitted/applied **150**, held **14** off-target
+`coa_acyltransferase` rows, held **37** no-corroboration rows, and skipped **0** duplicates.
+External bronze is now **5086**; combined label surface is **5788**; frozen current702 remains
+**702** with sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest
+counters stay separate: **positive_bronze 4075**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k: **5925**.
+Post-apply audit: **25 fingerprints**, fingerprint Gini **0.1541**, holes `[]`, only
+`metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. All added rows keep
+`predictive_evidence []`; EC/name/keyword/Rhea/prose handles remain excluded-context admission
+evidence and are never predictive. Follow-on mechanism scout
+`artifacts/v3_zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.json` found
+`zinc_lyase_hydratase` is the next viable unapplied lane (zinc context **80/80**, Rhea hydration/
+elimination/carbonic text **79/80**, active/binding/metal site **76/80**, likely wireable **50/80**),
+but side-EC/boundary rows **30/80** mean the next run must wire explicit guards before any 26fp
+preview/apply.
+
 **2026-06-13 automation update: ATP amide ligase 23fp and class-II metal aldolase 24fp expansions
 are now applied.** The prompt's older P450 instruction was superseded by the current handoff:
 P450, non-heme 2OG, CoA, cofactor-independent isomerase, molybdopterin, copper, and non-PLP

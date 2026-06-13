@@ -1,5 +1,89 @@
 # Handoff
 
+## Session run - ThDP enzyme 25fp bronze expansion applied + zinc hydratase scout (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`
+  (`5c665bb12f0883035896fe409d1be9224f4b8720` before local edits). The prompt still mentioned
+  P450, but current handoff/scaling-plan state already had P450/2OG/CoA/isomerase/molybdopterin/
+  copper/racemase/ATP/class-II applied, and broad EC 2.7 kinase was blocked by subclass mixing, so
+  this run followed the latest evidence: `thiamine_diphosphate_enzyme`, then a next-lane zinc scout.
+- Status: **APPLIED gated ThDP enzyme bronze growth to the separate external bronze registry.**
+  Frozen current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before/after apply.
+  External bronze **4936 -> 5086** (+150); combined label surface **5638 -> 5788**.
+- ThDP mechanism scout:
+  `artifacts/v3_thiamine_diphosphate_mechanism_handle_scout_current702_20260613.json` /
+  `work/thiamine_diphosphate_mechanism_handle_scout_current702_20260613.md` examined 80 reviewed
+  entries with 0 fetch failures. Handles: ThDP context 80/80, Rhea cross-reference 80/80, Mg
+  context 77/80, active/binding-site context 73/80, Rhea carbonyl/decarboxylation/transfer text
+  62/80, likely wireable 65/80. Boundary signals: flavin 11/80, side EC 15/80, kinase/hydrolase-ish
+  boundary text 48/80.
+- Family/gate setup: added `thiamine_diphosphate_enzyme` fingerprint +
+  `thiamine_diphosphate_ylide` ontology family; bumped
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_25fp`; re-froze OOS
+  preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_25fp_1025.json`.
+  EC 2.2.1/4.1.1/1.2.4 is scope-only. Counted mechanism corroboration comes from ThDP/Mg cofactor
+  or binding context, Rhea decarboxylation/carbonyl-transfer/ThDP participant evidence, ThDP-family
+  keyword/domain text, or active-/binding-site handles. PLP, molybdopterin/flavin/heme, kinase/
+  phosphotransferase, hydrolase, non-scope side EC, and multi-signal rows are held.
+- ThDP apply command:
+  `PYTHONPATH=src python scripts/source_thiamine_diphosphate_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched **240**, target mechanism-corroborated **181**, novelty-admitted/applied **150**,
+  off-target held **14** (`coa_acyltransferase`), disambiguation holds **37**
+  (`no_mechanism_corroboration`), duplicate skipped **0**; `thiamine_diphosphate_enzyme`
+  **0 -> 150** (chemistry-confusable cap 150; floor reached). Row audit found **0**
+  leakage/trust-tier problems across all 150 ThDP rows; axes present: cofactor/cosubstrate 150,
+  domain/family 150, Rhea participant 150, active-site/residue-role 144.
+- Guardrails verified: EC is scope/fetch context only and never counted; broadened ThDP/Rhea/
+  keyword/active-site handles are admission/excluded-context only; `predictive_evidence []`; every
+  added row is `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup ran against
+  frozen current702 and external bronze; off-target/multi-signal rows were held; per-fingerprint
+  cap 150 was enforced.
+- Honest counters after apply: `positive_bronze=4075`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`. Do not merge them. Remaining positive-bronze gap to 10k:
+  **5925**.
+- Fresh post-ThDP audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_thdp_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_thdp_applied.md`; **5788** combined,
+  fingerprint Gini **0.1541**, holes `[]`, over-cap `['metal_dependent_hydrolase']`,
+  next-batch floor deficit **0**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_thdp_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_thdp_applied.md`; **5086** expansion rows,
+  decisions `{'admit': 4630, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0897).
+- Productive follow-on scout:
+  `artifacts/v3_zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.json` /
+  `work/zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.md` examined 80 entries
+  with 0 fetch failures and found zinc context 80/80, lyase/hydratase text 80/80, Rhea hydration/
+  elimination/carbonic text 79/80, active/binding/metal-site context 76/80, likely wireable 50/80,
+  side-EC boundary 30/80, and boundary keyword signal 30/80. It supports a **guarded**
+  `zinc_lyase_hydratase` 26fp lane, not broad EC 4.2.1 admission.
+- Validation: focused pytest passed over ThDP sourcing, shared disambiguation, fingerprints,
+  ontology, coverage, novelty, trust-tier, and source-only contract (`80 passed`); leakage
+  prereg/import-gate subset passed (`5 passed, 181 deselected`); `PYTHONPATH=src python -m
+  catalytic_earth.cli validate` passed (12 source records, 25 fingerprints, 27 ontology families,
+  702 curated labels); JSON parse checks passed for touched registries/artifacts. Run `git diff
+  --check` again during final closeout after docs.
+- Key new artifacts/files this run:
+  `src/catalytic_earth/thiamine_diphosphate_sourcing.py`,
+  `scripts/source_thiamine_diphosphate_family.py`,
+  `tests/test_thiamine_diphosphate_sourcing.py`,
+  `artifacts/v3_thiamine_diphosphate_mechanism_handle_scout_current702_20260613.json`,
+  `artifacts/v3_thiamine_diphosphate_sourcing_preview_current702.json`,
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_25fp_1025.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_thdp_applied.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_thdp_applied.json`,
+  `artifacts/v3_zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.json`, and their
+  matching `work/*.md` reports.
+- Next exact action: wire `zinc_lyase_hydratase` as a deliberate 26fp universe change only with
+  explicit guards. Use EC 4.2.1 as scope-only; counted corroborators should come from zinc cofactor/
+  metal-site evidence, Rhea hydration/elimination/carbonic reaction text, Lyase/hydratase keyword/
+  domain, active-/binding-/metal-site evidence, or structure. Hold PLP, ThDP, hydrolase/
+  transferase/aldolase/isomerase side rows, non-4.2.1 side ECs, and multi-fingerprint signals.
+  Required steps: fingerprint spec, ontology node, OOS preregistration re-freeze to 26fp, offline
+  leakage/trust-tier tests, non-destructive preview, explicit apply only if novelty/governor/dedup/
+  trust-tier gates pass.
+
 ## Session run - ATP amide ligase + class-II metal aldolase 24fp bronze expansion applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

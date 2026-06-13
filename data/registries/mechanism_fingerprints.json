@@ -505,6 +505,32 @@
     }
   },
   {
+    "id": "thiamine_diphosphate_enzyme",
+    "name": "Thiamine-diphosphate ylide enzyme",
+    "enzyme_space": ["ThDP-dependent decarboxylases", "transketolases", "2-oxoacid dehydrogenase E1 components", "acetohydroxyacid synthases", "phosphoketolases"],
+    "active_site_signature": [
+      {"role": "thdp_ylide_anchor", "residue": "ThDP thiazolium ring with Mg2+-anchored diphosphate", "constraints": ["positions the thiazolium C2 ylide adjacent to an aldehyde or 2-oxoacid substrate"]},
+      {"role": "thdp_activation_base", "residue": "Glu/Asp/His depending on subclass", "constraints": ["supports C2 proton abstraction and stabilizes the Breslow-like enamine intermediate"]},
+      {"role": "carbonyl_substrate_positioning", "residue": "polar or aromatic pocket residues", "constraints": ["aligns ketoacid, aldehyde, or sugar-phosphate substrate for decarboxylation, carboligation, or two-carbon transfer"]}
+    ],
+    "cofactors": ["thiamine diphosphate", "Mg2+"],
+    "reaction_center": {
+      "bond_changes": ["C-C bond cleavage, formation, or two-carbon transfer through a ThDP-stabilized acyl-anion/enamine intermediate"],
+      "chemical_operation": "ThDP ylide carbonyl activation and carbanion stabilization"
+    },
+    "substrate_constraints": ["ThDP/Mg2+ donor context present", "carbonyl or 2-oxoacid substrate positioned at the thiazolium C2 center", "no PLP Schiff-base, molybdopterin/flavin/heme redox, hydrolase, kinase, or side-EC boundary signal"],
+    "evidence_features": ["Thiamine diphosphate / thiamine pyrophosphate cofactor or binding-site annotation", "Mg2+ binding context for the ThDP diphosphate", "Rhea decarboxylation, carbonyl-transfer, or ThDP-participant reaction context under EC 2.2.1/4.1.1/1.2.4 scope", "ThDP-family keyword/domain text or active-/binding-site residue evidence"],
+    "counterevidence_features": ["PLP-dependent decarboxylase or Schiff-base chemistry", "molybdopterin, flavin, heme, or generic oxidoreductase redox center without ThDP E1 mechanism evidence", "kinase/phosphotransferase or hydrolase side chemistry", "EC-only evidence with no ThDP, Rhea, family, active-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["decarboxylase vs transketolase vs dehydrogenase E1 subclass", "substrate carbonyl/2-oxoacid identity", "Mg2+ and ThDP ligand pose", "physiological direction and acceptor substrate"],
+    "seed_examples": ["pyruvate decarboxylase", "transketolase", "pyruvate dehydrogenase E1 component", "acetolactate synthase", "phosphoketolase"],
+    "deploy_missing_active_site_context": {
+      "type": "cofactor_and_carbonyl_substrate",
+      "detail": "the ThDP/Mg2+ cofactor, thiazolium ylide state, carbonyl substrate, and enamine/acyl-anion intermediate are absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->ThDP/Mg/family channel plus Rhea decarboxylation or carbonyl-transfer evidence, or canonical ThDP/Mg/substrate/intermediate graft (Path B)",
+      "silver_reachability": "moderate; ThDP and Mg binding evidence is often annotated, but ylide/intermediate and acceptor geometry require reconstruction"
+    }
+  },
+  {
     "id": "nad_p_dehydrogenase",
     "name": "NAD(P)-dependent dehydrogenase/reductase",
     "enzyme_space": ["short-chain dehydrogenases/reductases (SDR)", "medium-chain dehydrogenases/reductases (MDR)", "aldo-keto reductases (AKR)", "Rossmann-fold oxidoreductases"],

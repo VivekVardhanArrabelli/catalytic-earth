@@ -1,0 +1,3882 @@
+{
+  "artifact_id": "v3_zinc_lyase_hydratase_mechanism_handle_scout_current702",
+  "candidate_family": "zinc_lyase_hydratase",
+  "counts": {
+    "active_binding_metal_site_context": 76,
+    "boundary_keyword": 30,
+    "likely_wireable": 50,
+    "lyase_hydratase_text": 80,
+    "not_likely_or_boundary": 30,
+    "other_metal_boundary": 3,
+    "rhea_cross_reference": 79,
+    "rhea_hydration_elimination_or_carbonic_text": 79,
+    "side_ec_boundary": 30,
+    "zinc_context": 80
+  },
+  "created_utc": "2026-06-13T05:40:00Z",
+  "entries_examined": 80,
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "chemistry_confusable_cap": 150,
+    "ec_scope_only_never_counted": true,
+    "plp_thdp_hydrolase_transferase_side_ec_multi_signal_rows_held": true,
+    "predictive_evidence_stays_empty_for_future_labels": true,
+    "zinc_lyase_rhea_active_site_handles_admission_only": true
+  },
+  "lane_queries": [
+    {
+      "lane_id": "zinc_ec_4_2_1_reviewed",
+      "query": "(ec:4.2.1.*) AND (reviewed:true) AND ((cc_cofactor:zinc) OR (keyword:Zinc))"
+    }
+  ],
+  "recommendation": {
+    "reason": "Zinc/hydratase/Rhea/active-site handles appear frequent enough for guarded 26fp wiring.",
+    "wire_26fp_lane": true
+  },
+  "sample_rows": [
+    {
+      "accession": "P13716",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.24"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "schiff-base intermediate with substrate active site",
+        "schiff-base intermediate with substrate active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Allosteric enzyme",
+        "Alternative splicing",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Heme biosynthesis",
+        "Lyase",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Porphyrin biosynthesis",
+        "Proteomics identification",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Delta-aminolevulinic acid dehydratase (ALADH) (EC 4.2.1.24) (Porphobilinogen synthase)",
+      "reaction_sample": [
+        "2 5-aminolevulinate = porphobilinogen + 2 h2o + h(+)"
+      ]
+    },
+    {
+      "accession": "Q96GX9",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.109"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "substrate binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Amino-acid biosynthesis",
+        "Apoptosis",
+        "Cytoplasm",
+        "Lyase",
+        "Metal-binding",
+        "Methionine biosynthesis",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Methylthioribulose-1-phosphate dehydratase (MTRu-1-P dehydratase) (EC 4.2.1.109) (APAF1-interacting protein) (hAPIP)",
+      "reaction_sample": [
+        "5-(methylsulfanyl)-d-ribulose 1-phosphate = 5-methylsulfanyl-2,3-dioxopentyl phosphate + h2o"
+      ]
+    },
+    {
+      "accession": "P00918",
+      "cofactors": [
+        "zn(2+)",
+        "co(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": true,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Cell membrane",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Osteopetrosis",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 2 (EC 4.2.1.1) (Carbonate dehydratase II) (Carbonic anhydrase C) (CAC) (Carbonic anhydrase II) (CA-II) (Cyanamide hydratase CA2) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "Q9ULX7",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 14 (EC 4.2.1.1) (Carbonate dehydratase XIV) (Carbonic anhydrase XIV) (CA-XIV)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P35218",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Direct protein sequencing",
+        "Disease variant",
+        "Lyase",
+        "Metal-binding",
+        "Mitochondrion",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transit peptide",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 5A, mitochondrial (EC 4.2.1.1) (Carbonate dehydratase VA) (Carbonic anhydrase VA) (CA-VA)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P43166",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Cytoplasm",
+        "Lyase",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 7 (EC 4.2.1.1) (Carbonate dehydratase VII) (Carbonic anhydrase VII) (CA-VII)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q9Y2D0",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "substrate binding site"
+      ],
+      "keywords": [
+        "Lyase",
+        "Metal-binding",
+        "Mitochondrion",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transit peptide",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 5B, mitochondrial (EC 4.2.1.1) (Carbonate dehydratase VB) (Carbonic anhydrase VB) (CA-VB)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "O43570",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Cell membrane",
+        "Disease variant",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 12 (EC 4.2.1.1) (Carbonate dehydratase XII) (Carbonic anhydrase XII) (CA-XII) (Tumor antigen HOM-RCC-3.1.3)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P23280",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Lyase",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 6 (EC 4.2.1.1) (Carbonate dehydratase VI) (Carbonic anhydrase VI) (CA-VI) (Salivary carbonic anhydrase) (Secreted carbonic anhydrase)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q16790",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Cell membrane",
+        "Cell projection",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Nucleus",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 9 (EC 4.2.1.1) (Carbonate dehydratase IX) (Carbonic anhydrase IX) (CA-IX) (CAIX) (Membrane antigen MN) (P54/58N) (Renal cell carcinoma-associated antigen G250) (RCC-associated antigen G250) (pMW1)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P00915",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "in variant michigan-1 zn(2+) binding site",
+        "in variant michigan-1 zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Lyase",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 1 (EC 4.2.1.1) (Carbonate dehydratase I) (Carbonic anhydrase B) (CAB) (Carbonic anhydrase I) (CA-I) (Cyanamide hydratase CA1) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "P22748",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Cell membrane",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Disulfide bond",
+        "Glycoprotein",
+        "GPI-anchor",
+        "Lipoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Retinitis pigmentosa",
+        "Signal",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 4 (EC 4.2.1.1) (Carbonate dehydratase IV) (Carbonic anhydrase IV) (CA-IV)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P07451",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "substrate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Cytoplasm",
+        "Glutathionylation",
+        "Lyase",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 3 (EC 4.2.1.1) (Carbonate dehydratase III) (Carbonic anhydrase III) (CA-III)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q8N1Q1",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Cytoplasm",
+        "Lyase",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Carbonic anhydrase 13 (EC 4.2.1.1) (Carbonate dehydratase XIII) (Carbonic anhydrase XIII) (CA-XIII)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P10518",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.24"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "schiff-base intermediate with substrate active site",
+        "schiff-base intermediate with substrate active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Allosteric enzyme",
+        "Cytoplasm",
+        "Heme biosynthesis",
+        "Lyase",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Porphyrin biosynthesis",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Delta-aminolevulinic acid dehydratase (ALADH) (EC 4.2.1.24) (Porphobilinogen synthase)",
+      "reaction_sample": [
+        "2 5-aminolevulinate = porphobilinogen + 2 h2o + h(+)"
+      ]
+    },
+    {
+      "accession": "P06214",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.24"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "schiff-base intermediate with substrate active site",
+        "schiff-base intermediate with substrate active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Allosteric enzyme",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Heme biosynthesis",
+        "Lyase",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Porphyrin biosynthesis",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Delta-aminolevulinic acid dehydratase (ALADH) (EC 4.2.1.24) (Porphobilinogen synthase)",
+      "reaction_sample": [
+        "2 5-aminolevulinate = porphobilinogen + 2 h2o + h(+)"
+      ]
+    },
+    {
+      "accession": "P0ACB2",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.24"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": true,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "schiff-base intermediate with substrate active site",
+        "schiff-base intermediate with substrate active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Allosteric enzyme",
+        "Direct protein sequencing",
+        "Heme biosynthesis",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Porphyrin biosynthesis",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Delta-aminolevulinic acid dehydratase (ALAD) (ALADH) (EC 4.2.1.24) (Porphobilinogen synthase)",
+      "reaction_sample": [
+        "2 5-aminolevulinate = porphobilinogen + 2 h2o + h(+)"
+      ]
+    },
+    {
+      "accession": "P53615",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Cytoplasm",
+        "Lyase",
+        "Metal-binding",
+        "Mitochondrion",
+        "Nucleus",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Carbonic anhydrase (EC 4.2.1.1) (Carbonate dehydratase) (Non-classical export protein 3)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q9WVQ5",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.109"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "substrate binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Apoptosis",
+        "Cytoplasm",
+        "Lyase",
+        "Metal-binding",
+        "Methionine biosynthesis",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Methylthioribulose-1-phosphate dehydratase (MTRu-1-P dehydratase) (EC 4.2.1.109) (APAF1-interacting protein) (Monocyte/macrophage protein 19)",
+      "reaction_sample": [
+        "5-(methylsulfanyl)-d-ribulose 1-phosphate = 5-methylsulfanyl-2,3-dioxopentyl phosphate + h2o"
+      ]
+    },
+    {
+      "accession": "P05373",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.24"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "schiff-base intermediate with substrate active site",
+        "schiff-base intermediate with substrate active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Heme biosynthesis",
+        "Lyase",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Porphyrin biosynthesis",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Delta-aminolevulinic acid dehydratase (ALADH) (EC 4.2.1.24) (Porphobilinogen synthase)",
+      "reaction_sample": [
+        "2 5-aminolevulinate = porphobilinogen + 2 h2o + h(+)"
+      ]
+    },
+    {
+      "accession": "P00920",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor active site",
+        "active site",
+        "active site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Cell membrane",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Carbonic anhydrase 2 (EC 4.2.1.1) (Carbonate dehydratase II) (Carbonic anhydrase II) (CA-II) (Cyanamide hydratase CA2) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "P00921",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Cell membrane",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Bos taurus (Bovine)",
+      "protein_name": "Carbonic anhydrase 2 (EC 4.2.1.1) (Carbonate dehydratase II) (Carbonic anhydrase II) (CA-II) (Cyanamide hydratase CA2) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "P31658",
+      "cofactors": [],
+      "ec_numbers": [
+        "3.1.2.-",
+        "3.5.1.-",
+        "3.5.1.124",
+        "4.2.1.130"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "nucleophile active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Chaperone",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "DNA damage",
+        "DNA repair",
+        "Hydrolase",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome",
+        "Stress response",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Protein/nucleic acid deglycase 1 (EC 3.1.2.-) (EC 3.5.1.-) (EC 3.5.1.124) (Glyoxalase III) (EC 4.2.1.130) (Holding molecular chaperone) (Hsp31) (Maillard deglycase)",
+      "reaction_sample": [
+        "methylglyoxal + h2o = (r)-lactate + h(+)",
+        "n(omega)-(1-hydroxy-2-oxopropyl)-l-arginyl-[protein] + h2o = lactate + l-arginyl-[protein] + h(+)"
+      ]
+    },
+    {
+      "accession": "P08566",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "Q64444",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Cell membrane",
+        "Disulfide bond",
+        "Glycoprotein",
+        "GPI-anchor",
+        "Lipoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Carbonic anhydrase 4 (EC 4.2.1.1) (Carbonate dehydratase IV) (Carbonic anhydrase IV) (CA-IV)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q94CE4",
+      "cofactors": [],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": false,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [],
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "Cell membrane",
+        "Coiled coil",
+        "Lyase",
+        "Membrane",
+        "Phosphoprotein",
+        "Reference proteome",
+        "S-nitrosylation",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Beta carbonic anhydrase 4 (AtbCA4) (AtbetaCA4) (EC 4.2.1.1) (Beta carbonate dehydratase 4)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "O04846",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "substrate binding site"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Chloroplast",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Lyase",
+        "Metal-binding",
+        "Plastid",
+        "Reference proteome",
+        "Signal",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Alpha carbonic anhydrase 1, chloroplastic (AtaCA1) (AtalphaCA1) (EC 4.2.1.1) (Alpha carbonate dehydratase 1)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P16015",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "substrate binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Glutathionylation",
+        "Lyase",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Carbonic anhydrase 3 (EC 4.2.1.1) (Carbonate dehydratase III) (Carbonic anhydrase III) (CA-III)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P27139",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Cell membrane",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Carbonic anhydrase 2 (EC 4.2.1.1) (Carbonate dehydratase II) (Carbonic anhydrase II) (CA-II) (Cyanamide hydratase CA2) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "P42737",
+      "cofactors": [],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": false,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [],
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "Chloroplast",
+        "Cytoplasm",
+        "Lyase",
+        "Phosphoprotein",
+        "Plastid",
+        "Reference proteome",
+        "S-nitrosylation",
+        "Transit peptide",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Beta carbonic anhydrase 2, chloroplastic (AtbCA2) (AtbetaCA2) (EC 4.2.1.1) (Beta carbonate dehydratase 2)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q8VHB5",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Cell membrane",
+        "Cell projection",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Nucleus",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Carbonic anhydrase 9 (EC 4.2.1.1) (Carbonate dehydratase IX) (Carbonic anhydrase IX) (CA-IX) (CAIX) (Membrane antigen MN homolog)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q9C6B3",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.-"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": false,
+        "rhea_hydration_elimination_or_carbonic_text": false,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "substrate binding site",
+        "substrate binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Mitochondrion",
+        "Reference proteome",
+        "Transit peptide",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Gamma carbonic anhydrase 2, mitochondrial (AtCA2) (GAMMA CA2) (EC 4.2.1.-) (Transcription factor APFI)",
+      "reaction_sample": []
+    },
+    {
+      "accession": "P18761",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome",
+        "Secreted",
+        "Signal",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Carbonic anhydrase 6 (EC 4.2.1.1) (Carbonate dehydratase VI) (Carbonic anhydrase VI) (CA-VI) (Salivary carbonic anhydrase) (Secreted carbonic anhydrase)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P23589",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Lyase",
+        "Metal-binding",
+        "Mitochondrion",
+        "Reference proteome",
+        "Transit peptide",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Carbonic anhydrase 5A, mitochondrial (EC 4.2.1.1) (Carbonate dehydratase VA) (CA Y) (Carbonic anhydrase VA) (CA-VA)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P48284",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Cell membrane",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glycoprotein",
+        "GPI-anchor",
+        "Lipoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Signal",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Carbonic anhydrase 4 (EC 4.2.1.1) (Carbonate dehydratase IV) (Carbonic anhydrase IV) (CA-IV)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P14141",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "substrate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Glutathionylation",
+        "Lyase",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Carbonic anhydrase 3 (EC 4.2.1.1) (Carbonate dehydratase III) (Carbonic anhydrase III) (CA-III)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P27140",
+      "cofactors": [],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": false,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [],
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "Cell membrane",
+        "Chloroplast",
+        "Lyase",
+        "Membrane",
+        "Phosphoprotein",
+        "Plastid",
+        "Reference proteome",
+        "S-nitrosylation",
+        "Transit peptide",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Beta carbonic anhydrase 1, chloroplastic (AtbCA1) (AtbetaCA1) (EC 4.2.1.1) (Beta carbonate dehydratase 1) (Protein SALICYLIC ACID-BINDING PROTEIN 3) (AtSABP3)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q9WVT6",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Disulfide bond",
+        "Glycoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Signal",
+        "Transmembrane",
+        "Transmembrane helix",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Carbonic anhydrase 14 (EC 4.2.1.1) (Carbonate dehydratase XIV) (Carbonic anhydrase XIV) (CA-XIV)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q8DKB5",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "in other chain zn(2+) binding site",
+        "zn(2+) binding site",
+        "in other chain zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Alternative initiation",
+        "Bacterial microcompartment",
+        "Carbon dioxide fixation",
+        "Carboxysome",
+        "Disulfide bond",
+        "Lyase",
+        "Metal-binding",
+        "Photosynthesis",
+        "Reference proteome",
+        "Repeat",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Thermosynechococcus vestitus (strain NIES-2133 / IAM M-273 / BP-1)",
+      "protein_name": "Carboxysome assembly protein CcmM (CcmM70) (M70) (Carbon dioxide concentrating mechanism protein CcmM) (Carbonic anhydrase) (EC 4.2.1.1)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P9WPJ7",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "protein_name": "Beta-carbonic anhydrase 1 (Beta-CA 1) (EC 4.2.1.1) (Carbonate dehydratase 1) (mtCA 1)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q8YYI3",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "in other chain zn(2+) binding site",
+        "zn(2+) binding site",
+        "in other chain zn(2+) binding site"
+      ],
+      "keywords": [
+        "Alternative initiation",
+        "Bacterial microcompartment",
+        "Carbon dioxide fixation",
+        "Carboxysome",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disulfide bond",
+        "Lyase",
+        "Metal-binding",
+        "Photosynthesis",
+        "Reference proteome",
+        "Repeat",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Nostoc sp. (strain PCC 7120 / SAG 25.82 / UTEX 2576)",
+      "protein_name": "Carboxysome assembly protein CcmM (CcmM58) (M58) (Carbon dioxide concentrating mechanism protein CcmM) (Carbonic anhydrase) (EC 4.2.1.1)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P27134",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Bacterial microcompartment",
+        "Carbon dioxide fixation",
+        "Carboxysome",
+        "Lyase",
+        "Metal-binding",
+        "Photosynthesis",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Synechococcus elongatus (strain ATCC 33912 / PCC 7942 / FACHB-805) (Anacystis nidulans R2)",
+      "protein_name": "Carbonic anhydrase (EC 4.2.1.1) (Carbonate dehydratase)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P9WPJ9",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "protein_name": "Carbonic anhydrase 2 (Beta-CA 2) (EC 4.2.1.1) (Carbonate dehydratase 2) (mtCA 2)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q5AJ71",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Cytoplasm",
+        "Lyase",
+        "Metal-binding",
+        "Mitochondrion",
+        "Nucleus",
+        "Reference proteome",
+        "Virulence",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Candida albicans (strain SC5314 / ATCC MYA-2876) (Yeast)",
+      "protein_name": "Carbonic anhydrase (EC 4.2.1.1) (Carbonate dehydratase) (Non-classical export protein 103)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "Q54735",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Bacterial microcompartment",
+        "Carbon dioxide fixation",
+        "Carboxysome",
+        "Lyase",
+        "Metal-binding",
+        "Photosynthesis",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Synechocystis sp. (strain ATCC 27184 / PCC 6803 / Kazusa)",
+      "protein_name": "Carbonic anhydrase (EC 4.2.1.1) (Carbonate dehydratase)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "P84193",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.110"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": true,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor active site",
+        "ascopyrone m binding site",
+        "mg(2+) binding site",
+        "mg(2+) binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Isomerase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Phanerodontia chrysosporium (White-rot fungus) (Sporotrichum pruinosum)",
+      "protein_name": "Aldos-2-ulose dehydratase (AUDH) (EC 4.2.1.110) (Aldos-2-ulose dehydratase/isomerase) (D-arabino-hex-2-ulose dehydratase) (Pyranosone dehydratase)",
+      "reaction_sample": [
+        "1,5-anhydro-d-fructose = microthecin + h2o",
+        "1,5-anhydro-d-fructose = ascopyrone m + h2o"
+      ]
+    },
+    {
+      "accession": "G2IQQ5",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.-"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "substrate binding site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Aromatic hydrocarbons catabolism",
+        "Lyase",
+        "Metal-binding",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Sphingobium sp. (strain NBRC 103272 / SYK-6)",
+      "protein_name": "2-keto-4-carboxy-3-hexenedioate hydratase (KCH hydratase) (EC 4.2.1.-)",
+      "reaction_sample": [
+        "(3z)-2-oxo-4-carboxy-3-hexenedioate + h2o = (2s)-2-hydroxy-4-oxobutane-1,2,4-tricarboxylate"
+      ]
+    },
+    {
+      "accession": "A8NMB4",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Coprinopsis cinerea (strain Okayama-7 / 130 / ATCC MYA-4618 / FGSC 9003) (Inky cap fungus) (Hormographiella aspergillata)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "B2B223",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Podospora anserina (strain S / ATCC MYA-4624 / DSM 980 / FGSC 10383) (Pleurage anserina)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "B6QWH9",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Talaromyces marneffei (strain ATCC 18224 / CBS 334.59 / QM 7333) (Penicillium marneffei)",
+      "protein_name": "Pentafunctional AROM polypeptide 1 [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C0S433",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Paracoccidioides brasiliensis (strain Pb03)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C4Y9D5",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "nad(+) binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Clavispora lusitaniae (strain ATCC 42720) (Yeast) (Candida lusitaniae)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C5FQ73",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Arthroderma otae (strain ATCC MYA-4605 / CBS 113480) (Microsporum canis)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C6HCG7",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Ajellomyces capsulatus (strain H143) (Darling's disease fungus) (Histoplasma capsulatum)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C7GIN5",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Saccharomyces cerevisiae (strain JAY291) (Baker's yeast)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C8Z543",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Saccharomyces cerevisiae (strain Lalvin EC1118 / Prise de mousse) (Baker's yeast)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "P00922",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Cell membrane",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Ovis aries (Sheep)",
+      "protein_name": "Carbonic anhydrase 2 (EC 4.2.1.1) (Carbonate dehydratase II) (Carbonic anhydrase II) (CA-II) (Cyanamide hydratase CA2) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "P07547",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Emericella nidulans (strain FGSC A4 / ATCC 38163 / CBS 112.46 / NRRL 194 / M139) (Aspergillus nidulans)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "Q6C1X5",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Yarrowia lipolytica (strain CLIB 122 / E 150) (Yeast) (Candida lipolytica)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "Q74ZZ1",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Eremothecium gossypii (strain ATCC 10895 / CBS 109.51 / FGSC 9923 / NRRL Y-1056) (Yeast) (Ashbya gossypii)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "Q84UV8",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.6.5.4",
+        "4.2.1.1"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Direct protein sequencing",
+        "Glycoprotein",
+        "Lyase",
+        "Metal-binding",
+        "NAD",
+        "Oxidoreductase",
+        "Secreted",
+        "Signal",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Nicotiana langsdorffii x Nicotiana sanderae (Ornamental tobacco)",
+      "protein_name": "Bifunctional monodehydroascorbate reductase and carbonic anhydrase nectarin-3 (EC 1.6.5.4) (EC 4.2.1.1) (Nectarin-III) [Cleaved into: Nectarin-2]",
+      "reaction_sample": [
+        "2 monodehydro-l-ascorbate radical + nadh + h(+) = 2 l-ascorbate + nad(+)",
+        "hydrogencarbonate + h(+) = co2 + h2o"
+      ]
+    },
+    {
+      "accession": "A3LSZ2",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "schiff-base intermediate with substrate; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Scheffersomyces stipitis (strain ATCC 58785 / CBS 6054 / NBRC 10063 / NRRL Y-11545) (Yeast) (Pichia stipitis)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "A4RD09",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Pyricularia oryzae (strain 70-15 / ATCC MYA-4617 / FGSC 8958) (Rice blast fungus) (Magnaporthe oryzae)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "A5H2Q8",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site",
+        "schiff-base intermediate with substrate; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Lodderomyces elongisporus (strain ATCC 11503 / CBS 2605 / JCM 1781 / NBRC 1676 / NRRL YB-4239) (Yeast) (Saccharomyces elongisporus)",
+      "protein_name": "Pentafunctional AROM polypeptide 1 [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "B0XRM8",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Aspergillus fumigatus (strain CBS 144.89 / FGSC A1163 / CEA10) (Neosartorya fumigata)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "B6JVD0",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Schizosaccharomyces japonicus (strain yFS275 / FY16936) (Fission yeast)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "B6QCA7",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Talaromyces marneffei (strain ATCC 18224 / CBS 334.59 / QM 7333) (Penicillium marneffei)",
+      "protein_name": "Pentafunctional AROM polypeptide 2 [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "B9WFG1",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "schiff-base intermediate with substrate; for 3-dehydroquinate dehydratase activity active site",
+        "nad(+) binding site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Candida dubliniensis (strain CD36 / ATCC MYA-646 / CBS 7987 / NCPF 3949 / NRRL Y-17841) (Yeast)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C0NL63",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Ajellomyces capsulatus (strain G186AR / H82 / ATCC MYA-2454 / RMSCC 2432) (Darling's disease fungus) (Histoplasma capsulatum)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C4R4R8",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Komagataella phaffii (strain GS115 / ATCC 20864) (Yeast) (Pichia pastoris)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C5DN02",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Lachancea thermotolerans (strain ATCC 56472 / CBS 6340 / NRRL Y-8284) (Yeast) (Kluyveromyces thermotolerans)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C5DVG6",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Zygosaccharomyces rouxii (strain ATCC 2623 / CBS 732 / NBRC 1130 / NCYC 568 / NRRL Y-229)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C5PA86",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Coccidioides posadasii (strain C735) (Valley fever fungus)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "C7YZ74",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Reference proteome",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Fusarium vanettenii (strain ATCC MYA-4622 / CBS 123669 / FGSC 9596 / NRRL 45880 / 77-13-4) (Fusarium solani subsp. pisi)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "P00917",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Equus caballus (Horse)",
+      "protein_name": "Carbonic anhydrase 1 (EC 4.2.1.1) (Carbonate dehydratase I) (Carbonic anhydrase I) (CA-I) (Cyanamide hydratase CA1) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "P00919",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Cell membrane",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Oryctolagus cuniculus (Rabbit)",
+      "protein_name": "Carbonic anhydrase 2 (EC 4.2.1.1) (Carbonate dehydratase II) (Carbonic anhydrase II) (CA-II) (Cyanamide hydratase CA2) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "P07630",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.1",
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton donor/acceptor active site",
+        "zn(2+) binding site",
+        "zn(2+) binding site",
+        "zn(2+) binding site"
+      ],
+      "keywords": [
+        "Cell membrane",
+        "Cytoplasm",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Gallus gallus (Chicken)",
+      "protein_name": "Carbonic anhydrase 2 (EC 4.2.1.1) (Carbonate dehydratase II) (Carbonic anhydrase II) (CA-II) (Cyanamide hydratase CA2) (EC 4.2.1.69)",
+      "reaction_sample": [
+        "hydrogencarbonate + h(+) = co2 + h2o",
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "P22143",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.2.1.69"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": false,
+        "boundary_keyword": false,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": false,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [],
+      "keywords": [
+        "Direct protein sequencing",
+        "Lyase",
+        "Zinc"
+      ],
+      "likely_wireable": true,
+      "organism": "Albifimbria verrucaria (Myrothecium leaf spot and pod blight fungus) (Myrothecium verrucaria)",
+      "protein_name": "Cyanamide hydratase (EC 4.2.1.69) (Urea hydro-lyase)",
+      "reaction_sample": [
+        "urea = cyanamide + h2o"
+      ]
+    },
+    {
+      "accession": "Q0D0F3",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Aspergillus terreus (strain NIH 2624 / FGSC A1156)",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    },
+    {
+      "accession": "Q12659",
+      "cofactors": [
+        "zn(2+)"
+      ],
+      "ec_numbers": [
+        "1.1.1.25",
+        "2.5.1.19",
+        "2.7.1.71",
+        "4.2.1.10",
+        "4.2.3.4"
+      ],
+      "evidence": {
+        "active_binding_metal_site_context": true,
+        "boundary_keyword": true,
+        "lyase_hydratase_text": true,
+        "other_metal_boundary": false,
+        "plp_boundary": false,
+        "rhea_cross_reference": true,
+        "rhea_hydration_elimination_or_carbonic_text": true,
+        "side_ec_boundary": true,
+        "thdp_boundary": false,
+        "zinc_context": true
+      },
+      "feature_sample": [
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate synthase activity active site",
+        "for epsp synthase activity active site",
+        "proton acceptor; for 3-dehydroquinate dehydratase activity active site"
+      ],
+      "keywords": [
+        "Amino-acid biosynthesis",
+        "Aromatic amino acid biosynthesis",
+        "ATP-binding",
+        "Cytoplasm",
+        "Kinase",
+        "Lyase",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "Oxidoreductase",
+        "Transferase",
+        "Zinc"
+      ],
+      "likely_wireable": false,
+      "organism": "Pneumocystis carinii",
+      "protein_name": "Pentafunctional AROM polypeptide [Includes: 3-dehydroquinate synthase (DHQS) (EC 4.2.3.4); 3-phosphoshikimate 1-carboxyvinyltransferase (EC 2.5.1.19) (5-enolpyruvylshikimate-3-phosphate synthase) (EPSP synthase) (EPSPS); Shikimate kinase (SK) (EC 2.7.1.71); 3-dehydroquinate dehydratase (3-dehydroquinase) (EC 4.2.1.10); Shikimate dehydrogenase (EC 1.1.1.25)]",
+      "reaction_sample": [
+        "7-phospho-2-dehydro-3-deoxy-d-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + h2o"
+      ]
+    }
+  ],
+  "schema_version": "mechanism_handle_scout.v1",
+  "selection_basis": "next unapplied clean candidate after ThDP from post-class-II source-supply ranking",
+  "status": "non_destructive_mechanism_handle_scout_no_registry_write"
+}

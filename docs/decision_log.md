@@ -3,6 +3,74 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: THIAMINE DIPHOSPHATE 25FP BRONZE EXPANSION APPLIED
+
+Decision: broad EC 2.7 kinase remains blocked by subclass mixing, so this run selected the next
+clean fallback from the post-class-II scout: `thiamine_diphosphate_enzyme`. Growth went only to
+`data/registries/external_bronze_labels.json`; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before and after apply.
+
+**Mechanism scout.** `artifacts/v3_thiamine_diphosphate_mechanism_handle_scout_current702_20260613.json`
+examined **80** reviewed UniProt entries with **0** fetch failures. Non-EC handles were strong:
+ThDP context **80/80**, Rhea cross-reference **80/80**, Mg context **77/80**, active/binding-site
+context **73/80**, Rhea carbonyl/decarboxylation/transfer text **62/80**, and likely wireable rows
+**65/80**. Boundary signals required explicit guards: flavin **11/80**, side EC **15/80**, and
+kinase/hydrolase-ish boundary text **48/80**.
+
+**Family/gate surface.** Added `thiamine_diphosphate_enzyme` fingerprint spec and
+`thiamine_diphosphate_ylide` ontology family; bumped
+`labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_25fp`; re-froze OOS
+next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_25fp_1025.json`. EC
+2.2.1/4.1.1/1.2.4 is scope-only (`ec_scope_hint`, never counted). Counted mechanism corroboration
+comes from ThDP/Mg cofactor or binding context, Rhea decarboxylation/carbonyl-transfer/ThDP
+participant evidence, ThDP-family keyword/domain text, active-/binding-site evidence, or structure.
+PLP, molybdopterin/flavin/heme, kinase/phosphotransferase, hydrolase, non-scope side EC, and
+multi-fingerprint rows are held.
+
+**Live apply.** Command:
+`PYTHONPATH=src python scripts/source_thiamine_diphosphate_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+Result: fetched **240**, target mechanism-corroborated **181**, novelty-admitted/applied **150**.
+Other holds: **14** off-target `coa_acyltransferase` rows, **37** no-corroboration holds, duplicate
+skipped **0**. `thiamine_diphosphate_enzyme` **0 -> 150** (chemistry-confusable cap 150, floor
+reached). External bronze **4936 -> 5086**; combined surface **5638 -> 5788**. Row audit found
+**0** leakage/trust-tier problems across 150 rows; axes present: cofactor/cosubstrate **150**,
+domain/family **150**, Rhea participant **150**, active-site/residue-role **144**.
+
+Guardrails held: every added row is `tier=bronze`, `review_status=automation_curated`, namespace
+`uniprot`; EC/name/keyword/Rhea/prose handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; off-target/multi-signal rows are held; per-fingerprint cap 150 held.
+Honest counters after apply are **positive_bronze 4075**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**; do not merge them. Fresh post-ThDP
+coverage/redundancy audit reports **5788** combined labels, fingerprint Gini **0.1541**, expansion
+holes `[]`, over-cap `['metal_dependent_hydrolase']`, and next-batch floor deficit **0**. Novelty
+replay reports **5086** expansion rows, decisions `{'admit': 4630, 'reject': 47, 'throttle': 409}`,
+and would-not-readmit **456** (0.0897).
+
+Next decision: `zinc_lyase_hydratase` is the next viable unapplied lane, but it requires guarded
+26fp wiring before any preview/apply. Mechanism scout
+`artifacts/v3_zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.json` examined
+**80** entries with **0** fetch failures and found zinc context **80/80**, lyase/hydratase text
+**80/80**, Rhea hydration/elimination/carbonic text **79/80**, active/binding/metal-site context
+**76/80**, and likely wireable rows **50/80**. It also found side-EC and boundary rows **30/80**, so
+EC 4.2.1 must remain scope-only and the next runner must hold PLP/ThDP, hydrolase/transferase/
+aldolase/isomerase side rows, non-4.2.1 side ECs, and multi-fingerprint signals.
+
+References:
+`artifacts/v3_thiamine_diphosphate_mechanism_handle_scout_current702_20260613.json`,
+`work/thiamine_diphosphate_mechanism_handle_scout_current702_20260613.md`,
+`artifacts/v3_thiamine_diphosphate_sourcing_preview_current702.json`,
+`work/thiamine_diphosphate_sourcing_current702.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_25fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_thdp_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_thdp_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_thdp_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_thdp_applied.md`,
+`artifacts/v3_zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.json`,
+`work/zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-13: ATP AMIDE LIGASE 23FP + CLASS-II METAL ALDOLASE 24FP BRONZE EXPANSIONS APPLIED
 
 Decision: the latest handoff state superseded the older P450 prompt direction because P450,

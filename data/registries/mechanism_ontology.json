@@ -364,6 +364,20 @@
         "Hold EC-only rows and multi-fingerprint-signal rows rather than forcing a stereochemical isomerization label.",
         "The substrate stereocenter, proton-transfer state, and any catalytic metal/water context are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "thiamine_diphosphate_ylide",
+      "name": "Thiamine-diphosphate ylide carbonyl chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "thiamine_diphosphate_enzyme"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by ThDP/Mg cofactor or binding-site context plus Rhea decarboxylation/carbonyl-transfer/ThDP participant evidence, ThDP-family keyword/domain text, active-/binding-site evidence, or structure; EC 2.2.1/4.1.1/1.2.4 is scope only.",
+        "Do not admit PLP Schiff-base decarboxylases, molybdopterin/flavin/heme redox rows, kinase/phosphotransferase rows, hydrolase rows, non-scope side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a ThDP label.",
+        "The ThDP/Mg cofactor, thiazolium ylide state, carbonyl substrate, and enamine/acyl-anion intermediate are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

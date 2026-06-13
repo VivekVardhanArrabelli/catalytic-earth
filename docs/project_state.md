@@ -26,6 +26,37 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **THIAMINE DIPHOSPHATE 25FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  The broad EC 2.7 kinase lane remains blocked by subclass mixing, so this run selected the next
+  clean fallback from the post-class-II scout: `thiamine_diphosphate_enzyme`. Mechanism scout
+  `artifacts/v3_thiamine_diphosphate_mechanism_handle_scout_current702_20260613.json` examined
+  **80** reviewed entries with **0** fetch failures and found ThDP context **80/80**, Rhea
+  cross-reference **80/80**, Mg context **77/80**, active/binding-site context **73/80**, Rhea
+  carbonyl/decarboxylation/transfer text **62/80**, and likely wireable rows **65/80**; flavin,
+  side-EC, and kinase/hydrolase boundary signals forced explicit guards. Added
+  `thiamine_diphosphate_enzyme` fingerprint + `thiamine_diphosphate_ylide` ontology family, bumped
+  the universe to `label_factory_v1_25fp`, and re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_25fp_1025.json`. EC
+  2.2.1/4.1.1/1.2.4 is scope-only; counted handles come from ThDP/Mg cofactor or binding context,
+  Rhea decarboxylation/carbonyl-transfer/ThDP participant evidence, ThDP-family keyword/domain text,
+  or active-/binding-site evidence. PLP, molybdopterin/flavin/heme, kinase/phosphotransferase,
+  hydrolase, side-EC, and multi-signal rows are held. Live apply
+  `PYTHONPATH=src python scripts/source_thiamine_diphosphate_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`
+  fetched **240**, mechanism-corroborated **181**, admitted/applied **150**, held **14** off-target
+  `coa_acyltransferase` rows, held **37** no-corroboration rows, and skipped **0** duplicates.
+  External bronze **4936 -> 5086**; combined surface **5638 -> 5788**; frozen current702 remains
+  702 with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+  Honest counters remain separate: **positive_bronze 4075**, **oos_bronze 1696**,
+  **silver_ready 0**, **silver_confirmed 17**, **projected 0**; remaining positive-bronze gap to
+  10k: **5925**. Fresh post-ThDP coverage audit: **5788** combined, fingerprint Gini **0.1541**,
+  holes `[]`, only `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Novelty
+  replay: **5086** expansion rows, decisions `{'admit': 4630, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0897). Validation: focused pytest **80 passed**, leakage prereg/import
+  subset **5 passed, 181 deselected**, and `validate` ok (12 source / 25 fingerprints / 27 ontology
+  families / 702 labels). Follow-on: zinc lyase/hydratase mechanism scout
+  `artifacts/v3_zinc_lyase_hydratase_mechanism_handle_scout_current702_20260613.json` found a viable
+  but guarded next lane (50/80 likely wireable; 30/80 side-EC/boundary rows). Next concrete action:
+  wire `zinc_lyase_hydratase` as a guarded 26fp lane only if tests/OOS prereg/preview gates pass.
 - **ATP AMIDE LIGASE + CLASS-II METAL ALDOLASE 24FP BRONZE EXPANSIONS APPLIED (2026-06-13 automation).**
   The latest handoff state superseded the prompt's older P450 direction: P450/2OG/CoA/isomerase/
   molybdopterin/copper/racemase were already applied, so this run applied the next handoff lane

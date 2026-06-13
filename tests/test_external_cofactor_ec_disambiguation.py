@@ -490,6 +490,87 @@ class DisambiguateRowTests(unittest.TestCase):
         ]
         self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
 
+    def test_thiamine_diphosphate_requires_thdp_and_mechanism_handle(self) -> None:
+        row = _row(cofactors=["thiamine diphosphate", "Mg(2+)"], ec=["2.2.1.1"])
+        row["protein_name"] = "Transketolase"
+        row["keywords"] = ["Thiamine pyrophosphate", "Transferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:TD0001",
+                "reaction": "D-xylulose 5-phosphate + D-ribose 5-phosphate = D-glyceraldehyde 3-phosphate + D-sedoheptulose 7-phosphate",
+                "ec_number": "2.2.1.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "thiamine_diphosphate_enzyme")
+        self.assertIn(
+            "cofactor_or_cosubstrate",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_thiamine_diphosphate_active_site_fallback(self) -> None:
+        row = _row(cofactors=["thiamine pyrophosphate"], ec=["4.1.1.1"])
+        row["protein_name"] = "Pyruvate decarboxylase"
+        row["keywords"] = ["Thiamine pyrophosphate", "Lyase"]
+        row["residue_locators"] = [
+            {
+                "position": 28,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "thiamine diphosphate",
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "thiamine_diphosphate_enzyme")
+        self.assertIn(
+            "active_site_motif_or_residue_role",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "domain_or_family_profile",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_thiamine_diphosphate_controls_hold(self) -> None:
+        ec_only = _row(cofactors=["thiamine diphosphate"], ec=["2.2.1.1"])
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        plp = _row(
+            cofactors=["thiamine diphosphate", "pyridoxal 5'-phosphate"],
+            ec=["4.1.1.1"],
+        )
+        plp["keywords"] = ["Thiamine pyrophosphate", "Lyase"]
+        plp["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:TD0002",
+                "reaction": "2-oxo acid = aldehyde + CO2",
+                "ec_number": "4.1.1.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(plp)["decision"], "hold")
+
+        side_ec = _row(cofactors=["thiamine diphosphate"], ec=["2.2.1.1", "3.1.1.1"])
+        side_ec["protein_name"] = "Dual-function transketolase hydrolase"
+        side_ec["keywords"] = ["Thiamine pyrophosphate"]
+        side_ec["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:TD0003",
+                "reaction": "D-xylulose 5-phosphate + aldehyde = product",
+                "ec_number": "2.2.1.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

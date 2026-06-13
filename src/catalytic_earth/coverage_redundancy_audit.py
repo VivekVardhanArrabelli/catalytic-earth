@@ -183,6 +183,11 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "Zn/Co/divalent metal; enolate-stabilized aldol C-C lyase chemistry",
         "lanes": ["class_ii_metal_aldolase"],
     },
+    "thiamine_diphosphate_enzyme": {
+        "ec_prefixes": ["2.2.1", "4.1.1", "1.2.4"],
+        "cofactor": "ThDP/Mg ylide cofactor context; decarboxylation, carbonyl transfer, or 2-oxoacid dehydrogenase E1 chemistry",
+        "lanes": ["thiamine_diphosphate_enzyme"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

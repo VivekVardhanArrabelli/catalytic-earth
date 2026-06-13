@@ -208,6 +208,14 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
             "plp",
         )
         or bool(flags.get("plp_or_pyridoxal_evidence_present")),
+        "thdp": any_name(
+            "thiamine",
+            "thiamine diphosphate",
+            "thiamine pyrophosphate",
+            "thdp",
+            "tpp",
+        )
+        or bool(flags.get("thdp_or_thiamine_evidence_present")),
     }
 
 
@@ -450,6 +458,42 @@ _THDP_BOUNDARY_TOKENS = (
     "thiamine diphosphate",
     "thiamine pyrophosphate",
 )
+_THDP_MG_TOKENS = ("magnesium", "mg(2", "mg2")
+_THDP_FAMILY_TEXT_TOKENS = (
+    "thiamine",
+    "thdp",
+    "tpp",
+    "transketolase",
+    "decarboxylase",
+    "2-oxoacid",
+    "2-oxoglutarate dehydrogenase",
+    "pyruvate dehydrogenase",
+    "acetolactate synthase",
+    "acetohydroxyacid synthase",
+    "phosphoketolase",
+    "benzaldehyde lyase",
+    "glyoxylate carboligase",
+)
+_THDP_REACTION_TOKENS = (
+    "thiamine diphosphate",
+    "thiamine pyrophosphate",
+    "2-hydroxyethyl-thdp",
+    "hydroxyethyl-thiamine",
+    "co2",
+    "co(2)",
+    "carbon dioxide",
+    "acetaldehyde",
+    "glycolaldehyde",
+    "glyoxylate",
+    "2-oxoglutarate",
+    "2-oxoglutarate(2-)",
+    "pyruvate",
+)
+_THDP_KINASE_HYDROLASE_BOUNDARY_TOKENS = (
+    "kinase",
+    "phosphotransferase",
+    "hydrolase",
+)
 _SCHIFF_CLASS_I_BOUNDARY_TOKENS = ("schiff", "class i aldolase")
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
@@ -624,6 +668,23 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     class_ii_aldolase_cc_reaction = in_any(reactions, *_CLASS_II_ALDOLASE_CC_TOKENS)
     thdp_boundary_signal = in_any(
         cofactor_names + feature_texts + keywords + [protein_name], *_THDP_BOUNDARY_TOKENS
+    ) or bool(evidence.get("thdp"))
+    thdp_mg_context = in_any(cofactor_names + feature_texts, *_THDP_MG_TOKENS)
+    thdp_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts, *_THDP_FAMILY_TEXT_TOKENS
+    )
+    thdp_reaction_context = in_any(reactions, *_THDP_REACTION_TOKENS)
+    thdp_kinase_hydrolase_boundary = in_any(
+        keywords + [protein_name], *_THDP_KINASE_HYDROLASE_BOUNDARY_TOKENS
+    )
+    non_thdp_scope_side_ec = any(
+        ec
+        and not (
+            ec.startswith("2.2.1")
+            or ec.startswith("4.1.1")
+            or ec.startswith("1.2.4")
+        )
+        for ec in _ec_numbers(row)
     )
     schiff_class_i_boundary_signal = in_any(
         feature_texts + keywords + [protein_name], *_SCHIFF_CLASS_I_BOUNDARY_TOKENS
@@ -643,6 +704,7 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "molybdopterin",
             "copper",
             "plp",
+            "thdp",
         )
     )
 
@@ -702,6 +764,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "keyword_lyase": keyword_lyase,
             "class_ii_aldolase_cc_reaction": class_ii_aldolase_cc_reaction,
             "thdp_boundary_signal": thdp_boundary_signal,
+            "thdp_mg_context": thdp_mg_context,
+            "thdp_family_text": thdp_family_text,
+            "thdp_reaction_context": thdp_reaction_context,
+            "thdp_kinase_hydrolase_boundary": thdp_kinase_hydrolase_boundary,
+            "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
             "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
             "plp_boundary_signal": evidence.get("plp", False),
@@ -738,6 +805,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("copper_feature_or_ligand")
         or evidence.get("atp_ligase_atp_or_adp_phosphate")
         or evidence.get("atp_ligase_mg_context")
+        or evidence.get("thdp")
+        or evidence.get("thdp_mg_context")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -763,6 +832,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("atp_acyl_phosphate_intermediate")
         or evidence.get("class_ii_aldolase_cc_reaction")
         or evidence.get("class_ii_metal_aldolase_text")
+        or evidence.get("thdp_reaction_context")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -789,6 +859,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("atp_grasp_family_text")
         or evidence.get("keyword_lyase")
         or evidence.get("class_ii_metal_aldolase_text")
+        or evidence.get("thdp_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -841,6 +912,11 @@ _COPPER_OXIDOREDUCTASE_EC = (
 _METAL_RACEMASE_EPIMERASE_NON_PLP_EC = ("5.1.",)  # racemase/epimerase scope only
 _ATP_AMIDE_LIGASE_EC = ("6.3.",)  # C-N ligases; ATP/Mg/Rhea handles confirm
 _CLASS_II_METAL_ALDOLASE_EC = ("4.1.2", "4.1.3")  # metal aldol lyases; EC is scope only
+_THIAMINE_DIPHOSPHATE_ENZYME_EC = (
+    "2.2.1",
+    "4.1.1",
+    "1.2.4",
+)  # ThDP ylide/carbonyl chemistry; EC is scope only
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -1031,6 +1107,24 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
             or c["active_or_binding_site_present"]
         ),
     ),
+    (
+        "thiamine_diphosphate_enzyme",
+        lambda c, row: _ec_has_prefix(row, _THIAMINE_DIPHOSPHATE_ENZYME_EC)
+        and c["thdp"]
+        and (c["thdp_mg_context"] or c["active_or_binding_site_present"])
+        and not c["plp_boundary_signal"]
+        and not c["molybdopterin_moco"]
+        and not c["flavin"]
+        and not c["heme"]
+        and not c["thdp_kinase_hydrolase_boundary"]
+        and not c["hydrolase_side_ec"]
+        and not c["non_thdp_scope_side_ec"]
+        and (
+            c["thdp_reaction_context"]
+            or c["thdp_family_text"]
+            or c["active_or_binding_site_present"]
+        ),
+    ),
 )
 
 
@@ -1102,6 +1196,8 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "FAD", "cross_reference": {"id": None}}]
     elif fingerprint == "copper_oxidoreductase" and evidence.get("copper_feature_or_ligand"):
         records = [{"name": "copper", "cross_reference": {"id": None}}]
+    elif fingerprint == "thiamine_diphosphate_enzyme" and evidence.get("thdp"):
+        records = [{"name": "thiamine diphosphate", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:
