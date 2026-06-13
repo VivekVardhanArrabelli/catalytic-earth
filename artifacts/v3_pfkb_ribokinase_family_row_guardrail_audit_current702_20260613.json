@@ -1,0 +1,31 @@
+{
+  "artifact_id": "v3_pfkb_ribokinase_family_row_guardrail_audit_current702_20260613",
+  "axis_counts": {
+    "active_site_motif_or_residue_role": 46,
+    "cofactor_or_cosubstrate": 46,
+    "domain_or_family_profile": 46,
+    "rhea_reaction_or_participant_pattern": 46
+  },
+  "combined_label_surface": 6781,
+  "created_utc": "2026-06-13T11:51:25Z",
+  "external_bronze_total": 6079,
+  "fingerprint_id": "pfkb_ribokinase_family",
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_scope_only_in_excluded_context": true,
+    "mechanism_axes_all_rows": true,
+    "predictive_evidence_empty": true,
+    "review_status_automation_curated": true,
+    "tier_bronze": true,
+    "uniprot_namespace": true
+  },
+  "problem_count": 0,
+  "problems": [],
+  "row_count": 46,
+  "source_trust_tier_counts": {
+    "{\"ec_scope_hint_axes_not_counted\": [\"ec_scope_hint\"], \"mechanism_corroborator_axes_present\": [\"active_site_motif_or_residue_role\", \"cofactor_or_cosubstrate\", \"domain_or_family_profile\", \"rhea_reaction_or_participant_pattern\"], \"meets_n_of_m\": true, \"present_axes\": [\"active_site_motif_or_residue_role\", \"cofactor_or_cosubstrate\", \"domain_or_family_profile\", \"ec_scope_hint\", \"rhea_reaction_or_participant_pattern\"], \"source_tier\": \"source_tier_0\"}": 46
+  },
+  "status": "post_apply_row_guardrail_audit",
+  "unique_entry_ids": 46
+}

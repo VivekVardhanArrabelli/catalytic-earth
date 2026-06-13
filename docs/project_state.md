@@ -26,6 +26,41 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **PFKB/RIBOKINASE-FAMILY 33FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  The strict kinase-subclass path continued from the guarded post-PfkA handoff. Added
+  `pfkb_ribokinase_family` fingerprint + `pfkb` ontology mapping, bumped the universe to
+  `label_factory_v1_33fp`, and re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_33fp_1025.json`. EC 2.7.1 is
+  scope-only; counted mechanism handles are ATP/ADP phosphoryl-transfer Rhea participants with
+  PfkB/ribokinase-family acceptors, PfkB-family/domain text, ATP/Mg/substrate active-/binding-site
+  evidence, cofactor/cosubstrate handles, and structure-compatible evidence. Protein kinases,
+  two-component histidine kinases, hydrolase/nuclease rows, NDK, dNK, ASKHA, GHMP, PfkA,
+  cross-subclass/side-EC signals, and multi-fingerprint rows are held; generic `fructokinase` is no
+  longer a counted PfkB family token because it shadowed PfkA `6-phosphofructokinase`. Apply fetched
+  **88**, mechanism-corroborated **46**, applied **46**, held **36** no-corroboration rows, skipped
+  **2**, off-target held **4** as `askha_sugar_acetate_kinase`, held **0** at cap, and throttled
+  **0**. External bronze **6033 -> 6079**; combined surface **6735 -> 6781**; frozen current702
+  remains 702 with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+  Honest counters remain separate: **positive_bronze 5085**, **oos_bronze 1696**,
+  **silver_ready 0**, **silver_confirmed 17**, **projected 0**; remaining positive-bronze gap to
+  10k: **4915**. External-only bronze split is 4855 seed-fingerprint rows and 1224 OOS rows. Fresh
+  coverage audit: **6781** combined, **33** fingerprints, fingerprint Gini **0.162**, holes `[]`,
+  under-floor `['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **70**. Novelty replay:
+  **6079** expansion rows, decisions `{'admit': 5623, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.075). Validation: focused pytest **294 passed + 14 subtests**,
+  `validate` ok (12 source / 33 fingerprints / 30 ontology families / 702 labels). Row audit
+  `artifacts/v3_pfkb_ribokinase_family_row_guardrail_audit_current702_20260613.json` found **0**
+  problems across all 46 PfkB rows and all four mechanism axes present on every row. Follow-on
+  floor-extension scout
+  `artifacts/v3_pfkb_ribokinase_family_floor_extension_scout_current702_20260613.json` fetched 88
+  reviewed rows again with `--max-records-per-lane 500`, found **0** new PfkB labels, skipped **48**
+  already-covered rows, held **36** no-corroboration rows, held **4** off-target ASKHA rows, and
+  left PfkB **46/100**. All added rows keep `predictive_evidence []`; EC/name/keyword/Rhea/prose/
+  feature handles remain excluded-context admission evidence and are never predictive. Next action:
+  do not broad-wire EC 2.7; close the biotin 16-row deficit, design a genuinely new PfkB
+  source/handle path with stronger corroboration, or choose a new 10k-path family through the full
+  gated pipeline.
 - **PFKA PHOSPHOFRUCTOKINASE 32FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
   The strict kinase-subclass path continued from the post-dNK scout. Added
   `pfka_phosphofructokinase` fingerprint + existing `pfka` ontology mapping, bumped the universe to

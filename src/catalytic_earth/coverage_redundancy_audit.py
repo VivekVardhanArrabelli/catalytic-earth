@@ -223,6 +223,15 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "ATP/Mg phosphoryl-transfer cosubstrate context with fructose-6-phosphate acceptor",
         "lanes": ["pfka_phosphofructokinase"],
     },
+    "pfkb_ribokinase_family": {
+        "ec_prefixes": ["2.7.1"],
+        "cofactor": (
+            "ATP/Mg phosphoryl-transfer cosubstrate context with PfkB/ribokinase-family "
+            "small-molecule acceptors such as ribose, adenosine, inosine, "
+            "1-phosphofructose, or hydroxymethylpyrimidine"
+        ),
+        "lanes": ["pfkb_ribokinase_family"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

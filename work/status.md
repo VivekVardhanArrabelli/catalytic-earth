@@ -2,7 +2,67 @@
 
 Generated from `work/progress_log.jsonl`.
 
-## Active Automation Run
+## Current Automation Run
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T11:33:25Z`
+- Started local: `Sat Jun 13 06:33:26 CDT 2026`
+- Focus/result: strict `pfkb_ribokinase_family` 33fp continuation from the latest handoff and
+  scaling docs. Applied a guarded PfkB/ribokinase-family lane through the mechanism-first pipeline
+  after tightening the boundary guard so generic `fructokinase` text cannot shadow PfkA. Broad
+  EC 2.7 remains blocked and EC must stay scope-only.
+- Family/gate setup: added `pfkb_ribokinase_family` fingerprint and mapped it to ontology family
+  `pfkb`; bumped `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_33fp`;
+  re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_33fp_1025.json`. Counted
+  mechanism handles are ATP/ADP phosphoryl-transfer Rhea participant text with PfkB/ribokinase
+  substrates, PfkB-family/domain text, ATP/Mg/substrate active-/binding-site evidence,
+  cofactor/cosubstrate handles, and structure-compatible evidence. Protein kinase, histidine kinase,
+  hydrolase/nuclease, NDK, dNK, ASKHA, GHMP, PfkA, side-EC, and multi-fingerprint rows are held.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_pfkb_ribokinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched 88, mechanism-corroborated 46, applied 46, disambiguation holds 36,
+  disambiguation skips 2, off-target held 4 as `askha_sugar_acetate_kinase`, novelty-throttled/
+  rejected 0, held@cap 0, duplicate skipped 0; `pfkb_ribokinase_family` **0 -> 46** and remains
+  under the 100 floor by 54.
+- Registry/counts: external bronze **6033 -> 6079** (+46); combined label surface
+  **6735 -> 6781**; frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate per `source_trust_tiers`: `positive_bronze=5085`, `oos_bronze=1696`,
+  `silver_ready=0`, `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap to 10k is
+  **4915**. External-only registry split is 4855 seed-fingerprint bronze and 1224 OOS bronze.
+- Guardrails: EC/Rhea/name/keyword/prose/feature handles are admission/excluded-context evidence
+  only; EC is never counted; `predictive_evidence []`; every added row is tier bronze /
+  automation_curated / `uniprot:*`; dedup/novelty/governor/trust-tier gates ran against frozen
+  current702 and existing external bronze; chemistry-confusable cap 150 was enforced. Row guardrail
+  audit `artifacts/v3_pfkb_ribokinase_family_row_guardrail_audit_current702_20260613.json` found
+  0 problems across 46 PfkB rows and all four mechanism axes present on every row.
+- Post-apply audits: `artifacts/v3_coverage_redundancy_audit_current702_20260613_pfkb_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_pfkb_applied.md` report **6781** combined,
+  **33** fingerprints, seed positives **5085**, fingerprint Gini **0.162**, holes `[]`,
+  under-floor `['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **70**. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_pfkb_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_pfkb_applied.md` reports **6079**
+  expansion rows, decisions `{'admit': 5623, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.075).
+- Floor-extension scout: `artifacts/v3_pfkb_ribokinase_family_floor_extension_scout_current702_20260613.json`
+  / `work/pfkb_ribokinase_family_floor_extension_scout_current702_20260613.md` reran the strict
+  reviewed PfkB lane after apply with `--max-records-per-lane 500`; fetched 88 again, found
+  **0** new PfkB labels, skipped 48 already-covered rows, held 36 no-corroboration rows, held 4
+  off-target ASKHA rows, and left PfkB **46/100**.
+- Validation: focused suite passed
+  (`PYTHONPATH=src pytest tests/test_pfkb_ribokinase_family_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_ontology.py tests/test_leakage_closure.py tests/test_coverage_redundancy_audit.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py -q`
+  -> **294 passed, 14 subtests passed**); `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 33 mechanism fingerprints, 30 ontology families, 702 curated labels);
+  JSON/JSONL parse checks and `git diff --check` passed.
+- Next exact action: close remaining under-floor positives without broad EC wiring. The reviewed
+  strict PfkB lane is exhausted under the current gate, so either return to the biotin 16-row floor
+  deficit, design a genuinely new PfkB source/handle path with stronger corroboration, or choose a
+  new non-kinase 10k-path family through the same fingerprint/ontology/preregistration/preview/apply
+  gates.
+
+## Previous Automation Snapshot
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T10:31:51Z`

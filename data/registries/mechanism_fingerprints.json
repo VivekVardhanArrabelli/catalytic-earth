@@ -687,6 +687,32 @@
     }
   },
   {
+    "id": "pfkb_ribokinase_family",
+    "name": "PfkB/ribokinase-family kinase",
+    "enzyme_space": ["ribokinases", "adenosine kinases", "inosine kinases", "1-phosphofructokinases", "hydroxymethylpyrimidine kinases"],
+    "active_site_signature": [
+      {"role": "atp_mg_binding", "residue": "PfkB/ribokinase-family ATP/Mg2+ phosphate-binding residues", "constraints": ["positions ATP gamma-phosphate and Mg2+ for transfer in the ribokinase-like fold"]},
+      {"role": "small_molecule_hydroxyl_acceptor_positioning", "residue": "Asp/Glu/Lys/Arg/Ser/Thr or subclass-specific polar pocket residues", "constraints": ["orients ribose, adenosine, inosine, fructose 1-phosphate, or hydroxymethylpyrimidine acceptors for hydroxyl phosphorylation while excluding PfkA fructose-6-phosphate and ASKHA/GHMP folds"]},
+      {"role": "phosphoryl_transfer_stabilization", "residue": "basic and backbone phosphate-stabilizing residues", "constraints": ["stabilizes ADP and the phosphorylated PfkB-family product without collapsing into NDK phosphohistidine exchange or generic sugar kinase chemistry"]}
+    ],
+    "cofactors": ["Mg2+", "ATP"],
+    "reaction_center": {
+      "bond_changes": ["ATP gamma-phosphoryl transfer to a PfkB/ribokinase-family small-molecule hydroxyl acceptor"],
+      "chemical_operation": "PfkB/ribokinase-family ATP-dependent small-molecule phosphoryl transfer"
+    },
+    "substrate_constraints": ["EC 2.7.1 ribokinase/PfkB-family scope present", "ribokinase, adenosine kinase, inosine kinase, 1-phosphofructokinase, fructokinase, or hydroxymethylpyrimidine kinase family context present", "ATP/ADP substrate-specific phosphoryl-transfer reaction context present", "active-site or binding-site evidence present", "no PfkA, ASKHA, GHMP, dNK, NDK, protein kinase, histidine kinase, hydrolase, side-EC, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Rhea or reviewed catalytic activity text for ATP/ADP phosphoryl transfer to ribose/adenosine/inosine/fructose-1-phosphate/PfkB-family acceptors under EC 2.7.1 scope", "ribokinase, adenosine kinase, inosine kinase, 1-phosphofructokinase, fructokinase, PfkB, or hydroxymethylpyrimidine kinase family/name/domain text", "ATP/ADP/Mg2+ active-site or binding-site annotations", "structure or reviewed binding-site evidence for ATP and the PfkB-family small-molecule acceptor"],
+    "counterevidence_features": ["PfkA/6-phosphofructokinase or phosphohexokinase wording with fructose-6-phosphate chemistry", "ASKHA acetate/glucose/hexose/glycerol kinase wording", "GHMP homoserine/mevalonate/phosphomevalonate/galactokinase wording", "dNK, NDK, protein kinase, or histidine kinase wording/side EC", "hydrolase EC 3 side rows or non-2.7.1 side EC", "EC-only evidence with no Rhea, family, active-site, binding-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["ribokinase versus adenosine/inosine/fructokinase subclass", "ATP/Mg2+ stoichiometry", "acceptor identity and phosphorylation site", "PfkB/ribokinase-fold open/closed conformational state"],
+    "seed_examples": ["ribokinase", "adenosine kinase", "inosine kinase", "1-phosphofructokinase", "hydroxymethylpyrimidine kinase"],
+    "deploy_missing_active_site_context": {
+      "type": "atp_mg_pfkb_acceptor_and_phosphorylated_product",
+      "detail": "ATP, Mg2+, the PfkB-family acceptor, and phosphorylated product state are dissociable or transient contexts absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->PfkB/Rhea/ATP-Mg/substrate channel, or canonical ATP/Mg/PfkB-family acceptor graft in the ribokinase-like active conformation (Path B)",
+      "silver_reachability": "moderate; Rhea and ATP/binding-site evidence are present for many rows, but acceptor pose and open/closed state require reconstruction"
+    }
+  },
+  {
     "id": "thiamine_diphosphate_enzyme",
     "name": "Thiamine-diphosphate ylide enzyme",
     "enzyme_space": ["ThDP-dependent decarboxylases", "transketolases", "2-oxoacid dehydrogenase E1 components", "acetohydroxyacid synthases", "phosphoketolases"],

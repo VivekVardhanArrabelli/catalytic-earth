@@ -1,0 +1,144 @@
+{
+  "applied_labels": [],
+  "artifact_id": "v3_pfkb_ribokinase_family_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {},
+    "current_combined_labels": 6781,
+    "disambiguation_hold_count": 36,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 36
+    },
+    "disambiguation_skip_count": 48,
+    "fetched_candidate_rows": 88,
+    "gate_admitted_before_cap_guard": 0,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 1,
+    "max_records_per_lane": 500,
+    "mechanism_corroborated_bronze_labels": 0,
+    "novelty_admitted_labels": 0,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {
+      "askha_sugar_acetate_kinase": 4
+    },
+    "off_target_fingerprint_matches_held": 4,
+    "projected_combined_labels_if_merged": 6781
+  },
+  "created_utc": "2026-06-13T11:55:29Z",
+  "deploy_missing_active_site_context_per_family": {
+    "pfkb_ribokinase_family": "atp_mg_pfkb_ribokinase_family_phosphoryl_transfer_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 2,
+      "medium": 2
+    },
+    "current_registry_labels": 6079,
+    "decision_counts": {
+      "hold": 36,
+      "import": 4,
+      "skip": 48
+    },
+    "examined_rows": 88,
+    "fingerprint_counts": {
+      "askha_sugar_acetate_kinase": 4
+    },
+    "hold_count": 36,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 36
+    },
+    "importable_new_labels": 4,
+    "per_pool_decision_counts": {
+      "pfkb_ribokinase_family_broadened_handle_fresh_fetch": {
+        "hold": 36,
+        "import": 4,
+        "skip_screen": 48
+      }
+    },
+    "projected_registry_labels_if_merged": 6083,
+    "skip_count": 48
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_pfkb_ribokinase_annotation",
+  "families_sourced": [
+    "pfkb_ribokinase_family"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "pfkb_ribokinase_family": {
+      "admitted_this_run": 0,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 46,
+      "deficit_to_floor_after": 54,
+      "deficit_to_floor_before": 54,
+      "deploy_missing_active_site_context": "atp_mg_pfkb_ribokinase_family_phosphoryl_transfer_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 46,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "neighboring_kinase_subclass_boundary_guard": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "pfkb_ribokinase_family": 150
+    },
+    "pfkb_handles_scope_admission_only": true,
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "pfkb_ribokinase_family_reviewed_strict_ec_2_7_1",
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"ribokinase\") OR (protein_name:\"adenosine kinase\") OR (protein_name:\"inosine kinase\") OR (protein_name:\"fructokinase\") OR (protein_name:\"1-phosphofructokinase\") OR (protein_name:\"hydroxymethylpyrimidine kinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (ec:2.7.4.*) OR (protein_name:\"protein kinase\") OR (protein_name:\"histidine kinase\") OR (protein_name:\"nucleoside diphosphate kinase\") OR (protein_name:\"nucleoside-diphosphate kinase\") OR (protein_name:\"deoxynucleoside kinase\") OR (protein_name:\"thymidine kinase\") OR (protein_name:\"deoxyguanosine kinase\") OR (protein_name:\"deoxycytidine kinase\") OR (protein_name:\"hexokinase\") OR (protein_name:\"glucokinase\") OR (protein_name:\"glycerol kinase\") OR (protein_name:\"acetate kinase\") OR (protein_name:\"homoserine kinase\") OR (protein_name:\"mevalonate kinase\") OR (protein_name:\"phosphomevalonate kinase\") OR (protein_name:\"galactokinase\") OR (protein_name:\"6-phosphofructokinase\") OR (protein_name:\"ATP-dependent 6-phosphofructokinase\"))",
+      "record_count": 88,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A2.7.1.%2A%29+AND+%28%28protein_name%3A%22ribokinase%22%29+OR+%28protein_name%3A%22adenosine+kinase%22%29+OR+%28protein_name%3A%22inosine+kinase%22%29+OR+%28protein_name%3A%22fructokinase%22%29+OR+%28protein_name%3A%221-phosphofructokinase%22%29+OR+%28protein_name%3A%22hydroxymethylpyrimidine+kinase%22%29%29+NOT+%28%28ec%3A2.7.11.%2A%29+OR+%28ec%3A2.7.13.%2A%29+OR+%28ec%3A3.%2A%29+OR+%28ec%3A2.7.4.%2A%29+OR+%28protein_name%3A%22protein+kinase%22%29+OR+%28protein_name%3A%22histidine+kinase%22%29+OR+%28protein_name%3A%22nucleoside+diphosphate+kinase%22%29+OR+%28protein_name%3A%22nucleoside-diphosphate+kinase%22%29+OR+%28protein_name%3A%22deoxynucleoside+kinase%22%29+OR+%28protein_name%3A%22thymidine+kinase%22%29+OR+%28protein_name%3A%22deoxyguanosine+kinase%22%29+OR+%28protein_name%3A%22deoxycytidine+kinase%22%29+OR+%28protein_name%3A%22hexokinase%22%29+OR+%28protein_name%3A%22glucokinase%22%29+OR+%28protein_name%3A%22glycerol+kinase%22%29+OR+%28protein_name%3A%22acetate+kinase%22%29+OR+%28protein_name%3A%22homoserine+kinase%22%29+OR+%28protein_name%3A%22mevalonate+kinase%22%29+OR+%28protein_name%3A%22phosphomevalonate+kinase%22%29+OR+%28protein_name%3A%22galactokinase%22%29+OR+%28protein_name%3A%226-phosphofructokinase%22%29+OR+%28protein_name%3A%22ATP-dependent+6-phosphofructokinase%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "pfkb_ribokinase_family"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks. If floor remains short, record the supply limit.",
+  "novelty_gate": {
+    "decision_counts": {},
+    "reason_counts": {}
+  },
+  "off_target_fingerprint_matches_sample": [
+    {
+      "entry_id": "uniprot:P50053",
+      "fingerprint_id": "askha_sugar_acetate_kinase"
+    },
+    {
+      "entry_id": "uniprot:P97328",
+      "fingerprint_id": "askha_sugar_acetate_kinase"
+    },
+    {
+      "entry_id": "uniprot:Q02974",
+      "fingerprint_id": "askha_sugar_acetate_kinase"
+    },
+    {
+      "entry_id": "uniprot:Q5RD71",
+      "fingerprint_id": "askha_sugar_acetate_kinase"
+    }
+  ],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_pfkb_ribokinase_family_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

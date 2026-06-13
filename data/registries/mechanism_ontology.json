@@ -156,12 +156,16 @@
       "id": "pfkb",
       "name": "PfkB/ribokinase-family kinases",
       "parent_id": "atp_phosphoryl_transfer",
-      "fingerprint_ids": [],
+      "fingerprint_ids": [
+        "pfkb_ribokinase_family"
+      ],
       "scope_note": "Ribokinase/PfkB-superfamily lanes including ribokinase and hydroxymethylpyrimidine kinase, transferring ATP gamma-phosphate to small-molecule hydroxyl acceptors.",
       "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "dnk", "ndk", "pfka", "ghmp"],
       "family_boundary_guardrails": [
-        "Do not collapse PfkB/ribokinase lanes into PfkA or ASKHA solely by sugar-kinase wording.",
-        "Keep PfkB family evidence review-only when local active-site support is incomplete."
+        "Membership is decided by reviewed ATP/ADP substrate-specific phosphoryl-transfer context plus PfkB/ribokinase-family text and active-/binding-site evidence; EC 2.7.1 is scope only.",
+        "Do not collapse PfkB/ribokinase lanes into PfkA, ASKHA, GHMP, dNK, NDK, protein kinase, histidine kinase, hydrolase, side-EC, or EC-only rows solely by ATP wording.",
+        "Keep PfkB family evidence review-only when local active-site support is incomplete.",
+        "ATP/Mg2+, ribokinase-family acceptor, phosphorylated product, and ribokinase-like conformational state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
     },
     {

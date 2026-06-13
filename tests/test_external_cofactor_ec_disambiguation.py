@@ -1192,7 +1192,6 @@ class DisambiguateRowTests(unittest.TestCase):
             (["2.7.1.11", "2.7.11.1"], "6-phosphofructokinase protein kinase boundary"),
             (["2.7.1.11", "2.7.13.3"], "6-phosphofructokinase histidine kinase boundary"),
             (["2.7.1.11", "3.1.1.1"], "6-phosphofructokinase hydrolase boundary"),
-            (["2.7.1.56"], "1-phosphofructokinase ribokinase-family boundary"),
             (["2.7.1.21"], "Thymidine kinase"),
         )
         for ec_numbers, name in hold_cases:
@@ -1222,15 +1221,21 @@ class DisambiguateRowTests(unittest.TestCase):
         off_target_cases = (
             (["2.7.1.1"], "Hexokinase", "askha_sugar_acetate_kinase"),
             (["2.7.1.36"], "Mevalonate kinase", "ghmp_small_molecule_kinase"),
+            (["2.7.1.56"], "1-phosphofructokinase ribokinase-family boundary", "pfkb_ribokinase_family"),
         )
         for ec_numbers, name, expected_fp in off_target_cases:
             row = _row(ec=ec_numbers)
             row["protein_name"] = name
             row["keywords"] = ["Kinase", "Transferase"]
+            reaction = (
+                "ATP + D-fructose 1-phosphate = ADP + D-fructose 1,6-bisphosphate + H(+)"
+                if expected_fp == "pfkb_ribokinase_family"
+                else "beta-D-fructose 6-phosphate + ATP = beta-D-fructose 1,6-bisphosphate + ADP + H(+)"
+            )
             row["rhea_ec_provenance"]["rhea_records"] = [
                 {
                     "rhea_id": "RHEA:PF0002",
-                    "reaction": "beta-D-fructose 6-phosphate + ATP = beta-D-fructose 1,6-bisphosphate + ADP + H(+)",
+                    "reaction": reaction,
                     "ec_number": ec_numbers[0],
                 }
             ]
@@ -1273,6 +1278,100 @@ class DisambiguateRowTests(unittest.TestCase):
         ndk_decision = disambiguate_row(ndk_side)
         self.assertEqual(ndk_decision["fingerprint_id"], "nucleoside_diphosphate_kinase")
         self.assertNotEqual(ndk_decision["fingerprint_id"], "pfka_phosphofructokinase")
+
+    def test_pfkb_ribokinase_family_requires_mechanism_handles(self) -> None:
+        row = _row(ec=["2.7.1.15"])
+        row["protein_name"] = "Ribokinase"
+        row["keywords"] = ["Kinase", "Transferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:RB0001",
+                "reaction": "ATP + D-ribose = ADP + D-ribose 5-phosphate + H(+)",
+                "ec_number": "2.7.1.15",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 105,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "ATP",
+                "ligand_id": None,
+                "description": "ATP",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "pfkb_ribokinase_family")
+        axes = d["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("cofactor_or_cosubstrate", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_pfkb_ribokinase_family_controls_hold(self) -> None:
+        ec_only = _row(ec=["2.7.1.15"])
+        ec_only["protein_name"] = "Ribokinase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        hold_cases = (
+            (["2.7.1.15", "2.7.11.1"], "Ribokinase protein kinase boundary"),
+            (["2.7.1.15", "2.7.13.3"], "Ribokinase histidine kinase boundary"),
+            (["2.7.1.15", "3.1.1.1"], "Ribokinase hydrolase boundary"),
+            (["2.7.1.11"], "ATP-dependent 6-phosphofructokinase"),
+            (["2.7.1.21"], "Thymidine kinase"),
+        )
+        for ec_numbers, name in hold_cases:
+            row = _row(ec=ec_numbers)
+            row["protein_name"] = name
+            row["keywords"] = ["Kinase", "Transferase"]
+            row["rhea_ec_provenance"]["rhea_records"] = [
+                {
+                    "rhea_id": "RHEA:RB0002",
+                    "reaction": "ATP + D-ribose = ADP + D-ribose 5-phosphate + H(+)",
+                    "ec_number": ec_numbers[0],
+                }
+            ]
+            row["residue_locators"] = [
+                {
+                    "position": 105,
+                    "feature_code": "BINDING",
+                    "feature_type": "Binding site",
+                    "ligand_name": "ATP",
+                    "ligand_id": None,
+                    "description": "ATP",
+                    "evidence_codes": ["ECO:0000269"],
+                }
+            ]
+            self.assertEqual(disambiguate_row(row)["decision"], "hold")
+
+        off_target_cases = (
+            (["2.7.1.1"], "Hexokinase", "ATP + D-glucose = ADP + D-glucose 6-phosphate + H(+)", "askha_sugar_acetate_kinase"),
+            (["2.7.1.36"], "Mevalonate kinase", "ATP + (R)-mevalonate = ADP + (R)-5-phosphomevalonate + H(+)", "ghmp_small_molecule_kinase"),
+            (["2.7.1.11"], "ATP-dependent 6-phosphofructokinase", "ATP + D-fructose 6-phosphate = ADP + D-fructose 1,6-bisphosphate + H(+)", "pfka_phosphofructokinase"),
+        )
+        for ec_numbers, name, reaction, expected_fp in off_target_cases:
+            row = _row(ec=ec_numbers)
+            row["protein_name"] = name
+            row["keywords"] = ["Kinase", "Transferase"]
+            row["rhea_ec_provenance"]["rhea_records"] = [
+                {"rhea_id": "RHEA:RB0003", "reaction": reaction, "ec_number": ec_numbers[0]}
+            ]
+            row["residue_locators"] = [
+                {
+                    "position": 145,
+                    "feature_code": "BINDING",
+                    "feature_type": "Binding site",
+                    "ligand_name": "ATP",
+                    "ligand_id": None,
+                    "description": "ATP",
+                    "evidence_codes": ["ECO:0000269"],
+                }
+            ]
+            decision = disambiguate_row(row)
+            self.assertEqual(decision["fingerprint_id"], expected_fp)
+            self.assertNotEqual(decision["fingerprint_id"], "pfkb_ribokinase_family")
 
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase

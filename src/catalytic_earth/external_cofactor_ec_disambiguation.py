@@ -635,6 +635,32 @@ _PFKB_BOUNDARY_TOKENS = (
     "pfkb",
     "pfk-b",
 )
+# PfkB/ribokinase-family handles. EC 2.7.1 scopes candidates only; counted
+# corroboration comes from ATP/ADP phosphoryl-transfer participant text with
+# ribose/adenosine/inosine/fructose-1-phosphate/PfkB acceptor context,
+# PfkB/ribokinase-family text, and active-/binding-site evidence.
+_PFKB_FAMILY_TEXT_TOKENS = _PFKB_BOUNDARY_TOKENS
+_PFKB_PHOSPHORYL_REACTION_TOKENS = _ASKHA_PHOSPHORYL_REACTION_TOKENS
+_PFKB_SUBSTRATE_REACTION_TOKENS = (
+    "d-ribose",
+    "ribose",
+    "ribose 5-phosphate",
+    "ribose-5-phosphate",
+    "adenosine",
+    "adenosine 5'-phosphate",
+    "amp",
+    "inosine",
+    "inosine 5'-phosphate",
+    "imp",
+    "fructose 1-phosphate",
+    "fructose-1-phosphate",
+    "d-fructose 1-phosphate",
+    "fructose 1,6-bisphosphate",
+    "fructose-1,6-bisphosphate",
+    "hydroxymethylpyrimidine",
+    "4-amino-5-hydroxymethyl-2-methylpyrimidine",
+)
+_PFKB_ATP_MG_TOKENS = _ASKHA_ATP_MG_TOKENS
 # Class-II metal aldolase handles. EC 4.1.2/4.1.3 scopes lyase candidates only;
 # counted corroboration comes from metal cofactor/site evidence, Lyase/aldolase
 # family text, Rhea C-C/oxoacid reaction context, or active-/binding-/metal-site
@@ -1027,6 +1053,29 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_pfka_scope_side_ec = any(
         ec and not ec.startswith("2.7.1") for ec in _ec_numbers(row)
     )
+    pfkb_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_PFKB_FAMILY_TEXT_TOKENS,
+    )
+    pfkb_phosphoryl_reaction = in_any(
+        reactions, *_PFKB_PHOSPHORYL_REACTION_TOKENS
+    ) and in_any(reactions, *_PFKB_SUBSTRATE_REACTION_TOKENS)
+    pfkb_atp_mg_context = in_any(
+        reactions + cofactor_names + feature_texts, *_PFKB_ATP_MG_TOKENS
+    )
+    pfkb_protein_kinase_boundary = askha_protein_kinase_boundary
+    pfkb_histidine_kinase_boundary = askha_histidine_kinase_boundary
+    pfkb_hydrolase_side_ec_boundary = askha_hydrolase_side_ec_boundary
+    pfkb_ndk_boundary = _ec_has_prefix(row, ("2.7.4",)) or in_any(
+        keywords + [protein_name], *_NDK_FAMILY_TEXT_TOKENS
+    )
+    pfkb_dnk_boundary = in_any(keywords + [protein_name], *_DNK_FAMILY_TEXT_TOKENS)
+    pfkb_askha_boundary = in_any(keywords + [protein_name], *_ASKHA_FAMILY_TEXT_TOKENS)
+    pfkb_ghmp_boundary = in_any(keywords + [protein_name], *_GHMP_FAMILY_TEXT_TOKENS)
+    pfkb_pfka_boundary = in_any(keywords + [protein_name], *_PFKA_FAMILY_TEXT_TOKENS)
+    non_pfkb_scope_side_ec = any(
+        ec and not ec.startswith("2.7.1") for ec in _ec_numbers(row)
+    )
     kinase_boundary = in_any(keywords + [protein_name], *_KINASE_BOUNDARY_TOKENS) or _ec_has_prefix(
         row, ("2.7.",)
     )
@@ -1202,6 +1251,18 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "pfka_ghmp_boundary": pfka_ghmp_boundary,
             "pfka_pfkb_boundary": pfka_pfkb_boundary,
             "non_pfka_scope_side_ec": non_pfka_scope_side_ec,
+            "pfkb_family_text": pfkb_family_text,
+            "pfkb_phosphoryl_reaction": pfkb_phosphoryl_reaction,
+            "pfkb_atp_mg_context": pfkb_atp_mg_context,
+            "pfkb_protein_kinase_boundary": pfkb_protein_kinase_boundary,
+            "pfkb_histidine_kinase_boundary": pfkb_histidine_kinase_boundary,
+            "pfkb_hydrolase_side_ec_boundary": pfkb_hydrolase_side_ec_boundary,
+            "pfkb_ndk_boundary": pfkb_ndk_boundary,
+            "pfkb_dnk_boundary": pfkb_dnk_boundary,
+            "pfkb_askha_boundary": pfkb_askha_boundary,
+            "pfkb_ghmp_boundary": pfkb_ghmp_boundary,
+            "pfkb_pfka_boundary": pfkb_pfka_boundary,
+            "non_pfkb_scope_side_ec": non_pfkb_scope_side_ec,
             "kinase_boundary": kinase_boundary,
             "non_6_3_side_ec": non_6_3_side_ec,
             "non_biotin_carboxylase_scope_side_ec": non_biotin_carboxylase_scope_side_ec,
@@ -1276,6 +1337,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("dnk_phosphoryl_reaction")
         or evidence.get("pfka_atp_mg_context")
         or evidence.get("pfka_phosphoryl_reaction")
+        or evidence.get("pfkb_atp_mg_context")
+        or evidence.get("pfkb_phosphoryl_reaction")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -1309,6 +1372,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("ghmp_phosphoryl_reaction")
         or evidence.get("dnk_phosphoryl_reaction")
         or evidence.get("pfka_phosphoryl_reaction")
+        or evidence.get("pfkb_phosphoryl_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -1335,6 +1399,10 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or (
             evidence.get("active_or_binding_site_present")
             and evidence.get("pfka_family_text")
+        )
+        or (
+            evidence.get("active_or_binding_site_present")
+            and evidence.get("pfkb_family_text")
         )
     ):
         axes.add("active_site_motif_or_residue_role")
@@ -1363,6 +1431,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("ghmp_family_text")
         or evidence.get("dnk_family_text")
         or evidence.get("pfka_family_text")
+        or evidence.get("pfkb_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -1430,6 +1499,7 @@ _ASKHA_SUGAR_ACETATE_KINASE_EC = ("2.7.1",)  # ASKHA sugar/acetate kinase; EC sc
 _GHMP_SMALL_MOLECULE_KINASE_EC = ("2.7.1",)  # GHMP small-molecule kinase; EC scope only
 _DEOXYNUCLEOSIDE_KINASE_EC = ("2.7.1",)  # dNK; EC scope only
 _PFKA_PHOSPHOFRUCTOKINASE_EC = ("2.7.1",)  # PfkA; EC scope only
+_PFKB_RIBOKINASE_FAMILY_EC = ("2.7.1",)  # PfkB/ribokinase family; EC scope only
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -1681,6 +1751,23 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["non_pfka_scope_side_ec"],
     ),
     (
+        "pfkb_ribokinase_family",
+        lambda c, row: _ec_has_prefix(row, _PFKB_RIBOKINASE_FAMILY_EC)
+        and c["pfkb_family_text"]
+        and c["pfkb_phosphoryl_reaction"]
+        and c["pfkb_atp_mg_context"]
+        and c["active_or_binding_site_present"]
+        and not c["pfkb_protein_kinase_boundary"]
+        and not c["pfkb_histidine_kinase_boundary"]
+        and not c["pfkb_hydrolase_side_ec_boundary"]
+        and not c["pfkb_ndk_boundary"]
+        and not c["pfkb_dnk_boundary"]
+        and not c["pfkb_askha_boundary"]
+        and not c["pfkb_ghmp_boundary"]
+        and not c["pfkb_pfka_boundary"]
+        and not c["non_pfkb_scope_side_ec"],
+    ),
+    (
         "atp_amide_ligase",
         lambda c, row: _ec_has_prefix(row, _ATP_AMIDE_LIGASE_EC)
         and c["keyword_ligase"]
@@ -1838,6 +1925,8 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "ATP/Mg2+ deoxynucleoside phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
     elif fingerprint == "pfka_phosphofructokinase" and evidence.get("pfka_atp_mg_context"):
         records = [{"name": "ATP/Mg2+ fructose-6-phosphate phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
+    elif fingerprint == "pfkb_ribokinase_family" and evidence.get("pfkb_atp_mg_context"):
+        records = [{"name": "ATP/Mg2+ PfkB/ribokinase-family phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:
