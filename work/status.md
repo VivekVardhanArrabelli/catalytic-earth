@@ -5,6 +5,64 @@ Generated from `work/progress_log.jsonl`.
 ## Current Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T21:01:28Z`
+- Started local: `Sat Jun 13 16:01:28 CDT 2026`
+- Budget seconds: `3300`
+- Runtime seconds at validation/docs update: `1384`
+- Focus/result: added a source-fetch-only `--only-alternate-name-lanes` control for glycoside
+  hydrolase scouting, documented two no-yield glycoside under-floor previews, then applied the
+  gated `cofactor_independent_isomerase` cap-fill through the existing mechanism-first pipeline.
+  Growth went only to `data/registries/external_bronze_labels.json`; frozen current702 stayed
+  byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Registry/counts: external bronze **6530 -> 6538** (+8); combined label surface
+  **7232 -> 7240**; `cofactor_independent_isomerase` **142 -> 150**, exactly at the
+  chemistry-confusable cap 150. External-only split is **5314** seed-fingerprint rows and **1224**
+  OOS rows. Combined seed-fingerprint label surface is **5544**, leaving **4456** to 10k by that
+  surface convention. Strict source-trust counters remain separate:
+  `positive_bronze_count=5527`, `oos_bronze_count=1696`, `silver_ready_count=0`,
+  `silver_confirmed_count=17`, `projected_provisional_count=0`.
+- Glycoside no-apply scouts: page-2 base window `580:80` fetched **80**, mechanism/admitted **0**,
+  held **57** no-corroboration rows, skipped **23**, and had **1** Rhea HTTP 500 (`Q59675`);
+  alternate-only name window `40:80` fetched **80**, mechanism/admitted **0**, held **80**
+  no-corroboration rows, skipped **0**, and had **0** fetch failures.
+- Isomerase apply guardrails: apply fetched **405**, mechanism-corroborated **91**, novelty gate
+  admitted **80** before cap, applied **8**, held@cap **72**, novelty-throttled/rejected **11**,
+  held **61** off-target `nad_p_dehydrogenase` rows, held **90** no-corroboration rows, skipped
+  **163**, fetch failures **0** on the apply rerun. Row audit found **0** problems across all
+  **150** isomerase rows; all rows are bronze, automation-curated, `uniprot:*`, source-tier-met,
+  EC not counted, and `predictive_evidence []`.
+- Artifacts:
+  `artifacts/v3_glycoside_hydrolase_page2_window580_80_sourcing_preview_current702_20260613.json`,
+  `work/glycoside_hydrolase_page2_window580_80_sourcing_current702_20260613.md`,
+  `artifacts/v3_glycoside_hydrolase_alt_name_only_window40_80_sourcing_preview_current702_20260613.json`,
+  `work/glycoside_hydrolase_alt_name_only_window40_80_sourcing_current702_20260613.md`,
+  `artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json`,
+  `work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`,
+  `artifacts/v3_cofactor_independent_isomerase_capfill_row_guardrail_audit_current702_20260613.json`,
+  `work/cofactor_independent_isomerase_capfill_row_guardrail_audit_current702_20260613.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_isomerase_capfill_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_isomerase_capfill_applied.md`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_isomerase_capfill_applied.json`, and
+  `work/novelty_admission_gate_audit_current702_20260613_isomerase_capfill_applied.md`.
+- Post-apply audits: coverage reports **7240** combined, **35** fingerprints, seed positives
+  **5544**, fingerprint Gini **0.1611**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **86**. Novelty replay reports
+  **6538** expansion rows, decisions `{'admit': 6082, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0697).
+- Validation: focused pytest passed (**322 passed, 14 subtests passed**);
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source records, 35
+  fingerprints, 32 ontology families, 702 curated labels). JSON/JSONL parse checks and
+  `git diff --check` passed.
+- Next exact action: remaining floors are `pfkb_ribokinase_family` **46/100**,
+  `biotin_dependent_carboxylase` **84/100**, and `glycoside_hydrolase` **84/100**. Isomerase is
+  capped at **150/150**. Build a genuinely new non-EC source/corroborator path for those floors,
+  or scout/spec a clean new family not already at cap.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T20:01:16Z`
 - Started local: `Sat Jun 13 15:01:16 CDT 2026`
 - Budget seconds: `3300`

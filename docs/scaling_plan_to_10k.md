@@ -13,6 +13,47 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: isomerase cap-fill applied after glycoside alternate scouts
+no-yielded.** The latest run first stayed on the under-floor path. A base glycoside hydrolase
+page-2 continuation over rows **581-660**
+(`scripts/source_glycoside_hydrolase_family.py --query-pages-per-lane 2 --record-offset-per-lane 580 --record-limit-per-lane 80`)
+fetched **80**, mechanism-corroborated/admitted **0**, held **57** no-corroboration rows, skipped
+**23**, and recorded **1** Rhea HTTP 500 (`Q59675`). The run then added
+`--only-alternate-name-lanes` to the glycoside source runner as a source-fetch-only control so the
+alternate chitinase/beta-glucanase/glycoside-hydrolase name lane can be scouted without refetching
+the base lane. The first untried alternate-only window (`--record-offset-per-lane 40
+--record-limit-per-lane 80`) fetched **80**, mechanism-corroborated/admitted **0**, and held
+**80** no-corroboration rows. These are no-apply artifacts.
+
+With under-floor source paths still no-yield/source-limited and substantial time remaining, the
+run used the previously documented smallest under-cap retry:
+`scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --apply`.
+It fetched **405**, target mechanism-corroborated **91**, novelty gate admitted **80** before the
+cap guard, applied **8**, held@cap **72**, novelty-throttled/rejected **11**, held **61** off-target
+`nad_p_dehydrogenase` rows, held **90** no-corroboration rows, skipped **163**, and recorded **0**
+fetch failures on the apply rerun. Frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+`data/registries/external_bronze_labels.json`.
+
+External bronze is now **6538**; combined label surface is **7240**;
+`cofactor_independent_isomerase` is **150/150** and should not be continued under the current
+chemistry-confusable cap. External-only bronze split is **5314** seed-fingerprint rows and
+**1224** OOS rows. Combined seed-fingerprint label surface is **5544**, leaving **4456** to 10k by
+that surface convention. The strict source-trust counter ledger remains separate:
+**positive_bronze_count 5527**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**. Coverage audit reports
+**35** fingerprints, fingerprint Gini **0.1611**, holes `[]`, under-floor
+`['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, only
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **86**. Novelty replay over
+**6538** expansion rows reports decisions `{'admit': 6082, 'reject': 47, 'throttle': 409}` and
+would-not-readmit **456** (0.0697). Row audit found **0** problems across all **150** isomerase
+rows.
+
+Next work: remaining floors are PfkB **46/100**, biotin **84/100**, and glycoside hydrolase
+**84/100**. Build a genuinely new non-EC corroborator/source path for those floors, or scout/spec a
+clean new family not already at cap. EC/name/Rhea/keyword/prose/feature handles remain
+excluded-context admission evidence only, EC is never counted, and `predictive_evidence []`.
+
 **2026-06-13 automation update: racemase window400:80 reached cap; strict kinase source-supply
 scout scaffolded.** The latest run applied the next bounded non-PLP metal racemase/epimerase
 window only after prior under-floor PfkB/biotin/glycoside source paths were documented

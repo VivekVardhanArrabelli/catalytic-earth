@@ -1,0 +1,1551 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q9RHM8",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "5.3.2.6"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "5.3.2.6",
+              "evidence_codes": [],
+              "reaction": "(2Z,4E)-2-hydroxyhexa-2,4-dienedioate = (3E)-2-oxohex-3-enedioate",
+              "rhea_id": "RHEA:33431",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cofactor_independent_isomerase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847"
+          },
+          "retrieved_utc": "2026-06-13T21:14:28Z",
+          "sequence": "MPFAQIYMLEGRSEEQKKAVIEKVTRALVEAVGAPSANVRVWIHDVPKENWGIAGVSAKELGR",
+          "sequence_length": 63,
+          "sequence_sha256": "66681f2fb37f1027eba037054335c3b9318339dfc00049387b22f9ba571be490",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9RHM8"
+        },
+        "source_provenance": {
+          "accession": "Q9RHM8",
+          "disambiguation_pool": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cofactor_independent_isomerase_from_annotated_cofactor_and_ec_class_['5.3.2.6']",
+          "organism": "Comamonas testosteroni (Pseudomonas testosteroni)",
+          "protein_name": "2-hydroxymuconate tautomerase (EC 5.3.2.6) (4-oxalocrotonate tautomerase) (4-OT)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 63,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "312a29a7d562acc6c0026563469ee688164dfa148d08d382b126adc4f91572b8",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847",
+            "uniprot_entry_record_sha256": "30b1d8a5b010807e66efd22376ac91989e159c87113a1bc128c73aea99586f0c",
+            "uniprot_search_row_sha256": "342f4603c794093d5d74ca85bb590218416c5b88d6f66d4c29fd4e9dc1d57467"
+          },
+          "target_family_lane": "cofactor_independent_isomerase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9RHM8"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9RHM8-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9RHM8 imported as annotation-anchored bronze in-scope cofactor_independent_isomerase: reviewed Swiss-Prot EC ['5.3.2.6']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:O32183",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "5.3.2.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cofactor_independent_isomerase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847"
+          },
+          "retrieved_utc": "2026-06-13T21:14:28Z",
+          "sequence": "MPFVQIHLRSGRSEVWLQKLSRTIHQSMIEEINVPEDDYFQVIRQYEKSEFFYDPFYLQVERTDELIYIHFTLKQSRTTEQKKALYRSIASRIHSELGVRKEDVFIMLAGNQDEDWSFGNGRAQMIE",
+          "sequence_length": 127,
+          "sequence_sha256": "40025180237de1ae187c6adc3e077c1d5d80c6892284e6fb2bee2480e3f832eb",
+          "source": "reviewed_uniprot",
+          "source_accession": "O32183"
+        },
+        "source_provenance": {
+          "accession": "O32183",
+          "disambiguation_pool": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cofactor_independent_isomerase_from_annotated_cofactor_and_ec_class_['5.3.2.-']",
+          "organism": "Bacillus subtilis (strain 168)",
+          "protein_name": "Probable tautomerase YusQ (EC 5.3.2.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 127,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847",
+            "uniprot_entry_record_sha256": "c7b443ac726e9df885a5de07d40fa20077c4a05930e59fcfb85d604ad3679eb9",
+            "uniprot_search_row_sha256": "2e45a3caf460d27f34e9fcafe9abeb3f3b615065573ca4098452084096340616"
+          },
+          "target_family_lane": "cofactor_independent_isomerase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O32183"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O32183-F1"
+        }
+      },
+      "evidence_score": 0.5,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O32183 imported as annotation-anchored bronze in-scope cofactor_independent_isomerase: reviewed Swiss-Prot EC ['5.3.2.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A6T9Q5",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "5.3.2.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cofactor_independent_isomerase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847"
+          },
+          "retrieved_utc": "2026-06-13T21:14:28Z",
+          "sequence": "MPHVDIKCFPRELTDEQKTALAADITEVLIRHLNSKESAVSVALTQVEPDAWQAVWDSEIAPQMAQLIKQPGYSM",
+          "sequence_length": 75,
+          "sequence_sha256": "03d4b38bd65e6d7dc7a59f75233f21ecda392108826bd88e9428c3cfa058f62e",
+          "source": "reviewed_uniprot",
+          "source_accession": "A6T9Q5"
+        },
+        "source_provenance": {
+          "accession": "A6T9Q5",
+          "disambiguation_pool": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cofactor_independent_isomerase_from_annotated_cofactor_and_ec_class_['5.3.2.-']",
+          "organism": "Klebsiella pneumoniae subsp. pneumoniae (strain ATCC 700721 / MGH 78578)",
+          "protein_name": "Tautomerase PptA (EC 5.3.2.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 75,
+          "source_evidence_codes": [
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847",
+            "uniprot_entry_record_sha256": "39fbac4357a0559f9a93fd03f17f617c33a4b1a2c142761c241279eb017cf11d",
+            "uniprot_search_row_sha256": "17b186d52e8dbf905903e96f5de5523ed8b61421e1a51efa64146370b94da639"
+          },
+          "target_family_lane": "cofactor_independent_isomerase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A6T9Q5"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A6T9Q5-F1"
+        }
+      },
+      "evidence_score": 0.5,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A6T9Q5 imported as annotation-anchored bronze in-scope cofactor_independent_isomerase: reviewed Swiss-Prot EC ['5.3.2.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:A8A018",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "5.3.2.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cofactor_independent_isomerase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847"
+          },
+          "retrieved_utc": "2026-06-13T21:14:28Z",
+          "sequence": "MPHIDIKCFPRELDEQQKAALAADITDVIIRHLNSKDSSISIALQQIQPESWQAIWDAEIAPQMEALIKKPGYSM",
+          "sequence_length": 75,
+          "sequence_sha256": "633ea5ef7250353f51b9b24592c26383d4c20577c30ce5066a287e2932593578",
+          "source": "reviewed_uniprot",
+          "source_accession": "A8A018"
+        },
+        "source_provenance": {
+          "accession": "A8A018",
+          "disambiguation_pool": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cofactor_independent_isomerase_from_annotated_cofactor_and_ec_class_['5.3.2.-']",
+          "organism": "Escherichia coli O9:H4 (strain HS)",
+          "protein_name": "Tautomerase PptA (EC 5.3.2.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 75,
+          "source_evidence_codes": [
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847",
+            "uniprot_entry_record_sha256": "a9601953ec313785e0683fc437a3043834346b5b30ef4e2623b6f0bea643294b",
+            "uniprot_search_row_sha256": "04b685eef32e12251198924d909e0fc4ea1bb1b4e1f5ac04a27d5c0a3f534ea8"
+          },
+          "target_family_lane": "cofactor_independent_isomerase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A8A018"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A8A018-F1"
+        }
+      },
+      "evidence_score": 0.5,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A8A018 imported as annotation-anchored bronze in-scope cofactor_independent_isomerase: reviewed Swiss-Prot EC ['5.3.2.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:B1IRZ6",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "5.3.2.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cofactor_independent_isomerase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847"
+          },
+          "retrieved_utc": "2026-06-13T21:14:28Z",
+          "sequence": "MPHIDIKCFPRELDEQQKAALAADITDVIIRHLNSKDSSISIALQQIQPESWQAIWDAEIAPQMEALIKKPGYSM",
+          "sequence_length": 75,
+          "sequence_sha256": "633ea5ef7250353f51b9b24592c26383d4c20577c30ce5066a287e2932593578",
+          "source": "reviewed_uniprot",
+          "source_accession": "B1IRZ6"
+        },
+        "source_provenance": {
+          "accession": "B1IRZ6",
+          "disambiguation_pool": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cofactor_independent_isomerase_from_annotated_cofactor_and_ec_class_['5.3.2.-']",
+          "organism": "Escherichia coli (strain ATCC 8739 / DSM 1576 / NBRC 3972 / NCIMB 8545 / WDCM 00012 / Crooks)",
+          "protein_name": "Tautomerase PptA (EC 5.3.2.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 75,
+          "source_evidence_codes": [
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847",
+            "uniprot_entry_record_sha256": "4cff3daa07f7e905b4a4ca3a1cfbdffdc759718eb9a45ad2933e5c6c4f4ad691",
+            "uniprot_search_row_sha256": "9f0ab8ade537238f856b927bd63d5bb98df004dd8f6ec69662c52bf0f46f19c7"
+          },
+          "target_family_lane": "cofactor_independent_isomerase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "B1IRZ6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-B1IRZ6-F1"
+        }
+      },
+      "evidence_score": 0.5,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "B1IRZ6 imported as annotation-anchored bronze in-scope cofactor_independent_isomerase: reviewed Swiss-Prot EC ['5.3.2.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:O25581",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "5.3.2.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cofactor_independent_isomerase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847"
+          },
+          "retrieved_utc": "2026-06-13T21:14:28Z",
+          "sequence": "MPFINIKLVPENGGPTNEQKQQLIEGVSDLMVKVLNKNKASIVVIIDEVDSNNYGLGGESVHHLRQKN",
+          "sequence_length": 68,
+          "sequence_sha256": "c20557f57ef6eb1c206300493c8d90f879c30489ce8bc6871af0ceb3460d961e",
+          "source": "reviewed_uniprot",
+          "source_accession": "O25581"
+        },
+        "source_provenance": {
+          "accession": "O25581",
+          "disambiguation_pool": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cofactor_independent_isomerase_from_annotated_cofactor_and_ec_class_['5.3.2.-']",
+          "organism": "Helicobacter pylori (strain ATCC 700392 / 26695) (Campylobacter pylori)",
+          "protein_name": "Probable tautomerase HP_0924 (EC 5.3.2.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 68,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847",
+            "uniprot_entry_record_sha256": "635f03e549496045b907b34000f448c924bc9856219a3cd06b907d0432471ba4",
+            "uniprot_search_row_sha256": "12e55a17fc5199895b99f481e1a7689be4830b5f3864feaf2f4ddd2c4a42186f"
+          },
+          "target_family_lane": "cofactor_independent_isomerase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O25581"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "2ORM",
+            "3M21"
+          ],
+          "structure_handle": "2ORM"
+        }
+      },
+      "evidence_score": 0.5,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O25581 imported as annotation-anchored bronze in-scope cofactor_independent_isomerase: reviewed Swiss-Prot EC ['5.3.2.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P67529",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "5.3.2.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cofactor_independent_isomerase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847"
+          },
+          "retrieved_utc": "2026-06-13T21:14:28Z",
+          "sequence": "MPFVKIDLFEGRSQEQKNELAREVTEVVSRIAKAPKENIHVFINDMPEGTYYPQGELKKK",
+          "sequence_length": 60,
+          "sequence_sha256": "742931a583c7e31c99794a743a62a20c7380ca4f0c85fb5670f229d25ae95e1d",
+          "source": "reviewed_uniprot",
+          "source_accession": "P67529"
+        },
+        "source_provenance": {
+          "accession": "P67529",
+          "disambiguation_pool": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cofactor_independent_isomerase_from_annotated_cofactor_and_ec_class_['5.3.2.-']",
+          "organism": "Streptococcus agalactiae serotype V (strain ATCC BAA-611 / 2603 V/R)",
+          "protein_name": "Probable tautomerase SAG1079 (EC 5.3.2.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 60,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847",
+            "uniprot_entry_record_sha256": "73c53b4e3a1e73548c1dc82b595b668a7511fb710050a327090a5c2a7792c0d0",
+            "uniprot_search_row_sha256": "48ce0ceaaacf3d283f7999b1494b456cb1b9f25d7046f2af50e33d1981d7c6bf"
+          },
+          "target_family_lane": "cofactor_independent_isomerase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P67529"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P67529-F1"
+        }
+      },
+      "evidence_score": 0.5,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P67529 imported as annotation-anchored bronze in-scope cofactor_independent_isomerase: reviewed Swiss-Prot EC ['5.3.2.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P67532",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "5.3.2.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cofactor_independent_isomerase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847"
+          },
+          "retrieved_utc": "2026-06-13T21:14:28Z",
+          "sequence": "MPFVTIDLFEGRSQEQKNQLAREVTEVVSRIAKAPKENIHVFINDMPEGTYYPQGEMKQKS",
+          "sequence_length": 61,
+          "sequence_sha256": "7f1e8e620cae6b8119060d125bf64ff103665508ad2ad27c7c7a848de059e386",
+          "source": "reviewed_uniprot",
+          "source_accession": "P67532"
+        },
+        "source_provenance": {
+          "accession": "P67532",
+          "disambiguation_pool": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cofactor_independent_isomerase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cofactor_independent_isomerase_from_annotated_cofactor_and_ec_class_['5.3.2.-']",
+          "organism": "Streptococcus pyogenes serotype M1",
+          "protein_name": "Probable tautomerase SPy_1139/M5005_Spy0861 (EC 5.3.2.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 61,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "45e9305bb33733d45b15a9ff4b6ea95d474fbb04721d9bd3f4f8e2e8db77c847",
+            "uniprot_entry_record_sha256": "815348331121a04e6cde75f4f8891109ad9ef1bdad65be52c5b3bc51cd49afb1",
+            "uniprot_search_row_sha256": "a9dab069a3518884ee51d60eb705effed757bd07eeb14b2df6716598d6718fff"
+          },
+          "target_family_lane": "cofactor_independent_isomerase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P67532"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P67532-F1"
+        }
+      },
+      "evidence_score": 0.5,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P67532 imported as annotation-anchored bronze in-scope cofactor_independent_isomerase: reviewed Swiss-Prot EC ['5.3.2.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_cofactor_independent_isomerase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "cofactor_independent_isomerase": 8
+    },
+    "current_combined_labels": 7232,
+    "disambiguation_hold_count": 90,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 90
+    },
+    "disambiguation_skip_count": 163,
+    "fetched_candidate_rows": 405,
+    "gate_admitted_before_cap_guard": 80,
+    "held_at_cap_ceiling": 72,
+    "held_at_cap_ceiling_by_fingerprint": {
+      "cofactor_independent_isomerase": 72
+    },
+    "lanes_queried": 4,
+    "max_records_per_lane": 120,
+    "mechanism_corroborated_bronze_labels": 91,
+    "novelty_admitted_labels": 8,
+    "novelty_throttled_or_rejected": 11,
+    "off_target_fingerprint_counts": {
+      "nad_p_dehydrogenase": 61
+    },
+    "off_target_fingerprint_matches_held": 61,
+    "projected_combined_labels_if_merged": 7240
+  },
+  "created_utc": "2026-06-13T21:14:28Z",
+  "deploy_missing_active_site_context_per_family": {
+    "cofactor_independent_isomerase": "active_site_base_isomerization_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 10,
+      "medium": 142
+    },
+    "current_registry_labels": 6530,
+    "decision_counts": {
+      "hold": 90,
+      "import": 152,
+      "skip": 163
+    },
+    "examined_rows": 405,
+    "fingerprint_counts": {
+      "cofactor_independent_isomerase": 91,
+      "nad_p_dehydrogenase": 61
+    },
+    "hold_count": 90,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 90
+    },
+    "importable_new_labels": 152,
+    "per_pool_decision_counts": {
+      "cofactor_independent_isomerase_broadened_handle_fresh_fetch": {
+        "hold": 90,
+        "import": 152,
+        "skip_screen": 163
+      }
+    },
+    "projected_registry_labels_if_merged": 6682,
+    "skip_count": 163
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_isomerase_active_site_annotation",
+  "families_sourced": [
+    "cofactor_independent_isomerase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "cofactor_independent_isomerase": {
+      "admitted_this_run": 8,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 142,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "active_site_base_isomerization_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 72,
+      "projected_combined": 150,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "isomerase_handles_scope_admission_only": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "non_5_3_side_ec_guard": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "cofactor_independent_isomerase": 150
+    },
+    "predictive_features_use_ec_name_keyword_isomerase_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "isomerase_ec_5_3_2_keto_aldose",
+      "query": "(reviewed:true) AND (ec:5.3.2.*) AND (keyword:Isomerase)",
+      "record_count": 120,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 120,
+      "records_returned_by_query": 120,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.2.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=120",
+      "status": "query_fetched",
+      "target_family_lane": "cofactor_independent_isomerase"
+    },
+    {
+      "lane_id": "isomerase_ec_5_3_3_alkene",
+      "query": "(reviewed:true) AND (ec:5.3.3.*) AND (keyword:Isomerase)",
+      "record_count": 115,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 120,
+      "records_returned_by_query": 120,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.3.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=120",
+      "status": "query_fetched",
+      "target_family_lane": "cofactor_independent_isomerase"
+    },
+    {
+      "lane_id": "isomerase_ec_5_3_1_broad",
+      "query": "(reviewed:true) AND (ec:5.3.1.*) AND (keyword:Isomerase)",
+      "record_count": 120,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 120,
+      "records_returned_by_query": 120,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.1.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=120",
+      "status": "query_fetched",
+      "target_family_lane": "cofactor_independent_isomerase"
+    },
+    {
+      "lane_id": "isomerase_ec_5_3_broad_keyword",
+      "query": "(reviewed:true) AND (ec:5.3.*) AND (keyword:Isomerase)",
+      "record_count": 50,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 120,
+      "records_returned_by_query": 120,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=120",
+      "status": "query_fetched",
+      "target_family_lane": "cofactor_independent_isomerase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via `apply-external-annotation-anchored-import` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 80,
+      "throttle": 11
+    },
+    "reason_counts": {
+      "adds_diversity": 80,
+      "redundant_no_novelty_signal": 11
+    }
+  },
+  "off_target_fingerprint_matches_sample": [
+    {
+      "entry_id": "uniprot:P14060",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P26439",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q08426",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:O35469",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P22071",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P24815",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q9ZPI6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q62878",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P26149",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P07896",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q8W1L6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q9DBM2",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P26150",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q6NYL3",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q9XWF0",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A4STF2",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A4WFX4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A5F465",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P28793",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P9WQP7",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q4KFC4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q6FF68",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q8ZAN0",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A0KR50",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A6TGM4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P27365",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q5E8X6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q60555",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q6LW06",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q7MQH9",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q7MZ92",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q8EKR9",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A3CYJ4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A8ACZ4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A8FP63",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B2TVJ5",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B7LTY9",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:B8CH91",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q39659",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q4FQC6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q57HM6",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q5QXH7",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q6DAP5",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q83PG1",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q87TN9",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q87ZB2",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:Q88L02",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A0KEL1",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A1JIG4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:A3Q8U4",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    }
+  ],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_cofactor_independent_isomerase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:P94502",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:O34882",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:P17115",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:Q9M884",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:P42863",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:Q9ZU38",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:Q9C998",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:P30101",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:Q15084",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:Q8TED1",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    },
+    {
+      "entry_id": "uniprot:P05307",
+      "fingerprint_id": "cofactor_independent_isomerase"
+    }
+  ]
+}

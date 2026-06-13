@@ -86,6 +86,14 @@ def main() -> int:
             "admission still requires non-EC mechanism corroboration"
         ),
     )
+    parser.add_argument(
+        "--only-alternate-name-lanes",
+        action="store_true",
+        help=(
+            "source only the alternate chitinase/beta-glucanase/glycoside-hydrolase "
+            "name lanes; admission still requires non-EC mechanism corroboration"
+        ),
+    )
     parser.add_argument("--cap-ceiling", type=int, default=DEFAULT_GLYCOSIDE_HYDROLASE_CAP_CEILING)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
@@ -119,6 +127,7 @@ def main() -> int:
         record_limit_per_lane=args.record_limit_per_lane,
         query_pages_per_lane=args.query_pages_per_lane,
         include_alternate_name_lanes=args.include_alternate_name_lanes,
+        only_alternate_name_lanes=args.only_alternate_name_lanes,
         cap_ceiling=args.cap_ceiling,
     )
 

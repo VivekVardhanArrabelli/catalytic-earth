@@ -3,6 +3,69 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: ISOMERASE CAP-FILL APPLIED; ISOMERASE NOW PAUSED AT CAP
+
+Decision: keep remaining under-floor work mechanism-first and do not relax EC-scope rules. A base
+glycoside hydrolase page-2 continuation over rows **581-660** fetched **80** and admitted **0**
+because all registry-new candidates lacked non-EC mechanism corroboration. The run added
+`--only-alternate-name-lanes` to the glycoside source runner as a source-fetch-only selector; it
+does not alter admission, trust-tier evaluation, novelty, caps, or predictive evidence. The first
+untried alternate-only glycoside name window fetched **80** and admitted **0** because all **80**
+rows lacked non-EC mechanism corroboration. Do not apply those artifacts.
+
+Decision: after the current under-floor source paths no-yielded and the latest handoff had already
+identified `cofactor_independent_isomerase` **142/150** as the smallest approved under-cap retry,
+run the bounded 120-row cap-fill. EC 5.3, Isomerase keyword, Rhea equations, names, UniProt prose,
+and feature annotations remain scope/admission excluded-context evidence. Counted mechanism axes
+remain non-EC isomerase/domain/active-site/Rhea evidence. EC is never a counted corroborator and
+`predictive_evidence` remains `[]`.
+
+Apply:
+`PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md --apply`.
+Result: fetched **405**, target mechanism-corroborated **91**, novelty gate admitted **80** before
+the cap guard, applied **8**, held@cap **72**, novelty-throttled/rejected **11**, held **61**
+off-target `nad_p_dehydrogenase` rows, held **90** no-corroboration rows, skipped **163**, and
+recorded **0** fetch failures on the apply rerun. Final `cofactor_independent_isomerase` count is
+**150/150** under the chemistry-confusable cap; do not continue this lane under the current cap
+policy.
+
+Counts after apply: external bronze **6530 -> 6538**; combined label surface **7232 -> 7240**.
+External-only split is **5314** seed-fingerprint rows and **1224** OOS rows. Combined
+seed-fingerprint label surface is **5544**, leaving **4456** to 10k by that surface convention.
+Strict source-trust counters remain separate: **positive_bronze_count 5527**,
+**oos_bronze_count 1696**, **silver_ready_count 0**, **silver_confirmed_count 17**,
+**projected_provisional_count 0**.
+
+Guardrails held: every added row is bronze, automation-curated, `uniprot:*`, with
+`predictive_evidence []`; dedup and novelty ran against frozen current702 and the external bronze
+registry; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; row audit found **0**
+problems across all **150** isomerase rows. Coverage audit reports **35** fingerprints, Gini
+**0.1611**, holes `[]`, under-floor
+`['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+`['metal_dependent_hydrolase']`, and next-batch floor deficit **86**. Novelty replay reports
+**6538** expansion rows, decisions `{'admit': 6082, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0697).
+
+Follow-on decision: remaining floors are still PfkB **46/100**, biotin **84/100**, and glycoside
+hydrolase **84/100**. Prefer genuinely new non-EC mechanism corroborator/source paths for those
+lanes, or scout/spec a clean new family not already at cap. Isomerase, racemase, GHMP, ThDP, and
+other chemistry-confusable 150-cap lanes at cap should stay paused unless the cap policy changes.
+
+References:
+`artifacts/v3_glycoside_hydrolase_page2_window580_80_sourcing_preview_current702_20260613.json`,
+`work/glycoside_hydrolase_page2_window580_80_sourcing_current702_20260613.md`,
+`artifacts/v3_glycoside_hydrolase_alt_name_only_window40_80_sourcing_preview_current702_20260613.json`,
+`work/glycoside_hydrolase_alt_name_only_window40_80_sourcing_current702_20260613.md`,
+`artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json`,
+`work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`,
+`artifacts/v3_cofactor_independent_isomerase_capfill_row_guardrail_audit_current702_20260613.json`,
+`work/cofactor_independent_isomerase_capfill_row_guardrail_audit_current702_20260613.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_isomerase_capfill_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_isomerase_capfill_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_isomerase_capfill_applied.json`,
+and `work/novelty_admission_gate_audit_current702_20260613_isomerase_capfill_applied.md`.
+
 ## 2026-06-13: RACEMASE WINDOW400:80 BRONZE CAP-FILL APPLIED; RACEMASE NOW PAUSED AT CAP
 
 Decision: after under-floor PfkB/biotin/glycoside source paths remained documented no-yield or

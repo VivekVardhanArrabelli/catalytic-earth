@@ -1,5 +1,72 @@
 # Handoff
 
+## Session run - Isomerase cap-fill applied; glycoside alternate scouts no-yield (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main` after reading automation memory
+  and the current state docs. This run first followed the latest under-floor guidance:
+  `glycoside_hydrolase` was still **84/100**, while PfkB and biotin source paths remained
+  source-limited/no-yield.
+- Status: **APPLIED a gated cofactor-independent isomerase cap-fill to the separate external
+  registry after under-floor glycoside continuations admitted 0 rows.** Frozen current702 stayed
+  byte-unchanged before/after apply with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`.
+- Glycoside under-floor work before apply:
+  - Added an alternate-only source selector for the existing alternate-name glycoside lane:
+    `--only-alternate-name-lanes`. This is a source-fetch selector only; it does not change
+    admission, counted corroborator axes, novelty, caps, or predictive evidence.
+  - Base glycoside page-2 continuation
+    `artifacts/v3_glycoside_hydrolase_page2_window580_80_sourcing_preview_current702_20260613.json`
+    fetched **80**, mechanism-corroborated **0**, admitted **0**, held **57** no-corroboration
+    rows, skipped **23**, and recorded **1** Rhea HTTP 500 (`Q59675`). Do not apply.
+  - Alternate-only name lane
+    `artifacts/v3_glycoside_hydrolase_alt_name_only_window40_80_sourcing_preview_current702_20260613.json`
+    fetched **80**, mechanism-corroborated **0**, admitted **0**, held **80** no-corroboration
+    rows, skipped **0**, and had **0** fetch failures. Do not apply.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md --apply`.
+  Result: fetched **405**, target mechanism-corroborated **91**, novelty gate admitted **80**
+  before the cap guard, applied **8**, held@cap **72**, novelty-throttled/rejected **11**, held
+  **61** off-target `nad_p_dehydrogenase` rows, held **90** no-corroboration rows, skipped **163**,
+  and had **0** fetch failures on the apply rerun. `cofactor_independent_isomerase` moved
+  **142 -> 150**, exactly at the chemistry-confusable cap 150; do not continue this cap-fill lane
+  unless the cap policy changes.
+- Counts after apply: external bronze **6530 -> 6538** (+8); combined label surface
+  **7232 -> 7240**. External-only bronze split is **5314** seed-fingerprint rows and **1224** OOS
+  rows. Combined seed-fingerprint label surface is **5544**, leaving **4456** to a 10k
+  seed-fingerprint surface. Strict source-trust counter ledger remains separate:
+  `positive_bronze_count=5527`, `oos_bronze_count=1696`, `silver_ready_count=0`,
+  `silver_confirmed_count=17`, `projected_provisional_count=0`.
+- Guardrails verified: all 8 added rows are `tier=bronze`, `review_status=automation_curated`,
+  `entry_id` namespace `uniprot:*`; dedup + novelty gates ran against frozen current702 and the
+  external bronze registry; EC/name/Rhea/keyword/prose/feature handles remain admission/
+  excluded-context evidence only; EC is never a counted corroborator; `predictive_evidence []`.
+  Row audit
+  `artifacts/v3_cofactor_independent_isomerase_capfill_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across all **150** cofactor-independent isomerase rows.
+- Fresh post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_isomerase_capfill_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_isomerase_capfill_applied.md`;
+  **7240** combined, **35** fingerprints, seed positives **5544**, fingerprint Gini **0.1611**,
+  holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **86**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_isomerase_capfill_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260613_isomerase_capfill_applied.md`;
+  **6538** expansion rows, decisions `{'admit': 6082, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0697).
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_cofactor_independent_isomerase_sourcing.py tests/test_glycoside_hydrolase_sourcing.py tests/test_external_source_ingestion.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_coverage_redundancy_audit.py tests/test_leakage_closure.py tests/test_source_only_contract.py -q`
+  -> **322 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels).
+  JSON/JSONL parse checks and `git diff --check` passed.
+- Next exact action: remaining floors are PfkB **46/100**, biotin **84/100**, and glycoside
+  hydrolase **84/100**. Isomerase, racemase, GHMP, ThDP, and other chemistry-confusable 150-cap
+  families at cap should stay paused. The next productive work is a genuinely new non-EC
+  mechanism-corroborator/source path for PfkB/biotin/glycoside, or a scout/spec for a clean new
+  family not already at cap. Keep EC scope-only and keep `predictive_evidence []`.
+
 ## Session run - Racemase cap reached; strict kinase scout scaffolded (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

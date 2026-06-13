@@ -268,6 +268,20 @@ class GlycosideHydrolaseSourcingTest(unittest.TestCase):
         self.assertIn("uniprot:GH0003", labels)
         self.assertEqual(labels["uniprot:GH0003"]["evidence"]["predictive_evidence"], [])
 
+    def test_only_alternate_name_lane_skips_base_source_lane(self):
+        audit = self._run(only_alternate_name_lanes=True)
+        self.assertEqual(audit["counts"]["lanes_queried"], 1)
+        self.assertFalse(audit["counts"]["alternate_name_lanes_enabled"])
+        self.assertTrue(audit["counts"]["only_alternate_name_lanes_enabled"])
+        self.assertTrue(audit["guardrails"]["only_alternate_name_source_lanes_enabled"])
+        self.assertEqual(
+            audit["lane_summaries"][0]["lane_id"],
+            "glycoside_hydrolase_reviewed_chitinase_glucanase_name",
+        )
+        labels = {label["entry_id"]: label for label in audit["applied_labels"]}
+        self.assertEqual(set(labels), {"uniprot:GH0003"})
+        self.assertEqual(labels["uniprot:GH0003"]["evidence"]["predictive_evidence"], [])
+
     def test_guardrails_non_destructive(self):
         audit = self._run()
         g = audit["guardrails"]

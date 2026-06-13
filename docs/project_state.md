@@ -26,6 +26,52 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **ISOMERASE CAP-FILL APPLIED; GLYCOSIDE ALTERNATE SCOUTS NO-YIELD (2026-06-13 automation).**
+  The latest run first pursued the remaining under-floor glycoside path without relaxing
+  mechanism-first gates. A base glycoside page-2 continuation over rows **581-660**
+  (`scripts/source_glycoside_hydrolase_family.py --query-pages-per-lane 2 --record-offset-per-lane 580 --record-limit-per-lane 80`)
+  fetched **80**, mechanism-corroborated/admitted **0**, held **57** no-corroboration rows,
+  skipped **23**, and recorded **1** Rhea HTTP 500 (`Q59675`). A new source-fetch-only flag,
+  `--only-alternate-name-lanes`, was added so the alternate chitinase/beta-glucanase/glycoside-
+  hydrolase name lane can be scouted without refetching the base lane; the first untried
+  alternate-only window (`--record-offset-per-lane 40 --record-limit-per-lane 80`) fetched **80**,
+  mechanism-corroborated/admitted **0**, and held **80** no-corroboration rows. These artifacts are
+  no-apply: `artifacts/v3_glycoside_hydrolase_page2_window580_80_sourcing_preview_current702_20260613.json`
+  and
+  `artifacts/v3_glycoside_hydrolase_alt_name_only_window40_80_sourcing_preview_current702_20260613.json`.
+
+  Because under-floor source paths remained no-yield and substantial run time remained, the run
+  executed the documented smallest under-cap cap-fill:
+  `scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --apply`.
+  Result: fetched **405**, target mechanism-corroborated **91**, novelty gate admitted **80**
+  before the cap guard, applied **8**, held@cap **72**, novelty-throttled/rejected **11**, held
+  **61** off-target `nad_p_dehydrogenase` rows, held **90** no-corroboration rows, skipped **163**,
+  and had **0** fetch failures on the apply rerun. Frozen current702 stayed byte-unchanged with
+  sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`.
+
+  External bronze is now **6538**; combined label surface is **7240**;
+  `cofactor_independent_isomerase` is **150/150** and should not continue under the current
+  chemistry-confusable cap. External-only split is **5314** seed-fingerprint rows and **1224** OOS
+  rows. Combined seed-fingerprint label surface is **5544**, leaving **4456** to 10k by that
+  surface convention. Strict source-trust counters remain separate:
+  **positive_bronze_count 5527**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+  **silver_confirmed_count 17**, **projected_provisional_count 0**. Row audit
+  `artifacts/v3_cofactor_independent_isomerase_capfill_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across all **150** isomerase rows. Post-apply coverage audit
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_isomerase_capfill_applied.json`
+  reports **35** fingerprints, fingerprint Gini **0.1611**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, only
+  `metal_dependent_hydrolase` over-cap, and next-batch floor deficit **86**. Novelty replay over
+  **6538** expansion rows reports decisions `{'admit': 6082, 'reject': 47, 'throttle': 409}` and
+  would-not-readmit **456** (0.0697).
+
+  Next action: remaining floors are PfkB **46/100**, biotin **84/100**, and glycoside hydrolase
+  **84/100**. Do not continue capped isomerase/racemase/GHMP/ThDP-style chemistry-confusable lanes
+  without a cap-policy change. Build a genuinely new non-EC mechanism corroborator/source path for
+  PfkB/biotin/glycoside, or scout/spec a clean new family not already at cap. Guardrails:
+  EC/name/Rhea/keyword/prose/feature handles stay excluded-context admission evidence only, EC is
+  never counted, and `predictive_evidence []`.
 - **RACEMASE WINDOW400:80 CAP-FILL APPLIED; STRICT KINASE SOURCE-SUPPLY SCOUT WRITTEN (2026-06-13 automation).**
   The latest run applied the bounded non-PLP metal racemase/epimerase continuation from the prior
   handoff after the remaining under-floor source paths were documented no-yield/source-limited.
