@@ -1,5 +1,70 @@
 # Handoff
 
+## Session run - P450 + copper extension bronze applies (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. The latest handoff left
+  `pfkb_ribokinase_family` and `biotin_dependent_carboxylase` under floor, but both current
+  reviewed source paths are exhausted under strict mechanism-first gates. This run therefore used
+  already approved, non-confusable extension lanes with remaining reviewed supply:
+  `cytochrome_p450_monooxygenase` and `copper_oxidoreductase`.
+- Status: **APPLIED two gated external bronze extensions to the separate external registry.**
+  Frozen current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before/after both
+  applies. External bronze **6079 -> 6238** (+159); combined label surface **6781 -> 6940**.
+- P450 extension: non-destructive preview
+  `PYTHONPATH=src python scripts/source_cytochrome_p450_family.py --max-records-per-lane 240 --cap-ceiling 250 --out artifacts/v3_cytochrome_p450_extension_sourcing_preview_current702_20260613.json --report work/cytochrome_p450_extension_sourcing_current702_20260613.md`.
+  Result: fetched **337**, target mechanism-corroborated **189**, applied **138**,
+  no-corroboration holds **35**, duplicate/current-registry skips **113**, novelty-throttled
+  **51**, held@cap **0**, off-target held **0**; `cytochrome_p450_monooxygenase`
+  **110 -> 248** under the non-confusable cap 250.
+- Copper extension: non-destructive preview
+  `PYTHONPATH=src python scripts/source_copper_oxidoreductase_family.py --max-records-per-lane 240 --cap-ceiling 250 --out artifacts/v3_copper_oxidoreductase_extension_sourcing_preview_current702_20260613.json --report work/copper_oxidoreductase_extension_sourcing_current702_20260613.md`.
+  Result: fetched **222**, target mechanism-corroborated **81**, applied **21**,
+  no-corroboration holds **20**, duplicate/current-registry skips **121**, novelty-throttled
+  **60**, held@cap **0**, off-target held **0**; `copper_oxidoreductase` **119 -> 140**.
+- Guardrails verified: EC/Rhea/name/keyword/prose/feature handles are scope/admission evidence only
+  and remain in `excluded_context`; EC is never a counted corroborator; `predictive_evidence []`;
+  every added row is `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup ran
+  against frozen current702 and external bronze; cap 250 was enforced for both non-confusable
+  lanes. Row audits found **0** problems across all **138** P450 rows and **21** copper rows; all
+  rows have cofactor/cosubstrate, domain/family, active-site/residue-role, and Rhea participant
+  axes.
+- Honest counters after apply: `positive_bronze=5227`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`. Do not merge them. External-only bronze split is 5014
+  seed-fingerprint rows and 1224 OOS rows. Remaining positive-bronze gap to 10k: **4773**.
+- Fresh post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_p450_copper_extensions_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_p450_copper_extensions_applied.md`;
+  **6940** combined, **33** fingerprints, seed positives **5227**, fingerprint Gini **0.1633**,
+  holes `[]`, under-floor `['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **70**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_p450_copper_extensions_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260613_p450_copper_extensions_applied.md`;
+  **6238** expansion rows, decisions `{'admit': 5782, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0731).
+- Validation:
+  `PYTHONPATH=src pytest tests/test_cytochrome_p450_sourcing.py tests/test_copper_oxidoreductase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_leakage_closure.py tests/test_coverage_redundancy_audit.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py -q`
+  passed (**304 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 33 mechanism fingerprints, 30 ontology families, 702 curated labels).
+  JSON/JSONL parse checks passed.
+- Key new artifacts/files this run:
+  `artifacts/v3_cytochrome_p450_extension_sourcing_preview_current702_20260613.json`,
+  `work/cytochrome_p450_extension_sourcing_current702_20260613.md`,
+  `artifacts/v3_cytochrome_p450_extension_row_guardrail_audit_current702_20260613.json`,
+  `work/cytochrome_p450_extension_row_guardrail_audit_current702_20260613.md`,
+  `artifacts/v3_copper_oxidoreductase_extension_sourcing_preview_current702_20260613.json`,
+  `work/copper_oxidoreductase_extension_sourcing_current702_20260613.md`,
+  `artifacts/v3_copper_oxidoreductase_extension_row_guardrail_audit_current702_20260613.json`,
+  `work/copper_oxidoreductase_extension_row_guardrail_audit_current702_20260613.md`,
+  final coverage/novelty audits named `p450_copper_extensions_applied`, and
+  `data/registries/external_bronze_labels.json`.
+- Next exact action: do **not** add more P450 unless a new reaction/organism gain is explicitly
+  justified, because it is now **248/250**. PfkB remains **46/100** and biotin remains **84/100**,
+  but their current reviewed strict lanes are exhausted; the next safest productive work is a
+  genuinely new PfkB/biotin source path with stronger corroboration, or a new fingerprint-family
+  source-supply scout/spec if evidence is cleaner than further balanced-lane top-ups.
+
 ## Session run - PfkB ribokinase-family 33fp bronze expansion applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

@@ -1,0 +1,31 @@
+{
+  "artifact_id": "v3_cytochrome_p450_extension_row_guardrail_audit_current702_20260613",
+  "counts": {
+    "axis_counts": {
+      "active_site_motif_or_residue_role": 134,
+      "cofactor_or_cosubstrate": 138,
+      "domain_or_family_profile": 138,
+      "rhea_reaction_or_participant_pattern": 138
+    },
+    "confidence_counts": {
+      "high": 92,
+      "medium": 46
+    },
+    "predictive_evidence_empty_rows": 138,
+    "problem_count": 0,
+    "rows_examined": 138,
+    "uniprot_namespace_rows": 138
+  },
+  "family": "cytochrome_p450_monooxygenase",
+  "guardrails": {
+    "ec_not_counted": true,
+    "every_row_has_heme_or_cosubstrate_and_family_axis": true,
+    "predictive_evidence_empty": true,
+    "review_status_automation_curated": true,
+    "tier_bronze": true,
+    "trust_tier_0_mechanism_axis_present": true
+  },
+  "preview_artifact": "artifacts/v3_cytochrome_p450_extension_sourcing_preview_current702_20260613.json",
+  "problems": [],
+  "schema_version": "external_bronze_row_guardrail_audit.v1"
+}

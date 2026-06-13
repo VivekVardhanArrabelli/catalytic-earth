@@ -3,6 +3,65 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: P450 + COPPER EXTENSION BRONZE APPLIES COMPLETED
+
+Decision: after the strict PfkB floor-extension scout found no new admissible rows and the biotin
+floor-closure path remained source-limited, use existing non-confusable, already approved
+mechanism-first extension lanes with remaining reviewed supply before attempting a new fingerprint
+family. Growth went only to `data/registries/external_bronze_labels.json`; frozen current702 stayed
+byte-unchanged with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+P450 extension command:
+`PYTHONPATH=src python scripts/source_cytochrome_p450_family.py --max-records-per-lane 240 --cap-ceiling 250 --out artifacts/v3_cytochrome_p450_extension_sourcing_preview_current702_20260613.json --report work/cytochrome_p450_extension_sourcing_current702_20260613.md`.
+Result: fetched **337**, target mechanism-corroborated **189**, applied **138**,
+no-corroboration holds **35**, duplicate/current-registry skips **113**, novelty-throttled **51**,
+held@cap **0**, off-target held **0**. `cytochrome_p450_monooxygenase` **110 -> 248** under cap
+250.
+
+Copper extension command:
+`PYTHONPATH=src python scripts/source_copper_oxidoreductase_family.py --max-records-per-lane 240 --cap-ceiling 250 --out artifacts/v3_copper_oxidoreductase_extension_sourcing_preview_current702_20260613.json --report work/copper_oxidoreductase_extension_sourcing_current702_20260613.md`.
+Result: fetched **222**, target mechanism-corroborated **81**, applied **21**,
+no-corroboration holds **20**, duplicate/current-registry skips **121**, novelty-throttled **60**,
+held@cap **0**, off-target held **0**. `copper_oxidoreductase` **119 -> 140**.
+
+Guardrails held: every added row is `tier=bronze`, `review_status=automation_curated`, namespace
+`uniprot`; EC/name/keyword/Rhea/prose/feature handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; per-fingerprint cap 250 held. Row audits found **0** problems
+across **138** P450 and **21** copper rows; every row has cofactor/cosubstrate, domain/family,
+active-site/residue-role, and Rhea participant axes.
+
+External bronze **6079 -> 6238**; combined surface **6781 -> 6940**. Honest counters after apply
+are **positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**; do not merge them. External-only bronze split is 5014 seed-fingerprint rows and
+1224 OOS rows. Fresh post-apply coverage/redundancy audit reports **6940** combined labels,
+**33** fingerprints, seed positives **5227**, fingerprint Gini **0.1633**, holes `[]`,
+under-floor `['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, over-cap
+`['metal_dependent_hydrolase']`, and next-batch floor deficit **70**. Novelty replay reports
+**6238** expansion rows, decisions `{'admit': 5782, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0731).
+
+Follow-on decision: do **not** add more P450 without explicit new reaction/organism justification
+because it is now **248/250**. PfkB remains **46/100** and biotin remains **84/100**, but current
+reviewed strict lanes are exhausted; next work should design a genuinely new PfkB/biotin source
+path with stronger corroboration or scout/spec a new fingerprint family if evidence is cleaner than
+further balanced-lane top-ups.
+
+References:
+`artifacts/v3_cytochrome_p450_extension_sourcing_preview_current702_20260613.json`,
+`work/cytochrome_p450_extension_sourcing_current702_20260613.md`,
+`artifacts/v3_cytochrome_p450_extension_row_guardrail_audit_current702_20260613.json`,
+`work/cytochrome_p450_extension_row_guardrail_audit_current702_20260613.md`,
+`artifacts/v3_copper_oxidoreductase_extension_sourcing_preview_current702_20260613.json`,
+`work/copper_oxidoreductase_extension_sourcing_current702_20260613.md`,
+`artifacts/v3_copper_oxidoreductase_extension_row_guardrail_audit_current702_20260613.json`,
+`work/copper_oxidoreductase_extension_row_guardrail_audit_current702_20260613.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_p450_copper_extensions_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_p450_copper_extensions_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_p450_copper_extensions_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_p450_copper_extensions_applied.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-13: STRICT PFKB/RIBOKINASE-FAMILY 33FP BRONZE EXPANSION APPLIED
 
 Decision: continue the strict kinase-subclass path instead of broad-wiring EC 2.7. The latest

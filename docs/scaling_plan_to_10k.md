@@ -13,6 +13,39 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: P450 and copper extension applies are now completed.** The latest
+handoff left two under-floor lanes, `pfkb_ribokinase_family` and `biotin_dependent_carboxylase`,
+but both strict reviewed source paths are exhausted under current gates. This run therefore used
+two already approved, non-confusable extension lanes with remaining reviewed supply while keeping
+the same mechanism-first admission pipeline and cap governor.
+
+P450 extension
+(`scripts/source_cytochrome_p450_family.py --max-records-per-lane 240 --cap-ceiling 250 --out artifacts/v3_cytochrome_p450_extension_sourcing_preview_current702_20260613.json --report work/cytochrome_p450_extension_sourcing_current702_20260613.md`)
+fetched **337**, mechanism-corroborated **189**, applied **138**, held **35** no-corroboration
+rows, skipped **113** already-covered/current-registry rows, novelty-throttled **51**, and moved
+`cytochrome_p450_monooxygenase` **110 -> 248** under cap 250. Copper extension
+(`scripts/source_copper_oxidoreductase_family.py --max-records-per-lane 240 --cap-ceiling 250 --out artifacts/v3_copper_oxidoreductase_extension_sourcing_preview_current702_20260613.json --report work/copper_oxidoreductase_extension_sourcing_current702_20260613.md`)
+fetched **222**, mechanism-corroborated **81**, applied **21**, held **20** no-corroboration rows,
+skipped **121**, novelty-throttled **60**, and moved `copper_oxidoreductase` **119 -> 140**.
+
+External bronze is now **6238**; combined label surface is **6940**; frozen current702 remains
+**702** with sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest
+counters stay separate: **positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. External-only bronze split is 5014 seed-fingerprint rows
+and 1224 OOS rows. Remaining positive-bronze gap to 10k: **4773**. Post-apply audit:
+**33 fingerprints**, fingerprint Gini **0.1633**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase', 'pfkb_ribokinase_family']`, only `metal_dependent_hydrolase`
+over-cap, next-batch floor deficit **70**. Novelty replay: **6238** expansion rows, decisions
+`{'admit': 5782, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0731). Row audits
+found **0** problems across all 138 P450 rows and 21 copper rows.
+
+All added rows keep `predictive_evidence []`; EC/name/keyword/Rhea/prose/feature handles remain
+excluded-context admission evidence and are never predictive; EC is never counted. Do **not** add
+more P450 without explicit new reaction/organism justification because P450 is **248/250**. PfkB
+remains **46/100** and biotin **84/100**; the next concrete work should find genuinely new strict
+PfkB/biotin source paths with stronger corroboration, or scout/spec a new fingerprint family if
+evidence is cleaner than further balanced-lane top-ups.
+
 **2026-06-13 automation update: strict PfkB/ribokinase-family 33fp expansion is now applied.**
 The post-PfkA handoff left `pfkb_ribokinase_family` as a guarded candidate, and this run completed
 a strict mechanism-first 33fp lane after tightening the PfkB/PfkA boundary. Added
