@@ -1,0 +1,1014 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q69ZK6",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 23,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 2327
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 2329
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 2457
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 187
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 316
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 319
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 372
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 375
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 475
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 501
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 505
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 601
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 604
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 607
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 617
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 638
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 639
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 641
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 652
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 943
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 1981
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2044
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "CROSSLNK",
+              "feature_type": "Cross-link",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2123
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29033",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Fe(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.14.11.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: non_heme_iron_2og_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "3c520ccf837bce77c0930693c7b3d7d288ff2b36b8fab11696a1ef7ccb9a53ba"
+          },
+          "retrieved_utc": "2026-06-13T23:48:03Z",
+          "sequence": "MAVETRPELVGKRFLCVAAGEDARPERGQSGCGRGWRAGVIRAVSHRDRGHPDLAVYVEFDDLEWDKREWVRVYEDFSTFLVEYHLIWAKRKDPSQTQGSKSRQIQWPALTFKPLVENSIPSSITAVEFLIDKQLDFLTEDSAFQPYQDDIDSLKPVLRDNPQLHAEVKVWVKEQKVQEIFMQGPYSLNGYRVRVYRQDSATQWFTGIITHHDLFTRTMIVMNDQVLEPQNVDPSMVQMTFLDDVVHSLLKGENIGITSRRRSRASQNISTVHGHYTRAQANSPRPAMNSQAAVPKQNTHQQQQQRSIRPNKRKGSDSSIPDEEKMKEDKYDCVSRGENPKGKNKHVVTKRRKPEEAEKRLSMKRLRTDNASDASESSDAESSSKRVTETSSSEPMPEYEPKNKVTSKVNGEEGQSQAAEEAGEETLIDTRPPWDQMQEDKNHNEGEKPKSTDSHLQDKMTLRSSEQATVADHNSNDSVLQECNVENQRTVELLPKDRLVSRTPTPKCVTDIKNDTHSERAAQENLNTFGLQTPENMDPNVSDSKHSNAKYLETAKQDCDQSWVSDVVKVDLTQSSVTNAPSGSDKRDTEKERNHYVSYMSSLSAVSVTEDQLHKRSPPPETIKAKLTTSVDTQKAKSSSSPEVVKPKITHSPDSVKSKAAYGNSQAVGERRLANKIEHELSRGSFHPVPTRGSALETTKSPLIIDKNEHFTVYRDPALIGSETGANHISPFLSQHPFSLHSSSHRTCLNPGTHHPALTPGPHLLAGSTSQTPLPTINTHPLTSGPHHPVHHPHLLPTVLPGVPTASLLGGHPRLESAHASSLSHLALAHQQQQQLLQHQSPHLLGQAHPSASYNQLGLYPIIWQYPNGTHAYSGLGLPSSKWVHPENAVNAEASLRRNSPSPWLHQPTPVTSADGIGLLSHIPVRPSSAEPHRPHKITVHSSPPLTKTLADHHKEELERKAFMEPLRSNASTSVKGDLDLNRSQAGKDCHLHRHFVGPRPPQETGERLNKYKEEHRRILQESIDVAPFTTKIKGHEVERENYSRVVPSSSSPKSHAIKQDKDVDRSVSEIYKMKHSVPQSLPQSNYFTTLSNSVVNEPPRSYPSKEVSNIYTEKQNNNLSATANPQTHSFISSLSKPPPLIKHQPESESLVGKIPDHLPHQSASHSVTTFRSDCRSPTHLTVSSTNALRSMPALHRAPVFHPPIHHSLERKESSYSSLSPPTLTPVMPVNAGGKVQESQKPPTLIPEPKDSQSNFKNSSDQSLTEMWRSNNNLNREKAEWPVEKSSGKSQAAVASVIVRPPSSTKVDSVPSVPLASKDRVCERSSSGANKTDYLKPEAGETGRIILPNVNLESAHVKSEKNFEAVSQGNVPVSVMSAVNVVSTTKADVFTSAATTTSVSSLSSAETSYSLSNTISASTPFECTSSKSVVSQAVAQAKDCTVSTAVPGTLACSKTGSAVQPGSGFSGTTDFIHLKKHKAALAAAQFKNSSVSEAELNTVRNQTVAASLPLDSTMTCTASNKAISVGNGPAAQSSQPNYHTKLKKAWLTRHSEEDKNTNKMENSGNSVSEIIKPCSVNLIASTSNDIENRADGRVAVDKYGRDEKVSRRKAKRTYESGSESGDSDESESKSEQRTKRQPKPTYKKKQNDLQKRKGEVEEDSKPNGVLSRSAKDKSKLKLQNSNSAGVPRSVLKDWRKVKKLKQTGESFLQDDSCCEIGPNLQKCRECRLIRSKKGEESTHSPVFCRFYYFRRLSFSKNGVVRIDGFSSPDQYDDEAMSLWTHENYEDDEVDVETSKYILDIIGDKFCQLVTSEKTALSWVKKDAKIAWKRAVRGVREMCDACEATLFNVHWVCRKCGFVACLDCYKAKERKSSRDKELYAWMKCVKGQPHDHKHLMLTQIIPGSVLTDLLDAMHILREKYGIKSHCHCTNRQNLQGGNVPTMNGVSQVLQNVLHHSNKTSVSLPESQQQNSPQKSQTNGNSSPGSASTDSRLTPPESQSPLHWLADLAEQKSREEKQENKEFTLEREIKEDGDQDASDSPNGSTSPPASQSNEQGSTLRDLLTTTAGKLRVGSTDAGIAFAPVYSMGTSSGKGGRTMPNILDDIIASVVENKIPPNKTSKINIKSEPNEEPKESSLPATDESNKSYRDIPHSWICDQHILWLKDYKNSNNWKLFKECWKQGQPAVVSGVHKKMNISLWKAESISLDFGDHQADLLNCKDSIVSNANVKEFWDGFEEVSKRQKNKGGETVVLKLKDCPSGEDFKAMMPTRYEDFLRCLPLPEYCNPEGKFNLASHLPGFFVRPDLGPRLCSAYGVAAAKDHDIGTTNLHIEASDVVNVLVYVGIAKGNGVLSKAGILKKFEEEELDDVLRKRLKDSSEIPGALWHIYAGKDVDKIREFLQKISKEQGLEVLPEHDPIRDQSWYVNRKLRQRLLEEYGVRACTLIQFLGDAIVLPAGTLHQVQNFHSCVQVTEDFVSPEHLVQSFHLTQELRLLKEEINYDDKLQVKNILYHAVKEMVRALKMHEDEVEDMEDT",
+          "sequence_length": 2531,
+          "sequence_sha256": "6ac4ff0fc6154e306d2d90f8838011dcf7abde5673dab940fa2f67bd821dabcf",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q69ZK6"
+        },
+        "source_provenance": {
+          "accession": "Q69ZK6",
+          "disambiguation_pool": "non_heme_iron_2og_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "non_heme_iron_2og_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_non_heme_iron_2og_dioxygenase_from_annotated_cofactor_and_ec_class_['1.14.11.-']",
+          "organism": "Mus musculus (Mouse)",
+          "protein_name": "Jumonji domain-containing protein 1C (EC 1.14.11.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 2531,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "3c520ccf837bce77c0930693c7b3d7d288ff2b36b8fab11696a1ef7ccb9a53ba",
+            "uniprot_entry_record_sha256": "f8d0705365290278d4ae3f0c81db7817ce8635067a805df182ff77657d043a9a",
+            "uniprot_search_row_sha256": "59d068911e486c79a6c05dd6c8ad3af433c55ce56f63c0263c667e98c49c98e8"
+          },
+          "target_family_lane": "non_heme_iron_2og_dioxygenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q69ZK6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q69ZK6-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q69ZK6 imported as annotation-anchored bronze in-scope non_heme_iron_2og_dioxygenase: reviewed Swiss-Prot EC ['1.14.11.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:Q9GYI0",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 505
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255",
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 508
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255",
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 510
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 518
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 525
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255",
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 580
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 580
+            }
+          ],
+          "binding_residue_count": 7,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29033",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "name": "Fe(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.14.11.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: non_heme_iron_2og_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "3c520ccf837bce77c0930693c7b3d7d288ff2b36b8fab11696a1ef7ccb9a53ba"
+          },
+          "retrieved_utc": "2026-06-13T23:48:03Z",
+          "sequence": "MDGNDINIQKNEFSRDQSALLMMDQHSDHKNHESAIGEPGMSYTASQPALSSTEHQTPLVSEASVAAPQNHLNGNSHESVSEMDRNSVDFAIESVLMKARAYNKMGAPKDPRRKQHNPKSEPKIEPHVTDSSDNQAAMSNKMEAEAPKMESNQNYVSNGSEPPFRFVSISNFDEMKTKKKEVQEELKLEVDSDSEEDDVPEQKTPKESDRCGGCGKFTHEDDLIALEEEKKKEKEKPLMSKKKSHHHKKNDFQWIGCDSCQTWYHFLCSGLEQFEYYLYEKFFCPKCVPHTGHSIRYKVVAPHRYRWYSPNEKHLGIEVGSKTWIEDFITRENTVPSPTDDEVCIVEDGYEFRREFEKLGGADNWGKVFMVKDMDGLNMTMPKPGFDLEDVVKIMGSDYEVDTIDVYNQSTYSMKLDTFRKLFRDTKNRPLLYNFLSLEFSDNNEMKEIAKPPRFVQEISMVNRLWPDVSGAEYIKLLQREEYLPEDQRPKVEQFCLAGMAGSYTDFHVDFGGSSVYYHILKGEKIFYIAAPTEQNFAAYQAHETSPDTTTWFGDIANGAVKRVVIKEGQTLLIPAGWIHAVLTPVDSLVFGGNFLHLGNLEMQMRVYHLENAIRKEIRSEEKFYFPNFELLHWMYMRNVLLEKITEANQEGSDMREQEKNIWTASQIMKAEMERWMDRELRLGPEKNAILPTDDKNKIMISVRKQIEIQTKIQNAKNKPMGLKQKRKSRESAERDDEDYCPSSSTAYKKKYTKKAKKDNDDAPKVKKAKKEEVPEEKVPVPEAAGPSEVTAPLTIKIGMGPTEDQKGVVQIFNNQCTSSGRKVKLNQNVADYCGSHLEARVEEIPEKATKSFRELDNELERCEAVHSGEKIKKVKEPKPPKQPKEKKEKPPPKKKEMSSRDRLMKKLKM",
+          "sequence_length": 910,
+          "sequence_sha256": "70e296ea61abd03cbf3f12b513daff11f9d34944537974a3ac56cc146c939ed0",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9GYI0"
+        },
+        "source_provenance": {
+          "accession": "Q9GYI0",
+          "disambiguation_pool": "non_heme_iron_2og_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "non_heme_iron_2og_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_non_heme_iron_2og_dioxygenase_from_annotated_cofactor_and_ec_class_['1.14.11.-']",
+          "organism": "Caenorhabditis elegans",
+          "protein_name": "Lysine-specific demethylase 7 homolog (ceKDM7A) (EC 1.14.11.-) (JmjC domain-containing protein 1.2) (PHD finger protein 8 homolog) (PHF8 homolog)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 910,
+          "source_evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "3c520ccf837bce77c0930693c7b3d7d288ff2b36b8fab11696a1ef7ccb9a53ba",
+            "uniprot_entry_record_sha256": "e4f658bd08c723bfa58b341301ba6b3b1a4dae215220ce830b35840435fe3a77",
+            "uniprot_search_row_sha256": "75cd10a188653b1de9a6b38d1aa7c0acf7c1522b9a83b729719bdc951212d12d"
+          },
+          "target_family_lane": "non_heme_iron_2og_dioxygenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9GYI0"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "3N9L",
+            "3N9M",
+            "3N9N",
+            "3N9O",
+            "3N9P",
+            "3N9Q",
+            "3PUQ",
+            "3PUR"
+          ],
+          "structure_handle": "3N9L"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9GYI0 imported as annotation-anchored bronze in-scope non_heme_iron_2og_dioxygenase: reviewed Swiss-Prot EC ['1.14.11.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q9GYI4",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 189
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 192
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 194
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:16810",
+              "ligand_name": "2-oxoglutarate",
+              "position": 202
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 209
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 278
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:16810",
+              "ligand_name": "2-oxoglutarate",
+              "position": 290
+            }
+          ],
+          "binding_residue_count": 7,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29033",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Fe(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.14.11.-"
+          ],
+          "reaction_equations": []
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: non_heme_iron_2og_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "3c520ccf837bce77c0930693c7b3d7d288ff2b36b8fab11696a1ef7ccb9a53ba"
+          },
+          "retrieved_utc": "2026-06-13T23:48:03Z",
+          "sequence": "MSLGRDRYSLPRTYKRVSHAKDKARPELRKFGWETLGYSESFNLPPFRDSIQRVDGNNLTVEEFRRDFERPRIPVIITGLTDNWAAKDKWTVERLSKKYRNQNFKCGEDDNGNSVRMKMKYYHDYMLNNKDDSPLYIFDSSFAERRKTKKLSEDYSVPKFFEDDLFHYADDKKRPPHRWFVMGPARSGTAIHIDPLGTSAWNSLLQGHKRWVLIPPIAPRDLVKPMAHEKGKHPDEGITWFQTVYKRVRSPSWPKEYAPIECRQGPGETMFVPSGWWHVVINEEYTIAVTHNYCSVENLHLVWPKTVKGRPKLSKHWVKRLTEQRPELLEIIKSASEIPLYDMNESSSDSSSSSSSSDDSSDESDCDDSGRCGGRKRKNDDRSNECPEKMSTTYFQNSLV",
+          "sequence_length": 400,
+          "sequence_sha256": "6566a9fd21ff1336547c94ebd3ca9b8ae6854179477e86190aad0ef8ca265ad5",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9GYI4"
+        },
+        "source_provenance": {
+          "accession": "Q9GYI4",
+          "disambiguation_pool": "non_heme_iron_2og_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "non_heme_iron_2og_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_non_heme_iron_2og_dioxygenase_from_annotated_cofactor_and_ec_class_['1.14.11.-']",
+          "organism": "Caenorhabditis elegans",
+          "protein_name": "Bifunctional arginine demethylase and lysyl-hydroxylase psr-1 (EC 1.14.11.-) (Phosphatidylserine receptor 1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 400,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "source_query_sha256": "3c520ccf837bce77c0930693c7b3d7d288ff2b36b8fab11696a1ef7ccb9a53ba",
+            "uniprot_entry_record_sha256": "33c6c9206ec5af711394ece78f4fb2e10202ae09932f07bf22fcc9c2953f853f",
+            "uniprot_search_row_sha256": "0a4bae5e4ae5479f83c1214d5d6fd9aa125cc5a653ee9ecb287894714ac73f86"
+          },
+          "target_family_lane": "non_heme_iron_2og_dioxygenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9GYI4"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9GYI4-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9GYI4 imported as annotation-anchored bronze in-scope non_heme_iron_2og_dioxygenase: reviewed Swiss-Prot EC ['1.14.11.-'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_non_heme_iron_2og_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "non_heme_iron_2og_dioxygenase": 3
+    },
+    "current_combined_labels": 7628,
+    "disambiguation_hold_count": 0,
+    "disambiguation_hold_reason_counts": {},
+    "disambiguation_skip_count": 7,
+    "fetched_candidate_rows": 10,
+    "gate_admitted_before_cap_guard": 3,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 4,
+    "max_records_per_lane": 150,
+    "mechanism_corroborated_bronze_labels": 3,
+    "novelty_admitted_labels": 3,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 7631,
+    "record_limit_per_lane": 10,
+    "record_offset_per_lane": 110
+  },
+  "created_utc": "2026-06-13T23:48:03Z",
+  "deploy_missing_active_site_context_per_family": {
+    "non_heme_iron_2og_dioxygenase": "fe_ii_2og_o2_cosubstrate"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 1,
+      "medium": 2
+    },
+    "current_registry_labels": 6926,
+    "decision_counts": {
+      "import": 3,
+      "skip": 7
+    },
+    "examined_rows": 10,
+    "fingerprint_counts": {
+      "non_heme_iron_2og_dioxygenase": 3
+    },
+    "hold_count": 0,
+    "hold_reason_counts": {},
+    "importable_new_labels": 3,
+    "per_pool_decision_counts": {
+      "non_heme_iron_2og_broadened_handle_fresh_fetch": {
+        "import": 3,
+        "skip_screen": 7
+      }
+    },
+    "projected_registry_labels_if_merged": 6929,
+    "skip_count": 7
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_iron_2og_dioxygenase_annotation",
+  "families_sourced": [
+    "non_heme_iron_2og_dioxygenase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "non_heme_iron_2og_dioxygenase": {
+      "admitted_this_run": 3,
+      "cap_ceiling": 250,
+      "chemistry_confusable": false,
+      "combined_before": 217,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "fe_ii_2og_o2_cosubstrate",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 220,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "heme_flavin_peroxide_guard": true,
+    "iron_2og_dioxygenase_handles_scope_admission_only": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "non_heme_iron_2og_dioxygenase": 250
+    },
+    "predictive_features_use_ec_name_keyword_2og_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "2og_ec_1_14_11_demethylase",
+      "query": "(reviewed:true) AND ((ec:1.14.11.27) OR (ec:1.14.11.65) OR (ec:1.14.11.66) OR (ec:1.14.11.67)) AND ((cc_cofactor:iron) OR (cc_cofactor:fe) OR (keyword:Dioxygenase))",
+      "record_count": 0,
+      "record_limit_per_lane": 10,
+      "record_offset_per_lane": 110,
+      "records_in_window_before_dedup": 0,
+      "records_returned_by_query": 108,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.11.27%29+OR+%28ec%3A1.14.11.65%29+OR+%28ec%3A1.14.11.66%29+OR+%28ec%3A1.14.11.67%29%29+AND+%28%28cc_cofactor%3Airon%29+OR+%28cc_cofactor%3Afe%29+OR+%28keyword%3ADioxygenase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=150",
+      "status": "query_fetched",
+      "target_family_lane": "non_heme_iron_2og_dioxygenase"
+    },
+    {
+      "lane_id": "2og_ec_1_14_11_nucleic_acid",
+      "query": "(reviewed:true) AND ((ec:1.14.11.33) OR (ec:1.14.11.51) OR (ec:1.14.11.53) OR (ec:1.14.11.54)) AND ((cc_cofactor:iron) OR (cc_cofactor:fe) OR (keyword:Dioxygenase))",
+      "record_count": 0,
+      "record_limit_per_lane": 10,
+      "record_offset_per_lane": 110,
+      "records_in_window_before_dedup": 0,
+      "records_returned_by_query": 39,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.11.33%29+OR+%28ec%3A1.14.11.51%29+OR+%28ec%3A1.14.11.53%29+OR+%28ec%3A1.14.11.54%29%29+AND+%28%28cc_cofactor%3Airon%29+OR+%28cc_cofactor%3Afe%29+OR+%28keyword%3ADioxygenase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=150",
+      "status": "query_fetched",
+      "target_family_lane": "non_heme_iron_2og_dioxygenase"
+    },
+    {
+      "lane_id": "2og_ec_1_14_11_hydroxylase",
+      "query": "(reviewed:true) AND ((ec:1.14.11.2) OR (ec:1.14.11.4) OR (ec:1.14.11.17) OR (ec:1.14.11.20) OR (ec:1.14.11.29)) AND ((cc_cofactor:iron) OR (cc_cofactor:fe) OR (keyword:Dioxygenase))",
+      "record_count": 0,
+      "record_limit_per_lane": 10,
+      "record_offset_per_lane": 110,
+      "records_in_window_before_dedup": 0,
+      "records_returned_by_query": 60,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.14.11.2%29+OR+%28ec%3A1.14.11.4%29+OR+%28ec%3A1.14.11.17%29+OR+%28ec%3A1.14.11.20%29+OR+%28ec%3A1.14.11.29%29%29+AND+%28%28cc_cofactor%3Airon%29+OR+%28cc_cofactor%3Afe%29+OR+%28keyword%3ADioxygenase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=150",
+      "status": "query_fetched",
+      "target_family_lane": "non_heme_iron_2og_dioxygenase"
+    },
+    {
+      "lane_id": "2og_ec_1_14_11_broad_dioxygenase",
+      "query": "(reviewed:true) AND (ec:1.14.11.*) AND ((cc_cofactor:iron) OR (cc_cofactor:fe) OR (keyword:Dioxygenase))",
+      "record_count": 10,
+      "record_limit_per_lane": 10,
+      "record_offset_per_lane": 110,
+      "records_in_window_before_dedup": 10,
+      "records_returned_by_query": 150,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.14.11.%2A%29+AND+%28%28cc_cofactor%3Airon%29+OR+%28cc_cofactor%3Afe%29+OR+%28keyword%3ADioxygenase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=150",
+      "status": "query_fetched",
+      "target_family_lane": "non_heme_iron_2og_dioxygenase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via `apply-external-annotation-anchored-import` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 3
+    },
+    "reason_counts": {
+      "adds_diversity": 3
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_non_heme_iron_2og_dioxygenase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

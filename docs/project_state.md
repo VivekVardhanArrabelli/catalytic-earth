@@ -26,6 +26,42 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NON-HEME IRON 2OG WINDOWED EXTENSION APPLIED (2026-06-13 automation).**
+  After the tier-2 floor run closed all under-floor lanes at their caps, the next useful path was a
+  bounded under-cap family/source lane rather than more floor work. This run added fetch-window
+  controls to `scripts/source_non_heme_iron_2og_family.py` and
+  `src/catalytic_earth/non_heme_iron_2og_sourcing.py`: `--record-offset-per-lane` and
+  `--record-limit-per-lane`. These are source-fetch controls only; they do not alter EC scope,
+  mechanism corroboration, trust tiers, novelty, caps, or predictive evidence.
+
+  Applied rows: six bounded windows over `non_heme_iron_2og_dioxygenase` applied **51** bronze
+  rows: `80:10` (+17), `90:10` (+13), `100:10` (+15), `110:10` (+3), `120:10` (+2), and
+  `130:10` (+1). The family moved **172 -> 223** under the non-confusable cap **250**; **27** cap
+  slots remain. The final windows were low-yield, so any continuation should first preview
+  `140:10` non-destructively.
+
+  External bronze is now **6932**; combined label surface is **7634**. External-only split is
+  **5708** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+  **5938**, leaving **4062** to 10k by that surface convention. Strict counters remain separate:
+  **positive_bronze_count 5921**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+  **silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+  Guardrails held: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; all new rows are bronze,
+  automation-curated, `uniprot:*`, `source_tier_0`, and have `predictive_evidence []`.
+  EC/name/Rhea/keyword/prose/feature handles remain excluded-context admission evidence only and
+  EC is never counted. Row audit
+  `artifacts/v3_non_heme_iron_2og_windowed_row_guardrail_audit_current702_20260613.json` found
+  **0** problems across **223** non-heme 2OG rows. Coverage audit reports **35** fingerprints,
+  Gini **0.135**, holes `[]`, under-floor `[]`, next-batch floor deficit **0**, and only
+  `metal_dependent_hydrolase` over-cap. Novelty replay over **6932** expansion rows reports
+  decisions `{'admit': 6476, 'reject': 47, 'throttle': 409}` and would-not-readmit **456**
+  (0.0658).
+
+  Next action: preview the next non-heme 2OG slice (`--record-offset-per-lane 140
+  --record-limit-per-lane 10`) only if a bounded cap-fill is still the best 10k-path use of time;
+  otherwise scout a clean new family/source lane. Do not count these bronze rows as silver or
+  projected rows.
 - **TIER-2 FLOOR EXPANSION CAPPED (2026-06-13 automation).**
   The latest run added an explicit trust-tier parameter to the existing cofactor/EC
   disambiguation path and wired opt-in unreviewed UniProt tier-2 lanes for the three remaining

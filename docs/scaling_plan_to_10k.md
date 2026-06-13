@@ -13,6 +13,30 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: non-heme iron 2OG windowed extension applied.** After all former
+floor lanes were closed and capped, the run used an existing under-cap, mechanism-first family lane
+instead of relaxing admission. It added source-fetch-only window controls to the non-heme 2OG
+runner (`--record-offset-per-lane` and `--record-limit-per-lane`) and applied six bounded windows
+for `non_heme_iron_2og_dioxygenase`: `80:10` (+17), `90:10` (+13), `100:10` (+15), `110:10`
+(+3), `120:10` (+2), and `130:10` (+1). Net movement was **172 -> 223** (+51) under the
+non-confusable cap **250**.
+
+External bronze is now **6932**; combined label surface is **7634**. External-only split is
+**5708** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+**5938**, leaving **4062** to 10k by that surface convention. The strict counter ledger remains
+separate: **positive_bronze_count 5921**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**. Frozen current702 stayed
+byte-unchanged with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`;
+growth went only to `data/registries/external_bronze_labels.json`.
+
+Fresh audits: row guardrail audit over all **223** non-heme 2OG rows found **0** problems.
+Coverage audit reports **35** fingerprints, Gini **0.135**, holes `[]`, under-floor `[]`, only
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **0**. Novelty replay over
+**6932** expansion rows reports decisions `{'admit': 6476, 'reject': 47, 'throttle': 409}` and
+would-not-readmit **456** (0.0658). The final windows tapered in yield; next continuation, if any,
+should preview `--record-offset-per-lane 140 --record-limit-per-lane 10` and apply only if the same
+novelty/trust-tier/cap/leakage gates pass. Otherwise choose a clean new family/source scout.
+
 **2026-06-13 automation update: tier-2 PfkB/biotin/glycoside floors closed and capped.** The
 latest run added a source-trust tier parameter to the existing cofactor/EC disambiguation path and
 opt-in unreviewed UniProt tier-2 lanes for `glycoside_hydrolase`,

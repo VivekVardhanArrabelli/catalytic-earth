@@ -3,6 +3,59 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: NON-HEME IRON 2OG WINDOWED BRONZE EXTENSION APPLIED
+
+Decision: after all former floor families were closed at cap, continue the 10k path with an
+existing under-cap mechanism-first family lane rather than relaxing admission or repeating capped
+lanes. `non_heme_iron_2og_dioxygenase` was **172/250** with prior source-supply evidence and a
+duplicate-heavy first-window probe. The run added source-window controls to the non-heme 2OG source
+runner: `--record-offset-per-lane` and `--record-limit-per-lane`. These controls are source-fetch
+selectors only and do not change scope, admission, trust-tier evaluation, novelty, caps, or
+predictive evidence. EC/name/Rhea/keyword/prose/feature handles remain excluded-context admission
+evidence only; EC is never counted as a mechanism corroborator and `predictive_evidence` remains
+`[]`.
+
+Apply results:
+- window `80:10`: fetched **20**, mechanism **18**, applied **17**, throttled **1**, skipped **2**.
+- window `90:10`: fetched **20**, mechanism **13**, applied **13**, skipped **7**.
+- window `100:10`: fetched **18**, mechanism **15**, applied **15**, skipped **3**.
+- window `110:10`: fetched **10**, mechanism **3**, applied **3**, skipped **7**.
+- window `120:10`: fetched **10**, mechanism **2**, applied **2**, skipped **8**.
+- window `130:10`: fetched **10**, mechanism **1**, applied **1**, skipped **9**.
+
+Counts after apply: external bronze **6881 -> 6932**; combined label surface **7583 -> 7634**.
+`non_heme_iron_2og_dioxygenase` moved **172 -> 223** under cap **250**. External-only split is
+**5708** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+**5938**, leaving **4062** to 10k by that surface convention. Strict counters remain separate:
+**positive_bronze_count 5921**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+Guardrails held: all **51** added rows are bronze, automation-curated, `uniprot:*`,
+`source_tier_0`, with `predictive_evidence []`; dedup and novelty ran against frozen current702 and
+the external bronze registry; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; row audit found **0**
+problems across all **223** non-heme 2OG rows. Coverage audit reports **35** fingerprints, Gini
+**0.135**, holes `[]`, under-floor `[]`, over-cap `['metal_dependent_hydrolase']`, and next-batch
+floor deficit **0**. Novelty replay reports **6932** expansion rows, decisions
+`{'admit': 6476, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0658).
+
+Follow-on decision: this lane still has **27** cap slots, but yield tapered after offset 100. If
+continued, preview `--record-offset-per-lane 140 --record-limit-per-lane 10` first and apply only
+if novelty/trust-tier/cap/leakage gates pass. If the next window is redundant or zero-yield, scout
+a clean new family/source lane rather than padding balanced families.
+
+References:
+`artifacts/v3_non_heme_iron_2og_window80_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window90_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window100_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window110_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window120_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window130_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_windowed_row_guardrail_audit_current702_20260613.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_non_heme_2og_windowed_applied.json`,
+and
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_non_heme_2og_windowed_applied.json`.
+
 ## 2026-06-13: TIER-2 PFKB/BIOTIN/GLYCOSIDE FLOOR EXPANSION CAPPED
 
 Decision: use unreviewed UniProt only through an explicit tier-2 source path, not by relaxing the

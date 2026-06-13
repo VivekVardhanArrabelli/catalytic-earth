@@ -1,5 +1,62 @@
 # Handoff
 
+## Session run - Non-heme iron 2OG windowed bronze extension applied (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. The latest state docs said all
+  former floor lanes were closed and capped, so this run chose a bounded under-cap 10k-path lane
+  with existing mechanism-first admission: `non_heme_iron_2og_dioxygenase` was **172/250** with
+  reviewed supply and a prior first-window no-yield duplicate probe. To avoid refetching the
+  applied prefix, this run added source-window controls to the non-heme 2OG runner:
+  `--record-offset-per-lane` and `--record-limit-per-lane`. These are fetch-only controls and do
+  not change disambiguation, trust-tier evaluation, novelty, caps, or leakage behavior.
+- Applied gated bronze rows:
+  - window `80:10`: fetched **20**, mechanism **18**, novelty-applied **17**, throttled **1**,
+    skipped **2**.
+  - window `90:10`: fetched **20**, mechanism **13**, novelty-applied **13**, skipped **7**.
+  - window `100:10`: fetched **18**, mechanism **15**, novelty-applied **15**, skipped **3**.
+  - window `110:10`: fetched **10**, mechanism **3**, novelty-applied **3**, skipped **7**.
+  - window `120:10`: fetched **10**, mechanism **2**, novelty-applied **2**, skipped **8**.
+  - window `130:10`: fetched **10**, mechanism **1**, novelty-applied **1**, skipped **9**.
+  Net family movement: `non_heme_iron_2og_dioxygenase` **172 -> 223** (+51), still below the
+  non-confusable cap **250** with **27** cap room. Yield tapered after offset 100, so the next
+  bounded continuation should inspect `--record-offset-per-lane 140 --record-limit-per-lane 10`
+  before applying.
+- Net registry change: external bronze **6881 -> 6932** (+51); combined label surface
+  **7583 -> 7634**. External-only split is **5708** seed-fingerprint rows and **1224** OOS rows.
+  Combined seed-fingerprint surface is **5938**, leaving **4062** to 10k by that surface
+  convention. Strict counters remain separate: `positive_bronze_count=5921`,
+  `oos_bronze_count=1696`, `silver_ready_count=0`, `silver_confirmed_count=17`,
+  `projected_provisional_count=0`.
+- Guardrails verified: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`; all added rows are `tier=bronze`,
+  `review_status=automation_curated`, `entry_id` namespace `uniprot:*`, `source_tier_0`, and have
+  `predictive_evidence []`. EC/name/Rhea/keyword/prose/feature handles remain excluded-context
+  admission evidence only; EC is never counted as a mechanism corroborator. Row audit
+  `artifacts/v3_non_heme_iron_2og_windowed_row_guardrail_audit_current702_20260613.json` /
+  `work/non_heme_iron_2og_windowed_row_guardrail_audit_current702_20260613.md` found **0**
+  problems across all **223** non-heme 2OG rows.
+- Fresh audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_non_heme_2og_windowed_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_non_heme_2og_windowed_applied.md`:
+  **7634** combined, **6932** expansion, fingerprint Gini **0.135**, holes `[]`, under-floor `[]`,
+  next-batch floor deficit **0**, over-cap `['metal_dependent_hydrolase']`. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_non_heme_2og_windowed_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260613_non_heme_2og_windowed_applied.md`:
+  **6932** expansion rows, decisions `{'admit': 6476, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0658).
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_non_heme_iron_2og_sourcing.py tests/test_external_source_ingestion.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_coverage_redundancy_audit.py tests/test_leakage_closure.py tests/test_source_only_contract.py -q`
+  -> **314 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels). JSON parse
+  checks for touched registry/artifacts and `git diff --check` passed.
+- Next exact action: if continuing this lane, run a non-destructive preview for
+  `scripts/source_non_heme_iron_2og_family.py --max-records-per-lane 180 --record-offset-per-lane 140 --record-limit-per-lane 10 --cap-ceiling 250`
+  with fresh artifact/report names, inspect novelty/trust-tier/cap/leakage fields, and apply only
+  if it admits clean rows. If yield is zero or redundant, switch to a clean new family/source scout
+  rather than broad cap padding. Keep EC scope-only and keep `predictive_evidence []`.
+
 ## Session run - Tier-2 floor expansion capped (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
