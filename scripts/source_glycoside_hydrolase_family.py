@@ -60,6 +60,24 @@ def main() -> int:
         help="which broadened-handle families to source; default = glycoside_hydrolase",
     )
     parser.add_argument("--max-records-per-lane", type=int, default=80)
+    parser.add_argument(
+        "--record-offset-per-lane",
+        type=int,
+        default=0,
+        help="skip this many returned UniProt rows per lane before entry/Rhea fetch",
+    )
+    parser.add_argument(
+        "--record-limit-per-lane",
+        type=int,
+        default=None,
+        help="process at most this many returned UniProt rows per lane after the offset",
+    )
+    parser.add_argument(
+        "--query-pages-per-lane",
+        type=int,
+        default=1,
+        help="fetch this many UniProt search pages per lane before applying the row window",
+    )
     parser.add_argument("--cap-ceiling", type=int, default=DEFAULT_GLYCOSIDE_HYDROLASE_CAP_CEILING)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
@@ -89,6 +107,9 @@ def main() -> int:
         report_path=Path(args.report),
         families=tuple(args.families),
         max_records_per_lane=args.max_records_per_lane,
+        record_offset_per_lane=args.record_offset_per_lane,
+        record_limit_per_lane=args.record_limit_per_lane,
+        query_pages_per_lane=args.query_pages_per_lane,
         cap_ceiling=args.cap_ceiling,
     )
 

@@ -1,0 +1,2582 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:O34645",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 170
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 2
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 148
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 169
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 199
+            }
+          ],
+          "binding_residue_count": 4,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "name": "Mn(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:57540",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "name": "NAD(+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.22"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.22",
+              "evidence_codes": null,
+              "reaction": null,
+              "rhea_id": "RHEA:21112",
+              "source": "rhea_ec_lookup"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MKKITFIGAGSTIFAKNVLGDCLLTEALNGFEFALYDIDPKRLQESQLMLENLRDRYNPSVAINSYDDRKLALQNAGYVINAIQVGGYKPSTVIDFEIPKRYGLRQTIADTVGIGGIFRSLRTIPVLFDIAKDMEEMCPDAWFLNYTNPMATLTGAMLRYTNIKTIGLCHSVQVCTKDLFKALGMEHDGIEERIAGINHMAWLLEVKKDGTDLYPEIKRRAKEKQKTKHHDMVRFELMDKFGYYVTESSEHNAEYHPYFIKRNYPELISELQIPLDEYPRRCVKQIENWEKMRDDIVNNKNLTHERSKEYGSRIIEAMETNEPFTFGGNVLNTGLITNLPSKAVVEVTCVADRKKITPCFAGELPEQLAALNRTNINTQLMTIEAAVTRKKEAVYQAAMLDPHTSAELSMKDIISMCDDLFAAHGDWLPEYK",
+          "sequence_length": 432,
+          "sequence_sha256": "1c5ef0e651a7eac961d395760e488d7058f48399f57915f626d126b52399a207",
+          "source": "reviewed_uniprot",
+          "source_accession": "O34645"
+        },
+        "source_provenance": {
+          "accession": "O34645",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.22']",
+          "organism": "Bacillus subtilis (strain 168)",
+          "protein_name": "Alpha-galactosidase (EC 3.2.1.22) (Melibiase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 432,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "355be10231317e6b9036601c861412ea1da95b43b464f450f57ded974958ff66",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "9e42327e367b249064e852e8c1c79520ad234db48f097ae9f37b7d2b43e4eaf4",
+            "uniprot_search_row_sha256": "ba1ca1817a62d4815c50126bdeb6a83e1c3d186dba32a3d9418bbffa526475a7"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O34645"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O34645-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O34645 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.22'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:O88941",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 580
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 804
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.106"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.106",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N(4)-(alpha-D-Glc-(1->2)-alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose",
+              "rhea_id": "RHEA:55988",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.106",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N(4)-(alpha-D-Glc-(1->2)-alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose",
+              "rhea_id": "RHEA-COMP:12806",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.106",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N(4)-(alpha-D-Glc-(1->2)-alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + H2O = N(4)-(alpha-D-Glc-(1->3)-alpha-D-Glc-(1->3)-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] + beta-D-glucose",
+              "rhea_id": "RHEA-COMP:14355",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MARGERRRRAAAAEGARPLERARGAGRRDGRAGGARGSAGGAALAVVVLALAFGLSGRWVLAWLGVRRALTLHPAPSALPPDSSSPAVAPEFFWGTYRPHVYFGMKTRSPKPLLTGLMWAQQGATPGTPPKLRHTCEQGDGVGPYGWEFHDGLSFGRQHIYDGALRLTTEFVKRSGGHHGGDWSWRVTVEPQASGTPSFPLVSLFFYVVTDGQEVLLPEVGAKGQLKFISGHTSELGDFRLTLLPPTTPGDTVPKHGSYNVFWSSNPGLPLLTDMVKSHLNSWFHHRPPGASPERYLGLPGSLKWEERGPSGQGQFLVQQVTLKAPFSVEFVFESGSARTGRDQASEQLVGGQLTRALESHAAAFKERFERTFQLKEKGLSPEEQALGQVALSGLLGGIGYFYGQGLVLPDTGMEGSEQKMDPSLFPPVPLFSGVPSRSFFPRGFLWDEGFHQLVVQRWDPHLTREALGHWLGLLNADGWIGREQILGDEARARVPPEFLVQRAAHANPPTLLLPVIHMLEGRAPEDLAFLRRAFPRLHAWFSWLHQSQAGPVPLSYRWRGRDLALPTLLNPKTLPSGLDDYPRASHPSAAERHLDLRCWVTLGARVLSQLAEELGETEAAAELGPLAASLEAAGSLDELHWAPELGVFADFGNHTKAVQLKSRPPQGLVRVVGRPPARLQYVDALGYVSLFPLLLQLLEPSSPRLGPLLDVLADSRHLWSPFGLRSLSASSLFYKQRNTEHDPPYWRGAVWLNINYLALGALHHYGRVEGPHKVQAAKLYRELRANVVSNVRQQYQATGFLWEQYSDQDGRGMGCRPFQGWTSLVLLIMAEEY",
+          "sequence_length": 834,
+          "sequence_sha256": "f784c17d6388c9b7e5364e78af4fc5de3900e5bec84cf0b098604218e0348585",
+          "source": "reviewed_uniprot",
+          "source_accession": "O88941"
+        },
+        "source_provenance": {
+          "accession": "O88941",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.106']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Mannosyl-oligosaccharide glucosidase (EC 3.2.1.106) (Glycoprotein-processing glucosidase I)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 834,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "48926f5f95542c7f2e2fa49607283ab837e65f6b08bad14d32fab892c1bf1a56",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "11b0576b65a1b8a86d12d0e2f49b95b74b869480364c5e14e225a6e5efe1fd71",
+            "uniprot_search_row_sha256": "f82e41949523315d689494b0c2d7eea481f7b4939270ead4265267440555ed46"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O88941"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O88941-F1"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O88941 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.106']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P40884",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 210
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 272
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "SITE",
+              "feature_type": "Site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 347
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.10"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.10",
+              "evidence_codes": null,
+              "reaction": null,
+              "rhea_id": "RHEA:68864",
+              "source": "rhea_ec_lookup"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MTIIHNPKWWKEATVYQIYPASFKDSNNDGWGDLAGITSKLDYVKELGVDAIWVCPFYDSPQEDMGYDIANYEKVWPRYGTNEDCFQMIEEAHKRGIKVIVDLVINHCSEEHEWFKESRSSKANPKRDWFFWRPPKGYDEKGNPIPPNNWRSFFGGSAWRYDEKTGEFFLHVFALGQPDFNWENEECRKAIYDSSVGYWLRHNVDGFRIDVGSMYSKVEGLPDAPITDPTVPYQKGTEFFINGPRIHEYHKEMHNYMLSQVPEGKEIMTVGEVGIGNEDDFRVYTSAKEGELNMMFNFKHTSVGENPKCKYELIPFTLKDFKLALAESFLFIENTDCWSTIYLENHDQPRSVSRFGSDSPKWREISSKMLATLIISLTGTVFIYQGQELGMPNFKNRKIEQIKCVEGTGTYAAIKRDYGEDSEKMKKFFEALALISRDHGRTPFPWSADEPSAGFSKDAKPWIDMNESFRDGINAEAELKDKNSVFFFWKKALQVRKEHKDILVYGHNFQFIDLDNDKLFMFTKDTDNKKMFAVFNFSSDNTDFSVPDNEASYTMFFGNYANSNGDSRTLQPWEGRLYLLK",
+          "sequence_length": 581,
+          "sequence_sha256": "097beabfbc8ff61e0e88ddd4cc61c3095c725a87ce5816362cd4e3ac25472091",
+          "source": "reviewed_uniprot",
+          "source_accession": "P40884"
+        },
+        "source_provenance": {
+          "accession": "P40884",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.10']",
+          "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+          "protein_name": "Oligo-1,6-glucosidase IMA5 (EC 3.2.1.10) (Alpha-glucosidase) (Isomaltase 5)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 581,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "f657e13ac082c72e187572acd3eafef20c24a69e25a32454fef9d3f017b6830f",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "638d9c3e3da51b5c0bf3904ce517824ed198ac72e42ff58a7cbad398f5ec8008",
+            "uniprot_search_row_sha256": "b8f0a20d0d736d62a52a1c21c702dab1c969e58fec00ac60873741840eaf255e"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P40884"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P40884-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P40884 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.10']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q46829",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 180
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 377
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.86"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.86",
+              "evidence_codes": [],
+              "reaction": "6-phospho-beta-D-glucosyl-(1->4)-D-glucose + H2O = D-glucose 6-phosphate + D-glucose",
+              "rhea_id": "RHEA:10772",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MIVKKLTLPKDFLWGGAVAAHQVEGGWNKGGKGPSICDVLTGGAHGVPREITKEVLPGKYYPNHEAVDFYGHYKEDIKLFAEMGFKCFRTSIAWTRIFPKGDEAQPNEEGLKFYDDMFDELLKYNIEPVITLSHFEMPLHLVQQYGSWTNRKVVDFFVRFAEVVFERYKHKVKYWMTFNEINNQRNWRAPLFGYCCSGVVYTEHENPEETMYQVLHHQFVASALAVKAARRINPEMKVGCMLAMVPLYPYSCNPDDVMFAQESMRERYVFTDVQLRGYYPSYVLNEWERRGFNIKMEDGDLDVLREGTCDYLGFSYYMTNAVKAEGGTGDAISGFEGSVPNPYVKASDWGWQIDPVGLRYALCELYERYQRPLFIVENGFGAYDKVEEDGSINDDYRIDYLRAHIEEMKKAVTYDGVDLMGYTPWGCIDCVSFTTGQYSKRYGFIYVNKHDDGTGDMSRSRKKSFNWYKEVIASNGEKL",
+          "sequence_length": 479,
+          "sequence_sha256": "aa329765509f63d0bf0e477ec765914f4fb13eaa669df3c4c44c218d7bb7a278",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q46829"
+        },
+        "source_provenance": {
+          "accession": "Q46829",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.86']",
+          "organism": "Escherichia coli (strain K12)",
+          "protein_name": "6-phospho-beta-glucosidase BglA (EC 3.2.1.86) (Phospho-beta-glucosidase A)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 479,
+          "source_evidence_codes": [
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "1defc2a8605de607cca221ad2589c0328237f7c2571d7c74ee29a49ebbf7eb2a",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "5f9e0c56ae7f8b805bcd03005cf0f6fa90858a45d6264bf0df877d8ca4216305",
+            "uniprot_search_row_sha256": "6ac0b4724a5836687629023e543e7e70f092512c0607b9d5bc8dd5089e4bcf82"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q46829"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "2XHY"
+          ],
+          "structure_handle": "2XHY"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q46829 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.86']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q08295",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 215
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 277
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "SITE",
+              "feature_type": "Site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 352
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.10"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.10",
+              "evidence_codes": null,
+              "reaction": null,
+              "rhea_id": "RHEA:68864",
+              "source": "rhea_ec_lookup"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MTISSAHPETEPKWWKEATIYQIYPASFKDSNNDGWGDMKGIASKLEYIKELGADAIWISPFYDSPQDDMGYDIANYEKVWPTYGTNEDCFALIEKTHKLGMKFITDLVINHCSSEHEWFKESRSSKTNPKRDWFFWRPPKGYDAEGKPIPPNNWRSYFGGSAWTFDEKTQEFYLRLFCSTQPDLNWENEDCRKAIYESAVGYWLDHGVDGFRIDVGSLYSKVAGLPDAPVIDENSKWQPSDPFTMNGPRIHEFHQEMNKFIRNRVKDGREIMTVGEMQHATDETKRLYTSASRHELSELFNFSHTDVGTSPKFRQNLIPYELKDWKVALAELFRYVNGTDCWSTIYLENHDQPRSITRFGDDSPKNRVISGKLLSVLLVSLSGTLYVYQGQELGEINFKNWPIEKYEDVEVRNNYDAIKEEHGENSKEMKRFLEAIALISRDHARTPMQWSREEPNAGFSGPNAKPWFYLNESFREGINAEDESKDPNSVLNFWKEALRFRKAHKDITVYGYDFEFIDLDNKKLFSFTKKYDNKTLFAALNFSSDSIDFTIPNNSSSFKLEFGNYPRSEVDASSRTLKPWEGRIYISE",
+          "sequence_length": 589,
+          "sequence_sha256": "d64011c9c94211e2b7d86f4446d98280ad6146a5a6686cc72fd8a37e5805fc1d",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q08295"
+        },
+        "source_provenance": {
+          "accession": "Q08295",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.10']",
+          "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+          "protein_name": "Oligo-1,6-glucosidase IMA2 (EC 3.2.1.10) (Alpha-glucosidase) (Isomaltase 2)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 589,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "f657e13ac082c72e187572acd3eafef20c24a69e25a32454fef9d3f017b6830f",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "f4175543c76fd8c3a8e5c4514b7ad4e025667edc41ea655460b0a70cedcefa73",
+            "uniprot_search_row_sha256": "5673593748ae692ded96d03eb048fd833a54c938ef5c5982d3baf6c20a6ee44a"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q08295"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q08295-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q08295 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.10']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P40566",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 515
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 594
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "ergosteryl 3-beta-D-glucoside + H2O = ergosterol + D-glucose",
+              "rhea_id": "RHEA:24640",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MPAKIHISADGQFCDKDGNEIQLRGVNLDPSVKIPAKPFLSTHAPIENDTFFEDADKVSFINHPLVLDDIEQHIIRLKSLGYNTIRLPFTWESLEHAGPGQYDFDYMDYIVEVLTRINSVQQGMYIYLDPHQDVWSRFSGGSGAPLWTLYCAGFQPANFLATDAAILHNYYIDPKTGREVGKDEESYPKMVWPTNYFKLACQTMFTLFFGGKQYAPKCTINGENIQDYLQGRFNDAIMTLCARIKEKAPELFESNCIIGLESMNEPNCGYIGETNLDVIPKERNLKLGKTPTAFQSFMLGEGIECTIDQYKRTFFGFSKGKPCTINPKGKKAWLSAEERDAIDAKYNWERNPEWKPDTCIWKLHGVWEIQNGKRPVLLKPNYFSQPDATVFINNHFVDYYTGIYNKFREFDQELFIIIQPPVMKPPPNLQNSKILDNRTICACHFYDGMTLMYKTWNKRIGIDTYGLVNKKYSNPAFAVVLGENNIRKCIRKQLSEMQKDAKSMLGKKVPVFFTEIGIPFDMDDKKAYITNDYSSQTAALDALGFALEGSNLSYTLWCYCSINSHIWGDNWNNEDFSIWSPDDKPLYHDTRAKTPTPEPSPASTVASVSTSTSKSGSSQPPSFIKPDNHLDLDSPSCTLKSDLSGFRALDAIMRPFPIQIHGRFEFAEFNLCNKSYLLKLVGKTTPEQITVPTYIFIPRHHFTPSRLSIRSSSGHYTYNTDYQVLEWFHEPGHQFIEICAKSKSRPNTPGSDTSNDLPAECVIS",
+          "sequence_length": 764,
+          "sequence_sha256": "83f80858bb87e5027591f4231a66113c9b8555baf313d3cb563d43bc29942d6d",
+          "source": "reviewed_uniprot",
+          "source_accession": "P40566"
+        },
+        "source_provenance": {
+          "accession": "P40566",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.-']",
+          "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+          "protein_name": "Ergosteryl-beta-glucosidase (EC 3.2.1.-)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 764,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "3d3e1bc3c27e5e36923dc575237edd00cbcca00bb5b245ac785f30f5ff16efc3",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "251c7803f2176c3bc22dbfe5fad2ddf3fdb881ce7d36aacaa6e14cd586447956",
+            "uniprot_search_row_sha256": "6d77175b2fcc6306cf162020f67943c4d1b35cdc26e94cbb0601371b2bcd663e"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P40566"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P40566-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P40566 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q18788",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 470
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 580
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29108",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Ca(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.1.113"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA:56008",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14356",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA:56028",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14358",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.113",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose",
+              "rhea_id": "RHEA-COMP:14367",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MKTVRFNKQALAILAACFIFLLCVVCYFSASSESHNAVVVGERARGHIAVRDVENRHLAEEKHAVIHAKTVGKIERVVSQEKVEILRPARVESKPPGEKTSTEPEETGVGKAPIQTSEGLEKLIGKIHYENKDEENDLRRQKVKEMMIHAWEGYKNYSWGANELRPMSKKPNSQNIFGGSQMPATIVDAADTLFIMDLKDKYKEARDYIENNFSMAKSTSTLSVFETTIRFLGGLLSLYALTQESFYIEKAREVGEALLPAFNTPSGIPKSNLDVASKHASNYGWANGGQSILSEIGSLHLEFLYLSRISNAPIFEKKVKKVRDALEKAEKPNGLYSNYINPDTGKFTGSHMSLGALGDSFYEYLIKSYVQSNYTDTQAKNMYWDVSDAIQKHMIKVSKQSNLTYTVELNNGQAQHKMGHLACFVPGMFALQAINEDTEEEKLRIMTLAEELAKTCHESYIRSETHIGPEMFYFNERDEATSKHSENGYIQRPEVIEGWFYLWRLTGKTMYRDWVWDAVQAIEKYCRVDSGFTGLQNVYNPKAGREDVMQSFFLAEFLKYAYLTFADESLISLDKWVFNTEAHPVPVLTN",
+          "sequence_length": 590,
+          "sequence_sha256": "715bb1bd322d5f9725c0b30ab75291b16d43112cfdfb7e9cd1abd2d002d49ae0",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q18788"
+        },
+        "source_provenance": {
+          "accession": "Q18788",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.113']",
+          "organism": "Caenorhabditis elegans",
+          "protein_name": "Mannosyl-oligosaccharide 1,2-alpha-mannosidase mans-2 (EC 3.2.1.113) (Processing alpha-1,2-mannosidase C52E4.5) (Alpha-1,2-mannosidase C52E4.5)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 590,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "fe9122ebf17e75989ef948d9f0c26c98fa12c879872a4e37dd56581be9573944",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "776b9d1892e5953fbf6046ed88eaf0ee0c800eb242d0d221ea490c558a1ef823",
+            "uniprot_search_row_sha256": "e018c486709d4c7a56ba2c83818a9cb0838c1647e1a363ffbe948a3cc7200575"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q18788"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q18788-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q18788 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.113'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q58DH9",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 8,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 156
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 217
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 78
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 154
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 188
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 213
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 217
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 322
+            }
+          ],
+          "binding_residue_count": 5,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.49"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a neolactoside IV(3)-alpha-GalNAc,IV(2)-alpha-Fuc-nLc4Cer(d18:1(4E)) + H2O = a neolactoside IV(2)-alpha-Fuc-nLc4Cer(d18:1(4E)) + N-acetyl-alpha-D-galactosamine",
+              "rhea_id": "RHEA:48212",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a neolactoside IV(3)-alpha-GalNAc,IV(2)-alpha-Fuc-nLc4Cer(d18:0) + H2O = a neolactoside IV(2)-alpha-Fuc-nLc4Cer(d18:0) + N-acetyl-alpha-D-galactosamine",
+              "rhea_id": "RHEA:49304",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a globoside IV3GalNAc-Gb4Cer + H2O = a globoside Gb4Cer + N-acetyl-alpha-D-galactosamine",
+              "rhea_id": "RHEA:48412",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MLLKTVLLLALASQVLVLENGLLRKPPMGWLAWERFRCNIDCSEDPKNCISEQLFMEMADRLAQDGWRDLGYVYLNIDDCWIGGRDAKGNLVPDRKRFPHGIAFLADYAHSLGLKLGIYEDLGNFTCMGYPGTTLDKVVQDAQTFAEWKVDMLKLDGCYSTPQERAEGYPKMAAALNATGRPIAFSCSWPAYEGGLPPKVNYTLLADICNLWRNFDDIQDSWRSVLSVLDWFVTHQDVLQPIAGPGHWNDPDMLLIGNFGLSFEQAQAQMALWTVLAAPLFMSTDLRTISAQNMDILQNPLMIKINQDPLGIQGRRILKEKSHIEVYLRPLASEASAIVFFSRRMDMPYHYHSSLARLNFSSSVVYEAQDVYTGDIISGLQDKTNFTVIINPSGVVMWYLYPIRKLEIPQQ",
+          "sequence_length": 411,
+          "sequence_sha256": "23f6171af5b473142d5fc85ce14459e9d4e8cd2afe631d0706bca17dc67f2fac",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q58DH9"
+        },
+        "source_provenance": {
+          "accession": "Q58DH9",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.49']",
+          "organism": "Bos taurus (Bovine)",
+          "protein_name": "Alpha-N-acetylgalactosaminidase (EC 3.2.1.49) (Alpha-galactosidase B)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 411,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "1aa65a66230569c5c2549e3e91a2eac9e37778bc386515224099fe2192eb03d3",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "98b9697711b21f9509a2c94d352c2c46517dffa36c51a2deb3d44b0d5f16068c",
+            "uniprot_search_row_sha256": "7f27da8b7e620f5487eeaa932fd14d4fcb34e6d59df0dc3a72a6d97b763d1157"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q58DH9"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q58DH9-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q58DH9 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.49']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q66H12",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 9,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 156
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 217
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 78
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 154
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 188
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 213
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 217
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 322
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 332
+            }
+          ],
+          "binding_residue_count": 5,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.49"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a neolactoside IV(3)-alpha-GalNAc,IV(2)-alpha-Fuc-nLc4Cer(d18:1(4E)) + H2O = a neolactoside IV(2)-alpha-Fuc-nLc4Cer(d18:1(4E)) + N-acetyl-alpha-D-galactosamine",
+              "rhea_id": "RHEA:48212",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a neolactoside IV(3)-alpha-GalNAc,IV(2)-alpha-Fuc-nLc4Cer(d18:0) + H2O = a neolactoside IV(2)-alpha-Fuc-nLc4Cer(d18:0) + N-acetyl-alpha-D-galactosamine",
+              "rhea_id": "RHEA:49304",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a globoside IV3GalNAc-Gb4Cer + H2O = a globoside Gb4Cer + N-acetyl-alpha-D-galactosamine",
+              "rhea_id": "RHEA:48412",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MLQKTVLLLALVAQVLMLENGLLRTPPMGWLAWERFRCNINCEEDPKNCISERLFMEMADRLAQDGWRDLGYVYLNIDDCWIGGRDATGRLIPDPKRFPHGIAFLADYAHSLGLKLGIYEDMGKMTCMGYPGTTLDKVELDAATFAEWKVDMLKLDGCYSTPKERAEGYPKMAAALNATGRPIAFSCSWPAYEGGLPPKVNYTEVAGTCNLWRNYKDIQDSWKSVLSILDWFVKHQDILQPVSGPGHWNDPDMLLIGNFGLSFDESRAQMALWTVLAAPLFMSTDLRTISPQNIDILQNPLLIKINQDPLGIQGRLIFKSKSHIEVFKRNLSDDASALVFFSRRTDMPYHFHCSLLELNYPKGSVYEGQNVFTGDIISGLHPETNFTVIINPSGVVMWYLYPVKGLGIYTMMSQL",
+          "sequence_length": 415,
+          "sequence_sha256": "35eb33cbfcacd4abcb3dea5a41e91686665d9f169b5ef0195989e95ba144b34f",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q66H12"
+        },
+        "source_provenance": {
+          "accession": "Q66H12",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.49']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Alpha-N-acetylgalactosaminidase (EC 3.2.1.49) (Alpha-galactosidase B)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 415,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "1aa65a66230569c5c2549e3e91a2eac9e37778bc386515224099fe2192eb03d3",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "22adb7e27f19b9afb2c63392e064ab4b31eb8c29cab31da851b98666c40fad9c",
+            "uniprot_search_row_sha256": "62cf6cdc5dff4708e5ae998d2483667125c4deb65f05ab5795e7e140e069e78f"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q66H12"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q66H12-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q66H12 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.49']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:B2UQG6",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 8,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000305",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 190
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000305",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 260
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000305",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 327
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000305",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:506227",
+              "ligand_name": "N-acetyl-D-glucosamine",
+              "position": 161
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000305",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:506227",
+              "ligand_name": "N-acetyl-D-glucosamine",
+              "position": 326
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000305",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:506227",
+              "ligand_name": "N-acetyl-D-glucosamine",
+              "position": 393
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000305",
+                "ECO:0007744"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:506227",
+              "ligand_name": "N-acetyl-D-glucosamine",
+              "position": 420
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000305",
+                "ECO:0007744"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:506227",
+              "ligand_name": "N-acetyl-D-glucosamine",
+              "position": 474
+            }
+          ],
+          "binding_residue_count": 5,
+          "catalytic_residue_count": 3,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.52",
+            "3.2.1.53"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a beta-D-GalNAc-(1->3)-alpha-D-Gal-(1->3)-[alpha-L-Fuc-(1->2)]-beta-D-Gal-(1->4)-beta-D-GlcNAc derivative + H2O = an alpha-D-Gal-(1->3)-[alpha-L-Fuc-(1->2)]-beta-D-Gal-(1->4)-beta-D-GlcNAc derivative + N-acetyl-D-galactosamine",
+              "rhea_id": "RHEA:82815",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MISKCTFSATVFSLFSLCWGAPSSPVLEAPHTIPLPAAMRVQTGESGFSLKNGVRLPEKNPLSRQAERIFRDNGINTALVKNNADIIFTEDASLGREGYRLAVTPDSISIASGSVNGTLYALQSLVQSIAADKNGAPALPRMDVKDQPRFSWRGLMVDSCRHMMPVRDIKKVLDLMERYKFNTLHWHLTDDQGWRLPIAKYPRLTTVGGARAQSPVIGNRNKGDGIPYSGHYTADEIRDVVRYARDRGITVIPEVEMPGHASAAIAAYPELGNTDIPGYEPRVQETWGVHSYTFSPTEKTFRFLEDVIDEICALFPDSPYIHIGGDEAPKNQWKQSPTAQRVMKDNGLANEHELQSYFIRRVEKMINNRGKRLIGWDEIQEGGLSPTATMMVWRSQMPHIAAQALAQGNDIVMTPNSHLYFDYDQGPGKPAAPEYETINNNQLTWQHVYGLEPVPQGTPREREKQVLGCQANIWTEYIPNLPKWEYHVFPRALALAEVAWTPQELKNEKDFRKRLDRQLPFLDARGVNYKRPDNGAPAQPKAVITRERR",
+          "sequence_length": 549,
+          "sequence_sha256": "96a92495bc1bf2a842e3815c0ba006198653b43c8694075fb345e6e0c0ce9e63",
+          "source": "reviewed_uniprot",
+          "source_accession": "B2UQG6"
+        },
+        "source_provenance": {
+          "accession": "B2UQG6",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.52', '3.2.1.53']",
+          "organism": "Akkermansia muciniphila (strain ATCC BAA-835 / DSM 22959 / JCM 33894 / BCRC 81048 / CCUG 64013 / CIP 107961 / Muc)",
+          "protein_name": "Beta-N-acetylhexosaminidase Amuc_0868 (EC 3.2.1.52) (Beta-N-acetylgalactosaminidase Amuc_0868) (EC 3.2.1.53) (Beta-N-acetylhexosaminidase Am0868)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 549,
+          "source_evidence_codes": [
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "645bff21e84c6f826fb4572631816a19bf84bd572826efb452c72ae6bf96e96a",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "0f853f9d342857b1df59b0bfa6ed6d6c5cc164ac7b822507c4fe35bbc4d58979",
+            "uniprot_search_row_sha256": "424be98e55369351a04abee8aec4746d2e80762a3d6b93cc3687d44781c26390"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "B2UQG6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "7CBN",
+            "7CBO"
+          ],
+          "structure_handle": "7CBN"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "B2UQG6 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.52', '3.2.1.53']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P56729",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250",
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 505
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 604
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250",
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 1394
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 1500
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 7
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 4,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.10",
+            "3.2.1.48"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.48",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "D-maltose + H2O = alpha-D-glucose + D-glucose",
+              "rhea_id": "RHEA:68796",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.48",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sucrose + H2O = beta-D-fructose + alpha-D-glucose",
+              "rhea_id": "RHEA:33795",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.10",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "isomaltose + H2O = alpha-D-glucose + D-glucose",
+              "rhea_id": "RHEA:68864",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "MARKKFSGLEISLIVLFAIVTIIAIALVVVLATKTPAVEEISDSTSTPATTRTTTPYPGSGKCPSELNDPINERINCIPDQFPTQTLCATRGCCWKPWNDSIIPWCFFVDNHGYNVEGTTSTNTGLEAKLNRIPSPTLFGDDINSVLLTTQSQTPNRFRFKITDPNNRRYEVPHQFVKEFSGTAASDTLYDVQVIENPFSIKIIRKSNNRILFDTSIGPLVYSDQYLQLSARLSSEYIYGIGEHIHKRFRHDLYWKTWPIFTRDQLPGDNNNNLYGHQTFFMCIEDTSGKSFGVFLMNSNAMEIFIQPTPIVTYRIIGGILDFYIFLGDTPEQVVQQYQELIGRPAMPAYWSLGFQLSRWDYKSLDVVKEVVQRNREAGIPFDTQVTDIDYMEDKKDFTYDHVAFNGLPEFVQDLHDHGQKYVIILDPAISIQKLASGAAYETYDRGTAQNVWINESDGTTAIIGEVWPGLTVYPDFTSPNCIEWWANECSIFHQVVNYDGLWIDMNEVSSFVHGSEKGCSDNKLNYPPFTPGILDKLLYAKTVCMDSVQYWGKQYDVHSLYGYSMAIATEKAVEKVFRNKRSFILTRSTFAGSGSHAAHWLGDNTASWEQMEWSITGMLEFSLFGIPLVGADICGFVVETTEELCRRWMQLGAFYPFSRNHNAQGYEHQDPAFFGQNSLLVNSSKHYLNIRYTLLPFLYTLFYKAHMFGETVVRPILHEFYEDTNSWIEDTQFLWGPSLLITPVLKQGASTVSAYIPNATWYDYETGAKRPWRKQRVDMYLPADKIGLHLRGGYIIPIQQPAVTTTASRKNPLGLIVALDEYNTAEGDFFWDDGETKDTIQNGSYIFYTFSVSNNKLDIMCTHSSYQEGTTLAFETIKILGLIDAVTEVSVVEGDQPMSAHYNFTYDASNQYLLIYNLKFNLGRNFTVQWDQTFLDAEKFTCYPDTDTITKELCEERGCLWQESHLESKAPECFFPKEDNSYLVQSTQYSSLGVTADLQLNTASTRIKLPSDPIPTLRVEVKYHKDYMLQFKIYDPQNKRYEVPVPLNIPTTPTSTYENRLYDVEIKENPFGIQIRRRSTGKVIWDSRLPGFAFNNQFIQISTRLPSEYIYGFGEVEHTAFKRDLNWNTWGMFTRDQPPGYKLNSYGFHPYYMALEDESHAHGVLLLNSNAMDVTFQPTPALTYRIIGGILDFYMFLGPSPEVATKQYHEVIGRPVMPPYWALGFQLCRYGYRNTSQVEEVYNDMVTAQIPYDVQYTDIDYMERQLDFTIGEEFRELPKFVDKIRNEGMRYIIILDPAISGNETEPYPAFDRGQEKDVFVKWPNTSDICWAKVWPDLPNVTIDESLTEDEAVNASRAHVAFPDFFRNSTAEWWAREIIDFYNNQMKFDGLWIDMNEPSSFVNGTTTNQCRNTELNYPPYFPELTKRTEGLHFRTMCMETEQILSDGSSVLHYDVHNLYGWSQVKPTYDALQKATGKRGIVISRSTYPTAGRWAGHWLGDNYAKWDNLDKSIIGMMEFSLFGISYTGADICGFFNNSEYQLCARWMQLGAFYPYSRNHNIAFTRRQDPASWNETFSEMSRNILNIRYTLLPYFYTQMHEIHAYGGTVIRPLLHEFFNEKPTWDIFKQFLWGPAFLVTPVLEPFADTVQGYVPNARWFDYHTGKDIGIRETFHIFSAPLYEINLHVRGGHILPCQEPAQNTFFSRQNFMKLIVAADDNQTAQGNLFWDDGETIDTYERDLYFLVQFNFNKSILTSTILKNSYINRNEMRLGYVLIWGKEKTSVNEVNLIYNGNKETVPFVEDLNQEILNIDLRGLNVTLDEPIEISWS",
+          "sequence_length": 1827,
+          "sequence_sha256": "dc1fe00ff01ce3ea03e703c44a5b56d556f8e650c6164ed84cabe172432e6b30",
+          "source": "reviewed_uniprot",
+          "source_accession": "P56729"
+        },
+        "source_provenance": {
+          "accession": "P56729",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.10', '3.2.1.48']",
+          "organism": "Sus scrofa (Pig)",
+          "protein_name": "Sucrase-isomaltase, intestinal [Cleaved into: Sucrase (EC 3.2.1.48); Isomaltase (EC 3.2.1.10)]",
+          "reviewed_status": "reviewed",
+          "sequence_length": 1827,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "55fd1f203b07791806e0e34a3a8495b406773bd1bafbf7b1a821c66b98751df5",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "17d6c9cd56ebb7d8e6b6a6dfa1ba22ddb9c2f79d0a7306a562f140619fb19f46",
+            "uniprot_search_row_sha256": "83d40e6ee68362864ccbe0d943fe19c4bf696100035cf1e5ee99d3166a0fe9b2"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [],
+          "coordinate_path": null,
+          "coordinate_status": "coordinate_provenance_missing",
+          "pdb_ids": [],
+          "structure_handle": null
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P56729 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.10', '3.2.1.48']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q6H9K0",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 200
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 223
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "3.2.1.67"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.1.67",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[(1->4)-alpha-D-galacturonosyl](n) + H2O = alpha-D-galacturonate + [(1->4)-alpha-D-galacturonosyl](n-1)",
+              "rhea_id": "RHEA:14117",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.67",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[(1->4)-alpha-D-galacturonosyl](n) + H2O = alpha-D-galacturonate + [(1->4)-alpha-D-galacturonosyl](n-1)",
+              "rhea_id": "RHEA-COMP:14570",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.1.67",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[(1->4)-alpha-D-galacturonosyl](n) + H2O = alpha-D-galacturonate + [(1->4)-alpha-D-galacturonosyl](n-1)",
+              "rhea_id": "RHEA-COMP:14572",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: glycoside_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f"
+          },
+          "retrieved_utc": "2026-06-13T18:08:19Z",
+          "sequence": "RGVQSSGSVFNVNDYGAKGAGDISQAVMKAWKAACASQGPSTVLIPKGNYNMGEVAMQGPCKGSKIGFQIDGVVKAPADPSKFKSDGWVSFYRIDGLTVSGTGTLDGQGQTAWAKNNCDKNPNCKHAAMNLRFDFLKHAMVRDITSLNSKMFHINVLECEDITFQHVTVTAPGTSINTDGIHVGISKGVTITNTKIATGDDCISIGPGSQNVTITQVNCGPGHGISIGSLGRYNNEKEVRGITVKGCTFSGTMNGVRVKTWPNSPPGAATDLTFQDLTMNNVQNPVILDQEYCPYGQCSRQAPSRIKLSNINFNNIRGTSTGKVAVVIACSHGMPCSNMKIGEINLSYRGAGGPATSTCSNVKPTFSGKQVPAIKCA",
+          "sequence_length": 377,
+          "sequence_sha256": "3d02a8fd289a4ce1e7352ff428fd6467ebac84a860a5a78be2b0d0251e384d72",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q6H9K0"
+        },
+        "source_provenance": {
+          "accession": "Q6H9K0",
+          "disambiguation_pool": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "glycoside_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_glycoside_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.1.67']",
+          "organism": "Platanus acerifolia (London plane tree) (Platanus orientalis x Platanus occidentalis)",
+          "protein_name": "Exopolygalacturonase (EC 3.2.1.67) (Pollen allergen Pla a 2) (allergen Pla a 2.0101)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 377,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "70b5e1a20ffe3e61f0c154c010befab1efc8842da94fc0340ecab7895b0ab9a7",
+            "source_query_sha256": "b401b9ff7ef1c7f061fdce6fb9e0c8cd3dc91d274bf0ffc4f6ecfd4c6f629f5f",
+            "uniprot_entry_record_sha256": "d3323c4745e9390c70a5cbb9f2b1ee160d82de2cd1e66574f152fec4b52a7eaf",
+            "uniprot_search_row_sha256": "833a7b933b42c97119d63527d4010b94a31f84f8fa8cb8af19779eaf3b0cd071"
+          },
+          "target_family_lane": "glycoside_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q6H9K0"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q6H9K0-F1"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "glycoside_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q6H9K0 imported as annotation-anchored bronze in-scope glycoside_hydrolase: reviewed Swiss-Prot EC ['3.2.1.67']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_glycoside_hydrolase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "glycoside_hydrolase": 12
+    },
+    "current_combined_labels": 7178,
+    "disambiguation_hold_count": 66,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 66
+    },
+    "disambiguation_skip_count": 0,
+    "fetched_candidate_rows": 80,
+    "gate_admitted_before_cap_guard": 12,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 1,
+    "max_records_per_lane": 500,
+    "mechanism_corroborated_bronze_labels": 14,
+    "novelty_admitted_labels": 12,
+    "novelty_throttled_or_rejected": 2,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 7190,
+    "record_limit_per_lane": 80,
+    "record_offset_per_lane": 420
+  },
+  "created_utc": "2026-06-13T18:08:19Z",
+  "deploy_missing_active_site_context_per_family": {
+    "glycoside_hydrolase": "glycosidic_substrate_ordered_water_hydrolysis_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 1,
+      "medium": 13
+    },
+    "current_registry_labels": 6476,
+    "decision_counts": {
+      "hold": 66,
+      "import": 14
+    },
+    "examined_rows": 80,
+    "fingerprint_counts": {
+      "glycoside_hydrolase": 14
+    },
+    "hold_count": 66,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 66
+    },
+    "importable_new_labels": 14,
+    "per_pool_decision_counts": {
+      "glycoside_hydrolase_broadened_handle_fresh_fetch": {
+        "hold": 66,
+        "import": 14
+      }
+    },
+    "projected_registry_labels_if_merged": 6490,
+    "skip_count": 0
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_glycosidase_active_site_annotation",
+  "families_sourced": [
+    "glycoside_hydrolase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "glycoside_hydrolase": {
+      "admitted_this_run": 12,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 72,
+      "deficit_to_floor_after": 16,
+      "deficit_to_floor_before": 28,
+      "deploy_missing_active_site_context": "glycosidic_substrate_ordered_water_hydrolysis_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 84,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "glycoside_hydrolase_handles_scope_admission_only": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "glycoside_hydrolase": 150
+    },
+    "predictive_features_use_ec_name_keyword_glycosidase_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "transferase_phosphorylase_lyase_side_ec_guard": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "glycoside_hydrolase_reviewed_ec_3_2_1",
+      "query": "(reviewed:true) AND (ec:3.2.1.*) AND ((keyword:Glycosidase) OR (protein_name:glycosidase) OR (protein_name:glucosidase) OR (protein_name:galactosidase) OR (protein_name:xylanase) OR (protein_name:cellulase) OR (protein_name:amylase) OR (protein_name:mannosidase)) NOT ((ec:2.4.*) OR (ec:4.*) OR (protein_name:transferase) OR (protein_name:lyase) OR (protein_name:phosphorylase) OR (protein_name:transglycosylase))",
+      "record_count": 80,
+      "record_limit_per_lane": 80,
+      "record_offset_per_lane": 420,
+      "records_in_window_before_dedup": 80,
+      "records_returned_by_query": 500,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.2.1.%2A%29+AND+%28%28keyword%3AGlycosidase%29+OR+%28protein_name%3Aglycosidase%29+OR+%28protein_name%3Aglucosidase%29+OR+%28protein_name%3Agalactosidase%29+OR+%28protein_name%3Axylanase%29+OR+%28protein_name%3Acellulase%29+OR+%28protein_name%3Aamylase%29+OR+%28protein_name%3Amannosidase%29%29+NOT+%28%28ec%3A2.4.%2A%29+OR+%28ec%3A4.%2A%29+OR+%28protein_name%3Atransferase%29+OR+%28protein_name%3Alyase%29+OR+%28protein_name%3Aphosphorylase%29+OR+%28protein_name%3Atransglycosylase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "glycoside_hydrolase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via `apply-external-annotation-anchored-import` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 12,
+      "throttle": 2
+    },
+    "reason_counts": {
+      "closes_under_floor_fingerprint": 12,
+      "needed_fingerprint_but_redundant_ortholog": 2
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_glycoside_hydrolase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:P0CW40",
+      "fingerprint_id": "glycoside_hydrolase"
+    },
+    {
+      "entry_id": "uniprot:P0CW41",
+      "fingerprint_id": "glycoside_hydrolase"
+    }
+  ]
+}

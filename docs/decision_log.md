@@ -3,6 +3,62 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: GLYCOSIDE HYDROLASE FLOOR-WINDOW BRONZE APPLY COMPLETED
+
+Decision: continue `glycoside_hydrolase` as an under-floor `label_factory_v1_35fp` family through
+the existing mechanism-first admission pipeline, and add row-window/paging controls so the
+source runner can process durable UniProt search slices instead of monolithic entry/Rhea fetches.
+The new controls (`--record-offset-per-lane`, `--record-limit-per-lane`, `--query-pages-per-lane`)
+are source-fetch controls only. EC 3.2.1, protein names, glycosidase keywords, Rhea equations, and
+active-/binding-site annotations remain scope/admission context only; counted mechanism axes remain
+reviewed glycosidic-bond hydrolysis reaction context, glycosidase family/domain text, and active-/
+binding-site acid/base or nucleophile evidence. Growth goes only to
+`data/registries/external_bronze_labels.json`; frozen current702 remains byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Apply:
+`PYTHONPATH=src python scripts/source_glycoside_hydrolase_family.py --max-records-per-lane 500 --record-offset-per-lane 420 --record-limit-per-lane 80 --cap-ceiling 150 --out artifacts/v3_glycoside_hydrolase_floor500_window420_80_sourcing_preview_current702_20260613.json --report work/glycoside_hydrolase_floor500_window420_80_sourcing_current702_20260613.md --apply`.
+Result: fetched **80**, mechanism-corroborated **14**, applied **12**, held **66**
+no-corroboration rows, skipped **0**, off-target held **0**, novelty-throttled **2**, held@cap
+**0**, and recorded **0** fetch failures on the apply rerun. Final glycoside hydrolase count is
+**84/150** and still below the 100 floor.
+
+Counts after apply: external bronze **6476 -> 6488**; combined label surface **7178 -> 7190**.
+Honest counters stay separate: **positive_bronze 5494**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. External-only bronze split is
+**5264** seed-fingerprint rows and **1224** OOS rows; remaining positive-bronze gap to 10k is
+**4506**.
+
+Guardrails held: every added row is bronze, automation-curated, `uniprot:*`, with
+`predictive_evidence []`; EC/name/Rhea/keyword/prose/feature handles are excluded-context
+admission evidence only; EC is never a counted corroborator; dedup and novelty ran against frozen
+current702 and the external registry; glycosyltransferase, transglycosylase, phosphorylase, lyase,
+side-EC, EC-only, and multi-signal rows are held. Row audit found **0** problems across all **84**
+glycoside hydrolase rows. Coverage audit reports **35** fingerprints, Gini **0.1675**, holes `[]`,
+under-floor `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`,
+over-cap `['metal_dependent_hydrolase']`, and next-batch floor deficit **86**. Novelty replay
+reports **6488** expansion rows, decisions `{'admit': 6032, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0703).
+
+Follow-on decision: do not repeat the applied `420:80` glycoside window. A second-page preview
+using `--query-pages-per-lane 2 --record-offset-per-lane 500 --record-limit-per-lane 80` fetched
+**80** rows but mechanism-corroborated/admitted **0**; do not apply that artifact. Remaining floors
+are PfkB **46/100**, biotin **84/100**, and glycoside hydrolase **84/100**. The next 10k-path work
+should build a genuinely new strict source/corroborator path for PfkB or biotin, or an alternate
+glycoside source lane with non-EC mechanism corroboration.
+
+References:
+`artifacts/v3_glycoside_hydrolase_floor500_window420_80_sourcing_preview_current702_20260613.json`,
+`work/glycoside_hydrolase_floor500_window420_80_sourcing_current702_20260613.md`,
+`artifacts/v3_glycoside_hydrolase_floor500_window_row_guardrail_audit_current702_20260613.json`,
+`work/glycoside_hydrolase_floor500_window_row_guardrail_audit_current702_20260613.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_floor500_window_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_floor500_window_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_floor500_window_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_floor500_window_applied.md`,
+`artifacts/v3_glycoside_hydrolase_page2_window500_80_sourcing_preview_current702_20260613.json`, and
+`work/glycoside_hydrolase_page2_window500_80_sourcing_current702_20260613.md`.
+
 ## 2026-06-13: GLYCOSIDE HYDROLASE TOP-UP BRONZE APPLY COMPLETED
 
 Decision: continue `glycoside_hydrolase` as an under-floor `label_factory_v1_35fp` family through

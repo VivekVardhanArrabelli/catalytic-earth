@@ -122,9 +122,12 @@ def _entry_record(accession):
     }
 
 
-def _fake_query_fetcher(query, size):
+def _fake_query_fetcher(query, size, max_pages=1):
     records = [_search_record(a) for a in sorted(_ROWS)]
-    return {"metadata": {"url": "test://uniprot", "query": query}, "records": records}
+    return {
+        "metadata": {"url": "test://uniprot", "query": query, "max_pages": max_pages},
+        "records": records,
+    }
 
 
 def _fake_entry_fetcher(accession):
@@ -216,6 +219,27 @@ class GlycosideHydrolaseSourcingTest(unittest.TestCase):
             self.assertEqual(provenance["source_accession"], accession)
             self.assertEqual(len(provenance["sequence_sha256"]), 64)
             self.assertNotIn("sequence", json.dumps(label["evidence"]["excluded_context"]))
+
+    def test_record_window_processes_slice_before_entry_fetch(self):
+        audit = self._run(record_offset_per_lane=2, record_limit_per_lane=2)
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 2)
+        self.assertEqual(audit["counts"]["record_offset_per_lane"], 2)
+        self.assertEqual(audit["counts"]["record_limit_per_lane"], 2)
+        self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 0)
+        self.assertEqual(audit["counts"]["disambiguation_hold_count"], 1)
+        self.assertEqual(
+            audit["counts"]["off_target_fingerprint_counts"],
+            {"glycosyltransferase": 1},
+        )
+        lane = audit["lane_summaries"][0]
+        self.assertEqual(lane["records_returned_by_query"], 5)
+        self.assertEqual(lane["records_in_window_before_dedup"], 2)
+
+    def test_query_pages_are_forwarded_when_requested(self):
+        audit = self._run(query_pages_per_lane=2, record_limit_per_lane=1)
+        self.assertEqual(audit["counts"]["query_pages_per_lane"], 2)
+        self.assertEqual(audit["lane_summaries"][0]["records_returned_by_query"], 5)
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 1)
 
     def test_guardrails_non_destructive(self):
         audit = self._run()

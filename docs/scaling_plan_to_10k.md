@@ -13,6 +13,44 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: glycoside hydrolase floor-window applied and paging support
+added.** The latest run continued `glycoside_hydrolase` as an under-floor 35fp family. To avoid
+repeating the previous no-artifact monolithic 500-row fetch, the run added row-window support to
+the shared external ingestion pilot and exposed glycoside CLI flags
+`--record-offset-per-lane`, `--record-limit-per-lane`, and `--query-pages-per-lane`. These flags
+only decide which reviewed UniProt search rows are entry/Rhea-fetched; they do not alter admission,
+trust-tier, dedup, novelty, cap, or leakage rules.
+
+The applied window used rows **421-500** from the guarded reviewed EC 3.2.1 glycoside query:
+`scripts/source_glycoside_hydrolase_family.py --max-records-per-lane 500 --record-offset-per-lane 420 --record-limit-per-lane 80 --cap-ceiling 150 --apply`.
+It fetched **80**, mechanism-corroborated **14**, applied **12**, held **66** no-corroboration rows,
+skipped **0**, off-target held **0**, novelty-throttled **2**, held@cap **0**, and had **0** fetch
+failures on the apply rerun. Frozen current702 remained byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+`data/registries/external_bronze_labels.json`.
+
+External bronze is now **6488**; combined label surface is **7190**; `glycoside_hydrolase` is
+**84/150** and still below the 100 floor. Honest counters stay separate: **positive_bronze 5494**,
+**oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**, **projected 0**.
+External-only bronze split is **5264** seed-fingerprint rows and **1224** OOS rows. Remaining
+positive-bronze gap to 10k: **4506**. Post-apply coverage audit reports **35** fingerprints,
+fingerprint Gini **0.1675**, holes `[]`, under-floor
+`['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, only
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **86**. Novelty replay over
+**6488** expansion rows reports decisions `{'admit': 6032, 'reject': 47, 'throttle': 409}` and
+would-not-readmit **456** (0.0703). Row audit found **0** problems across all **84** glycoside
+hydrolase rows.
+
+Guardrails remain active: EC/name/Rhea/keyword/prose/feature handles are admission/excluded-context
+evidence only; EC is never counted; `predictive_evidence []`; glycosyltransferase,
+transglycosylase, phosphorylase, lyase, side-EC, EC-only, and multi-fingerprint-signal rows are
+held. A second-page preview using `--query-pages-per-lane 2 --record-offset-per-lane 500
+--record-limit-per-lane 80` fetched **80** but mechanism-corroborated/admitted **0**. Do not repeat
+the applied `420:80` window or apply the zero-yield `500:80` page-2 artifact. Remaining floors are
+PfkB **46/100**, biotin **84/100**, and glycoside hydrolase **84/100**; next work should build a
+genuinely new strict PfkB/biotin source/corroborator path or an alternate glycoside source lane with
+non-EC mechanism corroboration.
+
 **2026-06-13 automation update: glycoside hydrolase top-up applied; floor still open.** The latest
 run continued the under-floor `glycoside_hydrolase` lane through the existing 35fp
 mechanism-first pipeline. The 420-row top-up

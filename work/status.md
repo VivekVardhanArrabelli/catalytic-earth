@@ -5,6 +5,57 @@ Generated from `work/progress_log.jsonl`.
 ## Current Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T18:01:16Z`
+- Started local: `Sat Jun 13 13:01:16 CDT 2026`
+- Budget seconds: `3300`
+- Focus/result: applied a gated glycoside hydrolase floor-window top-up through the existing 35fp
+  mechanism-first pipeline and added row-window/paging controls for the glycoside source runner.
+  Growth went only to `data/registries/external_bronze_labels.json`; frozen current702 stayed
+  byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Registry/counts: external bronze **6476 -> 6488** (+12); combined label surface
+  **7178 -> 7190**; `glycoside_hydrolase` **72 -> 84** under the chemistry-confusable cap 150 and
+  still below the 100 floor. Honest counters remain separate: `positive_bronze=5494`,
+  `oos_bronze=1696`, `silver_ready=0`, `silver_confirmed=17`, `projected=0`; remaining
+  positive-bronze gap to 10k **4506**. External-only registry split is **5264** seed-fingerprint
+  bronze and **1224** OOS bronze.
+- Artifacts: `artifacts/v3_glycoside_hydrolase_floor500_window420_80_sourcing_preview_current702_20260613.json`,
+  `work/glycoside_hydrolase_floor500_window420_80_sourcing_current702_20260613.md`,
+  `artifacts/v3_glycoside_hydrolase_floor500_window_row_guardrail_audit_current702_20260613.json`,
+  `work/glycoside_hydrolase_floor500_window_row_guardrail_audit_current702_20260613.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_floor500_window_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_glycoside_hydrolase_floor500_window_applied.md`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_floor500_window_applied.json`,
+  `work/novelty_admission_gate_audit_current702_20260613_glycoside_hydrolase_floor500_window_applied.md`,
+  `artifacts/v3_glycoside_hydrolase_page2_window500_80_sourcing_preview_current702_20260613.json`, and
+  `work/glycoside_hydrolase_page2_window500_80_sourcing_current702_20260613.md`.
+- Guardrails: applied window fetched **80**, mechanism-corroborated **14**, applied **12**, held
+  **66** no-corroboration rows, skipped **0**, off-target held **0**, novelty-throttled **2**,
+  held@cap **0**, fetch failures **0** on apply rerun. Row audit found **0** problems across all
+  **84** glycoside hydrolase rows; every row has active-site/residue-role, domain/family, and Rhea
+  mechanism axes; EC/name/Rhea/keyword/prose/feature handles remain excluded-context admission
+  evidence only; EC is never counted; `predictive_evidence []`.
+- Post-apply audits: coverage reports **7190** combined, **35** fingerprints, fingerprint Gini
+  **0.1675**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **86**. Novelty replay reports
+  **6488** expansion rows, decisions `{'admit': 6032, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0703).
+- Continuation: second-page glycoside preview over rows 501-580 fetched **80** but
+  mechanism-corroborated/admitted **0**; do not apply that artifact.
+- Validation: focused pytest passed (**317 passed, 14 subtests passed**);
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source records, 35
+  fingerprints, 32 ontology families, 702 curated labels); JSON/JSONL parse checks and
+  `git diff --check` passed.
+- Next exact action: do not repeat the applied `420:80` glycoside window or the zero-yield
+  `500:80` page-2 window. Remaining floors are `pfkb_ribokinase_family` **46/100**,
+  `biotin_dependent_carboxylase` **84/100**, and `glycoside_hydrolase` **84/100**; build a
+  genuinely new strict source/corroborator path for PfkB/biotin or an alternate glycoside source
+  lane with non-EC mechanism corroboration.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T17:00:33Z`
 - Started local: `Sat Jun 13 12:00:33 CDT 2026`
 - Budget seconds: `3300`

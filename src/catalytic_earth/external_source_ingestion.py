@@ -857,6 +857,8 @@ def build_external_source_ingestion_pilot(
     label_registry_payload: list[dict[str, Any]],
     created_utc: str | None = None,
     max_records_per_lane: int = 4,
+    record_offset_per_lane: int = 0,
+    record_limit_per_lane: int | None = None,
     lane_queries: tuple[dict[str, str], ...] = DEFAULT_LANE_QUERIES,
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
@@ -866,6 +868,10 @@ def build_external_source_ingestion_pilot(
 ) -> dict[str, Any]:
     if max_records_per_lane < 1 or max_records_per_lane > 500:
         raise ValueError("max_records_per_lane must be between 1 and 500")
+    if record_offset_per_lane < 0:
+        raise ValueError("record_offset_per_lane must be non-negative")
+    if record_limit_per_lane is not None and record_limit_per_lane < 1:
+        raise ValueError("record_limit_per_lane must be positive when provided")
     created = created_utc or _utc_now_iso()
     current_index = _current_reference_index(
         current_manifest_payload, label_registry_payload
@@ -902,9 +908,17 @@ def build_external_source_ingestion_pilot(
             continue
 
         search_metadata = search_payload.get("metadata", {}) or {}
-        for search_record in search_payload.get("records", []) or []:
-            if not isinstance(search_record, dict):
-                continue
+        search_records = [
+            record
+            for record in search_payload.get("records", []) or []
+            if isinstance(record, dict)
+        ]
+        if record_limit_per_lane is None:
+            windowed_records = search_records[record_offset_per_lane:]
+        else:
+            window_end = record_offset_per_lane + record_limit_per_lane
+            windowed_records = search_records[record_offset_per_lane:window_end]
+        for search_record in windowed_records:
             accession = _clean_accession(search_record.get("accession"))
             if not accession or accession in seen_accessions:
                 continue
@@ -955,6 +969,10 @@ def build_external_source_ingestion_pilot(
                 "target_family_lane": lane["target_family_lane"],
                 "query": query,
                 "record_count": lane_record_count,
+                "records_returned_by_query": len(search_records),
+                "record_offset_per_lane": record_offset_per_lane,
+                "record_limit_per_lane": record_limit_per_lane,
+                "records_in_window_before_dedup": len(windowed_records),
                 "source_url": search_metadata.get("url"),
                 "status": "query_fetched",
             }
