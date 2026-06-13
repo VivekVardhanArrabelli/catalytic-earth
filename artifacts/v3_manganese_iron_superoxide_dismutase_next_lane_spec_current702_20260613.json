@@ -1,0 +1,71 @@
+{
+  "artifact_id": "v3_manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613",
+  "automation_id": "ce-nad-glyco-floor-expansion",
+  "counted_mechanism_axes": [
+    "rhea_reaction_or_participant_pattern: RHEA:20696 / superoxide + H+ -> H2O2 + O2 dismutation text",
+    "cofactor_or_cosubstrate: Mn/Fe metal feature, ligand, cofactor, or reviewed family metal context",
+    "active_site_motif_or_residue_role: active-site, binding-site, or metal-binding feature annotation",
+    "domain_or_family_profile: superoxide dismutase family/name/keyword text"
+  ],
+  "created_utc": "2026-06-13T15:05:52Z",
+  "current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "guardrails": {
+    "ec_never_counted_as_corroborator": true,
+    "ec_used_for_scope_supply_only": true,
+    "future_predictive_evidence_must_remain_empty": true,
+    "future_rows_must_be_uniprot_bronze_automation_curated": true,
+    "labels_created": false,
+    "mechanism_handle_scout_required_before_wiring": true,
+    "predictive_features_emitted": false,
+    "registry_written": false
+  },
+  "implementation_checklist": [
+    "add mechanism_fingerprints.json fingerprint and mechanism_ontology.json node",
+    "bump CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION to label_factory_v1_34fp",
+    "add DEPLOY_MISSING_CONTEXT and coverage_redundancy signature",
+    "add external_cofactor_ec_disambiguation evidence tokens/rule/synthesized cofactor/trust axes",
+    "add source module + script with non-destructive preview and explicit --apply sha checks",
+    "add offline tests for admission, boundary holds, leakage, trust-tier axes, cap, and no EC-only admission",
+    "re-freeze OOS preregistration for 34fp before live preview/apply",
+    "run non-destructive preview; apply only if novelty/dedup/governor/trust-tier gates pass"
+  ],
+  "non_counted_scope_handles": [
+    "EC 1.15.1.1",
+    "protein_name Mn/Fe/superoxide dismutase source filters",
+    "reviewed:true UniProt scope"
+  ],
+  "proposed_fingerprint": {
+    "cap_ceiling": 250,
+    "chemistry_confusable": false,
+    "deploy_missing_active_site_context": "mn_fe_superoxide_redox_dismutation_context",
+    "id": "manganese_iron_superoxide_dismutase",
+    "name": "Manganese/iron superoxide dismutase",
+    "universe_version_after_wiring": "label_factory_v1_34fp"
+  },
+  "proposed_ontology_node": {
+    "fingerprint_ids": [
+      "manganese_iron_superoxide_dismutase"
+    ],
+    "id": "metal_superoxide_dismutation",
+    "name": "Manganese/iron superoxide dismutation chemistry",
+    "parent_id": "mechanism"
+  },
+  "required_guards": [
+    "hold Cu/Zn SOD and copper/zinc name/cofactor rows",
+    "hold heme/cytoglobin/hemoglobin/peroxidase/nitric oxygen dioxygenase/nitrite reductase rows",
+    "hold superoxide reductase rows; dismutation only",
+    "hold side-EC rows unless future subclass rule explicitly owns them",
+    "hold multi-fingerprint signal rows instead of forcing SOD labels",
+    "EC-only rows are never admitted"
+  ],
+  "schema_version": "next_lane_fingerprint_spec.v1",
+  "source_lane": {
+    "lane_id": "mn_fe_sod_reviewed_ec_1_15_1_1_guarded",
+    "query": "(reviewed:true) AND (ec:1.15.1.1) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron) OR (protein_name:manganese) OR (protein_name:iron) OR (protein_name:Mn) OR (protein_name:Fe)) NOT ((cc_cofactor:copper) OR (cc_cofactor:zinc) OR (protein_name:\"Cu-Zn\") OR (protein_name:\"Cu/Zn\") OR (protein_name:copper) OR (protein_name:zinc))",
+    "registry_new_likely_wireable_rows_in_sample": 77,
+    "reviewed_total_results": 252,
+    "sample_size": 80
+  },
+  "source_scout_artifact": "artifacts/v3_manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.json",
+  "status": "non_importing_lane_spec_no_registry_write"
+}

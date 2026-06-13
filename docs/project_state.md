@@ -26,6 +26,33 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **MN/FE SUPEROXIDE DISMUTASE SOURCE BLOCKER CLEARED; 34FP NEXT-LANE SPEC WRITTEN (2026-06-13 automation).**
+  Follow-up to the bounded no-yield previews: a PfkB/biotin alternate-source scout found only limited
+  registry-new reviewed supply and boundary-heavy rows, so this run switched to a cleaner new-family
+  scout rather than forcing under-floor labels. The earlier breadth-feasibility result had treated
+  Mn/Fe SOD as source-poor because a cofactor-comment-only query reached only one reviewed entry.
+  A corrected guarded query for reviewed EC 1.15.1.1 Mn/Fe superoxide dismutases now finds **252**
+  reviewed rows. In an 80-row mechanism sample, **80/80** rows were registry-new, **80/80** carried
+  RHEA:20696/superoxide dismutation reaction context, **80/80** carried Mn/Fe metal context,
+  **80/80** carried SOD family text, **77/80** carried active/binding/metal-site evidence, and **0**
+  showed the explicit Cu/Zn/heme/side-EC boundary flags. No labels were generated and no registry
+  write was performed. Artifacts:
+  `artifacts/v3_pfkb_biotin_alternate_source_scout_current702_20260613.json`,
+  `work/pfkb_biotin_alternate_source_scout_current702_20260613.md`,
+  `artifacts/v3_manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.json`,
+  `work/manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.md`,
+  `artifacts/v3_manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.json`, and
+  `work/manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.md`. Counts remain
+  external bronze **6238**, combined surface **6940**, frozen current702 **702** with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; honest counters remain
+  separate: **positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**,
+  **silver_confirmed 17**, **projected 0**. Next exact action: wire
+  `manganese_iron_superoxide_dismutase` as a deliberate `label_factory_v1_34fp` lane only through
+  the full pipeline: fingerprint + `metal_superoxide_dismutation` ontology node, OOS prereg
+  re-freeze, disambiguation/trust-tier/leakage tests, non-destructive preview, then `--apply` only
+  if novelty/dedup/governor/trust-tier gates pass. Required guards: hold Cu/Zn SOD, heme/cytoglobin/
+  hemoglobin/peroxidase/nitrite/nitric-oxygen dioxygenase, superoxide reductase, side-EC, EC-only,
+  and multi-fingerprint-signal rows.
 - **BOUNDED UNDER-CAP PREVIEWS CLEARED FETCH BLOCKER BUT ADMITTED 0 ROWS (2026-06-13 automation).**
   Follow-up to the immediately previous blocked run: bounded live previews now complete and write
   artifacts, so the blocker was not a broken gate. It was the larger sequential UniProt entry/Rhea

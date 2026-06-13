@@ -1,5 +1,49 @@
 # Handoff
 
+## Session run - Mn/Fe SOD source blocker cleared; 34fp next-lane spec written (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This run continued after user
+  feedback that the previous bounded no-yield run should not have stopped at the first 0-row result.
+- Status: **NO REGISTRY WRITE; USEFUL 10K-PATH LANE ADVANCED.** No `--apply` was run and no labels
+  were generated. Counts remain external bronze **6238**, combined label surface **6940**, frozen
+  current702 **702** with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate: `positive_bronze=5227`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap to 10k **4773**.
+- PfkB/biotin alternate-source scout:
+  `artifacts/v3_pfkb_biotin_alternate_source_scout_current702_20260613.json` and
+  `work/pfkb_biotin_alternate_source_scout_current702_20260613.md`. Result: source counts found
+  some registry-new reviewed accessions but no clean immediate apply path. Samples include boundary
+  cases such as non-biotin subunits, biotin-protein ligases, acetone carboxylase subunits, and
+  bifunctional thiamine/HMP kinase rows. Do not admit those rows directly; EC/name/Rhea remain
+  scope/admission context only.
+- Mn/Fe SOD source/mechanism scout:
+  `artifacts/v3_manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.json`
+  and `work/manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.md`.
+  The prior breadth-feasibility result had undercounted this lane by requiring a UniProt COFACTOR
+  comment. A guarded reviewed query now finds **252** Mn/Fe SOD rows. In an 80-row sample:
+  **80/80** registry-new, **80/80** RHEA:20696/superoxide dismutation reaction context,
+  **80/80** Mn/Fe metal context, **80/80** SOD family text, **77/80** active/binding/metal-site
+  evidence, **0** explicit Cu/Zn/heme/side-EC boundary flags, **0** fetch failures.
+- Next-lane spec:
+  `artifacts/v3_manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.json` and
+  `work/manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.md`. It proposes
+  `manganese_iron_superoxide_dismutase` as a deliberate `label_factory_v1_34fp` lane with ontology
+  node `metal_superoxide_dismutation`, cap 250, deploy-missing context
+  `mn_fe_superoxide_redox_dismutation_context`, and counted mechanism axes from Rhea/reaction
+  superoxide dismutation, Mn/Fe metal or metal-site evidence, active/binding/metal-site evidence,
+  and SOD family/domain text.
+- Guardrails preserved: EC/name/Rhea/text handles are scope/admission evidence only and remain
+  excluded from predictive features; EC is never a counted corroborator; no `predictive_evidence`
+  changes; frozen current702 was not written.
+- Required next action: wire the SOD lane only through the full pipeline: add fingerprint and
+  ontology node, bump to `label_factory_v1_34fp`, re-freeze OOS preregistration, add
+  disambiguation/trust-tier/leakage/source tests, run a non-destructive preview, and apply only if
+  novelty/dedup/governor/cap/trust-tier gates pass. Required guards: hold Cu/Zn SOD,
+  heme/cytoglobin/hemoglobin/peroxidase/nitrite/nitric-oxygen dioxygenase, superoxide reductase,
+  side-EC, EC-only, and multi-fingerprint-signal rows.
+
 ## Session run - bounded under-cap previews cleared blocker but admitted 0 rows (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

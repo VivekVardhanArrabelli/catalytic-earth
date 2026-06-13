@@ -3,6 +3,42 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: MN/FE SUPEROXIDE DISMUTASE SOURCE BLOCKER CLEARED; 34FP SPEC WRITTEN
+
+Decision: do not force the remaining PfkB/biotin floor deficits or repeat the bounded no-yield
+under-cap probes. A PfkB/biotin alternate-source scout found only limited registry-new reviewed
+supply and boundary-heavy samples. The cleaner 10k-path move is to revive the
+`manganese_iron_superoxide_dismutase` candidate using a better source handle: the previous
+breadth-feasibility scout undercounted Mn/Fe SOD because it required UniProt COFACTOR comments;
+the corrected reviewed EC/name/cofactor query finds **252** rows.
+
+Non-destructive scout results: the guarded Mn/Fe SOD query sampled **80** reviewed rows with **0**
+JSON fetch failures. The sample had **80/80** registry-new rows, **80/80** RHEA:20696/superoxide
+dismutation reaction context, **80/80** Mn/Fe metal context, **80/80** SOD family text, **77/80**
+active/binding/metal-site evidence, and **0** explicit Cu/Zn/heme/side-EC boundary flags. No labels
+were generated, no `--apply` was run, and frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Follow-on decision: wire `manganese_iron_superoxide_dismutase` only as a deliberate
+`label_factory_v1_34fp` lane through the full pipeline: fingerprint spec,
+`metal_superoxide_dismutation` ontology node, deploy-missing context
+`mn_fe_superoxide_redox_dismutation_context`,
+OOS preregistration re-freeze, disambiguation/trust-tier/leakage tests, non-destructive preview,
+and explicit `--apply` only if novelty/dedup/governor/cap/trust-tier gates pass. Counted mechanism
+axes should be Rhea/reaction superoxide dismutation, Mn/Fe metal or metal-site evidence,
+active/binding/metal-site evidence, and SOD family/domain text. EC 1.15.1.1 and protein-name tokens
+are scope/admission context only and never counted. Required guards: hold Cu/Zn SOD, heme/
+cytoglobin/hemoglobin/peroxidase/nitrite/nitric-oxygen dioxygenase, superoxide reductase, side-EC,
+EC-only, and multi-fingerprint-signal rows.
+
+References:
+`artifacts/v3_pfkb_biotin_alternate_source_scout_current702_20260613.json`,
+`work/pfkb_biotin_alternate_source_scout_current702_20260613.md`,
+`artifacts/v3_manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.json`,
+`work/manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.md`,
+`artifacts/v3_manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.json`,
+`work/manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.md`.
+
 ## 2026-06-13: BOUNDED UNDER-CAP PREVIEWS CLEAR FETCH BLOCKER BUT ADMIT 0 ROWS
 
 Decision: after user feedback, resume the previous blocked run and isolate the live-preview issue

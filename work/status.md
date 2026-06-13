@@ -5,6 +5,28 @@ Generated from `work/progress_log.jsonl`.
 ## Current Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T14:53:41Z`
+- Started local: `Sat Jun 13 09:53:41 CDT 2026`
+- Focus/result: no registry write. Continued after user feedback instead of stopping at the bounded
+  no-yield previews. Wrote a PfkB/biotin alternate-source scout, then cleared the old
+  Mn/Fe-superoxide-dismutase source-poor blocker with a corrected guarded UniProt query and
+  row-level mechanism scout. The SOD scout found **252** reviewed guarded rows and an 80-row sample
+  with **77** registry-new likely-wireable rows, then wrote a deliberate `label_factory_v1_34fp`
+  next-lane spec. Counts remain external bronze **6238**, combined surface **6940**, frozen
+  current702 sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- New artifacts: `artifacts/v3_pfkb_biotin_alternate_source_scout_current702_20260613.json`,
+  `work/pfkb_biotin_alternate_source_scout_current702_20260613.md`,
+  `artifacts/v3_manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.json`,
+  `work/manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.md`,
+  `artifacts/v3_manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.json`, and
+  `work/manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.md`.
+- Next exact action: wire `manganese_iron_superoxide_dismutase` only through the full 34fp
+  fingerprint/ontology/OOS-prereg/tests/non-destructive-preview/apply pipeline with Cu/Zn,
+  heme/cytoglobin/peroxidase, superoxide-reductase, side-EC, EC-only, and multi-signal guards.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T14:32:54Z`
 - Started local: `Sat Jun 13 09:32:54 CDT 2026`
 - Focus/result: cleared the prior live-fetch blocker for bounded previews, but no registry write.

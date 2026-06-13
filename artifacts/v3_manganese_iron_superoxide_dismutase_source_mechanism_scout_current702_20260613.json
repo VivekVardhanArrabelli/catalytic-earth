@@ -1,0 +1,3690 @@
+{
+  "artifact_id": "v3_manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613",
+  "automation_id": "ce-nad-glyco-floor-expansion",
+  "baseline_counts": {
+    "curated_rows": 702,
+    "external_bronze_rows": 6238,
+    "known_uniprot_accessions": 6241
+  },
+  "created_utc": "2026-06-13T15:04:32Z",
+  "current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_never_counted_as_corroborator": true,
+    "ec_used_for_scope_supply_only": true,
+    "future_predictive_evidence_must_remain_empty": true,
+    "future_rows_must_be_uniprot_bronze_automation_curated": true,
+    "labels_created": false,
+    "mechanism_handle_scout_required_before_wiring": true,
+    "predictive_features_emitted": false,
+    "registry_written": false
+  },
+  "primary_query": "(reviewed:true) AND (ec:1.15.1.1) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron) OR (protein_name:manganese) OR (protein_name:iron) OR (protein_name:Mn) OR (protein_name:Fe)) NOT ((cc_cofactor:copper) OR (cc_cofactor:zinc) OR (protein_name:\"Cu-Zn\") OR (protein_name:\"Cu/Zn\") OR (protein_name:copper) OR (protein_name:zinc))",
+  "queries": {
+    "mn_fe_sod_guarded_query": {
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:1.15.1.1) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron) OR (protein_name:manganese) OR (protein_name:iron) OR (protein_name:Mn) OR (protein_name:Fe)) NOT ((cc_cofactor:copper) OR (cc_cofactor:zinc) OR (protein_name:\"Cu-Zn\") OR (protein_name:\"Cu/Zn\") OR (protein_name:copper) OR (protein_name:zinc))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.15.1.1%29+AND+%28%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Airon%29+OR+%28protein_name%3Amanganese%29+OR+%28protein_name%3Airon%29+OR+%28protein_name%3AMn%29+OR+%28protein_name%3AFe%29%29+NOT+%28%28cc_cofactor%3Acopper%29+OR+%28cc_cofactor%3Azinc%29+OR+%28protein_name%3A%22Cu-Zn%22%29+OR+%28protein_name%3A%22Cu%2FZn%22%29+OR+%28protein_name%3Acopper%29+OR+%28protein_name%3Azinc%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:1.15.1.1) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron) OR (protein_name:manganese) OR (protein_name:iron) OR (protein_name:Mn) OR (protein_name:Fe)) NOT ((cc_cofactor:copper) OR (cc_cofactor:zinc) OR (protein_name:\"Cu-Zn\") OR (protein_name:\"Cu/Zn\") OR (protein_name:copper) OR (protein_name:zinc))",
+      "total_results": 252
+    },
+    "sod_ec_all": {
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:1.15.1.1)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.15.1.1%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:1.15.1.1)",
+      "total_results": 456
+    },
+    "sod_keyword_or_name": {
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:1.15.1.1) AND ((keyword:\"Superoxide dismutase\") OR (protein_name:\"superoxide dismutase\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.15.1.1%29+AND+%28%28keyword%3A%22Superoxide+dismutase%22%29+OR+%28protein_name%3A%22superoxide+dismutase%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:1.15.1.1) AND ((keyword:\"Superoxide dismutase\") OR (protein_name:\"superoxide dismutase\"))",
+      "total_results": 456
+    }
+  },
+  "recommendation": {
+    "reason": "Guarded reviewed query has floor-capable source supply and the sampled rows carry non-EC superoxide-dismutation, Mn/Fe metal, SOD family text, and active/binding/metal-site axes; future implementation must add Cu/Zn/heme/cytoglobin/superoxide-reductase/side-EC guards and run OOS prereg before preview/apply.",
+    "recommended_next_lane": "manganese_iron_superoxide_dismutase",
+    "wire_next_lane_now": true
+  },
+  "rhea_ec_1_15_1_1_records": [
+    {
+      "ec_number": "1.15.1.1",
+      "equation": "2 superoxide + 2 H(+) = H2O2 + O2",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": null,
+      "rhea_id": "RHEA:20696",
+      "source": "rhea"
+    }
+  ],
+  "sample_rows": [
+    {
+      "accession": "P04179",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 222,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Acetylation",
+          "Alternative splicing",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Nitration",
+          "Oxidoreductase",
+          "Proteomics identification",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "ddc247f561a1eb32f0d22f6619a8fcb7dea82d465353ccaf0a3e6d5fb3c1ed0c"
+    },
+    {
+      "accession": "Q9K4V3",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 199,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Stress response"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Staphylococcus xylosus",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "1e60933ac1324010043a778eb856cbe968b662e9aa52d5ceaba661db73430172"
+    },
+    {
+      "accession": "O81235",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 231,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Alternative splicing",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Phosphoprotein",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Superoxide dismutase [Mn] 1, mitochondrial (EC 1.15.1.1) (Protein MANGANESE SUPEROXIDE DISMUTASE 1) (AtMSD1) (Protein MATERNAL EFFECT EMBRYO ARREST 33)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "6c449bf5682f2353d98f5a468a71e70d3de78a30ef4bd3e0b3426d5b8ec35733"
+    },
+    {
+      "accession": "P09671",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 222,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Acetylation",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Nitration",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide",
+          "Ubl conjugation"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mus musculus (Mouse)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "a2363d2d85d779c3081bdcd1e58f53b825e1e9d1e44efa7b616396b129f4351c"
+    },
+    {
+      "accession": "P07895",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 222,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Acetylation",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Nitration",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide",
+          "Ubl conjugation"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Rattus norvegicus (Rat)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c8e4de046a3d889d83d7bab3c9a223a79e009a6ae7b31b8f409c8e6e11193e14"
+    },
+    {
+      "accession": "P00448",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 206,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1) (MnSOD)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "200d553bc1f0e401cc99fdec2e810a1262e450cf2b53c50d36c14ce61a6e516d"
+    },
+    {
+      "accession": "Q00637",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 217,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Drosophila melanogaster (Fruit fly)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "4750de8ab2c79ed960c998dedefa79910d36f927e3984f7ca7b7297e95b92fae"
+    },
+    {
+      "accession": "P54375",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 202,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Cytoplasm",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Phosphoprotein",
+          "Reference proteome",
+          "Secreted",
+          "Stress response"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Bacillus subtilis (strain 168)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1) (General stress protein 24) (GSP24)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c09cd0993cb6e5441f0104395ebe2be1e59fe8b942f6b233c33405f55f5ccc3a"
+    },
+    {
+      "accession": "P0AGD3",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 193,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Acetylation",
+          "Direct protein sequencing",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Escherichia coli (strain K12)",
+      "protein_name": "Superoxide dismutase [Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "3f5c8e49a3aba54a757a872dedcc17f116c737ea997025e5c70e3adaf749bc35"
+    },
+    {
+      "accession": "Q9FMX0",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 263,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "Chloroplast",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Plastid",
+          "Reference proteome",
+          "Thylakoid",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Superoxide dismutase [Fe] 3, chloroplastic (EC 1.15.1.1) (Protein FE SUPEROXIDE DISMUTASE 3)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "d9d5826a786b47cf5e04ca00e15706c993978378778e56b2a56b55eea2666c6d"
+    },
+    {
+      "accession": "J9VWW9",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 225,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Alternative splicing",
+          "Antioxidant",
+          "Cytoplasm",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Cryptococcus neoformans (strain H99 / ATCC 208821 / CBS 10515 / FGSC 9487) (Cryptococcus neoformans var. grubii serotype A)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "8277b5fbdf04cf2a2b7b9db41cd1a636a9e93107ede1c5abe53ef50c97361819"
+    },
+    {
+      "accession": "Q9UQX0",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 218,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Antioxidant",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Phosphoprotein",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "46f5efa97c890c013005b3191613d738891d15f8417c842b8a9e2118dff2fea1"
+    },
+    {
+      "accession": "P21276",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 212,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "Acetylation",
+          "Alternative splicing",
+          "Cell membrane",
+          "Chloroplast",
+          "Iron",
+          "Membrane",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Plastid",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Superoxide dismutase [Fe] 1, chloroplastic (EC 1.15.1.1) (Protein FE SUPEROXIDE DISMUTASE 1) (FeSOD)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "d59ee4e6bfcc135efcc7d2f64bcca32abd72c105e77f13fe57cf9dc7f25197c3"
+    },
+    {
+      "accession": "Q94EG3",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 229,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Apoplast",
+          "Direct protein sequencing",
+          "Disulfide bond",
+          "Glycoprotein",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Secreted",
+          "Signal"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Nicotiana langsdorffii x Nicotiana sanderae (Ornamental tobacco)",
+      "protein_name": "Nectarin-1 (EC 1.15.1.1) (Superoxide dismutase [Mn])",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "3db073c1a71df8be904492db35f2feea64f349c57fc8f030d3e09e387f1379f5"
+    },
+    {
+      "accession": "Q9LU64",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 305,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Chloroplast",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Plastid",
+          "Reference proteome",
+          "Repeat",
+          "Thylakoid",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Superoxide dismutase [Fe] 2, chloroplastic (EC 1.15.1.1) (Protein ALBINO OR PALE GREEN 8) (Protein FE SUPEROXIDE DISMUTASE 2)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "8ea9f4e562e20156f22d395849a37c5737eca63e6a86cfbf5c0ee91a6d3854ee"
+    },
+    {
+      "accession": "P09233",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 235,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Zea mays (Maize)",
+      "protein_name": "Superoxide dismutase [Mn] 3.1, mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "555fd96abf56edb1783a09838f4d41b2e45bb172d8ad679f2a0a876794bcd5e3"
+    },
+    {
+      "accession": "P9WGE7",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Direct protein sequencing",
+          "Iron",
+          "Isopeptide bond",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Secreted",
+          "Ubl conjugation"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)",
+      "protein_name": "Superoxide dismutase [Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "6e73755f5f0bf5435a0bfd154926b563d80be8af8876d989f7e788a7d2c11eeb"
+    },
+    {
+      "accession": "P19665",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 191,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Direct protein sequencing",
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Porphyromonas gingivalis (strain ATCC BAA-308 / W83)",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "3f19e8f5c230aa98b84fc72fad783b65ab39211ec514b7042213911ac2a96a79"
+    },
+    {
+      "accession": "Q9LYK8",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 241,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "protein_name": "Superoxide dismutase [Mn] 2, mitochondrial (EC 1.15.1.1) (Protein MANGANESE SUPEROXIDE DISMUTASE 2) (AtMSD2)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c07eee06fa3d8c34f023f8d85aeb3b25045ca6208592103f1e81b542817aed99"
+    },
+    {
+      "accession": "P41976",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 222,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Acetylation",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Nitration",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide",
+          "Ubl conjugation"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Bos taurus (Bovine)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "dfc2e76eec0503afc6fd7c028e28f22b30dcbd67c16e5c94df4f2a698e1eaeb0"
+    },
+    {
+      "accession": "P00447",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 233,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Antioxidant",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Phosphoprotein",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "d8c8de9dec17e86f7d01b1e2f3e9aa4a064c55c8814c6b6460a06cecfab8545f"
+    },
+    {
+      "accession": "P31161",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 221,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Caenorhabditis elegans",
+      "protein_name": "Superoxide dismutase [Mn] 1, mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "259f9e682ab951434f4eed1ea5975ff36d03c332af64183237d48d45bd1db37c"
+    },
+    {
+      "accession": "P41977",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 218,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Caenorhabditis elegans",
+      "protein_name": "Superoxide dismutase [Mn] 2, mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "52df8648e040c14c7c430a9a170cea2de5b46b581ec8b42ea3f5d17932efdcc3"
+    },
+    {
+      "accession": "Q9XS41",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 222,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Acetylation",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Nitration",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide",
+          "Ubl conjugation"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Equus caballus (Horse)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1) (Mn-SOD)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "8303cf80ff387340a68ed4c81bd54aaaad3b06332a108acfb46aec6cf42f67cc"
+    },
+    {
+      "accession": "P00449",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 204,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Phosphoprotein"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Geobacillus stearothermophilus (Bacillus stearothermophilus)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "2aeb6137c89293e72a952879e3fc498c9c7b8ef20b38297e4353d8833205c18c"
+    },
+    {
+      "accession": "P0C0I0",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 201,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Secreted"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus pyogenes",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "1345e364e1f36f59a3fe0427cd981af51393a78f6c710df3e227458c09bfda6c"
+    },
+    {
+      "accession": "Q7SIC3",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 202,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Cytoplasm",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Phosphoprotein"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Virgibacillus halodenitrificans (Bacillus halodenitrificans)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "22df7b4bf8afbc5fed182283c21bd5b3bc8a8ceb2ea3125e09b9c0bd1b48b12d"
+    },
+    {
+      "accession": "P0A4J6",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 201,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus pneumoniae serotype 4 (strain ATCC BAA-334 / TIGR4)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "73fbcfa2274a7295074f0ae2c8c029695fda8a26af03128ff9b8c9f4cb34093c"
+    },
+    {
+      "accession": "P61503",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 204,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Thermus thermophilus (strain ATCC 27634 / DSM 579 / HB8)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "60d71f60ba00965a9e6f4b7ca29eabf3362edf49d5cfcc2ce03c6d6bd55d7197"
+    },
+    {
+      "accession": "P53652",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 203,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "32e3ec8e1bffde360c8055c52fd67b44bd04700691696ce5ec6cbf816d96250e"
+    },
+    {
+      "accession": "P09737",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 200,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Halobacterium salinarum (strain ATCC 700922 / JCM 11081 / NRC-1) (Halobacterium halobium)",
+      "protein_name": "Superoxide dismutase [Mn] 1 (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "09b071e4cb99c95d44c474a77d995319bee5292f8ba039fc896acebf9971de45"
+    },
+    {
+      "accession": "P11796",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 228,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Nicotiana plumbaginifolia (Leadwort-leaved tobacco) (Tex-Mex tobacco)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "1de64fadaac44f2315030bf2fdc52ad8b524a0a99403329d73fd4c774bc66326"
+    },
+    {
+      "accession": "Q9X6W9",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 213,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Aquifex pyrophilus",
+      "protein_name": "Superoxide dismutase [Fe] (Fe-SOD) (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "cab1d7c8065f04c45c56e9e0e14a4f2158c4b17919c3443f96deb911b7285bca"
+    },
+    {
+      "accession": "P09223",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 198,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Direct protein sequencing",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Pseudomonas putida (Arthrobacter siderocapsulatus)",
+      "protein_name": "Superoxide dismutase [Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "db2e669a281dc9ea3171fb792aaa63e7ff7204e416d87c9f9632226b2d8f24a6"
+    },
+    {
+      "accession": "P80857",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 211,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Cytoplasm",
+          "Direct protein sequencing",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Saccharolobus solfataricus (strain ATCC 35092 / DSM 1617 / JCM 11322 / P2) (Sulfolobus solfataricus)",
+      "protein_name": "Superoxide dismutase [Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "f11ecdb326ce42a468d5c339f76307a4d6e58e1b4aced0ae89a4ffe277a71357"
+    },
+    {
+      "accession": "Q08713",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 211,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Cytoplasm",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Sulfolobus acidocaldarius (strain ATCC 33909 / DSM 639 / JCM 8929 / NBRC 15157 / NCIMB 11770)",
+      "protein_name": "Superoxide dismutase [Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "910f56170488f271dd0c07e0d0fd82164a3c2e6fd8b6da9a3fab35ebfdb58ae5"
+    },
+    {
+      "accession": "Q8IAY6",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 198,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Cytoplasm",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Plasmodium falciparum (isolate 3D7)",
+      "protein_name": "Superoxide dismutase [Fe] (EC 1.15.1.1) (FeSOD)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "aa44b507b465455d4819006f6a710f4d7329a89d4e9717e6e1ae36535cb6c0c5"
+    },
+    {
+      "accession": "O51917",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 213,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe(3+)",
+          "Zn(2+)"
+        ],
+        "keyword_sample": [
+          "Cytoplasm",
+          "Direct protein sequencing",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Zinc"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptomyces coelicolor (strain ATCC BAA-471 / A3(2) / M145)",
+      "protein_name": "Superoxide dismutase [Fe-Zn] 1 (EC 1.15.1.1) (FeSOD I) (SOD2)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "84f34f95237dc6f3552efc28d262daaec5fb54479524094396ab20dd466db690"
+    },
+    {
+      "accession": "P09738",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 203,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Direct protein sequencing",
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus mutans serotype c (strain ATCC 700610 / UA159)",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "973b7796eece21370112dcc662c53274e342f6b54db7e1d57dd2f0a1de018acd"
+    },
+    {
+      "accession": "O33686",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 145,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus mitis",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "3d8de247f6fa9c1f0ae1fc0819f39a9d6a18d0f0b0579cfddfb074b098fa11d8"
+    },
+    {
+      "accession": "P80293",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 201,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Direct protein sequencing",
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Propionibacterium freudenreichii subsp. shermanii",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "44b2c8c502356cf5e491d0e050819926b5c7a4016c098cc98f61fd082daec641"
+    },
+    {
+      "accession": "O54263",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 145,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus oralis",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "e1bc17c31bb6b48d6edf29e33c65ae1db55873fecce9089b5246b45476bca34e"
+    },
+    {
+      "accession": "P0A4J5",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 202,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus agalactiae",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "3ad8f8c673388295beaf4f91d57253abc379f434573d97d41a6039dc97686ba5"
+    },
+    {
+      "accession": "P0A4J3",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 202,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus agalactiae serotype III (strain NEM316)",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "3ad8f8c673388295beaf4f91d57253abc379f434573d97d41a6039dc97686ba5"
+    },
+    {
+      "accession": "P0C0Q6",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 199,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Stress response"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Staphylococcus epidermidis (strain ATCC 12228 / FDA PCI 1200)",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "08aba9003d9867fd1979ddc58906cb9103efa073437cb43982b504a1f8ed679f"
+    },
+    {
+      "accession": "P23744",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 202,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "Direct protein sequencing",
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Methylomonas sp. (strain J)",
+      "protein_name": "Superoxide dismutase [Mn/Fe] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "3d82f4f90b50d8a1953e2c6d897fdb398111e55577ca7b90c1eb9b0348b4f247"
+    },
+    {
+      "accession": "Q2G261",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 199,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 8,
+        "cofactor_names": [
+          "Mn(2+)",
+          "Fe(3+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Iron",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Stress response"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Staphylococcus aureus (strain NCTC 8325 / PS 47)",
+      "protein_name": "Superoxide dismutase [Mn/Fe] 2 (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "623e03ffcbf8edc825259e3f3265e6368f70f4593c05a428ace53680186cb198"
+    },
+    {
+      "accession": "Q5VSB7",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 255,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Fe cation"
+        ],
+        "keyword_sample": [
+          "Chloroplast",
+          "Iron",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Plastid",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "protein_name": "Superoxide dismutase [Fe] 2, chloroplastic (EC 1.15.1.1) (Iron-superoxide dismutase)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "7a01bc666a0eca16521220de7c1ac37bed98c2b152d6dd85f588659f385bf2ae"
+    },
+    {
+      "accession": "Q43008",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 231,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "720c351e23fe89f599f3e6c66c3efa69d69fc4f0351e2a43a77de2922ffea13a"
+    },
+    {
+      "accession": "Q55BJ9",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 226,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "21117fb48c6e91c21d8424a5570516d2aa6b663d49c2958cc76b5d524313486e"
+    },
+    {
+      "accession": "P86254",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 25,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 1,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Allergen",
+          "Antioxidant",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Mitochondrion",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Alternaria alternata (Alternaria rot fungus) (Torula alternata)",
+      "protein_name": "Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1) (Manganese-dependent superoxide dismutase) (MnSOD) (allergen Alt a MnSOD)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "0fdb8565ab5eaf2f5996a02eadafaf99996d491e94aa340382520e8e837b10fb"
+    },
+    {
+      "accession": "O86165",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mycobacterium lepraemurium",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "1762afb81cd2243688710dde22900b29cc3775ada3bb60c79dc2aca27049e80c"
+    },
+    {
+      "accession": "P11419",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 27,
+      "likely_wireable_under_mechanism_first_gate": false,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": false,
+        "active_site_count": 0,
+        "binding_site_count": 0,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Desulfovibrio desulfuricans",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "0b86403e9cc3473252257f7d0c2a80f256576a9e203308eb8987f2e82896c140"
+    },
+    {
+      "accession": "P28760",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 204,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Phosphoprotein"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Bacillus caldotenax",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c8d57ea9407f7046cf7a78f283ceb71e16fabaeca542b865f47a77d6a2a1c39b"
+    },
+    {
+      "accession": "P46728",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mycobacterium intracellulare (strain ATCC 13950 / DSM 43223 / JCM 6384 / NCTC 13025 / 3600)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "0264ab68c34f82ce7b34492d7dfb2fa17b211d4e8ed81a2642ad5084edb8e8e4"
+    },
+    {
+      "accession": "P53649",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Secreted"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mycolicibacterium smegmatis (Mycobacterium smegmatis)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c3030805bc7a94529304a3e5319632d46fb43b4449e4849488be4d900569fcae"
+    },
+    {
+      "accession": "P57286",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 203,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Buchnera aphidicola subsp. Acyrthosiphon pisum (strain APS) (Acyrthosiphon pisum symbiotic bacterium)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "7d0c4cf303a45abeb61a701a26b717a36de2a0f0f8f4f76440a7b34ceda89aaf"
+    },
+    {
+      "accession": "Q5XBF8",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 201,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Secreted"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus pyogenes serotype M6 (strain ATCC BAA-946 / MGAS10394)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "020b667736daac88938dc61eb0f21b63c6aeba7ff409ca78029770e863b096d2"
+    },
+    {
+      "accession": "Q89AR7",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 208,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Buchnera aphidicola subsp. Baizongia pistaciae (strain Bp)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "503bded985f80ee8014a7c25a7071bb316cf0f1d2ad01534d26898a81b3406e1"
+    },
+    {
+      "accession": "Q9CPN6",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 214,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Pasteurella multocida (strain Pm70)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "89e9c62049441d58e75ff32af4306dbf436c3baa84f25b28677b364c6f50ad78"
+    },
+    {
+      "accession": "Q9XD74",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 200,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Rhizobium meliloti (strain 1021) (Ensifer meliloti) (Sinorhizobium meliloti)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "8f043f24a9727e98ef8392481e62cbfcf59b09b2afea6eab880594634841a077"
+    },
+    {
+      "accession": "A0R652",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": false,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": false,
+        "active_site_count": 0,
+        "binding_site_count": 0,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Isopeptide bond",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Ubl conjugation"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mycolicibacterium smegmatis (strain ATCC 700084 / mc(2)155) (Mycobacterium smegmatis)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c3030805bc7a94529304a3e5319632d46fb43b4449e4849488be4d900569fcae"
+    },
+    {
+      "accession": "P0DF73",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 201,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Secreted"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus pyogenes serotype M3 (strain SSI-1)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "47dc12f05a214620d0d3f4d86ba8df1dcf4e3716a0c12057098aedabc81b045d"
+    },
+    {
+      "accession": "P28764",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 202,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Listeria monocytogenes serovar 1/2a (strain ATCC BAA-679 / EGD-e)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c9febbbce124820836fde8db575f88645deaa2731fb6aae610a04b55e943e570"
+    },
+    {
+      "accession": "P43019",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 206,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "3D-structure",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "823f56afa9c76aeafb716d7ab84febce90ea205a771e313f41c4f5f3d7802c30"
+    },
+    {
+      "accession": "P47201",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mycobacterium avium",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "4297b2c752b11d4c8764c4c18b09a3fc1baef15249bacda022413f98b38b51e5"
+    },
+    {
+      "accession": "P53653",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 204,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Thermus aquaticus",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "39e570e7454afafa0fdce6ecb66c9cd0f1effe1aecf74e35e56aecc6e523656f"
+    },
+    {
+      "accession": "Q8K9V4",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 203,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Buchnera aphidicola subsp. Schizaphis graminum (strain Sg)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c8ab3b7605a062f7f1edbb8b110d5ef125a8524541d756156161d7b1931360ac"
+    },
+    {
+      "accession": "O84296",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 206,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Chlamydia trachomatis serovar D (strain ATCC VR-885 / DSM 19411 / UW-3/Cx)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "eee97f0341252b9669521f3281a751b7f28bfa458096e033a2d0ab98ee245d95"
+    },
+    {
+      "accession": "P0C0I1",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 201,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome",
+          "Secreted"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus pyogenes serotype M1",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "227232d81de594e32c0a7d585ed905b77f6ed0878c154ca8961cc1e1e6b4f72c"
+    },
+    {
+      "accession": "P53647",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Secreted"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mycolicibacterium paratuberculosis (strain ATCC BAA-968 / K-10) (Mycobacterium paratuberculosis)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "b0cb42fa2fe2b67e851d26207682de1a845e04554b927ccfb3048208802b8c47"
+    },
+    {
+      "accession": "P53651",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Nocardia asteroides",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "92b2ab852058d1f1d346372f0b7b951bfe511a363d7e9a6329fc676364507d2b"
+    },
+    {
+      "accession": "P77929",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 203,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Pseudomonas putida (Arthrobacter siderocapsulatus)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "2a10c22460dbf46c5f19dbbdbbc6f9c6579b19bf320653de2182198e8081b5d7"
+    },
+    {
+      "accession": "P80582",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 18,
+      "likely_wireable_under_mechanism_first_gate": false,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": false,
+        "active_site_count": 0,
+        "binding_site_count": 0,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Cytoplasm",
+          "Direct protein sequencing",
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mycobacterium simiae (Mycobacterium habana)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "22ab0118d1f599640bb0653e6e51e384f45dec49ec0af946053a49549d34cec2"
+    },
+    {
+      "accession": "Q59094",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 228,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Periplasm",
+          "Reference proteome",
+          "Signal"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Acinetobacter baylyi (strain ATCC 33305 / BD413 / ADP1)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "59500a736ac75a536368ec490e50f7c595d98aec984ec8dd52be05081df20924"
+    },
+    {
+      "accession": "Q59679",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 213,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Mannheimia haemolytica (Pasteurella haemolytica)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "9a3b2f0cfb7843ef56c9b1d711a789af454fc61abde8bebdc23f54bb8d68effa"
+    },
+    {
+      "accession": "Q8P0D4",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 201,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Secreted"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Streptococcus pyogenes serotype M18 (strain MGAS8232)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "a1568b0b9f46d079822184e9be0a005e16f465b048624c718728c5b86f799f0b"
+    },
+    {
+      "accession": "Q9KD10",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 202,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Phosphoprotein",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Halalkalibacterium halodurans (strain ATCC BAA-125 / DSM 18197 / FERM 7344 / JCM 9153 / C-125) (Bacillus halodurans)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "c7dca640bef1435f6a9d8be6dcdb968ec53f20548bba05982eb99fb8bfd64d49"
+    },
+    {
+      "accession": "Q9Z9C4",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 207,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [
+          "Mn(2+)"
+        ],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Chlamydia pneumoniae (Chlamydophila pneumoniae)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "72dd9cd10698ba481c2ba0537304119fa516ebc5f957f4d17be02e2bbefe9f51"
+    },
+    {
+      "accession": "O30826",
+      "already_curated_current702": false,
+      "already_external_bronze": false,
+      "already_labeled": false,
+      "boundary_signals": {
+        "cu_zn_name_signal": false,
+        "heme_or_cytoglobin_signal": false,
+        "side_ec_signal": false,
+        "superoxide_reductase_not_dismutase_signal": false
+      },
+      "ec_numbers": [
+        "1.15.1.1"
+      ],
+      "length": 213,
+      "likely_wireable_under_mechanism_first_gate": true,
+      "mechanism_axes": {
+        "active_binding_or_metal_site_axis": true,
+        "active_site_count": 0,
+        "binding_site_count": 4,
+        "cofactor_names": [],
+        "keyword_sample": [
+          "Manganese",
+          "Metal-binding",
+          "Oxidoreductase",
+          "Reference proteome"
+        ],
+        "metal_binding_site_count": 0,
+        "mn_fe_metal_axis": true,
+        "reaction_superoxide_text": true,
+        "rhea_ids": [
+          "RHEA:20696"
+        ],
+        "rhea_superoxide_dismutation": true,
+        "sod_family_text_axis": true
+      },
+      "organism": "Haemophilus ducreyi (strain 35000HP / ATCC 700724)",
+      "protein_name": "Superoxide dismutase [Mn] (EC 1.15.1.1)",
+      "registry_gate_status": "registry_new_sample_row",
+      "sequence_sha256": "0b581b7aaef8bc7f46630a70d93b3d60f4b93264f6b630d075b3467e71d947e6"
+    }
+  ],
+  "sample_summary": {
+    "axis_counts": {
+      "active_binding_or_metal_site_axis": 77,
+      "mn_fe_metal_axis": 80,
+      "reaction_superoxide_text": 80,
+      "rhea_superoxide_dismutation": 80,
+      "sod_family_text_axis": 80
+    },
+    "boundary_counts": {},
+    "fetch_failures": 0,
+    "likely_wireable_rows": 77,
+    "registry_new_likely_wireable_rows": 77,
+    "registry_new_sample_rows": 80,
+    "sample_existing_labeled_rows": 0,
+    "sample_size": 80
+  },
+  "schema_version": "mechanism_source_scout.v1",
+  "selection_rationale": "Re-checks the breadth-feasibility Mn/Fe SOD candidate with a stronger keyword/name handle after the original cc_cofactor-only count understated reviewed supply.",
+  "status": "non_destructive_source_mechanism_scout_no_registry_write"
+}

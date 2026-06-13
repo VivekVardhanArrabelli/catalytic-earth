@@ -1,0 +1,954 @@
+{
+  "automation_id": "ce-nad-glyco-floor-expansion",
+  "current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "generated_at": "2026-06-13T14:57:25Z",
+  "guardrails": [
+    "EC/name/Rhea/keyword handles in these queries are source scope or admission evidence only.",
+    "EC alone is never counted as mechanism corroboration.",
+    "Any future labels must pass source_trust_tiers.evaluate_corroboration with non-EC mechanism axes.",
+    "predictive_evidence remains empty unless separately implemented and tested under leakage closure."
+  ],
+  "queries": [
+    {
+      "family": "biotin_dependent_carboxylase",
+      "gate_needed": "Any future lane must still require non-EC mechanism evidence: biotin/carboxybiotin/cofactor handle, Rhea participant/equation, active/binding-site residue, or domain/structure corroboration.",
+      "name": "biotin_raw_ec_6_4_1_without_biotin_handle",
+      "query": "(reviewed:true) AND (ec:6.4.1.*)",
+      "reason": "Tests whether the current EC+biotin/name/cofactor lane missed reviewed EC 6.4.1 carboxylases because the biotin handle was too narrow. EC remains scope-only.",
+      "sample_curated_labeled": 0,
+      "sample_existing_labeled": 22,
+      "sample_external_labeled": 22,
+      "sample_new_to_current_registries": [
+        "P05166",
+        "Q8RM02",
+        "Q8RM03"
+      ],
+      "sample_rows": [
+        {
+          "EC number": "6.4.1.4",
+          "Entry": "Q96RQ3",
+          "Protein names": "Methylcrotonoyl-CoA carboxylase subunit alpha, mitochondrial (MCCase subunit alpha) (EC 6.4.1.4) (3-methylcrotonyl-CoA carboxylase 1) (3-methylcrotonyl-CoA carboxylase biotin-containing subunit) (3-methylcrotonyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.4",
+          "Entry": "Q9HCC0",
+          "Protein names": "Methylcrotonoyl-CoA carboxylase beta chain, mitochondrial (MCCase subunit beta) (EC 6.4.1.4) (3-methylcrotonyl-CoA carboxylase 2) (3-methylcrotonyl-CoA carboxylase non-biotin-containing subunit) (3-methylcrotonyl-CoA:carbon dioxide ligase subunit beta)"
+        },
+        {
+          "EC number": "6.4.1.3",
+          "Entry": "P05165",
+          "Protein names": "Propionyl-CoA carboxylase alpha chain, mitochondrial (PCCase subunit alpha) (EC 6.4.1.3) (Propanoyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "Q13085",
+          "Protein names": "Acetyl-CoA carboxylase 1 (ACC1) (EC 6.4.1.2) (Acetyl-Coenzyme A carboxylase alpha) (ACC-alpha)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "O00763",
+          "Protein names": "Acetyl-CoA carboxylase 2 (EC 6.4.1.2) (ACC-beta)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "P11498",
+          "Protein names": "Pyruvate carboxylase, mitochondrial (EC 6.4.1.1) (Pyruvic carboxylase) (PCB)"
+        },
+        {
+          "EC number": "6.4.1.3",
+          "Entry": "P05166",
+          "Protein names": "Propionyl-CoA carboxylase beta chain, mitochondrial (PCCase subunit beta) (EC 6.4.1.3) (Propanoyl-CoA:carbon dioxide ligase subunit beta)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "E9Q4Z2",
+          "Protein names": "Acetyl-CoA carboxylase 2 (EC 6.4.1.2) (ACC-beta)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "P11154",
+          "Protein names": "Pyruvate carboxylase 1 (EC 6.4.1.1) (Pyruvic carboxylase 1) (PCB 1)"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "Q38970",
+          "Protein names": "Acetyl-CoA carboxylase 1 (AtACC1) (EC 6.4.1.2) (Protein EMBRYO DEFECTIVE 22) (Protein GURKE) (Protein PASTICCINO 3) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.4.1.4",
+          "Entry": "Q42523",
+          "Protein names": "Methylcrotonoyl-CoA carboxylase subunit alpha, mitochondrial (MCCase subunit alpha) (EC 6.4.1.4) (3-methylcrotonyl-CoA carboxylase 1) (3-methylcrotonyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.3",
+          "Entry": "Q91ZA3",
+          "Protein names": "Propionyl-CoA carboxylase alpha chain, mitochondrial (PCCase subunit alpha) (EC 6.4.1.3) (Propanoyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "Q05920",
+          "Protein names": "Pyruvate carboxylase, mitochondrial (EC 6.4.1.1) (Pyruvic carboxylase) (PCB)"
+        },
+        {
+          "EC number": "6.4.1.4",
+          "Entry": "Q99MR8",
+          "Protein names": "Methylcrotonoyl-CoA carboxylase subunit alpha, mitochondrial (MCCase subunit alpha) (EC 6.4.1.4) (3-methylcrotonyl-CoA carboxylase 1) (3-methylcrotonyl-CoA carboxylase biotin-containing subunit) (3-methylcrotonyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "P32327",
+          "Protein names": "Pyruvate carboxylase 2 (EC 6.4.1.1) (Pyruvic carboxylase 2) (PCB 2)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "Q5SWU9",
+          "Protein names": "Acetyl-CoA carboxylase 1 (ACC1) (EC 6.4.1.2) (ACC-alpha) (Acetyl-CoA carboxylase 265)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "Q9KWU4",
+          "Protein names": "Pyruvate carboxylase (EC 6.4.1.1) (Pyruvic carboxylase) (PYC)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "P11497",
+          "Protein names": "Acetyl-CoA carboxylase 1 (ACC1) (EC 6.4.1.2) (ACC-alpha)"
+        },
+        {
+          "EC number": "6.4.1.3",
+          "Entry": "P14882",
+          "Protein names": "Propionyl-CoA carboxylase alpha chain, mitochondrial (PCCase subunit alpha) (EC 6.4.1.3) (Propanoyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "P32874",
+          "Protein names": "Acetyl-CoA carboxylase, mitochondrial (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "P52873",
+          "Protein names": "Pyruvate carboxylase, mitochondrial (EC 6.4.1.1) (Pyruvic carboxylase) (PCB)"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "Q00955",
+          "Protein names": "Acetyl-CoA carboxylase (ACC) (EC 6.4.1.2) (Fatty acid synthetase 3) (mRNA transport-defective protein 7) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.4.1.3",
+          "Entry": "Q5LUF3",
+          "Protein names": "Propionyl-CoA carboxylase alpha chain (EC 6.4.1.3)"
+        },
+        {
+          "EC number": "6.4.1.6",
+          "Entry": "Q8RM02",
+          "Protein names": "Acetone carboxylase gamma subunit (EC 6.4.1.6)"
+        },
+        {
+          "EC number": "6.4.1.6",
+          "Entry": "Q8RM03",
+          "Protein names": "Acetone carboxylase alpha subunit (EC 6.4.1.6)"
+        }
+      ],
+      "sample_size": 25,
+      "status": "ok",
+      "uniprot_total_results": 101
+    },
+    {
+      "family": "biotin_dependent_carboxylase",
+      "gate_needed": "Hold rows unless biotin-dependent carboxylase mechanism axes are present; avoid admitting generic ligases from EC alone.",
+      "name": "biotin_raw_ec_6_3_4_carboxylase_name_no_biotin_handle",
+      "query": "(reviewed:true) AND (ec:6.3.4.*) AND (protein_name:carboxylase)",
+      "reason": "Checks amidoligase/carboxylase supply without requiring a literal biotin keyword. EC/name are scope/admission handles only.",
+      "sample_curated_labeled": 0,
+      "sample_existing_labeled": 17,
+      "sample_external_labeled": 17,
+      "sample_new_to_current_registries": [
+        "P50747",
+        "P32528",
+        "Q9SL92",
+        "Q920N2",
+        "P06709",
+        "I6YFP0",
+        "P0CI75",
+        "P48445"
+      ],
+      "sample_rows": [
+        {
+          "EC number": "6.3.4.-; 6.3.4.10; 6.3.4.11; 6.3.4.15; 6.3.4.9",
+          "Entry": "P50747",
+          "Protein names": "Biotin--protein ligase (EC 6.3.4.-) (Biotin apo-protein ligase) [Includes: Biotin--[methylmalonyl-CoA-carboxytransferase] ligase (EC 6.3.4.9); Biotin--[propionyl-CoA-carboxylase [ATP-hydrolyzing]] ligase (EC 6.3.4.10) (Holocarboxylase synthetase) (HCS); Biotin--[methylcrotonoyl-CoA-carboxylase] ligase (EC 6.3.4.11); Biotin--[acetyl-CoA-carboxylase] ligase (EC 6.3.4.15)]"
+        },
+        {
+          "EC number": "6.3.4.14",
+          "Entry": "P24182",
+          "Protein names": "Biotin carboxylase (EC 6.3.4.14) (Acetyl-coenzyme A carboxylase biotin carboxylase subunit A)"
+        },
+        {
+          "EC number": "6.3.4.14",
+          "Entry": "O04983",
+          "Protein names": "Biotin carboxylase, chloroplastic (EC 6.3.4.14) (Acetyl-coenzyme A carboxylase biotin carboxylase subunit A)"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "P32874",
+          "Protein names": "Acetyl-CoA carboxylase, mitochondrial (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "Q00955",
+          "Protein names": "Acetyl-CoA carboxylase (ACC) (EC 6.4.1.2) (Fatty acid synthetase 3) (mRNA transport-defective protein 7) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "3.5.1.54; 6.3.4.6",
+          "Entry": "P32528",
+          "Protein names": "Urea amidolyase [Includes: Urea carboxylase (EC 6.3.4.6); Allophanate hydrolase (EC 3.5.1.54)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "Q38970",
+          "Protein names": "Acetyl-CoA carboxylase 1 (AtACC1) (EC 6.4.1.2) (Protein EMBRYO DEFECTIVE 22) (Protein GURKE) (Protein PASTICCINO 3) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.-; 6.3.4.11; 6.3.4.15",
+          "Entry": "Q9SL92",
+          "Protein names": "Biotin--protein ligase 1, chloroplastic (EC 6.3.4.-) (Holocarboxylase synthetase 1) [Includes: Biotin--[methylcrotonoyl-CoA-carboxylase] ligase (EC 6.3.4.11); Biotin--[acetyl-CoA-carboxylase] ligase (EC 6.3.4.15)]"
+        },
+        {
+          "EC number": "6.3.4.-; 6.3.4.10; 6.3.4.11; 6.3.4.15; 6.3.4.9",
+          "Entry": "Q920N2",
+          "Protein names": "Biotin--protein ligase (EC 6.3.4.-) (Biotin apo-protein ligase) [Includes: Biotin--[methylmalonyl-CoA-carboxytransferase] ligase (EC 6.3.4.9); Biotin--[propionyl-CoA-carboxylase [ATP-hydrolyzing]] ligase (EC 6.3.4.10) (Holocarboxylase synthetase) (HCS); Biotin--[methylcrotonoyl-CoA-carboxylase] ligase (EC 6.3.4.11); Biotin--[acetyl-CoA-carboxylase] ligase (EC 6.3.4.15)]"
+        },
+        {
+          "EC number": "6.3.4.15",
+          "Entry": "P06709",
+          "Protein names": "Bifunctional ligase/repressor BirA (Biotin operon repressor) (Biotin--[acetyl-CoA-carboxylase] ligase) (EC 6.3.4.15) (Biotin--protein ligase) (Biotin-[acetyl-CoA carboxylase] synthetase)"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "P11029",
+          "Protein names": "Acetyl-CoA carboxylase (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "P78820",
+          "Protein names": "Acetyl-CoA carboxylase (ACC) (EC 6.4.1.2) (Cell untimely torn protein 6) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14",
+          "Entry": "P96890",
+          "Protein names": "Biotin-dependent acyl-coenzyme A carboxylase alpha3 subunit [Includes: Biotin carboxylase (BC) (EC 6.3.4.14); Biotin carboxyl carrier protein (BCCP)]"
+        },
+        {
+          "EC number": "6.3.4.15",
+          "Entry": "I6YFP0",
+          "Protein names": "Biotin--[acetyl-CoA-carboxylase] ligase (EC 6.3.4.15) (Biotin--[biotin carboxyl-carrier protein] ligase) (Biotin--protein ligase) (BPL) (Biotin-[acetyl-CoA carboxylase] synthetase)"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "Q8S6N5",
+          "Protein names": "Acetyl-CoA carboxylase 1 (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "B9FK36",
+          "Protein names": "Acetyl-CoA carboxylase 2 (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "F4I1L3",
+          "Protein names": "Acetyl-CoA carboxylase 2 (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "Q54J08",
+          "Protein names": "Acetyl-CoA carboxylase (EC 6.4.1.2) (ACC-alpha) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.15",
+          "Entry": "P0CI75",
+          "Protein names": "Bifunctional ligase/repressor BirA (Biotin--[acetyl-CoA-carboxylase] ligase) (EC 6.3.4.15) (Biotin--protein ligase) (Biotin-[acetyl-CoA carboxylase] synthetase)"
+        },
+        {
+          "EC number": "6.3.4.-; 6.3.4.10; 6.3.4.11; 6.3.4.15; 6.3.4.9",
+          "Entry": "P48445",
+          "Protein names": "Biotin--protein ligase (EC 6.3.4.-) (Biotin apo-protein ligase) [Includes: Biotin--[methylmalonyl-CoA-carboxytransferase] ligase (EC 6.3.4.9); Biotin--[propionyl-CoA-carboxylase [ATP-hydrolyzing]] ligase (EC 6.3.4.10) (Holocarboxylase synthetase) (HCS); Biotin--[methylcrotonoyl-CoA-carboxylase] ligase (EC 6.3.4.11); Biotin--[acetyl-CoA-carboxylase] ligase (EC 6.3.4.15)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "A6ZMR9",
+          "Protein names": "Acetyl-CoA carboxylase, mitochondrial (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "C7GRE4",
+          "Protein names": "Acetyl-CoA carboxylase, mitochondrial (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "B3LM95",
+          "Protein names": "Acetyl-CoA carboxylase, mitochondrial (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "C8ZF72",
+          "Protein names": "Acetyl-CoA carboxylase, mitochondrial (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.3",
+          "Entry": "I3R7G3",
+          "Protein names": "Propionyl-CoA carboxylase, biotin carboxylase and biotin-carboxyl carrier subunit (PCC) (EC 6.4.1.3) [Includes: Biotin carboxylase (BC) (EC 6.3.4.14); Biotin-carboxyl carrier protein (BCCP)]"
+        }
+      ],
+      "sample_size": 25,
+      "status": "ok",
+      "uniprot_total_results": 51
+    },
+    {
+      "family": "biotin_dependent_carboxylase",
+      "gate_needed": "Rhea IDs can support admission only with participant/equation context and another mechanism axis; EC is never counted.",
+      "name": "biotin_floor_rhea_without_biotin_name_filter",
+      "query": "(reviewed:true) AND (rhea:11308 OR rhea:13501 OR rhea:13589 OR rhea:17701 OR rhea:18385 OR rhea:20425 OR rhea:20844 OR rhea:23720 OR rhea:28647 OR rhea:65292)",
+      "reason": "Tests whether the floor-closure Rhea IDs have reviewed source supply outside the prior biotin/name/cofactor filter.",
+      "sample_curated_labeled": 0,
+      "sample_existing_labeled": 19,
+      "sample_external_labeled": 19,
+      "sample_new_to_current_registries": [
+        "Q8RM04",
+        "Q8RM02",
+        "Q8RM03",
+        "Q5P5G4",
+        "Q5P5G5",
+        "P05166"
+      ],
+      "sample_rows": [
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "Q38970",
+          "Protein names": "Acetyl-CoA carboxylase 1 (AtACC1) (EC 6.4.1.2) (Protein EMBRYO DEFECTIVE 22) (Protein GURKE) (Protein PASTICCINO 3) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "P32874",
+          "Protein names": "Acetyl-CoA carboxylase, mitochondrial (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "Q00955",
+          "Protein names": "Acetyl-CoA carboxylase (ACC) (EC 6.4.1.2) (Fatty acid synthetase 3) (mRNA transport-defective protein 7) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.4.1.6",
+          "Entry": "Q8RM04",
+          "Protein names": "Acetone carboxylase beta subunit (EC 6.4.1.6)"
+        },
+        {
+          "EC number": "6.4.1.4",
+          "Entry": "Q96RQ3",
+          "Protein names": "Methylcrotonoyl-CoA carboxylase subunit alpha, mitochondrial (MCCase subunit alpha) (EC 6.4.1.4) (3-methylcrotonyl-CoA carboxylase 1) (3-methylcrotonyl-CoA carboxylase biotin-containing subunit) (3-methylcrotonyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.4",
+          "Entry": "Q9HCC0",
+          "Protein names": "Methylcrotonoyl-CoA carboxylase beta chain, mitochondrial (MCCase subunit beta) (EC 6.4.1.4) (3-methylcrotonyl-CoA carboxylase 2) (3-methylcrotonyl-CoA carboxylase non-biotin-containing subunit) (3-methylcrotonyl-CoA:carbon dioxide ligase subunit beta)"
+        },
+        {
+          "EC number": "6.4.1.6",
+          "Entry": "Q8RM02",
+          "Protein names": "Acetone carboxylase gamma subunit (EC 6.4.1.6)"
+        },
+        {
+          "EC number": "6.4.1.6",
+          "Entry": "Q8RM03",
+          "Protein names": "Acetone carboxylase alpha subunit (EC 6.4.1.6)"
+        },
+        {
+          "EC number": "6.4.1.8",
+          "Entry": "Q5P5G4",
+          "Protein names": "Acetophenone carboxylase gamma subunit (EC 6.4.1.8) (Acetophenone carboxylase 87 kDa subunit)"
+        },
+        {
+          "EC number": "6.4.1.8",
+          "Entry": "Q5P5G5",
+          "Protein names": "Acetophenone carboxylase delta subunit (EC 6.4.1.8) (Acetophenone carboxylase 75 kDa subunit)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "Q13085",
+          "Protein names": "Acetyl-CoA carboxylase 1 (ACC1) (EC 6.4.1.2) (Acetyl-Coenzyme A carboxylase alpha) (ACC-alpha)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "O00763",
+          "Protein names": "Acetyl-CoA carboxylase 2 (EC 6.4.1.2) (ACC-beta)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "P11498",
+          "Protein names": "Pyruvate carboxylase, mitochondrial (EC 6.4.1.1) (Pyruvic carboxylase) (PCB)"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "P11029",
+          "Protein names": "Acetyl-CoA carboxylase (ACC) (EC 6.4.1.2) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.3.4.14; 6.4.1.2",
+          "Entry": "P78820",
+          "Protein names": "Acetyl-CoA carboxylase (ACC) (EC 6.4.1.2) (Cell untimely torn protein 6) [Includes: Biotin carboxylase (EC 6.3.4.14)]"
+        },
+        {
+          "EC number": "6.4.1.3",
+          "Entry": "P05165",
+          "Protein names": "Propionyl-CoA carboxylase alpha chain, mitochondrial (PCCase subunit alpha) (EC 6.4.1.3) (Propanoyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.3",
+          "Entry": "P05166",
+          "Protein names": "Propionyl-CoA carboxylase beta chain, mitochondrial (PCCase subunit beta) (EC 6.4.1.3) (Propanoyl-CoA:carbon dioxide ligase subunit beta)"
+        },
+        {
+          "EC number": "6.4.1.4",
+          "Entry": "Q42523",
+          "Protein names": "Methylcrotonoyl-CoA carboxylase subunit alpha, mitochondrial (MCCase subunit alpha) (EC 6.4.1.4) (3-methylcrotonyl-CoA carboxylase 1) (3-methylcrotonyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.4",
+          "Entry": "Q99MR8",
+          "Protein names": "Methylcrotonoyl-CoA carboxylase subunit alpha, mitochondrial (MCCase subunit alpha) (EC 6.4.1.4) (3-methylcrotonyl-CoA carboxylase 1) (3-methylcrotonyl-CoA carboxylase biotin-containing subunit) (3-methylcrotonyl-CoA:carbon dioxide ligase subunit alpha)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "P11154",
+          "Protein names": "Pyruvate carboxylase 1 (EC 6.4.1.1) (Pyruvic carboxylase 1) (PCB 1)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "P32327",
+          "Protein names": "Pyruvate carboxylase 2 (EC 6.4.1.1) (Pyruvic carboxylase 2) (PCB 2)"
+        },
+        {
+          "EC number": "6.4.1.1",
+          "Entry": "Q9KWU4",
+          "Protein names": "Pyruvate carboxylase (EC 6.4.1.1) (Pyruvic carboxylase) (PYC)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "E9Q4Z2",
+          "Protein names": "Acetyl-CoA carboxylase 2 (EC 6.4.1.2) (ACC-beta)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "P11497",
+          "Protein names": "Acetyl-CoA carboxylase 1 (ACC1) (EC 6.4.1.2) (ACC-alpha)"
+        },
+        {
+          "EC number": "6.4.1.2",
+          "Entry": "Q5SWU9",
+          "Protein names": "Acetyl-CoA carboxylase 1 (ACC1) (EC 6.4.1.2) (ACC-alpha) (Acetyl-CoA carboxylase 265)"
+        }
+      ],
+      "sample_size": 25,
+      "status": "ok",
+      "uniprot_total_results": 105
+    },
+    {
+      "family": "pfkb_ribokinase_family",
+      "gate_needed": "Do not rerun for labels unless the upstream query or mechanism handles materially change.",
+      "name": "pfkb_existing_strict_reviewed_baseline",
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"ribokinase\" OR protein_name:\"adenosine kinase\" OR protein_name:\"inosine kinase\" OR protein_name:\"1-phosphofructokinase\" OR protein_name:\"hydroxymethylpyrimidine kinase\")) NOT ((ec:2.7.11.* OR ec:2.7.13.* OR ec:3.* OR ec:2.7.4.* OR protein_name:\"protein kinase\" OR protein_name:\"histidine kinase\" OR protein_name:\"nucleoside diphosphate kinase\" OR protein_name:\"deoxynucleoside kinase\" OR protein_name:\"hexokinase\" OR protein_name:\"glucokinase\" OR protein_name:\"glycerol kinase\" OR protein_name:\"acetate kinase\" OR protein_name:\"homoserine kinase\" OR protein_name:\"mevalonate kinase\" OR protein_name:\"galactokinase\" OR protein_name:\"6-phosphofructokinase\" OR protein_name:\"ATP-dependent 6-phosphofructokinase\"))",
+      "reason": "Baseline current source path; expected exhausted at 46 admitted labels after duplicate/current-registry skips.",
+      "sample_curated_labeled": 0,
+      "sample_existing_labeled": 22,
+      "sample_external_labeled": 22,
+      "sample_new_to_current_registries": [
+        "Q5M731",
+        "O24767",
+        "O48881"
+      ],
+      "sample_rows": [
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "Q9H477",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.73",
+          "Entry": "P0AEW6",
+          "Protein names": "Guanosine-inosine kinase (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "P47143",
+          "Protein names": "Adenosine kinase (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.20; 2.7.1.213; 2.7.1.73",
+          "Entry": "Q9HJT3",
+          "Protein names": "Nucleoside kinase (NK) (Adenosine kinase) (EC 2.7.1.20) (Broad specificity nucleoside kinase) (Cytidine kinase) (EC 2.7.1.213) (Guanosine-inosine kinase) (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55263",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "P0A9J6",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.56",
+          "Entry": "P0AEW9",
+          "Protein names": "1-phosphofructokinase (EC 2.7.1.56) (Fructose 1-phosphate kinase) (Fru1PK)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "A1A6H3",
+          "Protein names": "Ribokinase (AtRBSK) (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "P9WID5",
+          "Protein names": "Adenosine kinase (ADK) (AK) (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "A5U4N0",
+          "Protein names": "Adenosine kinase (ADK) (AK) (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q64640",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55264",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.5.1.3; 2.7.1.49",
+          "Entry": "Q5M731",
+          "Protein names": "Thiamine biosynthetic bifunctional enzyme TH1, chloroplastic [Includes: Thiamine-phosphate synthase (TP synthase) (TPS) (EC 2.5.1.3) (Thiamine-phosphate pyrophosphorylase) (TMP pyrophosphorylase) (TMP-PPase); Hydroxymethylpyrimidine kinase (HMP kinase) (EC 2.7.1.49)]"
+        },
+        {
+          "EC number": "2.7.1.73",
+          "Entry": "O24767",
+          "Protein names": "Guanosine-inosine kinase (EC 2.7.1.73) (ATP:guanosine 5'-phosphotransferase) (Guanosine kinase) (GKase)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q9SF85",
+          "Protein names": "Adenosine kinase 1 (AK 1) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase 1) (N6,N6-dimethyladenosine kinase 1) (EC 2.7.1.-) (N6-isopentenyladenosine kinase 1) (EC 2.7.1.-) (N6-methyladenosine kinase 1) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q9LZG0",
+          "Protein names": "Adenosine kinase 2 (AK 2) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase 2) (N6,N6-dimethyladenosine kinase 2) (EC 2.7.1.-) (N6-isopentenyladenosine kinase 2) (EC 2.7.1.-) (N6-methyladenosine kinase 2) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.213; 2.7.1.73",
+          "Entry": "Q57849",
+          "Protein names": "Nucleoside kinase (NK) (ATP-dependent nucleoside monophosphokinase) (Cytidine kinase) (EC 2.7.1.213) (Guanosine-inosine kinase) (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55262",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.5.1.3; 2.7.1.49",
+          "Entry": "O48881",
+          "Protein names": "Thiamine biosynthetic bifunctional enzyme BTH1, chloroplastic [Includes: Thiamine-phosphate synthase (TP synthase) (TPS) (EC 2.5.1.3) (Thiamine-phosphate pyrophosphorylase) (TMP pyrophosphorylase) (TMP-PPase); Hydroxymethylpyrimidine kinase (HMP kinase) (EC 2.7.1.49)]"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "Q8R1Q9",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "P25332",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "A0A0H2WZY4",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "E9AD19",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "O60116",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.56",
+          "Entry": "D4GYE6",
+          "Protein names": "1-phosphofructokinase (EC 2.7.1.56) (Fructose 1-phosphate kinase) (Fru1PK)"
+        }
+      ],
+      "sample_size": 25,
+      "status": "ok",
+      "uniprot_total_results": 53
+    },
+    {
+      "family": "pfkb_ribokinase_family",
+      "gate_needed": "A future lane must require ATP/ADP phosphoryl-transfer Rhea/participant context or active/binding-site/cofactor/domain mechanism axes before admission.",
+      "name": "pfkb_broad_names_without_ec_scope",
+      "query": "(reviewed:true) AND ((protein_name:\"ribokinase\" OR protein_name:\"adenosine kinase\" OR protein_name:\"inosine kinase\" OR protein_name:\"1-phosphofructokinase\" OR protein_name:\"hydroxymethylpyrimidine kinase\")) NOT ((ec:2.7.11.* OR ec:2.7.13.* OR ec:3.* OR ec:2.7.4.* OR protein_name:\"protein kinase\" OR protein_name:\"histidine kinase\" OR protein_name:\"nucleoside diphosphate kinase\" OR protein_name:\"deoxynucleoside kinase\" OR protein_name:\"hexokinase\" OR protein_name:\"glucokinase\" OR protein_name:\"glycerol kinase\" OR protein_name:\"acetate kinase\" OR protein_name:\"homoserine kinase\" OR protein_name:\"mevalonate kinase\" OR protein_name:\"galactokinase\" OR protein_name:\"6-phosphofructokinase\" OR protein_name:\"ATP-dependent 6-phosphofructokinase\"))",
+      "reason": "Looks for reviewed PfkB-like proteins with names but missing EC 2.7.1 annotations; name remains scope/admission only.",
+      "sample_curated_labeled": 0,
+      "sample_existing_labeled": 22,
+      "sample_external_labeled": 22,
+      "sample_new_to_current_registries": [
+        "Q5M731",
+        "O24767",
+        "O48881"
+      ],
+      "sample_rows": [
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "Q9H477",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.73",
+          "Entry": "P0AEW6",
+          "Protein names": "Guanosine-inosine kinase (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "P47143",
+          "Protein names": "Adenosine kinase (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.20; 2.7.1.213; 2.7.1.73",
+          "Entry": "Q9HJT3",
+          "Protein names": "Nucleoside kinase (NK) (Adenosine kinase) (EC 2.7.1.20) (Broad specificity nucleoside kinase) (Cytidine kinase) (EC 2.7.1.213) (Guanosine-inosine kinase) (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55263",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "P0A9J6",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.56",
+          "Entry": "P0AEW9",
+          "Protein names": "1-phosphofructokinase (EC 2.7.1.56) (Fructose 1-phosphate kinase) (Fru1PK)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "A1A6H3",
+          "Protein names": "Ribokinase (AtRBSK) (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "P9WID5",
+          "Protein names": "Adenosine kinase (ADK) (AK) (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "A5U4N0",
+          "Protein names": "Adenosine kinase (ADK) (AK) (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q64640",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55264",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.5.1.3; 2.7.1.49",
+          "Entry": "Q5M731",
+          "Protein names": "Thiamine biosynthetic bifunctional enzyme TH1, chloroplastic [Includes: Thiamine-phosphate synthase (TP synthase) (TPS) (EC 2.5.1.3) (Thiamine-phosphate pyrophosphorylase) (TMP pyrophosphorylase) (TMP-PPase); Hydroxymethylpyrimidine kinase (HMP kinase) (EC 2.7.1.49)]"
+        },
+        {
+          "EC number": "2.7.1.73",
+          "Entry": "O24767",
+          "Protein names": "Guanosine-inosine kinase (EC 2.7.1.73) (ATP:guanosine 5'-phosphotransferase) (Guanosine kinase) (GKase)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q9SF85",
+          "Protein names": "Adenosine kinase 1 (AK 1) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase 1) (N6,N6-dimethyladenosine kinase 1) (EC 2.7.1.-) (N6-isopentenyladenosine kinase 1) (EC 2.7.1.-) (N6-methyladenosine kinase 1) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q9LZG0",
+          "Protein names": "Adenosine kinase 2 (AK 2) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase 2) (N6,N6-dimethyladenosine kinase 2) (EC 2.7.1.-) (N6-isopentenyladenosine kinase 2) (EC 2.7.1.-) (N6-methyladenosine kinase 2) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.213; 2.7.1.73",
+          "Entry": "Q57849",
+          "Protein names": "Nucleoside kinase (NK) (ATP-dependent nucleoside monophosphokinase) (Cytidine kinase) (EC 2.7.1.213) (Guanosine-inosine kinase) (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55262",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.5.1.3; 2.7.1.49",
+          "Entry": "O48881",
+          "Protein names": "Thiamine biosynthetic bifunctional enzyme BTH1, chloroplastic [Includes: Thiamine-phosphate synthase (TP synthase) (TPS) (EC 2.5.1.3) (Thiamine-phosphate pyrophosphorylase) (TMP pyrophosphorylase) (TMP-PPase); Hydroxymethylpyrimidine kinase (HMP kinase) (EC 2.7.1.49)]"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "Q8R1Q9",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "P25332",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "A0A0H2WZY4",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "E9AD19",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "O60116",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.56",
+          "Entry": "D4GYE6",
+          "Protein names": "1-phosphofructokinase (EC 2.7.1.56) (Fructose 1-phosphate kinase) (Fru1PK)"
+        }
+      ],
+      "sample_size": 25,
+      "status": "ok",
+      "uniprot_total_results": 53
+    },
+    {
+      "family": "pfkb_ribokinase_family",
+      "gate_needed": "Need non-EC corroboration before any label apply; this scout only estimates source supply.",
+      "name": "pfkb_specific_ecs_no_name_scope",
+      "query": "(reviewed:true) AND ((ec:2.7.1.15) OR (ec:2.7.1.20) OR (ec:2.7.1.49) OR (ec:2.7.1.56) OR (ec:2.7.1.73)) NOT ((ec:2.7.11.* OR ec:2.7.13.* OR ec:3.* OR ec:2.7.4.* OR protein_name:\"protein kinase\" OR protein_name:\"histidine kinase\" OR protein_name:\"nucleoside diphosphate kinase\" OR protein_name:\"deoxynucleoside kinase\" OR protein_name:\"hexokinase\" OR protein_name:\"glucokinase\" OR protein_name:\"glycerol kinase\" OR protein_name:\"acetate kinase\" OR protein_name:\"homoserine kinase\" OR protein_name:\"mevalonate kinase\" OR protein_name:\"galactokinase\" OR protein_name:\"6-phosphofructokinase\" OR protein_name:\"ATP-dependent 6-phosphofructokinase\"))",
+      "reason": "Tests whether strict PfkB EC subclasses have reviewed supply that does not match the current protein-name query. EC remains scope-only.",
+      "sample_curated_labeled": 0,
+      "sample_existing_labeled": 18,
+      "sample_external_labeled": 18,
+      "sample_new_to_current_registries": [
+        "O24767",
+        "Q5M731",
+        "C0SPC1",
+        "A0A0J9X285",
+        "O48881",
+        "A0A0H2ZQL5",
+        "Q2QWK9"
+      ],
+      "sample_rows": [
+        {
+          "EC number": "2.7.1.20; 2.7.1.213; 2.7.1.73",
+          "Entry": "Q9HJT3",
+          "Protein names": "Nucleoside kinase (NK) (Adenosine kinase) (EC 2.7.1.20) (Broad specificity nucleoside kinase) (Cytidine kinase) (EC 2.7.1.213) (Guanosine-inosine kinase) (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55263",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.73",
+          "Entry": "P0AEW6",
+          "Protein names": "Guanosine-inosine kinase (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "Q9H477",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.56",
+          "Entry": "P0AEW9",
+          "Protein names": "1-phosphofructokinase (EC 2.7.1.56) (Fructose 1-phosphate kinase) (Fru1PK)"
+        },
+        {
+          "EC number": "2.7.1.73",
+          "Entry": "O24767",
+          "Protein names": "Guanosine-inosine kinase (EC 2.7.1.73) (ATP:guanosine 5'-phosphotransferase) (Guanosine kinase) (GKase)"
+        },
+        {
+          "EC number": "2.7.1.213; 2.7.1.73",
+          "Entry": "Q57849",
+          "Protein names": "Nucleoside kinase (NK) (ATP-dependent nucleoside monophosphokinase) (Cytidine kinase) (EC 2.7.1.213) (Guanosine-inosine kinase) (EC 2.7.1.73)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q64640",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "P47143",
+          "Protein names": "Adenosine kinase (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q9SF85",
+          "Protein names": "Adenosine kinase 1 (AK 1) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase 1) (N6,N6-dimethyladenosine kinase 1) (EC 2.7.1.-) (N6-isopentenyladenosine kinase 1) (EC 2.7.1.-) (N6-methyladenosine kinase 1) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55264",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "Q9LZG0",
+          "Protein names": "Adenosine kinase 2 (AK 2) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase 2) (N6,N6-dimethyladenosine kinase 2) (EC 2.7.1.-) (N6-isopentenyladenosine kinase 2) (EC 2.7.1.-) (N6-methyladenosine kinase 2) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.5.1.3; 2.7.1.49",
+          "Entry": "Q5M731",
+          "Protein names": "Thiamine biosynthetic bifunctional enzyme TH1, chloroplastic [Includes: Thiamine-phosphate synthase (TP synthase) (TPS) (EC 2.5.1.3) (Thiamine-phosphate pyrophosphorylase) (TMP pyrophosphorylase) (TMP-PPase); Hydroxymethylpyrimidine kinase (HMP kinase) (EC 2.7.1.49)]"
+        },
+        {
+          "EC number": "2.7.1.15; 2.7.1.229",
+          "Entry": "C0SPC1",
+          "Protein names": "Cell cycle regulator CcrZ (EC 2.7.1.15) (EC 2.7.1.229) (Cell cycle regulator protein interacting with FtsZ)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "A1A6H3",
+          "Protein names": "Ribokinase (AtRBSK) (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "P0A9J6",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.-; 2.7.1.20",
+          "Entry": "P55262",
+          "Protein names": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "P9WID5",
+          "Protein names": "Adenosine kinase (ADK) (AK) (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.20",
+          "Entry": "A5U4N0",
+          "Protein names": "Adenosine kinase (ADK) (AK) (EC 2.7.1.20)"
+        },
+        {
+          "EC number": "2.7.1.49",
+          "Entry": "A0A0J9X285",
+          "Protein names": "Hydroxylmethylpyrimidine kinase (HMP kinase) (HMPK) (EC 2.7.1.49) (AbHMPK)"
+        },
+        {
+          "EC number": "2.5.1.3; 2.7.1.49",
+          "Entry": "O48881",
+          "Protein names": "Thiamine biosynthetic bifunctional enzyme BTH1, chloroplastic [Includes: Thiamine-phosphate synthase (TP synthase) (TPS) (EC 2.5.1.3) (Thiamine-phosphate pyrophosphorylase) (TMP pyrophosphorylase) (TMP-PPase); Hydroxymethylpyrimidine kinase (HMP kinase) (EC 2.7.1.49)]"
+        },
+        {
+          "EC number": "2.7.1.15; 2.7.1.229",
+          "Entry": "A0A0H2ZQL5",
+          "Protein names": "Cell cycle regulator CcrZ (EC 2.7.1.15) (EC 2.7.1.229) (Cell cycle regulator protein interacting with FtsZ)"
+        },
+        {
+          "EC number": "2.5.1.3; 2.7.1.49",
+          "Entry": "Q2QWK9",
+          "Protein names": "Probable thiamine biosynthetic bifunctional enzyme, chloroplastic [Includes: Thiamine-phosphate synthase (TP synthase) (TPS) (EC 2.5.1.3) (Thiamine-phosphate pyrophosphorylase) (TMP pyrophosphorylase) (TMP-PPase); Hydroxymethylpyrimidine kinase (HMP kinase) (EC 2.7.1.49)]"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "Q8R1Q9",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        },
+        {
+          "EC number": "2.7.1.15",
+          "Entry": "P25332",
+          "Protein names": "Ribokinase (RK) (EC 2.7.1.15)"
+        }
+      ],
+      "sample_size": 25,
+      "status": "ok",
+      "uniprot_total_results": 57
+    },
+    {
+      "family": "pfkb_ribokinase_family",
+      "gate_needed": "Family text can be one mechanism axis only when paired with chemistry/Rhea/cofactor/site evidence; never predictive.",
+      "name": "pfkb_ribokinase_family_text_no_ec",
+      "query": "(reviewed:true) AND (protein_name:\"ribokinase family\")",
+      "reason": "Checks whether UniProt protein-name text exposes family-level PfkB rows not found by enzyme-specific names.",
+      "sample_curated_labeled": 0,
+      "sample_existing_labeled": 0,
+      "sample_external_labeled": 0,
+      "sample_new_to_current_registries": [],
+      "sample_rows": [],
+      "sample_size": 0,
+      "status": "ok",
+      "uniprot_total_results": 0
+    }
+  ],
+  "recommendations": [
+    {
+      "basis": "Sample has registry-new accessions, but total source supply is not clearly above prior lane coverage.",
+      "name": "biotin_raw_ec_6_4_1_without_biotin_handle",
+      "recommendation": "limited_supply_needs_manual_mechanism_review"
+    },
+    {
+      "basis": "Sample has registry-new accessions, but total source supply is not clearly above prior lane coverage.",
+      "name": "biotin_raw_ec_6_3_4_carboxylase_name_no_biotin_handle",
+      "recommendation": "limited_supply_needs_manual_mechanism_review"
+    },
+    {
+      "basis": "Sample has registry-new accessions, but total source supply is not clearly above prior lane coverage.",
+      "name": "biotin_floor_rhea_without_biotin_name_filter",
+      "recommendation": "limited_supply_needs_manual_mechanism_review"
+    },
+    {
+      "basis": "Sample has registry-new accessions, but total source supply is not clearly above prior lane coverage.",
+      "name": "pfkb_existing_strict_reviewed_baseline",
+      "recommendation": "limited_supply_needs_manual_mechanism_review"
+    },
+    {
+      "basis": "Sample has registry-new accessions, but total source supply is not clearly above prior lane coverage.",
+      "name": "pfkb_broad_names_without_ec_scope",
+      "recommendation": "limited_supply_needs_manual_mechanism_review"
+    },
+    {
+      "basis": "Sample has registry-new accessions, but total source supply is not clearly above prior lane coverage.",
+      "name": "pfkb_specific_ecs_no_name_scope",
+      "recommendation": "limited_supply_needs_manual_mechanism_review"
+    },
+    {
+      "basis": "First sample window is already represented or query is no broader than the exhausted lane.",
+      "name": "pfkb_ribokinase_family_text_no_ec",
+      "recommendation": "not_a_new_supply_path"
+    }
+  ],
+  "registry_counts": {
+    "curated_rows": 702,
+    "external_bronze_rows": 6238,
+    "known_uniprot_accessions": 6241
+  },
+  "schema_version": "catalytic_earth.source_supply_scout.v1",
+  "scope": "source-supply scout only; no labels generated, no registry writes, no predictive evidence."
+}

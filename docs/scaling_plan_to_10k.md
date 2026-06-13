@@ -13,6 +13,42 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: Mn/Fe SOD source blocker cleared and 34fp next-lane spec
+written.** After bounded under-cap previews admitted 0 rows, this run did not repeat those same
+first-window probes. A PfkB/biotin alternate-source scout found limited registry-new reviewed
+supply and boundary-heavy rows, so the run switched to a cleaner new-family scout. The previous
+breadth-feasibility row had classified `manganese_iron_superoxide_dismutase` as source-poor because
+the count query required `cc_cofactor:manganese/iron`; a guarded EC/name/cofactor query now finds
+**252** reviewed Mn/Fe SOD rows:
+`(reviewed:true) AND (ec:1.15.1.1) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron) OR
+(protein_name:manganese) OR (protein_name:iron) OR (protein_name:Mn) OR (protein_name:Fe)) NOT
+((cc_cofactor:copper) OR (cc_cofactor:zinc) OR (protein_name:"Cu-Zn") OR (protein_name:"Cu/Zn") OR
+(protein_name:copper) OR (protein_name:zinc))`.
+
+The non-destructive mechanism scout sampled **80** rows with **0** fetch failures: **80/80**
+registry-new, **80/80** RHEA:20696/superoxide dismutation context, **80/80** Mn/Fe metal context,
+**80/80** SOD family text, **77/80** active/binding/metal-site evidence, and **0** explicit
+Cu/Zn/heme/side-EC boundary flags. No labels were generated and no registry write was performed.
+Artifacts:
+`artifacts/v3_pfkb_biotin_alternate_source_scout_current702_20260613.json`,
+`work/pfkb_biotin_alternate_source_scout_current702_20260613.md`,
+`artifacts/v3_manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.json`,
+`work/manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.md`,
+`artifacts/v3_manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.json`, and
+`work/manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.md`.
+
+Counts remain external bronze **6238**, combined label surface **6940**, and frozen current702
+**702** with sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest
+counters stay separate: **positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. Next exact action: wire
+`manganese_iron_superoxide_dismutase` as a deliberate `label_factory_v1_34fp` fingerprint through
+the full pipeline. Required implementation: fingerprint + `metal_superoxide_dismutation` ontology
+node, deploy-missing context `mn_fe_superoxide_redox_dismutation_context`, OOS prereg re-freeze,
+disambiguation/trust-tier/leakage tests, non-destructive preview, then `--apply` only if novelty,
+dedup, governor, cap, and trust-tier gates pass. Required guards: hold Cu/Zn SOD, heme/cytoglobin/
+hemoglobin/peroxidase/nitrite/nitric-oxygen dioxygenase, superoxide reductase, side-EC, EC-only,
+and multi-fingerprint-signal rows.
+
 **2026-06-13 automation update: bounded under-cap previews cleared the fetch blocker but admitted
 0 rows.** A follow-up run isolated the previous live-fetch blocker. The sourcing runners complete
 and write artifacts at small `--max-records-per-lane`; the previous no-artifact behavior was caused
