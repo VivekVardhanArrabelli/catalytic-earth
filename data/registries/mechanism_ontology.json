@@ -278,6 +278,34 @@
         "Do not merge folate/PLP one-carbon transfer, glycine hydroxymethyltransferase, or phosphoryl/glycosyl transfer chemistry into SAM methyl transfer solely by methyl-transfer wording.",
         "The SAM methyl donor and SAH product are dissociable ligands; their absence in the apo structure is the declared deploy-missing context."
       ]
+    },
+    {
+      "id": "acyl_transfer",
+      "name": "CoA/acyl-CoA-dependent acyl transfer chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "coa_acyltransferase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by CoA/acyl-CoA Rhea participant or CoA/acyl-CoA binding-site evidence, or by Acyltransferase keyword/domain plus active-/binding-site mechanism evidence; EC 2.3.1 is scope only.",
+        "Do not merge hydrolase side-EC rows, water-acceptor chemistry, or generic transferases without CoA/acyl-CoA mechanism evidence into this family.",
+        "Do not merge methyltransferase, glycosyltransferase, phosphoryl-transfer, or non-CoA acyl carrier chemistry into CoA acyl transfer solely by transferase wording.",
+        "The CoA/acyl-CoA donor and acceptor substrate are dissociable ligands; their absence in apo structures is the declared deploy-missing context."
+      ]
+    },
+    {
+      "id": "isomerization",
+      "name": "Cofactor-independent isomerization chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "cofactor_independent_isomerase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by Rhea isomerization equation/participant or Isomerase keyword/domain plus active-/binding-site/base evidence; EC 5.3 is scope only.",
+        "Do not admit EC-only rows or rows with non-5.3 side ECs unless a future subclass rule explicitly owns the boundary chemistry.",
+        "Hold transferase, peroxidase, hydrolase, oxidoreductase, and protein disulfide isomerase/thiol-redox side rows out of the generic cofactor-independent isomerase label.",
+        "The substrate/proton-transfer state is deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

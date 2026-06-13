@@ -257,6 +257,31 @@ _TWO_OG_REACTION_TOKENS = (
     "oxoglutarate",
 )
 _TWO_OG_PRODUCT_TOKENS = ("succinate", "co2", "co(2)", "carbon dioxide")
+# CoA acyltransferase handles. EC 2.3.1 selects scope only; counted mechanism
+# corroboration comes from CoA/acyl-CoA Rhea participant text, CoA binding feature
+# text, the Acyltransferase keyword/domain handle, or active-/binding-site
+# residue annotations. Hydrolase side-EC rows stay held.
+_COA_ACYL_COA_TOKENS = (
+    "coenzyme a",
+    "coa",
+    "acyl-coa",
+    "acetyl-coa",
+    "malonyl-coa",
+    "succinyl-coa",
+    "butyryl-coa",
+    "propionyl-coa",
+    "palmitoyl-coa",
+    "benzoyl-coa",
+    "hydroxycinnamoyl-coa",
+    "3-oxoacyl-coa",
+)
+_ACYLTRANSFERASE_KEYWORD_TOKENS = ("acyltransferase",)
+# Cofactor-independent isomerase handles. EC 5.3 selects scope only; counted
+# mechanism corroboration comes from Rhea isomerization equation text, the Isomerase
+# keyword/domain handle, or active-/binding-site residue annotations. Rows with
+# non-5.3 side ECs stay held until a subclass rule explicitly owns them.
+_ISOMERASE_KEYWORD_TOKENS = ("isomerase",)
+_ISOMERIZATION_REACTION_TOKENS = (" = ", "isomer", "epimer", "racem", "mutase")
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
 
@@ -350,6 +375,13 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     keyword_dioxygenase = in_any(keywords, *_DIOXYGENASE_KEYWORD_TOKENS)
     two_og_reaction = in_any(reactions, *_TWO_OG_REACTION_TOKENS)
     succinate_co2_product = in_any(reactions, *_TWO_OG_PRODUCT_TOKENS)
+    coa_acyl_coa_reaction = in_any(reactions, *_COA_ACYL_COA_TOKENS)
+    coa_acyl_coa_feature = in_any(feature_texts + cofactor_names, *_COA_ACYL_COA_TOKENS)
+    keyword_acyltransferase = in_any(keywords, *_ACYLTRANSFERASE_KEYWORD_TOKENS)
+    hydrolase_side_ec = _ec_has_prefix(row, ("3.1.", "3.4.", "3.5."))
+    keyword_isomerase = in_any(keywords, *_ISOMERASE_KEYWORD_TOKENS)
+    isomerization_reaction = in_any(reactions, *_ISOMERIZATION_REACTION_TOKENS)
+    non_5_3_side_ec = any(ec and not ec.startswith("5.3") for ec in _ec_numbers(row))
 
     evidence.update(
         {
@@ -371,6 +403,13 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "keyword_dioxygenase": keyword_dioxygenase,
             "two_og_reaction": two_og_reaction,
             "succinate_co2_product": succinate_co2_product,
+            "coa_acyl_coa_reaction": coa_acyl_coa_reaction,
+            "coa_acyl_coa_feature": coa_acyl_coa_feature,
+            "keyword_acyltransferase": keyword_acyltransferase,
+            "hydrolase_side_ec": hydrolase_side_ec,
+            "keyword_isomerase": keyword_isomerase,
+            "isomerization_reaction": isomerization_reaction,
+            "non_5_3_side_ec": non_5_3_side_ec,
             "active_or_binding_site_present": bool(
                 _feature_codes(row) & _ACTIVE_OR_BINDING_FEATURE_CODES
             ),
@@ -397,6 +436,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("sugar_nucleotide_donor")
         or evidence.get("sam_sah_methyl_donor")
         or evidence.get("two_og_reaction")
+        or evidence.get("coa_acyl_coa_reaction")
+        or evidence.get("coa_acyl_coa_feature")
     ):
         axes.add("cofactor_or_cosubstrate")
     if (
@@ -406,6 +447,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("oxygenase_reaction")
         or evidence.get("two_og_reaction")
         or evidence.get("succinate_co2_product")
+        or evidence.get("coa_acyl_coa_reaction")
+        or evidence.get("isomerization_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -421,6 +464,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("keyword_p450")
         or evidence.get("keyword_monooxygenase")
         or evidence.get("keyword_dioxygenase")
+        or evidence.get("keyword_acyltransferase")
+        or evidence.get("keyword_isomerase")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -463,6 +508,8 @@ _GLYCOSYLTRANSFERASE_EC = ("2.4",)    # glycosyl/hexosyl/pentosyl/sialyl transfe
 _SAM_METHYLTRANSFERASE_EC = ("2.1.1",)  # methyl group transfer, mostly SAM/SAH donor/product
 _P450_MONOOXYGENASE_EC = ("1.14.",)  # paired-donor oxidoreductases incorporating one O atom
 _NON_HEME_IRON_2OG_EC = ("1.14.11",)  # 2-oxoglutarate-dependent dioxygenases
+_COA_ACYLTRANSFERASE_EC = ("2.3.1",)  # acyltransferases using CoA/acyl-CoA donors
+_COFACTOR_INDEPENDENT_ISOMERASE_EC = ("5.3.",)  # intramolecular isomerases
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -551,6 +598,24 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["fe_s"]
         and not c["cx3cx2c_motif"]
         and _ec_has_prefix(row, _SAM_METHYLTRANSFERASE_EC),
+    ),
+    (
+        "coa_acyltransferase",
+        lambda c, row: _ec_has_prefix(row, _COA_ACYLTRANSFERASE_EC)
+        and not c["hydrolase_side_ec"]
+        and c["keyword_acyltransferase"]
+        and (
+            c["coa_acyl_coa_reaction"]
+            or c["coa_acyl_coa_feature"]
+            or c["active_or_binding_site_present"]
+        ),
+    ),
+    (
+        "cofactor_independent_isomerase",
+        lambda c, row: _ec_has_prefix(row, _COFACTOR_INDEPENDENT_ISOMERASE_EC)
+        and not c["non_5_3_side_ec"]
+        and c["keyword_isomerase"]
+        and (c["isomerization_reaction"] or c["active_or_binding_site_present"]),
     ),
 )
 

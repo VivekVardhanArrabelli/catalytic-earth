@@ -80,6 +80,8 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "sam_methyltransferase": "sam_sah_methyl_donor",
     "cytochrome_p450_monooxygenase": "heme_thiolate_oxygen_cosubstrate",
     "non_heme_iron_2og_dioxygenase": "fe_ii_2og_o2_cosubstrate",
+    "coa_acyltransferase": "coa_acyl_coa_donor",
+    "cofactor_independent_isomerase": "active_site_base_isomerization_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

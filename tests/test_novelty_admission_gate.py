@@ -141,7 +141,7 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
         frozen = json.loads(FROZEN_PATH.read_text())
         expansion = json.loads(EXPANSION_PATH.read_text())
         audit = self_audit(frozen, expansion)
-        self.assertEqual(audit["expansion_rows"], 3872)
+        self.assertEqual(audit["expansion_rows"], 4202)
         # some redundancy exists and is bounded
         self.assertGreater(audit["would_not_readmit"], 0)
         self.assertLess(audit["would_not_readmit_fraction"], 1.0)

@@ -13,6 +13,61 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: cofactor-independent isomerase 19fp expansion is now applied.**
+After the CoA work below completed, the recommended next lane was wired as a deliberate
+19-fingerprint universe change and sourced through the same evidence-rich admission machinery. Added
+`cofactor_independent_isomerase` fingerprint + `isomerization` ontology family, EC 5.3 scope,
+Rhea isomerization equation text or Isomerase keyword/domain plus active-/binding-site/base
+mechanism handles, non-5.3 side-EC guards, 19fp OOS preregistration re-freeze, offline tests,
+non-destructive preview, then explicit apply. Live preview/apply
+(`scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 80 --apply`) fetched
+**266** reviewed Swiss-Prot rows, mechanism-corroborated **147**, admitted **142** before cap, and
+appended **142** bronze rows; **5** were novelty-throttled, **70** were disambiguation holds
+(`no_mechanism_corroboration`), **28** off-target fingerprint matches were held
+(`nad_p_dehydrogenase`), **21** were skipped, and fetch failures were **0**. External bronze is now
+**4202** (was 4060 after CoA); combined label surface is **4904**; frozen current702 remains **702**
+with sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after apply.
+Honest counters after the apply stay separate: **positive_bronze 3191**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k:
+**6809**. Post-apply audit: **19 fingerprints**, fingerprint Gini **0.1613**, holes `[]`, only
+`metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. The post-isomerase
+non-destructive source-supply scout recommends **molybdopterin oxidoreductase** next:
+**460** reviewed rows and **33** distinct full EC labels in a 200-row sample, ahead of
+`copper_oxidoreductase` (**222** / **12**). Both are reaction-poor, so the next lane should start
+with a mechanism-handle scout and explicit subclass/boundary guards, not a direct apply. Next
+recommended lane: wire `molybdopterin_oxidoreductase` only if the scout confirms non-EC mechanism
+corroborators (molybdopterin/Mo-cofactor, Rhea redox/oxo-transfer participants, Mo-pterin
+domain/keyword, active-/binding-site metal/ligand evidence, or structure); keep EC scope-only and
+re-freeze OOS preregistration to 20fp before any registry apply.
+
+**2026-06-13 automation update: CoA acyltransferase 18fp expansion is now applied.**
+After the non-heme iron 2OG work below completed, the documented next lane was wired as a deliberate
+18-fingerprint universe change and sourced through the same evidence-rich admission machinery. Added
+`coa_acyltransferase` fingerprint + `acyl_transfer` ontology family, EC 2.3.1 scope, CoA/acyl-CoA
+Rhea participant or CoA/acyl-CoA feature text or Acyltransferase keyword/domain plus active-/
+binding-site mechanism handles, hydrolase side-EC guards, 18fp OOS preregistration re-freeze,
+offline tests, non-destructive preview, then explicit apply. Live preview/apply
+(`scripts/source_coa_acyltransferase_family.py --max-records-per-lane 80 --apply`) fetched **218**
+reviewed Swiss-Prot rows, mechanism-corroborated **204**, admitted **188** before cap, and appended
+**188** bronze rows; **16** were novelty-throttled, **11** were disambiguation holds
+(`no_mechanism_corroboration`), **1** off-target fingerprint match was held, **2** were skipped, and
+fetch failures were **0**. External bronze is now **4060** (was 3872 after 2OG); combined label
+surface is **4762**; frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after apply. Honest
+counters after the apply stay separate: **positive_bronze 3049**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k:
+**6951**. Post-apply audit: **18 fingerprints**, fingerprint Gini **0.1652**, holes `[]`, only
+`metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. A follow-on current
+source-supply scout recommends **cofactor-independent isomerase** as the next lane: **5273** reviewed
+rows and **51** distinct full EC labels in a 200-row sample, no reaction-poor warning. A mechanism
+handle scout over 80 entries found catalytic activity context **80/80**, Rhea cross-reference
+**62/80**, active-or-binding-site context **65/80**, and fetch failures **0**. It also surfaced
+multi-EC boundary rows (`2.5.1.18`, `1.11.1.-` in the top sample), so the next runner needs explicit
+mutase/racemase/epimerase/isomerase subclass guards and off-target holds. Next recommended lane: wire
+`cofactor_independent_isomerase` as a deliberate 19fp universe change with EC 5.3 scope-only lanes
+plus Rhea isomerization equation/participant or Isomerase keyword/domain and active-/binding-site/base
+mechanism corroboration; add guards before any preview/apply.
+
 **2026-06-13 automation update: non-heme iron 2OG 17fp expansion is now applied.**
 After the P450 work below completed, the next documented scaling lane was wired as a deliberate
 17-fingerprint universe change and sourced through the same evidence-rich admission machinery. Added
@@ -326,17 +381,19 @@ to the ceiling manufactures the redundancy the plan warns against. Next splits/f
 glycosidases, and non-hydrolase chemistries (oxidoreductase/transferase) to keep chemical
 breadth — hydrolysis now holds 6 of 12 fingerprints.
 
-**Applied (2026-06-12/13) — broadened-handle transferase/redox families filled:** the first five
-non-hydrolase broadened-handle families are now countable bronze, not just previews.
+**Applied (2026-06-12/13) — broadened-handle transferase/redox/isomerase families filled:** the
+first seven non-hydrolase broadened-handle families are now countable bronze, not just previews.
 `nad_p_dehydrogenase` is capped at **150**, `glycosyltransferase` at **250**, and
 `sam_methyltransferase` at **250**; `cytochrome_p450_monooxygenase` is at **110** and
-`non_heme_iron_2og_dioxygenase` is at **172**. All meet the 100-floor and none should be sourced
+`non_heme_iron_2og_dioxygenase` is at **172**; `coa_acyltransferase` is at **188**; and
+`cofactor_independent_isomerase` is at **142**. All meet the 100-floor and none should be sourced
 further without a new chemistry split. The coverage governor reports no expansion holes;
 `metal_dependent_hydrolase` remains the intentional over-cap. This raises positive_bronze to
-**2861** while keeping OOS/silver/projected counters separate. The next breadth step should open
-**one new family** rather than deepen these: the current scout ranks `coa_acyltransferase` as the
-best next candidate, and it must include an 18fp governance update and OOS pre-registration
-supersession before any registry apply.
+**3191** while keeping OOS/silver/projected counters separate. The next breadth step should open
+**one new family** rather than deepen these: the current scout ranks
+`molybdopterin_oxidoreductase` as the best next candidate, but it is reaction-poor and must start
+with a mechanism-handle scout, subclass/boundary guards, a 20fp governance update, and OOS
+pre-registration supersession before any registry apply.
 
 ### Stage 3 — Diverse OOS, novelty-gated
 OOS is the abstention target and must keep growing in **coverage**, not redundancy.

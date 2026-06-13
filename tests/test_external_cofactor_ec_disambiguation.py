@@ -167,6 +167,134 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertEqual(d["decision"], "hold")
 
+    def test_coa_acyltransferase_requires_coa_or_active_site_handle(self) -> None:
+        row = _row(ec=["2.3.1.48"])
+        row["keywords"] = ["Acyltransferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CA0001",
+                "reaction": "acetyl-CoA + L-carnitine = CoA + O-acetyl-L-carnitine",
+                "ec_number": "2.3.1.48",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "coa_acyltransferase")
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_coa_acyltransferase_keyword_plus_active_site_fallback(self) -> None:
+        row = _row(ec=["2.3.1.48"])
+        row["keywords"] = ["Acyltransferase"]
+        row["residue_locators"] = [
+            {
+                "position": 143,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "coa_acyltransferase")
+        self.assertIn(
+            "active_site_motif_or_residue_role",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "domain_or_family_profile",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_coa_acyltransferase_ec_keyword_only_control_held(self) -> None:
+        row = _row(ec=["2.3.1.48"])
+        row["keywords"] = ["Acyltransferase"]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_coa_acyltransferase_hydrolase_side_ec_control_held(self) -> None:
+        row = _row(ec=["2.3.1.48", "3.1.1.4"])
+        row["keywords"] = ["Acyltransferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:HY0001",
+                "reaction": "acetyl-CoA + water = CoA + acetate",
+                "ec_number": "2.3.1.48",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_cofactor_independent_isomerase_requires_reaction_or_active_site_handle(self) -> None:
+        row = _row(ec=["5.3.1.1"])
+        row["keywords"] = ["Isomerase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CI0001",
+                "reaction": "D-glyceraldehyde 3-phosphate = glycerone phosphate",
+                "ec_number": "5.3.1.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "cofactor_independent_isomerase")
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_cofactor_independent_isomerase_keyword_plus_active_site_fallback(self) -> None:
+        row = _row(ec=["5.3.3.8"])
+        row["keywords"] = ["Isomerase"]
+        row["residue_locators"] = [
+            {
+                "position": 144,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "cofactor_independent_isomerase")
+        self.assertIn(
+            "active_site_motif_or_residue_role",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "domain_or_family_profile",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_cofactor_independent_isomerase_ec_keyword_only_control_held(self) -> None:
+        row = _row(ec=["5.3.1.1"])
+        row["keywords"] = ["Isomerase"]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_cofactor_independent_isomerase_non_5_3_side_ec_control_held(self) -> None:
+        row = _row(ec=["5.3.3.8", "1.1.1.1"])
+        row["keywords"] = ["Isomerase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CI0002",
+                "reaction": "cholestenol = cholestenone",
+                "ec_number": "5.3.3.8",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

@@ -323,6 +323,58 @@
     }
   },
   {
+    "id": "coa_acyltransferase",
+    "name": "CoA/acyl-CoA-dependent acyltransferase",
+    "enzyme_space": ["acyl-CoA transferases", "acetyltransferases", "malonyltransferases", "thiolases/acyltransferase-family enzymes", "natural-product acyltransferases"],
+    "active_site_signature": [
+      {"role": "acyl_donor_binding", "residue": "CoA/acyl-CoA thioester pocket", "constraints": ["positions the acyl-CoA thioester carbonyl and CoA pantetheine arm for acyl transfer"]},
+      {"role": "catalytic_base_or_nucleophile", "residue": "His/Cys/Asp/Glu/Ser depending on family", "constraints": ["activates the acceptor or forms a transient acyl-enzyme intermediate without hydrolytic water being the intended acceptor"]},
+      {"role": "oxyanion_or_thioester_stabilizer", "residue": "backbone NH / Asn / His / Lys", "constraints": ["stabilizes the tetrahedral intermediate and CoA thiolate leaving group"]}
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": ["transfer of an acyl group from CoA/acyl-CoA thioester to an acceptor oxygen, nitrogen, sulfur, carbon, or acyl carrier protein"],
+      "chemical_operation": "CoA/acyl-CoA thioester acyl transfer"
+    },
+    "substrate_constraints": ["CoA/acyl-CoA donor in the thioester donor pocket", "acceptor nucleophile aligned with the acyl carbonyl", "CoA thiolate leaving group stabilized by the enzyme active site"],
+    "evidence_features": ["Acyltransferase functional keyword or family/domain profile", "CoA/acyl-CoA Rhea reaction participant", "CoA/acyl-CoA binding-site annotation", "catalytic His/Cys or active-site residue annotation"],
+    "counterevidence_features": ["hydrolase side EC or water as the intended acceptor", "non-CoA acyl donor with no CoA/acyl-CoA participant", "generic transferase keyword without acyltransferase family evidence", "phosphoryl, glycosyl, or methyl-transfer chemistry"],
+    "uncertainty_axes": ["acceptor atom class", "acyl donor chain length", "acyl-enzyme intermediate vs direct transfer", "CoA vs acyl-carrier-protein donor coupling"],
+    "seed_examples": ["chloramphenicol acetyltransferase", "carnitine O-acetyltransferase", "malonyl-CoA:ACP transacylase", "histone acetyltransferases", "thiolase-family acyltransferases"],
+    "deploy_missing_active_site_context": {
+      "type": "cosubstrate",
+      "detail": "the CoA/acyl-CoA donor and acceptor substrate are dissociable ligands absent from apo predicted structures, so thioester donor/acceptor geometry is unconstrained",
+      "reconstruction_path": "Path A sequence->Acyltransferase/CoA-donor channel plus CoA/acyl-CoA Rhea or binding-site evidence, or canonical CoA/acyl-CoA graft (Path B)",
+      "silver_reachability": "moderate; CoA-binding and acyltransferase family signals are often detectable, but donor/acceptor poses and chain-length specificity require reconstruction"
+    }
+  },
+  {
+    "id": "cofactor_independent_isomerase",
+    "name": "Cofactor-independent isomerase",
+    "enzyme_space": ["sugar-phosphate isomerases", "alkene isomerases", "epimerases/racemases within EC 5.3 scope", "small-molecule acid-base isomerases"],
+    "active_site_signature": [
+      {"role": "general_acid_base", "residue": "His/Asp/Glu/Lys/Cys depending on family", "constraints": ["moves a proton or polarizes the substrate during intramolecular rearrangement without a dissociable cofactor"]},
+      {"role": "substrate_polarizer", "residue": "Lys/Arg/Asn/Gln/backbone NH", "constraints": ["stabilizes enediol/enolate, imine, or charged isomerization intermediate"]},
+      {"role": "substrate_positioning", "residue": "variable pocket", "constraints": ["holds both reactant and product atom arrangements in a near-isoenergetic binding pose"]}
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": ["intramolecular atom, double-bond, or stereochemical rearrangement without net cofactor consumption"],
+      "chemical_operation": "cofactor-independent isomerization by acid-base and transition-state stabilization"
+    },
+    "substrate_constraints": ["substrate scaffold supports reversible intramolecular rearrangement", "active-site base/acid aligned with the migrating proton or stereocenter", "no required metal, flavin, heme, SAM, CoA, PLP, or nucleotide-sugar donor"],
+    "evidence_features": ["Isomerase functional keyword or family/domain profile", "Rhea isomerization equation under EC 5.3 scope", "active-site/base residue annotation", "binding-site context for the isomerized substrate"],
+    "counterevidence_features": ["non-5.3 side EC indicating transferase, peroxidase, hydrolase, or oxidoreductase boundary chemistry", "protein disulfide isomerase or thiol-redox row without a separate redox-isomerase subclass rule", "cofactor-dependent mutase/racemase chemistry", "EC-only evidence with no Rhea or active-site/domain corroboration"],
+    "uncertainty_axes": ["isomerization subclass", "acid-base residue identity", "substrate tautomer/protonation state", "redox or transferase side activity"],
+    "seed_examples": ["triosephosphate isomerase", "xylose isomerase-like acid-base isomerases without catalytic metal", "methylmalonyl-CoA epimerase-like cofactorless epimerases", "chalcone isomerase-like enzymes"],
+    "deploy_missing_active_site_context": {
+      "type": "active_site_base_and_substrate",
+      "detail": "the substrate and proton-transfer state are absent from apo predicted structures, so acid/base geometry and isomerization intermediate stabilization are unconstrained",
+      "reconstruction_path": "Path A sequence->isomerase-family/active-site-base channel plus Rhea isomerization evidence, or canonical substrate/intermediate graft (Path B)",
+      "silver_reachability": "moderate; active-site/base motifs are often annotated, but substrate state and reversible isomerization geometry require reconstruction"
+    }
+  },
+  {
     "id": "nad_p_dehydrogenase",
     "name": "NAD(P)-dependent dehydrogenase/reductase",
     "enzyme_space": ["short-chain dehydrogenases/reductases (SDR)", "medium-chain dehydrogenases/reductases (MDR)", "aldo-keto reductases (AKR)", "Rossmann-fold oxidoreductases"],

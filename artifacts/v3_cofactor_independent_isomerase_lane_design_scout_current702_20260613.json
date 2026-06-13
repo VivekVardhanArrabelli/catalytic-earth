@@ -1,0 +1,317 @@
+{
+  "artifact_id": "v3_cofactor_independent_isomerase_lane_design_scout_current702_20260613",
+  "boundary_guards_needed": [
+    "hold EC 1.11 peroxidase side rows",
+    "hold EC 2.5 transferase side rows",
+    "separate protein disulfide isomerase/thiol-redox rows from generic cofactor-independent isomerase",
+    "hold rows without Rhea isomerization text or active-/binding-site/base evidence"
+  ],
+  "candidate_family": "cofactor_independent_isomerase",
+  "created_utc": "2026-06-13T01:25:20Z",
+  "guardrails": {
+    "ec_scope_only": true,
+    "labels_emitted": 0,
+    "mechanism_handles_must_be_non_predictive_admission_evidence": true,
+    "predictive_features_added": false,
+    "registry_written": false
+  },
+  "lane_sketches": [
+    {
+      "count_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.1.*) AND (keyword:Isomerase)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.1.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_200_sample": 32,
+      "lane_id": "isomerase_ec_5_3_1_intramolecular_oxidoreductase_like",
+      "query": "(reviewed:true) AND (ec:5.3.1.*) AND (keyword:Isomerase)",
+      "reaction_poor_warning": true,
+      "role": "high-supply intramolecular oxidoreductase/isomerase lane; needs redox/cofactor/off-target guards",
+      "sample_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.1.*) AND (keyword:Isomerase)",
+        "record_count": 200,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.1.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 200,
+      "sample_rows_with_full_ec": 199,
+      "supply": 4218,
+      "top_full_ecs": [
+        {
+          "count": 61,
+          "ec": "5.3.1.1"
+        },
+        {
+          "count": 40,
+          "ec": "5.3.1.9"
+        },
+        {
+          "count": 24,
+          "ec": "4.2.3.3"
+        },
+        {
+          "count": 17,
+          "ec": "5.3.1.24"
+        },
+        {
+          "count": 14,
+          "ec": "4.1.1.48"
+        },
+        {
+          "count": 13,
+          "ec": "5.3.1.5"
+        },
+        {
+          "count": 12,
+          "ec": "5.3.1.8"
+        },
+        {
+          "count": 12,
+          "ec": "5.3.1.6"
+        },
+        {
+          "count": 12,
+          "ec": "4.1.3.27"
+        },
+        {
+          "count": 8,
+          "ec": "5.3.1.23"
+        }
+      ]
+    },
+    {
+      "count_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.2.*) AND (keyword:Isomerase)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.2.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_200_sample": 10,
+      "lane_id": "isomerase_ec_5_3_2_keto_aldose",
+      "query": "(reviewed:true) AND (ec:5.3.2.*) AND (keyword:Isomerase)",
+      "reaction_poor_warning": true,
+      "role": "keto/aldose and related acid-base isomerization lane",
+      "sample_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.2.*) AND (keyword:Isomerase)",
+        "record_count": 141,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.2.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 141,
+      "sample_rows_with_full_ec": 80,
+      "supply": 141,
+      "top_full_ecs": [
+        {
+          "count": 27,
+          "ec": "5.3.2.5"
+        },
+        {
+          "count": 25,
+          "ec": "5.3.2.2"
+        },
+        {
+          "count": 17,
+          "ec": "5.3.2.1"
+        },
+        {
+          "count": 17,
+          "ec": "5.3.3.12"
+        },
+        {
+          "count": 9,
+          "ec": "5.3.2.6"
+        },
+        {
+          "count": 6,
+          "ec": "4.1.1.112"
+        },
+        {
+          "count": 5,
+          "ec": "3.7.1.5"
+        },
+        {
+          "count": 4,
+          "ec": "4.2.1.2"
+        },
+        {
+          "count": 1,
+          "ec": "5.3.2.3"
+        },
+        {
+          "count": 1,
+          "ec": "5.3.2.8"
+        }
+      ]
+    },
+    {
+      "count_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.3.*) AND (keyword:Isomerase)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.3.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_200_sample": 26,
+      "lane_id": "isomerase_ec_5_3_3_alkene",
+      "query": "(reviewed:true) AND (ec:5.3.3.*) AND (keyword:Isomerase)",
+      "reaction_poor_warning": true,
+      "role": "intramolecular oxidoreductase / alkene isomerase lane; needs redox boundary guards",
+      "sample_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.3.*) AND (keyword:Isomerase)",
+        "record_count": 200,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.3.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 200,
+      "sample_rows_with_full_ec": 199,
+      "supply": 745,
+      "top_full_ecs": [
+        {
+          "count": 112,
+          "ec": "5.3.3.8"
+        },
+        {
+          "count": 102,
+          "ec": "4.2.1.17"
+        },
+        {
+          "count": 97,
+          "ec": "1.1.1.35"
+        },
+        {
+          "count": 91,
+          "ec": "5.1.2.3"
+        },
+        {
+          "count": 20,
+          "ec": "5.3.3.2"
+        },
+        {
+          "count": 17,
+          "ec": "5.3.3.1"
+        },
+        {
+          "count": 15,
+          "ec": "5.3.3.12"
+        },
+        {
+          "count": 14,
+          "ec": "1.1.1.145"
+        },
+        {
+          "count": 12,
+          "ec": "5.3.3.22"
+        },
+        {
+          "count": 11,
+          "ec": "3.1.1.64"
+        }
+      ]
+    },
+    {
+      "count_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.4.*) AND (keyword:Isomerase)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.4.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_200_sample": 1,
+      "lane_id": "isomerase_ec_5_3_4_disulfide",
+      "query": "(reviewed:true) AND (ec:5.3.4.*) AND (keyword:Isomerase)",
+      "reaction_poor_warning": true,
+      "role": "protein disulfide isomerase / thiol-disulfide boundary lane; likely confusable with redox",
+      "sample_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.4.*) AND (keyword:Isomerase)",
+        "record_count": 116,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.4.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 116,
+      "sample_rows_with_full_ec": 116,
+      "supply": 116,
+      "top_full_ecs": [
+        {
+          "count": 116,
+          "ec": "5.3.4.1"
+        }
+      ]
+    },
+    {
+      "count_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.*) AND (keyword:Isomerase)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession&format=tsv&size=1"
+      },
+      "distinct_full_ec_in_200_sample": 51,
+      "lane_id": "isomerase_ec_5_3_broad_keyword",
+      "query": "(reviewed:true) AND (ec:5.3.*) AND (keyword:Isomerase)",
+      "reaction_poor_warning": false,
+      "role": "broad fallback scope lane; must be novelty-gated and off-target-held",
+      "sample_metadata": {
+        "query": "(reviewed:true) AND (ec:5.3.*) AND (keyword:Isomerase)",
+        "record_count": 200,
+        "size": 200,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cec&format=tsv&size=200"
+      },
+      "sample_rows": 200,
+      "sample_rows_with_full_ec": 199,
+      "supply": 5273,
+      "top_full_ecs": [
+        {
+          "count": 47,
+          "ec": "5.3.4.1"
+        },
+        {
+          "count": 25,
+          "ec": "5.3.3.8"
+        },
+        {
+          "count": 16,
+          "ec": "4.2.1.17"
+        },
+        {
+          "count": 12,
+          "ec": "5.3.99.3"
+        },
+        {
+          "count": 12,
+          "ec": "1.1.1.35"
+        },
+        {
+          "count": 11,
+          "ec": "5.3.3.1"
+        },
+        {
+          "count": 11,
+          "ec": "5.3.1.1"
+        },
+        {
+          "count": 11,
+          "ec": "2.5.1.18"
+        },
+        {
+          "count": 10,
+          "ec": "1.1.1.145"
+        },
+        {
+          "count": 10,
+          "ec": "4.2.1.152"
+        }
+      ]
+    }
+  ],
+  "next_action": "Wire 19fp only after adding fingerprint/ontology, trust-tier/leakage tests, OOS prereg re-freeze, and preview gates; do not admit EC-only rows.",
+  "recommended_initial_lanes": [
+    "isomerase_ec_5_3_2_keto_aldose",
+    "isomerase_ec_5_3_3_alkene",
+    "isomerase_ec_5_3_broad_keyword"
+  ],
+  "schema_version": "lane_design_scout.v1",
+  "status": "non_destructive_scout_no_registry_write"
+}

@@ -5,33 +5,48 @@ Generated from `work/progress_log.jsonl`.
 ## Active Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
-- Started UTC: `2026-06-12T23:57:53Z`
-- Started local: `Fri Jun 12 18:57:53 CDT 2026`
-- Focus: cytochrome P450 monooxygenase and non-heme iron 2OG dioxygenase as the next 10k scaling lanes.
-- Result: applied +110 external bronze rows for `cytochrome_p450_monooxygenase` and +172 for
-  `non_heme_iron_2og_dioxygenase`; external bronze 3590 -> 3872; combined surface 4292 -> 4574;
-  frozen current702 sha stayed `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
-- Guardrails: EC scope-only; P450/O2/heme and Fe(II)/2OG/dioxygenase handles admission/excluded-context
+- Started UTC: `2026-06-13T00:58:14Z`
+- Started local: `Fri Jun 12 19:58:14 CDT 2026`
+- Focus: CoA acyltransferase and cofactor-independent isomerase as the next 10k scaling lanes after
+  the completed P450 and non-heme iron 2OG applies.
+- Result: applied +188 external bronze rows for `coa_acyltransferase` and +142 for
+  `cofactor_independent_isomerase`; external bronze 3872 -> 4202; combined surface 4574 -> 4904;
+  frozen current702 sha stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Family/gate setup: added `coa_acyltransferase` fingerprint + `acyl_transfer` ontology node
+  (`label_factory_v1_18fp`) and `cofactor_independent_isomerase` fingerprint + `isomerization`
+  ontology node (`label_factory_v1_19fp`); re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_18fp_1025.json` and
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_19fp_1025.json`.
+- Apply commands:
+  `PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 80 --apply`
+  and
+  `PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 80 --apply`.
+  CoA fetched 218, mechanism-corroborated 204, admitted/applied 188, throttled 16, held 11
+  no-corroboration rows, held 1 off-target match, held at cap 0, duplicate skipped 0. Isomerase
+  fetched 266, mechanism-corroborated 147, admitted/applied 142, throttled 5, held 70
+  no-corroboration rows, held 28 off-target NAD(P) matches, held at cap 0, duplicate skipped 0.
+- Guardrails: EC scope-only and never counted; broadened handles are admission/excluded-context
   only; `predictive_evidence []`; tier bronze / automation_curated / uniprot namespace; dedup vs both
-  registries; non-peroxidase plus heme/flavin/peroxide guards; caps held.
-- Coverage audit: 4574 combined labels; fingerprint Gini 0.1657; holes `[]`; over-cap
-  `['metal_dependent_hydrolase']`; next-batch floor deficit 0.
-- Honest counters: `positive_bronze=2861`, `oos_bronze=1696`, `silver_ready=0`,
-  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 7139.
-- Follow-on: current next-lane scout recommends `coa_acyltransferase` next (7728 reviewed rows, 82
-  distinct full EC labels in a 200-row sample, no reaction-poor warning); lane-design scout shows
-  Acyltransferase keyword supply 7728 vs `cc_cofactor:coa` supply 23, with 108 distinct EC labels in
-  a 500-row sample; mechanism-handle scout found Rhea present 80/80, CoA/acyl-CoA reaction text
-  72/80, active/binding-site context 56/80, and fetch failures 0.
-- Validation: targeted pytest 275 passed + 14 subtests; `validate` passed with 17 fingerprints and
-  20 ontology families; JSON parse checks passed for 13 touched registries/artifacts; `git diff
-  --check` passed.
-- Next action: wire CoA acyltransferase as a deliberate 18fp universe change after this run is
-  committed/pushed and lock released.
+  registries; multi-fingerprint-signal/off-target rows held; cap 250 for CoA and chemistry-confusable
+  cap 150 for isomerase enforced.
+- Coverage audit: 4904 combined labels; fingerprint Gini 0.1613; holes `[]`; over-cap
+  `['metal_dependent_hydrolase']`; next-batch floor deficit 0. Novelty replay: 4202 expansion rows,
+  decisions `{'admit': 3746, 'reject': 47, 'throttle': 409}`, would-not-readmit 456 (0.1085).
+- Honest counters: `positive_bronze=3191`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 6809.
+- Follow-on: non-destructive post-isomerase scout recommends `molybdopterin_oxidoreductase` next
+  over `copper_oxidoreductase` (460 reviewed rows and 33 distinct full EC labels in 200 sampled
+  rows vs 222/12). Both are reaction-poor, so the next runner should start with a mechanism-handle
+  scout and boundary guard design before any preview/apply.
+- Validation: targeted pytest `95 passed`, selected leakage prereg/import-gate pytest `8 passed`,
+  selected transfer-scope pytest `1 passed`, and `validate` passed (12 source records, 19 mechanism
+  fingerprints, 22 ontology families, 702 curated labels). JSON/JSONL parse and `git diff --check`
+  passed during closeout.
 
 ## Time
 
-- Entries: 383
+- Entries: 408
 - Measured elapsed time: 11681.4 minutes (194.69 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.

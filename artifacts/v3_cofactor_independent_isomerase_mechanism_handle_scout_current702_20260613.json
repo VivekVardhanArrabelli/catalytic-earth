@@ -1,0 +1,462 @@
+{
+  "artifact_id": "v3_cofactor_independent_isomerase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "cofactor_independent_isomerase",
+  "created_utc": "2026-06-13T01:19:40Z",
+  "entries_examined": 80,
+  "examples": [
+    {
+      "accession": "P14060",
+      "active_site_feature_count": 1,
+      "binding_site_feature_count": 3,
+      "ec_numbers": [
+        "1.1.1.145",
+        "1.1.1.210",
+        "1.1.1.270",
+        "5.3.3.1"
+      ],
+      "keywords": [
+        "Direct protein sequencing",
+        "Endoplasmic reticulum",
+        "Isomerase",
+        "Lipid metabolism",
+        "Membrane",
+        "Mitochondrion",
+        "Multifunctional enzyme",
+        "NAD",
+        "NADP",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Steroid metabolism",
+        "Steroidogenesis",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "protein_name": "3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type 1 (3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type I) (3-beta-HSD I) (3-beta-hydroxy-5-ene steroid dehydrogenase) (3-beta-hydroxy-Delta(5)-steroid dehydrogenase) (EC 1.1.1.145) (3-beta-hydroxysteroid 3-dehydrogenase) (EC 1.1.1.270) (Delta-5-3-ketosteroid isomerase) (Dihydrotestosterone oxidoreductase) (EC 1.1.1.210) (Steroid Delta-isomerase) (EC 5.3.3.1) (Trophoblast antigen FDO161G)",
+      "reaction_sample": "a 3beta-hydroxy-Delta(5)-steroid + NAD(+) = a 3-oxo-Delta(5)-steroid + NADH + H(+)",
+      "rhea_ids": [
+        "RHEA:24076",
+        "RHEA:43924",
+        "RHEA:43932",
+        "RHEA:56932",
+        "RHEA:34787"
+      ]
+    },
+    {
+      "accession": "P14174",
+      "active_site_feature_count": 1,
+      "binding_site_feature_count": 3,
+      "ec_numbers": [
+        "5.3.2.1",
+        "5.3.3.12"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Cytokine",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Immunity",
+        "Inflammatory response",
+        "Innate immunity",
+        "Isomerase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted"
+      ],
+      "protein_name": "Macrophage migration inhibitory factor (MIF) (EC 5.3.2.1) (Glycosylation-inhibiting factor) (GIF) (L-dopachrome isomerase) (L-dopachrome tautomerase) (EC 5.3.3.12) (Phenylpyruvate tautomerase)",
+      "reaction_sample": "3-phenylpyruvate = enol-phenylpyruvate",
+      "rhea_ids": [
+        "RHEA:17097",
+        "RHEA:13041"
+      ]
+    },
+    {
+      "accession": "P26439",
+      "active_site_feature_count": 1,
+      "binding_site_feature_count": 1,
+      "ec_numbers": [
+        "1.1.1.145",
+        "5.3.3.1"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Congenital adrenal hyperplasia",
+        "Disease variant",
+        "Endoplasmic reticulum",
+        "Isomerase",
+        "Lipid metabolism",
+        "Membrane",
+        "Mitochondrion",
+        "Multifunctional enzyme",
+        "NAD",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Steroidogenesis",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "protein_name": "3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type 2 (3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type II) (3-beta-HSD II) (3-beta-HSD adrenal and gonadal type) [Includes: 3-beta-hydroxy-Delta(5)-steroid dehydrogenase (EC 1.1.1.145) (3-beta-hydroxy-5-ene steroid dehydrogenase) (Progesterone reductase); Steroid Delta-isomerase (EC 5.3.3.1) (Delta-5-3-ketosteroid isomerase)]",
+      "reaction_sample": "a 3beta-hydroxy-Delta(5)-steroid + NAD(+) = a 3-oxo-Delta(5)-steroid + NADH + H(+)",
+      "rhea_ids": [
+        "RHEA:24076",
+        "RHEA:14709",
+        "RHEA:43924",
+        "RHEA:43928",
+        "RHEA:43932"
+      ]
+    },
+    {
+      "accession": "P34949",
+      "active_site_feature_count": 1,
+      "binding_site_feature_count": 4,
+      "ec_numbers": [
+        "5.3.1.8"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "Congenital disorder of glycosylation",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Isomerase",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+      "reaction_sample": "D-mannose 6-phosphate = D-fructose 6-phosphate",
+      "rhea_ids": [
+        "RHEA:12356"
+      ]
+    },
+    {
+      "accession": "P42126",
+      "active_site_feature_count": 0,
+      "binding_site_feature_count": 3,
+      "ec_numbers": [
+        "5.3.3.8"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Direct protein sequencing",
+        "Fatty acid metabolism",
+        "Isomerase",
+        "Lipid metabolism",
+        "Mitochondrion",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transit peptide"
+      ],
+      "protein_name": "Enoyl-CoA delta isomerase 1, mitochondrial (EC 5.3.3.8) (3,2-trans-enoyl-CoA isomerase) (Delta(3),Delta(2)-enoyl-CoA isomerase) (D3,D2-enoyl-CoA isomerase) (Dodecenoyl-CoA isomerase)",
+      "reaction_sample": "a (3Z)-enoyl-CoA = a 4-saturated (2E)-enoyl-CoA",
+      "rhea_ids": [
+        "RHEA:45900",
+        "RHEA:45228",
+        "RHEA:83231",
+        "RHEA:29847",
+        "RHEA:23716"
+      ]
+    },
+    {
+      "accession": "P49247",
+      "active_site_feature_count": 0,
+      "binding_site_feature_count": 0,
+      "ec_numbers": [
+        "5.3.1.6"
+      ],
+      "keywords": [
+        "Disease variant",
+        "Isomerase",
+        "Methylation",
+        "Neuropathy",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "protein_name": "Ribose-5-phosphate isomerase (EC 5.3.1.6) (Phosphoriboisomerase)",
+      "reaction_sample": "aldehydo-D-ribose 5-phosphate = D-ribulose 5-phosphate",
+      "rhea_ids": [
+        "RHEA:14657"
+      ]
+    },
+    {
+      "accession": "P60174",
+      "active_site_feature_count": 2,
+      "binding_site_feature_count": 2,
+      "ec_numbers": [
+        "4.2.3.3",
+        "5.3.1.1"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative promoter usage",
+        "Alternative splicing",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Gluconeogenesis",
+        "Glycolysis",
+        "Hereditary hemolytic anemia",
+        "Isomerase",
+        "Isopeptide bond",
+        "Lyase",
+        "Methylation",
+        "Nitration",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Ubl conjugation"
+      ],
+      "protein_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Methylglyoxal synthase) (EC 4.2.3.3) (Triose-phosphate isomerase)",
+      "reaction_sample": "D-glyceraldehyde 3-phosphate = dihydroxyacetone phosphate",
+      "rhea_ids": [
+        "RHEA:18585",
+        "RHEA:17937"
+      ]
+    },
+    {
+      "accession": "Q15125",
+      "active_site_feature_count": 0,
+      "binding_site_feature_count": 0,
+      "ec_numbers": [
+        "3.3.2.11",
+        "5.3.3.5"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Cataract",
+        "Cholesterol biosynthesis",
+        "Cholesterol metabolism",
+        "Cytoplasmic vesicle",
+        "Disease variant",
+        "Dwarfism",
+        "Endoplasmic reticulum",
+        "Hydrolase",
+        "Ichthyosis",
+        "Isomerase",
+        "Lipid biosynthesis",
+        "Lipid metabolism",
+        "Membrane",
+        "Nucleus",
+        "Proteomics identification",
+        "Reference proteome",
+        "Steroid biosynthesis",
+        "Steroid metabolism",
+        "Sterol biosynthesis",
+        "Sterol metabolism",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "protein_name": "3-beta-hydroxysteroid-Delta(8),Delta(7)-isomerase (EC 5.3.3.5) (Cholestenol Delta-isomerase) (Cholesterol-5,6-epoxide hydrolase subunit EBP) (EC 3.3.2.11) (Delta(8)-Delta(7) sterol isomerase) (D8-D7 sterol isomerase) (Emopamil-binding protein)",
+      "reaction_sample": "lathosterol = 5alpha-cholest-8-en-3beta-ol",
+      "rhea_ids": [
+        "RHEA:15281",
+        "RHEA:33999",
+        "RHEA:11964",
+        "RHEA:15113"
+      ]
+    },
+    {
+      "accession": "Q15185",
+      "active_site_feature_count": 0,
+      "binding_site_feature_count": 0,
+      "ec_numbers": [
+        "5.3.99.3"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Chaperone",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Fatty acid biosynthesis",
+        "Fatty acid metabolism",
+        "Isomerase",
+        "Isopeptide bond",
+        "Lipid biosynthesis",
+        "Lipid metabolism",
+        "Phosphoprotein",
+        "Prostaglandin biosynthesis",
+        "Prostaglandin metabolism",
+        "Proteomics identification",
+        "Reference proteome",
+        "Ubl conjugation"
+      ],
+      "protein_name": "Prostaglandin E synthase 3 (EC 5.3.99.3) (Cytosolic prostaglandin E2 synthase) (cPGES) (Hsp90 co-chaperone) (Progesterone receptor complex p23) (Telomerase-binding protein p23)",
+      "reaction_sample": "prostaglandin H2 = prostaglandin E2",
+      "rhea_ids": [
+        "RHEA:12893"
+      ]
+    },
+    {
+      "accession": "Q96JJ7",
+      "active_site_feature_count": 2,
+      "binding_site_feature_count": 0,
+      "ec_numbers": [
+        "5.3.4.1"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Disulfide bond",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Isomerase",
+        "Membrane",
+        "Proteomics identification",
+        "Redox-active center",
+        "Reference proteome",
+        "Signal",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "protein_name": "Protein disulfide-isomerase TMX3 (EC 5.3.4.1) (Thioredoxin domain-containing protein 10) (Thioredoxin-related transmembrane protein 3)",
+      "reaction_sample": "Catalyzes the rearrangement of -S-S- bonds in proteins.",
+      "rhea_ids": []
+    },
+    {
+      "accession": "Q96SL4",
+      "active_site_feature_count": 1,
+      "binding_site_feature_count": 0,
+      "ec_numbers": [
+        "5.3.4.1"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Endoplasmic reticulum",
+        "Isomerase",
+        "Oxidation",
+        "Oxidoreductase",
+        "Peroxidase",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal"
+      ],
+      "protein_name": "Protein peroxidase GPX7 (GPx-7) (GSHPx-7) (CL683) (EC 5.3.4.1)",
+      "reaction_sample": "Catalyzes the rearrangement of -S-S- bonds in proteins.",
+      "rhea_ids": []
+    },
+    {
+      "accession": "Q96SQ9",
+      "active_site_feature_count": 0,
+      "binding_site_feature_count": 1,
+      "ec_numbers": [
+        "1.14.14.-",
+        "4.2.1.152",
+        "5.3.99.5"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Endoplasmic reticulum",
+        "Fatty acid metabolism",
+        "Heme",
+        "Iron",
+        "Isomerase",
+        "Lipid metabolism",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Microsome",
+        "Monooxygenase",
+        "Oxidoreductase",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "protein_name": "Cytochrome P450 2S1 (EC 1.14.14.-) (CYPIIS1) (Hydroperoxy icosatetraenoate dehydratase) (EC 4.2.1.152) (Thromboxane-A synthase) (EC 5.3.99.5)",
+      "reaction_sample": "all-trans-retinoate + reduced [NADPH--hemoprotein reductase] + O2 = all-trans-5,6-epoxyretinoate + oxidized [NADPH--hemoprotein reductase] + H2O + H(+)",
+      "rhea_ids": [
+        "RHEA:55860",
+        "RHEA-COMP:11964",
+        "RHEA-COMP:11965",
+        "RHEA:51984",
+        "RHEA-COMP:11964"
+      ]
+    }
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only": true,
+    "labels_emitted": 0,
+    "mechanism_handles_only": [
+      "Rhea isomerization reaction text",
+      "Isomerase keyword/domain",
+      "active-site or binding-site context"
+    ],
+    "predictive_features_added": false,
+    "registry_written": false
+  },
+  "handle_counts": {
+    "active_or_binding_site_context": 65,
+    "active_site_context": 35,
+    "binding_site_context": 52,
+    "catalytic_activity_context": 80,
+    "isomerization_reaction_text": 62,
+    "keyword_isomerase": 80,
+    "rhea_cross_reference_present": 62
+  },
+  "next_action": "If chosen, wire as 19fp with EC 5.3 scope only; counted corroboration should require Rhea isomerization participant/equation or Isomerase domain plus active-/binding-site/base evidence, with mutase/racemase/epimerase subclass guards and no EC-only admission.",
+  "query": "(ec:5.3.*) AND (reviewed:true) AND (keyword:Isomerase)",
+  "schema_version": "mechanism_handle_scout.v1",
+  "search_rows_fetched": 80,
+  "status": "non_destructive_scout_no_registry_write",
+  "top_ec_numbers_in_search_rows": [
+    {
+      "count": 18,
+      "ec": "5.3.4.1"
+    },
+    {
+      "count": 9,
+      "ec": "5.3.3.8"
+    },
+    {
+      "count": 7,
+      "ec": "2.5.1.18"
+    },
+    {
+      "count": 6,
+      "ec": "5.3.3.12"
+    },
+    {
+      "count": 6,
+      "ec": "1.11.1.-"
+    },
+    {
+      "count": 5,
+      "ec": "1.1.1.145"
+    },
+    {
+      "count": 5,
+      "ec": "5.3.3.1"
+    },
+    {
+      "count": 5,
+      "ec": "5.3.99.3"
+    },
+    {
+      "count": 5,
+      "ec": "4.2.1.152"
+    },
+    {
+      "count": 5,
+      "ec": "5.3.3.22"
+    },
+    {
+      "count": 5,
+      "ec": "5.3.3.2"
+    },
+    {
+      "count": 4,
+      "ec": "5.3.99.5"
+    }
+  ]
+}

@@ -138,6 +138,26 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "SAM methyl donor / SAH product (dissociable methyl-transfer cosubstrate); no Fe-S radical-SAM context",
         "lanes": ["sam_methyltransferase"],
     },
+    "cytochrome_p450_monooxygenase": {
+        "ec_prefixes": ["1.14"],
+        "cofactor": "heme-thiolate plus O2/reductant cosubstrate; non-peroxidase P450 monooxygenation",
+        "lanes": ["cytochrome_p450_monooxygenase"],
+    },
+    "non_heme_iron_2og_dioxygenase": {
+        "ec_prefixes": ["1.14.11"],
+        "cofactor": "Fe(II), 2-oxoglutarate, and O2 cosubstrates; non-heme 2OG oxygenation",
+        "lanes": ["non_heme_iron_2og_dioxygenase"],
+    },
+    "coa_acyltransferase": {
+        "ec_prefixes": ["2.3.1"],
+        "cofactor": "CoA/acyl-CoA donor (dissociable thioester cosubstrate); acyl group transfer",
+        "lanes": ["coa_acyltransferase"],
+    },
+    "cofactor_independent_isomerase": {
+        "ec_prefixes": ["5.3"],
+        "cofactor": "no cofactor; Rhea isomerization equation plus active-site/base context",
+        "lanes": ["cofactor_independent_isomerase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

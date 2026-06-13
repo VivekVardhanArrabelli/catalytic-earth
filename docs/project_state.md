@@ -26,6 +26,73 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **COFACTOR-INDEPENDENT ISOMERASE 19FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  In the same productive block as the CoA lane below, the post-CoA recommended lane was wired as a
+  deliberate 19-fingerprint universe change and applied through the canonical external bronze writer.
+  New family/gate surface: `cofactor_independent_isomerase` fingerprint + `isomerization` ontology
+  node, `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = label_factory_v1_19fp`, OOS preregistration
+  re-frozen as `artifacts/v3_external_hard_negative_next_tranche_preregistration_19fp_1025.json`,
+  EC 5.3 scope-only rule with Rhea isomerization equation text, Isomerase keyword/domain, and
+  active-/binding-site/base mechanism corroboration, plus non-5.3 side-EC guards. Live apply:
+  `PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 80 --apply`
+  fetched **266** rows -> target mechanism-corroborated **147** -> gate-admitted before cap **142** ->
+  appended **142** bronze rows; `cofactor_independent_isomerase` **0 -> 142** (chemistry-confusable
+  cap 150; floor reached); **0 held at cap**, **5 novelty-throttled**, **70 disambiguation holds**
+  (`no_mechanism_corroboration`), **28 off-target matches held** (`nad_p_dehydrogenase`), **21
+  skipped**, duplicate skipped at apply **0**. Net registry result after the CoA + isomerase block:
+  external bronze **3872 -> 4202** (+330); combined surface **4574 -> 4904**; frozen current702
+  stayed 702 with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`
+  before/after both applies. Honest counters remain separate after apply: **positive_bronze 3191**,
+  **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**, **projected 0**. Fresh coverage
+  audit: **4904** combined, fingerprint Gini **0.1613**, holes `[]`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Novelty replay: **4202**
+  expansion rows, decisions `{'admit': 3746, 'reject': 47, 'throttle': 409}`, would-not-readmit
+  **456** (0.1085). Validation: targeted pytest **95 passed**, selected leakage prereg/import-gate
+  pytest **8 passed**, selected transfer-scope pytest **1 passed**, and `validate` ok
+  (12 source / 19 fingerprints / 22 ontology families / 702 labels). Artifacts/reports:
+  `artifacts/v3_cofactor_independent_isomerase_sourcing_preview_current702.json`,
+  `work/cofactor_independent_isomerase_sourcing_current702.md`,
+  `work/cofactor_independent_isomerase_apply_current702_20260613.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_isomerase_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_isomerase_applied.md`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_isomerase_applied.json`,
+  `work/novelty_admission_gate_audit_current702_20260613_isomerase_applied.md`. Follow-on scout:
+  `artifacts/v3_next_lane_source_supply_scout_after_isomerase_current702_20260613.json` recommends
+  **molybdopterin oxidoreductase** next over copper (460 reviewed rows and 33 distinct full ECs in a
+  200-row sample vs 222/12). Both are reaction-poor, so the next safe action is a mechanism-handle
+  scout plus subclass/boundary guard design before any preview/apply.
+- **CoA ACYLTRANSFERASE 18FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
+  The post-2OG next lane was wired as a deliberate 18-fingerprint universe change and applied through
+  the canonical external bronze writer. New family/gate surface: `coa_acyltransferase` fingerprint +
+  `acyl_transfer` ontology node, `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION =
+  label_factory_v1_18fp`, OOS preregistration re-frozen as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_18fp_1025.json`, EC 2.3.1
+  scope-only rule with CoA/acyl-CoA Rhea participant, CoA/acyl-CoA feature text, Acyltransferase
+  keyword/domain, and active-/binding-site mechanism corroboration, plus hydrolase side-EC guards.
+  Live apply:
+  `PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 80 --apply`
+  fetched **218** rows -> target mechanism-corroborated **204** -> gate-admitted before cap **188** ->
+  appended **188** bronze rows; `coa_acyltransferase` **0 -> 188** (cap 250; floor reached);
+  **0 held at cap**, **16 novelty-throttled**, **11 disambiguation holds**
+  (`no_mechanism_corroboration`), **1 off-target match held** (`metallo_amidohydrolase_deaminase`),
+  **2 skipped**, fetch failures **0**, duplicate skipped at apply **0**. Net registry result:
+  external bronze **3872 -> 4060** (+188); combined surface **4574 -> 4762**; frozen current702
+  stayed 702 with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`
+  before/after apply. Honest counters remain separate after apply: **positive_bronze 3049**,
+  **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**, **projected 0**. Fresh coverage
+  audit: **4762** combined, fingerprint Gini **0.1652**, holes `[]`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Validation: focused pytest
+  over sourcing/disambiguation/leakage/coverage/novelty passed, and `validate` ok
+  (12 source / 18 fingerprints / 21 ontology families / 702 labels). Artifacts/reports:
+  `artifacts/v3_coa_acyltransferase_sourcing_preview_current702.json`,
+  `work/coa_acyltransferase_sourcing_current702.md`,
+  `work/coa_acyltransferase_apply_current702_20260613.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_coa_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_coa_applied.md`. Follow-on scouts recommend
+  **cofactor-independent isomerase** next (5273 reviewed rows, 51 distinct full ECs in a 200-row
+  sample, no reaction-poor warning). Mechanism-handle scout over 80 entries found catalytic activity
+  context **80/80**, Rhea cross-reference **62/80**, active-or-binding-site context **65/80**, and
+  fetch failures **0**; it also surfaced multi-EC boundary rows requiring explicit off-target guards.
 - **NON-HEME IRON 2OG 17FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
   After the P450 lane below completed early in the same productive block, the documented next lane
   was wired as a deliberate 17-fingerprint universe change and applied through the canonical

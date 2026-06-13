@@ -3,6 +3,133 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: COFACTOR-INDEPENDENT ISOMERASE 19FP BRONZE EXPANSION APPLIED
+
+Decision: after the CoA acyltransferase 18fp lane was applied, the current scout-recommended next
+lane was wired and applied as a deliberate **19-fingerprint universe change**. Growth went only to
+the separate external bronze registry. The frozen current702 registry stayed byte-unchanged: sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before and after apply.
+
+**Family/gate surface.** Added `cofactor_independent_isomerase` fingerprint spec and `isomerization`
+ontology node; bumped `labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to
+`label_factory_v1_19fp`; re-froze the OOS next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_19fp_1025.json` (supersedes 18fp;
+older preregistration files remain historical). The admission rule uses EC 5.3 as scope-only
+(`ec_scope_hint`, never counted), with Rhea isomerization equation text, Isomerase keyword/domain,
+and active-/binding-site/base evidence as mechanism corroboration. Non-5.3 side-EC rows and
+off-target fingerprint matches are held.
+
+**Live preview/apply.** Command:
+`PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 80 --apply`.
+Result: fetched **266** reviewed Swiss-Prot rows -> target mechanism-corroborated **147** ->
+gate-admitted before cap **142** -> appended **142** rows. Per-family result:
+`cofactor_independent_isomerase` **0 -> 142** (cap 150 because chemistry-confusable, floor reached,
+**0 held at cap**). Other holds: **5** novelty-throttled, **70** disambiguation holds
+(`no_mechanism_corroboration`), **28** off-target fingerprint matches held (`nad_p_dehydrogenase`),
+**21** skipped, fetch failures **0**, duplicate skipped at registry apply **0**. External bronze
+**4060 -> 4202**; combined surface **4762 -> 4904**.
+
+Guardrails held: every added row is `tier=bronze`, `review_status=automation_curated`, entry
+namespace `uniprot`; isomerase handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; off-target rows were held; per-fingerprint cap held. Honest counters
+after apply are **positive_bronze 3191**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**; do not merge them. Fresh coverage/redundancy audit after
+the apply reports **4904** combined labels, fingerprint Gini **0.1613**, expansion holes `[]`,
+over-cap `['metal_dependent_hydrolase']`, and next-batch floor deficit **0**. Novelty replay reports
+**4202** expansion rows, decisions `{'admit': 3746, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.1085).
+
+Productive follow-on: a non-destructive source-supply scout compared the remaining oxidoreductase
+lanes and recommends **molybdopterin oxidoreductase** next: **460** reviewed Swiss-Prot rows and
+**33** distinct full EC labels in a 200-row sample, ahead of `copper_oxidoreductase` (**222** /
+**12**). Both are reaction-poor.
+
+Next decision: the next high-value scaling lane is **molybdopterin oxidoreductase**, but it must
+start with a mechanism-handle scout and subclass/boundary guard design. Treat it as a possible
+20-fingerprint universe change only if non-EC mechanism corroborators are strong: molybdopterin or
+Mo-cofactor handles, Mo-pterin domain/keyword, Rhea redox/oxo-transfer participants,
+active-/binding-site metal/ligand evidence, or structure. EC remains scope-only; add heme/flavin/
+copper/metal-hydrolase and EC-subclass guards; re-freeze the OOS preregistration to 20fp before any
+registry apply.
+
+References:
+`artifacts/v3_cofactor_independent_isomerase_sourcing_preview_current702.json`,
+`work/cofactor_independent_isomerase_sourcing_current702.md`,
+`work/cofactor_independent_isomerase_apply_current702_20260613.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_19fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_isomerase_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_isomerase_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_isomerase_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_isomerase_applied.md`,
+`artifacts/v3_next_lane_source_supply_scout_after_isomerase_current702_20260613.json`,
+`work/next_lane_source_supply_scout_after_isomerase_current702_20260613.md`,
+`data/registries/external_bronze_labels.json`.
+
+## 2026-06-13: CoA ACYLTRANSFERASE 18FP BRONZE EXPANSION APPLIED
+
+Decision: after the non-heme iron 2OG 17fp lane was applied, the documented next lane was wired and
+applied as a deliberate **18-fingerprint universe change**. Growth went only to the separate external
+bronze registry. The frozen current702 registry stayed byte-unchanged: sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before and after apply.
+
+**Family/gate surface.** Added `coa_acyltransferase` fingerprint spec and `acyl_transfer` ontology
+node; bumped `labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_18fp`;
+re-froze the OOS next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_18fp_1025.json` (supersedes 17fp;
+older preregistration files remain historical). The admission rule uses EC 2.3.1 as scope-only
+(`ec_scope_hint`, never counted), with CoA/acyl-CoA Rhea participant, CoA/acyl-CoA feature text,
+Acyltransferase keyword/domain, and active-/binding-site evidence as mechanism corroboration.
+Hydrolase side-EC rows and off-target fingerprint matches are held.
+
+**Live preview/apply.** Command:
+`PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 80 --apply`.
+Result: fetched **218** reviewed Swiss-Prot rows -> target mechanism-corroborated **204** ->
+gate-admitted before cap **188** -> appended **188** rows. Per-family result:
+`coa_acyltransferase` **0 -> 188** (cap 250, floor reached, **0 held at cap**). Other holds:
+**16** novelty-throttled, **11** disambiguation holds (`no_mechanism_corroboration`), **1**
+off-target fingerprint match held (`metallo_amidohydrolase_deaminase`), **2** skipped, fetch failures
+**0**, duplicate skipped at registry apply **0**. External bronze **3872 -> 4060**; combined surface
+**4574 -> 4762**.
+
+Guardrails held: every added row is `tier=bronze`, `review_status=automation_curated`, entry
+namespace `uniprot`; CoA/acyltransferase handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; off-target rows were held; per-fingerprint cap held. Honest counters
+after apply are **positive_bronze 3049**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**; do not merge them. Fresh coverage/redundancy audit after
+the apply reports **4762** combined labels, fingerprint Gini **0.1652**, expansion holes `[]`,
+over-cap `['metal_dependent_hydrolase']`, and next-batch floor deficit **0**.
+
+Productive follow-on: a non-destructive source-supply scout compared the next named lanes after CoA
+and recommends **cofactor-independent isomerase** next: **5273** reviewed Swiss-Prot rows and **51**
+distinct full EC labels in a 200-row sample with no reaction-poor warning, ahead of
+`molybdopterin_oxidoreductase` (460/33, reaction-poor) and `copper_oxidoreductase` (222/12,
+reaction-poor). A mechanism-handle scout over 80 reviewed entries found catalytic activity context
+**80/80**, Rhea cross-reference **62/80**, active-or-binding-site context **65/80**, isomerization
+reaction text **62/80**, and fetch failures **0**. It also surfaced multi-EC boundary rows
+(`2.5.1.18`, `1.11.1.-` in the top sample).
+
+Next decision: the next high-value scaling lane is **cofactor-independent isomerase**. Treat it as a
+deliberate **19-fingerprint universe change**: add fingerprint spec + ontology node; use EC 5.3 as
+scope only; count Rhea isomerization equation/participant or Isomerase keyword/domain with active-/
+binding-site/base evidence as mechanism corroboration; add mutase/racemase/epimerase/isomerase
+subclass guards and off-target EC 2.5/1.11 boundary holds; add offline leakage/trust-tier tests;
+re-freeze the OOS pre-registration to 19fp; preview before any apply.
+
+References:
+`artifacts/v3_coa_acyltransferase_sourcing_preview_current702.json`,
+`work/coa_acyltransferase_sourcing_current702.md`,
+`work/coa_acyltransferase_apply_current702_20260613.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_18fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_coa_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_coa_applied.md`,
+`artifacts/v3_next_lane_source_supply_scout_after_coa_current702_20260613.json`,
+`work/next_lane_source_supply_scout_after_coa_current702_20260613.md`,
+`artifacts/v3_cofactor_independent_isomerase_mechanism_handle_scout_current702_20260613.json`,
+`work/cofactor_independent_isomerase_mechanism_handle_scout_current702_20260613.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-13: NON-HEME IRON 2OG 17FP BRONZE EXPANSION APPLIED
 
 Decision: after the P450 16fp lane was applied in the same automation block, the documented next
