@@ -1,0 +1,3356 @@
+{
+  "artifact_id": "v3_strict_kinase_subclass_source_scout_after_ndk_current702_20260613",
+  "counts": {
+    "candidate_lanes": 3,
+    "fetch_failure_count": 0,
+    "rows_sampled_total": 120
+  },
+  "created_utc": "2026-06-13T08:13:14Z",
+  "fetch_failures": [],
+  "guardrails": {
+    "broad_ec_2_7_not_wired": true,
+    "curated_registry_written": false,
+    "ec_never_counted_as_corroborator": true,
+    "ec_used_for_scope_only": true,
+    "external_bronze_registry_written": false,
+    "handles_are_scope_admission_excluded_context_only": true,
+    "labels_generated": 0,
+    "predictive_evidence_empty": true
+  },
+  "lane_summaries": [
+    {
+      "boundary_fraction": 0.025,
+      "description": "strict reviewed deoxynucleoside/thymidine/deoxycytidine/deoxyguanosine kinase split from broad EC 2.7",
+      "fetch_failures": 0,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable_fraction": 0.975,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"deoxynucleoside kinase\") OR (protein_name:\"thymidine kinase\") OR (protein_name:\"deoxyguanosine kinase\") OR (protein_name:\"deoxycytidine kinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\"))",
+      "recommendation_reason": "backup split: mechanism-rich sample, but smaller reviewed supply and one sampled boundary signal",
+      "recommended_for_next_full_pipeline": false,
+      "reviewed_total_results": 278,
+      "sample_counts": {
+        "active_or_binding_site": 40,
+        "family_text": 40,
+        "likely_wireable": 39,
+        "phosphoryl_reaction_text": 40,
+        "rhea_cross_reference": 40,
+        "sampled_with_entry": 40,
+        "side_boundary_signal": 1
+      },
+      "sample_top_ec_numbers": {
+        "2.7.1.-": 3,
+        "2.7.1.113": 15,
+        "2.7.1.145": 1,
+        "2.7.1.21": 23,
+        "2.7.1.74": 12,
+        "2.7.1.76": 11
+      },
+      "sampled_rows": 40,
+      "sampled_with_entry": 40
+    },
+    {
+      "boundary_fraction": 0.0,
+      "description": "strict reviewed GHMP-like small-molecule kinase split using homoserine/mevalonate/phosphomevalonate/galactokinase names",
+      "fetch_failures": 0,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable_fraction": 0.925,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"homoserine kinase\") OR (protein_name:\"mevalonate kinase\") OR (protein_name:\"phosphomevalonate kinase\") OR (protein_name:\"galactokinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\"))",
+      "recommendation_reason": "backup split: clean sampled boundary profile, but smaller reviewed supply and fewer sampled active/binding-site handles than ASKHA",
+      "recommended_for_next_full_pipeline": false,
+      "reviewed_total_results": 613,
+      "sample_counts": {
+        "active_or_binding_site": 37,
+        "family_text": 40,
+        "likely_wireable": 37,
+        "phosphoryl_reaction_text": 40,
+        "rhea_cross_reference": 40,
+        "sampled_with_entry": 40,
+        "side_boundary_signal": 0
+      },
+      "sample_top_ec_numbers": {
+        "2.7.1.157": 1,
+        "2.7.1.36": 21,
+        "2.7.1.39": 7,
+        "2.7.1.6": 11
+      },
+      "sampled_rows": 40,
+      "sampled_with_entry": 40
+    },
+    {
+      "boundary_fraction": 0.0,
+      "description": "strict reviewed ASKHA/sugar-acetate kinase split using acetate/glucose/hexose/glycerol kinase names",
+      "fetch_failures": 0,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable_fraction": 0.975,
+      "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"acetate kinase\") OR (protein_name:\"glucokinase\") OR (protein_name:\"hexokinase\") OR (protein_name:\"glycerol kinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\"))",
+      "recommendation_reason": "preferred next split: largest reviewed supply among sampled strict lanes, 39/40 likely wireable, and zero sampled boundary signals",
+      "recommended_for_next_full_pipeline": true,
+      "reviewed_total_results": 667,
+      "sample_counts": {
+        "active_or_binding_site": 39,
+        "family_text": 40,
+        "likely_wireable": 39,
+        "phosphoryl_reaction_text": 40,
+        "rhea_cross_reference": 40,
+        "sampled_with_entry": 40,
+        "side_boundary_signal": 0
+      },
+      "sample_top_ec_numbers": {
+        "2.7.1.1": 37,
+        "2.7.1.147": 1,
+        "2.7.1.2": 1,
+        "2.7.1.30": 2
+      },
+      "sampled_rows": 40,
+      "sampled_with_entry": 40
+    }
+  ],
+  "recommendation": {
+    "blocked_boundary": "broad EC 2.7 remains blocked; do not merge kinase subclasses or count EC as mechanism evidence",
+    "fallback_lanes": [
+      "ghmp_small_molecule_kinase",
+      "deoxynucleoside_kinase"
+    ],
+    "next_exact_action": "wire ASKHA/sugar-acetate kinase only after fingerprint/ontology spec, 29fp OOS prereg re-freeze, disambiguation guards, tests, non-destructive preview, and gated apply",
+    "next_lane": "askha_sugar_acetate_kinase"
+  },
+  "sample_rows": [
+    {
+      "accession": "P27707",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxycytidine kinase (dCK) (EC 2.7.1.74) (Deoxyadenosine kinase) (EC 2.7.1.76) (Deoxyguanosine kinase) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)",
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 260,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P43346",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxycytidine kinase (dCK) (EC 2.7.1.74) (Deoxyadenosine kinase) (EC 2.7.1.76) (Deoxyguanosine kinase) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)",
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 260,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P48769",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxycytidine kinase (dCK) (EC 2.7.1.74) (Deoxyadenosine kinase) (EC 2.7.1.76) (Deoxyguanosine kinase) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)",
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 260,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q5ZMF3",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Gallus gallus (Chicken)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxycytidine kinase (GgdCK) (EC 2.7.1.74) (Deoxyadenosine kinase) (EC 2.7.1.76) (Deoxyguanosine kinase) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)",
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 257,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "O00142",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.-",
+        "2.7.1.21",
+        "2.7.1.74"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase 2, mitochondrial (EC 2.7.1.21) (2'-deoxyuridine kinase TK2) (EC 2.7.1.74) (Deoxycytidine kinase TK2) (EC 2.7.1.-) (Mt-TK)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)",
+        "2'-deoxycytidine + ATP = dCMP + ADP + H(+)",
+        "2'-deoxyuridine + ATP = dUMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129",
+        "RHEA:28206",
+        "RHEA:46040"
+      ],
+      "sequence_length": 265,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q5ZJM7",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Gallus gallus (Chicken)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxycytidine kinase 2 (GgdCK2) (EC 2.7.1.74) (Deoxyadenosine kinase 2) (EC 2.7.1.76) (Deoxyguanosine kinase 2) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)",
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 265,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "A0A1L8HV70",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Xenopus laevis (African clawed frog)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxycytidine kinase 1 (XldCK) (EC 2.7.1.74) (Deoxyadenosine kinase 1) (EC 2.7.1.76) (Deoxyguanosine kinase 1) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)",
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 265,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q6DD33",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Xenopus laevis (African clawed frog)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxycytidine kinase 2 (XldCK2) (EC 2.7.1.74) (Deoxyadenosine kinase 2) (EC 2.7.1.76) (Deoxyguanosine kinase 2) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)",
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 264,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q16854",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxyguanosine kinase, mitochondrial (EC 2.7.1.113) (Deoxyadenosine kinase, mitochondrial) (EC 2.7.1.76)",
+      "reaction_text_sample": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:23452"
+      ],
+      "sequence_length": 277,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9R088",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.-",
+        "2.7.1.21",
+        "2.7.1.74"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase 2, mitochondrial (EC 2.7.1.21) (2'-deoxyuridine kinase TK2) (EC 2.7.1.74) (Deoxycytidine kinase TK2) (EC 2.7.1.-) (Mt-TK)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)",
+        "2'-deoxycytidine + ATP = dCMP + ADP + H(+)",
+        "2'-deoxyuridine + ATP = dUMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129",
+        "RHEA:28206",
+        "RHEA:46040"
+      ],
+      "sequence_length": 270,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P04183",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase, cytosolic (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 234,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P37530",
+      "active_site_count": 1,
+      "binding_site_count": 4,
+      "ec_numbers": [
+        "2.7.1.113"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Bacillus subtilis (strain 168)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxyguanosine kinase (DGUO kinase) (dGK) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201"
+      ],
+      "sequence_length": 207,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9XZT6",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.145"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Drosophila melanogaster (Fruit fly)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxynucleoside kinase (EC 2.7.1.145) (Deoxyribonucleoside kinase) (Dm-dNK) (Multispecific deoxynucleoside kinase)",
+      "reaction_text_sample": [
+        "a 2'-deoxyribonucleoside + ATP = a 2'-deoxyribonucleoside 5'-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:12140"
+      ],
+      "sequence_length": 250,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9QX60",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxyguanosine kinase, mitochondrial (EC 2.7.1.113) (Deoxyadenosine kinase, mitochondrial) (EC 2.7.1.76)",
+      "reaction_text_sample": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:23452"
+      ],
+      "sequence_length": 277,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q3MHR2",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.113",
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Bos taurus (Bovine)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxycytidine kinase (dCK) (EC 2.7.1.74) (Deoxyadenosine kinase) (EC 2.7.1.76) (Deoxyguanosine kinase) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)",
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201",
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 260,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P04184",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase, cytosolic (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 233,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P27158",
+      "active_site_count": 1,
+      "binding_site_count": 3,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase, cytosolic (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 121,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P37529",
+      "active_site_count": 1,
+      "binding_site_count": 7,
+      "ec_numbers": [
+        "2.7.1.74",
+        "2.7.1.76"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Bacillus subtilis (strain 168)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxyadenosine/deoxycytidine kinase (dAK/dCK) (EC 2.7.1.74) (EC 2.7.1.76)",
+      "reaction_text_sample": [
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)",
+        "2'-deoxycytidine + a ribonucleoside 5'-triphosphate = dCMP + a ribonucleoside 5'-diphosphate + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:20061",
+        "RHEA:23452"
+      ],
+      "sequence_length": 217,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "F4KBF5",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase b (AtTK1b) (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 282,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9S750",
+      "active_site_count": 1,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase a (AtTK1a) (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 238,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9QNF7",
+      "active_site_count": 1,
+      "binding_site_count": 5,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": false,
+      "organism": "Human herpesvirus 1 (HHV-1) (Human herpes simplex virus 1)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 376,
+      "side_boundary_signal": true,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q27564",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase 1 (TK1) (EC 2.7.1.21) (Calmodulin-binding protein ThyB)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 227,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q54UT2",
+      "active_site_count": 1,
+      "binding_site_count": 7,
+      "ec_numbers": [
+        "2.7.1.113"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxyguanosine kinase (dGK) (EC 2.7.1.113) (DddGK)",
+      "reaction_text_sample": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201"
+      ],
+      "sequence_length": 285,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9N0C5",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.-",
+        "2.7.1.21",
+        "2.7.1.74"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Macaca fascicularis (Crab-eating macaque) (Cynomolgus monkey)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase 2, mitochondrial (EC 2.7.1.21) (2'-deoxyuridine kinase TK2) (EC 2.7.1.74) (Deoxycytidine kinase TK2) (EC 2.7.1.-)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)",
+        "2'-deoxycytidine + ATP = dCMP + ADP + H(+)",
+        "2'-deoxyuridine + ATP = dUMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129",
+        "RHEA:28206",
+        "RHEA:46040"
+      ],
+      "sequence_length": 265,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P23331",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 205,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "A5D7R8",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Bos taurus (Bovine)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase, cytosolic (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 238,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q6GPW6",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.113"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Xenopus laevis (African clawed frog)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxyguanosine kinase, mitochondrial (XldGK) (EC 2.7.1.113)",
+      "reaction_text_sample": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201"
+      ],
+      "sequence_length": 265,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9WYN2",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Thermotoga maritima (strain ATCC 43589 / DSM 3109 / JCM 10099 / NBRC 100826 / MSB8)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 184,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "O57203",
+      "active_site_count": 1,
+      "binding_site_count": 7,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Vaccinia virus (strain Ankara) (VACV)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 177,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P04047",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Gallus gallus (Chicken)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase, cytosolic (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 224,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P09768",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Cricetulus griseus (Chinese hamster) (Cricetulus barabensis griseus)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase, cytosolic (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 234,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P0C1G0",
+      "active_site_count": 1,
+      "binding_site_count": 7,
+      "ec_numbers": [
+        "2.7.1.113"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Lactobacillus acidophilus (strain ATCC 700396 / NCK56 / N2 / NCFM)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxyguanosine kinase (DGK) (DGUO kinase) (EC 2.7.1.113) (Deoxynucleoside kinase complex I F-component)",
+      "reaction_text_sample": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201"
+      ],
+      "sequence_length": 228,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q74HC2",
+      "active_site_count": 1,
+      "binding_site_count": 7,
+      "ec_numbers": [
+        "2.7.1.113"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Lactobacillus johnsonii (strain CNCM I-12250 / La1 / NCC 533)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Deoxyguanosine kinase (DGK) (DGUO kinase) (EC 2.7.1.113) (Deoxynucleoside kinase complex I F-component)",
+      "reaction_text_sample": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19201"
+      ],
+      "sequence_length": 224,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q03221",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Bacillus subtilis (strain 168)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 195,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "O81263",
+      "active_site_count": 1,
+      "binding_site_count": 7,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 271,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "A5HY32",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Clostridium botulinum (strain Hall / ATCC 3502 / NCTC 13319 / Type A)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 191,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "A5IK18",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Thermotoga petrophila (strain ATCC BAA-488 / DSM 13995 / JCM 10881 / RKU-1)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 184,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "A6L1E7",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Phocaeicola vulgatus (strain ATCC 8482 / DSM 1447 / JCM 5826 / CCUG 4940 / NBRC 14291 / NCTC 11154) (Bacteroides vulgatus)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 199,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "A7NI79",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Roseiflexus castenholzii (strain DSM 13941 / HLO8)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 194,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "A8F7B3",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.21"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "deoxynucleoside_kinase",
+      "likely_wireable": true,
+      "organism": "Pseudothermotoga lettingae (strain ATCC BAA-301 / DSM 14385 / NBRC 107922 / TMO) (Thermotoga lettingae)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Thymidine kinase (EC 2.7.1.21)",
+      "reaction_text_sample": [
+        "thymidine + ATP = dTMP + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:19129"
+      ],
+      "sequence_length": 185,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q03426",
+      "active_site_count": 2,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 396,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P17256",
+      "active_site_count": 2,
+      "binding_site_count": 8,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 395,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9R008",
+      "active_site_count": 2,
+      "binding_site_count": 7,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 395,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P51570",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 392,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "Q01415",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.157"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "N-acetylgalactosamine kinase (EC 2.7.1.157) (GalNAc kinase) (Galactokinase 2)",
+      "reaction_text_sample": [
+        "N-acetyl-alpha-D-galactosamine + ATP = N-acetyl-alpha-D-galactosamine 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:12617"
+      ],
+      "sequence_length": 458,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "P17423",
+      "active_site_count": 0,
+      "binding_site_count": 0,
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": false,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_text_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 357,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q58487",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Methanocaldococcus jannaschii (strain ATCC 43067 / DSM 2661 / JAL-1 / JCM 10045 / NBRC 100440) (Methanococcus jannaschii)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 312,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P04385",
+      "active_site_count": 1,
+      "binding_site_count": 14,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 528,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "Q9R0N0",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 392,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "Q9SEE5",
+      "active_site_count": 1,
+      "binding_site_count": 13,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 496,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "P0A6T3",
+      "active_site_count": 1,
+      "binding_site_count": 5,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 382,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "Q8L7R2",
+      "active_site_count": 0,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Homoserine kinase (EC 2.7.1.39) (Protein DOWNY MILDEW RESISTANT 1)",
+      "reaction_text_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 370,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P07277",
+      "active_site_count": 1,
+      "binding_site_count": 5,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MvK) (EC 2.7.1.36) (Ergosterol biosynthesis protein 12) (Regulation of autonomous replication protein 1)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 443,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9HHB6",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Pyrococcus furiosus (strain ATCC 43587 / DSM 3638 / JCM 8422 / Vc1)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 352,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "P46086",
+      "active_site_count": 1,
+      "binding_site_count": 5,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 378,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q09780",
+      "active_site_count": 1,
+      "binding_site_count": 5,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 404,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P00547",
+      "active_site_count": 0,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Escherichia coli (strain K12)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_text_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 310,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q4WP25",
+      "active_site_count": 1,
+      "binding_site_count": 5,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Aspergillus fumigatus (strain ATCC MYA-4609 / CBS 101355 / FGSC A1100 / Af293) (Neosartorya fumigata)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase erg12 (MK) (MvK) (EC 2.7.1.36) (Ergosterol biosynthesis protein 12)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 538,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "O58107",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Pyrococcus horikoshii (strain ATCC 700860 / DSM 12428 / JCM 9974 / NBRC 100139 / OT-3)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 350,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "P31767",
+      "active_site_count": 1,
+      "binding_site_count": 5,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Haemophilus influenzae (strain ATCC 51907 / DSM 11121 / KW20 / Rd)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 384,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "Q5E9T8",
+      "active_site_count": 2,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Bos taurus (Bovine)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 396,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q86AG7",
+      "active_site_count": 1,
+      "binding_site_count": 5,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 390,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "B6YST1",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Thermococcus onnurineus (strain NA1)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 334,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "C6A3T5",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Thermococcus sibiricus (strain DSM 12597 / MM 739)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 333,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "O59291",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Pyrococcus horikoshii (strain ATCC 700860 / DSM 12428 / JCM 9974 / NBRC 100139 / OT-3)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 335,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q980D2",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Saccharolobus solfataricus (strain ATCC 35092 / DSM 1617 / JCM 11322 / P2) (Sulfolobus solfataricus)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 314,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "C5A7L8",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Thermococcus gammatolerans (strain DSM 15229 / JCM 11827 / EJ3)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 334,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "O27995",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Archaeoglobus fulgidus (strain ATCC 49558 / DSM 4304 / JCM 9628 / NBRC 100126 / VC-16)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 284,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q5JJC6",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Thermococcus kodakarensis (strain ATCC BAA-918 / JCM 12380 / KOD1) (Pyrococcus kodakaraensis (strain KOD1))",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 337,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q8U0F3",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Pyrococcus furiosus (strain ATCC 43587 / DSM 3638 / JCM 8422 / Vc1)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 334,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9V187",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Pyrococcus abyssi (strain GE5 / Orsay)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 335,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q50559",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Methanothermobacter thermautotrophicus (strain ATCC 29096 / DSM 1053 / JCM 10044 / NBRC 100330 / Delta H) (Methanobacterium thermoautotrophicum)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 303,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9Y946",
+      "active_site_count": 1,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.36"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Aeropyrum pernix (strain ATCC 700893 / DSM 11879 / JCM 9820 / NBRC 100138 / K1)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Mevalonate kinase (MK) (MVK) (EC 2.7.1.36)",
+      "reaction_text_sample": [
+        "(R)-mevalonate + ATP = (R)-5-phosphomevalonate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17065"
+      ],
+      "sequence_length": 324,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P39574",
+      "active_site_count": 1,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Bacillus subtilis (strain 168)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 390,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "A6H768",
+      "active_site_count": 1,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Bos taurus (Bovine)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 392,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "Q54DN6",
+      "active_site_count": 1,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.6"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Dictyostelium discoideum (Social amoeba)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Galactokinase (EC 2.7.1.6) (Galactose kinase)",
+      "reaction_text_sample": [
+        "alpha-D-galactose + ATP = alpha-D-galactose 1-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13553"
+      ],
+      "sequence_length": 501,
+      "side_boundary_signal": false,
+      "site_feature_count": 1
+    },
+    {
+      "accession": "J9VU26",
+      "active_site_count": 0,
+      "binding_site_count": 0,
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": false,
+      "organism": "Cryptococcus neoformans (strain H99 / ATCC 208821 / CBS 10515 / FGSC 9487) (Cryptococcus neoformans var. grubii serotype A)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_text_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 357,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q891L4",
+      "active_site_count": 0,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Clostridium tetani (strain Massachusetts / E88)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_text_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 300,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "O43056",
+      "active_site_count": 0,
+      "binding_site_count": 0,
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": false,
+      "organism": "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_text_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 338,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q6M0H5",
+      "active_site_count": 0,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "ghmp_small_molecule_kinase",
+      "likely_wireable": true,
+      "organism": "Methanococcus maripaludis (strain DSM 14266 / JCM 13030 / NBRC 101832 / S2 / LL)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_text_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 301,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P35557",
+      "active_site_count": 0,
+      "binding_site_count": 11,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 465,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P17712",
+      "active_site_count": 0,
+      "binding_site_count": 11,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 465,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P52792",
+      "active_site_count": 0,
+      "binding_site_count": 11,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-4 (HK4) (EC 2.7.1.1) (Glucokinase) (Hexokinase type IV) (HK IV) (Hexokinase-D)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 465,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P19367",
+      "active_site_count": 0,
+      "binding_site_count": 31,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Brain form hexokinase) (Hexokinase type I) (HK I) (Hexokinase-A)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:10948",
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 917,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P52789",
+      "active_site_count": 0,
+      "binding_site_count": 30,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II) (Hexokinase-B) (Muscle form hexokinase)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 917,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P52790",
+      "active_site_count": 0,
+      "binding_site_count": 28,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-3 (EC 2.7.1.1) (Hexokinase type III) (HK III) (Hexokinase-C)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 923,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q2TB90",
+      "active_site_count": 0,
+      "binding_site_count": 30,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase HKDC1 (EC 2.7.1.1) (Hexokinase domain-containing protein 1)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 917,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q92407",
+      "active_site_count": 0,
+      "binding_site_count": 2,
+      "ec_numbers": [
+        "2.7.1.1",
+        "2.7.1.2"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Aspergillus niger",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Glucokinase (EC 2.7.1.2) (Glucose kinase) (GLK) (Hexokinase glkA) (EC 2.7.1.1)",
+      "reaction_text_sample": [
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)",
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-mannose + ATP = D-mannose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:10948",
+        "RHEA:11028",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 495,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P04807",
+      "active_site_count": 0,
+      "binding_site_count": 11,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase PII) (Hexokinase-B)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 486,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P04806",
+      "active_site_count": 0,
+      "binding_site_count": 11,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Hexokinase PI) (Hexokinase-A)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 485,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q2KNB7",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-9 (EC 2.7.1.1) (Hexokinase-5)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 502,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q2KNB5",
+      "active_site_count": 0,
+      "binding_site_count": 9,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-10 (EC 2.7.1.1) (Hexokinase-7)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 504,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q8LQ68",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-6 (EC 2.7.1.1) (Hexokinase-2)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 506,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q1WM15",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-8 (EC 2.7.1.1) (Hexokinase-4)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 458,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q1WM16",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-7 (EC 2.7.1.1) (Hexokinase-6)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 463,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q2KNB9",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase-3)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 494,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q5W676",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-5 (EC 2.7.1.1) (Hexokinase I)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 507,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9NFT7",
+      "active_site_count": 0,
+      "binding_site_count": 3,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Drosophila melanogaster (Fruit fly)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase testis)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-mannose + ATP = D-mannose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 486,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P05708",
+      "active_site_count": 0,
+      "binding_site_count": 30,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Brain form hexokinase) (Hexokinase type I) (HK I) (Hexokinase-A)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:10948",
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 918,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P27881",
+      "active_site_count": 0,
+      "binding_site_count": 30,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II) (Hexokinase-B)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 917,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9LPS1",
+      "active_site_count": 0,
+      "binding_site_count": 11,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-3 (EC 2.7.1.1) (Hexokinase-like 1)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 498,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P27926",
+      "active_site_count": 0,
+      "binding_site_count": 28,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-3 (EC 2.7.1.1) (Hexokinase type III) (HK III) (Hexokinase-C)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 924,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q3TRM8",
+      "active_site_count": 0,
+      "binding_site_count": 28,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-3 (EC 2.7.1.1) (Hexokinase type III) (HK III) (Hexokinase-C)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 922,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q6Z398",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-4, chloroplastic (EC 2.7.1.1) (Hexokinase II)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 509,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P17710",
+      "active_site_count": 0,
+      "binding_site_count": 30,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Hexokinase type I) (HK I) (Hexokinase, tumor isozyme)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:10948",
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 974,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P27595",
+      "active_site_count": 0,
+      "binding_site_count": 29,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Bos taurus (Bovine)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Brain form hexokinase) (Hexokinase type I) (HK I)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:10948",
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 918,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q14410",
+      "active_site_count": 0,
+      "binding_site_count": 22,
+      "ec_numbers": [
+        "2.7.1.30"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Glycerol kinase 2 (GK 2) (Glycerokinase 2) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase 2) (Glycerol kinase, testis specific 2)",
+      "reaction_text_sample": [
+        "glycerol + ATP = sn-glycerol 3-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:21644"
+      ],
+      "sequence_length": 553,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P32189",
+      "active_site_count": 0,
+      "binding_site_count": 23,
+      "ec_numbers": [
+        "2.7.1.30"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+      "reaction_text_sample": [
+        "glycerol + ATP = sn-glycerol 3-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:21644"
+      ],
+      "sequence_length": 559,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q91W97",
+      "active_site_count": 0,
+      "binding_site_count": 30,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase HKDC1 (EC 2.7.1.1) (Hexokinase domain-containing protein 1)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 915,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "O08528",
+      "active_site_count": 0,
+      "binding_site_count": 30,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Mus musculus (Mouse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 917,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P93834",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 502,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9BRR6",
+      "active_site_count": 1,
+      "binding_site_count": 3,
+      "ec_numbers": [
+        "2.7.1.147"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Homo sapiens (Human)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "ADP-dependent glucokinase (ADP-GK) (ADPGK) (EC 2.7.1.147) (RbBP-35)",
+      "reaction_text_sample": [
+        "D-glucose + ADP = D-glucose 6-phosphate + AMP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:11460"
+      ],
+      "sequence_length": 497,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q2KNB4",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-3 (EC 2.7.1.1) (Hexokinase-8) (Protein SHORT AND NARROW GRAIN 1)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 500,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q9T071",
+      "active_site_count": 0,
+      "binding_site_count": 6,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Probable hexokinase-like 2 protein (EC 2.7.1.1)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 493,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P33284",
+      "active_site_count": 0,
+      "binding_site_count": 1,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Kluyveromyces lactis (strain ATCC 8585 / CBS 2359 / DSM 70799 / NBRC 1267 / NRRL Y-1140 / WM37) (Yeast) (Candida sphaerica)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase (EC 2.7.1.1)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 485,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q26609",
+      "active_site_count": 0,
+      "binding_site_count": 10,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Schistosoma mansoni (Blood fluke)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase (EC 2.7.1.1)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-mannose + ATP = D-mannose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:11028",
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 451,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q42525",
+      "active_site_count": 0,
+      "binding_site_count": 12,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-1 (EC 2.7.1.1) (Protein GLUCOSE INSENSITIVE 2)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 496,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "P83776",
+      "active_site_count": 0,
+      "binding_site_count": 0,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": false,
+      "organism": "Candida albicans (strain SC5314 / ATCC MYA-2876) (Yeast)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Cytoplasmic antigenic protein 3) (Hexokinase PII) (Hexokinase-B)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 484,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "A2PYL6",
+      "active_site_count": 0,
+      "binding_site_count": 29,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Equus caballus (Horse)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 917,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    },
+    {
+      "accession": "Q1W674",
+      "active_site_count": 0,
+      "binding_site_count": 30,
+      "ec_numbers": [
+        "2.7.1.1"
+      ],
+      "excluded_context_note": "all name/EC/Rhea/reaction/feature handles are scout-only admission context, not predictive features",
+      "family_text": true,
+      "lane_id": "askha_sugar_acetate_kinase",
+      "likely_wireable": true,
+      "organism": "Sus scrofa (Pig)",
+      "phosphoryl_reaction_text": true,
+      "predictive_evidence": [],
+      "protein_name": "Hexokinase-2 (EC 2.7.1.1) (Hexokinase type II) (HK II)",
+      "reaction_text_sample": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:16125",
+        "RHEA:17825",
+        "RHEA:22740"
+      ],
+      "sequence_length": 917,
+      "side_boundary_signal": false,
+      "site_feature_count": 0
+    }
+  ],
+  "schema_version": "kinase_subclass_source_scout.v1",
+  "stage": "scaling_plan_to_10k:next_strict_kinase_subclass_selector_after_ndk",
+  "status": "non_destructive_source_supply_scout_no_labels_generated"
+}

@@ -56,10 +56,16 @@ combined labels, **28** fingerprints, seed positives **4439**, fingerprint Gini 
 next-batch floor deficit **16**. Novelty replay reports **5433** expansion rows, decisions
 `{'admit': 4977, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0839).
 
-Next decision: continue strict kinase-subclass source scouts/splits such as
-`deoxynucleoside_kinase`, `ghmp_small_molecule_kinase`, or `askha_sugar_acetate_kinase`. Do **not**
-broad-wire EC 2.7, and do not spend time trying to force the remaining biotin 16-row deficit unless
-a genuinely new source can satisfy the same mechanism-first gate.
+Follow-on decision from the same run: a non-destructive strict kinase-subclass scout
+(`artifacts/v3_strict_kinase_subclass_source_scout_after_ndk_current702_20260613.json`) generated
+no labels and wrote no registry, but selected `askha_sugar_acetate_kinase` as the next full
+pipeline candidate. Sampled reviewed supply / likely wireable / boundary signals:
+`deoxynucleoside_kinase` **278 / 39-of-40 / 1**, `ghmp_small_molecule_kinase`
+**613 / 37-of-40 / 0**, and `askha_sugar_acetate_kinase` **667 / 39-of-40 / 0**. Next run should
+wire ASKHA only through the full 29fp path: fingerprint/ontology spec, OOS prereg re-freeze,
+disambiguation guards/tests, non-destructive preview, and gated apply. Do **not** broad-wire EC 2.7,
+merge kinase subclasses, or spend time trying to force the remaining biotin 16-row deficit unless a
+genuinely new source can satisfy the same mechanism-first gate.
 
 References:
 `src/catalytic_earth/nucleoside_diphosphate_kinase_sourcing.py`,
@@ -74,6 +80,8 @@ References:
 `work/coverage_redundancy_audit_current702_20260613_ndk_applied.md`,
 `artifacts/v3_novelty_admission_gate_audit_current702_20260613_ndk_applied.json`,
 `work/novelty_admission_gate_audit_current702_20260613_ndk_applied.md`,
+`artifacts/v3_strict_kinase_subclass_source_scout_after_ndk_current702_20260613.json`,
+`work/strict_kinase_subclass_source_scout_after_ndk_current702_20260613.md`,
 `data/registries/external_bronze_labels.json`.
 
 ## 2026-06-13: BIOTIN-DEPENDENT CARBOXYLASE 27FP BRONZE EXPANSION APPLIED

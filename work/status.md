@@ -43,10 +43,21 @@ Generated from `work/progress_log.jsonl`.
   28 mechanism fingerprints, 30 ontology families, 702 curated labels); row guardrail audits found
   0 problems across all 84 biotin and all 150 NDK rows; JSON/JSONL parse checks and
   `git diff --check` passed.
+- Continuation scout after NDK:
+  `artifacts/v3_strict_kinase_subclass_source_scout_after_ndk_current702_20260613.json` /
+  `work/strict_kinase_subclass_source_scout_after_ndk_current702_20260613.md` sampled strict
+  kinase splits without generating labels. Reviewed supply / likely wireable sample: deoxynucleoside
+  kinase 278 / 39-of-40 with 1 boundary signal; GHMP small-molecule kinase 613 / 37-of-40 with 0
+  boundary signals; ASKHA sugar/acetate kinase 667 / 39-of-40 with 0 boundary signals.
+- Closeout budget check: after the NDK apply, validation, direct push, and the follow-on scout,
+  elapsed time was about 45 minutes from `STARTED_AT`; with roughly 10 minutes left in the expected
+  55-minute block, closeout started because the next safe step is full ASKHA wiring/29fp prereg/
+  preview/apply, which is too large to begin safely in the remaining window.
 - Follow-on: biotin remains below floor but reviewed Rhea-first source supply is exhausted under the
-  current gate. Next highest-impact lane is another strict kinase subclass scout/split such as
-  deoxynucleoside kinase, GHMP small-molecule kinase, or ASKHA sugar/acetate kinase; do not broad-wire
-  EC 2.7.
+  current gate. Next highest-impact lane is strict `askha_sugar_acetate_kinase`; do not broad-wire
+  EC 2.7, merge kinase subclasses, or count EC as mechanism evidence. Required next sequence:
+  fingerprint/ontology spec -> 29fp OOS prereg re-freeze -> disambiguation guards/tests ->
+  non-destructive preview -> gated apply only if novelty/governor/dedup/trust-tier gates pass.
 
 ## Previous Automation Snapshot
 

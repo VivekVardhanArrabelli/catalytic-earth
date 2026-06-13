@@ -51,8 +51,14 @@ artifact-backed mechanism diagnostics.
   `{'admit': 4977, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0839). Validation:
   focused pytest **230 passed + 14 subtests**, `validate` ok (12 source / 28 fingerprints /
   30 ontology families / 702 labels), JSON/JSONL parse checks, and `git diff --check` passed.
-  Follow-on: do not broad-wire EC 2.7; continue strict kinase-subclass scouts such as
-  deoxynucleoside kinase, GHMP small-molecule kinase, or ASKHA sugar/acetate kinase.
+  Follow-on scout
+  `artifacts/v3_strict_kinase_subclass_source_scout_after_ndk_current702_20260613.json` generated
+  no labels but sampled strict kinase splits: deoxynucleoside kinase **278 reviewed / 39-of-40
+  likely wireable / 1 boundary**, GHMP small-molecule kinase **613 / 37-of-40 / 0**, and ASKHA
+  sugar/acetate kinase **667 / 39-of-40 / 0**. Next full lane should be strict
+  `askha_sugar_acetate_kinase` through the usual fingerprint/ontology -> 29fp OOS prereg ->
+  disambiguation tests -> preview -> gated apply path. Do not broad-wire EC 2.7, merge kinase
+  subclasses, or count EC as mechanism evidence.
 - **BIOTIN-DEPENDENT CARBOXYLASE 27FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
   Latest handoff blocked broad EC 2.7 kinase and recommended a guarded biotin-carboxylase lane if
   mechanism-first handles were clean. Added `biotin_dependent_carboxylase` fingerprint +

@@ -46,6 +46,15 @@ admission evidence and are never predictive. Next useful action: continue strict
 scouts/splits such as `deoxynucleoside_kinase`, `ghmp_small_molecule_kinase`, or
 `askha_sugar_acetate_kinase`; do **not** broad-wire EC 2.7.
 
+Follow-on scout artifact
+`artifacts/v3_strict_kinase_subclass_source_scout_after_ndk_current702_20260613.json` sampled those
+strict kinase splits without generating labels. Reviewed supply / likely wireable sample / sampled
+boundary signal: `deoxynucleoside_kinase` **278 / 39-of-40 / 1**,
+`ghmp_small_molecule_kinase` **613 / 37-of-40 / 0**, and
+`askha_sugar_acetate_kinase` **667 / 39-of-40 / 0**. Prefer strict
+`askha_sugar_acetate_kinase` for the next full 29fp pipeline; GHMP and deoxynucleoside kinase are
+backups. Do not merge kinase subclasses or count EC as mechanism evidence.
+
 **2026-06-13 automation update: biotin-dependent carboxylase 27fp expansion is now applied but
 under floor.** The latest handoff blocked broad EC 2.7 kinase wiring and recommended either a
 narrow kinase subclass or a guarded biotin-carboxylase handle. This run followed the biotin lane

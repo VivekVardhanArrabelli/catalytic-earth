@@ -67,6 +67,18 @@
   (`230 passed, 14 subtests passed`); `PYTHONPATH=src python -m catalytic_earth.cli validate`
   passed (12 source records, 28 fingerprints, 30 ontology families, 702 curated labels); JSON/JSONL
   parse checks passed; `git diff --check` passed.
+- Continuation scout after validation:
+  `artifacts/v3_strict_kinase_subclass_source_scout_after_ndk_current702_20260613.json` /
+  `work/strict_kinase_subclass_source_scout_after_ndk_current702_20260613.md` ran a bounded
+  non-destructive source-supply scout for strict kinase subclasses. It generated **0** labels and
+  wrote **no** registry. Reviewed supply / likely wireable sample / boundary sample:
+  `deoxynucleoside_kinase` **278 / 39-of-40 / 1**, `ghmp_small_molecule_kinase`
+  **613 / 37-of-40 / 0**, `askha_sugar_acetate_kinase` **667 / 39-of-40 / 0**.
+  All EC/name/Rhea/reaction/feature handles remain scout/admission context only.
+- Closeout budget check: after the NDK apply, validation, direct push, and this follow-on scout,
+  elapsed time was about **45 minutes** from `STARTED_AT`; with roughly **10 minutes** left in the
+  expected 55-minute block, closeout started because the next safe action is full ASKHA wiring/29fp
+  prereg/preview/apply, which is too large to start safely in the remaining window.
 - Key new artifacts/files this run:
   `src/catalytic_earth/nucleoside_diphosphate_kinase_sourcing.py`,
   `scripts/source_nucleoside_diphosphate_kinase_family.py`,
@@ -77,15 +89,15 @@
   `artifacts/v3_nucleoside_diphosphate_kinase_sourcing_preview_current702.json`,
   `artifacts/v3_external_hard_negative_next_tranche_preregistration_28fp_1025.json`,
   `artifacts/v3_coverage_redundancy_audit_current702_20260613_ndk_applied.json`,
-  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_ndk_applied.json`, and matching
-  `work/*.md` reports.
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_ndk_applied.json`,
+  `artifacts/v3_strict_kinase_subclass_source_scout_after_ndk_current702_20260613.json`, and
+  matching `work/*.md` reports.
 - Next exact action: do **not** broad-wire EC 2.7. Biotin reviewed Rhea-first supply is exhausted
   under the current carboxylation gate; leave it under floor unless a new source can produce the
   remaining 16 rows without relaxing the mechanism requirement. Continue the kinase-subclass path
-  with another strict split/source scout, likely `deoxynucleoside_kinase`,
-  `ghmp_small_molecule_kinase`, or `askha_sugar_acetate_kinase`; require the same sequence of
-  scout -> fingerprint/ontology -> OOS prereg re-freeze -> tests -> non-destructive preview -> gated
-  apply.
+  with strict `askha_sugar_acetate_kinase`: fingerprint/ontology spec -> 29fp OOS prereg re-freeze
+  -> disambiguation guards/tests -> non-destructive preview -> gated apply only if novelty/governor/
+  dedup/trust-tier gates pass. Keep GHMP and deoxynucleoside kinase as backups.
 
 ## Session run - biotin-dependent carboxylase 27fp bronze expansion applied (2026-06-13, Codex automation)
 
