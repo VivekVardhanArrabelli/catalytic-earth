@@ -74,8 +74,9 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
 # methyltransferase, cytochrome P450 monooxygenase, non-heme iron 2OG dioxygenase, CoA
 # acyltransferase, cofactor-independent isomerase, molybdopterin oxidoreductase, copper
 # oxidoreductase, non-PLP racemase/epimerase, ATP amide ligase, class-II metal aldolase,
-# ThDP ylide enzyme, zinc lyase/hydratase, and biotin-dependent carboxylase universe bumps. They
-# are kept on disk as records.
+# ThDP ylide enzyme, zinc lyase/hydratase, biotin-dependent carboxylase, nucleoside diphosphate
+# kinase, ASKHA sugar/acetate kinase, and GHMP small-molecule kinase universe bumps. They are kept
+# on disk as records.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_12FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json"
 )
@@ -147,10 +148,20 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_26FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_27FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_27fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 28-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The re-frozen tranche pre-registration for the 28-fingerprint universe is historical after the
+# ASKHA sugar/acetate kinase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_28FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_28fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the 29-fingerprint universe is historical after the
+# GHMP small-molecule kinase universe bump.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_29FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_29fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 30-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_30FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_30fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

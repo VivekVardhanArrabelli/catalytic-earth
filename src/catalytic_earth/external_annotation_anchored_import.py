@@ -91,6 +91,8 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "zinc_lyase_hydratase": "zinc_water_elimination_addition_context",
     "biotin_dependent_carboxylase": "biotinyl_lysine_atp_hydrogencarbonate_context",
     "nucleoside_diphosphate_kinase": "phosphohistidine_ntp_ndp_transfer_context",
+    "askha_sugar_acetate_kinase": "atp_mg_sugar_or_acetate_phosphoryl_transfer_context",
+    "ghmp_small_molecule_kinase": "atp_mg_ghmp_small_molecule_phosphoryl_transfer_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

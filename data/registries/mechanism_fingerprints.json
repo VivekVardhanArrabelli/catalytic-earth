@@ -583,6 +583,58 @@
     }
   },
   {
+    "id": "askha_sugar_acetate_kinase",
+    "name": "ASKHA sugar/acetate kinase",
+    "enzyme_space": ["hexokinases", "glucokinases", "glycerol kinases", "acetate kinase-like actin-fold kinases"],
+    "active_site_signature": [
+      {"role": "atp_mg_binding", "residue": "P-loop/actin-fold phosphate-binding residues plus Mg2+", "constraints": ["positions ATP gamma-phosphate and Mg2+ for transfer to a small-molecule acceptor"]},
+      {"role": "acceptor_hydroxyl_or_carboxylate_positioning", "residue": "Asp/Glu/His/Lys/Arg or polar pocket residues depending on subclass", "constraints": ["orients glucose, hexose, glycerol, acetate, or related acceptor for in-line phosphoryl transfer"]},
+      {"role": "product_phosphate_stabilization", "residue": "Lys/Arg/Ser/Thr/backbone amides", "constraints": ["stabilizes ADP, phosphate, and the phosphorylated sugar or acyl-phosphate product without collapsing into NDK phosphohistidine or GHMP/Pfk chemistry"]}
+    ],
+    "cofactors": ["Mg2+", "ATP"],
+    "reaction_center": {
+      "bond_changes": ["ATP gamma-phosphoryl transfer to a sugar hydroxyl, glycerol hydroxyl, or acetate-like carboxylate acceptor"],
+      "chemical_operation": "ASKHA-family ATP-dependent small-molecule phosphoryl transfer"
+    },
+    "substrate_constraints": ["EC 2.7.1 sugar/glycerol kinase scope present", "acetate/glucose/hexose/glycerol kinase family context present", "ATP/ADP/Mg phosphoryl-transfer reaction context present", "active-site or binding-site evidence present", "no protein kinase, histidine kinase, NDK, dNK, GHMP, Pfk, hydrolase, side-EC, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Rhea or reviewed catalytic activity text for ATP/ADP phosphoryl transfer under EC 2.7.1 scope", "acetate kinase, glucokinase, hexokinase, hexose kinase, or glycerol kinase family/name/domain text", "ATP/ADP/Mg2+ active-site or binding-site annotations", "structure or reviewed binding-site evidence for ATP and small-molecule acceptor"],
+    "counterevidence_features": ["protein kinase EC 2.7.11 or protein-substrate wording", "two-component histidine kinase EC 2.7.13", "NDK EC 2.7.4.6 or nucleoside-diphosphate kinase wording", "dNK, GHMP, PfkA/PfkB, ribokinase, or other neighboring kinase subclass wording", "hydrolase EC 3 side rows or non-2.7.1 side EC", "EC-only evidence with no Rhea, family, active-site, binding-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["hexokinase versus glycerol kinase versus acetate-like subclass", "ATP/Mg2+ stoichiometry", "acceptor identity and phosphorylation site", "open/closed actin-fold conformational state"],
+    "seed_examples": ["hexokinase", "glucokinase", "glycerol kinase", "acetate kinase-like ASKHA enzymes"],
+    "deploy_missing_active_site_context": {
+      "type": "atp_mg_acceptor_and_phosphorylated_product",
+      "detail": "ATP, Mg2+, sugar/glycerol/acetate acceptor, and phosphorylated product state are dissociable or transient contexts absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->ASKHA/Rhea/ATP-Mg channel, or canonical ATP/Mg/sugar-acceptor graft in the closed kinase conformation (Path B)",
+      "silver_reachability": "moderate; Rhea and ATP/binding-site evidence are common, but acceptor pose and open/closed state require reconstruction"
+    }
+  },
+  {
+    "id": "ghmp_small_molecule_kinase",
+    "name": "GHMP small-molecule kinase",
+    "enzyme_space": ["homoserine kinases", "mevalonate kinases", "phosphomevalonate kinases", "galactokinases", "GHMP-superfamily ATP-dependent small-molecule kinases"],
+    "active_site_signature": [
+      {"role": "atp_mg_binding", "residue": "GHMP-family ATP-binding loop and Mg2+-coordinating residues", "constraints": ["positions ATP gamma-phosphate for transfer within the GHMP kinase fold"]},
+      {"role": "small_molecule_acceptor_positioning", "residue": "Asp/Glu/Lys/Arg/Ser/Thr or family-specific polar residues", "constraints": ["orients homoserine, mevalonate, phosphomevalonate, galactose, or related acceptor hydroxyl for phosphorylation"]},
+      {"role": "phosphoryl_transfer_stabilization", "residue": "basic and backbone phosphate-stabilizing residues", "constraints": ["stabilizes ADP and the phosphorylated small-molecule product while excluding ASKHA/Pfk/dNK/NDK chemistry"]}
+    ],
+    "cofactors": ["Mg2+", "ATP"],
+    "reaction_center": {
+      "bond_changes": ["ATP gamma-phosphoryl transfer to a GHMP-family small-molecule hydroxyl acceptor"],
+      "chemical_operation": "GHMP-family ATP-dependent small-molecule phosphoryl transfer"
+    },
+    "substrate_constraints": ["EC 2.7.1 small-molecule kinase scope present", "homoserine/mevalonate/phosphomevalonate/galactokinase family context present", "ATP/ADP phosphoryl-transfer reaction context present", "active-site or binding-site evidence present", "no ASKHA, Pfk, dNK, NDK, protein kinase, histidine kinase, hydrolase, side-EC, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Rhea or reviewed catalytic activity text for ATP/ADP phosphoryl transfer under EC 2.7.1 scope", "homoserine kinase, mevalonate kinase, phosphomevalonate kinase, or galactokinase family/name/domain text", "ATP/ADP/Mg2+ active-site or binding-site annotations", "structure or reviewed binding-site evidence for ATP and GHMP-family small-molecule acceptor"],
+    "counterevidence_features": ["ASKHA acetate/glucose/hexose/glycerol kinase wording", "PfkA/PfkB/ribokinase wording", "dNK, NDK, protein kinase, or histidine kinase wording/side EC", "hydrolase EC 3 side rows or non-2.7.1 side EC", "EC-only evidence with no Rhea, family, active-site, binding-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["homoserine versus mevalonate-family versus galactokinase subclass", "ATP/Mg2+ stoichiometry", "acceptor identity and phosphorylation site", "GHMP open/closed conformational state"],
+    "seed_examples": ["homoserine kinase", "mevalonate kinase", "phosphomevalonate kinase", "galactokinase"],
+    "deploy_missing_active_site_context": {
+      "type": "atp_mg_acceptor_and_phosphorylated_product",
+      "detail": "ATP, Mg2+, GHMP-family small-molecule acceptor, and phosphorylated product state are dissociable or transient contexts absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->GHMP/Rhea/ATP-Mg channel, or canonical ATP/Mg/small-molecule acceptor graft in the GHMP active conformation (Path B)",
+      "silver_reachability": "moderate; Rhea and ATP/binding-site evidence are common, but acceptor pose and GHMP conformational state require reconstruction"
+    }
+  },
+  {
     "id": "thiamine_diphosphate_enzyme",
     "name": "Thiamine-diphosphate ylide enzyme",
     "enzyme_space": ["ThDP-dependent decarboxylases", "transketolases", "2-oxoacid dehydrogenase E1 components", "acetohydroxyacid synthases", "phosphoketolases"],

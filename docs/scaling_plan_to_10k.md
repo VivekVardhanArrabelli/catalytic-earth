@@ -13,6 +13,44 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: strict ASKHA 29fp and GHMP 30fp kinase-subclass expansions are now
+applied.** The post-NDK scout selected strict `askha_sugar_acetate_kinase`, and this run continued
+to strict `ghmp_small_molecule_kinase` after ASKHA because time remained and the reviewed source
+supply was clean enough. Both lanes are EC 2.7.1 scope-only, chemistry-confusable, capped at 150,
+and separated from broad EC 2.7. Added `askha_sugar_acetate_kinase` fingerprint + `askha` ontology
+node, bumped to `label_factory_v1_29fp`, and re-froze OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_29fp_1025.json`. Added
+`ghmp_small_molecule_kinase` fingerprint + `ghmp` ontology node, bumped to `label_factory_v1_30fp`,
+and re-froze OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_30fp_1025.json`.
+
+ASKHA apply
+(`scripts/source_askha_sugar_acetate_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **240**, mechanism-corroborated **227**, applied **150**, held **9** no-corroboration rows,
+throttled **7**, held **70** at cap, and held **0** off-target rows. GHMP apply
+(`scripts/source_ghmp_small_molecule_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **240**, mechanism-corroborated **228**, applied **150**, held **10** no-corroboration rows,
+throttled **0**, held **78** at cap, and held **0** off-target rows. External bronze is now
+**5733**; combined label surface is **6435**; frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters stay
+separate: **positive_bronze 4739**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k: **5261**.
+Post-apply audit: **30 fingerprints**, fingerprint Gini **0.1534**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase']`, only `metal_dependent_hydrolase` over-cap, next-batch floor
+deficit **16**. Novelty replay: **5733** expansion rows, decisions
+`{'admit': 5277, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0795).
+
+All added rows keep `predictive_evidence []`; EC/name/keyword/Rhea/prose/feature handles remain
+excluded-context admission evidence and are never predictive. Counted corroboration comes from
+ATP/ADP phosphoryl-transfer Rhea participant text, family/domain text, ATP/Mg or substrate
+active-/binding-site evidence, cofactor/cosubstrate handles, and structure-compatible evidence.
+Do **not** broad-wire EC 2.7 or merge kinase subclasses. The next concrete lane is strict
+`deoxynucleoside_kinase`, scaffolded in
+`work/deoxynucleoside_kinase_next_lane_spec_current702_20260613.md`: reviewed supply **278**,
+sampled **39/40** likely wireable, **1/40** boundary signal. Required next path is fingerprint +
+`dnk` ontology node -> 31fp OOS prereg re-freeze -> disambiguation guards/tests -> non-destructive
+preview -> gated apply only if novelty/governor/dedup/trust-tier/leakage gates pass.
+
 **2026-06-13 automation update: biotin floor closure partially applied; strict NDK 28fp expansion is
 now applied.** The latest handoff required a biotin floor-closure scout first. A new optional
 Rhea-first lane for ATP/hydrogencarbonate carboxylation reactions found only **3** additional safe

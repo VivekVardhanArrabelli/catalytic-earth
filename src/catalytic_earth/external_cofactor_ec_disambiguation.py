@@ -493,6 +493,61 @@ _NDK_ACTIVE_HISTIDINE_TOKENS = (
     "tele-phosphohistidine",
     "histidine",
 )
+# ASKHA sugar/acetate kinase handles. EC 2.7.1 scopes reviewed candidates only;
+# counted corroboration comes from ATP/ADP/Mg phosphoryl-transfer participant text,
+# acetate/glucose/hexose/glycerol kinase family text, and active-/binding-site evidence.
+# Neighboring kinase subclasses stay held rather than being merged by generic ATP wording.
+_ASKHA_FAMILY_TEXT_TOKENS = (
+    "acetate kinase",
+    "glucokinase",
+    "hexokinase",
+    "hexose kinase",
+    "glycerol kinase",
+)
+_ASKHA_PHOSPHORYL_REACTION_TOKENS = (
+    "atp",
+    "adp",
+    "phosphate",
+    "phospho",
+    "-phosphate",
+    "acetyl phosphate",
+)
+_ASKHA_ATP_MG_TOKENS = (
+    "atp",
+    "adp",
+    "magnesium",
+    "mg(2",
+    "mg2",
+)
+_ASKHA_DNK_BOUNDARY_TOKENS = (
+    "deoxynucleoside kinase",
+    "thymidine kinase",
+    "deoxycytidine kinase",
+    "deoxyguanosine kinase",
+)
+_ASKHA_GHMP_BOUNDARY_TOKENS = (
+    "homoserine kinase",
+    "mevalonate kinase",
+    "phosphomevalonate kinase",
+    "galactokinase",
+)
+_ASKHA_PFK_BOUNDARY_TOKENS = (
+    "phosphofructokinase",
+    "ribokinase",
+    "pfka",
+    "pfkb",
+)
+# GHMP superfamily kinase handles. EC 2.7.1 scopes candidates only; counted
+# corroboration comes from ATP/ADP phosphoryl-transfer participant text, GHMP-family
+# homoserine/mevalonate/phosphomevalonate/galactokinase text, and active-/binding-site evidence.
+_GHMP_FAMILY_TEXT_TOKENS = (
+    "homoserine kinase",
+    "mevalonate kinase",
+    "phosphomevalonate kinase",
+    "galactokinase",
+)
+_GHMP_PHOSPHORYL_REACTION_TOKENS = _ASKHA_PHOSPHORYL_REACTION_TOKENS
+_GHMP_ATP_MG_TOKENS = _ASKHA_ATP_MG_TOKENS
 # Class-II metal aldolase handles. EC 4.1.2/4.1.3 scopes lyase candidates only;
 # counted corroboration comes from metal cofactor/site evidence, Lyase/aldolase
 # family text, Rhea C-C/oxoacid reaction context, or active-/binding-/metal-site
@@ -788,6 +843,48 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         ec in {"2.7.4.3", "2.7.4.4", "2.7.4.14", "2.7.4.18"}
         for ec in _ec_numbers(row)
     )
+    askha_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_ASKHA_FAMILY_TEXT_TOKENS,
+    )
+    askha_phosphoryl_reaction = in_any(reactions, *_ASKHA_PHOSPHORYL_REACTION_TOKENS)
+    askha_atp_mg_context = in_any(
+        reactions + cofactor_names + feature_texts, *_ASKHA_ATP_MG_TOKENS
+    )
+    askha_protein_kinase_boundary = _ec_has_prefix(row, ("2.7.11",)) or in_any(
+        keywords + [protein_name], "protein kinase"
+    )
+    askha_histidine_kinase_boundary = _ec_has_prefix(row, ("2.7.13",)) or in_any(
+        keywords + [protein_name], "histidine kinase"
+    )
+    askha_hydrolase_side_ec_boundary = _ec_has_prefix(row, ("3.",))
+    askha_ndk_boundary = _ec_has_prefix(row, ("2.7.4.6",)) or in_any(
+        keywords + [protein_name], *_NDK_FAMILY_TEXT_TOKENS
+    )
+    askha_dnk_boundary = in_any(keywords + [protein_name], *_ASKHA_DNK_BOUNDARY_TOKENS)
+    askha_ghmp_boundary = in_any(keywords + [protein_name], *_ASKHA_GHMP_BOUNDARY_TOKENS)
+    askha_pfk_boundary = in_any(keywords + [protein_name], *_ASKHA_PFK_BOUNDARY_TOKENS)
+    non_askha_scope_side_ec = any(
+        ec and not ec.startswith("2.7.1") for ec in _ec_numbers(row)
+    )
+    ghmp_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_GHMP_FAMILY_TEXT_TOKENS,
+    )
+    ghmp_phosphoryl_reaction = in_any(reactions, *_GHMP_PHOSPHORYL_REACTION_TOKENS)
+    ghmp_atp_mg_context = in_any(
+        reactions + cofactor_names + feature_texts, *_GHMP_ATP_MG_TOKENS
+    )
+    ghmp_protein_kinase_boundary = askha_protein_kinase_boundary
+    ghmp_histidine_kinase_boundary = askha_histidine_kinase_boundary
+    ghmp_hydrolase_side_ec_boundary = askha_hydrolase_side_ec_boundary
+    ghmp_ndk_boundary = askha_ndk_boundary
+    ghmp_dnk_boundary = askha_dnk_boundary
+    ghmp_askha_boundary = in_any(keywords + [protein_name], *_ASKHA_FAMILY_TEXT_TOKENS)
+    ghmp_pfk_boundary = askha_pfk_boundary
+    non_ghmp_scope_side_ec = any(
+        ec and not ec.startswith("2.7.1") for ec in _ec_numbers(row)
+    )
     kinase_boundary = in_any(keywords + [protein_name], *_KINASE_BOUNDARY_TOKENS) or _ec_has_prefix(
         row, ("2.7.",)
     )
@@ -918,6 +1015,28 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "ndk_two_component_histidine_kinase_boundary": ndk_two_component_histidine_kinase_boundary,
             "ndk_hydrolase_nuclease_side_ec_boundary": ndk_hydrolase_nuclease_side_ec_boundary,
             "ndk_other_nmp_kinase_side_ec_boundary": ndk_other_nmp_kinase_side_ec_boundary,
+            "askha_family_text": askha_family_text,
+            "askha_phosphoryl_reaction": askha_phosphoryl_reaction,
+            "askha_atp_mg_context": askha_atp_mg_context,
+            "askha_protein_kinase_boundary": askha_protein_kinase_boundary,
+            "askha_histidine_kinase_boundary": askha_histidine_kinase_boundary,
+            "askha_hydrolase_side_ec_boundary": askha_hydrolase_side_ec_boundary,
+            "askha_ndk_boundary": askha_ndk_boundary,
+            "askha_dnk_boundary": askha_dnk_boundary,
+            "askha_ghmp_boundary": askha_ghmp_boundary,
+            "askha_pfk_boundary": askha_pfk_boundary,
+            "non_askha_scope_side_ec": non_askha_scope_side_ec,
+            "ghmp_family_text": ghmp_family_text,
+            "ghmp_phosphoryl_reaction": ghmp_phosphoryl_reaction,
+            "ghmp_atp_mg_context": ghmp_atp_mg_context,
+            "ghmp_protein_kinase_boundary": ghmp_protein_kinase_boundary,
+            "ghmp_histidine_kinase_boundary": ghmp_histidine_kinase_boundary,
+            "ghmp_hydrolase_side_ec_boundary": ghmp_hydrolase_side_ec_boundary,
+            "ghmp_ndk_boundary": ghmp_ndk_boundary,
+            "ghmp_dnk_boundary": ghmp_dnk_boundary,
+            "ghmp_askha_boundary": ghmp_askha_boundary,
+            "ghmp_pfk_boundary": ghmp_pfk_boundary,
+            "non_ghmp_scope_side_ec": non_ghmp_scope_side_ec,
             "kinase_boundary": kinase_boundary,
             "non_6_3_side_ec": non_6_3_side_ec,
             "non_biotin_carboxylase_scope_side_ec": non_biotin_carboxylase_scope_side_ec,
@@ -984,6 +1103,10 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
             and evidence.get("biotin_carboxylase_text")
         )
         or evidence.get("ndk_ntp_ndp_reaction")
+        or evidence.get("askha_atp_mg_context")
+        or evidence.get("askha_phosphoryl_reaction")
+        or evidence.get("ghmp_atp_mg_context")
+        or evidence.get("ghmp_phosphoryl_reaction")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -1013,6 +1136,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("zinc_hydration_elimination_reaction")
         or evidence.get("biotin_carboxylation_reaction")
         or evidence.get("ndk_ntp_ndp_reaction")
+        or evidence.get("askha_phosphoryl_reaction")
+        or evidence.get("ghmp_phosphoryl_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -1024,6 +1149,14 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("zinc_feature_or_ligand")
         or evidence.get("biotin_feature_or_ligand")
         or evidence.get("ndk_active_his_context")
+        or (
+            evidence.get("active_or_binding_site_present")
+            and evidence.get("askha_family_text")
+        )
+        or (
+            evidence.get("active_or_binding_site_present")
+            and evidence.get("ghmp_family_text")
+        )
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -1047,6 +1180,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("biotin_keyword_or_name")
         or evidence.get("biotin_carboxylase_text")
         or evidence.get("ndk_family_text")
+        or evidence.get("askha_family_text")
+        or evidence.get("ghmp_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -1110,6 +1245,8 @@ _THIAMINE_DIPHOSPHATE_ENZYME_EC = (
 )  # ThDP ylide/carbonyl chemistry; EC is scope only
 _ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
 _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
+_ASKHA_SUGAR_ACETATE_KINASE_EC = ("2.7.1",)  # ASKHA sugar/acetate kinase; EC scope only
+_GHMP_SMALL_MOLECULE_KINASE_EC = ("2.7.1",)  # GHMP small-molecule kinase; EC scope only
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -1296,6 +1433,38 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["ndk_other_nmp_kinase_side_ec_boundary"],
     ),
     (
+        "askha_sugar_acetate_kinase",
+        lambda c, row: _ec_has_prefix(row, _ASKHA_SUGAR_ACETATE_KINASE_EC)
+        and c["askha_family_text"]
+        and c["askha_phosphoryl_reaction"]
+        and c["askha_atp_mg_context"]
+        and c["active_or_binding_site_present"]
+        and not c["askha_protein_kinase_boundary"]
+        and not c["askha_histidine_kinase_boundary"]
+        and not c["askha_hydrolase_side_ec_boundary"]
+        and not c["askha_ndk_boundary"]
+        and not c["askha_dnk_boundary"]
+        and not c["askha_ghmp_boundary"]
+        and not c["askha_pfk_boundary"]
+        and not c["non_askha_scope_side_ec"],
+    ),
+    (
+        "ghmp_small_molecule_kinase",
+        lambda c, row: _ec_has_prefix(row, _GHMP_SMALL_MOLECULE_KINASE_EC)
+        and c["ghmp_family_text"]
+        and c["ghmp_phosphoryl_reaction"]
+        and c["ghmp_atp_mg_context"]
+        and c["active_or_binding_site_present"]
+        and not c["ghmp_protein_kinase_boundary"]
+        and not c["ghmp_histidine_kinase_boundary"]
+        and not c["ghmp_hydrolase_side_ec_boundary"]
+        and not c["ghmp_ndk_boundary"]
+        and not c["ghmp_dnk_boundary"]
+        and not c["ghmp_askha_boundary"]
+        and not c["ghmp_pfk_boundary"]
+        and not c["non_ghmp_scope_side_ec"],
+    ),
+    (
         "atp_amide_ligase",
         lambda c, row: _ec_has_prefix(row, _ATP_AMIDE_LIGASE_EC)
         and c["keyword_ligase"]
@@ -1445,6 +1614,10 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "biotin", "cross_reference": {"id": None}}]
     elif fingerprint == "nucleoside_diphosphate_kinase" and evidence.get("ndk_ntp_ndp_reaction"):
         records = [{"name": "nucleoside triphosphate/diphosphate", "cross_reference": {"id": None}}]
+    elif fingerprint == "askha_sugar_acetate_kinase" and evidence.get("askha_atp_mg_context"):
+        records = [{"name": "ATP/Mg2+ phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
+    elif fingerprint == "ghmp_small_molecule_kinase" and evidence.get("ghmp_atp_mg_context"):
+        records = [{"name": "ATP/Mg2+ GHMP phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

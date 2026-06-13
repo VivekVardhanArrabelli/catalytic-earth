@@ -71,12 +71,16 @@
       "id": "askha",
       "name": "ASKHA sugar and acetate kinases",
       "parent_id": "atp_phosphoryl_transfer",
-      "fingerprint_ids": [],
+      "fingerprint_ids": [
+        "askha_sugar_acetate_kinase"
+      ],
       "scope_note": "Actin-like/ASKHA kinases including hexokinase/glucokinase and acetate kinase lanes with ATP gamma-phosphoryl transfer to sugar hydroxyls or carboxylates.",
       "sibling_ids": ["epk", "atp_grasp", "ghkl", "dnk", "ndk", "pfka", "pfkb", "ghmp"],
       "family_boundary_guardrails": [
-        "Keep hexokinase/glucokinase/acetate kinase review lanes out of hydrolase labels even when Mg2+ is local.",
-        "Do not merge ASKHA sugar kinases with PfkA, PfkB, or GHMP solely by ATP wording."
+        "Membership is decided by reviewed ATP/ADP/Mg phosphoryl-transfer reaction context plus acetate/glucose/hexose/glycerol kinase family text and active-/binding-site evidence; EC 2.7.1 is scope only.",
+        "Keep hexokinase/glucokinase/glycerol kinase/acetate kinase review lanes out of hydrolase labels even when Mg2+ is local.",
+        "Do not merge ASKHA sugar kinases with PfkA, PfkB, GHMP, dNK, NDK, protein kinase, or histidine kinase lanes solely by ATP wording.",
+        "ATP/Mg2+, sugar or acetate acceptor, phosphorylated product, and in-line gamma-phosphate transfer pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
     },
     {
@@ -156,12 +160,16 @@
       "id": "ghmp",
       "name": "GHMP-superfamily kinases",
       "parent_id": "atp_phosphoryl_transfer",
-      "fingerprint_ids": [],
+      "fingerprint_ids": [
+        "ghmp_small_molecule_kinase"
+      ],
       "scope_note": "GHMP-superfamily kinase lanes such as CDP-ME kinase, mevalonate-family kinase chemistry, and related ATP gamma-phosphoryl transfers. Kept separate from ASKHA, PfkA, and PfkB sugar kinases.",
       "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "dnk", "ndk", "pfka", "pfkb"],
       "family_boundary_guardrails": [
+        "Membership is decided by reviewed ATP/ADP phosphoryl-transfer context plus homoserine, mevalonate, phosphomevalonate, or galactokinase family text and active-/binding-site evidence; EC 2.7.1 is scope only.",
         "Do not identify GHMP from ATP text alone; require GHMP-family or substrate-class evidence.",
-        "Do not count GHMP rows as hydrolases when ATP/Mg2+ is the local cofactor context."
+        "Do not merge GHMP rows with ASKHA, PfkA, PfkB, dNK, NDK, protein kinase, histidine kinase, hydrolase, or side-EC rows solely by ATP wording.",
+        "ATP/Mg2+, small-molecule acceptor, phosphorylated product, and GHMP-family conformational state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
     },
     {

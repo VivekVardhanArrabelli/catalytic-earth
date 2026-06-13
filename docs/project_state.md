@@ -26,6 +26,36 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **ASKHA + GHMP 30FP BRONZE EXPANSIONS APPLIED (2026-06-13 automation).**
+  The strict kinase-subclass path continued from the post-NDK scout. Added
+  `askha_sugar_acetate_kinase` fingerprint + `askha` ontology node (`label_factory_v1_29fp`) and
+  `ghmp_small_molecule_kinase` fingerprint + `ghmp` ontology node (`label_factory_v1_30fp`);
+  re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_29fp_1025.json` and
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_30fp_1025.json`. EC 2.7.1 is
+  scope-only for both lanes; counted mechanism handles are ATP/ADP phosphoryl-transfer Rhea
+  participants, ASKHA/GHMP family text, ATP/Mg or substrate active-/binding-site evidence,
+  cofactor/cosubstrate handles, and structure-compatible evidence. Protein kinases,
+  two-component histidine kinases, hydrolase/nuclease rows, NDK, dNK, Pfk, cross-subclass
+  ASKHA/GHMP signals, and multi-fingerprint rows are held. ASKHA apply fetched **240**,
+  mechanism-corroborated **227**, applied **150**, held **9** no-corroboration rows, throttled
+  **7**, and held **70** at cap. GHMP apply fetched **240**, mechanism-corroborated **228**,
+  applied **150**, held **10** no-corroboration rows, throttled **0**, and held **78** at cap.
+  External bronze **5433 -> 5733**; combined surface **6135 -> 6435**; frozen current702 remains
+  702 with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest
+  counters remain separate: **positive_bronze 4739**, **oos_bronze 1696**, **silver_ready 0**,
+  **silver_confirmed 17**, **projected 0**; remaining positive-bronze gap to 10k: **5261**. Fresh
+  coverage audit: **6435** combined, **30** fingerprints, fingerprint Gini **0.1534**, holes `[]`,
+  under-floor `['biotin_dependent_carboxylase']`, only `metal_dependent_hydrolase` over-cap,
+  next-batch floor deficit **16**. Novelty replay: **5733** expansion rows, decisions
+  `{'admit': 5277, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0795).
+  Validation: focused pytest **280 passed**, `validate` ok (12 source / 30 fingerprints /
+  30 ontology families / 702 labels), JSON/JSONL parse checks, and `git diff --check` passed. All
+  added rows keep `predictive_evidence []`; EC/name/keyword/Rhea/prose/feature handles remain
+  excluded-context admission evidence and are never predictive. Next full lane should be strict
+  `deoxynucleoside_kinase` via the 31fp pipeline scaffolded in
+  `work/deoxynucleoside_kinase_next_lane_spec_current702_20260613.md`; do not broad-wire EC 2.7 or
+  merge kinase subclasses.
 - **BIOTIN FLOOR-CLOSURE + STRICT NDK 28FP BRONZE EXPANSION APPLIED (2026-06-13 automation).**
   A Rhea-first biotin floor-closure scout kept the ATP + hydrogencarbonate/CO2/carboxylation gate
   intact and found only **3** additional safe rows; `biotin_dependent_carboxylase` is now **84/100**

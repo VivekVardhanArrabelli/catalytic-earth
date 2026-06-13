@@ -3,6 +3,86 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: STRICT ASKHA + GHMP 30FP BRONZE EXPANSIONS APPLIED
+
+Decision: continue the strict kinase-subclass path instead of broad-wiring EC 2.7. The latest
+handoff selected `askha_sugar_acetate_kinase`; after ASKHA applied cleanly and time remained, this
+run applied the next clean scout lane, `ghmp_small_molecule_kinase`. Growth went only to
+`data/registries/external_bronze_labels.json`; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+**ASKHA lane.** Added `askha_sugar_acetate_kinase` fingerprint spec and `askha` ontology node;
+bumped `labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_29fp`;
+re-froze OOS next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_29fp_1025.json`. EC 2.7.1 is
+scope-only (`ec_scope_hint`, never counted). Counted mechanism corroboration comes from ATP/ADP
+sugar-or-acetate phosphoryl-transfer Rhea participant context, ASKHA/sugar kinase/acetate kinase
+family text, ATP/Mg or substrate active-/binding-site evidence, cofactor/cosubstrate handles, or
+structure-compatible evidence. Protein kinases, two-component histidine kinases, hydrolase/nuclease
+rows, NDK, dNK, GHMP/Pfk, and multi-fingerprint rows are held.
+
+ASKHA apply command:
+`PYTHONPATH=src python scripts/source_askha_sugar_acetate_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+Result: fetched **240**, target mechanism-corroborated **227**, applied **150**, no-corroboration
+holds **9**, novelty-throttled **7**, held@cap **70**, off-target held **0**, duplicate skipped
+**0**. `askha_sugar_acetate_kinase` **0 -> 150**.
+
+**GHMP lane.** Added `ghmp_small_molecule_kinase` fingerprint spec and `ghmp` ontology node;
+bumped `labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_30fp`;
+re-froze OOS next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_30fp_1025.json`. EC 2.7.1 is
+scope-only (`ec_scope_hint`, never counted). Counted mechanism corroboration comes from ATP/ADP
+small-molecule phosphoryl-transfer Rhea participant context, GHMP/homoserine/mevalonate/
+galactokinase family text, ATP/Mg or substrate active-/binding-site evidence, cofactor/cosubstrate
+handles, or structure-compatible evidence. Protein kinases, two-component histidine kinases,
+hydrolase/nuclease rows, ASKHA, NDK, dNK, Pfk, and multi-fingerprint rows are held.
+
+GHMP apply command:
+`PYTHONPATH=src python scripts/source_ghmp_small_molecule_kinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+Result: fetched **240**, target mechanism-corroborated **228**, applied **150**, no-corroboration
+holds **10**, novelty-throttled **0**, held@cap **78**, off-target held **0**, duplicate skipped
+**0**. `ghmp_small_molecule_kinase` **0 -> 150**.
+
+Guardrails held: every added row is `tier=bronze`, `review_status=automation_curated`, namespace
+`uniprot`; EC/name/keyword/Rhea/prose/feature handles are admission/excluded-context evidence only;
+`predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; per-fingerprint cap 150 held. Row audits found **0** problems
+across all **150** ASKHA and **150** GHMP rows; both lanes have active-site/residue-role,
+cofactor/cosubstrate, domain/family, and Rhea participant axes on every admitted row. External
+bronze **5433 -> 5733**; combined surface **6135 -> 6435**. Honest counters after apply are
+**positive_bronze 4739**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**; do not merge them. Fresh post-GHMP coverage/redundancy audit reports **6435**
+combined labels, **30** fingerprints, seed positives **4739**, fingerprint Gini **0.1534**, holes
+`[]`, under-floor `['biotin_dependent_carboxylase']`, over-cap `['metal_dependent_hydrolase']`, and
+next-batch floor deficit **16**. Novelty replay reports **5733** expansion rows, decisions
+`{'admit': 5277, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0795).
+
+Follow-on decision: `deoxynucleoside_kinase` is the next strict kinase split. The scaffold
+`work/deoxynucleoside_kinase_next_lane_spec_current702_20260613.md` records reviewed supply **278**,
+sampled likely wireable **39/40**, boundary signal **1/40**, required guards, and the exact 31fp
+implementation path. Do **not** broad-wire EC 2.7 or merge ASKHA/GHMP/NDK/dNK/Pfk kinase
+subclasses.
+
+References:
+`src/catalytic_earth/askha_sugar_acetate_kinase_sourcing.py`,
+`scripts/source_askha_sugar_acetate_kinase_family.py`,
+`tests/test_askha_sugar_acetate_kinase_sourcing.py`,
+`src/catalytic_earth/ghmp_small_molecule_kinase_sourcing.py`,
+`scripts/source_ghmp_small_molecule_kinase_family.py`,
+`tests/test_ghmp_small_molecule_kinase_sourcing.py`,
+`artifacts/v3_askha_sugar_acetate_kinase_sourcing_preview_current702.json`,
+`work/askha_sugar_acetate_kinase_sourcing_current702.md`,
+`artifacts/v3_ghmp_small_molecule_kinase_sourcing_preview_current702.json`,
+`work/ghmp_small_molecule_kinase_sourcing_current702.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_29fp_1025.json`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_30fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_ghmp_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_ghmp_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_ghmp_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_ghmp_applied.md`,
+`work/deoxynucleoside_kinase_next_lane_spec_current702_20260613.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-13: BIOTIN FLOOR-CLOSURE + STRICT NDK 28FP BRONZE EXPANSION APPLIED
 
 Decision: the biotin floor-closure scout did not find enough reviewed source supply to close the

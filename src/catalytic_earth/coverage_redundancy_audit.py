@@ -203,6 +203,16 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "NTP/NDP phosphoryl-transfer cosubstrates with active-site phosphohistidine relay",
         "lanes": ["nucleoside_diphosphate_kinase"],
     },
+    "askha_sugar_acetate_kinase": {
+        "ec_prefixes": ["2.7.1"],
+        "cofactor": "ATP/Mg phosphoryl-transfer cosubstrate context with sugar, glycerol, or acetate acceptor",
+        "lanes": ["askha_sugar_acetate_kinase"],
+    },
+    "ghmp_small_molecule_kinase": {
+        "ec_prefixes": ["2.7.1"],
+        "cofactor": "ATP/Mg phosphoryl-transfer cosubstrate context with GHMP-family small-molecule acceptor",
+        "lanes": ["ghmp_small_molecule_kinase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

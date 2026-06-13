@@ -171,9 +171,9 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 6135)
+            self.assertEqual(written["totals"]["combined"], 6435)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 5433)
+            self.assertEqual(written["totals"]["expansion_bronze"], 5733)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -183,10 +183,11 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # isomerase, molybdopterin oxidoreductase, copper oxidoreductase,
             # non-PLP racemase/epimerase, ATP amide ligase, class-II metal
             # aldolase, ThDP enzyme, zinc lyase/hydratase, a guarded
-            # biotin-dependent carboxylase tranche, and a strict nucleoside
-            # diphosphate kinase tranche. Biotin carboxylase is below floor but
-            # no longer absent; metal_dependent_hydrolase remains the known
-            # intentional over-cap.
+            # biotin-dependent carboxylase tranche, a strict nucleoside
+            # diphosphate kinase tranche, and a strict ASKHA sugar/acetate
+            # kinase tranche, and strict ASKHA + GHMP kinase tranches. Biotin
+            # carboxylase is below floor but no longer absent; metal_dependent_
+            # hydrolase remains the known intentional over-cap.
             self.assertEqual(audit["class_imbalance"]["expansion_holes"], [])
             self.assertIn(
                 "biotin_dependent_carboxylase",

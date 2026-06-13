@@ -826,6 +826,215 @@ class DisambiguateRowTests(unittest.TestCase):
             ]
             self.assertEqual(disambiguate_row(row)["decision"], "hold")
 
+    def test_askha_sugar_acetate_kinase_requires_mechanism_handles(self) -> None:
+        row = _row(ec=["2.7.1.1"])
+        row["protein_name"] = "Hexokinase"
+        row["keywords"] = ["Kinase", "Transferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AS0001",
+                "reaction": "ATP + D-glucose = ADP + D-glucose 6-phosphate + H(+)",
+                "ec_number": "2.7.1.1",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 210,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "ATP",
+                "ligand_id": None,
+                "description": "ATP",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "askha_sugar_acetate_kinase")
+        axes = d["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("cofactor_or_cosubstrate", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_askha_sugar_acetate_kinase_controls_hold(self) -> None:
+        ec_only = _row(ec=["2.7.1.1"])
+        ec_only["protein_name"] = "Hexokinase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        boundary_cases = (
+            (["2.7.1.1", "2.7.11.1"], "Hexokinase protein kinase boundary"),
+            (["2.7.1.1", "2.7.13.3"], "Hexokinase histidine kinase boundary"),
+            (["2.7.1.1", "3.1.1.1"], "Hexokinase hydrolase boundary"),
+            (["2.7.1.21"], "Thymidine kinase"),
+            (["2.7.1.11"], "6-phosphofructokinase"),
+        )
+        for ec_numbers, name in boundary_cases:
+            row = _row(ec=ec_numbers)
+            row["protein_name"] = name
+            row["keywords"] = ["Kinase", "Transferase"]
+            row["rhea_ec_provenance"]["rhea_records"] = [
+                {
+                    "rhea_id": "RHEA:AS0002",
+                    "reaction": "ATP + D-glucose = ADP + D-glucose 6-phosphate + H(+)",
+                    "ec_number": ec_numbers[0],
+                }
+            ]
+            row["residue_locators"] = [
+                {
+                    "position": 210,
+                    "feature_code": "BINDING",
+                    "feature_type": "Binding site",
+                    "ligand_name": "ATP",
+                    "ligand_id": None,
+                    "description": "ATP",
+                    "evidence_codes": ["ECO:0000269"],
+                }
+            ]
+            self.assertEqual(disambiguate_row(row)["decision"], "hold")
+
+        ndk_side = _row(ec=["2.7.1.1", "2.7.4.6"])
+        ndk_side["protein_name"] = "Nucleoside diphosphate kinase"
+        ndk_side["keywords"] = ["Kinase", "Transferase"]
+        ndk_side["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AS0003",
+                "reaction": "ATP + nucleoside diphosphate = ADP + nucleoside triphosphate",
+                "ec_number": "2.7.4.6",
+            }
+        ]
+        ndk_side["residue_locators"] = [
+            {
+                "position": 118,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "ATP",
+                "ligand_id": None,
+                "description": "ATP",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        ndk_decision = disambiguate_row(ndk_side)
+        self.assertEqual(ndk_decision["fingerprint_id"], "nucleoside_diphosphate_kinase")
+        self.assertNotEqual(ndk_decision["fingerprint_id"], "askha_sugar_acetate_kinase")
+
+        ghmp_side = _row(ec=["2.7.1.36"])
+        ghmp_side["protein_name"] = "Mevalonate kinase"
+        ghmp_side["keywords"] = ["Kinase", "Transferase"]
+        ghmp_side["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AS0004",
+                "reaction": "ATP + (R)-mevalonate = ADP + (R)-5-phosphomevalonate + H(+)",
+                "ec_number": "2.7.1.36",
+            }
+        ]
+        ghmp_side["residue_locators"] = [
+            {
+                "position": 105,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "ATP",
+                "ligand_id": None,
+                "description": "ATP",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        ghmp_decision = disambiguate_row(ghmp_side)
+        self.assertEqual(ghmp_decision["fingerprint_id"], "ghmp_small_molecule_kinase")
+        self.assertNotEqual(ghmp_decision["fingerprint_id"], "askha_sugar_acetate_kinase")
+
+    def test_ghmp_small_molecule_kinase_requires_mechanism_handles(self) -> None:
+        row = _row(ec=["2.7.1.36"])
+        row["protein_name"] = "Mevalonate kinase"
+        row["keywords"] = ["Kinase", "Transferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GH0001",
+                "reaction": "ATP + (R)-mevalonate = ADP + (R)-5-phosphomevalonate + H(+)",
+                "ec_number": "2.7.1.36",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 105,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "ATP",
+                "ligand_id": None,
+                "description": "ATP",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "ghmp_small_molecule_kinase")
+        axes = d["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("cofactor_or_cosubstrate", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_ghmp_small_molecule_kinase_controls_hold(self) -> None:
+        ec_only = _row(ec=["2.7.1.36"])
+        ec_only["protein_name"] = "Mevalonate kinase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        boundary_cases = (
+            (["2.7.1.36", "2.7.11.1"], "Mevalonate protein kinase boundary"),
+            (["2.7.1.36", "2.7.13.3"], "Mevalonate histidine kinase boundary"),
+            (["2.7.1.36", "3.1.1.1"], "Mevalonate hydrolase boundary"),
+            (["2.7.1.21"], "Thymidine kinase"),
+            (["2.7.1.11"], "6-phosphofructokinase"),
+        )
+        for ec_numbers, name in boundary_cases:
+            row = _row(ec=ec_numbers)
+            row["protein_name"] = name
+            row["keywords"] = ["Kinase", "Transferase"]
+            row["rhea_ec_provenance"]["rhea_records"] = [
+                {
+                    "rhea_id": "RHEA:GH0002",
+                    "reaction": "ATP + (R)-mevalonate = ADP + (R)-5-phosphomevalonate + H(+)",
+                    "ec_number": ec_numbers[0],
+                }
+            ]
+            row["residue_locators"] = [
+                {
+                    "position": 105,
+                    "feature_code": "BINDING",
+                    "feature_type": "Binding site",
+                    "ligand_name": "ATP",
+                    "ligand_id": None,
+                    "description": "ATP",
+                    "evidence_codes": ["ECO:0000269"],
+                }
+            ]
+            self.assertEqual(disambiguate_row(row)["decision"], "hold")
+
+        askha_side = _row(ec=["2.7.1.1"])
+        askha_side["protein_name"] = "Hexokinase"
+        askha_side["keywords"] = ["Kinase", "Transferase"]
+        askha_side["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GH0003",
+                "reaction": "ATP + D-glucose = ADP + D-glucose 6-phosphate + H(+)",
+                "ec_number": "2.7.1.1",
+            }
+        ]
+        askha_side["residue_locators"] = [
+            {
+                "position": 210,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "ATP",
+                "ligand_id": None,
+                "description": "ATP",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        askha_decision = disambiguate_row(askha_side)
+        self.assertEqual(askha_decision["fingerprint_id"], "askha_sugar_acetate_kinase")
+        self.assertNotEqual(askha_decision["fingerprint_id"], "ghmp_small_molecule_kinase")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true
