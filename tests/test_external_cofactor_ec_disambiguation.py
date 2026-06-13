@@ -362,6 +362,134 @@ class DisambiguateRowTests(unittest.TestCase):
         d2 = disambiguate_row(peroxide)
         self.assertEqual(d2["decision"], "hold")
 
+    def test_copper_oxidoreductase_requires_copper_mechanism_handle(self) -> None:
+        row = _row(cofactors=["Cu(2+)"], ec=["1.10.3.2"])
+        row["keywords"] = ["Copper", "Oxidoreductase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CU0001",
+                "reaction": "4 hydroquinone + O2 = 4 benzosemiquinone + 2 H2O",
+                "ec_number": "1.10.3.2",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "copper_oxidoreductase")
+        self.assertIn(
+            "cofactor_or_cosubstrate",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_copper_ec_keyword_only_and_boundary_controls_hold(self) -> None:
+        ec_only = _row(ec=["1.10.3.2"])
+        ec_only["keywords"] = ["Copper"]
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        heme = _row(cofactors=["heme b"], ec=["1.10.3.2"])
+        heme["keywords"] = ["Copper", "Oxidoreductase"]
+        heme["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CU0002",
+                "reaction": "a donor + O2 = product + H2O",
+                "ec_number": "1.10.3.2",
+            }
+        ]
+        self.assertEqual(disambiguate_row(heme)["decision"], "hold")
+
+        side_ec = _row(cofactors=["Cu(2+)"], ec=["1.10.3.2", "2.4.1.1"])
+        side_ec["keywords"] = ["Copper", "Oxidoreductase"]
+        side_ec["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CU0003",
+                "reaction": "a donor + O2 = product + H2O",
+                "ec_number": "1.10.3.2",
+            }
+        ]
+        self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
+
+    def test_non_plp_racemase_epimerase_requires_mechanism_handle(self) -> None:
+        row = _row(ec=["5.1.3.3"])
+        row["protein_name"] = "Galactose mutarotase (Aldose 1-epimerase)"
+        row["keywords"] = ["Isomerase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:MR0001",
+                "reaction": "alpha-D-galactose = beta-D-galactose",
+                "ec_number": "5.1.3.3",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "metal_racemase_epimerase_non_plp")
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "domain_or_family_profile",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_non_plp_racemase_epimerase_keyword_active_site_fallback(self) -> None:
+        row = _row(ec=["5.1.99.4"])
+        row["protein_name"] = "Alpha-methylacyl-CoA racemase"
+        row["keywords"] = ["Isomerase"]
+        row["residue_locators"] = [
+            {
+                "position": 101,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "metal_racemase_epimerase_non_plp")
+        self.assertIn(
+            "active_site_motif_or_residue_role",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_non_plp_racemase_epimerase_controls_hold(self) -> None:
+        ec_only = _row(ec=["5.1.3.3"])
+        ec_only["keywords"] = ["Isomerase"]
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        plp = _row(cofactors=["pyridoxal 5'-phosphate"], ec=["5.1.1.1"])
+        plp["protein_name"] = "Alanine racemase"
+        plp["keywords"] = ["Isomerase"]
+        plp["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:MR0002",
+                "reaction": "L-alanine = D-alanine",
+                "ec_number": "5.1.1.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(plp)["decision"], "hold")
+
+        side_ec = _row(ec=["5.1.3.3", "2.5.1.18"])
+        side_ec["protein_name"] = "Dual-function epimerase transferase"
+        side_ec["keywords"] = ["Isomerase"]
+        side_ec["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:MR0003",
+                "reaction": "alpha-D-galactose = beta-D-galactose",
+                "ec_number": "5.1.3.3",
+            }
+        ]
+        self.assertEqual(disambiguate_row(side_ec)["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

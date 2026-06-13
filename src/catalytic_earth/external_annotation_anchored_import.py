@@ -83,6 +83,8 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "coa_acyltransferase": "coa_acyl_coa_donor",
     "cofactor_independent_isomerase": "active_site_base_isomerization_context",
     "molybdopterin_oxidoreductase": "molybdopterin_metal_center_redox_context",
+    "copper_oxidoreductase": "copper_redox_metal_center_context",
+    "metal_racemase_epimerase_non_plp": "racemase_epimerase_proton_shift_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

@@ -401,6 +401,58 @@
     }
   },
   {
+    "id": "copper_oxidoreductase",
+    "name": "Copper-center oxidoreductase",
+    "enzyme_space": ["multicopper oxidases and laccases", "copper amine oxidases", "ascorbate/catechol/bilirubin oxidases", "copper oxygen-reduction oxidases"],
+    "active_site_signature": [
+      {"role": "copper_redox_center", "residue": "His/Cys/Met/Asp/Glu depending on subclass", "constraints": ["coordinates catalytic Cu(I)/Cu(II) redox cycling for oxygen or electron-transfer chemistry"]},
+      {"role": "oxygen_or_quinone_activation_site", "residue": "type-2/type-3 copper cluster or topaquinone/lysyl-tyrosylquinone cofactor", "constraints": ["supports O2 reduction, amine oxidation, phenol oxidation, or quinone-coupled redox chemistry"]},
+      {"role": "substrate_positioning", "residue": "aromatic, acidic, or polar pocket residues", "constraints": ["positions phenol/amine/ascorbate/bilirubin-like substrates near the copper redox center while excluding heme/flavin/Mo chemistry"]}
+    ],
+    "cofactors": ["copper"],
+    "reaction_center": {
+      "bond_changes": ["one- or two-electron substrate oxidation coupled to copper-center O2 reduction, quinone cofactor cycling, or multicopper electron transfer"],
+      "chemical_operation": "copper-center redox / oxidase chemistry"
+    },
+    "substrate_constraints": ["substrate or electron donor positioned next to the copper redox center", "O2 or oxidized copper cluster available as the terminal electron acceptor", "no independent heme, flavin, molybdopterin, hydrolase, or transferase side chemistry"],
+    "evidence_features": ["Copper functional keyword or copper oxidase family/domain profile", "copper cofactor, copper binding-site, or metal-site annotation", "Rhea oxygen/redox reaction participant/equation under oxidoreductase scope", "active-/binding-site residue evidence for the copper redox center"],
+    "counterevidence_features": ["heme/P450, flavin-only, molybdopterin/Mo-cofactor, peroxidase, or generic metal redox row without copper evidence", "hydrolase, glycosyltransferase, or non-oxidoreductase side EC", "EC-only evidence with no copper keyword/cofactor/Rhea/active-site corroborator", "multi-fingerprint signal where another established redox fingerprint independently fires"],
+    "uncertainty_axes": ["multicopper oxidase vs amine oxidase subclass", "Cu(I)/Cu(II) occupancy and cluster type", "quinone cofactor maturity", "substrate class and oxygen-reduction stoichiometry"],
+    "seed_examples": ["laccase", "ascorbate oxidase", "bilirubin oxidase", "copper amine oxidase", "catechol oxidase"],
+    "deploy_missing_active_site_context": {
+      "type": "metal_cofactor_and_redox_substrate",
+      "detail": "the copper ion/cluster, O2 or quinone redox partner, and substrate are absent or incomplete in apo predicted structures, so copper-center redox geometry is unconstrained",
+      "reconstruction_path": "Path A sequence->Copper/family channel plus Rhea oxygen/redox or copper-site evidence, or canonical copper-cluster/substrate graft (Path B)",
+      "silver_reachability": "moderate; copper keyword and binding-site evidence is common, but copper occupancy, cluster state, and substrate pose require reconstruction"
+    }
+  },
+  {
+    "id": "metal_racemase_epimerase_non_plp",
+    "name": "Non-PLP racemase / epimerase",
+    "enzyme_space": ["metal-dependent racemases and epimerases", "cofactor-independent mutarotases", "carbohydrate C5 epimerases", "acyl-CoA racemases and epimerases"],
+    "active_site_signature": [
+      {"role": "stereochemical_acid_base", "residue": "His/Asp/Glu/Lys/Cys or metal-activated base depending on subclass", "constraints": ["removes or delivers a proton from one face of the stereocenter without a PLP Schiff-base relay"]},
+      {"role": "counterface_acid_base_or_metal", "residue": "His/Asp/Glu/Lys/metal-bound water", "constraints": ["returns the proton from the opposite face or stabilizes the planar/enolate-like intermediate"]},
+      {"role": "substrate_positioning", "residue": "polar, acidic, basic, or metal-liganding residues", "constraints": ["locks the stereocenter between the paired acid/base residues or metal site while excluding PLP-dependent racemases"]}
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": ["stereochemical inversion at a carbon center by reversible proton abstraction/reprotonation or mutarotation"],
+      "chemical_operation": "non-PLP racemase/epimerase 1,1-proton shift or ring-chain mutarotation"
+    },
+    "substrate_constraints": ["substrate stereocenter positioned between opposing acid/base residues or a catalytic metal-water pair", "Rhea equation supports racemization, epimerization, or mutarotation under EC 5.1 scope", "no pyridoxal-phosphate cofactor or transferase/hydrolase/oxidoreductase side chemistry"],
+    "evidence_features": ["Isomerase keyword plus racemase/epimerase/mutarotase text", "Rhea isomerization/racemization/epimerization equation", "active-site or binding-site residue annotations", "Mg/Mn/Ca/Zn metal context when the subclass is metal-dependent", "explicit absence of PLP cofactor in reviewed annotation"],
+    "counterevidence_features": ["PLP/pyridoxal-phosphate cofactor or PLP racemase subclass", "transferase, hydrolase, oxidoreductase, or non-5.1 side EC", "EC-only evidence with no racemase/epimerase text, Rhea, active-site, binding-site, metal, or cofactorless corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["metal-dependent vs cofactor-independent subclass", "acid/base residue identity and stereochemical face", "carbohydrate vs acyl-CoA vs amino-acid substrate class", "mutarotation vs true racemization/epimerization"],
+    "seed_examples": ["mandelate racemase", "aldose 1-epimerase / galactose mutarotase", "heparan-sulfate C5-epimerase", "alpha-methylacyl-CoA racemase"],
+    "deploy_missing_active_site_context": {
+      "type": "substrate_and_proton_transfer_state",
+      "detail": "the substrate stereocenter, protonation state, and any catalytic metal/water context are absent from apo predicted structures, so stereochemical acid/base geometry is unconstrained",
+      "reconstruction_path": "Path A sequence->racemase/epimerase family and active-site-base channel plus no-PLP guard, or canonical substrate/intermediate graft (Path B)",
+      "silver_reachability": "moderate; active-/binding-site annotations and family names are common, but stereochemical face assignment requires substrate/intermediate context"
+    }
+  },
+  {
     "id": "nad_p_dehydrogenase",
     "name": "NAD(P)-dependent dehydrogenase/reductase",
     "enzyme_space": ["short-chain dehydrogenases/reductases (SDR)", "medium-chain dehydrogenases/reductases (MDR)", "aldo-keto reductases (AKR)", "Rossmann-fold oxidoreductases"],

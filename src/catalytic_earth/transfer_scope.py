@@ -72,8 +72,8 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
 # re-freeze (Stage-2 metal v2 split) and 14fp re-freeze (the 2026-06-12 nad_p_dehydrogenase
 # + glycosyltransferase broadened-handle batch) are also historical after the SAM
 # methyltransferase, cytochrome P450 monooxygenase, non-heme iron 2OG dioxygenase, CoA
-# acyltransferase, cofactor-independent isomerase, and molybdopterin oxidoreductase universe
-# bumps. They are kept on disk as records.
+# acyltransferase, cofactor-independent isomerase, molybdopterin oxidoreductase, copper
+# oxidoreductase, and non-PLP racemase/epimerase universe bumps. They are kept on disk as records.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_12FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json"
 )
@@ -105,11 +105,20 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_18FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_19FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_19fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 20-fingerprint universe lives here; it
-# is the one a NEW OOS hard-negative import must reference (subject to the new fingerprint
-# gaining atlas coverage before the inverse gate can certify a clean hard-negative).
+# The re-frozen tranche pre-registration for the 20-fingerprint universe is historical after the
+# copper oxidoreductase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_20FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_20fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the 21-fingerprint universe is historical after the
+# non-PLP racemase/epimerase universe bump.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_21FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_21fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 22-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_22FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_22fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

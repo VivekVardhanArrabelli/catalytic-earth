@@ -7690,8 +7690,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             [
                 "coa_acyltransferase",
                 "cofactor_independent_isomerase",
+                "copper_oxidoreductase",
                 "cytochrome_p450_monooxygenase",
                 "glycosyltransferase",
+                "metal_racemase_epimerase_non_plp",
                 "molybdopterin_oxidoreductase",
                 "nad_p_dehydrogenase",
                 "non_heme_iron_2og_dioxygenase",

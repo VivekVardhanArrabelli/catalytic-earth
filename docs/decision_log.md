@@ -3,6 +3,101 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: COPPER OXIDOREDUCTASE 21FP + NON-PLP RACEMASE/EPIMERASE 22FP BRONZE EXPANSIONS APPLIED
+
+Decision: the latest handoff state superseded the older P450 prompt direction because P450,
+non-heme 2OG, CoA, cofactor-independent isomerase, and molybdopterin oxidoreductase were already
+applied. The run first applied the recommended `copper_oxidoreductase` lane, then used current
+evidence to select and apply `metal_racemase_epimerase_non_plp` as the next clean 10k-path lane.
+Growth went only to `data/registries/external_bronze_labels.json`; the frozen current702 registry
+stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before and after both applies.
+
+**Copper family/gate surface.** Added `copper_oxidoreductase` fingerprint spec and `copper_redox`
+ontology node; bumped `labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to
+`label_factory_v1_21fp`; re-froze OOS next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_21fp_1025.json`. EC 1.10.3/1.4.3
+is scope-only (`ec_scope_hint`, never counted). Counted mechanism corroboration comes from copper
+cofactor/site evidence, Rhea oxygen/redox equation text, Copper keyword/domain, active-/binding-/
+metal-site evidence, or structure. Heme/flavin/molybdopterin, hydrolase, non-oxidoreductase side-EC,
+and multi-fingerprint rows are held.
+
+**Copper live apply.** Command:
+`PYTHONPATH=src python scripts/source_copper_oxidoreductase_family.py --max-records-per-lane 80 --apply`.
+Result: fetched **149**, target mechanism-corroborated **140**, gate-admitted/applied **119**.
+Other holds: **21** novelty-throttled/rejected, **7** disambiguation holds
+(`no_mechanism_corroboration`), **2** skipped, **0** off-target fingerprint matches, **0** held at
+cap, duplicate skipped **0**. `copper_oxidoreductase` **0 -> 119** (cap 250, floor reached).
+External bronze **4409 -> 4528**; combined surface **5111 -> 5230**.
+
+**Post-copper lane decision.** Source-supply scout
+`artifacts/v3_next_lane_source_supply_scout_after_copper_current702_20260613.json` selected
+`metal_racemase_epimerase_non_plp` over the remaining clean lanes because it had reviewed supply
+**2141**, EC-only ceiling **2319**, handle capture **0.923**, distinct full EC sample **52**, no
+reaction-poor warning, and a reachable floor under the chemistry-confusable cap **150**. Mechanism
+scout `artifacts/v3_metal_racemase_epimerase_mechanism_handle_scout_current702_20260613.json`
+examined **80** entries with **0** fetch failures and found Isomerase keyword **80/80**, Rhea
+cross-reference **80/80**, isomerization text **80/80**, racemase/epimerase text **78/80**,
+binding-site **70/80**, active-site **59/80**, metal **26/80**, cofactorless **42/80**, and PLP
+boundary **2/80**. This authorized wiring a guarded 22fp lane, not broad EC 5.1 admission.
+
+**Racemase/epimerase family/gate surface.** Added `metal_racemase_epimerase_non_plp` fingerprint spec
+and `stereochemical_isomerization` ontology node; bumped
+`labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_22fp`; re-froze OOS
+next-tranche preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_22fp_1025.json`. EC 5.1 is
+scope-only (`ec_scope_hint`, never counted). Counted mechanism corroboration comes from
+racemase/epimerase/mutarotase text, Rhea isomerization/racemization equation text, Isomerase
+keyword/domain, active-/binding-site evidence, metal context, or structure. Cofactorless context is
+boundary/admission context, not a predictive feature. PLP/pyridoxal-phosphate rows, non-5.1 side-EC,
+transferase, hydrolase, oxidoreductase, and multi-fingerprint rows are held.
+
+**Racemase/epimerase live apply.** Command:
+`PYTHONPATH=src python scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 320 --cap-ceiling 150 --apply`.
+Result: fetched **320**, target mechanism-corroborated **108**, gate-admitted/applied **108**.
+Other holds: **133** off-target fingerprint matches held (`nad_p_dehydrogenase`), **48**
+disambiguation holds (`no_mechanism_corroboration`), **31** skipped, **0** novelty-throttled/rejected,
+**0** held at cap, duplicate skipped **0**. `metal_racemase_epimerase_non_plp` **0 -> 108** (cap
+150, floor reached). External bronze **4528 -> 4636**; combined surface **5230 -> 5338**.
+
+Guardrails held for both applies: every added row is `tier=bronze`, `review_status=automation_curated`,
+entry namespace `uniprot`; EC/name/keyword/Rhea/prose handles are admission/excluded-context evidence
+only; `predictive_evidence` is `[]`; EC is never a counted corroborator; dedup ran against both frozen
+current702 and external bronze; off-target/multi-signal rows are held; per-fingerprint caps held.
+Spot-check over all 108 racemase preview/applied rows found **0** leakage/trust-tier problems; axes
+present: Rhea participant **108**, domain/family **108**, active-site/residue-role **96**,
+cofactor/cosubstrate **69**. Honest counters after both applies are **positive_bronze 3625**,
+**oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**, **projected 0**; do not merge
+them. Fresh post-racemase coverage/redundancy audit reports **5338** combined labels, fingerprint
+Gini **0.1665**, expansion holes `[]`, over-cap `['metal_dependent_hydrolase']`, and next-batch floor
+deficit **0**. Novelty replay reports **4636** expansion rows, decisions
+`{'admit': 4180, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0984).
+
+Next decision: after removing already-applied `metal_racemase_epimerase_non_plp`, the next clean
+source-supply candidate is **`atp_amide_ligase`** (EC 6.3, reviewed supply 13599, distinct full EC
+sample 51, confusable cap 150). Do a mechanism-handle scout before any 23fp wiring. EC must remain
+scope-only; counted corroborators should come from ATP/Mg or acyl-phosphate/amide-ligase Rhea
+participants, Ligase/ATP-grasp keyword/domain, active-/binding-site evidence, or structure. Guard
+kinases, biotin carboxylases, generic ATP transferases, hydrolase side rows, and multi-fingerprint
+signals.
+
+References:
+`artifacts/v3_copper_oxidoreductase_sourcing_preview_current702.json`,
+`work/copper_oxidoreductase_sourcing_current702.md`,
+`artifacts/v3_next_lane_source_supply_scout_after_copper_current702_20260613.json`,
+`work/next_lane_source_supply_scout_after_copper_current702_20260613.md`,
+`artifacts/v3_metal_racemase_epimerase_mechanism_handle_scout_current702_20260613.json`,
+`work/metal_racemase_epimerase_mechanism_handle_scout_current702_20260613.md`,
+`artifacts/v3_metal_racemase_epimerase_non_plp_sourcing_preview_current702.json`,
+`work/metal_racemase_epimerase_non_plp_sourcing_current702.md`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_21fp_1025.json`,
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_22fp_1025.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_racemase_applied.json`,
+`work/coverage_redundancy_audit_current702_20260613_racemase_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_racemase_applied.json`,
+`work/novelty_admission_gate_audit_current702_20260613_racemase_applied.md`,
+`data/registries/external_bronze_labels.json`.
+
 ## 2026-06-13: MOLYBDOPTERIN OXIDOREDUCTASE 20FP BRONZE EXPANSION APPLIED
 
 Decision: after the cofactor-independent isomerase 19fp lane was applied, the current

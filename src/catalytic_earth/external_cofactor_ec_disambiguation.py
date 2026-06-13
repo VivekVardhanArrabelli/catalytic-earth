@@ -198,6 +198,16 @@ def cofactor_evidence(row: dict[str, Any]) -> dict[str, bool]:
             "moco",
         )
         or bool(flags.get("molybdopterin_or_moco_evidence_present")),
+        "copper": any_name("copper", "cu cation", "cu(2", "cu2", "cu+")
+        or bool(flags.get("copper_or_cu_evidence_present")),
+        "plp": any_name(
+            "pyridoxal",
+            "pyridoxal phosphate",
+            "pyridoxal 5'-phosphate",
+            "pyridoxal-5'-phosphate",
+            "plp",
+        )
+        or bool(flags.get("plp_or_pyridoxal_evidence_present")),
     }
 
 
@@ -334,6 +344,40 @@ _MOLYBDOPTERIN_OXO_TRANSFER_REACTION_TOKENS = (
     "h2o",
     "h(2)o",
 )
+# Copper oxidoreductase handles. EC 1.10.3 / 1.4.3 scopes the reviewed copper supply only;
+# counted mechanism corroboration comes from copper cofactor/feature evidence, Copper keyword,
+# Rhea oxygen/redox equation text, or active-/binding-/metal-site evidence. Heme/flavin/Mo and
+# non-oxidoreductase side rows stay held.
+_COPPER_KEYWORD_TOKENS = ("copper",)
+_COPPER_FEATURE_TOKENS = ("copper", "cu cation", "cu(2", "cu2", "cu+")
+_COPPER_REDOX_REACTION_TOKENS = (
+    " o2",
+    "o(2)",
+    "h2o2",
+    "hydrogen peroxide",
+    "quinone",
+    "quinol",
+    "oxidized",
+    "reduced",
+    "electron",
+    "radical",
+    "aldehyde",
+    "nh4",
+)
+_COPPER_OXIDASE_REACTION_TOKENS = (
+    "oxidase",
+    "amine",
+    "laccase",
+    "ascorbate",
+    "catechol",
+    "hydroquinone",
+    "dioxygen",
+)
+# Non-PLP racemase/epimerase handles. EC 5.1 scopes the candidate supply only;
+# counted mechanism corroboration comes from racemase/epimerase/mutarotase text,
+# Rhea isomerization/racemization equations, active-/binding-site annotations,
+# metal context, or explicit cofactorless context. PLP and side-EC rows stay held.
+_RACEMASE_EPIMERASE_TEXT_TOKENS = ("racem", "epimer", "mutarot")
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
 
@@ -400,6 +444,7 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         str(c.get("name") or "").lower() for c in (row.get("cofactor_provenance") or [])
     ]
     feature_texts = _feature_texts(row)
+    protein_name = str(row.get("protein_name") or "").lower()
 
     def in_any(haystacks: list[str], *tokens: str) -> bool:
         return any(any(tok in text for tok in tokens) for text in haystacks)
@@ -433,7 +478,13 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     hydrolase_side_ec = _ec_has_prefix(row, ("3.1.", "3.4.", "3.5."))
     keyword_isomerase = in_any(keywords, *_ISOMERASE_KEYWORD_TOKENS)
     isomerization_reaction = in_any(reactions, *_ISOMERIZATION_REACTION_TOKENS)
+    racemase_epimerase_text = in_any(
+        reactions + keywords + [protein_name], *_RACEMASE_EPIMERASE_TEXT_TOKENS
+    )
     non_5_3_side_ec = any(ec and not ec.startswith("5.3") for ec in _ec_numbers(row))
+    non_5_1_side_ec = any(ec and not ec.startswith("5.1") for ec in _ec_numbers(row))
+    transferase_side_ec = any(ec.startswith("2.") for ec in _ec_numbers(row))
+    oxidoreductase_side_ec = any(ec.startswith("1.") for ec in _ec_numbers(row))
     keyword_molybdenum = in_any(keywords, *_MOLYBDENUM_KEYWORD_TOKENS)
     molybdopterin_moco = bool(evidence.get("molybdopterin")) or in_any(
         cofactor_names + feature_texts, *_MOLYBDOPTERIN_TOKENS
@@ -448,7 +499,6 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_oxidoreductase_side_ec = any(
         ec and not ec.startswith("1.") for ec in _ec_numbers(row)
     )
-    protein_name = str(row.get("protein_name") or "").lower()
     molybdopterin_biosynthesis_boundary = any(
         token in protein_name
         for token in (
@@ -459,6 +509,30 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "moco sulfurase",
         )
     ) and not any("oxidoreductase" in kw for kw in keywords)
+    keyword_copper = in_any(keywords, *_COPPER_KEYWORD_TOKENS)
+    copper_feature_or_ligand = bool(evidence.get("copper")) or in_any(
+        cofactor_names + feature_texts, *_COPPER_FEATURE_TOKENS
+    )
+    copper_redox_reaction = in_any(reactions, *_COPPER_REDOX_REACTION_TOKENS)
+    copper_oxidase_reaction = in_any(reactions + keywords + [protein_name], *_COPPER_OXIDASE_REACTION_TOKENS)
+    copper_boundary_heme_flavin_molybdopterin = (
+        evidence.get("heme", False)
+        or evidence.get("flavin", False)
+        or molybdopterin_moco
+    )
+    cofactorless_context = not any(
+        evidence.get(key, False)
+        for key in (
+            "heme",
+            "flavin",
+            "fe_s",
+            "sam",
+            "cobalamin",
+            "molybdopterin",
+            "copper",
+            "plp",
+        )
+    )
 
     evidence.update(
         {
@@ -486,7 +560,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "hydrolase_side_ec": hydrolase_side_ec,
             "keyword_isomerase": keyword_isomerase,
             "isomerization_reaction": isomerization_reaction,
+            "racemase_epimerase_text": racemase_epimerase_text,
             "non_5_3_side_ec": non_5_3_side_ec,
+            "non_5_1_side_ec": non_5_1_side_ec,
+            "transferase_side_ec": transferase_side_ec,
+            "oxidoreductase_side_ec": oxidoreductase_side_ec,
             "keyword_molybdenum": keyword_molybdenum,
             "molybdopterin_moco": molybdopterin_moco,
             "molybdopterin_feature_or_ligand": molybdopterin_feature_or_ligand,
@@ -494,6 +572,13 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "molybdopterin_oxo_transfer_reaction": molybdopterin_oxo_transfer_reaction,
             "non_oxidoreductase_side_ec": non_oxidoreductase_side_ec,
             "molybdopterin_biosynthesis_boundary": molybdopterin_biosynthesis_boundary,
+            "keyword_copper": keyword_copper,
+            "copper_feature_or_ligand": copper_feature_or_ligand,
+            "copper_redox_reaction": copper_redox_reaction,
+            "copper_oxidase_reaction": copper_oxidase_reaction,
+            "copper_boundary_heme_flavin_molybdopterin": copper_boundary_heme_flavin_molybdopterin,
+            "plp_boundary_signal": evidence.get("plp", False),
+            "cofactorless_context": cofactorless_context,
             "active_or_binding_site_present": bool(
                 _feature_codes(row) & _ACTIVE_OR_BINDING_FEATURE_CODES
             ),
@@ -523,6 +608,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("coa_acyl_coa_reaction")
         or evidence.get("coa_acyl_coa_feature")
         or evidence.get("molybdopterin_moco")
+        or evidence.get("copper_feature_or_ligand")
     ):
         axes.add("cofactor_or_cosubstrate")
     if (
@@ -536,6 +622,9 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("isomerization_reaction")
         or evidence.get("molybdopterin_redox_reaction")
         or evidence.get("molybdopterin_oxo_transfer_reaction")
+        or evidence.get("copper_redox_reaction")
+        or evidence.get("copper_oxidase_reaction")
+        or evidence.get("racemase_epimerase_text")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -543,6 +632,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("cx3cx2c_motif")
         or evidence.get("heme_thiolate_binding")
         or evidence.get("molybdopterin_feature_or_ligand")
+        or evidence.get("copper_feature_or_ligand")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -555,6 +645,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("keyword_acyltransferase")
         or evidence.get("keyword_isomerase")
         or evidence.get("keyword_molybdenum")
+        or evidence.get("keyword_copper")
+        or evidence.get("racemase_epimerase_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -600,6 +692,11 @@ _NON_HEME_IRON_2OG_EC = ("1.14.11",)  # 2-oxoglutarate-dependent dioxygenases
 _COA_ACYLTRANSFERASE_EC = ("2.3.1",)  # acyltransferases using CoA/acyl-CoA donors
 _COFACTOR_INDEPENDENT_ISOMERASE_EC = ("5.3.",)  # intramolecular isomerases
 _MOLYBDOPTERIN_OXIDOREDUCTASE_EC = ("1.",)  # oxidoreductases; Mo-cofactor handles confirm
+_COPPER_OXIDOREDUCTASE_EC = (
+    "1.10.3",
+    "1.4.3",
+)  # copper oxidases; copper/Rhea handles confirm
+_METAL_RACEMASE_EPIMERASE_NON_PLP_EC = ("5.1.",)  # racemase/epimerase scope only
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -723,6 +820,37 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
             or c["active_or_binding_site_present"]
         ),
     ),
+    (
+        "copper_oxidoreductase",
+        lambda c, row: _ec_has_prefix(row, _COPPER_OXIDOREDUCTASE_EC)
+        and c["keyword_copper"]
+        and not c["copper_boundary_heme_flavin_molybdopterin"]
+        and not c["hydrolase_side_ec"]
+        and not c["non_oxidoreductase_side_ec"]
+        and (
+            c["copper_feature_or_ligand"]
+            or c["copper_redox_reaction"]
+            or c["copper_oxidase_reaction"]
+            or c["active_or_binding_site_present"]
+        ),
+    ),
+    (
+        "metal_racemase_epimerase_non_plp",
+        lambda c, row: _ec_has_prefix(row, _METAL_RACEMASE_EPIMERASE_NON_PLP_EC)
+        and c["keyword_isomerase"]
+        and c["racemase_epimerase_text"]
+        and not c["plp_boundary_signal"]
+        and not c["non_5_1_side_ec"]
+        and not c["transferase_side_ec"]
+        and not c["hydrolase_side_ec"]
+        and not c["oxidoreductase_side_ec"]
+        and (c["isomerization_reaction"] or c["active_or_binding_site_present"])
+        and (
+            c["active_or_binding_site_present"]
+            or c["metal"]
+            or c["cofactorless_context"]
+        ),
+    ),
 )
 
 
@@ -792,6 +920,8 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "heme", "cross_reference": {"id": None}}]
     elif evidence.get("flavin"):
         records = [{"name": "FAD", "cross_reference": {"id": None}}]
+    elif fingerprint == "copper_oxidoreductase" and evidence.get("copper_feature_or_ligand"):
+        records = [{"name": "copper", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

@@ -60,12 +60,14 @@ DEFAULT_ONTOLOGY_VERSION_AT_DECISION = "label_factory_v1_8fp"
 # SAM methyltransferase lane expands it 14 -> 15; the cytochrome P450 monooxygenase lane
 # expands it 15 -> 16; the non-heme iron 2OG dioxygenase lane expands it 16 -> 17; the
 # CoA acyltransferase lane expands it 17 -> 18; the cofactor-independent isomerase lane
-# expands it 18 -> 19; the molybdopterin oxidoreductase lane expands it 19 -> 20. A NEW
+# expands it 18 -> 19; the molybdopterin oxidoreductase lane expands it 19 -> 20; the
+# copper oxidoreductase lane expands it 20 -> 21; the non-PLP racemase/epimerase
+# lane expands it 21 -> 22. A NEW
 # OOS hard-negative tranche must be
 # pre-registered against THIS version (and the current fingerprint universe). This is
 # intentionally distinct from the historical label stamp above (which stays _8fp for existing
 # rows / spent contracts) -- bumping the historical stamp would rewrite history.
-CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_20fp"
+CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_22fp"
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,

@@ -1,0 +1,495 @@
+{
+  "artifact_id": "v3_metal_racemase_epimerase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "metal_racemase_epimerase_non_plp",
+  "created_utc": "2026-06-13T03:17:50Z",
+  "entries_examined": 80,
+  "examples": [
+    {
+      "accession": "O94923",
+      "cofactors": [],
+      "ec_numbers": [
+        "5.1.3.17"
+      ],
+      "feature_type_counts": {
+        "Binding site": 18,
+        "Site": 4
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactorless_context": true,
+        "hydrolase_side_ec_signal": false,
+        "isomerization_reaction_text": true,
+        "keyword_isomerase": true,
+        "metal_context": true,
+        "non_5_1_side_ec_signal": false,
+        "oxidoreductase_side_ec_signal": false,
+        "plp_boundary_signal": false,
+        "racemase_epimerase_text": true,
+        "rhea_cross_reference_present": true,
+        "transferase_side_ec_signal": false
+      },
+      "keywords": [
+        "3D-structure",
+        "Calcium",
+        "Glycoprotein",
+        "Golgi apparatus",
+        "Isomerase",
+        "Membrane",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal-anchor",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "D-glucuronyl C5-epimerase (EC 5.1.3.17) (Heparan sulfate C5-epimerase) (Hsepi) (Heparin/heparan sulfate:glucuronic acid C5-epimerase) (Heparosan-N-sulfate-glucuronate 5-epimerase)",
+      "reaction_sample": "[heparosan-n-sulfate](n) = [heparan-n-sulfate](n)",
+      "rhea_ids": [
+        "RHEA:20197",
+        "RHEA-COMP:9556",
+        "RHEA-COMP:9557"
+      ]
+    },
+    {
+      "accession": "Q9UHK6",
+      "cofactors": [],
+      "ec_numbers": [
+        "5.1.99.4"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 3,
+        "Modified residue": 4
+      },
+      "handles": {
+        "active_site_context": true,
+        "binding_site_context": true,
+        "cofactorless_context": true,
+        "hydrolase_side_ec_signal": false,
+        "isomerization_reaction_text": true,
+        "keyword_isomerase": true,
+        "metal_context": false,
+        "non_5_1_side_ec_signal": false,
+        "oxidoreductase_side_ec_signal": false,
+        "plp_boundary_signal": false,
+        "racemase_epimerase_text": true,
+        "rhea_cross_reference_present": true,
+        "transferase_side_ec_signal": false
+      },
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "Disease variant",
+        "Intrahepatic cholestasis",
+        "Isomerase",
+        "Mitochondrion",
+        "Peroxisome",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Alpha-methylacyl-CoA racemase (EC 5.1.99.4) (2-methylacyl-CoA racemase)",
+      "reaction_sample": "a (2s)-2-methylacyl-coa = a (2r)-2-methylacyl-coa",
+      "rhea_ids": [
+        "RHEA:12657",
+        "RHEA:40455",
+        "RHEA:46732"
+      ]
+    },
+    {
+      "accession": "Q9UL01",
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "ec_numbers": [
+        "5.1.3.19"
+      ],
+      "feature_type_counts": {
+        "Active site": 3,
+        "Binding site": 3,
+        "Site": 1
+      },
+      "handles": {
+        "active_site_context": true,
+        "binding_site_context": true,
+        "cofactorless_context": false,
+        "hydrolase_side_ec_signal": false,
+        "isomerization_reaction_text": true,
+        "keyword_isomerase": true,
+        "metal_context": true,
+        "non_5_1_side_ec_signal": false,
+        "oxidoreductase_side_ec_signal": false,
+        "plp_boundary_signal": false,
+        "racemase_epimerase_text": true,
+        "rhea_cross_reference_present": true,
+        "transferase_side_ec_signal": false
+      },
+      "keywords": [
+        "3D-structure",
+        "Cytoplasmic vesicle",
+        "Disease variant",
+        "Ehlers-Danlos syndrome",
+        "Endoplasmic reticulum",
+        "Glycoprotein",
+        "Golgi apparatus",
+        "Isomerase",
+        "Manganese",
+        "Membrane",
+        "Metal-binding",
+        "Microsome",
+        "Proteomics identification",
+        "Reference proteome",
+        "Signal",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Dermatan-sulfate epimerase (DS epimerase) (EC 5.1.3.19) (Chondroitin-glucuronate 5-epimerase) (Squamous cell carcinoma antigen recognized by T-cells 2) (SART-2)",
+      "reaction_sample": "chondroitin 4'-sulfate = dermatan 4'-sulfate",
+      "rhea_ids": [
+        "RHEA:21084",
+        "RHEA-COMP:9829",
+        "RHEA-COMP:9965"
+      ]
+    },
+    {
+      "accession": "Q96C23",
+      "cofactors": [],
+      "ec_numbers": [
+        "5.1.3.3"
+      ],
+      "feature_type_counts": {
+        "Active site": 2,
+        "Binding site": 6,
+        "Modified residue": 3
+      },
+      "handles": {
+        "active_site_context": true,
+        "binding_site_context": true,
+        "cofactorless_context": true,
+        "hydrolase_side_ec_signal": false,
+        "isomerization_reaction_text": true,
+        "keyword_isomerase": true,
+        "metal_context": false,
+        "non_5_1_side_ec_signal": false,
+        "oxidoreductase_side_ec_signal": false,
+        "plp_boundary_signal": false,
+        "racemase_epimerase_text": true,
+        "rhea_cross_reference_present": true,
+        "transferase_side_ec_signal": false
+      },
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Carbohydrate metabolism",
+        "Cytoplasm",
+        "Disease variant",
+        "Isomerase",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Galactose mutarotase (EC 5.1.3.3) (Aldose 1-epimerase)",
+      "reaction_sample": "alpha-d-galactose = beta-d-galactose",
+      "rhea_ids": [
+        "RHEA:28675",
+        "RHEA:10264"
+      ]
+    },
+    {
+      "accession": "P06744",
+      "cofactors": [],
+      "ec_numbers": [
+        "5.1.3.-",
+        "5.3.1.9"
+      ],
+      "feature_type_counts": {
+        "Active site": 3,
+        "Binding site": 6,
+        "Modified residue": 12
+      },
+      "handles": {
+        "active_site_context": true,
+        "binding_site_context": true,
+        "cofactorless_context": true,
+        "hydrolase_side_ec_signal": false,
+        "isomerization_reaction_text": true,
+        "keyword_isomerase": true,
+        "metal_context": false,
+        "non_5_1_side_ec_signal": true,
+        "oxidoreductase_side_ec_signal": false,
+        "plp_boundary_signal": false,
+        "racemase_epimerase_text": true,
+        "rhea_cross_reference_present": true,
+        "transferase_side_ec_signal": false
+      },
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Cytokine",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Gluconeogenesis",
+        "Glycolysis",
+        "Growth factor",
+        "Hereditary hemolytic anemia",
+        "Hydroxylation",
+        "Isomerase",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted",
+        "Ubl conjugation"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "Glucose-6-phosphate isomerase (GPI) (EC 5.3.1.9) (Autocrine motility factor) (AMF) (D-hexose-6-phosphate anomerase) (Glucose-6-phosphate C2-epimerase) (EC 5.1.3.-) (Neuroleukin) (NLK) (Phosphoglucose isomerase) (PGI) (Phosphohexose isomerase) (PHI) (Sperm antigen 36) (SA-36)",
+      "reaction_sample": "alpha-d-glucose 6-phosphate = beta-d-fructose 6-phosphate",
+      "rhea_ids": [
+        "RHEA:11816",
+        "RHEA:16249",
+        "RHEA:85579",
+        "RHEA:85583",
+        "RHEA:85575"
+      ]
+    },
+    {
+      "accession": "Q14376",
+      "cofactors": [
+        "NAD(+)"
+      ],
+      "ec_numbers": [
+        "5.1.3.2",
+        "5.1.3.7"
+      ],
+      "feature_type_counts": {
+        "Active site": 1,
+        "Binding site": 13
+      },
+      "handles": {
+        "active_site_context": true,
+        "binding_site_context": true,
+        "cofactorless_context": false,
+        "hydrolase_side_ec_signal": false,
+        "isomerization_reaction_text": true,
+        "keyword_isomerase": true,
+        "metal_context": false,
+        "non_5_1_side_ec_signal": false,
+        "oxidoreductase_side_ec_signal": false,
+        "plp_boundary_signal": false,
+        "racemase_epimerase_text": true,
+        "rhea_cross_reference_present": true,
+        "transferase_side_ec_signal": false
+      },
+      "keywords": [
+        "3D-structure",
+        "Alternative splicing",
+        "Carbohydrate metabolism",
+        "Disease variant",
+        "Galactose metabolism",
+        "Isomerase",
+        "NAD",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "UDP-glucose 4-epimerase (EC 5.1.3.2) (Galactowaldenase) (UDP-N-acetylgalactosamine 4-epimerase) (UDP-GalNAc 4-epimerase) (UDP-N-acetylglucosamine 4-epimerase) (UDP-GlcNAc 4-epimerase) (EC 5.1.3.7) (UDP-galactose 4-epimerase)",
+      "reaction_sample": "udp-alpha-d-glucose = udp-alpha-d-galactose",
+      "rhea_ids": [
+        "RHEA:22168",
+        "RHEA:20517"
+      ]
+    },
+    {
+      "accession": "Q8NCW5",
+      "cofactors": [
+        "K(+)"
+      ],
+      "ec_numbers": [
+        "5.1.99.6"
+      ],
+      "feature_type_counts": {
+        "Binding site": 6,
+        "Modified residue": 2
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": true,
+        "cofactorless_context": false,
+        "hydrolase_side_ec_signal": false,
+        "isomerization_reaction_text": true,
+        "keyword_isomerase": true,
+        "metal_context": true,
+        "non_5_1_side_ec_signal": false,
+        "oxidoreductase_side_ec_signal": false,
+        "plp_boundary_signal": false,
+        "racemase_epimerase_text": true,
+        "rhea_cross_reference_present": true,
+        "transferase_side_ec_signal": false
+      },
+      "keywords": [
+        "Alternative splicing",
+        "Disease variant",
+        "Isomerase",
+        "Lipid transport",
+        "Metal-binding",
+        "Mitochondrion",
+        "NAD",
+        "NADP",
+        "Neurodegeneration",
+        "Nucleotide-binding",
+        "Phosphoprotein",
+        "Potassium",
+        "Proteomics identification",
+        "Reference proteome",
+        "Secreted",
+        "Transit peptide",
+        "Transport"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "NAD(P)H-hydrate epimerase (EC 5.1.99.6) (Apolipoprotein A-I-binding protein) (AI-BP) (NAD(P)HX epimerase) (NAXE) (YjeF N-terminal domain-containing protein 1) (YjeF_N1)",
+      "reaction_sample": "(6r)-nadhx = (6s)-nadhx",
+      "rhea_ids": [
+        "RHEA:32215",
+        "RHEA:32227"
+      ]
+    },
+    {
+      "accession": "P51606",
+      "cofactors": [],
+      "ec_numbers": [
+        "5.1.3.8"
+      ],
+      "feature_type_counts": {
+        "Site": 1
+      },
+      "handles": {
+        "active_site_context": false,
+        "binding_site_context": false,
+        "cofactorless_context": true,
+        "hydrolase_side_ec_signal": false,
+        "isomerization_reaction_text": true,
+        "keyword_isomerase": true,
+        "metal_context": false,
+        "non_5_1_side_ec_signal": false,
+        "oxidoreductase_side_ec_signal": false,
+        "plp_boundary_signal": false,
+        "racemase_epimerase_text": true,
+        "rhea_cross_reference_present": true,
+        "transferase_side_ec_signal": false
+      },
+      "keywords": [
+        "Alternative initiation",
+        "Alternative splicing",
+        "Direct protein sequencing",
+        "Isomerase",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "organism": "Homo sapiens (Human)",
+      "protein_name": "N-acylglucosamine 2-epimerase (AGE) (EC 5.1.3.8) (GlcNAc 2-epimerase) (N-acetyl-D-glucosamine 2-epimerase) (Renin-binding protein) (RnBP)",
+      "reaction_sample": "an n-acyl-d-glucosamine = an n-acyl-d-mannosamine",
+      "rhea_ids": [
+        "RHEA:19033"
+      ]
+    }
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only_for_supply_estimation": true,
+    "labels_emitted": 0,
+    "mechanism_handles_counted_separately_from_ec": true,
+    "predictive_features_added": false,
+    "registry_written": false
+  },
+  "handle_counts": {
+    "active_site_context": {
+      "count": 59,
+      "fraction": 0.738
+    },
+    "binding_site_context": {
+      "count": 70,
+      "fraction": 0.875
+    },
+    "cofactorless_context": {
+      "count": 42,
+      "fraction": 0.525
+    },
+    "isomerization_reaction_text": {
+      "count": 80,
+      "fraction": 1.0
+    },
+    "keyword_isomerase": {
+      "count": 80,
+      "fraction": 1.0
+    },
+    "metal_context": {
+      "count": 26,
+      "fraction": 0.325
+    },
+    "non_5_1_side_ec_signal": {
+      "count": 23,
+      "fraction": 0.287
+    },
+    "oxidoreductase_side_ec_signal": {
+      "count": 13,
+      "fraction": 0.163
+    },
+    "plp_boundary_signal": {
+      "count": 2,
+      "fraction": 0.025
+    },
+    "racemase_epimerase_text": {
+      "count": 78,
+      "fraction": 0.975
+    },
+    "rhea_cross_reference_present": {
+      "count": 80,
+      "fraction": 1.0
+    }
+  },
+  "query": "(ec:5.1.*) AND (reviewed:true) AND (keyword:Isomerase) NOT (cc_cofactor:pyridoxal)",
+  "recommendation": {
+    "cap_ceiling": 150,
+    "must_guard_boundary_signals": [
+      "plp_boundary_signal",
+      "transferase_side_ec_signal",
+      "hydrolase_side_ec_signal",
+      "oxidoreductase_side_ec_signal",
+      "non_5_1_side_ec_signal",
+      "multi_fingerprint_signal_conflict"
+    ],
+    "notes": "Design input only. EC 5.1 is scope; counted corroboration should require Rhea isomerization/racemization, Isomerase/Racemase/Epimerase keyword/domain, metal/active-/binding-site evidence, or structure; PLP rows must stay held.",
+    "wire_22fp_lane": true
+  },
+  "schema_version": "mechanism_handle_scout.v1",
+  "search_rows_fetched": 80,
+  "status": "non_destructive_mechanism_handle_scout_no_registry_write_no_labels",
+  "top_ec_numbers_in_search_rows": {
+    "1.1.1.-": 3,
+    "1.1.1.35": 8,
+    "4.2.1.17": 8,
+    "4.2.1.76": 3,
+    "5.1.2.3": 8,
+    "5.1.3.-": 9,
+    "5.1.3.1": 4,
+    "5.1.3.13": 2,
+    "5.1.3.17": 5,
+    "5.1.3.19": 3,
+    "5.1.3.2": 11,
+    "5.1.3.29": 2,
+    "5.1.3.3": 2,
+    "5.1.3.5": 3,
+    "5.1.3.7": 4,
+    "5.1.3.8": 3,
+    "5.1.99.4": 3,
+    "5.1.99.6": 6,
+    "5.3.1.9": 5,
+    "5.3.3.8": 7
+  }
+}

@@ -254,6 +254,20 @@
       ]
     },
     {
+      "id": "copper_redox",
+      "name": "Copper-center oxidoreductase chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "copper_oxidoreductase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by Copper keyword/domain plus copper cofactor/feature, Rhea oxygen/redox equation, or active-/binding-/metal-site evidence; EC 1.10.3 / 1.4.3 is scope only.",
+        "Do not merge heme/P450, flavin-only, molybdopterin/Mo, hydrolase, glycosyltransferase, or non-oxidoreductase boundary rows into this family.",
+        "Hold EC-only rows and multi-fingerprint-signal rows rather than forcing a copper label.",
+        "Copper center, O2 or quinone redox partner, and substrate context are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "nicotinamide_redox",
       "name": "NAD(P)-dependent hydride-transfer redox chemistry",
       "parent_id": "mechanism",
@@ -319,6 +333,20 @@
         "Do not admit EC-only rows or rows with non-5.3 side ECs unless a future subclass rule explicitly owns the boundary chemistry.",
         "Hold transferase, peroxidase, hydrolase, oxidoreductase, and protein disulfide isomerase/thiol-redox side rows out of the generic cofactor-independent isomerase label.",
         "The substrate/proton-transfer state is deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
+      "id": "stereochemical_isomerization",
+      "name": "Non-PLP racemase and epimerase chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "metal_racemase_epimerase_non_plp"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by EC 5.1 scope plus Isomerase keyword and racemase/epimerase/mutarotase mechanism text with Rhea isomerization/racemization, active-/binding-site, metal, or cofactorless corroboration; EC is scope only.",
+        "Do not admit PLP/pyridoxal-phosphate racemases or rows with transferase, hydrolase, oxidoreductase, or non-5.1 side ECs.",
+        "Hold EC-only rows and multi-fingerprint-signal rows rather than forcing a stereochemical isomerization label.",
+        "The substrate stereocenter, proton-transfer state, and any catalytic metal/water context are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
     }
   ],

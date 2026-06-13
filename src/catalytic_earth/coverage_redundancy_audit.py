@@ -163,6 +163,16 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "molybdopterin / molybdenum cofactor redox center; Mo/W oxo-transfer or electron-transfer chemistry",
         "lanes": ["molybdopterin_oxidoreductase"],
     },
+    "copper_oxidoreductase": {
+        "ec_prefixes": ["1.10.3", "1.4.3"],
+        "cofactor": "copper redox center; multicopper oxidase or copper amine oxidase oxygen/electron-transfer chemistry",
+        "lanes": ["copper_oxidoreductase"],
+    },
+    "metal_racemase_epimerase_non_plp": {
+        "ec_prefixes": ["5.1"],
+        "cofactor": "non-PLP racemase/epimerase proton-transfer chemistry; metal or cofactorless active-site context",
+        "lanes": ["metal_racemase_epimerase_non_plp"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())
