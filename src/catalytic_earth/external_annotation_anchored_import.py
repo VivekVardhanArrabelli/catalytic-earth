@@ -94,6 +94,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "askha_sugar_acetate_kinase": "atp_mg_sugar_or_acetate_phosphoryl_transfer_context",
     "ghmp_small_molecule_kinase": "atp_mg_ghmp_small_molecule_phosphoryl_transfer_context",
     "deoxynucleoside_kinase": "atp_mg_deoxynucleoside_5_prime_phosphoryl_transfer_context",
+    "pfka_phosphofructokinase": "atp_mg_fructose_6_phosphate_phosphoryl_transfer_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

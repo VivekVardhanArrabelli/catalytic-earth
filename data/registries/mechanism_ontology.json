@@ -140,12 +140,16 @@
       "id": "pfka",
       "name": "PfkA-fold phosphofructokinases",
       "parent_id": "atp_phosphoryl_transfer",
-      "fingerprint_ids": [],
+      "fingerprint_ids": [
+        "pfka_phosphofructokinase"
+      ],
       "scope_note": "PfkA-fold phosphofructokinase lanes transferring ATP gamma-phosphate to fructose-6-phosphate. Kept separate from PfkB ribokinase-like folds and ASKHA hexokinases.",
       "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "dnk", "ndk", "pfkb", "ghmp"],
       "family_boundary_guardrails": [
-        "Do not infer PfkA from generic sugar kinase text without phosphofructokinase/PfkA evidence.",
-        "PfkA lanes remain hydrolase boundary controls until countable seed evidence is added."
+        "Membership is decided by reviewed ATP/ADP fructose-6-phosphate phosphoryl-transfer context plus PfkA/6-phosphofructokinase family text and active-/binding-site evidence; EC 2.7.1 is scope only.",
+        "Do not infer PfkA from generic sugar kinase text without phosphofructokinase/PfkA and fructose-6-phosphate evidence.",
+        "Do not merge PfkA rows with PfkB/ribokinase, ASKHA, GHMP, dNK, NDK, protein kinase, histidine kinase, hydrolase, side-EC, or EC-only rows solely by ATP wording.",
+        "ATP/Mg2+, fructose 6-phosphate acceptor, fructose 1,6-bisphosphate product, and active PfkA conformation are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
     },
     {

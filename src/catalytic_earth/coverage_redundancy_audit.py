@@ -203,6 +203,11 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "NTP/NDP phosphoryl-transfer cosubstrates with active-site phosphohistidine relay",
         "lanes": ["nucleoside_diphosphate_kinase"],
     },
+    "deoxynucleoside_kinase": {
+        "ec_prefixes": ["2.7.1"],
+        "cofactor": "ATP/Mg phosphoryl-transfer cosubstrate context with deoxynucleoside acceptor specificity",
+        "lanes": ["deoxynucleoside_kinase"],
+    },
     "askha_sugar_acetate_kinase": {
         "ec_prefixes": ["2.7.1"],
         "cofactor": "ATP/Mg phosphoryl-transfer cosubstrate context with sugar, glycerol, or acetate acceptor",
@@ -212,6 +217,11 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "ec_prefixes": ["2.7.1"],
         "cofactor": "ATP/Mg phosphoryl-transfer cosubstrate context with GHMP-family small-molecule acceptor",
         "lanes": ["ghmp_small_molecule_kinase"],
+    },
+    "pfka_phosphofructokinase": {
+        "ec_prefixes": ["2.7.1"],
+        "cofactor": "ATP/Mg phosphoryl-transfer cosubstrate context with fructose-6-phosphate acceptor",
+        "lanes": ["pfka_phosphofructokinase"],
     },
 }
 

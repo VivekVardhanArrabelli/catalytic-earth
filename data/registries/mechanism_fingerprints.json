@@ -661,6 +661,32 @@
     }
   },
   {
+    "id": "pfka_phosphofructokinase",
+    "name": "PfkA-fold phosphofructokinase",
+    "enzyme_space": ["ATP-dependent 6-phosphofructokinases", "PfkA-fold phosphofructokinase I enzymes", "ATP-PFK enzymes"],
+    "active_site_signature": [
+      {"role": "atp_mg_binding", "residue": "PfkA-fold ATP/Mg2+ phosphate-binding residues", "constraints": ["positions ATP gamma-phosphate and Mg2+ for transfer to fructose 6-phosphate"]},
+      {"role": "fructose_6_phosphate_acceptor_positioning", "residue": "PfkA-family Asp/Glu/Arg/Lys/Ser/Thr and loop residues", "constraints": ["orients fructose 6-phosphate for C1 hydroxyl phosphorylation while excluding PfkB/ribokinase and ASKHA hexokinase folds"]},
+      {"role": "bisphosphate_product_stabilization", "residue": "basic and polar phosphate-stabilizing residues", "constraints": ["stabilizes ADP and fructose 1,6-bisphosphate product without collapsing into generic sugar kinase chemistry"]}
+    ],
+    "cofactors": ["Mg2+", "ATP"],
+    "reaction_center": {
+      "bond_changes": ["ATP gamma-phosphoryl transfer to fructose 6-phosphate, producing fructose 1,6-bisphosphate"],
+      "chemical_operation": "PfkA-family ATP-dependent fructose-6-phosphate phosphoryl transfer"
+    },
+    "substrate_constraints": ["EC 2.7.1 phosphofructokinase scope present", "PfkA/6-phosphofructokinase family context present", "ATP/ADP fructose-6-phosphate phosphoryl-transfer reaction context present", "active-site or binding-site evidence present", "no PfkB/ribokinase, ASKHA, GHMP, dNK, NDK, protein kinase, histidine kinase, hydrolase, side-EC, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Rhea or reviewed catalytic activity text for ATP/ADP fructose-6-phosphate phosphoryl transfer under EC 2.7.1 scope", "ATP-dependent 6-phosphofructokinase, phosphofructokinase I, ATP-PFK, PfkA, or phosphohexokinase family/name/domain text", "ATP/ADP/Mg2+ active-site or binding-site annotations", "structure or reviewed binding-site evidence for ATP and fructose-6-phosphate acceptor"],
+    "counterevidence_features": ["PfkB/ribokinase or 1-phosphofructokinase wording", "ASKHA acetate/glucose/hexose/glycerol kinase wording", "GHMP homoserine/mevalonate/phosphomevalonate/galactokinase wording", "dNK, NDK, protein kinase, or histidine kinase wording/side EC", "hydrolase EC 3 side rows or non-2.7.1 side EC", "EC-only evidence with no Rhea, family, active-site, binding-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["bacterial versus eukaryotic PfkA architecture", "ATP/Mg2+ stoichiometry", "fructose-6-phosphate and fructose-1,6-bisphosphate pose", "allosteric and oligomeric conformational state"],
+    "seed_examples": ["ATP-dependent 6-phosphofructokinase", "phosphofructokinase 1", "ATP-PFK", "phosphohexokinase"],
+    "deploy_missing_active_site_context": {
+      "type": "atp_mg_fructose_6_phosphate_acceptor_and_bisphosphate_product",
+      "detail": "ATP, Mg2+, fructose 6-phosphate, and fructose 1,6-bisphosphate product state are dissociable or transient contexts absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->PfkA/Rhea/ATP-Mg/fructose-6-phosphate channel, or canonical ATP/Mg/fructose-6-phosphate graft in the PfkA active conformation (Path B)",
+      "silver_reachability": "moderate; Rhea and ATP/binding-site evidence are common, but acceptor pose and allosteric state require reconstruction"
+    }
+  },
+  {
     "id": "thiamine_diphosphate_enzyme",
     "name": "Thiamine-diphosphate ylide enzyme",
     "enzyme_space": ["ThDP-dependent decarboxylases", "transketolases", "2-oxoacid dehydrogenase E1 components", "acetohydroxyacid synthases", "phosphoketolases"],

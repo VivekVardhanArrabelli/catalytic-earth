@@ -1,5 +1,84 @@
 # Handoff
 
+## Session run - PfkA 32fp bronze expansion applied (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` after reading the current handoff/project-state/scaling
+  context. The latest handoff selected strict `pfka_phosphofructokinase` from the post-dNK Pfk
+  scout; this run followed that lane through the full mechanism-first pipeline.
+- Status: **APPLIED a gated `pfka_phosphofructokinase` bronze expansion to the separate external
+  bronze registry.** Frozen current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before/after apply.
+  External bronze **5883 -> 6033** (+150); combined label surface **6585 -> 6735**.
+- Family/gate setup: added `pfka_phosphofructokinase` fingerprint and mapped it to the existing
+  ontology family `pfka`; bumped `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to
+  `label_factory_v1_32fp`; re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_32fp_1025.json`. EC 2.7.1 is
+  scope-only. Counted mechanism corroboration comes from ATP/ADP phosphoryl-transfer Rhea
+  participant context with fructose-6-phosphate, PfkA/ATP-dependent 6-phosphofructokinase family
+  text, ATP/Mg/substrate active- or binding-site evidence, cofactor/cosubstrate handles, and
+  structure-compatible evidence. Protein kinases, two-component histidine kinases,
+  hydrolase/nuclease rows, NDK, dNK, ASKHA, GHMP, PfkB/ribokinase, and multi-fingerprint rows are
+  held. The PfkA/ASKHA boundary was tightened so the synonym `phosphohexokinase` does not falsely
+  trip the broad ASKHA `hexokinase` guard.
+- Apply command:
+  `PYTHONPATH=src python scripts/source_pfka_phosphofructokinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched **240**, target mechanism-corroborated **233**, applied **150**,
+  no-corroboration holds **5**, disambiguation skips **2**, novelty-throttled/rejected **0**,
+  held@cap **83**, off-target held **0**, duplicate skipped **0**; `pfka_phosphofructokinase`
+  **0 -> 150** (chemistry-confusable cap 150; floor reached).
+- Guardrails verified: EC/Rhea/name/keyword/prose/feature handles are scope/admission evidence only
+  and remain in `excluded_context`; EC is never a counted corroborator; `predictive_evidence []`;
+  every added row is `tier=bronze`, `review_status=automation_curated`, `uniprot:*`; dedup ran
+  against frozen current702 and external bronze; per-fingerprint cap 150 was enforced. Row audit
+  `artifacts/v3_pfka_phosphofructokinase_row_guardrail_audit_current702_20260613.json` found **0**
+  problems across all **150** PfkA rows; all four independent mechanism axes are present on every
+  row: active-site/residue role, cofactor/cosubstrate, domain/family profile, and Rhea
+  reaction/participant pattern.
+- Honest counters after apply: `positive_bronze=5039`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`. Do not merge them. Remaining positive-bronze gap to 10k:
+  **4961**.
+- Fresh post-PfkA audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_pfka_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_pfka_applied.md`; **6735** combined,
+  **32** fingerprints, seed positives **5039**, fingerprint Gini **0.1465**, holes `[]`,
+  under-floor `['biotin_dependent_carboxylase']`, over-cap `['metal_dependent_hydrolase']`,
+  next-batch floor deficit **16**. The coverage accounting signature for the previously applied
+  `deoxynucleoside_kinase` was added so the fingerprint distribution now reconciles with the label
+  totals. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_pfka_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_pfka_applied.md`; **6033** expansion rows,
+  decisions `{'admit': 5577, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0756).
+- Validation:
+  `PYTHONPATH=src pytest tests/test_pfka_phosphofructokinase_sourcing.py tests/test_deoxynucleoside_kinase_sourcing.py tests/test_nucleoside_diphosphate_kinase_sourcing.py tests/test_askha_sugar_acetate_kinase_sourcing.py tests/test_ghmp_small_molecule_kinase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_ontology.py tests/test_leakage_closure.py tests/test_coverage_redundancy_audit.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py -q`
+  passed (**312 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 32 mechanism fingerprints, 30 ontology families, 702 curated labels).
+- Small durable continuation: wrote
+  `work/pfkb_ribokinase_family_next_lane_spec_current702_20260613.md` using the prior non-destructive
+  PfkB scout. PfkB is **not** yet an apply lane: reviewed supply **85**, sampled **28/40** likely
+  wireable, **0/40** boundary signals, and active-/binding-site context only **28/40**. Next work
+  should first improve/re-run the source-supply scout or choose a stronger current scaling-plan
+  family if evidence is cleaner.
+- Key new artifacts/files this run:
+  `src/catalytic_earth/pfka_phosphofructokinase_sourcing.py`,
+  `scripts/source_pfka_phosphofructokinase_family.py`,
+  `tests/test_pfka_phosphofructokinase_sourcing.py`,
+  `artifacts/v3_pfka_phosphofructokinase_sourcing_preview_current702.json`,
+  `work/pfka_phosphofructokinase_sourcing_current702.md`,
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_32fp_1025.json`,
+  `artifacts/v3_pfka_phosphofructokinase_row_guardrail_audit_current702_20260613.json`,
+  `work/pfka_phosphofructokinase_row_guardrail_audit_current702_20260613.md`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_pfka_applied.json`,
+  `work/coverage_redundancy_audit_current702_20260613_pfka_applied.md`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_pfka_applied.json`,
+  `work/novelty_admission_gate_audit_current702_20260613_pfka_applied.md`, and
+  `work/pfkb_ribokinase_family_next_lane_spec_current702_20260613.md`.
+- Next exact action: do **not** broad-wire EC 2.7 or merge kinase subclasses. Either tighten and
+  re-scout `pfkb_ribokinase_family` before any 33fp wiring, or select a stronger current
+  scaling-plan family if the evidence supply is cleaner. Any next family still needs fingerprint/
+  ontology spec if new, OOS prereg re-freeze, mechanism corroborator rules, non-destructive preview,
+  tests, and explicit apply only if novelty/governor/dedup/trust-tier/leakage gates pass.
+
 ## Session run - dNK 31fp bronze expansion applied + PfkA scout completed (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

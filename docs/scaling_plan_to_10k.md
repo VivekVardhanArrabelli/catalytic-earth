@@ -13,6 +13,40 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: strict PfkA phosphofructokinase 32fp expansion is now applied.**
+The post-dNK scout selected strict `pfka_phosphofructokinase`, and this run completed that full
+pipeline. Added `pfka_phosphofructokinase` fingerprint + existing `pfka` ontology mapping, bumped
+to `label_factory_v1_32fp`, and re-froze OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_32fp_1025.json`. EC 2.7.1 is
+scope-only, chemistry-confusable, capped at 150, and separated from broad EC 2.7 plus NDK/dNK/ASKHA/
+GHMP/PfkB kinase subclasses.
+
+PfkA apply
+(`scripts/source_pfka_phosphofructokinase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`)
+fetched **240**, mechanism-corroborated **233**, applied **150**, held **5** no-corroboration rows,
+skipped **2**, held **83** at cap, and held **0** off-target rows. External bronze is now **6033**;
+combined label surface is **6735**; frozen current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters stay
+separate: **positive_bronze 5039**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k: **4961**.
+Post-apply audit: **32 fingerprints**, fingerprint Gini **0.1465**, holes `[]`, under-floor
+`['biotin_dependent_carboxylase']`, only `metal_dependent_hydrolase` over-cap, next-batch floor
+deficit **16**. Novelty replay: **6033** expansion rows, decisions
+`{'admit': 5577, 'reject': 47, 'throttle': 409}`, would-not-readmit **456** (0.0756). Row audit
+`artifacts/v3_pfka_phosphofructokinase_row_guardrail_audit_current702_20260613.json` found **0**
+problems across all 150 PfkA rows and all four mechanism axes present on every row.
+
+All added rows keep `predictive_evidence []`; EC/name/keyword/Rhea/prose/feature handles remain
+excluded-context admission evidence and are never predictive. Counted corroboration comes from
+ATP/ADP phosphoryl-transfer Rhea participant text with fructose-6-phosphate, PfkA/ATP-dependent
+6-phosphofructokinase family text, ATP/Mg/substrate active-/binding-site evidence,
+cofactor/cosubstrate handles, and structure-compatible evidence. Do **not** broad-wire EC 2.7 or
+merge kinase subclasses. The next durable artifact
+`work/pfkb_ribokinase_family_next_lane_spec_current702_20260613.md` records PfkB as a guarded
+candidate only: reviewed supply **85**, sampled **28/40** likely wireable, and active-/binding-site
+context only **28/40**. Tighten/re-scout PfkB before any 33fp pipeline, or choose a stronger
+current scaling-plan family if evidence is cleaner.
+
 **2026-06-13 automation update: strict deoxynucleoside kinase 31fp expansion is now applied.** The
 post-ASKHA/GHMP handoff selected strict `deoxynucleoside_kinase`, and this run completed that full
 pipeline. Added `deoxynucleoside_kinase` fingerprint + existing `dnk` ontology mapping, bumped to
