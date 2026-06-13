@@ -378,6 +378,79 @@ _COPPER_OXIDASE_REACTION_TOKENS = (
 # Rhea isomerization/racemization equations, active-/binding-site annotations,
 # metal context, or explicit cofactorless context. PLP and side-EC rows stay held.
 _RACEMASE_EPIMERASE_TEXT_TOKENS = ("racem", "epimer", "mutarot")
+# ATP-dependent amide ligase handles. EC 6.3 scopes the candidate supply only;
+# counted mechanism corroboration comes from ATP/ADP/phosphate or Mg context,
+# Ligase/ATP-grasp family text, C-N/amide ligation reaction text, acyl-phosphate
+# intermediate text, or active-/binding-site annotations. Biotin carboxylases,
+# kinases/phosphotransferases, hydrolase/transferase side rows, and generic side-EC
+# rows stay held.
+_ATP_LIGASE_NUCLEOTIDE_TOKENS = (
+    "atp",
+    "adenosine 5'-triphosphate",
+    "adenosine triphosphate",
+    "adp",
+    "adenosine 5'-diphosphate",
+    "orthophosphate",
+    "phosphate",
+)
+_ATP_LIGASE_MAGNESIUM_TOKENS = ("magnesium", "mg(2", "mg2")
+_ATP_LIGASE_TEXT_TOKENS = ("ligase",)
+_ATP_GRASP_TEXT_TOKENS = ("atp-grasp", "atp grasp")
+_ATP_AMIDE_LIGATION_TOKENS = (
+    "amide",
+    "peptide",
+    "glutamine",
+    "glutamate",
+    "asparagine",
+    "aspartate",
+    "carboxylate",
+    "carboxy-",
+    "c-n bond",
+    "c-n",
+)
+_ATP_ACYL_PHOSPHATE_TOKENS = (
+    "acyl phosphate",
+    "acyl-phosphate",
+    "phosphorylated intermediate",
+    "carboxyphosphate",
+    "carboxyl phosphate",
+)
+_BIOTIN_CARBOXYLASE_BOUNDARY_TOKENS = ("biotin", "carboxylase", "carboxybiotin")
+_KINASE_BOUNDARY_TOKENS = ("kinase", "phosphotransferase")
+# Class-II metal aldolase handles. EC 4.1.2/4.1.3 scopes lyase candidates only;
+# counted corroboration comes from metal cofactor/site evidence, Lyase/aldolase
+# family text, Rhea C-C/oxoacid reaction context, or active-/binding-/metal-site
+# evidence. PLP, ThDP, class-I Schiff-base, hydrolase/transferase/oxidoreductase,
+# and side-EC rows stay held.
+_CLASS_II_ALDOLASE_TEXT_TOKENS = (
+    "aldolase",
+    "aldol",
+    "dehydro-deoxy",
+    "keto",
+    "aldehyde",
+    "pyruvate",
+    "oxaloacetate",
+)
+_LYASE_TEXT_TOKENS = ("lyase",)
+_CLASS_II_ALDOLASE_CC_TOKENS = (
+    "carbon-carbon",
+    "c-c",
+    "deoxyribose",
+    "fructose",
+    "tagatose",
+    "keto",
+    "aldehyde",
+    "acetaldehyde",
+    "pyruvate",
+)
+_THDP_BOUNDARY_TOKENS = (
+    "thiamine",
+    "thdp",
+    "tpp",
+    "thiamine diphosphate",
+    "thiamine pyrophosphate",
+)
+_SCHIFF_CLASS_I_BOUNDARY_TOKENS = ("schiff", "class i aldolase")
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
 
@@ -520,6 +593,45 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         or evidence.get("flavin", False)
         or molybdopterin_moco
     )
+    atp_ligase_atp_or_adp_phosphate = in_any(
+        reactions + cofactor_names + feature_texts, *_ATP_LIGASE_NUCLEOTIDE_TOKENS
+    )
+    atp_ligase_mg_context = in_any(
+        cofactor_names + feature_texts, *_ATP_LIGASE_MAGNESIUM_TOKENS
+    )
+    keyword_ligase = in_any(keywords + [protein_name], *_ATP_LIGASE_TEXT_TOKENS)
+    atp_grasp_family_text = in_any(
+        keywords + [protein_name] + feature_texts, *_ATP_GRASP_TEXT_TOKENS
+    )
+    atp_amide_ligation_text = in_any(
+        reactions + [protein_name], *_ATP_AMIDE_LIGATION_TOKENS
+    )
+    atp_acyl_phosphate_intermediate = in_any(
+        reactions + feature_texts + [protein_name], *_ATP_ACYL_PHOSPHATE_TOKENS
+    )
+    biotin_carboxylase_boundary = (
+        in_any(cofactor_names + feature_texts + keywords + [protein_name], *_BIOTIN_CARBOXYLASE_BOUNDARY_TOKENS)
+        or _ec_has_prefix(row, ("6.3.4", "6.4.1"))
+    )
+    kinase_boundary = in_any(keywords + [protein_name], *_KINASE_BOUNDARY_TOKENS) or _ec_has_prefix(
+        row, ("2.7.",)
+    )
+    non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
+    class_ii_metal_aldolase_text = in_any(
+        reactions + keywords + [protein_name], *_CLASS_II_ALDOLASE_TEXT_TOKENS
+    )
+    keyword_lyase = in_any(keywords + [protein_name], *_LYASE_TEXT_TOKENS)
+    class_ii_aldolase_cc_reaction = in_any(reactions, *_CLASS_II_ALDOLASE_CC_TOKENS)
+    thdp_boundary_signal = in_any(
+        cofactor_names + feature_texts + keywords + [protein_name], *_THDP_BOUNDARY_TOKENS
+    )
+    schiff_class_i_boundary_signal = in_any(
+        feature_texts + keywords + [protein_name], *_SCHIFF_CLASS_I_BOUNDARY_TOKENS
+    )
+    non_4_1_2_or_4_1_3_side_ec = any(
+        ec and not (ec.startswith("4.1.2") or ec.startswith("4.1.3"))
+        for ec in _ec_numbers(row)
+    )
     cofactorless_context = not any(
         evidence.get(key, False)
         for key in (
@@ -577,6 +689,21 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "copper_redox_reaction": copper_redox_reaction,
             "copper_oxidase_reaction": copper_oxidase_reaction,
             "copper_boundary_heme_flavin_molybdopterin": copper_boundary_heme_flavin_molybdopterin,
+            "atp_ligase_atp_or_adp_phosphate": atp_ligase_atp_or_adp_phosphate,
+            "atp_ligase_mg_context": atp_ligase_mg_context,
+            "keyword_ligase": keyword_ligase,
+            "atp_grasp_family_text": atp_grasp_family_text,
+            "atp_amide_ligation_text": atp_amide_ligation_text,
+            "atp_acyl_phosphate_intermediate": atp_acyl_phosphate_intermediate,
+            "biotin_carboxylase_boundary": biotin_carboxylase_boundary,
+            "kinase_boundary": kinase_boundary,
+            "non_6_3_side_ec": non_6_3_side_ec,
+            "class_ii_metal_aldolase_text": class_ii_metal_aldolase_text,
+            "keyword_lyase": keyword_lyase,
+            "class_ii_aldolase_cc_reaction": class_ii_aldolase_cc_reaction,
+            "thdp_boundary_signal": thdp_boundary_signal,
+            "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
+            "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
             "plp_boundary_signal": evidence.get("plp", False),
             "cofactorless_context": cofactorless_context,
             "active_or_binding_site_present": bool(
@@ -609,6 +736,12 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("coa_acyl_coa_feature")
         or evidence.get("molybdopterin_moco")
         or evidence.get("copper_feature_or_ligand")
+        or evidence.get("atp_ligase_atp_or_adp_phosphate")
+        or evidence.get("atp_ligase_mg_context")
+        or (
+            evidence.get("metal")
+            and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
+        )
     ):
         axes.add("cofactor_or_cosubstrate")
     if (
@@ -625,6 +758,11 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("copper_redox_reaction")
         or evidence.get("copper_oxidase_reaction")
         or evidence.get("racemase_epimerase_text")
+        or evidence.get("atp_ligase_atp_or_adp_phosphate")
+        or evidence.get("atp_amide_ligation_text")
+        or evidence.get("atp_acyl_phosphate_intermediate")
+        or evidence.get("class_ii_aldolase_cc_reaction")
+        or evidence.get("class_ii_metal_aldolase_text")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -647,6 +785,10 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("keyword_molybdenum")
         or evidence.get("keyword_copper")
         or evidence.get("racemase_epimerase_text")
+        or evidence.get("keyword_ligase")
+        or evidence.get("atp_grasp_family_text")
+        or evidence.get("keyword_lyase")
+        or evidence.get("class_ii_metal_aldolase_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -697,6 +839,8 @@ _COPPER_OXIDOREDUCTASE_EC = (
     "1.4.3",
 )  # copper oxidases; copper/Rhea handles confirm
 _METAL_RACEMASE_EPIMERASE_NON_PLP_EC = ("5.1.",)  # racemase/epimerase scope only
+_ATP_AMIDE_LIGASE_EC = ("6.3.",)  # C-N ligases; ATP/Mg/Rhea handles confirm
+_CLASS_II_METAL_ALDOLASE_EC = ("4.1.2", "4.1.3")  # metal aldol lyases; EC is scope only
 
 
 # Each rule: fingerprint id -> predicate over (cofactor_evidence, row).
@@ -849,6 +993,42 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
             c["active_or_binding_site_present"]
             or c["metal"]
             or c["cofactorless_context"]
+        ),
+    ),
+    (
+        "atp_amide_ligase",
+        lambda c, row: _ec_has_prefix(row, _ATP_AMIDE_LIGASE_EC)
+        and c["keyword_ligase"]
+        and (c["atp_ligase_atp_or_adp_phosphate"] or c["atp_ligase_mg_context"])
+        and (
+            c["atp_amide_ligation_text"]
+            or c["atp_acyl_phosphate_intermediate"]
+            or c["active_or_binding_site_present"]
+        )
+        and not c["biotin_carboxylase_boundary"]
+        and not c["kinase_boundary"]
+        and not c["hydrolase_side_ec"]
+        and not c["transferase_side_ec"]
+        and not c["non_6_3_side_ec"],
+    ),
+    (
+        "class_ii_metal_aldolase",
+        lambda c, row: _ec_has_prefix(row, _CLASS_II_METAL_ALDOLASE_EC)
+        and c["metal"]
+        and c["keyword_lyase"]
+        and c["keyword_ligase"] is False
+        and c["keyword_isomerase"] is False
+        and not c["plp_boundary_signal"]
+        and not c["thdp_boundary_signal"]
+        and not c["schiff_class_i_boundary_signal"]
+        and not c["hydrolase_side_ec"]
+        and not c["transferase_side_ec"]
+        and not c["oxidoreductase_side_ec"]
+        and not c["non_4_1_2_or_4_1_3_side_ec"]
+        and (
+            c["class_ii_metal_aldolase_text"]
+            or c["class_ii_aldolase_cc_reaction"]
+            or c["active_or_binding_site_present"]
         ),
     ),
 )

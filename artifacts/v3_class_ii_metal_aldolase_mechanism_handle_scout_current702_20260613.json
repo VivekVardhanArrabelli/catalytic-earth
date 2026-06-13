@@ -1,0 +1,575 @@
+{
+  "artifact_id": "v3_class_ii_metal_aldolase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "class_ii_metal_aldolase",
+  "counts": {
+    "active_or_binding_or_metal_site_context": 80,
+    "aldolase_or_oxoacid_text": 61,
+    "c_c_bond_reaction_text": 58,
+    "hydrolase_side_ec_boundary": 8,
+    "likely_wireable_by_non_ec_handles": 53,
+    "lyase_keyword_or_text": 80,
+    "metal_context": 80,
+    "non_4_1_2_or_4_1_3_side_ec_boundary": 20,
+    "plp_boundary": 2,
+    "rhea_cross_reference_present": 80,
+    "schiff_base_class_i_boundary": 4,
+    "thdp_boundary": 5,
+    "transferase_side_ec_boundary": 9
+  },
+  "created_utc": "2026-06-13T04:20:51Z",
+  "entries_examined": 80,
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only": true,
+    "labels_emitted": false,
+    "mechanism_handle_scout_before_wiring": true,
+    "predictive_features_emitted": false,
+    "registry_written": false
+  },
+  "lane_queries": [
+    {
+      "lane_id": "class_ii_metal_aldolase_reviewed_metal_lyases",
+      "query": "(reviewed:true) AND ((ec:4.1.2.*) OR (ec:4.1.3.*)) AND ((cc_cofactor:zinc) OR (cc_cofactor:cobalt) OR ((keyword:Lyase) AND (keyword:Metal-binding)))",
+      "target_family_lane": "class_ii_metal_aldolase"
+    }
+  ],
+  "lane_summaries": [
+    {
+      "lane_id": "class_ii_metal_aldolase_reviewed_metal_lyases",
+      "query": "(reviewed:true) AND ((ec:4.1.2.*) OR (ec:4.1.3.*)) AND ((cc_cofactor:zinc) OR (cc_cofactor:cobalt) OR ((keyword:Lyase) AND (keyword:Metal-binding)))",
+      "record_count": 80,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A4.1.2.%2A%29+OR+%28ec%3A4.1.3.%2A%29%29+AND+%28%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Acobalt%29+OR+%28%28keyword%3ALyase%29+AND+%28keyword%3AMetal-binding%29%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=80",
+      "status": "query_fetched",
+      "target_family_lane": "class_ii_metal_aldolase"
+    }
+  ],
+  "recommendation": {
+    "reason": "Mechanism handles are sufficient only if metal + lyase/aldolase/Rhea/active-site evidence remain strong and PLP/ThDP/class-I/side-EC guards are explicit.",
+    "wire_24fp_lane": true
+  },
+  "sample_rows": [
+    {
+      "accession": "P35914",
+      "cofactors": [
+        "a divalent metal cation"
+      ],
+      "ec_numbers": [
+        "4.1.3.4"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Disease variant",
+        "Disulfide bond",
+        "Lipid metabolism",
+        "Lyase",
+        "Metal-binding",
+        "Mitochondrion",
+        "Peroxisome",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transit peptide"
+      ],
+      "protein_name": "Hydroxymethylglutaryl-CoA lyase, mitochondrial (HL) (HMG-CoA lyase) (EC 4.1.3.4) (3-hydroxy-3-methylglutarate-CoA lyase)",
+      "rhea_count": 1,
+      "sample_reaction_texts": [
+        "(3S)-3-hydroxy-3-methylglutaryl-CoA = acetoacetate + acetyl-CoA"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": false,
+        "c_c_bond": false,
+        "likely_wireable": true,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "Q9UJ83",
+      "cofactors": [
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.2.63"
+      ],
+      "feature_codes": [
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Fatty acid metabolism",
+        "Lipid metabolism",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Peroxisome",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate"
+      ],
+      "protein_name": "2-hydroxyacyl-CoA lyase 1 (EC 4.1.2.63) (2-hydroxyphytanoyl-CoA lyase) (2-HPCL) (Phytanoyl-CoA 2-hydroxylase 2)",
+      "rhea_count": 5,
+      "sample_reaction_texts": [
+        "a 2-hydroxy-3-methyl fatty acyl-CoA = a 2-methyl-branched fatty aldehyde + formyl-CoA",
+        "an (R)-2-hydroxy-long-chain-fatty acyl-CoA = a long-chain fatty aldehyde + formyl-CoA",
+        "2-hydroxy-3-methylhexadecanoyl-CoA = 2-methylpentadecanal + formyl-CoA"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": true,
+        "c_c_bond": true,
+        "likely_wireable": false,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": true
+      }
+    },
+    {
+      "accession": "Q8N0X4",
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "ec_numbers": [
+        "2.3.3.-",
+        "2.3.3.9",
+        "3.1.2.30",
+        "4.1.3.25"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "Hydrolase",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Mitochondrion",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transferase",
+        "Transit peptide"
+      ],
+      "protein_name": "Citramalyl-CoA lyase, mitochondrial (EC 4.1.3.25) ((3S)-malyl-CoA thioesterase) (EC 3.1.2.30) (Beta-methylmalate synthase) (EC 2.3.3.-) (Citrate lyase subunit beta-like protein) (Citrate lyase beta-like) (Malate synthase) (EC 2.3.3.9)",
+      "rhea_count": 4,
+      "sample_reaction_texts": [
+        "(3S)-citramalyl-CoA = pyruvate + acetyl-CoA",
+        "(S)-malyl-CoA + H2O = (S)-malate + CoA + H(+)",
+        "glyoxylate + acetyl-CoA + H2O = (S)-malate + CoA + H(+)"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": true,
+        "c_c_bond": true,
+        "likely_wireable": false,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": true,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "A1L0T0",
+      "cofactors": [
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "ec_numbers": [
+        "4.1.2.-"
+      ],
+      "feature_codes": [
+        "BINDING"
+      ],
+      "keywords": [
+        "Endoplasmic reticulum",
+        "Fatty acid metabolism",
+        "Lipid metabolism",
+        "Lyase",
+        "Magnesium",
+        "Membrane",
+        "Metal-binding",
+        "Proteomics identification",
+        "Reference proteome",
+        "Thiamine pyrophosphate",
+        "Transmembrane",
+        "Transmembrane helix"
+      ],
+      "protein_name": "2-hydroxyacyl-CoA lyase 2 (EC 4.1.2.-) (Acetolactate synthase-like protein) (IlvB-like protein)",
+      "rhea_count": 2,
+      "sample_reaction_texts": [
+        "2-hydroxyoctadecanoyl-CoA = heptadecanal + formyl-CoA",
+        "(2R)-hydroxyhexadecanoyl-CoA = pentadecanal + formyl-CoA"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": false,
+        "c_c_bond": false,
+        "likely_wireable": false,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": true
+      }
+    },
+    {
+      "accession": "Q8TB92",
+      "cofactors": [
+        "a divalent metal cation"
+      ],
+      "ec_numbers": [
+        "4.1.3.4"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "Cytoplasm",
+        "Endoplasmic reticulum",
+        "Lipid metabolism",
+        "Lipoprotein",
+        "Lyase",
+        "Membrane",
+        "Metal-binding",
+        "Myristate",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "protein_name": "3-hydroxy-3-methylglutaryl-CoA lyase, cytoplasmic (EC 4.1.3.4) (3-hydroxy-3-methylglutaryl-CoA lyase-like protein 1) (HMGCL-like 1) (Endoplasmic reticulum 3-hydroxy-3-methylglutaryl-CoA lyase) (er-cHL)",
+      "rhea_count": 1,
+      "sample_reaction_texts": [
+        "(3S)-3-hydroxy-3-methylglutaryl-CoA = acetoacetate + acetyl-CoA"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": false,
+        "c_c_bond": false,
+        "likely_wireable": true,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "P40011",
+      "cofactors": [
+        "Ni(2+)",
+        "Co(2+)",
+        "Zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.1.1.112",
+        "4.1.3.17"
+      ],
+      "feature_codes": [
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome"
+      ],
+      "protein_name": "4-hydroxy-4-methyl-2-oxoglutarate aldolase (HMG aldolase) (EC 4.1.3.17) (Oxaloacetate decarboxylase) (OAA decarboxylase) (EC 4.1.1.112) (Regulator of ribonuclease activity homolog) (RraA-like protein)",
+      "rhea_count": 2,
+      "sample_reaction_texts": [
+        "4-hydroxy-4-methyl-2-oxoglutarate = 2 pyruvate",
+        "oxaloacetate + H(+) = pyruvate + CO2"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": true,
+        "c_c_bond": true,
+        "likely_wireable": false,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": true,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "P65870",
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.1.2.50"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "SITE"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Lyase",
+        "Metal-binding",
+        "Queuosine biosynthesis",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "protein_name": "6-carboxy-5,6,7,8-tetrahydropterin synthase (CPH4 synthase) (eCTPS) (EC 4.1.2.50) (Queuosine biosynthesis protein QueD)",
+      "rhea_count": 3,
+      "sample_reaction_texts": [
+        "7,8-dihydroneopterin 3'-triphosphate + H2O = 6-carboxy-5,6,7,8-tetrahydropterin + triphosphate + acetaldehyde + 2 H(+)",
+        "L-sepiapterin + H2O = 6-carboxy-5,6,7,8-tetrahydropterin + acetaldehyde + H(+)",
+        "6-pyruvoyl-5,6,7,8-tetrahydropterin + H2O = 6-carboxy-5,6,7,8-tetrahydropterin + acetaldehyde + H(+)"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": true,
+        "c_c_bond": true,
+        "likely_wireable": true,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "P0AB74",
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.1.2.40"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "protein_name": "D-tagatose-1,6-bisphosphate aldolase subunit KbaY (TBPA) (TagBP aldolase) (EC 4.1.2.40) (D-tagatose-bisphosphate aldolase class II) (Ketose 1,6-bisphosphate aldolase class II) (Tagatose-bisphosphate aldolase)",
+      "rhea_count": 1,
+      "sample_reaction_texts": [
+        "D-tagatofuranose 1,6-bisphosphate = D-glyceraldehyde 3-phosphate + dihydroxyacetone phosphate"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": true,
+        "c_c_bond": true,
+        "likely_wireable": true,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "P0AB87",
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.1.2.-",
+        "4.1.2.17"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "SITE"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Arabinose catabolism",
+        "Carbohydrate metabolism",
+        "Fucose metabolism",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome",
+        "Zinc"
+      ],
+      "protein_name": "L-fuculose phosphate aldolase (EC 4.1.2.17) (D-ribulose-1-phosphate aldolase) (EC 4.1.2.-) (L-fuculose-1-phosphate aldolase)",
+      "rhea_count": 2,
+      "sample_reaction_texts": [
+        "L-fuculose 1-phosphate = (S)-lactaldehyde + dihydroxyacetone phosphate",
+        "D-ribulose 1-phosphate = glycolaldehyde + dihydroxyacetone phosphate"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": true,
+        "c_c_bond": true,
+        "likely_wireable": true,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "P32169",
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "ec_numbers": [
+        "4.1.2.19"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Cytoplasm",
+        "Lyase",
+        "Metal-binding",
+        "Reference proteome",
+        "Rhamnose metabolism",
+        "Zinc"
+      ],
+      "protein_name": "Rhamnulose-1-phosphate aldolase (EC 4.1.2.19)",
+      "rhea_count": 1,
+      "sample_reaction_texts": [
+        "L-rhamnulose 1-phosphate = (S)-lactaldehyde + dihydroxyacetone phosphate"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": true,
+        "c_c_bond": true,
+        "likely_wireable": true,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "P0A9G6",
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "ec_numbers": [
+        "4.1.3.1"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Direct protein sequencing",
+        "Glyoxylate bypass",
+        "Lyase",
+        "Magnesium",
+        "Manganese",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Tricarboxylic acid cycle"
+      ],
+      "protein_name": "Isocitrate lyase (ICL) (EC 4.1.3.1) (Isocitrase) (Isocitratase)",
+      "rhea_count": 1,
+      "sample_reaction_texts": [
+        "D-threo-isocitrate = glyoxylate + succinate"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": false,
+        "c_c_bond": false,
+        "likely_wireable": true,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": false
+      }
+    },
+    {
+      "accession": "P28240",
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "ec_numbers": [
+        "4.1.3.1",
+        "4.1.3.30"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Cytoplasm",
+        "Extracellular matrix",
+        "Glyoxylate bypass",
+        "Lyase",
+        "Magnesium",
+        "Metal-binding",
+        "Phosphoprotein",
+        "Reference proteome",
+        "Secreted",
+        "Vacuole"
+      ],
+      "protein_name": "Isocitrate lyase (ICL) (EC 4.1.3.1) (Methylisocitrate lyase) (MICA) (EC 4.1.3.30) (Threo-D(S)-isocitrate glyoxylate-lyase)",
+      "rhea_count": 2,
+      "sample_reaction_texts": [
+        "D-threo-isocitrate = glyoxylate + succinate",
+        "(2S,3R)-3-hydroxybutane-1,2,3-tricarboxylate = pyruvate + succinate"
+      ],
+      "signals": {
+        "active_or_binding_or_metal_site": true,
+        "aldolase_or_oxoacid": true,
+        "c_c_bond": true,
+        "likely_wireable": true,
+        "lyase": true,
+        "metal": true,
+        "plp_boundary": false,
+        "schiff_boundary": false,
+        "side_ec": false,
+        "thdp_boundary": false
+      }
+    }
+  ],
+  "schema_version": "mechanism_handle_scout.v1",
+  "selection_basis": "post-ATP supply scout recommended class_ii_metal_aldolase as the next remaining clean reviewed Swiss-Prot lane",
+  "status": "non_destructive_mechanism_handle_scout_no_registry_write"
+}

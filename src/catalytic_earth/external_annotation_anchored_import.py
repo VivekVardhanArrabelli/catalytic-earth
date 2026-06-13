@@ -85,6 +85,8 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "molybdopterin_oxidoreductase": "molybdopterin_metal_center_redox_context",
     "copper_oxidoreductase": "copper_redox_metal_center_context",
     "metal_racemase_epimerase_non_plp": "racemase_epimerase_proton_shift_context",
+    "atp_amide_ligase": "atp_mg_acyl_phosphate_amide_ligation_context",
+    "class_ii_metal_aldolase": "metal_stabilized_aldol_c_c_bond_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

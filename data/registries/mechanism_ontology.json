@@ -83,12 +83,13 @@
       "id": "atp_grasp",
       "name": "ATP-grasp ligases",
       "parent_id": "atp_phosphoryl_transfer",
-      "fingerprint_ids": [],
-      "scope_note": "ATP-grasp ligases that form acyl-phosphate or related phosphorylated intermediates before ligation. This is ATP-coupled transfer/ligation chemistry, not hydrolytic bond cleavage.",
+      "fingerprint_ids": ["atp_amide_ligase"],
+      "scope_note": "ATP-grasp and related ATP-dependent amide ligases that form acyl-phosphate or related phosphorylated intermediates before C-N ligation. This is ATP-coupled transfer/ligation chemistry, not hydrolytic bond cleavage.",
       "sibling_ids": ["epk", "askha", "ghkl", "dnk", "ndk", "pfka", "pfkb", "ghmp"],
       "family_boundary_guardrails": [
+        "Membership is decided by ATP/ADP/phosphate or Mg context plus Ligase/ATP-grasp/domain, Rhea C-N/amide ligation, or active-/binding-site evidence; EC 6.3 is scope only.",
         "Do not count ATP-grasp rows as hydrolases because a phospho-intermediate later collapses.",
-        "Require ligase/phospho-intermediate context before mapping ATP-grasp boundary rows."
+        "Hold biotin carboxylases, kinases/phosphotransferases, generic ATP-transferases, hydrolase side rows, and multi-fingerprint-signal rows rather than forcing an ATP amide ligase label."
       ]
     },
     {
@@ -161,6 +162,21 @@
       "family_boundary_guardrails": [
         "Do not identify GHMP from ATP text alone; require GHMP-family or substrate-class evidence.",
         "Do not count GHMP rows as hydrolases when ATP/Mg2+ is the local cofactor context."
+      ]
+    },
+    {
+      "id": "carbon_carbon_lyase",
+      "name": "Metal-stabilized carbon-carbon lyase chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "class_ii_metal_aldolase"
+      ],
+      "scope_note": "Class-II metal aldolases and related oxo-acid lyases that use a divalent metal to stabilize enolate/enediolate C-C bond cleavage or formation.",
+      "family_boundary_guardrails": [
+        "Membership is decided by metal cofactor/site evidence plus Lyase/aldolase/domain, Rhea C-C/oxoacid reaction context, active-/binding-/metal-site evidence, or structure; EC 4.1.2/4.1.3 is scope only.",
+        "Do not admit PLP-dependent lyases, ThDP-dependent enzymes, or class-I Schiff-base aldolases into this family.",
+        "Hold hydrolase, transferase, oxidoreductase, non-4.1.2/4.1.3 side-EC, and multi-fingerprint-signal rows rather than forcing a class-II metal aldolase label.",
+        "The catalytic metal, oxoacid/aldehyde substrate, and enolate C-C reaction geometry are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
     },
     {

@@ -62,12 +62,13 @@ DEFAULT_ONTOLOGY_VERSION_AT_DECISION = "label_factory_v1_8fp"
 # CoA acyltransferase lane expands it 17 -> 18; the cofactor-independent isomerase lane
 # expands it 18 -> 19; the molybdopterin oxidoreductase lane expands it 19 -> 20; the
 # copper oxidoreductase lane expands it 20 -> 21; the non-PLP racemase/epimerase
-# lane expands it 21 -> 22. A NEW
+# lane expands it 21 -> 22; the ATP-dependent amide ligase lane expands it 22 -> 23; the
+# class-II metal aldolase lane expands it 23 -> 24. A NEW
 # OOS hard-negative tranche must be
 # pre-registered against THIS version (and the current fingerprint universe). This is
 # intentionally distinct from the historical label stamp above (which stays _8fp for existing
 # rows / spent contracts) -- bumping the historical stamp would rewrite history.
-CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_22fp"
+CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_24fp"
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,

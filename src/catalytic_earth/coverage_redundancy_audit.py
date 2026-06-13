@@ -173,6 +173,16 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         "cofactor": "non-PLP racemase/epimerase proton-transfer chemistry; metal or cofactorless active-site context",
         "lanes": ["metal_racemase_epimerase_non_plp"],
     },
+    "atp_amide_ligase": {
+        "ec_prefixes": ["6.3"],
+        "cofactor": "ATP/Mg cosubstrate context; acyl-phosphate-like intermediate and C-N amide ligation",
+        "lanes": ["atp_amide_ligase"],
+    },
+    "class_ii_metal_aldolase": {
+        "ec_prefixes": ["4.1.2", "4.1.3"],
+        "cofactor": "Zn/Co/divalent metal; enolate-stabilized aldol C-C lyase chemistry",
+        "lanes": ["class_ii_metal_aldolase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

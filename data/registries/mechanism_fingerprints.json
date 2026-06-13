@@ -453,6 +453,58 @@
     }
   },
   {
+    "id": "atp_amide_ligase",
+    "name": "ATP-dependent amide ligase",
+    "enzyme_space": ["ATP-grasp amide ligases", "glutathione synthetases", "D-alanine ligases", "acid-ammonia ligases", "peptide-forming ligases"],
+    "active_site_signature": [
+      {"role": "atp_mg_binding", "residue": "P-loop/ATP-grasp phosphate-binding residues plus Mg2+ depending on subclass", "constraints": ["positions ATP gamma-phosphate and Mg2+ for carboxylate activation"]},
+      {"role": "acyl_phosphate_intermediate_site", "residue": "carboxylate substrate and stabilizing Lys/Arg/His/backbone amides", "constraints": ["supports transient acyl-phosphate or carboxyl-phosphate formation before nucleophilic attack"]},
+      {"role": "amine_acceptor_positioning", "residue": "acid/base or polar pocket residue", "constraints": ["positions ammonia, amino acid, peptide, or amine acceptor for C-N bond formation while excluding kinase/phosphotransferase chemistry"]}
+    ],
+    "cofactors": ["Mg2+", "ATP"],
+    "reaction_center": {
+      "bond_changes": ["formation of a carbon-nitrogen amide or peptide bond coupled to ATP hydrolysis through an acyl-phosphate-like intermediate"],
+      "chemical_operation": "ATP-dependent carboxylate activation followed by amide ligation"
+    },
+    "substrate_constraints": ["ATP/Mg2+ donor context present", "carboxylate or acyl substrate positioned for phosphorylation", "amine acceptor aligned for C-N bond formation", "no biotin carboxylase, kinase, hydrolase, transferase side-EC, or generic ATP-transfer boundary signal"],
+    "evidence_features": ["Ligase or ATP-grasp functional keyword/domain profile", "ATP/ADP/phosphate or Mg Rhea participant under EC 6.3 scope", "C-N/amide/peptide ligation reaction text", "active-site or binding-site annotation for ATP, substrate, or catalytic residues"],
+    "counterevidence_features": ["biotin or carboxylase EC 6.3.4/6.4.1 boundary chemistry", "kinase/phosphotransferase EC 2.7 or keyword signal", "hydrolase side EC or water as the intended acceptor", "generic ATP binding with no ligase/C-N mechanism corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["ATP-grasp vs non-ATP-grasp ligase fold", "acyl-phosphate lifetime and leaving group", "amine acceptor class", "Mg2+ stoichiometry and ATP pose"],
+    "seed_examples": ["glutathione synthetase", "D-alanine-D-alanine ligase", "asparagine synthetase", "glutamine synthetase", "Mur-family UDP-MurNAc peptide ligases"],
+    "deploy_missing_active_site_context": {
+      "type": "cosubstrate_and_intermediate",
+      "detail": "ATP, Mg2+, carboxylate substrate, acyl-phosphate intermediate state, and amine acceptor are dissociable or transient contexts absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->Ligase/ATP-grasp/ATP-Mg channel plus Rhea C-N ligation evidence, or canonical ATP/Mg/substrate/intermediate graft (Path B)",
+      "silver_reachability": "moderate; ATP-grasp and binding-site evidence is often annotated, but ATP/substrate/intermediate geometry requires reconstruction"
+    }
+  },
+  {
+    "id": "class_ii_metal_aldolase",
+    "name": "Class-II metal-dependent aldolase",
+    "enzyme_space": ["class-II aldolases", "metal-dependent oxo-acid lyases", "deoxysugar aldolases", "pyruvate/aldehyde C-C lyases"],
+    "active_site_signature": [
+      {"role": "enolate_stabilizing_metal", "residue": "Zn2+/Co2+ liganded by His/Asp/Glu depending on subclass", "constraints": ["polarizes the carbonyl and stabilizes the enolate/enediolate intermediate"]},
+      {"role": "general_acid_base", "residue": "Glu/Asp/His/Lys depending on family", "constraints": ["protonates or deprotonates the aldol donor/acceptor during C-C bond cleavage or formation"]},
+      {"role": "oxoacid_or_aldehyde_positioning", "residue": "polar or charged pocket residue", "constraints": ["positions pyruvate, aldehyde, keto-sugar, or oxoacid substrate near the metal without a PLP, ThDP, or Schiff-base relay"]}
+    ],
+    "cofactors": ["Zn2+", "Co2+", "divalent metal"],
+    "reaction_center": {
+      "bond_changes": ["reversible carbon-carbon bond cleavage or formation adjacent to a carbonyl in an aldol/retro-aldol reaction"],
+      "chemical_operation": "metal-stabilized enolate aldol chemistry"
+    },
+    "substrate_constraints": ["metal-bound carbonyl or oxoacid substrate", "C-C bond positioned for reversible aldol cleavage/formation", "no PLP, ThDP, class-I Schiff-base, hydrolase, transferase, or oxidoreductase side chemistry"],
+    "evidence_features": ["Lyase or aldolase functional keyword/domain profile", "Zn/Co/divalent metal cofactor or metal-site annotation", "Rhea C-C/oxoacid/aldehyde reaction context under EC 4.1.2/4.1.3 scope", "active-site, binding-site, or metal-site residue evidence"],
+    "counterevidence_features": ["PLP-dependent lyase, ThDP-dependent decarboxylase/transketolase, or class-I Schiff-base aldolase chemistry", "hydrolase, transferase, oxidoreductase, or non-4.1.2/4.1.3 side EC", "EC-only evidence with no metal, lyase/aldolase, Rhea, active-site, or structure corroborator", "multi-fingerprint signal where an established fingerprint independently fires"],
+    "uncertainty_axes": ["Zn vs Co metal identity", "aldol cleavage vs condensation direction", "donor/acceptor substrate class", "class-II fold subclass and metal stoichiometry"],
+    "seed_examples": ["2-dehydro-3-deoxy-phosphogluconate aldolase", "fructose-bisphosphate aldolase class II", "L-fuculose phosphate aldolase", "D-tagatose-bisphosphate aldolase"],
+    "deploy_missing_active_site_context": {
+      "type": "metal_and_oxoacid_substrate",
+      "detail": "the catalytic divalent metal, oxoacid/aldehyde substrate, enolate state, and C-C bond geometry are absent from apo predicted structures",
+      "reconstruction_path": "Path A sequence->metal/lyase/aldolase channel plus Rhea C-C reaction evidence, or canonical metal/substrate/intermediate graft (Path B)",
+      "silver_reachability": "moderate; metal-site and aldolase family evidence is often annotated, but substrate/intermediate geometry and metal identity require reconstruction"
+    }
+  },
+  {
     "id": "nad_p_dehydrogenase",
     "name": "NAD(P)-dependent dehydrogenase/reductase",
     "enzyme_space": ["short-chain dehydrogenases/reductases (SDR)", "medium-chain dehydrogenases/reductases (MDR)", "aldo-keto reductases (AKR)", "Rossmann-fold oxidoreductases"],

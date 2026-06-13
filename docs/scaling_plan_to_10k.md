@@ -13,6 +13,45 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: ATP amide ligase 23fp and class-II metal aldolase 24fp expansions
+are now applied.** The prompt's older P450 instruction was superseded by the current handoff:
+P450, non-heme 2OG, CoA, cofactor-independent isomerase, molybdopterin, copper, and non-PLP
+racemase/epimerase were already applied. This run followed the latest lane evidence. First,
+`atp_amide_ligase` was wired with EC 6.3 as scope-only and ATP/ADP/phosphate/Mg, Ligase/ATP-grasp
+keyword/domain, Rhea amide/C-N/acyl-phosphate chemistry, or active-/binding-site mechanism
+corroborators; biotin/carboxylase, kinase/phosphotransferase, hydrolase/transferase side rows, and
+multi-signal rows are held. It applied **150** bronze rows
+(`artifacts/v3_atp_amide_ligase_sourcing_preview_current702.json`), taking external bronze
+**4636 -> 4786** and combined surface **5338 -> 5488**. A post-ATP source-supply scout then selected
+`class_ii_metal_aldolase` as the next clean reviewed-Swiss-Prot lane
+(`artifacts/v3_next_lane_source_supply_scout_after_atp_ligase_current702_20260613.json`). Its
+mechanism scout (`artifacts/v3_class_ii_metal_aldolase_mechanism_handle_scout_current702_20260613.json`)
+examined **80** entries with **0** fetch failures and found active/binding/metal site **80/80**,
+metal **80/80**, Lyase **80/80**, Rhea **80/80**, aldolase/oxoacid **61/80**, and C-C reaction text
+**58/80**, plus boundary signals requiring PLP/ThDP/Schiff-class-I/hydrolase/transferase/
+oxidoreductase/side-EC guards. The lane was wired as a deliberate 24-fingerprint universe change:
+`class_ii_metal_aldolase` fingerprint + `carbon_carbon_lyase` ontology family, EC 4.1.2/4.1.3
+scope-only rule, metal/Lyase/aldolase/C-C/Rhea/active-site corroborators, 24fp OOS preregistration
+re-freeze, offline leakage/trust-tier tests, non-destructive preview, then explicit apply. Live
+apply (`scripts/source_class_ii_metal_aldolase_family.py --max-records-per-lane 240 --cap-ceiling
+150 --apply`) fetched **240**, mechanism-corroborated **182**, admitted/applied **150**, and held
+**7** off-target rows. External bronze is now **4936**; combined label surface is **5638**; frozen
+current702 remains **702** with sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before/after both applies.
+Honest counters stay separate: **positive_bronze 3925**, **oos_bronze 1696**,
+**silver_ready 0**, **silver_confirmed 17**, **projected 0**. Remaining positive-bronze gap to 10k:
+**6075**. Post-apply audit: **24 fingerprints**, fingerprint Gini **0.1581**, holes `[]`, only
+`metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. All added rows keep
+`predictive_evidence []`; EC/name/keyword/Rhea/prose handles remain excluded-context admission
+evidence and are never predictive. Follow-on source-supply scout
+`artifacts/v3_next_lane_source_supply_scout_after_class_ii_aldolase_current702_20260613.json` ranked
+`atp_phosphotransferase_kinase` first, but the mechanism scout
+`artifacts/v3_atp_phosphotransferase_kinase_mechanism_handle_scout_current702_20260613.json` blocks a
+broad EC 2.7 25fp lane for now: ATP/ADP/phosphate, kinase text, and Rhea were present in **80/80**,
+but multi-subclass boundary rows were **75/80** and only **4** rows were likely wireable without a
+subclass split. Next recommended action: split a narrow kinase subclass with clean non-EC handles, or
+choose the next cleaner lane from the scout ranking; **ThDP enzyme** is the best fallback candidate.
+
 **2026-06-13 automation update: copper oxidoreductase 21fp and non-PLP racemase/epimerase 22fp
 expansions are now applied.** The prompt's older P450 instruction was superseded by the current
 handoff: P450, non-heme 2OG, CoA, cofactor-independent isomerase, and molybdopterin were already

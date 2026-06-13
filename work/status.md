@@ -5,17 +5,43 @@ Generated from `work/progress_log.jsonl`.
 ## Active Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
-- Started UTC: `2026-06-13T02:58:19Z`
-- Started local: `Fri Jun 12 21:58:19 CDT 2026`
-- Focus: copper oxidoreductase from the latest handoff, then the post-copper 10k-path lane selected by current evidence (`metal_racemase_epimerase_non_plp`).
-- Result: applied +119 external bronze rows for `copper_oxidoreductase` and +108 for `metal_racemase_epimerase_non_plp`; external bronze 4409 -> 4636; combined surface 5111 -> 5338; frozen current702 sha stayed `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
-- Family/gate setup: added `copper_oxidoreductase` fingerprint + `copper_redox` ontology node (`label_factory_v1_21fp`) and `metal_racemase_epimerase_non_plp` fingerprint + `stereochemical_isomerization` ontology node (`label_factory_v1_22fp`); re-froze OOS preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_21fp_1025.json` and `artifacts/v3_external_hard_negative_next_tranche_preregistration_22fp_1025.json`.
-- Apply commands: `PYTHONPATH=src python scripts/source_copper_oxidoreductase_family.py --max-records-per-lane 80 --apply` and `PYTHONPATH=src python scripts/source_metal_racemase_epimerase_family.py --max-records-per-lane 320 --cap-ceiling 150 --apply`. Copper fetched 149, mechanism-corroborated 140, admitted/applied 119, throttled/rejected 21, held 7 no-corroboration rows, skipped 2, held at cap 0, duplicate skipped 0. Racemase fetched 320, mechanism-corroborated 108, admitted/applied 108, held 133 off-target NAD(P) rows, held 48 no-corroboration rows, skipped 31, held at cap 0, duplicate skipped 0.
-- Guardrails: EC scope-only and never counted; broadened handles are admission/excluded-context only; `predictive_evidence []`; tier bronze / automation_curated / uniprot namespace; dedup vs both registries; multi-fingerprint-signal/off-target rows held; cap 250 for copper and chemistry-confusable cap 150 for racemase enforced.
-- Coverage audit: 5338 combined labels; fingerprint Gini 0.1665; holes `[]`; over-cap `['metal_dependent_hydrolase']`; next-batch floor deficit 0. Novelty replay: 4636 expansion rows, decisions `{'admit': 4180, 'reject': 47, 'throttle': 409}`, would-not-readmit 456 (0.0984).
-- Honest counters: `positive_bronze=3625`, `oos_bronze=1696`, `silver_ready=0`, `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 6375.
-- Follow-on: after removing already-applied `metal_racemase_epimerase_non_plp`, the next clean source-supply candidate is `atp_amide_ligase` (EC 6.3; reviewed supply 13599; confusable cap 150). Start with a mechanism-handle scout and boundary guard design before any 23fp preview/apply.
-- Validation: focused pytest `399 passed, 14 subtests passed`; `validate` passed (12 source records, 22 mechanism fingerprints, 25 ontology families, 702 curated labels); JSON/JSONL parse and `git diff --check` passed during closeout.
+- Started UTC: `2026-06-13T03:58:23Z`
+- Started local: `Fri Jun 12 22:58:23 CDT 2026`
+- Focus: `atp_amide_ligase` from the latest handoff, then the post-ATP 10k-path lane selected by
+  current evidence (`class_ii_metal_aldolase`). The older prompt's P450 direction was already
+  complete in prior runs.
+- Result: applied +150 external bronze rows for `atp_amide_ligase` and +150 for
+  `class_ii_metal_aldolase`; external bronze 4636 -> 4936; combined surface 5338 -> 5638; frozen
+  current702 sha stayed `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Family/gate setup: added `atp_amide_ligase` fingerprint (`label_factory_v1_23fp`) and
+  `class_ii_metal_aldolase` fingerprint + `carbon_carbon_lyase` ontology family
+  (`label_factory_v1_24fp`); re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_23fp_1025.json` and
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_24fp_1025.json`.
+- Apply commands:
+  `PYTHONPATH=src python scripts/source_atp_amide_ligase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`
+  and
+  `PYTHONPATH=src python scripts/source_class_ii_metal_aldolase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  ATP fetched 240, mechanism-corroborated 171, admitted/applied 150, held 8 off-target rows,
+  duplicate skipped 0. Class-II fetched 240, mechanism-corroborated 182, admitted/applied 150, held
+  7 off-target rows, duplicate skipped 0.
+- Guardrails: EC scope-only and never counted; broadened handles are admission/excluded-context only;
+  `predictive_evidence []`; tier bronze / automation_curated / uniprot namespace; dedup vs both
+  registries; multi-fingerprint-signal/off-target rows held; chemistry-confusable cap 150 enforced
+  for both new families.
+- Coverage audit: 5638 combined labels; fingerprint Gini 0.1581; holes `[]`; over-cap
+  `['metal_dependent_hydrolase']`; next-batch floor deficit 0. Novelty replay: 4936 expansion rows,
+  decisions `{'admit': 4480, 'reject': 47, 'throttle': 409}`, would-not-readmit 456 (0.0924).
+- Honest counters: `positive_bronze=3925`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap 6075.
+- Follow-on: post-class-II source scout ranked `atp_phosphotransferase_kinase` first, but its
+  mechanism scout found 75/80 multi-subclass boundary rows and only 4 likely clean rows. Do not
+  broad-wire EC 2.7; split a narrow kinase subclass or use the next cleaner lane, with ThDP enzyme
+  the best fallback candidate.
+- Validation: focused pytest `156 passed`; leakage prereg/import-gate subset `14 passed, 171
+  deselected`; import/transfer-scope tests `133 passed`; `validate` passed (12 source records, 24
+  mechanism fingerprints, 26 ontology families, 702 curated labels); JSON/JSONL parse and
+  `git diff --check` passed during closeout.
 
 ## Previous Automation Snapshot
 
@@ -733,3 +759,9 @@ Generated from `work/progress_log.jsonl`.
 - Closeout integrity checks passed at `2026-06-13T02:35:47Z`: targeted pytest `111 passed`; leakage prereg/import-gate `10 passed, 171 deselected`; CLI validate passed; JSON parse checks passed; `git diff --check` passed. Ready for fetch, commit, push, and release-lock after the required productive block window.
 
 - Additional import/transfer-scope coverage passed at `2026-06-13T02:37:23Z`: `PYTHONPATH=src pytest tests/test_external_annotation_anchored_import.py tests/test_transfer_scope.py -q` -> `133 passed` after updating the stale 20fp inverse-gate fixture expectation for `molybdopterin_oxidoreductase`.
+
+## Automation run start - ce-nad-glyco-floor-expansion
+
+- STARTED_AT: `2026-06-13T03:58:23Z`
+- STARTED_LOCAL: `Fri Jun 12 22:58:23 CDT 2026`
+- Initial lane: latest handoff supersedes older P450 prompt; proceeding with ATP amide ligase scout unless gates redirect.

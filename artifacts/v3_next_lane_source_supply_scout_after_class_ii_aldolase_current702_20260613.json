@@ -1,0 +1,234 @@
+{
+  "artifact_id": "v3_next_lane_source_supply_scout_after_class_ii_aldolase_current702_20260613",
+  "baseline": {
+    "combined_positive_labels": 3942,
+    "expansion_positive_labels": 3712,
+    "frozen_positive_labels": 230,
+    "live_fingerprint_count": 24
+  },
+  "candidates_probed": 6,
+  "created_utc": "2026-06-13T04:33:19Z",
+  "current_fingerprint_count": 24,
+  "fetch_failure_count": 0,
+  "guardrails": {
+    "ec_used_for_scope_supply_only": true,
+    "labels_created": false,
+    "mechanism_handle_scout_required_before_wiring": true,
+    "predictive_features_emitted": false,
+    "registry_written": false
+  },
+  "ranked_candidates": [
+    {
+      "applied_cap": 150,
+      "candidate_family": "atp_phosphotransferase_kinase",
+      "chemistry": "ATP-dependent kinase, in-line phosphoryl transfer (P-loop / catalytic-loop Asp + Mg)",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "ATP + Mg2+ + EC 2.7.* (phosphoryl DONOR -> distinguishes from hydrolase P-O cleavage)",
+      "cofactor_handle_capture_ratio": 0.639,
+      "count_query": "(ec:2.7.*) AND (reviewed:true) AND ((cc_cofactor:atp) OR (cc_cofactor:magnesium) OR (keyword:Kinase)) AND (keyword:Transferase)",
+      "ec_class": "EC 2.7 (transferase, phosphorus group)",
+      "ec_only_supply_ceiling": 34140,
+      "ec_overlap_with_existing_fingerprints": [],
+      "ec_prefixes": [
+        "2.7.1",
+        "2.7.2",
+        "2.7.4",
+        "2.7.7",
+        "2.7.11"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 5.0,
+      "mechanistically_distinct": true,
+      "notes": "Mg overlaps metal hydrolases but the ATP donor + EC 2.7 (transfer, not hydrolysis) separates.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 30,
+        "sample_rows": 200,
+        "sample_rows_with_full_ec": 200
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 21822,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "thiamine_diphosphate_enzyme",
+      "chemistry": "Thiamine-diphosphate ylide catalysis (transketolase / decarboxylase), Mg-anchored ThDP",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "thiamine diphosphate (ThDP) + Mg2+ (distinguishes from PLP at shared EC 4.1.1)",
+      "cofactor_handle_capture_ratio": 0.18,
+      "count_query": "(reviewed:true) AND ((ec:2.2.1.*) OR (ec:4.1.1.*) OR (ec:1.2.4.*)) AND ((cc_cofactor:thiamine) OR (keyword:Thiamine\\ pyrophosphate))",
+      "ec_class": "EC 2.2.1 / 4.1.1 / 1.2 (ThDP-dependent)",
+      "ec_only_supply_ceiling": 7020,
+      "ec_overlap_with_existing_fingerprints": [
+        "molybdopterin_oxidoreductase",
+        "plp_dependent_enzyme"
+      ],
+      "ec_prefixes": [
+        "2.2.1",
+        "4.1.1",
+        "1.2.4"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 6.818,
+      "mechanistically_distinct": true,
+      "notes": "EC 4.1.1 overlaps PLP decarboxylase lane; cofactor (ThDP vs PLP) separates.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 22,
+        "sample_rows": 200,
+        "sample_rows_with_full_ec": 193
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 1262,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "zinc_lyase_hydratase",
+      "chemistry": "Zn-dependent hydro-lyase (carbonic anhydrase / related), reversible H2O elimination",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "catalytic Zn2+ + EC 4.2.1.* (lyase, NOT hydrolase EC 3)",
+      "cofactor_handle_capture_ratio": 0.057,
+      "count_query": "(ec:4.2.1.*) AND (reviewed:true) AND ((cc_cofactor:zinc) OR (keyword:Zinc))",
+      "ec_class": "EC 4.2.1 (lyase, hydro-lyase)",
+      "ec_only_supply_ceiling": 8582,
+      "ec_overlap_with_existing_fingerprints": [
+        "cobalamin_radical_rearrangement"
+      ],
+      "ec_prefixes": [
+        "4.2.1"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 7.143,
+      "mechanistically_distinct": true,
+      "notes": "Zn overlaps metal hydrolases but EC 4 (elimination) not EC 3 (hydrolysis) separates.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 21,
+        "sample_rows": 200,
+        "sample_rows_with_full_ec": 196
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 488,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "enolase_superfamily_lyase",
+      "chemistry": "Mg2+ enolase-superfamily lyase, metal-stabilized enolate intermediate",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "Mg2+ + enolase-superfamily EC 4.2.1.11/5.1/4.2.1 (TIM-barrel)",
+      "cofactor_handle_capture_ratio": 0.107,
+      "count_query": "(reviewed:true) AND (ec:4.2.1.11) AND ((cc_cofactor:magnesium) OR (keyword:Magnesium))",
+      "ec_class": "EC 4.2.1.11 + (lyase, Mg enolase superfamily)",
+      "ec_only_supply_ceiling": 8582,
+      "ec_overlap_with_existing_fingerprints": [
+        "cobalamin_radical_rearrangement"
+      ],
+      "ec_prefixes": [
+        "4.2.1"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 150.0,
+      "mechanistically_distinct": true,
+      "notes": "Overlaps the zinc_lyase_hydratase EC 4.2.1 lane (different metal) -> confusable.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 1,
+        "sample_rows": 200,
+        "sample_rows_with_full_ec": 200
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 915,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "biotin_dependent_carboxylase",
+      "chemistry": "Biotin-dependent carboxylase, CO2 transfer via carboxy-biotin, ATP + Mg",
+      "chemistry_confusable": false,
+      "clean_family": false,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "biotin + ATP + Mg2+ + EC 6.4.1/6.3.4 (distinct biotin prosthetic group)",
+      "cofactor_handle_capture_ratio": 0.022,
+      "count_query": "(reviewed:true) AND ((ec:6.4.1.*) OR (ec:6.3.4.*)) AND ((cc_cofactor:biotin) OR (keyword:Biotin))",
+      "ec_class": "EC 6.4.1 / 6.3.4 (ligase, carboxylase, biotin)",
+      "ec_only_supply_ceiling": 4071,
+      "ec_overlap_with_existing_fingerprints": [
+        "atp_amide_ligase"
+      ],
+      "ec_prefixes": [
+        "6.4.1",
+        "6.3.4"
+      ],
+      "estimated_admissible_diverse_bronze": 44,
+      "floor_reachable": false,
+      "labels_per_distinct_reaction_upper_bound": 4.4,
+      "mechanistically_distinct": true,
+      "notes": "Distinct biotin prosthetic group; modest supply.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 10,
+        "sample_rows": 88,
+        "sample_rows_with_full_ec": 88
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 88,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "manganese_iron_superoxide_dismutase",
+      "chemistry": "Mn/Fe superoxide dismutase, single-metal redox cycling",
+      "chemistry_confusable": false,
+      "clean_family": false,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "Mn or Fe (mononuclear, SOD fold) + EC 1.15.1.1",
+      "cofactor_handle_capture_ratio": 0.002,
+      "count_query": "(ec:1.15.1.1) AND (reviewed:true) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron))",
+      "ec_class": "EC 1.15.1.1 (oxidoreductase, superoxide)",
+      "ec_only_supply_ceiling": 470,
+      "ec_overlap_with_existing_fingerprints": [
+        "molybdopterin_oxidoreductase"
+      ],
+      "ec_prefixes": [
+        "1.15.1"
+      ],
+      "estimated_admissible_diverse_bronze": 0,
+      "floor_reachable": false,
+      "labels_per_distinct_reaction_upper_bound": 0.0,
+      "mechanistically_distinct": true,
+      "notes": "Narrow single-reaction lane; floor reach depends on ortholog breadth.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 1,
+        "sample_rows": 1,
+        "sample_rows_with_full_ec": 1
+      },
+      "reaction_poor_warning": false,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 1,
+      "supply_keep_factor": 0.5
+    }
+  ],
+  "recommendation": {
+    "reason": "Highest remaining clean reviewed-Swiss-Prot lane by cap-reachable supply and EC diversity; requires mechanism-handle scout and guarded 25fp wiring before any apply.",
+    "recommended_next_lane": "atp_phosphotransferase_kinase",
+    "wire_next_lane_now": true
+  },
+  "schema_version": "next_lane_source_supply_scout.v1",
+  "selection_basis": "post-class-II-aldolase remaining reviewed Swiss-Prot 10k-path breadth candidates; EC/cofactor used only for supply/scope estimates",
+  "status": "non_destructive_source_supply_scout_no_registry_write"
+}

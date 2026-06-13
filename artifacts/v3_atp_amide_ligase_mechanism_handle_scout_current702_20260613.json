@@ -1,0 +1,1266 @@
+{
+  "artifact_id": "v3_atp_amide_ligase_mechanism_handle_scout_current702_20260613",
+  "candidate_family": "atp_amide_ligase",
+  "counts": {
+    "active_or_binding_site_context": 73,
+    "amide_or_c_n_ligation_text": 62,
+    "atp_grasp_text": 1,
+    "biotin_or_carboxylase_boundary": 30,
+    "hydrolase_side_ec_boundary": 7,
+    "ligase_text_or_keyword": 80,
+    "likely_wireable_by_non_ec_handles": 42,
+    "mg_context": 54,
+    "non_6_3_side_ec_boundary": 16,
+    "rhea_adp_or_phosphate": 78,
+    "rhea_cross_reference_present": 78,
+    "rhea_or_feature_atp": 75,
+    "transferase_side_ec_boundary": 9
+  },
+  "created_utc": "2026-06-13T04:01:39Z",
+  "entries_examined": 80,
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "guardrails": {
+    "boundary_guards_for_future_lane": [
+      "kinase/phosphotransferase",
+      "biotin carboxylase EC 6.3.4/6.4.1",
+      "generic ATP transferase",
+      "hydrolase side EC",
+      "multi-fingerprint signal"
+    ],
+    "ec_never_counted_corroborator": true,
+    "ec_scope_only": true,
+    "labels_emitted": false,
+    "predictive_features_emitted": false,
+    "registry_written": false,
+    "required_counted_mechanism_axes_for_future_lane": [
+      "ATP/Mg or acyl-phosphate/ADP-phosphate Rhea participant",
+      "Ligase/ATP-grasp keyword or family/domain",
+      "active-/binding-site evidence",
+      "structure handle as deferred promotion context"
+    ]
+  },
+  "lane_queries": [
+    {
+      "lane_id": "atp_amide_ligase_reviewed_ec63_ligase",
+      "query": "(reviewed:true) AND (ec:6.3.*) AND (keyword:Ligase)",
+      "target_family_lane": "atp_amide_ligase"
+    }
+  ],
+  "lane_summaries": [
+    {
+      "lane_id": "atp_amide_ligase_reviewed_ec63_ligase",
+      "query": "(reviewed:true) AND (ec:6.3.*) AND (keyword:Ligase)",
+      "record_count": 80,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A6.3.%2A%29+AND+%28keyword%3ALigase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=80",
+      "status": "query_fetched",
+      "target_family_lane": "atp_amide_ligase"
+    }
+  ],
+  "narrowed_non_biotin_followup": {
+    "counts": {
+      "active_or_binding_site_context": 69,
+      "amide_or_c_n_ligation_text": 63,
+      "atp_grasp_text": 1,
+      "hydrolase_side_ec_boundary": 2,
+      "ligase_text_or_keyword": 80,
+      "likely_wireable_by_non_ec_handles": 68,
+      "mg_context": 53,
+      "non_6_3_side_ec_boundary": 10,
+      "rhea_adp_or_phosphate": 78,
+      "rhea_cross_reference_present": 78,
+      "rhea_or_feature_atp": 78,
+      "transferase_side_ec_boundary": 5
+    },
+    "created_utc": "2026-06-13T04:03:30Z",
+    "entries_examined": 80,
+    "fetch_failure_count": 0,
+    "fetch_failures": [],
+    "lane_queries": [
+      {
+        "lane_id": "atp_amide_ligase_reviewed_ec63_ligase_narrow_non_biotin",
+        "query": "(reviewed:true) AND (ec:6.3.*) AND (keyword:Ligase) NOT (ec:6.3.4.*) NOT (keyword:Biotin) NOT (protein_name:carboxylase)",
+        "target_family_lane": "atp_amide_ligase"
+      }
+    ],
+    "lane_summaries": [
+      {
+        "lane_id": "atp_amide_ligase_reviewed_ec63_ligase_narrow_non_biotin",
+        "query": "(reviewed:true) AND (ec:6.3.*) AND (keyword:Ligase) NOT (ec:6.3.4.*) NOT (keyword:Biotin) NOT (protein_name:carboxylase)",
+        "record_count": 80,
+        "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A6.3.%2A%29+AND+%28keyword%3ALigase%29+NOT+%28ec%3A6.3.4.%2A%29+NOT+%28keyword%3ABiotin%29+NOT+%28protein_name%3Acarboxylase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=80",
+        "status": "query_fetched",
+        "target_family_lane": "atp_amide_ligase"
+      }
+    ],
+    "sample_rows": [
+      {
+        "accession": "O15067",
+        "cofactors": [],
+        "ec_numbers": [
+          "6.3.5.3"
+        ],
+        "feature_codes": [
+          "ACT_SITE",
+          "BINDING",
+          "MOD_RES"
+        ],
+        "keywords": [
+          "ATP-binding",
+          "Cytoplasm",
+          "Glutamine amidotransferase",
+          "Ligase",
+          "Magnesium",
+          "Metal-binding",
+          "Nucleotide-binding",
+          "Phosphoprotein",
+          "Proteomics identification",
+          "Purine biosynthesis",
+          "Reference proteome"
+        ],
+        "protein_name": "Phosphoribosylformylglycinamidine synthase (FGAM synthase) (FGAMS) (EC 6.3.5.3) (Formylglycinamide ribonucleotide amidotransferase) (FGAR amidotransferase) (FGAR-AT) (Formylglycinamide ribotide amidotransferase) (Phosphoribosylformylglycineamide amidotransferase)",
+        "rhea_count": 1,
+        "sample_reaction_texts": [
+          "N(2)-formyl-N(1)-(5-phospho-beta-D-ribosyl)glycinamide + L-glutamine + ATP + H2O = 2-formamido-N(1)-(5-O-phospho-beta-D-ribosyl)acetamidine + L-glutamate + ADP + phosphate + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": true,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "O75879",
+        "cofactors": [],
+        "ec_numbers": [
+          "6.3.5.-"
+        ],
+        "feature_codes": [
+          "MOD_RES"
+        ],
+        "keywords": [
+          "ATP-binding",
+          "Ligase",
+          "Mitochondrion",
+          "Nucleotide-binding",
+          "Primary mitochondrial disease",
+          "Protein biosynthesis",
+          "Proteomics identification",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "protein_name": "Glutamyl-tRNA(Gln) amidotransferase subunit B, mitochondrial (Glu-AdT subunit B) (EC 6.3.5.-) (Cytochrome c oxidase assembly factor PET112 homolog)",
+        "rhea_count": 3,
+        "sample_reaction_texts": [
+          "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)",
+          "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)",
+          "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": false,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": false,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "P15104",
+        "cofactors": [
+          "Mg(2+)",
+          "Mn(2+)"
+        ],
+        "ec_numbers": [
+          "2.3.1.225",
+          "6.3.1.2"
+        ],
+        "feature_codes": [
+          "BINDING",
+          "MOD_RES"
+        ],
+        "keywords": [
+          "3D-structure",
+          "Acetylation",
+          "Angiogenesis",
+          "ATP-binding",
+          "Cell membrane",
+          "Cytoplasm",
+          "Disease variant",
+          "Endoplasmic reticulum",
+          "Epilepsy",
+          "Intellectual disability",
+          "Ligase",
+          "Lipoprotein",
+          "Magnesium",
+          "Manganese",
+          "Membrane",
+          "Metal-binding",
+          "Microsome",
+          "Mitochondrion",
+          "Nucleotide-binding",
+          "Palmitate",
+          "Phosphoprotein",
+          "Proteomics identification",
+          "Reference proteome",
+          "Transferase",
+          "Ubl conjugation"
+        ],
+        "protein_name": "Glutamine synthetase (GS) (EC 6.3.1.2) (Glutamate--ammonia ligase) (Palmitoyltransferase GLUL) (EC 2.3.1.225)",
+        "rhea_count": 4,
+        "sample_reaction_texts": [
+          "L-glutamate + NH4(+) + ATP = L-glutamine + ADP + phosphate + H(+)",
+          "L-cysteinyl-[protein] + hexadecanoyl-CoA = S-hexadecanoyl-L-cysteinyl-[protein] + CoA",
+          "L-cysteinyl-[protein] + hexadecanoyl-CoA = S-hexadecanoyl-L-cysteinyl-[protein] + CoA"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": false,
+          "magnesium": true,
+          "side_non_6_3": true
+        }
+      },
+      {
+        "accession": "P48506",
+        "cofactors": [],
+        "ec_numbers": [
+          "6.3.2.2"
+        ],
+        "feature_codes": [
+          "MOD_RES"
+        ],
+        "keywords": [
+          "Acetylation",
+          "ATP-binding",
+          "Disease variant",
+          "Glutathione biosynthesis",
+          "Hereditary hemolytic anemia",
+          "Ligase",
+          "Nucleotide-binding",
+          "Phosphoprotein",
+          "Proteomics identification",
+          "Reference proteome"
+        ],
+        "protein_name": "Glutamate--cysteine ligase catalytic subunit (EC 6.3.2.2) (GCS heavy chain) (Gamma-ECS) (Gamma-glutamylcysteine synthetase)",
+        "rhea_count": 2,
+        "sample_reaction_texts": [
+          "L-cysteine + L-glutamate + ATP = gamma-L-glutamyl-L-cysteine + ADP + phosphate + H(+)",
+          "(2S)-2-aminobutanoate + L-glutamate + ATP = gamma-L-glutamyl-(2S)-2-aminobutanoate + ADP + phosphate + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": false,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": false,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "Q6EMB2",
+        "cofactors": [
+          "Mg(2+)"
+        ],
+        "ec_numbers": [
+          "6.3.2.-"
+        ],
+        "feature_codes": [
+          "BINDING",
+          "SITE"
+        ],
+        "keywords": [
+          "Alternative splicing",
+          "ATP-binding",
+          "Cell projection",
+          "Cilium",
+          "Cone-rod dystrophy",
+          "Cytoplasm",
+          "Cytoskeleton",
+          "Disease variant",
+          "Ligase",
+          "Magnesium",
+          "Metal-binding",
+          "Microtubule",
+          "Nucleotide-binding",
+          "Nucleus",
+          "Proteomics identification",
+          "Reference proteome",
+          "Transcription"
+        ],
+        "protein_name": "Tubulin polyglutamylase TTLL5 (EC 6.3.2.-) (SRC1 and TIF2-associated modulatory protein) (STAMP protein) (Tubulin--tyrosine ligase-like protein 5)",
+        "rhea_count": 6,
+        "sample_reaction_texts": [
+          "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)",
+          "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)",
+          "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": true,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "P48637",
+        "cofactors": [
+          "Mg(2+)"
+        ],
+        "ec_numbers": [
+          "6.3.2.3"
+        ],
+        "feature_codes": [
+          "BINDING",
+          "MOD_RES"
+        ],
+        "keywords": [
+          "3D-structure",
+          "Acetylation",
+          "Alternative splicing",
+          "ATP-binding",
+          "Direct protein sequencing",
+          "Disease variant",
+          "Glutathione biosynthesis",
+          "Hereditary hemolytic anemia",
+          "Ligase",
+          "Magnesium",
+          "Metal-binding",
+          "Nucleotide-binding",
+          "Phosphoprotein",
+          "Proteomics identification",
+          "Reference proteome"
+        ],
+        "protein_name": "Glutathione synthetase (GSH synthetase) (GSH-S) (EC 6.3.2.3) (Glutathione synthase)",
+        "rhea_count": 2,
+        "sample_reaction_texts": [
+          "gamma-L-glutamyl-L-cysteine + glycine + ATP = glutathione + ADP + phosphate + H(+)",
+          "gamma-L-glutamyl-(2S)-2-aminobutanoate + glycine + ATP = ophthalmate + ADP + phosphate + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": false,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": true,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "P49915",
+        "cofactors": [
+          "Mg(2+)"
+        ],
+        "ec_numbers": [
+          "6.3.5.2"
+        ],
+        "feature_codes": [
+          "ACT_SITE",
+          "BINDING",
+          "MOD_RES"
+        ],
+        "keywords": [
+          "3D-structure",
+          "Acetylation",
+          "Alternative splicing",
+          "ATP-binding",
+          "Chromosomal rearrangement",
+          "Cytoplasm",
+          "Direct protein sequencing",
+          "Glutamine amidotransferase",
+          "GMP biosynthesis",
+          "Ligase",
+          "Nucleotide-binding",
+          "Phosphoprotein",
+          "Proteomics identification",
+          "Proto-oncogene",
+          "Purine biosynthesis",
+          "Reference proteome"
+        ],
+        "protein_name": "GMP synthase [glutamine-hydrolyzing] (EC 6.3.5.2) (GMP synthetase) (Glutamine amidotransferase)",
+        "rhea_count": 1,
+        "sample_reaction_texts": [
+          "XMP + L-glutamine + ATP + H2O = GMP + L-glutamate + AMP + diphosphate + 2 H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": true,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "Q05932",
+        "cofactors": [
+          "K(+)",
+          "NH4(+)"
+        ],
+        "ec_numbers": [
+          "6.3.2.17"
+        ],
+        "feature_codes": [
+          "BINDING",
+          "MOD_RES"
+        ],
+        "keywords": [
+          "Acetylation",
+          "Alternative initiation",
+          "Alternative splicing",
+          "ATP-binding",
+          "Cytoplasm",
+          "Ligase",
+          "Magnesium",
+          "Membrane",
+          "Metal-binding",
+          "Mitochondrion",
+          "Mitochondrion inner membrane",
+          "Nucleotide-binding",
+          "One-carbon metabolism",
+          "Phosphoprotein",
+          "Proteomics identification",
+          "Reference proteome",
+          "Transit peptide"
+        ],
+        "protein_name": "Folylpolyglutamate synthase, mitochondrial (EC 6.3.2.17) (Folylpoly-gamma-glutamate synthetase) (FPGS) (Tetrahydrofolylpolyglutamate synthase) (Tetrahydrofolate synthase)",
+        "rhea_count": 3,
+        "sample_reaction_texts": [
+          "(6S)-5,6,7,8-tetrahydrofolyl-(gamma-L-Glu)(n) + L-glutamate + ATP = (6S)-5,6,7,8-tetrahydrofolyl-(gamma-L-Glu)(n+1) + ADP + phosphate + H(+)",
+          "(6S)-5,6,7,8-tetrahydrofolyl-(gamma-L-Glu)(n) + L-glutamate + ATP = (6S)-5,6,7,8-tetrahydrofolyl-(gamma-L-Glu)(n+1) + ADP + phosphate + H(+)",
+          "(6S)-5,6,7,8-tetrahydrofolyl-(gamma-L-Glu)(n) + L-glutamate + ATP = (6S)-5,6,7,8-tetrahydrofolyl-(gamma-L-Glu)(n+1) + ADP + phosphate + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": true,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "Q6IA69",
+        "cofactors": [],
+        "ec_numbers": [
+          "6.3.5.1"
+        ],
+        "feature_codes": [
+          "ACT_SITE",
+          "BINDING"
+        ],
+        "keywords": [
+          "3D-structure",
+          "Alternative splicing",
+          "ATP-binding",
+          "Disease variant",
+          "Ligase",
+          "NAD",
+          "Nucleotide-binding",
+          "Proteomics identification",
+          "Reference proteome"
+        ],
+        "protein_name": "Glutamine-dependent NAD(+) synthetase (EC 6.3.5.1) (NAD(+) synthase [glutamine-hydrolyzing]) (NAD(+) synthetase)",
+        "rhea_count": 1,
+        "sample_reaction_texts": [
+          "deamido-NAD(+) + L-glutamine + ATP + H2O = L-glutamate + AMP + diphosphate + NAD(+) + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": false,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "Q8IXN7",
+        "cofactors": [
+          "Mg(2+)",
+          "Mn(2+)"
+        ],
+        "ec_numbers": [
+          "6.3.2.41",
+          "6.3.2.42"
+        ],
+        "feature_codes": [
+          "BINDING",
+          "MOD_RES"
+        ],
+        "keywords": [
+          "ATP-binding",
+          "Cytoplasm",
+          "Ligase",
+          "Magnesium",
+          "Manganese",
+          "Metal-binding",
+          "Nucleotide-binding",
+          "Phosphoprotein",
+          "Proteomics identification",
+          "Reference proteome"
+        ],
+        "protein_name": "N-acetylaspartylglutamate synthase A (NAAG synthetase A) (NAAGS) (EC 6.3.2.41) (N-acetylaspartylglutamylglutamate synthase A) (EC 6.3.2.42) (Ribosomal protein S6 modification-like protein A)",
+        "rhea_count": 2,
+        "sample_reaction_texts": [
+          "N-acetyl-L-aspartate + L-glutamate + ATP = N-acetyl-L-aspartyl-L-glutamate + ADP + phosphate + H(+)",
+          "N-acetyl-L-aspartate + 2 L-glutamate + 2 ATP = N-acetyl-L-aspartyl-L-glutamyl-L-glutamate + 2 ADP + 2 phosphate + 2 H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": true,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "O43716",
+        "cofactors": [],
+        "ec_numbers": [
+          "6.3.5.-"
+        ],
+        "feature_codes": [],
+        "keywords": [
+          "ATP-binding",
+          "Disease variant",
+          "Ligase",
+          "Mitochondrion",
+          "Nucleotide-binding",
+          "Primary mitochondrial disease",
+          "Protein biosynthesis",
+          "Proteomics identification",
+          "Reference proteome"
+        ],
+        "protein_name": "Glutamyl-tRNA(Gln) amidotransferase subunit C, mitochondrial (Glu-AdT subunit C) (EC 6.3.5.-) (Protein 15E1.2)",
+        "rhea_count": 3,
+        "sample_reaction_texts": [
+          "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)",
+          "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)",
+          "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": false,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": false,
+          "side_non_6_3": false
+        }
+      },
+      {
+        "accession": "Q8N841",
+        "cofactors": [
+          "Mg(2+)"
+        ],
+        "ec_numbers": [
+          "6.3.2.-"
+        ],
+        "feature_codes": [
+          "BINDING",
+          "SITE"
+        ],
+        "keywords": [
+          "Alternative splicing",
+          "ATP-binding",
+          "Cell projection",
+          "Cilium",
+          "Cytoplasm",
+          "Cytoskeleton",
+          "Ligase",
+          "Magnesium",
+          "Metal-binding",
+          "Microtubule",
+          "Nucleotide-binding",
+          "Reference proteome"
+        ],
+        "protein_name": "Tubulin polyglutamylase TTLL6 (EC 6.3.2.-) (Protein polyglutamylase TTLL6) (Tubulin--tyrosine ligase-like protein 6)",
+        "rhea_count": 6,
+        "sample_reaction_texts": [
+          "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)",
+          "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)",
+          "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)"
+        ],
+        "signals": {
+          "active_or_binding_site": true,
+          "adp_or_phosphate": true,
+          "amide_or_c_n": true,
+          "atp": true,
+          "atp_grasp": false,
+          "biotin_boundary": false,
+          "ligase": true,
+          "likely_wireable": true,
+          "magnesium": true,
+          "side_non_6_3": false
+        }
+      }
+    ]
+  },
+  "recommendation": {
+    "reason": "Focused non-biotin EC 6.3 Ligase scout preserves strong ATP/ADP-phosphate, ligase, amide/C-N, and active/binding-site handles while reducing boundary rows; wire only with explicit biotin/carboxylase, kinase, transferase, hydrolase, side-EC, and multi-signal holds.",
+    "wire_23fp_lane": true
+  },
+  "sample_rows": [
+    {
+      "accession": "O15067",
+      "cofactors": [],
+      "ec_numbers": [
+        "6.3.5.3"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "ATP-binding",
+        "Cytoplasm",
+        "Glutamine amidotransferase",
+        "Ligase",
+        "Magnesium",
+        "Metal-binding",
+        "Nucleotide-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Purine biosynthesis",
+        "Reference proteome"
+      ],
+      "protein_name": "Phosphoribosylformylglycinamidine synthase (FGAM synthase) (FGAMS) (EC 6.3.5.3) (Formylglycinamide ribonucleotide amidotransferase) (FGAR amidotransferase) (FGAR-AT) (Formylglycinamide ribotide amidotransferase) (Phosphoribosylformylglycineamide amidotransferase)",
+      "rhea_count": 1,
+      "sample_reaction_texts": [
+        "N(2)-formyl-N(1)-(5-phospho-beta-D-ribosyl)glycinamide + L-glutamine + ATP + H2O = 2-formamido-N(1)-(5-O-phospho-beta-D-ribosyl)acetamidine + L-glutamate + ADP + phosphate + H(+)"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": false,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": true,
+        "magnesium": true,
+        "side_non_6_3": false
+      }
+    },
+    {
+      "accession": "O75879",
+      "cofactors": [],
+      "ec_numbers": [
+        "6.3.5.-"
+      ],
+      "feature_codes": [
+        "MOD_RES"
+      ],
+      "keywords": [
+        "ATP-binding",
+        "Ligase",
+        "Mitochondrion",
+        "Nucleotide-binding",
+        "Primary mitochondrial disease",
+        "Protein biosynthesis",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transit peptide"
+      ],
+      "protein_name": "Glutamyl-tRNA(Gln) amidotransferase subunit B, mitochondrial (Glu-AdT subunit B) (EC 6.3.5.-) (Cytochrome c oxidase assembly factor PET112 homolog)",
+      "rhea_count": 3,
+      "sample_reaction_texts": [
+        "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)",
+        "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)",
+        "L-glutamyl-tRNA(Gln) + L-glutamine + ATP + H2O = L-glutaminyl-tRNA(Gln) + L-glutamate + ADP + phosphate + H(+)"
+      ],
+      "signals": {
+        "active_or_binding_site": false,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": false,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": true,
+        "magnesium": false,
+        "side_non_6_3": false
+      }
+    },
+    {
+      "accession": "P15104",
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "ec_numbers": [
+        "2.3.1.225",
+        "6.3.1.2"
+      ],
+      "feature_codes": [
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Angiogenesis",
+        "ATP-binding",
+        "Cell membrane",
+        "Cytoplasm",
+        "Disease variant",
+        "Endoplasmic reticulum",
+        "Epilepsy",
+        "Intellectual disability",
+        "Ligase",
+        "Lipoprotein",
+        "Magnesium",
+        "Manganese",
+        "Membrane",
+        "Metal-binding",
+        "Microsome",
+        "Mitochondrion",
+        "Nucleotide-binding",
+        "Palmitate",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transferase",
+        "Ubl conjugation"
+      ],
+      "protein_name": "Glutamine synthetase (GS) (EC 6.3.1.2) (Glutamate--ammonia ligase) (Palmitoyltransferase GLUL) (EC 2.3.1.225)",
+      "rhea_count": 4,
+      "sample_reaction_texts": [
+        "L-glutamate + NH4(+) + ATP = L-glutamine + ADP + phosphate + H(+)",
+        "L-cysteinyl-[protein] + hexadecanoyl-CoA = S-hexadecanoyl-L-cysteinyl-[protein] + CoA",
+        "L-cysteinyl-[protein] + hexadecanoyl-CoA = S-hexadecanoyl-L-cysteinyl-[protein] + CoA"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": false,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": false,
+        "magnesium": true,
+        "side_non_6_3": true
+      }
+    },
+    {
+      "accession": "P17812",
+      "cofactors": [],
+      "ec_numbers": [
+        "3.5.1.-",
+        "6.3.4.2"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "ATP-binding",
+        "Chromatin regulator",
+        "Chromosome",
+        "Cytoplasm",
+        "DNA damage",
+        "Glutamine amidotransferase",
+        "Hydrolase",
+        "Immunity",
+        "Ligase",
+        "Nucleotide-binding",
+        "Nucleus",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Pyrimidine biosynthesis",
+        "Reference proteome"
+      ],
+      "protein_name": "CTP synthase 1 (EC 6.3.4.2) (CTP synthetase 1) (Protein-asparagine deamidase CTPS1) (EC 3.5.1.-) (UTP--ammonia ligase 1)",
+      "rhea_count": 4,
+      "sample_reaction_texts": [
+        "UTP + L-glutamine + ATP + H2O = CTP + L-glutamate + ADP + phosphate + 2 H(+)",
+        "L-asparaginyl-[protein] + H2O = L-aspartyl-[protein] + NH4(+)",
+        "L-asparaginyl-[protein] + H2O = L-aspartyl-[protein] + NH4(+)"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": true,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": false,
+        "magnesium": true,
+        "side_non_6_3": true
+      }
+    },
+    {
+      "accession": "P48506",
+      "cofactors": [],
+      "ec_numbers": [
+        "6.3.2.2"
+      ],
+      "feature_codes": [
+        "MOD_RES"
+      ],
+      "keywords": [
+        "Acetylation",
+        "ATP-binding",
+        "Disease variant",
+        "Glutathione biosynthesis",
+        "Hereditary hemolytic anemia",
+        "Ligase",
+        "Nucleotide-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "protein_name": "Glutamate--cysteine ligase catalytic subunit (EC 6.3.2.2) (GCS heavy chain) (Gamma-ECS) (Gamma-glutamylcysteine synthetase)",
+      "rhea_count": 2,
+      "sample_reaction_texts": [
+        "L-cysteine + L-glutamate + ATP = gamma-L-glutamyl-L-cysteine + ADP + phosphate + H(+)",
+        "(2S)-2-aminobutanoate + L-glutamate + ATP = gamma-L-glutamyl-(2S)-2-aminobutanoate + ADP + phosphate + H(+)"
+      ],
+      "signals": {
+        "active_or_binding_site": false,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": false,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": true,
+        "magnesium": false,
+        "side_non_6_3": false
+      }
+    },
+    {
+      "accession": "Q6EMB2",
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "ec_numbers": [
+        "6.3.2.-"
+      ],
+      "feature_codes": [
+        "BINDING",
+        "SITE"
+      ],
+      "keywords": [
+        "Alternative splicing",
+        "ATP-binding",
+        "Cell projection",
+        "Cilium",
+        "Cone-rod dystrophy",
+        "Cytoplasm",
+        "Cytoskeleton",
+        "Disease variant",
+        "Ligase",
+        "Magnesium",
+        "Metal-binding",
+        "Microtubule",
+        "Nucleotide-binding",
+        "Nucleus",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transcription"
+      ],
+      "protein_name": "Tubulin polyglutamylase TTLL5 (EC 6.3.2.-) (SRC1 and TIF2-associated modulatory protein) (STAMP protein) (Tubulin--tyrosine ligase-like protein 5)",
+      "rhea_count": 6,
+      "sample_reaction_texts": [
+        "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)",
+        "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)",
+        "L-glutamyl-[protein] + L-glutamate + ATP = gamma-L-glutamyl-L-glutamyl-[protein] + ADP + phosphate + H(+)"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": false,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": true,
+        "magnesium": true,
+        "side_non_6_3": false
+      }
+    },
+    {
+      "accession": "Q6UB35",
+      "cofactors": [],
+      "ec_numbers": [
+        "6.3.4.3"
+      ],
+      "feature_codes": [
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "Acetylation",
+        "Alternative splicing",
+        "ATP-binding",
+        "Direct protein sequencing",
+        "Ligase",
+        "Mitochondrion",
+        "Nucleotide-binding",
+        "One-carbon metabolism",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome",
+        "Transit peptide"
+      ],
+      "protein_name": "Monofunctional C1-tetrahydrofolate synthase, mitochondrial (EC 6.3.4.3) (Formyltetrahydrofolate synthetase)",
+      "rhea_count": 1,
+      "sample_reaction_texts": [
+        "(6S)-5,6,7,8-tetrahydrofolate + formate + ATP = (6R)-10-formyltetrahydrofolate + ADP + phosphate"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": true,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": false,
+        "magnesium": false,
+        "side_non_6_3": false
+      }
+    },
+    {
+      "accession": "Q9NRF8",
+      "cofactors": [],
+      "ec_numbers": [
+        "6.3.4.2"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "ATP-binding",
+        "Cytoplasm",
+        "Glutamine amidotransferase",
+        "Ligase",
+        "Magnesium",
+        "Metal-binding",
+        "Nucleotide-binding",
+        "Nucleus",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Pyrimidine biosynthesis",
+        "Reference proteome"
+      ],
+      "protein_name": "CTP synthase 2 (EC 6.3.4.2) (CTP synthetase 2) (UTP--ammonia ligase 2)",
+      "rhea_count": 1,
+      "sample_reaction_texts": [
+        "UTP + L-glutamine + ATP + H2O = CTP + L-glutamate + ADP + phosphate + 2 H(+)"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": true,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": false,
+        "magnesium": true,
+        "side_non_6_3": false
+      }
+    },
+    {
+      "accession": "P11586",
+      "cofactors": [],
+      "ec_numbers": [
+        "1.5.1.5",
+        "3.5.4.9",
+        "6.3.4.3"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "ATP-binding",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Hydrolase",
+        "Ligase",
+        "Multifunctional enzyme",
+        "NADP",
+        "Nucleotide-binding",
+        "One-carbon metabolism",
+        "Oxidoreductase",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "protein_name": "C-1-tetrahydrofolate synthase, cytoplasmic (C1-THF synthase) (Epididymis secretory sperm binding protein) [Cleaved into: C-1-tetrahydrofolate synthase, cytoplasmic, N-terminally processed] [Includes: Methylenetetrahydrofolate dehydrogenase (EC 1.5.1.5); Methenyltetrahydrofolate cyclohydrolase (EC 3.5.4.9); Formyltetrahydrofolate synthetase (EC 6.3.4.3)]",
+      "rhea_count": 3,
+      "sample_reaction_texts": [
+        "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + NADP(+) = (6R)-5,10-methenyltetrahydrofolate + NADPH",
+        "(6R)-5,10-methenyltetrahydrofolate + H2O = (6R)-10-formyltetrahydrofolate + H(+)",
+        "(6S)-5,6,7,8-tetrahydrofolate + formate + ATP = (6R)-10-formyltetrahydrofolate + ADP + phosphate"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": false,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": true,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": false,
+        "magnesium": false,
+        "side_non_6_3": true
+      }
+    },
+    {
+      "accession": "P22234",
+      "cofactors": [],
+      "ec_numbers": [
+        "4.1.1.21",
+        "6.3.2.6"
+      ],
+      "feature_codes": [
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "ATP-binding",
+        "Decarboxylase",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Ligase",
+        "Lyase",
+        "Multifunctional enzyme",
+        "Nucleotide-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Purine biosynthesis",
+        "Reference proteome"
+      ],
+      "protein_name": "Bifunctional phosphoribosylaminoimidazole carboxylase/phosphoribosylaminoimidazole succinocarboxamide synthetase (PAICS) [Includes: Phosphoribosylaminoimidazole carboxylase (EC 4.1.1.21) (AIR carboxylase) (AIRC); Phosphoribosylaminoimidazole succinocarboxamide synthetase (EC 6.3.2.6) (SAICAR synthetase)]",
+      "rhea_count": 2,
+      "sample_reaction_texts": [
+        "5-amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxylate + L-aspartate + ATP = (2S)-2-[5-amino-1-(5-phospho-beta-D-ribosyl)imidazole-4-carboxamido]succinate + ADP + phosphate + 2 H(+)",
+        "5-amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxylate + H(+) = 5-amino-1-(5-phospho-beta-D-ribosyl)imidazole + CO2"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": true,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": false,
+        "magnesium": false,
+        "side_non_6_3": true
+      }
+    },
+    {
+      "accession": "P27708",
+      "cofactors": [
+        "Zn(2+)",
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "ec_numbers": [
+        "2.1.3.2",
+        "3.5.1.2",
+        "3.5.2.3",
+        "6.3.4.16",
+        "6.3.5.5"
+      ],
+      "feature_codes": [
+        "ACT_SITE",
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Allosteric enzyme",
+        "ATP-binding",
+        "Congenital disorder of glycosylation",
+        "Cytoplasm",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Epilepsy",
+        "Hydrolase",
+        "Ligase",
+        "Magnesium",
+        "Manganese",
+        "Metal-binding",
+        "Multifunctional enzyme",
+        "Nucleotide-binding",
+        "Nucleus",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Pyrimidine biosynthesis",
+        "Reference proteome",
+        "Repeat",
+        "Transferase",
+        "Zinc"
+      ],
+      "protein_name": "Multifunctional protein CAD (Carbamoyl phosphate synthetase 2-aspartate transcarbamylase-dihydroorotase) [Includes: Glutamine-dependent carbamoyl phosphate synthase (EC 6.3.5.5); Glutamine amidotransferase (GATase) (GLNase) (EC 3.5.1.2); Ammonium-dependent carbamoyl phosphate synthase (CPS) (CPSase) (EC 6.3.4.16); Aspartate carbamoyltransferase (EC 2.1.3.2); Dihydroorotase (EC 3.5.2.3)]",
+      "rhea_count": 5,
+      "sample_reaction_texts": [
+        "hydrogencarbonate + L-glutamine + 2 ATP + H2O = carbamoyl phosphate + L-glutamate + 2 ADP + phosphate + 2 H(+)",
+        "L-glutamine + H2O = L-glutamate + NH4(+)",
+        "hydrogencarbonate + NH4(+) + 2 ATP = carbamoyl phosphate + 2 ADP + phosphate + 2 H(+)"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": true,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": true,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": false,
+        "magnesium": true,
+        "side_non_6_3": true
+      }
+    },
+    {
+      "accession": "P48637",
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "ec_numbers": [
+        "6.3.2.3"
+      ],
+      "feature_codes": [
+        "BINDING",
+        "MOD_RES"
+      ],
+      "keywords": [
+        "3D-structure",
+        "Acetylation",
+        "Alternative splicing",
+        "ATP-binding",
+        "Direct protein sequencing",
+        "Disease variant",
+        "Glutathione biosynthesis",
+        "Hereditary hemolytic anemia",
+        "Ligase",
+        "Magnesium",
+        "Metal-binding",
+        "Nucleotide-binding",
+        "Phosphoprotein",
+        "Proteomics identification",
+        "Reference proteome"
+      ],
+      "protein_name": "Glutathione synthetase (GSH synthetase) (GSH-S) (EC 6.3.2.3) (Glutathione synthase)",
+      "rhea_count": 2,
+      "sample_reaction_texts": [
+        "gamma-L-glutamyl-L-cysteine + glycine + ATP = glutathione + ADP + phosphate + H(+)",
+        "gamma-L-glutamyl-(2S)-2-aminobutanoate + glycine + ATP = ophthalmate + ADP + phosphate + H(+)"
+      ],
+      "signals": {
+        "active_or_binding_site": true,
+        "acyl_phosphate": false,
+        "adp_or_phosphate": true,
+        "amide_or_c_n": false,
+        "atp": true,
+        "atp_grasp": false,
+        "biotin_boundary": false,
+        "kinase_boundary": false,
+        "ligase": true,
+        "likely_wireable": true,
+        "magnesium": true,
+        "side_non_6_3": false
+      }
+    }
+  ],
+  "schema_version": "mechanism_handle_scout.v1",
+  "selection_basis": "latest handoff post-22fp recommends ATP amide ligase; EC 6.3 used for scope only",
+  "status": "non_destructive_mechanism_handle_scout_no_registry_write"
+}

@@ -1,5 +1,110 @@
 # Handoff
 
+## Session run - ATP amide ligase + class-II metal aldolase 24fp bronze expansion applied (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`
+  (`0f6177aa4dd8d634b5a88c18cd33e99efe06c2bf` before local edits). The prompt still mentioned
+  P450, but current handoff/scaling-plan state already had P450/2OG/CoA/isomerase/molybdopterin/
+  copper/racemase applied, so this run followed the latest handoff recommendation:
+  `atp_amide_ligase`, then the best post-ATP 10k-path lane.
+- Status: **APPLIED two gated bronze family lanes to the separate external bronze registry.**
+  Frozen current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`) before/after both
+  applies. External bronze **4636 -> 4936** (+300); combined label surface **5338 -> 5638**.
+- ATP amide ligase lane: broad EC 6.3 scout found 80 entries with 0 failures and 42 likely, but a
+  biotin/carboxylase boundary in 30/80 forced a narrowed non-biotin follow-up. The narrowed scout in
+  `artifacts/v3_atp_amide_ligase_mechanism_handle_scout_current702_20260613.json` /
+  `work/atp_amide_ligase_mechanism_handle_scout_current702_20260613.md` examined 80 entries with
+  0 failures and 68 likely wireable rows. The lane was wired as a deliberate 23fp universe change:
+  `atp_amide_ligase` fingerprint, `atp_grasp` ontology attachment, EC 6.3 scope-only, counted
+  mechanism corroboration from ATP/ADP/phosphate/Mg, Ligase/ATP-grasp keyword/domain, Rhea amide/
+  C-N/acyl-phosphate chemistry, or active-/binding-site handles, with biotin/carboxylase,
+  kinase/phosphotransferase, hydrolase/transferase side-EC, and multi-signal guards. OOS
+  preregistration was re-frozen as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_23fp_1025.json`.
+- ATP apply command:
+  `PYTHONPATH=src python scripts/source_atp_amide_ligase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched **240**, target mechanism-corroborated **171**, novelty-admitted/applied **150**,
+  off-target held **8**, duplicate skipped **0**; `atp_amide_ligase` **0 -> 150** (chemistry-
+  confusable cap 150; floor reached). External bronze **4636 -> 4786**; combined **5338 -> 5488**.
+  Row audit found **0** leakage/trust-tier problems across all 150 ATP rows; axes present:
+  cofactor/cosubstrate 150, domain/family 150, Rhea participant 150, active-site/residue-role 124.
+- Post-ATP source-supply scout
+  `artifacts/v3_next_lane_source_supply_scout_after_atp_ligase_current702_20260613.json` /
+  `work/next_lane_source_supply_scout_after_atp_ligase_current702_20260613.md` ranked
+  **`class_ii_metal_aldolase`** as the best next clean lane. Mechanism scout
+  `artifacts/v3_class_ii_metal_aldolase_mechanism_handle_scout_current702_20260613.json` /
+  `work/class_ii_metal_aldolase_mechanism_handle_scout_current702_20260613.md` examined 80 entries
+  with 0 failures and found likely 53/80, active/binding/metal site 80/80, metal 80/80, Lyase 80/80,
+  Rhea 80/80, aldolase/oxoacid 61/80, and C-C reaction text 58/80. Boundary guards recorded side EC
+  20/80, PLP 2/80, ThDP 5/80, Schiff/class-I 4/80, hydrolase 8/80, transferase 9/80.
+- Class-II metal aldolase lane: added `class_ii_metal_aldolase` fingerprint +
+  `carbon_carbon_lyase` ontology family; bumped
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_24fp`; re-froze OOS
+  preregistration as `artifacts/v3_external_hard_negative_next_tranche_preregistration_24fp_1025.json`.
+  EC 4.1.2/4.1.3 is scope-only. Counted mechanism corroboration comes from metal, Lyase keyword/
+  domain, aldolase/C-C/Rhea chemistry, and active-/binding-/metal-site handles. PLP, ThDP,
+  Schiff/class-I, hydrolase, transferase, oxidoreductase, side-EC, and multi-signal rows are held.
+- Class-II apply command:
+  `PYTHONPATH=src python scripts/source_class_ii_metal_aldolase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`.
+  Result: fetched **240**, target mechanism-corroborated **182**, novelty-admitted/applied **150**,
+  off-target held **7**, duplicate skipped **0**; `class_ii_metal_aldolase` **0 -> 150** (chemistry-
+  confusable cap 150; floor reached). External bronze **4786 -> 4936**; combined **5488 -> 5638**.
+  Row audit found **0** leakage/trust-tier problems across all 150 class-II rows; axes present:
+  cofactor/cosubstrate 150, domain/family 150, Rhea participant 150, active-site/residue-role 149.
+- Guardrails for both applies: EC is scope/fetch context only and never a counted corroborator;
+  broadened keyword/Rhea/prose/active-site handles are admission/excluded-context only;
+  `predictive_evidence []`; every added row is `tier=bronze`, `review_status=automation_curated`,
+  `uniprot:*`; dedup ran against frozen current702 and external bronze; off-target/multi-signal rows
+  were held; per-fingerprint cap 150 was enforced.
+- Honest counters after both applies: `positive_bronze=3925`, `oos_bronze=1696`,
+  `silver_ready=0`, `silver_confirmed=17`, `projected=0`. Do not merge them. Remaining
+  positive-bronze gap to 10k: **6075**.
+- Fresh post-class-II audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_class_ii_aldolase_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_class_ii_aldolase_applied.md`; **5638**
+  combined, fingerprint Gini **0.1581**, holes `[]`, over-cap `['metal_dependent_hydrolase']`,
+  next-batch floor deficit **0**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_class_ii_aldolase_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_class_ii_aldolase_applied.md`; **4936**
+  expansion rows, decisions `{'admit': 4480, 'reject': 47, 'throttle': 409}`, would-not-readmit
+  **456** (0.0924).
+- Follow-on after class-II: source-supply scout
+  `artifacts/v3_next_lane_source_supply_scout_after_class_ii_aldolase_current702_20260613.json` /
+  `work/next_lane_source_supply_scout_after_class_ii_aldolase_current702_20260613.md` ranked
+  `atp_phosphotransferase_kinase` first, then ThDP enzyme, zinc lyase/hydratase, enolase-superfamily
+  lyase, biotin-dependent carboxylase, and Mn/Fe SOD. The focused kinase scout
+  `artifacts/v3_atp_phosphotransferase_kinase_mechanism_handle_scout_current702_20260613.json` /
+  `work/atp_phosphotransferase_kinase_mechanism_handle_scout_current702_20260613.md` examined 80
+  entries with 0 failures but explicitly **does not** authorize a broad 25fp EC 2.7 lane:
+  ATP/ADP/phosphate, kinase text, and Rhea were 80/80, active/binding 79/80, but multi-subclass
+  boundary 75/80, protein-kinase boundary 75/80, sugar-kinase boundary 80/80, and only 4 rows were
+  likely wireable without subclass splitting.
+- Validation: focused pytest passed over ATP/class-II sourcing, prior sourcing families,
+  disambiguation, trust-tier, novelty, coverage, fingerprints, and ontology
+  (`156 passed`); leakage prereg/import-gate subset passed (`14 passed, 171 deselected`);
+  import/transfer-scope tests passed (`133 passed`); `PYTHONPATH=src python -m catalytic_earth.cli
+  validate` passed (12 source records, 24 fingerprints, 26 ontology families, 702 curated labels);
+  JSON parse checks and `git diff --check` passed.
+- Key new artifacts/files this run:
+  `src/catalytic_earth/atp_amide_ligase_sourcing.py`,
+  `scripts/source_atp_amide_ligase_family.py`, `tests/test_atp_amide_ligase_sourcing.py`,
+  `src/catalytic_earth/class_ii_metal_aldolase_sourcing.py`,
+  `scripts/source_class_ii_metal_aldolase_family.py`,
+  `tests/test_class_ii_metal_aldolase_sourcing.py`,
+  `artifacts/v3_atp_amide_ligase_sourcing_preview_current702.json`,
+  `artifacts/v3_class_ii_metal_aldolase_sourcing_preview_current702.json`,
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_23fp_1025.json`,
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_24fp_1025.json`, and the scout/
+  audit artifacts named above.
+- Next exact action: **do not broad-wire ATP phosphotransferase/kinase from EC 2.7.** Either split
+  that candidate into a narrow kinase subclass with clean non-EC mechanism handles (for example ePK,
+  ASKHA, Pfk, GHMP, NDK/DNK, or GHKL), or choose the next cleaner lane from the post-class-II scout,
+  with **ThDP enzyme** currently the best fallback candidate. Any 25fp lane needs a mechanism scout,
+  fingerprint/ontology spec, OOS preregistration re-freeze, offline leakage/trust-tier tests,
+  non-destructive preview, and explicit apply only if novelty/governor/dedup/trust-tier gates pass.
+
 ## Session run - copper oxidoreductase + non-PLP racemase/epimerase 22fp bronze expansion applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

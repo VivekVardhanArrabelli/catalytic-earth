@@ -26,6 +26,44 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **ATP AMIDE LIGASE + CLASS-II METAL ALDOLASE 24FP BRONZE EXPANSIONS APPLIED (2026-06-13 automation).**
+  The latest handoff state superseded the prompt's older P450 direction: P450/2OG/CoA/isomerase/
+  molybdopterin/copper/racemase were already applied, so this run applied the next handoff lane
+  `atp_amide_ligase`, then used a post-ATP source-supply scout to select
+  `class_ii_metal_aldolase`. ATP wiring added the `atp_amide_ligase` fingerprint, attached the
+  lane to the existing `atp_grasp` ontology context, bumped the universe to `label_factory_v1_23fp`,
+  re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_23fp_1025.json`, and applied
+  **150** bronze rows from reviewed Swiss-Prot. Guardrails: EC 6.3 is scope-only; counted handles
+  come from ATP/ADP/phosphate/Mg, Ligase/ATP-grasp keyword/domain, Rhea amide/C-N/acyl-phosphate
+  chemistry, or active-/binding-site evidence; biotin/carboxylase, kinase/phosphotransferase,
+  hydrolase/transferase side rows, and multi-signal rows are held. The class-II scout
+  `artifacts/v3_class_ii_metal_aldolase_mechanism_handle_scout_current702_20260613.json` examined
+  80 entries with 0 fetch failures and supported a guarded 24fp lane: `class_ii_metal_aldolase`
+  fingerprint + `carbon_carbon_lyase` ontology family, EC 4.1.2/4.1.3 scope-only, metal/Lyase/
+  aldolase/C-C/Rhea/active-site corroborators, PLP/ThDP/Schiff-class-I/hydrolase/transferase/
+  oxidoreductase/side-EC/multi-signal guards, and OOS preregistration re-frozen as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_24fp_1025.json`. Live apply
+  `PYTHONPATH=src python scripts/source_atp_amide_ligase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`
+  fetched **240**, mechanism-corroborated **171**, admitted/applied **150**, and held **8**
+  off-target rows. Live apply
+  `PYTHONPATH=src python scripts/source_class_ii_metal_aldolase_family.py --max-records-per-lane 240 --cap-ceiling 150 --apply`
+  fetched **240**, mechanism-corroborated **182**, admitted/applied **150**, and held **7**
+  off-target rows. Net registry state: external bronze **4636 -> 4936**, combined label surface
+  **5338 -> 5638**, frozen current702 remains 702 with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate: **positive_bronze 3925**, **oos_bronze 1696**, **silver_ready 0**,
+  **silver_confirmed 17**, **projected 0**; remaining positive-bronze gap to 10k: **6075**. Fresh
+  post-class-II coverage audit: **5638** combined, fingerprint Gini **0.1581**, holes `[]`, only
+  `metal_dependent_hydrolase` over-cap, next-batch floor deficit **0**. Novelty replay: **4936**
+  expansion rows, decisions `{'admit': 4480, 'reject': 47, 'throttle': 409}`, would-not-readmit
+  **456** (0.0924). Validation: focused pytest **156 passed**, leakage prereg/import-gate subset
+  **14 passed, 171 deselected**, import/transfer-scope tests **133 passed**, and `validate` ok
+  (12 source / 24 fingerprints / 26 ontology families / 702 labels). Follow-on: source-supply scout
+  ranked `atp_phosphotransferase_kinase` first, but the kinase mechanism scout showed broad EC 2.7 is
+  not clean enough (75/80 multi-subclass boundary rows; only 4 likely wireable). Next concrete action
+  is to split a narrow kinase subclass or select the next cleaner lane, with ThDP enzyme the best
+  fallback candidate.
 - **COPPER + NON-PLP RACEMASE/EPIMERASE 22FP BRONZE EXPANSIONS APPLIED (2026-06-13 automation).**
   The latest handoff state superseded the prompt's older P450 direction: P450/2OG/CoA/isomerase/
   molybdopterin were already applied, so this run applied the next handoff lane
