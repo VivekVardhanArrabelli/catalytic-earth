@@ -1,0 +1,71 @@
+{
+  "artifact_id": "v3_under_cap_extension_live_fetch_blocker_current702_20260613",
+  "created_utc": "2026-06-13T14:21:19Z",
+  "automation_id": "ce-nad-glyco-floor-expansion",
+  "status": "blocked_no_registry_write",
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "curated_current702_count": 702,
+  "external_bronze_count_before": 6238,
+  "external_bronze_count_after": 6238,
+  "combined_label_surface_count": 6940,
+  "honest_counters_unchanged": {
+    "positive_bronze": 5227,
+    "oos_bronze": 1696,
+    "silver_ready": 0,
+    "silver_confirmed": 17,
+    "projected": 0
+  },
+  "external_registry_split": {
+    "seed_fingerprint_bronze": 5014,
+    "oos_bronze": 1224
+  },
+  "under_floor_fingerprints": {
+    "biotin_dependent_carboxylase": {
+      "external_bronze": 84,
+      "combined_floor_status": "under_floor_84_of_100",
+      "latest_source_path_status": "strict_reviewed_floor_closure_lane_exhausted"
+    },
+    "pfkb_ribokinase_family": {
+      "external_bronze": 46,
+      "combined_floor_status": "under_floor_46_of_100",
+      "latest_source_path_status": "strict_reviewed_floor_extension_lane_exhausted"
+    }
+  },
+  "selected_attempts": [
+    {
+      "lane": "coa_acyltransferase",
+      "current_external_count": 188,
+      "cap_ceiling": 250,
+      "command": "PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 500 --cap-ceiling 250 --out artifacts/v3_coa_acyltransferase_extension_sourcing_preview_current702_20260613.json --report work/coa_acyltransferase_extension_sourcing_current702_20260613.md",
+      "result": "terminated_after_no_preview_artifact",
+      "registry_written": false
+    },
+    {
+      "lane": "coa_acyltransferase",
+      "current_external_count": 188,
+      "cap_ceiling": 250,
+      "command": "PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 280 --cap-ceiling 250 --out artifacts/v3_coa_acyltransferase_extension_sourcing_preview_current702_20260613.json --report work/coa_acyltransferase_extension_sourcing_current702_20260613.md",
+      "result": "terminated_after_no_preview_artifact",
+      "registry_written": false
+    },
+    {
+      "lane": "cofactor_independent_isomerase",
+      "current_external_count": 142,
+      "cap_ceiling": 150,
+      "command": "PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md",
+      "result": "terminated_after_no_preview_artifact",
+      "registry_written": false
+    }
+  ],
+  "blocked_reason": "Live UniProt sourcing/evidence extraction did not return bounded preview artifacts quickly enough for a safe preview-apply-validate-push cycle; no gate output existed to inspect or apply.",
+  "next_safe_commands": [
+    "PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md",
+    "PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 280 --cap-ceiling 250 --out artifacts/v3_coa_acyltransferase_extension_sourcing_preview_current702_20260613.json --report work/coa_acyltransferase_extension_sourcing_current702_20260613.md"
+  ],
+  "guardrail_notes": [
+    "No external bronze labels were generated or applied in this run.",
+    "No predictive_evidence changes were made.",
+    "EC remains scope/admission context only and was not counted as a mechanism corroborator.",
+    "Frozen current702 was not written."
+  ]
+}

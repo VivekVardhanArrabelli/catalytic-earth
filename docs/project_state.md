@@ -26,6 +26,26 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **UNDER-CAP EXTENSION PREVIEWS BLOCKED BY LIVE FETCH LATENCY (2026-06-13 automation).**
+  Latest state still has `pfkb_ribokinase_family` **46/100** and
+  `biotin_dependent_carboxylase` **84/100** under floor, with current strict reviewed source paths
+  exhausted under mechanism-first gates. This run therefore attempted bounded, already approved
+  under-cap extension/cap-fill previews instead of relaxing EC scope rules: CoA/acyl-CoA
+  acyltransferase at **188/250** with 500 and 280 rows/lane, then cofactor-independent isomerase at
+  **142/150** with 120 rows/lane. All three live preview attempts were terminated after no preview
+  artifact was produced quickly enough for a safe inspect/apply/validate cycle; no `--apply` was
+  run and no registry rows changed. Blocker artifacts:
+  `artifacts/v3_under_cap_extension_live_fetch_blocker_current702_20260613.json` and
+  `work/under_cap_extension_live_fetch_blocker_current702_20260613.md`. Counts remain external
+  bronze **6238**, combined surface **6940**, frozen current702 **702** with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; honest counters remain
+  separate: **positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**,
+  **silver_confirmed 17**, **projected 0**. Next exact action is to retry the smallest bounded
+  cap-fill first:
+  `PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`,
+  then inspect `floor_projection`, novelty, held@cap, trust-tier, namespace/tier/review-status,
+  leakage, and excluded-context fields before any apply. Do not add more P450 without explicit new
+  reaction/organism justification because it is **248/250**.
 - **P450 + COPPER EXTENSION BRONZE APPLIES COMPLETED (2026-06-13 automation).**
   The latest handoff left `pfkb_ribokinase_family` and `biotin_dependent_carboxylase` under floor,
   but both current reviewed source paths are exhausted under strict gates. This run therefore used

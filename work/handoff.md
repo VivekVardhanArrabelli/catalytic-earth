@@ -1,5 +1,49 @@
 # Handoff
 
+## Session run - under-cap extension previews blocked by live fetch latency (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. Latest state left
+  `pfkb_ribokinase_family` (46/100) and `biotin_dependent_carboxylase` (84/100) under floor, but
+  both current strict reviewed source paths are exhausted under mechanism-first gates. This run
+  therefore attempted bounded, already approved under-cap extension/cap-fill previews rather than
+  relaxing EC or forcing source-limited under-floor lanes.
+- Status: **BLOCKED with no registry write.** No preview produced inspectable gate output before the
+  live fetch/evidence extraction attempts were terminated, so no `--apply` was run. Frozen
+  current702 stayed byte-unchanged
+  (`sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`).
+- Attempted commands:
+  `PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 500 --cap-ceiling 250 --out artifacts/v3_coa_acyltransferase_extension_sourcing_preview_current702_20260613.json --report work/coa_acyltransferase_extension_sourcing_current702_20260613.md`
+  (terminated after no preview artifact),
+  `PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 280 --cap-ceiling 250 --out artifacts/v3_coa_acyltransferase_extension_sourcing_preview_current702_20260613.json --report work/coa_acyltransferase_extension_sourcing_current702_20260613.md`
+  (terminated after no preview artifact), and
+  `PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`
+  (terminated after no preview artifact).
+- Counts unchanged: external bronze **6238** (5014 seed-fingerprint bronze + 1224 OOS bronze);
+  combined label surface **6940**; honest counters remain separate:
+  `positive_bronze=5227`, `oos_bronze=1696`, `silver_ready=0`, `silver_confirmed=17`,
+  `projected=0`; remaining positive-bronze gap to 10k **4773**.
+- Current under-cap approved lanes worth a bounded retry: `cofactor_independent_isomerase` 142/150,
+  `coa_acyltransferase` 188/250, `non_heme_iron_2og_dioxygenase` 172/250,
+  `molybdopterin_oxidoreductase` 207/250, and `copper_oxidoreductase` 140/250. Do not add more
+  P450 without explicit new reaction/organism justification because it is 248/250. Do not broad-wire
+  EC 2.7 or admit EC-only rows.
+- Guardrails preserved: no labels generated/applied; no `predictive_evidence` changes; EC/name/
+  keyword/Rhea/prose/feature handles remain excluded-context admission evidence only; EC is never a
+  counted mechanism corroborator; frozen current702 was not written.
+- New blocker artifacts:
+  `artifacts/v3_under_cap_extension_live_fetch_blocker_current702_20260613.json` and
+  `work/under_cap_extension_live_fetch_blocker_current702_20260613.md`.
+- Validation: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (12 source records,
+  33 mechanism fingerprints, 30 ontology families, 702 curated labels). JSON/JSONL parse checks
+  passed; `git diff --check` passed. No focused pytest was run because this run changed docs and a
+  blocker artifact only, with no code or registry writes.
+- Next exact action: retry the smallest cap-fill first:
+  `PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`.
+  If it produces preview rows, inspect `floor_projection`, `novelty_gate`, held@cap, trust-tier,
+  namespace/tier/review-status, `predictive_evidence`, and excluded-context fields before running
+  the same command with `--apply`.
+
 ## Session run - P450 + copper extension bronze applies (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

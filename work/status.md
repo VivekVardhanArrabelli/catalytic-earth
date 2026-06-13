@@ -5,6 +5,31 @@ Generated from `work/progress_log.jsonl`.
 ## Current Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T14:08:42Z`
+- Started local: `Sat Jun 13 09:08:42 CDT 2026`
+- Focus/result: no registry write. The run selected an under-cap approved extension path because
+  PfkB (46/100) and biotin (84/100) remain under-floor but their current strict reviewed source
+  paths are documented exhausted. CoA extension previews at 500 and 280 rows/lane, then a smaller
+  cofactor-independent isomerase cap-fill preview at 120 rows/lane, did not return bounded preview
+  artifacts quickly enough for a safe inspect/apply/validate cycle. Blocker artifacts:
+  `artifacts/v3_under_cap_extension_live_fetch_blocker_current702_20260613.json` and
+  `work/under_cap_extension_live_fetch_blocker_current702_20260613.md`.
+- Registry/counts unchanged: external bronze **6238**, combined label surface **6940**, frozen
+  current702 **702** with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate: `positive_bronze=5227`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap to 10k **4773**.
+- Validation: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed; JSON/JSONL parse
+  passed; `git diff --check` passed. No focused pytest was run because there were no code or
+  registry writes.
+- Next exact action: retry the smallest cap-fill first:
+  `PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`;
+  inspect `floor_projection`, `novelty_gate`, held@cap, trust-tier, and leakage fields before any
+  `--apply`.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T12:33:42Z`
 - Started local: `Sat Jun 13 07:33:42 CDT 2026`
 - Focus/result: current handoff left PfkB and biotin as under-floor but source-limited, so this

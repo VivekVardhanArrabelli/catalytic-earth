@@ -3,6 +3,37 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: UNDER-CAP EXTENSION PREVIEWS BLOCKED; NO REGISTRY WRITE
+
+Decision: do not relax the mechanism-first rules to force `pfkb_ribokinase_family` or
+`biotin_dependent_carboxylase` floor closure. Their current strict reviewed source paths remain
+exhausted. This run attempted bounded approved under-cap extension/cap-fill previews instead, but
+the live UniProt fetch/evidence-extraction path did not return preview artifacts quickly enough for a
+safe inspect/apply/validate cycle. No `--apply` was run and no labels changed.
+
+Attempted commands:
+`PYTHONPATH=src python scripts/source_coa_acyltransferase_family.py --max-records-per-lane 500 --cap-ceiling 250 --out artifacts/v3_coa_acyltransferase_extension_sourcing_preview_current702_20260613.json --report work/coa_acyltransferase_extension_sourcing_current702_20260613.md`,
+then the same CoA preview at `--max-records-per-lane 280`, then
+`PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`.
+All were terminated after producing no preview artifact; frozen current702 stayed byte-unchanged
+with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Counts remain external bronze **6238**, combined surface **6940**, honest counters
+**positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**. Current under-cap approved lanes include `cofactor_independent_isomerase` 142/150,
+`coa_acyltransferase` 188/250, `non_heme_iron_2og_dioxygenase` 172/250,
+`molybdopterin_oxidoreductase` 207/250, and `copper_oxidoreductase` 140/250. Do not add more P450
+without explicit new reaction/organism justification because it is 248/250.
+
+Follow-on decision: retry the smallest bounded cap-fill first:
+`PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`.
+Apply only after inspecting the generated `floor_projection`, novelty gate, held@cap, trust-tier,
+namespace/tier/review-status, `predictive_evidence`, and excluded-context fields.
+
+References:
+`artifacts/v3_under_cap_extension_live_fetch_blocker_current702_20260613.json`,
+`work/under_cap_extension_live_fetch_blocker_current702_20260613.md`.
+
 ## 2026-06-13: P450 + COPPER EXTENSION BRONZE APPLIES COMPLETED
 
 Decision: after the strict PfkB floor-extension scout found no new admissible rows and the biotin

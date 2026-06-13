@@ -13,6 +13,30 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: under-cap extension previews blocked by live fetch latency.** The
+latest handoff still leaves `pfkb_ribokinase_family` **46/100** and
+`biotin_dependent_carboxylase` **84/100** under floor, but their current strict reviewed source
+paths are exhausted under the mechanism-first gate. This run therefore attempted already approved
+under-cap extension/cap-fill previews instead of relaxing EC scope: CoA/acyl-CoA acyltransferase
+(**188/250**) at 500 and 280 rows/lane, then cofactor-independent isomerase (**142/150**) at
+120 rows/lane. The live fetch/evidence-extraction attempts did not produce preview artifacts quickly
+enough for a safe inspect/apply/validate cycle; no `--apply` was run and no labels changed.
+
+Counts remain external bronze **6238**, combined label surface **6940**, and frozen current702
+**702** with sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest
+counters stay separate: **positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. Blocker artifacts:
+`artifacts/v3_under_cap_extension_live_fetch_blocker_current702_20260613.json` and
+`work/under_cap_extension_live_fetch_blocker_current702_20260613.md`.
+
+Next exact action: retry the smallest cap-fill first:
+`PYTHONPATH=src python scripts/source_cofactor_independent_isomerase_family.py --max-records-per-lane 120 --cap-ceiling 150 --out artifacts/v3_cofactor_independent_isomerase_capfill_sourcing_preview_current702_20260613.json --report work/cofactor_independent_isomerase_capfill_sourcing_current702_20260613.md`.
+Apply only if the preview produces inspectable rows and `floor_projection`, `novelty_gate`,
+held@cap, source-trust tier, namespace/tier/review-status, `predictive_evidence`, and
+excluded-context/leakage fields pass. Do not add more P450 without explicit new reaction/organism
+justification because it is **248/250**; do not broad-wire EC-only kinase rows or force
+source-limited PfkB/biotin deficits.
+
 **2026-06-13 automation update: P450 and copper extension applies are now completed.** The latest
 handoff left two under-floor lanes, `pfkb_ribokinase_family` and `biotin_dependent_carboxylase`,
 but both strict reviewed source paths are exhausted under current gates. This run therefore used
