@@ -3,6 +3,62 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: WINDOWED COA/P450/MOLYBDOPTERIN CAP-FILLS APPLIED; ALL THREE NOW PAUSED AT CAP
+
+Decision: use existing mechanism-first family pipelines and add only source-window controls to avoid
+monolithic UniProt entry fetches. `--record-offset-per-lane` and `--record-limit-per-lane` were
+exposed for CoA acyltransferase, cytochrome P450, and molybdopterin source runners. These controls
+do not change scope, admission, trust-tier evaluation, novelty, caps, or predictive evidence.
+EC/name/Rhea/keyword/prose/feature handles remain excluded-context admission evidence only; EC is
+never counted as a mechanism corroborator and `predictive_evidence` remains `[]`.
+
+Apply results:
+- `molybdopterin_oxidoreductase` windows `80:8`, `88:8`, and `96:8` applied **43** rows and moved
+  **207 -> 250**. The final window held **1** row at cap.
+- `cytochrome_p450_monooxygenase` window `240:8` applied **2** rows and moved **248 -> 250**. The
+  window held **4** rows at cap.
+- `coa_acyltransferase` windows `80:8`, `88:8`, `96:8`, `104:8`, and `112:8` applied **62** rows
+  and moved **188 -> 250**. The final window held **5** rows at cap.
+
+Counts after apply: external bronze **6538 -> 6645**; combined label surface **7240 -> 7347**.
+External-only split is **5421** seed-fingerprint rows and **1224** OOS rows. Combined
+seed-fingerprint label surface is **5651**, leaving **4349** to 10k by that surface convention.
+Strict counters remain separate: **positive_bronze_count 5634**, **oos_bronze_count 1696**,
+**silver_ready_count 0**, **silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+Guardrails held: every added row is bronze, automation-curated, `uniprot:*`, with
+`predictive_evidence []`; dedup and novelty ran against frozen current702 and the external bronze
+registry; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; row audit found **0**
+problems across **750** CoA/P450/molybdopterin rows. Coverage audit reports **35** fingerprints,
+Gini **0.1704**, holes `[]`, under-floor
+`['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+`['metal_dependent_hydrolase']`, and next-batch floor deficit **86**. Novelty replay reports
+**6645** expansion rows, decisions `{'admit': 6189, 'reject': 47, 'throttle': 409}`, and
+would-not-readmit **456** (0.0686).
+
+Follow-on decision: do **not** continue CoA, P450, or molybdopterin under the current cap policy;
+all three are now **250/250**. A strict-kinase GHMP-like entry/Rhea scout generated **0** labels and
+should not be wired next because GHMP is already **150/150** and registry-new supply was sparse.
+Remaining floors are PfkB **46/100**, biotin **84/100**, and glycoside hydrolase **84/100**.
+Prefer a genuinely new non-EC mechanism corroborator/source path for those floors, or scout/spec a
+clean new family not already capped.
+
+References:
+`artifacts/v3_molybdopterin_oxidoreductase_window80_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_molybdopterin_oxidoreductase_window88_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_molybdopterin_oxidoreductase_window96_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_cytochrome_p450_window240_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_coa_acyltransferase_window80_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_coa_acyltransferase_window88_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_coa_acyltransferase_window96_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_coa_acyltransferase_window104_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_coa_acyltransferase_window112_8_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_windowed_capfills_row_guardrail_audit_current702_20260613.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_windowed_capfills_applied.json`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_windowed_capfills_applied.json`,
+and `artifacts/v3_strict_kinase_ghmp_like_entry_mechanism_scout_current702_20260613.json`.
+
 ## 2026-06-13: ISOMERASE CAP-FILL APPLIED; ISOMERASE NOW PAUSED AT CAP
 
 Decision: keep remaining under-floor work mechanism-first and do not relax EC-scope rules. A base

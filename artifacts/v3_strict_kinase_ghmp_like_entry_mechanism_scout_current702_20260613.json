@@ -1,0 +1,170 @@
+{
+  "artifact_id": "v3_strict_kinase_ghmp_like_entry_mechanism_scout_current702_20260613",
+  "counts": {
+    "entry_fetch_attempts": 5,
+    "entry_fetch_failures": 0,
+    "entry_fetch_successes": 5,
+    "existing_askha_sugar_acetate_kinase_combined_count": 150,
+    "existing_deoxynucleoside_kinase_combined_count": 150,
+    "existing_ghmp_small_molecule_kinase_combined_count": 150,
+    "registry_new_fraction": 0.041666666666666664,
+    "registry_new_rows_in_sample": 5,
+    "search_rows_sampled": 120
+  },
+  "created_utc": "2026-06-13T22:10:34Z",
+  "fetch_failures": [],
+  "guardrails": {
+    "broad_ec_2_7_not_wired": true,
+    "cap_status_checked_before_recommendation": true,
+    "curated_registry_written": false,
+    "ec_never_counted_as_corroborator": true,
+    "ec_used_for_scope_only": true,
+    "entry_rhea_handles_are_scout_admission_context_only": true,
+    "external_bronze_registry_written": false,
+    "labels_generated": 0,
+    "predictive_evidence_empty": true
+  },
+  "handle_counts": {
+    "family_text": 5,
+    "phosphoryl_reaction_text": 5,
+    "rhea_cross_reference_present": 5
+  },
+  "lane_id": "galactokinase_mevalonate_homoserine",
+  "query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:\"homoserine kinase\") OR (protein_name:\"mevalonate kinase\") OR (protein_name:\"phosphomevalonate kinase\") OR (protein_name:\"galactokinase\")) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (protein_name:\"protein kinase\"))",
+  "recommendation": {
+    "next_safe_action": "Prefer a genuinely new non-capped family/source lane or a new non-EC corroborator path for PfkB/biotin/glycoside; do not use this GHMP-like scout for an apply under the current cap.",
+    "reason": "GHMP-like lane is already represented by ghmp_small_molecule_kinase at the chemistry-confusable cap 150/150; registry-new supply in this sample is sparse, so do not split/apply without a new chemistry boundary and OOS preregistration.",
+    "wire_full_pipeline_next": false
+  },
+  "reviewed_total_results": 613,
+  "sampled_registry_new_entries": [
+    {
+      "accession": "P17423",
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "entry_fetch_status": "fetched",
+      "feature_count": 0,
+      "mechanism_handles": {
+        "active_or_binding_site_context": false,
+        "family_text": true,
+        "likely_wireable_by_non_ec_handles": false,
+        "phosphoryl_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_equations_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 357,
+      "sequence_sha256": "5d8e32efa9384da817db09b10745ef3f222157dd38eafee3036eab2bf2675d80"
+    },
+    {
+      "accession": "J9VU26",
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "entry_fetch_status": "fetched",
+      "feature_count": 0,
+      "mechanism_handles": {
+        "active_or_binding_site_context": false,
+        "family_text": true,
+        "likely_wireable_by_non_ec_handles": false,
+        "phosphoryl_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "organism": "Cryptococcus neoformans (strain H99 / ATCC 208821 / CBS 10515 / FGSC 9487) (Cryptococcus neoformans var. grubii serotype A)",
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_equations_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 357,
+      "sequence_sha256": "0d5b6ca56754f8b7a34530cb0993479508f4e035318ede70547b7393e120e776"
+    },
+    {
+      "accession": "O43056",
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "entry_fetch_status": "fetched",
+      "feature_count": 0,
+      "mechanism_handles": {
+        "active_or_binding_site_context": false,
+        "family_text": true,
+        "likely_wireable_by_non_ec_handles": false,
+        "phosphoryl_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "organism": "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)",
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_equations_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 338,
+      "sequence_sha256": "abc4d58de02207d21ab4fc0bae553ea641ae3a68d4ea0355636e55edfaea5cf6"
+    },
+    {
+      "accession": "Q92209",
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "entry_fetch_status": "fetched",
+      "feature_count": 0,
+      "mechanism_handles": {
+        "active_or_binding_site_context": false,
+        "family_text": true,
+        "likely_wireable_by_non_ec_handles": false,
+        "phosphoryl_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "organism": "Candida albicans (strain SC5314 / ATCC MYA-2876) (Yeast)",
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_equations_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 357,
+      "sequence_sha256": "becffe772f05dc33f623a5c1d39db242b1675e234cf2f573598b7d7e879b763c"
+    },
+    {
+      "accession": "P29364",
+      "ec_numbers": [
+        "2.7.1.39"
+      ],
+      "entry_fetch_status": "fetched",
+      "feature_count": 0,
+      "mechanism_handles": {
+        "active_or_binding_site_context": false,
+        "family_text": true,
+        "likely_wireable_by_non_ec_handles": false,
+        "phosphoryl_reaction_text": true,
+        "rhea_cross_reference_present": true
+      },
+      "organism": "Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1)",
+      "protein_name": "Homoserine kinase (HK) (HSK) (EC 2.7.1.39)",
+      "reaction_equations_sample": [
+        "L-homoserine + ATP = O-phospho-L-homoserine + ADP + H(+)"
+      ],
+      "rhea_ids": [
+        "RHEA:13985"
+      ],
+      "sequence_length": 316,
+      "sequence_sha256": "6ee9eb6f9d90645e52a48ed44ee947d0e8263863d200f71a372ed07f992de260"
+    }
+  ],
+  "schema_version": "strict_kinase_entry_mechanism_scout.v1",
+  "selection_basis": "Latest handoff requested a small entry/Rhea scout for galactokinase/mevalonate/homoserine before any strict-kinase fingerprint work.",
+  "status": "non_destructive_mechanism_scout_no_registry_write"
+}

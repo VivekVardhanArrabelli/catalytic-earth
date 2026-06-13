@@ -119,6 +119,8 @@ def build_cytochrome_p450_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
+    record_offset_per_lane: int = 0,
+    record_limit_per_lane: int | None = None,
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
@@ -134,6 +136,8 @@ def build_cytochrome_p450_sourcing(
         label_registry_payload=list(frozen_benchmark_payload) + list(expansion_payload),
         created_utc=created,
         max_records_per_lane=max_records_per_lane,
+        record_offset_per_lane=record_offset_per_lane,
+        record_limit_per_lane=record_limit_per_lane,
         lane_queries=lane_queries,
         query_fetcher=query_fetcher,
         entry_fetcher=entry_fetcher,
@@ -262,6 +266,8 @@ def build_cytochrome_p450_sourcing(
         "counts": {
             "lanes_queried": len(lane_queries),
             "max_records_per_lane": max_records_per_lane,
+            "record_offset_per_lane": record_offset_per_lane,
+            "record_limit_per_lane": record_limit_per_lane,
             "fetched_candidate_rows": pilot["candidate_count"],
             "mechanism_corroborated_bronze_labels": len(target_labels),
             "off_target_fingerprint_matches_held": len(off_target_labels),
@@ -393,6 +399,8 @@ def write_cytochrome_p450_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
+    record_offset_per_lane: int = 0,
+    record_limit_per_lane: int | None = None,
 ) -> dict[str, Any]:
     """Build the P450 preview and write it (non-destructive: no registry is touched)."""
     expansion_path = Path(expansion_registry_path)
@@ -405,6 +413,8 @@ def write_cytochrome_p450_sourcing(
         target_floor=target_floor,
         per_cluster_cap=per_cluster_cap,
         cap_ceiling=cap_ceiling,
+        record_offset_per_lane=record_offset_per_lane,
+        record_limit_per_lane=record_limit_per_lane,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

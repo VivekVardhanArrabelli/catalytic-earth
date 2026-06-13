@@ -1,0 +1,4453 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q6QA69",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 124
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.51"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.51",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphate + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:19709",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37131",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + hexadecanoyl-CoA = 1-(9Z)-octadecenoyl-2-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37143",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + octadecanoyl-CoA = 1-(9Z-octadecenoyl)-2-octadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37147",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (5Z,8Z,11Z,14Z)-eicosatetraenoyl-CoA = 1-(9Z)-octadecenoyl-2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37443",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "eicosanoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-eicosanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37451",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:33187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-octadecanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-octadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37163",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(5Z,8Z,11Z,14Z-eicosatetraenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37455",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "bc3f29c1ffd960b25a785ecfd9d446badba40dbbb63a75432975c53c359a968d"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MKAMAAEEEVDSADAGGGSGWLTGWLPTWCPTSTSHLKEAEEKMLKCVPCTYKKEPVRISNGNSIWTLMFSHNMSSKTPLVLLHGFGGGLGLWALNFEDLSTDRPVYAFDLLGFGRSSRPRFDSDAEEVENQFVESIEEWRCALRLDKMILLGHNLGGFLAAAYSLKYPSRVSHLILVEPWGFPERPDLADQERPIPVWIRALGAALTPFNPLAGLRIAGPFGLSLVQRLRPDFKRKYSSMFEDDTVTEYIYHCNVQTPSGETAFKNMTIPYGWAKRPMLQRIGGLHPDIPVSVIFGARSCIDGNSGTSIQSLRPKSYVKTIAILGAGHYVYADQPEEFNQKVKEICHTVD",
+          "sequence_length": 351,
+          "sequence_sha256": "6101ddbca34ee208e79b9853c72e6a929efaf5b9da143e2d1e21d4de500bed06",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q6QA69"
+        },
+        "source_provenance": {
+          "accession": "Q6QA69",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.51']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "1-acylglycerol-3-phosphate O-acyltransferase ABHD5 (EC 2.3.1.51) (Abhydrolase domain-containing protein 5) (Lipid droplet-binding protein CGI-58) (Protein CGI-58)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 351,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "07976a4145c718a95e45ff7188f802a88df7e1f64d7b39096d2c48837dea44ea",
+            "source_query_sha256": "bc3f29c1ffd960b25a785ecfd9d446badba40dbbb63a75432975c53c359a968d",
+            "uniprot_entry_record_sha256": "2dee6d59b831797bbc3a275072394c1c8ecd48824f51abbd8618ffe69508dbca",
+            "uniprot_search_row_sha256": "cd4718e37522003b4020a80f6c4bce8d0c8fd75251aa683708f97dced1d7289c"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q6QA69"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q6QA69-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q6QA69 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.51']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q95JH2",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.51"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.51",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphate + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:19709",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37131",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + hexadecanoyl-CoA = 1-(9Z)-octadecenoyl-2-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37143",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "heptadecanoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-heptadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37155",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + octadecanoyl-CoA = 1-(9Z-octadecenoyl)-2-octadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37147",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z,12Z)-octadecadienoyl-CoA = 1-(9Z)-octadecenoyl-2-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37159",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + tetradecanoyl-CoA = 1-(9Z)-octadecenoyl-2-tetradecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37171",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "pentadecanoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-pentadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37175",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:33187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z,12Z,15Z)-octadecatrienoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z,12Z,15Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37139",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(6Z,9Z,12Z-octadecatrienoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = (6Z,9Z,12Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37179",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-eicosanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-eicosanoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37183",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-tetradecanoyl-sn-glycerol 3-phosphate + (9Z)-octadecenoyl-CoA = 1-tetradecanoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (5Z,8Z,11Z,14Z)-eicosatetraenoyl-CoA = 1-(9Z)-octadecenoyl-2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37443",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + dodecanoyl-CoA = 1-(9Z)-octadecenoyl-2-dodecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37591",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(6Z)-octadecenoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-(6Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37607",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(11Z)-octadecenoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-(11Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37603",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(9Z)-hexadecenoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z-octadecenoyl)-2-(9Z-hexadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:40195",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "bc3f29c1ffd960b25a785ecfd9d446badba40dbbb63a75432975c53c359a968d"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MELWPGAGTLLLLLFLLLLLLLPTLWFCSPSAKYFFKMAFYNGWILFLAVLAIPVCAVRGRNVENMKILRLMLLHIKYLYGIRVEVRGAHHFPPSQPYVVVSNHQSSLDLLGMMEVLPGRCVPIAKRELLWAGSAGLACWLAGVIFIDRKRTGDAISVMSEVAQTLLTQDVRVWVFPEGTRNHNGSMLPFKRGAFHLAVQAQVPIVPIVMSSYQDFYCKKERRFTSGRCQVRVLPPVPTEGLKPDDVPALADRVRHSMLTVFREISTDGRGGGDYLKKPGGVGEAGL",
+          "sequence_length": 287,
+          "sequence_sha256": "808534147ed139c8bfbc89034ebe0670467e68828732f93c3972868cf9e214c0",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q95JH2"
+        },
+        "source_provenance": {
+          "accession": "Q95JH2",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.51']",
+          "organism": "Bos taurus (Bovine)",
+          "protein_name": "1-acyl-sn-glycerol-3-phosphate acyltransferase alpha (EC 2.3.1.51) (1-acylglycerol-3-phosphate O-acyltransferase 1) (1-AGP acyltransferase 1) (1-AGPAT 1) (Lysophosphatidic acid acyltransferase alpha) (LPAAT-alpha)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 287,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "6437077ce617a98415a2bd970fce5239b60ae042236604281825783b1c48d74e",
+            "source_query_sha256": "bc3f29c1ffd960b25a785ecfd9d446badba40dbbb63a75432975c53c359a968d",
+            "uniprot_entry_record_sha256": "30a121e600306ed9ab098a8be12de90a3c12e39678e2e2d83383eed33081fa48",
+            "uniprot_search_row_sha256": "88bc962e5b9aaae81528d7b004f46b36eb9ba675740cc9d9d4c5b46cd2bb4f60"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q95JH2"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q95JH2-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q95JH2 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.51']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:O35083",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.51"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.51",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphate + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:19709",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37131",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + hexadecanoyl-CoA = 1-(9Z)-octadecenoyl-2-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37143",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "heptadecanoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-heptadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37155",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + octadecanoyl-CoA = 1-(9Z-octadecenoyl)-2-octadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37147",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z,12Z)-octadecadienoyl-CoA = 1-(9Z)-octadecenoyl-2-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37159",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + tetradecanoyl-CoA = 1-(9Z)-octadecenoyl-2-tetradecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37171",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "pentadecanoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-pentadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37175",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:33187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z,12Z,15Z)-octadecatrienoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z,12Z,15Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37139",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(6Z,9Z,12Z-octadecatrienoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = (6Z,9Z,12Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37179",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-eicosanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-eicosanoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37183",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-tetradecanoyl-sn-glycerol 3-phosphate + (9Z)-octadecenoyl-CoA = 1-tetradecanoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (5Z,8Z,11Z,14Z)-eicosatetraenoyl-CoA = 1-(9Z)-octadecenoyl-2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37443",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + dodecanoyl-CoA = 1-(9Z)-octadecenoyl-2-dodecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37591",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(6Z)-octadecenoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-(6Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37607",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(11Z)-octadecenoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z)-octadecenoyl-2-(11Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37603",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(9Z)-hexadecenoyl-CoA + 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate = 1-(9Z-octadecenoyl)-2-(9Z-hexadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:40195",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "bc3f29c1ffd960b25a785ecfd9d446badba40dbbb63a75432975c53c359a968d"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MELWPGAWTALLLLLLLLLSTLWFCSSSAKYFFKMAFYNGWILFLAILAIPVCAVRGRNVENMKILRLLLLHAKYLYGIRVEVRGAHHFPPTQPYVVVSNHQSSLDLLGMMEVLPDRCVPIAKRELLWAGSAGLACWLAGIIFIDRKRTGDAISVMSEVAQTLLTQDVRVWVFPEGTRNHNGSMLPFKRGAFHLAVQAQVPIIPIVMSSYQDFYSKKERRFTSPGRCQVRVLPPVSTEGLTPDDVPALADSVRHSMLTIFREISTDGLGGGDCLKKPGGAGEARL",
+          "sequence_length": 285,
+          "sequence_sha256": "9fd8eab26232af9565ab45ec409dddc125b3c3532b4e9e021a7f15284806ecb9",
+          "source": "reviewed_uniprot",
+          "source_accession": "O35083"
+        },
+        "source_provenance": {
+          "accession": "O35083",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.51']",
+          "organism": "Mus musculus (Mouse)",
+          "protein_name": "1-acyl-sn-glycerol-3-phosphate acyltransferase alpha (EC 2.3.1.51) (1-acylglycerol-3-phosphate O-acyltransferase 1) (1-AGP acyltransferase 1) (1-AGPAT 1) (Lysophosphatidic acid acyltransferase alpha) (LPAAT-alpha)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 285,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "6437077ce617a98415a2bd970fce5239b60ae042236604281825783b1c48d74e",
+            "source_query_sha256": "bc3f29c1ffd960b25a785ecfd9d446badba40dbbb63a75432975c53c359a968d",
+            "uniprot_entry_record_sha256": "3c0c9a13492ba8662165f2300637c7dac7f24878b1df746ddf8c4f5a45b9f3d5",
+            "uniprot_search_row_sha256": "88f2a80c89cee7623d2bb2b58d14d7c0eb1842ff26396ced95e86f4bedeb0851"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O35083"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O35083-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O35083 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.51']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q6NYV8",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.-",
+            "2.3.1.51"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.51",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphate + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:19709",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phospho-(1D-myo-inositol) + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phospho-(1D-myo-inositol) + CoA",
+              "rhea_id": "RHEA:33195",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-acyl-sn-glycero-3-phospho-(1'-sn-glycerol) + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:33203",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:33187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37131",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z,12Z)-octadecadienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37135",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z,12Z,15Z)-octadecatrienoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z,12Z,15Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37139",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + hexadecanoyl-CoA = 1-(9Z)-octadecenoyl-2-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37143",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + octadecanoyl-CoA = 1-(9Z-octadecenoyl)-2-octadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37147",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-acyl-sn-glycero-3-phospho-(1'-sn-glycerol) + (9Z)-octadecenoyl-CoA = 1-acyl-2-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:37619",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phospho-(1D-myo-inositol) + (9Z)-octadecenoyl-CoA = a 1-acyl-2-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1D-myo-inositol) + CoA",
+              "rhea_id": "RHEA:37623",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + hexadecanoyl-CoA = 1,2-dihexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + CoA",
+              "rhea_id": "RHEA:35871",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + octadecanoyl-CoA = 1-hexadecanoyl-2-octadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + CoA",
+              "rhea_id": "RHEA:35875",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + (9Z)-octadecenoyl-CoA = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1D-myo-inositol) + CoA",
+              "rhea_id": "RHEA:35879",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + (9Z,12Z)-octadecadienoyl-CoA = 1-hexadecanoyl-2-(9Z,12Z-octadecadienoyl)-sn-glycero-3-phospho-(1D-myo-inositol) + CoA",
+              "rhea_id": "RHEA:35883",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + (5Z,8Z,11Z,14Z)-eicosatetraenoyl-CoA = 1-hexadecanoyl-2-(5Z,8Z,11Z,14Z-eicosatetraenoyl)-sn-glycero-3-phospho-D-myo-inositol + CoA",
+              "rhea_id": "RHEA:35867",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + hexadecanoyl-CoA = 1,2-dihexadecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:35851",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + octadecanoyl-CoA = 1-hexadecanoyl-2-octadecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:35887",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + (9Z)-octadecenoyl-CoA = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:35891",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + (9Z,12Z)-octadecadienoyl-CoA = 1-hexadecanoyl-2-(9Z,12Z-octadecadienoyl)-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:35895",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-tetradecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + (9Z)-octadecenoyl-CoA = 1-tetradecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:37643",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-octadecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + (9Z)-octadecenoyl-CoA = 1-octadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:37647",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1'-sn-glycerol) + (9Z)-octadecenoyl-CoA = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:37651",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + dodecanoyl-CoA = 1-hexadecanoyl-2-dodecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + CoA",
+              "rhea_id": "RHEA:37639",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1',3'-bis-[1-acyl-sn-glycero-3-phospho]-glycerol + (9Z)-octadecenoyl-CoA = 1'-[1-acyl-2-(9Z)-octadecenoyl-sn-glycero-3-phospho],3'-[1-acyl,2-hydroxy-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:37615",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl-sn-glycero-3-phospho]-glycerol + (9Z)-octadecenoyl-CoA = 1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl,2-(9Z)-octadecenoyl-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:37611",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl-sn-glycero-3-phospho]-glycerol + (9Z,12Z)-octadecadienoyl-CoA = 1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl,2-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:37675",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl-sn-glycero-3-phospho]-glycerol + dodecanoyl-CoA = 1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl,2-dodecanoyl-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:37679",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1',3'-bis-[1-acyl-sn-glycero-3-phospho]-glycerol + dodecanoyl-CoA = 1'-[1-acyl-2-dodecanoyl-sn-glycero-3-phospho],3'-[1-acyl,2-hydroxy-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:37683",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = a 1-acyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37427",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1',3'-bis-[1-acyl-sn-glycero-3-phospho]-glycerol + (9Z,12Z)-octadecadienoyl-CoA = 1'-[1-acyl-2-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phospho],3'-[1-acyl,2-hydroxy-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:37687",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1',3'-bis-[1-acyl-sn-glycero-3-phospho]-glycerol + hexadecanoyl-CoA = 1'-[1-acyl-2-hexadecanoyl-sn-glycero-3-phospho],3'-[1-acyl,2-hydroxy-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:37691",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1',3'-bis-[1-acyl-sn-glycero-3-phospho]-glycerol + octadecanoyl-CoA = 1'-[1-acyl-2-octadecanoyl-sn-glycero-3-phospho],3'-[1-acyl,2-hydroxy-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:37695",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl-sn-glycero-3-phospho]-glycerol + octanoyl-CoA = 1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl,2-octanoyl-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:38623",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1',3'-bis-[1-acyl-sn-glycero-3-phospho]-glycerol + octanoyl-CoA = 1'-[1-acyl-2-octanoyl-sn-glycero-3-phospho],3'-[1-acyl,2-hydroxy-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:38627",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl-sn-glycero-3-phospho]-glycerol + hexadecanoyl-CoA = 1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl,2-hexadecanoyl-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:38631",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl-sn-glycero-3-phospho]-glycerol + (5Z,8Z,11Z,14Z)-eicosatetraenoyl-CoA = 1'-[1,2-diacyl-sn-glycero-3-phospho],3'-[1-acyl,2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:38635",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1',3'-bis-[1-acyl-sn-glycero-3-phospho]-glycerol + (5Z,8Z,11Z,14Z)-eicosatetraenoyl-CoA = 1'-[1-acyl-2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phospho],3'-[1-acyl,2-hydroxy-sn-glycero-3-phospho]-glycerol + CoA",
+              "rhea_id": "RHEA:38639",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phospho-(1D-myo-inositol) + octadecanoyl-CoA = a 1-acyl-2-octadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol) + CoA",
+              "rhea_id": "RHEA:43960",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 2-acyl-sn-glycero-3-phospho-D-myo-inositol + octadecanoyl-CoA = 1-octadecanoyl-2-acyl-sn-glycero-3-phospho-1D-myo-inositol + CoA",
+              "rhea_id": "RHEA:43964",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "bc3f29c1ffd960b25a785ecfd9d446badba40dbbb63a75432975c53c359a968d"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MVSPRGVCFLLFLLLGSVFGSVFMLGPLLPLMLLSPSRYRWITDRIVATWLTLPVALLELVLGVKVVVTGDGFIPGERSVIIMNHRTRLDWMFLWCCLLRYSYLRQEKICLKAALKSVPGFGWAMQVASFIFIQRRWEDDRTHMSNMLQYFCRIREPVQLLLFPEGTDLTENTRARSDEFAEKNGLQKYEYVLHPRTTGFTFIVDTLRGGDNLDAVHDITVAYPQNIPQTERHLLAGVFPREIHFHVQRFTVASVPAGAAGLQAWCQERWREKERRLQRFYETVPRRFDAPAVGVCVREPCCQSGQCVCVPRCKSEGRVRIILVASLLYWSVFITAACASLCLCPPAQFYFLFMVVFFLCQQRFTGGLELMELACHRYWSRRSADKQE",
+          "sequence_length": 388,
+          "sequence_sha256": "e7d1370d5e57faf02a90efffa7c5f1fcb1ae637e228886934e872bcafc7bf80d",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q6NYV8"
+        },
+        "source_provenance": {
+          "accession": "Q6NYV8",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.-', '2.3.1.51']",
+          "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+          "protein_name": "Lysocardiolipin acyltransferase 1 (EC 2.3.1.-) (1-acylglycerol-3-phosphate O-acyltransferase 8) (1-AGP acyltransferase 8) (1-AGPAT 8) (EC 2.3.1.51) (Acyl-CoA:lysocardiolipin acyltransferase 1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 388,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "1563369669464cb6b93f67830292d194c53a6e679137d95d56181a178eade5a1",
+            "source_query_sha256": "bc3f29c1ffd960b25a785ecfd9d446badba40dbbb63a75432975c53c359a968d",
+            "uniprot_entry_record_sha256": "9e2160ed6d252150a4ef36f962125e00755e1276a2d3da3a9c62f212273299ab",
+            "uniprot_search_row_sha256": "06d40b3c00749d61add1335ae155cc7538f6c22b7f964bdc6a0bae4da14b5c68"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q6NYV8"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q6NYV8-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q6NYV8 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.-', '2.3.1.51']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P17764",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 39,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 123
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 410
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 216
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 216
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 255
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 260
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 277
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 278
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 280
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 281
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 378
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "SITE",
+              "feature_type": "Site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 382
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 63
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 63
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 75
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 171
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 171
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 178
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 178
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 187
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 187
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 199
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 199
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 204
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 220
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 220
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 227
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 227
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 240
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 242
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 242
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 248
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 254
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 260
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 260
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 263
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 265
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 270
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 335
+            }
+          ],
+          "binding_residue_count": 9,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.9"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.9",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "2 acetyl-CoA = acetoacetyl-CoA + CoA",
+              "rhea_id": "RHEA:21036",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "propanoyl-CoA + acetyl-CoA = 2-methyl-3-oxobutanoyl-CoA + CoA",
+              "rhea_id": "RHEA:30719",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MAALAVLHGVVRRPLLRGLLQEVRCLGRSYASKPTLNDVVIVSATRTPIGSFLGSLASQPATKLGTIAIQGAIEKAGIPKEEVKEVYMGNVIQGGEGQAPTRQATLGAGLPIATPCTTVNKVCASGMKAIMMASQSLMCGHQDVMVAGGMESMSNVPYVMSRGATPYGGVKLEDLIVKDGLTDVYNKIHMGNCAENTAKKLSISREEQDKYAIGSYTRSKEAWDAGKFANEITPITISVKGKPDVVVKEDEEYKRVDFSKVPKLKTVFQKENGTVTAANASTLNDGAAAVVLMTAEAAQRLKVKPLARIAAFADAAVDPIDFPLAPAYAVPKVLKYAGLKKEDIAMWEVNEAFSVVVLANIKMLEIDPQKVNVHGGAVSLGHPIGMSGARIVVHLAHALKQGEFGLASICNGGGGASAVLIEKL",
+          "sequence_length": 424,
+          "sequence_sha256": "14afcc38327c721b40a4f593d6e3983686b8692af0cd45e81b6a532d0609f36f",
+          "source": "reviewed_uniprot",
+          "source_accession": "P17764"
+        },
+        "source_provenance": {
+          "accession": "P17764",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.9']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Acetyl-CoA acetyltransferase, mitochondrial (EC 2.3.1.9) (Acetoacetyl-CoA thiolase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 424,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "d36f486fa7534f605cf6518626a990e0c2699fb98e377d4bdf9b60e89785886d",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef",
+            "uniprot_entry_record_sha256": "1d7cdba3ecdf787dbf657b5d69cd1cea7644b94dd4d74c64a2477a634a1cde10",
+            "uniprot_search_row_sha256": "1d9d15dbba3ae039066f556ae58ae47b40a20520ab7fc1740fa5600fca64c55e"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P17764"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P17764-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P17764 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.9']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P41338",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 12,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 91
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 354
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 384
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 186
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 186
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 231
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 248
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 249
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 251
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 252
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 350
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 8,
+          "catalytic_residue_count": 3,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.9"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.9",
+              "evidence_codes": [
+                "ECO:0000255",
+                "ECO:0000269"
+              ],
+              "reaction": "2 acetyl-CoA = acetoacetyl-CoA + CoA",
+              "rhea_id": "RHEA:21036",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MSQNVYIVSTARTPIGSFQGSLSSKTAVELGAVALKGALAKVPELDASKDFDEIIFGNVLSANLGQAPARQVALAAGLSNHIVASTVNKVCASAMKAIILGAQSIKCGNADVVVAGGCESMTNAPYYMPAARAGAKFGQTVLVDGVERDGLNDAYDGLAMGVHAEKCARDWDITREQQDNFAIESYQKSQKSQKEGKFDNEIVPVTIKGFRGKPDTQVTKDEEPARLHVEKLRSARTVFQKENGTVTAANASPINDGAAAVILVSEKVLKEKNLKPLAIIKGWGEAAHQPADFTWAPSLAVPKALKHAGIEDINSVDYFEFNEAFSVVGLVNTKILKLDPSKVNVYGGAVALGHPLGCSGARVVVTLLSILQQEGGKIGVAAICNGGGGASSIVIEKI",
+          "sequence_length": 398,
+          "sequence_sha256": "536e45b81a78757006b8f36ef96a7427aef0d31b8f171103b8c67d0333f9f32b",
+          "source": "reviewed_uniprot",
+          "source_accession": "P41338"
+        },
+        "source_provenance": {
+          "accession": "P41338",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.9']",
+          "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+          "protein_name": "Acetyl-CoA acetyltransferase (EC 2.3.1.9) (Acetoacetyl-CoA thiolase) (Ergosterol biosynthesis protein 10)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 398,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "411aa4afe9813757ad7de6e15a796999bf3b19d9e86747759530ddae757bce2b",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef",
+            "uniprot_entry_record_sha256": "a3369099584241e074f5dd991d265961a2afb1ec1bc7a3b7269894543b52eb6c",
+            "uniprot_search_row_sha256": "a001d0c59f772f4ce05f42cc7e5d796f6bec4387d9817ed9d4a1a42e0db3935b"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P41338"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "5XYJ",
+            "5XZ5"
+          ],
+          "structure_handle": "5XYJ"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P41338 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.9']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q5XI22",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 10,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 92
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 383
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 223
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 226
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 252
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "SITE",
+              "feature_type": "Site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 353
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 1
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 200
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 233
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 235
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 2,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.9"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.9",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "2 acetyl-CoA = acetoacetyl-CoA + CoA",
+              "rhea_id": "RHEA:21036",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MNAGSDPVVIISAARTAIGSFNGALSTVPVHNLGTTVIKEVLQRAKVAPEEVSEVIFGHVLTAGCGQNPTRQASVGAGIPYSVPAWSCQMICGSGLKAVCLAAQSIAMGDSTIVVAGGMENMSKAPHLAHLRSGVKMGEVPLADSILCDGLTDAFHNYHMGITAENVAKKWQVSREAQDKVAVVSQNRAEHAQKAGHFDKEIVPVHVSSRKGLTEVKIDEFPRHGSNLEAMSKLKPYFLTDGTGTVTPANASGMNDGAAAVVLMKKTEAESRMLKPLAQVVSWSQAGVEPSVMGVGPIPAIKQAVAKAGWSLEDVDVFEINEAFAAVSAAIAKELGLSPEKVNIDGGAIALGHPLGASGCRILVTLLHTLERVGGTRGVAALCIGGGMGIAMCVQRG",
+          "sequence_length": 397,
+          "sequence_sha256": "702d4de44669bf6ee2130c01eba745a7920e82e51d91ea5511aed20ec59d51f2",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q5XI22"
+        },
+        "source_provenance": {
+          "accession": "Q5XI22",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.9']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Acetyl-CoA acetyltransferase, cytosolic (EC 2.3.1.9) (Cytosolic acetoacetyl-CoA thiolase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 397,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "b32babc8221a73bbaaddf2c06487da139d5dd6ff942b5f167d99e2ed26d2106c",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef",
+            "uniprot_entry_record_sha256": "dddda9a96b7ddc90ade71374ee1b729eeeb78426d7617ded9a2af9da1ea993a0",
+            "uniprot_search_row_sha256": "5dc61263a450d20b808f0acdca44065675451134c768d3467605fab932a1d0cf"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q5XI22"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q5XI22-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q5XI22 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.9']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q68F37",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.15",
+            "2.3.1.51"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.15",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + an acyl-CoA = a 1-acyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:15325",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.51",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphate + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:19709",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "dodecanoyl-CoA + sn-glycerol 3-phosphate = 1-dodecanoyl-sn-glycerol 3-phosphate + CoA",
+              "rhea_id": "RHEA:35727",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + hexadecanoyl-CoA = 1-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:35723",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37199",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(9Z,12Z)-octadecadienoyl-CoA + sn-glycerol 3-phosphate = 1-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37203",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-tetradecanoyl-sn-glycerol 3-phosphate + (9Z)-octadecenoyl-CoA = 1-tetradecanoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:33187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37131",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(6Z,9Z,12Z-octadecatrienoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = (6Z,9Z,12Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37179",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z,12Z,15Z)-octadecatrienoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z,12Z,15Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37139",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + tetradecanoyl-CoA = 1-(9Z)-octadecenoyl-2-tetradecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37171",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + hexadecanoyl-CoA = 1-(9Z)-octadecenoyl-2-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37143",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + octadecanoyl-CoA = 1-(9Z-octadecenoyl)-2-octadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37147",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z,12Z)-octadecadienoyl-CoA = 1-(9Z)-octadecenoyl-2-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37159",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(5Z,8Z,11Z,14Z-eicosatetraenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37455",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MEDFKTIACNIFIIWLTLVIVLILLPSMFGSSLGISEVYMKILVKVLEWATLRIQKGFKDKEKLSASNGIIQRDKSPMETEIECLRQSRSQDIREGDFELGDVFYFAKKGFEAIVEDEVTQRFSSEELISWNLLTRTNNNFHYVSLRVTLIWVLGLCVRYCILLPLRITLATIGISWLVLGATLVGQLPNSRMKSWFSELVHLMCCRICARALSSAIQYHNKENKPKKGGICVANHTSPIDIIILANDGCYAMVGQVHGGLMGIIQRAMARACPHVWFERSEMRDRHLVTERLREHVSDKSKLPILIFPEGTCINNTSVMMFKKGSFEIGGTIYPVAIKYDPQFGDAFWNSSKNSMVSYLLRMMTSWALKCNVWYLPPVNRQDGEDAVQFANRVKSAIAKQGGLVELPWDGGLKRGKVKDSFKEEQQKNYSRIIAGENKSLKPTTH",
+          "sequence_length": 446,
+          "sequence_sha256": "52f07ab4064f0a93e8662dbae521deb4244999ae308f8be053d02cb67fea9965",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q68F37"
+        },
+        "source_provenance": {
+          "accession": "Q68F37",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.15', '2.3.1.51']",
+          "organism": "Xenopus laevis (African clawed frog)",
+          "protein_name": "Glycerol-3-phosphate acyltransferase 3 (GPAT-3) (EC 2.3.1.15) (1-acyl-sn-glycerol-3-phosphate O-acyltransferase 10) (AGPAT 10) (1-acyl-sn-glycerol-3-phosphate O-acyltransferase 9) (1-AGP acyltransferase 9) (1-AGPAT 9) (EC 2.3.1.51) (Lysophosphatidic acid acyltransferase theta) (LPAAT-theta)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 446,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4e5d1ea19544c698c0cb5aad0f9616982b9a6df38153f909f6bacc2b3dd6a4b8",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef",
+            "uniprot_entry_record_sha256": "d2c052f70de394bec76664dc1ffca82aff85176e48ee920465d6e762e6688f9a",
+            "uniprot_search_row_sha256": "b6c511af914feaf4dc34e9c22ccb0b9fb2c157acb9afafc66b4117e588d15b08"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q68F37"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q68F37-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q68F37 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.15', '2.3.1.51']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:F1S5L4",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 11,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 278
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 279
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 288
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 293
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 328
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57287",
+              "ligand_name": "CoA",
+              "position": 462
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 380
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 686
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 693
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 778
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 782
+            }
+          ],
+          "binding_residue_count": 6,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.15"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.15",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + an acyl-CoA = a 1-acyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:15325",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(9Z,12Z)-octadecadienoyl-CoA + sn-glycerol 3-phosphate = 1-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37203",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37199",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + octadecanoyl-CoA = 1-octadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37195",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + hexadecanoyl-CoA = 1-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:35723",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "dodecanoyl-CoA + sn-glycerol 3-phosphate = 1-dodecanoyl-sn-glycerol 3-phosphate + CoA",
+              "rhea_id": "RHEA:35727",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-acyl-sn-glycero-3-phospho-(1'-sn-glycerol) + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phospho-(1'-sn-glycerol) + CoA",
+              "rhea_id": "RHEA:33203",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MDESALTLGTIDVSYLPNSSEYSIGRCKHASEEWGECGFRPPVFRSATLKWKESLMSRKRPFVGRCCYSCTPQSWDRFFNPSIPSLGLRNVIYINETHTRHRGWLARRLSYVLFIQERDVHKGMFATNVTENVLNSSRVQEAIAEVAAELNPDGSAQQQSKAVNKVKKKAKKILQEMVATVSPAMIRLTGWVLLKLFNSFFWNIQIHKGQLEMVKAATEMNLPLIFLPVHRSHIDYLLLTFILFCHNIKAPYIASGNNLNIPIFSTLIHKLGGFFIRRRLDETPDGQKDILYRALLHGHIVELLRQQQFLEIFLEGTRSRSGKTSCARAGLLSVVVDTLSTNTIPDILIIPVGISYDRIIEGHYNGEQLGKPKKNESLWSVARGVIRMLRKNYGCVRVDFAQPFSLKEYLESQSQKPVSAPLSLEQALLPAILPSRPSDAVDEGTDMSINESRNAADESFRRRLIANLAEHILFTASKSCAIMSTHIVACLLLYRHRQGIDLSTLVEDFFVMKEEVLARDFDLGFSGNSEDVVMHAIQLLGNCITITHTSRNDEFFITPSTTVPSVFELNFYSNGVLHVFIMEAIIACSLYAVLKKRGSGGPASPSLISQEQLVRKAASLCYLLSNEGTISLPCQTFYQICHETVGRFIQYGILTVAEQDDQEDISPSLAEQHWDKKLPEPLSWRSDEEDEDSDFGEEQRDCYLKVSQSKEHQQFITFLQRLLGPLLEAYSSAAIFIHNFSGPVPEPEYLQKLHKYLINRTERRVAVYAESATYCLVKNAVKMFKDIGVFKETKQKKVSVLELSSTFLPQCNRQKLLEYILSFVVL",
+          "sequence_length": 826,
+          "sequence_sha256": "425648f7ea98a84b3ba4e0a67038a3757e19e74ae7e5b222c618df70f20507be",
+          "source": "reviewed_uniprot",
+          "source_accession": "F1S5L4"
+        },
+        "source_provenance": {
+          "accession": "F1S5L4",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.15']",
+          "organism": "Sus scrofa (Pig)",
+          "protein_name": "Glycerol-3-phosphate acyltransferase 1, mitochondrial (GPAT-1) (EC 2.3.1.15)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 826,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "c2d05563c9c11376171429d515da9795918afcee8daae4942dc4ba60edf9e7e8",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef",
+            "uniprot_entry_record_sha256": "b960dad80a9859d8b5057927a0af095cde6c59c3a5bfae705d199ab8ad04999f",
+            "uniprot_search_row_sha256": "7f14670a28218138c7c9b4e35c0c995cb2ec979dff8b2dcb9f53622caa18d4d2"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "F1S5L4"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-F1S5L4-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "F1S5L4 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.15']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q5ZLL8",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.15",
+            "2.3.1.51"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.15",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + an acyl-CoA = a 1-acyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:15325",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.51",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphate + an acyl-CoA = a 1,2-diacyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:19709",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "dodecanoyl-CoA + sn-glycerol 3-phosphate = 1-dodecanoyl-sn-glycerol 3-phosphate + CoA",
+              "rhea_id": "RHEA:35727",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + hexadecanoyl-CoA = 1-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:35723",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "sn-glycerol 3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37199",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "(9Z,12Z)-octadecadienoyl-CoA + sn-glycerol 3-phosphate = 1-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37203",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-tetradecanoyl-sn-glycerol 3-phosphate + (9Z)-octadecenoyl-CoA = 1-tetradecanoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:33187",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37131",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(6Z,9Z,12Z-octadecatrienoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = (6Z,9Z,12Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37179",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z,12Z,15Z)-octadecatrienoyl-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(9Z,12Z,15Z)-octadecatrienoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37139",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + tetradecanoyl-CoA = 1-(9Z)-octadecenoyl-2-tetradecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37171",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + hexadecanoyl-CoA = 1-(9Z)-octadecenoyl-2-hexadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37143",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + octadecanoyl-CoA = 1-(9Z-octadecenoyl)-2-octadecanoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37147",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + (9Z,12Z)-octadecadienoyl-CoA = 1-(9Z)-octadecenoyl-2-(9Z,12Z)-octadecadienoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37159",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(5Z,8Z,11Z,14Z-eicosatetraenoyl)-sn-glycero-3-phosphate + (9Z)-octadecenoyl-CoA = 1-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-2-(9Z)-octadecenoyl-sn-glycero-3-phosphate + CoA",
+              "rhea_id": "RHEA:37455",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MEELGSLAVWLGAAWLSLVFALIVLPSALGVSLGISEAYMWVLVKTLEWATIRIEKGVKKPQPQMLKIPAANGIIERDETPMEKEIAGLHRMEFRFSDIFYFCRKGFEAIVEDEVTQRFSSEELVSWNLLTRTNVNFHYVSLRLTVVWVIGVIVRYCFLLPLRFTLAAIGITSMIVGTTVVGQLPNGSLKNYLSEVVHLTCSRILVRALSGTIHYHNKENKPQKGGICVANHTSPIDAIILTNDGCYAMVGQVHGGLMGVIQRATVKACPHVWFERSEIKDRHLVTKRLREHVADKNKLPILIFPEGTCINNTSVMMFKKGSFEIGGTIYPVAIKYDPQFGDAFWNSSKYNIVSYLLRIMTSWAIVCHVWYMPPMVRKEGEDAVQFANRVRSAIARQGGLTELPWDGGLKRAKVKDSFKEEQQKNYSKMLVRNGSQGNLPAGTESD",
+          "sequence_length": 446,
+          "sequence_sha256": "fe980f9ec87c401206220b94e992c62d4f3b17bd6294f82ae0a44bc9b8c5032d",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q5ZLL8"
+        },
+        "source_provenance": {
+          "accession": "Q5ZLL8",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.15', '2.3.1.51']",
+          "organism": "Gallus gallus (Chicken)",
+          "protein_name": "Glycerol-3-phosphate acyltransferase 3 (GPAT-3) (EC 2.3.1.15) (1-acyl-sn-glycerol-3-phosphate O-acyltransferase 10) (AGPAT 10) (1-acyl-sn-glycerol-3-phosphate O-acyltransferase 9) (1-AGP acyltransferase 9) (1-AGPAT 9) (EC 2.3.1.51) (Lysophosphatidic acid acyltransferase theta) (LPAAT-theta)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 446,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4e5d1ea19544c698c0cb5aad0f9616982b9a6df38153f909f6bacc2b3dd6a4b8",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef",
+            "uniprot_entry_record_sha256": "ee097ca538b34e94b9cb5240b5ad43c0ee0bcafcb2521160d1ba16e0c6d216ff",
+            "uniprot_search_row_sha256": "a68b60381fb92e9fefbf7ed324a106474fd9752980de206ee88b8d376079cbcc"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q5ZLL8"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q5ZLL8-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q5ZLL8 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.15', '2.3.1.51']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:A7BFV8",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:597326",
+              "ligand_name": "pyridoxal 5'-phosphate",
+              "position": 132
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:597326",
+              "ligand_name": "pyridoxal 5'-phosphate",
+              "position": 233
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:597326",
+              "ligand_name": "pyridoxal 5'-phosphate",
+              "position": 261
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:597326",
+              "ligand_name": "pyridoxal 5'-phosphate",
+              "position": 263
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 264
+            }
+          ],
+          "binding_residue_count": 4,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:597326",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "name": "pyridoxal 5'-phosphate"
+            }
+          ],
+          "ec_numbers": [
+            "2.3.1.50"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "L-serine + hexadecanoyl-CoA + H(+) = 3-oxosphinganine + CO2 + CoA",
+              "rhea_id": "RHEA:14761",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MKHNLQDNLQGEQMANTNSNGGKKPFSDAKIIERANLLRDNDLYFFFRAIEETEASTVTVKGKKQIMIGSNNYLGLTHHPAVKEAAIKAVEKYGTGCTGSRFLNGNLNIHEELDEKLAAYLGHEKAIVFSTGMQANLGALSAICGPKDLMLFDSENHASIIDASRLSLGTTFKYKHNDMASLEELLESNMSRFNRVIIVADGVFSMTGDILRLPEVVKLAKKYGAYVYVDDAHGLGVMGPQGRGTMAHFDVTKDVDFNMGTFSKSFASIGGVISGSKDAIDYVRHSARSFMFSASMPPAAVATVSACIDVVQNDETILNNLWSNVEFMRNGFKELGFFTYGSQTPIIPLFIGDDMKALKMTKWLESKGVFCTPVLPPAVPKGETLIRTSYMASHNREDLSTVLEVFAEAKKIFDIPNHLH",
+          "sequence_length": 420,
+          "sequence_sha256": "c143dd3aead77444ba66a38ca2246bfa54019da5649add42177438820b097b4c",
+          "source": "reviewed_uniprot",
+          "source_accession": "A7BFV8"
+        },
+        "source_provenance": {
+          "accession": "A7BFV8",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.50']",
+          "organism": "Bacteriovorax stolpii (Bdellovibrio stolpii)",
+          "protein_name": "Serine palmitoyltransferase (SPT) (EC 2.3.1.50)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 420,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "8c79349fbe37ac6a0476760f9667e1000725694d2431dd993d54c4b2ebd97e10",
+            "source_query_sha256": "4006f01af4bf40ed4467c9d158af9ca18b410bd318fedad2718260b758cf70ef",
+            "uniprot_entry_record_sha256": "8988647bcd34388eb2b3ca5c3879f6504ab44f27fdcdaa158319e1aa569394ec",
+            "uniprot_search_row_sha256": "65237ffcd6275286248dfa615d1ee776a6ed09c396c8585dcea876e7f3150093"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A7BFV8"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A7BFV8-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A7BFV8 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.50'] with plp cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P61599",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.254"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-asparaginyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-asparaginyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA:50484",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-asparaginyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-asparaginyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:12694",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-asparaginyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-asparaginyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:12695",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-glutaminyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-glutaminyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA:50492",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-glutaminyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-glutaminyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:12698",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-glutaminyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-glutaminyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:12699",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-aspartyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-aspartyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA:50480",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-aspartyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-aspartyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:12692",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-aspartyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-aspartyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:12693",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-glutamyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-glutamyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA:50488",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-glutamyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-glutamyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:12696",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.254",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "N-terminal L-methionyl-L-glutamyl-[protein] + acetyl-CoA = N-terminal N(alpha)-acetyl-L-methionyl-L-glutamyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:12697",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "932a6e58ea1528ef475e3a02eccee6230121c63315537b5d3ba1c2d90ceb3344"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MTTLRAFTCDDLFRFNNINLDPLTETYGIPFYLQYLAHWPEYFIVAEAPGGELMGYIMGKAEGSVAREEWHGHVTALSVAPEFRRLGLAAKLMELLEEISERKGGFFVDLFVRVSNQVAVNMYKQLGYSVYRTVIEYYSASNGEPDEDAYDMRKALSRDTEKKSIIPLPHPVRPEDIE",
+          "sequence_length": 178,
+          "sequence_sha256": "c05131fe3bb9c71b11b50e0ee207a4f4a450c34554bcaa12fb30b758c08f446a",
+          "source": "reviewed_uniprot",
+          "source_accession": "P61599"
+        },
+        "source_provenance": {
+          "accession": "P61599",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.254']",
+          "organism": "Homo sapiens (Human)",
+          "protein_name": "N-alpha-acetyltransferase 20 (EC 2.3.1.254) (Methionine N-acetyltransferase) (N-acetyltransferase 5) (N-terminal acetyltransferase B complex catalytic subunit NAA20) (N-terminal acetyltransferase B complex catalytic subunit NAT5) (NatB complex subunit NAT5) (NatB catalytic subunit)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 178,
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "b0e0d058197cdff7d8d5c20a5b2cf2b435847e4041e6bb1aec9390b960d8656a",
+            "source_query_sha256": "932a6e58ea1528ef475e3a02eccee6230121c63315537b5d3ba1c2d90ceb3344",
+            "uniprot_entry_record_sha256": "e5b24491ace0bb6da4d937f0f9a34a34b674e528bc888bc32e93d82caea13c4a",
+            "uniprot_search_row_sha256": "101d11ea9c6e3ca5c8db9fbad55ff3359b874bbad77c8736887977f39ba1b673"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P61599"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "6VP9",
+            "7STX",
+            "8G0L"
+          ],
+          "structure_handle": "6VP9"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P61599 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.254']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q5FWF5",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 6,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57288",
+              "ligand_name": "acetyl-CoA",
+              "position": 772
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57288",
+              "ligand_name": "acetyl-CoA",
+              "position": 780
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57288",
+              "ligand_name": "acetyl-CoA",
+              "position": 812
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 200
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 412
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "CROSSLNK",
+              "feature_type": "Cross-link",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 332
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "L-lysyl-[protein] + acetyl-CoA = N(6)-acetyl-L-lysyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA:45948",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "L-lysyl-[protein] + acetyl-CoA = N(6)-acetyl-L-lysyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:9752",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "L-lysyl-[protein] + acetyl-CoA = N(6)-acetyl-L-lysyl-[protein] + CoA + H(+)",
+              "rhea_id": "RHEA-COMP:10731",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "932a6e58ea1528ef475e3a02eccee6230121c63315537b5d3ba1c2d90ceb3344"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MMSIQEKSKENSSKVTKKSDDKNSETEIQDSQKNLAKKSGPKETIKSQAKSSSESKINQPELETRMSTRSSKAASNDKATKSINKNTVTVRGYSQESTKKKLSQKKLVHENPKANEQLNRRSQRLQQLTEVSRRSLRSREIQGQVQAVKQSLPPTKKEQCSSTQSKSNKTSQKHVKRKVLEVKSDSKEDENLVINEVINSPKGKKRKVEHQTACACSSQCTQGSEKCPQKTTRRDETKPVPVTSEVKRSKMATSVVPKKNEMKKSVHTQVNTNTTLPKSPQPSVPEQSDNELEQAGKSKRGSILQLCEEIAGEIESDNVEVKKESSQMESVKEEKPTEIKLEETSVERQILHQKETNQDVQCNRFFPSRKTKPVKCILNGINSSAKKNSNWTKIKLSKFNSVQHNKLDSQVSPKLGLLRTSFSPPALEMHHPVTQSTFLGTKLHDRNITCQQEKMKEINSEEVKINDITVEINKTTERAPENCHLANEIKPSDPPLDNQMKHSFDSASNKNFSQCLESKLENSPVENVTAASTLLSQAKIDTGENKFPGSAPQQHSILSNQTSKSSDNRETPRNHSLPKCNSHLEITIPKDLKLKEAEKTDEKQLIIDAGQKRFGAVSCNVCGMLYTASNPEDETQHLLFHNQFISAVKYVGWKKERILAEYPDGRIIMVLPEDPKYALKKVDEIREMVDNDLGFQQAPLMCYSRTKTLLFISNDKKVVGCLIAEHIQWGYRVIEEKLPVIRSEEEKVRFERQKAWCCSTLPEPAICGISRIWVFSMMRRKKIASRMIECLRSNFIYGSYLSKEEIAFSDPTPDGKLFATQYCGTGQFLVYNFINGQNST",
+          "sequence_length": 840,
+          "sequence_sha256": "fbbb2c6371c79821fbe6fe886eb83f3460b5eb64e3136de6045bae196f107bdc",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q5FWF5"
+        },
+        "source_provenance": {
+          "accession": "Q5FWF5",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.-']",
+          "organism": "Homo sapiens (Human)",
+          "protein_name": "N-acetyltransferase ESCO1 (EC 2.3.1.-) (CTF7 homolog 1) (Establishment factor-like protein 1) (EFO1) (EFO1p) (hEFO1) (Establishment of cohesion 1 homolog 1) (ECO1 homolog 1) (ESO1 homolog 1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 840,
+          "source_evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "23026e1d79d07127f073856252b8be45298bed409c1c708c87550cb8d2374bb0",
+            "source_query_sha256": "932a6e58ea1528ef475e3a02eccee6230121c63315537b5d3ba1c2d90ceb3344",
+            "uniprot_entry_record_sha256": "709fca470159c105d9faff56d695cc3f25967d263e85f54f55f08d8c02b51e17",
+            "uniprot_search_row_sha256": "35b68b43c0402659ee666a064342852cccc1ce27918f94ebaac854054e98b71a"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q5FWF5"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "4MXE",
+            "5T53"
+          ],
+          "structure_handle": "4MXE"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q5FWF5 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.-']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q6IB77",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 12,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 16
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 16
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 127
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 127
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 141
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 141
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 159
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 169
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 183
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 183
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 256
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 256
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [],
+          "ec_numbers": [
+            "2.3.1.13",
+            "2.3.1.71"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.3.1.13",
+              "evidence_codes": [
+                "ECO:0000303"
+              ],
+              "reaction": "an acyl-CoA + glycine = an N-acylglycine + CoA + H(+)",
+              "rhea_id": "RHEA:19869",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.3.1.71",
+              "evidence_codes": [
+                "ECO:0000303"
+              ],
+              "reaction": "benzoyl-CoA + glycine = N-benzoylglycine + CoA + H(+)",
+              "rhea_id": "RHEA:18493",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: coa_acyltransferase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "932a6e58ea1528ef475e3a02eccee6230121c63315537b5d3ba1c2d90ceb3344"
+          },
+          "retrieved_utc": "2026-06-13T22:23:59Z",
+          "sequence": "MMLPLQGAQMLQMLEKSLRKSLPASLKVYGTVFHINHGNPFNLKAVVDKWPDFNTVVVCPQEQDMTDDLDHYTNTYQIYSKDPQNCQEFLGSPELINWKQHLQIQSSQPSLNEAIQNLAAIKSFKVKQTQRILYMAAETAKELTPFLLKSKILSPNGGKPKAINQEMFKLSSMDVTHAHLVNKFWHFGGNERSQRFIERCIQTFPTCCLLGPEGTPVCWDLMDQTGEMRMAGTLPEYRLHGLVTYVIYSHAQKLGKLGFPVYSHVDYSNEAMQKMSYTLQHVPIPRSWNQWNCVPL",
+          "sequence_length": 296,
+          "sequence_sha256": "28c763fb9ad662074e8a257849ee021d1138a8622a7f728b2f6f2112e9af4fa7",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q6IB77"
+        },
+        "source_provenance": {
+          "accession": "Q6IB77",
+          "disambiguation_pool": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "coa_acyltransferase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_coa_acyltransferase_from_annotated_cofactor_and_ec_class_['2.3.1.13', '2.3.1.71']",
+          "organism": "Homo sapiens (Human)",
+          "protein_name": "Glycine N-acyltransferase (EC 2.3.1.13) (Acyl-CoA:glycine N-acyltransferase) (AAc) (Aralkyl acyl-CoA N-acyltransferase) (Aralkyl acyl-CoA:amino acid N-acyltransferase) (Benzoyl-coenzyme A:glycine N-acyltransferase) (Glycine N-benzoyltransferase) (EC 2.3.1.71) (HRP-1(CLP))",
+          "reviewed_status": "reviewed",
+          "sequence_length": 296,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000303"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "30b54dd587547caadbdcf1d9677852cfd04f7cef7262c466e798495d71f4c263",
+            "source_query_sha256": "932a6e58ea1528ef475e3a02eccee6230121c63315537b5d3ba1c2d90ceb3344",
+            "uniprot_entry_record_sha256": "83669c41bb89ddf9c2429f01a54ab899fca564d0b514484b8fcf91e2d20e4319",
+            "uniprot_search_row_sha256": "5a9bdaf0cb5513084668284a7a02381aacda13a4212058541fcf92a589906f2e"
+          },
+          "target_family_lane": "coa_acyltransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q6IB77"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q6IB77-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "coa_acyltransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q6IB77 imported as annotation-anchored bronze in-scope coa_acyltransferase: reviewed Swiss-Prot EC ['2.3.1.13', '2.3.1.71']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_coa_acyltransferase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "coa_acyltransferase": 14
+    },
+    "current_combined_labels": 7309,
+    "disambiguation_hold_count": 0,
+    "disambiguation_hold_reason_counts": {},
+    "disambiguation_skip_count": 6,
+    "fetched_candidate_rows": 24,
+    "gate_admitted_before_cap_guard": 14,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 4,
+    "max_records_per_lane": 500,
+    "mechanism_corroborated_bronze_labels": 18,
+    "novelty_admitted_labels": 14,
+    "novelty_throttled_or_rejected": 4,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 7323,
+    "record_limit_per_lane": 8,
+    "record_offset_per_lane": 96
+  },
+  "created_utc": "2026-06-13T22:23:59Z",
+  "deploy_missing_active_site_context_per_family": {
+    "coa_acyltransferase": "coa_acyl_coa_donor"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 1,
+      "medium": 17
+    },
+    "current_registry_labels": 6607,
+    "decision_counts": {
+      "import": 18,
+      "skip": 6
+    },
+    "examined_rows": 24,
+    "fingerprint_counts": {
+      "coa_acyltransferase": 18
+    },
+    "hold_count": 0,
+    "hold_reason_counts": {},
+    "importable_new_labels": 18,
+    "per_pool_decision_counts": {
+      "coa_acyltransferase_broadened_handle_fresh_fetch": {
+        "import": 18,
+        "skip_screen": 6
+      }
+    },
+    "projected_registry_labels_if_merged": 6625,
+    "skip_count": 6
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_coa_acyltransferase_annotation",
+  "families_sourced": [
+    "coa_acyltransferase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "coa_acyltransferase": {
+      "admitted_this_run": 14,
+      "cap_ceiling": 250,
+      "chemistry_confusable": false,
+      "combined_before": 212,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "coa_acyl_coa_donor",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 226,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "coa_acyltransferase_handles_scope_admission_only": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "hydrolase_side_ec_guard": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "coa_acyltransferase": 250
+    },
+    "predictive_features_use_ec_name_keyword_coa_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "coa_ec_2_3_1_high_yield_1",
+      "query": "(reviewed:true) AND ((ec:2.3.1.225) OR (ec:2.3.1.48) OR (ec:2.3.1.51) OR (ec:2.3.1.23)) AND (keyword:Acyltransferase)",
+      "record_count": 8,
+      "record_limit_per_lane": 8,
+      "record_offset_per_lane": 96,
+      "records_in_window_before_dedup": 8,
+      "records_returned_by_query": 463,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.3.1.225%29+OR+%28ec%3A2.3.1.48%29+OR+%28ec%3A2.3.1.51%29+OR+%28ec%3A2.3.1.23%29%29+AND+%28keyword%3AAcyltransferase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "coa_acyltransferase"
+    },
+    {
+      "lane_id": "coa_ec_2_3_1_high_yield_2",
+      "query": "(reviewed:true) AND ((ec:2.3.1.20) OR (ec:2.3.1.16) OR (ec:2.3.1.9) OR (ec:2.3.1.15) OR (ec:2.3.1.50) OR (ec:2.3.1.22)) AND (keyword:Acyltransferase)",
+      "record_count": 8,
+      "record_limit_per_lane": 8,
+      "record_offset_per_lane": 96,
+      "records_in_window_before_dedup": 8,
+      "records_returned_by_query": 500,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.3.1.20%29+OR+%28ec%3A2.3.1.16%29+OR+%28ec%3A2.3.1.9%29+OR+%28ec%3A2.3.1.15%29+OR+%28ec%3A2.3.1.50%29+OR+%28ec%3A2.3.1.22%29%29+AND+%28keyword%3AAcyltransferase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "coa_acyltransferase"
+    },
+    {
+      "lane_id": "coa_ec_2_3_1_coa_comment",
+      "query": "(reviewed:true) AND (ec:2.3.1.*) AND (cc_cofactor:coa)",
+      "record_count": 0,
+      "record_limit_per_lane": 8,
+      "record_offset_per_lane": 96,
+      "records_in_window_before_dedup": 0,
+      "records_returned_by_query": 23,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A2.3.1.%2A%29+AND+%28cc_cofactor%3Acoa%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "coa_acyltransferase"
+    },
+    {
+      "lane_id": "coa_ec_2_3_1_broad_keyword",
+      "query": "(reviewed:true) AND (ec:2.3.1.*) AND (keyword:Acyltransferase)",
+      "record_count": 8,
+      "record_limit_per_lane": 8,
+      "record_offset_per_lane": 96,
+      "records_in_window_before_dedup": 8,
+      "records_returned_by_query": 500,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A2.3.1.%2A%29+AND+%28keyword%3AAcyltransferase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "coa_acyltransferase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via `apply-external-annotation-anchored-import` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 14,
+      "throttle": 4
+    },
+    "reason_counts": {
+      "adds_diversity": 14,
+      "redundant_no_novelty_signal": 4
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_coa_acyltransferase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:Q8K4X7",
+      "fingerprint_id": "coa_acyltransferase"
+    },
+    {
+      "entry_id": "uniprot:Q9D517",
+      "fingerprint_id": "coa_acyltransferase"
+    },
+    {
+      "entry_id": "uniprot:Q8K3K7",
+      "fingerprint_id": "coa_acyltransferase"
+    },
+    {
+      "entry_id": "uniprot:Q8S4Y1",
+      "fingerprint_id": "coa_acyltransferase"
+    }
+  ]
+}

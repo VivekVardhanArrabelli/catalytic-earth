@@ -1,0 +1,28 @@
+{
+  "artifact_id": "v3_cytochrome_p450_capfill_live_fetch_blocker_current702_20260613",
+  "automation_id": "ce-nad-glyco-floor-expansion",
+  "created_utc": "2026-06-13T22:07:34Z",
+  "attempted_command": "PYTHONPATH=src python scripts/source_cytochrome_p450_family.py --max-records-per-lane 500 --cap-ceiling 250 --out artifacts/v3_cytochrome_p450_capfill_probe_sourcing_preview_current702_20260613.json --report work/cytochrome_p450_capfill_probe_sourcing_current702_20260613.md",
+  "attempted_artifact": "artifacts/v3_cytochrome_p450_capfill_probe_sourcing_preview_current702_20260613.json",
+  "attempted_report": "work/cytochrome_p450_capfill_probe_sourcing_current702_20260613.md",
+  "status": "blocked_no_registry_write",
+  "result": "interrupted_after_repeated_polling_intervals_before_artifact_write",
+  "phase": "fetch_uniprot_entry_tls_handshake",
+  "labels_generated": 0,
+  "registry_written": false,
+  "guardrails": {
+    "curated_registry_written": false,
+    "external_bronze_registry_written": false,
+    "predictive_evidence_empty": true,
+    "ec_scope_only": true,
+    "ec_never_counted_as_corroborator": true
+  },
+  "traceback_summary": [
+    "scripts/source_cytochrome_p450_family.py -> write_cytochrome_p450_sourcing",
+    "build_external_source_ingestion_pilot -> fetch_uniprot_entry",
+    "adapters._fetch_text -> urllib.request.urlopen",
+    "ssl.SSLSocket.do_handshake interrupted by KeyboardInterrupt"
+  ],
+  "why_not_apply": "No preview artifact was produced, so no novelty, cap, trust-tier, or frozen-sha gates were available to authorize apply.",
+  "next_safe_action": "Add window/checkpoint support or run a smaller bounded live-entry preview before any P450 cap-fill apply; do not broaden the P450 fingerprint or count EC/name handles as mechanism evidence."
+}

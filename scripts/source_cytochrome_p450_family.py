@@ -64,6 +64,18 @@ def main() -> int:
         help="which broadened-handle families to source; default = cytochrome_p450_monooxygenase",
     )
     parser.add_argument("--max-records-per-lane", type=int, default=80)
+    parser.add_argument(
+        "--record-offset-per-lane",
+        type=int,
+        default=0,
+        help="skip this many returned UniProt rows per lane before entry/Rhea fetch",
+    )
+    parser.add_argument(
+        "--record-limit-per-lane",
+        type=int,
+        default=None,
+        help="process at most this many returned UniProt rows per lane after the offset",
+    )
     parser.add_argument("--cap-ceiling", type=int, default=250)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
@@ -93,6 +105,8 @@ def main() -> int:
         report_path=Path(args.report),
         families=tuple(args.families),
         max_records_per_lane=args.max_records_per_lane,
+        record_offset_per_lane=args.record_offset_per_lane,
+        record_limit_per_lane=args.record_limit_per_lane,
         cap_ceiling=args.cap_ceiling,
     )
 

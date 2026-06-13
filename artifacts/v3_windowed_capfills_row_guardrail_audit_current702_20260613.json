@@ -1,0 +1,41 @@
+{
+  "artifact_id": "v3_windowed_capfills_row_guardrail_audit_current702_20260613",
+  "counts": {
+    "by_family": {
+      "coa_acyltransferase": 250,
+      "cytochrome_p450_monooxygenase": 250,
+      "molybdopterin_oxidoreductase": 250
+    },
+    "external_rows_audited": 750,
+    "problems": 0
+  },
+  "created_utc": "2026-06-13T22:28:01Z",
+  "families_audited": [
+    "molybdopterin_oxidoreductase",
+    "cytochrome_p450_monooxygenase",
+    "coa_acyltransferase"
+  ],
+  "guardrails": {
+    "bronze_automation_curated_required": true,
+    "ec_scope_hint_must_not_be_counted": true,
+    "excluded_context_required_for_ec_and_target_lane": true,
+    "predictive_evidence_empty_required": true,
+    "uniprot_namespace_required": true
+  },
+  "mechanism_axis_counts": {
+    "coa_acyltransferase:active_site_motif_or_residue_role": 157,
+    "coa_acyltransferase:cofactor_or_cosubstrate": 248,
+    "coa_acyltransferase:domain_or_family_profile": 250,
+    "coa_acyltransferase:rhea_reaction_or_participant_pattern": 247,
+    "cytochrome_p450_monooxygenase:active_site_motif_or_residue_role": 246,
+    "cytochrome_p450_monooxygenase:cofactor_or_cosubstrate": 250,
+    "cytochrome_p450_monooxygenase:domain_or_family_profile": 250,
+    "cytochrome_p450_monooxygenase:rhea_reaction_or_participant_pattern": 250,
+    "molybdopterin_oxidoreductase:active_site_motif_or_residue_role": 247,
+    "molybdopterin_oxidoreductase:cofactor_or_cosubstrate": 250,
+    "molybdopterin_oxidoreductase:domain_or_family_profile": 249,
+    "molybdopterin_oxidoreductase:rhea_reaction_or_participant_pattern": 247
+  },
+  "problems": [],
+  "status": "passed"
+}

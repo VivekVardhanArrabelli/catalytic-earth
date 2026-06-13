@@ -13,6 +13,38 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: windowed CoA/P450/molybdopterin cap-fills applied.** The latest
+run added `--record-offset-per-lane` / `--record-limit-per-lane` source-window controls to
+`scripts/source_coa_acyltransferase_family.py`, `scripts/source_cytochrome_p450_family.py`, and
+`scripts/source_molybdopterin_oxidoreductase_family.py`. This was a source-fetch-only change; it
+does not alter admission, trust-tier, novelty, caps, or predictive evidence.
+
+Windowed applies added **107** bronze rows through the existing mechanism-first path:
+`molybdopterin_oxidoreductase` **207 -> 250** (+43), `cytochrome_p450_monooxygenase`
+**248 -> 250** (+2), and `coa_acyltransferase` **188 -> 250** (+62). All three are now **250/250**
+and should not continue under the current cap policy. Frozen current702 stayed byte-unchanged with
+sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+`data/registries/external_bronze_labels.json`.
+
+External bronze is now **6645**; combined label surface is **7347**. External-only split is
+**5421** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+**5651**, leaving **4349** to 10k by that surface convention. The strict counter ledger remains
+separate: **positive_bronze_count 5634**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**. Coverage audit reports **35**
+fingerprints, Gini **0.1704**, holes `[]`, under-floor
+`['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, only
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **86**. Novelty replay over
+**6645** expansion rows reports decisions `{'admit': 6189, 'reject': 47, 'throttle': 409}` and
+would-not-readmit **456** (0.0686). Row audit found **0** problems across all **750** CoA/P450/
+molybdopterin rows.
+
+Next work: remaining floors are PfkB **46/100**, biotin **84/100**, and glycoside hydrolase
+**84/100**. Do not continue CoA, P450, molybdopterin, racemase, isomerase, or other capped lanes
+without a cap-policy change or a real new chemistry split. Prefer a genuinely new non-EC
+corroborator/source path for the remaining floors, or scout/spec a clean new family not already
+capped. EC/name/Rhea/keyword/prose/feature handles remain excluded-context admission evidence only,
+EC is never counted, and `predictive_evidence []`.
+
 **2026-06-13 automation update: isomerase cap-fill applied after glycoside alternate scouts
 no-yielded.** The latest run first stayed on the under-floor path. A base glycoside hydrolase
 page-2 continuation over rows **581-660**

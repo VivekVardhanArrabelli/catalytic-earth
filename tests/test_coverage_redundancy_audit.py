@@ -171,9 +171,9 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 7240)
+            self.assertEqual(written["totals"]["combined"], 7347)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 6538)
+            self.assertEqual(written["totals"]["expansion_bronze"], 6645)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -190,7 +190,8 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # phosphofructokinase tranche, a guarded PfkB/ribokinase-family
             # tranche, a capped P450 extension tranche, a copper extension
             # tranche, a Mn/Fe superoxide dismutase tranche, and a glycoside
-            # hydrolase tranche. Glycoside hydrolase, biotin carboxylase, and
+            # hydrolase tranche, followed by windowed CoA, P450, and
+            # molybdopterin cap-fills. Glycoside hydrolase, biotin carboxylase, and
             # PfkB are below floor but no longer absent; metal_dependent_hydrolase
             # remains the known intentional over-cap.
             self.assertEqual(audit["class_imbalance"]["expansion_holes"], [])

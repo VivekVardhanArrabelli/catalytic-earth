@@ -1,0 +1,574 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:A0A517FNC6",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30413",
+              "ligand_name": "heme",
+              "position": 437
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "heme"
+            }
+          ],
+          "ec_numbers": [
+            "1.14.14.-"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "cholesterol + reduced [NADPH--hemoprotein reductase] + O2 = (22S)-22-hydroxycholesterol + oxidized [NADPH--hemoprotein reductase] + H2O + H(+)",
+              "rhea_id": "RHEA:69839",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "cholesterol + reduced [NADPH--hemoprotein reductase] + O2 = (22S)-22-hydroxycholesterol + oxidized [NADPH--hemoprotein reductase] + H2O + H(+)",
+              "rhea_id": "RHEA-COMP:11964",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "cholesterol + reduced [NADPH--hemoprotein reductase] + O2 = (22S)-22-hydroxycholesterol + oxidized [NADPH--hemoprotein reductase] + H2O + H(+)",
+              "rhea_id": "RHEA-COMP:11965",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cytochrome_p450_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f4ed0f4aee182ccdff3319663434033ed0bce2dd7522f007612561efd21fbf00"
+          },
+          "retrieved_utc": "2026-06-13T22:19:38Z",
+          "sequence": "MSDSDITFYCLSSILSVLLIFIFILIKRKQAKPKLNLPPGKMGWPFLGETIGYLKPYSATTLGEFMDQHIARYGKIYKSKLFGEPAIVSADAGLNRFILQNEGKLFECSYPRSIGGILGKWSMLVLVGDMHRDMRLISLNFLSHARLRTHLLKEVEKHTRLVISSWKENSTFAAQDEAKKFTFNLMAEHIMSLQPGKIETEKLKKEYVTFMKGVVSAPLNFPGTAYWKALKSRGTILKFIEGKMEERIKRMKEGNENLEEDDLLNWVLKHSNLSTEQILDLILSLLFAGHETSSVSIALAIYFLPGCPQAILQLREEHKEIARAKKQAGETELTWEDYKKMEFTHCVVNETLRLGNVVRFLHRKALKDVRYKGYDIPCGWKVLPVIAAVHLDPLLFDQPQHFNPWRWQNNGNCPNFSGASSNSNNIFLPFGGGPRLCAGSELAKLEMAVFIHHLILNYHWELTDNNDQAFAYPFVDFPKGLQIRVQSHSLI",
+          "sequence_length": 491,
+          "sequence_sha256": "65d996ac3e719344a19e57917c42fe536d41e496487d69bba4fe83983f14a6db",
+          "source": "reviewed_uniprot",
+          "source_accession": "A0A517FNC6"
+        },
+        "source_provenance": {
+          "accession": "A0A517FNC6",
+          "disambiguation_pool": "cytochrome_p450_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cytochrome_p450_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cytochrome_p450_monooxygenase_from_annotated_cofactor_and_ec_class_['1.14.14.-']",
+          "organism": "Trigonella foenum-graecum (Fenugreek)",
+          "protein_name": "Cholesterol 22-monohydroxylase CYP90B51 (EC 1.14.14.-) (Cytochrome P450 CYP90B51) (PpCYP90B51)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 491,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "34596f23301fcdf12583bacd0ccb51f4f9989666733cf2ae04dfc1ccbdc779c1",
+            "source_query_sha256": "f4ed0f4aee182ccdff3319663434033ed0bce2dd7522f007612561efd21fbf00",
+            "uniprot_entry_record_sha256": "c932596091d57e045b19f2089e5f6d15f4d5c88637e56a4a7f12a7c233fae14a",
+            "uniprot_search_row_sha256": "6b2b650a8bf0e3efae8a1a77767b5ccb7e4825d5c0243aebbb6dfb0ac894666b"
+          },
+          "target_family_lane": "cytochrome_p450_monooxygenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "A0A517FNC6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-A0A517FNC6-F1"
+        }
+      },
+      "evidence_score": 0.8,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "A0A517FNC6 imported as annotation-anchored bronze in-scope cytochrome_p450_monooxygenase: reviewed Swiss-Prot EC ['1.14.14.-'] with heme cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:C0SPF7",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30413",
+              "ligand_name": "heme",
+              "position": 433
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:30413",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "heme"
+            }
+          ],
+          "ec_numbers": [
+            "1.14.14.128"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.14.14.128",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "(2E,6E)-farnesoate + reduced [NADPH--hemoprotein reductase] + O2 = juvenile hormone III carboxylate + oxidized [NADPH--hemoprotein reductase] + H2O + H(+)",
+              "rhea_id": "RHEA:43724",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "1.14.14.128",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "(2E,6E)-farnesoate + reduced [NADPH--hemoprotein reductase] + O2 = juvenile hormone III carboxylate + oxidized [NADPH--hemoprotein reductase] + H2O + H(+)",
+              "rhea_id": "RHEA-COMP:11964",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "1.14.14.128",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "(2E,6E)-farnesoate + reduced [NADPH--hemoprotein reductase] + O2 = juvenile hormone III carboxylate + oxidized [NADPH--hemoprotein reductase] + H2O + H(+)",
+              "rhea_id": "RHEA-COMP:11965",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: cytochrome_p450_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f4ed0f4aee182ccdff3319663434033ed0bce2dd7522f007612561efd21fbf00"
+          },
+          "retrieved_utc": "2026-06-13T22:19:38Z",
+          "sequence": "MLALIVLCFILFFYIISRRHRGLCYPPGPTPLPIVGNLLSVLWESRKFKCHHLIWQSWSQKYGNLLGLRLGSINVVVVTGIELIREVSNREVFEGRPDGFFYTMRSFGKKLGLVFSDGPTWHRTRRFVLKYLKNFGYNSRFMNVYIGDECEALVQLRLADAGEPILVNQMFHITIVNILWRLVAGKRYDLEDQRLKELCSLVMRLFKLVDMSGGFLNFLPFLRHFVPRLIGFTELQEIHNALHQYLREIIKEHQENLQLGAPKDVIDAFLIDMLESQDDKPTLDDLQVVCLDLLEAGMETVTNTAVFMLLHVVRNEDVQRKLHQEIDDIIGRDRNPLLDDRIRMVYTEAVILETLRISTVASMGIPHMALNDAKLGNYIIPKGTFILLSLYELHHGPHWKDPETFRPERFLTKEGNILQDEWLIPFGIGKRRCIGEGLARSELFMFLTHILQKFHLRIPKNEPLPSTEPIDGLSLSAKQFRIIFEPRKTFKSI",
+          "sequence_length": 493,
+          "sequence_sha256": "1ced40234b12a97d3a1f98f9444949c64c6e9c5456c253d6712d307325dfe227",
+          "source": "reviewed_uniprot",
+          "source_accession": "C0SPF7"
+        },
+        "source_provenance": {
+          "accession": "C0SPF7",
+          "disambiguation_pool": "cytochrome_p450_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "cytochrome_p450_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_cytochrome_p450_monooxygenase_from_annotated_cofactor_and_ec_class_['1.14.14.128']",
+          "organism": "Bombyx mori (Silk moth)",
+          "protein_name": "Farnesoate epoxidase (EC 1.14.14.128) (Cytochrome P450 15C1) (Protein dimolting) (mod)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 493,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "3762b295a12644e0f582bb64b051d802aeedb499323ae4c45ea9177cb1a6f768",
+            "source_query_sha256": "f4ed0f4aee182ccdff3319663434033ed0bce2dd7522f007612561efd21fbf00",
+            "uniprot_entry_record_sha256": "4755ffe380368dbf1af877f17810574584ac71e2a6a769d535dd2c0409c14189",
+            "uniprot_search_row_sha256": "7c1cb95a45ff19c49e20eb2ced974ccf7d4f3a55a3e7333877f827b9d56551dd"
+          },
+          "target_family_lane": "cytochrome_p450_monooxygenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "C0SPF7"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-C0SPF7-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "C0SPF7 imported as annotation-anchored bronze in-scope cytochrome_p450_monooxygenase: reviewed Swiss-Prot EC ['1.14.14.128'] with heme cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_cytochrome_p450_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "cytochrome_p450_monooxygenase": 2
+    },
+    "current_combined_labels": 7283,
+    "disambiguation_hold_count": 1,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 1
+    },
+    "disambiguation_skip_count": 9,
+    "fetched_candidate_rows": 24,
+    "gate_admitted_before_cap_guard": 6,
+    "held_at_cap_ceiling": 4,
+    "held_at_cap_ceiling_by_fingerprint": {
+      "cytochrome_p450_monooxygenase": 4
+    },
+    "lanes_queried": 4,
+    "max_records_per_lane": 500,
+    "mechanism_corroborated_bronze_labels": 14,
+    "novelty_admitted_labels": 2,
+    "novelty_throttled_or_rejected": 8,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 7285,
+    "record_limit_per_lane": 8,
+    "record_offset_per_lane": 240
+  },
+  "created_utc": "2026-06-13T22:19:38Z",
+  "deploy_missing_active_site_context_per_family": {
+    "cytochrome_p450_monooxygenase": "heme_thiolate_oxygen_cosubstrate"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 8,
+      "medium": 6
+    },
+    "current_registry_labels": 6581,
+    "decision_counts": {
+      "hold": 1,
+      "import": 14,
+      "skip": 9
+    },
+    "examined_rows": 24,
+    "fingerprint_counts": {
+      "cytochrome_p450_monooxygenase": 14
+    },
+    "hold_count": 1,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 1
+    },
+    "importable_new_labels": 14,
+    "per_pool_decision_counts": {
+      "cytochrome_p450_broadened_handle_fresh_fetch": {
+        "hold": 1,
+        "import": 14,
+        "skip_screen": 9
+      }
+    },
+    "projected_registry_labels_if_merged": 6595,
+    "skip_count": 9
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_heme_p450_keyword_annotation",
+  "families_sourced": [
+    "cytochrome_p450_monooxygenase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "cytochrome_p450_monooxygenase": {
+      "admitted_this_run": 2,
+      "cap_ceiling": 250,
+      "chemistry_confusable": false,
+      "combined_before": 248,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "heme_thiolate_oxygen_cosubstrate",
+      "floor_reached": true,
+      "held_at_cap_this_run": 4,
+      "projected_combined": 250,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "non_peroxidase_guard": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "p450_keyword_o2_heme_handles_scope_admission_only": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "cytochrome_p450_monooxygenase": 250
+    },
+    "predictive_features_use_ec_name_keyword_o2_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "p450_ec_1_14_14_keyword",
+      "query": "(reviewed:true) AND (ec:1.14.14.*) AND ((keyword:\"Cytochrome P450\") OR (protein_name:P450))",
+      "record_count": 8,
+      "record_limit_per_lane": 8,
+      "record_offset_per_lane": 240,
+      "records_in_window_before_dedup": 8,
+      "records_returned_by_query": 500,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.14.14.%2A%29+AND+%28%28keyword%3A%22Cytochrome+P450%22%29+OR+%28protein_name%3AP450%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "lane_id": "p450_ec_1_14_13_keyword",
+      "query": "(reviewed:true) AND (ec:1.14.13.*) AND ((keyword:\"Cytochrome P450\") OR (protein_name:P450))",
+      "record_count": 0,
+      "record_limit_per_lane": 8,
+      "record_offset_per_lane": 240,
+      "records_in_window_before_dedup": 0,
+      "records_returned_by_query": 38,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.14.13.%2A%29+AND+%28%28keyword%3A%22Cytochrome+P450%22%29+OR+%28protein_name%3AP450%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "lane_id": "p450_keyword_heme",
+      "query": "(reviewed:true) AND ((keyword:\"Cytochrome P450\") OR (protein_name:P450)) AND (cc_cofactor:heme)",
+      "record_count": 8,
+      "record_limit_per_lane": 8,
+      "record_offset_per_lane": 240,
+      "records_in_window_before_dedup": 8,
+      "records_returned_by_query": 500,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28keyword%3A%22Cytochrome+P450%22%29+OR+%28protein_name%3AP450%29%29+AND+%28cc_cofactor%3Aheme%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "lane_id": "p450_ec_1_14_heme_monooxygenase",
+      "query": "(reviewed:true) AND (ec:1.14.*) AND (keyword:Monooxygenase) AND (cc_cofactor:heme)",
+      "record_count": 8,
+      "record_limit_per_lane": 8,
+      "record_offset_per_lane": 240,
+      "records_in_window_before_dedup": 8,
+      "records_returned_by_query": 500,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.14.%2A%29+AND+%28keyword%3AMonooxygenase%29+AND+%28cc_cofactor%3Aheme%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "cytochrome_p450_monooxygenase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via `apply-external-annotation-anchored-import` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 6,
+      "reject": 8
+    },
+    "reason_counts": {
+      "adds_diversity": 3,
+      "fingerprint_over_cap_no_new_chemistry": 8,
+      "over_cap_but_new_reaction_chemistry": 3
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_cytochrome_p450_monooxygenase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:Q9GLD2",
+      "fingerprint_id": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "entry_id": "uniprot:P30437",
+      "fingerprint_id": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "entry_id": "uniprot:P12394",
+      "fingerprint_id": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "entry_id": "uniprot:P0DO38",
+      "fingerprint_id": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "entry_id": "uniprot:P10612",
+      "fingerprint_id": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "entry_id": "uniprot:P51542",
+      "fingerprint_id": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "entry_id": "uniprot:P70687",
+      "fingerprint_id": "cytochrome_p450_monooxygenase"
+    },
+    {
+      "entry_id": "uniprot:P97720",
+      "fingerprint_id": "cytochrome_p450_monooxygenase"
+    }
+  ]
+}

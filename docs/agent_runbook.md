@@ -104,6 +104,13 @@ editing. Do not revert or stage unrelated user changes. If a tracked file is
 already modified and affects the requested command, work with it and call out
 the residual risk in the final status.
 
+For timed automation blocks, a clean commit/push is a checkpoint, not a
+wrap-up, while substantial time remains. If a major apply, preview, or scout
+finishes with more than about 15 minutes left, keep the lock and continue with
+the safest bounded next action: a non-destructive scout, source-supply probe,
+spec, or focused test is enough. Reserve only the final 8-10 minutes for final
+validation, docs, push, and lock release.
+
 ## Leakage Rules
 
 - Train or calibrate only on in-distribution train/cal rows.

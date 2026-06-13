@@ -26,6 +26,39 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **WINDOWED COA/P450/MOLYBDOPTERIN CAP-FILLS APPLIED (2026-06-13 automation).**
+  The latest run added source-window controls to the CoA acyltransferase, cytochrome P450, and
+  molybdopterin source runners, then used bounded windows to avoid monolithic live UniProt entry
+  fetches. These controls are source-fetch only and do not change admission, trust-tier, novelty,
+  caps, or predictive evidence.
+
+  Applied rows: `molybdopterin_oxidoreductase` **207 -> 250** (+43),
+  `cytochrome_p450_monooxygenase` **248 -> 250** (+2), and `coa_acyltransferase`
+  **188 -> 250** (+62). All three are now exactly at their non-confusable **250/250** cap and
+  should not continue under the current cap policy. External bronze is now **6645**; combined label
+  surface is **7347**. External-only split is **5421** seed-fingerprint rows and **1224** OOS rows.
+  Combined seed-fingerprint label surface is **5651**, leaving **4349** to 10k by that surface
+  convention. Strict counters remain separate: **positive_bronze_count 5634**,
+  **oos_bronze_count 1696**, **silver_ready_count 0**, **silver_confirmed_count 17**,
+  **projected_provisional_count 0**.
+
+  Guardrails held: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; all new rows are bronze,
+  automation-curated, `uniprot:*`, and have `predictive_evidence []`; EC/name/Rhea/keyword/prose/
+  feature handles remain excluded-context admission evidence only and EC is never counted. Row audit
+  `artifacts/v3_windowed_capfills_row_guardrail_audit_current702_20260613.json` found **0**
+  problems across **750** rows in the three touched families. Coverage audit reports **35**
+  fingerprints, Gini **0.1704**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, only
+  `metal_dependent_hydrolase` over-cap, and next-batch floor deficit **86**. Novelty replay over
+  **6645** expansion rows reports decisions `{'admit': 6189, 'reject': 47, 'throttle': 409}` and
+  would-not-readmit **456** (0.0686).
+
+  A strict-kinase GHMP-like entry/Rhea scout generated **0** labels and should not be wired next:
+  the existing GHMP fingerprint is already **150/150** and registry-new supply was sparse. Next
+  action: remaining floors are PfkB **46/100**, biotin **84/100**, and glycoside hydrolase
+  **84/100**. Build a genuinely new non-EC mechanism corroborator/source path for those floors, or
+  scout/spec a clean new family not already capped.
 - **ISOMERASE CAP-FILL APPLIED; GLYCOSIDE ALTERNATE SCOUTS NO-YIELD (2026-06-13 automation).**
   The latest run first pursued the remaining under-floor glycoside path without relaxing
   mechanism-first gates. A base glycoside page-2 continuation over rows **581-660**

@@ -1,5 +1,96 @@
 # Handoff
 
+## Session run - Windowed CoA/P450/Molybdopterin cap-fills applied (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main` after reading automation memory
+  and current state docs. This run followed the latest guidance: remaining PfkB/biotin/glycoside
+  floors remain source-limited/no-yield under current non-EC mechanism gates, so work moved to
+  bounded, existing-family 10k-path cap-fills with explicit source windows.
+- Implementation: exposed existing `build_external_source_ingestion_pilot` row-window controls on
+  three family runners:
+  `scripts/source_molybdopterin_oxidoreductase_family.py`,
+  `scripts/source_cytochrome_p450_family.py`, and
+  `scripts/source_coa_acyltransferase_family.py`, with offline tests confirming the row slice is
+  applied before entry/Rhea fetch. This is source-fetch control only; it does not change
+  disambiguation, trust-tier evaluation, novelty, caps, or predictive evidence.
+- A monolithic P450 cap-fill probe
+  `scripts/source_cytochrome_p450_family.py --max-records-per-lane 500 --cap-ceiling 250`
+  was interrupted before artifact write while inside UniProt entry TLS/connect work. Blocker:
+  `artifacts/v3_cytochrome_p450_capfill_live_fetch_blocker_current702_20260613.json` /
+  `work/cytochrome_p450_capfill_live_fetch_blocker_current702_20260613.md`. No registry write.
+- A bounded strict-kinase GHMP-like entry/Rhea mechanism scout was written after the latest
+  handoff's source-supply scout. Artifact/report:
+  `artifacts/v3_strict_kinase_ghmp_like_entry_mechanism_scout_current702_20260613.json` /
+  `work/strict_kinase_ghmp_like_entry_mechanism_scout_current702_20260613.md`. It sampled **120**
+  search rows for `galactokinase_mevalonate_homoserine`, found **5** registry-new rows, fetched
+  **5/5** entries, and generated **0** labels. It should **not** be wired next: the existing
+  `ghmp_small_molecule_kinase` fingerprint is already **150/150**, active-/binding-site handles
+  were absent in the fetched registry-new sample, and a split would need a new chemistry boundary
+  plus OOS preregistration.
+- Applied windowed molybdopterin cap-fill:
+  - `--record-offset-per-lane 80 --record-limit-per-lane 8`: fetched **24**, mechanism **21**,
+    admitted/applied **20**, throttled **1**, held@cap **0**, skipped **1**.
+  - `--record-offset-per-lane 88 --record-limit-per-lane 8`: fetched **24**, mechanism **20**,
+    admitted/applied **19**, throttled **1**, held@cap **0**, skipped **4**.
+  - `--record-offset-per-lane 96 --record-limit-per-lane 8`: fetched **19**, mechanism **11**,
+    gate-admitted **5**, applied **4**, held@cap **1**, throttled/rejected **6**, skipped **8**.
+  `molybdopterin_oxidoreductase` moved **207 -> 250**, exactly at the 250 cap.
+- Applied windowed P450 cap-fill:
+  - `--record-offset-per-lane 240 --record-limit-per-lane 8`: fetched **24**, mechanism **14**,
+    gate-admitted **6**, applied **2**, held@cap **4**, throttled/rejected **8**, held
+    **1** no-corroboration row, skipped **9**.
+  `cytochrome_p450_monooxygenase` moved **248 -> 250**, exactly at the 250 cap.
+- Applied windowed CoA cap-fill:
+  - `--record-offset-per-lane 80 --record-limit-per-lane 8`: fetched **24**, mechanism **15**,
+    applied **11**, throttled/rejected **4**, skipped **9**.
+  - `--record-offset-per-lane 88 --record-limit-per-lane 8`: fetched **24**, mechanism **15**,
+    applied **13**, held **2** no-corroboration rows, throttled/rejected **2**, skipped **7**.
+  - `--record-offset-per-lane 96 --record-limit-per-lane 8`: fetched **24**, mechanism **18**,
+    applied **14**, throttled/rejected **4**, skipped **6**.
+  - `--record-offset-per-lane 104 --record-limit-per-lane 8`: fetched **24**, mechanism **19**,
+    applied **17**, held **1** multi-fingerprint-signal row and **1** no-corroboration row,
+    throttled/rejected **2**, skipped **3**.
+  - `--record-offset-per-lane 112 --record-limit-per-lane 8`: fetched **24**, mechanism **23**,
+    gate-admitted **12**, applied **7**, held@cap **5**, throttled/rejected **11**, skipped **1**.
+  `coa_acyltransferase` moved **188 -> 250**, exactly at the 250 cap.
+- Net registry change: external bronze **6538 -> 6645** (+107); combined label surface
+  **7240 -> 7347**. Added rows by family: molybdopterin **+43**, P450 **+2**, CoA **+62**.
+  External-only split is **5421** seed-fingerprint rows and **1224** OOS rows. Combined
+  seed-fingerprint label surface is **5651**, leaving **4349** to 10k by that surface convention.
+  Strict source-trust counters remain separate: `positive_bronze_count=5634`,
+  `oos_bronze_count=1696`, `silver_ready_count=0`, `silver_confirmed_count=17`,
+  `projected_provisional_count=0`.
+- Guardrails verified: frozen current702 stayed byte-unchanged before/after every apply with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`; all added rows are `tier=bronze`,
+  `review_status=automation_curated`, `entry_id` namespace `uniprot:*`; EC/name/Rhea/keyword/prose/
+  feature handles remain excluded-context admission evidence only; EC is never a counted
+  corroborator; `predictive_evidence []`. Row audit
+  `artifacts/v3_windowed_capfills_row_guardrail_audit_current702_20260613.json` found **0**
+  problems across all **750** rows in the three touched capped families.
+- Fresh audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_windowed_capfills_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260613_windowed_capfills_applied.md`: **7347**
+  combined, **6645** expansion, fingerprint Gini **0.1704**, holes `[]`, under-floor
+  `['pfkb_ribokinase_family', 'biotin_dependent_carboxylase', 'glycoside_hydrolase']`, over-cap
+  `['metal_dependent_hydrolase']`, next-batch floor deficit **86**. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_windowed_capfills_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260613_windowed_capfills_applied.md`: **6645**
+  expansion rows, decisions `{'admit': 6189, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0686).
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_coa_acyltransferase_sourcing.py tests/test_cytochrome_p450_sourcing.py tests/test_molybdopterin_oxidoreductase_sourcing.py tests/test_external_source_ingestion.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_coverage_redundancy_audit.py tests/test_leakage_closure.py tests/test_source_only_contract.py -q`
+  -> **329 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels).
+  JSON parse checks and `git diff --check` passed.
+- Next exact action: do **not** continue CoA, P450, or molybdopterin under the current cap policy;
+  all are now **250/250**. Remaining floors are still PfkB **46/100**, biotin **84/100**, and
+  glycoside hydrolase **84/100**. The best next 10k-path action is a genuinely new non-EC
+  mechanism-corroborator/source path for those floors, or a clean new-family scout/spec not already
+  capped. Avoid GHMP-like strict-kinase continuation unless a real new chemistry split and OOS
+  preregistration are justified.
+
 ## Session run - Isomerase cap-fill applied; glycoside alternate scouts no-yield (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
