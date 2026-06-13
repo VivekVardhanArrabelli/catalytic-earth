@@ -1,5 +1,62 @@
 # Handoff
 
+## Session run - bounded under-cap previews cleared blocker but admitted 0 rows (2026-06-13, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This resumed the prior blocked
+  run after user feedback that the live-fetch blocker should have been isolated rather than treated
+  as a final stop.
+- Status: **BLOCKER CLEARED FOR BOUNDED PREVIEWS, NO REGISTRY WRITE.** The sourcing runners do
+  complete and write preview artifacts at small `--max-records-per-lane` values. The prior
+  no-artifact behavior came from larger sequential UniProt entry/Rhea evidence-fetch workloads
+  before artifact write, not from a broken gate. No `--apply` was run because all bounded previews
+  yielded **0 novelty-admitted labels**.
+- Bounded preview results:
+  - `cofactor_independent_isomerase` micro 5 rows/lane:
+    `artifacts/v3_cofactor_independent_isomerase_micro_capfill_sourcing_preview_current702_20260613.json`;
+    fetched **14**, mechanism-corroborated **0**, novelty-admitted **0**.
+  - `cofactor_independent_isomerase` 20 rows/lane:
+    `artifacts/v3_cofactor_independent_isomerase_bounded_capfill_sourcing_preview_current702_20260613.json`;
+    fetched **67**, mechanism-corroborated **0**, novelty-admitted **0**.
+  - `coa_acyltransferase` 20 rows/lane:
+    `artifacts/v3_coa_acyltransferase_bounded_extension_sourcing_preview_current702_20260613.json`;
+    fetched **75**, mechanism-corroborated **0**, novelty-admitted **0**.
+  - `non_heme_iron_2og_dioxygenase` 20 rows/lane:
+    `artifacts/v3_non_heme_iron_2og_bounded_extension_sourcing_preview_current702_20260613.json`;
+    fetched **66**, mechanism-corroborated **3**, novelty-admitted **0**; all 3 throttled as
+    `redundant_no_novelty_signal`.
+  - `molybdopterin_oxidoreductase` 20 rows/lane:
+    `artifacts/v3_molybdopterin_oxidoreductase_bounded_extension_sourcing_preview_current702_20260613.json`;
+    fetched **67**, mechanism-corroborated **2**, novelty-admitted **0**; both throttled as
+    `redundant_no_novelty_signal`.
+  - `zinc_lyase_hydratase` 20 rows/lane:
+    `artifacts/v3_zinc_lyase_hydratase_bounded_extension_sourcing_preview_current702_20260613.json`;
+    fetched **20**, mechanism-corroborated **0**, novelty-admitted **0**.
+  - `copper_oxidoreductase` 20 rows/lane:
+    `artifacts/v3_copper_oxidoreductase_bounded_extension_sourcing_preview_current702_20260613.json`;
+    fetched **40**, mechanism-corroborated **1**, novelty-admitted **0**; throttled as
+    `redundant_no_novelty_signal`.
+- Aggregate artifact/report:
+  `artifacts/v3_under_cap_bounded_preview_no_yield_current702_20260613.json` and
+  `work/under_cap_bounded_preview_no_yield_current702_20260613.md`.
+- Counts unchanged: external bronze **6238** (5014 seed-fingerprint bronze + 1224 OOS bronze);
+  combined label surface **6940**; frozen current702 **702** with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate: `positive_bronze=5227`, `oos_bronze=1696`, `silver_ready=0`, `silver_confirmed=17`,
+  `projected=0`; remaining positive-bronze gap to 10k **4773**.
+- Guardrails preserved: no labels applied; EC/name/keyword/Rhea/prose/feature handles remain
+  excluded-context admission evidence only; EC is never a counted mechanism corroborator;
+  `predictive_evidence` was not changed; frozen current702 was not written.
+- Validation: focused pytest passed
+  (`tests/test_cofactor_independent_isomerase_sourcing.py tests/test_coa_acyltransferase_sourcing.py tests/test_non_heme_iron_2og_sourcing.py tests/test_molybdopterin_oxidoreductase_sourcing.py tests/test_zinc_lyase_hydratase_sourcing.py tests/test_copper_oxidoreductase_sourcing.py tests/test_leakage_closure.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py -q`
+  -> **262 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 33 fingerprints, 30 ontology families, 702 curated labels).
+  JSON/JSONL parse checks and `git diff --check` passed.
+- Next exact action: do **not** repeat these same bounded first-window probes. The next useful
+  action is a genuinely new PfkB/biotin source path with stronger mechanism corroboration, a deeper
+  under-cap extension only when enough time remains for preview completion + validation + push, or a
+  new-family mechanism/source-supply scout/spec if evidence is cleaner.
+
 ## Session run - under-cap extension previews blocked by live fetch latency (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

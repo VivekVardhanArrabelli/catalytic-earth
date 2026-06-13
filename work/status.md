@@ -5,6 +5,29 @@ Generated from `work/progress_log.jsonl`.
 ## Current Automation Run
 
 - Automation ID: `ce-nad-glyco-floor-expansion`
+- Started UTC: `2026-06-13T14:32:54Z`
+- Started local: `Sat Jun 13 09:32:54 CDT 2026`
+- Focus/result: cleared the prior live-fetch blocker for bounded previews, but no registry write.
+  The runners completed and wrote preview artifacts at small `--max-records-per-lane` values:
+  isomerase 5/20, CoA 20, non-heme 2OG 20, molybdopterin 20, zinc 20, copper 20. All yielded
+  **0 novelty-admitted labels**, so no `--apply` was justified.
+- New artifacts: `artifacts/v3_under_cap_bounded_preview_no_yield_current702_20260613.json` and
+  `work/under_cap_bounded_preview_no_yield_current702_20260613.md`, plus the per-lane bounded
+  preview/report files listed there.
+- Registry/counts unchanged: external bronze **6238**, combined label surface **6940**, frozen
+  current702 **702** with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest counters remain
+  separate: `positive_bronze=5227`, `oos_bronze=1696`, `silver_ready=0`,
+  `silver_confirmed=17`, `projected=0`; remaining positive-bronze gap to 10k **4773**.
+- Validation: focused pytest passed (**262 passed, 14 subtests passed**); `validate` passed;
+  JSON/JSONL parse passed; `git diff --check` passed.
+- Next exact action: do not repeat the same bounded first-window probes. Build a genuinely new
+  PfkB/biotin source path with stronger mechanism corroboration, run a deeper under-cap extension
+  only with enough closeout time, or start a new-family mechanism/source-supply scout/spec.
+
+## Previous Automation Snapshot
+
+- Automation ID: `ce-nad-glyco-floor-expansion`
 - Started UTC: `2026-06-13T14:08:42Z`
 - Started local: `Sat Jun 13 09:08:42 CDT 2026`
 - Focus/result: no registry write. The run selected an under-cap approved extension path because

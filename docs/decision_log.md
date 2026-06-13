@@ -3,6 +3,46 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13: BOUNDED UNDER-CAP PREVIEWS CLEAR FETCH BLOCKER BUT ADMIT 0 ROWS
+
+Decision: after user feedback, resume the previous blocked run and isolate the live-preview issue
+instead of treating it as final. The family runners do complete and write preview artifacts at small
+`--max-records-per-lane` values; the earlier no-artifact behavior came from larger sequential
+UniProt entry/Rhea evidence-fetch workloads before artifact write. No `--apply` was run because all
+bounded preview windows yielded **0 novelty-admitted labels**.
+
+Bounded preview results:
+`cofactor_independent_isomerase` at 5 rows/lane fetched **14**, target mechanism-corroborated **0**,
+admitted **0**; the same lane at 20 rows/lane fetched **67**, mechanism **0**, admitted **0**.
+`coa_acyltransferase` at 20 rows/lane fetched **75**, mechanism **0**, admitted **0**.
+`non_heme_iron_2og_dioxygenase` at 20 rows/lane fetched **66**, mechanism **3**, admitted **0**;
+all 3 were novelty-throttled as `redundant_no_novelty_signal`. `molybdopterin_oxidoreductase` at
+20 rows/lane fetched **67**, mechanism **2**, admitted **0**; both were throttled as redundant.
+`zinc_lyase_hydratase` at 20 rows/lane fetched **20**, mechanism **0**, admitted **0**.
+`copper_oxidoreductase` at 20 rows/lane fetched **40**, mechanism **1**, admitted **0**; the row was
+throttled as redundant.
+
+Counts remain external bronze **6238**, combined surface **6940**, honest counters
+**positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**, **silver_confirmed 17**,
+**projected 0**. Frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Follow-on decision: do not repeat these same bounded first-window probes. Next work should build a
+new PfkB/biotin source path with stronger mechanism corroboration, run a targeted deeper under-cap
+extension only when enough closeout time remains, or start a new-family mechanism/source-supply
+scout/spec if evidence is cleaner than further top-ups.
+
+References:
+`artifacts/v3_under_cap_bounded_preview_no_yield_current702_20260613.json`,
+`work/under_cap_bounded_preview_no_yield_current702_20260613.md`,
+`artifacts/v3_cofactor_independent_isomerase_micro_capfill_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_cofactor_independent_isomerase_bounded_capfill_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_coa_acyltransferase_bounded_extension_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_bounded_extension_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_molybdopterin_oxidoreductase_bounded_extension_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_zinc_lyase_hydratase_bounded_extension_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_copper_oxidoreductase_bounded_extension_sourcing_preview_current702_20260613.json`.
+
 ## 2026-06-13: UNDER-CAP EXTENSION PREVIEWS BLOCKED; NO REGISTRY WRITE
 
 Decision: do not relax the mechanism-first rules to force `pfkb_ribokinase_family` or

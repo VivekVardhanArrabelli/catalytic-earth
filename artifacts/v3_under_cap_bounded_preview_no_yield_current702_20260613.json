@@ -1,0 +1,117 @@
+{
+  "artifact_id": "v3_under_cap_bounded_preview_no_yield_current702_20260613",
+  "created_utc": "2026-06-13T14:47:00Z",
+  "automation_id": "ce-nad-glyco-floor-expansion",
+  "status": "bounded_live_fetch_blocker_cleared_no_registry_write",
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "curated_current702_count": 702,
+  "external_bronze_count_before": 6238,
+  "external_bronze_count_after": 6238,
+  "combined_label_surface_count": 6940,
+  "honest_counters_unchanged": {
+    "positive_bronze": 5227,
+    "oos_bronze": 1696,
+    "silver_ready": 0,
+    "silver_confirmed": 17,
+    "projected": 0
+  },
+  "bounded_previews": [
+    {
+      "lane": "cofactor_independent_isomerase",
+      "artifact": "artifacts/v3_cofactor_independent_isomerase_micro_capfill_sourcing_preview_current702_20260613.json",
+      "report": "work/cofactor_independent_isomerase_micro_capfill_sourcing_current702_20260613.md",
+      "max_records_per_lane": 5,
+      "fetched_candidate_rows": 14,
+      "mechanism_corroborated_bronze_labels": 0,
+      "novelty_admitted_labels": 0,
+      "current_count": 142,
+      "cap_ceiling": 150
+    },
+    {
+      "lane": "cofactor_independent_isomerase",
+      "artifact": "artifacts/v3_cofactor_independent_isomerase_bounded_capfill_sourcing_preview_current702_20260613.json",
+      "report": "work/cofactor_independent_isomerase_bounded_capfill_sourcing_current702_20260613.md",
+      "max_records_per_lane": 20,
+      "fetched_candidate_rows": 67,
+      "mechanism_corroborated_bronze_labels": 0,
+      "novelty_admitted_labels": 0,
+      "current_count": 142,
+      "cap_ceiling": 150
+    },
+    {
+      "lane": "coa_acyltransferase",
+      "artifact": "artifacts/v3_coa_acyltransferase_bounded_extension_sourcing_preview_current702_20260613.json",
+      "report": "work/coa_acyltransferase_bounded_extension_sourcing_current702_20260613.md",
+      "max_records_per_lane": 20,
+      "fetched_candidate_rows": 75,
+      "mechanism_corroborated_bronze_labels": 0,
+      "novelty_admitted_labels": 0,
+      "current_count": 188,
+      "cap_ceiling": 250
+    },
+    {
+      "lane": "non_heme_iron_2og_dioxygenase",
+      "artifact": "artifacts/v3_non_heme_iron_2og_bounded_extension_sourcing_preview_current702_20260613.json",
+      "report": "work/non_heme_iron_2og_bounded_extension_sourcing_current702_20260613.md",
+      "max_records_per_lane": 20,
+      "fetched_candidate_rows": 66,
+      "mechanism_corroborated_bronze_labels": 3,
+      "novelty_admitted_labels": 0,
+      "novelty_decisions": {
+        "throttle": 3
+      },
+      "novelty_reasons": {
+        "redundant_no_novelty_signal": 3
+      },
+      "current_count": 172,
+      "cap_ceiling": 250
+    },
+    {
+      "lane": "molybdopterin_oxidoreductase",
+      "artifact": "artifacts/v3_molybdopterin_oxidoreductase_bounded_extension_sourcing_preview_current702_20260613.json",
+      "report": "work/molybdopterin_oxidoreductase_bounded_extension_sourcing_current702_20260613.md",
+      "max_records_per_lane": 20,
+      "fetched_candidate_rows": 67,
+      "mechanism_corroborated_bronze_labels": 2,
+      "novelty_admitted_labels": 0,
+      "novelty_decisions": {
+        "throttle": 2
+      },
+      "novelty_reasons": {
+        "redundant_no_novelty_signal": 2
+      },
+      "current_count": 207,
+      "cap_ceiling": 250
+    },
+    {
+      "lane": "zinc_lyase_hydratase",
+      "artifact": "artifacts/v3_zinc_lyase_hydratase_bounded_extension_sourcing_preview_current702_20260613.json",
+      "report": "work/zinc_lyase_hydratase_bounded_extension_sourcing_current702_20260613.md",
+      "max_records_per_lane": 20,
+      "fetched_candidate_rows": 20,
+      "mechanism_corroborated_bronze_labels": 0,
+      "novelty_admitted_labels": 0,
+      "current_count": 113,
+      "cap_ceiling": 150
+    },
+    {
+      "lane": "copper_oxidoreductase",
+      "artifact": "artifacts/v3_copper_oxidoreductase_bounded_extension_sourcing_preview_current702_20260613.json",
+      "report": "work/copper_oxidoreductase_bounded_extension_sourcing_current702_20260613.md",
+      "max_records_per_lane": 20,
+      "fetched_candidate_rows": 40,
+      "mechanism_corroborated_bronze_labels": 1,
+      "novelty_admitted_labels": 0,
+      "novelty_decisions": {
+        "throttle": 1
+      },
+      "novelty_reasons": {
+        "redundant_no_novelty_signal": 1
+      },
+      "current_count": 140,
+      "cap_ceiling": 250
+    }
+  ],
+  "conclusion": "Bounded live fetches now complete and write preview artifacts, clearing the prior operational blocker. The tested bounded windows did not produce any novelty-admitted labels, so no registry apply was justified.",
+  "next_action": "Do not repeat these same bounded first-window probes. Next useful work is a genuinely new PfkB/biotin source path with stronger corroboration, a targeted deeper under-cap probe only if it can be left to complete with enough closeout time, or a new-family mechanism/source-supply scout/spec."
+}

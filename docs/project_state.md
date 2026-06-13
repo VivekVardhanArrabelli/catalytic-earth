@@ -26,6 +26,25 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **BOUNDED UNDER-CAP PREVIEWS CLEARED FETCH BLOCKER BUT ADMITTED 0 ROWS (2026-06-13 automation).**
+  Follow-up to the immediately previous blocked run: bounded live previews now complete and write
+  artifacts, so the blocker was not a broken gate. It was the larger sequential UniProt entry/Rhea
+  evidence-fetch workload before artifact write. Tested bounded first windows across approved
+  under-cap lanes: `cofactor_independent_isomerase` at 5 rows/lane (fetched 14, mechanism 0,
+  admitted 0) and 20 rows/lane (fetched 67, mechanism 0, admitted 0), `coa_acyltransferase` 20
+  rows/lane (fetched 75, mechanism 0, admitted 0), `non_heme_iron_2og_dioxygenase` 20 rows/lane
+  (fetched 66, mechanism 3, admitted 0; all novelty-throttled as redundant), `molybdopterin_
+  oxidoreductase` 20 rows/lane (fetched 67, mechanism 2, admitted 0; novelty-throttled), `zinc_
+  lyase_hydratase` 20 rows/lane (fetched 20, mechanism 0, admitted 0), and `copper_oxidoreductase`
+  20 rows/lane (fetched 40, mechanism 1, admitted 0; novelty-throttled). Aggregate artifact/report:
+  `artifacts/v3_under_cap_bounded_preview_no_yield_current702_20260613.json` and
+  `work/under_cap_bounded_preview_no_yield_current702_20260613.md`. No `--apply` was run.
+  Counts remain external bronze **6238**, combined surface **6940**, frozen current702 **702** with
+  sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; honest counters remain
+  separate: **positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**,
+  **silver_confirmed 17**, **projected 0**. Next action: do not repeat the same bounded first-window
+  probes; build a new PfkB/biotin source path, run a deeper under-cap extension only with enough
+  closeout time, or scout/spec a cleaner new family.
 - **UNDER-CAP EXTENSION PREVIEWS BLOCKED BY LIVE FETCH LATENCY (2026-06-13 automation).**
   Latest state still has `pfkb_ribokinase_family` **46/100** and
   `biotin_dependent_carboxylase` **84/100** under floor, with current strict reviewed source paths

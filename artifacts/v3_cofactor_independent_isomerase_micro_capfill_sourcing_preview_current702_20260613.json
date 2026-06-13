@@ -1,0 +1,159 @@
+{
+  "applied_labels": [],
+  "artifact_id": "v3_cofactor_independent_isomerase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {},
+    "current_combined_labels": 6940,
+    "disambiguation_hold_count": 5,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 5
+    },
+    "disambiguation_skip_count": 7,
+    "fetched_candidate_rows": 14,
+    "gate_admitted_before_cap_guard": 0,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 4,
+    "max_records_per_lane": 5,
+    "mechanism_corroborated_bronze_labels": 0,
+    "novelty_admitted_labels": 0,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {
+      "nad_p_dehydrogenase": 2
+    },
+    "off_target_fingerprint_matches_held": 2,
+    "projected_combined_labels_if_merged": 6940
+  },
+  "created_utc": "2026-06-13T14:33:42Z",
+  "deploy_missing_active_site_context_per_family": {
+    "cofactor_independent_isomerase": "active_site_base_isomerization_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "medium": 2
+    },
+    "current_registry_labels": 6238,
+    "decision_counts": {
+      "hold": 5,
+      "import": 2,
+      "skip": 7
+    },
+    "examined_rows": 14,
+    "fingerprint_counts": {
+      "nad_p_dehydrogenase": 2
+    },
+    "hold_count": 5,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 5
+    },
+    "importable_new_labels": 2,
+    "per_pool_decision_counts": {
+      "cofactor_independent_isomerase_broadened_handle_fresh_fetch": {
+        "hold": 5,
+        "import": 2,
+        "skip_screen": 7
+      }
+    },
+    "projected_registry_labels_if_merged": 6240,
+    "skip_count": 7
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_isomerase_active_site_annotation",
+  "families_sourced": [
+    "cofactor_independent_isomerase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "cofactor_independent_isomerase": {
+      "admitted_this_run": 0,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 142,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "active_site_base_isomerization_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 142,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "isomerase_handles_scope_admission_only": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "non_5_3_side_ec_guard": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "cofactor_independent_isomerase": 150
+    },
+    "predictive_features_use_ec_name_keyword_isomerase_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "isomerase_ec_5_3_2_keto_aldose",
+      "query": "(reviewed:true) AND (ec:5.3.2.*) AND (keyword:Isomerase)",
+      "record_count": 5,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.2.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5",
+      "status": "query_fetched",
+      "target_family_lane": "cofactor_independent_isomerase"
+    },
+    {
+      "lane_id": "isomerase_ec_5_3_3_alkene",
+      "query": "(reviewed:true) AND (ec:5.3.3.*) AND (keyword:Isomerase)",
+      "record_count": 4,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.3.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5",
+      "status": "query_fetched",
+      "target_family_lane": "cofactor_independent_isomerase"
+    },
+    {
+      "lane_id": "isomerase_ec_5_3_1_broad",
+      "query": "(reviewed:true) AND (ec:5.3.1.*) AND (keyword:Isomerase)",
+      "record_count": 5,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.1.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5",
+      "status": "query_fetched",
+      "target_family_lane": "cofactor_independent_isomerase"
+    },
+    {
+      "lane_id": "isomerase_ec_5_3_broad_keyword",
+      "query": "(reviewed:true) AND (ec:5.3.*) AND (keyword:Isomerase)",
+      "record_count": 0,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A5.3.%2A%29+AND+%28keyword%3AIsomerase%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5",
+      "status": "query_fetched",
+      "target_family_lane": "cofactor_independent_isomerase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If floor, novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via `apply-external-annotation-anchored-import` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {},
+    "reason_counts": {}
+  },
+  "off_target_fingerprint_matches_sample": [
+    {
+      "entry_id": "uniprot:P14060",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    },
+    {
+      "entry_id": "uniprot:P26439",
+      "fingerprint_id": "nad_p_dehydrogenase"
+    }
+  ],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_cofactor_independent_isomerase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

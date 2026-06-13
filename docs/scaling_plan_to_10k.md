@@ -13,6 +13,30 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13 automation update: bounded under-cap previews cleared the fetch blocker but admitted
+0 rows.** A follow-up run isolated the previous live-fetch blocker. The sourcing runners complete
+and write artifacts at small `--max-records-per-lane`; the previous no-artifact behavior was caused
+by larger sequential UniProt entry/Rhea evidence-fetch workloads before artifact write, not by a
+broken gate. Bounded first-window previews were run for approved under-cap lanes:
+`cofactor_independent_isomerase` 5 rows/lane (14 fetched, 0 mechanism, 0 admitted) and 20 rows/lane
+(67 / 0 / 0), `coa_acyltransferase` 20 rows/lane (75 / 0 / 0),
+`non_heme_iron_2og_dioxygenase` 20 rows/lane (66 / 3 / 0; all novelty-throttled as redundant),
+`molybdopterin_oxidoreductase` 20 rows/lane (67 / 2 / 0; throttled), `zinc_lyase_hydratase`
+20 rows/lane (20 / 0 / 0), and `copper_oxidoreductase` 20 rows/lane (40 / 1 / 0; throttled).
+No `--apply` was run.
+
+Counts remain external bronze **6238**, combined label surface **6940**, and frozen current702
+**702** with sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Honest
+counters stay separate: **positive_bronze 5227**, **oos_bronze 1696**, **silver_ready 0**,
+**silver_confirmed 17**, **projected 0**. Aggregate artifact/report:
+`artifacts/v3_under_cap_bounded_preview_no_yield_current702_20260613.json` and
+`work/under_cap_bounded_preview_no_yield_current702_20260613.md`.
+
+Next concrete work should not repeat these same bounded first-window probes. Either design a new
+PfkB/biotin source path with stronger mechanism corroboration, run a targeted deeper under-cap probe
+only when enough time remains for preview completion/validation/push/lock release, or start a
+new-family mechanism/source-supply scout/spec if evidence is cleaner than further top-ups.
+
 **2026-06-13 automation update: under-cap extension previews blocked by live fetch latency.** The
 latest handoff still leaves `pfkb_ribokinase_family` **46/100** and
 `biotin_dependent_carboxylase` **84/100** under floor, but their current strict reviewed source
