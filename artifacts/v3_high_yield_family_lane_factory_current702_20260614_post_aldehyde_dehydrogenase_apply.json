@@ -1,0 +1,1130 @@
+{
+  "artifact_id": "v3_high_yield_family_lane_factory_current702",
+  "baseline": {
+    "combined_label_surface": 7860,
+    "combined_seed_fingerprint_surface": 6164,
+    "external_bronze_count": 7158,
+    "fingerprint_count": 39,
+    "oos_bronze_count": 1224,
+    "positive_bronze_count": 5934,
+    "projected_provisional_count": 0,
+    "silver_confirmed_count": 17,
+    "silver_ready_count": 0
+  },
+  "blocked_high_yield_lanes": [
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "ser_his_acid_hydrolase",
+        "metal_dependent_hydrolase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:3.1.1.*) AND ((keyword:Esterase) OR (keyword:Lipase) OR (protein_name:esterase) OR (protein_name:lipase))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "protease/amidase rows",
+        "glycoside hydrolase/transglycosylase rows",
+        "metal hydrolase rows",
+        "EC-only rows without active-site or family corroboration"
+      ],
+      "display_name": "Alpha/beta hydrolase esterase/lipase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "protease/amidase rows OR glycoside hydrolase/transglycosylase rows OR metal hydrolase rows OR EC-only rows without active-site or family corroboration",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "Ser-His-Asp/Glu catalytic triad active-site or binding-site evidence",
+          "esterase/lipase family keyword or protein-name handle",
+          "Rhea ester hydrolysis participant/equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:3.1.1.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "alpha_beta_hydrolase_esterase_lipase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.219,
+      "novelty_keep_factor": 0.35,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 150,
+      "rationale": "High-supply hydrolytic family but confusable with existing ser-his and metal hydrolase lanes; requires a split before import.",
+      "required_non_ec_corroborators": [
+        "Ser-His-Asp/Glu catalytic triad active-site or binding-site evidence",
+        "esterase/lipase family keyword or protein-name handle",
+        "Rhea ester hydrolysis participant/equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 1352,
+      "reviewed_scope_supply": 6160,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND (ec:3.1.1.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "metallophosphomonoesterase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48)) AND ((protein_name:\"protein phosphatase\") OR (keyword:Phosphoprotein) OR (cc_cofactor:manganese) OR (cc_cofactor:iron))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "small-molecule phosphomonoesterase rows",
+        "protein kinase rows",
+        "HAD-like Asp-phosphatase rows",
+        "EC-only rows without protein substrate or metal corroboration"
+      ],
+      "display_name": "Ser/Thr protein phosphatase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "small-molecule phosphomonoesterase rows OR protein kinase rows OR HAD-like Asp-phosphatase rows OR EC-only rows without protein substrate or metal corroboration",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "protein-phosphatase family/name handle",
+          "dinuclear metal binding-site/cofactor context",
+          "Rhea phosphoprotein dephosphorylation equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48))",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "ser_thr_protein_phosphatase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.826,
+      "novelty_keep_factor": 0.4,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 150,
+      "rationale": "Mechanistically useful protein-substrate phosphatase split, but it overlaps the existing metal phosphomonoesterase chemistry without a new rule.",
+      "required_non_ec_corroborators": [
+        "protein-phosphatase family/name handle",
+        "dinuclear metal binding-site/cofactor context",
+        "Rhea phosphoprotein dephosphorylation equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 943,
+      "reviewed_scope_supply": 1142,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48))",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    }
+  ],
+  "counts": {
+    "candidate_families_ranked": 12,
+    "existing_lanes_cap_room_below_150": 4,
+    "high_yield_blocked_new_or_infra": 2,
+    "projected_clean_admits_top_family": 150,
+    "ready_existing_lanes_ge_150": 0,
+    "remaining_gap_to_10k_seed_surface": 3836,
+    "source_count_fetch_failures": 0
+  },
+  "created_utc": "2026-06-14T20:29:50Z",
+  "existing_cap_limited_lanes": [
+    {
+      "ambiguity_with_existing_fingerprints": [],
+      "batch_gate_status": "blocked_existing_cap_room_below_150",
+      "cap_ceiling": 250,
+      "cap_class": "clean_nonconfusable_cap_250",
+      "cap_room": 77,
+      "chemistry_confusable": false,
+      "corroborator_query": "(reviewed:true) AND (ec:4.2.3.*) AND ((keyword:Terpene) OR (protein_name:cyclase) OR (protein_name:synthase) OR (cc_cofactor:magnesium) OR (cc_cofactor:manganese))",
+      "current_combined_count": 173,
+      "current_runner": "scripts/source_terpene_cyclase_synthase_family.py",
+      "disambiguation_holds": [
+        "prenyltransferase chain-extension rows",
+        "lyase/hydratase rows without terpene cyclization evidence",
+        "multi-fingerprint metal-lyase signal rows"
+      ],
+      "display_name": "Terpene cyclase/synthase",
+      "existing_fingerprint_id": "terpene_cyclase_synthase",
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 250,
+        "exclusion_query": "prenyltransferase chain-extension rows OR lyase/hydratase rows without terpene cyclization evidence OR multi-fingerprint metal-lyase signal rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "terpene/cyclase functional keyword or protein-name handle",
+          "Mg/Mn diphosphate-binding handle or active-site metal context",
+          "Rhea reaction participant showing diphosphate release/cyclization where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:4.2.3.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "terpene_cyclase_synthase",
+      "fingerprint_status": "existing",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": false,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.991,
+      "novelty_keep_factor": 0.45,
+      "oos_preregistration_required": false,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 77,
+      "rationale": "Clean carbocation cyclization chemistry outside the current atlas; prefer reviewed EC 4.2.3 rows with metal/diphosphate corroboration.",
+      "required_non_ec_corroborators": [
+        "terpene/cyclase functional keyword or protein-name handle",
+        "Mg/Mn diphosphate-binding handle or active-site metal context",
+        "Rhea reaction participant showing diphosphate release/cyclization where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 2315,
+      "reviewed_scope_supply": 2335,
+      "runner_status": "existing_runner",
+      "scope_query": "(reviewed:true) AND (ec:4.2.3.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "pfka_phosphofructokinase",
+        "pfkb_ribokinase_family",
+        "nucleoside_diphosphate_kinase",
+        "atp_amide_ligase"
+      ],
+      "batch_gate_status": "blocked_existing_cap_room_below_150",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 50,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND ((ec:2.7.10.*) OR (ec:2.7.11.*)) AND ((keyword:\"Protein kinase\") OR (protein_name:\"protein kinase\") OR (cc_cofactor:magnesium) OR (cc_cofactor:ATP))",
+      "current_combined_count": 100,
+      "current_runner": "scripts/source_protein_kinase_family.py",
+      "disambiguation_holds": [
+        "small-molecule kinase rows",
+        "histidine kinase/two-component rows",
+        "ATPase or ligase rows"
+      ],
+      "display_name": "Ser/Thr/Tyr protein kinase",
+      "existing_fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "small-molecule kinase rows OR histidine kinase/two-component rows OR ATPase or ligase rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "protein kinase family/name/domain handle",
+          "ATP/Mg binding-site or cofactor/cosubstrate context",
+          "protein-substrate phosphorylation Rhea equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND ((ec:2.7.10.*) OR (ec:2.7.11.*))",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "protein_kinase_ser_thr_tyr",
+      "fingerprint_status": "existing",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": false,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.678,
+      "novelty_keep_factor": 0.35,
+      "oos_preregistration_required": false,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 50,
+      "rationale": "Massive ATP/Mg phosphoryl-transfer family; only useful after a protein-substrate kinase split and explicit histidine-kinase holds.",
+      "required_non_ec_corroborators": [
+        "protein kinase family/name/domain handle",
+        "ATP/Mg binding-site or cofactor/cosubstrate context",
+        "protein-substrate phosphorylation Rhea equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 3470,
+      "reviewed_scope_supply": 5117,
+      "runner_status": "existing_runner",
+      "scope_query": "(reviewed:true) AND ((ec:2.7.10.*) OR (ec:2.7.11.*))",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "metallophosphomonoesterase"
+      ],
+      "batch_gate_status": "blocked_existing_cap_room_below_150",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 4,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:3.1.3.*) AND ((protein_name:HAD) OR (protein_name:phosphatase) OR (keyword:Phosphatase) OR (cc_cofactor:magnesium))",
+      "current_combined_count": 146,
+      "current_runner": "scripts/source_had_like_phosphatase_family.py",
+      "disambiguation_holds": [
+        "protein phosphatase rows",
+        "metal phosphomonoesterase rows with no HAD signal",
+        "phosphodiesterase/nuclease side rows"
+      ],
+      "display_name": "HAD-like phosphatase",
+      "existing_fingerprint_id": "had_like_phosphatase",
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "protein phosphatase rows OR metal phosphomonoesterase rows with no HAD signal OR phosphodiesterase/nuclease side rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "HAD family/domain/name handle",
+          "Asp nucleophile or Mg binding-site evidence",
+          "Rhea phosphomonoester hydrolysis equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:3.1.3.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "had_like_phosphatase",
+      "fingerprint_status": "existing",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": false,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.78,
+      "novelty_keep_factor": 0.3,
+      "oos_preregistration_required": false,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 4,
+      "rationale": "Large phosphatase lane; only useful at scale after a HAD-specific split separates Asp-phosphoenzyme chemistry from metal phosphatases.",
+      "required_non_ec_corroborators": [
+        "HAD family/domain/name handle",
+        "Asp nucleophile or Mg binding-site evidence",
+        "Rhea phosphomonoester hydrolysis equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 3477,
+      "reviewed_scope_supply": 4457,
+      "runner_status": "existing_runner",
+      "scope_query": "(reviewed:true) AND (ec:3.1.3.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "nad_p_dehydrogenase",
+        "molybdopterin_oxidoreductase"
+      ],
+      "batch_gate_status": "blocked_existing_cap_room_below_150",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 0,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:1.2.1.*) AND ((protein_name:\"aldehyde dehydrogenase\") OR (keyword:NAD) OR (keyword:NADP))",
+      "current_combined_count": 150,
+      "current_runner": "scripts/source_aldehyde_dehydrogenase_family.py",
+      "disambiguation_holds": [
+        "molybdopterin aldehyde oxidoreductase rows",
+        "flavin aldehyde oxidase rows",
+        "generic NAD(P) dehydrogenase rows without ALDH signal"
+      ],
+      "display_name": "Aldehyde dehydrogenase",
+      "existing_fingerprint_id": "aldehyde_dehydrogenase",
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "molybdopterin aldehyde oxidoreductase rows OR flavin aldehyde oxidase rows OR generic NAD(P) dehydrogenase rows without ALDH signal",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "aldehyde dehydrogenase family/name handle",
+          "NAD(P) cosubstrate participant or binding-site context",
+          "catalytic Cys/Glu active-site evidence where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:1.2.1.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "aldehyde_dehydrogenase",
+      "fingerprint_status": "existing",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": false,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.998,
+      "novelty_keep_factor": 0.35,
+      "oos_preregistration_required": false,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 0,
+      "rationale": "Cys-thiohemiacetal hydride-transfer mechanism; a clean split is needed from generic NAD(P) and Mo/flavin aldehyde oxidoreductases.",
+      "required_non_ec_corroborators": [
+        "aldehyde dehydrogenase family/name handle",
+        "NAD(P) cosubstrate participant or binding-site context",
+        "catalytic Cys/Glu active-site evidence where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 3153,
+      "reviewed_scope_supply": 3160,
+      "runner_status": "existing_runner",
+      "scope_query": "(reviewed:true) AND (ec:1.2.1.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    }
+  ],
+  "guardrails": {
+    "dedup_against_curated_and_external_required": true,
+    "ec_scope_only_never_predictive": true,
+    "frozen_current702_benchmark_preserved": true,
+    "future_entry_namespace": "uniprot",
+    "labels_created": false,
+    "multi_fingerprint_signal_rows_held": true,
+    "non_ec_handles_are_scope_admission_only": true,
+    "predictive_evidence_created": false,
+    "registry_written": false,
+    "review_status_for_future_labels": "automation_curated",
+    "source_trust_policy": "Use source_trust_tiers.evaluate_corroboration; tier_0 requires at least one counted mechanism axis and EC is never counted.",
+    "tier_for_future_labels": "bronze"
+  },
+  "next_action": "No existing lane has >=150 cap room. Build the `alpha_beta_hydrolase_esterase_lipase` fingerprint/source runner first: ontology node, mechanism disambiguation rule, OOS preregistration, row guardrail audit, preview, tests, then apply only if gates pass.",
+  "purpose": "Rank high-yield candidate families and materialize reusable lane declarations so future agents can build source runners without repeating small top-ups.",
+  "ranking": [
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "ser_his_acid_hydrolase",
+        "metal_dependent_hydrolase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:3.1.1.*) AND ((keyword:Esterase) OR (keyword:Lipase) OR (protein_name:esterase) OR (protein_name:lipase))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "protease/amidase rows",
+        "glycoside hydrolase/transglycosylase rows",
+        "metal hydrolase rows",
+        "EC-only rows without active-site or family corroboration"
+      ],
+      "display_name": "Alpha/beta hydrolase esterase/lipase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "protease/amidase rows OR glycoside hydrolase/transglycosylase rows OR metal hydrolase rows OR EC-only rows without active-site or family corroboration",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "Ser-His-Asp/Glu catalytic triad active-site or binding-site evidence",
+          "esterase/lipase family keyword or protein-name handle",
+          "Rhea ester hydrolysis participant/equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:3.1.1.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "alpha_beta_hydrolase_esterase_lipase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.219,
+      "novelty_keep_factor": 0.35,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 150,
+      "rationale": "High-supply hydrolytic family but confusable with existing ser-his and metal hydrolase lanes; requires a split before import.",
+      "required_non_ec_corroborators": [
+        "Ser-His-Asp/Glu catalytic triad active-site or binding-site evidence",
+        "esterase/lipase family keyword or protein-name handle",
+        "Rhea ester hydrolysis participant/equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 1352,
+      "reviewed_scope_supply": 6160,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND (ec:3.1.1.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "metallophosphomonoesterase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48)) AND ((protein_name:\"protein phosphatase\") OR (keyword:Phosphoprotein) OR (cc_cofactor:manganese) OR (cc_cofactor:iron))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "small-molecule phosphomonoesterase rows",
+        "protein kinase rows",
+        "HAD-like Asp-phosphatase rows",
+        "EC-only rows without protein substrate or metal corroboration"
+      ],
+      "display_name": "Ser/Thr protein phosphatase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "small-molecule phosphomonoesterase rows OR protein kinase rows OR HAD-like Asp-phosphatase rows OR EC-only rows without protein substrate or metal corroboration",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "protein-phosphatase family/name handle",
+          "dinuclear metal binding-site/cofactor context",
+          "Rhea phosphoprotein dephosphorylation equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48))",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "ser_thr_protein_phosphatase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.826,
+      "novelty_keep_factor": 0.4,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 150,
+      "rationale": "Mechanistically useful protein-substrate phosphatase split, but it overlaps the existing metal phosphomonoesterase chemistry without a new rule.",
+      "required_non_ec_corroborators": [
+        "protein-phosphatase family/name handle",
+        "dinuclear metal binding-site/cofactor context",
+        "Rhea phosphoprotein dephosphorylation equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 943,
+      "reviewed_scope_supply": 1142,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48))",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "nad_p_dehydrogenase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:\"short-chain dehydrogenase/reductase\") OR (protein_name:SDR)) AND ((keyword:NAD) OR (keyword:NADP))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "AKR rows",
+        "zinc medium-chain alcohol dehydrogenase rows",
+        "flavin/metal redox rows"
+      ],
+      "display_name": "Short-chain dehydrogenase/reductase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "AKR rows OR zinc medium-chain alcohol dehydrogenase rows OR flavin/metal redox rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "SDR family/name/domain handle",
+          "NAD(P) participant or Rossmann binding-site context",
+          "Ser-Tyr-Lys/Asn active-site evidence where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:1.1.1.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "short_chain_dehydrogenase_reductase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [
+        "2026-05 SDR/AKR/NAD(P) control tranche is review-only with 0 import-ready rows",
+        "SDR source-free full axis and NAD(P) pocket proxy are not production-ready"
+      ],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.031,
+      "novelty_keep_factor": 0.35,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 84,
+      "rationale": "Very large hydride-transfer family, but current source handles are weak; requires an SDR-specific rule instead of broad EC 1.1.1 padding.",
+      "required_non_ec_corroborators": [
+        "SDR family/name/domain handle",
+        "NAD(P) participant or Rossmann binding-site context",
+        "Ser-Tyr-Lys/Asn active-site evidence where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 241,
+      "reviewed_scope_supply": 7804,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND (ec:1.1.1.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [],
+      "batch_gate_status": "blocked_existing_cap_room_below_150",
+      "cap_ceiling": 250,
+      "cap_class": "clean_nonconfusable_cap_250",
+      "cap_room": 77,
+      "chemistry_confusable": false,
+      "corroborator_query": "(reviewed:true) AND (ec:4.2.3.*) AND ((keyword:Terpene) OR (protein_name:cyclase) OR (protein_name:synthase) OR (cc_cofactor:magnesium) OR (cc_cofactor:manganese))",
+      "current_combined_count": 173,
+      "current_runner": "scripts/source_terpene_cyclase_synthase_family.py",
+      "disambiguation_holds": [
+        "prenyltransferase chain-extension rows",
+        "lyase/hydratase rows without terpene cyclization evidence",
+        "multi-fingerprint metal-lyase signal rows"
+      ],
+      "display_name": "Terpene cyclase/synthase",
+      "existing_fingerprint_id": "terpene_cyclase_synthase",
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 250,
+        "exclusion_query": "prenyltransferase chain-extension rows OR lyase/hydratase rows without terpene cyclization evidence OR multi-fingerprint metal-lyase signal rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "terpene/cyclase functional keyword or protein-name handle",
+          "Mg/Mn diphosphate-binding handle or active-site metal context",
+          "Rhea reaction participant showing diphosphate release/cyclization where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:4.2.3.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "terpene_cyclase_synthase",
+      "fingerprint_status": "existing",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": false,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.991,
+      "novelty_keep_factor": 0.45,
+      "oos_preregistration_required": false,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 77,
+      "rationale": "Clean carbocation cyclization chemistry outside the current atlas; prefer reviewed EC 4.2.3 rows with metal/diphosphate corroboration.",
+      "required_non_ec_corroborators": [
+        "terpene/cyclase functional keyword or protein-name handle",
+        "Mg/Mn diphosphate-binding handle or active-site metal context",
+        "Rhea reaction participant showing diphosphate release/cyclization where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 2315,
+      "reviewed_scope_supply": 2335,
+      "runner_status": "existing_runner",
+      "scope_query": "(reviewed:true) AND (ec:4.2.3.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "metallo_amidohydrolase_deaminase",
+        "ser_his_acid_hydrolase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:3.5.2.6) AND ((keyword:\"Beta-lactamase\") OR (protein_name:\"beta-lactamase\")) NOT (protein_name:metallo)",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "metallo-beta-lactamase zinc rows",
+        "general amidohydrolase rows",
+        "resistance proteins without catalytic beta-lactamase evidence"
+      ],
+      "display_name": "Serine beta-lactamase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "metallo-beta-lactamase zinc rows OR general amidohydrolase rows OR resistance proteins without catalytic beta-lactamase evidence",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "beta-lactamase keyword/name handle",
+          "active-site Ser/Lys/Glu beta-lactamase motif evidence",
+          "Rhea beta-lactam hydrolysis equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:3.5.2.6)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "serine_beta_lactamase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.862,
+      "novelty_keep_factor": 0.45,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 70,
+      "rationale": "Resistance-relevant covalent acyl-enzyme hydrolase split; keep separate from zinc metallo-beta-lactamases and generic amidohydrolases.",
+      "required_non_ec_corroborators": [
+        "beta-lactamase keyword/name handle",
+        "active-site Ser/Lys/Glu beta-lactamase motif evidence",
+        "Rhea beta-lactam hydrolysis equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 156,
+      "reviewed_scope_supply": 181,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND (ec:3.5.2.6)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "pfka_phosphofructokinase",
+        "pfkb_ribokinase_family",
+        "nucleoside_diphosphate_kinase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:2.7.1.*) AND ((protein_name:aminoglycoside) OR (protein_name:phosphotransferase) OR (protein_name:kinase)) AND ((keyword:Antibiotic) OR (cc_cofactor:ATP) OR (cc_cofactor:magnesium))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "protein kinase rows",
+        "small-molecule kinase rows",
+        "aminoglycoside acetyltransferase/nucleotidyltransferase rows"
+      ],
+      "display_name": "Aminoglycoside phosphotransferase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "protein kinase rows OR small-molecule kinase rows OR aminoglycoside acetyltransferase/nucleotidyltransferase rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "aminoglycoside phosphotransferase family/name handle",
+          "ATP/Mg participant or binding-site context",
+          "aminoglycoside phosphorylation reaction evidence where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:2.7.1.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "aminoglycoside_phosphotransferase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.011,
+      "novelty_keep_factor": 0.4,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 61,
+      "rationale": "Resistance-relevant ATP phosphoryl transfer; needs explicit separation from protein and small-molecule kinase fingerprints.",
+      "required_non_ec_corroborators": [
+        "aminoglycoside phosphotransferase family/name handle",
+        "ATP/Mg participant or binding-site context",
+        "aminoglycoside phosphorylation reaction evidence where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 153,
+      "reviewed_scope_supply": 14226,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND (ec:2.7.1.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "pfka_phosphofructokinase",
+        "pfkb_ribokinase_family",
+        "nucleoside_diphosphate_kinase",
+        "atp_amide_ligase"
+      ],
+      "batch_gate_status": "blocked_existing_cap_room_below_150",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 50,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND ((ec:2.7.10.*) OR (ec:2.7.11.*)) AND ((keyword:\"Protein kinase\") OR (protein_name:\"protein kinase\") OR (cc_cofactor:magnesium) OR (cc_cofactor:ATP))",
+      "current_combined_count": 100,
+      "current_runner": "scripts/source_protein_kinase_family.py",
+      "disambiguation_holds": [
+        "small-molecule kinase rows",
+        "histidine kinase/two-component rows",
+        "ATPase or ligase rows"
+      ],
+      "display_name": "Ser/Thr/Tyr protein kinase",
+      "existing_fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "small-molecule kinase rows OR histidine kinase/two-component rows OR ATPase or ligase rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "protein kinase family/name/domain handle",
+          "ATP/Mg binding-site or cofactor/cosubstrate context",
+          "protein-substrate phosphorylation Rhea equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND ((ec:2.7.10.*) OR (ec:2.7.11.*))",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "protein_kinase_ser_thr_tyr",
+      "fingerprint_status": "existing",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": false,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.678,
+      "novelty_keep_factor": 0.35,
+      "oos_preregistration_required": false,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 50,
+      "rationale": "Massive ATP/Mg phosphoryl-transfer family; only useful after a protein-substrate kinase split and explicit histidine-kinase holds.",
+      "required_non_ec_corroborators": [
+        "protein kinase family/name/domain handle",
+        "ATP/Mg binding-site or cofactor/cosubstrate context",
+        "protein-substrate phosphorylation Rhea equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 3470,
+      "reviewed_scope_supply": 5117,
+      "runner_status": "existing_runner",
+      "scope_query": "(reviewed:true) AND ((ec:2.7.10.*) OR (ec:2.7.11.*))",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "nad_p_dehydrogenase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:1.1.1.*) AND ((protein_name:\"aldo-keto reductase\") OR (protein_name:\"aldose reductase\") OR (protein_name:AKR))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "short-chain dehydrogenase/reductase rows",
+        "medium-chain zinc alcohol dehydrogenase rows",
+        "flavin/metal redox rows"
+      ],
+      "display_name": "Aldo-keto reductase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "short-chain dehydrogenase/reductase rows OR medium-chain zinc alcohol dehydrogenase rows OR flavin/metal redox rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "aldo-keto reductase family/name handle",
+          "NADP/NADPH cosubstrate participant or binding-site context",
+          "active-site Tyr/Lys/Asp catalytic tetrad evidence where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:1.1.1.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "aldo_keto_reductase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [
+        "2026-05 SDR/AKR/NAD(P) control tranche is review-only with 0 import-ready rows",
+        "AKR source-free NADP/Tyr-Lys-His axis remains unresolved"
+      ],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.016,
+      "novelty_keep_factor": 0.35,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 44,
+      "rationale": "Large NAD(P) hydride-transfer subclass; needs AKR-vs-SDR/MDR rules because the existing NAD(P) fingerprint is capped.",
+      "required_non_ec_corroborators": [
+        "aldo-keto reductase family/name handle",
+        "NADP/NADPH cosubstrate participant or binding-site context",
+        "active-site Tyr/Lys/Asp catalytic tetrad evidence where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 125,
+      "reviewed_scope_supply": 7804,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND (ec:1.1.1.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "coa_acyltransferase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:2.3.1.*) AND ((protein_name:aminoglycoside) OR (protein_name:acetyltransferase)) AND ((keyword:Antibiotic) OR (keyword:Acetyltransferase) OR (cc_cofactor:coa))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "generic CoA acyltransferase rows",
+        "non-aminoglycoside acetyltransferases",
+        "aminoglycoside phosphotransferase/nucleotidyltransferase rows"
+      ],
+      "display_name": "Aminoglycoside acetyltransferase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "generic CoA acyltransferase rows OR non-aminoglycoside acetyltransferases OR aminoglycoside phosphotransferase/nucleotidyltransferase rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "aminoglycoside acetyltransferase name/family handle",
+          "acetyl-CoA/CoA participant or binding-site context",
+          "aminoglycoside acceptor reaction evidence where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:2.3.1.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "aminoglycoside_acetyltransferase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.008,
+      "novelty_keep_factor": 0.4,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 34,
+      "rationale": "Resistance-relevant CoA acyl-transfer split; existing CoA family is capped, so a subclass fingerprint is required before importing.",
+      "required_non_ec_corroborators": [
+        "aminoglycoside acetyltransferase name/family handle",
+        "acetyl-CoA/CoA participant or binding-site context",
+        "aminoglycoside acceptor reaction evidence where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 84,
+      "reviewed_scope_supply": 9981,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND (ec:2.3.1.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "metallo_amidohydrolase_deaminase"
+      ],
+      "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_rule_required",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 150,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:3.5.2.6) AND ((protein_name:metallo) OR (cc_cofactor:zinc) OR (keyword:Zinc))",
+      "current_combined_count": 0,
+      "current_runner": null,
+      "disambiguation_holds": [
+        "serine beta-lactamase rows",
+        "non-beta-lactam amidohydrolase rows",
+        "EC-only rows without zinc/metallo evidence"
+      ],
+      "display_name": "Metallo-beta-lactamase",
+      "existing_fingerprint_id": null,
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "serine beta-lactamase rows OR non-beta-lactam amidohydrolase rows OR EC-only rows without zinc/metallo evidence",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "metallo-beta-lactamase name/family handle",
+          "Zn binding-site/cofactor context",
+          "Rhea beta-lactam hydrolysis equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:3.5.2.6)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "metallo_beta_lactamase",
+      "fingerprint_status": "new_fingerprint_required",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": true,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.204,
+      "novelty_keep_factor": 0.45,
+      "oos_preregistration_required": true,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 17,
+      "rationale": "Mechanistically distinct zinc hydrolysis family, but current metal amidohydrolase coverage makes OOS preregistration mandatory.",
+      "required_non_ec_corroborators": [
+        "metallo-beta-lactamase name/family handle",
+        "Zn binding-site/cofactor context",
+        "Rhea beta-lactam hydrolysis equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 37,
+      "reviewed_scope_supply": 181,
+      "runner_status": "no_runner_yet",
+      "scope_query": "(reviewed:true) AND (ec:3.5.2.6)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "metallophosphomonoesterase"
+      ],
+      "batch_gate_status": "blocked_existing_cap_room_below_150",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 4,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:3.1.3.*) AND ((protein_name:HAD) OR (protein_name:phosphatase) OR (keyword:Phosphatase) OR (cc_cofactor:magnesium))",
+      "current_combined_count": 146,
+      "current_runner": "scripts/source_had_like_phosphatase_family.py",
+      "disambiguation_holds": [
+        "protein phosphatase rows",
+        "metal phosphomonoesterase rows with no HAD signal",
+        "phosphodiesterase/nuclease side rows"
+      ],
+      "display_name": "HAD-like phosphatase",
+      "existing_fingerprint_id": "had_like_phosphatase",
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "protein phosphatase rows OR metal phosphomonoesterase rows with no HAD signal OR phosphodiesterase/nuclease side rows",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "HAD family/domain/name handle",
+          "Asp nucleophile or Mg binding-site evidence",
+          "Rhea phosphomonoester hydrolysis equation where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:3.1.3.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "had_like_phosphatase",
+      "fingerprint_status": "existing",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": false,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.78,
+      "novelty_keep_factor": 0.3,
+      "oos_preregistration_required": false,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 4,
+      "rationale": "Large phosphatase lane; only useful at scale after a HAD-specific split separates Asp-phosphoenzyme chemistry from metal phosphatases.",
+      "required_non_ec_corroborators": [
+        "HAD family/domain/name handle",
+        "Asp nucleophile or Mg binding-site evidence",
+        "Rhea phosphomonoester hydrolysis equation where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 3477,
+      "reviewed_scope_supply": 4457,
+      "runner_status": "existing_runner",
+      "scope_query": "(reviewed:true) AND (ec:3.1.3.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    },
+    {
+      "ambiguity_with_existing_fingerprints": [
+        "nad_p_dehydrogenase",
+        "molybdopterin_oxidoreductase"
+      ],
+      "batch_gate_status": "blocked_existing_cap_room_below_150",
+      "cap_ceiling": 150,
+      "cap_class": "chemistry_confusable_cap_150",
+      "cap_room": 0,
+      "chemistry_confusable": true,
+      "corroborator_query": "(reviewed:true) AND (ec:1.2.1.*) AND ((protein_name:\"aldehyde dehydrogenase\") OR (keyword:NAD) OR (keyword:NADP))",
+      "current_combined_count": 150,
+      "current_runner": "scripts/source_aldehyde_dehydrogenase_family.py",
+      "disambiguation_holds": [
+        "molybdopterin aldehyde oxidoreductase rows",
+        "flavin aldehyde oxidase rows",
+        "generic NAD(P) dehydrogenase rows without ALDH signal"
+      ],
+      "display_name": "Aldehyde dehydrogenase",
+      "existing_fingerprint_id": "aldehyde_dehydrogenase",
+      "factory_declaration": {
+        "apply_command_template": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+        "cap_ceiling": 150,
+        "exclusion_query": "molybdopterin aldehyde oxidoreductase rows OR flavin aldehyde oxidase rows OR generic NAD(P) dehydrogenase rows without ALDH signal",
+        "preview_command_template": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+        "required_non_ec_corroborators": [
+          "aldehyde dehydrogenase family/name handle",
+          "NAD(P) cosubstrate participant or binding-site context",
+          "catalytic Cys/Glu active-site evidence where available"
+        ],
+        "row_guardrail_audit_required": true,
+        "scope_query": "(reviewed:true) AND (ec:1.2.1.*)",
+        "source_tier": "source_tier_0"
+      },
+      "family_id": "aldehyde_dehydrogenase",
+      "fingerprint_status": "existing",
+      "known_blockers": [],
+      "mechanism_corroboration_basis": "UniProt reviewed count for scope EC query versus the same scope plus non-EC family/cofactor/keyword/name handles. This is a source-supply estimate, not an admission preview.",
+      "mechanism_rule_required": false,
+      "non_ec_mechanism_corroboration_rate_estimate": 0.998,
+      "novelty_keep_factor": 0.35,
+      "oos_preregistration_required": false,
+      "passes_150_batch_gate_now": false,
+      "projected_clean_admits": 0,
+      "rationale": "Cys-thiohemiacetal hydride-transfer mechanism; a clean split is needed from generic NAD(P) and Mo/flavin aldehyde oxidoreductases.",
+      "required_non_ec_corroborators": [
+        "aldehyde dehydrogenase family/name handle",
+        "NAD(P) cosubstrate participant or binding-site context",
+        "catalytic Cys/Glu active-site evidence where available"
+      ],
+      "reviewed_non_ec_corroborated_supply": 3153,
+      "reviewed_scope_supply": 3160,
+      "runner_status": "existing_runner",
+      "scope_query": "(reviewed:true) AND (ec:1.2.1.*)",
+      "source_count_errors": {
+        "corroborator": null,
+        "scope": null
+      },
+      "source_tier": "source_tier_0_reviewed_swissprot"
+    }
+  ],
+  "ready_lanes": [],
+  "schema_version": "high_yield_family_lane_factory.v1",
+  "status": "non_destructive_family_lane_factory_no_labels_or_registry_written"
+}

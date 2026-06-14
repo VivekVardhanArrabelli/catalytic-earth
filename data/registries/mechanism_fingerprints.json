@@ -945,5 +945,31 @@
       "reconstruction_path": "Path A sequence->HAD family plus Asp/Mg/Rhea channel, or canonical Mg/phosphomonoester/phospho-Asp graft in a HAD active-site pocket (Path B)",
       "silver_reachability": "moderate; HAD family and catalytic Asp/Mg annotations are common, but substrate pose and phospho-Asp geometry require reconstruction"
     }
+  },
+  {
+    "id": "aldehyde_dehydrogenase",
+    "name": "Aldehyde dehydrogenase",
+    "enzyme_space": ["aldehyde dehydrogenases", "ALDH-family oxidoreductases", "NAD(P)-dependent aldehyde oxidation enzymes", "Cys/Glu ALDH hydride-transfer enzymes"],
+    "active_site_signature": [
+      {"role": "catalytic_cysteine_nucleophile", "residue": "Cys", "constraints": ["forms a thiohemiacetal intermediate with the aldehyde substrate carbonyl"]},
+      {"role": "general_base_water_activator", "residue": "Glu", "constraints": ["activates water for thioester hydrolysis after hydride transfer"]},
+      {"role": "nicotinamide_hydride_acceptor", "residue": "NAD(P)+ nicotinamide plus Rossmann-loop pocket residues", "constraints": ["positions NAD(P)+ C4 to accept hydride from the thiohemiacetal intermediate"]}
+    ],
+    "cofactors": ["NAD+", "NADP+"],
+    "reaction_center": {
+      "bond_changes": ["aldehyde C-H oxidation to carboxylate through a Cys-thiohemiacetal/thioester intermediate with hydride transfer to NAD(P)+"],
+      "chemical_operation": "NAD(P)-dependent Cys-thiohemiacetal aldehyde oxidation"
+    },
+    "substrate_constraints": ["EC 1.2.1 aldehyde dehydrogenase scope present", "ALDH family/name/domain context present", "NAD(P) cosubstrate participant or binding-site evidence present", "catalytic Cys/Glu active-site evidence present where available", "no molybdopterin aldehyde oxidoreductase, flavin aldehyde oxidase, SDR, AKR, MDR, generic NAD(P) dehydrogenase, side-EC, EC-only, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Aldehyde dehydrogenase or ALDH family/name/domain text", "NAD/NADP keyword, Rhea participant, cofactor, or binding-site context", "annotated catalytic Cys and Glu active-site residues where available", "Rhea or reviewed catalytic activity text for aldehyde + NAD(P)+ + water to carboxylate + NAD(P)H"],
+    "counterevidence_features": ["molybdopterin or xanthine/aldehyde oxidoreductase cofactor context", "flavin aldehyde oxidase / oxidase chemistry", "generic NAD(P) dehydrogenase rows lacking ALDH family evidence", "SDR/AKR/MDR alcohol or carbonyl reductase family wording", "EC-only evidence with no ALDH, NAD(P), Rhea, active-site, binding-site, or structure corroborator"],
+    "uncertainty_axes": ["NAD versus NADP specificity", "aldehyde substrate class", "Cys-thiohemiacetal versus thioester intermediate state", "water/protonation and active-site loop conformation"],
+    "seed_examples": ["glyceraldehyde-3-phosphate dehydrogenase (non-phosphorylating)", "betaine aldehyde dehydrogenase", "succinate-semialdehyde dehydrogenase", "fatty aldehyde dehydrogenase"],
+    "deploy_missing_active_site_context": {
+      "type": "nad_p_cys_glu_thiohemiacetal_hydride_transfer_context",
+      "detail": "the NAD(P)+ cosubstrate, aldehyde substrate, thiohemiacetal/thioester intermediate, and hydrolytic water/protonation state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->ALDH family plus NAD(P)/Cys/Glu/Rhea channel, or canonical NAD(P)-aldehyde/Cys/Glu graft in an ALDH active-site pocket (Path B)",
+      "silver_reachability": "moderate; ALDH family and catalytic Cys/Glu annotations are common, but cosubstrate pose and intermediate geometry require reconstruction"
+    }
   }
 ]

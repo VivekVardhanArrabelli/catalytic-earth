@@ -1754,6 +1754,91 @@ class DisambiguateRowTests(unittest.TestCase):
             "metallophosphoesterase_nuclease",
         )
 
+    def test_aldehyde_dehydrogenase_requires_non_ec_mechanism_handles(self) -> None:
+        row = _row(ec=["1.2.1.3"])
+        row["protein_name"] = "Aldehyde dehydrogenase"
+        row["keywords"] = ["NAD"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AD0001",
+                "reaction": "an aldehyde + NAD(+) + H2O = a carboxylate + NADH + H(+)",
+                "ec_number": "1.2.1.3",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 302,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic cysteine nucleophile",
+                "evidence_codes": ["ECO:0000269"],
+            },
+            {
+                "position": 268,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic glutamate base",
+                "evidence_codes": ["ECO:0000269"],
+            },
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(decision["fingerprint_id"], "aldehyde_dehydrogenase")
+        axes = decision["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("cofactor_or_cosubstrate", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_aldehyde_dehydrogenase_boundary_controls_hold(self) -> None:
+        ec_only = _row(ec=["1.2.1.3"])
+        ec_only["protein_name"] = "Aldehyde dehydrogenase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        no_site = _row(ec=["1.2.1.3"])
+        no_site["protein_name"] = "Aldehyde dehydrogenase"
+        no_site["keywords"] = ["NAD"]
+        no_site["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AD0004",
+                "reaction": "an aldehyde + NAD(+) + H2O = a carboxylate + NADH + H(+)",
+                "ec_number": "1.2.1.3",
+            }
+        ]
+        no_site_decision = disambiguate_row(no_site)
+        self.assertEqual(no_site_decision["fingerprint_id"], "aldehyde_dehydrogenase")
+        self.assertNotIn(
+            "active_site_motif_or_residue_role",
+            no_site_decision["corroboration"]["distinct_corroborator_axes"],
+        )
+
+        generic_nad = _row(ec=["1.2.1.3"])
+        generic_nad["keywords"] = ["NAD"]
+        generic_nad["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AD0002",
+                "reaction": "an aldehyde + NAD(+) + H2O = a carboxylate + NADH + H(+)",
+                "ec_number": "1.2.1.3",
+            }
+        ]
+        self.assertEqual(disambiguate_row(generic_nad)["decision"], "hold")
+
+        flavin_oxidase = _row(cofactors=["FAD"], ec=["1.2.3.1"])
+        flavin_oxidase["protein_name"] = "Aldehyde oxidase"
+        flavin_oxidase["keywords"] = ["Flavoprotein"]
+        flavin_oxidase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AD0003",
+                "reaction": "an aldehyde + O2 + H2O = a carboxylate + H2O2",
+                "ec_number": "1.2.3.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(flavin_oxidase)["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

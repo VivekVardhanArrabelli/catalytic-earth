@@ -332,6 +332,9 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         cap_ceiling=DEFAULT_CONFUSABLE_CAP,
         chemistry_confusable=True,
         novelty_keep_factor=0.35,
+        existing_fingerprint_id="aldehyde_dehydrogenase",
+        current_runner="scripts/source_aldehyde_dehydrogenase_family.py",
+        oos_preregistration_required=False,
         ambiguity_with_existing=("nad_p_dehydrogenase", "molybdopterin_oxidoreductase"),
         rationale_template=(
             "Cys-thiohemiacetal hydride-transfer mechanism; a clean split is needed "

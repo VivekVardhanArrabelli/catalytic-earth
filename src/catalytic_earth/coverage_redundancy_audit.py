@@ -270,6 +270,22 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         ),
         "lanes": ["protein_kinase_ser_thr_tyr"],
     },
+    "had_like_phosphatase": {
+        "ec_prefixes": ["3.1.3"],
+        "cofactor": (
+            "Mg/Asp aspartyl-phosphoenzyme phosphomonoesterase context; "
+            "metal phosphomonoesterase and phosphodiesterase/nuclease boundaries are held"
+        ),
+        "lanes": ["had_like_phosphatase"],
+    },
+    "aldehyde_dehydrogenase": {
+        "ec_prefixes": ["1.2.1"],
+        "cofactor": (
+            "NAD(P) Cys/Glu thiohemiacetal aldehyde oxidation context; "
+            "Mo/flavin aldehyde oxidoreductase and SDR/AKR/MDR boundaries are held"
+        ),
+        "lanes": ["aldehyde_dehydrogenase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

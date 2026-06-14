@@ -1,0 +1,196 @@
+{
+  "artifact_id": "v3_label_pdb_id_backfill_preview_aldehyde_dehydrogenase_current702_20260614",
+  "backfilled_by_fingerprint": {},
+  "backfilled_examples": [],
+  "counts": {
+    "accessions_queried": 123,
+    "already_had_pdb_ids": 27,
+    "backfilled_pdb_rows_this_run": 0,
+    "deferred_over_limit": 0,
+    "expansion_labels": 150,
+    "no_accession": 0,
+    "rows_with_pdb_ids_after": 27,
+    "uniprot_record_without_pdb_xref": 123,
+    "uniprot_records_returned": 123
+  },
+  "created_utc": "2026-06-14T20:34:24Z",
+  "fetch_metadata": {
+    "batches": [
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA0A2I7G3B0+OR+accession%3AA0A8M1PLI9+OR+accession%3AA0B2F6+OR+accession%3AA1UVS4+OR+accession%3AA2RWD6+OR+accession%3AA3M365+OR+accession%3AA3P6B0+OR+accession%3AA3RF36+OR+accession%3AA4TNP1+OR+accession%3AA7N2Q0+OR+accession%3AA9M9H7+OR+accession%3AB1J2K9+OR+accession%3AB1JSQ9+OR+accession%3AB1K708+OR+accession%3AB2K8U5+OR+accession%3AB2TCJ9+OR+accession%3AB4SHW0+OR+accession%3AB5Y007+OR+accession%3AB5Z1R1+OR+accession%3AB5ZUG3+OR+accession%3AB7GYG4+OR+accession%3AB7MCD1+OR+accession%3AB7UJG5+OR+accession%3AB9F3B6+OR+accession%3AC3MIE5%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AC5I9X1+OR+accession%3AE9Q3E1+OR+accession%3AG5DDC2+OR+accession%3AH1ZV37+OR+accession%3AJ3QMK6+OR+accession%3AO24174+OR+accession%3AO35945+OR+accession%3AO86447+OR+accession%3AO93344+OR+accession%3AP08157+OR+accession%3AP0C2X9+OR+accession%3AP12762+OR+accession%3AP13601+OR+accession%3AP15437+OR+accession%3AP17445+OR+accession%3AP23883+OR+accession%3AP27463+OR+accession%3AP30839+OR+accession%3AP37685+OR+accession%3AP40047+OR+accession%3AP42041+OR+accession%3AP43353+OR+accession%3AP47738+OR+accession%3AP47739+OR+accession%3AP47740%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP47771+OR+accession%3AP48448+OR+accession%3AP48644+OR+accession%3AP51647+OR+accession%3AP51650+OR+accession%3AP54114+OR+accession%3AP54115+OR+accession%3AP71016+OR+accession%3AP81178+OR+accession%3AP83402+OR+accession%3AP84463+OR+accession%3AP86886+OR+accession%3AQ02253+OR+accession%3AQ04458+OR+accession%3AQ07536+OR+accession%3AQ0WM29+OR+accession%3AQ13NG6+OR+accession%3AQ19A30+OR+accession%3AQ1JPA0+OR+accession%3AQ1K615+OR+accession%3AQ1WIQ6+OR+accession%3AQ25417+OR+accession%3AQ29228+OR+accession%3AQ29490+OR+accession%3AQ2KJC9%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ2KJH9+OR+accession%3AQ2XQV4+OR+accession%3AQ3J4E9+OR+accession%3AQ3K5H4+OR+accession%3AQ3MSM3+OR+accession%3AQ3MSM4+OR+accession%3AQ48CM6+OR+accession%3AQ4K4K8+OR+accession%3AQ4UYN4+OR+accession%3AQ5R8A4+OR+accession%3AQ5RF00+OR+accession%3AQ5RF60+OR+accession%3AQ5XI42+OR+accession%3AQ60HH8+OR+accession%3AQ62148+OR+accession%3AQ63KK8+OR+accession%3AQ64057+OR+accession%3AQ6A2H0+OR+accession%3AQ6A2H1+OR+accession%3AQ6A2H2+OR+accession%3AQ70DU8+OR+accession%3AQ7MF13+OR+accession%3AQ80VQ0+OR+accession%3AQ84LK3+OR+accession%3AQ8BH00%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 23,
+        "requested_accession_count": 23,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ8BWF0+OR+accession%3AQ8D3K3+OR+accession%3AQ8GAK7+OR+accession%3AQ8HYE4+OR+accession%3AQ8K4D8+OR+accession%3AQ8MI17+OR+accession%3AQ8NMB0+OR+accession%3AQ8S528+OR+accession%3AQ8VXQ2+OR+accession%3AQ8VZC3+OR+accession%3AQ8W033+OR+accession%3AQ9DBF1+OR+accession%3AQ9EQ20+OR+accession%3AQ9FDS1+OR+accession%3AQ9H2A2+OR+accession%3AQ9I8W8+OR+accession%3AQ9JHW9+OR+accession%3AQ9JLJ2+OR+accession%3AQ9JLJ3+OR+accession%3AQ9S795+OR+accession%3AQ9SAK4+OR+accession%3AQ9STS1+OR+accession%3AQ9SU63%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=23"
+      }
+    ],
+    "record_count": 123,
+    "requested_accession_count": 123,
+    "source": "uniprot",
+    "url": "https://rest.uniprot.org/uniprotkb/search"
+  },
+  "guardrails": {
+    "existing_pdb_ids_preserved": true,
+    "frozen_current702_benchmark_preserved": true,
+    "no_pdb_ids_fabricated_when_uniprot_lacks_xref": true,
+    "pdb_ids_are_provenance_not_predictive_features": true,
+    "predictive_evidence_unchanged": true,
+    "row_count_unchanged": true,
+    "writes_expansion_registry_only": true
+  },
+  "next_action": "Review counts, then re-run with --apply to write only the external registry. Follow with holo structure promotion and bronze-silver promotion preview.",
+  "schema_version": "label_pdb_id_backfill.v1",
+  "scope": {
+    "filter": "fingerprint_id == aldehyde_dehydrogenase",
+    "registry": "data/registries/external_bronze_labels.json",
+    "rows_examined": 150,
+    "writes_registry": false
+  },
+  "status": "non_destructive_aldh_only_preview_no_registry_write",
+  "uniprot_without_pdb_xref_examples": [
+    {
+      "accession": "O35945",
+      "entry_id": "uniprot:O35945",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P13601",
+      "entry_id": "uniprot:P13601",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P47738",
+      "entry_id": "uniprot:P47738",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P12762",
+      "entry_id": "uniprot:P12762",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P23883",
+      "entry_id": "uniprot:P23883",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P47739",
+      "entry_id": "uniprot:P47739",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P17445",
+      "entry_id": "uniprot:P17445",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P40047",
+      "entry_id": "uniprot:P40047",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P48644",
+      "entry_id": "uniprot:P48644",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P51647",
+      "entry_id": "uniprot:P51647",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P43353",
+      "entry_id": "uniprot:P43353",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P48448",
+      "entry_id": "uniprot:P48448",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "Q8GAK7",
+      "entry_id": "uniprot:Q8GAK7",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "Q9H2A2",
+      "entry_id": "uniprot:Q9H2A2",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "Q8NMB0",
+      "entry_id": "uniprot:Q8NMB0",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P15437",
+      "entry_id": "uniprot:P15437",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "Q8HYE4",
+      "entry_id": "uniprot:Q8HYE4",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "Q8MI17",
+      "entry_id": "uniprot:Q8MI17",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P27463",
+      "entry_id": "uniprot:P27463",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P86886",
+      "entry_id": "uniprot:P86886",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P30839",
+      "entry_id": "uniprot:P30839",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P47740",
+      "entry_id": "uniprot:P47740",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "P71016",
+      "entry_id": "uniprot:P71016",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "Q1JPA0",
+      "entry_id": "uniprot:Q1JPA0",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    },
+    {
+      "accession": "Q5XI42",
+      "entry_id": "uniprot:Q5XI42",
+      "fingerprint_id": "aldehyde_dehydrogenase"
+    }
+  ],
+  "what": "backfill missing evidence.structure_provenance.pdb_ids from curated UniProt xref_pdb cross-references; PDB IDs are structure provenance for holo confirmation and are never predictive features"
+}

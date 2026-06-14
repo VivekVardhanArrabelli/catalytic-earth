@@ -1,0 +1,1548 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q88AE9",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 19,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 162
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 252
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 286
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 464
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 26
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 27
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 93
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 150
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 176
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 180
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 230
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 246
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 254
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 286
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 387
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 457
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 460
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "SITE",
+              "feature_type": "Site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 248
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 286
+            }
+          ],
+          "binding_residue_count": 13,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29103",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "name": "K(+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.2.1.8"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.2.1.8",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "betaine aldehyde + NAD(+) + H2O = glycine betaine + NADH + 2 H(+)",
+              "rhea_id": "RHEA:15305",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aldehyde_dehydrogenase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "1fb9a33ed25a0e8972ca05fb387b29085369a036728cff3000c0472946f63894"
+          },
+          "retrieved_utc": "2026-06-14T20:20:48Z",
+          "sequence": "MARFELQKLYIDGGYVDASNTETFDSINPANGEVLAKIQRASKEDVERAVVAAEKGQKIWAAMTAVERSRILRRAVDILRERNDELAALETLDTGKAISETRYVDIVTGADVLEYYAGLVPAIEGEQIPLRDSSFVYTRREPLGVVAGIGAWNYPIQIALWKSAPALAAGNAMIFKPSEVTSLTTLKLAEIYTEAGVPNGVFNVLTGSGREVGTWITEHPRIEKVSFTGGTDTGKKVMASASSSSLKEVTMELGGKSPLIVFDDADLDRAADIAMMANFYSSGQVCTNGTRVFVPNALKGEFEAKILERVKRIRPGNPEDENINFGPLVSFEHMESVLGYIAKGKEQGARLLCGGDRLTGGVFDKGAFVAATVFTDCTDEMTIVREEIFGPVMSILGYDTEDEVVRRANDTDFGLAAGIVTRDLNRAHRVIHLLEAGICWINAWGESAAQMPVGGYKQSGVGRENGISSLAQYTRIKSVQIELGDYASVF",
+          "sequence_length": 490,
+          "sequence_sha256": "b02df5386049583ff39f6f2b5de491e8e715260f35b39fb72016e2172cc9e1af",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q88AE9"
+        },
+        "source_provenance": {
+          "accession": "Q88AE9",
+          "disambiguation_pool": "aldehyde_dehydrogenase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "aldehyde_dehydrogenase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aldehyde_dehydrogenase_from_annotated_cofactor_and_ec_class_['1.2.1.8']",
+          "organism": "Pseudomonas syringae pv. tomato (strain ATCC BAA-871 / DC3000)",
+          "protein_name": "Betaine aldehyde dehydrogenase (BADH) (EC 1.2.1.8)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 490,
+          "source_evidence_codes": [
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "2d5c0b69b339952902574245cf3b6eeadfe8e4418036143491fe2aab94295d51",
+            "source_query_sha256": "1fb9a33ed25a0e8972ca05fb387b29085369a036728cff3000c0472946f63894",
+            "uniprot_entry_record_sha256": "54915f4dc62e649408f39469b6c6e2074758ef19add66c5af13b2b824f6cd90f",
+            "uniprot_search_row_sha256": "716595cb2472c9b8cce1dd08d656a7f84c37e657bd858da0e35a3e6349309a57"
+          },
+          "target_family_lane": "aldehyde_dehydrogenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q88AE9"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q88AE9-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "aldehyde_dehydrogenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q88AE9 imported as annotation-anchored bronze in-scope aldehyde_dehydrogenase: reviewed Swiss-Prot EC ['1.2.1.8']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q88CW7",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 18,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 162
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 252
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 286
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 464
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 27
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 93
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 150
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 176
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 180
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 230
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 246
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 254
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 286
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 387
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 457
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 460
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "SITE",
+              "feature_type": "Site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 248
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 286
+            }
+          ],
+          "binding_residue_count": 12,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29103",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "name": "K(+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.2.1.8"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.2.1.8",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "betaine aldehyde + NAD(+) + H2O = glycine betaine + NADH + 2 H(+)",
+              "rhea_id": "RHEA:15305",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aldehyde_dehydrogenase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "1fb9a33ed25a0e8972ca05fb387b29085369a036728cff3000c0472946f63894"
+          },
+          "retrieved_utc": "2026-06-14T20:20:48Z",
+          "sequence": "MARFGTQKLYIDGAYVDAGSDATFEAINPATGEVLAHVQRATEADVEKAVESAERGQKVWAAMTAMQRSRILRRAVDILRERNDELAMLETLDTGKSYSETRYVDIVTGADVLEYYAGLVPAIEGEQIPLRESSFVYTRREPLGVTVGIGAWNYPIQIALWKSAPALAAGNAMIFKPSEVTSLTTLKLAEIYTEAGLPNGVFNVLTGSGREVGTWLTEHPRIEKVSFTGGTTTGKKVMASASSSSLKEVTMELGGKSPLIICADADLDKAADIAMMANFYSSGQVCTNGTRVFIPAEMKAAFEAKIAERVARIRVGNPEDENTNFGPLVSFQHMESVLGYIAKGKEEGARVLCGGERLTAGDFAKGAFVAPTVFTDCTDDMTIVKEEIFGPVMSILTYETEEEVIRRANDTDYGLAAGVCTNDITRAHRIIHKLEAGICWINAWGESPAEMPVGGYKQSGVGRENGVSSLAQYTRIKSVQVELGGYNSVF",
+          "sequence_length": 490,
+          "sequence_sha256": "c6e51862ace58f0f844f1b6b3b016135c1d8b615d461328091c022ef53d3d110",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q88CW7"
+        },
+        "source_provenance": {
+          "accession": "Q88CW7",
+          "disambiguation_pool": "aldehyde_dehydrogenase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "aldehyde_dehydrogenase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aldehyde_dehydrogenase_from_annotated_cofactor_and_ec_class_['1.2.1.8']",
+          "organism": "Pseudomonas putida (strain ATCC 47054 / DSM 6125 / CFBP 8728 / NCIMB 11950 / KT2440)",
+          "protein_name": "Betaine aldehyde dehydrogenase (BADH) (EC 1.2.1.8)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 490,
+          "source_evidence_codes": [
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "2d5c0b69b339952902574245cf3b6eeadfe8e4418036143491fe2aab94295d51",
+            "source_query_sha256": "1fb9a33ed25a0e8972ca05fb387b29085369a036728cff3000c0472946f63894",
+            "uniprot_entry_record_sha256": "4625f280790cde8cf04ce64f936282703f7f4849821e1decbae841fabdc27009",
+            "uniprot_search_row_sha256": "66c5d747c788fe9fbf9d50f1cda686bdce0ad2574f433b9b4aa235b7265e793e"
+          },
+          "target_family_lane": "aldehyde_dehydrogenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q88CW7"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q88CW7-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "aldehyde_dehydrogenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q88CW7 imported as annotation-anchored bronze in-scope aldehyde_dehydrogenase: reviewed Swiss-Prot EC ['1.2.1.8']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q92YD2",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 17,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 164
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 252
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 286
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 460
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 29
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 96
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 152
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 178
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 182
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 231
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 246
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 254
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 286
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 383
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 453
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 456
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 286
+            }
+          ],
+          "binding_residue_count": 12,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29103",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "name": "K(+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.2.1.8"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.2.1.8",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "betaine aldehyde + NAD(+) + H2O = glycine betaine + NADH + 2 H(+)",
+              "rhea_id": "RHEA:15305",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aldehyde_dehydrogenase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "1fb9a33ed25a0e8972ca05fb387b29085369a036728cff3000c0472946f63894"
+          },
+          "retrieved_utc": "2026-06-14T20:20:48Z",
+          "sequence": "MATPLCQPAASHFIDGTFIEDRTGPEILSVNPVDGEIIAKLHGATSCIIEKAIASAKRAQKEWARKEPAERGRVLSRAADIMRARNRELSVLETRDTGKPISETLVADAASGADCLEYFGAIAATLSGDSIQFGEDWVYTRREPLGVCLGIGAWNYPIQIAAWKAAPALACGNAMIFKPSEVTPLSALKLAEILTEAGLPPGVFNIVQGAGDVGAELATHPAIAKVSLTGSVKTGARVASAAMAGIRPVTMELGGKSALIVFDDADVEAAVSGAILGNFYSAGQICSNGTRVFLQRGIREAFLARLLARVAALKIGDPMDEETDIGPLVSAAHRNRVATYVARAEVEGAYQMAPPRKLPPGDAWHEPVVFTNVTDWMTLAREEVFGPVMAVLDFDDEQDVVARANATDFGLAAGIFTRDLVRAHRLAAELEAGTVWINAYNLTPAGMAFGGIKRSGIGRENGRVAIDHYTQLKSVFVSMQT",
+          "sequence_length": 481,
+          "sequence_sha256": "b398051b990da08e0822e8f9f1cd992ed70f4c0dc6c1264d9fb458cd8284d5db",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q92YD2"
+        },
+        "source_provenance": {
+          "accession": "Q92YD2",
+          "disambiguation_pool": "aldehyde_dehydrogenase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "aldehyde_dehydrogenase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aldehyde_dehydrogenase_from_annotated_cofactor_and_ec_class_['1.2.1.8']",
+          "organism": "Rhizobium meliloti (strain 1021) (Ensifer meliloti) (Sinorhizobium meliloti)",
+          "protein_name": "Betaine aldehyde dehydrogenase 2 (BADH 2) (EC 1.2.1.8)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 481,
+          "source_evidence_codes": [
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "2d5c0b69b339952902574245cf3b6eeadfe8e4418036143491fe2aab94295d51",
+            "source_query_sha256": "1fb9a33ed25a0e8972ca05fb387b29085369a036728cff3000c0472946f63894",
+            "uniprot_entry_record_sha256": "3919477ef3e2fccad3ddd50a777e3fae2be7ac4c106f1c426cf0fc27d9a92dc6",
+            "uniprot_search_row_sha256": "6f7724f3098e7d4b937252523c6a1a86dfc8028c26fb3d1d801344c13253c480"
+          },
+          "target_family_lane": "aldehyde_dehydrogenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q92YD2"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q92YD2-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "aldehyde_dehydrogenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q92YD2 imported as annotation-anchored bronze in-scope aldehyde_dehydrogenase: reviewed Swiss-Prot EC ['1.2.1.8']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P54222",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 17,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 162
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 250
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 284
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 461
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 26
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 27
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 93
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 150
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 176
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 229
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 244
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 252
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 284
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:57540",
+              "ligand_name": "NAD(+)",
+              "position": 384
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 454
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 457
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 284
+            }
+          ],
+          "binding_residue_count": 12,
+          "catalytic_residue_count": 4,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29103",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "name": "K(+)"
+            }
+          ],
+          "ec_numbers": [
+            "1.2.1.8"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.2.1.8",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "betaine aldehyde + NAD(+) + H2O = glycine betaine + NADH + 2 H(+)",
+              "rhea_id": "RHEA:15305",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aldehyde_dehydrogenase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "1fb9a33ed25a0e8972ca05fb387b29085369a036728cff3000c0472946f63894"
+          },
+          "retrieved_utc": "2026-06-14T20:20:48Z",
+          "sequence": "MRAQPKASHFIDGEYVEDAAGTVIESIYPATGEIIARLHAATPGIVEKAIAAAKRAQPEWAAMSPTARGRILKRAAELMRQRNRELSELETLDTGKPIQETIVADPTSGADSFEFFGGVAPAALNGDYIPLGGDFAYTKRVPLGVCVGIGAWNYPQQIACWKGAPALVAGNAMVFKPSENTPLGALKIAEILIEAGLPKGLFNVIQGDRATGPLLVNHPDVAKVSLTGSVPTGKKVAGAAAAELKHVTMELGGKSPLIVFDDADLESAIGGAMLGNFYSTGQVCSNGTRVFVQRKIKEPFLARLKERTEAIVIGDPLDEATQLGPMVSAAQRDKVFSYIGKGKAEGARLVTGGGIPNNVSGEGTYIQPTVFADVTDGMTIAREEIFGPVMCVLDFDDEVEVIARANATEFGLSAGVFTADLTRAHRVADRLEAGTLWINTYNLCPVEIPFGGSKQSGFGRENSVAALNHYTELKTVYVGMGPVEAPY",
+          "sequence_length": 487,
+          "sequence_sha256": "04c17d495cf49280373ff26c756e45848280d5d80d6f4beca660deffb9866cb1",
+          "source": "reviewed_uniprot",
+          "source_accession": "P54222"
+        },
+        "source_provenance": {
+          "accession": "P54222",
+          "disambiguation_pool": "aldehyde_dehydrogenase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "aldehyde_dehydrogenase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aldehyde_dehydrogenase_from_annotated_cofactor_and_ec_class_['1.2.1.8']",
+          "organism": "Rhizobium meliloti (strain 1021) (Ensifer meliloti) (Sinorhizobium meliloti)",
+          "protein_name": "Betaine aldehyde dehydrogenase 1 (BADH 1) (EC 1.2.1.8)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 487,
+          "source_evidence_codes": [
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "2d5c0b69b339952902574245cf3b6eeadfe8e4418036143491fe2aab94295d51",
+            "source_query_sha256": "1fb9a33ed25a0e8972ca05fb387b29085369a036728cff3000c0472946f63894",
+            "uniprot_entry_record_sha256": "e3e0c1f64d392c2c9620e1ead463d98440df5d73604b2d10486e6068f9a7fe9d",
+            "uniprot_search_row_sha256": "8caaf7bf0ded83fea92b812fd0113e8849896f906150a160ba938c9fe59ba923"
+          },
+          "target_family_lane": "aldehyde_dehydrogenase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P54222"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P54222-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "aldehyde_dehydrogenase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P54222 imported as annotation-anchored bronze in-scope aldehyde_dehydrogenase: reviewed Swiss-Prot EC ['1.2.1.8']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_aldehyde_dehydrogenase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "aldehyde_dehydrogenase": 4
+    },
+    "current_combined_labels": 7710,
+    "disambiguation_hold_count": 130,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 130
+    },
+    "disambiguation_skip_count": 0,
+    "fetched_candidate_rows": 134,
+    "gate_admitted_before_cap_guard": 4,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 3,
+    "max_records_per_lane": 500,
+    "mechanism_corroborated_bronze_labels": 4,
+    "novelty_admitted_labels": 4,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 7714,
+    "record_limit_per_lane": 120,
+    "record_offset_per_lane": 260
+  },
+  "created_utc": "2026-06-14T20:20:48Z",
+  "deploy_missing_active_site_context_per_family": {
+    "aldehyde_dehydrogenase": "nad_p_cys_glu_thiohemiacetal_hydride_transfer_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "medium": 4
+    },
+    "current_registry_labels": 7008,
+    "decision_counts": {
+      "hold": 130,
+      "import": 4
+    },
+    "examined_rows": 134,
+    "fingerprint_counts": {
+      "aldehyde_dehydrogenase": 4
+    },
+    "hold_count": 130,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 130
+    },
+    "importable_new_labels": 4,
+    "per_pool_decision_counts": {
+      "aldehyde_dehydrogenase_broadened_handle_fresh_fetch": {
+        "hold": 130,
+        "import": 4
+      }
+    },
+    "projected_registry_labels_if_merged": 7012,
+    "skip_count": 0
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_aldh_nad_active_site_annotation",
+  "families_sourced": [
+    "aldehyde_dehydrogenase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "aldehyde_dehydrogenase": {
+      "admitted_this_run": 4,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 0,
+      "deficit_to_floor_after": 96,
+      "deficit_to_floor_before": 100,
+      "deploy_missing_active_site_context": "nad_p_cys_glu_thiohemiacetal_hydride_transfer_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 4,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "aldehyde_dehydrogenase_handles_scope_admission_only": true,
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "molybdopterin_flavin_sdr_akr_generic_nad_boundary_guard": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "aldehyde_dehydrogenase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "aldehyde_dehydrogenase_ec_1_2_1_named_nad",
+      "query": "(reviewed:true) AND (ec:1.2.1.*) AND ((protein_name:\"aldehyde dehydrogenase\") OR (protein_name:ALDH)) AND ((keyword:NAD) OR (keyword:NADP))",
+      "record_count": 120,
+      "record_limit_per_lane": 120,
+      "record_offset_per_lane": 260,
+      "records_in_window_before_dedup": 120,
+      "records_returned_by_query": 456,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.2.1.%2A%29+AND+%28%28protein_name%3A%22aldehyde+dehydrogenase%22%29+OR+%28protein_name%3AALDH%29%29+AND+%28%28keyword%3ANAD%29+OR+%28keyword%3ANADP%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "aldehyde_dehydrogenase"
+    },
+    {
+      "lane_id": "aldehyde_dehydrogenase_ec_1_2_1_active_site",
+      "query": "(reviewed:true) AND (ec:1.2.1.*) AND ((protein_name:\"aldehyde dehydrogenase\") OR (protein_name:ALDH)) AND ((ft_act_site:cysteine) OR (ft_act_site:glutamate) OR (ft_act_site:cys) OR (ft_act_site:glu))",
+      "record_count": 0,
+      "record_limit_per_lane": 120,
+      "record_offset_per_lane": 260,
+      "records_in_window_before_dedup": 0,
+      "records_returned_by_query": 0,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.2.1.%2A%29+AND+%28%28protein_name%3A%22aldehyde+dehydrogenase%22%29+OR+%28protein_name%3AALDH%29%29+AND+%28%28ft_act_site%3Acysteine%29+OR+%28ft_act_site%3Aglutamate%29+OR+%28ft_act_site%3Acys%29+OR+%28ft_act_site%3Aglu%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "aldehyde_dehydrogenase"
+    },
+    {
+      "lane_id": "aldehyde_dehydrogenase_ec_1_2_1_cys_glu",
+      "query": "(reviewed:true) AND (ec:1.2.1.*) AND ((protein_name:\"aldehyde dehydrogenase\") OR (protein_name:ALDH)) AND ((cc_catalytic_activity:aldehyde) OR (cc_catalytic_activity:NAD) OR (cc_catalytic_activity:NADP))",
+      "record_count": 14,
+      "record_limit_per_lane": 120,
+      "record_offset_per_lane": 260,
+      "records_in_window_before_dedup": 120,
+      "records_returned_by_query": 453,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.2.1.%2A%29+AND+%28%28protein_name%3A%22aldehyde+dehydrogenase%22%29+OR+%28protein_name%3AALDH%29%29+AND+%28%28cc_catalytic_activity%3Aaldehyde%29+OR+%28cc_catalytic_activity%3ANAD%29+OR+%28cc_catalytic_activity%3ANADP%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=500",
+      "status": "query_fetched",
+      "target_family_lane": "aldehyde_dehydrogenase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 4
+    },
+    "reason_counts": {
+      "closes_hole_fingerprint": 4
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_aldehyde_dehydrogenase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

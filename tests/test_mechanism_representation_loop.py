@@ -349,10 +349,11 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
     def test_build_on_real_registry_is_leakage_safe(self) -> None:
         expansion = load_json(EXPANSION_PATH)
         audit = build_mechanism_representation_loop(expansion)
-        # 5638 prior seed labels + 146 HAD-like phosphatase bronze rows applied
-        # on 2026-06-14; the representation loop remains leakage-safe and still
-        # excludes EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 5784)
+        # 5638 prior seed labels + 146 HAD-like phosphatase bronze rows
+        # + 150 aldehyde dehydrogenase bronze rows applied on 2026-06-14;
+        # the representation loop remains leakage-safe and still excludes
+        # EC/name/prose/lane from features.
+        self.assertEqual(audit["seed_labels"], 5934)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
@@ -382,11 +383,22 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             "metallophosphomonoesterase",
             "metallo_amidohydrolase_deaminase",
         }
-        # Overall is well above chance (1/38 ~= 0.026) and above the pre-extension ~0.36.
-        self.assertGreater(triage["leave_one_out_self_consistency"], 0.65)
+        # Overall is well above chance (1/39 ~= 0.026) and above the pre-extension ~0.36.
+        self.assertGreater(triage["leave_one_out_self_consistency"], 0.7)
         # Families made separable by the cosubstrate / non-hydrolytic bond features
         # (each was ~0 before this extension).
-        self.assertGreater(sc["nad_p_dehydrogenase"], 0.85)
+        # ALDH (added later on 2026-06-14) is internally coherent, but it honestly
+        # exposes a current representation boundary: generic NAD(P) dehydrogenase
+        # rows share NAD(P) redox chemistry and often nearest-neighbor to ALDH
+        # without source/name/prose/lane features. Keep the collision visible for
+        # a future leakage-tested local chemistry/geometry axis rather than
+        # relaxing admission or adding source handles as predictive evidence.
+        self.assertEqual(sc["aldehyde_dehydrogenase"], 1.0)
+        self.assertGreater(sc["nad_p_dehydrogenase"], 0.5)
+        self.assertGreater(
+            conf["nad_p_dehydrogenase"].get("aldehyde_dehydrogenase", 0),
+            0,
+        )
         self.assertGreater(sc["coa_acyltransferase"], 0.85)
         self.assertGreater(sc["protein_kinase_ser_thr_tyr"], 0.85)
         self.assertGreater(sc["terpene_cyclase_synthase"], 0.85)

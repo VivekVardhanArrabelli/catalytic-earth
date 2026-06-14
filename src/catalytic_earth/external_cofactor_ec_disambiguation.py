@@ -635,6 +635,60 @@ _HAD_LIKE_PHOSPHATASE_BOUNDARY_TOKENS = (
     "kinase",
     "transferase",
 )
+# Aldehyde dehydrogenase handles. EC 1.2.1 scopes reviewed aldehyde-oxidation
+# candidates only; counted corroboration comes from ALDH family/domain text, NAD(P)
+# participant/binding context, catalytic Cys/Glu active-site evidence, and Rhea/reviewed
+# aldehyde-to-acid oxidation text. Molybdopterin aldehyde oxidoreductases, flavin aldehyde
+# oxidases, generic NAD(P) dehydrogenases, SDR/AKR/MDR rows, side-EC rows, and EC-only rows stay held.
+_ALDEHYDE_DEHYDROGENASE_FAMILY_TEXT_TOKENS = (
+    "aldehyde dehydrogenase",
+    "aldehyde-dehydrogenase",
+    "aldh",
+    "aldehyde dehydrogenase family",
+    "aldehyde dehydrogenase superfamily",
+    "aldedh",
+    "aldehyde oxidoreductase dehydrogenase",
+)
+_ALDEHYDE_DEHYDROGENASE_ACTIVE_SITE_TOKENS = (
+    "cysteine",
+    "cys",
+    "glutamate",
+    "glu",
+    "catalytic cysteine",
+    "catalytic glutamate",
+    "active site cysteine",
+    "active site glutamate",
+)
+_ALDEHYDE_DEHYDROGENASE_REACTION_TOKENS = (
+    "aldehyde",
+    "carboxylate",
+    "carboxylic acid",
+    "acid",
+    "nad(+)",
+    "nadp(+)",
+    "nadh",
+    "nadph",
+)
+_ALDEHYDE_DEHYDROGENASE_BOUNDARY_TOKENS = (
+    "aldehyde oxidase",
+    "xanthine dehydrogenase",
+    "molybdopterin",
+    "molybdenum",
+    "flavin",
+    "fad",
+    "fmn",
+    "short-chain dehydrogenase",
+    "short chain dehydrogenase",
+    "sdr",
+    "aldo-keto reductase",
+    "aldo keto reductase",
+    "akr",
+    "medium-chain dehydrogenase",
+    "medium chain dehydrogenase",
+    "alcohol dehydrogenase",
+    "oxidase",
+    "monooxygenase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -1068,7 +1122,7 @@ def _feature_texts(row: dict[str, Any]) -> list[str]:
     for locator in row.get("residue_locators") or []:
         if not isinstance(locator, dict):
             continue
-        for key in ("ligand_name", "feature_type"):
+        for key in ("description", "ligand_name", "feature_type"):
             value = locator.get(key)
             if value:
                 texts.append(str(value).lower())
@@ -1424,6 +1478,37 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_had_like_phosphatase_scope_side_ec = any(
         ec and not ec.startswith("3.1.3") for ec in _ec_numbers(row)
     )
+    aldehyde_dehydrogenase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_ALDEHYDE_DEHYDROGENASE_FAMILY_TEXT_TOKENS,
+    )
+    aldehyde_dehydrogenase_active_site_context = in_any(
+        feature_texts, *_ALDEHYDE_DEHYDROGENASE_ACTIVE_SITE_TOKENS
+    )
+    aldehyde_dehydrogenase_nad_p_context = cosubstrate_nad_p or in_any(
+        feature_texts + cofactor_names, _NAD_P_COSUBSTRATE_TOKEN
+    )
+    aldehyde_dehydrogenase_reaction = in_any(
+        reactions, *_ALDEHYDE_DEHYDROGENASE_REACTION_TOKENS
+    )
+    aldehyde_dehydrogenase_boundary_signal = (
+        evidence.get("flavin", False)
+        or molybdopterin_moco
+        or peroxide_reaction
+        or _ec_has_prefix(row, ("1.2.3", "1.2.5", "1.2.7", "1.2.99"))
+        or in_any(
+            keywords + [protein_name] + feature_texts + cofactor_names,
+            *_ALDEHYDE_DEHYDROGENASE_BOUNDARY_TOKENS,
+        )
+    ) and not aldehyde_dehydrogenase_family_text
+    generic_nad_p_dehydrogenase_boundary = (
+        cosubstrate_nad_p
+        and not aldehyde_dehydrogenase_family_text
+        and not aldehyde_dehydrogenase_active_site_context
+    )
+    non_aldehyde_dehydrogenase_scope_side_ec = any(
+        ec and not ec.startswith("1.2.1") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -1669,6 +1754,13 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "had_like_phosphatase_phosphomonoester_reaction": had_like_phosphatase_phosphomonoester_reaction,
             "had_like_phosphatase_boundary_signal": had_like_phosphatase_boundary_signal,
             "non_had_like_phosphatase_scope_side_ec": non_had_like_phosphatase_scope_side_ec,
+            "aldehyde_dehydrogenase_family_text": aldehyde_dehydrogenase_family_text,
+            "aldehyde_dehydrogenase_active_site_context": aldehyde_dehydrogenase_active_site_context,
+            "aldehyde_dehydrogenase_nad_p_context": aldehyde_dehydrogenase_nad_p_context,
+            "aldehyde_dehydrogenase_reaction": aldehyde_dehydrogenase_reaction,
+            "aldehyde_dehydrogenase_boundary_signal": aldehyde_dehydrogenase_boundary_signal,
+            "generic_nad_p_dehydrogenase_boundary": generic_nad_p_dehydrogenase_boundary,
+            "non_aldehyde_dehydrogenase_scope_side_ec": non_aldehyde_dehydrogenase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
             "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
@@ -1732,6 +1824,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("terpene_diphosphate_context")
         or evidence.get("protein_kinase_atp_mg_context")
         or evidence.get("had_like_phosphatase_asp_mg_context")
+        or evidence.get("aldehyde_dehydrogenase_nad_p_context")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -1771,6 +1864,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("terpene_cyclization_reaction")
         or evidence.get("protein_kinase_phosphoryl_reaction")
         or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
+        or evidence.get("aldehyde_dehydrogenase_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -1820,6 +1914,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
             and evidence.get("had_like_phosphatase_family_text")
         )
         or evidence.get("had_like_phosphatase_asp_mg_context")
+        or evidence.get("aldehyde_dehydrogenase_active_site_context")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -1853,6 +1948,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("terpene_family_text")
         or evidence.get("protein_kinase_family_text")
         or evidence.get("had_like_phosphatase_family_text")
+        or evidence.get("aldehyde_dehydrogenase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -1920,6 +2016,7 @@ _ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
 _TERPENE_CYCLASE_SYNTHASE_EC = ("4.2.3",)  # terpene cyclases/synthases; EC is scope only
 _PROTEIN_KINASE_SER_THR_TYR_EC = ("2.7.10", "2.7.11")  # protein kinases; EC scope only
 _HAD_LIKE_PHOSPHATASE_EC = ("3.1.3",)  # HAD-like phosphatases; EC scope only
+_ALDEHYDE_DEHYDROGENASE_EC = ("1.2.1",)  # ALDH; EC scope only
 _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
 _ASKHA_SUGAR_ACETATE_KINASE_EC = ("2.7.1",)  # ASKHA sugar/acetate kinase; EC scope only
 _GHMP_SMALL_MOLECULE_KINASE_EC = ("2.7.1",)  # GHMP small-molecule kinase; EC scope only
@@ -2337,6 +2434,16 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
             or c["active_or_binding_site_present"]
         ),
     ),
+    (
+        "aldehyde_dehydrogenase",
+        lambda c, row: _ec_has_prefix(row, _ALDEHYDE_DEHYDROGENASE_EC)
+        and c["aldehyde_dehydrogenase_family_text"]
+        and c["aldehyde_dehydrogenase_nad_p_context"]
+        and c["aldehyde_dehydrogenase_reaction"]
+        and not c["aldehyde_dehydrogenase_boundary_signal"]
+        and not c["generic_nad_p_dehydrogenase_boundary"]
+        and not c["non_aldehyde_dehydrogenase_scope_side_ec"],
+    ),
 )
 
 
@@ -2437,6 +2544,8 @@ def _synthesize_cofactor_provenance(
         or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
     ):
         records = [{"name": "Mg2+/Asp phosphoenzyme phosphomonoesterase context", "cross_reference": {"id": None}}]
+    elif fingerprint == "aldehyde_dehydrogenase" and evidence.get("aldehyde_dehydrogenase_nad_p_context"):
+        records = [{"name": "NAD(P)+ aldehyde dehydrogenase cosubstrate", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

@@ -26,6 +26,51 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **ALDEHYDE DEHYDROGENASE BRONZE LANE APPLIED (2026-06-14 automation).**
+  Newest operational state: hard safety is green after another high-yield new-family bronze
+  expansion. The external registry remains a sharded manifest plus shard files below the per-file
+  safety threshold, and frozen current702 stayed sha `5eec9bef...`.
+
+  Added the `aldehyde_dehydrogenase` fingerprint, ontology node
+  `cys_thiohemiacetal_aldehyde_oxidation`, guarded source runner
+  `src/catalytic_earth/aldehyde_dehydrogenase_sourcing.py`, script
+  `scripts/source_aldehyde_dehydrogenase_family.py`, tests, and the
+  `label_factory_v1_39fp` OOS preregistration artifact
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_39fp_1025.json`. EC 1.2.1 is
+  scope/admission context only; counted corroboration requires non-EC ALDH family/domain, NAD(P)
+  cosubstrate or binding-site context, Rhea aldehyde oxidation context, or catalytic Cys/Glu
+  active-site evidence where available. New labels keep `predictive_evidence: []`.
+
+  Live preview `artifacts/v3_aldehyde_dehydrogenase_sourcing_preview_current702_20260614.json`
+  fetched **264** rows, found **250** target mechanism-corroborated rows, and admitted the capped
+  **150** through dedup/novelty/cap gates. Row guardrail artifact
+  `artifacts/v3_aldehyde_dehydrogenase_row_guardrail_audit_current702_20260614.json` audited all
+  **150** applied rows with **0** problems.
+
+  Apply result: external rows **7008 -> 7158**; combined label surface **7710 -> 7860**. Current
+  honest counters: external rows **7158** = external seed **5934**, external OOS **1224**, external
+  silver **30**. Combined seed surface **6164**; combined OOS **1696**; silver_confirmed **47**;
+  projected **0**.
+
+  Post-apply coverage/novelty/factory audits are current:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_aldehyde_dehydrogenase_apply.json`
+  reports **7860** combined labels, no holes/under-floor fingerprints, Gini **0.1835**, and only
+  `metal_dependent_hydrolase` over cap. Novelty replay reports **6702** admit / **409** throttle /
+  **47** reject decisions across **7158** external rows. The high-yield factory now finds no
+  existing lane with >=150 cap room and points to `alpha_beta_hydrolase_esterase_lipase`; the
+  design-only preregistration is
+  `artifacts/v3_alpha_beta_hydrolase_esterase_lipase_lane_preregistration_current702_20260614_post_aldehyde_dehydrogenase_apply.json`.
+
+  ALDH PDB preview:
+  `artifacts/v3_label_pdb_id_backfill_preview_aldehyde_dehydrogenase_current702_20260614.json`
+  examined the 150 new ALDH rows; 27 already had PDB IDs, 123 accessions were queried, and 0
+  additional UniProt PDB xrefs were found.
+
+  Representation note: ALDH rows are internally coherent, but generic `nad_p_dehydrogenase` rows
+  now split toward ALDH under current leakage-safe representation features. Treat this as a future
+  local chemistry/geometry feature-design gap, not as permission to relax source admission,
+  cohesion, or silver geometry thresholds.
+
 - **HAD-LIKE PHOSPHATASE BRONZE LANE APPLIED (2026-06-14 automation).**
   Newest operational state: hard safety is green after a new-family bronze expansion. The external
   registry remains a sharded manifest plus four shards below the per-file safety threshold, and

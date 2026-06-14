@@ -3,6 +3,44 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: ALDEHYDE DEHYDROGENASE IS A COUNTED BRONZE FAMILY WITH NON-EC CORROBORATION
+
+Decision: add `aldehyde_dehydrogenase` as the 39th positive fingerprint and keep the source wall
+mechanism-first. EC 1.2.1 may scope/fetch/admit candidate rows but is never a counted corroborator.
+The counted axes are ALDH family/domain context, NAD(P) cosubstrate or binding-site context, Rhea
+aldehyde oxidation reaction/participant context, and catalytic Cys/Glu active-site evidence where
+available. Protein names, keywords, EC, lane names, source prose, and broadened handles remain
+excluded context and are not predictive features.
+
+Implementation: added `src/catalytic_earth/aldehyde_dehydrogenase_sourcing.py`,
+`scripts/source_aldehyde_dehydrogenase_family.py`, the `aldehyde_dehydrogenase` fingerprint,
+ontology node `cys_thiohemiacetal_aldehyde_oxidation`, 39fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_39fp_1025.json`, and focused
+tests. Updated the current positive-fingerprint universe to `label_factory_v1_39fp`; frozen
+current702 labels stay stamped with their historical decision version and were not written.
+
+Measured result: live preview admitted the capped **150** rows from **264** fetched records after
+mechanism-corroboration, dedup, novelty, and cap gates. The row guardrail audit found **0**
+problems across all applied rows; `predictive_evidence` stayed empty. Applying the exact preview
+changed external rows **7008 -> 7158** and combined labels **7710 -> 7860**. Frozen current702 sha
+stayed `5eec9bef...`.
+
+Decision: do not immediately rerun ALDH for mass growth. The lane reached its chemistry-confusable
+cap and the refreshed high-yield factory reports no existing lane with >=150 cap room. It selects
+`alpha_beta_hydrolase_esterase_lipase` as the next new-fingerprint runner. A design-only
+preregistration artifact,
+`artifacts/v3_alpha_beta_hydrolase_esterase_lipase_lane_preregistration_current702_20260614_post_aldehyde_dehydrogenase_apply.json`,
+records esterase/lipase family, Ser-His-Asp/Glu active/binding-site, and Rhea ester-hydrolysis
+non-EC corroborators plus hard holds for protease/amidase, glycoside/transglycosylase, metal
+hydrolase, EC-only, and unresolved multi-fingerprint confounds; it writes no labels or registry
+rows.
+
+Decision: the representation loop must treat the ALDH/NAD(P)-dehydrogenase overlap honestly. ALDH
+rows are self-consistent under current source-free features, but generic `nad_p_dehydrogenase`
+rows often confuse into ALDH. This is a representation gap for future leakage-safe feature or
+geometry design, not justification to relax source admission, cohesion thresholds, or silver
+geometry promotion.
+
 ## 2026-06-14: HAD-LIKE PHOSPHATASE IS A COUNTED BRONZE FAMILY WITH NON-EC CORROBORATION
 
 Decision: add `had_like_phosphatase` as the 38th positive fingerprint and keep the source wall

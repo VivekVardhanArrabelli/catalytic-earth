@@ -1,0 +1,81 @@
+{
+  "apply_command_shape": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+  "artifact_id": "v3_alpha_beta_hydrolase_esterase_lipase_lane_preregistration_current702_20260614_post_aldehyde_dehydrogenase_apply",
+  "created_utc": "2026-06-14T20:30:29Z",
+  "display_name": "Alpha/beta hydrolase esterase/lipase",
+  "expected_scale": {
+    "cap_ceiling": 150,
+    "cap_class": "chemistry_confusable_cap_150",
+    "non_ec_mechanism_corroboration_rate_estimate": 0.219,
+    "projected_clean_admits": 150,
+    "reviewed_non_ec_corroborated_supply": 1352,
+    "reviewed_scope_supply": 6160
+  },
+  "family_id": "alpha_beta_hydrolase_esterase_lipase",
+  "feature_contract": {
+    "admission_handles_are_excluded_context": [
+      "alpha/beta hydrolase family/name handle",
+      "esterase/lipase keyword or protein-name handle",
+      "Ser-His-Asp/Glu catalytic triad active-site or binding-site evidence",
+      "Rhea ester hydrolysis participant/equation",
+      "EC 3.1.1 scope query",
+      "UniProt protein names/prose"
+    ],
+    "predictive_evidence_must_remain_empty": true,
+    "source_free_predictive_features_to_consider_only_under_tests": [
+      "future validated local chemistry/geometry axes after leakage tests"
+    ]
+  },
+  "first_safe_command_shape": "PYTHONPATH=src python scripts/source_alpha_beta_hydrolase_esterase_lipase_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+  "oos_preregistration": {
+    "dedup_against": [
+      "curated current702",
+      "external registries"
+    ],
+    "hard_negative_holds": [
+      "protease/amidase rows",
+      "glycoside hydrolase/transglycosylase rows",
+      "metal hydrolase rows",
+      "EC-only carboxylic ester hydrolase rows without active-site, binding-site, family, or Rhea corroboration",
+      "multi-fingerprint Ser-His or metal hydrolase rows whose evidence does not resolve the esterase/lipase split"
+    ],
+    "multi_fingerprint_signal_holds_required": true,
+    "novelty_gate_required": true,
+    "oos_namespace": "uniprot reviewed EC 3.1.1 rows outside the alpha/beta hydrolase esterase/lipase mechanism rule",
+    "per_fingerprint_cap": 150,
+    "positive_namespace": "uniprot reviewed esterase/lipase rows passing alpha/beta hydrolase Ser-His-Asp/Glu ester-hydrolysis corroboration",
+    "required": true
+  },
+  "required_runner_gates_before_apply": [
+    "ontology node and mechanism fingerprint entry added with tests",
+    "source runner preview emits bronze automation_curated uniprot rows only",
+    "source_trust_tiers.evaluate_corroboration admits no EC-only row",
+    "dedup/novelty gate checks current702 and external registries",
+    "governor/per-fingerprint caps enforced",
+    "row-level source-contract validation passes",
+    "predictive_evidence stays empty",
+    "frozen current702 sha printed and unchanged before/after apply"
+  ],
+  "schema_version": "new_family_lane_preregistration.v1",
+  "scope_and_admission": {
+    "corroborator_query": "(reviewed:true) AND (ec:3.1.1.*) AND ((keyword:Esterase) OR (keyword:Lipase) OR (protein_name:esterase) OR (protein_name:lipase))",
+    "disambiguation_holds": [
+      "protease/amidase rows",
+      "glycoside hydrolase/transglycosylase rows",
+      "metal hydrolase rows",
+      "EC-only rows without active-site or family corroboration"
+    ],
+    "ec_scope_only_never_counted_corroborator": true,
+    "mechanism_first": true,
+    "required_non_ec_corroborators": [
+      "Ser-His-Asp/Glu catalytic triad active-site or binding-site evidence",
+      "esterase/lipase family keyword or protein-name handle",
+      "Rhea ester hydrolysis participant/equation where available"
+    ],
+    "scope_query": "(reviewed:true) AND (ec:3.1.1.*)",
+    "tier_0_requires_at_least_one_mechanism_corroborator": true
+  },
+  "source_artifact": "artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_aldehyde_dehydrogenase_apply.json",
+  "status": "design_only_no_labels_no_registry_write",
+  "why_this_lane": "Top post-ALDH factory lane after all ready existing lanes fell below 150 cap room: 6160 reviewed EC-scope rows, 1352 non-EC corroborated supply estimate, and 150 projected clean admits, but it is chemistry-confusable with existing ser_his_acid_hydrolase and metal_dependent_hydrolase lanes and requires a new split before import."
+}

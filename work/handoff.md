@@ -1,5 +1,67 @@
 # Handoff
 
+## Session run - ALDH bronze lane applied and 39fp OOS preregistration refreshed (2026-06-14, Codex automation)
+
+- Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; the external
+  registry remained sharded and GitHub-safe after the apply. `data/registries/external_bronze_labels.json`
+  is still a small manifest, shard files remain below the 45 MB safety scan threshold, and frozen
+  current702 stayed sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Implemented and applied the guarded `aldehyde_dehydrogenase` lane:
+  `src/catalytic_earth/aldehyde_dehydrogenase_sourcing.py`,
+  `scripts/source_aldehyde_dehydrogenase_family.py`, `tests/test_aldehyde_dehydrogenase_sourcing.py`,
+  new fingerprint `aldehyde_dehydrogenase`, ontology node
+  `cys_thiohemiacetal_aldehyde_oxidation`, and the `label_factory_v1_39fp` OOS preregistration
+  artifact `artifacts/v3_external_hard_negative_next_tranche_preregistration_39fp_1025.json`.
+  EC 1.2.1 is scope only; counted corroboration requires non-EC mechanism axes such as ALDH
+  family/domain, NAD(P) cosubstrate or binding-site context, Rhea aldehyde oxidation context, and
+  catalytic Cys/Glu active-site evidence where available. `predictive_evidence` stays empty.
+- Live preview/apply:
+  `artifacts/v3_aldehyde_dehydrogenase_sourcing_preview_current702_20260614.json` /
+  `work/aldehyde_dehydrogenase_sourcing_current702_20260614.md` fetched **264** rows, found
+  **250** target mechanism-corroborated rows, admitted the capped **150** through dedup/novelty/cap
+  gates, and held **3** off-target fingerprint matches. The frozen SHA was printed before and after
+  apply and remained unchanged.
+- Row guardrail audit:
+  `artifacts/v3_aldehyde_dehydrogenase_row_guardrail_audit_current702_20260614.json` audited all
+  **150** applied rows with **0** problems. All rows are UniProt namespace, tier `bronze`,
+  `automation_curated`, source tier 0, novelty-admitted, and have `predictive_evidence: []`; all
+  rows carry cofactor/cosubstrate, domain/family, and Rhea participant axes, and **148/150** also
+  carry active-site/residue-role evidence.
+- Apply result: external rows **7008 -> 7158**; combined label surface **7710 -> 7860**. Honest
+  counters now: external rows **7158** = external seed **5934** + external OOS **1224**, with
+  external silver-confirmed **30**. Combined seed surface **6164**; combined OOS **1696**;
+  combined silver_confirmed **47**; projected **0**.
+- Post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_aldehyde_dehydrogenase_apply.json`
+  reports **7860** combined labels, no holes/under-floor fingerprints, fingerprint Gini **0.1835**,
+  and only `metal_dependent_hydrolase` over cap. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260614_post_aldehyde_dehydrogenase_apply.json`
+  reports **7158** expansion rows with decisions **6702** admit / **409** throttle / **47** reject.
+  The high-yield factory now reports no existing lane with >=150 cap room and points to
+  `alpha_beta_hydrolase_esterase_lipase` as the next new-fingerprint lane; design-only
+  preregistration is
+  `artifacts/v3_alpha_beta_hydrolase_esterase_lipase_lane_preregistration_current702_20260614_post_aldehyde_dehydrogenase_apply.json`.
+- Bounded PDB quality lane: the full PDB-ID backfill preview was interrupted after a UniProt
+  response hang and wrote no artifact. An ALDH-only preview
+  `artifacts/v3_label_pdb_id_backfill_preview_aldehyde_dehydrogenase_current702_20260614.json`
+  examined the **150** new ALDH rows: **27** already had PDB IDs, **123** UniProt accessions were
+  queried, and **0** additional PDB xrefs were backfilled.
+- Representation note: ALDH is internally coherent under the current source-free representation
+  (**1.0** self-consistency), but it exposes a real NAD(P)-redox boundary: generic
+  `nad_p_dehydrogenase` rows now split **82** to themselves and **68** to ALDH. Keep this as a
+  leakage-safe feature/geometry design gap, not a reason to relax admission, cohesion, or silver
+  thresholds.
+- Validation: focused affected suite **107 passed**; exact full-suite failures after stale-pin
+  refresh **8 passed**; final full suite **2272 passed, 1 warning, 244 subtests passed**;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (**12** source records,
+  **39** fingerprints, **36** ontology families, **702** curated labels); JSON parse checks and
+  registry file-size scan passed.
+- Next concrete action: build the `alpha_beta_hydrolase_esterase_lipase` runner from the
+  preregistration artifact above, including fingerprint, ontology node, disambiguation rule, OOS
+  preregistration/row guardrail tests, and preview before any apply. In parallel, continue explicit
+  residue mapping for blocked silver-ready rows and address the ALDH/NAD(P) representation gap only
+  with leakage-tested local chemistry/geometry features.
+
 ## Session run - HAD-like phosphatase source lane applied (2026-06-14, Codex automation)
 
 - Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; the external

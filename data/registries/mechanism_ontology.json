@@ -530,6 +530,26 @@
         "Hold multi-fingerprint-signal rows rather than forcing a HAD-like phosphatase label.",
         "The Mg2+ ion, phosphomonoester substrate, catalytic water, and transient phospho-Asp state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "cys_thiohemiacetal_aldehyde_oxidation",
+      "name": "Cys-thiohemiacetal aldehyde oxidation",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "aldehyde_dehydrogenase"
+      ],
+      "scope_note": "Reviewed EC 1.2.1 aldehyde dehydrogenases that use catalytic Cys/Glu chemistry and NAD(P)+ hydride transfer to oxidize aldehydes to carboxylates.",
+      "sibling_ids": [
+        "flavin_redox",
+        "molybdopterin_oxo_transfer",
+        "nad_p_dehydrogenase"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by ALDH family/name/domain context plus NAD(P) cosubstrate or binding-site evidence, Rhea/reviewed aldehyde oxidation, and catalytic Cys/Glu active-site evidence where available; EC 1.2.1 is scope only.",
+        "Do not admit molybdopterin aldehyde oxidoreductases, flavin aldehyde oxidases, generic NAD(P) dehydrogenases without ALDH/Cys-Glu signal, SDR/AKR/MDR rows, side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing an aldehyde dehydrogenase label.",
+        "The NAD(P)+ cosubstrate, aldehyde substrate, thiohemiacetal/thioester intermediate, and hydrolytic water/protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [
