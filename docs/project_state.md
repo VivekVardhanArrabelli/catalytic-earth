@@ -26,6 +26,32 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SILVER COORDINATE MATERIALIZATION + EXPLICIT PDB RESIDUE MAPPINGS (2026-06-14 automation).**
+  Newest operational state: hard safety remains green and the first subset of the silver-ready
+  queue is now actually runnable for the separate geometry-confirmation gate. The external registry
+  is still a sharded manifest plus four shards (largest ~17 MB), with **6862** external rows =
+  positive bronze **5638** + OOS bronze **1224**; all external rows remain bronze. Frozen current702
+  stayed sha `5eec9bef...`; no predictive evidence changed.
+
+  Added sha-aware local-coordinate checks to
+  `src/catalytic_earth/silver_geometry_confirmation.py`: a local coordinate path only counts if
+  its sha256 matches the recorded `holo_pdb_confirmation.coordinate_sha256`. Added
+  `silver_holo_coordinate_materialization` to materialize/reuse only sha-verified holo PDB mmCIFs,
+  and `silver_pdb_residue_mapping` to map exact UniProt active-site positions to explicit PDB
+  chain/residue positions using mmCIF `_struct_ref_seq` plus `_pdbx_poly_seq_scheme` alignment
+  tables. These are provenance-only external-registry writes; they do not run geometry scoring or
+  change tiers.
+
+  Applied bounded batches: verified local holo-coordinate rows are now **260**, clearing the
+  local-coordinate blocker for the current silver-ready queue, and explicit PDB residue-mapped rows
+  are now **162**. Final audit
+  `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_fetch257_mapping.json`
+  found **154/260** silver-ready rows ready for the separate geometry-confirmation run, **106**
+  still blocked, and **0** silver flips. Remaining blockers are
+  `missing_explicit_pdb_residue_mapping` **98** and `insufficient_exact_active_site_residues`
+  **20**. Next action is to run/implement the separate geometry-confirmation gate for those 154
+  runnable rows; promote to silver only for rows that pass.
+
 - **SILVER GEOMETRY BLOCKER AUDIT + PDB-ID SCALEOUT (2026-06-14 automation).**
   Newest operational state: hard safety remains green, but the silver tier flip is blocked by
   missing geometry materialization, not by missing holo evidence. Added

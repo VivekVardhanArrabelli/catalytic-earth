@@ -9,6 +9,7 @@ material needed to run that gate without fabricating residue mappings.
 
 from __future__ import annotations
 
+import hashlib
 import json
 from collections import Counter
 from datetime import datetime, timezone
@@ -74,6 +75,14 @@ def _local_coordinate_path(row: dict[str, Any]) -> Path | None:
     return path if path.exists() else None
 
 
+def _sha256_path(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def _holo_confirmation(row: dict[str, Any]) -> dict[str, Any]:
     confirmation = _structure_provenance(row).get("holo_pdb_confirmation") or {}
     return confirmation if isinstance(confirmation, dict) else {}
@@ -90,8 +99,15 @@ def _row_audit(
     exact_positions = _exact_residue_positions(row)
     structure_positions = _explicit_structure_positions(row)
     local_coordinate = _local_coordinate_path(row)
+    local_coordinate_sha256 = _sha256_path(local_coordinate) if local_coordinate else None
     pdb_ids = sorted({str(value).upper() for value in structure.get("pdb_ids") or [] if value})
     holo_pdb_id = str(confirmation.get("pdb_id") or "").upper() or None
+    expected_coordinate_sha256 = confirmation.get("coordinate_sha256")
+    coordinate_sha256_matches_holo_confirmation = (
+        local_coordinate_sha256 == expected_coordinate_sha256
+        if local_coordinate_sha256 and expected_coordinate_sha256
+        else None
+    )
 
     blockers: list[str] = []
     if confirmation.get("status") != "holo_experimental_coordinate_confirmed":
@@ -102,6 +118,8 @@ def _row_audit(
         blockers.append("missing_explicit_pdb_residue_mapping")
     if local_coordinate is None:
         blockers.append("missing_local_holo_coordinate_file")
+    elif coordinate_sha256_matches_holo_confirmation is False:
+        blockers.append("local_coordinate_sha_mismatch_holo_confirmation")
 
     decision = (
         "ready_for_geometry_confirmation_run"
@@ -121,6 +139,11 @@ def _row_audit(
         "local_coordinate_path": str(local_coordinate) if local_coordinate else None,
         "local_coordinate_path_recorded": bool(structure.get("coordinate_path")),
         "local_coordinate_path_exists": local_coordinate is not None,
+        "local_coordinate_sha256": local_coordinate_sha256,
+        "holo_confirmation_coordinate_sha256": expected_coordinate_sha256,
+        "coordinate_sha256_matches_holo_confirmation": (
+            coordinate_sha256_matches_holo_confirmation
+        ),
         "exact_active_site_residue_count": len(exact_positions),
         "exact_active_site_positions": exact_positions[:50],
         "explicit_structure_position_count": len(structure_positions),
@@ -195,6 +218,7 @@ def build_silver_geometry_confirmation_audit(
             "min_exact_active_site_residues": min_exact_residues,
             "requires_recorded_holo_pdb_confirmation": True,
             "requires_local_holo_coordinate_file": True,
+            "requires_local_coordinate_sha256_to_match_holo_confirmation": True,
             "requires_explicit_pdb_chain_residue_mapping": True,
             "uniprot_sequence_positions_are_not_treated_as_pdb_residue_mapping": True,
             "silver_tier_change_requires_separate_geometry_confirmation_pass": True,

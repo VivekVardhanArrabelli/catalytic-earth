@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -18,6 +19,7 @@ def _row(
     coordinate_path: str | None = None,
     structure_positions: bool = False,
     exact_positions: list[int] | None = None,
+    coordinate_sha256: str | None = None,
 ) -> dict:
     residues = []
     for position in exact_positions or [10, 20, 30]:
@@ -62,6 +64,7 @@ def _row(
                     "status": "holo_experimental_coordinate_confirmed",
                     "pdb_id": "1ABC",
                     "cofactor_comp_ids_present": ["ZN"],
+                    "coordinate_sha256": coordinate_sha256,
                 },
             },
             "pending_promotion_audits": [
@@ -113,13 +116,15 @@ class SilverGeometryConfirmationAuditTests(unittest.TestCase):
     def test_fully_materialized_row_is_runnable_but_not_promoted(self) -> None:
         with TemporaryDirectory() as tmp:
             coord = Path(tmp) / "holo.cif"
-            coord.write_text("data_test\n", encoding="utf-8")
+            content = "data_test\n"
+            coord.write_text(content, encoding="utf-8")
             candidate = _row(
                 entry_id="candidate",
                 fp="metal_dependent_hydrolase",
                 cofactors=["Zn(2+)"],
                 coordinate_path=str(coord),
                 structure_positions=True,
+                coordinate_sha256=hashlib.sha256(content.encode("utf-8")).hexdigest(),
             )
             audit = build_silver_geometry_confirmation_audit(
                 _population(candidate),
@@ -131,6 +136,27 @@ class SilverGeometryConfirmationAuditTests(unittest.TestCase):
         self.assertFalse(ready["tier_changed"])
         self.assertFalse(ready["geometry_confirmation_run"])
         self.assertEqual(audit["counts"]["silver_flips_applied"], 0)
+
+    def test_local_coordinate_must_match_holo_confirmation_sha(self) -> None:
+        with TemporaryDirectory() as tmp:
+            coord = Path(tmp) / "holo.cif"
+            coord.write_text("different_coordinate\n", encoding="utf-8")
+            candidate = _row(
+                entry_id="candidate",
+                fp="metal_dependent_hydrolase",
+                cofactors=["Zn(2+)"],
+                coordinate_path=str(coord),
+                structure_positions=True,
+                coordinate_sha256=hashlib.sha256(b"expected_coordinate\n").hexdigest(),
+            )
+            audit = build_silver_geometry_confirmation_audit(
+                _population(candidate),
+                cohesion_threshold=0.5,
+            )
+        blocked = [row for row in audit["rows"] if row["entry_id"] == "candidate"][0]
+        self.assertEqual(blocked["decision"], "blocked_before_geometry_confirmation")
+        self.assertIn("local_coordinate_sha_mismatch_holo_confirmation", blocked["blockers"])
+        self.assertFalse(blocked["coordinate_sha256_matches_holo_confirmation"])
 
     def test_write_summary_omits_full_rows_and_is_non_destructive(self) -> None:
         with TemporaryDirectory() as tmp:

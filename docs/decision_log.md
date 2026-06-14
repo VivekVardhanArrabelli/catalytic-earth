@@ -3,6 +3,34 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: SILVER GEOMETRY MATERIALS MUST BE SHA- AND ALIGNMENT-BACKED
+
+Decision: local holo coordinate files count toward silver geometry runnability only when their
+sha256 matches the recorded `holo_pdb_confirmation.coordinate_sha256`. Added this guard to
+`src/catalytic_earth/silver_geometry_confirmation.py`; mismatched historical coordinate files are
+reported as `local_coordinate_sha_mismatch_holo_confirmation` and are not treated as geometry-ready
+material.
+
+Decision: explicit PDB residue mappings may be backfilled only through structure alignment evidence,
+not by copying UniProt sequence positions. Added
+`src/catalytic_earth/silver_holo_coordinate_materialization.py` /
+`scripts/materialize_silver_holo_coordinates.py` and
+`src/catalytic_earth/silver_pdb_residue_mapping.py` /
+`scripts/map_silver_pdb_residues.py`. The first lane reuses/fetches only sha-verified holo PDB
+mmCIFs; the second maps exact UniProt active-site residues to PDB chain/residue positions through
+mmCIF `_struct_ref_seq` plus `_pdbx_poly_seq_scheme` alignment tables. Both are provenance-only
+external-registry writes; they do not run/fake geometry scoring, change tiers, alter predictive
+evidence, or write frozen current702.
+
+Measured result: bounded coordinate materialization raised verified local holo-coordinate rows to
+**260**, clearing the local-coordinate blocker for the current silver-ready queue, and explicit PDB
+residue-mapped rows to **162**. Final audit
+`artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_fetch257_mapping.json`
+found **154/260** silver-ready rows ready for the separate geometry-confirmation run, **106** still
+blocked, and **0** silver flips. Remaining blockers are missing explicit PDB residue mapping **98**
+and insufficient exact active-site residues **20**. Frozen current702 sha stayed `5eec9bef...`; all
+external rows remain bronze.
+
 ## 2026-06-14: SILVER GEOMETRY CONFIRMATION REQUIRES EXPLICIT PDB RESIDUE MAPPING
 
 Decision: the 260 `silver_ready_pending_geometry_run` rows are a queue, not a tier flip, until the

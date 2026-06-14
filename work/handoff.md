@@ -1,5 +1,59 @@
 # Handoff
 
+## Session run - Silver coordinate materialization and explicit PDB residue mappings (2026-06-14, Codex automation)
+
+- Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start. The external
+  registry remains sharded and GitHub-safe: `data/registries/external_bronze_labels.json` is a
+  ~1.2 KB manifest, shard max is still ~17 MB, and no new registry/coordinate file exceeds 45 MB.
+  New holo coordinate files under `artifacts/v3_silver_holo_coordinates_current702/` total ~243 MB
+  with each file below the GitHub per-file safety threshold.
+- Added sha-aware silver geometry runnability checks:
+  `src/catalytic_earth/silver_geometry_confirmation.py` now requires any local coordinate file to
+  match the `holo_pdb_confirmation.coordinate_sha256`; mismatched local PDB files no longer count
+  as runnable geometry material.
+- Added two bounded provenance lanes:
+  `src/catalytic_earth/silver_holo_coordinate_materialization.py` /
+  `scripts/materialize_silver_holo_coordinates.py` materialize only sha-verified local holo PDB
+  mmCIFs for silver-ready rows, and
+  `src/catalytic_earth/silver_pdb_residue_mapping.py` /
+  `scripts/map_silver_pdb_residues.py` maps exact UniProt active-site positions to explicit PDB
+  chain/residue positions only through mmCIF `_struct_ref_seq` +
+  `_pdbx_poly_seq_scheme` alignment tables. Both write only external registry provenance on
+  explicit `--apply`; frozen current702 sha stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no tier changes; no
+  predictive evidence changes.
+- Applied silver materialization in bounded chunks. Reused 3 already-tracked sha-matching PDB files,
+  then fetched/materialized bounded RCSB batches through the `fetch257` artifact. Verified local
+  holo-coordinate rows moved **0/3 usable -> 260** (counting only files whose sha matches the
+  recorded holo confirmation).
+  `holo_confirmed` remains **260**; PDB-bearing rows remain **2020**.
+- Applied explicit PDB residue mapping after each coordinate batch. Final mapping artifact
+  `artifacts/v3_silver_pdb_residue_mapping_current702_20260614_post_fetch257_apply.json` mapped
+  **40** newly updated rows and **380** exact residues in its final pass; current registry has
+  **162** rows with
+  `pdb_residue_mapping_provenance.status =
+  pdb_residue_mapping_from_mmcif_struct_ref_seq`.
+- Final silver audit:
+  `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_fetch257_mapping.json`
+  / `work/silver_geometry_confirmation_audit_current702_20260614_post_fetch257_mapping.md` found
+  **154/260** rows ready for the separate geometry-confirmation run, **106** still blocked, and
+  **0** silver flips. Remaining blockers: `missing_explicit_pdb_residue_mapping` **98** and
+  `insufficient_exact_active_site_residues` **20**; the local-holo-coordinate blocker is cleared
+  for the current 260-row silver-ready queue.
+- Honest counters stayed separate: external registry **6862** rows = positive bronze **5638** +
+  OOS bronze **1224**; all external rows still bronze; combined label surface **7564**; combined
+  seed surface **5868**; silver_ready queue **260**; ready-for-geometry subset **154**;
+  silver_confirmed tier count **17**; projected provisional **0**.
+- Validation from this run: focused critical suite **291 passed, 14 subtests passed**; full suite
+  **2248 passed, 1 warning, 244 subtests passed in 161.34s**. Final `validate`, JSON parse, and
+  `git diff --check` results are recorded in `work/progress_log.jsonl`.
+- Next concrete action: run or implement the separate geometry-confirmation gate for the **154**
+  runnable rows and only promote rows that pass. In parallel, continue bounded holo-coordinate
+  materialization + explicit mmCIF/SIFTS residue mapping for the remaining silver-ready queue.
+  Once silver quality work is bounded, resume the high-yield new-family lane
+  (`had_like_phosphatase` remains the top factory recommendation) without relaxing mechanism-first
+  admission.
+
 ## Session run - Silver geometry blocker audit, PDB-ID scaleout, eval design (2026-06-14, Codex automation)
 
 - Hard blockers rechecked and stayed clear. The external registry remains sharded and GitHub-safe:

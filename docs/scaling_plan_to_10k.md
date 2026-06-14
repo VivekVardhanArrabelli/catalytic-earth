@@ -13,6 +13,31 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: silver-ready queue partially materialized for real geometry
+confirmation.** Treat this as the newest operational state. Registry file-size safety remains green:
+the external registry is still a sharded manifest (~1.2 KB) plus four shards (largest ~17 MB), and
+the new holo coordinate batch under `artifacts/v3_silver_holo_coordinates_current702/` totals ~243
+MB with no file over 45 MB. External labels remain **6862** = positive bronze **5638** + OOS bronze
+**1224**; combined label surface **7564**; combined seed-fingerprint surface **5868**; frozen
+current702 sha remains `5eec9bef...`.
+
+Silver quality advanced without changing tiers. The silver geometry audit is now sha-aware: local
+coordinate files must match the recorded holo-confirmation sha. New bounded lanes materialized
+sha-verified local holo PDB mmCIFs and mapped UniProt active-site positions to explicit PDB
+chain/residue positions only through mmCIF alignment tables. Verified local holo-coordinate rows are
+now **260**, clearing the local-coordinate blocker for the current silver-ready queue; explicit PDB
+residue-mapped rows are **162**. Final audit
+`artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_fetch257_mapping.json`
+found **154/260** silver-ready rows ready for the separate geometry-confirmation run, **106** still
+blocked, and **0** silver flips. Remaining blockers: missing explicit PDB residue mapping **98** and
+insufficient exact active-site residues **20**.
+
+Next silver action is no longer a generic audit: run or implement the separate geometry-confirmation
+gate for those **154** ready rows and apply silver only for rows that pass. Continue bounded
+coordinate materialization + explicit mapping for the rest of the silver-ready queue in parallel
+with high-yield bronze growth; do not let this quality lane permanently block the next
+mechanism-first new-family runner.
+
 **2026-06-14 automation update: silver geometry blocker audited, PDB-ID pool scaled, next growth
 lane refreshed.** Treat this as the newest operational state. Registry file-size safety remains
 green after the new writes: the external registry is still a sharded manifest (~1.2 KB) plus four

@@ -1,0 +1,2400 @@
+{
+  "artifact_id": "v3_silver_pdb_residue_mapping_current702",
+  "counts": {
+    "coordinate_sha_mismatch": 0,
+    "deferred_over_limit": 0,
+    "expansion_labels": 6862,
+    "missing_local_coordinate": 233,
+    "missing_mmcif_alignment_tables": 12,
+    "no_exact_residues": 1,
+    "no_residue_positions_mapped": 7,
+    "residues_mapped": 61,
+    "rows_attempted_with_local_coordinates": 26,
+    "rows_mapped": 7,
+    "silver_ready_input_rows": 260
+  },
+  "created_utc": "2026-06-14T17:23:04Z",
+  "expansion_registry_path": "data/registries/external_bronze_labels.json",
+  "expansion_registry_storage": {
+    "bytes": 1205,
+    "format": "sharded_registry_manifest",
+    "full_registry_canonical_bytes": 54522053,
+    "full_registry_canonical_sha256": "9fae503780e19115bfca10f49608749dfbb904ce04024ab2b4f9e251af86bb16",
+    "max_shard_bytes": 17996156,
+    "path": "data/registries/external_bronze_labels.json",
+    "row_count": 6862,
+    "shard_count": 4
+  },
+  "expansion_registry_written": true,
+  "frozen_benchmark_byte_unchanged": true,
+  "frozen_benchmark_registry_written": false,
+  "frozen_sha256_after": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "frozen_sha256_before": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "guardrails": {
+    "frozen_current702_benchmark_preserved": true,
+    "geometry_confirmation_run_or_faked": false,
+    "predictive_evidence_changed": false,
+    "row_count_unchanged": true,
+    "tier_changed": false,
+    "writes_expansion_registry_only": true
+  },
+  "mapped_by_fingerprint": {
+    "flavin_dehydrogenase_reductase": 3,
+    "flavin_monooxygenase": 3,
+    "heme_peroxidase_oxidase": 1
+  },
+  "next_action": "Apply verified mapping updates, rerun the silver geometry audit, then run the separate geometry confirmation gate only for rows that become runnable.",
+  "policy": {
+    "cohesion_threshold": 0.92,
+    "mapping_is_review_only_not_predictive_feature": true,
+    "mapping_source": "_struct_ref_seq + _pdbx_poly_seq_scheme",
+    "requires_local_holo_coordinate_sha_match": true,
+    "silver_ready_source": "bronze_silver_promotion_preview",
+    "uniprot_sequence_positions_are_not_pdb_residue_mappings_without_alignment": true
+  },
+  "rows": [
+    {
+      "decision": "blocked_no_residue_positions_mapped",
+      "entry_id": "uniprot:Q9ZQI7",
+      "exact_residue_count": 8,
+      "fingerprint_id": "plp_dependent_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:P69848",
+      "exact_residue_count": 14,
+      "fingerprint_id": "radical_sam_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:P0A9N4",
+      "exact_residue_count": 5,
+      "fingerprint_id": "radical_sam_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_no_residue_positions_mapped",
+      "entry_id": "uniprot:Q0TTH1",
+      "exact_residue_count": 17,
+      "fingerprint_id": "radical_sam_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_no_residue_positions_mapped",
+      "entry_id": "uniprot:O15229",
+      "exact_residue_count": 10,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_no_residue_positions_mapped",
+      "entry_id": "uniprot:O88867",
+      "exact_residue_count": 10,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:P00438",
+      "exact_residue_count": 9,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:Q47PU3",
+      "exact_residue_count": 9,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:Q988D3",
+      "exact_residue_count": 22,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:E9QYP0",
+      "exact_residue_count": 6,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_no_residue_positions_mapped",
+      "entry_id": "uniprot:Q54530",
+      "exact_residue_count": 8,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_no_residue_positions_mapped",
+      "entry_id": "uniprot:Q93L51",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:A6T923",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "mapped_explicit_pdb_residue_positions",
+      "entry_id": "uniprot:B6BQB2",
+      "exact_residue_count": 19,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 19,
+      "registry_updated": true,
+      "tier_changed": false
+    },
+    {
+      "decision": "mapped_explicit_pdb_residue_positions",
+      "entry_id": "uniprot:Q84HF5",
+      "exact_residue_count": 8,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 8,
+      "registry_updated": true,
+      "tier_changed": false
+    },
+    {
+      "decision": "mapped_explicit_pdb_residue_positions",
+      "entry_id": "uniprot:Q93NG3",
+      "exact_residue_count": 3,
+      "fingerprint_id": "flavin_monooxygenase",
+      "mapped_residue_count": 3,
+      "registry_updated": true,
+      "tier_changed": false
+    },
+    {
+      "decision": "mapped_explicit_pdb_residue_positions",
+      "entry_id": "uniprot:P11678",
+      "exact_residue_count": 14,
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "mapped_residue_count": 14,
+      "registry_updated": true,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:P80025",
+      "exact_residue_count": 12,
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:Q9NX74",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:P33371",
+      "exact_residue_count": 10,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "mapped_explicit_pdb_residue_positions",
+      "entry_id": "uniprot:Q9FUP0",
+      "exact_residue_count": 8,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 8,
+      "registry_updated": true,
+      "tier_changed": false
+    },
+    {
+      "decision": "mapped_explicit_pdb_residue_positions",
+      "entry_id": "uniprot:P77258",
+      "exact_residue_count": 3,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 3,
+      "registry_updated": true,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:P21375",
+      "exact_residue_count": 2,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_mmcif_alignment_tables",
+      "entry_id": "uniprot:P16435",
+      "exact_residue_count": 9,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "mapped_explicit_pdb_residue_positions",
+      "entry_id": "uniprot:P0A8G6",
+      "exact_residue_count": 6,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 6,
+      "registry_updated": true,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P41407",
+      "exact_residue_count": 1,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_no_exact_residues",
+      "entry_id": "uniprot:P32340",
+      "exact_residue_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P05982",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P20070",
+      "exact_residue_count": 14,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q652L6",
+      "exact_residue_count": 16,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q64669",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P38626",
+      "exact_residue_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:C1I202",
+      "exact_residue_count": 2,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q831B2",
+      "exact_residue_count": 2,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9I509",
+      "exact_residue_count": 1,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9I4V0",
+      "exact_residue_count": 3,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9I5F3",
+      "exact_residue_count": 6,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P41921",
+      "exact_residue_count": 27,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P0A9P0",
+      "exact_residue_count": 8,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P91938",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P06715",
+      "exact_residue_count": 22,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P09624",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9JLT4",
+      "exact_residue_count": 4,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P9WHH1",
+      "exact_residue_count": 11,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P9WHH9",
+      "exact_residue_count": 6,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P28593",
+      "exact_residue_count": 1,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P14218",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P18925",
+      "exact_residue_count": 7,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P61076",
+      "exact_residue_count": 4,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q94655",
+      "exact_residue_count": 21,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P9WHH3",
+      "exact_residue_count": 1,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P49598",
+      "exact_residue_count": 11,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O15297",
+      "exact_residue_count": 6,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P35813",
+      "exact_residue_count": 6,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P63228",
+      "exact_residue_count": 14,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P16298",
+      "exact_residue_count": 10,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P67775",
+      "exact_residue_count": 16,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P09467",
+      "exact_residue_count": 14,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O00757",
+      "exact_residue_count": 14,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O14595",
+      "exact_residue_count": 8,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O43426",
+      "exact_residue_count": 23,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8TCD5",
+      "exact_residue_count": 13,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O00167",
+      "exact_residue_count": 5,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P34913",
+      "exact_residue_count": 15,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q96GD0",
+      "exact_residue_count": 7,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9UHY7",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P78330",
+      "exact_residue_count": 12,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q92835",
+      "exact_residue_count": 10,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O95861",
+      "exact_residue_count": 15,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P49902",
+      "exact_residue_count": 44,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q7Z4H3",
+      "exact_residue_count": 11,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P0AF24",
+      "exact_residue_count": 9,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P0A8Y3",
+      "exact_residue_count": 5,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P0A993",
+      "exact_residue_count": 14,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P49599",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O04719",
+      "exact_residue_count": 8,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q84XU2",
+      "exact_residue_count": 7,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P63088",
+      "exact_residue_count": 11,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q6L5H6",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P49594",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P32179",
+      "exact_residue_count": 19,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P48452",
+      "exact_residue_count": 13,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P76491",
+      "exact_residue_count": 8,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9W197",
+      "exact_residue_count": 8,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P0AE22",
+      "exact_residue_count": 6,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9SE00",
+      "exact_residue_count": 10,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q540U1",
+      "exact_residue_count": 6,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q14117",
+      "exact_residue_count": 12,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q55DL0",
+      "exact_residue_count": 9,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O66990",
+      "exact_residue_count": 8,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q81WF0",
+      "exact_residue_count": 11,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P42084",
+      "exact_residue_count": 16,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P20051",
+      "exact_residue_count": 7,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P06204",
+      "exact_residue_count": 13,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8ZFU4",
+      "exact_residue_count": 13,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00813",
+      "exact_residue_count": 15,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q01433",
+      "exact_residue_count": 18,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9NZK5",
+      "exact_residue_count": 10,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9Y2T3",
+      "exact_residue_count": 6,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P32320",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P32321",
+      "exact_residue_count": 5,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q7Z6V5",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P41238",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9BWV3",
+      "exact_residue_count": 18,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9Y235",
+      "exact_residue_count": 5,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O80452",
+      "exact_residue_count": 10,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P19079",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P56658",
+      "exact_residue_count": 15,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P68398",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P56389",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q06549",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q6P6J0",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P47058",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8TWU6",
+      "exact_residue_count": 4,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P07327",
+      "exact_residue_count": 13,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00326",
+      "exact_residue_count": 13,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P40394",
+      "exact_residue_count": 10,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P27250",
+      "exact_residue_count": 7,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q46856",
+      "exact_residue_count": 16,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P75691",
+      "exact_residue_count": 7,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00330",
+      "exact_residue_count": 31,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P06525",
+      "exact_residue_count": 23,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q96533",
+      "exact_residue_count": 16,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8GIX7",
+      "exact_residue_count": 8,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P39451",
+      "exact_residue_count": 7,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00328",
+      "exact_residue_count": 11,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P26325",
+      "exact_residue_count": 11,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q93063",
+      "exact_residue_count": 21,
+      "fingerprint_id": "glycosyltransferase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O95461",
+      "exact_residue_count": 4,
+      "fingerprint_id": "glycosyltransferase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q10471",
+      "exact_residue_count": 13,
+      "fingerprint_id": "glycosyltransferase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9NY97",
+      "exact_residue_count": 0,
+      "fingerprint_id": "glycosyltransferase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P15291",
+      "exact_residue_count": 4,
+      "fingerprint_id": "glycosyltransferase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q3U4G3",
+      "exact_residue_count": 10,
+      "fingerprint_id": "glycosyltransferase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8WZA1",
+      "exact_residue_count": 8,
+      "fingerprint_id": "glycosyltransferase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q96L58",
+      "exact_residue_count": 0,
+      "fingerprint_id": "glycosyltransferase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P20815",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P04798",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P10632",
+      "exact_residue_count": 5,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P24462",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P08686",
+      "exact_residue_count": 7,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P11509",
+      "exact_residue_count": 3,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P05177",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P10635",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P08684",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q16678",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q6VVX0",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P11712",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P33261",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q16850",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P11511",
+      "exact_residue_count": 3,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P05093",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9Y6A2",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P22680",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9UNU6",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00191",
+      "exact_residue_count": 6,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P20813",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P10614",
+      "exact_residue_count": 7,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q6ZMT4",
+      "exact_residue_count": 6,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9UPP1",
+      "exact_residue_count": 18,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9C0B1",
+      "exact_residue_count": 12,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P05050",
+      "exact_residue_count": 6,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9NWT6",
+      "exact_residue_count": 13,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q32P28",
+      "exact_residue_count": 6,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8NHH1",
+      "exact_residue_count": 11,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P49914",
+      "exact_residue_count": 6,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P12425",
+      "exact_residue_count": 16,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:A4Q9E8",
+      "exact_residue_count": 13,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P08192",
+      "exact_residue_count": 7,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P07862",
+      "exact_residue_count": 6,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P39641",
+      "exact_residue_count": 9,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q08220",
+      "exact_residue_count": 12,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:D2Z030",
+      "exact_residue_count": 11,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:I6Y0R5",
+      "exact_residue_count": 8,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P0A1P6",
+      "exact_residue_count": 17,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P15925",
+      "exact_residue_count": 9,
+      "fingerprint_id": "atp_amide_ligase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q47098",
+      "exact_residue_count": 8,
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:A0A9J9HGY6",
+      "exact_residue_count": 9,
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P08559",
+      "exact_residue_count": 38,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P77488",
+      "exact_residue_count": 6,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P0AFG8",
+      "exact_residue_count": 4,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P9WNS3",
+      "exact_residue_count": 6,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P09060",
+      "exact_residue_count": 9,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q5SLR4",
+      "exact_residue_count": 12,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P13716",
+      "exact_residue_count": 14,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q96GX9",
+      "exact_residue_count": 6,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8N1Q1",
+      "exact_residue_count": 4,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P53615",
+      "exact_residue_count": 4,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P14141",
+      "exact_residue_count": 16,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8DKB5",
+      "exact_residue_count": 4,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P9WPJ9",
+      "exact_residue_count": 4,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q54735",
+      "exact_residue_count": 3,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:G2IQQ5",
+      "exact_residue_count": 7,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O85042",
+      "exact_residue_count": 4,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P20507",
+      "exact_residue_count": 5,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q88JX8",
+      "exact_residue_count": 3,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q50940",
+      "exact_residue_count": 4,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P24182",
+      "exact_residue_count": 19,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P43873",
+      "exact_residue_count": 19,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P37798",
+      "exact_residue_count": 18,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P15266",
+      "exact_residue_count": 7,
+      "fingerprint_id": "nucleoside_diphosphate_kinase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P19367",
+      "exact_residue_count": 16,
+      "fingerprint_id": "askha_sugar_acetate_kinase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O57203",
+      "exact_residue_count": 6,
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00512",
+      "exact_residue_count": 9,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q2FXM8",
+      "exact_residue_count": 8,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O15648",
+      "exact_residue_count": 6,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P06999",
+      "exact_residue_count": 52,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q6TBX7",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00178",
+      "exact_residue_count": 2,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P15128",
+      "exact_residue_count": 8,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P50859",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O64989",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:S4UX02",
+      "exact_residue_count": 1,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P10613",
+      "exact_residue_count": 5,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P0DPQ7",
+      "exact_residue_count": 9,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P04179",
+      "exact_residue_count": 15,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O81235",
+      "exact_residue_count": 5,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00448",
+      "exact_residue_count": 4,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P54375",
+      "exact_residue_count": 6,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P9WGE7",
+      "exact_residue_count": 5,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P19665",
+      "exact_residue_count": 8,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00447",
+      "exact_residue_count": 6,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P31161",
+      "exact_residue_count": 4,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00449",
+      "exact_residue_count": 6,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P61503",
+      "exact_residue_count": 4,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P09223",
+      "exact_residue_count": 4,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P09738",
+      "exact_residue_count": 8,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P80293",
+      "exact_residue_count": 8,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P43019",
+      "exact_residue_count": 4,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P45700",
+      "exact_residue_count": 2,
+      "fingerprint_id": "glycoside_hydrolase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_no_residue_positions_mapped",
+      "entry_id": "uniprot:P32906",
+      "exact_residue_count": 2,
+      "fingerprint_id": "glycoside_hydrolase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P31723",
+      "exact_residue_count": 2,
+      "fingerprint_id": "glycoside_hydrolase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P76621",
+      "exact_residue_count": 3,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P40032",
+      "exact_residue_count": 6,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:A0A5S9I252",
+      "exact_residue_count": 5,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:B5HDJ6",
+      "exact_residue_count": 12,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9UR08",
+      "exact_residue_count": 6,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:A7NH01",
+      "exact_residue_count": 11,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:I1S104",
+      "exact_residue_count": 4,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:B5GMG2",
+      "exact_residue_count": 6,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q6WP50",
+      "exact_residue_count": 5,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:A0A4S8MAF3",
+      "exact_residue_count": 7,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O43353",
+      "exact_residue_count": 30,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P42345",
+      "exact_residue_count": 30,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O94768",
+      "exact_residue_count": 2,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P30291",
+      "exact_residue_count": 22,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P45983",
+      "exact_residue_count": 8,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P41743",
+      "exact_residue_count": 12,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P53355",
+      "exact_residue_count": 10,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P50613",
+      "exact_residue_count": 24,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q8TF76",
+      "exact_residue_count": 7,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P00519",
+      "exact_residue_count": 36,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:O43683",
+      "exact_residue_count": 15,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q13315",
+      "exact_residue_count": 7,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P17612",
+      "exact_residue_count": 10,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P29317",
+      "exact_residue_count": 17,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P49841",
+      "exact_residue_count": 7,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P78527",
+      "exact_residue_count": 26,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:Q9Y4B6",
+      "exact_residue_count": 10,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P08581",
+      "exact_residue_count": 16,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    },
+    {
+      "decision": "blocked_missing_local_coordinate",
+      "entry_id": "uniprot:P47735",
+      "exact_residue_count": 8,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "mapped_residue_count": 0,
+      "registry_updated": false,
+      "tier_changed": false
+    }
+  ],
+  "schema_version": "silver_pdb_residue_mapping.v1",
+  "status": "non_destructive_preview_pending_explicit_registry_write",
+  "what": "map exact UniProt active-site residue positions to explicit PDB chain/residue positions using mmCIF _struct_ref_seq plus _pdbx_poly_seq_scheme; no geometry scoring and no tier changes"
+}
