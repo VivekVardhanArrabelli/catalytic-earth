@@ -26,6 +26,52 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **PROTEIN KINASE 37FP HIGH-YIELD LANE APPLIED (2026-06-14 automation).**
+  The latest run followed the high-yield scaling contract after terpene left only **77** cap slots.
+  It refreshed the factory context, marked SDR/AKR prior blockers, then wired and applied the only
+  immediately ready >=150 lane: `protein_kinase_ser_thr_tyr`.
+
+  New wiring: `protein_kinase_ser_thr_tyr` was added to
+  `data/registries/mechanism_fingerprints.json`, `protein_substrate_phosphoryl_transfer` was added
+  to `data/registries/mechanism_ontology.json`, deploy-missing context was registered, the current
+  positive universe is now `label_factory_v1_37fp`, and OOS preregistration was re-frozen as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_37fp_1025.json`.
+
+  New infrastructure:
+  `src/catalytic_earth/protein_kinase_sourcing.py`,
+  `scripts/source_protein_kinase_family.py`, and
+  `tests/test_protein_kinase_sourcing.py`. The shared disambiguation rule admits reviewed
+  Ser/Thr/Tyr protein kinase candidates only with non-EC protein-kinase family context plus ATP/Mg
+  cosubstrate context and Rhea protein-phosphoryl-transfer or active/binding-site evidence.
+  Histidine kinases, small-molecule kinases, ATP ligases, hydrolases, side-EC rows, EC-only rows,
+  and multi-fingerprint rows stay held. EC remains scope-only and never counts as a mechanism axis;
+  all such handles stay in excluded context, with `predictive_evidence []`.
+
+  The first preview admitted **72** rows and was not applied. The enlarged audited preview
+  `artifacts/v3_protein_kinase_sourcing_preview470_current702_20260614.json` fetched **470**,
+  mechanism-corroborated **248**, held **0** off-target rows, novelty-admitted **150**, and held
+  **0** at cap. Row audit
+  `artifacts/v3_protein_kinase_preview470_row_guardrail_audit_current702_20260614.json` found
+  **0** problems. Applied rows: external bronze **7213 -> 7363** (+150), combined label surface
+  **7915 -> 8065**, and `protein_kinase_ser_thr_tyr` **0 -> 150**, exactly at its
+  chemistry-confusable cap **150**. Frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+  Current counts: external bronze **7363**; combined label surface **8065**; external-only split
+  **6139** seed rows and **1224** OOS rows; combined seed-fingerprint surface **6369**, leaving
+  **3631** to the 10k seed-surface target. Honest counters remain separate:
+  **positive_bronze_count 6352**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+  **silver_confirmed_count 17**, **projected_provisional_count 0**. Coverage audit reports
+  fingerprint Gini **0.1385**, holes `[]`, under-floor `[]`, next-batch floor deficit **0**, and
+  over-cap `['metal_dependent_hydrolase']`. Novelty replay over **7363** expansion rows reports
+  decisions `{'admit': 6907, 'reject': 47, 'throttle': 409}` and would-not-readmit **456**.
+
+  Next work should not continue protein kinase under the current cap policy. Rerun the high-yield
+  factory against the 37fp applied state, then wire the next new family. Prefer
+  `aldehyde_dehydrogenase` or `alpha_beta_hydrolase_esterase_lipase` for cleaner boundaries, or
+  `had_like_phosphatase` only with a hard boundary against the known over-cap
+  `metal_dependent_hydrolase`. Keep SDR/AKR blocked unless a source-free, non-EC mechanism rule can
+  separate them from capped NAD(P) dehydrogenase, MDR/flavin/metal redox, and each other.
 - **TERPENE CYCLASE/SYNTHASE 36FP HIGH-YIELD LANE APPLIED (2026-06-14 automation).**
   The latest run used the high-yield family factory's top ranked new-family lane instead of
   replaying capped/tiny top-ups. It added the `terpene_cyclase_synthase` fingerprint and

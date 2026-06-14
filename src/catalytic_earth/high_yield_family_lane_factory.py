@@ -47,6 +47,7 @@ def _spec(
     current_runner: str | None = None,
     ambiguity_with_existing: tuple[str, ...] = (),
     oos_preregistration_required: bool = True,
+    known_blockers: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     return {
         "family_id": family_id,
@@ -63,6 +64,7 @@ def _spec(
         "current_runner": current_runner,
         "ambiguity_with_existing": list(ambiguity_with_existing),
         "oos_preregistration_required": oos_preregistration_required,
+        "known_blockers": list(known_blockers),
     }
 
 
@@ -89,6 +91,9 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         cap_ceiling=DEFAULT_CLEAN_CAP,
         chemistry_confusable=False,
         novelty_keep_factor=0.45,
+        existing_fingerprint_id="terpene_cyclase_synthase",
+        current_runner="scripts/source_terpene_cyclase_synthase_family.py",
+        oos_preregistration_required=False,
         rationale_template=(
             "Clean carbocation cyclization chemistry outside the current atlas; "
             "prefer reviewed EC 4.2.3 rows with metal/diphosphate corroboration."
@@ -241,8 +246,8 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         scope_query="(reviewed:true) AND (ec:1.1.1.*)",
         corroborator_query=(
             "(reviewed:true) AND (ec:1.1.1.*) AND "
-            "((protein_name:\"aldo-keto reductase\") OR (protein_name:aldose) "
-            "OR (cc_cofactor:nadp) OR (keyword:NADP))"
+            "((protein_name:\"aldo-keto reductase\") OR (protein_name:\"aldose reductase\") "
+            "OR (protein_name:AKR))"
         ),
         required_non_ec_corroborators=(
             "aldo-keto reductase family/name handle",
@@ -258,6 +263,10 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         chemistry_confusable=True,
         novelty_keep_factor=0.35,
         ambiguity_with_existing=("nad_p_dehydrogenase",),
+        known_blockers=(
+            "2026-05 SDR/AKR/NAD(P) control tranche is review-only with 0 import-ready rows",
+            "AKR source-free NADP/Tyr-Lys-His axis remains unresolved",
+        ),
         rationale_template=(
             "Large NAD(P) hydride-transfer subclass; needs AKR-vs-SDR/MDR rules "
             "because the existing NAD(P) fingerprint is capped."
@@ -270,8 +279,9 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         corroborator_query=(
             "(reviewed:true) AND (ec:1.1.1.*) AND "
             "((protein_name:\"short-chain dehydrogenase\") OR "
-            "(protein_name:\"short chain dehydrogenase\") OR (keyword:NAD) "
-            "OR (keyword:NADP))"
+            "(protein_name:\"short chain dehydrogenase\") OR "
+            "(protein_name:\"short-chain dehydrogenase/reductase\") OR "
+            "(protein_name:SDR)) AND ((keyword:NAD) OR (keyword:NADP))"
         ),
         required_non_ec_corroborators=(
             "SDR family/name/domain handle",
@@ -287,6 +297,10 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         chemistry_confusable=True,
         novelty_keep_factor=0.35,
         ambiguity_with_existing=("nad_p_dehydrogenase",),
+        known_blockers=(
+            "2026-05 SDR/AKR/NAD(P) control tranche is review-only with 0 import-ready rows",
+            "SDR source-free full axis and NAD(P) pocket proxy are not production-ready",
+        ),
         rationale_template=(
             "Very large hydride-transfer family, but current source handles are weak; "
             "requires an SDR-specific rule instead of broad EC 1.1.1 padding."
@@ -342,6 +356,9 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         cap_ceiling=DEFAULT_CONFUSABLE_CAP,
         chemistry_confusable=True,
         novelty_keep_factor=0.35,
+        existing_fingerprint_id="protein_kinase_ser_thr_tyr",
+        current_runner="scripts/source_protein_kinase_family.py",
+        oos_preregistration_required=False,
         ambiguity_with_existing=(
             "pfka_phosphofructokinase",
             "pfkb_ribokinase_family",
@@ -519,6 +536,7 @@ def evaluate_family_lane_spec(
         ),
         "chemistry_confusable": bool(spec["chemistry_confusable"]),
         "ambiguity_with_existing_fingerprints": list(spec["ambiguity_with_existing"]),
+        "known_blockers": list(spec.get("known_blockers") or []),
         "required_non_ec_corroborators": list(spec["required_non_ec_corroborators"]),
         "disambiguation_holds": list(spec["disambiguation_holds"]),
         "oos_preregistration_required": bool(spec["oos_preregistration_required"]),

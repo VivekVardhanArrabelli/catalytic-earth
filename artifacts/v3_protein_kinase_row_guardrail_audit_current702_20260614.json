@@ -1,0 +1,26 @@
+{
+  "artifact_id": "v3_protein_kinase_row_guardrail_audit_current702_20260614",
+  "counts": {
+    "audited_rows": 72,
+    "mechanism_axis_counts": {
+      "active_site_motif_or_residue_role": 70,
+      "cofactor_or_cosubstrate": 72,
+      "domain_or_family_profile": 72,
+      "rhea_reaction_or_participant_pattern": 72
+    },
+    "problem_rows": 0
+  },
+  "created_utc": "2026-06-14T02:44:02Z",
+  "family": "protein_kinase_ser_thr_tyr",
+  "guardrails": {
+    "ec_scope_only_never_counted": true,
+    "predictive_evidence_empty_required": true,
+    "review_status_automation_curated_required": true,
+    "source_tier_0_required": true,
+    "tier_bronze_required": true,
+    "uniprot_namespace_required": true
+  },
+  "problems": [],
+  "source_preview": "artifacts/v3_protein_kinase_sourcing_preview_current702_20260614.json",
+  "status": "passed"
+}

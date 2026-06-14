@@ -3,6 +3,58 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: PROTEIN KINASE 37FP HIGH-YIELD LANE APPLIED
+
+Decision: after `terpene_cyclase_synthase` left only **77** cap slots, stop top-ups and build the
+next high-yield lane that could clear the >=150 clean-row gate. `protein_kinase_ser_thr_tyr` was
+chosen because the refreshed factory marked it as the only immediately ready existing >=150 lane
+after wiring, while SDR/AKR still had prior no-import/source-free mechanism-rule blockers and
+HAD-like phosphatase needed stronger hydrolase/phosphatase boundary work.
+
+Mechanism rule: EC 2.7.10/2.7.11 is scope-only. Counted corroboration must come from non-EC
+protein-kinase family context plus ATP/Mg cosubstrate context and Rhea protein-phosphoryl-transfer
+or active/binding-site evidence. Histidine kinases, small-molecule kinases, ATP ligases,
+hydrolases, side-EC rows, EC-only rows, and multi-fingerprint rows stay held. Broadened handles
+remain excluded-context source/admission evidence only; `predictive_evidence` remains `[]`.
+
+Implementation: added `protein_kinase_ser_thr_tyr` to the fingerprint registry, added
+`protein_substrate_phosphoryl_transfer` to the ontology, bumped
+`labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_37fp`, wired
+deploy-missing context, and re-froze OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_37fp_1025.json`. Added
+`src/catalytic_earth/protein_kinase_sourcing.py`,
+`scripts/source_protein_kinase_family.py`, and `tests/test_protein_kinase_sourcing.py`; extended
+`external_cofactor_ec_disambiguation` with protein-kinase evidence axes and boundary holds.
+
+Apply result: the first preview admitted **72** rows and was not applied because it missed the
+>=150 gate. The enlarged preview
+`artifacts/v3_protein_kinase_sourcing_preview470_current702_20260614.json` fetched **470**,
+mechanism-corroborated **248**, held **0** off-target rows, novelty-admitted **150**, and held
+**0** at cap. Row audit
+`artifacts/v3_protein_kinase_preview470_row_guardrail_audit_current702_20260614.json` found **0**
+problems. Applied **150** rows: external bronze **7213 -> 7363**; combined label surface
+**7915 -> 8065**; `protein_kinase_ser_thr_tyr` **0 -> 150**, exactly at its chemistry-confusable
+cap **150**.
+
+Counts after apply: combined seed-fingerprint surface **6369**, remaining gap **3631** to 10k
+seed surface. Honest counters stay separate: **positive_bronze_count 6352**,
+**oos_bronze_count 1696**, **silver_ready_count 0**, **silver_confirmed_count 17**,
+**projected_provisional_count 0**. Frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+`data/registries/external_bronze_labels.json`.
+
+Validation: focused pytest passed (**302 passed, 14 subtests passed**). `PYTHONPATH=src python -m
+catalytic_earth.cli validate` passed (12 source records, 37 fingerprints, 34 ontology families,
+702 curated labels). Coverage audit reports **8065** combined, **7363** expansion, fingerprint
+Gini **0.1385**, holes `[]`, under-floor `[]`, next-batch floor deficit **0**, and over-cap
+`['metal_dependent_hydrolase']`. Novelty replay reports **7363** expansion rows, decisions
+`{'admit': 6907, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0619).
+
+Next decision: do not continue protein kinase under the current cap policy. Rerun the high-yield
+factory against the 37fp applied state. Prefer `aldehyde_dehydrogenase` or
+`alpha_beta_hydrolase_esterase_lipase` for cleaner next-family boundaries, or
+`had_like_phosphatase` only with a hard boundary against over-cap `metal_dependent_hydrolase`.
+
 ## 2026-06-14: TERPENE CYCLASE/SYNTHASE 36FP HIGH-YIELD LANE APPLIED
 
 Decision: build and apply the high-yield `terpene_cyclase_synthase` new-family lane from the

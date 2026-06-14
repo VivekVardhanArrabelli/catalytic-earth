@@ -13,6 +13,37 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: protein kinase 37fp high-yield lane applied.** After the terpene
+lane left only **77** cap slots, the latest run shifted to the next factory-supported high-yield
+family rather than doing a tiny top-up. It added `protein_kinase_ser_thr_tyr` and
+`protein_substrate_phosphoryl_transfer`, bumped the current positive universe to
+`label_factory_v1_37fp`, registered deploy-missing context, and re-froze OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_37fp_1025.json`.
+
+Admission is mechanism-first: EC 2.7.10/2.7.11 scopes candidates only; counted corroboration must
+come from non-EC protein-kinase family context, ATP/Mg cosubstrate context, and Rhea
+protein-phosphoryl-transfer or active/binding-site evidence. EC, name, keyword, Rhea, ATP/Mg, and
+site handles remain excluded-context source/admission evidence, never predictive features, and EC
+is never a counted corroborator. Histidine kinases, small-molecule kinases, ATP ligases,
+hydrolases, side-EC rows, EC-only rows, and multi-fingerprint rows stay held.
+
+The first preview admitted **72** rows and was not applied. The enlarged audited preview
+`artifacts/v3_protein_kinase_sourcing_preview470_current702_20260614.json` fetched **470**,
+mechanism-corroborated **248**, held **0** off-target rows, novelty-admitted **150**, and held
+**0** at cap. Row audit found **0** problems. Applied rows: external bronze **7213 -> 7363**
+(+150), combined label surface **7915 -> 8065**, and `protein_kinase_ser_thr_tyr` **0 -> 150**,
+exactly at its chemistry-confusable cap **150**. Combined seed-fingerprint surface is now
+**6369**, leaving **3631** to 10k by that convention. Honest counters remain separate:
+**positive_bronze_count 6352**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+Do not continue protein kinase under the current cap policy. The newest useful next step is to
+rerun the high-yield factory against the 37fp applied state, then wire another high-yield new
+family. Prefer `aldehyde_dehydrogenase` or `alpha_beta_hydrolase_esterase_lipase` for cleaner
+boundaries, or `had_like_phosphatase` only if it is guarded against the existing over-cap
+`metal_dependent_hydrolase`. Keep SDR/AKR blocked until they have source-free, non-EC mechanism
+rules that separate them from capped NAD(P) dehydrogenase and neighboring redox families.
+
 **2026-06-14 automation update: terpene cyclase/synthase 36fp high-yield lane applied.** The
 latest run built the top-ranked factory lane instead of replaying capped/tiny top-ups. It added
 `terpene_cyclase_synthase` plus `terpene_carbocation_cyclization`, bumped the current positive

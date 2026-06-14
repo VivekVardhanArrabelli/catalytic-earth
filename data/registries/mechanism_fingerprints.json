@@ -893,5 +893,31 @@
       "reconstruction_path": "Path A sequence->terpene cyclase family plus metal/diphosphate/Rhea channel, or canonical Mg/Mn-prenyl-diphosphate graft in the closed terpene cyclase pocket (Path B)",
       "silver_reachability": "moderate; EC/Rhea and metal/diphosphate evidence are common, but substrate pose and carbocation trajectory require reconstruction"
     }
+  },
+  {
+    "id": "protein_kinase_ser_thr_tyr",
+    "name": "Ser/Thr/Tyr protein kinase",
+    "enzyme_space": ["serine/threonine protein kinases", "tyrosine protein kinases", "dual-specificity protein kinases", "eukaryotic protein kinase-like enzymes"],
+    "active_site_signature": [
+      {"role": "atp_mg_binding", "residue": "Gly-rich phosphate-binding loop plus Lys/Glu catalytic salt bridge and Mg2+-coordinating residues", "constraints": ["positions ATP gamma-phosphate and Mg2+ for transfer to a protein hydroxyl acceptor"]},
+      {"role": "protein_substrate_positioning", "residue": "activation segment and substrate-docking residues", "constraints": ["aligns a protein Ser, Thr, or Tyr hydroxyl for in-line phosphoryl transfer while excluding small-molecule acceptors"]},
+      {"role": "phosphoryl_transfer_base_and_stabilizer", "residue": "Asp/Asn catalytic loop and Mg2+-stabilized phosphate contacts", "constraints": ["supports hydroxyl activation and stabilizes the ADP/phosphoprotein product state"]}
+    ],
+    "cofactors": ["Mg2+", "ATP"],
+    "reaction_center": {
+      "bond_changes": ["ATP gamma-phosphoryl transfer to a protein Ser, Thr, or Tyr hydroxyl, forming a phosphoprotein and ADP"],
+      "chemical_operation": "ATP/Mg-dependent protein-substrate phosphoryl transfer"
+    },
+    "substrate_constraints": ["EC 2.7.10 or 2.7.11 protein kinase scope present", "protein kinase family/name/keyword context present", "ATP/ADP/Mg2+ phosphoryl-transfer context present", "Rhea or reviewed catalytic activity text for protein Ser/Thr/Tyr phosphorylation or active-/binding-site evidence present", "no histidine kinase, small-molecule kinase, NDK/dNK/ASKHA/GHMP/PfkA/PfkB, ATP ligase, hydrolase, side-EC, EC-only, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Protein kinase functional keyword/name/domain text", "Rhea or reviewed catalytic activity text with ATP/ADP and protein Ser/Thr/Tyr phosphorylation participants under EC 2.7.10/2.7.11 scope", "ATP, ADP, or Mg2+ binding-site/cofactor/cosubstrate annotation", "active-site or binding-site annotations for catalytic kinase residues where available"],
+    "counterevidence_features": ["two-component histidine kinase or phosphohistidine transfer chemistry", "small-molecule kinase EC 2.7.1/2.7.4 chemistry", "ATP-grasp or other ligase EC 6 chemistry", "hydrolase side EC or non-protein phosphoryl acceptor", "EC-only evidence with no protein-kinase family, ATP/Mg, Rhea, active-site, binding-site, or structure corroborator", "multi-fingerprint signal where an established kinase or ATP-dependent fingerprint independently fires"],
+    "uncertainty_axes": ["Ser/Thr versus Tyr or dual specificity", "activation-loop phosphorylation state", "ATP/Mg2+ stoichiometry and pose", "protein-substrate docking context"],
+    "seed_examples": ["cAMP-dependent protein kinase", "MAP kinase", "Src-family tyrosine kinase", "dual-specificity MAP kinase kinase"],
+    "deploy_missing_active_site_context": {
+      "type": "atp_mg_protein_substrate_and_phosphoprotein_product",
+      "detail": "ATP, Mg2+, protein-substrate docking pose, activation-loop state, and phosphoprotein product are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->protein-kinase family plus ATP/Mg/Rhea channel, or canonical ATP/Mg/protein-substrate graft in an active kinase conformation (Path B)",
+      "silver_reachability": "moderate; kinase family and ATP/Mg annotations are common, but substrate docking, activation state, and phosphoryl-transfer geometry require reconstruction"
+    }
   }
 ]

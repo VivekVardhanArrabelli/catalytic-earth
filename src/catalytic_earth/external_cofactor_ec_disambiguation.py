@@ -528,6 +528,59 @@ _ATP_ACYL_PHOSPHATE_TOKENS = (
 )
 _BIOTIN_CARBOXYLASE_BOUNDARY_TOKENS = ("biotin", "carboxylase", "carboxybiotin")
 _KINASE_BOUNDARY_TOKENS = ("kinase", "phosphotransferase")
+# Ser/Thr/Tyr protein kinase handles. EC 2.7.10/2.7.11 scopes candidates only;
+# counted corroboration comes from protein-kinase family text, ATP/ADP/Mg
+# participant or binding-site context, protein-substrate phosphorylation reaction
+# text, and active-/binding-site evidence. Histidine kinases, small-molecule
+# kinases, ATP ligases, hydrolases, and side-EC rows stay held.
+_PROTEIN_KINASE_FAMILY_TEXT_TOKENS = (
+    "protein kinase",
+    "serine/threonine-protein kinase",
+    "serine/threonine kinase",
+    "tyrosine-protein kinase",
+    "tyrosine kinase",
+    "dual specificity protein kinase",
+    "dual-specificity protein kinase",
+)
+_PROTEIN_KINASE_ATP_MG_TOKENS = (
+    "atp",
+    "adenosine 5'-triphosphate",
+    "adenosine triphosphate",
+    "adp",
+    "adenosine 5'-diphosphate",
+    "magnesium",
+    "mg(2",
+    "mg2",
+)
+_PROTEIN_KINASE_REACTION_TOKENS = (
+    "protein",
+    "phosphoprotein",
+    "l-serine",
+    "l-threonine",
+    "l-tyrosine",
+    "o-phospho-l-serine",
+    "o-phospho-l-threonine",
+    "o4-phospho-l-tyrosine",
+    "phosphorylated protein",
+)
+_PROTEIN_KINASE_BOUNDARY_TOKENS = (
+    "histidine kinase",
+    "two-component",
+    "ribokinase",
+    "deoxynucleoside kinase",
+    "nucleoside diphosphate kinase",
+    "phosphofructokinase",
+    "fructokinase",
+    "hexokinase",
+    "glucokinase",
+    "acetate kinase",
+    "galactokinase",
+    "homoserine kinase",
+    "mevalonate kinase",
+    "atp-grasp",
+    "atp grasp",
+    "ligase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -982,6 +1035,9 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     ]
     feature_texts = _feature_texts(row)
     protein_name = str(row.get("protein_name") or "").lower()
+    active_or_binding_site_present = bool(
+        _feature_codes(row) & _ACTIVE_OR_BINDING_FEATURE_CODES
+    )
 
     def in_any(haystacks: list[str], *tokens: str) -> bool:
         return any(any(tok in text for tok in tokens) for text in haystacks)
@@ -1272,6 +1328,27 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     kinase_boundary = in_any(keywords + [protein_name], *_KINASE_BOUNDARY_TOKENS) or _ec_has_prefix(
         row, ("2.7.",)
     )
+    protein_kinase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_PROTEIN_KINASE_FAMILY_TEXT_TOKENS,
+    )
+    protein_kinase_atp_mg_context = in_any(
+        reactions + cofactor_names + feature_texts,
+        *_PROTEIN_KINASE_ATP_MG_TOKENS,
+    )
+    protein_kinase_phosphoryl_reaction = in_any(
+        reactions, *_PROTEIN_KINASE_REACTION_TOKENS
+    ) and in_any(reactions, "atp", "adp", "phosphate", "phospho")
+    protein_kinase_boundary_signal = _ec_has_prefix(
+        row, ("2.7.1.", "2.7.4", "2.7.13", "6.")
+    ) or in_any(
+        keywords + [protein_name] + feature_texts,
+        *_PROTEIN_KINASE_BOUNDARY_TOKENS,
+    )
+    non_protein_kinase_scope_side_ec = any(
+        ec and not (ec.startswith("2.7.10") or ec.startswith("2.7.11"))
+        for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -1507,14 +1584,17 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "terpene_cyclization_reaction": terpene_cyclization_reaction,
             "terpene_boundary_signal": terpene_boundary_signal,
             "non_4_2_3_side_ec": non_4_2_3_side_ec,
+            "protein_kinase_family_text": protein_kinase_family_text,
+            "protein_kinase_atp_mg_context": protein_kinase_atp_mg_context,
+            "protein_kinase_phosphoryl_reaction": protein_kinase_phosphoryl_reaction,
+            "protein_kinase_boundary_signal": protein_kinase_boundary_signal,
+            "non_protein_kinase_scope_side_ec": non_protein_kinase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
             "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
             "plp_boundary_signal": evidence.get("plp", False),
             "cofactorless_context": cofactorless_context,
-            "active_or_binding_site_present": bool(
-                _feature_codes(row) & _ACTIVE_OR_BINDING_FEATURE_CODES
-            ),
+            "active_or_binding_site_present": active_or_binding_site_present,
         }
     )
     return evidence
@@ -1570,6 +1650,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("pfkb_phosphoryl_reaction")
         or evidence.get("terpene_mg_mn_context")
         or evidence.get("terpene_diphosphate_context")
+        or evidence.get("protein_kinase_atp_mg_context")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -1607,6 +1688,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("pfka_phosphoryl_reaction")
         or evidence.get("pfkb_phosphoryl_reaction")
         or evidence.get("terpene_cyclization_reaction")
+        or evidence.get("protein_kinase_phosphoryl_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -1647,6 +1729,10 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
             evidence.get("active_or_binding_site_present")
             and evidence.get("terpene_family_text")
         )
+        or (
+            evidence.get("active_or_binding_site_present")
+            and evidence.get("protein_kinase_family_text")
+        )
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -1678,6 +1764,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("pfkb_family_text")
         or evidence.get("mn_fe_sod_family_text")
         or evidence.get("terpene_family_text")
+        or evidence.get("protein_kinase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -1743,6 +1830,7 @@ _THIAMINE_DIPHOSPHATE_ENZYME_EC = (
 )  # ThDP ylide/carbonyl chemistry; EC is scope only
 _ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
 _TERPENE_CYCLASE_SYNTHASE_EC = ("4.2.3",)  # terpene cyclases/synthases; EC is scope only
+_PROTEIN_KINASE_SER_THR_TYR_EC = ("2.7.10", "2.7.11")  # protein kinases; EC scope only
 _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
 _ASKHA_SUGAR_ACETATE_KINASE_EC = ("2.7.1",)  # ASKHA sugar/acetate kinase; EC scope only
 _GHMP_SMALL_MOLECULE_KINASE_EC = ("2.7.1",)  # GHMP small-molecule kinase; EC scope only
@@ -2128,6 +2216,19 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["non_4_2_3_side_ec"]
         and (c["terpene_cyclization_reaction"] or c["active_or_binding_site_present"]),
     ),
+    (
+        "protein_kinase_ser_thr_tyr",
+        lambda c, row: _ec_has_prefix(row, _PROTEIN_KINASE_SER_THR_TYR_EC)
+        and c["protein_kinase_family_text"]
+        and c["protein_kinase_atp_mg_context"]
+        and not c["protein_kinase_boundary_signal"]
+        and not c["hydrolase_side_ec"]
+        and not c["non_protein_kinase_scope_side_ec"]
+        and (
+            c["protein_kinase_phosphoryl_reaction"]
+            or c["active_or_binding_site_present"]
+        ),
+    ),
 )
 
 
@@ -2221,6 +2322,8 @@ def _synthesize_cofactor_provenance(
         evidence.get("terpene_mg_mn_context") or evidence.get("terpene_diphosphate_context")
     ):
         records = [{"name": "Mg2+/Mn2+ prenyl-diphosphate cyclization context", "cross_reference": {"id": None}}]
+    elif fingerprint == "protein_kinase_ser_thr_tyr" and evidence.get("protein_kinase_atp_mg_context"):
+        records = [{"name": "ATP/Mg2+ protein-substrate phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:
