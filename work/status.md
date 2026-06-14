@@ -1,16 +1,21 @@
 # Automation Status
 
 - automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-14T02:21:41Z
-- started_local: Sat Jun 13 21:21:41 CDT 2026
-- budget_minutes: 40
-- state: validation_passed_applied
-- updated_at_utc: 2026-06-14T03:02:54Z
+- started_at_utc: 2026-06-14T14:56:15Z
+- started_local: Sun Jun 14 09:56:15 CDT 2026
+- budget_minutes: 55
+- planned_closeout_minute: 50
+- state: closeout_validation_green
+- updated_at_utc: 2026-06-14T15:38:48Z
 - lock: acquired
-- current_action: update docs, commit/push, release lock
-- result: applied audited protein_kinase_ser_thr_tyr preview470 after 150 clean rows passed gate
-- external_bronze: 7363
-- combined_label_surface: 8065
-- combined_seed_surface: 6369
-- remaining_gap_to_10k_seed_surface: 3631
-- honest_counters: positive_bronze_count=6352, oos_bronze_count=1696, silver_ready_count=0, silver_confirmed_count=17, projected_provisional_count=0
+- current_action: docs/commit/push/lock release
+- result: registry sharded, full suite green, bounded PDB-ID backfill applied
+- elapsed_minutes: 44.1
+- remaining_minutes: 10.9
+- external_bronze: 6862
+- combined_label_surface: 7564
+- combined_seed_surface: 5868
+- remaining_gap_to_10k_seed_surface: 4132
+- honest_counters: positive_bronze_count=5638, oos_bronze_count=1224, silver_ready_count=260_pending_geometry_run, silver_confirmed_count=17, projected_provisional_count=0
+- registry_file_size_safety: external registry manifest 1203 bytes; four shard files <= 17996716 bytes; no changed/new file over 45MB
+- validation: focused changed-state tests 39 passed; full suite 2238 passed, 1 warning, 244 subtests; cli validate ok; git diff --check ok

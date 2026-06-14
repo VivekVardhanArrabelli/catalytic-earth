@@ -15,6 +15,7 @@ from catalytic_earth.novelty_admission_gate import (
     self_audit,
     write_novelty_admission_gate_audit,
 )
+from catalytic_earth.registry_io import load_json
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FROZEN_PATH = REPO_ROOT / "data/registries/curated_mechanism_labels.json"
@@ -192,7 +193,7 @@ class EvaluateBatchTests(unittest.TestCase):
 class SelfAuditRealRegistryTests(unittest.TestCase):
     def test_self_audit_flags_redundancy_concentrated_in_saturated_lanes(self) -> None:
         frozen = json.loads(FROZEN_PATH.read_text())
-        expansion = json.loads(EXPANSION_PATH.read_text())
+        expansion = load_json(EXPANSION_PATH)
         audit = self_audit(frozen, expansion)
         self.assertEqual(audit["expansion_rows"], 6862)
         # some redundancy exists and is bounded
@@ -222,7 +223,7 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
 
     def test_audit_is_deterministic(self) -> None:
         frozen = json.loads(FROZEN_PATH.read_text())
-        expansion = json.loads(EXPANSION_PATH.read_text())
+        expansion = load_json(EXPANSION_PATH)
         a = build_novelty_admission_gate_audit(frozen, expansion)
         b = build_novelty_admission_gate_audit(frozen, expansion)
         a.pop("created_utc")

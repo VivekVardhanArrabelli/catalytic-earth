@@ -8,6 +8,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .registry_io import load_json
+
 
 ARTIFACT_ID = "v3_scaleout_metal_hydrolase_shard_current702_20260608"
 SCHEMA_VERSION = "v3.scaleout_metal_hydrolase_shard"
@@ -131,7 +133,7 @@ def _canonical_sha256(payload: Any) -> str:
 
 
 def _read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return load_json(path)
 
 
 def _rows_from_payload(payload: Any) -> list[dict[str, Any]]:

@@ -13,6 +13,7 @@ from catalytic_earth.bronze_silver_promotion_preview import (
     write_bronze_silver_promotion_preview,
 )
 from catalytic_earth.mechanism_representation_loop import fingerprint_centroids
+from catalytic_earth.registry_io import load_json
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXPANSION_PATH = REPO_ROOT / "data/registries/external_bronze_labels.json"
@@ -205,7 +206,7 @@ class RealRegistryTests(unittest.TestCase):
             self.assertEqual(EXPANSION_PATH.read_bytes(), before)
 
     def test_deterministic(self) -> None:
-        expansion = json.loads(EXPANSION_PATH.read_text())
+        expansion = load_json(EXPANSION_PATH)
         a = build_bronze_silver_promotion_preview(expansion)
         b = build_bronze_silver_promotion_preview(expansion)
         a.pop("created_utc")

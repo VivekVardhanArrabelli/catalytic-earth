@@ -19,6 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .registry_io import load_json
 from .structure import (
     parse_atom_site_loop,
     select_residue_atoms,
@@ -296,7 +297,7 @@ REPORTED_REDOX_DONOR_ACCEPTOR_FAMILIES = {
 
 
 def _read_json(path: Path) -> dict[str, Any]:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    return load_json(Path(path))
 
 
 def _sha256(path: Path) -> str:

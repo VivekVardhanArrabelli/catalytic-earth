@@ -28,6 +28,7 @@ from typing import Any, Callable
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from .registry_io import load_json
 from .mechanism_abstention_gate_eval import load_geometry_role_scores
 from .mechanism_novelty_abstention_eval import (
     COFACTOR_CLASSES,
@@ -864,7 +865,7 @@ def _hash_json_payload(payload: dict[str, Any]) -> str:
 
 
 def _read_json(path: Path) -> Any:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    return load_json(Path(path))
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:

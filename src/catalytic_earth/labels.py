@@ -10,6 +10,7 @@ from typing import Any, Sequence
 
 from .fingerprints import load_fingerprints
 from .ontology import fingerprint_family, load_mechanism_ontology
+from .registry_io import load_json
 from .sources import PROJECT_ROOT
 from .structure import (
     COFACTOR_LIGAND_MAP,
@@ -374,8 +375,7 @@ def migrate_label_registry_records(data: list[dict[str, Any]]) -> list[dict[str,
 
 
 def load_labels(path: Path = LABEL_REGISTRY) -> list[MechanismLabel]:
-    with path.open("r", encoding="utf-8") as handle:
-        data = json.load(handle)
+    data = load_json(path)
     if not isinstance(data, list):
         raise ValueError("label registry must be a list")
     labels = [MechanismLabel.from_dict(item) for item in data]

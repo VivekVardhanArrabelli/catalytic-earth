@@ -1,0 +1,919 @@
+{
+  "abstention_diagnostics_policy": {
+    "required_by_oos_tier": [
+      "abstention_rate",
+      "false_positive_non_abstention_rate",
+      "false_positive_rate_by_predicted_primary_fingerprint",
+      "confidence_distribution_on_oos_rows",
+      "confidence_distribution_on_correctly_classified_in_scope_rows",
+      "overlap_diagnostic_for_any_threshold_separating_oos_from_in_scope"
+    ],
+    "threshold_selection_rule": "Any abstention threshold must be chosen on train/calibration data only and then reported unchanged on OOS tiers and primary eval rows",
+    "tier_scope": [
+      "far_oos",
+      "near_oos",
+      "boundary_oos",
+      "unknown_oos",
+      "secondary_probe_fingerprints"
+    ],
+    "win_condition": "A model win is conjunctive: improved primary mechanism prediction and no-worse or better calibrated abstention on tail, near-OOS, and hard-negative cases"
+  },
+  "active_site_pooling_contract": {
+    "active_site_window_ablation_rule": {
+      "merge_rule": "merge overlapping windows before pooling",
+      "pooling_rule": "mean-pool residue tokens over merged eligible windows",
+      "required_metadata": [
+        "allowed_position_source",
+        "covered_residue_count",
+        "sequence_length",
+        "window_coverage_fraction",
+        "ineligibility_reason_when_unavailable"
+      ],
+      "window_radius_residues": 64,
+      "window_rule": "Use +/-64 residues around allowed residue positions for ESM-C, ESM-2, ProtT5/local models, and SaProt/3Di variants where applicable"
+    },
+    "allowed_pooling_modes": [
+      "whole_sequence",
+      "known_active_site_window_ablation",
+      "predicted_or_source_free_pocket",
+      "unavailable"
+    ],
+    "allowed_primary_inputs": [
+      "amino-acid sequence",
+      "source-free sequence positions",
+      "structure-derived pocket residues when available"
+    ],
+    "artifact_requirement": "Every model artifact must state pooling_mode as whole_sequence, known_active_site_window_ablation, predicted_or_source_free_pocket, or unavailable",
+    "comparison_rule": "Do not compare active-site-pooled models against whole-sequence models as if they used the same evidence budget; report them separately",
+    "controlled_ablation_only_inputs": [
+      "pre-existing curated catalytic-residue annotations may be used only as known_active_site_window_ablation, not as the primary representation benchmark"
+    ],
+    "evidence_budget_rule": "Active-site pooling must be consistent across representation models and must not leak labels",
+    "primary_benchmark_pooling_mode": "whole_sequence",
+    "structure_or_pocket_pooling_rule": {
+      "coordinate_source_values": [
+        "selected_pdb",
+        "afdb",
+        "unavailable"
+      ],
+      "radius_angstrom": 10.0,
+      "required_metadata": [
+        "coordinate_source",
+        "pocket_atom_source",
+        "covered_residue_count",
+        "ineligibility_reason_when_unavailable"
+      ],
+      "selection_rule": "Pool residues within 10 Angstrom of catalytic or pocket atoms when coordinates are available from an allowed source"
+    },
+    "whole_sequence_rule": "Primary benchmark uses whole-sequence embeddings first for every representation family"
+  },
+  "artifact_id": "v3_mechanism_prediction_oos_and_diversity_eval_contract_702",
+  "baseline_label_count": 702,
+  "canary_examples": {
+    "aggregate_metric_use": "Canaries are not aggregate metrics; inspect them manually on every benchmark run",
+    "canary_expansion_needed": true,
+    "examples": [
+      {
+        "entry_id": "m_csa:5",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:173",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:218",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:248",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:387",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:15",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:43",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:87",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:171",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:376",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:66",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:147",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:186",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:205",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:213",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:3",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:6",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:68",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:110",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:117",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:37",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:124",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:133",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:239",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:573",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints[].representative_entry_ids"
+      },
+      {
+        "entry_id": "m_csa:372",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate far_oos_tail_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::radical_sam_enzyme",
+        "reason": "far-OOD/tail diagnostic; exclude from primary supervised metrics until additional radical SAM coverage exists",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints_excluded_or_flagged_for_secondary_only"
+      },
+      {
+        "entry_id": "m_csa:62",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "reason": "ontology-boundary/mixed OOD diagnostic; exclude from primary supervised metrics until split or re-review",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints_excluded_or_flagged_for_secondary_only"
+      },
+      {
+        "entry_id": "m_csa:63",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "reason": "ontology-boundary/mixed OOD diagnostic; exclude from primary supervised metrics until split or re-review",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints_excluded_or_flagged_for_secondary_only"
+      },
+      {
+        "entry_id": "m_csa:853",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "reason": "ontology-boundary/mixed OOD diagnostic; exclude from primary supervised metrics until split or re-review",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints_excluded_or_flagged_for_secondary_only"
+      },
+      {
+        "entry_id": "m_csa:131",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate near_oos_against_flavin_redox_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::flavin_monooxygenase",
+        "reason": "near-OOD diagnostic against flavin_dehydrogenase_reductase; exclude from primary supervised metrics",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints_excluded_or_flagged_for_secondary_only"
+      },
+      {
+        "entry_id": "m_csa:132",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate near_oos_against_flavin_redox_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::flavin_monooxygenase",
+        "reason": "near-OOD diagnostic against flavin_dehydrogenase_reductase; exclude from primary supervised metrics",
+        "source_artifact_provenance": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json::fingerprints_excluded_or_flagged_for_secondary_only"
+      },
+      {
+        "entry_id": "m_csa:1",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "reason": "Glutamate racemase uses cysteine acid-base racemization chemistry, which is not represented by the current seed fingerprints.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:1"
+      },
+      {
+        "entry_id": "m_csa:12",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "reason": "Ornithine carbamoyltransferase performs carbamoyl transfer chemistry outside the current seed fingerprints.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:12"
+      },
+      {
+        "entry_id": "m_csa:23",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "reason": "Glycine N-methyltransferase is a methyltransferase outside the current seed fingerprints.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:23"
+      },
+      {
+        "entry_id": "m_csa:14",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "reason": "Vanadate-dependent chloride peroxidase is peroxidase chemistry but not the heme-dependent peroxidase or oxidase seed fingerprint.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:14"
+      },
+      {
+        "entry_id": "m_csa:32",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "reason": "Lactoylglutathione lyase uses metal-assisted lyase/isomerization chemistry rather than metal-activated hydrolysis.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:32"
+      },
+      {
+        "entry_id": "m_csa:34",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "reason": "Catechol 2,3-dioxygenase is a non-heme iron dioxygenase and does not match the current flavin or heme oxygenase seeds.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:34"
+      },
+      {
+        "entry_id": "m_csa:2",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "reason": "Class A beta-lactamase is a serine beta-lactamase but not the Ser-His-Asp/Glu triad hydrolase fingerprint currently defined.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:2"
+      },
+      {
+        "entry_id": "m_csa:19",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "reason": "Alpha-mannosidase is a glycosidase but its acid-base glycoside hydrolysis mechanism is not represented by the current seed fingerprints.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:19"
+      },
+      {
+        "entry_id": "m_csa:39",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "reason": "Inosine-uridine nucleoside hydrolase cleaves a glycosidic bond through nucleoside hydrolase chemistry, outside the current metal-dependent hydrolase seed scope.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:39"
+      },
+      {
+        "entry_id": "m_csa:25",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::unknown_oos",
+        "reason": "N-carbamoylsarcosine amidase is not confidently mapped to a current seed fingerprint without a more specific amidase fingerprint.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:25"
+      },
+      {
+        "entry_id": "m_csa:96",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::unknown_oos",
+        "reason": "Creatinase hydrolysis is not confidently mapped to the current metal-dependent or Ser-His-Asp/Glu hydrolase seeds from available geometry context.",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:96"
+      }
+    ],
+    "expansion_reason": "The v1 list covers 5 examples from each primary fingerprint, all secondary probe rows, and representative OOS tiers, but the full 470-row OOS tier assignment is still pending",
+    "oos_tier_canary_count_by_tier": {
+      "boundary_oos": 3,
+      "far_oos": 3,
+      "near_oos": 3,
+      "unknown_oos": 2
+    },
+    "primary_canary_count_by_fingerprint": {
+      "flavin_dehydrogenase_reductase": 5,
+      "heme_peroxidase_oxidase": 5,
+      "metal_dependent_hydrolase": 5,
+      "plp_dependent_enzyme": 5,
+      "ser_his_acid_hydrolase": 5
+    },
+    "secondary_probe_canary_count_by_fingerprint": {
+      "cobalamin_radical_rearrangement": 3,
+      "flavin_monooxygenase": 2,
+      "radical_sam_enzyme": 1
+    }
+  },
+  "contract_change_policy": {
+    "benchmark_result_requirement": "Every benchmark result artifact must record the exact SHA-256 of this contract artifact before interpretation",
+    "immutability_rule": "Do not overwrite this v1 artifact; write a new versioned artifact path for any future contract",
+    "schema_versioning_rule": "Any future change to tiering, canaries, diversity bins, support thresholds, abstention diagnostics, or pooling modes must increment the schema/version"
+  },
+  "contract_scope": {
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "forbidden_predictive_features": [
+      "EC labels",
+      "entry names",
+      "mechanism prose",
+      "expert notes",
+      "curator rationale text",
+      "review decision text",
+      "source identifiers as semantic features"
+    ],
+    "label_import_performed": false,
+    "model_training_or_benchmark_results_created": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "purpose": "Freeze mechanism-prediction OOS, diversity, support, abstention, canary, and pooling policy before sequence-NN or learned-representation results are interpreted",
+    "review_only_contract": true
+  },
+  "diversity_stratified_accuracy_policy": {
+    "binning_rule": {
+      "close": "similarity >= train-only 66.7th percentile",
+      "far": "similarity < train-only 33.3rd percentile",
+      "far_open_set": "no eligible same-fingerprint different-subfamily train neighbor",
+      "medium": "train-only 33.3rd percentile <= similarity < train-only 66.7th percentile",
+      "quantile_tie_rule": "Use nearest-neighbor similarity sorted ascending with inclusive lower bin bounds except close, which is inclusive at the upper quantile threshold",
+      "similarity_direction": "larger_similarity_is_closer",
+      "threshold_source": "train_only_per_fingerprint_quantiles"
+    },
+    "default_subfamily_clustering": {
+      "applies_where": "amino-acid sequences exist",
+      "cluster_source_rule": "Clusters must be generated from train-only data for any split that uses cluster-derived thresholds or bins",
+      "coverage": 0.8,
+      "method": "MMseqs",
+      "sequence_identity": 0.3
+    },
+    "headline_rule": "Headline macro-F1 is not sufficient without this diversity report",
+    "primary_diversity_axis": {
+      "distance_basis": "For each evaluation row, find the nearest train row with the same primary fingerprint but a different MMseqs subfamily; report the nearest-neighbor similarity or distance used",
+      "missing_neighbor_rule": "If no same-fingerprint different-subfamily train neighbor exists, mark the row far_open_set and keep it in qualitative or underpowered reporting",
+      "name": "nearest_same_fingerprint_different_subfamily_train_example"
+    },
+    "required_for_primary_fingerprints": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "required_outputs_per_fingerprint": [
+      "row_count_by_diversity_bin",
+      "accuracy_or_recall_by_diversity_bin",
+      "macro_F1_contribution_by_bin_when_powered",
+      "subfamily_count_train_vs_eval",
+      "underpowered_cell_flags"
+    ],
+    "special_scrutiny_broad_buckets": [
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ]
+  },
+  "frozen_oos_tier_assignments_summary": {
+    "assignment_version": "partial_oos_tiers.v1",
+    "boundary_oos_curated_exclusion_examples": [
+      {
+        "entry_id": "m_csa:14",
+        "exclusion_reason": "Peroxidase-like chemistry but vanadate dependent, not the frozen heme-dependent peroxidase/oxidase seed",
+        "near_primary_fingerprint": "heme_peroxidase_oxidase",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json plus artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json"
+      },
+      {
+        "entry_id": "m_csa:19",
+        "exclusion_reason": "Glycosidase hydrolysis boundary; acid-base glycoside chemistry is outside the frozen Ser-His-acid hydrolase seed",
+        "near_primary_fingerprint": "ser_his_acid_hydrolase",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json plus artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json"
+      },
+      {
+        "entry_id": "m_csa:2",
+        "exclusion_reason": "Serine beta-lactamase boundary case; lacks the frozen Ser-His-Asp/Glu triad hydrolase evidence pattern",
+        "near_primary_fingerprint": "ser_his_acid_hydrolase",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json plus artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json"
+      },
+      {
+        "entry_id": "m_csa:39",
+        "exclusion_reason": "Nucleoside hydrolase chemistry is outside the frozen metal-dependent hydrolase seed scope",
+        "near_primary_fingerprint": "metal_dependent_hydrolase",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json plus artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json"
+      },
+      {
+        "entry_id": "m_csa:47",
+        "exclusion_reason": "Cysteine phosphatase chemistry is outside the frozen metal-dependent and Ser-His-acid hydrolase seeds",
+        "near_primary_fingerprint": "metal_dependent_hydrolase",
+        "source_artifact_provenance": "data/registries/curated_mechanism_labels.json plus artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json"
+      }
+    ],
+    "complete_oos_assignment": false,
+    "current_registry_out_of_scope_label_count": 472,
+    "partial_assignment_status": {
+      "full_470_out_of_scope_assigned": false,
+      "next_exact_task": "Apply oos_tiering_policy to all current label_type=out_of_scope rows using registry/fingerprint/audit evidence plus train-free sequence or structure neighborhoods, then emit artifacts/v3_mechanism_prediction_oos_tier_assignments_702.json with per-entry tier, trigger, evidence source, and exclusion reason fields before interpreting model results",
+      "reason": "This contract freezes deterministic rules and representative tier canaries, but does not run a full per-entry tier pass over all current out-of-scope registry rows",
+      "status": "partial_v1_representatives_and_secondary_probes_only"
+    },
+    "partial_representative_assignment_counts": {
+      "counts_by_tier_for_assigned_representatives_only": {
+        "boundary_oos": 3,
+        "far_oos": 3,
+        "near_oos": 3,
+        "unknown_oos": 2
+      },
+      "out_of_scope_label_rows_assigned_in_this_contract": 11,
+      "remaining_out_of_scope_label_rows_pending_assignment": 459,
+      "secondary_probe_seed_rows_assigned_in_this_contract": 6
+    },
+    "representative_entry_ids_by_tier": {
+      "boundary_oos": [
+        {
+          "assignment_basis": "Class A beta-lactamase is a serine beta-lactamase but not the Ser-His-Asp/Glu triad hydrolase fingerprint currently defined.",
+          "confidence": "medium",
+          "entry_id": "m_csa:2",
+          "oos_tier": "boundary_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:2"
+        },
+        {
+          "assignment_basis": "Alpha-mannosidase is a glycosidase but its acid-base glycoside hydrolysis mechanism is not represented by the current seed fingerprints.",
+          "confidence": "medium",
+          "entry_id": "m_csa:19",
+          "oos_tier": "boundary_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:19"
+        },
+        {
+          "assignment_basis": "Inosine-uridine nucleoside hydrolase cleaves a glycosidic bond through nucleoside hydrolase chemistry, outside the current metal-dependent hydrolase seed scope.",
+          "confidence": "medium",
+          "entry_id": "m_csa:39",
+          "oos_tier": "boundary_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:39"
+        }
+      ],
+      "far_oos": [
+        {
+          "assignment_basis": "Glutamate racemase uses cysteine acid-base racemization chemistry, which is not represented by the current seed fingerprints.",
+          "confidence": "medium",
+          "entry_id": "m_csa:1",
+          "oos_tier": "far_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:1"
+        },
+        {
+          "assignment_basis": "Ornithine carbamoyltransferase performs carbamoyl transfer chemistry outside the current seed fingerprints.",
+          "confidence": "medium",
+          "entry_id": "m_csa:12",
+          "oos_tier": "far_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:12"
+        },
+        {
+          "assignment_basis": "Glycine N-methyltransferase is a methyltransferase outside the current seed fingerprints.",
+          "confidence": "medium",
+          "entry_id": "m_csa:23",
+          "oos_tier": "far_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:23"
+        }
+      ],
+      "near_oos": [
+        {
+          "assignment_basis": "Vanadate-dependent chloride peroxidase is peroxidase chemistry but not the heme-dependent peroxidase or oxidase seed fingerprint.",
+          "confidence": "medium",
+          "entry_id": "m_csa:14",
+          "oos_tier": "near_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:14"
+        },
+        {
+          "assignment_basis": "Lactoylglutathione lyase uses metal-assisted lyase/isomerization chemistry rather than metal-activated hydrolysis.",
+          "confidence": "medium",
+          "entry_id": "m_csa:32",
+          "oos_tier": "near_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:32"
+        },
+        {
+          "assignment_basis": "Catechol 2,3-dioxygenase is a non-heme iron dioxygenase and does not match the current flavin or heme oxygenase seeds.",
+          "confidence": "medium",
+          "entry_id": "m_csa:34",
+          "oos_tier": "near_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:34"
+        }
+      ],
+      "unknown_oos": [
+        {
+          "assignment_basis": "N-carbamoylsarcosine amidase is not confidently mapped to a current seed fingerprint without a more specific amidase fingerprint.",
+          "confidence": "low",
+          "entry_id": "m_csa:25",
+          "oos_tier": "unknown_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:25"
+        },
+        {
+          "assignment_basis": "Creatinase hydrolysis is not confidently mapped to the current metal-dependent or Ser-His-Asp/Glu hydrolase seeds from available geometry context.",
+          "confidence": "low",
+          "entry_id": "m_csa:96",
+          "oos_tier": "unknown_oos",
+          "review_status": "automation_curated",
+          "source_artifact_provenance": "data/registries/curated_mechanism_labels.json::m_csa:96"
+        }
+      ]
+    },
+    "secondary_probe_assignments_by_fingerprint": {
+      "cobalamin_radical_rearrangement": {
+        "entry_count": 3,
+        "entry_ids": [
+          "m_csa:62",
+          "m_csa:63",
+          "m_csa:853"
+        ],
+        "oos_tier": "boundary_oos",
+        "primary_metric_status": "excluded_from_primary_supervised_metrics",
+        "probe_role": "ontology_boundary_mixed_ood_diagnostic"
+      },
+      "flavin_monooxygenase": {
+        "entry_count": 2,
+        "entry_ids": [
+          "m_csa:131",
+          "m_csa:132"
+        ],
+        "oos_tier": "near_oos",
+        "primary_metric_status": "excluded_from_primary_supervised_metrics",
+        "probe_role": "near_oos_against_flavin_redox_diagnostic"
+      },
+      "radical_sam_enzyme": {
+        "entry_count": 1,
+        "entry_ids": [
+          "m_csa:372"
+        ],
+        "oos_tier": "far_oos",
+        "primary_metric_status": "excluded_from_primary_supervised_metrics",
+        "probe_role": "far_oos_tail_diagnostic"
+      }
+    },
+    "secondary_probe_seed_label_count": 6
+  },
+  "mechanism_fingerprint_version": "label_factory_v1_8fp",
+  "next_allowed_benchmark_step": {
+    "allowed_next_action": "Complete the full per-entry OOS tier assignment artifact or run the next benchmark only with this contract SHA recorded",
+    "not_allowed_in_this_contract_run": [
+      "sequence-NN benchmark execution",
+      "PLM embedding computation",
+      "model training",
+      "learned representation comparison",
+      "representation performance claim"
+    ],
+    "status": "contract_frozen_stop_before_model_results"
+  },
+  "oos_tiering_policy": {
+    "allowed_assignment_evidence": [
+      "mechanism_fingerprints.json structural definitions",
+      "curated_mechanism_labels.json label_type, fingerprint_id, tier, and review_status",
+      "coherence audit representative ids and exclusion reasons",
+      "train-free sequence clusters or MMseqs neighborhoods when available",
+      "train-free structure clusters or active-site geometry when available"
+    ],
+    "assignment_scope": "Rows used as OOS diagnostics include label_type=out_of_scope rows plus the three secondary probe fingerprints listed in this contract",
+    "determinism_rule": "Tiering is assigned from frozen registry, fingerprint, audit, sequence-neighborhood, and structure-neighborhood evidence; it is never assigned from a model prediction, confidence, or post-hoc per-model judgment",
+    "forbidden_assignment_evidence": [
+      "model predictions",
+      "model confidence",
+      "benchmark residuals",
+      "EC/name/prose/expert-note fields as predictive features"
+    ],
+    "tier_definitions": {
+      "boundary_oos": {
+        "criteria_type": "curated_list",
+        "deterministic_rule": "Assign only from explicit audit or review artifacts where an entry was considered for inclusion in or near a primary fingerprint and explicitly excluded with an exclusion reason",
+        "primary_metric_role": "Ontology-boundary diagnostic; do not include in primary supervised metrics unless a future contract re-reviews it"
+      },
+      "far_oos": {
+        "criteria_type": "negative_criteria",
+        "deterministic_rule": "Assign when the row has no cofactor overlap with primary fingerprints, no catalytic residue or role-pattern overlap with primary fingerprints, and no known close structural or sequence neighborhood to primary members when such data exists",
+        "primary_metric_role": "OOS abstention diagnostic only; any primary-fingerprint prediction is a false-positive/non-abstention"
+      },
+      "near_oos": {
+        "criteria_type": "positive_overlap_criteria",
+        "deterministic_rule": "Assign when the row shares a cofactor or metal, catalytic residue motif, structural/sequence neighborhood, or active-site geometry with a primary fingerprint while remaining mechanistically distinct per M-CSA or label-factory evidence",
+        "primary_metric_role": "Hard-negative OOS diagnostic; evaluate abstention and which primary fingerprint attracts false positives"
+      },
+      "unknown_oos": {
+        "criteria_type": "fail_closed",
+        "deterministic_rule": "Assign when available evidence is insufficient to choose far_oos, near_oos, or boundary_oos deterministically",
+        "primary_metric_role": "Qualitative diagnostic until evidence resolves the tier"
+      }
+    },
+    "tier_order": [
+      "boundary_oos curated-list overrides",
+      "near_oos positive-overlap criteria",
+      "far_oos negative-overlap criteria",
+      "unknown_oos insufficient-evidence fallback"
+    ]
+  },
+  "primary_fingerprint_details": [
+    {
+      "audit_evaluation_status": "coherent_v1",
+      "audit_freeze_decision": "keep_for_benchmark",
+      "broad_bucket_requires_special_diversity_scrutiny": false,
+      "chemical_operation": "nucleophilic acyl substitution",
+      "cofactors": [],
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "metric_role": "eligible_for_primary_mechanism_fingerprint_metrics",
+      "representative_entry_ids": [
+        "m_csa:5",
+        "m_csa:173",
+        "m_csa:218",
+        "m_csa:248",
+        "m_csa:387",
+        "m_csa:599",
+        "m_csa:771",
+        "m_csa:922"
+      ],
+      "support_count": 42
+    },
+    {
+      "audit_evaluation_status": "coarse_but_acceptable_v1",
+      "audit_freeze_decision": "keep_with_caveat",
+      "broad_bucket_requires_special_diversity_scrutiny": true,
+      "chemical_operation": "metal-activated water attack",
+      "cofactors": [
+        "Zn2+",
+        "Mg2+",
+        "Mn2+",
+        "Fe2+/Fe3+"
+      ],
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "metric_role": "eligible_for_primary_mechanism_fingerprint_metrics",
+      "representative_entry_ids": [
+        "m_csa:15",
+        "m_csa:43",
+        "m_csa:87",
+        "m_csa:171",
+        "m_csa:376",
+        "m_csa:535",
+        "m_csa:596",
+        "m_csa:791",
+        "m_csa:838",
+        "m_csa:998"
+      ],
+      "support_count": 83
+    },
+    {
+      "audit_evaluation_status": "coarse_but_acceptable_v1",
+      "audit_freeze_decision": "keep_with_caveat",
+      "broad_bucket_requires_special_diversity_scrutiny": true,
+      "chemical_operation": "PLP-stabilized carbanion chemistry",
+      "cofactors": [
+        "pyridoxal phosphate"
+      ],
+      "fingerprint_id": "plp_dependent_enzyme",
+      "metric_role": "eligible_for_primary_mechanism_fingerprint_metrics",
+      "representative_entry_ids": [
+        "m_csa:66",
+        "m_csa:147",
+        "m_csa:186",
+        "m_csa:205",
+        "m_csa:213",
+        "m_csa:358",
+        "m_csa:383",
+        "m_csa:865"
+      ],
+      "support_count": 31
+    },
+    {
+      "audit_evaluation_status": "coarse_but_acceptable_v1",
+      "audit_freeze_decision": "keep_with_caveat",
+      "broad_bucket_requires_special_diversity_scrutiny": true,
+      "chemical_operation": "flavin-mediated redox transfer",
+      "cofactors": [
+        "FAD",
+        "FMN"
+      ],
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "metric_role": "eligible_for_primary_mechanism_fingerprint_metrics",
+      "representative_entry_ids": [
+        "m_csa:3",
+        "m_csa:6",
+        "m_csa:68",
+        "m_csa:110",
+        "m_csa:117",
+        "m_csa:183",
+        "m_csa:354",
+        "m_csa:551",
+        "m_csa:892",
+        "m_csa:973"
+      ],
+      "support_count": 48
+    },
+    {
+      "audit_evaluation_status": "coarse_but_acceptable_v1",
+      "audit_freeze_decision": "keep_with_caveat",
+      "broad_bucket_requires_special_diversity_scrutiny": true,
+      "chemical_operation": "heme-mediated redox catalysis",
+      "cofactors": [
+        "heme",
+        "H2O2 or O2 depending on family"
+      ],
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "metric_role": "eligible_for_primary_mechanism_fingerprint_metrics",
+      "representative_entry_ids": [
+        "m_csa:37",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:239",
+        "m_csa:573",
+        "m_csa:699",
+        "m_csa:795",
+        "m_csa:903",
+        "m_csa:935",
+        "m_csa:944"
+      ],
+      "support_count": 20
+    }
+  ],
+  "primary_fingerprints": [
+    "ser_his_acid_hydrolase",
+    "metal_dependent_hydrolase",
+    "plp_dependent_enzyme",
+    "flavin_dehydrogenase_reductase",
+    "heme_peroxidase_oxidase"
+  ],
+  "registry_scope_summary": {
+    "label_type_counts": {
+      "out_of_scope": 472,
+      "seed_fingerprint": 230
+    },
+    "primary_seed_label_count": 224,
+    "secondary_probe_seed_label_count": 6,
+    "seed_fingerprint_counts": {
+      "cobalamin_radical_rearrangement": 3,
+      "flavin_dehydrogenase_reductase": 48,
+      "flavin_monooxygenase": 2,
+      "heme_peroxidase_oxidase": 20,
+      "metal_dependent_hydrolase": 83,
+      "plp_dependent_enzyme": 31,
+      "radical_sam_enzyme": 1,
+      "ser_his_acid_hydrolase": 42
+    }
+  },
+  "schema_version": "mechanism_prediction_oos_and_diversity_eval_contract.v1",
+  "secondary_ood_probe_fingerprints": [
+    {
+      "audit_evaluation_status": "singleton_underpowered",
+      "fingerprint_id": "radical_sam_enzyme",
+      "oos_tier": "far_oos",
+      "primary_metric_status": "excluded_from_primary_supervised_metrics",
+      "probe_role": "far_oos_tail_diagnostic",
+      "reason": "far-OOD/tail diagnostic; exclude from primary supervised metrics until additional radical SAM coverage exists",
+      "representative_entry_ids": [
+        "m_csa:372"
+      ],
+      "support_count": 1
+    },
+    {
+      "audit_evaluation_status": "needs_future_split",
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "oos_tier": "boundary_oos",
+      "primary_metric_status": "excluded_from_primary_supervised_metrics",
+      "probe_role": "ontology_boundary_mixed_ood_diagnostic",
+      "reason": "ontology-boundary/mixed OOD diagnostic; exclude from primary supervised metrics until split or re-review",
+      "representative_entry_ids": [
+        "m_csa:62",
+        "m_csa:63",
+        "m_csa:853"
+      ],
+      "support_count": 3
+    },
+    {
+      "audit_evaluation_status": "singleton_underpowered",
+      "fingerprint_id": "flavin_monooxygenase",
+      "oos_tier": "near_oos",
+      "primary_metric_status": "excluded_from_primary_supervised_metrics",
+      "probe_role": "near_oos_against_flavin_redox_diagnostic",
+      "reason": "near-OOD diagnostic against flavin_dehydrogenase_reductase; exclude from primary supervised metrics",
+      "representative_entry_ids": [
+        "m_csa:131",
+        "m_csa:132"
+      ],
+      "support_count": 2
+    }
+  ],
+  "source_artifacts": {
+    "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json": {
+      "role": "primary_and_secondary_fingerprint_freeze",
+      "sha256": "3ba214b706e8889a8a32f424b7ed7f7d7959f10aef5197dc997318e6cfee5b32"
+    },
+    "artifacts/v3_representation_baseline_shootout_plan_20260525.json": {
+      "role": "leakage_and_baseline_plan_context",
+      "sha256": "5e09d7fc85fb9a880b681ffef1f8f9fb5c78603f88c84498485ecad6c9892cc8"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "role": "current_702_label_registry",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "data/registries/mechanism_fingerprints.json": {
+      "role": "production_fingerprint_registry",
+      "sha256": "36181e09deb8dc3d0c28254edce8a6e76000853629d3dea3df8cfc8ca439e19b"
+    }
+  },
+  "support_threshold_policy": {
+    "below_threshold_rule": "Below-threshold cells are qualitative_only and must be flagged; they are not omitted silently",
+    "inclusion_thresholds": {
+      "macro_F1_class_min_n": 5,
+      "qualitative_canary_min_n": 1
+    },
+    "metric_artifact_requirement": "Every metric artifact must flag underpowered cells before any interpretation or win claim",
+    "quantitative_reporting_thresholds": {
+      "accuracy_or_recall_cell_min_n": 30,
+      "ece_or_calibration_cell_min_n": 50
+    }
+  }
+}

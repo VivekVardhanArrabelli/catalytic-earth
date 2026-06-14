@@ -190,11 +190,16 @@ class AtpAmideLigaseSourcingTest(unittest.TestCase):
         audit = self._run()
         self.assertEqual(audit["counts"]["fetched_candidate_rows"], 6)
         self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 2)
-        self.assertEqual(audit["counts"]["disambiguation_hold_count"], 3)
-        self.assertEqual(audit["counts"]["off_target_fingerprint_matches_held"], 1)
+        self.assertEqual(audit["counts"]["disambiguation_hold_count"], 2)
+        self.assertEqual(audit["counts"]["off_target_fingerprint_matches_held"], 2)
         self.assertEqual(
             audit["counts"]["off_target_fingerprint_counts"],
-            {"metallo_amidohydrolase_deaminase": 1},
+            {
+                # The biotin boundary row now routes to the explicit biotin
+                # carboxylase fingerprint instead of the generic hold bucket.
+                "biotin_dependent_carboxylase": 1,
+                "metallo_amidohydrolase_deaminase": 1,
+            },
         )
 
     def test_admitted_labels_are_bronze_and_leakage_safe(self):

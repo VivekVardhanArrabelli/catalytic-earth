@@ -1,0 +1,1522 @@
+{
+  "artifact_id": "v3_pdb_id_backfill_scout_current702_20260614_post_registry_shard",
+  "counts": {
+    "families_with_missing_pdb_rows": 37,
+    "sample_hit_fraction": 0.0,
+    "sampled_missing_pdb_rows": 120,
+    "sampled_rows_with_uniprot_pdb_xrefs": 0,
+    "seed_labels": 5638,
+    "seed_rows_missing_registry_pdb_ids": 4404,
+    "seed_rows_with_registry_pdb_ids": 1234
+  },
+  "created_utc": "2026-06-14T15:24:00Z",
+  "fetch_metadata": {
+    "batches": [
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA5JYX5+OR+accession%3AB2GUY0+OR+accession%3AF3YDF1+OR+accession%3AF4HTM3+OR+accession%3AO00754+OR+accession%3AO09159+OR+accession%3AO09174+OR+accession%3AO14829+OR+accession%3AO15072+OR+accession%3AO15204+OR+accession%3AO43184+OR+accession%3AO43462+OR+accession%3AO54782+OR+accession%3AO75439+OR+accession%3AO75900+OR+accession%3AO80983+OR+accession%3AO88484+OR+accession%3AO95672+OR+accession%3AP00176+OR+accession%3AP00331+OR+accession%3AP06757+OR+accession%3AP07246+OR+accession%3AP08289+OR+accession%3AP09487+OR+accession%3AP0A761%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP0ADP0+OR+accession%3AP0C1T0+OR+accession%3AP0C2H4+OR+accession%3AP10696+OR+accession%3AP13584+OR+accession%3AP15129+OR+accession%3AP16499+OR+accession%3AP20853+OR+accession%3AP24155+OR+accession%3AP25377+OR+accession%3AP28494+OR+accession%3AP30863+OR+accession%3AP31678+OR+accession%3AP32960+OR+accession%3AP35182+OR+accession%3AP37476+OR+accession%3AP38138+OR+accession%3AP39098+OR+accession%3AP45541+OR+accession%3AP47727+OR+accession%3AP47844+OR+accession%3AP48758+OR+accession%3AP49641+OR+accession%3AP51178+OR+accession%3AP51589%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP51606+OR+accession%3AP51607+OR+accession%3AP51635+OR+accession%3AP51740+OR+accession%3AP54750+OR+accession%3AP55180+OR+accession%3AP59510+OR+accession%3AP75809+OR+accession%3AP90740+OR+accession%3AP98187+OR+accession%3AQ08477+OR+accession%3AQ12458+OR+accession%3AQ13444+OR+accession%3AQ14123+OR+accession%3AQ14642+OR+accession%3AQ16706+OR+accession%3AQ1LWH4+OR+accession%3AQ1PDW5+OR+accession%3AQ21432+OR+accession%3AQ24238+OR+accession%3AQ32M88+OR+accession%3AQ39102+OR+accession%3AQ3SZD7+OR+accession%3AQ3T1H5+OR+accession%3AQ3ZCJ2%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ42605+OR+accession%3AQ495T6+OR+accession%3AQ5RCU5+OR+accession%3AQ69ZT1+OR+accession%3AQ6NT55+OR+accession%3AQ6UWR7+OR+accession%3AQ6V0L0+OR+accession%3AQ6ZWL3+OR+accession%3AQ7L5L3+OR+accession%3AQ7Z449+OR+accession%3AQ86W10+OR+accession%3AQ8BLI4+OR+accession%3AQ8BRK9+OR+accession%3AQ8I0P7+OR+accession%3AQ8LDN8+OR+accession%3AQ8MI29+OR+accession%3AQ8N9F7+OR+accession%3AQ8NCW5+OR+accession%3AQ8RX86+OR+accession%3AQ8TAV3+OR+accession%3AQ8VEE0+OR+accession%3AQ8W585+OR+accession%3AQ92485+OR+accession%3AQ93243+OR+accession%3AQ96P26%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 20,
+        "requested_accession_count": 20,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ96SQ9+OR+accession%3AQ96TA2+OR+accession%3AQ99797+OR+accession%3AQ9BT40+OR+accession%3AQ9BXI3+OR+accession%3AQ9C7W7+OR+accession%3AQ9FGM0+OR+accession%3AQ9H239+OR+accession%3AQ9H324+OR+accession%3AQ9HCR9+OR+accession%3AQ9JLI3+OR+accession%3AQ9NPA2+OR+accession%3AQ9NYL5+OR+accession%3AQ9QWR8+OR+accession%3AQ9UK59+OR+accession%3AQ9ULZ9+OR+accession%3AQ9W0P5+OR+accession%3AQ9Y2E5+OR+accession%3AQ9Y5R2+OR+accession%3AQ9Y6L7%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=20"
+      }
+    ],
+    "record_count": 120,
+    "requested_accession_count": 120,
+    "source": "uniprot",
+    "url": "https://rest.uniprot.org/uniprotkb/search"
+  },
+  "frozen_current702_written": false,
+  "method": "bounded live UniProt accession xref scout for seed rows missing structure_provenance.pdb_ids",
+  "missing_pdb_rows_by_fingerprint_top40": [
+    {
+      "current_registry_pdb_seed_rows": 19,
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "missing_pdb_seed_rows": 231
+    },
+    {
+      "current_registry_pdb_seed_rows": 42,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "missing_pdb_seed_rows": 208
+    },
+    {
+      "current_registry_pdb_seed_rows": 62,
+      "fingerprint_id": "coa_acyltransferase",
+      "missing_pdb_seed_rows": 188
+    },
+    {
+      "current_registry_pdb_seed_rows": 64,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "missing_pdb_seed_rows": 186
+    },
+    {
+      "current_registry_pdb_seed_rows": 68,
+      "fingerprint_id": "glycosyltransferase",
+      "missing_pdb_seed_rows": 182
+    },
+    {
+      "current_registry_pdb_seed_rows": 4,
+      "fingerprint_id": "radical_sam_enzyme",
+      "missing_pdb_seed_rows": 180
+    },
+    {
+      "current_registry_pdb_seed_rows": 46,
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "missing_pdb_seed_rows": 179
+    },
+    {
+      "current_registry_pdb_seed_rows": 86,
+      "fingerprint_id": "sam_methyltransferase",
+      "missing_pdb_seed_rows": 164
+    },
+    {
+      "current_registry_pdb_seed_rows": 9,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "missing_pdb_seed_rows": 164
+    },
+    {
+      "current_registry_pdb_seed_rows": 63,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "missing_pdb_seed_rows": 139
+    },
+    {
+      "current_registry_pdb_seed_rows": 22,
+      "fingerprint_id": "glycoside_hydrolase",
+      "missing_pdb_seed_rows": 128
+    },
+    {
+      "current_registry_pdb_seed_rows": 25,
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "missing_pdb_seed_rows": 125
+    },
+    {
+      "current_registry_pdb_seed_rows": 27,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "missing_pdb_seed_rows": 123
+    },
+    {
+      "current_registry_pdb_seed_rows": 18,
+      "fingerprint_id": "copper_oxidoreductase",
+      "missing_pdb_seed_rows": 122
+    },
+    {
+      "current_registry_pdb_seed_rows": 9,
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "missing_pdb_seed_rows": 119
+    },
+    {
+      "current_registry_pdb_seed_rows": 4,
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "missing_pdb_seed_rows": 116
+    },
+    {
+      "current_registry_pdb_seed_rows": 39,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "missing_pdb_seed_rows": 111
+    },
+    {
+      "current_registry_pdb_seed_rows": 6,
+      "fingerprint_id": "plp_dependent_enzyme",
+      "missing_pdb_seed_rows": 110
+    },
+    {
+      "current_registry_pdb_seed_rows": 44,
+      "fingerprint_id": "metallopeptidase",
+      "missing_pdb_seed_rows": 106
+    },
+    {
+      "current_registry_pdb_seed_rows": 52,
+      "fingerprint_id": "atp_amide_ligase",
+      "missing_pdb_seed_rows": 98
+    },
+    {
+      "current_registry_pdb_seed_rows": 55,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "missing_pdb_seed_rows": 95
+    },
+    {
+      "current_registry_pdb_seed_rows": 5,
+      "fingerprint_id": "ghmp_small_molecule_kinase",
+      "missing_pdb_seed_rows": 95
+    },
+    {
+      "current_registry_pdb_seed_rows": 5,
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "missing_pdb_seed_rows": 95
+    },
+    {
+      "current_registry_pdb_seed_rows": 20,
+      "fingerprint_id": "flavin_monooxygenase",
+      "missing_pdb_seed_rows": 94
+    },
+    {
+      "current_registry_pdb_seed_rows": 7,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "missing_pdb_seed_rows": 93
+    },
+    {
+      "current_registry_pdb_seed_rows": 9,
+      "fingerprint_id": "nucleoside_diphosphate_kinase",
+      "missing_pdb_seed_rows": 91
+    },
+    {
+      "current_registry_pdb_seed_rows": 9,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "missing_pdb_seed_rows": 91
+    },
+    {
+      "current_registry_pdb_seed_rows": 60,
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "missing_pdb_seed_rows": 90
+    },
+    {
+      "current_registry_pdb_seed_rows": 61,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "missing_pdb_seed_rows": 89
+    },
+    {
+      "current_registry_pdb_seed_rows": 62,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "missing_pdb_seed_rows": 88
+    },
+    {
+      "current_registry_pdb_seed_rows": 12,
+      "fingerprint_id": "askha_sugar_acetate_kinase",
+      "missing_pdb_seed_rows": 88
+    },
+    {
+      "current_registry_pdb_seed_rows": 13,
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "missing_pdb_seed_rows": 86
+    },
+    {
+      "current_registry_pdb_seed_rows": 14,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "missing_pdb_seed_rows": 86
+    },
+    {
+      "current_registry_pdb_seed_rows": 16,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "missing_pdb_seed_rows": 84
+    },
+    {
+      "current_registry_pdb_seed_rows": 71,
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "missing_pdb_seed_rows": 79
+    },
+    {
+      "current_registry_pdb_seed_rows": 59,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "missing_pdb_seed_rows": 41
+    },
+    {
+      "current_registry_pdb_seed_rows": 47,
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "missing_pdb_seed_rows": 40
+    }
+  ],
+  "next_action": "Implement or run a gated PDB-ID backfill writer that fetches UniProt xref_pdb for missing rows, writes only external registry structure_provenance.pdb_ids with provenance, and reruns holo confirmation/promotion preview.",
+  "non_destructive": true,
+  "registry_source": "data/registries/external_bronze_labels.json",
+  "registry_written": false,
+  "sample_policy": {
+    "mutation_policy": "no registry mutation; this is a payoff scout for a future reviewed PDB-ID backfill writer",
+    "overall_sample_cap": 120,
+    "per_priority_family_cap": 15,
+    "priority_fingerprints": [
+      "metal_dependent_hydrolase",
+      "metallopeptidase",
+      "metallophosphoesterase_nuclease",
+      "metallophosphomonoesterase",
+      "metal_racemase_epimerase_non_plp",
+      "glycoside_hydrolase",
+      "nad_p_dehydrogenase",
+      "cytochrome_p450_monooxygenase"
+    ]
+  },
+  "sample_results_by_fingerprint": [
+    {
+      "current_registry_pdb_seed_rows": 46,
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "sample_hit_fraction": 0.0,
+      "sampled_missing_pdb_rows": 15,
+      "total_missing_pdb_seed_rows": 179,
+      "uniprot_pdb_backfill_hits": 0
+    },
+    {
+      "current_registry_pdb_seed_rows": 44,
+      "fingerprint_id": "metallopeptidase",
+      "sample_hit_fraction": 0.0,
+      "sampled_missing_pdb_rows": 15,
+      "total_missing_pdb_seed_rows": 106,
+      "uniprot_pdb_backfill_hits": 0
+    },
+    {
+      "current_registry_pdb_seed_rows": 60,
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "sample_hit_fraction": 0.0,
+      "sampled_missing_pdb_rows": 15,
+      "total_missing_pdb_seed_rows": 90,
+      "uniprot_pdb_backfill_hits": 0
+    },
+    {
+      "current_registry_pdb_seed_rows": 62,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "sample_hit_fraction": 0.0,
+      "sampled_missing_pdb_rows": 15,
+      "total_missing_pdb_seed_rows": 88,
+      "uniprot_pdb_backfill_hits": 0
+    },
+    {
+      "current_registry_pdb_seed_rows": 71,
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "sample_hit_fraction": 0.0,
+      "sampled_missing_pdb_rows": 15,
+      "total_missing_pdb_seed_rows": 79,
+      "uniprot_pdb_backfill_hits": 0
+    },
+    {
+      "current_registry_pdb_seed_rows": 22,
+      "fingerprint_id": "glycoside_hydrolase",
+      "sample_hit_fraction": 0.0,
+      "sampled_missing_pdb_rows": 15,
+      "total_missing_pdb_seed_rows": 128,
+      "uniprot_pdb_backfill_hits": 0
+    },
+    {
+      "current_registry_pdb_seed_rows": 39,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "sample_hit_fraction": 0.0,
+      "sampled_missing_pdb_rows": 15,
+      "total_missing_pdb_seed_rows": 111,
+      "uniprot_pdb_backfill_hits": 0
+    },
+    {
+      "current_registry_pdb_seed_rows": 42,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "sample_hit_fraction": 0.0,
+      "sampled_missing_pdb_rows": 15,
+      "total_missing_pdb_seed_rows": 208,
+      "uniprot_pdb_backfill_hits": 0
+    }
+  ],
+  "sample_rows": [
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q96TA2",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q96TA2"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P0C1T0",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "P0C1T0"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P24155",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "P24155"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q21432",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q21432"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q93243",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q93243"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:F3YDF1",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "F3YDF1"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q39102",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q39102"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O80983",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "O80983"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8W585",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q8W585"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q1PDW5",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q1PDW5"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9FGM0",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9FGM0"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P37476",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "P37476"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O95672",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "O95672"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q99797",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q99797"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9JLI3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9JLI3"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O15072",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "O15072"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O43462",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "O43462"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O75439",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "O75439"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O75900",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "O75900"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q13444",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "Q13444"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9H324",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9H324"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O15204",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "O15204"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O43184",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "O43184"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P59510",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "P59510"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q495T6",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "Q495T6"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9Y6L7",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9Y6L7"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9NPA2",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9NPA2"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9H239",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9H239"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9ULZ9",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9ULZ9"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9Y5R2",
+      "fingerprint_id": "metallopeptidase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9Y5R2"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9HCR9",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q9HCR9"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P16499",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "P16499"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P54750",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "P54750"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q14123",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q14123"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P90740",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "P90740"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q3T1H5",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q3T1H5"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q69ZT1",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q69ZT1"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q1LWH4",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q1LWH4"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8I0P7",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q8I0P7"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8N9F7",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q8N9F7"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9UK59",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q9UK59"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P51178",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "P51178"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q6UWR7",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q6UWR7"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q7L5L3",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q7L5L3"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q92485",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "uniprot_xref_alphafold_ids": [
+        "Q92485"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P10696",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "P10696"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P08289",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "P08289"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P09487",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "P09487"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P51740",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "P51740"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q24238",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "Q24238"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9BT40",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9BT40"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q96P26",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "Q96P26"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O14829",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "O14829"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q14642",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "Q14642"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9BXI3",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9BXI3"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P75809",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "P75809"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P0ADP0",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "P0ADP0"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P31678",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "P31678"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O88484",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "O88484"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P35182",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "uniprot_xref_alphafold_ids": [
+        "P35182"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8NCW5",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "Q8NCW5"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P51606",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "P51606"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P0A761",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "P0A761"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P0C2H4",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "P0C2H4"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9W0P5",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "Q9W0P5"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P32960",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "P32960"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P45541",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "P45541"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P51607",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "P51607"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P55180",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "P55180"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8LDN8",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "Q8LDN8"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9C7W7",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "Q9C7W7"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O09174",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "O09174"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q42605",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "Q42605"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8BLI4",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "Q8BLI4"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8VEE0",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "uniprot_xref_alphafold_ids": [
+        "Q8VEE0"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O00754",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "O00754"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P49641",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "P49641"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9Y2E5",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9Y2E5"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q16706",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q16706"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q32M88",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q32M88"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O09159",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "O09159"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8BRK9",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q8BRK9"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:B2GUY0",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "B2GUY0"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P39098",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "P39098"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:O54782",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "O54782"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P28494",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "P28494"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:F4HTM3",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "F4HTM3"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9QWR8",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9QWR8"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P38138",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "P38138"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8RX86",
+      "fingerprint_id": "glycoside_hydrolase",
+      "uniprot_xref_alphafold_ids": [
+        "Q8RX86"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P47727",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P47727"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P48758",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P48758"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q3SZD7",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q3SZD7"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8MI29",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q8MI29"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P47844",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P47844"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q5RCU5",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q5RCU5"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P25377",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P25377"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P30863",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P30863"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P51635",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P51635"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q12458",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q12458"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q3ZCJ2",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q3ZCJ2"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P07246",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P07246"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P00331",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P00331"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:A5JYX5",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "A5JYX5"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P06757",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "uniprot_xref_alphafold_ids": [
+        "P06757"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P13584",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "P13584"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P20853",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "P20853"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q6V0L0",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q6V0L0"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P98187",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "P98187"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q8TAV3",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q8TAV3"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q86W10",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q86W10"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q7Z449",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q7Z449"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q96SQ9",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q96SQ9"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q6NT55",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q6NT55"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q9NYL5",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q9NYL5"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q6ZWL3",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q6ZWL3"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:Q08477",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "Q08477"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P00176",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "P00176"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P51589",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "P51589"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    },
+    {
+      "current_registry_pdb_ids": [],
+      "entry_id": "uniprot:P15129",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "uniprot_xref_alphafold_ids": [
+        "P15129"
+      ],
+      "uniprot_xref_pdb_ids": [],
+      "would_backfill_pdb_ids": false
+    }
+  ]
+}

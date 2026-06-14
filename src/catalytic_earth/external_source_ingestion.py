@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from .adapters import fetch_rhea_by_ec, fetch_uniprot_entry, fetch_uniprot_query
+from .registry_io import load_json
 
 
 ARTIFACT_ID = "v3_external_source_ingestion_pilot_current702_20260608"
@@ -231,7 +232,7 @@ def _sequence_sha256(sequence: Any) -> str | None:
 
 
 def _read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return load_json(path)
 
 
 def _source_record(path: Path) -> dict[str, Any]:

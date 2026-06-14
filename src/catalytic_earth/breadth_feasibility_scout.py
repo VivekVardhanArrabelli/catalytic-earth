@@ -53,6 +53,7 @@ from .coverage_redundancy_audit import (
     DEFAULT_TARGET_FLOOR,
     FINGERPRINT_SOURCING_SIGNATURES,
 )
+from .registry_io import load_json
 
 ARTIFACT_ID = "v3_breadth_feasibility_scout_current702"
 SCHEMA_VERSION = "breadth_feasibility_scout.v1"
@@ -767,12 +768,8 @@ def write_breadth_feasibility_scout(
     """Build the recon and write the artifact + report (non-destructive)."""
     frozen_path = Path(frozen_benchmark_path)
     expansion_path = Path(expansion_registry_path)
-    frozen = json.loads(frozen_path.read_text(encoding="utf-8")) if frozen_path.exists() else []
-    expansion = (
-        json.loads(expansion_path.read_text(encoding="utf-8"))
-        if expansion_path.exists()
-        else []
-    )
+    frozen = load_json(frozen_path) if frozen_path.exists() else []
+    expansion = load_json(expansion_path) if expansion_path.exists() else []
     audit = build_breadth_feasibility_scout(
         frozen_benchmark_payload=frozen,
         expansion_payload=expansion,

@@ -26,6 +26,31 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **REGISTRY SHARDING + FULL-SUITE GREEN + PDB-ID BACKFILL (2026-06-14 automation).**
+  The external bronze registry crossed the GitHub-safe file-size threshold (~54 MB). It is now
+  represented as a small sharded manifest plus four JSON shard files through
+  `src/catalytic_earth/registry_io.py`; all consumers use the transparent loader/writer path.
+  Current external registry: **6862** rows (positive bronze **5638**, OOS bronze **1224**), all
+  tier bronze. Combined surface remains **7564** labels and combined seed surface **5868**; frozen
+  current702 is unchanged (702 rows, sha `5eec9bef...`). Manifest size is **1203 bytes** and the
+  largest shard is **17,996,716 bytes**.
+
+  The full test suite was explicitly rechecked after the sharding and PDB-backfill changes:
+  **2238 passed, 1 warning, 244 subtests passed in 163.10s**. `python -m catalytic_earth.cli
+  validate` and `git diff --check` also passed. Five initial full-suite failures were stale
+  expanded-universe assertions, not registry-loader regressions; the updated assertions document the
+  current 37-fingerprint universe and the off-target boundary accounting.
+
+  A bounded UniProt PDB-ID backfill lane is now available:
+  `src/catalytic_earth/label_pdb_id_backfill.py`,
+  `scripts/backfill_label_pdb_ids.py`, and `tests/test_label_pdb_id_backfill.py`. It copies curated
+  UniProt `xref_pdb` IDs only into external `evidence.structure_provenance.pdb_ids`, records
+  provenance, keeps `predictive_evidence` unchanged, and refuses to target frozen current702. The
+  first applied chunk (`--limit 120`) backfilled **19** rows and increased external rows with PDB IDs
+  to **1298**; frozen sha was identical before/after. A bounded holo preview after this chunk found
+  no additional confirmations, so silver-ready remains **260 pending geometry run** and
+  `silver_confirmed` tier count remains **17**. No annotation-only silver flips occurred.
+
 - **FIRST SILVER-READY ROWS: HOLO EXPERIMENTAL-PDB CONFIRMATION (2026-06-14 automation, this turn).**
   The North-Star milestone the prior bullets kept deferring to: `silver_ready` moved
   **0 -> 260** for the first time (109 in the first bounded batch, then scaled across the rest

@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .registry_io import load_json
+
 
 RUN_DATE = "20260608"
 ARTIFACT_ID = f"v3_external_source_admission_validation_16_current702_{RUN_DATE}"
@@ -71,7 +73,7 @@ def _utc_now_iso() -> str:
 
 
 def _read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return load_json(path)
 
 
 def _write_json(path: Path, payload: Any) -> None:

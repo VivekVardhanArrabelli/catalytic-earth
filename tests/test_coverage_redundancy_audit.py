@@ -11,6 +11,7 @@ from catalytic_earth.coverage_redundancy_audit import (
     build_coverage_redundancy_audit,
     write_coverage_redundancy_audit,
 )
+from catalytic_earth.registry_io import load_json
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FROZEN_PATH = REPO_ROOT / "data/registries/curated_mechanism_labels.json"
@@ -250,7 +251,7 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
 
     def test_audit_is_deterministic(self) -> None:
         frozen = json.loads(FROZEN_PATH.read_text())
-        expansion = json.loads(EXPANSION_PATH.read_text())
+        expansion = load_json(EXPANSION_PATH)
         a = build_coverage_redundancy_audit(frozen, expansion)
         b = build_coverage_redundancy_audit(frozen, expansion)
         a.pop("created_utc")

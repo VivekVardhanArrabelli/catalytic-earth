@@ -1,0 +1,608 @@
+{
+  "artifact_id": "v3_label_pdb_id_backfill_preview_current702",
+  "backfilled_by_fingerprint": {
+    "__out_of_scope__": 19
+  },
+  "backfilled_examples": [
+    {
+      "accession": "P0AF12",
+      "entry_id": "uniprot:P0AF12",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1JYS",
+        "1NC1",
+        "1NC3",
+        "1Y6Q",
+        "1Y6R",
+        "1Z5N",
+        "1Z5O",
+        "1Z5P",
+        "3O4V",
+        "4WKC",
+        "4YML"
+      ]
+    },
+    {
+      "accession": "Q7XA67",
+      "entry_id": "uniprot:Q7XA67",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "3BSF"
+      ]
+    },
+    {
+      "accession": "Q9T0I8",
+      "entry_id": "uniprot:Q9T0I8",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2H8G",
+        "2QSU",
+        "2QTG",
+        "2QTT",
+        "3LGS"
+      ]
+    },
+    {
+      "accession": "P33025",
+      "entry_id": "uniprot:P33025",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "4GIJ",
+        "4GIK",
+        "4GIL",
+        "4GIM"
+      ]
+    },
+    {
+      "accession": "O24915",
+      "entry_id": "uniprot:O24915",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "4BMX",
+        "4BMY",
+        "4BMZ",
+        "4BN0"
+      ]
+    },
+    {
+      "accession": "Q0PC20",
+      "entry_id": "uniprot:Q0PC20",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "6AYM",
+        "6AYO",
+        "6AYQ",
+        "6AYR",
+        "6AYS",
+        "6AYT"
+      ]
+    },
+    {
+      "accession": "Q9ZMY2",
+      "entry_id": "uniprot:Q9ZMY2",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "3NM4",
+        "3NM5",
+        "3NM6",
+        "4FFS",
+        "4OJT",
+        "4OY3",
+        "4P54",
+        "4WKN",
+        "4WKO",
+        "4WKP",
+        "4YNB",
+        "4YO8",
+        "5CCD",
+        "5CCE",
+        "5JPC",
+        "5K1Z",
+        "5KB3",
+        "6DYU",
+        "6DYV",
+        "6DYW",
+        "6DYY"
+      ]
+    },
+    {
+      "accession": "P28907",
+      "entry_id": "uniprot:P28907",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1YH3",
+        "1ZVM",
+        "2EF1",
+        "2HCT",
+        "2I65",
+        "2I66",
+        "2I67",
+        "2O3Q",
+        "2O3R",
+        "2O3S",
+        "2O3T",
+        "2O3U",
+        "2PGJ",
+        "2PGL",
+        "3DZF",
+        "3DZG",
+        "3DZH",
+        "3DZI",
+        "3DZJ",
+        "3DZK",
+        "3F6Y",
+        "3I9M",
+        "3I9N",
+        "3OFS",
+        "3RAJ",
+        "3ROK",
+        "3ROM",
+        "3ROP",
+        "3ROQ",
+        "3U4H",
+        "3U4I",
+        "4CMH",
+        "4F45",
+        "4F46",
+        "4OGW",
+        "4TMF",
+        "4XJS",
+        "4XJT",
+        "5F1K",
+        "5F1O",
+        "5F21",
+        "6EDR",
+        "6VUA",
+        "7DHA",
+        "7DUO",
+        "7VKE",
+        "8BYU",
+        "8D0M",
+        "8IL3",
+        "8P8C",
+        "8VAU",
+        "8ZYE",
+        "9GOX",
+        "9GOY"
+      ]
+    },
+    {
+      "accession": "P48636",
+      "entry_id": "uniprot:P48636",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "5ZBJ",
+        "5ZBK"
+      ]
+    },
+    {
+      "accession": "O15488",
+      "entry_id": "uniprot:O15488",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "4UEG",
+        "8Z0A"
+      ]
+    },
+    {
+      "accession": "O60568",
+      "entry_id": "uniprot:O60568",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "6FXK",
+        "6FXM",
+        "6FXR",
+        "6FXT",
+        "6FXX",
+        "6FXY",
+        "6TE3",
+        "6TEC",
+        "6TES",
+        "6TEU",
+        "6TEX",
+        "6TEZ",
+        "6WFV",
+        "8ONE",
+        "8ZGC",
+        "8ZGE",
+        "8ZGG",
+        "8ZGH"
+      ]
+    },
+    {
+      "accession": "P09874",
+      "entry_id": "uniprot:P09874",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1UK0",
+        "1UK1",
+        "1WOK",
+        "2COK",
+        "2CR9",
+        "2CS2",
+        "2DMJ",
+        "2JVN",
+        "2L30",
+        "2L31",
+        "2N8A",
+        "2RCW",
+        "2RD6",
+        "2RIQ",
+        "3GJW",
+        "3GN7",
+        "3L3L",
+        "3L3M",
+        "3OD8",
+        "3ODA",
+        "3ODC",
+        "3ODE",
+        "4AV1",
+        "4DQY",
+        "4GV7",
+        "4HHY",
+        "4HHZ",
+        "4L6S",
+        "4OPX",
+        "4OQA",
+        "4OQB",
+        "4PJT",
+        "4R5W",
+        "4R6E",
+        "4RV6",
+        "4UND",
+        "4UXB",
+        "4XHU",
+        "4ZZZ",
+        "5A00",
+        "5DS3",
+        "5HA9",
+        "5KPN",
+        "5KPO",
+        "5KPP",
+        "5KPQ",
+        "5WRQ",
+        "5WRY",
+        "5WRZ",
+        "5WS0",
+        "5WS1",
+        "5WTC",
+        "5XSR",
+        "5XST",
+        "5XSU",
+        "6BHV",
+        "6GHK",
+        "6M3I",
+        "6NRF",
+        "6NRG",
+        "6NRH",
+        "6NRI",
+        "6NRJ",
+        "6NTU",
+        "6VKK",
+        "6VKO",
+        "6VKQ",
+        "6XVW",
+        "7AAA",
+        "7AAB",
+        "7AAC",
+        "7AAD",
+        "7CMW",
+        "7KK2",
+        "7KK3",
+        "7KK4",
+        "7KK5",
+        "7KK6",
+        "7ONR",
+        "7ONS",
+        "7ONT",
+        "7S68",
+        "7S6H",
+        "7S6M",
+        "7S81",
+        "7SCY",
+        "7SCZ",
+        "8FYY",
+        "8FYZ",
+        "8FZ1",
+        "8G0H",
+        "8HE7",
+        "8HLR",
+        "8JNZ",
+        "8U4W",
+        "8VYH",
+        "9BPY",
+        "9CKC",
+        "9DMC",
+        "9ETQ",
+        "9ETR",
+        "9ILN"
+      ]
+    },
+    {
+      "accession": "P13051",
+      "entry_id": "uniprot:P13051",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1AKZ",
+        "1DPU",
+        "1EMH",
+        "1EMJ",
+        "1Q3F",
+        "1SSP",
+        "1UGH",
+        "1YUO",
+        "2HXM",
+        "2OXM",
+        "2OYT",
+        "2SSP",
+        "3FCF",
+        "3FCI",
+        "3FCK",
+        "3FCL",
+        "3TKB",
+        "4SKN",
+        "5AYR",
+        "5JK7",
+        "6VBA",
+        "7V7C",
+        "9LNP",
+        "9LNQ"
+      ]
+    },
+    {
+      "accession": "P17050",
+      "entry_id": "uniprot:P17050",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "3H53",
+        "3H54",
+        "3H55",
+        "3IGU",
+        "4DO4",
+        "4DO5",
+        "4DO6"
+      ]
+    },
+    {
+      "accession": "Q86SR1",
+      "entry_id": "uniprot:Q86SR1",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2D7I",
+        "2D7R"
+      ]
+    },
+    {
+      "accession": "Q8IXK2",
+      "entry_id": "uniprot:Q8IXK2",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "6PXU"
+      ]
+    },
+    {
+      "accession": "Q8N4A0",
+      "entry_id": "uniprot:Q8N4A0",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "5NQA",
+        "6H0B"
+      ]
+    },
+    {
+      "accession": "Q9BQ69",
+      "entry_id": "uniprot:Q9BQ69",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2X47",
+        "6LH4"
+      ]
+    },
+    {
+      "accession": "Q9NX46",
+      "entry_id": "uniprot:Q9NX46",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2FOZ",
+        "2FP0",
+        "2G4K",
+        "5ZQY",
+        "6D36",
+        "6D3A",
+        "7AKR",
+        "7AKS",
+        "7ARW",
+        "7L9F",
+        "7L9H",
+        "7L9I",
+        "9RFD",
+        "9RFE"
+      ]
+    }
+  ],
+  "counts": {
+    "accessions_queried": 120,
+    "already_had_pdb_ids": 1279,
+    "backfilled_pdb_rows_this_run": 19,
+    "deferred_over_limit": 5463,
+    "expansion_labels": 6862,
+    "no_accession": 0,
+    "rows_with_pdb_ids_after": 1298,
+    "uniprot_record_without_pdb_xref": 101,
+    "uniprot_records_returned": 120
+  },
+  "created_utc": "2026-06-14T15:31:04Z",
+  "fetch_metadata": {
+    "batches": [
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA0A1B0GTW7+OR+accession%3AA3RF67+OR+accession%3AF3YDF1+OR+accession%3AO13968+OR+accession%3AO15466+OR+accession%3AO15488+OR+accession%3AO24915+OR+accession%3AO42869+OR+accession%3AO43506+OR+accession%3AO43847+OR+accession%3AO60568+OR+accession%3AO60909+OR+accession%3AO74388+OR+accession%3AO75951+OR+accession%3AO80885+OR+accession%3AO80983+OR+accession%3AO95450+OR+accession%3AO95672+OR+accession%3AP09848+OR+accession%3AP09874+OR+accession%3AP0AF12+OR+accession%3AP0C1T0+OR+accession%3AP0DPD6+OR+accession%3AP0DPD8+OR+accession%3AP13051%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP16870+OR+accession%3AP17050+OR+accession%3AP23276+OR+accession%3AP23492+OR+accession%3AP24155+OR+accession%3AP25894+OR+accession%3AP28907+OR+accession%3AP33025+OR+accession%3AP34949+OR+accession%3AP37476+OR+accession%3AP47137+OR+accession%3AP48636+OR+accession%3AP50849+OR+accession%3AP52961+OR+accession%3AP54803+OR+accession%3AP54840+OR+accession%3AP58397+OR+accession%3AP78562+OR+accession%3AP85973+OR+accession%3AQ02742+OR+accession%3AQ05788+OR+accession%3AQ06417+OR+accession%3AQ08157+OR+accession%3AQ0PC20+OR+accession%3AQ13443%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ13724+OR+accession%3AQ1PDW5+OR+accession%3AQ21432+OR+accession%3AQ23588+OR+accession%3AQ39102+OR+accession%3AQ53HV7+OR+accession%3AQ5U5Z8+OR+accession%3AQ66K79+OR+accession%3AQ69ZQ1+OR+accession%3AQ6ICG6+OR+accession%3AQ6NSR3+OR+accession%3AQ6ZRI6+OR+accession%3AQ6ZUJ4+OR+accession%3AQ6ZUT1+OR+accession%3AQ7XA67+OR+accession%3AQ7Z2K6+OR+accession%3AQ7Z695+OR+accession%3AQ86SR1+OR+accession%3AQ8IUC8+OR+accession%3AQ8IXK2+OR+accession%3AQ8LAC4+OR+accession%3AQ8N4A0+OR+accession%3AQ8N4T0+OR+accession%3AQ8N8K9+OR+accession%3AQ8N9M1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ8NCW6+OR+accession%3AQ8TB03+OR+accession%3AQ8TE57+OR+accession%3AQ8TE58+OR+accession%3AQ8TE59+OR+accession%3AQ8TE60+OR+accession%3AQ8U2I1+OR+accession%3AQ8W585+OR+accession%3AQ8ZJV7+OR+accession%3AQ92185+OR+accession%3AQ93243+OR+accession%3AQ96E52+OR+accession%3AQ96GX8+OR+accession%3AQ96TA2+OR+accession%3AQ99797+OR+accession%3AQ9BQ69+OR+accession%3AQ9BRR3+OR+accession%3AQ9BY89+OR+accession%3AQ9FGM0+OR+accession%3AQ9H013+OR+accession%3AQ9H425+OR+accession%3AQ9H6X5+OR+accession%3AQ9H972+OR+accession%3AQ9HAU8+OR+accession%3AQ9JLI3%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 20,
+        "requested_accession_count": 20,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ9NP73+OR+accession%3AQ9NX46+OR+accession%3AQ9P2N4+OR+accession%3AQ9P6L9+OR+accession%3AQ9SJM7+OR+accession%3AQ9T0I8+OR+accession%3AQ9UKF2+OR+accession%3AQ9UKJ8+OR+accession%3AQ9UKP4+OR+accession%3AQ9UKP5+OR+accession%3AQ9UKQ2+OR+accession%3AQ9UKU6+OR+accession%3AQ9UP79+OR+accession%3AQ9UQ49+OR+accession%3AQ9USP9+OR+accession%3AQ9UT00+OR+accession%3AQ9VJN9+OR+accession%3AQ9W5D0+OR+accession%3AQ9X482+OR+accession%3AQ9ZMY2%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=20"
+      }
+    ],
+    "record_count": 120,
+    "requested_accession_count": 120,
+    "source": "uniprot",
+    "url": "https://rest.uniprot.org/uniprotkb/search"
+  },
+  "guardrails": {
+    "existing_pdb_ids_preserved": true,
+    "frozen_current702_benchmark_preserved": true,
+    "no_pdb_ids_fabricated_when_uniprot_lacks_xref": true,
+    "pdb_ids_are_provenance_not_predictive_features": true,
+    "predictive_evidence_unchanged": true,
+    "row_count_unchanged": true,
+    "writes_expansion_registry_only": true
+  },
+  "next_action": "Review counts, then re-run with --apply to write only the external registry. Follow with holo structure promotion and bronze-silver promotion preview.",
+  "schema_version": "label_pdb_id_backfill.v1",
+  "status": "non_destructive_preview_pending_explicit_registry_write",
+  "uniprot_without_pdb_xref_examples": [
+    {
+      "accession": "Q96TA2",
+      "entry_id": "uniprot:Q96TA2",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P0C1T0",
+      "entry_id": "uniprot:P0C1T0",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P24155",
+      "entry_id": "uniprot:P24155",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q21432",
+      "entry_id": "uniprot:Q21432",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q93243",
+      "entry_id": "uniprot:Q93243",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "F3YDF1",
+      "entry_id": "uniprot:F3YDF1",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q39102",
+      "entry_id": "uniprot:Q39102",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O80983",
+      "entry_id": "uniprot:O80983",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8W585",
+      "entry_id": "uniprot:Q8W585",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q1PDW5",
+      "entry_id": "uniprot:Q1PDW5",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9FGM0",
+      "entry_id": "uniprot:Q9FGM0",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P37476",
+      "entry_id": "uniprot:P37476",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O95672",
+      "entry_id": "uniprot:O95672",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q99797",
+      "entry_id": "uniprot:Q99797",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9JLI3",
+      "entry_id": "uniprot:Q9JLI3",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "A0A1B0GTW7",
+      "entry_id": "uniprot:A0A1B0GTW7",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P16870",
+      "entry_id": "uniprot:P16870",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P58397",
+      "entry_id": "uniprot:P58397",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P78562",
+      "entry_id": "uniprot:P78562",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8TE57",
+      "entry_id": "uniprot:Q8TE57",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8TE60",
+      "entry_id": "uniprot:Q8TE60",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UKJ8",
+      "entry_id": "uniprot:Q9UKJ8",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UKP4",
+      "entry_id": "uniprot:Q9UKP4",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UKP5",
+      "entry_id": "uniprot:Q9UKP5",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UKQ2",
+      "entry_id": "uniprot:Q9UKQ2",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    }
+  ],
+  "what": "backfill missing evidence.structure_provenance.pdb_ids from curated UniProt xref_pdb cross-references; PDB IDs are structure provenance for holo confirmation and are never predictive features"
+}

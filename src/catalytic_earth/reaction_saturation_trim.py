@@ -65,6 +65,7 @@ from .coverage_redundancy_audit import (
     reaction_aware_cap,
 )
 from .novelty_admission_gate import cluster_key
+from .registry_io import load_json, write_registry_payload
 from .source_trust_tiers import _counter_from_registries
 
 DEFAULT_FROZEN_BENCHMARK_PATH = Path("data/registries/curated_mechanism_labels.json")
@@ -525,10 +526,9 @@ def apply_reaction_saturation_trim_to_registry(
     before the registry is written, so a malformed kept row aborts the rewrite. This
     is the explicitly-authorized apply step -- the preview never calls it.
     """
-    from .external_annotation_anchored_import import _dump_registry
     from .labels import MechanismLabel
 
-    preview = _load_json(preview_path)
+    preview = load_json(preview_path)
     if preview.get("audit") != "reaction_saturation_trim":
         raise ValueError(
             "preview is not a reaction_saturation_trim artifact; refusing to apply"
@@ -552,7 +552,7 @@ def apply_reaction_saturation_trim_to_registry(
 
     missing = demote_ids - {str(r.get("entry_id")) for r in existing}
     expansion_path.parent.mkdir(parents=True, exist_ok=True)
-    expansion_path.write_text(_dump_registry(kept), encoding="utf-8")
+    write_result = write_registry_payload(expansion_path, kept)
 
     # the frozen benchmark is never written by this path -- assert it is untouched
     frozen_after = _load_json(frozen_benchmark_registry_path)
@@ -567,4 +567,5 @@ def apply_reaction_saturation_trim_to_registry(
         "demoted_ids_not_found": sorted(missing),
         "all_kept_revalidated": True,
         "expansion_registry_path": str(expansion_path),
+        "expansion_registry_storage": write_result,
     }

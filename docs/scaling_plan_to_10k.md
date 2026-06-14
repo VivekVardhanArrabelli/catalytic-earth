@@ -13,6 +13,28 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: registry sharded, full suite green, bounded PDB-ID backfill
+applied.** Treat this as the newest operational state. The external registry file-size blocker is
+cleared: `data/registries/external_bronze_labels.json` is now a sharded-registry manifest
+(**1203 bytes**) plus four shard files under `data/registries/external_bronze_labels.shards/`
+(largest **17,996,716 bytes**). Loader/writer behavior is preserved through
+`src/catalytic_earth/registry_io.py`.
+
+Current honest counters after this safety run: external registry **6862** rows = positive bronze
+**5638** + OOS bronze **1224**; combined label surface **7564**; combined seed-fingerprint surface
+**5868**; remaining seed gap to 10k **4132**; silver-ready queue **260 pending geometry run**;
+silver-confirmed tier count **17**. No tiers changed this run. Full suite from the actual final
+state: **2238 passed, 1 warning, 244 subtests passed in 163.10s**.
+
+New PDB-ID backfill infrastructure is available and was applied in a bounded chunk:
+`scripts/backfill_label_pdb_ids.py --limit 120 --apply` copied UniProt `xref_pdb` provenance into
+**19** external rows, raising rows with registry PDB IDs to **1298**. This is provenance only, not a
+predictive feature; frozen current702 sha stayed `5eec9bef...`. A follow-up holo preview checked 50
+rows and found **0** new holo confirmations, so do not claim new silver. Next safe actions are:
+continue PDB-ID backfill in bounded chunks, rerun holo confirmation, and separately run the
+authorized geometry-confirmation/tier-flip path for the existing 260 silver-ready queue. For bronze
+growth, use the high-yield factory artifacts; do not return to exhausted copper or tiny cap topups.
+
 **2026-06-14 automation update: protein kinase 37fp high-yield lane applied.** After the terpene
 lane left only **77** cap slots, the latest run shifted to the next factory-supported high-yield
 family rather than doing a tiny top-up. It added `protein_kinase_ser_thr_tyr` and

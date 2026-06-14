@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from .registry_io import load_json
 from .structure import STANDARD_AMINO_ACIDS, parse_atom_site_loop
 from .transfer_scope import fetch_external_structure_cif
 
@@ -153,7 +154,7 @@ def _utc_now_iso() -> str:
 
 
 def _read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return load_json(path)
 
 
 def _write_json(path: Path, payload: Any) -> None:

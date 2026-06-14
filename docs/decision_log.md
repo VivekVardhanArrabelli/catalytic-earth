@@ -3,6 +3,36 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: REGISTRY SHARDING, FULL-SUITE RECOVERY, AND PDB-ID BACKFILL PATH
+
+Decision: stop treating the monolithic external bronze registry as safe for continued growth.
+`data/registries/external_bronze_labels.json` had grown to ~54 MB, above the repo's GitHub-safe
+operating threshold. Added transparent sharded-registry support in
+`src/catalytic_earth/registry_io.py` and migrated readers/writers that consume or rewrite the
+external registry. The canonical row order and all 6,862 external labels are preserved; the checked-in
+registry path is now a 1,203-byte manifest plus four shard files (largest 17,996,716 bytes). Frozen
+current702 remains the unsharded 702-row benchmark and is never written by growth/backfill paths.
+
+Decision: full-suite failures after latest origin were stale expanded-universe pins unless proven
+otherwise. The first full run produced five failures: two source-lane tests still counted newly
+explicit off-target fingerprints in the older disambiguation bucket, one EPK test still expected the
+old 15-fingerprint count, one geometry-ablation test assumed the metal hydrolase reason stayed in
+top-20 after the 37-fingerprint expansion, and one SDR inverse-gate fixture listed only the older
+missing-fingerprint set. Each assertion was updated to the measured 37-fingerprint state with count
+rationale. Final validation from the actual final state: full suite **2238 passed, 1 warning, 244
+subtests in 163.10s**; focused changed-state tests **39 passed**; `python -m catalytic_earth.cli
+validate` and `git diff --check` passed.
+
+Decision: PDB-ID backfill is allowed only as external structure provenance, not as predictive
+evidence or silver evidence by itself. Added `src/catalytic_earth/label_pdb_id_backfill.py` and
+`scripts/backfill_label_pdb_ids.py`. The writer fills empty external
+`evidence.structure_provenance.pdb_ids` from curated UniProt `xref_pdb`, records
+`pdb_id_backfill_provenance`, validates rows before writing, refuses to target frozen current702, and
+writes through the sharded registry writer. Applied a bounded first chunk (`--limit 120`): 19 rows
+backfilled, 101 queried rows lacked UniProt PDB xrefs, 5463 deferred; frozen sha `5eec9bef...`
+unchanged. A bounded holo preview after the backfill found 0 additional holo confirmations, so the
+silver-ready queue remains 260 pending geometry run and no tier was changed.
+
 ## 2026-06-14: FIRST SILVER-READY ROWS via HOLO EXPERIMENTAL-PDB CONFIRMATION
 
 Decision: act on the measured finding that offline silver promotion was at a hard ZERO and

@@ -22,6 +22,7 @@ from .external_scaleout_bronze_import import (
     DEFAULT_EXPANSION_REGISTRY_PATH,
     DEFAULT_FROZEN_BENCHMARK_PATH,
 )
+from .registry_io import load_json
 
 ARTIFACT_ID = "v3_high_yield_family_lane_factory_current702"
 SCHEMA_VERSION = "high_yield_family_lane_factory.v1"
@@ -439,7 +440,7 @@ def _utc_now_iso() -> str:
 
 
 def _read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return load_json(path)
 
 
 def _fingerprint_counts(rows: list[dict[str, Any]]) -> Counter:

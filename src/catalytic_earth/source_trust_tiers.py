@@ -33,6 +33,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .registry_io import load_json
+
 from .coverage_redundancy_audit import (
     DEFAULT_EXPANSION_REGISTRY_PATH,
     DEFAULT_FROZEN_BENCHMARK_PATH,
@@ -283,10 +285,8 @@ def write_source_trust_tier_policy(
     """Build the policy + current ledger and write it (non-destructive)."""
     frozen_path = Path(frozen_benchmark_path)
     expansion_path = Path(expansion_registry_path)
-    frozen = json.loads(frozen_path.read_text(encoding="utf-8")) if frozen_path.exists() else []
-    expansion = (
-        json.loads(expansion_path.read_text(encoding="utf-8")) if expansion_path.exists() else []
-    )
+    frozen = load_json(frozen_path) if frozen_path.exists() else []
+    expansion = load_json(expansion_path) if expansion_path.exists() else []
     policy = build_source_trust_tier_policy(
         frozen_benchmark_payload=frozen,
         expansion_payload=expansion,

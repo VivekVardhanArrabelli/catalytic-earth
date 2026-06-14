@@ -40,6 +40,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .registry_io import dump_registry, load_json, write_registry_payload
+
 ONTOLOGY_VERSION = "label_factory_v1_8fp"
 
 # Annotation-derived family lane -> primary mechanism fingerprint.
@@ -138,7 +140,7 @@ def _utc_now_iso() -> str:
 
 
 def _load_json(path: Path) -> Any:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    return load_json(Path(path))
 
 
 def _preview_rows(preview: Any) -> list[dict[str, Any]]:
@@ -644,8 +646,7 @@ def apply_external_annotation_anchored_import_to_registry(
         appended.append(label)
 
     new_expansion = list(existing_expansion) + appended
-    expansion_path.parent.mkdir(parents=True, exist_ok=True)
-    expansion_path.write_text(_dump_registry(new_expansion), encoding="utf-8")
+    write_result = write_registry_payload(expansion_path, new_expansion)
 
     return {
         "frozen_benchmark_labels": len(frozen),
@@ -667,16 +668,13 @@ def apply_external_annotation_anchored_import_to_registry(
         ),
         "all_appended_bronze": all(label.get("tier") == "bronze" for label in appended),
         "expansion_registry_path": str(expansion_path),
+        "expansion_registry_storage": write_result,
     }
 
 
 def _dump_registry(registry: list[dict[str, Any]]) -> str:
     """Serialize the registry in its canonical one-label-per-line compact format."""
-    body = ",\n".join(
-        "  " + json.dumps(label, separators=(",", ":"), sort_keys=True)
-        for label in registry
-    )
-    return "[\n" + body + "\n]\n"
+    return dump_registry(registry)
 
 
 def write_external_annotation_anchored_import(

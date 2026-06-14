@@ -49,6 +49,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .registry_io import load_json
 from .mechanism_representation_loop import (
     DEFAULT_PROMOTION_COHESION,
     assess_row_against_centroids,
@@ -100,8 +101,10 @@ def _utc_now_iso() -> str:
 
 
 def _load_json(path: Path) -> list[dict[str, Any]]:
-    with Path(path).open(encoding="utf-8") as handle:
-        return json.load(handle)
+    payload = load_json(Path(path))
+    if not isinstance(payload, list):
+        raise ValueError(f"{path} must contain a JSON list")
+    return payload
 
 
 def _structure_provenance(row: dict[str, Any]) -> dict[str, Any]:

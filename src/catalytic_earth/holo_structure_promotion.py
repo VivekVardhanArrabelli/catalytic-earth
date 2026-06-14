@@ -51,12 +51,12 @@ from .bronze_silver_promotion_preview import (
     _NON_COFACTOR_HET,
     expected_cofactor_comp_ids,
 )
-from .external_annotation_anchored_import import _dump_registry
 from .mechanism_representation_loop import (
     DEFAULT_PROMOTION_COHESION,
     assess_row_against_centroids,
     fingerprint_centroids,
 )
+from .registry_io import load_json, write_registry_payload
 from .structure import parse_atom_site_loop
 
 ARTIFACT_ID = "v3_holo_structure_promotion_preview_current702"
@@ -493,9 +493,7 @@ def write_holo_structure_promotion(
         hashlib.sha256(frozen_path.read_bytes()).hexdigest() if frozen_path.exists() else None
     )
 
-    expansion_payload = (
-        json.loads(expansion_path.read_text(encoding="utf-8")) if expansion_path.exists() else []
-    )
+    expansion_payload = load_json(expansion_path) if expansion_path.exists() else []
     audit = build_holo_structure_promotion(
         expansion_payload=expansion_payload,
         cache_path=cache_path,
@@ -527,9 +525,10 @@ def write_holo_structure_promotion(
 
         for label in promoted:
             MechanismLabel.from_dict(label)
-        expansion_path.write_text(_dump_registry(promoted), encoding="utf-8")
+        write_result = write_registry_payload(expansion_path, promoted)
         summary["expansion_registry_written"] = True
         summary["expansion_registry_path"] = str(expansion_path)
+        summary["expansion_registry_storage"] = write_result
 
     summary["frozen_sha256_after"] = (
         hashlib.sha256(frozen_path.read_bytes()).hexdigest() if frozen_path.exists() else None

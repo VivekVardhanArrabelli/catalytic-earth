@@ -6883,11 +6883,10 @@ class CliTests(unittest.TestCase):
             self.assertFalse(
                 packet["metadata"]["ready_to_expand_positive_fingerprint_universe"]
             )
-            # 15 after the 2026-06-12 broadened-handle batches added nad_p_dehydrogenase,
-            # glycosyltransferase, and SAM methyltransferase (was 12 post Stage-2 metal
-            # split, 8 originally): the readiness packet counts the live positive
-            # fingerprint universe.
-            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 15)
+            # 37 after the 2026-06-12 through 2026-06-14 broadened-handle
+            # batches: the readiness packet counts the live positive
+            # fingerprint universe, not the historical 15-fingerprint tranche.
+            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 37)
             self.assertEqual(packet["metadata"]["epk_boundary_row_count"], 3)
             self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
             self.assertIn(

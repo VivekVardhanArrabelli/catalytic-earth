@@ -1290,7 +1290,10 @@ class GeometryRetrievalTests(unittest.TestCase):
                     }
                 ]
             },
-            top_k=20,
+            # Keep the original metal-hydrolase text-review debt visible after
+            # the positive fingerprint universe expanded beyond the old top-20
+            # assumption.
+            top_k=40,
             route_threshold=0.4115,
         )
 

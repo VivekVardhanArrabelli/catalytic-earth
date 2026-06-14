@@ -7675,7 +7675,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             row["ontology_version_at_decision"], "label_factory_v1_8fp"
         )
-        # After the 2026-06-12/13 universe expansions, the OOS inverse gate is BLOCKED
+        # After the 2026-06-12/14 universe expansions, the OOS inverse gate is BLOCKED
         # on incomplete current-fingerprint coverage. The newer positive fingerprints
         # have no atlas scores in this fixture, so the SDR row cannot be CERTIFIED as a
         # clean hard-negative until those fingerprints gain atlas coverage.
@@ -7688,6 +7688,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             sorted(inverse_gate["missing_current_fingerprint_ids"]),
             [
+                "askha_sugar_acetate_kinase",
                 "atp_amide_ligase",
                 "biotin_dependent_carboxylase",
                 "class_ii_metal_aldolase",
@@ -7695,12 +7696,21 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "cofactor_independent_isomerase",
                 "copper_oxidoreductase",
                 "cytochrome_p450_monooxygenase",
+                "deoxynucleoside_kinase",
+                "ghmp_small_molecule_kinase",
+                "glycoside_hydrolase",
                 "glycosyltransferase",
+                "manganese_iron_superoxide_dismutase",
                 "metal_racemase_epimerase_non_plp",
                 "molybdopterin_oxidoreductase",
                 "nad_p_dehydrogenase",
                 "non_heme_iron_2og_dioxygenase",
+                "nucleoside_diphosphate_kinase",
+                "pfka_phosphofructokinase",
+                "pfkb_ribokinase_family",
+                "protein_kinase_ser_thr_tyr",
                 "sam_methyltransferase",
+                "terpene_cyclase_synthase",
                 "thiamine_diphosphate_enzyme",
                 "zinc_lyase_hydratase",
             ],

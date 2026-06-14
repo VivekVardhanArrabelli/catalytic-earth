@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .registry_io import load_json
+
 
 ARTIFACT_ID = "v3_targeted_expansion_factory_batch_current702_20260608"
 SCHEMA_VERSION = "v3.targeted_expansion_factory_batch"
@@ -98,7 +100,7 @@ def _canonical_sha256(payload: Any) -> str:
 
 
 def _read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return load_json(path)
 
 
 def _rows_from_payload(payload: Any) -> list[dict[str, Any]]:

@@ -1,5 +1,52 @@
 # Handoff
 
+## Session run - Registry sharding, full-suite recovery, PDB backfill lane (2026-06-14, Codex automation)
+
+- Hard blocker cleared: `data/registries/external_bronze_labels.json` was ~54 MB and unsafe for
+  continued GitHub growth. Added transparent sharded-registry support
+  (`src/catalytic_earth/registry_io.py`) and rewired registry loaders/writers across import,
+  validation, promotion, coverage, representation, trim, and backfill paths. The external registry
+  is now a 1,203-byte manifest plus four shards (`part-00000..00003`, max 17,996,716 bytes),
+  preserving all 6,862 labels and loader behavior.
+- Full test suite checked as requested. Initial full run had 5 stale/expanded-universe failures
+  (ATP/PfkA off-target accounting, EPK positive fingerprint count, geometry ablation top-k after
+  37fp expansion, SDR inverse-gate missing-fingerprint list). Updated the assertions with measured
+  rationale. Final post-backfill validation: focused changed-state tests **39 passed**; full suite
+  **2238 passed, 1 warning, 244 subtests passed in 163.10s**; `python -m catalytic_earth.cli
+  validate` OK; `git diff --check` OK.
+- Bounded PDB-ID backfill lane added and applied: new
+  `src/catalytic_earth/label_pdb_id_backfill.py`, `scripts/backfill_label_pdb_ids.py`, and
+  `tests/test_label_pdb_id_backfill.py`. It copies curated UniProt `xref_pdb` IDs only into
+  external `evidence.structure_provenance.pdb_ids`, records provenance, preserves row count/order,
+  leaves `predictive_evidence` unchanged, refuses to target frozen current702, and writes through
+  the sharded registry writer. Applied with `--limit 120`: queried 120 missing-PDB rows,
+  backfilled **19**, already had PDB **1279**, without xref **101**, deferred **5463**; frozen
+  current702 sha `5eec9bef...` identical before/after.
+- Silver lane advanced but not overclaimed: post-PDB-backfill holo preview checked 50 rows and found
+  **0** new holo confirmations; already confirmed remains **260** and silver remains
+  `silver_ready_pending_geometry_run` only. No annotation-only silver flips; no tiers changed.
+- New artifacts/reports:
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_registry_shard.json`,
+  `artifacts/v3_mechanism_representation_loop_current702_20260614_post_registry_shard.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_registry_shard.json`,
+  `artifacts/v3_chemistry_disagree_triage_current702_20260614_post_registry_shard.json`,
+  `artifacts/v3_pdb_id_backfill_scout_current702_20260614_post_registry_shard.json`,
+  `artifacts/v3_label_pdb_id_backfill_preview_current702_20260614_post_registry_shard.json`,
+  `artifacts/v3_holo_structure_promotion_preview_current702_20260614_post_pdb_backfill.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260614_post_registry_shard.json`,
+  and
+  `artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_current702_20260614_post_registry_shard.json`
+  with matching `work/*.md` reports.
+- Current honest counters: external registry **6862** rows = positive bronze **5638** + OOS bronze
+  **1224**; combined label surface **7564**; combined seed surface **5868**; remaining seed gap
+  **4132**; PDB-bearing external rows **1298**; holo-confirmed rows **260**; silver_confirmed
+  tier count still **17**. Four pre-existing artifact blobs remain >45 MB, but no changed/new file
+  exceeds 45 MB.
+- Next concrete action: continue the PDB-ID backfill in bounded `--limit` chunks, then rerun holo
+  confirmation. In parallel, implement the high-yield new-family runner recommended by the factory
+  (`had_like_phosphatase`/aldehyde dehydrogenase only with mechanism-first disambiguation), and keep
+  geometry-confirmation/tier flips separate from annotation-only evidence.
+
 ## Session run - First silver-ready rows via holo experimental-PDB confirmation (2026-06-14, Claude Code automation)
 
 - MILESTONE: `silver_ready` 0 -> 109 for the first time. Diagnosis (measured, not guessed):

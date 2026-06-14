@@ -50,7 +50,7 @@ from .adapters import (
     _split_accessions,
     normalize_uniprot_tsv,
 )
-from .external_annotation_anchored_import import _dump_registry
+from .registry_io import load_json, write_registry_payload
 
 ARTIFACT_ID = "v3_label_sequence_backfill_preview_current702"
 SCHEMA_VERSION = "label_sequence_backfill.v1"
@@ -413,11 +413,7 @@ def write_label_sequence_backfill(
             "current702 benchmark, which is never written"
         )
 
-    expansion_payload = (
-        json.loads(expansion_path.read_text(encoding="utf-8"))
-        if expansion_path.exists()
-        else []
-    )
+    expansion_payload = load_json(expansion_path) if expansion_path.exists() else []
     audit = build_label_sequence_backfill(
         expansion_payload=expansion_payload,
         batch_size=batch_size,
@@ -447,8 +443,9 @@ def write_label_sequence_backfill(
 
         for label in backfilled:
             MechanismLabel.from_dict(label)
-        expansion_path.write_text(_dump_registry(backfilled), encoding="utf-8")
+        write_result = write_registry_payload(expansion_path, backfilled)
         summary["expansion_registry_written"] = True
         summary["expansion_registry_path"] = str(expansion_path)
+        summary["expansion_registry_storage"] = write_result
 
     return summary

@@ -178,8 +178,8 @@ class PfkaPhosphofructokinaseSourcingTest(unittest.TestCase):
         audit = self._run()
         self.assertEqual(audit["counts"]["fetched_candidate_rows"], 9)
         self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 2)
-        self.assertGreaterEqual(audit["counts"]["disambiguation_hold_count"], 3)
-        self.assertEqual(audit["counts"]["off_target_fingerprint_matches_held"], 4)
+        self.assertEqual(audit["counts"]["disambiguation_hold_count"], 2)
+        self.assertEqual(audit["counts"]["off_target_fingerprint_matches_held"], 5)
         self.assertEqual(
             audit["counts"]["off_target_fingerprint_counts"],
             {
@@ -187,6 +187,9 @@ class PfkaPhosphofructokinaseSourcingTest(unittest.TestCase):
                 "deoxynucleoside_kinase": 1,
                 "ghmp_small_molecule_kinase": 1,
                 "nucleoside_diphosphate_kinase": 1,
+                # The ribokinase-family boundary now maps to the explicit
+                # PFKB/ribokinase fingerprint and is still held off-target.
+                "pfkb_ribokinase_family": 1,
             },
         )
 

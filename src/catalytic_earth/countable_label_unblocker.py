@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .registry_io import load_json
+
 
 RUN_DATE = "20260608"
 ARTIFACT_ID = f"v3_countable_label_unblocker_matrix_current702_{RUN_DATE}"
@@ -123,7 +125,7 @@ def _canonical_sha256(payload: Any) -> str:
 
 
 def _read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return load_json(path)
 
 
 def _write_json(path: Path, payload: Any) -> None:

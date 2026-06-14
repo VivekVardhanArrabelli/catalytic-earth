@@ -16,6 +16,7 @@ from catalytic_earth.mechanism_representation_loop import (
     propose_for_fingerprint,
     write_mechanism_representation_loop,
 )
+from catalytic_earth.registry_io import load_json
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXPANSION_PATH = REPO_ROOT / "data/registries/external_bronze_labels.json"
@@ -346,7 +347,7 @@ class CentroidAndTriageTests(unittest.TestCase):
 
 class BuildWriteRealRegistryTests(unittest.TestCase):
     def test_build_on_real_registry_is_leakage_safe(self) -> None:
-        expansion = json.loads(EXPANSION_PATH.read_text())
+        expansion = load_json(EXPANSION_PATH)
         audit = build_mechanism_representation_loop(expansion)
         self.assertEqual(audit["seed_labels"], 5638)
         g = audit["leakage_guardrails"]
@@ -435,7 +436,7 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
 
     def test_deterministic(self) -> None:
-        expansion = json.loads(EXPANSION_PATH.read_text())
+        expansion = load_json(EXPANSION_PATH)
         a = build_mechanism_representation_loop(expansion)
         b = build_mechanism_representation_loop(expansion)
         a.pop("created_utc")

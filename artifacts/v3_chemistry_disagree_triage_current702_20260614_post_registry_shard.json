@@ -1,0 +1,783 @@
+{
+  "artifact_id": "v3_chemistry_disagree_triage_current702_20260614_post_registry_shard",
+  "classification_policy": {
+    "likely_boundary_or_mislabel_review": "small, high-fraction or mechanistically adjacent off-target pairs; inspect original excluded-context/source evidence before any demotion",
+    "likely_representation_gap": "large repeated off-target nearest-centroid pairs or low self-consistency families; do not demote without source review",
+    "no_label_mutation": "this artifact ranks review work only; registry tier/status unchanged"
+  },
+  "counts": {
+    "families_below_0_70_self_consistency": 9,
+    "leave_one_out_self_consistency": 0.7549,
+    "non_self_confusion_pairs": 124,
+    "promotion_preview_review_chemistry_disagrees": 1344,
+    "representation_loop_review_outliers": 1382,
+    "seed_labels_triaged": 5638
+  },
+  "created_from": "artifacts/v3_mechanism_representation_loop_current702_20260614_post_registry_shard.json",
+  "leakage_guardrails": {
+    "bond_change_derived_from_reaction_substrate_product_only": true,
+    "ec_name_prose_lane_used": false,
+    "fingerprint_declared_bond_change_used_as_feature": false,
+    "fingerprint_label_used_as_feature": false,
+    "frozen_benchmark_read": false,
+    "labels_emitted": 0,
+    "reaction_ec_number_used_as_feature": false,
+    "registry_written": false,
+    "used_only_for_candidate_ranking_and_promotion_triage_not_benchmark_scoring": true
+  },
+  "low_self_consistency_families": [
+    {
+      "fingerprint_id": "ghmp_small_molecule_kinase",
+      "seed_rows": 100,
+      "self_consistency": 0.0,
+      "top_off_target_nearest": [
+        {
+          "count": 88,
+          "nearest_fingerprint": "pfka_phosphofructokinase"
+        },
+        {
+          "count": 12,
+          "nearest_fingerprint": "askha_sugar_acetate_kinase"
+        }
+      ]
+    },
+    {
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "seed_rows": 225,
+      "self_consistency": 0.0,
+      "top_off_target_nearest": [
+        {
+          "count": 157,
+          "nearest_fingerprint": "zinc_lyase_hydratase"
+        },
+        {
+          "count": 46,
+          "nearest_fingerprint": "metallo_amidohydrolase_deaminase"
+        },
+        {
+          "count": 9,
+          "nearest_fingerprint": "metallopeptidase"
+        },
+        {
+          "count": 6,
+          "nearest_fingerprint": "manganese_iron_superoxide_dismutase"
+        },
+        {
+          "count": 3,
+          "nearest_fingerprint": "metallophosphoesterase_nuclease"
+        }
+      ]
+    },
+    {
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "seed_rows": 128,
+      "self_consistency": 0.0,
+      "top_off_target_nearest": [
+        {
+          "count": 100,
+          "nearest_fingerprint": "pfka_phosphofructokinase"
+        },
+        {
+          "count": 15,
+          "nearest_fingerprint": "nucleoside_diphosphate_kinase"
+        },
+        {
+          "count": 10,
+          "nearest_fingerprint": "askha_sugar_acetate_kinase"
+        },
+        {
+          "count": 3,
+          "nearest_fingerprint": "non_heme_iron_2og_dioxygenase"
+        }
+      ]
+    },
+    {
+      "fingerprint_id": "metallopeptidase",
+      "seed_rows": 150,
+      "self_consistency": 0.2067,
+      "top_off_target_nearest": [
+        {
+          "count": 110,
+          "nearest_fingerprint": "zinc_lyase_hydratase"
+        },
+        {
+          "count": 6,
+          "nearest_fingerprint": "metallophosphoesterase_nuclease"
+        },
+        {
+          "count": 2,
+          "nearest_fingerprint": "metal_dependent_hydrolase"
+        },
+        {
+          "count": 1,
+          "nearest_fingerprint": "manganese_iron_superoxide_dismutase"
+        }
+      ]
+    },
+    {
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "seed_rows": 150,
+      "self_consistency": 0.3267,
+      "top_off_target_nearest": [
+        {
+          "count": 88,
+          "nearest_fingerprint": "cofactor_independent_isomerase"
+        },
+        {
+          "count": 4,
+          "nearest_fingerprint": "cobalamin_radical_rearrangement"
+        },
+        {
+          "count": 4,
+          "nearest_fingerprint": "manganese_iron_superoxide_dismutase"
+        },
+        {
+          "count": 3,
+          "nearest_fingerprint": "atp_amide_ligase"
+        },
+        {
+          "count": 1,
+          "nearest_fingerprint": "molybdopterin_oxidoreductase"
+        }
+      ]
+    },
+    {
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "seed_rows": 150,
+      "self_consistency": 0.38,
+      "top_off_target_nearest": [
+        {
+          "count": 64,
+          "nearest_fingerprint": "manganese_iron_superoxide_dismutase"
+        },
+        {
+          "count": 16,
+          "nearest_fingerprint": "atp_amide_ligase"
+        },
+        {
+          "count": 6,
+          "nearest_fingerprint": "zinc_lyase_hydratase"
+        },
+        {
+          "count": 3,
+          "nearest_fingerprint": "glycoside_hydrolase"
+        },
+        {
+          "count": 2,
+          "nearest_fingerprint": "class_ii_metal_aldolase"
+        }
+      ]
+    },
+    {
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "seed_rows": 250,
+      "self_consistency": 0.508,
+      "top_off_target_nearest": [
+        {
+          "count": 86,
+          "nearest_fingerprint": "cobalamin_radical_rearrangement"
+        },
+        {
+          "count": 18,
+          "nearest_fingerprint": "flavin_dehydrogenase_reductase"
+        },
+        {
+          "count": 7,
+          "nearest_fingerprint": "ser_his_acid_hydrolase"
+        },
+        {
+          "count": 5,
+          "nearest_fingerprint": "nad_p_dehydrogenase"
+        },
+        {
+          "count": 4,
+          "nearest_fingerprint": "class_ii_metal_aldolase"
+        }
+      ]
+    },
+    {
+      "fingerprint_id": "glycoside_hydrolase",
+      "seed_rows": 150,
+      "self_consistency": 0.52,
+      "top_off_target_nearest": [
+        {
+          "count": 55,
+          "nearest_fingerprint": "ser_his_acid_hydrolase"
+        },
+        {
+          "count": 6,
+          "nearest_fingerprint": "class_ii_metal_aldolase"
+        },
+        {
+          "count": 5,
+          "nearest_fingerprint": "manganese_iron_superoxide_dismutase"
+        },
+        {
+          "count": 4,
+          "nearest_fingerprint": "zinc_lyase_hydratase"
+        },
+        {
+          "count": 2,
+          "nearest_fingerprint": "metallophosphoesterase_nuclease"
+        }
+      ]
+    },
+    {
+      "fingerprint_id": "glycosyltransferase",
+      "seed_rows": 250,
+      "self_consistency": 0.664,
+      "top_off_target_nearest": [
+        {
+          "count": 24,
+          "nearest_fingerprint": "class_ii_metal_aldolase"
+        },
+        {
+          "count": 17,
+          "nearest_fingerprint": "terpene_cyclase_synthase"
+        },
+        {
+          "count": 15,
+          "nearest_fingerprint": "metal_dependent_hydrolase"
+        },
+        {
+          "count": 13,
+          "nearest_fingerprint": "manganese_iron_superoxide_dismutase"
+        },
+        {
+          "count": 6,
+          "nearest_fingerprint": "ser_his_acid_hydrolase"
+        }
+      ]
+    }
+  ],
+  "method": "derive bounded review_chemistry_disagrees triage from leakage-safe representation-loop confusion matrix plus promotion review queue samples",
+  "next_action": "Inspect top repeated pairs first; add leakage-safe chemistry axes only when source-free representation is genuinely missing a mechanism distinction, otherwise queue row-level source review/demotion under existing label gates.",
+  "non_destructive": true,
+  "promotion_preview_source": "artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_registry_shard.json",
+  "registry_written": false,
+  "review_outlier_samples": [
+    {
+      "entry_id": "uniprot:Q96TA2",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metallopeptidase",
+      "nearest_similarity": 0.7101,
+      "own_cohesion": 0.7038
+    },
+    {
+      "entry_id": "uniprot:O75844",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.9928,
+      "own_cohesion": 0.9702
+    },
+    {
+      "entry_id": "uniprot:P0C1T0",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.9921,
+      "own_cohesion": 0.9698
+    },
+    {
+      "entry_id": "uniprot:P24155",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.9905,
+      "own_cohesion": 0.9683
+    },
+    {
+      "entry_id": "uniprot:Q21432",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.9928,
+      "own_cohesion": 0.9702
+    },
+    {
+      "entry_id": "uniprot:Q93243",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.9928,
+      "own_cohesion": 0.9702
+    },
+    {
+      "entry_id": "uniprot:F3YDF1",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.993,
+      "own_cohesion": 0.9705
+    },
+    {
+      "entry_id": "uniprot:Q39102",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.993,
+      "own_cohesion": 0.9705
+    },
+    {
+      "entry_id": "uniprot:O80983",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.993,
+      "own_cohesion": 0.9705
+    },
+    {
+      "entry_id": "uniprot:Q8W585",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.993,
+      "own_cohesion": 0.9705
+    },
+    {
+      "entry_id": "uniprot:Q1PDW5",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.993,
+      "own_cohesion": 0.9705
+    },
+    {
+      "entry_id": "uniprot:Q9SAJ3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.993,
+      "own_cohesion": 0.9705
+    },
+    {
+      "entry_id": "uniprot:Q9FGM0",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.993,
+      "own_cohesion": 0.9705
+    },
+    {
+      "entry_id": "uniprot:P37476",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.993,
+      "own_cohesion": 0.9705
+    },
+    {
+      "entry_id": "uniprot:P0AAI3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "nearest_similarity": 0.9928,
+      "own_cohesion": 0.9704
+    }
+  ],
+  "top_confusion_pairs": [
+    {
+      "assigned_fingerprint": "metal_dependent_hydrolase",
+      "assigned_self_consistency": 0.0,
+      "assigned_total": 225,
+      "disagree_count": 157,
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "pair_fraction_of_assigned": 0.6978,
+      "sample_rows": [
+        {
+          "chemistry_cohesion": 0.9704,
+          "entry_id": "uniprot:O75844",
+          "remaining_promotion_audits": [
+            "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+            "foldseek_structural_near_duplicate_screen"
+          ],
+          "structure_confirmability": "apo"
+        },
+        {
+          "chemistry_cohesion": 0.9701,
+          "entry_id": "uniprot:P0C1T0",
+          "remaining_promotion_audits": [
+            "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+            "foldseek_structural_near_duplicate_screen"
+          ],
+          "structure_confirmability": "apo"
+        },
+        {
+          "chemistry_cohesion": 0.9685,
+          "entry_id": "uniprot:P24155",
+          "remaining_promotion_audits": [
+            "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+            "foldseek_structural_near_duplicate_screen"
+          ],
+          "structure_confirmability": "apo"
+        },
+        {
+          "chemistry_cohesion": 0.9704,
+          "entry_id": "uniprot:Q21432",
+          "remaining_promotion_audits": [
+            "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+            "foldseek_structural_near_duplicate_screen"
+          ],
+          "structure_confirmability": "apo"
+        },
+        {
+          "chemistry_cohesion": 0.9704,
+          "entry_id": "uniprot:Q93243",
+          "remaining_promotion_audits": [
+            "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+            "foldseek_structural_near_duplicate_screen"
+          ],
+          "structure_confirmability": "apo"
+        }
+      ]
+    },
+    {
+      "assigned_fingerprint": "metallopeptidase",
+      "assigned_self_consistency": 0.2067,
+      "assigned_total": 150,
+      "disagree_count": 110,
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "pair_fraction_of_assigned": 0.7333,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "pfkb_ribokinase_family",
+      "assigned_self_consistency": 0.0,
+      "assigned_total": 128,
+      "disagree_count": 100,
+      "nearest_fingerprint": "pfka_phosphofructokinase",
+      "pair_fraction_of_assigned": 0.7812,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "ghmp_small_molecule_kinase",
+      "assigned_self_consistency": 0.0,
+      "assigned_total": 100,
+      "disagree_count": 88,
+      "nearest_fingerprint": "pfka_phosphofructokinase",
+      "pair_fraction_of_assigned": 0.88,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metal_racemase_epimerase_non_plp",
+      "assigned_self_consistency": 0.3267,
+      "assigned_total": 150,
+      "disagree_count": 88,
+      "nearest_fingerprint": "cofactor_independent_isomerase",
+      "pair_fraction_of_assigned": 0.5867,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "molybdopterin_oxidoreductase",
+      "assigned_self_consistency": 0.508,
+      "assigned_total": 250,
+      "disagree_count": 86,
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "pair_fraction_of_assigned": 0.344,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metallophosphoesterase_nuclease",
+      "assigned_self_consistency": 0.38,
+      "assigned_total": 150,
+      "disagree_count": 64,
+      "nearest_fingerprint": "manganese_iron_superoxide_dismutase",
+      "pair_fraction_of_assigned": 0.4267,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "glycoside_hydrolase",
+      "assigned_self_consistency": 0.52,
+      "assigned_total": 150,
+      "disagree_count": 55,
+      "nearest_fingerprint": "ser_his_acid_hydrolase",
+      "pair_fraction_of_assigned": 0.3667,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metal_dependent_hydrolase",
+      "assigned_self_consistency": 0.0,
+      "assigned_total": 225,
+      "disagree_count": 46,
+      "nearest_fingerprint": "metallo_amidohydrolase_deaminase",
+      "pair_fraction_of_assigned": 0.2044,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "thiamine_diphosphate_enzyme",
+      "assigned_self_consistency": 0.7867,
+      "assigned_total": 150,
+      "disagree_count": 31,
+      "nearest_fingerprint": "metallophosphoesterase_nuclease",
+      "pair_fraction_of_assigned": 0.2067,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "glycosyltransferase",
+      "assigned_self_consistency": 0.664,
+      "assigned_total": 250,
+      "disagree_count": 24,
+      "nearest_fingerprint": "class_ii_metal_aldolase",
+      "pair_fraction_of_assigned": 0.096,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "flavin_dehydrogenase_reductase",
+      "assigned_self_consistency": 0.901,
+      "assigned_total": 202,
+      "disagree_count": 20,
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "pair_fraction_of_assigned": 0.099,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "molybdopterin_oxidoreductase",
+      "assigned_self_consistency": 0.508,
+      "assigned_total": 250,
+      "disagree_count": 18,
+      "nearest_fingerprint": "flavin_dehydrogenase_reductase",
+      "pair_fraction_of_assigned": 0.072,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "glycosyltransferase",
+      "assigned_self_consistency": 0.664,
+      "assigned_total": 250,
+      "disagree_count": 17,
+      "nearest_fingerprint": "terpene_cyclase_synthase",
+      "pair_fraction_of_assigned": 0.068,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metallophosphoesterase_nuclease",
+      "assigned_self_consistency": 0.38,
+      "assigned_total": 150,
+      "disagree_count": 16,
+      "nearest_fingerprint": "atp_amide_ligase",
+      "pair_fraction_of_assigned": 0.1067,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "pfkb_ribokinase_family",
+      "assigned_self_consistency": 0.0,
+      "assigned_total": 128,
+      "disagree_count": 15,
+      "nearest_fingerprint": "nucleoside_diphosphate_kinase",
+      "pair_fraction_of_assigned": 0.1172,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "glycosyltransferase",
+      "assigned_self_consistency": 0.664,
+      "assigned_total": 250,
+      "disagree_count": 15,
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "pair_fraction_of_assigned": 0.06,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "cofactor_independent_isomerase",
+      "assigned_self_consistency": 0.7933,
+      "assigned_total": 150,
+      "disagree_count": 14,
+      "nearest_fingerprint": "ser_his_acid_hydrolase",
+      "pair_fraction_of_assigned": 0.0933,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "glycosyltransferase",
+      "assigned_self_consistency": 0.664,
+      "assigned_total": 250,
+      "disagree_count": 13,
+      "nearest_fingerprint": "manganese_iron_superoxide_dismutase",
+      "pair_fraction_of_assigned": 0.052,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "ghmp_small_molecule_kinase",
+      "assigned_self_consistency": 0.0,
+      "assigned_total": 100,
+      "disagree_count": 12,
+      "nearest_fingerprint": "askha_sugar_acetate_kinase",
+      "pair_fraction_of_assigned": 0.12,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "zinc_lyase_hydratase",
+      "assigned_self_consistency": 0.88,
+      "assigned_total": 100,
+      "disagree_count": 12,
+      "nearest_fingerprint": "metallophosphoesterase_nuclease",
+      "pair_fraction_of_assigned": 0.12,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "class_ii_metal_aldolase",
+      "assigned_self_consistency": 0.8133,
+      "assigned_total": 150,
+      "disagree_count": 12,
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "pair_fraction_of_assigned": 0.08,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metallo_amidohydrolase_deaminase",
+      "assigned_self_consistency": 0.7,
+      "assigned_total": 150,
+      "disagree_count": 12,
+      "nearest_fingerprint": "metallophosphoesterase_nuclease",
+      "pair_fraction_of_assigned": 0.08,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metallo_amidohydrolase_deaminase",
+      "assigned_self_consistency": 0.7,
+      "assigned_total": 150,
+      "disagree_count": 12,
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "pair_fraction_of_assigned": 0.08,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "cobalamin_radical_rearrangement",
+      "assigned_self_consistency": 0.825,
+      "assigned_total": 120,
+      "disagree_count": 11,
+      "nearest_fingerprint": "cofactor_independent_isomerase",
+      "pair_fraction_of_assigned": 0.0917,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "copper_oxidoreductase",
+      "assigned_self_consistency": 0.8214,
+      "assigned_total": 140,
+      "disagree_count": 11,
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "pair_fraction_of_assigned": 0.0786,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "terpene_cyclase_synthase",
+      "assigned_self_consistency": 0.9249,
+      "assigned_total": 173,
+      "disagree_count": 11,
+      "nearest_fingerprint": "manganese_iron_superoxide_dismutase",
+      "pair_fraction_of_assigned": 0.0636,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "pfkb_ribokinase_family",
+      "assigned_self_consistency": 0.0,
+      "assigned_total": 128,
+      "disagree_count": 10,
+      "nearest_fingerprint": "askha_sugar_acetate_kinase",
+      "pair_fraction_of_assigned": 0.0781,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "copper_oxidoreductase",
+      "assigned_self_consistency": 0.8214,
+      "assigned_total": 140,
+      "disagree_count": 10,
+      "nearest_fingerprint": "metallo_amidohydrolase_deaminase",
+      "pair_fraction_of_assigned": 0.0714,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "cytochrome_p450_monooxygenase",
+      "assigned_self_consistency": 0.952,
+      "assigned_total": 250,
+      "disagree_count": 10,
+      "nearest_fingerprint": "flavin_monooxygenase",
+      "pair_fraction_of_assigned": 0.04,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metal_dependent_hydrolase",
+      "assigned_self_consistency": 0.0,
+      "assigned_total": 225,
+      "disagree_count": 9,
+      "nearest_fingerprint": "metallopeptidase",
+      "pair_fraction_of_assigned": 0.04,
+      "sample_rows": [
+        {
+          "chemistry_cohesion": 0.707,
+          "entry_id": "uniprot:Q96TA2",
+          "remaining_promotion_audits": [
+            "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+            "foldseek_structural_near_duplicate_screen"
+          ],
+          "structure_confirmability": "apo"
+        }
+      ]
+    },
+    {
+      "assigned_fingerprint": "heme_peroxidase_oxidase",
+      "assigned_self_consistency": 0.8889,
+      "assigned_total": 99,
+      "disagree_count": 8,
+      "nearest_fingerprint": "cytochrome_p450_monooxygenase",
+      "pair_fraction_of_assigned": 0.0808,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "class_ii_metal_aldolase",
+      "assigned_self_consistency": 0.8133,
+      "assigned_total": 150,
+      "disagree_count": 8,
+      "nearest_fingerprint": "manganese_iron_superoxide_dismutase",
+      "pair_fraction_of_assigned": 0.0533,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "cofactor_independent_isomerase",
+      "assigned_self_consistency": 0.7933,
+      "assigned_total": 150,
+      "disagree_count": 8,
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "pair_fraction_of_assigned": 0.0533,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "cobalamin_radical_rearrangement",
+      "assigned_self_consistency": 0.825,
+      "assigned_total": 120,
+      "disagree_count": 7,
+      "nearest_fingerprint": "metal_dependent_hydrolase",
+      "pair_fraction_of_assigned": 0.0583,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "class_ii_metal_aldolase",
+      "assigned_self_consistency": 0.8133,
+      "assigned_total": 150,
+      "disagree_count": 7,
+      "nearest_fingerprint": "molybdopterin_oxidoreductase",
+      "pair_fraction_of_assigned": 0.0467,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "cofactor_independent_isomerase",
+      "assigned_self_consistency": 0.7933,
+      "assigned_total": 150,
+      "disagree_count": 7,
+      "nearest_fingerprint": "cobalamin_radical_rearrangement",
+      "pair_fraction_of_assigned": 0.0467,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metallophosphomonoesterase",
+      "assigned_self_consistency": 0.8733,
+      "assigned_total": 150,
+      "disagree_count": 7,
+      "nearest_fingerprint": "manganese_iron_superoxide_dismutase",
+      "pair_fraction_of_assigned": 0.0467,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "metallophosphomonoesterase",
+      "assigned_self_consistency": 0.8733,
+      "assigned_total": 150,
+      "disagree_count": 7,
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "pair_fraction_of_assigned": 0.0467,
+      "sample_rows": []
+    },
+    {
+      "assigned_fingerprint": "molybdopterin_oxidoreductase",
+      "assigned_self_consistency": 0.508,
+      "assigned_total": 250,
+      "disagree_count": 7,
+      "nearest_fingerprint": "ser_his_acid_hydrolase",
+      "pair_fraction_of_assigned": 0.028,
+      "sample_rows": []
+    }
+  ]
+}

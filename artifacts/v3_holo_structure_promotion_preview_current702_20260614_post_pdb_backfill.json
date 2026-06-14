@@ -1,0 +1,42 @@
+{
+  "artifact_id": "v3_holo_structure_promotion_preview_current702",
+  "counts": {
+    "already_confirmed": 260,
+    "deferred_over_fingerprint_cap": 0,
+    "deferred_over_limit": 61,
+    "expansion_labels": 6862,
+    "holo_confirmed_this_run": 0,
+    "no_holo_pdb_found": 50,
+    "no_pdb_or_cofactor": 4760,
+    "not_chemistry_corroborated": 507,
+    "rows_fetched_this_run": 50,
+    "rows_holo_confirmed_after": 260,
+    "seed_labels": 5638
+  },
+  "created_utc": "2026-06-14T15:31:18Z",
+  "guardrails": {
+    "candidate_selection_is_leakage_safe_chemistry_only": true,
+    "coordinate_regeneratable_from_pdb_id": true,
+    "existing_structure_provenance_preserved_additive": true,
+    "frozen_current702_benchmark_preserved": true,
+    "large_cifs_never_committed": true,
+    "row_count_unchanged": true,
+    "structure_is_review_only_not_predictive_feature": true,
+    "writes_expansion_registry_only": true
+  },
+  "holo_confirmed_by_fingerprint": {},
+  "holo_confirmed_examples": [],
+  "next_action": "Review counts, then re-run with --apply to write data/registries/external_bronze_labels.json (frozen current702 never written, sha printed before/after; row count unchanged; only evidence.structure_provenance.holo_pdb_confirmation added). The confirmed rows become silver_ready_pending_geometry_run in the promotion preview -- still pending the SEPARATE authorized geometry-confirmation run. Use --limit / --per-fingerprint-cap for chunked runs; the cache makes re-runs resumable.",
+  "policy": {
+    "candidate_definition": "bronze seed label whose chemistry independently corroborates its fingerprint (nearest centroid == assigned AND own cohesion >= 0.92) and that carries experimental pdb_ids + an annotated cofactor",
+    "cohesion_threshold": 0.92,
+    "holo_test": "the annotated cofactor's PDB HETATM comp id is present in the experimental coordinates -- the SAME test bronze_silver_promotion_preview uses"
+  },
+  "schema_version": "holo_structure_promotion.v1",
+  "status": "non_destructive_preview_pending_explicit_registry_write",
+  "status_counts": {
+    "holo_experimental_coordinate_confirmed": 260,
+    "no_holo_pdb_found": 50
+  },
+  "what": "confirm HOLO experimental-PDB coordinates for chemistry-corroborated bronze labels and record evidence.structure_provenance.holo_pdb_confirmation (pdb_id + cofactor comp ids present + sha256); the mmCIFs are regeneratable from the PDB id and are NOT committed; structure is review-only mechanism context (a bronze->silver signal), never a predictive feature"
+}
