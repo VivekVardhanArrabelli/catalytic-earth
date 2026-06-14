@@ -13,6 +13,37 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: Ser/Thr protein phosphatase runner built; live sourcing blocked.**
+Treat this as the newest operational state. Registry-size safety remains green and frozen
+current702 stayed byte-unchanged at sha `5eec9bef...`. The current positive fingerprint universe is
+now `label_factory_v1_41fp`.
+
+The guarded Ser/Thr protein phosphatase lane now exists:
+`src/catalytic_earth/ser_thr_protein_phosphatase_sourcing.py`,
+`scripts/source_ser_thr_protein_phosphatase_family.py`, new fingerprint
+`ser_thr_protein_phosphatase`, ontology family
+`dinuclear_metal_phosphoprotein_dephosphorylation`, and 41fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_41fp_1025.json`. EC 3.1.3.16/48
+is scope only; counted corroboration comes from protein-phosphatase family/name context, dinuclear
+metal/cofactor or binding-site context, and phosphoprotein dephosphorylation reaction evidence.
+
+No rows were applied because live UniProt REST reads stalled before complete previews could be
+written. Timeout-bounded preview windows across offsets 0-14 record **13** fetched candidate rows,
+**0** target mechanism-corroborated rows, **13** `no_mechanism_corroboration` holds, **0**
+novelty-admitted rows, and **26** fetch failures; blocker details are in
+`work/ser_thr_protein_phosphatase_live_sourcing_blocker_current702_20260614.md`. Honest counters
+therefore remain external registry **7308** rows, combined label surface **8010**, combined seed
+surface **6314**, positive bronze **6267**, OOS bronze **1696**, silver_confirmed **47**, and
+projected **0**.
+
+Post-run local artifacts are current: high-yield factory reports **1** ready existing lane
+(`ser_thr_protein_phosphatase`) with projected clean admits **150**; coverage reports no holes and
+Gini **0.1807**; novelty replay remains **6847** admit / **414** throttle / **47** reject.
+Bronze->silver preview now reports **202** silver-ready pending geometry rows, **1630**
+chemistry-disagree holds, and **1779** low-cohesion holds; refreshed geometry confirmation found
+**0** additional silver passes among **108** runnable rows. Next action is to rerun bounded Ser/Thr
+previews under stable UniProt access, then row-audit/apply only if all mechanism-first gates pass.
+
 **2026-06-14 automation update: alpha/beta hydrolase esterase/lipase lane applied and next lane reset.**
 Treat this as the newest operational state. Registry-size safety remains green: the external
 registry is still a small sharded manifest plus shard files below the per-file safety threshold.

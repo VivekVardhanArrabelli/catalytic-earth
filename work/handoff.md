@@ -1,5 +1,54 @@
 # Handoff
 
+## Session run - Ser/Thr protein phosphatase runner built; live sourcing blocked (2026-06-14, Codex automation)
+
+- Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; the external
+  registry remained sharded and GitHub-safe. No external bronze rows were applied and frozen
+  current702 stayed sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Implemented the guarded `ser_thr_protein_phosphatase` lane as the 41st positive fingerprint:
+  `src/catalytic_earth/ser_thr_protein_phosphatase_sourcing.py`,
+  `scripts/source_ser_thr_protein_phosphatase_family.py`, new fingerprint
+  `ser_thr_protein_phosphatase`, ontology family
+  `dinuclear_metal_phosphoprotein_dephosphorylation`, disambiguation/source-wall rules, focused
+  tests, and OOS preregistration
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_41fp_1025.json`.
+  EC 3.1.3.16/48 is scope only; counted corroboration requires protein-phosphatase family/name,
+  dinuclear metal/cofactor/binding-site context, and phosphoprotein dephosphorylation reaction
+  evidence. HAD-like phosphatase, Cys-PTP/DSP/PTEN, small-molecule phosphatase, kinase,
+  transferase, phosphodiesterase/nuclease, side-EC, EC-only, and multi-fingerprint rows stay held.
+  `predictive_evidence` remains empty.
+- Live sourcing did **not** apply rows. Full, 20-row, 5-row, and 1-row previews stalled in UniProt
+  REST reads and were interrupted before writing preview artifacts. A new timeout option was added
+  to the Ser/Thr runner. Timeout-bounded windows
+  `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_timeout_window00_current702_20260614.json`
+  through
+  `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_timeout_window12_14_current702_20260614.json`
+  completed non-destructively: **11** windows covering offsets 0-14, **13** fetched candidate rows,
+  **0** target mechanism-corroborated rows, **13** `no_mechanism_corroboration` holds, **0**
+  novelty-admitted rows, and **26** fetch failures. Durable blocker:
+  `work/ser_thr_protein_phosphatase_live_sourcing_blocker_current702_20260614.md`.
+- Refreshed planning/quality artifacts without registry mutation:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_ser_thr_runner.json`
+  now reports **1** ready existing lane (`ser_thr_protein_phosphatase`) with projected clean admits
+  **150** and no blocked high-yield lanes. Coverage remains **8010** combined labels, fingerprint
+  Gini **0.1807**, no holes/under-floor fingerprints, and only `metal_dependent_hydrolase` over cap.
+  Novelty replay remains **6847** admit / **414** throttle / **47** reject across **7308** external
+  rows.
+- Quality refresh: bronze->silver preview reports **202** silver-ready pending geometry rows,
+  **1630** chemistry-disagree holds, and **1779** low-cohesion holds. Silver geometry audit reports
+  **108** runnable / **94** blocked rows, and the non-destructive geometry confirmation run scored
+  **108** ready rows with **0** passes and **108** holds. Chemistry-disagree and cohesion summaries
+  were written as review-only artifacts; no demotions, threshold relaxations, or silver flips.
+- Validation so far: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (**12** source
+  records, **41** fingerprints, **38** ontology families, **702** curated labels); focused
+  Ser/Thr/disambiguation/leakage/factory/critical registry suite **305 passed, 14 subtests
+  passed**; full suite initially found two stale 41fp count/list pins, both patched and direct
+  rerun **2 passed**. Final full-suite result is recorded in `work/status.md`.
+- Next concrete action: rerun the Ser/Thr protein phosphatase preview with stable UniProt REST
+  access, preferably using `--fetch-timeout-seconds` and bounded windows; aggregate only completed
+  previews, run a row guardrail audit, and apply only if the mechanism-first gates pass. If UniProt
+  remains unstable, implement a repo-supported batch entry fetch/cache path before sourcing.
+
 ## Session run - Alpha/beta hydrolase esterase/lipase bronze lane applied (2026-06-14, Codex automation)
 
 - Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; the external

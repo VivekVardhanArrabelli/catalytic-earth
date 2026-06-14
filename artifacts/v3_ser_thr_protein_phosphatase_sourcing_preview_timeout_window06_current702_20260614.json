@@ -1,0 +1,142 @@
+{
+  "applied_labels": [],
+  "artifact_id": "v3_ser_thr_protein_phosphatase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {},
+    "current_combined_labels": 8010,
+    "disambiguation_hold_count": 0,
+    "disambiguation_hold_reason_counts": {},
+    "disambiguation_skip_count": 0,
+    "fetched_candidate_rows": 0,
+    "gate_admitted_before_cap_guard": 0,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 3,
+    "max_records_per_lane": 260,
+    "mechanism_corroborated_bronze_labels": 0,
+    "novelty_admitted_labels": 0,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8010,
+    "record_limit_per_lane": 1,
+    "record_offset_per_lane": 6
+  },
+  "created_utc": "2026-06-14T22:44:16Z",
+  "deploy_missing_active_site_context_per_family": {
+    "ser_thr_protein_phosphatase": "dinuclear_metal_phosphoprotein_dephosphorylation_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {},
+    "current_registry_labels": 7308,
+    "decision_counts": {},
+    "examined_rows": 0,
+    "fingerprint_counts": {},
+    "hold_count": 0,
+    "hold_reason_counts": {},
+    "importable_new_labels": 0,
+    "per_pool_decision_counts": {
+      "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch": {}
+    },
+    "projected_registry_labels_if_merged": 7308,
+    "skip_count": 0
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_protein_phosphatase_metal_annotation",
+  "families_sourced": [
+    "ser_thr_protein_phosphatase"
+  ],
+  "fetch_failure_count": 3,
+  "fetch_failures": [
+    {
+      "error": "fetch exceeded 8s timeout",
+      "error_type": "_FetchTimeout",
+      "lane_id": "ser_thr_protein_phosphatase_ec_3_1_3_16_named",
+      "source": "uniprot_search"
+    },
+    {
+      "error": "fetch exceeded 8s timeout",
+      "error_type": "_FetchTimeout",
+      "lane_id": "ser_thr_protein_phosphatase_metal_context",
+      "source": "uniprot_search"
+    },
+    {
+      "error": "fetch exceeded 8s timeout",
+      "error_type": "_FetchTimeout",
+      "lane_id": "ser_thr_protein_phosphatase_phosphoprotein_reaction",
+      "source": "uniprot_search"
+    }
+  ],
+  "floor_projection": {
+    "ser_thr_protein_phosphatase": {
+      "admitted_this_run": 0,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 0,
+      "deficit_to_floor_after": 100,
+      "deficit_to_floor_before": 100,
+      "deploy_missing_active_site_context": "dinuclear_metal_phosphoprotein_dephosphorylation_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 0,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "had_ptp_small_molecule_phosphatase_boundary_guard": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "ser_thr_protein_phosphatase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "protein_phosphatase_handles_scope_admission_only": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "ser_thr_protein_phosphatase_ec_3_1_3_16_named",
+      "query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48)) AND ((protein_name:\"protein phosphatase\") OR (protein_name:\"serine/threonine-protein phosphatase\") OR (protein_name:calcineurin) OR (keyword:Phosphoprotein))",
+      "record_count": 0,
+      "status": "query_fetch_failed",
+      "target_family_lane": "ser_thr_protein_phosphatase"
+    },
+    {
+      "lane_id": "ser_thr_protein_phosphatase_metal_context",
+      "query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48)) AND ((protein_name:\"protein phosphatase\") OR (protein_name:calcineurin)) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron) OR (cc_cofactor:magnesium) OR (ft_binding:manganese) OR (ft_binding:iron) OR (ft_binding:magnesium))",
+      "record_count": 0,
+      "status": "query_fetch_failed",
+      "target_family_lane": "ser_thr_protein_phosphatase"
+    },
+    {
+      "lane_id": "ser_thr_protein_phosphatase_phosphoprotein_reaction",
+      "query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48)) AND ((cc_catalytic_activity:phosphoprotein) OR (cc_catalytic_activity:\"phosphorylated protein\") OR (cc_catalytic_activity:\"protein + phosphate\"))",
+      "record_count": 0,
+      "status": "query_fetch_failed",
+      "target_family_lane": "ser_thr_protein_phosphatase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {},
+    "reason_counts": {}
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_ser_thr_protein_phosphatase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

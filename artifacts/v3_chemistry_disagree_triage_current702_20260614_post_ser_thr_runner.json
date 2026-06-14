@@ -1,0 +1,79 @@
+{
+  "artifact_id": "v3_chemistry_disagree_triage_current702_20260614_post_ser_thr_runner",
+  "counts": {
+    "fingerprints_with_review_chemistry_disagrees": 33,
+    "review_queue_sample_rows": 25,
+    "total_review_chemistry_disagrees": 1630
+  },
+  "created_utc": "2026-06-14T22:35:00Z",
+  "guardrails": {
+    "demotions_applied": false,
+    "predictive_evidence_created": false,
+    "registry_written": false,
+    "review_only_summary": true,
+    "thresholds_changed": false
+  },
+  "recommended_next_action": "Materialize a full row-level chemistry-disagree export before any demotion; prioritize largest buckets and legacy umbrella-to-v2-subfamily collisions as representation/split review.",
+  "review_chemistry_disagrees_by_fingerprint": {
+    "alpha_beta_hydrolase_esterase_lipase": 120,
+    "askha_sugar_acetate_kinase": 3,
+    "atp_amide_ligase": 20,
+    "class_ii_metal_aldolase": 28,
+    "coa_acyltransferase": 4,
+    "cobalamin_radical_rearrangement": 20,
+    "cofactor_independent_isomerase": 23,
+    "copper_oxidoreductase": 15,
+    "cytochrome_p450_monooxygenase": 12,
+    "flavin_dehydrogenase_reductase": 9,
+    "flavin_monooxygenase": 6,
+    "ghmp_small_molecule_kinase": 100,
+    "glycoside_hydrolase": 75,
+    "glycosyltransferase": 84,
+    "had_like_phosphatase": 4,
+    "heme_peroxidase_oxidase": 11,
+    "metal_dependent_hydrolase": 225,
+    "metal_racemase_epimerase_non_plp": 101,
+    "metallo_amidohydrolase_deaminase": 40,
+    "metallopeptidase": 117,
+    "metallophosphoesterase_nuclease": 93,
+    "metallophosphomonoesterase": 110,
+    "molybdopterin_oxidoreductase": 123,
+    "nad_p_dehydrogenase": 68,
+    "non_heme_iron_2og_dioxygenase": 7,
+    "pfkb_ribokinase_family": 128,
+    "plp_dependent_enzyme": 8,
+    "protein_kinase_ser_thr_tyr": 2,
+    "sam_methyltransferase": 9,
+    "ser_his_acid_hydrolase": 8,
+    "terpene_cyclase_synthase": 13,
+    "thiamine_diphosphate_enzyme": 32,
+    "zinc_lyase_hydratase": 12
+  },
+  "review_queue_nearest_fingerprint_counts": {
+    "manganese_iron_superoxide_dismutase": 1,
+    "metallopeptidase": 1,
+    "zinc_lyase_hydratase": 23
+  },
+  "sample_pair_triage": [
+    {
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "interpretation": "neighbor-family representation collision; needs source-free feature or geometry review",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "sample_count": 23
+    },
+    {
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "interpretation": "legacy umbrella split/representation gap; do not demote from sample alone",
+      "nearest_fingerprint": "metallopeptidase",
+      "sample_count": 1
+    },
+    {
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "interpretation": "manual review candidate; no mutation without row-level provenance",
+      "nearest_fingerprint": "manganese_iron_superoxide_dismutase",
+      "sample_count": 1
+    }
+  ],
+  "source_preview": "artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_ser_thr_runner.json",
+  "status": "non_destructive_triage_no_registry_mutation"
+}

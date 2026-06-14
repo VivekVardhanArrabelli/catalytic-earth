@@ -1713,21 +1713,6 @@ class DisambiguateRowTests(unittest.TestCase):
             "metallophosphomonoesterase",
         )
 
-        protein_phosphatase = _row(cofactors=["Mn(2+)"], ec=["3.1.3.16"])
-        protein_phosphatase["protein_name"] = "Serine/threonine-protein phosphatase"
-        protein_phosphatase["keywords"] = ["Phosphatase"]
-        protein_phosphatase["rhea_ec_provenance"]["rhea_records"] = [
-            {
-                "rhea_id": "RHEA:HP0002",
-                "reaction": "phosphoprotein + H2O = protein + phosphate",
-                "ec_number": "3.1.3.16",
-            }
-        ]
-        self.assertEqual(
-            disambiguate_row(protein_phosphatase)["fingerprint_id"],
-            "metallophosphomonoesterase",
-        )
-
         phosphodiesterase = _row(cofactors=["Mg(2+)"], ec=["3.1.3.1", "3.1.4.1"])
         phosphodiesterase["protein_name"] = "HAD-like phosphodiesterase boundary"
         phosphodiesterase["keywords"] = ["Phosphatase"]
@@ -1752,6 +1737,70 @@ class DisambiguateRowTests(unittest.TestCase):
         self.assertEqual(
             disambiguate_row(phosphodiesterase)["fingerprint_id"],
             "metallophosphoesterase_nuclease",
+        )
+
+    def test_ser_thr_protein_phosphatase_requires_protein_substrate_and_metal(self) -> None:
+        row = _row(cofactors=["Mn(2+)"], ec=["3.1.3.16"])
+        row["protein_name"] = "Serine/threonine-protein phosphatase"
+        row["keywords"] = ["Phosphoprotein", "Phosphatase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:STP0001",
+                "reaction": "phosphoprotein + H2O = protein + phosphate",
+                "ec_number": "3.1.3.16",
+            }
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(decision["fingerprint_id"], "ser_thr_protein_phosphatase")
+        axes = decision["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("cofactor_or_cosubstrate", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_ser_thr_protein_phosphatase_controls_hold(self) -> None:
+        ec_only = _row(ec=["3.1.3.16"])
+        ec_only["protein_name"] = "Serine/threonine-protein phosphatase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        no_metal = _row(ec=["3.1.3.16"])
+        no_metal["protein_name"] = "Serine/threonine-protein phosphatase"
+        no_metal["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:STP0002",
+                "reaction": "phosphoprotein + H2O = protein + phosphate",
+                "ec_number": "3.1.3.16",
+            }
+        ]
+        self.assertEqual(disambiguate_row(no_metal)["decision"], "hold")
+
+        cys_ptp = _row(ec=["3.1.3.48"])
+        cys_ptp["protein_name"] = "Protein-tyrosine phosphatase PTP1B"
+        cys_ptp["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:STP0003",
+                "reaction": "phosphoprotein + H2O = protein + phosphate",
+                "ec_number": "3.1.3.48",
+            }
+        ]
+        cys_ptp["residue_locators"] = [
+            {
+                "position": 215,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic Cys nucleophile",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        self.assertEqual(disambiguate_row(cys_ptp)["decision"], "hold")
+
+        alkaline = _row(cofactors=["Zn(2+)"], ec=["3.1.3.1"])
+        alkaline["protein_name"] = "Alkaline phosphatase"
+        self.assertEqual(
+            disambiguate_row(alkaline)["fingerprint_id"],
+            "metallophosphomonoesterase",
         )
 
     def test_aldehyde_dehydrogenase_requires_non_ec_mechanism_handles(self) -> None:

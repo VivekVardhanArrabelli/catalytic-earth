@@ -635,6 +635,92 @@ _HAD_LIKE_PHOSPHATASE_BOUNDARY_TOKENS = (
     "kinase",
     "transferase",
 )
+# Ser/Thr protein phosphatase handles. EC 3.1.3.16/48 scopes protein-substrate
+# dephosphorylation candidates only; counted corroboration comes from protein
+# phosphatase family text, catalytic metal/cofactor or metal-binding context, and
+# Rhea/reviewed phosphoprotein dephosphorylation text. Cys-based PTP/DSP/PTEN rows,
+# HAD-like Asp-phosphatases, small-molecule phosphatases, kinases, transferases,
+# phosphodiesterases/nucleases, side-EC rows, and EC-only rows stay held.
+_SER_THR_PROTEIN_PHOSPHATASE_FAMILY_TEXT_TOKENS = (
+    "protein phosphatase",
+    "serine/threonine-protein phosphatase",
+    "serine/threonine protein phosphatase",
+    "ser/thr protein phosphatase",
+    "pp1",
+    "pp2a",
+    "pp2b",
+    "calcineurin",
+    "protein phosphatase 1",
+    "protein phosphatase 2a",
+    "protein phosphatase 2b",
+    "protein phosphatase 5",
+)
+_SER_THR_PROTEIN_PHOSPHATASE_METAL_TOKENS = (
+    "manganese",
+    "mn(2",
+    "mn2",
+    "iron",
+    "fe(2",
+    "fe2",
+    "fe(3",
+    "fe3",
+    "magnesium",
+    "mg(2",
+    "mg2",
+    "metal",
+    "dinuclear",
+    "bimetal",
+    "binuclear",
+)
+_SER_THR_PROTEIN_PHOSPHATASE_REACTION_TOKENS = (
+    "phosphoprotein",
+    "protein phosphate",
+    "phosphorylated protein",
+    "o-phospho-l-serine",
+    "o-phospho-l-threonine",
+    "o4-phospho-l-tyrosine",
+    "l-serine",
+    "l-threonine",
+    "l-tyrosine",
+)
+_SER_THR_PROTEIN_PHOSPHATASE_PRODUCT_TOKENS = (
+    "protein",
+    "phosphate",
+    "orthophosphate",
+)
+_SER_THR_PROTEIN_PHOSPHATASE_HYDROLYSIS_TOKENS = (
+    "h2o",
+    "h(2)o",
+    "water",
+    "hydrolysis",
+)
+_SER_THR_PROTEIN_PHOSPHATASE_BOUNDARY_TOKENS = (
+    "had-like",
+    "haloacid dehalogenase",
+    "phosphoserine phosphatase",
+    "phosphoglycolate phosphatase",
+    "alkaline phosphatase",
+    "purple acid phosphatase",
+    "acid phosphatase",
+    "phytase",
+    "phosphodiesterase",
+    "nuclease",
+    "exonuclease",
+    "endonuclease",
+    "ribonuclease",
+    "kinase",
+    "phosphotransferase",
+    "transferase",
+    "pten",
+    "dual specificity phosphatase",
+    "dual-specificity phosphatase",
+    "protein-tyrosine phosphatase",
+    "tyrosine-protein phosphatase",
+    "low molecular weight phosphotyrosine protein phosphatase",
+    "cysteine",
+    "cys",
+    "phosphocysteine",
+)
 # Aldehyde dehydrogenase handles. EC 1.2.1 scopes reviewed aldehyde-oxidation
 # candidates only; counted corroboration comes from ALDH family/domain text, NAD(P)
 # participant/binding context, catalytic Cys/Glu active-site evidence, and Rhea/reviewed
@@ -1567,6 +1653,43 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_had_like_phosphatase_scope_side_ec = any(
         ec and not ec.startswith("3.1.3") for ec in _ec_numbers(row)
     )
+    ser_thr_protein_phosphatase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_SER_THR_PROTEIN_PHOSPHATASE_FAMILY_TEXT_TOKENS,
+    )
+    ser_thr_protein_phosphatase_metal_context = evidence.get("metal", False) or in_any(
+        cofactor_names + feature_texts,
+        *_SER_THR_PROTEIN_PHOSPHATASE_METAL_TOKENS,
+    )
+    ser_thr_protein_phosphatase_dephosphorylation_reaction = (
+        in_any(reactions, *_SER_THR_PROTEIN_PHOSPHATASE_REACTION_TOKENS)
+        and in_any(reactions, *_SER_THR_PROTEIN_PHOSPHATASE_PRODUCT_TOKENS)
+        and in_any(reactions, *_SER_THR_PROTEIN_PHOSPHATASE_HYDROLYSIS_TOKENS)
+    )
+    ser_thr_protein_phosphatase_boundary_signal = (
+        in_any(
+            keywords + [protein_name] + feature_texts,
+            *_SER_THR_PROTEIN_PHOSPHATASE_BOUNDARY_TOKENS,
+        )
+        and not ser_thr_protein_phosphatase_family_text
+    ) or _ec_has_prefix(row, ("3.1.4", "3.1.11", "3.1.12", "3.1.13", "3.1.21", "3.1.31"))
+    ser_thr_protein_phosphatase_cys_ptp_boundary = (
+        _ec_has_prefix(row, ("3.1.3.48",))
+        or in_any(
+            keywords + [protein_name] + feature_texts,
+            "protein-tyrosine phosphatase",
+            "tyrosine-protein phosphatase",
+            "dual specificity phosphatase",
+            "dual-specificity phosphatase",
+            "pten",
+            "low molecular weight phosphotyrosine protein phosphatase",
+            "phosphocysteine",
+        )
+    ) and not ser_thr_protein_phosphatase_metal_context
+    non_ser_thr_protein_phosphatase_scope_side_ec = any(
+        ec and not (ec.startswith("3.1.3.16") or ec.startswith("3.1.3.48"))
+        for ec in _ec_numbers(row)
+    )
     aldehyde_dehydrogenase_family_text = in_any(
         reactions + keywords + [protein_name] + feature_texts,
         *_ALDEHYDE_DEHYDROGENASE_FAMILY_TEXT_TOKENS,
@@ -1864,6 +1987,12 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "had_like_phosphatase_phosphomonoester_reaction": had_like_phosphatase_phosphomonoester_reaction,
             "had_like_phosphatase_boundary_signal": had_like_phosphatase_boundary_signal,
             "non_had_like_phosphatase_scope_side_ec": non_had_like_phosphatase_scope_side_ec,
+            "ser_thr_protein_phosphatase_family_text": ser_thr_protein_phosphatase_family_text,
+            "ser_thr_protein_phosphatase_metal_context": ser_thr_protein_phosphatase_metal_context,
+            "ser_thr_protein_phosphatase_dephosphorylation_reaction": ser_thr_protein_phosphatase_dephosphorylation_reaction,
+            "ser_thr_protein_phosphatase_boundary_signal": ser_thr_protein_phosphatase_boundary_signal,
+            "ser_thr_protein_phosphatase_cys_ptp_boundary": ser_thr_protein_phosphatase_cys_ptp_boundary,
+            "non_ser_thr_protein_phosphatase_scope_side_ec": non_ser_thr_protein_phosphatase_scope_side_ec,
             "aldehyde_dehydrogenase_family_text": aldehyde_dehydrogenase_family_text,
             "aldehyde_dehydrogenase_active_site_context": aldehyde_dehydrogenase_active_site_context,
             "aldehyde_dehydrogenase_nad_p_context": aldehyde_dehydrogenase_nad_p_context,
@@ -1939,6 +2068,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("terpene_diphosphate_context")
         or evidence.get("protein_kinase_atp_mg_context")
         or evidence.get("had_like_phosphatase_asp_mg_context")
+        or evidence.get("ser_thr_protein_phosphatase_metal_context")
         or evidence.get("aldehyde_dehydrogenase_nad_p_context")
         or (
             evidence.get("metal")
@@ -1979,6 +2109,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("terpene_cyclization_reaction")
         or evidence.get("protein_kinase_phosphoryl_reaction")
         or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
+        or evidence.get("ser_thr_protein_phosphatase_dephosphorylation_reaction")
         or evidence.get("aldehyde_dehydrogenase_reaction")
         or evidence.get("alpha_beta_hydrolase_ester_hydrolysis_reaction")
     ):
@@ -2030,6 +2161,11 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
             and evidence.get("had_like_phosphatase_family_text")
         )
         or evidence.get("had_like_phosphatase_asp_mg_context")
+        or (
+            evidence.get("active_or_binding_site_present")
+            and evidence.get("ser_thr_protein_phosphatase_family_text")
+        )
+        or evidence.get("ser_thr_protein_phosphatase_metal_context")
         or evidence.get("aldehyde_dehydrogenase_active_site_context")
         or evidence.get("alpha_beta_hydrolase_ser_his_acid_context")
     ):
@@ -2065,6 +2201,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("terpene_family_text")
         or evidence.get("protein_kinase_family_text")
         or evidence.get("had_like_phosphatase_family_text")
+        or evidence.get("ser_thr_protein_phosphatase_family_text")
         or evidence.get("aldehyde_dehydrogenase_family_text")
         or evidence.get("alpha_beta_hydrolase_family_text")
     ):
@@ -2134,6 +2271,7 @@ _ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
 _TERPENE_CYCLASE_SYNTHASE_EC = ("4.2.3",)  # terpene cyclases/synthases; EC is scope only
 _PROTEIN_KINASE_SER_THR_TYR_EC = ("2.7.10", "2.7.11")  # protein kinases; EC scope only
 _HAD_LIKE_PHOSPHATASE_EC = ("3.1.3",)  # HAD-like phosphatases; EC scope only
+_SER_THR_PROTEIN_PHOSPHATASE_EC = ("3.1.3.16", "3.1.3.48")  # protein phosphatases; EC scope only
 _ALDEHYDE_DEHYDROGENASE_EC = ("1.2.1",)  # ALDH; EC scope only
 _ALPHA_BETA_HYDROLASE_ESTERASE_LIPASE_EC = ("3.1.1",)  # esterase/lipase; EC scope only
 _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
@@ -2163,7 +2301,8 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         "metallophosphomonoesterase",
         lambda c, row: c["metal"]
         and _ec_has_prefix(row, _METALLOPHOSPHOMONOESTERASE_EC)
-        and not c["had_like_phosphatase_family_text"],
+        and not c["had_like_phosphatase_family_text"]
+        and not c["ser_thr_protein_phosphatase_family_text"],
     ),
     (
         "metallo_amidohydrolase_deaminase",
@@ -2554,6 +2693,19 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         ),
     ),
     (
+        "ser_thr_protein_phosphatase",
+        lambda c, row: _ec_has_prefix(row, _SER_THR_PROTEIN_PHOSPHATASE_EC)
+        and c["ser_thr_protein_phosphatase_family_text"]
+        and c["ser_thr_protein_phosphatase_metal_context"]
+        and c["ser_thr_protein_phosphatase_dephosphorylation_reaction"]
+        and not c["ser_thr_protein_phosphatase_boundary_signal"]
+        and not c["ser_thr_protein_phosphatase_cys_ptp_boundary"]
+        and not c["had_like_phosphatase_family_text"]
+        and not c["kinase_boundary"]
+        and not c["transferase_side_ec"]
+        and not c["non_ser_thr_protein_phosphatase_scope_side_ec"],
+    ),
+    (
         "aldehyde_dehydrogenase",
         lambda c, row: _ec_has_prefix(row, _ALDEHYDE_DEHYDROGENASE_EC)
         and c["aldehyde_dehydrogenase_family_text"]
@@ -2673,6 +2825,16 @@ def _synthesize_cofactor_provenance(
         or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
     ):
         records = [{"name": "Mg2+/Asp phosphoenzyme phosphomonoesterase context", "cross_reference": {"id": None}}]
+    elif fingerprint == "ser_thr_protein_phosphatase" and (
+        evidence.get("ser_thr_protein_phosphatase_metal_context")
+        or evidence.get("ser_thr_protein_phosphatase_dephosphorylation_reaction")
+    ):
+        records = [
+            {
+                "name": "dinuclear metal protein-substrate dephosphorylation context",
+                "cross_reference": {"id": None},
+            }
+        ]
     elif fingerprint == "aldehyde_dehydrogenase" and evidence.get("aldehyde_dehydrogenase_nad_p_context"):
         records = [{"name": "NAD(P)+ aldehyde dehydrogenase cosubstrate", "cross_reference": {"id": None}}]
     elif fingerprint == "alpha_beta_hydrolase_esterase_lipase" and (

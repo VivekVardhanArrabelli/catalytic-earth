@@ -155,6 +155,9 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         cap_ceiling=DEFAULT_CONFUSABLE_CAP,
         chemistry_confusable=True,
         novelty_keep_factor=0.4,
+        existing_fingerprint_id="ser_thr_protein_phosphatase",
+        current_runner="scripts/source_ser_thr_protein_phosphatase_family.py",
+        oos_preregistration_required=False,
         ambiguity_with_existing=("metallophosphomonoesterase",),
         rationale_template=(
             "Mechanistically useful protein-substrate phosphatase split, but it overlaps "

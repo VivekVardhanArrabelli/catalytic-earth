@@ -26,6 +26,48 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SER/THR PROTEIN PHOSPHATASE RUNNER BUILT; LIVE SOURCING BLOCKED (2026-06-14 automation).**
+  Newest operational state: hard safety remains green and the current positive universe is now
+  `label_factory_v1_41fp`. Added fingerprint `ser_thr_protein_phosphatase`, ontology family
+  `dinuclear_metal_phosphoprotein_dephosphorylation`, source runner
+  `src/catalytic_earth/ser_thr_protein_phosphatase_sourcing.py`, script
+  `scripts/source_ser_thr_protein_phosphatase_family.py`, source-wall/disambiguation rules, tests,
+  and OOS preregistration
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_41fp_1025.json`.
+
+  EC 3.1.3.16/48 is scope/admission context only. Counted corroboration requires
+  protein-phosphatase family/name context, dinuclear metal/cofactor or binding-site context, and
+  phosphoprotein dephosphorylation reaction evidence. HAD-like phosphatase, Cys-PTP/DSP/PTEN,
+  small-molecule phosphatase, kinase, transferase, phosphodiesterase/nuclease, side-EC, EC-only,
+  and multi-fingerprint rows remain held. No predictive evidence was added.
+
+  No bronze rows were applied. Full, 20-row, 5-row, and 1-row live previews stalled on UniProt REST
+  reads and were interrupted before writing preview artifacts. The Ser/Thr runner now supports
+  `--fetch-timeout-seconds`; timeout-bounded windows across offsets 0-14 wrote cleanly with **13**
+  fetched candidate rows, **0** target mechanism-corroborated rows, **13**
+  `no_mechanism_corroboration` holds, **0** novelty-admitted rows, and **26** fetch failures. See blocker
+  `work/ser_thr_protein_phosphatase_live_sourcing_blocker_current702_20260614.md`.
+
+  Current honest counters are unchanged from the alpha/beta apply: external rows **7308** =
+  external seed **6084** + external OOS **1224**, with external silver **30**. Combined label
+  surface **8010**; combined seed surface **6314**; combined OOS **1696**; positive bronze
+  **6267**; silver_confirmed **47**; projected **0**.
+
+  Refreshed artifacts:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_ser_thr_runner.json`
+  reports **1** ready existing lane with projected clean admits **150** and no blocked high-yield
+  lanes; coverage remains **8010** combined, Gini **0.1807**, no holes/under-floor fingerprints,
+  and only `metal_dependent_hydrolase` over cap; novelty replay remains **6847** admit / **414**
+  throttle / **47** reject. Bronze->silver preview reports **202** silver-ready pending geometry,
+  **1630** chemistry-disagree, and **1779** low-cohesion holds. Silver geometry audit reports
+  **108** runnable / **94** blocked rows, and non-destructive geometry confirmation found **0**
+  additional passes.
+
+  Next concrete action: rerun the Ser/Thr protein phosphatase preview with stable UniProt REST
+  access using bounded windows and `--fetch-timeout-seconds`; aggregate only completed previews,
+  run row guardrails, and apply only if the mechanism-first gates pass. If UniProt remains
+  unstable, add a repo-supported batch entry fetch/cache path before sourcing.
+
 - **ALPHA/BETA HYDROLASE ESTERASE/LIPASE BRONZE LANE APPLIED (2026-06-14 automation).**
   Newest operational state: hard safety is green after the 40th positive fingerprint expansion.
   The external registry remains a sharded manifest plus shard files below the per-file safety

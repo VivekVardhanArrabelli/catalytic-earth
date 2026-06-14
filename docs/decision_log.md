@@ -3,6 +3,35 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: SER/THR PROTEIN PHOSPHATASE IS A GUARDED 41ST FINGERPRINT, BUT NOT YET APPLIED
+
+Decision: add `ser_thr_protein_phosphatase` as the 41st positive fingerprint and keep the source
+wall mechanism-first. EC 3.1.3.16/48 may scope/fetch/admit candidate rows but is never a counted
+corroborator. The counted axes are protein-phosphatase family/name context, dinuclear
+metal/cofactor or binding-site context, and Rhea/reviewed phosphoprotein dephosphorylation reaction
+context. Protein names, keywords, EC, lane names, source prose, and broadened handles remain
+excluded context and are not predictive features.
+
+Implementation: added `src/catalytic_earth/ser_thr_protein_phosphatase_sourcing.py`,
+`scripts/source_ser_thr_protein_phosphatase_family.py`, the `ser_thr_protein_phosphatase`
+fingerprint, ontology family `dinuclear_metal_phosphoprotein_dephosphorylation`, 41fp OOS
+preregistration artifact `artifacts/v3_external_hard_negative_next_tranche_preregistration_41fp_1025.json`,
+and focused tests. Updated the current positive-fingerprint universe to `label_factory_v1_41fp`;
+frozen current702 labels stay stamped with their historical decision version and were not written.
+
+Measured result: no bronze rows were applied. Full, 20-row, 5-row, and 1-row live previews stalled
+on UniProt REST reads before complete preview artifacts could be written. After adding per-fetch
+timeouts, bounded windows across offsets 0-14 wrote non-destructive artifacts with **13** fetched
+candidate rows, **0** target mechanism-corroborated rows, **13** `no_mechanism_corroboration`
+holds, **0** novelty-admitted rows, and **26** fetch failures. The lane is now recognized by the
+high-yield factory as an existing runner with **150** projected clean admits, but it still needs a
+completed larger preview and row guardrail audit before any apply.
+
+Decision: do not demote chemistry-disagree rows or relax cohesion thresholds from refreshed
+post-41fp previews. `artifacts/v3_chemistry_disagree_triage_current702_20260614_post_ser_thr_runner.json`
+and `artifacts/v3_cohesion_threshold_calibration_current702_20260614_post_ser_thr_runner.json`
+are review-only summaries; they changed no labels, no thresholds, and no predictive evidence.
+
 ## 2026-06-14: ALPHA/BETA HYDROLASE ESTERASE/LIPASE IS A COUNTED BRONZE FAMILY WITH NON-EC CORROBORATION
 
 Decision: add `alpha_beta_hydrolase_esterase_lipase` as the 40th positive fingerprint and keep
