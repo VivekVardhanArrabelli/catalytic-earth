@@ -1,14 +1,14 @@
 # Handoff
 
-## Session run - Reaction-aware caps + reaction-saturation trim preview, NO apply (2026-06-14, Claude Code automation)
+## Session run - Reaction-aware caps + reaction-saturation trim APPLIED (2026-06-14, Claude Code automation)
 
 - Pivoted from volume growth to diversity-quality. Built forward prevention + backward
-  cleanup and STOPPED before any registry rewrite. Rebased onto the protein-kinase 37fp
-  lane on main; current state: external bronze **7363**, combined **8065**, **37**
-  fingerprints; frozen current702 byte-unchanged sha256
-  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; counters separate
-  (positive_bronze 6352, oos_bronze 1696, silver_ready 0, silver_confirmed 17,
-  projected 0).
+  cleanup, previewed, then APPLIED the trim on authorization. Rebased onto the
+  protein-kinase 37fp lane on main first. Post-apply state: external bronze **6934** (was
+  7363), combined **7636** (was 8065), **37** fingerprints; frozen current702
+  byte-unchanged sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`
+  (printed identical before/after the rewrite); counters separate (positive_bronze 5923
+  (was 6352), oos_bronze 1696, silver_ready 0, silver_confirmed 17, projected 0).
 - Engine (forward): `coverage_redundancy_audit.reaction_aware_cap` =
   `clamp(rate*distinct_reactions, floor, ceiling)` (rate 8 / floor 100 / ceiling 250);
   governor now flags `reaction_saturated` families (11 at rate 8, surplus 451) and
@@ -17,33 +17,39 @@
   gained opt-in `per_reaction_cap` (default `None` = old behavior; `DiversityState`
   tracks per-reaction occupancy per scope), enforced only at/above floor so holes still
   reach the floor.
-- Deliverable (PREVIEW ONLY): new `src/catalytic_earth/reaction_saturation_trim.py`,
+- Deliverable: new `src/catalytic_earth/reaction_saturation_trim.py`,
   `scripts/trim_reaction_saturation.py`, CLI `build-reaction-saturation-trim`,
-  `tests/test_reaction_saturation_trim.py`. Preview
+  `tests/test_reaction_saturation_trim.py`. Trim
   `artifacts/v3_reaction_saturation_trim_preview_current702_20260614.json` /
   `work/reaction_saturation_trim_preview_current702_20260614.md`: 9 reaction-saturated
   families trimmed (labels/rxn>10 AND over cap), **429** demoted, expansion 7363->6934,
   combined 8065->7636, positive_bronze 6352->5923 (oos unchanged). Per family SOD
   166->100, pfka 150->100, ghmp 150->100, deoxynucleoside 150->100, zinc 113->100,
   biotin 150->100, askha 150->100, ndp 150->100, protein_kinase_ser_thr_tyr 150->100.
-  Reaction diversity preserved in all 9. Gini 0.1352->0.1874 (rises by design;
+  Reaction diversity preserved in all 9. Gini 0.1352->0.1872 (rises by design;
   labels/rxn is the real metric and drops to the cap). Near-saturated held: cobalamin,
   pfkb, radical_sam. `select_diverse_keep` keeps >=1 row per distinct reaction then
   maximizes organism/length/cluster spread via the near-dup proxy (mmseqs noted as
-  stronger offline dedup). Apply path `apply_reaction_saturation_trim_to_registry` BUILT
-  but NOT called.
-- Guards: frozen NEVER written; `validate` ok (12 source / 37 fp / 34 ontology / 702
-  labels); `git diff --check` clean; registries byte-unchanged. The 2 trivial count pins
-  (coverage 8065/7363, novelty 7363) are current from the protein-kinase lane and pass;
+  stronger offline dedup). Applied via `apply_reaction_saturation_trim_to_registry`
+  (non-destructive expansion-registry rewrite; dropped only the 429 demoted ids,
+  re-validated every kept label through MechanismLabel.from_dict).
+- Post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_reaction_trim_applied.json`
+  (combined 7636, Gini 0.1872, holes [], under-floor [], over-cap
+  ['metal_dependent_hydrolase'], floor deficit 0) and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260614_reaction_trim_applied.json`
+  (6934 rows; admit 6478 / reject 47 / throttle 409; would-not-readmit 456).
+- Guards: frozen NEVER written (sha identical before/after); `validate` ok (12 source /
+  37 fp / 34 ontology / 702 labels); `git diff --check` clean; frozen byte-unchanged.
+  Refreshed the 2 count pins to post-trim values (coverage 7636/6934, novelty 6934);
   left flagged the pre-existing failures (epk, atp_amide_ligase, pfka_sourcing,
   bronze_silver_promotion, cofactor_channel/calibration, generalization pin,
   geometry_retrieval, mechanism_representation_loop, sequence_cofactor_channel,
   transfer_scope SDR, numpy collection error).
-- Next: authorize `scripts/trim_reaction_saturation.py --apply` (prints frozen sha
-  before/after) to demote the 429 orthologs, optionally tuning `--reaction-cap-rate` /
-  `--saturation-ratio-threshold`; then re-run governor + novelty audits, add the 2
-  newest fingerprints to the governor signature list, and wire the new caps into the
-  live runners.
+- Next: add the 2 newest fingerprints to the governor signature list, and wire the
+  reaction-aware cap + per-reaction cap into the live runners (stage2/nad_glyco/stage1).
+  Optionally tune `--reaction-cap-rate` / `--saturation-ratio-threshold` to also trim the
+  3 near-saturated families. Atlas is now 7636 labels (5923 positive bronze).
 
 ## Session run - Protein kinase 37fp high-yield lane applied (2026-06-14, Codex automation)
 

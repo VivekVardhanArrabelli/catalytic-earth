@@ -171,9 +171,9 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 8065)
+            self.assertEqual(written["totals"]["combined"], 7636)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 7363)
+            self.assertEqual(written["totals"]["expansion_bronze"], 6934)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -197,8 +197,10 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # non-heme iron 2OG at 250, then a post-prefix radical-SAM
             # cofactor top-up. Those three floors are now closed; metal_dependent_hydrolase
             # remains the known intentional over-cap. Later terpene cyclase and
-            # protein kinase tranches expanded the high-yield surface without
-            # reopening that intentional over-cap.
+            # protein kinase tranches expanded the high-yield surface, then the
+            # 2026-06-14 reaction-saturation trim demoted 429 redundant orthologs from
+            # 9 single-reaction-saturated families back to the reaction-aware floor
+            # without reopening that intentional over-cap.
             self.assertEqual(audit["class_imbalance"]["expansion_holes"], [])
             self.assertEqual(audit["class_imbalance"]["fingerprints_below_floor"], [])
             self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 0)

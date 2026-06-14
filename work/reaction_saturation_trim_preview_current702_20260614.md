@@ -1,6 +1,6 @@
 # Reaction-Saturation Trim (non-destructive preview)
 
-Run: 2026-06-14T03:31:59Z
+Run: 2026-06-14T04:00:10Z
 
 Backward cleanup of the lowest-quality organic growth: families that grew deep on organism/sequence breadth but NOT reaction/mechanism diversity. Trims each reaction-saturated family down to its reaction-aware cap (`clamp(rate * distinct_reactions, floor, ceiling)`, rate 8, floor 100, ceiling 250) by keeping a reaction- and sequence-diverse subset. PREVIEW ONLY -- writes no registry; the frozen 702 benchmark is never touched.
 

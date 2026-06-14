@@ -3,7 +3,7 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
-## 2026-06-14: REACTION-AWARE CAPS + REACTION-SATURATION TRIM PREVIEW (NO APPLY)
+## 2026-06-14: REACTION-AWARE CAPS + REACTION-SATURATION TRIM APPLIED
 
 Decision: pivot from volume growth to diversity-quality. Growth has become
 reaction-saturated in single-reaction families -- 9 of 37 families (1329 labels, ~21%
@@ -34,8 +34,8 @@ Engine changes (forward prevention):
   `DiversityState` tracks per-reaction occupancy per scope. This is the durable
   systemic fix; forward callers opt in, the gate's own default stays conservative.
 
-Backward cleanup (the deliverable, PREVIEW ONLY -- no `--apply`, no registry write):
-new non-destructive module `src/catalytic_earth/reaction_saturation_trim.py` + runner
+Backward cleanup (the deliverable): new non-destructive module
+`src/catalytic_earth/reaction_saturation_trim.py` + runner
 `scripts/trim_reaction_saturation.py` + CLI `build-reaction-saturation-trim` + offline
 synthetic-registry tests `tests/test_reaction_saturation_trim.py`. For each
 reaction-saturated family (labels/rxn > `saturation_ratio_threshold` 10 AND over the
@@ -47,9 +47,10 @@ spread via the governor's `(fingerprint, full-EC, organism, length-bin)` near-du
 sequence clustering is the stronger dedup when available). The apply path
 `apply_reaction_saturation_trim_to_registry` is a non-destructive expansion-registry
 REWRITE that drops only the demoted entry_ids and re-validates every kept label through
-`MechanismLabel.from_dict`; it was BUILT but NOT called this turn.
+`MechanismLabel.from_dict`. It was previewed, then APPLIED on explicit authorization (the
+runner printed the frozen current702 sha identical before and after the rewrite).
 
-Preview result (`artifacts/v3_reaction_saturation_trim_preview_current702_20260614.json`,
+Result (`artifacts/v3_reaction_saturation_trim_preview_current702_20260614.json`,
 `work/...md`; measured after rebasing onto the protein-kinase 37fp lane on main): 9
 families trimmed, 429 rows demoted, expansion 7363 -> 6934, combined 8065 -> 7636,
 positive_bronze 6352 -> 5923 (oos_bronze unchanged 1696; counters stay separate). Per
@@ -57,37 +58,47 @@ family (all clamp to the floor because none earns >100 at rate 8): SOD 166->100 
 pfka 150->100 (2), ghmp 150->100 (4), deoxynucleoside 150->100 (7),
 zinc_lyase_hydratase 113->100 (6), biotin 150->100 (8), askha 150->100 (9), ndp
 150->100 (10), protein_kinase_ser_thr_tyr 150->100 (10). Reaction diversity preserved in
-all 9 (every distinct reaction retained). Fingerprint Gini 0.1352 -> 0.1874 -- it RISES
+all 9 (every distinct reaction retained). Fingerprint Gini 0.1352 -> 0.1872 -- it RISES
 BY DESIGN: Gini measures count evenness, and depth is now proportional to reaction
 diversity; the true quality metric (labels-per-reaction) drops to the cap in every
 trimmed family. Near-saturated held (over the rate-8 cap but below the labels/rxn>10
 ratio, not trimmed at default threshold): cobalamin_radical_rearrangement,
 pfkb_ribokinase_family, radical_sam_enzyme.
 
-Discipline: frozen current702 NEVER written (sha256 `5eec9bef...` byte-unchanged);
-growth/shrink would go only to `data/registries/external_bronze_labels.json`; demoted
-rows are bronze, never frozen; leakage wall intact (EC/name/lane excluded-context;
-reaction accounting uses mechanism_evidence only); this is a diversity-quality lever,
-not reconstruction (the separate silver/deploy axis). `validate` ok (12 source / 37
-fingerprints / 34 ontology / 702 curated labels); `git diff --check` clean; registries
-byte-unchanged.
+Discipline: frozen current702 NEVER written (sha256 `5eec9bef...` byte-unchanged,
+printed identical before and after the rewrite); the shrink went only to
+`data/registries/external_bronze_labels.json`; demoted rows are bronze, never frozen;
+leakage wall intact (EC/name/lane excluded-context; reaction accounting uses
+mechanism_evidence only); this is a diversity-quality lever, not reconstruction (the
+separate silver/deploy axis). `validate` ok (12 source / 37 fingerprints / 34 ontology /
+702 curated labels); `git diff --check` clean; frozen registry byte-unchanged.
 
-Stale count-pins: the two trivial live-registry pins (`test_coverage_redundancy_audit`
-combined/expansion, `test_novelty_admission_gate` expansion_rows) are current at
-8065/7363 from the protein-kinase lane and pass; this run kept them through the rebase.
-Left FLAGGED, not fixed (pre-existing, broken by the expansion / SDR / epk work): epk
-readiness fingerprint-count, atp_amide_ligase disambiguation_hold, pfka_sourcing counts,
-bronze_silver_promotion, cofactor_channel_probe, cofactor_presence_calibration,
-generalization holdout pin, geometry_retrieval, mechanism_representation_loop,
-sequence_cofactor_channel, transfer_scope SDR; plus the numpy-missing collection error on
+Post-apply audits: governor
+`artifacts/v3_coverage_redundancy_audit_current702_20260614_reaction_trim_applied.json`
+reports combined 7636, fingerprint Gini 0.1872, holes `[]`, under-floor `[]` (no family
+fell below the 100 floor), over-cap `['metal_dependent_hydrolase']`, next-batch floor
+deficit 0. Novelty replay
+`artifacts/v3_novelty_admission_gate_audit_current702_20260614_reaction_trim_applied.json`
+over 6934 rows reports `{'admit': 6478, 'reject': 47, 'throttle': 409}`, would-not-readmit
+456 (0.0658).
+
+Count-pins: refreshed the two live-registry pins to the post-trim values
+(`test_coverage_redundancy_audit` 8065/7363 -> 7636/6934, `test_novelty_admission_gate`
+7363 -> 6934) -- a genuine change from this apply. Left FLAGGED, not fixed (pre-existing,
+broken by the expansion / SDR / epk work): epk readiness fingerprint-count,
+atp_amide_ligase disambiguation_hold, pfka_sourcing counts, bronze_silver_promotion,
+cofactor_channel_probe, cofactor_presence_calibration, generalization holdout pin,
+geometry_retrieval, mechanism_representation_loop, sequence_cofactor_channel,
+transfer_scope SDR; plus the numpy-missing collection error on
 `test_active_site_supervised_smoke`.
 
-Next decision: authorize `scripts/trim_reaction_saturation.py --apply` (prints frozen
-sha before/after) to demote the 429 saturated orthologs, optionally after tuning
-`--reaction-cap-rate` / `--saturation-ratio-threshold`; then re-run the governor +
-novelty audits, add the two newest fingerprints to the governor's signature list, and
-wire the reaction-aware cap + per-reaction cap into the live runners so the climb stays
-mechanism-diverse by construction.
+Next decision: add the two newest fingerprints to the governor's
+`FINGERPRINT_SOURCING_SIGNATURES`, and wire the reaction-aware cap + per-reaction cap
+into the live runners (stage2/nad_glyco/stage1) so future growth stays mechanism-diverse
+by construction. Optionally tune `--reaction-cap-rate` / `--saturation-ratio-threshold`
+to also trim the 3 near-saturated families (cobalamin/pfkb/radical_sam). The atlas is now
+7636 labels (5923 positive bronze); resume diverse new-family sourcing only through the
+full gated pipeline.
 ## 2026-06-14: PROTEIN KINASE 37FP HIGH-YIELD LANE APPLIED
 
 Decision: after `terpene_cyclase_synthase` left only **77** cap slots, stop top-ups and build the
