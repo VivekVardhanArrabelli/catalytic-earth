@@ -26,6 +26,36 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **KINASE ACCEPTOR-SPECIFICITY + ATP-LIGATION SEPARATION (2026-06-14 automation, this turn).**
+  Follow-on to the cosubstrate/bond-change extension below: separated the ATP-driven
+  sub-cluster that still collapsed. Root bug: `bc_phosphoryl_transfer` only fired for
+  protein kinase (its product literally contains "phospho-"); every other ATP->ADP kinase
+  fired only generic `divalent_metal_other`, so they separated accidentally on residue
+  noise and pfkb/ghmp/atp_amide_ligase lost. Fix (all leakage-safe, from the Rhea equation
+  only): (1) corrected `bc_phosphoryl_transfer` to fire for any ATP->ADP transfer to an
+  organic acceptor (no free phosphate, no water); (2) added `bc_atp_dependent_ligation`
+  (ATP->ADP+Pi or ATP->AMP+PPi driving a ligation -- splits the *ligase* atp_amide_ligase
+  out of the kinase cluster); (3) added phospho-ACCEPTOR classes `acc_protein` /
+  `acc_nucleoside` / `acc_sugar` that fire ONLY inside a phosphoryl-transfer reaction.
+  Feature dims 31 -> 35. Result (leave-one-out): overall **0.645 -> 0.699** (frozen+exp;
+  **0.66 -> 0.719** expansion-only). atp_amide_ligase **0.05 -> 0.87**, pfka/ndp/
+  deoxynucleoside -> **1.0**, protein_kinase 0.98. Promotion gate
+  `review_chemistry_disagrees` **1883 -> 1572**.
+
+  PRINCIPLED CEILING (documented, not a bug): `pfkb_ribokinase_family` and
+  `ghmp_small_molecule_kinase` stay ~0 because they are FOLD-defined families (PfkB/
+  ribokinase fold; GHMP superfamily) whose reaction chemistry genuinely overlaps the sugar
+  kinases (pfka/askha) -- a reaction-equation representation cannot separate families that
+  share reaction chemistry and differ only by protein fold, and forcing it with
+  substrate-identity patterns would be metric-gaming, not mechanism. Cumulative across both
+  representation commits this turn: overall separability **0.36 -> 0.699** (+94% relative).
+  Artifacts:
+  `artifacts/v3_mechanism_representation_loop_current702_20260614_kinase_acceptor_separation.json`,
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_kinase_separation.json`.
+  New classifier unit tests; separability test extended with the kinase/ligase assertions
+  and the fold-defined ceiling. No registry written; frozen byte-unchanged; leakage wall
+  intact.
+
 - **MECHANISM-REPRESENTATION SEPARABILITY EXTENSION (2026-06-14 automation, this turn).**
   The North Star lever for de novo: silver promotion (mechanism grounding) was blocked at
   its root because the chemistry-feature representation had not kept up with the ontology

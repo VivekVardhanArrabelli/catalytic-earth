@@ -124,6 +124,7 @@ BOND_CHANGE_CLASSES = (
 NONHYDROLYTIC_BOND_CLASSES = (
     "bc_redox_hydride",      # NAD(P)+/NADH or FAD/FADH2 hydride transfer (dehydrogenase)
     "bc_phosphoryl_transfer",  # (d)NTP -> (d)NDP with phosphate to a non-water acceptor (kinase)
+    "bc_atp_dependent_ligation",  # ATP -> ADP + Pi driving C-N/C-O ligation (ligase/synthetase)
     "bc_glycosyl_transfer",  # sugar-nucleotide donor -> free nucleotide (glycosyltransferase)
     "bc_acyl_transfer",      # acyl-CoA -> CoA, acyl group transferred (acyltransferase)
     "bc_methyl_transfer",    # S-adenosyl-L-methionine -> S-adenosyl-L-homocysteine (SAM MTase)
@@ -132,6 +133,27 @@ NONHYDROLYTIC_BOND_CLASSES = (
     "bc_carboxylation",      # hydrogencarbonate/CO2 fixed with ATP (biotin carboxylase)
     "bc_diphosphate_lyase",  # prenyl-diphosphate -> diphosphate + carbocation (terpene cyclase)
     "bc_isomerization",      # single substrate = single product, no cosubstrate (isomerase/racemase)
+)
+
+# Phospho-ACCEPTOR classes (added 2026-06-14). The kinase sub-families all share the
+# phosphoryl-transfer bond change + ATP/Mg and differ ONLY by the group that accepts the
+# phosphate. These fire ONLY inside a phosphoryl-transfer reaction (so a sugar substrate in
+# a glycosidase does not spuriously trip ``acc_sugar``), and separate protein- vs
+# nucleoside- vs sugar-acceptor kinases. Derived only from the Rhea equation string.
+PHOSPHOACCEPTOR_CLASSES = (
+    "acc_protein",      # a [protein] residue is phosphorylated (protein kinase)
+    "acc_nucleoside",   # a nucleoside / (deoxy)nucleotide is phosphorylated (NDP/dNK/PfkB)
+    "acc_sugar",        # a sugar / polyol is phosphorylated (PfkA / ASKHA / GHMP)
+)
+
+_NUCLEOSIDE_ACCEPTOR_TERMS = (
+    "nucleoside", "guanosine", "inosine", "adenosine", "cytidine", "uridine",
+    "xanthosine", "thymidine",
+)
+_SUGAR_ACCEPTOR_TERMS = (
+    "hexose", "fructose", "galactose", "glucose", "mannose", "glucosamine",
+    "glycerol", "ribose", "ribulose", "xylulose", "gluconate", "arabino",
+    "mevalonate", "homoserine",
 )
 
 # Ordered numeric feature names. Cofactor classes lead (their positional index is reused
@@ -151,6 +173,7 @@ FEATURE_NAMES = (
     + COSUBSTRATE_CLASSES
     + BOND_CHANGE_CLASSES
     + NONHYDROLYTIC_BOND_CLASSES
+    + PHOSPHOACCEPTOR_CLASSES
     + RESIDUE_FEATURES
 )
 
@@ -314,13 +337,28 @@ def classify_reaction_nonhydrolytic(reaction: str) -> set[str]:
     if "s-adenosyl-l-methionine" in low and "s-adenosyl-l-homocysteine" in low:
         classes.add("bc_methyl_transfer")
 
-    # phosphoryl transfer: (d)NTP -> (d)NDP anhydride, phosphate to a non-water acceptor
+    # NTP anhydride cleavage: (d)NTP -> (d)NDP. A kinase TRANSFERS the phosphate to an
+    # organic acceptor (no free phosphate, no water); an ATP-dependent ligase/synthetase
+    # instead releases free phosphate and/or consumes water to drive a ligation.
     anhydride = bool(
         re.search(r"\b(d?atp|gtp|ctp|utp|itp)\b", lhs)
-        and re.search(r"\b(d?adp|gdp|cdp|udp|idp|amp|gmp)\b", rhs)
+        and re.search(r"\b(d?adp|gdp|cdp|udp|idp)\b", rhs)
     )
-    if anhydride and "h2o" not in lhs_tokens and "phospho" in rhs:
+    free_phosphate = ("phosphate" in rhs_tokens) or ("hydrogenphosphate" in rhs_tokens)
+    if anhydride and "h2o" not in lhs_tokens and not free_phosphate:
         classes.add("bc_phosphoryl_transfer")
+        # phospho-acceptor sub-class (kinase sub-family discriminator)
+        if "[protein]" in low:
+            classes.add("acc_protein")
+        elif any(t in low for t in _NUCLEOSIDE_ACCEPTOR_TERMS):
+            classes.add("acc_nucleoside")
+        elif any(t in low for t in _SUGAR_ACCEPTOR_TERMS):
+            classes.add("acc_sugar")
+    elif anhydride and ("h2o" in lhs_tokens or free_phosphate):
+        classes.add("bc_atp_dependent_ligation")
+    # adenylylating ligases/synthetases: ATP -> AMP + diphosphate drives the ligation
+    elif re.search(r"\b(atp|gtp)\b", lhs) and ("amp" in rhs_tokens) and ("diphosphate" in rhs_tokens):
+        classes.add("bc_atp_dependent_ligation")
 
     # glycosyl transfer: sugar-nucleotide donor -> free nucleotide
     sugar_nt = _has(lhs_tokens, "udp-", "gdp-", "dtdp-", "cdp-", "cmp-n", "udp-n", "adp-d")

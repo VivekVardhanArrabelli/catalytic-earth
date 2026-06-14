@@ -3,6 +3,37 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: KINASE ACCEPTOR-SPECIFICITY + ATP-LIGATION SEPARATION
+
+Decision: follow on from the cosubstrate/bond-change extension to separate the ATP-driven
+sub-cluster that still collapsed. Diagnosis: `bc_phosphoryl_transfer` was effectively broken
+-- it fired only for protein kinase (whose product string contains "phospho-"); every other
+ATP->ADP kinase fired only generic `divalent_metal_other` and separated accidentally on
+residue noise, so pfkb/ghmp/atp_amide_ligase collapsed.
+
+Fix (all leakage-safe, derived only from the Rhea equation): (1) corrected
+`bc_phosphoryl_transfer` to fire for any ATP->ADP anhydride that transfers phosphate to an
+organic acceptor (no FREE phosphate token, no water) -- so all kinases fire it; (2) added
+`bc_atp_dependent_ligation` for ATP->ADP+Pi (water/free-phosphate) and ATP->AMP+PPi
+(adenylylation), which splits the *ligase* atp_amide_ligase out of the kinase cluster; (3)
+added phospho-ACCEPTOR classes `acc_protein`/`acc_nucleoside`/`acc_sugar` that fire ONLY
+inside a phosphoryl-transfer reaction (so a sugar in a glycosidase does not trip acc_sugar).
+Feature dims 31 -> 35.
+
+Result (leave-one-out): overall 0.645 -> 0.699 (frozen+exp; 0.66 -> 0.719 expansion-only).
+atp_amide_ligase 0.05 -> 0.87; pfka/ndp/deoxynucleoside -> 1.0; protein_kinase 0.98.
+Promotion gate `review_chemistry_disagrees` 1883 -> 1572. Cumulative across both
+representation commits this turn: 0.36 -> 0.699 (+94% relative).
+
+PRINCIPLED CEILING (documented, accepted -- NOT to be hacked around): pfkb_ribokinase_family
+and ghmp_small_molecule_kinase remain ~0 because they are FOLD-defined families (PfkB/
+ribokinase fold; GHMP superfamily) whose reaction chemistry overlaps the sugar kinases
+(pfka/askha). A reaction-equation representation cannot separate families that share reaction
+chemistry and differ only by protein fold; adding substrate-identity patterns (galactose vs
+fructose) to force it would be metric-gaming, not mechanism. Their separation, if ever needed,
+belongs to a sequence/structure (fold) axis, not the leakage-safe reaction representation.
+No registry written; frozen byte-unchanged; leakage wall intact.
+
 ## 2026-06-14: MECHANISM-REPRESENTATION SEPARABILITY EXTENSION (cosubstrate + non-hydrolytic bond change)
 
 Decision: attack the root North Star bottleneck for de novo grounding. Bronze->silver

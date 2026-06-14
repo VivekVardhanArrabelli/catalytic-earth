@@ -1,5 +1,28 @@
 # Handoff
 
+## Session run - Kinase acceptor-specificity + ATP-ligation separation (2026-06-14, Claude Code automation)
+
+- Follow-on to the cosubstrate/bond-change extension: separated the ATP-driven sub-cluster.
+  Root bug: `bc_phosphoryl_transfer` only fired for protein kinase; other ATP->ADP kinases
+  fired only generic divalent_metal and separated on residue noise, so pfkb/ghmp/
+  atp_amide_ligase collapsed.
+- Fix (leakage-safe, Rhea-equation only): corrected `bc_phosphoryl_transfer` (fires for any
+  ATP->ADP transfer to an organic acceptor); added `bc_atp_dependent_ligation` (ATP->ADP+Pi
+  or ATP->AMP+PPi, splits the ligase atp_amide_ligase out); added phospho-ACCEPTOR classes
+  `acc_protein`/`acc_nucleoside`/`acc_sugar` (fire only inside a phosphoryl-transfer eqn).
+  Dims 31 -> 35.
+- Result (leave-one-out): overall 0.645 -> 0.699 (frozen+exp; 0.66 -> 0.719 expansion-only).
+  atp_amide_ligase 0.05 -> 0.87; pfka/ndp/deoxynucleoside -> 1.0. Promotion gate
+  review_chemistry_disagrees 1883 -> 1572. Cumulative this turn: 0.36 -> 0.699 (+94%).
+- PRINCIPLED CEILING: pfkb_ribokinase_family + ghmp_small_molecule_kinase stay ~0 -- they are
+  FOLD-defined families whose reaction chemistry overlaps the sugar kinases. Reaction-equation
+  features cannot separate fold-defined families; that needs a sequence/structure axis, not
+  this leakage-safe reaction representation. Documented, accepted, not hacked around.
+- Artifacts: `..._kinase_acceptor_separation.json`, `..._post_kinase_separation.json`. New
+  classifier unit tests; separability test extended. No registry written; frozen unchanged.
+- Next (still open): the kinase-fold separation belongs to a sequence/structure axis; and
+  silver_ready is still gated on HOLO structure (Problem-2 apo->holo cofactor reconstruction).
+
 ## Session run - Mechanism-representation separability extension (2026-06-14, Claude Code automation)
 
 - Attacked the root North Star bottleneck for de novo grounding: bronze->silver promotion
