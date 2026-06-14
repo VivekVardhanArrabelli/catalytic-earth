@@ -73,6 +73,29 @@ COFACTOR_CLASS_PATTERNS: dict[str, tuple[str, ...]] = {
 
 COFACTOR_CLASSES = tuple(COFACTOR_CLASS_PATTERNS.keys())
 
+# Cosubstrate / donor chemical-identity classes (added 2026-06-14). Many expansion
+# families are defined NOT by a bound cofactor but by a dissociable COSUBSTRATE / donor
+# that appears as a Rhea reaction PARTICIPANT (NAD(P), a nucleoside-triphosphate, CoA,
+# a sugar-nucleotide). These are CHEMICAL identities read from the reaction-equation
+# substrate->product strings and the chemical-identity terms -- the same legitimate basis
+# as cofactor identity, never EC/name/prose/fingerprint. They are co-equal mechanistic
+# features (full weight), kept SEPARATE from COFACTOR_CLASSES so the cofactor-presence
+# helpers (which index COFACTOR_CLASSES positionally) are unaffected.
+COSUBSTRATE_CLASS_PATTERNS: dict[str, tuple[str, ...]] = {
+    "cos_nad": ("nad(+)", "nadh", "nadp(+)", "nadph", "nad(p)"),
+    "cos_coa": ("coa", "coenzyme a"),
+    "cos_nucleotide_sugar": (
+        "udp-", "gdp-", "dtdp-", "cdp-", "cmp-n", "gdp-l", "udp-n", "adp-d",
+    ),
+    "cos_2_oxoglutarate": ("2-oxoglutarate",),
+    "cos_prenyl_diphosphate": (
+        "geranyl diphosphate", "farnesyl diphosphate", "geranylgeranyl diphosphate",
+        "prenyl diphosphate", "dimethylallyl diphosphate",
+    ),
+}
+
+COSUBSTRATE_CLASSES = tuple(COSUBSTRATE_CLASS_PATTERNS.keys())
+
 # Row-specific reaction-center BOND-CHANGE classes (Track 1 / 1c). Derived ONLY from the
 # Rhea reaction equation's substrate->product chemistry -- the legitimate North Star axis,
 # exactly like cofactor identity. It is NOT the fingerprint's declared bond_change (that
@@ -90,6 +113,27 @@ BOND_CHANGE_CLASSES = (
     "bc_amide_cn",          # non-peptide amide/amidine C-N hydrolysis / deamination
 )
 
+# Non-hydrolytic reaction-center bond-change classes (added 2026-06-14). The four
+# hydrolysis classes above only separate the metal-hydrolase sub-families; the bulk of
+# the expansion ontology is transfer / redox / lyase / isomerase chemistry that carries
+# NO water reactant, so the hydrolysis classifier yields nothing and those families
+# collapse together. These classes are derived ONLY from the Rhea substrate->product
+# equation (the same leakage-safe basis), never EC/name/prose/fingerprint, and are
+# co-equal mechanistic features (full weight). They are the discriminator the expansion
+# ontology was missing.
+NONHYDROLYTIC_BOND_CLASSES = (
+    "bc_redox_hydride",      # NAD(P)+/NADH or FAD/FADH2 hydride transfer (dehydrogenase)
+    "bc_phosphoryl_transfer",  # (d)NTP -> (d)NDP with phosphate to a non-water acceptor (kinase)
+    "bc_glycosyl_transfer",  # sugar-nucleotide donor -> free nucleotide (glycosyltransferase)
+    "bc_acyl_transfer",      # acyl-CoA -> CoA, acyl group transferred (acyltransferase)
+    "bc_methyl_transfer",    # S-adenosyl-L-methionine -> S-adenosyl-L-homocysteine (SAM MTase)
+    "bc_oxygenation",        # O2 incorporated (mono-/di-oxygenase, peroxidase boundary)
+    "bc_decarboxylation",    # CO2 released without water (decarboxylase)
+    "bc_carboxylation",      # hydrogencarbonate/CO2 fixed with ATP (biotin carboxylase)
+    "bc_diphosphate_lyase",  # prenyl-diphosphate -> diphosphate + carbocation (terpene cyclase)
+    "bc_isomerization",      # single substrate = single product, no cosubstrate (isomerase/racemase)
+)
+
 # Ordered numeric feature names. Cofactor classes lead (their positional index is reused
 # by the centroid-cofactor helpers, so they MUST stay the prefix). Bond-change classes are
 # co-equal mechanistic features (full weight, like cofactor); residue role ratios are
@@ -99,7 +143,16 @@ RESIDUE_FEATURES = (
     "binding_fraction",
     "active_site_size",
 )
-FEATURE_NAMES = COFACTOR_CLASSES + BOND_CHANGE_CLASSES + RESIDUE_FEATURES
+# COFACTOR_CLASSES MUST remain the prefix (the centroid-cofactor helpers index it
+# positionally). Cosubstrate + non-hydrolytic bond classes are appended after it and
+# before the down-weighted residue features.
+FEATURE_NAMES = (
+    COFACTOR_CLASSES
+    + COSUBSTRATE_CLASSES
+    + BOND_CHANGE_CLASSES
+    + NONHYDROLYTIC_BOND_CLASSES
+    + RESIDUE_FEATURES
+)
 
 # Fields that must never enter the representation -- asserted by featurize.
 EXCLUDED_FROM_REPRESENTATION = (
@@ -225,6 +278,113 @@ def reaction_bond_change_classes(row: dict[str, Any]) -> set[str]:
     return classes
 
 
+def classify_reaction_nonhydrolytic(reaction: str) -> set[str]:
+    """Classify a reaction string into NON-hydrolytic bond-change classes.
+
+    Companion to ``classify_reaction_bond_change`` (which fires only for hydrolysis).
+    These cover the transfer / redox / lyase / isomerase chemistry that defines most of
+    the expansion ontology. Leakage-safe: reads ONLY the substrate->product equation
+    string -- never EC / protein name / prose / fingerprint.
+    """
+    low = reaction.lower()
+    if "=" not in low:
+        return set()
+    lhs, rhs = low.split("=", 1)
+    lhs_tokens = [t.strip() for t in lhs.split("+")]
+    rhs_tokens = [t.strip() for t in rhs.split("+")]
+    both = lhs_tokens + rhs_tokens
+
+    def _has(tokens: list[str], *subs: str) -> bool:
+        return any(any(s in tok for s in subs) for tok in tokens)
+
+    classes: set[str] = set()
+
+    # redox hydride transfer: oxidised<->reduced nicotinamide or flavin across the eqn.
+    # Charged species (nad(+), nadp(+)) carry an internal '+' that the token split above
+    # mangles, so the nicotinamide pair is matched on the raw lhs/rhs strings.
+    nad_ox = ("nad(+)" in low) or ("nadp(+)" in low)
+    nad_red = ("nadh" in low) or ("nadph" in low)
+    flavin_pair = (("fadh2" in rhs or "fmnh2" in rhs) and ("fad" in lhs or "fmn" in lhs)) or (
+        ("fadh2" in lhs or "fmnh2" in lhs) and ("fad" in rhs or "fmn" in rhs)
+    )
+    if (nad_ox and nad_red) or flavin_pair:
+        classes.add("bc_redox_hydride")
+
+    # methyl transfer: S-adenosyl-L-methionine -> S-adenosyl-L-homocysteine
+    if "s-adenosyl-l-methionine" in low and "s-adenosyl-l-homocysteine" in low:
+        classes.add("bc_methyl_transfer")
+
+    # phosphoryl transfer: (d)NTP -> (d)NDP anhydride, phosphate to a non-water acceptor
+    anhydride = bool(
+        re.search(r"\b(d?atp|gtp|ctp|utp|itp)\b", lhs)
+        and re.search(r"\b(d?adp|gdp|cdp|udp|idp|amp|gmp)\b", rhs)
+    )
+    if anhydride and "h2o" not in lhs_tokens and "phospho" in rhs:
+        classes.add("bc_phosphoryl_transfer")
+
+    # glycosyl transfer: sugar-nucleotide donor -> free nucleotide
+    sugar_nt = _has(lhs_tokens, "udp-", "gdp-", "dtdp-", "cdp-", "cmp-n", "udp-n", "adp-d")
+    free_nt = any(tok in ("udp", "gdp", "dtdp", "cdp", "cmp", "ump", "gmp") for tok in rhs_tokens)
+    if sugar_nt and free_nt:
+        classes.add("bc_glycosyl_transfer")
+
+    # acyl transfer: acyl-CoA -> free CoA (no water)
+    if _has(lhs_tokens, "-coa") and ("coa" in rhs_tokens) and "h2o" not in lhs_tokens:
+        classes.add("bc_acyl_transfer")
+
+    # oxygenation: molecular O2 consumed
+    if "o2" in lhs_tokens:
+        classes.add("bc_oxygenation")
+
+    # carboxylation (CO2/bicarbonate fixed with ATP) vs decarboxylation (CO2 released)
+    co2_lhs = any(tok in ("co2", "hydrogencarbonate") for tok in lhs_tokens)
+    co2_rhs = any(tok in ("co2", "hydrogencarbonate") for tok in rhs_tokens)
+    if co2_lhs and re.search(r"\batp\b", lhs):
+        classes.add("bc_carboxylation")
+    elif co2_rhs and not co2_lhs and "h2o" not in lhs_tokens:
+        classes.add("bc_decarboxylation")
+
+    # prenyl-diphosphate cyclase/lyase: prenyl-PP -> diphosphate + carbocation product
+    if _has(
+        lhs_tokens,
+        "geranyl diphosphate",
+        "farnesyl diphosphate",
+        "geranylgeranyl diphosphate",
+        "prenyl diphosphate",
+        "dimethylallyl diphosphate",
+    ) and ("diphosphate" in rhs_tokens):
+        classes.add("bc_diphosphate_lyase")
+
+    # isomerization/racemization: single substrate = single product, no cosubstrate/water
+    if len(lhs_tokens) == 1 and len(rhs_tokens) == 1 and "h2o" not in lhs_tokens:
+        classes.add("bc_isomerization")
+
+    return classes
+
+
+def reaction_nonhydrolytic_classes(row: dict[str, Any]) -> set[str]:
+    """Union of non-hydrolytic bond-change classes over a row's reaction equations."""
+    classes: set[str] = set()
+    for reaction in _reaction_equations(row):
+        classes |= classify_reaction_nonhydrolytic(reaction)
+    return classes
+
+
+def cosubstrate_classes(row: dict[str, Any]) -> set[str]:
+    """Cosubstrate/donor chemical classes from reaction participants + chemical identities.
+
+    Leakage-safe: reads the Rhea substrate->product equation strings and the cofactor/
+    binding-ligand chemical-identity terms only -- never EC / name / prose / fingerprint.
+    """
+    text = " ".join(_reaction_equations(row)).lower()
+    text += " " + " ".join(_chemical_identity_terms(row)).lower()
+    return {
+        cls
+        for cls, patterns in COSUBSTRATE_CLASS_PATTERNS.items()
+        if any(p in text for p in patterns)
+    }
+
+
 def featurize(row: dict[str, Any]) -> dict[str, float]:
     """Deterministic leakage-safe chemical/structural feature vector for a label.
 
@@ -239,7 +399,14 @@ def featurize(row: dict[str, Any]) -> dict[str, float]:
         if cls is not None:
             features[cls] = 1.0
 
+    # dissociable cosubstrate/donor classes (NAD(P), CoA, sugar-nucleotide, 2OG, prenyl-PP)
+    for cls in cosubstrate_classes(row):
+        features[cls] = 1.0
+
+    # reaction-center bond change: hydrolysis classes + non-hydrolytic transfer/redox/lyase
     for bond_class in reaction_bond_change_classes(row):
+        features[bond_class] = 1.0
+    for bond_class in reaction_nonhydrolytic_classes(row):
         features[bond_class] = 1.0
 
     mech = _mechanism_evidence(row)

@@ -26,7 +26,50 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
-- **NEAR-SATURATED TRIM APPLIED (2026-06-14 automation, this turn, on explicit authorization).**
+- **MECHANISM-REPRESENTATION SEPARABILITY EXTENSION (2026-06-14 automation, this turn).**
+  The North Star lever for de novo: silver promotion (mechanism grounding) was blocked at
+  its root because the chemistry-feature representation had not kept up with the ontology
+  expansion. Diagnosis (rigorous, leave-one-out): overall self-consistency was **0.36**,
+  with **12 of 37 families at exactly 0.0** -- every family defined by a dissociable
+  COSUBSTRATE/donor (NAD(P), CoA, sugar-nucleotide, prenyl-PP) or a NON-hydrolytic bond
+  change (transfer/redox/lyase/isomerase) collapsed, because the feature space had only
+  cofactor classes + four HYDROLYSIS bond-change classes. The families that separated
+  (p450 1.0, radical_sam 0.99, plp/flavin/sam) were exactly those whose chemistry was in
+  the feature space.
+
+  Fix: extended `mechanism_representation_loop.featurize` with leakage-safe **cosubstrate
+  classes** (`cos_nad`, `cos_coa`, `cos_nucleotide_sugar`, `cos_2_oxoglutarate`,
+  `cos_prenyl_diphosphate`) and **non-hydrolytic bond-change classes** (`bc_redox_hydride`,
+  `bc_phosphoryl_transfer`, `bc_glycosyl_transfer`, `bc_acyl_transfer`, `bc_methyl_transfer`,
+  `bc_oxygenation`, `bc_decarboxylation`, `bc_carboxylation`, `bc_diphosphate_lyase`,
+  `bc_isomerization`). Both derive ONLY from the Rhea substrate->product equation string
+  (and chemical-identity terms) -- never EC/name/prose/fingerprint. `COFACTOR_CLASSES`
+  stays the vector prefix so the cofactor-presence helpers are untouched; feature dims
+  16 -> 31.
+
+  Result (measured): overall leave-one-out self-consistency **0.36 -> 0.645** (+78%
+  relative). Formerly-0.0 families transformed: nad_p_dehydrogenase 0->0.95,
+  coa_acyltransferase 0->0.95, protein_kinase 0->0.97, terpene 0->0.92, biotin 0->1.0,
+  non_heme_iron_2og 0->0.87; sam_methyltransferase 0.60->0.96. In the bronze->silver
+  promotion gate, `review_chemistry_disagrees` **3558 -> 1883** (nearly halved): those
+  ~1675 rows moved from an ARTIFACTUAL chemistry block to honest `blocked_pending_structure`
+  -- the representation fix removed the false block and exposed the real one. `silver_ready`
+  stays 0 (needs holo coordinates; the registry is overwhelmingly apo -- the documented
+  Problem-2 structural frontier, now correctly the NEXT gate, not masked). Remaining low
+  separability: the coarse `metal_dependent_hydrolase` umbrella (correctly scatters to its
+  v2 sub-families) and the ATP kinase sub-families (share identical phosphoryl-transfer +
+  ATP chemistry, differ only by acceptor -- a finer sub-problem).
+
+  Artifacts:
+  `artifacts/v3_mechanism_representation_loop_current702_20260614_cosubstrate_bondchange_extension.json`,
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_representation_extension.json`.
+  No registry written; frozen current702 byte-unchanged; leakage wall intact (features
+  read only Rhea chemistry + cofactor/ligand identities). New offline tests for every new
+  class in `tests/test_mechanism_representation_loop.py`; the two stale silver-axis count
+  pins (1716) refreshed to 5638 and the dormant 12-family separability thresholds
+  re-baselined to the measured 37-family reality.
+
+- **NEAR-SATURATED TRIM APPLIED (2026-06-14 automation, on explicit authorization).**
   The optional backward follow-up the prior bullet flagged. The 3 families that were over
   the rate-8 reaction-aware cap but below the labels/rxn>10 default ratio
   (`cobalamin_radical_rearrangement`, `pfkb_ribokinase_family`, `radical_sam_enzyme`) were

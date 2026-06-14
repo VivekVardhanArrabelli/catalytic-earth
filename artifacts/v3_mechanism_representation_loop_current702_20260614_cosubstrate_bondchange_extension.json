@@ -1,0 +1,766 @@
+{
+  "audit": "mechanism_representation_loop",
+  "created_utc": "2026-06-14T07:54:41Z",
+  "feature_space": {
+    "basis": "review_only_cofactor_and_binding_ligand_chemistry + rhea_reaction_substrate_product_bond_change + active_site_residue_roles",
+    "bond_change_classes": [
+      "bc_phosphomonoester",
+      "bc_phosphodiester",
+      "bc_peptide_cn",
+      "bc_amide_cn"
+    ],
+    "excluded_from_representation": [
+      "ec_numbers",
+      "fingerprint_id",
+      "label_type",
+      "protein_name",
+      "uniprot_prose",
+      "target_family_lane",
+      "rationale"
+    ],
+    "names": [
+      "flavin",
+      "plp",
+      "heme",
+      "iron_sulfur",
+      "sam",
+      "cobalamin",
+      "zinc",
+      "divalent_metal_other",
+      "calcium",
+      "cos_nad",
+      "cos_coa",
+      "cos_nucleotide_sugar",
+      "cos_2_oxoglutarate",
+      "cos_prenyl_diphosphate",
+      "bc_phosphomonoester",
+      "bc_phosphodiester",
+      "bc_peptide_cn",
+      "bc_amide_cn",
+      "bc_redox_hydride",
+      "bc_phosphoryl_transfer",
+      "bc_glycosyl_transfer",
+      "bc_acyl_transfer",
+      "bc_methyl_transfer",
+      "bc_oxygenation",
+      "bc_decarboxylation",
+      "bc_carboxylation",
+      "bc_diphosphate_lyase",
+      "bc_isomerization",
+      "catalytic_fraction",
+      "binding_fraction",
+      "active_site_size"
+    ]
+  },
+  "fingerprint_centroids_built": [
+    "askha_sugar_acetate_kinase",
+    "atp_amide_ligase",
+    "biotin_dependent_carboxylase",
+    "class_ii_metal_aldolase",
+    "coa_acyltransferase",
+    "cobalamin_radical_rearrangement",
+    "cofactor_independent_isomerase",
+    "copper_oxidoreductase",
+    "cytochrome_p450_monooxygenase",
+    "deoxynucleoside_kinase",
+    "flavin_dehydrogenase_reductase",
+    "flavin_monooxygenase",
+    "ghmp_small_molecule_kinase",
+    "glycoside_hydrolase",
+    "glycosyltransferase",
+    "heme_peroxidase_oxidase",
+    "manganese_iron_superoxide_dismutase",
+    "metal_dependent_hydrolase",
+    "metal_racemase_epimerase_non_plp",
+    "metallo_amidohydrolase_deaminase",
+    "metallopeptidase",
+    "metallophosphoesterase_nuclease",
+    "metallophosphomonoesterase",
+    "molybdopterin_oxidoreductase",
+    "nad_p_dehydrogenase",
+    "non_heme_iron_2og_dioxygenase",
+    "nucleoside_diphosphate_kinase",
+    "pfka_phosphofructokinase",
+    "pfkb_ribokinase_family",
+    "plp_dependent_enzyme",
+    "protein_kinase_ser_thr_tyr",
+    "radical_sam_enzyme",
+    "sam_methyltransferase",
+    "ser_his_acid_hydrolase",
+    "terpene_cyclase_synthase",
+    "thiamine_diphosphate_enzyme",
+    "zinc_lyase_hydratase"
+  ],
+  "hole_proposals": {
+    "cobalamin_radical_rearrangement": {
+      "centroid_available": true,
+      "proposed_from_out_of_scope": [
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9UHK6",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9077
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P70473",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9059
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9WUR2",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9056
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P42125",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.9041
+        }
+      ]
+    },
+    "radical_sam_enzyme": {
+      "centroid_available": true,
+      "proposed_from_out_of_scope": []
+    },
+    "ser_his_acid_hydrolase": {
+      "centroid_available": true,
+      "proposed_from_out_of_scope": [
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P35573",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8568
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P07686",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8566
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P37188",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8566
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q8K4Q6",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8497
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:O00411",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q94502",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q96LT4",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q9LFV6",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8454
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:O75951",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q19426",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q5R8E3",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q70KH2",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q80UM7",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8327
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P06280",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8242
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P51569",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8197
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P31378",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8097
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q6R2P8",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8067
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:O16580",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8054
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P20060",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8054
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P29416",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8054
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:P63128",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8054
+        },
+        {
+          "current_label_type": "out_of_scope",
+          "entry_id": "uniprot:Q6AXR4",
+          "shared_cofactor_classes": [],
+          "similarity_to_target": 0.8054
+        }
+      ]
+    }
+  },
+  "leakage_guardrails": {
+    "bond_change_derived_from_reaction_substrate_product_only": true,
+    "ec_name_prose_lane_used": false,
+    "fingerprint_declared_bond_change_used_as_feature": false,
+    "fingerprint_label_used_as_feature": false,
+    "frozen_benchmark_read": false,
+    "labels_emitted": 0,
+    "reaction_ec_number_used_as_feature": false,
+    "registry_written": false,
+    "used_only_for_candidate_ranking_and_promotion_triage_not_benchmark_scoring": true
+  },
+  "non_destructive": true,
+  "out_of_scope_labels": 1224,
+  "promotion_triage": {
+    "coherent_but_below_threshold": 1413,
+    "cohesion_threshold": 0.92,
+    "confusion_by_fingerprint": {
+      "askha_sugar_acetate_kinase": {
+        "askha_sugar_acetate_kinase": 97,
+        "nucleoside_diphosphate_kinase": 1,
+        "pfka_phosphofructokinase": 2
+      },
+      "atp_amide_ligase": {
+        "askha_sugar_acetate_kinase": 28,
+        "atp_amide_ligase": 7,
+        "biotin_dependent_carboxylase": 4,
+        "class_ii_metal_aldolase": 2,
+        "coa_acyltransferase": 1,
+        "deoxynucleoside_kinase": 1,
+        "glycosyltransferase": 1,
+        "manganese_iron_superoxide_dismutase": 18,
+        "metal_dependent_hydrolase": 10,
+        "nad_p_dehydrogenase": 4,
+        "non_heme_iron_2og_dioxygenase": 1,
+        "nucleoside_diphosphate_kinase": 20,
+        "pfka_phosphofructokinase": 47,
+        "protein_kinase_ser_thr_tyr": 3,
+        "ser_his_acid_hydrolase": 3
+      },
+      "biotin_dependent_carboxylase": {
+        "biotin_dependent_carboxylase": 100
+      },
+      "class_ii_metal_aldolase": {
+        "atp_amide_ligase": 21,
+        "class_ii_metal_aldolase": 2,
+        "cofactor_independent_isomerase": 1,
+        "deoxynucleoside_kinase": 75,
+        "manganese_iron_superoxide_dismutase": 8,
+        "molybdopterin_oxidoreductase": 7,
+        "nucleoside_diphosphate_kinase": 33,
+        "pfka_phosphofructokinase": 3
+      },
+      "coa_acyltransferase": {
+        "askha_sugar_acetate_kinase": 1,
+        "class_ii_metal_aldolase": 9,
+        "coa_acyltransferase": 238,
+        "pfka_phosphofructokinase": 1,
+        "ser_his_acid_hydrolase": 1
+      },
+      "cobalamin_radical_rearrangement": {
+        "askha_sugar_acetate_kinase": 72,
+        "cobalamin_radical_rearrangement": 27,
+        "cofactor_independent_isomerase": 11,
+        "metal_dependent_hydrolase": 7,
+        "plp_dependent_enzyme": 3
+      },
+      "cofactor_independent_isomerase": {
+        "class_ii_metal_aldolase": 1,
+        "cobalamin_radical_rearrangement": 7,
+        "cofactor_independent_isomerase": 118,
+        "deoxynucleoside_kinase": 9,
+        "metal_racemase_epimerase_non_plp": 1,
+        "ser_his_acid_hydrolase": 14
+      },
+      "copper_oxidoreductase": {
+        "askha_sugar_acetate_kinase": 11,
+        "copper_oxidoreductase": 115,
+        "glycoside_hydrolase": 2,
+        "metallo_amidohydrolase_deaminase": 10,
+        "pfka_phosphofructokinase": 1,
+        "thiamine_diphosphate_enzyme": 1
+      },
+      "cytochrome_p450_monooxygenase": {
+        "cytochrome_p450_monooxygenase": 238,
+        "flavin_monooxygenase": 10,
+        "heme_peroxidase_oxidase": 2
+      },
+      "deoxynucleoside_kinase": {
+        "askha_sugar_acetate_kinase": 16,
+        "deoxynucleoside_kinase": 84
+      },
+      "flavin_dehydrogenase_reductase": {
+        "flavin_dehydrogenase_reductase": 182,
+        "flavin_monooxygenase": 20
+      },
+      "flavin_monooxygenase": {
+        "flavin_dehydrogenase_reductase": 6,
+        "flavin_monooxygenase": 108
+      },
+      "ghmp_small_molecule_kinase": {
+        "askha_sugar_acetate_kinase": 8,
+        "nucleoside_diphosphate_kinase": 80,
+        "protein_kinase_ser_thr_tyr": 12
+      },
+      "glycoside_hydrolase": {
+        "askha_sugar_acetate_kinase": 32,
+        "atp_amide_ligase": 4,
+        "class_ii_metal_aldolase": 2,
+        "deoxynucleoside_kinase": 10,
+        "glycoside_hydrolase": 78,
+        "nucleoside_diphosphate_kinase": 1,
+        "ser_his_acid_hydrolase": 23
+      },
+      "glycosyltransferase": {
+        "askha_sugar_acetate_kinase": 18,
+        "atp_amide_ligase": 2,
+        "class_ii_metal_aldolase": 7,
+        "deoxynucleoside_kinase": 4,
+        "glycosyltransferase": 157,
+        "manganese_iron_superoxide_dismutase": 2,
+        "metal_dependent_hydrolase": 18,
+        "nucleoside_diphosphate_kinase": 17,
+        "pfka_phosphofructokinase": 4,
+        "plp_dependent_enzyme": 1,
+        "ser_his_acid_hydrolase": 1,
+        "terpene_cyclase_synthase": 17,
+        "thiamine_diphosphate_enzyme": 2
+      },
+      "heme_peroxidase_oxidase": {
+        "cytochrome_p450_monooxygenase": 8,
+        "flavin_monooxygenase": 3,
+        "heme_peroxidase_oxidase": 88
+      },
+      "manganese_iron_superoxide_dismutase": {
+        "manganese_iron_superoxide_dismutase": 89,
+        "nucleoside_diphosphate_kinase": 11
+      },
+      "metal_dependent_hydrolase": {
+        "class_ii_metal_aldolase": 2,
+        "deoxynucleoside_kinase": 162,
+        "glycoside_hydrolase": 1,
+        "metallo_amidohydrolase_deaminase": 46,
+        "metallopeptidase": 6,
+        "metallophosphoesterase_nuclease": 1,
+        "nad_p_dehydrogenase": 1,
+        "nucleoside_diphosphate_kinase": 5,
+        "pfka_phosphofructokinase": 1
+      },
+      "metal_racemase_epimerase_non_plp": {
+        "askha_sugar_acetate_kinase": 4,
+        "class_ii_metal_aldolase": 7,
+        "cobalamin_radical_rearrangement": 4,
+        "cofactor_independent_isomerase": 76,
+        "deoxynucleoside_kinase": 2,
+        "glycoside_hydrolase": 3,
+        "manganese_iron_superoxide_dismutase": 2,
+        "metal_racemase_epimerase_non_plp": 49,
+        "molybdopterin_oxidoreductase": 1,
+        "pfka_phosphofructokinase": 2
+      },
+      "metallo_amidohydrolase_deaminase": {
+        "atp_amide_ligase": 1,
+        "class_ii_metal_aldolase": 13,
+        "deoxynucleoside_kinase": 17,
+        "metallo_amidohydrolase_deaminase": 110,
+        "nad_p_dehydrogenase": 4,
+        "pfka_phosphofructokinase": 5
+      },
+      "metallopeptidase": {
+        "class_ii_metal_aldolase": 6,
+        "deoxynucleoside_kinase": 112,
+        "metallopeptidase": 31,
+        "nucleoside_diphosphate_kinase": 1
+      },
+      "metallophosphoesterase_nuclease": {
+        "class_ii_metal_aldolase": 23,
+        "deoxynucleoside_kinase": 7,
+        "glycoside_hydrolase": 19,
+        "glycosyltransferase": 1,
+        "manganese_iron_superoxide_dismutase": 19,
+        "metallophosphoesterase_nuclease": 18,
+        "nucleoside_diphosphate_kinase": 56,
+        "pfka_phosphofructokinase": 7
+      },
+      "metallophosphomonoesterase": {
+        "atp_amide_ligase": 4,
+        "class_ii_metal_aldolase": 2,
+        "deoxynucleoside_kinase": 7,
+        "metallophosphomonoesterase": 133,
+        "nucleoside_diphosphate_kinase": 3,
+        "sam_methyltransferase": 1
+      },
+      "molybdopterin_oxidoreductase": {
+        "askha_sugar_acetate_kinase": 93,
+        "flavin_dehydrogenase_reductase": 18,
+        "heme_peroxidase_oxidase": 1,
+        "metal_dependent_hydrolase": 1,
+        "molybdopterin_oxidoreductase": 132,
+        "nad_p_dehydrogenase": 5
+      },
+      "nad_p_dehydrogenase": {
+        "nad_p_dehydrogenase": 150
+      },
+      "non_heme_iron_2og_dioxygenase": {
+        "class_ii_metal_aldolase": 26,
+        "manganese_iron_superoxide_dismutase": 4,
+        "non_heme_iron_2og_dioxygenase": 218,
+        "pfka_phosphofructokinase": 2
+      },
+      "nucleoside_diphosphate_kinase": {
+        "cofactor_independent_isomerase": 1,
+        "nucleoside_diphosphate_kinase": 97,
+        "pfka_phosphofructokinase": 2
+      },
+      "pfka_phosphofructokinase": {
+        "nucleoside_diphosphate_kinase": 5,
+        "pfka_phosphofructokinase": 95
+      },
+      "pfkb_ribokinase_family": {
+        "askha_sugar_acetate_kinase": 10,
+        "manganese_iron_superoxide_dismutase": 2,
+        "nad_p_dehydrogenase": 1,
+        "non_heme_iron_2og_dioxygenase": 3,
+        "nucleoside_diphosphate_kinase": 7,
+        "pfka_phosphofructokinase": 105
+      },
+      "plp_dependent_enzyme": {
+        "biotin_dependent_carboxylase": 1,
+        "cofactor_independent_isomerase": 2,
+        "copper_oxidoreductase": 2,
+        "deoxynucleoside_kinase": 2,
+        "manganese_iron_superoxide_dismutase": 1,
+        "nad_p_dehydrogenase": 1,
+        "plp_dependent_enzyme": 107
+      },
+      "protein_kinase_ser_thr_tyr": {
+        "askha_sugar_acetate_kinase": 1,
+        "glycoside_hydrolase": 2,
+        "protein_kinase_ser_thr_tyr": 97
+      },
+      "radical_sam_enzyme": {
+        "radical_sam_enzyme": 184
+      },
+      "sam_methyltransferase": {
+        "askha_sugar_acetate_kinase": 2,
+        "class_ii_metal_aldolase": 1,
+        "deoxynucleoside_kinase": 1,
+        "glycoside_hydrolase": 1,
+        "metal_dependent_hydrolase": 1,
+        "nucleoside_diphosphate_kinase": 1,
+        "radical_sam_enzyme": 2,
+        "sam_methyltransferase": 241
+      },
+      "ser_his_acid_hydrolase": {
+        "askha_sugar_acetate_kinase": 2,
+        "deoxynucleoside_kinase": 1,
+        "glycoside_hydrolase": 7,
+        "ser_his_acid_hydrolase": 77
+      },
+      "terpene_cyclase_synthase": {
+        "manganese_iron_superoxide_dismutase": 11,
+        "metallophosphomonoesterase": 2,
+        "terpene_cyclase_synthase": 160
+      },
+      "thiamine_diphosphate_enzyme": {
+        "glycoside_hydrolase": 31,
+        "manganese_iron_superoxide_dismutase": 1,
+        "non_heme_iron_2og_dioxygenase": 8,
+        "thiamine_diphosphate_enzyme": 110
+      },
+      "zinc_lyase_hydratase": {
+        "class_ii_metal_aldolase": 12,
+        "deoxynucleoside_kinase": 88
+      }
+    },
+    "leave_one_out_self_consistency": 0.6628,
+    "promotion_candidate_samples": [
+      {
+        "entry_id": "uniprot:Q9ZQI7",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9475,
+        "own_cohesion": 0.9475
+      },
+      {
+        "entry_id": "uniprot:O95470",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9469,
+        "own_cohesion": 0.9469
+      },
+      {
+        "entry_id": "uniprot:P34896",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9476,
+        "own_cohesion": 0.9476
+      },
+      {
+        "entry_id": "uniprot:O32148",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9458,
+        "own_cohesion": 0.9458
+      },
+      {
+        "entry_id": "uniprot:P77806",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9458,
+        "own_cohesion": 0.9458
+      },
+      {
+        "entry_id": "uniprot:D2Z027",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9494,
+        "own_cohesion": 0.9494
+      },
+      {
+        "entry_id": "uniprot:O32164",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9449,
+        "own_cohesion": 0.9449
+      },
+      {
+        "entry_id": "uniprot:P06106",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9468,
+        "own_cohesion": 0.9468
+      },
+      {
+        "entry_id": "uniprot:P32582",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9498,
+        "own_cohesion": 0.9498
+      },
+      {
+        "entry_id": "uniprot:P56069",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "nearest_fingerprint": "plp_dependent_enzyme",
+        "nearest_similarity": 0.9458,
+        "own_cohesion": 0.9458
+      }
+    ],
+    "promotion_candidates": 2324,
+    "review_outlier_samples": [
+      {
+        "entry_id": "uniprot:Q96TA2",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9998,
+        "own_cohesion": 0.971
+      },
+      {
+        "entry_id": "uniprot:O75844",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9986,
+        "own_cohesion": 0.9706
+      },
+      {
+        "entry_id": "uniprot:P0C1T0",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9977,
+        "own_cohesion": 0.9702
+      },
+      {
+        "entry_id": "uniprot:P24155",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9951,
+        "own_cohesion": 0.9687
+      },
+      {
+        "entry_id": "uniprot:Q21432",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9986,
+        "own_cohesion": 0.9706
+      },
+      {
+        "entry_id": "uniprot:Q93243",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9986,
+        "own_cohesion": 0.9706
+      },
+      {
+        "entry_id": "uniprot:F3YDF1",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9991,
+        "own_cohesion": 0.9709
+      },
+      {
+        "entry_id": "uniprot:Q39102",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9991,
+        "own_cohesion": 0.9709
+      },
+      {
+        "entry_id": "uniprot:O80983",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9991,
+        "own_cohesion": 0.9709
+      },
+      {
+        "entry_id": "uniprot:Q8W585",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9991,
+        "own_cohesion": 0.9709
+      },
+      {
+        "entry_id": "uniprot:Q1PDW5",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9991,
+        "own_cohesion": 0.9709
+      },
+      {
+        "entry_id": "uniprot:Q9SAJ3",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9991,
+        "own_cohesion": 0.9709
+      },
+      {
+        "entry_id": "uniprot:Q9FGM0",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9991,
+        "own_cohesion": 0.9709
+      },
+      {
+        "entry_id": "uniprot:P37476",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9991,
+        "own_cohesion": 0.9709
+      },
+      {
+        "entry_id": "uniprot:P0AAI3",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_fingerprint": "deoxynucleoside_kinase",
+        "nearest_similarity": 0.9985,
+        "own_cohesion": 0.9708
+      }
+    ],
+    "review_outliers": 1901,
+    "seed_labels_triaged": 5638,
+    "self_consistency_by_fingerprint": {
+      "askha_sugar_acetate_kinase": 0.97,
+      "atp_amide_ligase": 0.0467,
+      "biotin_dependent_carboxylase": 1.0,
+      "class_ii_metal_aldolase": 0.0133,
+      "coa_acyltransferase": 0.952,
+      "cobalamin_radical_rearrangement": 0.225,
+      "cofactor_independent_isomerase": 0.7867,
+      "copper_oxidoreductase": 0.8214,
+      "cytochrome_p450_monooxygenase": 0.952,
+      "deoxynucleoside_kinase": 0.84,
+      "flavin_dehydrogenase_reductase": 0.901,
+      "flavin_monooxygenase": 0.9474,
+      "ghmp_small_molecule_kinase": 0.0,
+      "glycoside_hydrolase": 0.52,
+      "glycosyltransferase": 0.628,
+      "heme_peroxidase_oxidase": 0.8889,
+      "manganese_iron_superoxide_dismutase": 0.89,
+      "metal_dependent_hydrolase": 0.0,
+      "metal_racemase_epimerase_non_plp": 0.3267,
+      "metallo_amidohydrolase_deaminase": 0.7333,
+      "metallopeptidase": 0.2067,
+      "metallophosphoesterase_nuclease": 0.12,
+      "metallophosphomonoesterase": 0.8867,
+      "molybdopterin_oxidoreductase": 0.528,
+      "nad_p_dehydrogenase": 1.0,
+      "non_heme_iron_2og_dioxygenase": 0.872,
+      "nucleoside_diphosphate_kinase": 0.97,
+      "pfka_phosphofructokinase": 0.95,
+      "pfkb_ribokinase_family": 0.0,
+      "plp_dependent_enzyme": 0.9224,
+      "protein_kinase_ser_thr_tyr": 0.97,
+      "radical_sam_enzyme": 1.0,
+      "sam_methyltransferase": 0.964,
+      "ser_his_acid_hydrolase": 0.8851,
+      "terpene_cyclase_synthase": 0.9249,
+      "thiamine_diphosphate_enzyme": 0.7333,
+      "zinc_lyase_hydratase": 0.0
+    }
+  },
+  "seed_labels": 5638,
+  "status": "ok"
+}

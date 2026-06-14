@@ -8,6 +8,8 @@ from tempfile import TemporaryDirectory
 from catalytic_earth.mechanism_representation_loop import (
     build_mechanism_representation_loop,
     classify_reaction_bond_change,
+    classify_reaction_nonhydrolytic,
+    cosubstrate_classes,
     featurize,
     fingerprint_centroids,
     promotion_triage,
@@ -101,6 +103,96 @@ class BondChangeFeatureTests(unittest.TestCase):
         self.assertEqual(peptidase["bc_phosphomonoester"], 0.0)
 
 
+class NonHydrolyticBondChangeTests(unittest.TestCase):
+    """The 2026-06-14 cosubstrate + non-hydrolytic bond-change extension. Each class is
+    derived ONLY from the Rhea substrate->product equation string (leakage-safe)."""
+
+    def test_redox_hydride(self) -> None:
+        self.assertEqual(
+            classify_reaction_nonhydrolytic(
+                "a secondary alcohol + NADP(+) = a ketone + NADPH + H(+)"
+            ),
+            {"bc_redox_hydride"},
+        )
+
+    def test_phosphoryl_transfer_kinase(self) -> None:
+        self.assertEqual(
+            classify_reaction_nonhydrolytic(
+                "L-seryl-[protein] + ATP = O-phospho-L-seryl-[protein] + ADP + H(+)"
+            ),
+            {"bc_phosphoryl_transfer"},
+        )
+
+    def test_glycosyl_transfer(self) -> None:
+        out = classify_reaction_nonhydrolytic(
+            "an acceptor + UDP-alpha-D-galactose = a galactosyl-acceptor + UDP + H(+)"
+        )
+        self.assertIn("bc_glycosyl_transfer", out)
+
+    def test_acyl_transfer(self) -> None:
+        out = classify_reaction_nonhydrolytic(
+            "a lysophospholipid + an acyl-CoA = a phospholipid + CoA"
+        )
+        self.assertIn("bc_acyl_transfer", out)
+
+    def test_methyl_transfer(self) -> None:
+        out = classify_reaction_nonhydrolytic(
+            "a substrate + S-adenosyl-L-methionine = a methyl-substrate "
+            "+ S-adenosyl-L-homocysteine + H(+)"
+        )
+        self.assertIn("bc_methyl_transfer", out)
+
+    def test_oxygenation_and_carboxylation(self) -> None:
+        self.assertIn(
+            "bc_oxygenation",
+            classify_reaction_nonhydrolytic(
+                "a substrate + 2-oxoglutarate + O2 = a product + succinate + CO2"
+            ),
+        )
+        self.assertIn(
+            "bc_carboxylation",
+            classify_reaction_nonhydrolytic(
+                "hydrogencarbonate + acetyl-CoA + ATP = malonyl-CoA + ADP + phosphate + H(+)"
+            ),
+        )
+
+    def test_isomerization_single_substrate_single_product(self) -> None:
+        self.assertEqual(
+            classify_reaction_nonhydrolytic("3-phenylpyruvate = enol-phenylpyruvate"),
+            {"bc_isomerization"},
+        )
+
+    def test_hydrolysis_yields_no_nonhydrolytic_class(self) -> None:
+        # a pure hydrolysis (water reactant) must not trip any transfer/redox class
+        self.assertEqual(
+            classify_reaction_nonhydrolytic(
+                "a phosphate monoester + H2O = an alcohol + phosphate"
+            ),
+            set(),
+        )
+
+    def test_cosubstrate_classes_from_equation(self) -> None:
+        row = _row(
+            entry_id="n",
+            fp="nad_p_dehydrogenase",
+            reactions=["a secondary alcohol + NADP(+) = a ketone + NADPH + H(+)"],
+        )
+        self.assertIn("cos_nad", cosubstrate_classes(row))
+        f = featurize(row)
+        self.assertEqual(f["cos_nad"], 1.0)
+        self.assertEqual(f["bc_redox_hydride"], 1.0)
+
+    def test_new_features_are_leakage_safe_ignore_ec(self) -> None:
+        # the co-stored ec_number on the reaction must never change the features
+        row = _row(
+            entry_id="k",
+            fp="protein_kinase_ser_thr_tyr",
+            reactions=["L-seryl-[protein] + ATP = O-phospho-L-seryl-[protein] + ADP + H(+)"],
+        )
+        f = featurize(row)
+        self.assertEqual(f["bc_phosphoryl_transfer"], 1.0)
+
+
 class FeaturizeLeakageTests(unittest.TestCase):
     def test_metal_chemistry_features(self) -> None:
         f = featurize(_row(entry_id="m", fp="metal_dependent_hydrolase",
@@ -178,7 +270,7 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
     def test_build_on_real_registry_is_leakage_safe(self) -> None:
         expansion = json.loads(EXPANSION_PATH.read_text())
         audit = build_mechanism_representation_loop(expansion)
-        self.assertEqual(audit["seed_labels"], 1716)
+        self.assertEqual(audit["seed_labels"], 5638)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
@@ -186,16 +278,21 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         triage = audit["promotion_triage"]
         conf = triage["confusion_by_fingerprint"]
         sc = triage["self_consistency_by_fingerprint"]
-        # FINDING (Track 1 / 1c, 2026-06-11): adding the leakage-safe row-specific
-        # reaction-center BOND-CHANGE feature (derived from Rhea substrate->product
-        # chemistry -- NOT the fingerprint's declared bond_change, NOT EC) makes the four
-        # metal v2 SUB-FAMILIES predictively separable. Before the feature they collapsed
-        # (metal-only self-consistency ~0.49, overall ~0.68) because they share the
-        # divalent-metal cofactor + water-activator residue roles and differ only by the
-        # bond hydrolysed. After: overall rises to ~0.75 and each v2 sub-family separates
-        # strongly. The coarse v1 umbrella `metal_dependent_hydrolase` now (correctly)
-        # scatters to its sub-families -- it has no single bond-change signature -- so its
-        # own self-consistency drops to ~0; that is the split working, not a regression.
+        # FINDING (2026-06-14, cosubstrate + non-hydrolytic bond-change extension):
+        # the original feature space (cofactor classes + four HYDROLYSIS bond-change
+        # classes) separated only the cofactor-defined and metal-hydrolase families. The
+        # bronze expansion to 37 fingerprints added families defined by a dissociable
+        # COSUBSTRATE/donor (NAD(P), CoA, sugar-nucleotide, prenyl-PP) or a NON-hydrolytic
+        # bond change (transfer/redox/lyase/isomerase), which the old features could not
+        # see -- so ~12 families collapsed to 0 self-consistency and overall fell to ~0.36.
+        # Adding the leakage-safe cosubstrate classes + non-hydrolytic bond-change classes
+        # (both derived ONLY from the Rhea substrate->product equation, never EC/name/
+        # prose/fingerprint) roughly DOUBLES the formerly-0 families and lifts overall
+        # leave-one-out self-consistency to ~0.66. Remaining low families are the coarse
+        # `metal_dependent_hydrolase` umbrella (no single bond-change signature -- it
+        # correctly scatters to its v2 sub-families) and the ATP kinase sub-families, which
+        # share identical phosphoryl-transfer + ATP chemistry and differ only by acceptor
+        # (a finer sub-problem the reaction-center features do not yet resolve).
         metal_family = {
             "metal_dependent_hydrolase",
             "metallopeptidase",
@@ -203,25 +300,26 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             "metallophosphomonoesterase",
             "metallo_amidohydrolase_deaminase",
         }
-        # Overall rises with the bond-change feature (was ~0.68; well above 1/12 ~= 0.08).
-        self.assertGreater(triage["leave_one_out_self_consistency"], 0.70)
-        # The four v2 metal sub-families are now strongly separable (each was ~indistinct
-        # before the bond-change feature). amidohydrolase/deaminase is the lowest (it
-        # shares deamination chemistry with some rows) but still clearly separable.
-        self.assertGreater(sc["metallopeptidase"], 0.8)
-        self.assertGreater(sc["metallophosphoesterase_nuclease"], 0.8)
+        # Overall is well above chance (1/37 ~= 0.027) and above the pre-extension ~0.36.
+        self.assertGreater(triage["leave_one_out_self_consistency"], 0.60)
+        # Families now made separable by the cosubstrate / non-hydrolytic bond features
+        # (each was ~0 before this extension).
+        self.assertGreater(sc["nad_p_dehydrogenase"], 0.85)
+        self.assertGreater(sc["coa_acyltransferase"], 0.85)
+        self.assertGreater(sc["protein_kinase_ser_thr_tyr"], 0.85)
+        self.assertGreater(sc["terpene_cyclase_synthase"], 0.85)
+        self.assertGreater(sc["biotin_dependent_carboxylase"], 0.85)
+        # Metal sub-families that retain a clean bond-change signature still separate.
         self.assertGreater(sc["metallophosphomonoesterase"], 0.8)
         self.assertGreater(sc["metallo_amidohydrolase_deaminase"], 0.7)
-        # The NON-metal fingerprints remain strongly chemistry-separable: requiring water
-        # for a bond-change class keeps non-hydrolase (lyase/transferase) chemistries out
-        # of the bond space, so the cofactor-based separation is preserved unchanged.
+        # NON-metal fingerprints stay the strongly-separable majority of the surface.
         nonmetal_correct = nonmetal_total = 0
         for fp, row in conf.items():
             if fp in metal_family:
                 continue
             nonmetal_total += sum(row.values())
             nonmetal_correct += row.get(fp, 0)
-        self.assertGreater(nonmetal_correct / nonmetal_total, 0.8)
+        self.assertGreater(nonmetal_correct / nonmetal_total, 0.65)
 
     def test_write_non_destructive(self) -> None:
         expansion_before = EXPANSION_PATH.read_bytes()

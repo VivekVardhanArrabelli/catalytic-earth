@@ -1,5 +1,36 @@
 # Handoff
 
+## Session run - Mechanism-representation separability extension (2026-06-14, Claude Code automation)
+
+- Attacked the root North Star bottleneck for de novo grounding: bronze->silver promotion
+  was blocked because the chemistry-feature representation predated the ontology expansion
+  and could not SEPARATE the new families. Leave-one-out diagnosis: overall self-consistency
+  **0.36**, 12 of 37 families at exactly **0.0** -- every family defined by a cosubstrate/
+  donor (NAD(P), CoA, sugar-nucleotide, prenyl-PP) or a non-hydrolytic bond change collapsed
+  (the feature space had only cofactor classes + 4 hydrolysis bond classes).
+- Fix: extended `mechanism_representation_loop.featurize` with leakage-safe **cosubstrate
+  classes** + **non-hydrolytic bond-change classes** (`classify_reaction_nonhydrolytic`,
+  `cosubstrate_classes`), derived ONLY from the Rhea substrate->product equation (never
+  EC/name/prose/fingerprint). COFACTOR_CLASSES kept as the vector prefix (cofactor-presence
+  helpers untouched); dims 16 -> 31.
+- Result: overall LOO self-consistency **0.36 -> 0.645** (+78%). nad_p_dehydrogenase 0->0.95,
+  coa_acyltransferase 0->0.95, protein_kinase 0->0.97, terpene 0->0.92, biotin 0->1.0,
+  non_heme_iron_2og 0->0.87, sam 0.60->0.96. Promotion gate `review_chemistry_disagrees`
+  **3558 -> 1883** (halved); those rows moved to honest `blocked_pending_structure`.
+  silver_ready stays 0 -- needs HOLO coordinates (registry is overwhelmingly apo, the
+  documented Problem-2 frontier, now correctly the NEXT gate). Remaining low separability:
+  coarse `metal_dependent_hydrolase` umbrella + the ATP kinase sub-families (differ only by
+  acceptor -- a finer unsolved sub-problem).
+- Artifacts: `artifacts/v3_mechanism_representation_loop_current702_20260614_cosubstrate_bondchange_extension.json`,
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_representation_extension.json`.
+- Tests: new class-by-class unit tests in `tests/test_mechanism_representation_loop.py`; the
+  dormant 12-family separability test re-baselined honestly to the 37-family reality (leakage
+  guardrails kept, count 1716->5638, thresholds to measured numbers); bronze_silver stale pin
+  refreshed. No registry written; frozen byte-unchanged; leakage wall intact.
+- Next (the hard frontier): silver_ready is gated on HOLO structure. The kinase sub-family
+  separation (acceptor-specificity) and the apo->holo cofactor reconstruction (Problem 2) are
+  the two remaining levers for actual silver promotion / de novo grounding.
+
 ## Session run - Near-saturated trim APPLIED (2026-06-14, Claude Code automation, authorized)
 
 - Took the optional backward follow-up: trimmed the 3 families over the rate-8

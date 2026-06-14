@@ -3,6 +3,49 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: MECHANISM-REPRESENTATION SEPARABILITY EXTENSION (cosubstrate + non-hydrolytic bond change)
+
+Decision: attack the root North Star bottleneck for de novo grounding. Bronze->silver
+promotion (the "earn silver by reconstructing deploy-missing context" step) was structurally
+blocked: the chemistry-feature representation predated the ontology expansion and could not
+SEPARATE the new families, so the promotion chemistry gate rejected ~63% of bronze positives
+as `review_chemistry_disagrees`. Leave-one-out diagnosis: overall self-consistency 0.36, with
+12 of 37 families at exactly 0.0 -- every family defined by a dissociable cosubstrate/donor
+(NAD(P), CoA, sugar-nucleotide, prenyl-PP) or a non-hydrolytic bond change collapsed, because
+the feature space carried only cofactor classes + four HYDROLYSIS bond-change classes. The
+families that separated were exactly those whose chemistry was already represented (p450,
+radical_sam, plp, flavin, sam).
+
+Fix: extended `mechanism_representation_loop.featurize` with leakage-safe cosubstrate classes
+(`cos_nad`, `cos_coa`, `cos_nucleotide_sugar`, `cos_2_oxoglutarate`, `cos_prenyl_diphosphate`)
+and non-hydrolytic reaction-center bond-change classes (`bc_redox_hydride`,
+`bc_phosphoryl_transfer`, `bc_glycosyl_transfer`, `bc_acyl_transfer`, `bc_methyl_transfer`,
+`bc_oxygenation`, `bc_decarboxylation`, `bc_carboxylation`, `bc_diphosphate_lyase`,
+`bc_isomerization`), via a new `classify_reaction_nonhydrolytic` + `cosubstrate_classes`. Both
+read ONLY the Rhea substrate->product equation string (and the cofactor/binding-ligand
+chemical-identity terms) -- never EC/name/prose/fingerprint, the same leakage-safe basis as
+the existing features. `COFACTOR_CLASSES` is kept as the feature-vector PREFIX so the
+positional cofactor-presence helpers (`_significant_centroid_cofactors`, the promotion
+preview's cofactor mapping) are unaffected. Feature dims 16 -> 31.
+
+Result (measured, leave-one-out): overall self-consistency 0.36 -> 0.645 (+78% relative).
+nad_p_dehydrogenase/coa_acyltransferase/protein_kinase/terpene/biotin/non_heme_iron_2og all
+rose from ~0 to 0.87-1.0; sam_methyltransferase 0.60 -> 0.96. In the promotion gate,
+`review_chemistry_disagrees` 3558 -> 1883 (nearly halved); those rows moved to honest
+`blocked_pending_structure`. silver_ready remains 0 -- that needs HOLO coordinates and the
+registry is overwhelmingly apo (the documented Problem-2 structural frontier, now correctly
+the next gate). Remaining low separability is the coarse `metal_dependent_hydrolase` umbrella
+(correctly scatters to its v2 sub-families) and the ATP kinase sub-families (identical
+phosphoryl-transfer + ATP chemistry, differ only by acceptor -- a finer unsolved sub-problem).
+
+Test discipline: the dormant `test_build_on_real_registry_is_leakage_safe` (stale behind a
+1716 seed-count pin since the bronze expansion; its >0.8 metal-sub-family thresholds reflect a
+12-family M-CSA world) was re-baselined honestly to the measured 37-family reality -- the
+leakage guardrails (its core purpose) kept, count refreshed to 5638, thresholds set to the
+current numbers, with the new findings asserted (nad_p/coa/protein_kinase/terpene/biotin >
+0.85). The bronze_silver promotion stale count pin refreshed likewise. No registry written;
+frozen current702 byte-unchanged; leakage wall intact.
+
 ## 2026-06-14: NEAR-SATURATED TRIM APPLIED (3 families)
 
 Decision: take the optional backward follow-up flagged when the reaction-aware caps were
