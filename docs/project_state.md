@@ -26,6 +26,55 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **REACTION-AWARE CAPS WIRED INTO THE LIVE SOURCING PATH (2026-06-14 automation, this turn).**
+  The prior turn BUILT the reaction-aware cap + per-reaction gate but left them un-wired
+  into the forward runners (the caps existed as governor/trim primitives only). This turn
+  wires them in so the climb is mechanism-diverse BY CONSTRUCTION, and closes the governor
+  coverage gap. No registry was written -- this is engine + governor + script wiring only;
+  combined stays **7636** (702 frozen + 6934 expansion), **37** fingerprints, frozen
+  current702 byte-unchanged sha256 `5eec9bef…`; honest counters unchanged (positive_bronze
+  5923, oos_bronze 1696, silver_confirmed 17, kept SEPARATE).
+
+  Changes:
+  - Shared cap guard `stage1_hole_sourcing._reaction_aware_cap_guard` +
+    `_distinct_reactions_by_fingerprint`, now used by all three runners (stage1 holes,
+    stage2 hydrolase sub-families, NAD/glycosyltransferase). With the new opt-in
+    `reaction_aware_caps=True` the per-family ceiling becomes
+    `clamp(rate*distinct_reactions, floor, base_cap)` (base_cap = the runner's flat
+    cap_ceiling, or NAD's per-family 150/250) -- depth is earned by reaction diversity, a
+    single-reaction family is bounded at the 100 floor, the floor is preserved so holes
+    still fill. Default `False` keeps the flat-ceiling behavior byte-stable for existing
+    runner tests/replays; only genuine forward callers opt in. floor_projection now also
+    carries `effective_cap` / `distinct_reactions` / `projected_over_effective_cap`.
+  - Runners thread the gate's `per_reaction_cap` (default `None` = unchanged) into
+    `evaluate_batch`, so at admission time no single Rhea reaction accumulates endless
+    orthologs even when each new row brings a new organism (enforced only at/above floor).
+  - The three forward scripts (`scripts/stage1_source_holes.py`,
+    `source_stage2_hydrolase_subfamilies.py`, `source_nad_glycosyltransferase_families.py`)
+    expose `--reaction-aware-caps/--no-reaction-aware-caps` (default ON in the live path),
+    `--reaction-cap-rate` (8), `--per-reaction-cap` (12, negative disables). The library
+    defaults stay off; the live sourcing path defaults on = diverse by construction.
+  - Governor coverage gap closed: `coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES`
+    now lists **37** families (added `terpene_cyclase_synthase` EC 4.2.3 and
+    `protein_kinase_ser_thr_tyr` EC 2.7.10/2.7.11), so its `reaction_saturated` /
+    acquisition view covers the two newest registry fingerprints. Coverage-accounting
+    metadata only -- EC stays scope-only, never predictive.
+  - New offline tests: `tests/test_reaction_aware_cap_wiring.py` (cap-guard helper +
+    distinct-reaction counting + batch per_reaction_cap), runner-propagation +
+    back-compat tests in `tests/test_stage2_hydrolase_subfamily_sourcing.py`, and a
+    governor-coverage test for the two newest fingerprints in
+    `tests/test_coverage_redundancy_audit.py`.
+
+  Discipline held: frozen current702 NEVER written; validate ok (702 frozen / 37
+  fingerprints); `git diff --check` clean; leakage wall unchanged (EC/name/keyword/
+  cosubstrate/lane stay excluded_context; reaction accounting uses mechanism_evidence /
+  Rhea for COVERAGE ONLY). Optional backward follow-up NOT taken (no authorization to
+  demote more): the 3 near-saturated families (`cobalamin_radical_rearrangement`,
+  `pfkb_ribokinase_family`, `radical_sam_enzyme`) still sit over the rate-8 cap but below
+  the labels/rxn>10 ratio; re-run `scripts/trim_reaction_saturation.py` with a lower
+  `--saturation-ratio-threshold` (preview first, explicit `--apply` only on authorization)
+  to address them.
+
 - **REACTION-SATURATION TRIM APPLIED + REACTION-AWARE CAPS BUILT (2026-06-14 automation).**
   This run pivoted from volume growth to diversity-quality. It built the forward
   prevention (reaction-diversity-aware caps) and the backward cleanup (a non-destructive

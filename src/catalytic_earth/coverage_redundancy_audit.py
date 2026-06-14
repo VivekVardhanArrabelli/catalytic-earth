@@ -248,6 +248,26 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         ),
         "lanes": ["manganese_iron_superoxide_dismutase"],
     },
+    # High-yield family lanes added 2026-06-13/14 (terpene cyclase, protein kinase).
+    # Registered here so the governor's reaction_saturated / acquisition view covers
+    # all 37 registry fingerprints. Coverage-accounting metadata only -- EC stays
+    # scope-only, never predictive.
+    "terpene_cyclase_synthase": {
+        "ec_prefixes": ["4.2.3"],
+        "cofactor": (
+            "Mg/Mn prenyl-diphosphate binding plus carbocation cyclization context; "
+            "prenyltransferase chain-extension and non-terpene lyase boundaries are held"
+        ),
+        "lanes": ["terpene_cyclase_synthase"],
+    },
+    "protein_kinase_ser_thr_tyr": {
+        "ec_prefixes": ["2.7.10", "2.7.11"],
+        "cofactor": (
+            "ATP/Mg phosphoryl-transfer cosubstrate context with a protein substrate; "
+            "small-molecule kinase and histidine-kinase/two-component boundaries are held"
+        ),
+        "lanes": ["protein_kinase_ser_thr_tyr"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

@@ -95,6 +95,31 @@ def main() -> int:
         default=None,
         help="fetch at most this many rows per lane after the offset",
     )
+    parser.add_argument(
+        "--reaction-aware-caps",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help=(
+            "earn each fingerprint's cap from its reaction diversity "
+            "(clamp(rate*distinct_reactions, floor, cap-ceiling)) instead of a flat "
+            "ceiling; on by default. --no-reaction-aware-caps restores the flat ceiling"
+        ),
+    )
+    parser.add_argument(
+        "--reaction-cap-rate",
+        type=int,
+        default=8,
+        help="labels earned per distinct Rhea reaction for the reaction-aware cap",
+    )
+    parser.add_argument(
+        "--per-reaction-cap",
+        type=int,
+        default=12,
+        help=(
+            "admission-time ceiling on labels per distinct Rhea reaction within a scope; "
+            "pass a negative value to disable"
+        ),
+    )
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
     parser.add_argument(
@@ -124,6 +149,9 @@ def main() -> int:
         report_path=Path(args.report),
         holes=tuple(args.holes),
         max_records_per_lane=args.max_records_per_lane,
+        reaction_aware_caps=args.reaction_aware_caps,
+        reaction_cap_rate=args.reaction_cap_rate,
+        per_reaction_cap=(args.per_reaction_cap if args.per_reaction_cap >= 0 else None),
         record_offset_per_lane=args.record_offset_per_lane,
         record_limit_per_lane=args.record_limit_per_lane,
     )

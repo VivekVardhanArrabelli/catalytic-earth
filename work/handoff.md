@@ -1,5 +1,46 @@
 # Handoff
 
+## Session run - Reaction-aware caps WIRED into the live sourcing path (2026-06-14, Claude Code automation)
+
+- The prior turn built the reaction-aware cap + per-reaction gate but left them un-wired
+  into the forward runners. This turn wires them in so the climb is mechanism-diverse BY
+  CONSTRUCTION, and closes the governor coverage gap. Engine/governor/script wiring only --
+  NO registry written: combined stays **7636** (702 frozen + 6934 expansion), **37**
+  fingerprints, frozen current702 byte-unchanged sha256 `5eec9bef…`, counters unchanged
+  (positive_bronze 5923, oos_bronze 1696, silver_confirmed 17, SEPARATE).
+- Shared cap guard: `stage1_hole_sourcing._reaction_aware_cap_guard` +
+  `_distinct_reactions_by_fingerprint`, now used by all three runners (stage1 holes,
+  stage2 hydrolase sub-families, NAD/glycosyltransferase). Opt-in `reaction_aware_caps`
+  (default `False` = flat ceiling, byte-stable) makes the per-family cap
+  `clamp(rate*distinct_reactions, floor, base_cap)` (base_cap = flat cap_ceiling or NAD's
+  per-family 150/250). Single-reaction family -> floor 100 (preserved, not dropped);
+  reaction-rich family -> base ceiling. distinct_reactions counted over
+  frozen+expansion+this-run's-admits so new reactions earn headroom. floor_projection now
+  carries `effective_cap`/`distinct_reactions`/`projected_over_effective_cap`.
+- Runners thread the gate's `per_reaction_cap` (default `None`) into `evaluate_batch` so
+  no single Rhea reaction accumulates endless orthologs at admission (enforced at/above
+  floor only). The three forward scripts expose `--reaction-aware-caps/--no-...` (default
+  ON in the live path), `--reaction-cap-rate` (8), `--per-reaction-cap` (12, negative
+  disables). Library defaults stay off; live path defaults on.
+- Governor coverage gap closed: added `terpene_cyclase_synthase` (EC 4.2.3) and
+  `protein_kinase_ser_thr_tyr` (EC 2.7.10/2.7.11) to `FINGERPRINT_SOURCING_SIGNATURES`
+  (35 -> 37). Coverage-accounting metadata only; EC stays scope-only, never predictive.
+- New tests: `tests/test_reaction_aware_cap_wiring.py` (cap-guard helper, distinct-reaction
+  counting, batch per_reaction_cap), runner propagation/back-compat in
+  `tests/test_stage2_hydrolase_subfamily_sourcing.py`, governor coverage of the 2 newest
+  fingerprints in `tests/test_coverage_redundancy_audit.py`.
+- Guards: frozen NEVER written; `validate` ok (12 source / 37 fp / 34 ontology / 702
+  labels); `git diff --check` clean; full offline suite = the known 12 pre-existing
+  failures + 1 numpy collection error, no NEW regressions. The optional backward trim of
+  the 3 near-saturated families (`cobalamin_radical_rearrangement`,
+  `pfkb_ribokinase_family`, `radical_sam_enzyme`) was NOT taken -- no authorization to
+  demote more. To address: `scripts/trim_reaction_saturation.py
+  --saturation-ratio-threshold <lower>` (preview first; `--apply` only on authorization,
+  prints frozen sha before/after).
+- Next: run the forward scripts with live UniProt egress (reaction-aware caps now ON by
+  default) to fill holes/under-floor families diversely; consider the optional near-
+  saturated trim above.
+
 ## Session run - Reaction-aware caps + reaction-saturation trim APPLIED (2026-06-14, Claude Code automation)
 
 - Pivoted from volume growth to diversity-quality. Built forward prevention + backward

@@ -3,6 +3,49 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: REACTION-AWARE CAPS WIRED INTO THE LIVE SOURCING PATH
+
+Decision: the prior turn built the reaction-aware family cap and the per-reaction admission
+gate but left them un-wired into the forward runners -- the climb could still source flat
+150/250-per-family ceilings. Wire the diversity-earned cap and the per-reaction gate into
+the live sourcing path so growth is mechanism-diverse BY CONSTRUCTION, and close the
+governor's coverage gap. Engine/governor/script wiring only -- no registry written, frozen
+current702 byte-unchanged (sha `5eec9bef…`), combined stays 7636, counters unchanged.
+
+- Added shared `stage1_hole_sourcing._reaction_aware_cap_guard` +
+  `_distinct_reactions_by_fingerprint`; all three runners (stage1 holes, stage2 hydrolase
+  sub-families, NAD/glycosyltransferase) now route their cap guard through it. New opt-in
+  `reaction_aware_caps` (default `False` = historical flat ceiling, byte-stable for
+  existing tests/replays) makes the per-family cap `clamp(rate*distinct_reactions, floor,
+  base_cap)`, where base_cap is the runner's flat `cap_ceiling` or NAD's per-family
+  150/250. Depth is earned by reaction diversity: a single-reaction family is bounded at
+  the 100 floor (not dropped -- the floor is preserved so holes still fill), a
+  reaction-rich family reaches its base ceiling. distinct_reactions is computed over
+  combined (frozen+expansion) seed rows PLUS this run's gate-admitted rows, so newly
+  sourced reactions earn headroom. floor_projection gains
+  `effective_cap`/`distinct_reactions`/`projected_over_effective_cap`.
+- Runners thread the gate's `per_reaction_cap` (default `None` = unchanged) into
+  `evaluate_batch`, so at admission time no single Rhea reaction accumulates endless
+  orthologs even when each new row brings a new organism (enforced only at/above floor).
+- The three forward scripts expose `--reaction-aware-caps/--no-reaction-aware-caps`
+  (default ON in the live path), `--reaction-cap-rate` (8), `--per-reaction-cap` (12,
+  negative disables). Library defaults stay off; the live path defaults on = diverse by
+  construction. Backward-compatible: existing runner tests (which call the library with
+  defaults) are unaffected; only genuine forward callers opt in.
+- Closed the governor coverage gap flagged last turn: added `terpene_cyclase_synthase`
+  (EC 4.2.3) and `protein_kinase_ser_thr_tyr` (EC 2.7.10/2.7.11) to
+  `coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES` (35 -> 37), so the
+  governor's `reaction_saturated`/acquisition view now covers all 37 registry
+  fingerprints. Coverage-accounting metadata only -- EC stays scope-only, never
+  predictive. This raises `breadth_feasibility_scout`'s `live_fingerprint_count` to 37
+  (no test pinned it).
+
+Guardrails: frozen current702 NEVER written; validate ok (702 frozen / 37 fingerprints);
+`git diff --check` clean; leakage wall unchanged. New offline tests:
+`tests/test_reaction_aware_cap_wiring.py` plus runner-propagation/back-compat and
+governor-coverage assertions. The optional backward trim of the 3 near-saturated families
+was NOT taken (no authorization to demote more rows).
+
 ## 2026-06-14: REACTION-AWARE CAPS + REACTION-SATURATION TRIM APPLIED
 
 Decision: pivot from volume growth to diversity-quality. Growth has become

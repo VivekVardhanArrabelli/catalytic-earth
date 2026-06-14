@@ -39,11 +39,16 @@ Guardrails inherited from the reused engines and asserted on the output:
 from __future__ import annotations
 
 import json
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Callable
 
 from .adapters import fetch_rhea_by_ec, fetch_uniprot_entry, fetch_uniprot_query
+from .coverage_redundancy_audit import (
+    DEFAULT_REACTION_CAP_RATE,
+    _reaction_ids,
+    reaction_aware_cap,
+)
 from .external_cofactor_ec_disambiguation import build_cofactor_ec_disambiguation
 from .external_scaleout_bronze_import import (
     DEFAULT_CURRENT_MANIFEST_PATH,
@@ -291,6 +296,71 @@ def _fingerprint_counts(labels: list[dict[str, Any]]) -> Counter:
     return counts
 
 
+def _distinct_reactions_by_fingerprint(
+    *registries: list[dict[str, Any]],
+) -> dict[str, int]:
+    """Distinct concrete Rhea reactions per fingerprint across the given registries.
+
+    Coverage accounting only -- it feeds the reaction-aware cap (depth a family earns
+    is proportional to its reaction/mechanism diversity, never raw organism padding).
+    """
+    out: dict[str, set] = defaultdict(set)
+    for registry in registries:
+        for row in registry:
+            fp = row.get("fingerprint_id")
+            if fp and row.get("label_type") == "seed_fingerprint":
+                out[fp].update(_reaction_ids(row))
+    return {fp: len(reactions) for fp, reactions in out.items()}
+
+
+def _reaction_aware_cap_guard(
+    gate_admitted: list[dict[str, Any]],
+    *,
+    combined_counts: Counter,
+    base_cap_for: Callable[[str | None], int],
+    reaction_aware_caps: bool = False,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
+    target_floor: int = DEFAULT_TARGET_FLOOR,
+    distinct_reactions_by_fp: dict[str, int] | None = None,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, int]]:
+    """Trim the gate-admitted set so no fingerprint exceeds its cap; hold the surplus.
+
+    The shared cap guard for the Stage-1/Stage-2/broadened-handle runners. With
+    ``reaction_aware_caps=False`` (default) the cap is the flat ``base_cap_for(fp)``
+    ceiling -- the historical behavior, byte-stable for existing previews/tests. With
+    ``reaction_aware_caps=True`` the cap becomes
+    ``clamp(rate * distinct_reactions, floor, base_cap_for(fp))`` so a family's depth is
+    earned by its reaction/mechanism diversity: a single-reaction family is bounded at
+    the floor, a reaction-rich family reaches its base ceiling. The floor is preserved
+    so holes still reach 100. Returns ``(admitted, cap_trimmed, effective_caps)``.
+    """
+    distinct_reactions_by_fp = distinct_reactions_by_fp or {}
+    admitted: list[dict[str, Any]] = []
+    cap_trimmed: list[dict[str, Any]] = []
+    kept_per_fp: Counter = Counter()
+    effective_caps: dict[str, int] = {}
+    for label in gate_admitted:
+        fp = label.get("fingerprint_id")
+        base_cap = base_cap_for(fp)
+        if reaction_aware_caps:
+            cap = reaction_aware_cap(
+                distinct_reactions_by_fp.get(fp, 0),
+                rate=reaction_cap_rate,
+                floor=target_floor,
+                ceiling=base_cap,
+            )
+        else:
+            cap = base_cap
+        if fp is not None:
+            effective_caps[fp] = cap
+        if combined_counts.get(fp, 0) + kept_per_fp[fp] >= cap:
+            cap_trimmed.append(label)
+            continue
+        kept_per_fp[fp] += 1
+        admitted.append(label)
+    return admitted, cap_trimmed, effective_caps
+
+
 def build_stage1_hole_sourcing(
     *,
     holes: tuple[str, ...] = SOURCEABLE_FINGERPRINTS,
@@ -302,6 +372,9 @@ def build_stage1_hole_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
+    per_reaction_cap: int | None = None,
+    reaction_aware_caps: bool = False,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
     record_offset_per_lane: int = 0,
     record_limit_per_lane: int | None = None,
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
@@ -363,6 +436,7 @@ def build_stage1_hole_sourcing(
         state,
         per_cluster_cap=per_cluster_cap,
         target_floor=target_floor,
+        per_reaction_cap=per_reaction_cap,
     )
     admit_ids = set(gate["admit_entry_ids"])
     gate_admitted = [
@@ -377,21 +451,24 @@ def build_stage1_hole_sourcing(
     #     greedily above the floor and even permits "over_cap_but_new_reaction_chemistry"
     #     admissions, so a high-yield space (e.g. flavin_dehydrogenase_reductase via
     #     EC 1.3/1.6/1.8.1) can be pushed past the 250 ceiling. Trim each fingerprint's
-    #     admitted set so projected combined never exceeds cap_ceiling; the surplus stays
-    #     held (a review queue), it is not imported.
+    #     admitted set so projected combined never exceeds its cap; the surplus stays
+    #     held (a review queue), it is not imported. With reaction_aware_caps the cap is
+    #     earned by reaction diversity (clamp(rate*distinct_reactions, floor, ceiling)).
     combined_counts = _fingerprint_counts(frozen_benchmark_payload) + _fingerprint_counts(
         expansion_payload
     )
-    admitted: list[dict[str, Any]] = []
-    cap_trimmed: list[dict[str, Any]] = []
-    kept_per_fp: Counter = Counter()
-    for label in gate_admitted:
-        fp = label.get("fingerprint_id")
-        if combined_counts.get(fp, 0) + kept_per_fp[fp] >= cap_ceiling:
-            cap_trimmed.append(label)
-            continue
-        kept_per_fp[fp] += 1
-        admitted.append(label)
+    distinct_reactions_by_fp = _distinct_reactions_by_fingerprint(
+        frozen_benchmark_payload, expansion_payload, gate_admitted
+    )
+    admitted, cap_trimmed, effective_caps = _reaction_aware_cap_guard(
+        gate_admitted,
+        combined_counts=combined_counts,
+        base_cap_for=lambda fp: cap_ceiling,
+        reaction_aware_caps=reaction_aware_caps,
+        reaction_cap_rate=reaction_cap_rate,
+        target_floor=target_floor,
+        distinct_reactions_by_fp=distinct_reactions_by_fp,
+    )
     cap_trimmed_counts = _fingerprint_counts(cap_trimmed)
 
     # 4. Per-fingerprint floor projection from the (cap-guarded) admitted set.
@@ -401,6 +478,7 @@ def build_stage1_hole_sourcing(
         before = combined_counts.get(hole, 0)
         added = admitted_counts.get(hole, 0)
         projected = before + added
+        effective_cap = effective_caps.get(hole, cap_ceiling)
         floor_projection[hole] = {
             "combined_before": before,
             "admitted_this_run": added,
@@ -409,8 +487,11 @@ def build_stage1_hole_sourcing(
             "deficit_to_floor_after": max(target_floor - projected, 0),
             "floor_reached": projected >= target_floor,
             "cap_ceiling": cap_ceiling,
+            "effective_cap": effective_cap,
+            "distinct_reactions": distinct_reactions_by_fp.get(hole, 0),
             "held_at_cap_this_run": cap_trimmed_counts.get(hole, 0),
             "projected_over_cap": projected > cap_ceiling,
+            "projected_over_effective_cap": projected > effective_cap,
         }
 
     combined_total = len(frozen_benchmark_payload) + len(expansion_payload)
@@ -441,6 +522,9 @@ def build_stage1_hole_sourcing(
             "novelty_gated_against_both_registries": True,
             "structure_geometry_confirmation_is_deferred_promotion_signal": True,
             "per_fingerprint_cap_ceiling_enforced": cap_ceiling,
+            "reaction_aware_caps_enabled": reaction_aware_caps,
+            "reaction_cap_rate": reaction_cap_rate if reaction_aware_caps else None,
+            "per_reaction_cap_at_admission": per_reaction_cap,
             "no_fingerprint_pushed_over_cap": all(
                 not p["projected_over_cap"] for p in floor_projection.values()
             ),
@@ -559,6 +643,9 @@ def write_stage1_hole_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
+    per_reaction_cap: int | None = None,
+    reaction_aware_caps: bool = False,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
     record_offset_per_lane: int = 0,
     record_limit_per_lane: int | None = None,
 ) -> dict[str, Any]:
@@ -573,6 +660,9 @@ def write_stage1_hole_sourcing(
         target_floor=target_floor,
         per_cluster_cap=per_cluster_cap,
         cap_ceiling=cap_ceiling,
+        per_reaction_cap=per_reaction_cap,
+        reaction_aware_caps=reaction_aware_caps,
+        reaction_cap_rate=reaction_cap_rate,
         record_offset_per_lane=record_offset_per_lane,
         record_limit_per_lane=record_limit_per_lane,
     )

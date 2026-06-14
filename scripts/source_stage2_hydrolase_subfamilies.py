@@ -75,6 +75,33 @@ def main() -> int:
             "reaction-redundancy low and balance even)"
         ),
     )
+    parser.add_argument(
+        "--reaction-aware-caps",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help=(
+            "earn each family's cap from its reaction diversity "
+            "(clamp(rate*distinct_reactions, floor, cap-ceiling)) instead of a flat "
+            "ceiling; on by default for the live forward path. --no-reaction-aware-caps "
+            "restores the flat ceiling (historical behavior)"
+        ),
+    )
+    parser.add_argument(
+        "--reaction-cap-rate",
+        type=int,
+        default=8,
+        help="labels earned per distinct Rhea reaction for the reaction-aware cap",
+    )
+    parser.add_argument(
+        "--per-reaction-cap",
+        type=int,
+        default=12,
+        help=(
+            "admission-time ceiling on labels per distinct Rhea reaction within a scope "
+            "(no single reaction accumulates endless orthologs); pass a negative value "
+            "to disable"
+        ),
+    )
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
     parser.add_argument(
@@ -104,6 +131,9 @@ def main() -> int:
         subfamilies=tuple(args.subfamilies),
         max_records_per_lane=args.max_records_per_lane,
         cap_ceiling=args.cap_ceiling,
+        reaction_aware_caps=args.reaction_aware_caps,
+        reaction_cap_rate=args.reaction_cap_rate,
+        per_reaction_cap=(args.per_reaction_cap if args.per_reaction_cap >= 0 else None),
     )
 
     c = audit["counts"]

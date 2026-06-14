@@ -46,7 +46,6 @@ Guardrails inherited from the reused engines and asserted on the output:
 from __future__ import annotations
 
 import json
-from collections import Counter
 from pathlib import Path
 from typing import Any, Callable
 
@@ -71,10 +70,13 @@ from .novelty_admission_gate import (
     build_diversity_state,
     evaluate_batch,
 )
+from .coverage_redundancy_audit import DEFAULT_REACTION_CAP_RATE
 from .stage1_hole_sourcing import (
     DEFAULT_TARGET_FLOOR,
     _bridge_pilot_rows_for_disambiguation,
+    _distinct_reactions_by_fingerprint,
     _fingerprint_counts,
+    _reaction_aware_cap_guard,
 )
 
 ARTIFACT_ID = "v3_nad_glycosyltransferase_subfamily_sourcing_preview_current702"
@@ -186,6 +188,9 @@ def build_nad_glycosyltransferase_subfamily_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
+    per_reaction_cap: int | None = None,
+    reaction_aware_caps: bool = False,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
@@ -237,6 +242,7 @@ def build_nad_glycosyltransferase_subfamily_sourcing(
         state,
         per_cluster_cap=per_cluster_cap,
         target_floor=target_floor,
+        per_reaction_cap=per_reaction_cap,
     )
     admit_ids = set(gate["admit_entry_ids"])
     gate_admitted = [
@@ -248,21 +254,24 @@ def build_nad_glycosyltransferase_subfamily_sourcing(
 
     # 3b. Per-fingerprint cap guard with a PER-FAMILY ceiling (150 confusable / 250 else).
     #     Trim each fingerprint's admitted set so projected combined never exceeds its cap;
-    #     the surplus stays held (not imported).
+    #     the surplus stays held (not imported). With reaction_aware_caps the per-family
+    #     ceiling is further bounded by reaction diversity (clamp(rate*distinct_reactions,
+    #     floor, per-family cap)).
     combined_counts = _fingerprint_counts(frozen_benchmark_payload) + _fingerprint_counts(
         expansion_payload
     )
-    admitted: list[dict[str, Any]] = []
-    cap_trimmed: list[dict[str, Any]] = []
-    kept_per_fp: Counter = Counter()
-    for label in gate_admitted:
-        fp = label.get("fingerprint_id")
-        cap = caps_by_family.get(fp, cap_ceiling)
-        if combined_counts.get(fp, 0) + kept_per_fp[fp] >= cap:
-            cap_trimmed.append(label)
-            continue
-        kept_per_fp[fp] += 1
-        admitted.append(label)
+    distinct_reactions_by_fp = _distinct_reactions_by_fingerprint(
+        frozen_benchmark_payload, expansion_payload, gate_admitted
+    )
+    admitted, cap_trimmed, effective_caps = _reaction_aware_cap_guard(
+        gate_admitted,
+        combined_counts=combined_counts,
+        base_cap_for=lambda fp: caps_by_family.get(fp, cap_ceiling),
+        reaction_aware_caps=reaction_aware_caps,
+        reaction_cap_rate=reaction_cap_rate,
+        target_floor=target_floor,
+        distinct_reactions_by_fp=distinct_reactions_by_fp,
+    )
     cap_trimmed_counts = _fingerprint_counts(cap_trimmed)
 
     # 4. Per-family floor projection from the (cap-guarded) admitted set.
@@ -273,6 +282,7 @@ def build_nad_glycosyltransferase_subfamily_sourcing(
         added = admitted_counts.get(family, 0)
         projected = before + added
         cap = caps_by_family[family]
+        effective_cap = effective_caps.get(family, cap)
         floor_projection[family] = {
             "combined_before": before,
             "admitted_this_run": added,
@@ -281,9 +291,12 @@ def build_nad_glycosyltransferase_subfamily_sourcing(
             "deficit_to_floor_after": max(target_floor - projected, 0),
             "floor_reached": projected >= target_floor,
             "cap_ceiling": cap,
+            "effective_cap": effective_cap,
+            "distinct_reactions": distinct_reactions_by_fp.get(family, 0),
             "chemistry_confusable": family in CONFUSABLE_FAMILIES,
             "held_at_cap_this_run": cap_trimmed_counts.get(family, 0),
             "projected_over_cap": projected > cap,
+            "projected_over_effective_cap": projected > effective_cap,
             "deploy_missing_active_site_context": DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT.get(
                 family
             ),
@@ -325,6 +338,9 @@ def build_nad_glycosyltransferase_subfamily_sourcing(
             "per_fingerprint_cap_ceiling_enforced_per_family": dict(
                 sorted(caps_by_family.items())
             ),
+            "reaction_aware_caps_enabled": reaction_aware_caps,
+            "reaction_cap_rate": reaction_cap_rate if reaction_aware_caps else None,
+            "per_reaction_cap_at_admission": per_reaction_cap,
             "no_fingerprint_pushed_over_cap": all(
                 not p["projected_over_cap"] for p in floor_projection.values()
             ),
@@ -457,6 +473,9 @@ def write_nad_glycosyltransferase_subfamily_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
+    per_reaction_cap: int | None = None,
+    reaction_aware_caps: bool = False,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
 ) -> dict[str, Any]:
     """Build the preview and write it (non-destructive: no registry is touched)."""
     expansion_path = Path(expansion_registry_path)
@@ -469,6 +488,9 @@ def write_nad_glycosyltransferase_subfamily_sourcing(
         target_floor=target_floor,
         per_cluster_cap=per_cluster_cap,
         cap_ceiling=cap_ceiling,
+        per_reaction_cap=per_reaction_cap,
+        reaction_aware_caps=reaction_aware_caps,
+        reaction_cap_rate=reaction_cap_rate,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

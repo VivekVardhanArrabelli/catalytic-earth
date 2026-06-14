@@ -7,6 +7,7 @@ from tempfile import TemporaryDirectory
 
 from catalytic_earth.coverage_redundancy_audit import (
     ALL_FINGERPRINTS,
+    FINGERPRINT_SOURCING_SIGNATURES,
     build_coverage_redundancy_audit,
     write_coverage_redundancy_audit,
 )
@@ -153,6 +154,44 @@ class BuildAuditSyntheticTests(unittest.TestCase):
         self.assertFalse(g["frozen_benchmark_written"])
         self.assertFalse(g["expansion_registry_written"])
         self.assertEqual(g["labels_emitted"], 0)
+
+
+class GovernorCoverageOfNewestFingerprintsTests(unittest.TestCase):
+    """The two newest registry fingerprints must be in the governor's signature view
+    so its reaction_saturated / acquisition accounting covers all 37 families."""
+
+    def test_newest_fingerprints_registered(self) -> None:
+        for fp in ("terpene_cyclase_synthase", "protein_kinase_ser_thr_tyr"):
+            self.assertIn(fp, FINGERPRINT_SOURCING_SIGNATURES)
+            self.assertIn(fp, ALL_FINGERPRINTS)
+            sig = FINGERPRINT_SOURCING_SIGNATURES[fp]
+            self.assertTrue(sig["ec_prefixes"])
+            self.assertTrue(sig["lanes"])
+
+    def test_reaction_saturated_view_covers_new_fingerprint(self) -> None:
+        # A single-reaction terpene family padded past its reaction-aware cap must be
+        # flagged reaction_saturated and recommended for TRIM by the governor.
+        frozen = []
+        expansion = [
+            _seed(
+                entry_id=f"uniprot:T{i}",
+                fp="terpene_cyclase_synthase",
+                ec=("4.2.3.1",),
+                rhea=("RHEA:7000",),  # one distinct reaction
+                lane="terpene_cyclase_synthase",
+                organism=f"org{i}",
+                seq_len=550,
+            )
+            for i in range(140)
+        ]
+        audit = build_coverage_redundancy_audit(frozen, expansion)
+        targets = {r["fingerprint"]: r for r in audit["acquisition_targets"]["targets"]}
+        terp = targets["terpene_cyclase_synthase"]
+        self.assertEqual(terp["distinct_reactions"], 1)
+        self.assertEqual(terp["reaction_aware_cap"], 100)  # floor for 1 reaction
+        self.assertTrue(terp["reaction_saturated"])
+        self.assertIn("terpene_cyclase_synthase", audit["acquisition_targets"]["reaction_saturated"])
+        self.assertIn("TRIM", terp["recommended_action"])
 
 
 class WriteAuditRealRegistryTests(unittest.TestCase):

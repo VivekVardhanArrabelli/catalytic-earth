@@ -202,6 +202,37 @@ class Stage2SubfamilySourcingTest(unittest.TestCase):
         admitted_ids = {label["entry_id"] for label in audit["applied_labels"]}
         self.assertNotIn("uniprot:NX0001", admitted_ids)
 
+    def test_reaction_aware_caps_default_off_is_backcompat(self):
+        # Default flag off: effective_cap equals the flat cap_ceiling and the
+        # admitted set is byte-identical to the historical behavior.
+        baseline = self._run()
+        audit = self._run()
+        self.assertFalse(audit["guardrails"]["reaction_aware_caps_enabled"])
+        self.assertIsNone(audit["guardrails"]["reaction_cap_rate"])
+        self.assertIsNone(audit["guardrails"]["per_reaction_cap_at_admission"])
+        proj = audit["floor_projection"]["metallopeptidase"]
+        self.assertEqual(proj["effective_cap"], proj["cap_ceiling"])
+        self.assertEqual(
+            audit["counts"]["admitted_fingerprint_counts"],
+            baseline["counts"]["admitted_fingerprint_counts"],
+        )
+
+    def test_reaction_aware_caps_opt_in_surfaces_diversity_earned_cap(self):
+        # Opt-in: each newly-sourced single-reaction subfamily earns only the floor.
+        audit = self._run(reaction_aware_caps=True, reaction_cap_rate=8)
+        self.assertTrue(audit["guardrails"]["reaction_aware_caps_enabled"])
+        self.assertEqual(audit["guardrails"]["reaction_cap_rate"], 8)
+        for proj in audit["floor_projection"].values():
+            # one synthetic reaction per row -> floor-bounded cap, well above the
+            # single admitted label so nothing is wrongly trimmed.
+            self.assertEqual(proj["effective_cap"], 100)
+            self.assertGreaterEqual(proj["distinct_reactions"], 1)
+            self.assertFalse(proj["projected_over_effective_cap"])
+
+    def test_per_reaction_cap_is_threaded_to_admission(self):
+        audit = self._run(per_reaction_cap=12)
+        self.assertEqual(audit["guardrails"]["per_reaction_cap_at_admission"], 12)
+
     def test_unknown_subfamily_rejected(self):
         with self.assertRaises(ValueError):
             self._run(subfamilies=("metal_dependent_hydrolase",))

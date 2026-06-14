@@ -41,7 +41,6 @@ Guardrails inherited from the reused engines and asserted on the output:
 from __future__ import annotations
 
 import json
-from collections import Counter
 from pathlib import Path
 from typing import Any, Callable
 
@@ -64,10 +63,13 @@ from .novelty_admission_gate import (
     build_diversity_state,
     evaluate_batch,
 )
+from .coverage_redundancy_audit import DEFAULT_REACTION_CAP_RATE
 from .stage1_hole_sourcing import (
     DEFAULT_TARGET_FLOOR,
     _bridge_pilot_rows_for_disambiguation,
+    _distinct_reactions_by_fingerprint,
     _fingerprint_counts,
+    _reaction_aware_cap_guard,
 )
 
 ARTIFACT_ID = "v3_stage2_hydrolase_subfamily_sourcing_preview_current702"
@@ -245,6 +247,9 @@ def build_stage2_hydrolase_subfamily_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
+    per_reaction_cap: int | None = None,
+    reaction_aware_caps: bool = False,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
@@ -294,6 +299,7 @@ def build_stage2_hydrolase_subfamily_sourcing(
         state,
         per_cluster_cap=per_cluster_cap,
         target_floor=target_floor,
+        per_reaction_cap=per_reaction_cap,
     )
     admit_ids = set(gate["admit_entry_ids"])
     gate_admitted = [
@@ -305,20 +311,23 @@ def build_stage2_hydrolase_subfamily_sourcing(
 
     # 3b. Cap guard. Stage 2 sources NEW sub-families to the FLOOR; it must never
     #     manufacture an OVER-CAP fingerprint. Trim each sub-family's admitted set so
-    #     projected combined never exceeds cap_ceiling; the surplus stays held.
+    #     projected combined never exceeds its cap; the surplus stays held. With
+    #     reaction_aware_caps the cap is earned by reaction diversity.
     combined_counts = _fingerprint_counts(frozen_benchmark_payload) + _fingerprint_counts(
         expansion_payload
     )
-    admitted: list[dict[str, Any]] = []
-    cap_trimmed: list[dict[str, Any]] = []
-    kept_per_fp: Counter = Counter()
-    for label in gate_admitted:
-        fp = label.get("fingerprint_id")
-        if combined_counts.get(fp, 0) + kept_per_fp[fp] >= cap_ceiling:
-            cap_trimmed.append(label)
-            continue
-        kept_per_fp[fp] += 1
-        admitted.append(label)
+    distinct_reactions_by_fp = _distinct_reactions_by_fingerprint(
+        frozen_benchmark_payload, expansion_payload, gate_admitted
+    )
+    admitted, cap_trimmed, effective_caps = _reaction_aware_cap_guard(
+        gate_admitted,
+        combined_counts=combined_counts,
+        base_cap_for=lambda fp: cap_ceiling,
+        reaction_aware_caps=reaction_aware_caps,
+        reaction_cap_rate=reaction_cap_rate,
+        target_floor=target_floor,
+        distinct_reactions_by_fp=distinct_reactions_by_fp,
+    )
     cap_trimmed_counts = _fingerprint_counts(cap_trimmed)
 
     # 4. Per-sub-family floor projection from the (cap-guarded) admitted set.
@@ -328,6 +337,7 @@ def build_stage2_hydrolase_subfamily_sourcing(
         before = combined_counts.get(subfamily, 0)
         added = admitted_counts.get(subfamily, 0)
         projected = before + added
+        effective_cap = effective_caps.get(subfamily, cap_ceiling)
         floor_projection[subfamily] = {
             "combined_before": before,
             "admitted_this_run": added,
@@ -336,8 +346,11 @@ def build_stage2_hydrolase_subfamily_sourcing(
             "deficit_to_floor_after": max(target_floor - projected, 0),
             "floor_reached": projected >= target_floor,
             "cap_ceiling": cap_ceiling,
+            "effective_cap": effective_cap,
+            "distinct_reactions": distinct_reactions_by_fp.get(subfamily, 0),
             "held_at_cap_this_run": cap_trimmed_counts.get(subfamily, 0),
             "projected_over_cap": projected > cap_ceiling,
+            "projected_over_effective_cap": projected > effective_cap,
         }
 
     combined_total = len(frozen_benchmark_payload) + len(expansion_payload)
@@ -367,6 +380,9 @@ def build_stage2_hydrolase_subfamily_sourcing(
             "no_new_labels_added_to_coarse_umbrella": True,
             "deploy_missing_active_site_context_per_subfamily": "metal",
             "per_fingerprint_cap_ceiling_enforced": cap_ceiling,
+            "reaction_aware_caps_enabled": reaction_aware_caps,
+            "reaction_cap_rate": reaction_cap_rate if reaction_aware_caps else None,
+            "per_reaction_cap_at_admission": per_reaction_cap,
             "no_fingerprint_pushed_over_cap": all(
                 not p["projected_over_cap"] for p in floor_projection.values()
             ),
@@ -488,6 +504,9 @@ def write_stage2_hydrolase_subfamily_sourcing(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     per_cluster_cap: int = DEFAULT_PER_CLUSTER_CAP,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
+    per_reaction_cap: int | None = None,
+    reaction_aware_caps: bool = False,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
 ) -> dict[str, Any]:
     """Build the preview and write it (non-destructive: no registry is touched)."""
     expansion_path = Path(expansion_registry_path)
@@ -500,6 +519,9 @@ def write_stage2_hydrolase_subfamily_sourcing(
         target_floor=target_floor,
         per_cluster_cap=per_cluster_cap,
         cap_ceiling=cap_ceiling,
+        per_reaction_cap=per_reaction_cap,
+        reaction_aware_caps=reaction_aware_caps,
+        reaction_cap_rate=reaction_cap_rate,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
