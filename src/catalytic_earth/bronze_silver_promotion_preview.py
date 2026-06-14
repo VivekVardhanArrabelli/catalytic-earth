@@ -138,12 +138,26 @@ def structure_confirmability(
 ) -> str:
     """Whether the deferred geometry confirmation can actually run for this row.
 
-    ``holo``  -- coordinates contain the annotated cofactor (gate is meetable).
+    ``holo``  -- coordinates contain the annotated cofactor (gate is meetable), OR a
+                 sha-pinned ``holo_pdb_confirmation`` from an experimental PDB records the
+                 annotated cofactor present (the experimental coordinate is regeneratable
+                 from the PDB id, so the determination -- not the bulky file -- is stored).
     ``apo``   -- coordinates exist but the cofactor is absent (the gate abstains;
                  covers BOTH experimental-apo and predicted-apo -- the degradation
                  regime). Needs cofactor fusion before confirmation.
     ``none``  -- no usable coordinates staged.
     """
+    # An experimental-PDB holo confirmation (recorded by holo_structure_promotion) is
+    # authoritative: the annotated cofactor was found as a HETATM in a sha-pinned PDB
+    # entry. The mmCIF is regeneratable from the PDB id, so the determination is honoured
+    # without requiring the (uncommitted) file locally.
+    holo_conf = _structure_provenance(row).get("holo_pdb_confirmation") or {}
+    if (
+        holo_conf.get("status") == "holo_experimental_coordinate_confirmed"
+        and holo_conf.get("cofactor_comp_ids_present")
+    ):
+        return "holo"
+
     path = _structure_provenance(row).get("coordinate_path")
     if not path or not Path(path).exists():
         return "none"

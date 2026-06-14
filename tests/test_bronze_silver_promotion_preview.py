@@ -188,12 +188,19 @@ class RealRegistryTests(unittest.TestCase):
                 expansion_registry_path=EXPANSION_PATH,
             )
             self.assertEqual(audit["seed_labels"], 5638)
-            # honest: confirmability is cofactor-presence based; the registry's
-            # coordinate-bearing rows are overwhelmingly apo, so silver-ready is
-            # tiny/zero and apo-blocked dominates -- this must NOT be inflated.
-            self.assertGreater(
-                audit["decision_counts"].get("blocked_apo_needs_cofactor_fusion", 0), 0
-            )
+            # HONEST about structure (2026-06-14, after holo_structure_promotion):
+            # silver_ready is now > 0 because experimental-PDB holo_pdb_confirmation rows
+            # exist (the annotated cofactor was found as a HETATM in a sha-pinned PDB) --
+            # this is REAL corroboration, not inflation. It must NOT be faked, and the
+            # gate must still ABSTAIN honestly on the overwhelming majority that lack holo
+            # coordinates: blocked_pending_structure stays by far the largest blocked
+            # bucket. The AFDB-staged coordinates remain apo (AlphaFold has no cofactor).
+            dc = audit["decision_counts"]
+            self.assertGreater(audit["silver_ready_count"], 0)
+            self.assertGreater(dc.get("blocked_pending_structure", 0), audit["silver_ready_count"])
+            # every silver_ready row must rest on a recorded holo confirmation, never a fake
+            for d in audit["silver_ready_preview"]:
+                self.assertEqual(d["structure_confirmability"], "holo")
             self.assertFalse(audit["guardrails"]["geometry_confirmation_run_or_faked"])
             self.assertEqual(EXPANSION_PATH.read_bytes(), before)
 

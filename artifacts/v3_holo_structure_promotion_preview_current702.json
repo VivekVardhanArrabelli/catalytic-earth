@@ -1,0 +1,270 @@
+{
+  "artifact_id": "v3_holo_structure_promotion_preview_current702",
+  "counts": {
+    "already_confirmed": 0,
+    "deferred_over_fingerprint_cap": 218,
+    "deferred_over_limit": 0,
+    "expansion_labels": 6862,
+    "holo_confirmed_this_run": 109,
+    "no_holo_pdb_found": 44,
+    "no_pdb_or_cofactor": 4760,
+    "not_chemistry_corroborated": 507,
+    "rows_fetched_this_run": 113,
+    "rows_holo_confirmed_after": 109,
+    "seed_labels": 5638
+  },
+  "created_utc": "2026-06-14T12:20:21Z",
+  "guardrails": {
+    "candidate_selection_is_leakage_safe_chemistry_only": true,
+    "coordinate_regeneratable_from_pdb_id": true,
+    "existing_structure_provenance_preserved_additive": true,
+    "frozen_current702_benchmark_preserved": true,
+    "large_cifs_never_committed": true,
+    "row_count_unchanged": true,
+    "structure_is_review_only_not_predictive_feature": true,
+    "writes_expansion_registry_only": true
+  },
+  "holo_confirmed_by_fingerprint": {
+    "askha_sugar_acetate_kinase": 1,
+    "atp_amide_ligase": 6,
+    "biotin_dependent_carboxylase": 3,
+    "class_ii_metal_aldolase": 2,
+    "cytochrome_p450_monooxygenase": 7,
+    "deoxynucleoside_kinase": 1,
+    "flavin_dehydrogenase_reductase": 6,
+    "flavin_monooxygenase": 6,
+    "glycoside_hydrolase": 3,
+    "glycosyltransferase": 7,
+    "heme_peroxidase_oxidase": 2,
+    "manganese_iron_superoxide_dismutase": 8,
+    "metallo_amidohydrolase_deaminase": 8,
+    "metallophosphomonoesterase": 7,
+    "nad_p_dehydrogenase": 8,
+    "non_heme_iron_2og_dioxygenase": 3,
+    "nucleoside_diphosphate_kinase": 1,
+    "pfka_phosphofructokinase": 4,
+    "plp_dependent_enzyme": 1,
+    "protein_kinase_ser_thr_tyr": 3,
+    "radical_sam_enzyme": 3,
+    "terpene_cyclase_synthase": 7,
+    "thiamine_diphosphate_enzyme": 6,
+    "zinc_lyase_hydratase": 6
+  },
+  "holo_confirmed_examples": [
+    {
+      "cofactor_comp_ids_present": [
+        "PLP"
+      ],
+      "entry_id": "uniprot:Q9ZQI7",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "pdb_id": "4FL0"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "SF4"
+      ],
+      "entry_id": "uniprot:P69848",
+      "fingerprint_id": "radical_sam_enzyme",
+      "pdb_id": "1TV7"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "SF4"
+      ],
+      "entry_id": "uniprot:P0A9N4",
+      "fingerprint_id": "radical_sam_enzyme",
+      "pdb_id": "3C8F"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "SF4"
+      ],
+      "entry_id": "uniprot:Q0TTH1",
+      "fingerprint_id": "radical_sam_enzyme",
+      "pdb_id": "4K36"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "entry_id": "uniprot:O15229",
+      "fingerprint_id": "flavin_monooxygenase",
+      "pdb_id": "5X68"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "entry_id": "uniprot:O88867",
+      "fingerprint_id": "flavin_monooxygenase",
+      "pdb_id": "6LKD"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "entry_id": "uniprot:P00438",
+      "fingerprint_id": "flavin_monooxygenase",
+      "pdb_id": "1BF3"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "entry_id": "uniprot:Q47PU3",
+      "fingerprint_id": "flavin_monooxygenase",
+      "pdb_id": "1W4X"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "entry_id": "uniprot:Q988D3",
+      "fingerprint_id": "flavin_monooxygenase",
+      "pdb_id": "3ALJ"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "entry_id": "uniprot:E9QYP0",
+      "fingerprint_id": "flavin_monooxygenase",
+      "pdb_id": "4B63"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "CA"
+      ],
+      "entry_id": "uniprot:P11678",
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "pdb_id": "8OGI"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "CA",
+        "HEM"
+      ],
+      "entry_id": "uniprot:P80025",
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "pdb_id": "2IPS"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FMN"
+      ],
+      "entry_id": "uniprot:Q9NX74",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "pdb_id": "4WFS"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FMN"
+      ],
+      "entry_id": "uniprot:P33371",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "pdb_id": "3W9Z"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FMN"
+      ],
+      "entry_id": "uniprot:Q9FUP0",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "pdb_id": "1Q45"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FMN"
+      ],
+      "entry_id": "uniprot:P77258",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "pdb_id": "8BPP"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "entry_id": "uniprot:P21375",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "pdb_id": "5GLG"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FMN"
+      ],
+      "entry_id": "uniprot:P16435",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "pdb_id": "1B1C"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "entry_id": "uniprot:P49598",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "pdb_id": "4N0G"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "entry_id": "uniprot:O15297",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "pdb_id": "8T2J"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "entry_id": "uniprot:P35813",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "pdb_id": "1A6Q"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "entry_id": "uniprot:P63228",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "pdb_id": "2GMW"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "FE",
+        "ZN"
+      ],
+      "entry_id": "uniprot:P16298",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "pdb_id": "4OR9"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "entry_id": "uniprot:P67775",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "pdb_id": "2IAE"
+    },
+    {
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "entry_id": "uniprot:P09467",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "pdb_id": "2FHY"
+    }
+  ],
+  "next_action": "Review counts, then re-run with --apply to write data/registries/external_bronze_labels.json (frozen current702 never written, sha printed before/after; row count unchanged; only evidence.structure_provenance.holo_pdb_confirmation added). The confirmed rows become silver_ready_pending_geometry_run in the promotion preview -- still pending the SEPARATE authorized geometry-confirmation run. Use --limit / --per-fingerprint-cap for chunked runs; the cache makes re-runs resumable.",
+  "policy": {
+    "candidate_definition": "bronze seed label whose chemistry independently corroborates its fingerprint (nearest centroid == assigned AND own cohesion >= 0.92) and that carries experimental pdb_ids + an annotated cofactor",
+    "cohesion_threshold": 0.92,
+    "holo_test": "the annotated cofactor's PDB HETATM comp id is present in the experimental coordinates -- the SAME test bronze_silver_promotion_preview uses"
+  },
+  "schema_version": "holo_structure_promotion.v1",
+  "status": "non_destructive_preview_pending_explicit_registry_write",
+  "status_counts": {
+    "holo_experimental_coordinate_confirmed": 109,
+    "no_holo_pdb_found": 44
+  },
+  "what": "confirm HOLO experimental-PDB coordinates for chemistry-corroborated bronze labels and record evidence.structure_provenance.holo_pdb_confirmation (pdb_id + cofactor comp ids present + sha256); the mmCIFs are regeneratable from the PDB id and are NOT committed; structure is review-only mechanism context (a bronze->silver signal), never a predictive feature"
+}

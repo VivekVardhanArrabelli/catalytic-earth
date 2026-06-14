@@ -3,6 +3,51 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: FIRST SILVER-READY ROWS via HOLO EXPERIMENTAL-PDB CONFIRMATION
+
+Decision: act on the measured finding that offline silver promotion was at a hard ZERO and
+that the ONLY honest lever was new structural data (the user authorized the holo-coordinate
+lane). Diagnosis: the bronze->silver gate scores `silver_ready` only when the annotated
+cofactor is PRESENT in the coordinates (true holo), but the registry's staged coordinates are
+AlphaFoldDB predictions, which are inherently apo -- so silver_ready was stuck at 0 with every
+corroborated row in `blocked_pending_structure`/`blocked_apo`. Measured candidate pool: 371
+chemistry-corroborated, cofactor-defined rows carry experimental `pdb_ids`; a sample fetch
+confirmed 5/6 are genuinely holo (FAD/HEM/SF4/PLP/Zn present).
+
+Implementation: new `src/catalytic_earth/holo_structure_promotion.py` +
+`scripts/promote_holo_structures.py`. For each bronze seed label that the gate already scores
+as chemistry-corroborated (nearest centroid == assigned AND own cohesion >= threshold) and
+that carries experimental `pdb_ids` + an annotated cofactor, it fetches the experimental PDB
+mmCIF (RCSB) and tests whether the annotated cofactor is present as a HETATM -- the SAME holo
+test the gate uses. When present it records a sha-pinned
+`evidence.structure_provenance.holo_pdb_confirmation` (pdb_id, cofactor comp ids present,
+sha256, atoms). `bronze_silver_promotion_preview.structure_confirmability` now returns `holo`
+when that confirmation block is present (the experimental coordinate is regeneratable from the
+PDB id, so the determination -- not the bulky mmCIF -- is what is stored/honoured, mirroring
+the AFDB-backfill philosophy). Candidate selection is chemistry-only; structure stays
+review-only mechanism context, never a predictive feature (leakage wall intact).
+
+Applied a diverse bounded batch (`--per-fingerprint-cap 8 --apply`): 109 holo confirmed across
+24 fingerprints (~80% hit-rate on attempts). Gate: `silver_ready_pending_geometry_run` 0 ->
+109; `blocked_pending_structure` 2534 -> 2426; `blocked_apo` 1 -> 0; review/hold unchanged.
+HONEST: `blocked_pending_structure` (2426) still dominates -- the ~5500 rows with no
+experimental PDB are not inflated -- and silver_ready is `*_pending_geometry_run`: the actual
+geometry-confirmation run is a SEPARATE authorized step; this only proves the gate is meetable
+with real holo evidence rather than abstaining on apo. Label counts/tiers UNCHANGED (apply
+added only provenance; all rows stay bronze): expansion 6862, combined 7564, positive_bronze
+5851, silver_confirmed 17. The honest counters stay SEPARATE -- silver_ready is the promotion
+gate's queue, NOT a tier flip.
+
+Discipline: the apply is a non-destructive expansion-registry rewrite (row count unchanged,
+each kept label re-validated via MechanismLabel.from_dict); the runner printed the frozen
+current702 sha (`5eec9bef…`) identical before and after; frozen NEVER written; mmCIFs never
+committed (regeneratable from PDB id); validate ok (702 / 37 fp); leakage wall intact. The
+`honest_about_apo` real-registry test was updated to the new reality (silver_ready > 0 from
+recorded holo, blocked_pending_structure still dominant, geometry never faked) -- this is an
+honest re-baseline, not a relaxation. Next: scale the holo confirmation to the rest of the
+371-row corroborated pool, then run the SEPARATE authorized geometry-confirmation on the
+silver_ready queue to actually flip tiers.
+
 ## 2026-06-14: C-C LYASE / ALDOL SEPARATION (class II metal aldolases)
 
 Decision: measure-first follow-on to the kinase separation. With the fold-defined kinases

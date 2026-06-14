@@ -26,6 +26,47 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **FIRST SILVER-READY ROWS: HOLO EXPERIMENTAL-PDB CONFIRMATION (2026-06-14 automation, this turn).**
+  The North-Star milestone the prior bullets kept deferring to: `silver_ready` moved
+  **0 -> 109** for the first time. Root cause of the long-standing 0 was diagnosed (not
+  guessed): the bronze->silver gate scores `silver_ready` only when the annotated cofactor is
+  PRESENT in the coordinates (true holo), but the registry's only staged coordinates are
+  AlphaFoldDB predictions, which are inherently APO (AlphaFold carries no cofactor) -- so
+  every chemistry-corroborated row was `blocked_pending_structure`/`blocked_apo`.
+
+  Fix (leakage-safe, egress): new `holo_structure_promotion` module + `scripts/promote_holo_structures.py`.
+  For each bronze seed label whose chemistry ALREADY corroborates its fingerprint (the gate's
+  own nearest-centroid + cohesion test) and that carries experimental `pdb_ids` + an annotated
+  cofactor, it fetches the experimental PDB mmCIF and checks whether the annotated cofactor is
+  present as a HETATM (the SAME holo test the gate uses). When present it records a sha-pinned
+  `evidence.structure_provenance.holo_pdb_confirmation` (pdb_id + cofactor comp ids present +
+  sha256). `structure_confirmability` honours that recorded confirmation as `holo`. The mmCIF
+  is regeneratable from the PDB id and is NEVER committed (staged to temp, hashed, discarded --
+  the AFDB-backfill discipline). Candidate selection is chemistry-only (leakage wall intact);
+  structure stays review-only context, never a predictive feature.
+
+  Applied a diverse bounded batch (`--per-fingerprint-cap 8 --apply`): **109** holo confirmed
+  across **24 fingerprints** (e.g. flavin FAD, p450 HEM, radical_sam SF4, plp PLP, SOD/metal
+  Zn/Mn, terpene, ThDP) at an ~80% holo hit-rate on attempts. Promotion gate decisions:
+  `silver_ready_pending_geometry_run` **0 -> 109**, `blocked_pending_structure` 2534 -> 2426,
+  `blocked_apo` 1 -> 0; `review_chemistry_disagrees` 1344 and `hold_low_chemistry_cohesion`
+  1759 unchanged. HONEST framing: `blocked_pending_structure` (2426) still dominates -- the
+  ~5500 rows with no experimental PDB are NOT inflated; and silver_ready is
+  `*_pending_geometry_run` -- the actual geometry-confirmation run remains a SEPARATE
+  authorized step (this only proves the gate is now MEETABLE with real holo evidence, not
+  abstaining on apo). Label counts/tiers UNCHANGED (all stay bronze; the apply added only
+  provenance): expansion 6862, combined 7564, positive_bronze 5851, silver_confirmed 17 (the
+  honest counters stay SEPARATE -- silver_ready is the gate's queue, not a tier flip).
+
+  Artifacts:
+  `artifacts/v3_holo_structure_promotion_preview_current702.json`,
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_holo_confirmation.json`.
+  New module + script + 8 unit tests (`tests/test_holo_structure_promotion.py`, offline stub
+  fetcher); the `honest_about_apo` real-registry test updated to the new reality (silver_ready
+  > 0 from recorded holo, blocked_pending_structure still dominant, geometry never faked).
+  Frozen current702 byte-unchanged (sha printed identical before/after the apply: `5eec9bef…`);
+  validate ok (702 / 37 fp); `git diff --check` clean; leakage wall intact.
+
 - **C-C LYASE / ALDOL SEPARATION (2026-06-14 automation, this turn).**
   Measured-first follow-on to the kinase work below. After the kinase/ligase separation,
   the worst non-fold, non-umbrella family was `class_ii_metal_aldolase` at leave-one-out

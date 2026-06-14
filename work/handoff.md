@@ -1,5 +1,40 @@
 # Handoff
 
+## Session run - First silver-ready rows via holo experimental-PDB confirmation (2026-06-14, Claude Code automation)
+
+- MILESTONE: `silver_ready` 0 -> 109 for the first time. Diagnosis (measured, not guessed):
+  the gate scores silver only on TRUE holo (annotated cofactor present in coordinates), but
+  the registry's only staged coordinates are AlphaFoldDB predictions = inherently apo, so
+  silver was stuck at 0. Of 5638 seed rows, 371 chemistry-corroborated, cofactor-defined rows
+  carry experimental pdb_ids; a sample fetch confirmed 5/6 holo.
+- Built `holo_structure_promotion` + `scripts/promote_holo_structures.py`: for each
+  chemistry-corroborated row (the gate's own nearest-centroid + cohesion test) with
+  experimental pdb_ids + an annotated cofactor, fetch the PDB mmCIF, test whether the cofactor
+  HETATM is present (same test the gate uses), and record a sha-pinned
+  structure_provenance.holo_pdb_confirmation. structure_confirmability honours that as holo.
+  mmCIF regeneratable from the PDB id, NEVER committed (AFDB-backfill discipline). Candidate
+  selection chemistry-only; structure stays review-only, never predictive.
+- Applied `--per-fingerprint-cap 8 --apply`: 109 holo confirmed across 24 fingerprints
+  (~80% hit-rate). Gate: silver_ready_pending_geometry_run 0->109; blocked_pending_structure
+  2534->2426; blocked_apo 1->0; review 1344 / hold 1759 unchanged. HONEST:
+  blocked_pending_structure (2426) still dominates (the ~5500 rows with no experimental PDB
+  are not inflated), and silver_ready is *_pending_geometry_run -- the actual
+  geometry-confirmation run is a SEPARATE authorized step. Label counts/tiers UNCHANGED (apply
+  added only provenance; all bronze): expansion 6862, combined 7564, positive_bronze 5851,
+  silver_confirmed 17; counters stay SEPARATE.
+- Artifacts: `..._holo_structure_promotion_preview_current702.json`,
+  `..._post_holo_confirmation.json` (+ work reports). New module + script + 8 offline unit
+  tests; the honest_about_apo real-registry test re-baselined honestly (silver_ready > 0 from
+  recorded holo, blocked_pending_structure dominant, geometry never faked).
+- Guards: frozen sha (`5eec9bef…`) printed identical before/after the apply; frozen NEVER
+  written; mmCIFs never committed; validate ok (702 / 37 fp); `git diff --check` clean;
+  leakage wall intact. data/cache/holo_pdb_hetatm_cache.json (git-ignored) makes re-runs
+  resumable.
+- Next: scale holo confirmation across the rest of the 371-row corroborated pool (rerun the
+  script with a higher/zero per-fingerprint-cap; the cache makes it resumable), then run the
+  SEPARATE authorized geometry-confirmation on the silver_ready queue to actually flip tiers
+  to silver. RCSB egress confirmed reachable in this environment.
+
 ## Session run - C-C lyase / aldol separation (2026-06-14, Claude Code automation)
 
 - Measure-first follow-on to the kinase separation. Both named frontiers were measured and
