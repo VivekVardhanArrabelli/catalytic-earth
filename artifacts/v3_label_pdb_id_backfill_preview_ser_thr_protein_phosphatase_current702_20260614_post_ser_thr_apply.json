@@ -1,0 +1,190 @@
+{
+  "artifact_id": "v3_label_pdb_id_backfill_preview_ser_thr_protein_phosphatase_current702_20260614_post_ser_thr_apply",
+  "backfilled_by_fingerprint": {},
+  "backfilled_examples": [],
+  "counts": {
+    "accessions_queried": 99,
+    "already_had_pdb_ids": 13,
+    "backfilled_pdb_rows_this_run": 0,
+    "deferred_over_limit": 0,
+    "expansion_labels": 112,
+    "no_accession": 0,
+    "rows_with_pdb_ids_after": 13,
+    "uniprot_record_without_pdb_xref": 99,
+    "uniprot_records_returned": 99
+  },
+  "created_utc": "2026-06-14T23:31:30Z",
+  "fetch_metadata": {
+    "batches": [
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA0A7U2MSD6+OR+accession%3AA3A8Q4+OR+accession%3AA6H772+OR+accession%3AA8XE00+OR+accession%3AA9JRC7+OR+accession%3AB0XUR7+OR+accession%3AB8NLZ3+OR+accession%3AG2WR33+OR+accession%3AO04951+OR+accession%3AO14156+OR+accession%3AO15757+OR+accession%3AO35655+OR+accession%3AO64730+OR+accession%3AO76932+OR+accession%3AO77334+OR+accession%3AO80871+OR+accession%3AP11493+OR+accession%3AP13681+OR+accession%3AP14747+OR+accession%3AP20604+OR+accession%3AP20651+OR+accession%3AP20654+OR+accession%3AP23595+OR+accession%3AP32945+OR+accession%3AP33329%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP35814+OR+accession%3AP35815+OR+accession%3AP36874+OR+accession%3AP36993+OR+accession%3AP38797+OR+accession%3AP39966+OR+accession%3AP40371+OR+accession%3AP48453+OR+accession%3AP48455+OR+accession%3AP48456+OR+accession%3AP48462+OR+accession%3AP48727+OR+accession%3AP55739+OR+accession%3AP55798+OR+accession%3AP55799+OR+accession%3AP61287+OR+accession%3AP62138+OR+accession%3AP62716+OR+accession%3AP79126+OR+accession%3AP91420+OR+accession%3AP97767+OR+accession%3AQ05547+OR+accession%3AQ07100+OR+accession%3AQ09173+OR+accession%3AQ0G819%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ0J2L7+OR+accession%3AQ0P594+OR+accession%3AQ10QL5+OR+accession%3AQ12705+OR+accession%3AQ27889+OR+accession%3AQ388N2+OR+accession%3AQ4R4V2+OR+accession%3AQ4WM22+OR+accession%3AQ4WTH5+OR+accession%3AQ54RD6+OR+accession%3AQ54T01+OR+accession%3AQ54WS9+OR+accession%3AQ59KY8+OR+accession%3AQ5A6B6+OR+accession%3AQ5I0E6+OR+accession%3AQ5R6K8+OR+accession%3AQ5U3N5+OR+accession%3AQ60676+OR+accession%3AQ65XK7+OR+accession%3AQ6EN45+OR+accession%3AQ6FM81+OR+accession%3AQ6J2K6+OR+accession%3AQ6L4R7+OR+accession%3AQ6NVU2+OR+accession%3AQ7SZ10%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 24,
+        "requested_accession_count": 24,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ7YSW8+OR+accession%3AQ82ZE0+OR+accession%3AQ84K11+OR+accession%3AQ8BU27+OR+accession%3AQ8KY51+OR+accession%3AQ8MJ46+OR+accession%3AQ8N819+OR+accession%3AQ8RWN7+OR+accession%3AQ8WMS6+OR+accession%3AQ96MI6+OR+accession%3AQ9BRF8+OR+accession%3AQ9FLI3+OR+accession%3AQ9FN02+OR+accession%3AQ9LNP9+OR+accession%3AQ9LQN6+OR+accession%3AQ9LZ86+OR+accession%3AQ9NES8+OR+accession%3AQ9SIU8+OR+accession%3AQ9SJF0+OR+accession%3AQ9T010+OR+accession%3AQ9VXF1+OR+accession%3AQ9XW79+OR+accession%3AQ9Y0B7+OR+accession%3AQ9ZV25%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=24"
+      }
+    ],
+    "record_count": 99,
+    "requested_accession_count": 99,
+    "source": "uniprot",
+    "url": "https://rest.uniprot.org/uniprotkb/search"
+  },
+  "guardrails": {
+    "existing_pdb_ids_preserved": true,
+    "frozen_current702_benchmark_preserved": true,
+    "no_pdb_ids_fabricated_when_uniprot_lacks_xref": true,
+    "pdb_ids_are_provenance_not_predictive_features": true,
+    "predictive_evidence_unchanged": true,
+    "row_count_unchanged": true,
+    "writes_expansion_registry_only": true
+  },
+  "next_action": "Review counts, then re-run with --apply to write only the external registry. Follow with holo structure promotion and bronze-silver promotion preview.",
+  "schema_version": "label_pdb_id_backfill.v1",
+  "scope": {
+    "fingerprint_id": "ser_thr_protein_phosphatase",
+    "reason": "targeted preview for newly applied Ser/Thr rows only",
+    "registry_write_authorized": false
+  },
+  "status": "non_destructive_preview_pending_explicit_registry_write",
+  "uniprot_without_pdb_xref_examples": [
+    {
+      "accession": "Q9BRF8",
+      "entry_id": "uniprot:Q9BRF8",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q9VXF1",
+      "entry_id": "uniprot:Q9VXF1",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P48456",
+      "entry_id": "uniprot:P48456",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P14747",
+      "entry_id": "uniprot:P14747",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q7YSW8",
+      "entry_id": "uniprot:Q7YSW8",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P23595",
+      "entry_id": "uniprot:P23595",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P48462",
+      "entry_id": "uniprot:P48462",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q9SJF0",
+      "entry_id": "uniprot:Q9SJF0",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "O80871",
+      "entry_id": "uniprot:O80871",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P35815",
+      "entry_id": "uniprot:P35815",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P36993",
+      "entry_id": "uniprot:P36993",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q8BU27",
+      "entry_id": "uniprot:Q8BU27",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P62138",
+      "entry_id": "uniprot:P62138",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P13681",
+      "entry_id": "uniprot:P13681",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q9NES8",
+      "entry_id": "uniprot:Q9NES8",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q9FN02",
+      "entry_id": "uniprot:Q9FN02",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "O04951",
+      "entry_id": "uniprot:O04951",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q07100",
+      "entry_id": "uniprot:Q07100",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q27889",
+      "entry_id": "uniprot:Q27889",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P62716",
+      "entry_id": "uniprot:P62716",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q8RWN7",
+      "entry_id": "uniprot:Q8RWN7",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q65XK7",
+      "entry_id": "uniprot:Q65XK7",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q9LNP9",
+      "entry_id": "uniprot:Q9LNP9",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "Q9FLI3",
+      "entry_id": "uniprot:Q9FLI3",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    },
+    {
+      "accession": "P39966",
+      "entry_id": "uniprot:P39966",
+      "fingerprint_id": "ser_thr_protein_phosphatase"
+    }
+  ],
+  "what": "backfill missing evidence.structure_provenance.pdb_ids from curated UniProt xref_pdb cross-references; PDB IDs are structure provenance for holo confirmation and are never predictive features"
+}

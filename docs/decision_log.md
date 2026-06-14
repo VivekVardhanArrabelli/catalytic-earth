@@ -3,6 +3,35 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: SER/THR PROTEIN PHOSPHATASE BATCH IS COUNTED BRONZE AFTER RHEA TOKEN FIX
+
+Decision: keep `ser_thr_protein_phosphatase` as the 41st positive fingerprint, but fix the
+mechanism-reaction admission handle to recognize curated protein-substrate Rhea/UniProt forms using
+`O-phospho-L-seryl-[protein]` and `O-phospho-L-threonyl-[protein]`. These are reaction participant
+patterns and count as Rhea/reaction-axis mechanism evidence. EC 3.1.3.16/48 remains scope/fetch
+context only and is never a counted corroborator.
+
+Measured result: contiguous bounded windows after the fix produced an aggregate preview with
+**743** fetched candidates, **170** unique mechanism-corroborated Ser/Thr candidates, **112**
+novelty-safe admitted rows, **58** novelty-throttled/rejected rows, and **2** off-target
+metallophosphomonoesterase holds. The row guardrail audit found **0** problems: all admitted rows
+are UniProt namespace, `bronze`, `automation_curated`, source tier 0, and have
+`predictive_evidence: []`; EC was not counted as a mechanism axis.
+
+Decision: apply the **112** guarded rows despite the original 150 cap preference because the
+corrected contiguous source lane was clean, bounded, and meaningful, while later windows showed
+novelty-throttling and only **38** cap room remains. Applying changed external rows **7308 -> 7420**
+and combined labels **8010 -> 8122**; frozen current702 sha stayed `5eec9bef...`.
+
+Decision: do not continue Ser/Thr as a mass-growth lane without improved novelty/source handles.
+The refreshed factory reports **0** ready existing lanes >=150; top projected clean admits is
+`short_chain_dehydrogenase_reductase` at **84**, captured as design-only preregistration. Any next
+registry mutation should first improve source handles or source tiers, then rerun OOS
+preregistration, bounded preview aggregation, novelty/cap replay, and row guardrail audit.
+Post-apply breadth feasibility projects reviewed Swiss-Prot clean-only positive bronze to **9067**
+with a **933** positive gap, so 10k positive bronze still requires source expansion or a broader
+honest-counter target definition.
+
 ## 2026-06-14: SER/THR PROTEIN PHOSPHATASE IS A GUARDED 41ST FINGERPRINT, BUT NOT YET APPLIED
 
 Decision: add `ser_thr_protein_phosphatase` as the 41st positive fingerprint and keep the source

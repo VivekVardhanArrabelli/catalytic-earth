@@ -1,56 +1,76 @@
 # Automation status
 
 - automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-14T22:03:34Z
-- started_local: Sun Jun 14 17:03:34 CDT 2026
+- started_at_utc: 2026-06-14T23:04:02Z
+- started_local: Sun Jun 14 18:04:02 CDT 2026
 - budget_minutes: 55
 - planned_closeout_minute: 50
-- closeout_snapshot_utc: 2026-06-14T22:52:15Z
-- elapsed_minutes: 48.7
-- remaining_minutes: 6.3
-- current_task: closeout after guarded ser/thr protein phosphatase runner build, blocked live sourcing probes, final validation, commit/push, and lock release
-- registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 4.1 MB, and no `data/registries/` file is near the 45 MB safety threshold
+- closeout_snapshot_utc: 2026-06-14T23:55:10Z
+- elapsed_minutes: 51.1
+- remaining_minutes: 3.9
+- current_task: closeout after Ser/Thr Rhea token fix, 112-row guarded bronze apply, quality/planning refreshes, final validation, commit/push, and lock release
+- registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is near the 45 MB safety threshold
 - frozen_current702_sha256: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 - honest_counters:
-  - external_rows: 7308
-  - external_seed: 6084
-  - external_positive_bronze: 6054
+  - external_rows: 7420
+  - external_seed: 6196
+  - external_positive_bronze: 6166
   - external_oos_bronze: 1224
   - external_silver_confirmed: 30
-  - combined_label_surface: 8010
-  - combined_seed_surface: 6314
-  - positive_bronze: 6267
+  - combined_label_surface: 8122
+  - combined_seed_surface: 6426
+  - positive_bronze: 6379
   - oos_bronze: 1696
   - silver_confirmed: 47
   - projected: 0
 - validation:
   - cli_validate: passed; 12 source records, 41 fingerprints, 38 ontology families, 702 curated labels
-  - focused_ser_thr_registry_leakage: 308 passed, 14 subtests passed in 1.80s
-  - direct_stale_pin_rerun: 2 passed
-  - full_suite_final: 2292 passed, 1 warning, 244 subtests passed in 163.70s
-  - progress_jsonl: tests/test_progress.py 3 passed after closeout append
-  - json_parse: passed for 20 new/updated JSON artifacts
+  - focused_affected: 324 passed, 14 subtests passed in 58.72s
+  - representation_pin_rerun: 1 passed in 2.99s
+  - full_suite_final: 2293 passed, 1 warning, 244 subtests passed in 164.73s
+  - progress_jsonl: tests/test_progress.py 3 passed
+  - json_parse: passed for new/updated JSON artifacts and progress_log
   - diff_check: passed
   - file_size_scan: passed; no `data/registries/` file over 45 MB
 - artifacts:
-  - `artifacts/v3_external_hard_negative_next_tranche_preregistration_41fp_1025.json`
-  - `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_timeout_window00_current702_20260614.json` through `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_timeout_window08_current702_20260614.json`
-  - `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_timeout_window09_11_current702_20260614.json`
-  - `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_timeout_window12_14_current702_20260614.json`
-  - `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_ser_thr_runner.json`
-  - `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_ser_thr_runner.json`
-  - `artifacts/v3_novelty_admission_gate_audit_current702_20260614_post_ser_thr_runner.json`
-  - `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_ser_thr_runner.json`
-  - `artifacts/v3_chemistry_disagree_triage_current702_20260614_post_ser_thr_runner.json`
-  - `artifacts/v3_cohesion_threshold_calibration_current702_20260614_post_ser_thr_runner.json`
-  - `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_ser_thr_runner.json`
-  - `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_post_ser_thr_runner_preview.json`
-- ser_thr_timeout_probe_summary:
-  - bounded_windows: 11
-  - offsets_covered: 0-14
-  - fetched_candidate_rows: 13
-  - target_mechanism_corroborated: 0
-  - no_mechanism_corroboration_holds: 13
-  - novelty_admitted: 0
-  - fetch_failures: 26
-- next_action: rerun larger bounded Ser/Thr protein phosphatase previews under stable UniProt access or add a batch entry fetch/cache path; aggregate only completed previews, run row guardrails, and apply only if all mechanism-first gates pass
+  - `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_aggregate_current702_20260614_post_rhea_token_fix.json`
+  - `artifacts/v3_ser_thr_protein_phosphatase_row_guardrail_audit_current702_20260614_post_rhea_token_fix.json`
+  - `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_novelty_admission_gate_audit_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_chemistry_disagree_triage_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_cohesion_threshold_calibration_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_post_ser_thr_apply_preview.json`
+  - `artifacts/v3_silver_pdb_residue_mapping_current702_20260614_post_ser_thr_apply_full_preview.json`
+  - `artifacts/v3_silver_holo_coordinate_materialization_current702_20260614_post_ser_thr_apply_reuse_preview.json`
+  - `artifacts/v3_label_pdb_id_backfill_preview_ser_thr_protein_phosphatase_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_label_pdb_id_backfill_preview_current702_20260614_post_ser_thr_apply_limit150.json`
+  - `artifacts/v3_short_chain_dehydrogenase_reductase_lane_preregistration_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_evidence_handle_expansion_current702_20260614_post_ser_thr_apply.json`
+  - `artifacts/v3_breadth_feasibility_scout_current702_20260614_post_ser_thr_apply.json`
+- ser_thr_apply_summary:
+  - fetched_candidate_rows: 743
+  - unique_mechanism_corroborated: 170
+  - novelty_admitted: 112
+  - novelty_throttled_or_rejected: 58
+  - off_target_metallophosphomonoesterase_held: 2
+  - row_guardrail_problems: 0
+- quality_refresh:
+  - silver_ready_pending_geometry: 202
+  - silver_geometry_ready: 108
+  - silver_geometry_pass: 0
+  - chemistry_disagrees: 1742
+  - low_chemistry_cohesion: 1779
+  - ser_thr_rows_with_pdb_ids: 13
+  - ser_thr_pdb_xref_backfilled: 0
+  - full_residue_mapping_rows_mapped: 0
+  - residue_mapping_blockers: missing_mmcif_alignment_tables 82; no_exact_residues 4; no_residue_positions_mapped 116
+- planning_refresh:
+  - high_yield_ready_existing_lanes_ge_150: 0
+  - top_projected_clean_admits: short_chain_dehydrogenase_reductase 84
+  - evidence_handle_reachable_positive_bronze_uplift: 741
+  - reviewed_swissprot_clean_positive_projection: 9067
+  - reviewed_swissprot_positive_gap_to_10k: 933
+- next_action: improve source handles or source tiers before another mass-growth registry mutation; use the SDR design-only preregistration as the current top candidate, and continue silver residue-mapping/geometry representation work for the 202 pending silver-ready rows

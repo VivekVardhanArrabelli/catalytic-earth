@@ -197,9 +197,10 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
         audit = self_audit(frozen, expansion)
         # 6862 prior rows + 146 HAD-like phosphatase bronze rows + 150
         # aldehyde dehydrogenase bronze rows + 150 alpha/beta hydrolase
-        # esterase/lipase bronze rows applied on 2026-06-14 through guarded
-        # high-yield family lanes.
-        self.assertEqual(audit["expansion_rows"], 7308)
+        # esterase/lipase bronze rows + 112 Ser/Thr protein phosphatase
+        # bronze rows applied on 2026-06-14 through guarded high-yield
+        # family lanes.
+        self.assertEqual(audit["expansion_rows"], 7420)
         # some redundancy exists and is bounded
         self.assertGreater(audit["would_not_readmit"], 0)
         self.assertLess(audit["would_not_readmit_fraction"], 1.0)

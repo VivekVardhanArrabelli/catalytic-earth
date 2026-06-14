@@ -1,0 +1,39 @@
+{
+  "artifact_id": "v3_ser_thr_protein_phosphatase_row_guardrail_audit_current702_20260614_post_rhea_token_fix",
+  "counts": {
+    "audited_rows": 112,
+    "mechanism_axis_counts": {
+      "active_site_motif_or_residue_role": 112,
+      "cofactor_or_cosubstrate": 112,
+      "domain_or_family_profile": 112,
+      "rhea_reaction_or_participant_pattern": 112
+    },
+    "problem_rows": 0,
+    "review_status_counts": {
+      "automation_curated": 112
+    },
+    "source_tier_counts": {
+      "source_tier_0": 112
+    },
+    "tier_counts": {
+      "bronze": 112
+    }
+  },
+  "created_utc": "2026-06-14T23:26:33Z",
+  "guardrails": {
+    "all_rows_automation_curated": true,
+    "all_rows_bronze": true,
+    "all_rows_predictive_evidence_empty": true,
+    "all_rows_uniprot_namespace": true,
+    "ec_never_counted_as_mechanism_axis": true,
+    "required_mechanism_axes": [
+      "cofactor_or_cosubstrate",
+      "domain_or_family_profile",
+      "rhea_reaction_or_participant_pattern"
+    ]
+  },
+  "problems": [],
+  "schema_version": "ser_thr_protein_phosphatase_row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_aggregate_current702_20260614_post_rhea_token_fix.json",
+  "status": "passed"
+}

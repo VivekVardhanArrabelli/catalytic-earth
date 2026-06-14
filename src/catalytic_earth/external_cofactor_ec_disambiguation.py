@@ -677,10 +677,14 @@ _SER_THR_PROTEIN_PHOSPHATASE_REACTION_TOKENS = (
     "protein phosphate",
     "phosphorylated protein",
     "o-phospho-l-serine",
+    "o-phospho-l-seryl",
     "o-phospho-l-threonine",
+    "o-phospho-l-threonyl",
     "o4-phospho-l-tyrosine",
     "l-serine",
+    "l-seryl",
     "l-threonine",
+    "l-threonyl",
     "l-tyrosine",
 )
 _SER_THR_PROTEIN_PHOSPHATASE_PRODUCT_TOKENS = (

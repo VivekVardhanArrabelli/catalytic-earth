@@ -1,0 +1,57 @@
+{
+  "artifact_id": "v3_cohesion_threshold_calibration_current702_20260614_post_ser_thr_apply",
+  "counts": {
+    "fingerprints_with_low_cohesion_holds": 33,
+    "total_hold_low_chemistry_cohesion": 1779
+  },
+  "created_utc": "2026-06-14T23:30:13Z",
+  "global_policy": {
+    "current_threshold_preserved": true,
+    "rationale": "No heldout-safe calibration surface was introduced in this run; low-cohesion rows remain holds."
+  },
+  "guardrails": {
+    "count_inflation_by_threshold_change": false,
+    "family_specific_threshold_relaxation_authorized": false,
+    "predictive_evidence_created": false,
+    "registry_written": false,
+    "thresholds_changed": false
+  },
+  "hold_low_chemistry_cohesion_by_fingerprint": {
+    "aldehyde_dehydrogenase": 5,
+    "alpha_beta_hydrolase_esterase_lipase": 30,
+    "atp_amide_ligase": 56,
+    "biotin_dependent_carboxylase": 23,
+    "class_ii_metal_aldolase": 120,
+    "coa_acyltransferase": 73,
+    "cobalamin_radical_rearrangement": 96,
+    "cofactor_independent_isomerase": 61,
+    "copper_oxidoreductase": 125,
+    "cytochrome_p450_monooxygenase": 61,
+    "deoxynucleoside_kinase": 16,
+    "flavin_dehydrogenase_reductase": 91,
+    "flavin_monooxygenase": 45,
+    "glycoside_hydrolase": 11,
+    "glycosyltransferase": 33,
+    "had_like_phosphatase": 6,
+    "heme_peroxidase_oxidase": 51,
+    "metal_racemase_epimerase_non_plp": 49,
+    "metallo_amidohydrolase_deaminase": 25,
+    "metallopeptidase": 33,
+    "metallophosphoesterase_nuclease": 57,
+    "metallophosphomonoesterase": 14,
+    "molybdopterin_oxidoreductase": 127,
+    "nad_p_dehydrogenase": 30,
+    "non_heme_iron_2og_dioxygenase": 134,
+    "nucleoside_diphosphate_kinase": 1,
+    "plp_dependent_enzyme": 88,
+    "protein_kinase_ser_thr_tyr": 4,
+    "radical_sam_enzyme": 46,
+    "sam_methyltransferase": 121,
+    "ser_his_acid_hydrolase": 79,
+    "terpene_cyclase_synthase": 12,
+    "thiamine_diphosphate_enzyme": 56
+  },
+  "recommended_next_action": "If thresholds are revisited, preregister per-family calibration with a fresh leakage-safe surface first; do not use these hold counts alone to relax thresholds.",
+  "source_preview": "artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_ser_thr_apply.json",
+  "status": "non_destructive_calibration_summary_no_threshold_change"
+}

@@ -13,6 +13,40 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: Ser/Thr protein phosphatase bronze batch applied after Rhea
+reaction-token fix.** Treat this as the newest operational state. Registry-size safety remains
+green: the external registry is still a small sharded manifest plus shard files below the per-file
+safety threshold. Frozen current702 stayed byte-unchanged at sha `5eec9bef...`.
+
+The Ser/Thr runner's source wall now recognizes curated protein-substrate reaction forms such as
+`O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate` and the threonyl analog as
+mechanism reaction evidence. EC 3.1.3.16/48 remains scope/fetch context only and is never a counted
+corroborator. After the fix, contiguous bounded windows through offset 220-260 were aggregated:
+**743** fetched candidates, **170** unique mechanism-corroborated Ser/Thr candidates, **112**
+novelty-safe admits after aggregate replay, **58** novelty-throttled/rejected rows, and **2**
+off-target metallophosphomonoesterase holds. Row guardrail audit passed with **0** problems.
+
+Applied result: external registry **7308 -> 7420** rows; combined label surface **8010 -> 8122**.
+Current honest counters: external seed **6196**, external OOS **1224**, external silver **30**,
+combined seed surface **6426**, combined OOS **1696**, positive bronze **6379**,
+silver_confirmed **47**, projected **0**. Remaining seed gap to 10k is **3574**.
+
+Post-apply coverage/novelty are green: no holes, Gini **0.1807**, novelty replay **6959** admit /
+**414** throttle / **47** reject. The high-yield factory now reports **0** ready existing lanes
+with >=150 projected clean admits; top candidate is `short_chain_dehydrogenase_reductase` at **84**
+projected clean admits and is design-only preregistered in
+`artifacts/v3_short_chain_dehydrogenase_reductase_lane_preregistration_current702_20260614_post_ser_thr_apply.json`.
+Do not mutate registry again for subscale growth unless a source-handle or external-source change
+raises projected clean supply; continue silver geometry/residue-mapping quality work in parallel.
+Current silver blocker detail: all **202** silver-ready rows have verified local holo coordinates,
+but a full residue-mapping preview mapped **0** rows because **82** lack mmCIF alignment tables,
+**4** lack exact residues, and **116** had no residue positions mapped.
+Post-apply evidence-handle scout still finds **741** reachable positive-bronze uplift from better
+handles, while breadth feasibility projects reviewed Swiss-Prot clean-only positive bronze to
+**9067**, leaving a **933** positive gap; reaching 10k positive bronze still requires source
+expansion beyond reviewed Swiss-Prot or a broader target definition that keeps positive, OOS,
+silver, and projected counters separate.
+
 **2026-06-14 automation update: Ser/Thr protein phosphatase runner built; live sourcing blocked.**
 Treat this as the newest operational state. Registry-size safety remains green and frozen
 current702 stayed byte-unchanged at sha `5eec9bef...`. The current positive fingerprint universe is

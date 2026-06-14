@@ -1,0 +1,51 @@
+{
+  "artifact_id": "v3_short_chain_dehydrogenase_reductase_lane_preregistration_current702_20260614_post_ser_thr_apply",
+  "created_utc": "2026-06-14T23:32:10Z",
+  "current_status_from_factory": null,
+  "decision": "Do not mutate registry from this design. Factory projection is 84 clean admits, below the current >=150 mass-expansion preference; use this only if no higher-yield handle is available or after source handles improve.",
+  "display_name": "Short-chain dehydrogenase/reductase",
+  "family_id": "short_chain_dehydrogenase_reductase",
+  "guardrails": {
+    "dedup_against_current702_and_external_required": true,
+    "ec_scope_only_never_counted": true,
+    "frozen_current702_preserved": true,
+    "labels_created": false,
+    "novelty_gate_and_per_fingerprint_cap_required": true,
+    "predictive_evidence_must_remain_empty": true,
+    "registry_written": false,
+    "row_guardrail_audit_required_before_apply": true
+  },
+  "implementation_next_steps": [
+    "Add fingerprint and ontology node only with tests that preserve source-wall leakage closure.",
+    "Implement a reviewed UniProt source runner using SDR family/domain, NAD(P), active-site, and Rhea participant evidence as admission context.",
+    "Refresh 42fp OOS hard-negative preregistration, preview bounded windows, aggregate only completed windows, run row guardrail audit, and apply only if mechanism-first gates pass."
+  ],
+  "mechanism_contract": {
+    "counted_non_ec_corroborators": [
+      "SDR family/name/domain handle, including short-chain dehydrogenase/reductase or SDR keyword/profile context",
+      "NAD(P) participant, cofactor, Rossmann-like binding-site, or cosubstrate context",
+      "Ser-Tyr-Lys/Asn catalytic tetrad/triad active-site residue evidence where available",
+      "Rhea alcohol/ketone hydride-transfer reaction participant pattern where available"
+    ],
+    "hard_holds": [
+      "aldo-keto reductase TIM-barrel/AKR rows",
+      "zinc or medium-chain alcohol dehydrogenase rows",
+      "aldehyde dehydrogenase Cys/Glu thiohemiacetal rows",
+      "flavin or molybdopterin oxidoreductase rows",
+      "generic NAD(P) dehydrogenase rows without SDR family/domain signal",
+      "EC-only rows",
+      "multi-fingerprint signal conflicts"
+    ],
+    "new_fingerprint_required": true,
+    "oos_preregistration_required": "label_factory_v1_42fp hard-negative preregistration before any apply",
+    "scope_ec_or_query_handles": [
+      "reviewed Swiss-Prot EC 1.1.1.* redox/dehydrogenase/reductase scope may be used for fetch/stratification only"
+    ]
+  },
+  "non_ec_corroborated_supply_from_factory": null,
+  "projected_clean_admits_from_factory": 84,
+  "schema_version": "high_yield_family_lane_preregistration.v1",
+  "scope_supply_from_factory": null,
+  "source_factory": "artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_ser_thr_apply.json",
+  "status": "design_only_no_labels_or_registry_written"
+}

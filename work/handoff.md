@@ -1,5 +1,64 @@
 # Handoff
 
+## Session run - Ser/Thr protein phosphatase bronze batch applied (2026-06-14, Codex automation)
+
+- Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; registry safety
+  remains green after apply. `data/registries/external_bronze_labels.json` is still a small
+  sharded manifest, shard files are about **17 MB / 17 MB / 17 MB / 4.9 MB**, and frozen current702
+  stayed sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Fixed the Ser/Thr source-wall representation gap that held valid curated reactions. The rule now
+  recognizes Rhea/UniProt protein-substrate forms such as
+  `O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate` and the threonyl analog as
+  reaction-participant evidence. EC remains scope-only and is still not a counted corroborator.
+- Replayed contiguous bounded Ser/Thr windows after the fix:
+  `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_window00_10_post_rhea_token_fix_current702_20260614.json`
+  through
+  `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_window220_260_post_rhea_token_fix_current702_20260614.json`.
+  Aggregate artifact
+  `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_aggregate_current702_20260614_post_rhea_token_fix.json`
+  combined **743** fetched candidate rows, **170** unique mechanism-corroborated Ser/Thr
+  candidates, **58** novelty-throttled/rejected rows, **2** off-target metallophosphomonoesterase
+  holds, and **112** novelty-safe admitted rows. Row guardrail audit
+  `artifacts/v3_ser_thr_protein_phosphatase_row_guardrail_audit_current702_20260614_post_rhea_token_fix.json`
+  audited all **112** labels with **0** problems.
+- Applied the aggregate with frozen SHA checks: external registry **7308 -> 7420**; combined label
+  surface **8010 -> 8122**. Honest counters now: external rows **7420** = external seed **6196**
+  + external OOS **1224**, with external silver **30**. Combined seed surface **6426**; combined
+  OOS **1696**; positive bronze **6379**; silver_confirmed **47**; projected **0**.
+- Post-apply refreshes: coverage audit reports **8122** combined labels, no holes, fingerprint Gini
+  **0.1807**, and only `metal_dependent_hydrolase` over cap. Novelty replay reports **6959**
+  admit / **414** throttle / **47** reject across **7420** external rows. High-yield factory now
+  reports **0** ready existing lanes >=150; top projected clean admits is **84** for
+  `short_chain_dehydrogenase_reductase`, captured as design-only preregistration
+  `artifacts/v3_short_chain_dehydrogenase_reductase_lane_preregistration_current702_20260614_post_ser_thr_apply.json`.
+  Evidence-handle scout
+  `artifacts/v3_evidence_handle_expansion_current702_20260614_post_ser_thr_apply.json` reports
+  **4/6** handle-blocked families unlocked and reachable positive-bronze uplift **741**. Breadth
+  feasibility scout
+  `artifacts/v3_breadth_feasibility_scout_current702_20260614_post_ser_thr_apply.json` projects
+  reviewed Swiss-Prot clean-only positive bronze to **9067**, leaving a **933** positive gap; it
+  concludes 10k diverse positive bronze is **not** reachable from reviewed Swiss-Prot alone.
+- Quality refresh: bronze->silver preview reports **202** silver-ready pending geometry rows,
+  **1742** chemistry-disagree holds, and **1779** low-cohesion holds. Ser/Thr contributes **112**
+  chemistry-disagree holds under the current source-free representation and **0** low-cohesion
+  holds. Silver geometry audit/run preview found **108** runnable rows, **0** passes, **108** holds,
+  and **94** blocked before geometry. Full residue-mapping preview
+  `artifacts/v3_silver_pdb_residue_mapping_current702_20260614_post_ser_thr_apply_full_preview.json`
+  mapped **0** rows; blockers are **82** missing mmCIF alignment tables, **4** no exact residues,
+  and **116** no residue positions mapped. Holo-coordinate reuse preview verified all **202**
+  silver-ready rows already have local holo coordinates. Targeted Ser/Thr PDB-ID preview queried
+  **99** missing-PDB accessions and found **0** new UniProt xrefs; broader limit-150 PDB preview
+  also backfilled **0** rows. **13/112** Ser/Thr rows already had PDB IDs.
+- Validation: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (**12** source
+  records, **41** fingerprints, **38** ontology families, **702** curated labels); focused affected
+  suite **324 passed, 14 subtests passed**; final full suite **2293 passed, 1 warning, 244 subtests
+  passed in 165.28s**; registry file-size scan, JSON parse, and diff checks are part of closeout.
+- Next concrete action: do not continue Ser/Thr as a mass-growth lane without improved novelty
+  handles; only **38** cap room remains and the last window was mostly novelty-throttled. Improve
+  source handles or external sources for a >=150 lane; SDR is the current design-only top candidate
+  at **84** projected clean admits. In parallel, continue silver residue mapping/geometry
+  representation work for the 202 pending silver-ready rows.
+
 ## Session run - Ser/Thr protein phosphatase runner built; live sourcing blocked (2026-06-14, Codex automation)
 
 - Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; the external

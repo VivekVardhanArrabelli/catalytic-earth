@@ -1,0 +1,2715 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:Q7YSW8",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 9,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 201
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 138
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 140
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation",
+              "position": 168
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 168
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 200
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 249
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 330
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "SITE",
+              "feature_type": "Site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 401
+            }
+          ],
+          "binding_residue_count": 7,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29034",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Fe(3+)"
+            },
+            {
+              "chebi_id": "CHEBI:29105",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Zn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "431c062275b898b58bfa0c81a06222cf69afa7d89806fcaab162d96533342019"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MSTNNNKAPTSQSSDKSATTESKLNDNENTETETKTDENNEEKPKMTLKPPQPKIENKVSTIDRVVPSVKYPKSLPLPHDVLFNEDKTINLPKLQEHFFAEGRLNHDDVIEIVKMAAEILEKEPTLIQVEAPITVCGDTHGQFYDLIKIFENDIGGNPANTNYLFLGDYVDRGYFSMEVIIYLYACKINYPNTFFLLRGNHECRHLTEYFTFKEECLHKYSEEVYDFITESFNALPLAALMNGKFLCIHGGLSPDIKTLDDIANIDRFKEPPSSGPMCDLLWSDPMEEFSPEIREHFVPNDVRGCSYLYSYRAVCSFLQKNKLLSVIRAHEAQNAGYKMHLQNDATGFPSVITLFSAPNYLDAYNNKGAVLRYENNVMNIRQFTCSPHPYWLPNFMDVFTWSMPFVSEKVAEMLLVLLNLCNDEEAEKNENAQTVKDTSEEEKRRQMLRAKVKSVSKMMRMFSLLRQERETIMMIKSFSPSRKIPQGLLTEGKDALKKALGDFAQARKMDLINEKRPPILDRVNSRGELLRMNSRGELFRINSKGDLFRSNSYADLKPPQGPQETIKITECHEQNITTNNINPNSITTNENNSNEQLQQQQQQQQQQQPPTTTSTTTQTEVAK",
+          "sequence_length": 623,
+          "sequence_sha256": "9f38d550c39e6d0db51b35abfadcedde9ea90057dc70baeb4a8368d54eb608e9",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q7YSW8"
+        },
+        "source_provenance": {
+          "accession": "Q7YSW8",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Dictyostelium discoideum (Social amoeba)",
+          "protein_name": "Serine/threonine-protein phosphatase 2B catalytic subunit (EC 3.1.3.16) (Calcineurin subunit A)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 623,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "7888a1e005724e5bae6a927400707f310663239b9ef4f498f6d7ef35f37c8285",
+            "source_query_sha256": "431c062275b898b58bfa0c81a06222cf69afa7d89806fcaab162d96533342019",
+            "uniprot_entry_record_sha256": "75d7ccd9dc125506053cfd968c5163ee2a9b2ee65dfd55701f265592817eca2f",
+            "uniprot_search_row_sha256": "88c8b22479c0a97478459dd3c5419b93cde95968372abc5efe62251e04ae616e"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q7YSW8"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q7YSW8-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q7YSW8 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:P23595",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 10,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 186
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 125
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 127
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 153
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 185
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 235
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 309
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 38
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 43
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 377
+            }
+          ],
+          "binding_residue_count": 6,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "431c062275b898b58bfa0c81a06222cf69afa7d89806fcaab162d96533342019"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MDMEIDDPMHGSDEDQLSPTLDEDMNSDDGKNNTKARSNDEDTDEELEDFNFKPGSSGIADHKSSKPLKLTNTNINQLDQWIEHLSKCEPLSEDDVARLCKMAVDVLQFEENVKPINVPVTICGDVHGQFHDLLELFKIGGPCPDTNYLFMGDYVDRGYYSVETVSYLVAMKVRYPHRITILRGNHESRQITQVYGFYDECLRKYGSANVWKMFTDLFDYFPVTALVDNKIFCLHGGLSPMIETIDQVRDLNRIQEVPHEGPMCDLLWSDPDDRGGWGISPRGAGFTFGQDISEQFNHTNDLSLIARAHQLVMEGYSWSHQQNVVTIFSAPNYCYRCGNQAAIMEVDENHNRQFLQYDPSVRPGEPTVTRKTPDYFL",
+          "sequence_length": 377,
+          "sequence_sha256": "ea515bccdca4c0fb8e283628ae45df4dbec1c70cd9157c4a42593cbf4d46290e",
+          "source": "reviewed_uniprot",
+          "source_accession": "P23595"
+        },
+        "source_provenance": {
+          "accession": "P23595",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+          "protein_name": "Serine/threonine-protein phosphatase PP2A-2 catalytic subunit (EC 3.1.3.16)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 377,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "441f2ff0685a9cb3418025875fdee36f2da92ea5d577db17d28c4b2bb9404226",
+            "source_query_sha256": "431c062275b898b58bfa0c81a06222cf69afa7d89806fcaab162d96533342019",
+            "uniprot_entry_record_sha256": "f72193e4384cfadb5eba628d33d88d476c814b20190cdf330b0071d3e65c10d8",
+            "uniprot_search_row_sha256": "4fe9170160cd0d447cbad9fe1e9cfaece7ccd8eb4a66d01649906875e74ae114"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P23595"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P23595-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P23595 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:P48462",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 9,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 124
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 63
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 65
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 91
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 123
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 172
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 247
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 315
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 316
+            }
+          ],
+          "binding_residue_count": 6,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "431c062275b898b58bfa0c81a06222cf69afa7d89806fcaab162d96533342019"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MGDFDLNVDSLIQRLLEMRSCRTGKQVQMTEAEVRGLCLKSREIFLQQPILLELEAPLIICGDIHGQYTDLLRLFEYGGFPPAANYLFLGDYVDRGKQSLETICLLLAYKIKYPENFFLLRGNHECASINRIYGFYDECKRRYNVKLWKTFTDCFNCLPVAAIIDEKIFCCHGGLSPDLQGMEQIRRLMRPTDVPDTGLLCDLLWSDPDKDVQGWGENDRGVSFTFGVDVVSKFLNRHELDLICRAHQVVEDGYEFFARRQLVTLFSAPNYCGEFDNAGGMMTVDDTLMCSFQILKPSEKKAKYLYSGMNSSRPTTPQRSAPMLATNKKK",
+          "sequence_length": 330,
+          "sequence_sha256": "40c5aea4beefc3858476b4bc3c14f935cfd26e277644427705d0ce5735b59799",
+          "source": "reviewed_uniprot",
+          "source_accession": "P48462"
+        },
+        "source_provenance": {
+          "accession": "P48462",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Drosophila melanogaster (Fruit fly)",
+          "protein_name": "Serine/threonine-protein phosphatase beta isoform (EC 3.1.3.16) (Protein flap wing)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 330,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "7888a1e005724e5bae6a927400707f310663239b9ef4f498f6d7ef35f37c8285",
+            "source_query_sha256": "431c062275b898b58bfa0c81a06222cf69afa7d89806fcaab162d96533342019",
+            "uniprot_entry_record_sha256": "0345c4037cb73d0309d153c95d0d841f55386adb7e0b8f7f31acb171c8f02c7d",
+            "uniprot_search_row_sha256": "4b3e1ea26bfa8a7773c87f3c8be5473433be847c3444e7ae6c6f24389f1b0017"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P48462"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P48462-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P48462 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q9SJF0",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 9,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 787
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 720
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 722
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 754
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 786
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 839
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 918
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 627
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 975
+            }
+          ],
+          "binding_residue_count": 6,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "431c062275b898b58bfa0c81a06222cf69afa7d89806fcaab162d96533342019"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MDEDSSMVADNDQDREFQSLDGGQSPSPMERETPQQMNDQSPPPEGGSVPTPPPSDPNPATSQQQAAAVVGQEQQPALVVGPRCAPTYSVVDAMMDKKEDGPGPRCGHTLTAVPAVGDEGTPGYIGPRLVLFGGATALEGNSGGTGTPTSAGSAGIRLAGATADVHCYDVLSNKWTRLTPFGEPPTPRAAHVATAVGTMVVIQGGIGPAGLSAEDLHVLDLTQQRPRWHRVVVQGPGPGPRYGHVMALVGQRYLMAIGGNDGKRPLADVWALDTAAKPYEWRKLEPEGEGPPPCMYATASARSDGLLLLCGGRDANSVPLASAYGLAKHRDGRWEWAIAPGVSPSSRYQHAAVFVNARLHVSGGALGGGRMVEDSSSVAVLDTAAGVWCDTKSVVTSPRTGRYSADAAGGDASVELTRRCRHAAAAVGDLIFIYGGLRGGVLLDDLLVAEDLAAAETTYAASHAAAAAATNSPPGRLPGRYGFSDERNRELSESAADGAVVLGSPVAPPVNGDMHTDISPENALLPGTRRTNKGVEYLVEASAAEAEAISATLAAAKARQVNGEVELPDRDCGAEATPSGKPTFSLIKPDSMGSMSVTPAGIRLHHRAVVVAAETGGALGGMVRQLSIDQFENEGRRVSYGTPESATAARKLLDRQMSINSVPKKVIAHLLKPRGWKPPVRRQFFLDCNEIADLCDSAERIFASEPTVLQLKAPIKIFGDLHGQFGDLMRLFDEYGSPSTAGDISYIDYLFLGDYVDRGQHSLETISLLLALKVEYQHNVHLIRGNHEAADINALFGFRIECIERMGERDGIWVWHRINRLFNWLPLAASIEKKIICMHGGIGRSINHVEQIENIQRPITMEAGSIVLMDLLWSDPTENDSVEGLRPNARGPGLVTFGPDRVMEFCNNNDLQLIVRAHECVMDGFERFAQGHLITLFSATNYCGTANNAGAILVLGRDLVVVPKLIHPLPPALSSPETSPERHIEDTWMQELNANRPATPTRGRPQNSNDRGGSLAWM",
+          "sequence_length": 1018,
+          "sequence_sha256": "01d89561c9420782af3baf345b44e7f73d5cbdd0ec2d5c0dcf3296f8b0bce6af",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9SJF0"
+        },
+        "source_provenance": {
+          "accession": "Q9SJF0",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+          "protein_name": "Serine/threonine-protein phosphatase BSL2 (EC 3.1.3.16) (BSU1-like protein 2)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 1018,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "441f2ff0685a9cb3418025875fdee36f2da92ea5d577db17d28c4b2bb9404226",
+            "source_query_sha256": "431c062275b898b58bfa0c81a06222cf69afa7d89806fcaab162d96533342019",
+            "uniprot_entry_record_sha256": "7f26ab46be61e075beac975404c4c0ab6e78e7ec0c52f0e5f38859d0bd85f8a0",
+            "uniprot_search_row_sha256": "0a4da068a59821afa91901711b3e1679fee2562bb4c76e7ef6cec9c581199855"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9SJF0"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9SJF0-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9SJF0 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:O80871",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 4,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 175
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 176
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 338
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 383
+            }
+          ],
+          "binding_residue_count": 4,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MSCSVAVCNSPVFSPSSSLFCNKSSILSSPQESLSLTLSHRKPQTSSPSSPSTTVSSPKSPFRLRFQKPPSGFAPGPLSFGSESVSASSPPGGVLKRKRPTRLDIPIGVAGFVAPISSSAAVAATPREECREVEREGDGYSVYCKRGRREAMEDRFSAITNLHGDRKQAIFGVYDGHGGVKAAEFAAKNLDKNIVEEVVGKRDESEIAEAVKHGYLATDASFLKEEDVKGGSCCVTALVNEGNLVVSNAGDCRAVMSVGGVAKALSSDHRPSRDDERKRIETTGGYVDTFHGVWRIQGSLAVSRGIGDAQLKKWVIAEPETKISRIEHDHEFLILASDGLWDKVSNQEAVDIARPLCLGTEKPLLLAACKKLVDLSASRGSSDDISVMLIPLRQFI",
+          "sequence_length": 396,
+          "sequence_sha256": "8d13f796b15443460b664eea0d402c601f1841fb82fc363aa8dc494f8054ee8b",
+          "source": "reviewed_uniprot",
+          "source_accession": "O80871"
+        },
+        "source_provenance": {
+          "accession": "O80871",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+          "protein_name": "Probable protein phosphatase 2C 25 (AtPP2C25) (EC 3.1.3.16) (Protein phosphatase AP2C1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 396,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "441f2ff0685a9cb3418025875fdee36f2da92ea5d577db17d28c4b2bb9404226",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76",
+            "uniprot_entry_record_sha256": "fc6f283b465d4ab76c10229d03da824ffac60c033144dd280de42f631bd9ce15",
+            "uniprot_search_row_sha256": "2eee707e9a9dc5d3f42f195342ffbf462356e5d382942b66af7eec8582807110"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O80871"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O80871-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O80871 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P35815",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 60
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 60
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 61
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 243
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 286
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 386
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "CROSSLNK",
+              "feature_type": "Cross-link",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 12
+            }
+          ],
+          "binding_residue_count": 5,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MGAFLDKPKTEKHNAHGAGNGLRYGLSSMQGWRVEMEDAHTAVVGIPHGLEDWSFFAVYDGHAGSRVANYCSTHLLEHITTNEDFRAADKSGFALEPSVENVKTGIRTGFLKIDEYMRNFSDLRNGMDRSGSTAVGVMISPTHIYFINCGDSRAVLCRNGQVCFSTQDHKPCNPMEKERIQNAGGSVMIQRVNGSLAVSRALGDYDYKCVDGKGPTEQLVSPEPEVYEILRAEEDEFVVLACDGIWDVMSNEELCEFVNSRLEVSDDLENVCNWVVDTCLHKGSRDNMSIVLVCFANAPKVSDEAVKRDLELDKHLESRVEEIMQKSGEEGMPDLAHVMRILSAENIPNLPPGGGLAGKRNVIEAVYSRLNPNKDNDGGAGDLEDSLVAL",
+          "sequence_length": 390,
+          "sequence_sha256": "e2997e016de0cc91efcba8c744d577873fed82de2c284566d2fb713c3e0ee139",
+          "source": "reviewed_uniprot",
+          "source_accession": "P35815"
+        },
+        "source_provenance": {
+          "accession": "P35815",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Protein phosphatase 1B (EC 3.1.3.16) (Protein phosphatase 2C isoform beta) (PP2C-beta)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 390,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "441f2ff0685a9cb3418025875fdee36f2da92ea5d577db17d28c4b2bb9404226",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76",
+            "uniprot_entry_record_sha256": "d0989c093e9aa4e93d4a2aad133825919a0e7703cb102bb7b8085b5165f89b40",
+            "uniprot_search_row_sha256": "dbc78b98f2d6eae92738c333786f04ea4c2548233a1d60b1e8c749ec8b5b431e"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P35815"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P35815-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P35815 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P36993",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 60
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 60
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 61
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 243
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 286
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 386
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "CROSSLNK",
+              "feature_type": "Cross-link",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 12
+            }
+          ],
+          "binding_residue_count": 5,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MGAFLDKPKTEKHNAHGAGNGLRYGLSSMQGWRVEMEDAHTAVVGIPHGLDNWSFFAVYDGHAGSRVANYCSTHLLEHITTNEDFRAADKSGSALEPSVESVKTGIRTGFLKIDEYMRNFSDLRNGMDRSGSTAVGVMVSPTHMYFINCGDSRAVLCRNGQVCFSTQDHKPCNPVEKERIQNAGGSVMIQRVNGSLAVSRALGDYDYKCVDGKGPTEQLVSPEPEVYEIVRAEEDEFVVLACDGIWDVMSNEELCEFVKSRLEVSDDLENVCNWVVDTCLHKGSRDNMSVVLVCFSNAPKVSEEAVKRDSELDKHLESRVEEIMQKSGEEGMPDLAHVMRILSAENIPNLPPGGGLAGKRHVIEAVYSRLNPHKDNDGGAGDLEDSLVAL",
+          "sequence_length": 390,
+          "sequence_sha256": "e0f6f24f155005910519089f5163b01c5cd3ba325d3916962bce88bea775d985",
+          "source": "reviewed_uniprot",
+          "source_accession": "P36993"
+        },
+        "source_provenance": {
+          "accession": "P36993",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Mus musculus (Mouse)",
+          "protein_name": "Protein phosphatase 1B (EC 3.1.3.16) (Protein phosphatase 2C isoform beta) (PP2C-beta)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 390,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "441f2ff0685a9cb3418025875fdee36f2da92ea5d577db17d28c4b2bb9404226",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76",
+            "uniprot_entry_record_sha256": "10bc2020eb47612d7d99a14328bc8cfe3af2bdd365fac5abefb77b6b30b25e67",
+            "uniprot_search_row_sha256": "b17a4ee57ce462864a1ac163db5cc1a01137ada4fe2126c1ec3e8235dd194e03"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P36993"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P36993-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P36993 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:P53042",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 14,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 304
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 242
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 244
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 244
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 271
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 271
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 275
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 303
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 303
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 352
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 400
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 427
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 427
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 12,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MAMAEGERTECAEPPRDEPPAEGTLKRAEELKTQANDYFKAKDYENAIKFYSQAIELNPSNAIYYGNRSLAYLRTECYGYALGDATRAIELDKKYIKGYYRRAASNMALGKFRAALRDYETVVKVKPNDKDAKMKYQECSKIVKQKAFERAIAGDEHRRSVVDSLDIESMTIEDEYSGPKLEDGKVTITFMKDLMQWYKDQKKLHRKCAYQILVQVKEVLCKLSTLVETTLKETEKITVCGDTHGQFYDLLNIFELNGLPSETNPYIFNGDFVDRGSFSVEVILTLFGFKLLYPDHFHLLRGNHETDNMNQIYGFEGEVKAKYTAQMYELFSEVFEWLPLAQCINGKVLIMHGGLFSEDGVTLDDIRKIERNRQPPDSGPMCDLLWSDPQPQNGRSVSKRGVSCQFGPDVTKAFLEENQLDYIIRSHEVKAEGYEVAHGGRCVTVFSAPNYCDQMGNKASYIHLQGSDLRPQFHQFTAVPHPNVKPMAYANTLLQLGMM",
+          "sequence_length": 499,
+          "sequence_sha256": "b4307064e9c7e8c8826673850bb69e3d9070e2620c958c10e7e0f0004be79b52",
+          "source": "reviewed_uniprot",
+          "source_accession": "P53042"
+        },
+        "source_provenance": {
+          "accession": "P53042",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Serine/threonine-protein phosphatase 5 (PP5) (EC 3.1.3.16) (Protein phosphatase T) (PPT)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 499,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "7888a1e005724e5bae6a927400707f310663239b9ef4f498f6d7ef35f37c8285",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76",
+            "uniprot_entry_record_sha256": "a8bf77a8c11e22de59177327d81e51c40c61ac7b3153e74c1fe73c0ad103efd0",
+            "uniprot_search_row_sha256": "89607ea7d49b1d33dde6fca5c4e8e84e091387e3697c90faa0854001ab722bb1"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P53042"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "4JA7",
+            "4JA9"
+          ],
+          "structure_handle": "4JA7"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P53042 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q8BU27",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 127
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)",
+              "position": 128
+            }
+          ],
+          "binding_residue_count": 2,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "name": "Mg(2+)"
+            },
+            {
+              "chebi_id": "CHEBI:29035",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "name": "Mn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.3.16"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA:20629",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA:47004",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.3.16",
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "reaction": "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: ser_thr_protein_phosphatase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76"
+          },
+          "retrieved_utc": "2026-06-14T23:10:43Z",
+          "sequence": "MSAGWFRRRFLPGGPLPEPRPAGPRSSPVPYHRPRFLRGSGSSPGATDASRRPDARPVRSPARGRTLPWNAGYAEVINAEKSEFNEDQAACGKLCIRRCEFGIEEDQEWLTVCPEEFLTGHYWALFDGHGGPAAAILAANTLHSCLRRQLEAVVEGMIAPQPPMHLSGRCVCPSDPQFVEEKGIQAEDLVIGALENAFQECDDVIGRELEASGQVGGCTALVAVFLQGKLYVANAGDSRAILVRRHEIRQLSSEFTPETERQRIQQLAFTYPELLAGEFTRLEFPRRLKGDDLGQKVLFRDHHMRGWSYKRVEKSDLKYPLIHGQGRQARLLGTLAVSRGLGDHQLRVLDTDIQLKPFLLSIPQVTVLDVHQLAVQEEDVVVMATDGLWDVLSNEQVALLVRSFLTGNQKDDPHRFSELAKMLIHNTQGKDNGATGEGQVSYDDVSVFVIPLHSQAQEGSGH",
+          "sequence_length": 462,
+          "sequence_sha256": "4aac0f56cab12874c29d7dcfe63dc7839aea208f59c2d8c4db298b399247ef72",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q8BU27"
+        },
+        "source_provenance": {
+          "accession": "Q8BU27",
+          "disambiguation_pool": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_ser_thr_protein_phosphatase_from_annotated_cofactor_and_ec_class_['3.1.3.16']",
+          "organism": "Mus musculus (Mouse)",
+          "protein_name": "Protein phosphatase 1M (EC 3.1.3.16) (Protein phosphatase 2C isoform eta) (PP2C-eta) (PP2CE)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 462,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "74f052279954cb03d292cbec871cf280826fdb6ca889669138efcab0d0d26128",
+            "source_query_sha256": "c16679131629d363b6bfbb83731b46f513427f3493644b98cb152040ced7ad76",
+            "uniprot_entry_record_sha256": "73e6731a0dc8d4aa5123de63e5dae9ce39103544be49c381a3013968c1a7794e",
+            "uniprot_search_row_sha256": "757f7fb50f73426a307a7dc85693ca0a3bedce0a69de343f47247acdae9568d6"
+          },
+          "target_family_lane": "ser_thr_protein_phosphatase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q8BU27"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q8BU27-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q8BU27 imported as annotation-anchored bronze in-scope ser_thr_protein_phosphatase: reviewed Swiss-Prot EC ['3.1.3.16'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_ser_thr_protein_phosphatase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "ser_thr_protein_phosphatase": 9
+    },
+    "current_combined_labels": 8010,
+    "disambiguation_hold_count": 24,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 24
+    },
+    "disambiguation_skip_count": 25,
+    "fetched_candidate_rows": 58,
+    "gate_admitted_before_cap_guard": 9,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 3,
+    "max_records_per_lane": 100,
+    "mechanism_corroborated_bronze_labels": 9,
+    "novelty_admitted_labels": 9,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8019,
+    "record_limit_per_lane": 20,
+    "record_offset_per_lane": 10
+  },
+  "created_utc": "2026-06-14T23:10:43Z",
+  "deploy_missing_active_site_context_per_family": {
+    "ser_thr_protein_phosphatase": "dinuclear_metal_phosphoprotein_dephosphorylation_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 4,
+      "medium": 5
+    },
+    "current_registry_labels": 7308,
+    "decision_counts": {
+      "hold": 24,
+      "import": 9,
+      "skip": 25
+    },
+    "examined_rows": 58,
+    "fingerprint_counts": {
+      "ser_thr_protein_phosphatase": 9
+    },
+    "hold_count": 24,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 24
+    },
+    "importable_new_labels": 9,
+    "per_pool_decision_counts": {
+      "ser_thr_protein_phosphatase_broadened_handle_fresh_fetch": {
+        "hold": 24,
+        "import": 9,
+        "skip_screen": 25
+      }
+    },
+    "projected_registry_labels_if_merged": 7317,
+    "skip_count": 25
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_protein_phosphatase_metal_annotation",
+  "families_sourced": [
+    "ser_thr_protein_phosphatase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "ser_thr_protein_phosphatase": {
+      "admitted_this_run": 9,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 0,
+      "deficit_to_floor_after": 91,
+      "deficit_to_floor_before": 100,
+      "deploy_missing_active_site_context": "dinuclear_metal_phosphoprotein_dephosphorylation_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 9,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "had_ptp_small_molecule_phosphatase_boundary_guard": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "ser_thr_protein_phosphatase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "protein_phosphatase_handles_scope_admission_only": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "ser_thr_protein_phosphatase_ec_3_1_3_16_named",
+      "query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48)) AND ((protein_name:\"protein phosphatase\") OR (protein_name:\"serine/threonine-protein phosphatase\") OR (protein_name:calcineurin) OR (keyword:Phosphoprotein))",
+      "record_count": 20,
+      "record_limit_per_lane": 20,
+      "record_offset_per_lane": 10,
+      "records_in_window_before_dedup": 20,
+      "records_returned_by_query": 100,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.1.3.16%29+OR+%28ec%3A3.1.3.48%29%29+AND+%28%28protein_name%3A%22protein+phosphatase%22%29+OR+%28protein_name%3A%22serine%2Fthreonine-protein+phosphatase%22%29+OR+%28protein_name%3Acalcineurin%29+OR+%28keyword%3APhosphoprotein%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100",
+      "status": "query_fetched",
+      "target_family_lane": "ser_thr_protein_phosphatase"
+    },
+    {
+      "lane_id": "ser_thr_protein_phosphatase_metal_context",
+      "query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48)) AND ((protein_name:\"protein phosphatase\") OR (protein_name:calcineurin)) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron) OR (cc_cofactor:magnesium) OR (ft_binding:manganese) OR (ft_binding:iron) OR (ft_binding:magnesium))",
+      "record_count": 19,
+      "record_limit_per_lane": 20,
+      "record_offset_per_lane": 10,
+      "records_in_window_before_dedup": 20,
+      "records_returned_by_query": 100,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.1.3.16%29+OR+%28ec%3A3.1.3.48%29%29+AND+%28%28protein_name%3A%22protein+phosphatase%22%29+OR+%28protein_name%3Acalcineurin%29%29+AND+%28%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Airon%29+OR+%28cc_cofactor%3Amagnesium%29+OR+%28ft_binding%3Amanganese%29+OR+%28ft_binding%3Airon%29+OR+%28ft_binding%3Amagnesium%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100",
+      "status": "query_fetched",
+      "target_family_lane": "ser_thr_protein_phosphatase"
+    },
+    {
+      "lane_id": "ser_thr_protein_phosphatase_phosphoprotein_reaction",
+      "query": "(reviewed:true) AND ((ec:3.1.3.16) OR (ec:3.1.3.48)) AND ((cc_catalytic_activity:phosphoprotein) OR (cc_catalytic_activity:\"phosphorylated protein\") OR (cc_catalytic_activity:\"protein + phosphate\"))",
+      "record_count": 19,
+      "record_limit_per_lane": 20,
+      "record_offset_per_lane": 10,
+      "records_in_window_before_dedup": 20,
+      "records_returned_by_query": 100,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.1.3.16%29+OR+%28ec%3A3.1.3.48%29%29+AND+%28%28cc_catalytic_activity%3Aphosphoprotein%29+OR+%28cc_catalytic_activity%3A%22phosphorylated+protein%22%29+OR+%28cc_catalytic_activity%3A%22protein+%2B+phosphate%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100",
+      "status": "query_fetched",
+      "target_family_lane": "ser_thr_protein_phosphatase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 9
+    },
+    "reason_counts": {
+      "closes_hole_fingerprint": 9
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_ser_thr_protein_phosphatase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

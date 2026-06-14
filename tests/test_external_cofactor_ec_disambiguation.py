@@ -1758,6 +1758,34 @@ class DisambiguateRowTests(unittest.TestCase):
         self.assertIn("domain_or_family_profile", axes)
         self.assertNotIn("ec_scope_hint", axes)
 
+    def test_ser_thr_protein_phosphatase_accepts_seryl_protein_rhea_form(self) -> None:
+        row = _row(cofactors=["Mn(2+)"], ec=["3.1.3.16"])
+        row["protein_name"] = "Serine/threonine-protein phosphatase PP1-alpha catalytic subunit"
+        row["keywords"] = ["Protein phosphatase", "Phosphoprotein"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:STP0002",
+                "equation": "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+                "ec_number": "3.1.3.16",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 64,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "Mn(2+)",
+                "ligand_id": None,
+                "description": "Mn(2+) binding",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(decision["fingerprint_id"], "ser_thr_protein_phosphatase")
+        axes = decision["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
     def test_ser_thr_protein_phosphatase_controls_hold(self) -> None:
         ec_only = _row(ec=["3.1.3.16"])
         ec_only["protein_name"] = "Serine/threonine-protein phosphatase"

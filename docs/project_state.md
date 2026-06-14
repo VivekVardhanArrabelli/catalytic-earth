@@ -26,6 +26,49 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SER/THR PROTEIN PHOSPHATASE BRONZE BATCH APPLIED (2026-06-14 automation).**
+  Newest operational state: hard safety remains green and the current positive universe stays
+  `label_factory_v1_41fp`. Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; growth
+  happened only in the sharded external registry.
+
+  Fixed the Ser/Thr mechanism-admission representation gap: the source wall now recognizes curated
+  protein-substrate Rhea/UniProt equations using `O-phospho-L-seryl-[protein]` and
+  `O-phospho-L-threonyl-[protein]` as reaction-participant evidence. EC 3.1.3.16/48 remains
+  scope-only and never counts as corroboration; rows still require protein-phosphatase family text,
+  dinuclear metal/cofactor or binding-site context, and phosphoprotein dephosphorylation reaction
+  evidence while holding Cys-PTP/DSP/PTEN, HAD-like/small-molecule phosphatase, kinase/transferase,
+  side-EC, EC-only, and multi-fingerprint conflicts.
+
+  Bounded windows through offset 220-260 were aggregated in
+  `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_aggregate_current702_20260614_post_rhea_token_fix.json`:
+  **743** fetched candidates, **170** unique mechanism-corroborated candidates, **112**
+  novelty-safe admitted rows, **58** novelty-throttled/rejected rows, and **2** off-target
+  metallophosphomonoesterase holds. Row guardrail audit found **0** problems across the 112 rows.
+
+  Apply result: external registry **7308 -> 7420** rows and combined label surface **8010 -> 8122**.
+  Current honest counters: external rows **7420** = external seed **6196** + external OOS **1224**,
+  with external silver **30**. Combined seed surface **6426**; combined OOS **1696**; positive
+  bronze **6379**; silver_confirmed **47** including the frozen 17; projected **0**.
+
+  Post-apply state: coverage reports no holes and Gini **0.1807**; novelty replay reports **6959**
+  admit / **414** throttle / **47** reject across **7420** external rows. High-yield factory now
+  has **0** ready existing lanes >=150 and a top projected clean batch of **84** for
+  `short_chain_dehydrogenase_reductase`; design-only preregistration is
+  `artifacts/v3_short_chain_dehydrogenase_reductase_lane_preregistration_current702_20260614_post_ser_thr_apply.json`.
+  Evidence-handle scout reports **4/6** handle-blocked families unlocked with reachable
+  positive-bronze uplift **741**. Breadth feasibility scout projects reviewed Swiss-Prot clean-only
+  positive bronze to **9067**, leaving a **933** positive gap, so 10k diverse positive bronze is
+  still not reachable from reviewed Swiss-Prot alone.
+  Bronze->silver refresh reports **202** silver-ready pending geometry, **1742** chemistry-disagree
+  holds, and **1779** low-cohesion holds. Silver geometry run preview found **0** additional
+  passes. Full residue-mapping preview mapped **0** rows; blockers are **82** missing mmCIF
+  alignment tables, **4** no exact residues, and **116** no residue positions mapped. Holo-coordinate
+  reuse preview verified all **202** silver-ready rows already have local holo coordinates.
+
+  Next action: improve source handles or external sources before another mass-growth mutation; do
+  not keep extending Ser/Thr windows as a mass lane because only **38** cap room remains and novelty
+  throttling dominates. Continue silver residue mapping/geometry representation work in parallel.
+
 - **SER/THR PROTEIN PHOSPHATASE RUNNER BUILT; LIVE SOURCING BLOCKED (2026-06-14 automation).**
   Newest operational state: hard safety remains green and the current positive universe is now
   `label_factory_v1_41fp`. Added fingerprint `ser_thr_protein_phosphatase`, ontology family
