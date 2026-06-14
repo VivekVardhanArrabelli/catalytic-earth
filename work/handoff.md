@@ -1,5 +1,71 @@
 # Handoff
 
+## Session run - HAD-like phosphatase source lane applied (2026-06-14, Codex automation)
+
+- Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; the external
+  registry remains sharded and GitHub-safe after the apply. `data/registries/external_bronze_labels.json`
+  is still a small manifest, shard max is ~18 MB, and no file under `data/registries/` exceeds
+  the 45 MB safety scan threshold. Frozen current702 stayed sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Implemented the guarded HAD-like phosphatase lane:
+  `src/catalytic_earth/had_like_phosphatase_sourcing.py`,
+  `scripts/source_had_like_phosphatase_family.py`, `tests/test_had_like_phosphatase_sourcing.py`,
+  new fingerprint `had_like_phosphatase`, ontology node
+  `had_aspartyl_phosphoenzyme_hydrolysis`, and the `label_factory_v1_38fp` hard-negative
+  preregistration artifact
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_38fp_1025.json`.
+  EC 3.1.3 is scope only; counted corroboration requires mechanism axes such as HAD family/domain,
+  Mg/Asp phosphoenzyme context, active/binding-site evidence, or Rhea phosphomonoester hydrolysis.
+  `predictive_evidence` stays empty for the new rows.
+- Live preview/apply:
+  `artifacts/v3_had_like_phosphatase_sourcing_preview_current702_20260614.json` /
+  `work/had_like_phosphatase_sourcing_current702_20260614.md` fetched **354** rows, found
+  **147** target mechanism-corroborated bronze rows, admitted **146** through dedup/novelty/cap
+  gates, and held **143** off-target metallophosphomonoesterase matches plus **8** disambiguation
+  holds. The broader 500-record probe
+  `artifacts/v3_had_like_phosphatase_broad500_sourcing_preview_current702_20260614.json` saturated
+  at **145** admits, so the applied **146** is the current high-yield floor-scale result rather
+  than a tiny top-up.
+- Row guardrail audit:
+  `artifacts/v3_had_like_phosphatase_row_guardrail_audit_current702_20260614.json` audited all
+  **146** applied rows with **0** problems. All entry IDs are UniProt namespace; all rows are
+  tier `bronze` and `automation_curated`; `predictive_evidence` is empty; mechanism axes counted
+  were active-site/residue role **146**, cofactor/cosubstrate **146**, domain/family **146**, and
+  Rhea participant/reaction **143**.
+- Apply command appended **146** bronze rows to the external registry and preserved all frozen
+  current702 bytes: external rows **6862 -> 7008**, combined label surface **7564 -> 7710**.
+  Honest counters now: external rows **7008** = external positive bronze **5754** + external OOS
+  bronze **1224** + external silver-confirmed **30**. Combined seed surface **6014**; combined
+  positive bronze **5967**; combined OOS bronze **1696**; silver_confirmed **47**; projected **0**.
+- Post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_had_like_apply.json` reports
+  **7710** combined labels, no holes or under-floor fingerprints, fingerprint Gini **0.1891**, and
+  only `metal_dependent_hydrolase` over cap. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260614_post_had_like_apply.json` reports
+  **7008** expansion rows with decisions **6552** admit / **409** throttle / **47** reject. The
+  refreshed high-yield factory
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_had_like_apply.json`
+  finds no existing lane with >=150 cap room and selects `aldehyde_dehydrogenase` as the next
+  new-family runner to build. Captured the design-only next-lane contract in
+  `artifacts/v3_aldehyde_dehydrogenase_lane_preregistration_current702_20260614_post_had_apply.json`
+  (3160 reviewed EC-scope rows, 3153 non-EC corroborated supply estimate, 150 projected clean
+  admits; holds molybdopterin/flavin/generic NAD(P) aldehyde oxidoreductase confounds).
+- Test/doc cleanup from the live count change: refreshed stale real-registry pins from
+  6862/7564/37fp to 7008/7710/38fp with documented count rationale. The representation loop now
+  records a real leakage-safe representation ceiling: HAD-like phosphatase is self-consistent
+  (**0.9726**), but generic `metallophosphomonoesterase` rows often confuse into HAD under
+  source-free reaction/cofactor/site features. This is a representation gap, not a reason to lower
+  admission or silver thresholds.
+- Validation: focused HAD/registry/leakage/source suite **326 passed**; targeted stale-pin suite
+  **26 passed**; full suite **2262 passed, 1 warning in 162.56s**; `PYTHONPATH=src python -m
+  catalytic_earth.cli validate` passed (**12** source records, **38** fingerprints, **35** ontology
+  families, **702** curated labels); JSON parse checks passed for new artifacts; `git diff --check`
+  passed; registry file-size scan passed.
+- Next concrete action: build the `aldehyde_dehydrogenase` fingerprint/ontology/source runner from
+  the preregistration contract above, then run a preview plus row guardrail audit before any apply.
+  In parallel, continue explicit residue mapping for the **106** blocked silver-ready rows and
+  treat the **124** runnable silver holds as geometry representation gaps.
+
 ## Session run - Silver geometry confirmation apply (2026-06-14, Codex automation)
 
 - Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; registry safety

@@ -512,6 +512,24 @@
         "Hold multi-fingerprint-signal rows rather than forcing a protein kinase label.",
         "ATP/Mg2+, protein-substrate docking, activation-loop state, and phosphoprotein product context are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "had_aspartyl_phosphoenzyme_hydrolysis",
+      "name": "HAD-like Asp-phosphoenzyme phosphomonoester hydrolysis",
+      "parent_id": "hydrolysis",
+      "fingerprint_ids": [
+        "had_like_phosphatase"
+      ],
+      "scope_note": "Reviewed EC 3.1.3 HAD-like phosphatases that use Mg2+ and a catalytic Asp to hydrolyze phosphomonoesters through a transient phospho-Asp intermediate.",
+      "sibling_ids": [
+        "hydrolysis"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by HAD or haloacid-dehalogenase-like family/name/domain context plus Asp nucleophile or Mg binding-site evidence and Rhea/reviewed phosphomonoester hydrolysis where available; EC 3.1.3 is scope only.",
+        "Do not admit protein phosphatases, Cys-based protein-tyrosine phosphatases, metal phosphomonoesterases without HAD signal, phosphodiesterases, nucleases, kinases, transferases, side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a HAD-like phosphatase label.",
+        "The Mg2+ ion, phosphomonoester substrate, catalytic water, and transient phospho-Asp state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

@@ -1,0 +1,81 @@
+{
+  "apply_command_shape": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+  "artifact_id": "v3_aldehyde_dehydrogenase_lane_preregistration_current702_20260614_post_had_apply",
+  "created_utc": "2026-06-14T19:44:00Z",
+  "display_name": "Aldehyde dehydrogenase",
+  "expected_scale": {
+    "cap_ceiling": 150,
+    "cap_class": "chemistry_confusable_cap_150",
+    "non_ec_mechanism_corroboration_rate_estimate": 0.998,
+    "projected_clean_admits": 150,
+    "reviewed_non_ec_corroborated_supply": 3153,
+    "reviewed_scope_supply": 3160
+  },
+  "family_id": "aldehyde_dehydrogenase",
+  "feature_contract": {
+    "admission_handles_are_excluded_context": [
+      "aldehyde dehydrogenase family/name handle",
+      "NAD(P) keyword or cosubstrate participant context",
+      "NAD(P) binding-site context",
+      "catalytic Cys/Glu active-site evidence",
+      "Rhea aldehyde oxidation participant/equation",
+      "EC 1.2.1 scope query",
+      "UniProt protein names/prose"
+    ],
+    "predictive_evidence_must_remain_empty": true,
+    "source_free_predictive_features_to_consider_only_under_tests": [
+      "future validated local chemistry/geometry axes after leakage tests"
+    ]
+  },
+  "first_safe_command_shape": "PYTHONPATH=src python scripts/source_aldehyde_dehydrogenase_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+  "oos_preregistration": {
+    "dedup_against": [
+      "curated current702",
+      "external registries"
+    ],
+    "hard_negative_holds": [
+      "molybdopterin aldehyde oxidoreductase rows",
+      "flavin aldehyde oxidase rows",
+      "generic NAD(P) dehydrogenase rows without ALDH family or Cys/Glu signal",
+      "short-chain or aldo-keto reductase rows with broad EC/cosubstrate overlap",
+      "EC-only aldehyde dehydrogenase rows with no mechanism corroborator"
+    ],
+    "multi_fingerprint_signal_holds_required": true,
+    "novelty_gate_required": true,
+    "oos_namespace": "uniprot reviewed oxidoreductase rows outside the aldehyde dehydrogenase mechanism rule",
+    "per_fingerprint_cap": 150,
+    "positive_namespace": "uniprot reviewed aldehyde dehydrogenase rows passing Cys-thiohemiacetal hydride-transfer corroboration",
+    "required": true
+  },
+  "required_runner_gates_before_apply": [
+    "ontology node and mechanism fingerprint entry added with tests",
+    "source runner preview emits bronze automation_curated uniprot rows only",
+    "source_trust_tiers.evaluate_corroboration admits no EC-only row",
+    "dedup/novelty gate checks current702 and external registries",
+    "governor/per-fingerprint caps enforced",
+    "row-level source-contract validation passes",
+    "predictive_evidence stays empty",
+    "frozen current702 sha printed and unchanged before/after apply"
+  ],
+  "schema_version": "new_family_lane_preregistration.v1",
+  "scope_and_admission": {
+    "corroborator_query": "(reviewed:true) AND (ec:1.2.1.*) AND ((protein_name:\"aldehyde dehydrogenase\") OR (keyword:NAD) OR (keyword:NADP))",
+    "disambiguation_holds": [
+      "molybdopterin aldehyde oxidoreductase rows",
+      "flavin aldehyde oxidase rows",
+      "generic NAD(P) dehydrogenase rows without ALDH signal"
+    ],
+    "ec_scope_only_never_counted_corroborator": true,
+    "mechanism_first": true,
+    "required_non_ec_corroborators": [
+      "aldehyde dehydrogenase family/name handle",
+      "NAD(P) cosubstrate participant or binding-site context",
+      "catalytic Cys/Glu active-site evidence where available"
+    ],
+    "scope_query": "(reviewed:true) AND (ec:1.2.1.*)",
+    "tier_0_requires_at_least_one_mechanism_corroborator": true
+  },
+  "source_artifact": "artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_had_like_apply.json",
+  "status": "design_only_no_labels_no_registry_write",
+  "why_this_lane": "Top post-HAD factory lane: 3160 reviewed EC-scope rows, 3153 non-EC corroborated supply estimate, 150 projected clean admits, but requires a clean split from generic NAD(P), molybdopterin, and flavin aldehyde oxidoreductases."
+}

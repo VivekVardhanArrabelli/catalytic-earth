@@ -180,6 +180,9 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         cap_ceiling=DEFAULT_CONFUSABLE_CAP,
         chemistry_confusable=True,
         novelty_keep_factor=0.3,
+        existing_fingerprint_id="had_like_phosphatase",
+        current_runner="scripts/source_had_like_phosphatase_family.py",
+        oos_preregistration_required=False,
         ambiguity_with_existing=("metallophosphomonoesterase",),
         rationale_template=(
             "Large phosphatase lane; only useful at scale after a HAD-specific split "

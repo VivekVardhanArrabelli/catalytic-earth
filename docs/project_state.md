@@ -26,6 +26,50 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **HAD-LIKE PHOSPHATASE BRONZE LANE APPLIED (2026-06-14 automation).**
+  Newest operational state: hard safety is green after a new-family bronze expansion. The external
+  registry remains a sharded manifest plus four shards below the per-file safety threshold, and
+  frozen current702 stayed sha `5eec9bef...`.
+
+  Added the `had_like_phosphatase` fingerprint, ontology node
+  `had_aspartyl_phosphoenzyme_hydrolysis`, guarded source runner
+  `src/catalytic_earth/had_like_phosphatase_sourcing.py`, script
+  `scripts/source_had_like_phosphatase_family.py`, tests, and the
+  `label_factory_v1_38fp` OOS preregistration artifact
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_38fp_1025.json`. EC 3.1.3 is
+  scope/admission context only; counted corroboration requires mechanism axes such as HAD
+  family/domain, Mg/Asp phosphoenzyme context, active/binding-site evidence, or Rhea
+  phosphomonoester hydrolysis. New labels keep `predictive_evidence: []`.
+
+  Live preview `artifacts/v3_had_like_phosphatase_sourcing_preview_current702_20260614.json`
+  fetched **354** rows, found **147** target mechanism-corroborated rows, admitted **146** through
+  dedup/novelty/cap gates, and held **143** off-target metallophosphomonoesterase matches. A
+  broader 500-record probe saturated at **145** admits, confirming the applied **146** rows are the
+  current high-yield floor-scale result under the present gates. Row guardrail artifact
+  `artifacts/v3_had_like_phosphatase_row_guardrail_audit_current702_20260614.json` audited all
+  **146** applied rows with **0** problems.
+
+  Apply result: external rows **6862 -> 7008**; combined label surface **7564 -> 7710**. Current
+  honest counters: external rows **7008** = external positive bronze **5754**, external OOS bronze
+  **1224**, external silver **30**. Combined seed surface **6014**; combined positive bronze
+  **5967**; combined OOS bronze **1696**; silver_confirmed **47**; projected **0**.
+
+  Post-apply coverage/novelty/factory audits are current:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_had_like_apply.json` reports
+  **7710** combined labels, no holes/under-floor fingerprints, Gini **0.1891**, and only
+  `metal_dependent_hydrolase` over cap. Novelty replay reports **6552** admit / **409** throttle /
+  **47** reject decisions across **7008** external rows. The high-yield factory now finds no
+  existing lane with >=150 cap room and selects `aldehyde_dehydrogenase` as the next new-family
+  runner to build. The design-only next-lane preregistration is
+  `artifacts/v3_aldehyde_dehydrogenase_lane_preregistration_current702_20260614_post_had_apply.json`;
+  it preserves the requirements for non-EC ALDH family/NAD(P)/Cys-Glu corroboration and hard holds
+  for molybdopterin, flavin, generic NAD(P), SDR, AKR, and EC-only confounds.
+
+  Representation note: adding HAD-like phosphatase exposes a real source-free representation gap.
+  HAD rows are internally consistent, but generic `metallophosphomonoesterase` rows often confuse
+  into HAD under reaction/cofactor/site features. Treat this as a leakage-safe feature/design gap,
+  not as permission to relax source admission, cohesion, or silver geometry thresholds.
+
 - **SILVER GEOMETRY CONFIRMATION APPLIED (2026-06-14 automation).**
   Newest operational state: the separate geometry-confirmation gate has now been implemented and
   applied to the materialized silver-ready queue. Hard safety remains green: the external registry

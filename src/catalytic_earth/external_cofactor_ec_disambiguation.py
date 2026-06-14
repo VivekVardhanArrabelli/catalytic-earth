@@ -581,6 +581,60 @@ _PROTEIN_KINASE_BOUNDARY_TOKENS = (
     "atp grasp",
     "ligase",
 )
+# HAD-like phosphatase handles. EC 3.1.3 scopes phosphomonoesterase candidates only;
+# counted corroboration comes from HAD/haloacid-dehalogenase family text, catalytic
+# Asp or Mg binding-site context, and Rhea/reviewed phosphomonoester hydrolysis text.
+# Protein phosphatases without HAD/Asp evidence, metal phosphomonoesterases without
+# HAD signal, phosphodiesterases/nucleases, kinases, transferases, and EC-only rows stay held.
+_HAD_LIKE_PHOSPHATASE_FAMILY_TEXT_TOKENS = (
+    "had-like",
+    "had family",
+    "had superfamily",
+    "haloacid dehalogenase",
+    "haloacid-dehalogenase",
+    "haloacid dehalogenase-like",
+    "phosphoserine phosphatase",
+    "phosphoglycolate phosphatase",
+    "beta-phosphoglucomutase",
+)
+_HAD_LIKE_PHOSPHATASE_ASP_MG_TOKENS = (
+    "aspartate",
+    "asp",
+    "phosphoaspartate",
+    "phospho-aspartate",
+    "magnesium",
+    "mg(2",
+    "mg2",
+    "mg cation",
+    "dxd",
+    "dxt",
+    "dxdt",
+)
+_HAD_LIKE_PHOSPHATASE_REACTION_TOKENS = (
+    "phosphomonoester",
+    "phosphatase",
+    "phosphoserine",
+    "phosphoglycolate",
+    "phosphate",
+    "orthophosphate",
+)
+_HAD_LIKE_PHOSPHATASE_HYDROLYSIS_TOKENS = ("h2o", "h(2)o", "water")
+_HAD_LIKE_PHOSPHATASE_BOUNDARY_TOKENS = (
+    "protein phosphatase",
+    "serine/threonine-protein phosphatase",
+    "tyrosine-protein phosphatase",
+    "protein-tyrosine phosphatase",
+    "alkaline phosphatase",
+    "purple acid phosphatase",
+    "phosphodiesterase",
+    "nuclease",
+    "exonuclease",
+    "endonuclease",
+    "ribonuclease",
+    "deoxyribonuclease",
+    "kinase",
+    "transferase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -1349,6 +1403,27 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         ec and not (ec.startswith("2.7.10") or ec.startswith("2.7.11"))
         for ec in _ec_numbers(row)
     )
+    had_like_phosphatase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_HAD_LIKE_PHOSPHATASE_FAMILY_TEXT_TOKENS,
+    )
+    had_like_phosphatase_asp_mg_context = in_any(
+        cofactor_names + feature_texts,
+        *_HAD_LIKE_PHOSPHATASE_ASP_MG_TOKENS,
+    )
+    had_like_phosphatase_phosphomonoester_reaction = in_any(
+        reactions, *_HAD_LIKE_PHOSPHATASE_REACTION_TOKENS
+    ) and in_any(reactions, *_HAD_LIKE_PHOSPHATASE_HYDROLYSIS_TOKENS)
+    had_like_phosphatase_boundary_signal = (
+        in_any(
+            keywords + [protein_name] + feature_texts,
+            *_HAD_LIKE_PHOSPHATASE_BOUNDARY_TOKENS,
+        )
+        and not had_like_phosphatase_family_text
+    ) or _ec_has_prefix(row, ("3.1.4", "3.1.11", "3.1.12", "3.1.13", "3.1.21", "3.1.31"))
+    non_had_like_phosphatase_scope_side_ec = any(
+        ec and not ec.startswith("3.1.3") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -1589,6 +1664,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "protein_kinase_phosphoryl_reaction": protein_kinase_phosphoryl_reaction,
             "protein_kinase_boundary_signal": protein_kinase_boundary_signal,
             "non_protein_kinase_scope_side_ec": non_protein_kinase_scope_side_ec,
+            "had_like_phosphatase_family_text": had_like_phosphatase_family_text,
+            "had_like_phosphatase_asp_mg_context": had_like_phosphatase_asp_mg_context,
+            "had_like_phosphatase_phosphomonoester_reaction": had_like_phosphatase_phosphomonoester_reaction,
+            "had_like_phosphatase_boundary_signal": had_like_phosphatase_boundary_signal,
+            "non_had_like_phosphatase_scope_side_ec": non_had_like_phosphatase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
             "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
@@ -1651,6 +1731,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("terpene_mg_mn_context")
         or evidence.get("terpene_diphosphate_context")
         or evidence.get("protein_kinase_atp_mg_context")
+        or evidence.get("had_like_phosphatase_asp_mg_context")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -1689,6 +1770,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("pfkb_phosphoryl_reaction")
         or evidence.get("terpene_cyclization_reaction")
         or evidence.get("protein_kinase_phosphoryl_reaction")
+        or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -1733,6 +1815,11 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
             evidence.get("active_or_binding_site_present")
             and evidence.get("protein_kinase_family_text")
         )
+        or (
+            evidence.get("active_or_binding_site_present")
+            and evidence.get("had_like_phosphatase_family_text")
+        )
+        or evidence.get("had_like_phosphatase_asp_mg_context")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -1765,6 +1852,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("mn_fe_sod_family_text")
         or evidence.get("terpene_family_text")
         or evidence.get("protein_kinase_family_text")
+        or evidence.get("had_like_phosphatase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -1831,6 +1919,7 @@ _THIAMINE_DIPHOSPHATE_ENZYME_EC = (
 _ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
 _TERPENE_CYCLASE_SYNTHASE_EC = ("4.2.3",)  # terpene cyclases/synthases; EC is scope only
 _PROTEIN_KINASE_SER_THR_TYR_EC = ("2.7.10", "2.7.11")  # protein kinases; EC scope only
+_HAD_LIKE_PHOSPHATASE_EC = ("3.1.3",)  # HAD-like phosphatases; EC scope only
 _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
 _ASKHA_SUGAR_ACETATE_KINASE_EC = ("2.7.1",)  # ASKHA sugar/acetate kinase; EC scope only
 _GHMP_SMALL_MOLECULE_KINASE_EC = ("2.7.1",)  # GHMP small-molecule kinase; EC scope only
@@ -1856,7 +1945,9 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
     ),
     (
         "metallophosphomonoesterase",
-        lambda c, row: c["metal"] and _ec_has_prefix(row, _METALLOPHOSPHOMONOESTERASE_EC),
+        lambda c, row: c["metal"]
+        and _ec_has_prefix(row, _METALLOPHOSPHOMONOESTERASE_EC)
+        and not c["had_like_phosphatase_family_text"],
     ),
     (
         "metallo_amidohydrolase_deaminase",
@@ -2229,6 +2320,23 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
             or c["active_or_binding_site_present"]
         ),
     ),
+    (
+        "had_like_phosphatase",
+        lambda c, row: _ec_has_prefix(row, _HAD_LIKE_PHOSPHATASE_EC)
+        and c["had_like_phosphatase_family_text"]
+        and not c["had_like_phosphatase_boundary_signal"]
+        and not c["non_had_like_phosphatase_scope_side_ec"]
+        and not c["kinase_boundary"]
+        and not c["transferase_side_ec"]
+        and (
+            c["had_like_phosphatase_asp_mg_context"]
+            or c["active_or_binding_site_present"]
+        )
+        and (
+            c["had_like_phosphatase_phosphomonoester_reaction"]
+            or c["active_or_binding_site_present"]
+        ),
+    ),
 )
 
 
@@ -2324,6 +2432,11 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "Mg2+/Mn2+ prenyl-diphosphate cyclization context", "cross_reference": {"id": None}}]
     elif fingerprint == "protein_kinase_ser_thr_tyr" and evidence.get("protein_kinase_atp_mg_context"):
         records = [{"name": "ATP/Mg2+ protein-substrate phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
+    elif fingerprint == "had_like_phosphatase" and (
+        evidence.get("had_like_phosphatase_asp_mg_context")
+        or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
+    ):
+        records = [{"name": "Mg2+/Asp phosphoenzyme phosphomonoesterase context", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

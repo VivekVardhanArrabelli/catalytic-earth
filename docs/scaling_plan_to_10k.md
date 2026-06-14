@@ -13,6 +13,43 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: HAD-like phosphatase lane applied and next lane reset.** Treat this
+as the newest operational state. Registry-size safety remains green: the external registry is still
+a small sharded manifest plus four shards below the per-file safety threshold. Frozen current702
+remained byte-unchanged at sha `5eec9bef...`.
+
+The guarded HAD-like phosphatase lane now exists and has been applied:
+`src/catalytic_earth/had_like_phosphatase_sourcing.py`,
+`scripts/source_had_like_phosphatase_family.py`, new fingerprint `had_like_phosphatase`, ontology
+node `had_aspartyl_phosphoenzyme_hydrolysis`, and 38fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_38fp_1025.json`. EC 3.1.3 is
+scope only; counted corroboration comes from non-EC mechanism axes such as HAD family/domain,
+Mg/Asp phosphoenzyme context, active/binding-site evidence, or Rhea phosphomonoester hydrolysis.
+
+Applied result:
+`artifacts/v3_had_like_phosphatase_sourcing_preview_current702_20260614.json` admitted **146**
+rows after dedup/novelty/cap gates, and
+`artifacts/v3_had_like_phosphatase_row_guardrail_audit_current702_20260614.json` found **0**
+row-level guardrail problems. A broader 500-record probe saturated at **145** admits, so do not
+rerun HAD as a mass-growth lane without a new evidence handle.
+
+Current honest counters: external registry **7008** rows = **5754** external positive bronze +
+**1224** external OOS bronze + **30** external silver-confirmed. Combined label surface **7710**;
+combined seed surface **6014**; combined positive bronze **5967**; combined OOS bronze **1696**;
+silver_confirmed **47** including the frozen 17; projected **0**. Remaining seed gap to 10k is
+**3986**.
+
+Post-apply coverage and novelty remain green: coverage reports no holes/under-floor fingerprints,
+fingerprint Gini **0.1891**, and only `metal_dependent_hydrolase` over cap; novelty replay reports
+**6552** admit / **409** throttle / **47** reject across **7008** external rows. The refreshed
+high-yield factory finds no existing lane with >=150 cap room and selects
+`aldehyde_dehydrogenase` as the next new-family runner to build with the same mechanism-first
+guardrails. The design-only contract is now
+`artifacts/v3_aldehyde_dehydrogenase_lane_preregistration_current702_20260614_post_had_apply.json`:
+use ALDH family/name, NAD(P) cosubstrate or binding-site context, and catalytic Cys/Glu active-site
+evidence as non-EC corroborators, and hold molybdopterin/flavin/generic NAD(P) aldehyde
+oxidoreductase confounds.
+
 **2026-06-14 automation update: first external silver confirmations applied by the separate
 geometry gate.** Treat this as the newest operational state. The registry-size hard blocker remains
 clear: the external registry is still a small sharded manifest plus four shards below the per-file

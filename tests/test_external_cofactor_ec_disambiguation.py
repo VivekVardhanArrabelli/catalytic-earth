@@ -1670,6 +1670,90 @@ class DisambiguateRowTests(unittest.TestCase):
         ]
         self.assertEqual(disambiguate_row(hydratase)["decision"], "hold")
 
+    def test_had_like_phosphatase_requires_non_ec_mechanism_handles(self) -> None:
+        row = _row(cofactors=["Mg(2+)"], ec=["3.1.3.3"])
+        row["protein_name"] = "HAD-like phosphoserine phosphatase"
+        row["keywords"] = ["Phosphatase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:HP0001",
+                "reaction": "O-phospho-L-serine + H2O = L-serine + phosphate",
+                "ec_number": "3.1.3.3",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 11,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic Asp nucleophile",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(decision["fingerprint_id"], "had_like_phosphatase")
+        axes = decision["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("cofactor_or_cosubstrate", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_had_like_phosphatase_controls_do_not_force_had_label(self) -> None:
+        ec_only = _row(ec=["3.1.3.3"])
+        ec_only["protein_name"] = "HAD-like phosphatase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        metal_without_had = _row(cofactors=["Zn(2+)"], ec=["3.1.3.1"])
+        metal_without_had["protein_name"] = "Alkaline phosphatase"
+        self.assertEqual(
+            disambiguate_row(metal_without_had)["fingerprint_id"],
+            "metallophosphomonoesterase",
+        )
+
+        protein_phosphatase = _row(cofactors=["Mn(2+)"], ec=["3.1.3.16"])
+        protein_phosphatase["protein_name"] = "Serine/threonine-protein phosphatase"
+        protein_phosphatase["keywords"] = ["Phosphatase"]
+        protein_phosphatase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:HP0002",
+                "reaction": "phosphoprotein + H2O = protein + phosphate",
+                "ec_number": "3.1.3.16",
+            }
+        ]
+        self.assertEqual(
+            disambiguate_row(protein_phosphatase)["fingerprint_id"],
+            "metallophosphomonoesterase",
+        )
+
+        phosphodiesterase = _row(cofactors=["Mg(2+)"], ec=["3.1.3.1", "3.1.4.1"])
+        phosphodiesterase["protein_name"] = "HAD-like phosphodiesterase boundary"
+        phosphodiesterase["keywords"] = ["Phosphatase"]
+        phosphodiesterase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:HP0003",
+                "reaction": "phosphomonoester + H2O = alcohol + phosphate",
+                "ec_number": "3.1.3.1",
+            }
+        ]
+        phosphodiesterase["residue_locators"] = [
+            {
+                "position": 11,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "Mg(2+)",
+                "ligand_id": None,
+                "description": "Mg(2+) binding",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        self.assertEqual(
+            disambiguate_row(phosphodiesterase)["fingerprint_id"],
+            "metallophosphoesterase_nuclease",
+        )
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

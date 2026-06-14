@@ -3,6 +3,42 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: HAD-LIKE PHOSPHATASE IS A COUNTED BRONZE FAMILY WITH NON-EC CORROBORATION
+
+Decision: add `had_like_phosphatase` as the 38th positive fingerprint and keep the source wall
+mechanism-first. EC 3.1.3 may scope/fetch/admit candidate rows but is never a counted corroborator.
+The counted axes are HAD family/domain context, Mg/Asp aspartyl-phosphoenzyme context,
+active/binding-site residue evidence, and Rhea phosphomonoester hydrolysis. Protein names,
+keywords, EC, lane names, source prose, and broadened handles remain excluded context and are not
+predictive features.
+
+Implementation: added `src/catalytic_earth/had_like_phosphatase_sourcing.py`,
+`scripts/source_had_like_phosphatase_family.py`, the `had_like_phosphatase` fingerprint, ontology
+node `had_aspartyl_phosphoenzyme_hydrolysis`, 38fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_38fp_1025.json`, and focused
+tests. Updated the current positive-fingerprint universe to `label_factory_v1_38fp`; frozen
+current702 labels stay stamped with their historical decision version and were not written.
+
+Measured result: live preview admitted **146** rows from **354** fetched records after
+mechanism-corroboration, dedup, novelty, and cap gates. The row guardrail audit found **0**
+problems across all applied rows; `predictive_evidence` stayed empty. Applying the exact preview
+changed external rows **6862 -> 7008** and combined labels **7564 -> 7710**. Frozen current702 sha
+stayed `5eec9bef...`.
+
+Decision: do not immediately rerun HAD for mass growth. A broader 500-record probe admitted only
+**145** rows under the same gates, so the lane is saturated around the applied **146** rows without
+a new evidence handle. The refreshed high-yield factory therefore selects `aldehyde_dehydrogenase`
+as the next new-family runner. A design-only preregistration artifact,
+`artifacts/v3_aldehyde_dehydrogenase_lane_preregistration_current702_20260614_post_had_apply.json`,
+records ALDH family/NAD(P)/Cys-Glu non-EC corroborators and hard holds for molybdopterin, flavin,
+generic NAD(P), SDR, AKR, and EC-only confounds; it writes no labels or registry rows.
+
+Decision: the representation loop must treat the HAD/metallophosphomonoesterase overlap honestly.
+HAD rows are highly self-consistent under source-free features, but generic
+`metallophosphomonoesterase` rows often confuse into HAD. This is a representation gap for future
+leakage-safe feature design, not justification to relax source admission, cohesion thresholds, or
+silver geometry promotion.
+
 ## 2026-06-14: SILVER GEOMETRY CONFIRMATION IS A LOCAL-GEOMETRY GATE, NOT ANNOTATION
 
 Decision: implement and apply the separate silver geometry-confirmation gate for rows that already

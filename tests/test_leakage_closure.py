@@ -83,6 +83,7 @@ from catalytic_earth.transfer_scope import (
     EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_35FP_ARTIFACT,
     EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_36FP_ARTIFACT,
     EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_37FP_ARTIFACT,
+    EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_38FP_ARTIFACT,
     EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_VERSION,
     EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION,
     build_external_hard_negative_next_candidate_factory_import_gate,
@@ -273,16 +274,16 @@ class LeakageClosureTests(unittest.TestCase):
             gate["rows"][0]["remaining_import_blockers"],
         )
 
-    def test_37fp_pre_registration_is_frozen_for_live_universe(self) -> None:
-        # The re-frozen 37fp tranche pre-registration is the current prerequisite: the
-        # protein kinase setup adds one positive fingerprint (universe 36 -> 37),
-        # so the prior 36fp re-freeze is itself superseded. This artifact is frozen before
-        # selection against the CURRENT 37-fingerprint universe and records the bumped ontology
+    def test_38fp_pre_registration_is_frozen_for_live_universe(self) -> None:
+        # The re-frozen 38fp tranche pre-registration is the current prerequisite: the
+        # HAD-like phosphatase setup adds one positive fingerprint (universe 37 -> 38),
+        # so the prior 37fp re-freeze is itself superseded. This artifact is frozen before
+        # selection against the CURRENT 38-fingerprint universe and records the bumped ontology
         # version.
-        artifact = _load_json(ROOT / EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_37FP_ARTIFACT)
+        artifact = _load_json(ROOT / EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_38FP_ARTIFACT)
         metadata = artifact["metadata"]
         live_fingerprints = sorted(fp.id for fp in load_fingerprints())
-        self.assertEqual(len(live_fingerprints), 37)
+        self.assertEqual(len(live_fingerprints), 38)
         self.assertEqual(sorted(metadata["fingerprint_universe"]), live_fingerprints)
         self.assertEqual(
             metadata["ontology_version_at_decision"],
@@ -298,7 +299,18 @@ class LeakageClosureTests(unittest.TestCase):
         )
         self.assertEqual(
             metadata["supersedes"],
-            "v3_external_hard_negative_next_tranche_preregistration_36fp_1025.json",
+            "v3_external_hard_negative_next_tranche_preregistration_37fp_1025.json",
+        )
+
+    def test_37fp_pre_registration_now_superseded_by_38fp(self) -> None:
+        artifact = _load_json(ROOT / EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_37FP_ARTIFACT)
+        metadata = artifact["metadata"]
+        live_fingerprints = sorted(fp.id for fp in load_fingerprints())
+        self.assertEqual(len(metadata["fingerprint_universe"]), 37)
+        self.assertTrue(set(metadata["fingerprint_universe"]) < set(live_fingerprints))
+        self.assertNotEqual(
+            metadata["ontology_version_at_decision"],
+            CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION,
         )
 
     def test_36fp_pre_registration_now_superseded_by_37fp(self) -> None:
@@ -569,10 +581,10 @@ class LeakageClosureTests(unittest.TestCase):
         )
 
     def test_factory_import_gate_accepts_frozen_preregistration(self) -> None:
-        # Happy path: the re-frozen 37fp pre-registration (current universe + bumped
+        # Happy path: the re-frozen 38fp pre-registration (current universe + bumped
         # ontology version) is accepted by the import gate. The stale 8fp/12fp artifacts are
         # blocked (see test_factory_import_gate_blocks_stale_preregistration_after_split).
-        prereg = _load_json(ROOT / EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_37FP_ARTIFACT)
+        prereg = _load_json(ROOT / EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_38FP_ARTIFACT)
         gate = build_external_hard_negative_next_candidate_factory_import_gate(
             terminal_review_decisions=_terminal_review_decisions(),
             label_factory_gate_check=_passed_label_factory_gate(),
@@ -581,7 +593,7 @@ class LeakageClosureTests(unittest.TestCase):
             max_imports=1,
             pre_registration=prereg,
             pre_registration_artifact_path=(
-                EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_37FP_ARTIFACT
+                EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_38FP_ARTIFACT
             ),
             require_pre_registration=True,
         )

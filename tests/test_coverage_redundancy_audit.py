@@ -211,9 +211,11 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 7564)
+            # 7564 prior combined labels + 146 HAD-like phosphatase bronze rows
+            # applied on 2026-06-14.
+            self.assertEqual(written["totals"]["combined"], 7710)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 6862)
+            self.assertEqual(written["totals"]["expansion_bronze"], 7008)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)

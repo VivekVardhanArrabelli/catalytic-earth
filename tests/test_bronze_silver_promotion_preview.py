@@ -211,7 +211,10 @@ class RealRegistryTests(unittest.TestCase):
                 report_path=report,
                 expansion_registry_path=EXPANSION_PATH,
             )
-            self.assertEqual(audit["seed_labels"], 5638)
+            # 5638 prior seed labels + 146 HAD-like phosphatase bronze rows
+            # applied on 2026-06-14; the 30 promoted rows remain seed labels
+            # while moving from bronze to silver.
+            self.assertEqual(audit["seed_labels"], 5784)
             # HONEST about structure (2026-06-14, after holo_structure_promotion):
             # silver_ready is now > 0 because experimental-PDB holo_pdb_confirmation rows
             # exist (the annotated cofactor was found as a HETATM in a sha-pinned PDB) --

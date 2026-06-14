@@ -1,0 +1,23 @@
+{
+  "artifact_id": "v3_had_like_phosphatase_row_guardrail_audit_current702_20260614",
+  "counts": {
+    "audited_rows": 146,
+    "mechanism_axis_counts": {
+      "active_site_motif_or_residue_role": 146,
+      "cofactor_or_cosubstrate": 146,
+      "domain_or_family_profile": 146,
+      "rhea_reaction_or_participant_pattern": 143
+    },
+    "problems": 0
+  },
+  "guardrails": {
+    "all_entry_ids_uniprot_namespace": true,
+    "all_new_labels_automation_curated": true,
+    "all_new_labels_tier_bronze": true,
+    "ec_scope_hint_not_counted": true,
+    "predictive_evidence_empty": true
+  },
+  "problems": [],
+  "schema_version": "row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_had_like_phosphatase_sourcing_preview_current702_20260614.json"
+}

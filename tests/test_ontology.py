@@ -37,6 +37,10 @@ class OntologyTests(unittest.TestCase):
             fingerprint_family("protein_kinase_ser_thr_tyr", ontology),
             "protein_substrate_phosphoryl_transfer",
         )
+        self.assertEqual(
+            fingerprint_family("had_like_phosphatase", ontology),
+            "had_aspartyl_phosphoenzyme_hydrolysis",
+        )
 
     def test_rejects_unknown_parent(self) -> None:
         ontology = load_mechanism_ontology()

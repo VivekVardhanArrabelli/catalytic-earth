@@ -6883,10 +6883,11 @@ class CliTests(unittest.TestCase):
             self.assertFalse(
                 packet["metadata"]["ready_to_expand_positive_fingerprint_universe"]
             )
-            # 37 after the 2026-06-12 through 2026-06-14 broadened-handle
-            # batches: the readiness packet counts the live positive
-            # fingerprint universe, not the historical 15-fingerprint tranche.
-            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 37)
+            # 38 after the 2026-06-12 through 2026-06-14 broadened-handle
+            # batches plus the HAD-like phosphatase lane: the readiness packet
+            # counts the live positive fingerprint universe, not the historical
+            # 15-fingerprint tranche.
+            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 38)
             self.assertEqual(packet["metadata"]["epk_boundary_row_count"], 3)
             self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
             self.assertIn(

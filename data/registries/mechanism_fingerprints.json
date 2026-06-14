@@ -919,5 +919,31 @@
       "reconstruction_path": "Path A sequence->protein-kinase family plus ATP/Mg/Rhea channel, or canonical ATP/Mg/protein-substrate graft in an active kinase conformation (Path B)",
       "silver_reachability": "moderate; kinase family and ATP/Mg annotations are common, but substrate docking, activation state, and phosphoryl-transfer geometry require reconstruction"
     }
+  },
+  {
+    "id": "had_like_phosphatase",
+    "name": "HAD-like Asp-phosphoenzyme phosphatase",
+    "enzyme_space": ["HAD-like phosphatases", "haloacid dehalogenase-like hydrolases", "small-molecule phosphomonoesterases", "Mg-dependent Asp-phosphatases"],
+    "active_site_signature": [
+      {"role": "aspartyl_phosphoryl_acceptor", "residue": "Asp nucleophile in DxD/DxT HAD motif", "constraints": ["forms a transient phospho-Asp intermediate during phosphomonoester hydrolysis"]},
+      {"role": "mg_water_positioning", "residue": "Mg2+-coordinating Asp/Thr/Ser/Lys/Asn residues", "constraints": ["positions Mg2+ and water for phospho-Asp formation and hydrolysis"]},
+      {"role": "cap_domain_substrate_gate", "residue": "HAD cap-domain polar residues", "constraints": ["selects small-molecule phosphomonoester substrate while excluding protein phosphatase and phosphodiester/nuclease contexts"]}
+    ],
+    "cofactors": ["Mg2+"],
+    "reaction_center": {
+      "bond_changes": ["phosphomonoester P-O hydrolysis through a transient aspartyl-phosphate intermediate"],
+      "chemical_operation": "Mg-assisted Asp-phosphoenzyme phosphomonoester hydrolysis"
+    },
+    "substrate_constraints": ["EC 3.1.3 phosphomonoesterase scope present", "HAD/haloacid-dehalogenase-like family or name context present", "Asp nucleophile or Mg binding-site evidence present", "Rhea or reviewed catalytic activity text for phosphomonoester hydrolysis where available", "no protein phosphatase-only, metal phosphomonoesterase without HAD signal, phosphodiesterase, nuclease, kinase, transferase, EC-only, or multi-fingerprint boundary signal"],
+    "evidence_features": ["HAD or haloacid dehalogenase-like family/name/domain text", "annotated catalytic Asp nucleophile or Mg2+ binding-site residues", "Rhea or reviewed catalytic activity text for phosphomonoester + water hydrolysis", "phosphatase keyword/name under EC 3.1.3 scope with HAD-specific mechanism context"],
+    "counterevidence_features": ["PPP/PPM/alkaline/purple-acid metal phosphomonoesterase rows without HAD signal", "Cys-based protein tyrosine phosphatases", "protein phosphatase rows without HAD/Asp-phosphoenzyme evidence", "phosphodiesterase or nuclease side ECs", "phosphoryl-transfer/kinase or transferase context", "EC-only evidence with no HAD, Asp/Mg, Rhea, active-site, binding-site, or structure corroborator"],
+    "uncertainty_axes": ["cap-domain subclass and substrate identity", "Mg2+ occupancy and water/protonation state", "phospho-Asp intermediate lifetime", "single- versus multi-domain HAD architecture"],
+    "seed_examples": ["phosphoserine phosphatase", "beta-phosphoglucomutase phosphatase-like HAD enzymes", "HAD superfamily phosphatase", "haloacid dehalogenase-like hydrolase phosphatase"],
+    "deploy_missing_active_site_context": {
+      "type": "mg_aspartyl_phosphoenzyme_phosphomonoester_hydrolysis_context",
+      "detail": "the Mg2+ ion, phosphomonoester substrate, catalytic water, and transient phospho-Asp state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->HAD family plus Asp/Mg/Rhea channel, or canonical Mg/phosphomonoester/phospho-Asp graft in a HAD active-site pocket (Path B)",
+      "silver_reachability": "moderate; HAD family and catalytic Asp/Mg annotations are common, but substrate pose and phospho-Asp geometry require reconstruction"
+    }
   }
 ]
