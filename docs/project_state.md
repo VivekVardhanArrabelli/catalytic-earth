@@ -26,6 +26,54 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **C-C LYASE / ALDOL SEPARATION (2026-06-14 automation, this turn).**
+  Measured-first follow-on to the kinase work below. After the kinase/ligase separation,
+  the worst non-fold, non-umbrella family was `class_ii_metal_aldolase` at leave-one-out
+  **0.013** (100% of its rows carry a Rhea reaction, so this is NOT a data ceiling): the
+  class II (metal) aldolases carry only the SHARED divalent-metal cofactor and no hydrolysis
+  bond change, so the representation saw nothing to separate them and they collapsed into the
+  generic metal cluster (confused with SOD / zinc_lyase_hydratase). Their defining chemistry
+  -- a C-C bond cleavage (retro-aldol / citrate-lyase / HMG-CoA-lyase / fructose-bisP
+  aldolase) -- was simply absent from the feature space.
+
+  Fix (leakage-safe, Rhea-equation only): added one non-hydrolytic bond-change class
+  `bc_carbon_carbon_lyase` that fires when ONE organic substrate is cleaved into TWO organic
+  fragments (or the reverse condensation), with no water and no NTP anhydride. A CO2 /
+  phosphate / ammonia leaving group is inorganic (not a second carbon fragment), so
+  decarboxylation / dehydratase / deamination do NOT trip it. Organic fragments are counted
+  by splitting on Rhea's ` + ` separator (NOT a bare `+`, which shreds `NH4(+)`/`H(+)` --
+  the bug that, in an earlier draft, made ethanolamine ammonia-lyase masquerade as a C-C
+  cleavage and regressed cobalamin). Feature dims **35 -> 36**.
+
+  Result (leave-one-out): overall **0.719 -> 0.755** expansion-only (+0.036; frozen+exp
+  **0.699 -> 0.7335**). `class_ii_metal_aldolase` **0.013 -> 0.813**; bonus
+  `metallophosphoesterase_nuclease` **0.120 -> 0.380**, `non_heme_iron_2og_dioxygenase`
+  0.872 -> 0.972, `coa_acyltransferase` 0.948 -> 0.984, `thiamine_diphosphate_enzyme`
+  0.733 -> 0.787; cobalamin UNCHANGED 0.825 (no regression -- worst single-family move is
+  -0.020 on molybdopterin). Promotion gate `review_chemistry_disagrees` **1572 -> 1344**
+  (228 more artifactual chemistry blocks removed -> honest blocked/hold). `silver_ready`
+  stays **0** -- still gated on HOLO coordinates (the documented Problem-2 ceiling, see below).
+
+  HONEST CEILINGS measured this turn and deliberately NOT hacked: (1) the FOLD-defined
+  kinases (`pfkb_ribokinase_family`, `ghmp_small_molecule_kinase`) -- frontier A, principled
+  reaction-chemistry-overlap ceiling; (2) apo->holo silver promotion -- frontier B: of 5638
+  seed rows only **104** carry a coordinate file (103 apo, 1 holo) and 5534 have an
+  unresolved `coordinate_path`, so the geometry gate genuinely abstains (no holo coordinates
+  stageable offline; the heldout one-shot is already spent); (3) `metallopeptidase` (21% of
+  rows have a reaction) and `metallophosphoesterase_nuclease` (38%) are dominated by
+  `(no reaction)` rows -- a reaction-equation representation cannot separate rows with no
+  reaction (data ceiling, not feature-engineering); (4) `metal_racemase_epimerase_non_plp`
+  collapses into `cofactor_independent_isomerase` because both are isomerizations and the
+  distinguishing metal is annotated on only 36/150 rows (cofactor-annotation gap). The C-C
+  lyase class is the ONLY genuine reaction-chemistry gap that was leakage-safely fixable.
+  Artifacts:
+  `artifacts/v3_mechanism_representation_loop_current702_20260614_cc_lyase_aldolase_separation.json`,
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_cc_lyase_separation.json`.
+  New classifier unit tests (positive + negative cases) and a separability lock for
+  `class_ii_metal_aldolase`. No registry written; frozen current702 byte-unchanged (sha256
+  `5eec9bef…`); leakage wall intact (features read only Rhea substrate->product chemistry +
+  cofactor/ligand identities).
+
 - **KINASE ACCEPTOR-SPECIFICITY + ATP-LIGATION SEPARATION (2026-06-14 automation, this turn).**
   Follow-on to the cosubstrate/bond-change extension below: separated the ATP-driven
   sub-cluster that still collapsed. Root bug: `bc_phosphoryl_transfer` only fired for

@@ -3,6 +3,48 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: C-C LYASE / ALDOL SEPARATION (class II metal aldolases)
+
+Decision: measure-first follow-on to the kinase separation. With the fold-defined kinases
+(frontier A) ruled a principled ceiling and apo->holo silver promotion (frontier B) ruled a
+data ceiling (only 104/5638 seed rows carry coordinates, 103 apo / 1 holo, 5534 unresolved
+-- the geometry gate genuinely abstains and the heldout one-shot is spent), the remaining
+worst non-fold, non-umbrella family was `class_ii_metal_aldolase` at leave-one-out 0.013.
+Diagnosis: 100% of its rows DO carry a Rhea reaction (not a data ceiling), and the dominant
+reaction shape is one organic substrate -> two organic products with no water -- a C-C bond
+cleavage (retro-aldol / isocitrate-lyase / HMG-CoA-lyase / fructose-bisP aldolase). The
+representation had no feature for it, so the family carried only the shared divalent-metal
+cofactor and collapsed into the generic metal cluster (SOD / zinc_lyase_hydratase).
+
+Fix (leakage-safe, Rhea substrate->product equation only): added one non-hydrolytic
+bond-change class `bc_carbon_carbon_lyase` to `classify_reaction_nonhydrolytic`. It fires
+when one organic substrate is cleaved into two organic fragments (or the reverse aldol
+condensation), with no water and no NTP anhydride. Organic fragments are counted via a new
+`_organic_fragments` helper that splits on Rhea's ` + ` separator (so charged ions
+`NH4(+)`/`H(+)` stay intact -- a bare `+` split shreds them) and drops protons / water /
+small inorganic leaving groups (`_INORGANIC_FRAGMENTS`). Because a CO2 / phosphate / ammonia
+leaving group is inorganic (not a second carbon fragment), decarboxylation / dehydratase /
+deamination do NOT trip the class -- verified by negative unit tests. This is the legitimate
+North Star axis (reaction-center bond change), NOT substrate-identity patterns and NOT a
+fold axis. Feature dims 35 -> 36; `COFACTOR_CLASSES` stays the vector prefix.
+
+Result (leave-one-out): overall expansion-only 0.719 -> 0.755 (+0.036); frozen+exp
+0.699 -> 0.7335. `class_ii_metal_aldolase` 0.013 -> 0.813; bonus
+`metallophosphoesterase_nuclease` 0.120 -> 0.380, `non_heme_iron_2og_dioxygenase`
+0.872 -> 0.972, `coa_acyltransferase` 0.948 -> 0.984, `thiamine_diphosphate_enzyme`
+0.733 -> 0.787; cobalamin unchanged 0.825 (no regression; worst single-family move -0.020 on
+molybdopterin). Promotion gate `review_chemistry_disagrees` 1572 -> 1344. `silver_ready`
+stays 0 (the holo-coordinate / Problem-2 ceiling is unchanged -- correctly the next gate, not
+masked). The C-C lyase class fires across several cofactor-distinct families (ThDP, glycoside,
+heme) but is harmless there because those carry strong orthogonal cofactor signals -- the
+empirical no-regression test, not raw firing counts, was the acceptance criterion.
+
+CEILINGS DOCUMENTED, NOT HACKED: frontier A (fold kinases) and frontier B (apo->holo) per the
+prior bullets; plus `metallopeptidase`/`metallophosphoesterase_nuclease` dominated by
+`(no reaction)` rows (data ceiling) and `metal_racemase` vs `cofactor_independent_isomerase`
+distinguished only by an under-annotated metal (annotation gap). None were forced. No registry
+written; frozen current702 byte-unchanged; leakage wall intact.
+
 ## 2026-06-14: KINASE ACCEPTOR-SPECIFICITY + ATP-LIGATION SEPARATION
 
 Decision: follow on from the cosubstrate/bond-change extension to separate the ATP-driven

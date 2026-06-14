@@ -1,5 +1,40 @@
 # Handoff
 
+## Session run - C-C lyase / aldol separation (2026-06-14, Claude Code automation)
+
+- Measure-first follow-on to the kinase separation. Both named frontiers were measured and
+  found to be ceilings, NOT hacked: (A) fold-defined kinases = principled
+  reaction-chemistry-overlap ceiling; (B) apo->holo silver promotion = data ceiling -- of
+  5638 seed rows only 104 carry a coordinate file (103 apo, 1 holo) and 5534 have an
+  unresolved `coordinate_path`, so the geometry gate genuinely abstains (no holo coordinates
+  stageable offline; heldout one-shot already spent). silver_ready stays 0 honestly.
+- The genuine, leakage-safe, non-fold gap: `class_ii_metal_aldolase` sat at leave-one-out
+  0.013 despite 100% of its rows carrying a Rhea reaction. Root cause: class II metal
+  aldolases carry only the shared divalent-metal cofactor + a C-C bond cleavage, and the
+  feature space had NO C-C-cleavage class, so they collapsed into the generic metal cluster.
+- Fix (Rhea-equation only): added `bc_carbon_carbon_lyase` -- fires when one organic substrate
+  cleaves into two organic fragments (or the reverse), no water, no NTP anhydride. New
+  `_organic_fragments` helper splits on Rhea ` + ` (keeps `NH4(+)`/`H(+)` intact) and drops
+  inorganic leaving groups, so decarboxylation/dehydratase/deamination do NOT trip it (this
+  also fixed an earlier-draft cobalamin regression caused by `+`-split shredding `NH4(+)`).
+  Dims 35 -> 36.
+- Result (LOO): overall 0.719 -> 0.755 expansion-only (frozen+exp 0.699 -> 0.7335).
+  class_ii_metal_aldolase 0.013 -> 0.813; bonus metallophosphoesterase_nuclease 0.120->0.380,
+  non_heme_iron_2og 0.872->0.972, coa 0.948->0.984, ThDP 0.733->0.787; cobalamin unchanged
+  0.825 (no regression; worst -0.020). Promotion gate review_chemistry_disagrees 1572 -> 1344.
+- Other low families left as documented ceilings (not hacked): metallopeptidase /
+  metallophosphoesterase_nuclease dominated by `(no reaction)` rows (data ceiling);
+  metal_racemase vs cofactor_independent_isomerase differ only by an under-annotated metal.
+- Artifacts: `..._cc_lyase_aldolase_separation.json`, `..._post_cc_lyase_separation.json`
+  (+ `work/*.md` reports). New classifier unit tests (positive + negative) and a
+  class_ii_metal_aldolase separability lock. No registry written; frozen byte-unchanged
+  (sha `5eec9bef…`); validate ok (702 / 37 fp); `git diff --check` clean; leakage wall intact.
+- Next (still open): both frontiers remain the documented ceilings. The next genuine
+  representation lever would require new DATA, not features: holo coordinates for the silver
+  gate, or Rhea reactions / metal annotations for the no-reaction metallopeptidase/nuclease
+  and racemase rows. A sequence/structure (fold) axis for the fold kinases must stay strictly
+  out of the predictive label basis if ever attempted.
+
 ## Session run - Kinase acceptor-specificity + ATP-ligation separation (2026-06-14, Claude Code automation)
 
 - Follow-on to the cosubstrate/bond-change extension: separated the ATP-driven sub-cluster.

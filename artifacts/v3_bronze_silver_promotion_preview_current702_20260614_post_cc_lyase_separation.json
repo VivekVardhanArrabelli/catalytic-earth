@@ -1,0 +1,545 @@
+{
+  "audit": "bronze_silver_promotion_preview",
+  "created_utc": "2026-06-14T11:39:17Z",
+  "decision_counts": {
+    "blocked_apo_needs_cofactor_fusion": 1,
+    "blocked_pending_structure": 2534,
+    "hold_low_chemistry_cohesion": 1759,
+    "review_chemistry_disagrees": 1344
+  },
+  "decision_counts_by_fingerprint": {
+    "askha_sugar_acetate_kinase": {
+      "blocked_pending_structure": 97,
+      "review_chemistry_disagrees": 3
+    },
+    "atp_amide_ligase": {
+      "blocked_pending_structure": 74,
+      "hold_low_chemistry_cohesion": 56,
+      "review_chemistry_disagrees": 20
+    },
+    "biotin_dependent_carboxylase": {
+      "blocked_pending_structure": 77,
+      "hold_low_chemistry_cohesion": 23
+    },
+    "class_ii_metal_aldolase": {
+      "blocked_pending_structure": 2,
+      "hold_low_chemistry_cohesion": 120,
+      "review_chemistry_disagrees": 28
+    },
+    "coa_acyltransferase": {
+      "blocked_pending_structure": 173,
+      "hold_low_chemistry_cohesion": 73,
+      "review_chemistry_disagrees": 4
+    },
+    "cobalamin_radical_rearrangement": {
+      "blocked_pending_structure": 4,
+      "hold_low_chemistry_cohesion": 96,
+      "review_chemistry_disagrees": 20
+    },
+    "cofactor_independent_isomerase": {
+      "blocked_pending_structure": 66,
+      "hold_low_chemistry_cohesion": 61,
+      "review_chemistry_disagrees": 23
+    },
+    "copper_oxidoreductase": {
+      "hold_low_chemistry_cohesion": 125,
+      "review_chemistry_disagrees": 15
+    },
+    "cytochrome_p450_monooxygenase": {
+      "blocked_pending_structure": 177,
+      "hold_low_chemistry_cohesion": 61,
+      "review_chemistry_disagrees": 12
+    },
+    "deoxynucleoside_kinase": {
+      "blocked_pending_structure": 84,
+      "hold_low_chemistry_cohesion": 16
+    },
+    "flavin_dehydrogenase_reductase": {
+      "blocked_pending_structure": 102,
+      "hold_low_chemistry_cohesion": 91,
+      "review_chemistry_disagrees": 9
+    },
+    "flavin_monooxygenase": {
+      "blocked_pending_structure": 63,
+      "hold_low_chemistry_cohesion": 45,
+      "review_chemistry_disagrees": 6
+    },
+    "ghmp_small_molecule_kinase": {
+      "review_chemistry_disagrees": 100
+    },
+    "glycoside_hydrolase": {
+      "blocked_pending_structure": 64,
+      "hold_low_chemistry_cohesion": 14,
+      "review_chemistry_disagrees": 72
+    },
+    "glycosyltransferase": {
+      "blocked_pending_structure": 133,
+      "hold_low_chemistry_cohesion": 33,
+      "review_chemistry_disagrees": 84
+    },
+    "heme_peroxidase_oxidase": {
+      "blocked_pending_structure": 37,
+      "hold_low_chemistry_cohesion": 51,
+      "review_chemistry_disagrees": 11
+    },
+    "manganese_iron_superoxide_dismutase": {
+      "blocked_pending_structure": 100
+    },
+    "metal_dependent_hydrolase": {
+      "review_chemistry_disagrees": 225
+    },
+    "metal_racemase_epimerase_non_plp": {
+      "hold_low_chemistry_cohesion": 49,
+      "review_chemistry_disagrees": 101
+    },
+    "metallo_amidohydrolase_deaminase": {
+      "blocked_pending_structure": 85,
+      "hold_low_chemistry_cohesion": 25,
+      "review_chemistry_disagrees": 40
+    },
+    "metallopeptidase": {
+      "hold_low_chemistry_cohesion": 33,
+      "review_chemistry_disagrees": 117
+    },
+    "metallophosphoesterase_nuclease": {
+      "hold_low_chemistry_cohesion": 57,
+      "review_chemistry_disagrees": 93
+    },
+    "metallophosphomonoesterase": {
+      "blocked_pending_structure": 115,
+      "hold_low_chemistry_cohesion": 16,
+      "review_chemistry_disagrees": 19
+    },
+    "molybdopterin_oxidoreductase": {
+      "hold_low_chemistry_cohesion": 127,
+      "review_chemistry_disagrees": 123
+    },
+    "nad_p_dehydrogenase": {
+      "blocked_pending_structure": 104,
+      "hold_low_chemistry_cohesion": 46
+    },
+    "non_heme_iron_2og_dioxygenase": {
+      "blocked_pending_structure": 109,
+      "hold_low_chemistry_cohesion": 134,
+      "review_chemistry_disagrees": 7
+    },
+    "nucleoside_diphosphate_kinase": {
+      "blocked_pending_structure": 99,
+      "hold_low_chemistry_cohesion": 1
+    },
+    "pfka_phosphofructokinase": {
+      "blocked_pending_structure": 100
+    },
+    "pfkb_ribokinase_family": {
+      "review_chemistry_disagrees": 128
+    },
+    "plp_dependent_enzyme": {
+      "blocked_apo_needs_cofactor_fusion": 1,
+      "blocked_pending_structure": 19,
+      "hold_low_chemistry_cohesion": 88,
+      "review_chemistry_disagrees": 8
+    },
+    "protein_kinase_ser_thr_tyr": {
+      "blocked_pending_structure": 94,
+      "hold_low_chemistry_cohesion": 4,
+      "review_chemistry_disagrees": 2
+    },
+    "radical_sam_enzyme": {
+      "blocked_pending_structure": 138,
+      "hold_low_chemistry_cohesion": 46
+    },
+    "sam_methyltransferase": {
+      "blocked_pending_structure": 120,
+      "hold_low_chemistry_cohesion": 121,
+      "review_chemistry_disagrees": 9
+    },
+    "ser_his_acid_hydrolase": {
+      "hold_low_chemistry_cohesion": 79,
+      "review_chemistry_disagrees": 8
+    },
+    "terpene_cyclase_synthase": {
+      "blocked_pending_structure": 148,
+      "hold_low_chemistry_cohesion": 12,
+      "review_chemistry_disagrees": 13
+    },
+    "thiamine_diphosphate_enzyme": {
+      "blocked_pending_structure": 62,
+      "hold_low_chemistry_cohesion": 56,
+      "review_chemistry_disagrees": 32
+    },
+    "zinc_lyase_hydratase": {
+      "blocked_pending_structure": 88,
+      "review_chemistry_disagrees": 12
+    }
+  },
+  "guardrails": {
+    "chemistry_corroboration_is_leakage_safe": true,
+    "geometry_confirmation_run_or_faked": false,
+    "promotion_and_geometry_run_are_separate_authorized_steps": true,
+    "registry_written": false,
+    "tier_changed": false
+  },
+  "non_destructive": true,
+  "policy": {
+    "cohesion_threshold": 0.92,
+    "confirmability_axis": "cofactor PRESENCE in coordinates, NOT experimental-vs-predicted provenance: the documented Problem-2 degradation is apo cofactor-loss (45/45 -> 23/45; geometry inverse-gate abstains on 100% of apo). Experimental-apo and predicted-apo are both 'apo' here -- in this registry 103/104 coordinate-bearing rows are apo",
+    "gating_audit_not_run_here": "geometry_inverse_gate_confirmation abstains on apo coordinates; it is NOT run or faked -- silver_ready rows are staged for that confirmation as a separate authorized step",
+    "silver_ready_definition": "chemistry independently corroborates the assigned fingerprint AND the annotated cofactor is actually PRESENT in the coordinates (true holo, where the geometry gate is meetable), OR ser_his with a confirmed Ser-His-Asp triad"
+  },
+  "review_queue": [
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.707,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q96TA2",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "metallopeptidase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9704,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:O75844",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9701,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P0C1T0",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9685,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P24155",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9704,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q21432",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9704,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q93243",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:F3YDF1",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q39102",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:O80983",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q8W585",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q1PDW5",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q9SAJ3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q9FGM0",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P37476",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9707,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P0AAI3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9695,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:O95672",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.1297,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q5D1E8",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "manganese_iron_superoxide_dismutase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9703,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q99797",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9701,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q9JLI3",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9709,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:Q9H777",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9704,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:A0A1B0GTW7",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9704,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:O43897",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P14735",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9704,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P16870",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    },
+    {
+      "chemistry_agrees_with_label": false,
+      "chemistry_cohesion": 0.9708,
+      "decision": "review_chemistry_disagrees",
+      "entry_id": "uniprot:P58397",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_fingerprint": "zinc_lyase_hydratase",
+      "remaining_promotion_audits": [
+        "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+        "foldseek_structural_near_duplicate_screen"
+      ],
+      "structure_confirmability": "apo",
+      "triad_confirmed": null
+    }
+  ],
+  "seed_labels": 5638,
+  "silver_ready_count": 0,
+  "silver_ready_preview": [],
+  "status": "ok"
+}

@@ -198,6 +198,48 @@ class NonHydrolyticBondChangeTests(unittest.TestCase):
             {"bc_isomerization"},
         )
 
+    def test_carbon_carbon_lyase_aldol_cleavage(self) -> None:
+        # class II (metal) aldolases / C-C lyases: ONE organic substrate cleaved into TWO
+        # organic fragments (or the reverse condensation) -- the reaction-center bond
+        # change that otherwise hides behind the shared divalent-metal cofactor.
+        self.assertIn(
+            "bc_carbon_carbon_lyase",
+            classify_reaction_nonhydrolytic("D-threo-isocitrate = glyoxylate + succinate"),
+        )
+        self.assertIn(
+            "bc_carbon_carbon_lyase",
+            classify_reaction_nonhydrolytic(
+                "beta-D-fructose 1,6-bisphosphate = "
+                "D-glyceraldehyde 3-phosphate + dihydroxyacetone phosphate"
+            ),
+        )
+        # aldol condensation (the reverse, 2 organic -> 1 organic) also qualifies
+        self.assertIn(
+            "bc_carbon_carbon_lyase",
+            classify_reaction_nonhydrolytic(
+                "D-glyceraldehyde + 3-hydroxypyruvate = 2-dehydro-D-gluconate"
+            ),
+        )
+
+    def test_carbon_carbon_lyase_excludes_non_cc_cleavage(self) -> None:
+        # A small inorganic leaving group is NOT a second carbon fragment, so
+        # deamination / decarboxylation / dehydration do NOT trip the C-C lyase class.
+        self.assertNotIn(
+            "bc_carbon_carbon_lyase",
+            classify_reaction_nonhydrolytic("ethanolamine = acetaldehyde + NH4(+)"),
+        )
+        self.assertNotIn(
+            "bc_carbon_carbon_lyase",
+            classify_reaction_nonhydrolytic("oxaloacetate = pyruvate + CO2"),
+        )
+        self.assertNotIn(
+            "bc_carbon_carbon_lyase",
+            classify_reaction_nonhydrolytic(
+                "(2R,3S)-2,3-dihydroxy-3-methylpentanoate = "
+                "(S)-2-aceto-2-hydroxybutanoate + H2O"
+            ),
+        )
+
     def test_hydrolysis_yields_no_nonhydrolytic_class(self) -> None:
         # a pure hydrolysis (water reactant) must not trip any transfer/redox class
         self.assertEqual(
@@ -363,6 +405,12 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # Metal sub-families that retain a clean bond-change signature still separate.
         self.assertGreater(sc["metallophosphomonoesterase"], 0.8)
         self.assertGreaterEqual(sc["metallo_amidohydrolase_deaminase"], 0.7)
+        # C-C LYASE / ALDOL extension (2026-06-14): the class II metal aldolases carry
+        # only the shared divalent-metal cofactor and no hydrolysis bond change, so they
+        # collapsed (~0.0) into the generic metal cluster. The bc_carbon_carbon_lyase
+        # class (one organic substrate -> two organic fragments, from the Rhea equation
+        # only) gives them their defining reaction-center bond change and separates them.
+        self.assertGreater(sc["class_ii_metal_aldolase"], 0.7)  # was ~0.01
         # NON-metal fingerprints stay the strongly-separable majority of the surface.
         nonmetal_correct = nonmetal_total = 0
         for fp, row in conf.items():

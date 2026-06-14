@@ -133,6 +133,22 @@ NONHYDROLYTIC_BOND_CLASSES = (
     "bc_carboxylation",      # hydrogencarbonate/CO2 fixed with ATP (biotin carboxylase)
     "bc_diphosphate_lyase",  # prenyl-diphosphate -> diphosphate + carbocation (terpene cyclase)
     "bc_isomerization",      # single substrate = single product, no cosubstrate (isomerase/racemase)
+    "bc_carbon_carbon_lyase",  # one organic substrate cleaved into two organic fragments (aldol/C-C lyase)
+)
+
+# Small inorganic / proton species that are NOT a carbon-skeleton fragment. Used only by
+# the C-C lyase detector to count the organic fragments on each side of a reaction; a
+# leaving CO2 / phosphate / ammonia is inorganic, so decarboxylation / dehydratase /
+# deamination chemistry does NOT masquerade as a C-C bond cleavage. Charged ions keep
+# their ``(+)``/``(-)`` here, so the equation must be split on Rhea's ' + ' separator
+# (NOT a bare '+', which shreds ``NH4(+)`` / ``H(+)``).
+_INORGANIC_FRAGMENTS = frozenset(
+    {
+        "h2o", "co2", "hydrogencarbonate", "phosphate", "diphosphate",
+        "hydrogenphosphate", "nh3", "nh4(+)", "o2", "co", "sulfite",
+        "hydrogen sulfide", "hydrogen peroxide", "oxygen", "h(+)", "h(-)",
+        "hydrogen cyanide", "cyanate",
+    }
 )
 
 # Phospho-ACCEPTOR classes (added 2026-06-14). The kinase sub-families all share the
@@ -301,6 +317,23 @@ def reaction_bond_change_classes(row: dict[str, Any]) -> set[str]:
     return classes
 
 
+def _organic_fragments(side: str) -> list[str]:
+    """Organic (carbon-skeleton) tokens on one side of a reaction equation.
+
+    Splits on Rhea's ' + ' separator so charged ions (``NH4(+)``, ``H(+)``) survive
+    intact, strips stoichiometric coefficients, and drops protons / water / small
+    inorganic leaving groups. Used ONLY by the C-C lyase detector to recognise aldol /
+    C-C-bond-cleavage topology -- it reads the substrate->product string only.
+    """
+    frags: list[str] = []
+    for token in re.split(r"\s\+\s", side.strip()):
+        token = re.sub(r"^\d+\s+", "", token.strip()).lower()
+        if not token or len(token) <= 2 or token in _INORGANIC_FRAGMENTS:
+            continue
+        frags.append(token)
+    return frags
+
+
 def classify_reaction_nonhydrolytic(reaction: str) -> set[str]:
     """Classify a reaction string into NON-hydrolytic bond-change classes.
 
@@ -396,6 +429,21 @@ def classify_reaction_nonhydrolytic(reaction: str) -> set[str]:
     # isomerization/racemization: single substrate = single product, no cosubstrate/water
     if len(lhs_tokens) == 1 and len(rhs_tokens) == 1 and "h2o" not in lhs_tokens:
         classes.add("bc_isomerization")
+
+    # C-C bond lyase / aldol cleavage: ONE organic substrate cleaved into TWO organic
+    # fragments (retro-aldol, citrate/isocitrate lyase, HMG-CoA lyase, fructose-bisP
+    # aldolase) or the reverse aldol condensation -- no water, no NTP anhydride. This is
+    # the reaction-center bond change that DEFINES the class II (metal) aldolases, which
+    # otherwise carry only the shared divalent-metal cofactor and so cannot separate. A
+    # CO2 / phosphate / ammonia leaving group is inorganic (not a second carbon fragment),
+    # so decarboxylation / dehydratase / deamination do NOT trip this class.
+    if "h2o" not in lhs_tokens and "h2o" not in rhs_tokens and not anhydride:
+        lhs_org = _organic_fragments(lhs)
+        rhs_org = _organic_fragments(rhs)
+        if (len(lhs_org) == 1 and len(rhs_org) == 2) or (
+            len(lhs_org) == 2 and len(rhs_org) == 1
+        ):
+            classes.add("bc_carbon_carbon_lyase")
 
     return classes
 
