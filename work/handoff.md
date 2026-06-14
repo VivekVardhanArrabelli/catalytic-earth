@@ -1,5 +1,29 @@
 # Handoff
 
+## Session run - Near-saturated trim APPLIED (2026-06-14, Claude Code automation, authorized)
+
+- Took the optional backward follow-up: trimmed the 3 families over the rate-8
+  reaction-aware cap but below the labels/rxn>10 default ratio
+  (`cobalamin_radical_rearrangement`, `pfkb_ribokinase_family`, `radical_sam_enzyme`).
+  `scripts/trim_reaction_saturation.py --saturation-ratio-threshold 9.0` (9.0 < lowest
+  ratio 9.26 -> captures exactly those 3, the only families over the reaction-aware cap).
+  Previewed, then APPLIED on explicit user authorization; frozen sha `5eec9bef…` identical
+  before/after.
+- Result: **72** rows demoted, expansion **6934 -> 6862**, combined **7636 -> 7564**,
+  positive_bronze **5923 -> 5851** (oos_bronze unchanged 1696; counters SEPARATE). Per
+  family: cobalamin 141->120 (15 rxn, cap 120), pfkb 150->128 (16 rxn, cap 128),
+  radical_sam 213->184 (23 rxn, cap 184); all to labels/rxn 8.0. Reaction diversity fully
+  preserved (15/15, 16/16, 23/23); organisms 106/106, 124/124, 184/191.
+- Post-apply governor
+  (`artifacts/v3_coverage_redundancy_audit_current702_20260614_near_saturated_trim_applied.json`):
+  combined 7564, Gini 0.1891, holes [], under-floor [], over-cap
+  ['metal_dependent_hydrolase'], reaction_saturated [] -- NO family over its reaction-aware
+  cap now. Novelty replay (`...near_saturated_trim_applied.json`): 6862 rows, admit 6406 /
+  reject 47 / throttle 409, would-not-readmit 456.
+- Guards: frozen NEVER written; validate ok (702 / 37 fp); `git diff --check` clean.
+  Refreshed the 2 real-registry count pins to 6862/7564 (coverage, novelty). Demoted rows
+  are bronze, never frozen. Atlas is now 7564 labels (5851 positive bronze).
+
 ## Session run - Reaction-aware caps WIRED into the live sourcing path (2026-06-14, Claude Code automation)
 
 - The prior turn built the reaction-aware cap + per-reaction gate but left them un-wired

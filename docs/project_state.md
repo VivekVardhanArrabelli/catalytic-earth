@@ -26,7 +26,31 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
-- **REACTION-AWARE CAPS WIRED INTO THE LIVE SOURCING PATH (2026-06-14 automation, this turn).**
+- **NEAR-SATURATED TRIM APPLIED (2026-06-14 automation, this turn, on explicit authorization).**
+  The optional backward follow-up the prior bullet flagged. The 3 families that were over
+  the rate-8 reaction-aware cap but below the labels/rxn>10 default ratio
+  (`cobalamin_radical_rearrangement`, `pfkb_ribokinase_family`, `radical_sam_enzyme`) were
+  trimmed to their reaction-aware caps via `scripts/trim_reaction_saturation.py
+  --saturation-ratio-threshold 9.0` (the lowest of their labels/rxn ratios was 9.26, so
+  9.0 captures exactly those 3 and no others). Previewed first, then APPLIED on explicit
+  authorization (runner printed the frozen sha identical before/after). Result: **72** rows
+  demoted, expansion **6934 -> 6862**, combined **7636 -> 7564**, positive_bronze
+  **5923 -> 5851** (oos_bronze unchanged 1696; counters SEPARATE). Per family:
+  cobalamin 141->120 (15 rxn, cap 120), pfkb 150->128 (16 rxn, cap 128), radical_sam
+  213->184 (23 rxn, cap 184); all to labels/rxn 8.0. Reaction diversity fully preserved
+  (15/15, 16/16, 23/23) and near-full organism diversity (106/106, 124/124, 184/191).
+  Post-apply governor
+  (`artifacts/v3_coverage_redundancy_audit_current702_20260614_near_saturated_trim_applied.json`):
+  combined **7564**, Gini **0.1891**, holes `[]`, under-floor `[]`, over-cap
+  `['metal_dependent_hydrolase']` (intentional umbrella), **reaction_saturated `[]`** -- NO
+  family remains over its reaction-aware cap. Novelty replay
+  (`...near_saturated_trim_applied.json`) over **6862** rows:
+  `{'admit': 6406, 'reject': 47, 'throttle': 409}`, would-not-readmit 456. Frozen current702
+  NEVER written (sha `5eec9bef…` identical before/after); validate ok (702 / 37 fp);
+  `git diff --check` clean. Real-registry count pins refreshed to 6862/7564 (coverage,
+  novelty). Demoted rows are bronze, never frozen -- fewer, more-diverse labels is a WIN.
+
+- **REACTION-AWARE CAPS WIRED INTO THE LIVE SOURCING PATH (2026-06-14 automation).**
   The prior turn BUILT the reaction-aware cap + per-reaction gate but left them un-wired
   into the forward runners (the caps existed as governor/trim primitives only). This turn
   wires them in so the climb is mechanism-diverse BY CONSTRUCTION, and closes the governor

@@ -3,6 +3,30 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: NEAR-SATURATED TRIM APPLIED (3 families)
+
+Decision: take the optional backward follow-up flagged when the reaction-aware caps were
+wired in. The 3 families that sat over the rate-8 reaction-aware cap but below the
+labels/rxn>10 default ratio (`cobalamin_radical_rearrangement` 141/15rxn/9.40,
+`pfkb_ribokinase_family` 150/16rxn/9.38, `radical_sam_enzyme` 213/23rxn/9.26) were the
+last reaction-saturated growth not yet bounded. Trimmed them to their reaction-aware caps
+with `scripts/trim_reaction_saturation.py --saturation-ratio-threshold 9.0` (9.0 is below
+the lowest ratio 9.26, so it captures exactly those 3 -- they are the only families over
+the reaction-aware cap; no other family is touched). Previewed, then APPLIED on explicit
+authorization; the runner printed the frozen current702 sha (`5eec9bef…`) identical before
+and after the rewrite.
+
+Result: 72 rows demoted, expansion 6934 -> 6862, combined 7636 -> 7564, positive_bronze
+5923 -> 5851 (oos_bronze unchanged 1696; counters stay SEPARATE). Per family: cobalamin
+141->120, pfkb 150->128, radical_sam 213->184; all to labels/rxn 8.0. Reaction diversity
+fully preserved (15/15, 16/16, 23/23) -- only redundant orthologs demoted. Post-apply
+governor: combined 7564, Gini 0.1891 (rises by design), holes [], under-floor [], over-cap
+['metal_dependent_hydrolase'] (intentional), reaction_saturated [] -- no family remains
+over its reaction-aware cap. Discipline held: frozen NEVER written (apply is a
+non-destructive expansion-registry rewrite dropping only the 72 demoted entry_ids,
+re-validating every kept label through MechanismLabel.from_dict); demoted rows are bronze,
+never frozen; leakage wall unchanged. Real-registry count pins refreshed to 6862/7564.
+
 ## 2026-06-14: REACTION-AWARE CAPS WIRED INTO THE LIVE SOURCING PATH
 
 Decision: the prior turn built the reaction-aware family cap and the per-reaction admission

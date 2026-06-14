@@ -210,9 +210,9 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            self.assertEqual(written["totals"]["combined"], 7636)
+            self.assertEqual(written["totals"]["combined"], 7564)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 6934)
+            self.assertEqual(written["totals"]["expansion_bronze"], 6862)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
