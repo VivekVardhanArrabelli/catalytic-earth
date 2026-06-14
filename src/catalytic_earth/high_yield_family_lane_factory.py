@@ -123,6 +123,9 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         cap_ceiling=DEFAULT_CONFUSABLE_CAP,
         chemistry_confusable=True,
         novelty_keep_factor=0.35,
+        existing_fingerprint_id="alpha_beta_hydrolase_esterase_lipase",
+        current_runner="scripts/source_alpha_beta_hydrolase_esterase_lipase_family.py",
+        oos_preregistration_required=False,
         ambiguity_with_existing=("ser_his_acid_hydrolase", "metal_dependent_hydrolase"),
         rationale_template=(
             "High-supply hydrolytic family but confusable with existing ser-his and "

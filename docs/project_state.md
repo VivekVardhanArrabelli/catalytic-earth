@@ -26,6 +26,41 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **ALPHA/BETA HYDROLASE ESTERASE/LIPASE BRONZE LANE APPLIED (2026-06-14 automation).**
+  Newest operational state: hard safety is green after the 40th positive fingerprint expansion.
+  The external registry remains a sharded manifest plus shard files below the per-file safety
+  threshold, and frozen current702 stayed sha `5eec9bef...`.
+
+  Added the `alpha_beta_hydrolase_esterase_lipase` fingerprint, ontology family
+  `ser_his_acid_ester_hydrolysis`, guarded source runner
+  `src/catalytic_earth/alpha_beta_hydrolase_esterase_lipase_sourcing.py`, script
+  `scripts/source_alpha_beta_hydrolase_esterase_lipase_family.py`, tests, and the
+  `label_factory_v1_40fp` OOS preregistration artifact
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_40fp_1025.json`. EC 3.1.1 is
+  scope/admission context only; counted corroboration requires non-EC alpha/beta hydrolase
+  family/domain text, Ser-His-Asp/Glu active-site context, and Rhea ester-hydrolysis evidence.
+  New labels keep `predictive_evidence: []`.
+
+  Bounded UniProt windows were aggregated into
+  `artifacts/v3_alpha_beta_hydrolase_esterase_lipase_sourcing_preview_aggregate_current702_20260614.json`:
+  **795** fetched rows, **161** unique target mechanism-corroborated rows, and capped **150**
+  novelty-safe admits. Row guardrail artifact
+  `artifacts/v3_alpha_beta_hydrolase_esterase_lipase_row_guardrail_audit_current702_20260614_aggregate.json`
+  audited all **150** applied rows with **0** problems.
+
+  Apply result: external rows **7158 -> 7308**; combined label surface **7860 -> 8010**. Current
+  honest counters: external rows **7308** = external seed **6084**, external OOS **1224**, external
+  silver **30**. Combined seed surface **6314**; combined OOS **1696**; positive bronze **6267**;
+  OOS bronze **1696**; silver_confirmed **47**; projected **0**.
+
+  Post-apply coverage/novelty/factory audits are current:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_alpha_beta_apply.json`
+  reports **8010** combined labels, no holes/under-floor fingerprints, Gini **0.1807**, and only
+  `metal_dependent_hydrolase` over cap. Novelty replay reports **6847** admit / **414** throttle /
+  **47** reject decisions across **7308** external rows. The high-yield factory now finds no
+  existing lane with >=150 cap room and points to `ser_thr_protein_phosphatase` as the next
+  new-fingerprint runner to build.
+
 - **ALDEHYDE DEHYDROGENASE BRONZE LANE APPLIED (2026-06-14 automation).**
   Newest operational state: hard safety is green after another high-yield new-family bronze
   expansion. The external registry remains a sharded manifest plus shard files below the per-file

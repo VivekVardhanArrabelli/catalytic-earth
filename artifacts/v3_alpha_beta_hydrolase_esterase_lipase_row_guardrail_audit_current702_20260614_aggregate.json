@@ -1,0 +1,19 @@
+{
+  "artifact_schema_version": 2,
+  "notes": [
+    "Guardrail reads this registry schema: fingerprint_id plus evidence.import_gate_evidence mechanism_axis:* tokens.",
+    "EC is admitted only as excluded/review-only scope context and source_trust_tier scope hint; it is not counted as a mechanism axis.",
+    "Predictive evidence must remain empty for this annotation-anchored bronze import.",
+    "Rows require family/domain text, Ser-His-Asp/Glu active-site context, and ester-hydrolysis Rhea evidence."
+  ],
+  "problem_rows": 0,
+  "problems": [],
+  "required_mechanism_axes": [
+    "active_site_motif_or_residue_role",
+    "domain_or_family_profile",
+    "rhea_reaction_or_participant_pattern"
+  ],
+  "rows_checked": 150,
+  "source_preview": "artifacts/v3_alpha_beta_hydrolase_esterase_lipase_sourcing_preview_aggregate_current702_20260614.json",
+  "status": "passed"
+}

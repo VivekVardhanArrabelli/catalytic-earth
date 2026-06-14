@@ -1,0 +1,2414 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q4R4S5",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 174
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 374
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 2,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.13"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.1.13",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a sterol ester + H2O = a sterol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:10100",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "cholesteryl (9Z-octadecenoate) + H2O = cholesterol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:33875",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a triacylglycerol + H2O = a 1,2-diacylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:35667",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+) = 1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O",
+              "rhea_id": "RHEA:38379",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1,2-diacylglycerol + H2O = a 1-acylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:44712",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-glycerol + H2O = 1-(9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:40967",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1,3-diacylglycerol + H2O = a 1-acylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:78019",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,3-di-(9Z-octadecenoyl)-glycerol + H2O = 1-(9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:39939",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MKMRFLGLVVCLVLWTLHSEASGGKLTAVNPETNMNVSEIISYWGFPSEEYLVETEDGYILCLNRIPHGRKNHSDKGPKPVVFLQHGLLADSSNWVTNLANSSLGFILADAGFDVWMGNSRGNTWSRKHKTLSVSQDEFWAFSYDEMAKYDLPASINFILNKTGQEQVYYVGHSQGTTIGFIAFSQIPELAKRIKMFFALAPVVSVDFCTSPMAKLGRLPDLLIKDLFGDKEFLPQSAFLKWLGTHVCTHVILKELCGNLCFLLCGFNERNLNMSRVDVYTTHSPAGTSVQNMLHWSQAVKFQKFQAFDWGSSAKNYFHYNQSYPPTYNVKDMLVPTAVWSGGHDWLADVYDINILLTQITNLVFHESIPEWEHLDFIWGLDAPWRLYNKIINLMKKYQ",
+          "sequence_length": 399,
+          "sequence_sha256": "e88a755c951eafd80356d31c942b2eff242272ffc53b31fb5f461854c605d6fb",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q4R4S5"
+        },
+        "source_provenance": {
+          "accession": "Q4R4S5",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.13']",
+          "organism": "Macaca fascicularis (Crab-eating macaque) (Cynomolgus monkey)",
+          "protein_name": "Lysosomal acid lipase/cholesteryl ester hydrolase (Acid cholesteryl ester hydrolase) (LAL) (EC 3.1.1.13) (Cholesteryl esterase) (Diacylglycerol lipase) (Lipase A) (Sterol esterase) (Triacylglycerol ester hydrolase) (Triacylglycerol lipase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 399,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4b91dc7a9b463a9285404b9e2163b0c0e98f5afad0c03190afd243357cf8800b",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031",
+            "uniprot_entry_record_sha256": "972b3f93cef2c39500d40d9253f006aedc9bda1c78cef07976f36e6d374d2516",
+            "uniprot_search_row_sha256": "286c3086ab7d45916f70d744103b80cd43dec8b4097cf648faa2aed51f43f0f2"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q4R4S5"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q4R4S5-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q4R4S5 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.13']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P04634",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 171
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 342
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 371
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 3,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.3"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.1.3",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:12044",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = 1,2-di-(9Z-octadecenoyl)-sn-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:39931",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-trioctanoylglycerol + H2O = 1,2-dioctanoyl-sn-glycerol + octanoate + H(+)",
+              "rhea_id": "RHEA:40047",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MWLLLITSVISTFGGAHGLFGKLGPGNPEANMNISQMITYWGYPCQEYEVVTEDGYILGVYRIPHGKNNSENIGKRPVVYLQHGLIASATNWIANLPNNSLAFMLADAGYDVWLGNSRGNTWSRKNVYYSPDSVEFWAFSFDEMAKYDLPATINFIVQKTGQEKIHYVGHSQGTTIGFIAFSTNPTLAKKIKTFYALAPVATVKYTQSPLKKISFIPTFLFKLMFGKKMFLPHTYFDDFLGTEVCSREVLDLLCSNTLFIFCGFDKKNLNVSRFDVYLGHNPAGTSVQDFLHWAQLVRSGKFQAFNWGSPSQNMLHYNQKTPPEYDVSAMTVPVAVWNGGNDILADPQDVAMLLPKLSNLLFHKEILAYNHLDFIWAMDAPQEVYNEMISMMAED",
+          "sequence_length": 395,
+          "sequence_sha256": "351306783664c5f04d27ff9ab2d75214ed5f7638f64ff29a94582b8f2092af5d",
+          "source": "reviewed_uniprot",
+          "source_accession": "P04634"
+        },
+        "source_provenance": {
+          "accession": "P04634",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.3']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Gastric triacylglycerol lipase (GL) (Gastric lipase) (EC 3.1.1.3) (Lingual lipase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 395,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "7c6519fcca5f4b626368737a3a1ca4f1afabaf1c65d067ba6022c67f45eee4ab",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031",
+            "uniprot_entry_record_sha256": "2306b5f124ed52963b040ca2a7e58b22b250eeb5df7e4505796cfa1a6ef39924",
+            "uniprot_search_row_sha256": "03a5229c463fde303fe7460454773c52342dc6e610f33a507c01941556c296d9"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P04634"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P04634-F1"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P04634 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.3']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P27657",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 169
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 193
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 280
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 204
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 207
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 209
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 212
+            }
+          ],
+          "binding_residue_count": 4,
+          "catalytic_residue_count": 3,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.3"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.1.3",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:12044",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = di-(9Z)-octadecenoylglycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38575",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tributanoylglycerol + H2O = dibutanoylglycerol + butanoate + H(+)",
+              "rhea_id": "RHEA:40475",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "all-trans-retinyl hexadecanoate + H2O = all-trans-retinol + hexadecanoate + H(+)",
+              "rhea_id": "RHEA:13933",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-glycerol + H2O = (9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38455",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MLMLWTFAVLLGAVAGKEVCFDKLGCFSDDAPWSGTIDRPLKALPWSPAQINTRFLLYTNENQDNYQKITSDASSIRNSNFKTNRKTRIIIHGFIDKGEENWLSDMCKNMFKVESVNCICVDWKGGSRATYTQATQNVRVVGAEVALLVNVLKSDLGHPPDNVHLIGHSLGSHVAGEAGKRTFGAIGRITGLDAAEPYFQGTPEEVRLDPTDAQFVDAIHTDAAPIIPNLGFGMSQTVGHLDFFPNGGMEMPGCQKNILSQIVDIDGIWEGTRDFAACNHLRSYKYYTDSIVNPTGFSGFSCSSYNVFSANKCFPCGSEGCPQMGHYADKYPGKTKELYQKFYLNTGDKSNFARWRYQVTVTLSGQKVTGHILVSLFGNGGNSKQYEVFKGSLHPGDTHVKEFDSDMDVGDLQKVKFIWYNNVINPTLPKVGASRISVERNDGRVFNFCSQDTVREDVLLTLSAC",
+          "sequence_length": 465,
+          "sequence_sha256": "85e5f4a072253c0c8bcd876eab4af847b0452de8042092e79b3f9dea4081d0f3",
+          "source": "reviewed_uniprot",
+          "source_accession": "P27657"
+        },
+        "source_provenance": {
+          "accession": "P27657",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.3']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Pancreatic triacylglycerol lipase (PL) (Pancreatic lipase) (EC 3.1.1.3)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 465,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "f49e3ad593e9451702f288152122cfadbcf675a0b12a092b232d84cb89b15ff3",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031",
+            "uniprot_entry_record_sha256": "46a58b796200b016011cff94cdb207f90640bd05d47f6b02df2fdb017b5bd7b9",
+            "uniprot_search_row_sha256": "9c10c00d3aeda6181928f1a7ccfaf717efc10370477c838affbd9833f0dc368f"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P27657"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P27657-F1"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P27657 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.3']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q94252",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 177
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 352
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 384
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 3,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.-",
+            "3.1.1.3"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.1.3",
+              "evidence_codes": [
+                "ECO:0000305"
+              ],
+              "reaction": "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:12044",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000305"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = di-(9Z)-octadecenoylglycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38575",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MRESISDLMTVMIPLLIILLLSNYSKSVDLEFYLDTPELIKSWGYSVEIYNTTTKDGFILELHRIPYGREVPTSSDVNNSRPVIFLQHGFLCSSFDWVANSPHQSAGFVFADAGFDVWLGNFRGNTYSRKHVSLNPDKDPKFWDWSWDQISEYDLPAMIGKALEISGQESLYYTGFSLGTLTMFAKLSTDPKFSRKIKKYFALAPIGSIKHAHGVFLFLGRHFGKDYEEYVKKHGSDELFGSSLLFKKIVKYTCGLFDTLEEFCSDITLLFIGTANENWNQTRIPVYLAHTPAGSSSNVMAHLDQMFSYGGVPTFDMGEEKNLKAYGQKLPPQYNFTGIADVPIYLFWSDDDWLSTKQDLEETLFAQLNSQVVQGSFRIENYNHLHFIWGTNAASQVYNVITGIILQDDNT",
+          "sequence_length": 411,
+          "sequence_sha256": "6b7bbb37289abaaf3cca989a515d4836904d6b547090343a4fe604b0ecdbc3ab",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q94252"
+        },
+        "source_provenance": {
+          "accession": "Q94252",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.-', '3.1.1.3']",
+          "organism": "Caenorhabditis elegans",
+          "protein_name": "Lipase lipl-4 (EC 3.1.1.-) (EC 3.1.1.3) (Lipase-like 4)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 411,
+          "source_evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000305"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "ba1dd98af7e84c623878367677930d9b6dc02486038fe42bb13028dd27423f88",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031",
+            "uniprot_entry_record_sha256": "84fe31e43757fe65120e105ac4aa7b12da9ae5c1bbf16de699848d6b2f2ef9a7",
+            "uniprot_search_row_sha256": "b1eeb4215372b2bc2ffb43ca2b4c072c35c8c02625bee2eb55c9e6aba44df79e"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q94252"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q94252-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q94252 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.-', '3.1.1.3']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q6P8U6",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 169
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 193
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 280
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 204
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 207
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 209
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29108",
+              "ligand_name": "Ca(2+)",
+              "position": 212
+            }
+          ],
+          "binding_residue_count": 4,
+          "catalytic_residue_count": 3,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.3"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.1.3",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:12044",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = di-(9Z)-octadecenoylglycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38575",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tributanoylglycerol + H2O = dibutanoylglycerol + butanoate + H(+)",
+              "rhea_id": "RHEA:40475",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "all-trans-retinyl hexadecanoate + H2O = all-trans-retinol + hexadecanoate + H(+)",
+              "rhea_id": "RHEA:13933",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-glycerol + H2O = (9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38455",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MLMLWTFAVLLGAVAGREVCFDKLGCFSDDAPWSGTLDRPLKALPWSPAQINTRFLLYTNENPDNYQLITSDASNIRNSNFRTNRKTRIIIHGFIDKGEENWLSDMCKNMFRVESVNCICVDWKGGSRTTYTQATQNVRVVGAEVALLVNVLQSDLGYSLNNVHLIGHSLGSHIAGEAGKRTFGAIGRITGLDPAEPYFQGTPEEVRLDPTDAQFVDAIHTDAGPIIPNLGFGMSQTVGHLDFFPNGGIEMPGCQKNILSQIVDIDGIWEGTRNFAACNHLRSYKFYTDSIVNPTGFAGFSCSSYSLFTANKCFPCGSGGCPQMGHYADRYPGKTSRLYQTFYLNTGDKSNFARWRYQVTVTLSGQKVTGHILVSLFGNGGNSKQYEVFKGSLQPGTSHVNEFDSDVDVGDLQKVKFIWYNNVINPTLPKVGASRITVERNDGRVFNFCSQETVREDVLLTLSPC",
+          "sequence_length": 465,
+          "sequence_sha256": "c134b8617c3a0e5993bdc36d8577aa9fbc39c1e668855217872290b13376eef1",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q6P8U6"
+        },
+        "source_provenance": {
+          "accession": "Q6P8U6",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.3']",
+          "organism": "Mus musculus (Mouse)",
+          "protein_name": "Pancreatic triacylglycerol lipase (PL) (PTL) (Pancreatic lipase) (EC 3.1.1.3)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 465,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "f49e3ad593e9451702f288152122cfadbcf675a0b12a092b232d84cb89b15ff3",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031",
+            "uniprot_entry_record_sha256": "883ac61eab2e5a5525090ab5bb21d9a9a668a395633992b46512f3a8efa26d6b",
+            "uniprot_search_row_sha256": "bfd4e54e14b96b2926d20686361cfaf033ec1bc0bfd215ba3b48483fd1823683"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q6P8U6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q6P8U6-F1"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q6P8U6 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.3']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P27656",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 169
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 195
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 280
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 3,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.3",
+            "3.1.1.32",
+            "3.1.1.5"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.1.3",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:12044",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.5",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphocholine + H2O = sn-glycerol 3-phosphocholine + a fatty acid + H(+)",
+              "rhea_id": "RHEA:15177",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.32",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = a 2-acyl-sn-glycero-3-phosphocholine + a fatty acid + H(+)",
+              "rhea_id": "RHEA:18689",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = di-(9Z)-octadecenoylglycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38575",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphocholine + H2O = (9Z-octadecenoyl)-sn-glycero-3-phosphocholine + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38699",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tributanoylglycerol + H2O = dibutanoylglycerol + butanoate + H(+)",
+              "rhea_id": "RHEA:40475",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-dihexadecanoyl-sn-glycero-3-phosphocholine + H2O = hexadecanoyl-sn-glycero-3-phosphocholine + hexadecanoate + H(+)",
+              "rhea_id": "RHEA:41384",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-sn-glycerol + H2O = 2-(9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38511",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = 2,3-di-(9Z)-octadecenoyl-sn-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38391",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phospho-L-serine + H2O = sn-glycero-3-phospho-L-serine + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:40499",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphocholine + H2O = sn-glycerol 3-phosphocholine + hexadecanoate + H(+)",
+              "rhea_id": "RHEA:40435",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,3-di-(9Z-octadecenoyl)-glycerol + H2O = 3-(9Z-octadecenoyl)-sn-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38651",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MGNPLQISIFLVFCIFIQSSACGQGVGTEPFGRSLGATEASKPLKKPETRFLLFQDENDRLGCRLRPQHPETLQECGFNSSQPLIMIIHGWSVDGLLENWIWKIVSALKSRQSQPVNVGLVDWISLAYQHYTIAVQNTRIVGQDVAALLLWLEESAKFSRSKVHLIGYSLGAHVSGFAGSSMDGKNKIGRITGLDPAGPMFEGTSPNERLSPDDANFVDAIHTFTREHMGLSVGIKQPIAHYDFYPNGGSFQPGCHFLELYKHIAEHGLNAITQTIKCAHERSVHLFIDSLQHSDLQSIGFQCSDMGSFSQGLCLSCKKGRCNTLGYDIRKDRSGKSKRLFLITRAQSPFKVYHYQFKIQFINQIEKPVEPTFTMSLLGTKEEIKRIPITLGEGITSNKTYSFLITLDKDIGELILLKFKWENSAVWANVWNTVQTIMLWGIEPHHSGLILKTIWVKAGETQQRMTFCPENLDDLQLHPSQEKVFVNCEVKSKRLTESKEQMSQETHAKK",
+          "sequence_length": 510,
+          "sequence_sha256": "859414dcb943250399d69199e14cc6c135ea5d695dd2898f5ce7773c95047317",
+          "source": "reviewed_uniprot",
+          "source_accession": "P27656"
+        },
+        "source_provenance": {
+          "accession": "P27656",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.3', '3.1.1.32', '3.1.1.5']",
+          "organism": "Mus musculus (Mouse)",
+          "protein_name": "Hepatic triacylglycerol lipase (HL) (Hepatic lipase) (EC 3.1.1.3) (Lipase member C) (Lysophospholipase) (EC 3.1.1.5) (Phospholipase A1) (EC 3.1.1.32)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 510,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "104f9b4afa01487c816a0bb6caea059cf1367fde1da05fc020fb77f158b256e8",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031",
+            "uniprot_entry_record_sha256": "183ef90af847ee41182368463f220d3078239df0545e636d37c86afeea7a9461",
+            "uniprot_search_row_sha256": "9caffa9ab3f2834b1ed4fea99c89d78768558cc328c8167fc3b65a856fc9a9ff"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P27656"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P27656-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P27656 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.3', '3.1.1.32', '3.1.1.5']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q3SZ79",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 168
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 194
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 279
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 3,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.3",
+            "3.1.1.32",
+            "3.1.1.5"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.1.3",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:12044",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.5",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphocholine + H2O = sn-glycerol 3-phosphocholine + a fatty acid + H(+)",
+              "rhea_id": "RHEA:15177",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.32",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = a 2-acyl-sn-glycero-3-phosphocholine + a fatty acid + H(+)",
+              "rhea_id": "RHEA:18689",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = di-(9Z)-octadecenoylglycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38575",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphocholine + H2O = (9Z-octadecenoyl)-sn-glycero-3-phosphocholine + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38699",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tributanoylglycerol + H2O = dibutanoylglycerol + butanoate + H(+)",
+              "rhea_id": "RHEA:40475",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-dihexadecanoyl-sn-glycero-3-phosphocholine + H2O = hexadecanoyl-sn-glycero-3-phosphocholine + hexadecanoate + H(+)",
+              "rhea_id": "RHEA:41384",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-sn-glycerol + H2O = 2-(9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38511",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = 2,3-di-(9Z)-octadecenoyl-sn-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38391",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phospho-L-serine + H2O = sn-glycero-3-phospho-L-serine + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:40499",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphocholine + H2O = sn-glycerol 3-phosphocholine + hexadecanoate + H(+)",
+              "rhea_id": "RHEA:40435",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,3-di-(9Z-octadecenoyl)-glycerol + H2O = 3-(9Z-octadecenoyl)-sn-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38651",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MENPLCVSIFLFYCILIQSSAHGQSLGPESFGRRSRAAETNKTPQETRTKFLLFRGETDKGCQILLNHSDTLQQCGFNSSLPLVMIVHGWLVDDILEDWVWEMVAALKSQLAQSVNVGLAEWVTLAHNHYTTAVRNTRLVGQEIAALLQWLQESVQFSPSHVHLIGYSLGAHVSGFAGSYMSRKHKIGRITGLDAAGPLFEKASLSDRLSPDDANFVDAIHTFTWEHMGLSVGMKQPIAHYDFYPNGGSYQPGCHFLELYKHFAKHGLNAITRTVKCAHERSVHLFIDSLLHADMQSMAYLCRDMDRFSQGLCLSCKKGRCNTLGYHTRQERQSKKSKSLFLVTRAQSPFKVYHYQFKIRFINQTENPVEPTFTVSFLGTRGERQKIPITLSKGITSNETYSFLITLDVDIGELIMIKFKWENRMVWSNVWNTVQTIIPWGRGSLHSGLALKSIRVKVGETQQRMTFCSENMNDLLLHPAREKTFVRCEANSETLKRKIR",
+          "sequence_length": 500,
+          "sequence_sha256": "c06f611cf931bc28e6963c32d4d3c5d8fc72cd7857a9b51c68cfb6691183d6fd",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q3SZ79"
+        },
+        "source_provenance": {
+          "accession": "Q3SZ79",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.3', '3.1.1.32', '3.1.1.5']",
+          "organism": "Bos taurus (Bovine)",
+          "protein_name": "Hepatic triacylglycerol lipase (HL) (Hepatic lipase) (EC 3.1.1.3) (Lipase member C) (Lysophospholipase) (EC 3.1.1.5) (Phospholipase A1) (EC 3.1.1.32)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 500,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "104f9b4afa01487c816a0bb6caea059cf1367fde1da05fc020fb77f158b256e8",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031",
+            "uniprot_entry_record_sha256": "929c5306ac21f93113a9c3d92e40b53f6ab04ce688e60c48b8731bdda78145c1",
+            "uniprot_search_row_sha256": "e1d694974e07f69a5584305b8a9f25a82e5d371e0b87affade5b67b8639d31ba"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q3SZ79"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q3SZ79-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q3SZ79 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.3', '3.1.1.32', '3.1.1.5']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P07867",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 169
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 195
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 280
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 3,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.3",
+            "3.1.1.32",
+            "3.1.1.5"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.1.3",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+              "rhea_id": "RHEA:12044",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.5",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a 1-acyl-sn-glycero-3-phosphocholine + H2O = sn-glycerol 3-phosphocholine + a fatty acid + H(+)",
+              "rhea_id": "RHEA:15177",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.32",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = a 2-acyl-sn-glycero-3-phosphocholine + a fatty acid + H(+)",
+              "rhea_id": "RHEA:18689",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-sn-glycerol + H2O = 2-(9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38511",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = 2,3-di-(9Z)-octadecenoyl-sn-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38391",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "1-(9Z-octadecenoyl)-sn-glycero-3-phospho-L-serine + H2O = sn-glycero-3-phospho-L-serine + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:40499",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "1-hexadecanoyl-sn-glycero-3-phosphocholine + H2O = sn-glycerol 3-phosphocholine + hexadecanoate + H(+)",
+              "rhea_id": "RHEA:40435",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "1,3-di-(9Z-octadecenoyl)-glycerol + H2O = 3-(9Z-octadecenoyl)-sn-glycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38651",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = di-(9Z)-octadecenoylglycerol + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38575",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphocholine + H2O = (9Z-octadecenoyl)-sn-glycero-3-phosphocholine + (9Z)-octadecenoate + H(+)",
+              "rhea_id": "RHEA:38699",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "1,2,3-tributanoylglycerol + H2O = dibutanoylglycerol + butanoate + H(+)",
+              "rhea_id": "RHEA:40475",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "1,2-dihexadecanoyl-sn-glycero-3-phosphocholine + H2O = hexadecanoyl-sn-glycero-3-phosphocholine + hexadecanoate + H(+)",
+              "rhea_id": "RHEA:41384",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MGNHLQISVSLVLCIFIQSSACGQGVGTEPFGRNLGATEERKPLQKPEIRFLLFKDESDRLGCQLRPQHPETLQECGFNSSHPLVMIIHGWSVDGLLETWIWKIVGALKSRQSQPVNVGLVDWISLAYQHYAIAVRNTRVVGQEVAALLLWLEESMKFSRSKVHLIGYSLGAHVSGFAGSSMGGKRKIGRITGLDPAGPMFEGTSPNERLSPDDANFVDAIHTFTREHMGLSVGIKQPIAHYDFYPNGGSFQPGCHFLELYKHIAEHGLNAITQTINCAHERSVHLFIDSLQHSNLQNTGFQCSNMDSFSQGLCLNCKKGRCNSLGYDIRRIGHVKSKTLFLITRAQSPFKVYHYQFKIQFINQMEKPMEPTFTMTLLGTKEEIKKIPITLGEGITSNKTYSLLITLNKDIGELIMLKFKWENSAVWANVWNTVQTIMLWDTEPHYAGLIVKTIWVKAGETQQRMTFCPDNVDDLQLHPTQEKVFVKCDLKSKD",
+          "sequence_length": 494,
+          "sequence_sha256": "877b65faff6192a42340ba5da6a5d636bcd906ae6aca5fc5cb52d9ee06d7a531",
+          "source": "reviewed_uniprot",
+          "source_accession": "P07867"
+        },
+        "source_provenance": {
+          "accession": "P07867",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.3', '3.1.1.32', '3.1.1.5']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Hepatic triacylglycerol lipase (HL) (Hepatic lipase) (EC 3.1.1.3) (Lipase member C) (Lysophospholipase) (EC 3.1.1.5) (Phospholipase A1) (EC 3.1.1.32)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 494,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "4f633c70854cb94d11e4788617fa1d3a9d920a2f47443aad39cdac024769648c",
+            "source_query_sha256": "a387698a5c3745429a0ace3d1cb4a892af02a5cad1cbe6e236c87c07f19b1031",
+            "uniprot_entry_record_sha256": "fb3430738e4891a8429e2ad3d7bde5cfa26de922665843aa39d74019984e40d4",
+            "uniprot_search_row_sha256": "5a1435d891056f9c0f0e956296f8ab11ad1bd1fad0712f5b909bac8fc561c191"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P07867"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P07867-F1"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P07867 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.3', '3.1.1.32', '3.1.1.5']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q47RJ6",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 6,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000305"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 170
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 216
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 248
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:131701",
+              "ligand_name": "poly(ethylene terephthalate)",
+              "position": 100
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:131701",
+              "ligand_name": "poly(ethylene terephthalate)",
+              "position": 171
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:131701",
+              "ligand_name": "poly(ethylene terephthalate)",
+              "position": 195
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 3,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Ser-His-Asp/Glu ester-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.1.101",
+            "3.1.1.74"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": null,
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a butanoate ester + H2O = an aliphatic alcohol + butanoate + H(+)",
+              "rhea_id": "RHEA:47348",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.101",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "(ethylene terephthalate)(n) + H2O = (ethylene terephthalate)(n-1) + 4-[(2-hydroxyethoxy)carbonyl]benzoate + H(+)",
+              "rhea_id": "RHEA:49528",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.101",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "(ethylene terephthalate)(n) + H2O = (ethylene terephthalate)(n-1) + 4-[(2-hydroxyethoxy)carbonyl]benzoate + H(+)",
+              "rhea_id": "RHEA-COMP:12420",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.1.101",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "(ethylene terephthalate)(n) + H2O = (ethylene terephthalate)(n-1) + 4-[(2-hydroxyethoxy)carbonyl]benzoate + H(+)",
+              "rhea_id": "RHEA-COMP:12421",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ea7c9cf5a2ea921342ea60494aa0cf80c92383a4ac1981fed0dbb72abed1fabe"
+          },
+          "retrieved_utc": "2026-06-14T21:28:23Z",
+          "sequence": "MAVMTPRRERSSLLSRALQVTAAAATALVTAVSLAAPAHAANPYERGPNPTDALLEASSGPFSVSEENVSRLSASGFGGGTIYYPRENNTYGAVAISPGYTGTEASIAWLGERIASHGFVVITIDTITTLDQPDSRAEQLNAALNHMINRASSTVRSRIDSSRLAVMGHSMGGGGTLRLASQRPDLKAAIPLTPWHLNKNWSSVTVPTLIIGADLDTIAPVATHAKPFYNSLPSSISKAYLELDGATHFAPNIPNKIIGKYSVAWLKRFVDNDTRYTQFLCPGPRDGLFGEVEEYRSTCPF",
+          "sequence_length": 301,
+          "sequence_sha256": "a54bad3ec73c049eb45a846ac4803088b66fd0b38ad407d9090357fa20b68cc9",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q47RJ6"
+        },
+        "source_provenance": {
+          "accession": "Q47RJ6",
+          "disambiguation_pool": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_alpha_beta_hydrolase_esterase_lipase_from_annotated_cofactor_and_ec_class_['3.1.1.101', '3.1.1.74']",
+          "organism": "Thermobifida fusca (strain YX)",
+          "protein_name": "Cutinase (EC 3.1.1.74) (Poly(ethylene terephthalate) hydrolase) (PET hydrolase) (PETase) (EC 3.1.1.101)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 301,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269",
+            "ECO:0000305"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "838c75c050bfa396b0a569144a51d48545a24bf77dd106cc4e7122e008d07e37",
+            "source_query_sha256": "ea7c9cf5a2ea921342ea60494aa0cf80c92383a4ac1981fed0dbb72abed1fabe",
+            "uniprot_entry_record_sha256": "9f30f202d12e012a4fa2e5edcccf0aa188aac99bfb76389f812ab7fa29dd1d1c",
+            "uniprot_search_row_sha256": "65471d5b499c19e5d4aa53bfdc008c3d72998d09ee129b1c396ecb910f841390"
+          },
+          "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q47RJ6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q47RJ6-F1"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q47RJ6 imported as annotation-anchored bronze in-scope alpha_beta_hydrolase_esterase_lipase: reviewed Swiss-Prot EC ['3.1.1.101', '3.1.1.74']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_alpha_beta_hydrolase_esterase_lipase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "alpha_beta_hydrolase_esterase_lipase": 9
+    },
+    "current_combined_labels": 7860,
+    "disambiguation_hold_count": 29,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 29
+    },
+    "disambiguation_skip_count": 2,
+    "fetched_candidate_rows": 40,
+    "gate_admitted_before_cap_guard": 9,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 3,
+    "max_records_per_lane": 180,
+    "mechanism_corroborated_bronze_labels": 9,
+    "novelty_admitted_labels": 9,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 7869,
+    "record_limit_per_lane": 20,
+    "record_offset_per_lane": 140
+  },
+  "created_utc": "2026-06-14T21:28:23Z",
+  "deploy_missing_active_site_context_per_family": {
+    "alpha_beta_hydrolase_esterase_lipase": "ser_his_acid_ester_hydrolysis_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "medium": 9
+    },
+    "current_registry_labels": 7158,
+    "decision_counts": {
+      "hold": 29,
+      "import": 9,
+      "skip": 2
+    },
+    "examined_rows": 40,
+    "fingerprint_counts": {
+      "alpha_beta_hydrolase_esterase_lipase": 9
+    },
+    "hold_count": 29,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 29
+    },
+    "importable_new_labels": 9,
+    "per_pool_decision_counts": {
+      "alpha_beta_hydrolase_esterase_lipase_broadened_handle_fresh_fetch": {
+        "hold": 29,
+        "import": 9,
+        "skip_screen": 2
+      }
+    },
+    "projected_registry_labels_if_merged": 7167,
+    "skip_count": 2
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_esterase_lipase_ser_his_acid_annotation",
+  "families_sourced": [
+    "alpha_beta_hydrolase_esterase_lipase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "alpha_beta_hydrolase_esterase_lipase": {
+      "admitted_this_run": 9,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 0,
+      "deficit_to_floor_after": 91,
+      "deficit_to_floor_before": 100,
+      "deploy_missing_active_site_context": "ser_his_acid_ester_hydrolysis_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 9,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "alpha_beta_hydrolase_handles_scope_admission_only": true,
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "alpha_beta_hydrolase_esterase_lipase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "protease_amidase_glycoside_metal_hydrolase_boundary_guard": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "alpha_beta_hydrolase_ec_3_1_1_esterase_lipase_named",
+      "query": "(reviewed:true) AND (ec:3.1.1.*) AND ((keyword:Esterase) OR (keyword:Lipase) OR (protein_name:esterase) OR (protein_name:lipase))",
+      "record_count": 20,
+      "record_limit_per_lane": 20,
+      "record_offset_per_lane": 140,
+      "records_in_window_before_dedup": 20,
+      "records_returned_by_query": 180,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.1.%2A%29+AND+%28%28keyword%3AEsterase%29+OR+%28keyword%3ALipase%29+OR+%28protein_name%3Aesterase%29+OR+%28protein_name%3Alipase%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=180",
+      "status": "query_fetched",
+      "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+    },
+    {
+      "lane_id": "alpha_beta_hydrolase_ec_3_1_1_ser_his_acid_site",
+      "query": "(reviewed:true) AND (ec:3.1.1.*) AND ((protein_name:esterase) OR (protein_name:lipase) OR (protein_name:\"alpha/beta hydrolase\")) AND ((ft_act_site:serine) OR (ft_act_site:histidine) OR (ft_act_site:aspartate) OR (ft_act_site:glutamate))",
+      "record_count": 0,
+      "record_limit_per_lane": 20,
+      "record_offset_per_lane": 140,
+      "records_in_window_before_dedup": 0,
+      "records_returned_by_query": 0,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.1.%2A%29+AND+%28%28protein_name%3Aesterase%29+OR+%28protein_name%3Alipase%29+OR+%28protein_name%3A%22alpha%2Fbeta+hydrolase%22%29%29+AND+%28%28ft_act_site%3Aserine%29+OR+%28ft_act_site%3Ahistidine%29+OR+%28ft_act_site%3Aaspartate%29+OR+%28ft_act_site%3Aglutamate%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=180",
+      "status": "query_fetched",
+      "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+    },
+    {
+      "lane_id": "alpha_beta_hydrolase_ec_3_1_1_ester_hydrolysis",
+      "query": "(reviewed:true) AND (ec:3.1.1.*) AND ((cc_catalytic_activity:ester) OR (cc_catalytic_activity:lipase) OR (cc_catalytic_activity:\"carboxylic ester\"))",
+      "record_count": 20,
+      "record_limit_per_lane": 20,
+      "record_offset_per_lane": 140,
+      "records_in_window_before_dedup": 20,
+      "records_returned_by_query": 180,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.1.%2A%29+AND+%28%28cc_catalytic_activity%3Aester%29+OR+%28cc_catalytic_activity%3Alipase%29+OR+%28cc_catalytic_activity%3A%22carboxylic+ester%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=180",
+      "status": "query_fetched",
+      "target_family_lane": "alpha_beta_hydrolase_esterase_lipase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 9
+    },
+    "reason_counts": {
+      "closes_hole_fingerprint": 9
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_alpha_beta_hydrolase_esterase_lipase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

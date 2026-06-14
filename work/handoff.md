@@ -1,5 +1,53 @@
 # Handoff
 
+## Session run - Alpha/beta hydrolase esterase/lipase bronze lane applied (2026-06-14, Codex automation)
+
+- Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; the external
+  registry remained sharded and GitHub-safe after apply. `data/registries/external_bronze_labels.json`
+  is still a small manifest, shard files are about **17 MB / 17 MB / 17 MB / 4.1 MB**, and frozen
+  current702 stayed sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Implemented and applied the guarded `alpha_beta_hydrolase_esterase_lipase` lane:
+  `src/catalytic_earth/alpha_beta_hydrolase_esterase_lipase_sourcing.py`,
+  `scripts/source_alpha_beta_hydrolase_esterase_lipase_family.py`,
+  `tests/test_alpha_beta_hydrolase_esterase_lipase_sourcing.py`, new fingerprint
+  `alpha_beta_hydrolase_esterase_lipase`, ontology family
+  `ser_his_acid_ester_hydrolysis`, and the `label_factory_v1_40fp` OOS preregistration artifact
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_40fp_1025.json`.
+  EC 3.1.1 is scope only; counted corroboration requires non-EC family/domain text,
+  Ser-His-Asp/Glu active-site context, and Rhea ester-hydrolysis evidence. Protein names, EC,
+  source prose, and target lane handles stay excluded/review-only context; `predictive_evidence`
+  stays empty.
+- Bounded sourcing used twenty 20-record windows from the reviewed UniProt lane and aggregated only
+  novelty-safe rows. The aggregate preview
+  `artifacts/v3_alpha_beta_hydrolase_esterase_lipase_sourcing_preview_aggregate_current702_20260614.json`
+  combined **795** fetched rows, found **161** unique target mechanism-corroborated rows, capped
+  **150** admitted rows, cap-trimmed **1**, and throttled **10**. Aggregate row guardrail
+  `artifacts/v3_alpha_beta_hydrolase_esterase_lipase_row_guardrail_audit_current702_20260614_aggregate.json`
+  audited all **150** rows with **0** problems.
+- Apply result: external rows **7158 -> 7308**; combined label surface **7860 -> 8010**. Honest
+  counters now: external rows **7308** = external seed **6084** + external OOS **1224**, with
+  external silver-confirmed **30**. Combined seed surface **6314**; combined OOS **1696**;
+  positive bronze **6267**; OOS bronze **1696**; combined silver_confirmed **47**; projected **0**.
+- Post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_alpha_beta_apply.json`
+  reports **8010** combined labels, no holes/under-floor fingerprints, fingerprint Gini **0.1807**,
+  and only `metal_dependent_hydrolase` over cap. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260614_post_alpha_beta_apply.json`
+  reports **7308** expansion rows with decisions **6847** admit / **414** throttle / **47** reject.
+  High-yield factory
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_alpha_beta_apply.json`
+  finds no existing lane with >=150 cap room and selects `ser_thr_protein_phosphatase` as the next
+  new-fingerprint runner to build.
+- Validation: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed (**12** source
+  records, **40** fingerprints, **37** ontology families, **702** curated labels); focused
+  count-sensitive suite **27 passed**; alpha/beta/disambiguation/ontology/leakage suite
+  **281 passed**; critical registry/import/admission suite **48 passed**. Full-suite result is
+  recorded in `work/status.md` after closeout validation.
+- Next concrete action: build `ser_thr_protein_phosphatase` as a new guarded fingerprint/source
+  runner: ontology node, mechanism disambiguation rule, 41fp OOS preregistration, row guardrail
+  audit, preview, tests, then apply only if the mechanism-first gates and batch size hold. Continue
+  silver geometry/PDB/chemistry-disagree quality lanes in parallel, but alpha/beta is now capped.
+
 ## Session run - ALDH bronze lane applied and 39fp OOS preregistration refreshed (2026-06-14, Codex automation)
 
 - Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; the external

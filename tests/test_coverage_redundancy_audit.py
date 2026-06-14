@@ -212,10 +212,11 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
             # 7564 prior combined labels + 146 HAD-like phosphatase bronze rows
-            # + 150 aldehyde dehydrogenase bronze rows applied on 2026-06-14.
-            self.assertEqual(written["totals"]["combined"], 7860)
+            # + 150 aldehyde dehydrogenase bronze rows + 150 alpha/beta
+            # hydrolase esterase/lipase bronze rows applied on 2026-06-14.
+            self.assertEqual(written["totals"]["combined"], 8010)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 7158)
+            self.assertEqual(written["totals"]["expansion_bronze"], 7308)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -242,7 +243,9 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # protein kinase tranches expanded the high-yield surface, then the
             # 2026-06-14 reaction-saturation trim demoted 429 redundant orthologs from
             # 9 single-reaction-saturated families back to the reaction-aware floor
-            # without reopening that intentional over-cap.
+            # without reopening that intentional over-cap. The later 2026-06-14
+            # alpha/beta hydrolase esterase/lipase aggregate preview applied 150
+            # guarded bronze rows, closing the new 40th-fingerprint floor.
             self.assertEqual(audit["class_imbalance"]["expansion_holes"], [])
             self.assertEqual(audit["class_imbalance"]["fingerprints_below_floor"], [])
             self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 0)

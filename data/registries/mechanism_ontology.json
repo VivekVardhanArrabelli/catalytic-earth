@@ -550,6 +550,26 @@
         "Hold multi-fingerprint-signal rows rather than forcing an aldehyde dehydrogenase label.",
         "The NAD(P)+ cosubstrate, aldehyde substrate, thiohemiacetal/thioester intermediate, and hydrolytic water/protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "ser_his_acid_ester_hydrolysis",
+      "name": "Ser-His-Asp/Glu ester hydrolysis",
+      "parent_id": "hydrolysis",
+      "fingerprint_ids": [
+        "alpha_beta_hydrolase_esterase_lipase"
+      ],
+      "scope_note": "Reviewed EC 3.1.1 alpha/beta hydrolase esterases/lipases that hydrolyze carboxylic esters through a Ser-His-Asp/Glu catalytic triad.",
+      "sibling_ids": [
+        "hydrolysis",
+        "glycosidic_bond_hydrolysis",
+        "had_aspartyl_phosphoenzyme_hydrolysis"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by esterase/lipase or alpha/beta hydrolase family context plus Ser-His-Asp/Glu catalytic-site evidence and Rhea/reviewed ester hydrolysis where available; EC 3.1.1 is scope only.",
+        "Do not admit protease/amidase rows, glycoside hydrolase/transglycosylase rows, metal hydrolase rows, side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing an alpha/beta hydrolase esterase/lipase label.",
+        "The ester substrate, acyl-enzyme intermediate, oxyanion-hole state, catalytic water, and lid/open-closed context are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

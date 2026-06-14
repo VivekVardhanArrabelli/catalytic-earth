@@ -689,6 +689,95 @@ _ALDEHYDE_DEHYDROGENASE_BOUNDARY_TOKENS = (
     "oxidase",
     "monooxygenase",
 )
+# Alpha/beta hydrolase esterase/lipase handles. EC 3.1.1 scopes the candidate
+# supply only; counted corroboration comes from esterase/lipase family text,
+# Ser-His-Asp/Glu catalytic-site context, and Rhea/reviewed ester hydrolysis.
+# Proteases/amidases, glycoside hydrolases/transglycosylases, metal hydrolase
+# rows, side-EC rows, EC-only rows, and multi-fingerprint rows stay held.
+_ALPHA_BETA_HYDROLASE_FAMILY_TEXT_TOKENS = (
+    "alpha/beta hydrolase",
+    "alpha beta hydrolase",
+    "alpha-beta hydrolase",
+    "esterase",
+    "lipase",
+    "carboxylesterase",
+    "cutinase",
+    "polyesterase",
+    "triacylglycerol lipase",
+)
+_ALPHA_BETA_HYDROLASE_SERINE_TOKENS = (
+    "serine",
+    "catalytic ser",
+    "ser-his",
+    "ser his",
+    "serine hydrolase",
+    "nucleophile ser",
+)
+_ALPHA_BETA_HYDROLASE_HISTIDINE_TOKENS = (
+    "histidine",
+    "catalytic his",
+    "ser-his",
+    "ser his",
+    "his-asp",
+    "his-glu",
+)
+_ALPHA_BETA_HYDROLASE_ACID_TOKENS = (
+    "aspartate",
+    "aspartic",
+    "glutamate",
+    "glutamic",
+    "catalytic asp",
+    "catalytic glu",
+    "ser-his-asp",
+    "ser-his-glu",
+    "his-asp",
+    "his-glu",
+)
+_ALPHA_BETA_HYDROLASE_TRIAD_TOKENS = (
+    "catalytic triad",
+    "ser-his-asp",
+    "ser-his-glu",
+    "ser his asp",
+    "ser his glu",
+    "charge relay",
+)
+_ALPHA_BETA_HYDROLASE_ESTER_TOKENS = (
+    "ester",
+    "carboxylic ester",
+    "carboxylate ester",
+    "acylglycerol",
+    "triacylglycerol",
+    "triglyceride",
+    "lipid",
+    "fatty acid",
+    "alcohol",
+)
+_ALPHA_BETA_HYDROLASE_HYDROLYSIS_TOKENS = (
+    "h2o",
+    "h(2)o",
+    "water",
+    "hydrolysis",
+    "hydrolyzes",
+)
+_ALPHA_BETA_HYDROLASE_BOUNDARY_TOKENS = (
+    "protease",
+    "peptidase",
+    "proteinase",
+    "amidase",
+    "amidohydrolase",
+    "beta-lactamase",
+    "metallo-beta-lactamase",
+    "glycosidase",
+    "glycoside hydrolase",
+    "transglycosylase",
+    "glycosyltransferase",
+    "nuclease",
+    "phosphatase",
+    "phosphodiesterase",
+    "metallohydrolase",
+    "metal-dependent hydrolase",
+    "zinc hydrolase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -1509,6 +1598,27 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_aldehyde_dehydrogenase_scope_side_ec = any(
         ec and not ec.startswith("1.2.1") for ec in _ec_numbers(row)
     )
+    alpha_beta_hydrolase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_ALPHA_BETA_HYDROLASE_FAMILY_TEXT_TOKENS,
+    )
+    alpha_beta_hydrolase_ser_his_acid_context = in_any(
+        feature_texts, *_ALPHA_BETA_HYDROLASE_TRIAD_TOKENS
+    ) or (
+        in_any(feature_texts, *_ALPHA_BETA_HYDROLASE_SERINE_TOKENS)
+        and in_any(feature_texts, *_ALPHA_BETA_HYDROLASE_HISTIDINE_TOKENS)
+        and in_any(feature_texts, *_ALPHA_BETA_HYDROLASE_ACID_TOKENS)
+    )
+    alpha_beta_hydrolase_ester_hydrolysis_reaction = in_any(
+        reactions, *_ALPHA_BETA_HYDROLASE_ESTER_TOKENS
+    ) and in_any(reactions, *_ALPHA_BETA_HYDROLASE_HYDROLYSIS_TOKENS)
+    alpha_beta_hydrolase_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts + reactions,
+        *_ALPHA_BETA_HYDROLASE_BOUNDARY_TOKENS,
+    )
+    non_alpha_beta_hydrolase_scope_side_ec = any(
+        ec and not ec.startswith("3.1.1") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -1761,6 +1871,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "aldehyde_dehydrogenase_boundary_signal": aldehyde_dehydrogenase_boundary_signal,
             "generic_nad_p_dehydrogenase_boundary": generic_nad_p_dehydrogenase_boundary,
             "non_aldehyde_dehydrogenase_scope_side_ec": non_aldehyde_dehydrogenase_scope_side_ec,
+            "alpha_beta_hydrolase_family_text": alpha_beta_hydrolase_family_text,
+            "alpha_beta_hydrolase_ser_his_acid_context": alpha_beta_hydrolase_ser_his_acid_context,
+            "alpha_beta_hydrolase_ester_hydrolysis_reaction": alpha_beta_hydrolase_ester_hydrolysis_reaction,
+            "alpha_beta_hydrolase_boundary_signal": alpha_beta_hydrolase_boundary_signal,
+            "non_alpha_beta_hydrolase_scope_side_ec": non_alpha_beta_hydrolase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
             "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
@@ -1865,6 +1980,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("protein_kinase_phosphoryl_reaction")
         or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
         or evidence.get("aldehyde_dehydrogenase_reaction")
+        or evidence.get("alpha_beta_hydrolase_ester_hydrolysis_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -1915,6 +2031,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         )
         or evidence.get("had_like_phosphatase_asp_mg_context")
         or evidence.get("aldehyde_dehydrogenase_active_site_context")
+        or evidence.get("alpha_beta_hydrolase_ser_his_acid_context")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -1949,6 +2066,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("protein_kinase_family_text")
         or evidence.get("had_like_phosphatase_family_text")
         or evidence.get("aldehyde_dehydrogenase_family_text")
+        or evidence.get("alpha_beta_hydrolase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -2017,6 +2135,7 @@ _TERPENE_CYCLASE_SYNTHASE_EC = ("4.2.3",)  # terpene cyclases/synthases; EC is s
 _PROTEIN_KINASE_SER_THR_TYR_EC = ("2.7.10", "2.7.11")  # protein kinases; EC scope only
 _HAD_LIKE_PHOSPHATASE_EC = ("3.1.3",)  # HAD-like phosphatases; EC scope only
 _ALDEHYDE_DEHYDROGENASE_EC = ("1.2.1",)  # ALDH; EC scope only
+_ALPHA_BETA_HYDROLASE_ESTERASE_LIPASE_EC = ("3.1.1",)  # esterase/lipase; EC scope only
 _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
 _ASKHA_SUGAR_ACETATE_KINASE_EC = ("2.7.1",)  # ASKHA sugar/acetate kinase; EC scope only
 _GHMP_SMALL_MOLECULE_KINASE_EC = ("2.7.1",)  # GHMP small-molecule kinase; EC scope only
@@ -2444,6 +2563,16 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["generic_nad_p_dehydrogenase_boundary"]
         and not c["non_aldehyde_dehydrogenase_scope_side_ec"],
     ),
+    (
+        "alpha_beta_hydrolase_esterase_lipase",
+        lambda c, row: _ec_has_prefix(row, _ALPHA_BETA_HYDROLASE_ESTERASE_LIPASE_EC)
+        and c["alpha_beta_hydrolase_family_text"]
+        and c["alpha_beta_hydrolase_ser_his_acid_context"]
+        and c["alpha_beta_hydrolase_ester_hydrolysis_reaction"]
+        and not c["alpha_beta_hydrolase_boundary_signal"]
+        and not c["glycoside_hydrolase_family_text"]
+        and not c["non_alpha_beta_hydrolase_scope_side_ec"],
+    ),
 )
 
 
@@ -2546,6 +2675,11 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "Mg2+/Asp phosphoenzyme phosphomonoesterase context", "cross_reference": {"id": None}}]
     elif fingerprint == "aldehyde_dehydrogenase" and evidence.get("aldehyde_dehydrogenase_nad_p_context"):
         records = [{"name": "NAD(P)+ aldehyde dehydrogenase cosubstrate", "cross_reference": {"id": None}}]
+    elif fingerprint == "alpha_beta_hydrolase_esterase_lipase" and (
+        evidence.get("alpha_beta_hydrolase_ser_his_acid_context")
+        or evidence.get("alpha_beta_hydrolase_ester_hydrolysis_reaction")
+    ):
+        records = [{"name": "Ser-His-Asp/Glu ester-hydrolysis context", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

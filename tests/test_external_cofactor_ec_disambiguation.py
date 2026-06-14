@@ -1839,6 +1839,85 @@ class DisambiguateRowTests(unittest.TestCase):
         ]
         self.assertEqual(disambiguate_row(flavin_oxidase)["decision"], "hold")
 
+    def test_alpha_beta_hydrolase_requires_non_ec_mechanism_handles(self) -> None:
+        row = _row(ec=["3.1.1.1"])
+        row["protein_name"] = "Alpha/beta hydrolase esterase"
+        row["keywords"] = ["Esterase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:ABH0001",
+                "reaction": "a carboxylic ester + H2O = an alcohol + a carboxylate",
+                "ec_number": "3.1.1.1",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 105,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic serine nucleophile",
+                "evidence_codes": ["ECO:0000269"],
+            },
+            {
+                "position": 230,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic histidine base",
+                "evidence_codes": ["ECO:0000269"],
+            },
+            {
+                "position": 255,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic aspartate acid",
+                "evidence_codes": ["ECO:0000269"],
+            },
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(
+            decision["fingerprint_id"],
+            "alpha_beta_hydrolase_esterase_lipase",
+        )
+        axes = decision["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_alpha_beta_hydrolase_boundary_controls_hold(self) -> None:
+        ec_only = _row(ec=["3.1.1.1"])
+        ec_only["protein_name"] = "Alpha/beta hydrolase esterase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        protease_side_ec = _row(ec=["3.1.1.1", "3.4.21.1"])
+        protease_side_ec["protein_name"] = "Serine protease esterase boundary"
+        protease_side_ec["keywords"] = ["Esterase"]
+        protease_side_ec["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:ABH0002",
+                "reaction": "a carboxylic ester + H2O = an alcohol + a carboxylate",
+                "ec_number": "3.1.1.1",
+            }
+        ]
+        protease_side_ec["residue_locators"] = [
+            {
+                "position": 105,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic Ser-His-Asp triad",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        self.assertEqual(disambiguate_row(protease_side_ec)["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

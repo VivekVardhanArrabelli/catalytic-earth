@@ -286,6 +286,14 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         ),
         "lanes": ["aldehyde_dehydrogenase"],
     },
+    "alpha_beta_hydrolase_esterase_lipase": {
+        "ec_prefixes": ["3.1.1"],
+        "cofactor": (
+            "Ser-His-Asp/Glu ester-hydrolysis context; protease/amidase, glycoside, "
+            "metal-hydrolase, and EC-only boundaries are held"
+        ),
+        "lanes": ["alpha_beta_hydrolase_esterase_lipase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

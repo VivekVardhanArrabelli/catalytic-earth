@@ -1,0 +1,33 @@
+{
+  "artifact_id": "v3_alpha_beta_hydrolase_esterase_lipase_row_guardrail_audit_current702_20260614_preview20",
+  "counts": {
+    "mechanism_axis_counts": {
+      "active_site_motif_or_residue_role": 20,
+      "cofactor_or_cosubstrate": 2,
+      "domain_or_family_profile": 20,
+      "rhea_reaction_or_participant_pattern": 20
+    },
+    "problem_count": 0,
+    "problem_rows": 0,
+    "rows_audited": 20
+  },
+  "created_utc": "2026-06-14T21:21:36Z",
+  "family_id": "alpha_beta_hydrolase_esterase_lipase",
+  "guardrails": {
+    "ec_scope_hint_never_counted": true,
+    "predictive_evidence_must_remain_empty": true,
+    "required_mechanism_axes": [
+      "domain_or_family_profile",
+      "active_site_motif_or_residue_role",
+      "rhea_reaction_or_participant_pattern"
+    ],
+    "review_status_automation_curated_required": true,
+    "source_tier_0_required": true,
+    "tier_bronze_required": true,
+    "uniprot_namespace_required": true
+  },
+  "problems": [],
+  "schema_version": "row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_alpha_beta_hydrolase_esterase_lipase_sourcing_preview20_current702_20260614.json",
+  "status": "passed"
+}

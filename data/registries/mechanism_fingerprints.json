@@ -971,5 +971,85 @@
       "reconstruction_path": "Path A sequence->ALDH family plus NAD(P)/Cys/Glu/Rhea channel, or canonical NAD(P)-aldehyde/Cys/Glu graft in an ALDH active-site pocket (Path B)",
       "silver_reachability": "moderate; ALDH family and catalytic Cys/Glu annotations are common, but cosubstrate pose and intermediate geometry require reconstruction"
     }
+  },
+  {
+    "id": "alpha_beta_hydrolase_esterase_lipase",
+    "name": "Alpha/beta hydrolase esterase/lipase",
+    "enzyme_space": [
+      "alpha/beta hydrolase fold esterases",
+      "carboxylesterases",
+      "lipases",
+      "cutinases",
+      "polyesterases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "serine_nucleophile",
+        "residue": "Ser",
+        "constraints": [
+          "attacks the ester carbonyl to form an acyl-enzyme intermediate"
+        ]
+      },
+      {
+        "role": "histidine_general_base",
+        "residue": "His",
+        "constraints": [
+          "activates the serine nucleophile and hydrolytic water through the catalytic triad"
+        ]
+      },
+      {
+        "role": "acid_charge_relay",
+        "residue": "Asp/Glu",
+        "constraints": [
+          "orients and polarizes the catalytic histidine in the Ser-His-Asp/Glu triad"
+        ]
+      }
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": [
+        "carboxylic ester C-O hydrolysis through a Ser-acyl enzyme intermediate"
+      ],
+      "chemical_operation": "Ser-His-Asp/Glu alpha/beta hydrolase ester hydrolysis"
+    },
+    "substrate_constraints": [
+      "EC 3.1.1 esterase/lipase scope present",
+      "alpha/beta hydrolase, esterase, lipase, cutinase, or carboxylesterase family context present",
+      "Ser-His-Asp/Glu catalytic triad active-site evidence present",
+      "Rhea or reviewed catalytic activity text for ester hydrolysis present where available",
+      "no protease/amidase, glycoside hydrolase/transglycosylase, metal hydrolase, side-EC, EC-only, or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "Alpha/beta hydrolase, esterase, lipase, cutinase, or carboxylesterase family/name/domain text",
+      "annotated catalytic Ser, His, and Asp/Glu active-site residues or catalytic triad text",
+      "Rhea or reviewed catalytic activity text for carboxylic ester + water hydrolysis",
+      "EC 3.1.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "serine protease or peptidase side EC/context",
+      "amidase or beta-lactamase side chemistry",
+      "glycoside hydrolase or transglycosylase context",
+      "metal-dependent hydrolase context without alpha/beta hydrolase triad evidence",
+      "EC-only evidence with no family, active-site, or reaction corroborator",
+      "multi-fingerprint signal where another hydrolase fingerprint independently fires"
+    ],
+    "uncertainty_axes": [
+      "esterase versus lipase substrate class",
+      "acyl-enzyme intermediate and oxyanion-hole protonation state",
+      "lid/open-closed conformational state",
+      "water pose for deacylation"
+    ],
+    "seed_examples": [
+      "carboxylesterase",
+      "triacylglycerol lipase",
+      "cutinase",
+      "PETase-like polyesterase"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "ser_his_acid_ester_hydrolysis_context",
+      "detail": "the ester substrate, acyl-enzyme intermediate, oxyanion-hole state, catalytic water, and lipase lid state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->alpha/beta hydrolase family plus Ser-His-Asp/Glu/Rhea channel, or canonical ester/acyl-enzyme/water graft in an alpha/beta hydrolase pocket (Path B)",
+      "silver_reachability": "moderate; family and triad annotations are common, but substrate pose and deacylation geometry require reconstruction"
+    }
   }
 ]

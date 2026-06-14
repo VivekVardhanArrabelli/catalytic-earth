@@ -350,10 +350,11 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         expansion = load_json(EXPANSION_PATH)
         audit = build_mechanism_representation_loop(expansion)
         # 5638 prior seed labels + 146 HAD-like phosphatase bronze rows
-        # + 150 aldehyde dehydrogenase bronze rows applied on 2026-06-14;
+        # + 150 aldehyde dehydrogenase bronze rows + 150 alpha/beta hydrolase
+        # esterase/lipase bronze rows applied on 2026-06-14;
         # the representation loop remains leakage-safe and still excludes
         # EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 5934)
+        self.assertEqual(audit["seed_labels"], 6084)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])

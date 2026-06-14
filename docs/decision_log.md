@@ -3,6 +3,35 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: ALPHA/BETA HYDROLASE ESTERASE/LIPASE IS A COUNTED BRONZE FAMILY WITH NON-EC CORROBORATION
+
+Decision: add `alpha_beta_hydrolase_esterase_lipase` as the 40th positive fingerprint and keep
+the source wall mechanism-first. EC 3.1.1 may scope/fetch/admit candidate rows but is never a
+counted corroborator. The counted axes are alpha/beta hydrolase family/domain context,
+Ser-His-Asp/Glu active-site context, and Rhea ester-hydrolysis reaction/participant context.
+Protein names, keywords, EC, lane names, source prose, and broadened handles remain excluded
+context and are not predictive features.
+
+Implementation: added `src/catalytic_earth/alpha_beta_hydrolase_esterase_lipase_sourcing.py`,
+`scripts/source_alpha_beta_hydrolase_esterase_lipase_family.py`, the
+`alpha_beta_hydrolase_esterase_lipase` fingerprint, ontology family
+`ser_his_acid_ester_hydrolysis`, 40fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_40fp_1025.json`, and focused
+tests. Updated the current positive-fingerprint universe to `label_factory_v1_40fp`; frozen
+current702 labels stay stamped with their historical decision version and were not written.
+
+Measured result: bounded UniProt windows produced an aggregate preview with **795** fetched rows,
+**161** unique target mechanism-corroborated rows, and capped **150** novelty-safe admits. The row
+guardrail audit found **0** problems across all applied rows; `predictive_evidence` stayed empty.
+Applying the exact aggregate changed external rows **7158 -> 7308** and combined labels
+**7860 -> 8010**. Frozen current702 sha stayed `5eec9bef...`.
+
+Decision: do not immediately rerun alpha/beta hydrolase esterase/lipase for mass growth. The lane
+is now at its chemistry-confusable cap. The refreshed high-yield factory reports no existing lane
+with >=150 cap room and selects `ser_thr_protein_phosphatase` as the next new-fingerprint runner
+to build, with protein-phosphatase family/name, dinuclear metal context, and phosphoprotein
+dephosphorylation Rhea evidence as required non-EC corroborators.
+
 ## 2026-06-14: ALDEHYDE DEHYDROGENASE IS A COUNTED BRONZE FAMILY WITH NON-EC CORROBORATION
 
 Decision: add `aldehyde_dehydrogenase` as the 39th positive fingerprint and keep the source wall

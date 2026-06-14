@@ -104,6 +104,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "protein_kinase_ser_thr_tyr": "atp_mg_protein_substrate_phosphoryl_transfer_context",
     "had_like_phosphatase": "mg_aspartyl_phosphoenzyme_phosphomonoester_hydrolysis_context",
     "aldehyde_dehydrogenase": "nad_p_cys_glu_thiohemiacetal_hydride_transfer_context",
+    "alpha_beta_hydrolase_esterase_lipase": "ser_his_acid_ester_hydrolysis_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

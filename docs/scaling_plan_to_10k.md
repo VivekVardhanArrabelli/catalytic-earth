@@ -13,6 +13,37 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: alpha/beta hydrolase esterase/lipase lane applied and next lane reset.**
+Treat this as the newest operational state. Registry-size safety remains green: the external
+registry is still a small sharded manifest plus shard files below the per-file safety threshold.
+Frozen current702 remained byte-unchanged at sha `5eec9bef...`.
+
+The guarded alpha/beta hydrolase esterase/lipase lane now exists and has been applied:
+`src/catalytic_earth/alpha_beta_hydrolase_esterase_lipase_sourcing.py`,
+`scripts/source_alpha_beta_hydrolase_esterase_lipase_family.py`, new fingerprint
+`alpha_beta_hydrolase_esterase_lipase`, ontology family `ser_his_acid_ester_hydrolysis`, and 40fp
+OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_40fp_1025.json`. EC 3.1.1 is
+scope only; counted corroboration comes from non-EC family/domain context, Ser-His-Asp/Glu
+active-site context, and Rhea ester-hydrolysis evidence. Protease/amidase, glycoside hydrolase,
+transglycosylase, metal hydrolase, EC-only, and unresolved multi-fingerprint confounds remain held.
+
+Applied result:
+`artifacts/v3_alpha_beta_hydrolase_esterase_lipase_sourcing_preview_aggregate_current702_20260614.json`
+admitted **150** rows after bounded-window aggregation, dedup/novelty/cap gates, and
+`artifacts/v3_alpha_beta_hydrolase_esterase_lipase_row_guardrail_audit_current702_20260614_aggregate.json`
+found **0** row-level guardrail problems. Current honest counters: external registry **7308** rows
+= **6084** external seed labels + **1224** external OOS labels, with **30** external
+silver-confirmed. Combined label surface **8010**; combined seed surface **6314**; combined OOS
+**1696**; positive bronze **6267**; silver_confirmed **47** including the frozen 17; projected
+**0**. Remaining seed gap to 10k is **3686**.
+
+Post-apply coverage and novelty remain green: coverage reports no holes/under-floor fingerprints,
+fingerprint Gini **0.1807**, and only `metal_dependent_hydrolase` over cap; novelty replay reports
+**6847** admit / **414** throttle / **47** reject across **7308** external rows. The refreshed
+high-yield factory finds no existing lane with >=150 cap room and selects
+`ser_thr_protein_phosphatase` as the next new-fingerprint runner to build.
+
 **2026-06-14 automation update: aldehyde dehydrogenase lane applied and next lane reset.** Treat
 this as the newest operational state. Registry-size safety remains green: the external registry is
 still a small sharded manifest plus shard files below the per-file safety threshold. Frozen
