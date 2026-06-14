@@ -14,14 +14,16 @@
   structure_provenance.holo_pdb_confirmation. structure_confirmability honours that as holo.
   mmCIF regeneratable from the PDB id, NEVER committed (AFDB-backfill discipline). Candidate
   selection chemistry-only; structure stays review-only, never predictive.
-- Applied `--per-fingerprint-cap 8 --apply`: 109 holo confirmed across 24 fingerprints
-  (~80% hit-rate). Gate: silver_ready_pending_geometry_run 0->109; blocked_pending_structure
-  2534->2426; blocked_apo 1->0; review 1344 / hold 1759 unchanged. HONEST:
-  blocked_pending_structure (2426) still dominates (the ~5500 rows with no experimental PDB
-  are not inflated), and silver_ready is *_pending_geometry_run -- the actual
-  geometry-confirmation run is a SEPARATE authorized step. Label counts/tiers UNCHANGED (apply
-  added only provenance; all bronze): expansion 6862, combined 7564, positive_bronze 5851,
-  silver_confirmed 17; counters stay SEPARATE.
+- Applied in two passes (bounded `--per-fingerprint-cap 8`, then the full corroborated pool):
+  260 holo confirmed across 24 fingerprints (~70-80% hit-rate; 111 candidates apo-only). Gate:
+  silver_ready_pending_geometry_run 0->260; blocked_pending_structure 2534->2275; blocked_apo
+  1->0; review 1344 / hold 1759 unchanged. HONEST: blocked_pending_structure (2275) still
+  dominates (the ~5300 rows with no experimental PDB are not inflated), and silver_ready is
+  *_pending_geometry_run -- the actual geometry-confirmation run is a SEPARATE authorized step.
+  Label counts/tiers UNCHANGED (apply added only provenance; all bronze): expansion 6862,
+  combined 7564, positive_bronze 5851, silver_confirmed 17; counters stay SEPARATE. New-label
+  sourcing PAUSED during this work (same-file write conflict + 51 MB GitHub soft limit);
+  resume only on a clean registry after this commits.
 - Artifacts: `..._holo_structure_promotion_preview_current702.json`,
   `..._post_holo_confirmation.json` (+ work reports). New module + script + 8 offline unit
   tests; the honest_about_apo real-registry test re-baselined honestly (silver_ready > 0 from

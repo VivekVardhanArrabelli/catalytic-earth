@@ -28,7 +28,8 @@ artifact-backed mechanism diagnostics.
 
 - **FIRST SILVER-READY ROWS: HOLO EXPERIMENTAL-PDB CONFIRMATION (2026-06-14 automation, this turn).**
   The North-Star milestone the prior bullets kept deferring to: `silver_ready` moved
-  **0 -> 109** for the first time. Root cause of the long-standing 0 was diagnosed (not
+  **0 -> 260** for the first time (109 in the first bounded batch, then scaled across the rest
+  of the corroborated pool to 260). Root cause of the long-standing 0 was diagnosed (not
   guessed): the bronze->silver gate scores `silver_ready` only when the annotated cofactor is
   PRESENT in the coordinates (true holo), but the registry's only staged coordinates are
   AlphaFoldDB predictions, which are inherently APO (AlphaFold carries no cofactor) -- so
@@ -45,13 +46,14 @@ artifact-backed mechanism diagnostics.
   the AFDB-backfill discipline). Candidate selection is chemistry-only (leakage wall intact);
   structure stays review-only context, never a predictive feature.
 
-  Applied a diverse bounded batch (`--per-fingerprint-cap 8 --apply`): **109** holo confirmed
-  across **24 fingerprints** (e.g. flavin FAD, p450 HEM, radical_sam SF4, plp PLP, SOD/metal
-  Zn/Mn, terpene, ThDP) at an ~80% holo hit-rate on attempts. Promotion gate decisions:
-  `silver_ready_pending_geometry_run` **0 -> 109**, `blocked_pending_structure` 2534 -> 2426,
+  Applied in two passes (bounded `--per-fingerprint-cap 8`, then the full corroborated pool):
+  **260** holo confirmed across **24 fingerprints** (e.g. flavin FAD, p450 HEM, radical_sam
+  SF4, plp PLP, SOD/metal Zn/Mn, terpene, ThDP) at an ~70-80% holo hit-rate on attempts (111
+  candidates had only apo PDBs). Promotion gate decisions:
+  `silver_ready_pending_geometry_run` **0 -> 260**, `blocked_pending_structure` 2534 -> 2275,
   `blocked_apo` 1 -> 0; `review_chemistry_disagrees` 1344 and `hold_low_chemistry_cohesion`
-  1759 unchanged. HONEST framing: `blocked_pending_structure` (2426) still dominates -- the
-  ~5500 rows with no experimental PDB are NOT inflated; and silver_ready is
+  1759 unchanged. HONEST framing: `blocked_pending_structure` (2275) still dominates -- the
+  ~5300 rows with no experimental PDB are NOT inflated; and silver_ready is
   `*_pending_geometry_run` -- the actual geometry-confirmation run remains a SEPARATE
   authorized step (this only proves the gate is now MEETABLE with real holo evidence, not
   abstaining on apo). Label counts/tiers UNCHANGED (all stay bronze; the apply added only
@@ -64,8 +66,12 @@ artifact-backed mechanism diagnostics.
   New module + script + 8 unit tests (`tests/test_holo_structure_promotion.py`, offline stub
   fetcher); the `honest_about_apo` real-registry test updated to the new reality (silver_ready
   > 0 from recorded holo, blocked_pending_structure still dominant, geometry never faked).
-  Frozen current702 byte-unchanged (sha printed identical before/after the apply: `5eec9bef…`);
-  validate ok (702 / 37 fp); `git diff --check` clean; leakage wall intact.
+  Frozen current702 byte-unchanged (sha printed identical before/after each apply: `5eec9bef…`);
+  validate ok (702 / 37 fp); `git diff --check` clean; leakage wall intact. NOTE: while holo
+  scaling rewrites `external_bronze_labels.json`, new-label sourcing was PAUSED (same-file
+  write conflict + the registry is at the 51 MB GitHub soft limit); resume sourcing only after
+  this commits. Next: run the SEPARATE authorized geometry-confirmation on the 260 silver_ready
+  rows to actually flip tiers.
 
 - **C-C LYASE / ALDOL SEPARATION (2026-06-14 automation, this turn).**
   Measured-first follow-on to the kinase work below. After the kinase/ligase separation,

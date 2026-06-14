@@ -27,9 +27,10 @@ PDB id, so the determination -- not the bulky mmCIF -- is what is stored/honoure
 the AFDB-backfill philosophy). Candidate selection is chemistry-only; structure stays
 review-only mechanism context, never a predictive feature (leakage wall intact).
 
-Applied a diverse bounded batch (`--per-fingerprint-cap 8 --apply`): 109 holo confirmed across
-24 fingerprints (~80% hit-rate on attempts). Gate: `silver_ready_pending_geometry_run` 0 ->
-109; `blocked_pending_structure` 2534 -> 2426; `blocked_apo` 1 -> 0; review/hold unchanged.
+Applied in two passes (a diverse bounded `--per-fingerprint-cap 8` batch, then the full
+corroborated pool): 260 holo confirmed across 24 fingerprints (~70-80% hit-rate; 111
+candidates had only apo PDBs). Gate: `silver_ready_pending_geometry_run` 0 -> 260;
+`blocked_pending_structure` 2534 -> 2275; `blocked_apo` 1 -> 0; review/hold unchanged.
 HONEST: `blocked_pending_structure` (2426) still dominates -- the ~5500 rows with no
 experimental PDB are not inflated -- and silver_ready is `*_pending_geometry_run`: the actual
 geometry-confirmation run is a SEPARATE authorized step; this only proves the gate is meetable
@@ -44,9 +45,11 @@ current702 sha (`5eec9bef…`) identical before and after; frozen NEVER written;
 committed (regeneratable from PDB id); validate ok (702 / 37 fp); leakage wall intact. The
 `honest_about_apo` real-registry test was updated to the new reality (silver_ready > 0 from
 recorded holo, blocked_pending_structure still dominant, geometry never faked) -- this is an
-honest re-baseline, not a relaxation. Next: scale the holo confirmation to the rest of the
-371-row corroborated pool, then run the SEPARATE authorized geometry-confirmation on the
-silver_ready queue to actually flip tiers.
+honest re-baseline, not a relaxation. New-label sourcing was PAUSED during this work (the holo
+apply rewrites the same `external_bronze_labels.json`, so concurrent sourcing would race/clobber;
+the registry is also at GitHub's 51 MB soft limit). Resume sourcing only on a clean registry
+after this commits. Next: run the SEPARATE authorized geometry-confirmation on the 260
+silver_ready rows to actually flip tiers to silver.
 
 ## 2026-06-14: C-C LYASE / ALDOL SEPARATION (class II metal aldolases)
 
