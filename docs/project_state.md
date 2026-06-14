@@ -26,6 +26,40 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SILVER GEOMETRY BLOCKER AUDIT + PDB-ID SCALEOUT (2026-06-14 automation).**
+  Newest operational state: hard safety remains green, but the silver tier flip is blocked by
+  missing geometry materialization, not by missing holo evidence. Added
+  `src/catalytic_earth/silver_geometry_confirmation.py`,
+  `scripts/audit_silver_geometry_confirmation.py`, and
+  `tests/test_silver_geometry_confirmation.py`. The audit consumes the 260
+  `silver_ready_pending_geometry_run` rows and requires recorded holo PDB confirmation, a local holo
+  coordinate file, and explicit PDB chain/residue mappings before the separate geometry gate is
+  considered runnable. It does not run/fake geometry scoring and does not flip tiers.
+
+  Live artifact
+  `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614.json` found **0/260**
+  runnable rows and **0** silver flips. All 260 lack explicit PDB chain/residue mappings; 259 also
+  lack local holo coordinate files; 20 have insufficient exact active-site residues. UniProt
+  sequence positions are not treated as PDB residue mappings. Therefore silver-ready remains a
+  queue, not a tier count: `silver_ready_pending_geometry_run` **260** and `silver_confirmed` tier
+  count **17**.
+
+  Bounded UniProt PDB-ID backfill continued through the sharded writer and moved external rows with
+  PDB IDs **1298 -> 2020** (+722 this run). Applied chunks backfilled 187, 332, 203, then 0 rows
+  respectively; the final 3000-row probe was no-yield and should not be repeated without a better
+  no-xref skip/recheck policy. External row count remains **6862** = positive bronze **5638** + OOS
+  bronze **1224**; combined label surface **7564**; combined seed surface **5868**; frozen current702
+  stayed sha `5eec9bef...`; `predictive_evidence` remained unchanged. A bounded RCSB holo-confirmation
+  apply was attempted after the second PDB chunk, but TLS/network stalls forced a clean interrupt
+  before any registry write; holo-confirmed rows remain **260**.
+
+  Refreshed planning state: high-yield factory now recommends `had_like_phosphatase` as the next
+  new-family lane (projected clean admits **150**, no existing lane >=150);
+  breadth feasibility still says reviewed Swiss-Prot alone is short of 10k positive bronze
+  (projected **8509**, gap **1491**); evidence-handle scout unlocks 4/6 probed families with a
+  reachable positive-bronze uplift of **741**; and the external-surface eval split design exists as
+  a design-only artifact with no benchmark claim.
+
 - **REGISTRY SHARDING + FULL-SUITE GREEN + PDB-ID BACKFILL (2026-06-14 automation).**
   The external bronze registry crossed the GitHub-safe file-size threshold (~54 MB). It is now
   represented as a small sharded manifest plus four JSON shard files through

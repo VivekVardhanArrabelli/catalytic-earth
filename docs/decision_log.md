@@ -3,6 +3,32 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: SILVER GEOMETRY CONFIRMATION REQUIRES EXPLICIT PDB RESIDUE MAPPING
+
+Decision: the 260 `silver_ready_pending_geometry_run` rows are a queue, not a tier flip, until the
+separate geometry gate can actually run. Added a non-destructive audit
+(`src/catalytic_earth/silver_geometry_confirmation.py`,
+`scripts/audit_silver_geometry_confirmation.py`) that consumes the bronze->silver preview and
+checks for the remaining runnable materials: recorded holo PDB confirmation, a local holo coordinate
+file, and explicit PDB chain/residue mappings. It does not run/fake geometry scoring, write a
+registry, or change tiers.
+
+Measured result:
+`artifacts/v3_silver_geometry_confirmation_audit_current702_20260614.json` found **0/260** runnable
+rows and **0** silver flips. All 260 rows lack explicit PDB chain/residue mappings; 259 lack a local
+holo coordinate file; 20 have insufficient exact active-site residues. UniProt sequence positions
+must not be treated as PDB residue mappings. Therefore holo confirmation is necessary but not
+sufficient for silver; the next silver action is a SIFTS/PDB residue-mapping and local holo-coordinate
+materialization lane, followed by this audit and only then a geometry-gate apply for passing rows.
+
+Decision: continuing UniProt PDB-ID backfill is useful only while it yields new PDB handles. This
+run applied additional bounded chunks and moved external rows with PDB IDs **1298 -> 2020** (+722)
+without changing row count, tiers, or predictive evidence; frozen current702 sha stayed
+`5eec9bef...`. A final 3000-row probe backfilled **0** rows and mostly rechecked no-xref rows, so
+future large PDB chunks should first add a no-xref skip/recheck policy or use a different curated
+source. A bounded RCSB holo-confirmation apply was attempted after the second PDB chunk but stalled
+on TLS/network and was interrupted before any registry write; silver-ready remains **260**.
+
 ## 2026-06-14: REGISTRY SHARDING, FULL-SUITE RECOVERY, AND PDB-ID BACKFILL PATH
 
 Decision: stop treating the monolithic external bronze registry as safe for continued growth.

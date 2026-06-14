@@ -1,0 +1,88 @@
+{
+  "artifact_id": "v3_external_surface_eval_split_design_current702_20260614_post_pdb_backfill",
+  "created_utc": "2026-06-14T16:20:23Z",
+  "current_surface_counts": {
+    "combined_label_surface": 7564,
+    "combined_seed_surface": 5868,
+    "external_bronze_rows": 6862,
+    "frozen_current702_labels": 702,
+    "holo_confirmed_rows": 260,
+    "oos_bronze_rows": 1224,
+    "positive_bronze_rows": 5638,
+    "rows_with_pdb_ids": 2020,
+    "silver_confirmed_tier_count": 17,
+    "silver_flips_this_design": 0,
+    "silver_ready_pending_geometry_run": 260
+  },
+  "leakage_wall": {
+    "allowed_predictive_inputs_require_tests": [
+      "amino-acid sequence features",
+      "source-free structure/geometry features from materialized coordinates",
+      "tested source-free chemistry/geometry features with tests/test_leakage_closure.py coverage"
+    ],
+    "allowed_stratification_only_inputs": [
+      "source tier",
+      "OOS tier",
+      "structure availability bucket",
+      "holo confirmation bucket",
+      "admission source family",
+      "review status bucket"
+    ],
+    "forbidden_predictive_inputs": [
+      "EC labels",
+      "protein names",
+      "UniProt prose",
+      "curator rationale text",
+      "review decisions",
+      "target family lane names",
+      "source IDs/accessions as semantic features",
+      "PDB availability flags",
+      "holo confirmation flags",
+      "silver_ready decisions",
+      "Rhea identifiers as identifiers"
+    ]
+  },
+  "next_action": "Build the frozen external-surface split manifest; do not run a benchmark until leakage and split audits pass.",
+  "non_claims": [
+    "No model was trained or evaluated.",
+    "No threshold was selected.",
+    "No registry, label tier, ontology, or fingerprint was changed.",
+    "No clinical, environmental, therapeutic, or deployment performance claim is made."
+  ],
+  "problem_statement": "The prior one-shot heldout is spent. A new downstream mechanism-prediction eval must be defined before any new benchmark claim on the external bronze surface.",
+  "required_before_first_run": [
+    "write a frozen split manifest with hashes for every row and sequence cluster",
+    "deduplicate train/cal/test by accession, exact sequence, and sequence cluster",
+    "freeze OOS tier definitions before threshold selection",
+    "write a feature manifest proving excluded_context fields are not predictive inputs",
+    "run leakage closure tests and source-contract tests on the exact feature artifact",
+    "pre-register threshold selection on train/cal only",
+    "report all honest counters separately"
+  ],
+  "schema_version": "external_surface_eval_split_design.v1",
+  "split_design": {
+    "acceptance_metrics": [
+      "macro accuracy by fingerprint on primary positive strata",
+      "family-balanced recall at fixed abstention policy",
+      "false non-abstention rate on each OOS tier",
+      "calibration error by source and structure-availability strata",
+      "per-family confusion matrix with chemistry-disagree rows reported separately",
+      "no aggregate win unless OOS abstention is no worse than baseline"
+    ],
+    "external_holdout_pool": "external bronze rows reserved by family, source-time, sequence-cluster, and OOS tier strata",
+    "oos_policy": "positive_bronze, oos_bronze, silver_ready, silver_confirmed, and projected counters remain separate in all metrics",
+    "primary_train_pool": "frozen current702 plus explicitly admitted calibration rows only after a frozen split manifest exists",
+    "recommended_strata": [
+      "fingerprint_id and ontology family",
+      "new-family vs current702-overlapping family",
+      "reviewed Swiss-Prot vs future broader-source provenance",
+      "sequence-cluster novelty bucket",
+      "PDB-bearing / holo-confirmed / no-structure buckets as diagnostics only",
+      "near-OOS, boundary-OOS, hard-negative OOS, and broad OOS tiers",
+      "chemistry-disagree and low-cohesion review buckets as abstention diagnostics"
+    ],
+    "silver_queue_policy": "silver_ready/holo/PDB provenance may stratify diagnostics but must not convert rows to silver or training targets until geometry confirmation passes",
+    "unit_of_split": "entry_id with sequence-cluster and family-block grouping before row assignment"
+  },
+  "status": "design_only_no_benchmark_run"
+}

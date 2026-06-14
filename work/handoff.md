@@ -1,5 +1,67 @@
 # Handoff
 
+## Session run - Silver geometry blocker audit, PDB-ID scaleout, eval design (2026-06-14, Codex automation)
+
+- Hard blockers rechecked and stayed clear. The external registry remains sharded and GitHub-safe:
+  `data/registries/external_bronze_labels.json` is a ~1.2 KB manifest and the four shard files are
+  still all below 18 MB after this run. The only >45 MB files are the same pre-existing artifacts
+  from earlier work, not changed registry files.
+- Added the missing non-destructive silver geometry confirmation audit:
+  `src/catalytic_earth/silver_geometry_confirmation.py`,
+  `scripts/audit_silver_geometry_confirmation.py`, and
+  `tests/test_silver_geometry_confirmation.py`. It consumes the bronze->silver preview queue and
+  requires recorded holo PDB confirmation, a local holo coordinate file, and explicit PDB
+  chain/residue mappings before any row is considered runnable for the separate geometry gate.
+  It deliberately does not run/fake geometry scoring and does not flip tiers.
+- Live result:
+  `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614.json` /
+  `work/silver_geometry_confirmation_audit_current702_20260614.md` found **260/260** silver-ready
+  rows blocked before geometry confirmation, **0** runnable rows, and **0** silver flips.
+  Blockers: `missing_explicit_pdb_residue_mapping` **260**, `missing_local_holo_coordinate_file`
+  **259**, and `insufficient_exact_active_site_residues` **20**. This is the current silver
+  blocker; UniProt sequence positions must not be treated as PDB residue mappings.
+- Continued bounded UniProt PDB-ID backfill through the existing sharded writer. Applied chunks:
+  `--limit 500` backfilled **187**, `--limit 1000` backfilled **332**, `--limit 2000` backfilled
+  **203**, and a final `--limit 3000` probe backfilled **0** (no-yield; stopped). External rows
+  with PDB IDs moved **1298 -> 2020** (+722 this run after the previous run's first chunk);
+  row count stayed **6862**, frozen current702 sha stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`, and
+  `predictive_evidence` stayed unchanged. Holo confirmation was attempted on a bounded 150-row
+  RCSB batch after the second chunk, but RCSB TLS/network stalls forced a clean interrupt before
+  any registry apply; silver-ready remains **260**.
+- Refreshed non-mutating planning artifacts:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_pdb_backfill.json`
+  (top next lane: `had_like_phosphatase`, projected clean admits 150; no existing lane >=150),
+  `artifacts/v3_breadth_feasibility_scout_current702_20260614_post_pdb_backfill.json`
+  (reviewed Swiss-Prot alone projects **8509** positive bronze, gap **1491**),
+  `artifacts/v3_evidence_handle_expansion_current702_20260614_post_pdb_backfill.json`
+  (4/6 handle-blocked families unlocked; reachable positive-bronze uplift **741**), and
+  `artifacts/v3_external_surface_eval_split_design_current702_20260614_post_pdb_backfill.json`
+  (design only; no benchmark run).
+- Current honest counters: external registry **6862** rows = positive bronze **5638** + OOS bronze
+  **1224**; combined label surface **7564**; combined seed surface **5868**; remaining seed gap
+  **4132**; PDB-bearing external rows **2020**; holo-confirmed rows **260**; silver-ready pending
+  geometry **260**; silver_confirmed tier count still **17**; projected provisional **0**.
+- Validation from this run: focused critical tests **233 passed, 14 subtests passed in 54.90s**;
+  full suite **2241 passed, 1 warning, 244 subtests passed in 162.80s**; `python -m
+  catalytic_earth.cli validate` passed; `git diff --check` passed. Final validation was rerun after
+  the registry backfill/docs closeout as recorded in `work/progress_log.jsonl`.
+- Next concrete action: do **not** flip any silver tiers until local holo PDB coordinates and
+  explicit PDB chain/residue mappings exist for silver-ready rows. Build a SIFTS/PDB residue-mapping
+  materialization lane for the 260 silver-ready rows, then rerun the silver geometry audit and only
+  run/apply the geometry gate for rows that become runnable. For bronze growth, build the
+  `had_like_phosphatase` fingerprint/source runner with mechanism-first disambiguation and OOS
+  preregistration, or use the evidence-handle scout to widen non-EC admission handles without
+  making them predictive features.
+- Early-closeout rationale relative to the 55-minute automation window: remaining safe work is no
+  longer a bounded apply/preview. Silver is blocked on SIFTS/PDB residue mapping + local holo
+  coordinate materialization; the RCSB holo apply path hit TLS/network stalls and was interrupted
+  before any write; large PDB-ID chunks reached a no-yield/no-xref wall; chemistry-disagree/cohesion
+  lanes have no standalone fresh runner beyond the existing post-shard artifact; and the next
+  high-yield bronze lane (`had_like_phosphatase`) requires a new fingerprint, OOS preregistration,
+  mechanism disambiguation rule, row guardrail audit, and runner. Starting those in closeout would
+  create unfinished shared-registry/fingerprint work.
+
 ## Session run - Registry sharding, full-suite recovery, PDB backfill lane (2026-06-14, Codex automation)
 
 - Hard blocker cleared: `data/registries/external_bronze_labels.json` was ~54 MB and unsafe for

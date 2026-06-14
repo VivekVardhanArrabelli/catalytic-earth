@@ -1,0 +1,694 @@
+{
+  "artifact_id": "v3_label_pdb_id_backfill_preview_current702",
+  "backfilled_by_fingerprint": {
+    "__out_of_scope__": 163,
+    "flavin_dehydrogenase_reductase": 2,
+    "metal_dependent_hydrolase": 22
+  },
+  "backfilled_examples": [
+    {
+      "accession": "Q9Y223",
+      "entry_id": "uniprot:Q9Y223",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2YHW",
+        "2YHY",
+        "2YI1",
+        "3EO3",
+        "4ZHT"
+      ]
+    },
+    {
+      "accession": "O43909",
+      "entry_id": "uniprot:O43909",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "7AU2",
+        "7AUA",
+        "8OG1",
+        "8OG4"
+      ]
+    },
+    {
+      "accession": "P11217",
+      "entry_id": "uniprot:P11217",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1Z8D"
+      ]
+    },
+    {
+      "accession": "P14778",
+      "entry_id": "uniprot:P14778",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1G0Y",
+        "1IRA",
+        "1ITB",
+        "4DEP",
+        "4GAF"
+      ]
+    },
+    {
+      "accession": "Q09328",
+      "entry_id": "uniprot:Q09328",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "5ZIB",
+        "5ZIC",
+        "6YJQ",
+        "6YJR",
+        "6YJS",
+        "6YJT",
+        "6YJU",
+        "6YJV",
+        "7YYI",
+        "7Z07",
+        "7Z08",
+        "7Z0B",
+        "8CE3",
+        "9F5H"
+      ]
+    },
+    {
+      "accession": "P55263",
+      "entry_id": "uniprot:P55263",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1BX4",
+        "2I6A",
+        "2I6B",
+        "4O1L"
+      ]
+    },
+    {
+      "accession": "P27144",
+      "entry_id": "uniprot:P27144",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2AR7",
+        "2BBW",
+        "3NDP"
+      ]
+    },
+    {
+      "accession": "Q9UIJ7",
+      "entry_id": "uniprot:Q9UIJ7",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1ZD8",
+        "6ZJB",
+        "6ZJD",
+        "6ZJE"
+      ]
+    },
+    {
+      "accession": "P00568",
+      "entry_id": "uniprot:P00568",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1Z83",
+        "2C95",
+        "7DE3",
+        "7X7S",
+        "8X1G"
+      ]
+    },
+    {
+      "accession": "P54819",
+      "entry_id": "uniprot:P54819",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2C9Y",
+        "9FL7",
+        "9GR0"
+      ]
+    },
+    {
+      "accession": "O43252",
+      "entry_id": "uniprot:O43252",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1X6V",
+        "1XJQ",
+        "1XNJ",
+        "2OFW",
+        "2OFX",
+        "2PEY",
+        "2PEZ",
+        "2QJF",
+        "8I1M"
+      ]
+    },
+    {
+      "accession": "O95340",
+      "entry_id": "uniprot:O95340",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2AX4",
+        "7FH3",
+        "7FHA",
+        "8I1N",
+        "8I1O"
+      ]
+    },
+    {
+      "accession": "P0A7B1",
+      "entry_id": "uniprot:P0A7B1",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1XDO",
+        "1XDP"
+      ]
+    },
+    {
+      "accession": "Q92918",
+      "entry_id": "uniprot:Q92918",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "6CQD",
+        "6CQE",
+        "6CQF",
+        "6NFY",
+        "6NFZ",
+        "6NG0",
+        "7KAC",
+        "7L24",
+        "7L25",
+        "7L26",
+        "7M0K",
+        "7M0L",
+        "7M0M",
+        "7R9L",
+        "7R9N",
+        "7R9P",
+        "7R9T",
+        "7SIU",
+        "8CDW",
+        "8CIJ",
+        "8EEC",
+        "8FH4",
+        "8FJZ",
+        "8FKO",
+        "8PAR",
+        "8PAS",
+        "8PAU",
+        "8XN7",
+        "9BI8",
+        "9BIK",
+        "9BJ1",
+        "9CZT",
+        "9CZU",
+        "9CZW",
+        "9CZX",
+        "9D00",
+        "9H8D",
+        "9H8E",
+        "9H8F",
+        "9N7R",
+        "9N9X",
+        "9NAC",
+        "9NBS",
+        "9NC2",
+        "9QT6"
+      ]
+    },
+    {
+      "accession": "Q8IVH8",
+      "entry_id": "uniprot:Q8IVH8",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "5J5T"
+      ]
+    },
+    {
+      "accession": "O95819",
+      "entry_id": "uniprot:O95819",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "4OBO",
+        "4OBP",
+        "4OBQ",
+        "4RVT",
+        "4U3Y",
+        "4U3Z",
+        "4U40",
+        "4U41",
+        "4U42",
+        "4U43",
+        "4U44",
+        "4U45",
+        "4ZK5",
+        "4ZP5",
+        "5DI1",
+        "5J95",
+        "5W5Q",
+        "8V5I"
+      ]
+    },
+    {
+      "accession": "Q5TCX8",
+      "entry_id": "uniprot:Q5TCX8",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "4UYA"
+      ]
+    },
+    {
+      "accession": "Q99759",
+      "entry_id": "uniprot:Q99759",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2C60",
+        "2JRH",
+        "2O2V",
+        "2PPH",
+        "4Y5O",
+        "4YL6"
+      ]
+    },
+    {
+      "accession": "Q16774",
+      "entry_id": "uniprot:Q16774",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "6NUI",
+        "8PTS",
+        "9J8L",
+        "9JAB",
+        "9JAC",
+        "9JAD",
+        "9JAE",
+        "9JAF",
+        "9JAG",
+        "9JAH",
+        "9JAI",
+        "9JAJ",
+        "9LO3",
+        "9LO6"
+      ]
+    },
+    {
+      "accession": "Q13233",
+      "entry_id": "uniprot:Q13233",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "6WHB"
+      ]
+    },
+    {
+      "accession": "P27707",
+      "entry_id": "uniprot:P27707",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1P5Z",
+        "1P60",
+        "1P61",
+        "1P62",
+        "2A2Z",
+        "2A30",
+        "2A7Q",
+        "2NO0",
+        "2NO1",
+        "2NO6",
+        "2NO7",
+        "2NO9",
+        "2NOA",
+        "2QRN",
+        "2QRO",
+        "2ZI3",
+        "2ZI4",
+        "2ZI5",
+        "2ZI6",
+        "2ZI7",
+        "2ZI9",
+        "2ZIA",
+        "3HP1",
+        "3IPX",
+        "3IPY",
+        "3KFX",
+        "3MJR",
+        "3QEJ",
+        "3QEN",
+        "3QEO",
+        "4JLJ",
+        "4JLK",
+        "4JLM",
+        "4JLN",
+        "4KCG",
+        "4L5B",
+        "4Q18",
+        "4Q19",
+        "4Q1A",
+        "4Q1B",
+        "4Q1C",
+        "4Q1D",
+        "4Q1E",
+        "4Q1F",
+        "5MQJ",
+        "5MQL",
+        "5MQT",
+        "7ZI1",
+        "7ZI2",
+        "7ZI3",
+        "7ZI5",
+        "7ZI6",
+        "7ZI7",
+        "7ZI8",
+        "7ZI9",
+        "7ZIA",
+        "7ZIB",
+        "8OOJ"
+      ]
+    },
+    {
+      "accession": "Q9Y2U5",
+      "entry_id": "uniprot:Q9Y2U5",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2CU1",
+        "2NPT",
+        "5EX0",
+        "5HQ8",
+        "6LDV",
+        "6LDW",
+        "6LDX",
+        "6LDY",
+        "9P6A"
+      ]
+    },
+    {
+      "accession": "Q02779",
+      "entry_id": "uniprot:Q02779",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2RF0"
+      ]
+    },
+    {
+      "accession": "O00764",
+      "entry_id": "uniprot:O00764",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "2AJP",
+        "2F7K",
+        "2YXT",
+        "2YXU",
+        "3FHX",
+        "3FHY",
+        "3KEU",
+        "4EN4",
+        "4EOH",
+        "8WR2"
+      ]
+    },
+    {
+      "accession": "P23919",
+      "entry_id": "uniprot:P23919",
+      "fingerprint_id": null,
+      "pdb_ids": [
+        "1E2D",
+        "1E2E",
+        "1E2F",
+        "1E2G",
+        "1E2Q",
+        "1E98",
+        "1E99",
+        "1E9A",
+        "1E9B",
+        "1E9C",
+        "1E9D",
+        "1E9E",
+        "1E9F",
+        "1NMX",
+        "1NMY",
+        "1NMZ",
+        "1NN0",
+        "1NN1",
+        "1NN3",
+        "1NN5",
+        "2XX3"
+      ]
+    }
+  ],
+  "counts": {
+    "accessions_queried": 500,
+    "already_had_pdb_ids": 1298,
+    "backfilled_pdb_rows_this_run": 187,
+    "deferred_over_limit": 5064,
+    "expansion_labels": 6862,
+    "no_accession": 0,
+    "rows_with_pdb_ids_after": 1485,
+    "uniprot_record_without_pdb_xref": 313,
+    "uniprot_records_returned": 500
+  },
+  "created_utc": "2026-06-14T16:03:33Z",
+  "fetch_metadata": {
+    "batches": [
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA0A1B0GTW7+OR+accession%3AA0AJU2+OR+accession%3AA0LK22+OR+accession%3AA0NLY7+OR+accession%3AA0R566+OR+accession%3AA0RHR0+OR+accession%3AA0ZSF2+OR+accession%3AA0ZSF3+OR+accession%3AA0ZSF5+OR+accession%3AA1SPZ7+OR+accession%3AA3RF67+OR+accession%3AA4D256+OR+accession%3AA4IM31+OR+accession%3AA4SSN5+OR+accession%3AA4WPB7+OR+accession%3AA4XKT2+OR+accession%3AA5F1X8+OR+accession%3AA5K3U9+OR+accession%3AA5PJT0+OR+accession%3AA6H730+OR+accession%3AA6NDG6+OR+accession%3AA6T7D6+OR+accession%3AA9KV78+OR+accession%3AB0CF78+OR+accession%3AB0JZV4%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AB1HQB9+OR+accession%3AB1JMC6+OR+accession%3AB1LIU8+OR+accession%3AB2I2C1+OR+accession%3AB2JCJ1+OR+accession%3AB2RQC6+OR+accession%3AB2VDJ8+OR+accession%3AB5BD11+OR+accession%3AB5FP54+OR+accession%3AB5QY02+OR+accession%3AB7I268+OR+accession%3AB7IUP8+OR+accession%3AB8D7M3+OR+accession%3AB8JBF9+OR+accession%3AB9JPK6+OR+accession%3AB9JQV9+OR+accession%3AB9M4S4+OR+accession%3AC0ZG41+OR+accession%3AC1D672+OR+accession%3AC5BNK6+OR+accession%3AC5D8P8+OR+accession%3AD4GP31+OR+accession%3AF3YDF1+OR+accession%3AO00408+OR+accession%3AO00743%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AO00764+OR+accession%3AO04904+OR+accession%3AO13968+OR+accession%3AO14494+OR+accession%3AO14522+OR+accession%3AO14733+OR+accession%3AO14830+OR+accession%3AO15056+OR+accession%3AO15355+OR+accession%3AO15357+OR+accession%3AO15466+OR+accession%3AO42869+OR+accession%3AO43252+OR+accession%3AO43283+OR+accession%3AO43293+OR+accession%3AO43318+OR+accession%3AO43506+OR+accession%3AO43688+OR+accession%3AO43847+OR+accession%3AO43909+OR+accession%3AO52538+OR+accession%3AO54838+OR+accession%3AO54857+OR+accession%3AO60512+OR+accession%3AO60658%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AO60729+OR+accession%3AO60762+OR+accession%3AO60909+OR+accession%3AO61722+OR+accession%3AO74388+OR+accession%3AO75356+OR+accession%3AO75365+OR+accession%3AO75688+OR+accession%3AO75951+OR+accession%3AO80885+OR+accession%3AO80983+OR+accession%3AO82656+OR+accession%3AO94544+OR+accession%3AO95340+OR+accession%3AO95382+OR+accession%3AO95450+OR+accession%3AO95544+OR+accession%3AO95672+OR+accession%3AO95677+OR+accession%3AO95819+OR+accession%3AP00568+OR+accession%3AP00919+OR+accession%3AP00920+OR+accession%3AP00921+OR+accession%3AP05990%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP07451+OR+accession%3AP07452+OR+accession%3AP07630+OR+accession%3AP07861+OR+accession%3AP08575+OR+accession%3AP09242+OR+accession%3AP09543+OR+accession%3AP09848+OR+accession%3AP09923+OR+accession%3AP0A6C8+OR+accession%3AP0A6F3+OR+accession%3AP0A7B1+OR+accession%3AP0C1S8+OR+accession%3AP0C1T0+OR+accession%3AP0C264+OR+accession%3AP0CJ63+OR+accession%3AP0DB77+OR+accession%3AP0DOV6+OR+accession%3AP0DPD6+OR+accession%3AP0DPD8+OR+accession%3AP10586+OR+accession%3AP11071+OR+accession%3AP11117+OR+accession%3AP11217+OR+accession%3AP11491%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP12820+OR+accession%3AP14778+OR+accession%3AP15309+OR+accession%3AP16015+OR+accession%3AP16870+OR+accession%3AP17405+OR+accession%3AP18433+OR+accession%3AP20485+OR+accession%3AP20650+OR+accession%3AP21829+OR+accession%3AP22413+OR+accession%3AP22748+OR+accession%3AP23276+OR+accession%3AP23467+OR+accession%3AP23468+OR+accession%3AP23469+OR+accession%3AP23470+OR+accession%3AP23471+OR+accession%3AP23492+OR+accession%3AP23743+OR+accession%3AP23919+OR+accession%3AP24155+OR+accession%3AP24666+OR+accession%3AP24822+OR+accession%3AP24823%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP24941+OR+accession%3AP25894+OR+accession%3AP25995+OR+accession%3AP26045+OR+accession%3AP26572+OR+accession%3AP27139+OR+accession%3AP27144+OR+accession%3AP27695+OR+accession%3AP27707+OR+accession%3AP27815+OR+accession%3AP27848+OR+accession%3AP28330+OR+accession%3AP28562+OR+accession%3AP28563+OR+accession%3AP29074+OR+accession%3AP30085+OR+accession%3AP30305+OR+accession%3AP30306+OR+accession%3AP30613+OR+accession%3AP31040+OR+accession%3AP31429+OR+accession%3AP31430+OR+accession%3AP32019+OR+accession%3AP32375+OR+accession%3AP34949%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP35217+OR+accession%3AP35236+OR+accession%3AP35575+OR+accession%3AP35913+OR+accession%3AP36873+OR+accession%3AP37287+OR+accession%3AP37476+OR+accession%3AP40479+OR+accession%3AP41240+OR+accession%3AP42679+OR+accession%3AP42681+OR+accession%3AP42685+OR+accession%3AP43166+OR+accession%3AP43378+OR+accession%3AP45148+OR+accession%3AP45985+OR+accession%3AP46734+OR+accession%3AP47137+OR+accession%3AP47820+OR+accession%3AP48283+OR+accession%3AP48454+OR+accession%3AP48964+OR+accession%3AP48965+OR+accession%3AP48967+OR+accession%3AP49443%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP49593+OR+accession%3AP49619+OR+accession%3AP50849+OR+accession%3AP51160+OR+accession%3AP51452+OR+accession%3AP51817+OR+accession%3AP52564+OR+accession%3AP52824+OR+accession%3AP52961+OR+accession%3AP54098+OR+accession%3AP54212+OR+accession%3AP54803+OR+accession%3AP54819+OR+accession%3AP54840+OR+accession%3AP55263+OR+accession%3AP56180+OR+accession%3AP58397+OR+accession%3AP60510+OR+accession%3AP62136+OR+accession%3AP62140+OR+accession%3AP62714+OR+accession%3AP78562+OR+accession%3AP80192+OR+accession%3AP83299+OR+accession%3AP85973%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AP94170+OR+accession%3AP9WPJ7+OR+accession%3AQ01415+OR+accession%3AQ01968+OR+accession%3AQ02742+OR+accession%3AQ02750+OR+accession%3AQ02779+OR+accession%3AQ047M6+OR+accession%3AQ05209+OR+accession%3AQ05788+OR+accession%3AQ05923+OR+accession%3AQ06124+OR+accession%3AQ06187+OR+accession%3AQ06417+OR+accession%3AQ06418+OR+accession%3AQ08157+OR+accession%3AQ08499+OR+accession%3AQ08881+OR+accession%3AQ09013+OR+accession%3AQ09328+OR+accession%3AQ09M02+OR+accession%3AQ09M05+OR+accession%3AQ0QLE9+OR+accession%3AQ10472+OR+accession%3AQ12851%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ12852+OR+accession%3AQ12913+OR+accession%3AQ12923+OR+accession%3AQ12974+OR+accession%3AQ13115+OR+accession%3AQ13163+OR+accession%3AQ13202+OR+accession%3AQ13233+OR+accession%3AQ13332+OR+accession%3AQ13370+OR+accession%3AQ13393+OR+accession%3AQ13443+OR+accession%3AQ13574+OR+accession%3AQ13613+OR+accession%3AQ13614+OR+accession%3AQ13615+OR+accession%3AQ13724+OR+accession%3AQ13882+OR+accession%3AQ13946+OR+accession%3AQ14410+OR+accession%3AQ14432+OR+accession%3AQ14680+OR+accession%3AQ14693+OR+accession%3AQ15256+OR+accession%3AQ15262%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ15678+OR+accession%3AQ15735+OR+accession%3AQ16512+OR+accession%3AQ16584+OR+accession%3AQ16667+OR+accession%3AQ16690+OR+accession%3AQ16774+OR+accession%3AQ16790+OR+accession%3AQ16816+OR+accession%3AQ16828+OR+accession%3AQ18677+OR+accession%3AQ19076+OR+accession%3AQ19775+OR+accession%3AQ1LZA1+OR+accession%3AQ1PDW5+OR+accession%3AQ21432+OR+accession%3AQ21773+OR+accession%3AQ23588+OR+accession%3AQ27504+OR+accession%3AQ27908+OR+accession%3AQ31HD6+OR+accession%3AQ39102+OR+accession%3AQ3UMZ3+OR+accession%3AQ4A724+OR+accession%3AQ4G0W2%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ4JDL3+OR+accession%3AQ53HV7+OR+accession%3AQ54SV3+OR+accession%3AQ55C91+OR+accession%3AQ55CY3+OR+accession%3AQ56UN5+OR+accession%3AQ58CX9+OR+accession%3AQ58DD0+OR+accession%3AQ59H18+OR+accession%3AQ5AJ71+OR+accession%3AQ5EGZ1+OR+accession%3AQ5S1S4+OR+accession%3AQ5SGD2+OR+accession%3AQ5TCX8+OR+accession%3AQ5U5Z8+OR+accession%3AQ5VU57+OR+accession%3AQ5VZY2+OR+accession%3AQ64512+OR+accession%3AQ64516+OR+accession%3AQ66K79+OR+accession%3AQ68FP2+OR+accession%3AQ68FS4+OR+accession%3AQ69ZQ1+OR+accession%3AQ6ICG6+OR+accession%3AQ6LPI7%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ6NN85+OR+accession%3AQ6NPM8+OR+accession%3AQ6NSR3+OR+accession%3AQ6P5Z2+OR+accession%3AQ6UWV6+OR+accession%3AQ6XPS3+OR+accession%3AQ6ZN16+OR+accession%3AQ6ZRI6+OR+accession%3AQ6ZUJ4+OR+accession%3AQ6ZUT1+OR+accession%3AQ6ZVD8+OR+accession%3AQ76I76+OR+accession%3AQ7D3U0+OR+accession%3AQ7N291+OR+accession%3AQ7SXK5+OR+accession%3AQ7TTT8+OR+accession%3AQ7V2C7+OR+accession%3AQ7VIJ1+OR+accession%3AQ7Z2K6+OR+accession%3AQ7Z695+OR+accession%3AQ84UV8+OR+accession%3AQ865C0+OR+accession%3AQ86T03+OR+accession%3AQ8BHN0+OR+accession%3AQ8BL86%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ8CGA0+OR+accession%3AQ8CI85+OR+accession%3AQ8D3T9+OR+accession%3AQ8HY33+OR+accession%3AQ8IL11+OR+accession%3AQ8IUC8+OR+accession%3AQ8IVH8+OR+accession%3AQ8IXW5+OR+accession%3AQ8IY26+OR+accession%3AQ8IZL9+OR+accession%3AQ8K337+OR+accession%3AQ8LAC4+OR+accession%3AQ8N3J5+OR+accession%3AQ8N4C8+OR+accession%3AQ8N4L2+OR+accession%3AQ8N4T0+OR+accession%3AQ8N5S9+OR+accession%3AQ8N8K9+OR+accession%3AQ8N9M1+OR+accession%3AQ8NCE2+OR+accession%3AQ8NCW6+OR+accession%3AQ8NEB5+OR+accession%3AQ8NI37+OR+accession%3AQ8R2H9+OR+accession%3AQ8TB03%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ8TBE9+OR+accession%3AQ8TCT0+OR+accession%3AQ8TCT1+OR+accession%3AQ8TE57+OR+accession%3AQ8TE58+OR+accession%3AQ8TE59+OR+accession%3AQ8TE60+OR+accession%3AQ8TE77+OR+accession%3AQ8U2I1+OR+accession%3AQ8U8Z6+OR+accession%3AQ8VPD5+OR+accession%3AQ8W585+OR+accession%3AQ8WTR2+OR+accession%3AQ8WVY7+OR+accession%3AQ8WY54+OR+accession%3AQ8WYL5+OR+accession%3AQ8YYI3+OR+accession%3AQ8ZJV7+OR+accession%3AQ92051+OR+accession%3AQ92185+OR+accession%3AQ92539+OR+accession%3AQ92729+OR+accession%3AQ92918+OR+accession%3AQ93096+OR+accession%3AQ93243%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ94AP0+OR+accession%3AQ96DE0+OR+accession%3AQ96E52+OR+accession%3AQ96EF0+OR+accession%3AQ96GX8+OR+accession%3AQ96KN2+OR+accession%3AQ96MI9+OR+accession%3AQ96PE3+OR+accession%3AQ96QP1+OR+accession%3AQ96RR4+OR+accession%3AQ96T60+OR+accession%3AQ96TA2+OR+accession%3AQ99502+OR+accession%3AQ99558+OR+accession%3AQ99683+OR+accession%3AQ99759+OR+accession%3AQ99797+OR+accession%3AQ9BQK8+OR+accession%3AQ9BRR3+OR+accession%3AQ9BUB5+OR+accession%3AQ9BUM1+OR+accession%3AQ9BV47+OR+accession%3AQ9BY84+OR+accession%3AQ9BY89+OR+accession%3AQ9D0T2%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ9D1A2+OR+accession%3AQ9D700+OR+accession%3AQ9ERQ8+OR+accession%3AQ9FGM0+OR+accession%3AQ9GZU7+OR+accession%3AQ9H008+OR+accession%3AQ9H013+OR+accession%3AQ9H093+OR+accession%3AQ9H0C8+OR+accession%3AQ9H0K1+OR+accession%3AQ9H1R2+OR+accession%3AQ9H425+OR+accession%3AQ9H6X5+OR+accession%3AQ9H972+OR+accession%3AQ9HAU8+OR+accession%3AQ9HBH9+OR+accession%3AQ9HCC8+OR+accession%3AQ9HD43+OR+accession%3AQ9JLI3+OR+accession%3AQ9K303+OR+accession%3AQ9KJA8+OR+accession%3AQ9KJA9+OR+accession%3AQ9KJB0+OR+accession%3AQ9L8R8+OR+accession%3AQ9LXR9%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ9MZ30+OR+accession%3AQ9NP56+OR+accession%3AQ9NP73+OR+accession%3AQ9NQR9+OR+accession%3AQ9NRR6+OR+accession%3AQ9NX62+OR+accession%3AQ9NXE4+OR+accession%3AQ9NY59+OR+accession%3AQ9NYA4+OR+accession%3AQ9NYL2+OR+accession%3AQ9P0J1+OR+accession%3AQ9P2N4+OR+accession%3AQ9P6L9+OR+accession%3AQ9P903+OR+accession%3AQ9QZ67+OR+accession%3AQ9QZA0+OR+accession%3AQ9SJM7+OR+accession%3AQ9SR62+OR+accession%3AQ9SUB4+OR+accession%3AQ9UII6+OR+accession%3AQ9UIJ7+OR+accession%3AQ9UJ70+OR+accession%3AQ9UKF2+OR+accession%3AQ9UKJ8+OR+accession%3AQ9UKP4%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      },
+      {
+        "record_count": 25,
+        "requested_accession_count": 25,
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AQ9UKP5+OR+accession%3AQ9UKQ2+OR+accession%3AQ9UKU6+OR+accession%3AQ9ULX7+OR+accession%3AQ9UMZ3+OR+accession%3AQ9UNH5+OR+accession%3AQ9UP79+OR+accession%3AQ9UQ49+OR+accession%3AQ9USP9+OR+accession%3AQ9UT00+OR+accession%3AQ9VJN9+OR+accession%3AQ9VV72+OR+accession%3AQ9W5D0+OR+accession%3AQ9WTP7+OR+accession%3AQ9X482+OR+accession%3AQ9Y216+OR+accession%3AQ9Y217+OR+accession%3AQ9Y223+OR+accession%3AQ9Y233+OR+accession%3AQ9Y259+OR+accession%3AQ9Y2U5+OR+accession%3AQ9Y4K4+OR+accession%3AQ9Y5B0+OR+accession%3AQ9Y6R4+OR+accession%3AQ9Y6T7%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Cec%2Cxref_pdb%2Cxref_alphafolddb&format=tsv&size=25"
+      }
+    ],
+    "record_count": 500,
+    "requested_accession_count": 500,
+    "source": "uniprot",
+    "url": "https://rest.uniprot.org/uniprotkb/search"
+  },
+  "guardrails": {
+    "existing_pdb_ids_preserved": true,
+    "frozen_current702_benchmark_preserved": true,
+    "no_pdb_ids_fabricated_when_uniprot_lacks_xref": true,
+    "pdb_ids_are_provenance_not_predictive_features": true,
+    "predictive_evidence_unchanged": true,
+    "row_count_unchanged": true,
+    "writes_expansion_registry_only": true
+  },
+  "next_action": "Review counts, then re-run with --apply to write only the external registry. Follow with holo structure promotion and bronze-silver promotion preview.",
+  "schema_version": "label_pdb_id_backfill.v1",
+  "status": "non_destructive_preview_pending_explicit_registry_write",
+  "uniprot_without_pdb_xref_examples": [
+    {
+      "accession": "Q96TA2",
+      "entry_id": "uniprot:Q96TA2",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P0C1T0",
+      "entry_id": "uniprot:P0C1T0",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P24155",
+      "entry_id": "uniprot:P24155",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q21432",
+      "entry_id": "uniprot:Q21432",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q93243",
+      "entry_id": "uniprot:Q93243",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "F3YDF1",
+      "entry_id": "uniprot:F3YDF1",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q39102",
+      "entry_id": "uniprot:Q39102",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O80983",
+      "entry_id": "uniprot:O80983",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8W585",
+      "entry_id": "uniprot:Q8W585",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q1PDW5",
+      "entry_id": "uniprot:Q1PDW5",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9FGM0",
+      "entry_id": "uniprot:Q9FGM0",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P37476",
+      "entry_id": "uniprot:P37476",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O95672",
+      "entry_id": "uniprot:O95672",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q99797",
+      "entry_id": "uniprot:Q99797",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9JLI3",
+      "entry_id": "uniprot:Q9JLI3",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "A0A1B0GTW7",
+      "entry_id": "uniprot:A0A1B0GTW7",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P16870",
+      "entry_id": "uniprot:P16870",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P58397",
+      "entry_id": "uniprot:P58397",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P78562",
+      "entry_id": "uniprot:P78562",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8TE57",
+      "entry_id": "uniprot:Q8TE57",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8TE60",
+      "entry_id": "uniprot:Q8TE60",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UKJ8",
+      "entry_id": "uniprot:Q9UKJ8",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UKP4",
+      "entry_id": "uniprot:Q9UKP4",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UKP5",
+      "entry_id": "uniprot:Q9UKP5",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UKQ2",
+      "entry_id": "uniprot:Q9UKQ2",
+      "fingerprint_id": "metal_dependent_hydrolase"
+    }
+  ],
+  "what": "backfill missing evidence.structure_provenance.pdb_ids from curated UniProt xref_pdb cross-references; PDB IDs are structure provenance for holo confirmation and are never predictive features"
+}

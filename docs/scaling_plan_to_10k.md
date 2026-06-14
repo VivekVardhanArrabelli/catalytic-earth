@@ -13,6 +13,36 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: silver geometry blocker audited, PDB-ID pool scaled, next growth
+lane refreshed.** Treat this as the newest operational state. Registry file-size safety remains
+green after the new writes: the external registry is still a sharded manifest (~1.2 KB) plus four
+shards all below 18 MB. External labels remain **6862** = positive bronze **5638** + OOS bronze
+**1224**; combined label surface **7564**; combined seed-fingerprint surface **5868**; remaining
+seed gap **4132**; frozen current702 sha remains `5eec9bef...`.
+
+PDB-ID backfill was advanced in bounded chunks. Rows with `evidence.structure_provenance.pdb_ids`
+moved **1298 -> 2020** (+722 this run), with no row-count change and no predictive-evidence change.
+The final 3000-row PDB probe backfilled **0** and mostly rechecked no-xref rows, so do not repeat
+large PDB-ID chunks without improving the no-xref skip/recheck policy or changing the source.
+
+The new silver geometry audit
+`artifacts/v3_silver_geometry_confirmation_audit_current702_20260614.json` found **0/260** runnable
+silver-ready rows and **0** silver flips. All 260 silver-ready rows lack explicit PDB chain/residue
+mappings; 259 also lack a local holo coordinate file; 20 have insufficient exact active-site
+residue evidence. This is now the concrete blocker for silver tier flips. UniProt sequence
+positions are not valid PDB residue mappings; do not promote annotation-only or holo-only rows to
+silver. Next silver action is a SIFTS/PDB residue-mapping + local holo-coordinate materialization
+lane, then rerun the audit and only then run/apply the geometry gate.
+
+Fresh non-mutating planning artifacts after this state:
+`artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_pdb_backfill.json` recommends
+building `had_like_phosphatase` first (projected clean admits **150**; no existing lane has >=150
+cap room), `artifacts/v3_breadth_feasibility_scout_current702_20260614_post_pdb_backfill.json`
+projects reviewed Swiss-Prot clean-only positive bronze to **8509** (gap **1491**), and
+`artifacts/v3_evidence_handle_expansion_current702_20260614_post_pdb_backfill.json` reports 4/6
+handle-blocked families unlocked by better non-EC handles with reachable positive-bronze uplift
+**741**. The external-surface eval split design artifact is design-only; no benchmark was run.
+
 **2026-06-14 automation update: registry sharded, full suite green, bounded PDB-ID backfill
 applied.** Treat this as the newest operational state. The external registry file-size blocker is
 cleared: `data/registries/external_bronze_labels.json` is now a sharded-registry manifest

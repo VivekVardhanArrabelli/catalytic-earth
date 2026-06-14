@@ -1,0 +1,4862 @@
+{
+  "artifact_id": "v3_silver_geometry_confirmation_audit_current702",
+  "blocked_examples": [
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9861,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:A0A4S8MAF3",
+      "exact_active_site_positions": [
+        94,
+        97,
+        233,
+        237,
+        241,
+        322,
+        323
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "8H72",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "8H72"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9376,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:A0A5S9I252",
+      "exact_active_site_positions": [
+        128,
+        276,
+        280,
+        366,
+        367
+      ],
+      "exact_active_site_residue_count": 5,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "7W5F",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "7W5F",
+        "7W5G",
+        "7W5H",
+        "7W5I",
+        "7W5J"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9529,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:A0A9J9HGY6",
+      "exact_active_site_positions": [
+        44,
+        69,
+        83,
+        145,
+        170,
+        171,
+        210
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "6R62",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "6R62",
+        "7NNK",
+        "7NR1",
+        "7NUJ",
+        "7O5I",
+        "7O5R",
+        "7O5V",
+        "7O5W",
+        "7O87",
+        "7O9R",
+        "7OBU",
+        "8ADQ"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9824,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:A4Q9E8",
+      "exact_active_site_positions": [
+        174,
+        180,
+        241,
+        265,
+        266,
+        283,
+        346,
+        359,
+        361,
+        362,
+        377
+      ],
+      "exact_active_site_residue_count": 11,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "atp_amide_ligase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "6VZQ",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "6VZQ",
+        "6VZR",
+        "6VZS",
+        "6VZT",
+        "6VZU",
+        "6VZV",
+        "6VZW",
+        "8T42",
+        "8U3Z"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9946,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:A6T923",
+      "exact_active_site_positions": [
+        11,
+        43,
+        125,
+        178,
+        204,
+        285
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3RP6",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3RP6",
+        "3RP7",
+        "3RP8"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.937,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:A7NH01",
+      "exact_active_site_positions": [
+        78,
+        81,
+        82,
+        85,
+        156,
+        175,
+        179,
+        221,
+        225,
+        228,
+        229
+      ],
+      "exact_active_site_residue_count": 11,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "9HQD",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "9HQD",
+        "9HQI",
+        "9HQM",
+        "9HQZ",
+        "9HR0",
+        "9HR3"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9376,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:B5GMG2",
+      "exact_active_site_positions": [
+        81,
+        174,
+        220,
+        224,
+        227,
+        228
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "5NX6",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "5NX6",
+        "5NX7"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9855,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:B5HDJ6",
+      "exact_active_site_positions": [
+        55,
+        79,
+        82,
+        83,
+        87,
+        159,
+        178,
+        182,
+        224,
+        228,
+        231,
+        232
+      ],
+      "exact_active_site_residue_count": 12,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4OKM",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4OKM",
+        "4OKZ"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9945,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:B6BQB2",
+      "exact_active_site_positions": [
+        12,
+        37,
+        39,
+        45,
+        46,
+        70,
+        72,
+        125,
+        170,
+        202,
+        203,
+        205,
+        226,
+        227,
+        288,
+        315,
+        318,
+        409
+      ],
+      "exact_active_site_residue_count": 18,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "7D4K",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "7D4K",
+        "7D4M",
+        "7D4N"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9588,
+      "cofactor_comp_ids_present": [
+        "FMN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:C1I202",
+      "exact_active_site_positions": [
+        13,
+        140
+      ],
+      "exact_active_site_residue_count": 2,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4LAF",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4LA4",
+        "4LAF"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9822,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:D2Z030",
+      "exact_active_site_positions": [
+        92,
+        137,
+        144,
+        175,
+        176,
+        178,
+        220,
+        254,
+        269,
+        271
+      ],
+      "exact_active_site_residue_count": 10,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "atp_amide_ligase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "6JIL",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "6JIL"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9946,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:E9QYP0",
+      "exact_active_site_positions": [
+        102,
+        107,
+        168,
+        279,
+        323,
+        469
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4B63",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4B63",
+        "4B64",
+        "4B65",
+        "4B66",
+        "4B67",
+        "4B68",
+        "4B69",
+        "4NZH",
+        "5CKU",
+        "6X0H",
+        "6X0I",
+        "6X0J",
+        "6X0K",
+        "7JVK",
+        "7JVL"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9928,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:G2IQQ5",
+      "exact_active_site_positions": [
+        8,
+        10,
+        178,
+        194,
+        223,
+        284,
+        290
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "6DWV",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "6DWV",
+        "6DXQ",
+        "6DXS"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9375,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:I1S104",
+      "exact_active_site_positions": [
+        112,
+        241,
+        245,
+        249
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "8H4P",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "8H4P"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9823,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:I6Y0R5",
+      "exact_active_site_positions": [
+        76,
+        98,
+        174,
+        201,
+        203,
+        301,
+        338,
+        384
+      ],
+      "exact_active_site_residue_count": 8,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "atp_amide_ligase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2VOS",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2VOR",
+        "2VOS"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9703,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O00167",
+      "exact_active_site_positions": [
+        274,
+        276,
+        502
+      ],
+      "exact_active_site_residue_count": 3,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3GEB",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3GEB",
+        "3HB0",
+        "3HB1",
+        "4EGC",
+        "5ZMA",
+        "7F8G",
+        "7F8H"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9709,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O00757",
+      "exact_active_site_positions": [
+        18,
+        33,
+        69,
+        98,
+        119,
+        121,
+        122,
+        141,
+        216,
+        219,
+        265,
+        275,
+        281
+      ],
+      "exact_active_site_residue_count": 13,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4HE0",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3IFA",
+        "3IFC",
+        "4HE0",
+        "4HE1",
+        "4HE2",
+        "5ET5",
+        "5ET6",
+        "5ET7",
+        "5ET8",
+        "5K54",
+        "5K55",
+        "5K56",
+        "5L0A",
+        "5Q0C"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.971,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O04719",
+      "exact_active_site_positions": [
+        165,
+        251,
+        252,
+        290,
+        337,
+        402
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3NMV",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3NMV",
+        "3UJK",
+        "3UJL"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.97,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O14595",
+      "exact_active_site_positions": [
+        5,
+        107,
+        109,
+        163,
+        201,
+        218
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2Q5E",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2Q5E"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9946,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O15229",
+      "exact_active_site_positions": [
+        19,
+        57,
+        85,
+        99,
+        111,
+        136,
+        172,
+        304,
+        363,
+        398
+      ],
+      "exact_active_site_residue_count": 10,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "5X68",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "5X68"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9708,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O15297",
+      "exact_active_site_positions": [
+        40,
+        85,
+        105,
+        106,
+        314,
+        366
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "8T2J",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "8T2J"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9999,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O15648",
+      "exact_active_site_positions": [
+        107,
+        199,
+        200,
+        226,
+        229,
+        325
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3F5M",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2HIG",
+        "3CVL",
+        "3F5M",
+        "6QU3",
+        "6QU4",
+        "6QU5",
+        "6SY7"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9656,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O43353",
+      "exact_active_site_positions": [
+        47,
+        146,
+        149,
+        168,
+        174,
+        176,
+        178,
+        180,
+        181,
+        183,
+        189,
+        209,
+        363,
+        381,
+        393,
+        397,
+        410,
+        423,
+        474,
+        503,
+        527,
+        529,
+        531,
+        538,
+        539
+      ],
+      "exact_active_site_residue_count": 25,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "5AR3",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2N7Z",
+        "2N83",
+        "4C8B",
+        "5AR2",
+        "5AR3",
+        "5AR4",
+        "5AR5",
+        "5AR7",
+        "5AR8",
+        "5J79",
+        "5J7B",
+        "5NG0",
+        "5NG2",
+        "5NG3",
+        "5W5J",
+        "5W5O",
+        "5YRN",
+        "6ES0",
+        "6FU5",
+        "6GFJ",
+        "6GGS",
+        "6HMX",
+        "6RN8",
+        "6RNA",
+        "6S1F",
+        "6SZE",
+        "6SZJ",
+        "6UL8",
+        "7OBS",
+        "7OBT",
+        "8AZA",
+        "8X2O",
+        "9F3V"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9699,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O43426",
+      "exact_active_site_positions": [
+        543,
+        591,
+        668,
+        669,
+        689,
+        730,
+        732,
+        784,
+        798,
+        800,
+        820,
+        830,
+        1053,
+        1150,
+        1178,
+        1201,
+        1220,
+        1292,
+        1318,
+        1345,
+        1349,
+        1551,
+        1565
+      ],
+      "exact_active_site_residue_count": 23,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "7A0V",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1W80",
+        "2DNR",
+        "2VJ0",
+        "7A0V",
+        "7A17"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9662,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O43683",
+      "exact_active_site_positions": [
+        307,
+        314,
+        331,
+        375,
+        525,
+        563,
+        593,
+        596,
+        609,
+        655,
+        661,
+        668,
+        672,
+        821,
+        917
+      ],
+      "exact_active_site_residue_count": 15,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4QPM",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2LAH",
+        "4A1G",
+        "4QPM",
+        "4R8Q",
+        "5DMZ",
+        "6F7B",
+        "7B1F",
+        "7B1H",
+        "7B1J"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9969,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O57203",
+      "exact_active_site_positions": [
+        83,
+        113,
+        138,
+        141,
+        170,
+        173
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2J87",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2J87"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "insufficient_exact_active_site_residues",
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O64989",
+      "exact_active_site_positions": [
+        462
+      ],
+      "exact_active_site_residue_count": 1,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "6A15",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "6A15",
+        "6A16",
+        "6A17",
+        "6A18"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9328,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O66990",
+      "exact_active_site_positions": [
+        61,
+        63,
+        95,
+        153,
+        278,
+        305,
+        309
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1XRF",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1XRF",
+        "1XRT",
+        "3D6N",
+        "4BJH",
+        "6GDD",
+        "6GDE",
+        "6GDF"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9325,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O80452",
+      "exact_active_site_positions": [
+        134,
+        140,
+        203,
+        391,
+        393,
+        659,
+        662,
+        681,
+        736
+      ],
+      "exact_active_site_residue_count": 9,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2A3L",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2A3L"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9998,
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O81235",
+      "exact_active_site_positions": [
+        55,
+        103,
+        124,
+        192,
+        196
+      ],
+      "exact_active_site_residue_count": 5,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4C7U",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4C7U"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9928,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O85042",
+      "exact_active_site_positions": [
+        173,
+        175,
+        242,
+        253
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2FGY",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2FGY",
+        "7SMK",
+        "7SNV",
+        "9G4T"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9946,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O88867",
+      "exact_active_site_positions": [
+        19,
+        57,
+        85,
+        99,
+        111,
+        136,
+        172,
+        304,
+        363,
+        398
+      ],
+      "exact_active_site_residue_count": 10,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "6LKD",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "6LKD",
+        "6LKE"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9652,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O94768",
+      "exact_active_site_positions": [
+        62,
+        158
+      ],
+      "exact_active_site_residue_count": 2,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "6QF4",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3LM0",
+        "3LM5",
+        "6QF4",
+        "6Y6F",
+        "6Y6H",
+        "6ZJF",
+        "7AKG",
+        "7Q7C",
+        "7Q7D",
+        "7Q7E"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9297,
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O95461",
+      "exact_active_site_positions": [
+        242,
+        244,
+        563,
+        565
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "glycosyltransferase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "7UI6",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "7UI6",
+        "7UI7",
+        "7ZVJ",
+        "9E1T"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9708,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:O95861",
+      "exact_active_site_positions": [
+        2,
+        51,
+        74,
+        117,
+        119,
+        120,
+        122,
+        195,
+        198,
+        220,
+        224,
+        240,
+        244,
+        247
+      ],
+      "exact_active_site_residue_count": 14,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2WEF",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2WEF"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.995,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00178",
+      "exact_active_site_positions": [
+        128,
+        436
+      ],
+      "exact_active_site_residue_count": 2,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1PO5",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1PO5",
+        "1SUO",
+        "2BDM",
+        "2Q6N",
+        "3G5N",
+        "3G93",
+        "3KW4",
+        "3ME6",
+        "3MVR",
+        "3R1A",
+        "3R1B",
+        "3TK3",
+        "3TMZ",
+        "3UAS",
+        "4H1N",
+        "4JLT",
+        "4MGJ",
+        "5EM4",
+        "5IUT",
+        "5IUZ",
+        "6BWW"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9955,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00191",
+      "exact_active_site_positions": [
+        109,
+        232,
+        364,
+        425,
+        427
+      ],
+      "exact_active_site_residue_count": 5,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3QZ1",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3QZ1"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9288,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00326",
+      "exact_active_site_positions": [
+        2,
+        23,
+        47,
+        68,
+        98,
+        101,
+        104,
+        112,
+        175,
+        224,
+        229,
+        270,
+        370
+      ],
+      "exact_active_site_residue_count": 13,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1HT0",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1HT0",
+        "1U3W"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9288,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00328",
+      "exact_active_site_positions": [
+        2,
+        47,
+        68,
+        98,
+        101,
+        104,
+        112,
+        174,
+        223,
+        228,
+        369
+      ],
+      "exact_active_site_residue_count": 11,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1EE2",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1EE2"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9286,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00330",
+      "exact_active_site_positions": [
+        2,
+        44,
+        45,
+        46,
+        49,
+        67,
+        68,
+        98,
+        101,
+        104,
+        112,
+        154,
+        181,
+        182,
+        183,
+        202,
+        207,
+        213,
+        222,
+        223,
+        226,
+        234,
+        269,
+        271,
+        279,
+        287,
+        294,
+        296,
+        316,
+        319,
+        341
+      ],
+      "exact_active_site_residue_count": 31,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4W6Z",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4W6Z",
+        "5ENV",
+        "7KCB",
+        "7NTM"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9946,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00438",
+      "exact_active_site_positions": [
+        13,
+        32,
+        102,
+        201,
+        222,
+        286,
+        293,
+        385
+      ],
+      "exact_active_site_residue_count": 8,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1BF3",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1BF3",
+        "1BGJ",
+        "1BGN",
+        "1BKW",
+        "1CC4",
+        "1CC6",
+        "1CJ2",
+        "1CJ3",
+        "1CJ4",
+        "1PBB",
+        "1PBC",
+        "1PBD",
+        "1PBE",
+        "1PBF",
+        "1PDH",
+        "1PHH",
+        "2PHH"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9992,
+      "cofactor_comp_ids_present": [
+        "MN3"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00447",
+      "exact_active_site_positions": [
+        52,
+        107,
+        147,
+        149,
+        194,
+        198
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3BFR",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3BFR",
+        "3LSU",
+        "3RN4",
+        "4E4E",
+        "4F6E"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9999,
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00448",
+      "exact_active_site_positions": [
+        27,
+        82,
+        168,
+        172
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1D5N",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1D5N",
+        "1EN4",
+        "1EN5",
+        "1EN6",
+        "1I08",
+        "1I0H",
+        "1IX9",
+        "1IXB",
+        "1MMM",
+        "1VEW",
+        "1ZLZ",
+        "3K9S",
+        "3OT7"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9992,
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00449",
+      "exact_active_site_positions": [
+        27,
+        34,
+        70,
+        82,
+        164,
+        168
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "6PRO",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "6PRO"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 1.0,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00512",
+      "exact_active_site_positions": [
+        11,
+        59,
+        103,
+        127,
+        154,
+        162,
+        211,
+        222,
+        243
+      ],
+      "exact_active_site_residue_count": 9,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4PFK",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1MTO",
+        "3PFK",
+        "3U39",
+        "4I36",
+        "4I4I",
+        "4I7E",
+        "4PFK",
+        "6PFK"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9371,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00519",
+      "exact_active_site_positions": [
+        50,
+        70,
+        115,
+        128,
+        139,
+        172,
+        185,
+        215,
+        226,
+        229,
+        253,
+        257,
+        271,
+        363,
+        393,
+        413,
+        446,
+        559,
+        569,
+        618,
+        619,
+        620,
+        659,
+        683,
+        711,
+        718,
+        735,
+        751,
+        781,
+        814,
+        823,
+        844,
+        852,
+        855,
+        917,
+        977
+      ],
+      "exact_active_site_residue_count": 36,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2G1T",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1AB2",
+        "1AWO",
+        "1BBZ",
+        "1JU5",
+        "1OPL",
+        "1ZZP",
+        "2ABL",
+        "2E2B",
+        "2F4J",
+        "2FO0",
+        "2G1T",
+        "2G2F",
+        "2G2H",
+        "2G2I",
+        "2GQG",
+        "2HIW",
+        "2HYY",
+        "2HZ0",
+        "2HZ4",
+        "2HZI",
+        "2O88",
+        "2V7A",
+        "3CS9",
+        "3EG0",
+        "3EG1",
+        "3EG2",
+        "3EG3",
+        "3EGU",
+        "3K2M",
+        "3PYY",
+        "3QRI",
+        "3QRJ",
+        "3QRK",
+        "3T04",
+        "3UE4",
+        "3UYO",
+        "4J9B",
+        "4J9C",
+        "4J9D",
+        "4J9E",
+        "4J9F",
+        "4J9G",
+        "4J9H",
+        "4J9I",
+        "4JJB",
+        "4JJC",
+        "4JJD",
+        "4TWP",
+        "4WA9",
+        "4XEY",
+        "4YC8",
+        "4ZOG",
+        "5DC0",
+        "5DC4",
+        "5DC9",
+        "5HU9",
+        "5MO4",
+        "5NP2",
+        "5OAZ",
+        "6AMV",
+        "6AMW",
+        "6BL8",
+        "6NPE",
+        "6NPU",
+        "6NPV",
+        "6XR6",
+        "6XR7",
+        "6XRG",
+        "7CC2",
+        "7DT2",
+        "7N9G",
+        "7PVQ",
+        "7PVR",
+        "7PVS",
+        "7PVV",
+        "7PW2",
+        "7W7X",
+        "7W7Y",
+        "8H7F",
+        "8H7H",
+        "8I7S",
+        "8I7T",
+        "8I7Z",
+        "8SSN",
+        "9KS5"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.932,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P00813",
+      "exact_active_site_positions": [
+        2,
+        15,
+        17,
+        19,
+        54,
+        58,
+        62,
+        184,
+        214,
+        217,
+        232,
+        238,
+        295,
+        296
+      ],
+      "exact_active_site_residue_count": 14,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "7RTG",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3IAR",
+        "7RTG"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9942,
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P04179",
+      "exact_active_site_positions": [
+        50,
+        58,
+        68,
+        75,
+        98,
+        114,
+        122,
+        130,
+        183,
+        187,
+        202
+      ],
+      "exact_active_site_residue_count": 11,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1AP5",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1AP5",
+        "1AP6",
+        "1EM1",
+        "1JA8",
+        "1LUV",
+        "1LUW",
+        "1MSD",
+        "1N0J",
+        "1N0N",
+        "1PL4",
+        "1PM9",
+        "1QNM",
+        "1SZX",
+        "1VAR",
+        "1XDC",
+        "1XIL",
+        "1ZSP",
+        "1ZTE",
+        "1ZUQ",
+        "2ADP",
+        "2ADQ",
+        "2GDS",
+        "2P4K",
+        "2QKA",
+        "2QKC",
+        "3C3S",
+        "3C3T",
+        "5GXO",
+        "5T30",
+        "5VF9",
+        "7KKS",
+        "7KKU",
+        "7KKW",
+        "7KLB",
+        "8SKS",
+        "8VHW",
+        "8VHY",
+        "8VJ0",
+        "8VJ4",
+        "8VJ5",
+        "8VJ8",
+        "9BVY",
+        "9BW2",
+        "9BWM",
+        "9BWQ",
+        "9BWR",
+        "9NR0",
+        "9NSJ"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P04798",
+      "exact_active_site_positions": [
+        224,
+        457
+      ],
+      "exact_active_site_residue_count": 2,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4I8V",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4I8V",
+        "6DWM",
+        "6DWN",
+        "6O5Y",
+        "6UDL",
+        "6UDM"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9606,
+      "cofactor_comp_ids_present": [
+        "FE2"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P05050",
+      "exact_active_site_positions": [
+        69,
+        131,
+        133,
+        135,
+        161,
+        187
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2FD8",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2FD8",
+        "2FDF",
+        "2FDG",
+        "2FDH",
+        "2FDI",
+        "2FDJ",
+        "2FDK",
+        "3BI3",
+        "3BIE",
+        "3BKZ",
+        "3I2O",
+        "3I3M",
+        "3I3Q",
+        "3I49",
+        "3KHB",
+        "3KHC",
+        "3O1M",
+        "3O1O",
+        "3O1P",
+        "3O1R",
+        "3O1S",
+        "3O1T",
+        "3O1U",
+        "3O1V",
+        "3T3Y",
+        "3T4H",
+        "3T4V",
+        "4JHT",
+        "4NID",
+        "4NIG",
+        "4NIH",
+        "4NII",
+        "4RFR",
+        "4ZHN",
+        "6Y0Q",
+        "6YPV",
+        "7NRO"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P05093",
+      "exact_active_site_positions": [
+        202,
+        442
+      ],
+      "exact_active_site_residue_count": 2,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3RUK",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3RUK",
+        "3SWZ",
+        "4NKV",
+        "4NKW",
+        "4NKX",
+        "4NKY",
+        "4NKZ",
+        "5IRQ",
+        "5IRV",
+        "5UYS",
+        "6CHI",
+        "6CIR",
+        "6CIZ",
+        "6WR0",
+        "6WR1",
+        "6WW0",
+        "8FDA"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P05177",
+      "exact_active_site_positions": [
+        226,
+        458
+      ],
+      "exact_active_site_residue_count": 2,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2HI4",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2HI4"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9591,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P05982",
+      "exact_active_site_positions": [
+        2,
+        12,
+        67,
+        82,
+        156,
+        201,
+        251
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1QRD",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1QRD"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9328,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P06204",
+      "exact_active_site_positions": [
+        17,
+        19,
+        45,
+        103,
+        140,
+        178,
+        223,
+        251,
+        255,
+        267
+      ],
+      "exact_active_site_residue_count": 10,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3JZE",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3JZE"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9289,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P06525",
+      "exact_active_site_positions": [
+        2,
+        47,
+        49,
+        50,
+        69,
+        70,
+        99,
+        102,
+        105,
+        113,
+        177,
+        206,
+        226,
+        229,
+        231,
+        272,
+        295,
+        297,
+        320,
+        322,
+        372
+      ],
+      "exact_active_site_residue_count": 21,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4RQT",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4RQT",
+        "4RQU",
+        "8CON"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9594,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P06715",
+      "exact_active_site_positions": [
+        14,
+        15,
+        34,
+        41,
+        42,
+        50,
+        99,
+        115,
+        175,
+        178,
+        181,
+        198,
+        204,
+        262,
+        303,
+        309,
+        311,
+        319,
+        342,
+        439
+      ],
+      "exact_active_site_residue_count": 20,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1GER",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1GER",
+        "1GES",
+        "1GET",
+        "1GEU"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9999,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P06999",
+      "exact_active_site_positions": [
+        14,
+        21,
+        23,
+        27,
+        29,
+        39,
+        43,
+        90,
+        92,
+        99,
+        100,
+        102,
+        105,
+        139,
+        185,
+        187,
+        189,
+        190,
+        224,
+        226,
+        229,
+        248,
+        250,
+        252,
+        255,
+        256,
+        280,
+        284,
+        286,
+        289,
+        291,
+        293
+      ],
+      "exact_active_site_residue_count": 32,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3CQD",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3CQD",
+        "3N1C",
+        "3UMO",
+        "3UMP",
+        "3UQD",
+        "3UQE"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9289,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P07327",
+      "exact_active_site_positions": [
+        2,
+        23,
+        47,
+        68,
+        98,
+        101,
+        104,
+        112,
+        175,
+        224,
+        229,
+        270,
+        370
+      ],
+      "exact_active_site_residue_count": 13,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1HSO",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1HSO",
+        "1U3T"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9813,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P07862",
+      "exact_active_site_positions": [
+        15,
+        150,
+        257,
+        270,
+        272,
+        281
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "atp_amide_ligase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1IOV",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1IOV",
+        "1IOW",
+        "2DLN",
+        "4C5A",
+        "4C5B",
+        "4C5C"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9824,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P08192",
+      "exact_active_site_positions": [
+        83,
+        146,
+        173,
+        188,
+        257,
+        289,
+        302
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "atp_amide_ligase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1W78",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1W78",
+        "1W7K"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9706,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P08559",
+      "exact_active_site_positions": [
+        63,
+        92,
+        118,
+        119,
+        157,
+        165,
+        167,
+        196,
+        197,
+        198,
+        225,
+        227,
+        232,
+        244,
+        277,
+        292,
+        293,
+        295,
+        300,
+        301,
+        313,
+        321,
+        336,
+        385
+      ],
+      "exact_active_site_residue_count": 24,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1NI4",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1NI4",
+        "2OZL",
+        "3EXE",
+        "3EXF",
+        "3EXG",
+        "3EXH",
+        "3EXI",
+        "6CER",
+        "6CFO"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9661,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P08581",
+      "exact_active_site_positions": [
+        966,
+        977,
+        990,
+        997,
+        1000,
+        1003,
+        1110,
+        1204,
+        1230,
+        1234,
+        1235,
+        1289,
+        1349,
+        1356,
+        1365
+      ],
+      "exact_active_site_residue_count": 15,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3DKC",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1FYR",
+        "1R0P",
+        "1R1W",
+        "1SHY",
+        "1SSL",
+        "2G15",
+        "2RFN",
+        "2RFS",
+        "2UZX",
+        "2UZY",
+        "2WD1",
+        "2WGJ",
+        "2WKM",
+        "3A4P",
+        "3BUX",
+        "3C1X",
+        "3CCN",
+        "3CD8",
+        "3CE3",
+        "3CTH",
+        "3CTJ",
+        "3DKC",
+        "3DKF",
+        "3DKG",
+        "3EFJ",
+        "3EFK",
+        "3F66",
+        "3F82",
+        "3I5N",
+        "3L8V",
+        "3LQ8",
+        "3Q6U",
+        "3Q6W",
+        "3QTI",
+        "3R7O",
+        "3RHK",
+        "3U6H",
+        "3U6I",
+        "3VW8",
+        "3ZBX",
+        "3ZC5",
+        "3ZCL",
+        "3ZXZ",
+        "3ZZE",
+        "4AOI",
+        "4AP7",
+        "4DEG",
+        "4DEH",
+        "4DEI",
+        "4EEV",
+        "4GG5",
+        "4GG7",
+        "4IWD",
+        "4K3J",
+        "4KNB",
+        "4MXC",
+        "4O3T",
+        "4O3U",
+        "4R1V",
+        "4R1Y",
+        "4XMO",
+        "4XYF",
+        "5DG5",
+        "5EOB",
+        "5EYC",
+        "5EYD",
+        "5HLW",
+        "5HNI",
+        "5HO6",
+        "5HOA",
+        "5HOR",
+        "5HTI",
+        "5LSP",
+        "5T3Q",
+        "5UAB",
+        "5UAD",
+        "5YA5",
+        "6GCU",
+        "6I04",
+        "6SD9",
+        "6SDC",
+        "6SDD",
+        "6SDE",
+        "6UBW",
+        "6WVZ",
+        "7B3Q",
+        "7B3T",
+        "7B3V",
+        "7B3W",
+        "7B3Z",
+        "7B40",
+        "7B41",
+        "7B42",
+        "7B43",
+        "7B44",
+        "7MO7",
+        "7MO8",
+        "7MO9",
+        "7MOA",
+        "7MOB",
+        "7V3R",
+        "7V3S",
+        "7Y4T",
+        "7Y4U",
+        "8AN8",
+        "8ANS",
+        "8AU3",
+        "8AU5",
+        "8AW1",
+        "8GVJ",
+        "8K78",
+        "8OUU",
+        "8OUV",
+        "8OV7",
+        "8OVZ",
+        "8OW3",
+        "8OWG",
+        "8VI1",
+        "9C1R",
+        "9IVB"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "insufficient_exact_active_site_residues",
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P08684",
+      "exact_active_site_positions": [
+        442
+      ],
+      "exact_active_site_residue_count": 1,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1TQN",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1TQN",
+        "1W0E",
+        "1W0F",
+        "1W0G",
+        "2J0D",
+        "2V0M",
+        "3NXU",
+        "3TJS",
+        "3UA1",
+        "4D6Z",
+        "4D75",
+        "4D78",
+        "4D7D",
+        "4I3Q",
+        "4I4G",
+        "4I4H",
+        "4K9T",
+        "4K9U",
+        "4K9V",
+        "4K9W",
+        "4K9X",
+        "4NY4",
+        "5A1P",
+        "5A1R",
+        "5G5J",
+        "5TE8",
+        "5VC0",
+        "5VCC",
+        "5VCD",
+        "5VCE",
+        "5VCG",
+        "6BCZ",
+        "6BD5",
+        "6BD6",
+        "6BD7",
+        "6BD8",
+        "6BDH",
+        "6BDI",
+        "6BDK",
+        "6BDM",
+        "6DA2",
+        "6DA3",
+        "6DA5",
+        "6DA8",
+        "6DAA",
+        "6DAB",
+        "6DAC",
+        "6DAG",
+        "6DAJ",
+        "6DAL",
+        "6MA6",
+        "6MA7",
+        "6MA8",
+        "6OO9",
+        "6OOA",
+        "6OOB",
+        "6UNE",
+        "6UNG",
+        "6UNH",
+        "6UNI",
+        "6UNJ",
+        "6UNK",
+        "6UNL",
+        "6UNM",
+        "7KS8",
+        "7KSA",
+        "7KVH",
+        "7KVI",
+        "7KVJ",
+        "7KVK",
+        "7KVM",
+        "7KVN",
+        "7KVO",
+        "7KVP",
+        "7KVQ",
+        "7KVS",
+        "7LXL",
+        "7UAY",
+        "7UAZ",
+        "7UF9",
+        "7UFA",
+        "7UFB",
+        "7UFC",
+        "7UFD",
+        "7UFE",
+        "7UFF",
+        "8DYC",
+        "8EWD",
+        "8EWE",
+        "8EWL",
+        "8EWM",
+        "8EWN",
+        "8EWP",
+        "8EWQ",
+        "8EWR",
+        "8EWS",
+        "8EXB",
+        "8SO1",
+        "8SO2",
+        "8SPD",
+        "9BBB",
+        "9BV5",
+        "9BV6",
+        "9BV7",
+        "9BV8",
+        "9BV9",
+        "9BVA",
+        "9BVB",
+        "9BVC",
+        "9COR",
+        "9COS",
+        "9COT",
+        "9COU",
+        "9COV",
+        "9COW",
+        "9COX",
+        "9COY",
+        "9GK1",
+        "9MS1"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9955,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P08686",
+      "exact_active_site_positions": [
+        92,
+        121,
+        234,
+        366,
+        427,
+        429
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4Y8W",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4Y8W",
+        "5VBU"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9712,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P09060",
+      "exact_active_site_positions": [
+        133,
+        134,
+        182,
+        213,
+        214,
+        215,
+        242,
+        244
+      ],
+      "exact_active_site_residue_count": 8,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1QS0",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1QS0",
+        "2BP7"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9999,
+      "cofactor_comp_ids_present": [
+        "FE"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P09223",
+      "exact_active_site_positions": [
+        27,
+        74,
+        157,
+        161
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1DT0",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1DT0",
+        "3SDP"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9708,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P09467",
+      "exact_active_site_positions": [
+        2,
+        69,
+        98,
+        119,
+        121,
+        122,
+        141,
+        151,
+        216,
+        245,
+        265,
+        281
+      ],
+      "exact_active_site_residue_count": 12,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2FHY",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1FTA",
+        "2FHY",
+        "2FIE",
+        "2FIX",
+        "2JJK",
+        "2VT5",
+        "2WBB",
+        "2WBD",
+        "2Y5K",
+        "2Y5L",
+        "3A29",
+        "3KBZ",
+        "3KC0",
+        "3KC1",
+        "4MJO",
+        "5LDZ",
+        "5PZQ",
+        "5PZR",
+        "5PZS",
+        "5PZT",
+        "5PZU",
+        "5PZV",
+        "5PZW",
+        "5PZX",
+        "5PZY",
+        "5PZZ",
+        "5Q00",
+        "5Q01",
+        "5Q02",
+        "5Q03",
+        "5Q04",
+        "5Q05",
+        "5Q06",
+        "5Q07",
+        "5Q08",
+        "5Q09",
+        "5Q0A",
+        "5Q0B",
+        "6LS5",
+        "6LW2",
+        "7C9Q",
+        "7CVH",
+        "7CVN",
+        "7CWE",
+        "7EZF",
+        "7EZP",
+        "7EZR",
+        "7WJV",
+        "7WVB",
+        "8XBK",
+        "9XV1"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9592,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P09624",
+      "exact_active_site_positions": [
+        74,
+        139,
+        234,
+        268,
+        305,
+        346,
+        478
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1JEH",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1JEH",
+        "1V59"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9998,
+      "cofactor_comp_ids_present": [
+        "FE"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P09738",
+      "exact_active_site_positions": [
+        27,
+        81,
+        163,
+        167
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4YIP",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4YIP"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9823,
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0A1P6",
+      "exact_active_site_positions": [
+        130,
+        132,
+        208,
+        213,
+        221,
+        266,
+        270,
+        274,
+        322,
+        328,
+        340,
+        345,
+        353,
+        358,
+        360,
+        398
+      ],
+      "exact_active_site_residue_count": 16,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "atp_amide_ligase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1F1H",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1F1H",
+        "1F52",
+        "1FPY",
+        "1LGR",
+        "2GLS",
+        "2LGS"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9591,
+      "cofactor_comp_ids_present": [
+        "FMN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0A8G6",
+      "exact_active_site_positions": [
+        12,
+        50,
+        51,
+        98,
+        133,
+        169
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2R96",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2R96",
+        "2R97",
+        "2RG1",
+        "3B6I",
+        "3B6J",
+        "3B6K",
+        "3B6M",
+        "3ZHO",
+        "4YQE",
+        "5F12"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9243,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0A8Y3",
+      "exact_active_site_positions": [
+        6,
+        141,
+        166
+      ],
+      "exact_active_site_residue_count": 3,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2B0C",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2B0C",
+        "8PNE",
+        "8PNO"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9706,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0A993",
+      "exact_active_site_positions": [
+        30,
+        89,
+        110,
+        112,
+        113,
+        187,
+        206,
+        222,
+        225,
+        239,
+        269,
+        275
+      ],
+      "exact_active_site_residue_count": 12,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2Q8M",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2GQ1",
+        "2OWZ",
+        "2OX3",
+        "2Q8M",
+        "2QVR"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9878,
+      "cofactor_comp_ids_present": [
+        "SF4"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0A9N4",
+      "exact_active_site_positions": [
+        30,
+        34,
+        37,
+        79,
+        203
+      ],
+      "exact_active_site_residue_count": 5,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "radical_sam_enzyme",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3C8F",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3C8F",
+        "3CB8",
+        "8FO0",
+        "8FOL",
+        "8FSI"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9592,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0A9P0",
+      "exact_active_site_positions": [
+        54,
+        117,
+        205,
+        220,
+        238,
+        313,
+        321,
+        445
+      ],
+      "exact_active_site_residue_count": 8,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4JDR",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4JDR",
+        "9H2I"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9709,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0AE22",
+      "exact_active_site_positions": [
+        69,
+        71,
+        177,
+        192
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1N9K",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1N8N",
+        "1N9K",
+        "1RMQ",
+        "1RMT",
+        "1RMY",
+        "2B82",
+        "2B8J",
+        "2G1A",
+        "2HEG",
+        "2HF7",
+        "3CZ4"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9241,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0AF24",
+      "exact_active_site_positions": [
+        9,
+        11,
+        55,
+        146,
+        176,
+        201
+      ],
+      "exact_active_site_residue_count": 6,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2C4N",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2C4N"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9704,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0AFG8",
+      "exact_active_site_positions": [
+        231,
+        261,
+        263,
+        716
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1L8A",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1L8A",
+        "1RP7",
+        "2G25",
+        "2G28",
+        "2G67",
+        "2IEA",
+        "2QTA",
+        "2QTC",
+        "9H1N"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9953,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P0DPQ7",
+      "exact_active_site_positions": [
+        88,
+        92,
+        241,
+        245,
+        298,
+        321,
+        351,
+        354,
+        356
+      ],
+      "exact_active_site_residue_count": 9,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "5NCB",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "5NCB",
+        "5OMR",
+        "5OMS",
+        "5OMU",
+        "6HQK",
+        "6HQL",
+        "6HQM",
+        "6HQN",
+        "6HQO",
+        "6HQP",
+        "6HQQ",
+        "6HQR",
+        "6HQS",
+        "6HQT",
+        "6YCH",
+        "6YCI",
+        "6YCJ",
+        "6YCK",
+        "6YCL",
+        "6YCM",
+        "6YCN",
+        "6YCO",
+        "6YCP",
+        "6YCT"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9956,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P10613",
+      "exact_active_site_positions": [
+        64,
+        118,
+        307,
+        377,
+        470
+      ],
+      "exact_active_site_residue_count": 5,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "5FSA",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "5FSA",
+        "5TZ1",
+        "5V5Z"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9944,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P10614",
+      "exact_active_site_positions": [
+        116,
+        126,
+        314,
+        353,
+        454,
+        458,
+        470
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4LXJ",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4LXJ",
+        "5EQB",
+        "7RY8",
+        "7RY9",
+        "7RYA",
+        "7RYB",
+        "7RYX",
+        "8DL4",
+        "8VK6"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9955,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P10632",
+      "exact_active_site_positions": [
+        100,
+        204,
+        241,
+        435
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1PQ2",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1PQ2",
+        "2NNH",
+        "2NNI",
+        "2NNJ",
+        "2VN0"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P10635",
+      "exact_active_site_positions": [
+        301,
+        443
+      ],
+      "exact_active_site_residue_count": 2,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2F9Q",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2F9Q",
+        "3QM4",
+        "3TBG",
+        "3TDA",
+        "4WNT",
+        "4WNU",
+        "4WNV",
+        "4WNW",
+        "4XRY",
+        "4XRZ",
+        "5TFT",
+        "5TFU",
+        "6CSB",
+        "6CSD"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P11509",
+      "exact_active_site_positions": [
+        107,
+        297,
+        439
+      ],
+      "exact_active_site_residue_count": 3,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1Z10",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1Z10",
+        "1Z11",
+        "2FDU",
+        "2FDV",
+        "2FDW",
+        "2FDY",
+        "3EBS",
+        "3T3Q",
+        "3T3R",
+        "4EJJ",
+        "4RUI"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P11511",
+      "exact_active_site_positions": [
+        309,
+        374,
+        437
+      ],
+      "exact_active_site_residue_count": 3,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3EQM",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3EQM",
+        "3S79",
+        "3S7S",
+        "4GL5",
+        "4GL7",
+        "4KQ8",
+        "5JKV",
+        "5JKW",
+        "5JL6",
+        "5JL7",
+        "5JL9"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9361,
+      "cofactor_comp_ids_present": [
+        "CA"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P11678",
+      "exact_active_site_positions": [
+        232,
+        233,
+        234,
+        238,
+        306,
+        308,
+        310,
+        312,
+        377,
+        380,
+        471,
+        474,
+        488,
+        562
+      ],
+      "exact_active_site_residue_count": 14,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "8OGI",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "8OGI"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "insufficient_exact_active_site_residues",
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9958,
+      "cofactor_comp_ids_present": [
+        "HEC"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P11712",
+      "exact_active_site_positions": [
+        435
+      ],
+      "exact_active_site_residue_count": 1,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1OG2",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1OG2",
+        "1OG5",
+        "1R9O",
+        "4NZ2",
+        "5A5I",
+        "5A5J",
+        "5K7K",
+        "5W0C",
+        "5X23",
+        "5X24",
+        "5XXI",
+        "6VLT",
+        "7RL2",
+        "8VX0",
+        "8VZ7"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9824,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P12425",
+      "exact_active_site_positions": [
+        62,
+        132,
+        134,
+        184,
+        189,
+        196,
+        241,
+        245,
+        249,
+        298,
+        304,
+        316,
+        321,
+        333,
+        335
+      ],
+      "exact_active_site_residue_count": 15,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "atp_amide_ligase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4LNF",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4LNF",
+        "4LNI",
+        "4LNK",
+        "4LNN",
+        "4LNO",
+        "4S0R"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.992,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P13716",
+      "exact_active_site_positions": [
+        122,
+        124,
+        131,
+        132,
+        199,
+        209,
+        215,
+        221,
+        223,
+        252,
+        279,
+        318
+      ],
+      "exact_active_site_residue_count": 12,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1E51",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1E51",
+        "1PV8",
+        "5HMS",
+        "5HNR"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9883,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P14141",
+      "exact_active_site_positions": [
+        2,
+        29,
+        43,
+        48,
+        50,
+        55,
+        73,
+        94,
+        96,
+        119,
+        127,
+        129,
+        182,
+        187,
+        216,
+        219
+      ],
+      "exact_active_site_residue_count": 16,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1FLJ",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1FLJ"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9592,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P14218",
+      "exact_active_site_positions": [
+        58,
+        122,
+        211,
+        245,
+        319,
+        327,
+        451
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1LPF",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1LPF"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9953,
+      "cofactor_comp_ids_present": [
+        "HEM"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P15128",
+      "exact_active_site_positions": [
+        105,
+        110,
+        129,
+        133,
+        310,
+        431,
+        446,
+        448
+      ],
+      "exact_active_site_residue_count": 8,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "5T6Q",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "5T6Q",
+        "6C93",
+        "6C94"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 1.0,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P15266",
+      "exact_active_site_positions": [
+        11,
+        59,
+        87,
+        93,
+        104,
+        114,
+        117
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "nucleoside_diphosphate_kinase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1NLK",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1NHK",
+        "1NLK",
+        "2NCK"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9301,
+      "cofactor_comp_ids_present": [
+        "MN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P15291",
+      "exact_active_site_positions": [
+        250,
+        310,
+        343,
+        355
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "glycosyltransferase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "2AE7",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2AE7",
+        "2AEC",
+        "2AES",
+        "2AGD",
+        "2AH9",
+        "2FY7",
+        "2FYA",
+        "2FYB",
+        "3EE5",
+        "4EE3",
+        "4EE4",
+        "4EE5",
+        "4EEA",
+        "4EEG",
+        "4EEM",
+        "4EEO",
+        "4L41",
+        "6FWT",
+        "6FWU"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9824,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P15925",
+      "exact_active_site_positions": [
+        73,
+        75,
+        82,
+        143,
+        170,
+        185,
+        264,
+        300,
+        417
+      ],
+      "exact_active_site_residue_count": 9,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "atp_amide_ligase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1FGS",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1FGS",
+        "1JBV",
+        "1JBW",
+        "2GC5",
+        "2GC6",
+        "2GCA",
+        "2GCB"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9242,
+      "cofactor_comp_ids_present": [
+        "FE",
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P16298",
+      "exact_active_site_positions": [
+        2,
+        99,
+        101,
+        127,
+        159,
+        160,
+        208,
+        290,
+        478
+      ],
+      "exact_active_site_residue_count": 9,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4OR9",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "4OR9",
+        "4ORA",
+        "4ORC"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9593,
+      "cofactor_comp_ids_present": [
+        "FMN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P16435",
+      "exact_active_site_positions": [
+        2,
+        63,
+        208,
+        298,
+        424,
+        478,
+        535,
+        638,
+        676
+      ],
+      "exact_active_site_residue_count": 9,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1B1C",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1B1C",
+        "3FJO",
+        "3QE2",
+        "3QFC",
+        "3QFR",
+        "3QFS",
+        "3QFT",
+        "5EMN",
+        "5FA6"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9665,
+      "cofactor_comp_ids_present": [
+        "MG"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P17612",
+      "exact_active_site_positions": [
+        3,
+        11,
+        49,
+        73,
+        140,
+        167,
+        196,
+        198,
+        331,
+        339
+      ],
+      "exact_active_site_residue_count": 10,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "4WB5",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "2GU8",
+        "3AGL",
+        "3AGM",
+        "3AMA",
+        "3AMB",
+        "3L9L",
+        "3L9M",
+        "3L9N",
+        "3MVJ",
+        "3NX8",
+        "3OOG",
+        "3OVV",
+        "3OWP",
+        "3OXT",
+        "3P0M",
+        "3POO",
+        "3VQH",
+        "4AE6",
+        "4AE9",
+        "4UJ1",
+        "4UJ2",
+        "4UJ9",
+        "4UJA",
+        "4UJB",
+        "4WB5",
+        "4WB6",
+        "4WB7",
+        "4WB8",
+        "5BX6",
+        "5BX7",
+        "5IZF",
+        "5IZJ",
+        "5J5X",
+        "5N23",
+        "5UZK",
+        "6BYR",
+        "6BYS",
+        "6C0U",
+        "6FRX",
+        "6NO7",
+        "6QJ7",
+        "6WJF",
+        "6WJG",
+        "7Y1G",
+        "8FE2",
+        "8FE5",
+        "8FEC",
+        "8X5L",
+        "9DC6",
+        "9DCD",
+        "9EDC",
+        "9EDD",
+        "9EDE"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9592,
+      "cofactor_comp_ids_present": [
+        "FAD"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P18925",
+      "exact_active_site_positions": [
+        58,
+        122,
+        211,
+        245,
+        319,
+        327,
+        451
+      ],
+      "exact_active_site_residue_count": 7,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "3LAD",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "3LAD"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    },
+    {
+      "blockers": [
+        "missing_explicit_pdb_residue_mapping",
+        "missing_local_holo_coordinate_file"
+      ],
+      "chemistry_cohesion": 0.9323,
+      "cofactor_comp_ids_present": [
+        "ZN"
+      ],
+      "decision": "blocked_before_geometry_confirmation",
+      "entry_id": "uniprot:P19079",
+      "exact_active_site_positions": [
+        53,
+        55,
+        86,
+        89
+      ],
+      "exact_active_site_residue_count": 4,
+      "explicit_structure_position_count": 0,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "geometry_confirmation_run": false,
+      "holo_pdb_id": "1JTK",
+      "local_coordinate_path": null,
+      "local_coordinate_path_exists": false,
+      "local_coordinate_path_recorded": false,
+      "pdb_ids": [
+        "1JTK",
+        "1UWZ",
+        "1UX0",
+        "1UX1"
+      ],
+      "promotion_preview_decision": "silver_ready_pending_geometry_run",
+      "recommended_next_action": "materialize a local holo coordinate and explicit PDB chain/residue mappings, then run the geometry confirmation gate",
+      "tier": "bronze",
+      "tier_changed": false
+    }
+  ],
+  "blocker_counts": {
+    "insufficient_exact_active_site_residues": 20,
+    "missing_explicit_pdb_residue_mapping": 260,
+    "missing_local_holo_coordinate_file": 259
+  },
+  "counts": {
+    "blocked_before_geometry_confirmation": 260,
+    "expansion_rows": 6862,
+    "ready_for_geometry_confirmation_run": 0,
+    "seed_rows": 5638,
+    "silver_flips_applied": 0,
+    "silver_ready_input_rows": 260
+  },
+  "created_utc": "2026-06-14T16:08:21Z",
+  "decision_counts": {
+    "blocked_before_geometry_confirmation": 260
+  },
+  "decision_counts_by_fingerprint": {
+    "askha_sugar_acetate_kinase": {
+      "blocked_before_geometry_confirmation": 1
+    },
+    "atp_amide_ligase": {
+      "blocked_before_geometry_confirmation": 12
+    },
+    "biotin_dependent_carboxylase": {
+      "blocked_before_geometry_confirmation": 3
+    },
+    "class_ii_metal_aldolase": {
+      "blocked_before_geometry_confirmation": 2
+    },
+    "cytochrome_p450_monooxygenase": {
+      "blocked_before_geometry_confirmation": 30
+    },
+    "deoxynucleoside_kinase": {
+      "blocked_before_geometry_confirmation": 1
+    },
+    "flavin_dehydrogenase_reductase": {
+      "blocked_before_geometry_confirmation": 33
+    },
+    "flavin_monooxygenase": {
+      "blocked_before_geometry_confirmation": 12
+    },
+    "glycoside_hydrolase": {
+      "blocked_before_geometry_confirmation": 3
+    },
+    "glycosyltransferase": {
+      "blocked_before_geometry_confirmation": 8
+    },
+    "heme_peroxidase_oxidase": {
+      "blocked_before_geometry_confirmation": 2
+    },
+    "manganese_iron_superoxide_dismutase": {
+      "blocked_before_geometry_confirmation": 14
+    },
+    "metallo_amidohydrolase_deaminase": {
+      "blocked_before_geometry_confirmation": 27
+    },
+    "metallophosphomonoesterase": {
+      "blocked_before_geometry_confirmation": 36
+    },
+    "nad_p_dehydrogenase": {
+      "blocked_before_geometry_confirmation": 13
+    },
+    "non_heme_iron_2og_dioxygenase": {
+      "blocked_before_geometry_confirmation": 8
+    },
+    "nucleoside_diphosphate_kinase": {
+      "blocked_before_geometry_confirmation": 1
+    },
+    "pfka_phosphofructokinase": {
+      "blocked_before_geometry_confirmation": 4
+    },
+    "plp_dependent_enzyme": {
+      "blocked_before_geometry_confirmation": 1
+    },
+    "protein_kinase_ser_thr_tyr": {
+      "blocked_before_geometry_confirmation": 19
+    },
+    "radical_sam_enzyme": {
+      "blocked_before_geometry_confirmation": 3
+    },
+    "terpene_cyclase_synthase": {
+      "blocked_before_geometry_confirmation": 8
+    },
+    "thiamine_diphosphate_enzyme": {
+      "blocked_before_geometry_confirmation": 6
+    },
+    "zinc_lyase_hydratase": {
+      "blocked_before_geometry_confirmation": 13
+    }
+  },
+  "guardrails": {
+    "annotation_only_silver_promotion": false,
+    "geometry_confirmation_run_or_faked": false,
+    "predictive_evidence_changed": false,
+    "registry_written": false,
+    "tier_changed": false
+  },
+  "next_action": "Backfill/materialize local holo PDB coordinates and explicit PDB residue mappings for the silver-ready rows, then run this audit again before any silver tier apply.",
+  "non_destructive": true,
+  "policy": {
+    "cohesion_threshold": 0.92,
+    "min_exact_active_site_residues": 2,
+    "requires_explicit_pdb_chain_residue_mapping": true,
+    "requires_local_holo_coordinate_file": true,
+    "requires_recorded_holo_pdb_confirmation": true,
+    "silver_ready_source": "bronze_silver_promotion_preview",
+    "silver_tier_change_requires_separate_geometry_confirmation_pass": true,
+    "uniprot_sequence_positions_are_not_treated_as_pdb_residue_mapping": true
+  },
+  "promotion_preview_decision_counts": {
+    "blocked_pending_structure": 2275,
+    "hold_low_chemistry_cohesion": 1759,
+    "review_chemistry_disagrees": 1344,
+    "silver_ready_pending_geometry_run": 260
+  },
+  "ready_rows": [],
+  "schema_version": "silver_geometry_confirmation_audit.v1",
+  "status": "blocked_no_rows_runnable",
+  "what": "Audit the silver_ready_pending_geometry_run queue for the remaining material required by the separate geometry confirmation gate. This does not run/fake geometry scoring and does not flip tiers."
+}
