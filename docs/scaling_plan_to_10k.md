@@ -13,6 +13,35 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-13/14 automation update: non-heme iron 2OG capped; copper post-prefix scout
+no-yield.** The latest run continued the documented non-heme 2OG window sequence from offset 140
+and applied six more bounded windows: `140:10` (+6), `150:10` (+5), `160:10` (+5), `170:10`
+(+3), `180:10` (+4), and `190:10` (+4). Net movement was **223 -> 250** (+27), exactly at the
+non-confusable cap **250**. The final window held one otherwise gate-admitted row at cap. Do not
+continue `non_heme_iron_2og_dioxygenase` under current cap policy.
+
+External bronze is now **6959**; combined label surface is **7661**. External-only split is
+**5735** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+**5965**, leaving **4035** to 10k by that surface convention. The strict counter ledger remains
+separate: **positive_bronze_count 5948**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**. Frozen current702 stayed
+byte-unchanged with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`;
+growth went only to `data/registries/external_bronze_labels.json`.
+
+Fresh audits: row guardrail audit over all **250** non-heme 2OG rows found **0** problems.
+Coverage audit reports **35** fingerprints, Gini **0.137**, holes `[]`, under-floor `[]`, only
+`metal_dependent_hydrolase` over-cap, and next-batch floor deficit **0**. Novelty replay over
+**6959** expansion rows reports decisions `{'admit': 6503, 'reject': 47, 'throttle': 409}` and
+would-not-readmit **456** (0.0655).
+
+Continuation work added fetch-only source-window controls to the copper oxidoreductase runner and
+proved the current two copper selectors are exhausted beyond the previously fetched prefix:
+`--max-records-per-lane 320 --record-offset-per-lane 240 --record-limit-per-lane 40` fetched
+**0** rows, with lane totals **153** laccase/oxidase rows and **69** amine oxidase rows.
+`copper_oxidoreductase` remains **140/250**, but do not replay the current copper lanes. Next work
+should scout alternate copper source handles with explicit non-EC mechanism corroborators, or pick
+a clean source-supply scout/spec for another under-cap family rather than padding capped lanes.
+
 **2026-06-13 automation update: non-heme iron 2OG windowed extension applied.** After all former
 floor lanes were closed and capped, the run used an existing under-cap, mechanism-first family lane
 instead of relaxing admission. It added source-fetch-only window controls to the non-heme 2OG

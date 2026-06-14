@@ -1,0 +1,38 @@
+{
+  "artifact_id": "v3_non_heme_iron_2og_capped_row_guardrail_audit_current702_20260613",
+  "created_utc": "2026-06-14T00:06:08Z",
+  "family": "non_heme_iron_2og_dioxygenase",
+  "registry_path": "data/registries/external_bronze_labels.json",
+  "curated_registry_path": "data/registries/curated_mechanism_labels.json",
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "counts": {
+    "family_rows_audited": 250,
+    "problem_count": 0,
+    "source_tier_counts": {
+      "source_tier_0": 250
+    },
+    "review_status_counts": {
+      "automation_curated": 250
+    },
+    "entry_namespace_counts": {
+      "uniprot": 250
+    },
+    "predictive_evidence_payload_counts": {
+      "[]": 250
+    },
+    "mechanism_axis_counts": {
+      "active_site_motif_or_residue_role": 247,
+      "cofactor_or_cosubstrate": 250,
+      "domain_or_family_profile": 244,
+      "rhea_reaction_or_participant_pattern": 247
+    }
+  },
+  "guardrails": {
+    "all_rows_bronze_automation_curated_uniprot": true,
+    "predictive_evidence_empty_for_all_rows": true,
+    "ec_never_counted_as_mechanism_corroborator": true,
+    "tier0_rows_have_non_ec_mechanism_axis": true,
+    "frozen_current702_not_written_by_audit": true
+  },
+  "problems": []
+}

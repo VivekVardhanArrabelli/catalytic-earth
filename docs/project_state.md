@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-13
+Last refreshed: 2026-06-14
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -26,6 +26,44 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NON-HEME IRON 2OG CAPPED; COPPER POST-PREFIX SCOUT NO-YIELD (2026-06-13/14 automation).**
+  The latest run continued the documented non-heme 2OG `140:10` slice and kept going through
+  bounded windows until the family hit its cap. Applied windows `140:10`, `150:10`, `160:10`,
+  `170:10`, `180:10`, and `190:10` added **27** gated source-tier-0 bronze rows and moved
+  `non_heme_iron_2og_dioxygenase` **223 -> 250**, exactly at the non-confusable cap **250**.
+  The final window had one gate-admitted row held by the cap guard. Do not continue this family
+  under current cap policy.
+
+  External bronze is now **6959**; combined label surface is **7661**. External-only split is
+  **5735** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+  **5965**, leaving **4035** to 10k by that surface convention. Strict counters remain separate:
+  **positive_bronze_count 5948**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+  **silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+  Guardrails held: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`; all new rows are bronze, automation-curated,
+  `uniprot:*`, `source_tier_0`, and have nested `predictive_evidence []`. EC/name/Rhea/keyword/
+  prose/feature handles remain excluded-context admission evidence only and EC is never counted.
+  Row audit `artifacts/v3_non_heme_iron_2og_capped_row_guardrail_audit_current702_20260613.json`
+  found **0** problems across **250** non-heme 2OG rows. Coverage audit reports **35**
+  fingerprints, Gini **0.137**, holes `[]`, under-floor `[]`, next-batch floor deficit **0**, and
+  only `metal_dependent_hydrolase` over-cap. Novelty replay over **6959** expansion rows reports
+  decisions `{'admit': 6503, 'reject': 47, 'throttle': 409}` and would-not-readmit **456**
+  (0.0655).
+
+  Continuation work added fetch-only copper row-window controls to
+  `scripts/source_copper_oxidoreductase_family.py` and
+  `src/catalytic_earth/copper_oxidoreductase_sourcing.py`. A non-destructive copper
+  post-prefix preview (`--max-records-per-lane 320 --record-offset-per-lane 240
+  --record-limit-per-lane 40`) fetched **0** rows: current copper lanes have only **153**
+  laccase/oxidase rows and **69** amine oxidase rows. `copper_oxidoreductase` remains **140/250**,
+  but the current two source selectors are exhausted beyond the already-fetched prefix.
+
+  Next action: do not continue capped non-heme 2OG. Do not replay the current copper lanes; scout
+  alternate copper source handles with explicit non-EC mechanism corroborators, or run a clean
+  source-supply scout/spec for another under-cap family such as manganese/iron SOD or zinc
+  hydratase before any apply.
 - **NON-HEME IRON 2OG WINDOWED EXTENSION APPLIED (2026-06-13 automation).**
   After the tier-2 floor run closed all under-floor lanes at their caps, the next useful path was a
   bounded under-cap family/source lane rather than more floor work. This run added fetch-window

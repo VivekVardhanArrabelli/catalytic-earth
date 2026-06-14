@@ -3,6 +3,62 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-13/14: NON-HEME IRON 2OG CAPPED; COPPER CURRENT LANES SOURCE-EXHAUSTED
+
+Decision: continue the documented `non_heme_iron_2og_dioxygenase` windowed path only while it
+remained under cap and mechanism-first gates admitted clean rows. EC/name/Rhea/keyword/prose/
+feature handles remained excluded-context admission evidence only; EC was never counted and
+`predictive_evidence` remained `[]`.
+
+Apply results:
+- window `140:10`: fetched **10**, mechanism **7**, applied **6**, throttled **1**, skipped **3**.
+- window `150:10`: fetched **10**, mechanism **6**, applied **5**, throttled **1**, skipped **4**.
+- window `160:10`: fetched **10**, mechanism **6**, applied **5**, throttled **1**, skipped **4**.
+- window `170:10`: fetched **10**, mechanism **6**, applied **3**, throttled **3**, skipped **4**.
+- window `180:10`: fetched **10**, mechanism **6**, applied **4**, held **1** no-corroboration
+  row, throttled **2**, skipped **3**.
+- window `190:10`: fetched **10**, mechanism **6**, gate-admitted **5**, applied **4**, held@cap
+  **1**, held **3** no-corroboration rows, skipped **1**.
+
+Counts after apply: external bronze **6932 -> 6959**; combined label surface **7634 -> 7661**.
+`non_heme_iron_2og_dioxygenase` moved **223 -> 250**, exactly at cap **250**. External-only split
+is **5735** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+**5965**, leaving **4035** to 10k by that surface convention. Strict counters remain separate:
+**positive_bronze_count 5948**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+Guardrails held: all added rows are bronze, automation-curated, `uniprot:*`, `source_tier_0`, with
+nested `predictive_evidence []`; dedup and novelty ran against frozen current702 and external
+bronze; frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; row audit found **0**
+problems across all **250** non-heme 2OG rows. Coverage audit reports **35** fingerprints, Gini
+**0.137**, holes `[]`, under-floor `[]`, over-cap `['metal_dependent_hydrolase']`, and next-batch
+floor deficit **0**. Novelty replay reports **6959** expansion rows, decisions
+`{'admit': 6503, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0655).
+
+Follow-on decision: add only source-fetch window controls to the copper oxidoreductase runner, then
+test whether the current lanes have post-prefix supply. The controls do not alter admission,
+trust-tier evaluation, novelty, caps, or predictive evidence. The post-prefix preview
+`--max-records-per-lane 320 --record-offset-per-lane 240 --record-limit-per-lane 40` fetched
+**0** rows. Current copper lanes have only **153** laccase/oxidase rows and **69** amine oxidase
+rows, so `copper_oxidoreductase` remains **140/250** but these source selectors are exhausted
+beyond the already-fetched prefix. Do not replay them; scout alternate non-EC mechanism-corroborated
+copper handles or choose another clean under-cap source-supply lane. Do not continue capped
+non-heme 2OG under current cap policy.
+
+References:
+`artifacts/v3_non_heme_iron_2og_window140_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window150_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window160_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window170_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window180_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_window190_10_sourcing_preview_current702_20260613.json`,
+`artifacts/v3_non_heme_iron_2og_capped_row_guardrail_audit_current702_20260613.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260613_non_heme_2og_capped_applied.json`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260613_non_heme_2og_capped_applied.json`,
+and
+`artifacts/v3_copper_oxidoreductase_postprefix_window240_40_sourcing_preview_current702_20260613.json`.
+
 ## 2026-06-13: NON-HEME IRON 2OG WINDOWED BRONZE EXTENSION APPLIED
 
 Decision: after all former floor families were closed at cap, continue the 10k path with an

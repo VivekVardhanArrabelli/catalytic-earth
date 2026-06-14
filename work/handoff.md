@@ -1,5 +1,72 @@
 # Handoff
 
+## Session run - Non-heme iron 2OG capped; copper post-prefix scout no-yield (2026-06-13/14, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This run followed the latest
+  handoff exactly: `non_heme_iron_2og_dioxygenase` was **223/250** with a concrete next
+  `140:10` preview. The lane still had reviewed, mechanism-first source yield, so the run
+  continued bounded windows until the family hit its non-confusable cap.
+- Applied gated bronze rows through the existing mechanism-first non-heme 2OG path:
+  - `140:10`: fetched **10**, mechanism **7**, applied **6**, throttled **1**, skipped **3**.
+  - `150:10`: fetched **10**, mechanism **6**, applied **5**, throttled **1**, skipped **4**.
+  - `160:10`: fetched **10**, mechanism **6**, applied **5**, throttled **1**, skipped **4**.
+  - `170:10`: fetched **10**, mechanism **6**, applied **3**, throttled **3**, skipped **4**.
+  - `180:10`: fetched **10**, mechanism **6**, applied **4**, held **1** no-corroboration row,
+    throttled **2**, skipped **3**.
+  - `190:10`: fetched **10**, mechanism **6**, gate-admitted **5**, applied **4**, held@cap
+    **1**, held **3** no-corroboration rows, skipped **1**.
+  Net movement: `non_heme_iron_2og_dioxygenase` **223 -> 250** (+27), exactly at cap. Do not
+  continue this lane under current cap policy.
+- Net registry change: external bronze **6932 -> 6959** (+27); combined label surface
+  **7634 -> 7661**. External-only split is **5735** seed-fingerprint rows and **1224** OOS rows.
+  Combined seed-fingerprint surface is **5965**, leaving **4035** to 10k by that surface
+  convention. Honest counters remain separate: `positive_bronze_count=5948`,
+  `oos_bronze_count=1696`, `silver_ready_count=0`, `silver_confirmed_count=17`,
+  `projected_provisional_count=0`.
+- Guardrails verified: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`; all added rows are `tier=bronze`,
+  `review_status=automation_curated`, `uniprot:*`, `source_tier_0`, and have nested
+  `predictive_evidence []`. EC/name/Rhea/keyword/prose/feature handles remain excluded-context
+  admission evidence only, and EC is never a counted corroborator. Row audit
+  `artifacts/v3_non_heme_iron_2og_capped_row_guardrail_audit_current702_20260613.json` /
+  `work/non_heme_iron_2og_capped_row_guardrail_audit_current702_20260613.md` found **0** problems
+  across all **250** non-heme 2OG rows.
+- Fresh audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260613_non_heme_2og_capped_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260613_non_heme_2og_capped_applied.md`:
+  **7661** combined, **6959** expansion, seed positives **5965**, fingerprint Gini **0.137**,
+  holes `[]`, under-floor `[]`, next-batch floor deficit **0**, over-cap
+  `['metal_dependent_hydrolase']`. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260613_non_heme_2og_capped_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260613_non_heme_2og_capped_applied.md`:
+  **6959** expansion rows, decisions `{'admit': 6503, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0655).
+- Continuation work: added fetch-only source-window controls to
+  `scripts/source_copper_oxidoreductase_family.py` and
+  `src/catalytic_earth/copper_oxidoreductase_sourcing.py`, with an offline test proving the slice
+  is applied before entry/Rhea fetch. This does not change copper admission, trust-tier, novelty,
+  cap, or leakage behavior. A non-destructive copper post-prefix preview
+  `artifacts/v3_copper_oxidoreductase_postprefix_window240_40_sourcing_preview_current702_20260613.json`
+  / `work/copper_oxidoreductase_postprefix_window240_40_sourcing_current702_20260613.md` used
+  `--max-records-per-lane 320 --record-offset-per-lane 240 --record-limit-per-lane 40` and found
+  **0** fetched rows: current copper lanes have only **153** laccase/oxidase rows and **69** amine
+  oxidase rows. `copper_oxidoreductase` remains **140/250**, but the existing source selectors are
+  exhausted beyond the already-fetched prefix.
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_non_heme_iron_2og_sourcing.py tests/test_copper_oxidoreductase_sourcing.py tests/test_external_source_ingestion.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_coverage_redundancy_audit.py tests/test_leakage_closure.py tests/test_source_only_contract.py -q`
+  -> **323 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels). JSON parse
+  checks for touched registries/artifacts and `git diff --check` passed.
+- Next exact action: do **not** continue non-heme 2OG under current cap policy. For copper, do not
+  repeat the current two source lanes; they are source-exhausted after 153 + 69 reviewed rows. The
+  next 10k-path action should be a clean new family/source scout or a copper alternate-source scout
+  only if it specifies non-EC mechanism corroborators up front. Candidate under-cap families with
+  existing fingerprints include `copper_oxidoreductase` **140/250**,
+  `manganese_iron_superoxide_dismutase` **166/250**, and `zinc_lyase_hydratase` **113/150**, but
+  each needs fresh source handles or a source-supply scout rather than replaying exhausted lanes.
+
 ## Session run - Non-heme iron 2OG windowed bronze extension applied (2026-06-13, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

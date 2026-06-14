@@ -263,6 +263,20 @@ class CopperOxidoreductaseSourcingTest(unittest.TestCase):
         self.assertTrue(g["off_target_fingerprint_matches_held"])
         self.assertTrue(g["novelty_gated_against_both_registries"])
 
+    def test_record_window_limits_entry_fetch_scope(self):
+        audit = self._run(record_offset_per_lane=1, record_limit_per_lane=2)
+        self.assertEqual(audit["counts"]["record_offset_per_lane"], 1)
+        self.assertEqual(audit["counts"]["record_limit_per_lane"], 2)
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 2)
+        self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 1)
+        self.assertEqual(
+            [label["entry_id"] for label in audit["applied_labels"]],
+            ["uniprot:CU0002"],
+        )
+        for lane in audit["lane_summaries"]:
+            self.assertEqual(lane["record_offset_per_lane"], 1)
+            self.assertEqual(lane["record_limit_per_lane"], 2)
+
     def test_unknown_family_rejected(self):
         with self.assertRaises(ValueError):
             self._run(families=("molybdopterin_oxidoreductase",))
