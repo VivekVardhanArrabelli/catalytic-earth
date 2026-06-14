@@ -3,6 +3,59 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: HIGH-YIELD FAMILY SCOUT + LANE FACTORY BUILT; NO CURRENT >=150 APPLY
+
+Decision: stop spending automation runs on exhausted/capped/tiny top-ups. Current existing
+fingerprint lanes do not have a safe >=150-row clean batch under the current cap/source evidence.
+No registry apply should be attempted until a new-family lane is wired through fingerprint,
+ontology, OOS preregistration, disambiguation, preview, row audit, and validation gates.
+
+Implementation: added `src/catalytic_earth/high_yield_family_lane_factory.py`,
+`scripts/build_high_yield_family_lane_factory.py`, and
+`tests/test_high_yield_family_lane_factory.py`. The factory is non-destructive and creates no
+labels. It ranks family-lane specs from reviewed UniProt scope supply, non-EC corroborator-reachable
+supply, current registry counts/cap room, cap class, OOS preregistration need, disambiguation
+holds, and preview/apply guardrail templates. EC remains scope-only and never predictive; non-EC
+handles are source/admission planning evidence only.
+
+Recon results:
+- `artifacts/v3_high_yield_family_supply_scout_current702_20260614.json`: **18** broad families
+  probed; **14** clean/floor-reachable under broad source-supply cap math; estimated **2641** new
+  capped clean bronze (**1504** diversity-discounted); projected positive bronze **8687**, gap
+  **1313** to 10k from reviewed Swiss-Prot alone.
+- `artifacts/v3_high_yield_family_lane_factory_current702_20260614.json`: **12** concrete family
+  specs ranked; **0** existing lanes ready for >=150; **8** high-yield lanes blocked by new
+  fingerprint/OOS preregistration/disambiguation-rule infrastructure. Top ranked lane is
+  `terpene_cyclase_synthase`: scope supply **2335**, non-EC corroborator supply **2315**,
+  estimated corroboration rate **0.991**, projected clean admits **250**, clean cap **250**.
+
+Counts after run: no registry change. External bronze remains **7040**; combined label surface
+**7742**; combined seed-fingerprint surface **6046**; remaining gap to 10k seed surface **3954**.
+Frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Validation: focused pytest passed
+(`PYTHONPATH=src pytest tests/test_high_yield_family_lane_factory.py tests/test_breadth_feasibility_scout.py tests/test_leakage_closure.py tests/test_source_only_contract.py -q`
+-> **213 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels). JSON parse
+checks and `git diff --check` passed.
+
+Next decision: build `terpene_cyclase_synthase` first, not another cap-room top-up. Required work:
+add fingerprint + ontology node; preregister the fingerprint-universe/OOS change; add a
+mechanism-first rule requiring non-EC terpene/cyclase + Mg/Mn/diphosphate/Rhea evidence; hold
+prenyltransferase, lyase/hydratase, and multi-signal boundary rows; add a source runner and row
+audit; preview non-destructively; apply only after dedup, novelty, cap, trust-tier, leakage, and
+frozen-sha gates pass.
+
+References:
+`artifacts/v3_high_yield_family_supply_scout_current702_20260614.json`,
+`work/high_yield_family_supply_scout_current702_20260614.md`,
+`artifacts/v3_high_yield_family_lane_factory_current702_20260614.json`,
+`work/high_yield_family_lane_factory_current702_20260614.md`,
+`src/catalytic_earth/high_yield_family_lane_factory.py`,
+`scripts/build_high_yield_family_lane_factory.py`, and
+`tests/test_high_yield_family_lane_factory.py`.
+
 ## 2026-06-14: STAGE-1 RADICAL-SAM POST-PREFIX TOP-UP APPLIED; FMO/HEME WINDOWS NO-YIELD
 
 Decision: do not replay capped or exhausted current lanes. The latest state showed

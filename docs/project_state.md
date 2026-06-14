@@ -26,6 +26,40 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **HIGH-YIELD FAMILY SCOUT + LANE FACTORY BUILT; NO SAFE >=150 APPLY IN CURRENT UNIVERSE
+  (2026-06-14 automation).** The latest run followed the updated 40-minute contract and did not
+  continue capped/tiny lanes. Current counts show no existing fingerprint/source lane can admit a
+  >=150-row clean batch: the uncapped residues are below threshold or source-exhausted (for
+  example copper **140/250** with exhausted current selectors, SOD **166/250** with full guarded
+  supply already fetched, zinc **113/150**, radical-SAM **214/250**, cobalamin **144/250**, and
+  FMO/heme windows no-yield).
+
+  A refreshed reviewed-UniProt breadth scout
+  `artifacts/v3_high_yield_family_supply_scout_current702_20260614.json` ranked **18** broad
+  candidate families. It found **14** clean/floor-reachable candidates under source-supply cap
+  math and estimated **2641** capped clean bronze (**1504** diversity-discounted), but still
+  projected only **8687** positive bronze from reviewed Swiss-Prot alone, leaving **1313** to 10k.
+
+  New reusable infrastructure now lives in
+  `src/catalytic_earth/high_yield_family_lane_factory.py` with
+  `scripts/build_high_yield_family_lane_factory.py` and tests. It declares per-family scope query,
+  non-EC corroborator query, required mechanism axes, disambiguation holds, cap class, source tier,
+  rationale, row guardrail requirement, and preview/apply command templates. The live factory
+  artifact `artifacts/v3_high_yield_family_lane_factory_current702_20260614.json` ranked **12**
+  candidate families and found **0** existing lanes ready for >=150. **8** projected >=150 but are
+  blocked by new fingerprint/OOS preregistration/disambiguation-rule work. Top target:
+  `terpene_cyclase_synthase` (scope supply **2335**, non-EC corroborator supply **2315**,
+  projected clean admits **250**, clean cap **250**). Next candidates are SDR, AKR,
+  HAD-like phosphatase, protein kinase, aldehyde dehydrogenase, alpha/beta hydrolase, and
+  Ser/Thr protein phosphatase.
+
+  No registry apply occurred. External bronze remains **7040**; combined label surface remains
+  **7742**; combined seed-fingerprint surface remains **6046**, leaving **3954** to 10k by that
+  convention. Frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Next work should build the
+  `terpene_cyclase_synthase` fingerprint/source runner first, then preview/apply only after
+  mechanism-first non-EC corroboration, OOS preregistration, dedup, novelty, cap, leakage, and
+  frozen-sha gates pass.
 - **STAGE-1 RADICAL-SAM POST-PREFIX TOP-UP APPLIED; FMO/HEME SCOUTS NO-YIELD (2026-06-14 automation).**
   The latest run found the previously named continuation lanes either capped or exhausted:
   non-heme 2OG is **250/250**, current copper selectors are exhausted beyond 153 laccase/oxidase

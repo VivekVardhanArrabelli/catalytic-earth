@@ -1,0 +1,801 @@
+{
+  "artifact_id": "v3_breadth_feasibility_scout_current702",
+  "baseline": {
+    "combined_positive_labels": 6046,
+    "expansion_positive_labels": 5816,
+    "frozen_positive_labels": 230,
+    "live_fingerprint_count": 35
+  },
+  "clean_family_ranking": [
+    {
+      "applied_cap": 250,
+      "candidate_family": "non_heme_iron_2og_dioxygenase",
+      "cofactor_ec_disambiguation_handle": "non-heme Fe(II) + 2-oxoglutarate + EC 1.14.11.* (HxD..H triad; not heme, not flavin)",
+      "estimated_admissible_diverse_bronze": 250,
+      "labels_per_distinct_reaction_upper_bound": 8.929,
+      "reviewed_entry_supply": 870
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "sam_methyltransferase",
+      "cofactor_ec_disambiguation_handle": "S-adenosyl-L-methionine + EC 2.1.1.* + NO [4Fe-4S] (distinguishes from radical-SAM)",
+      "estimated_admissible_diverse_bronze": 250,
+      "labels_per_distinct_reaction_upper_bound": 250.0,
+      "reviewed_entry_supply": 691
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "glycosyltransferase",
+      "cofactor_ec_disambiguation_handle": "sugar-nucleotide donor (UDP/GDP-sugar) + EC 2.4.* (acceptor-diverse)",
+      "estimated_admissible_diverse_bronze": 250,
+      "labels_per_distinct_reaction_upper_bound": 4.386,
+      "reviewed_entry_supply": 10281
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "coa_acyltransferase",
+      "cofactor_ec_disambiguation_handle": "coenzyme A / acyl-CoA + EC 2.3.1.*",
+      "estimated_admissible_diverse_bronze": 250,
+      "labels_per_distinct_reaction_upper_bound": 4.902,
+      "reviewed_entry_supply": 7728
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "cofactor_independent_isomerase",
+      "cofactor_ec_disambiguation_handle": "no cofactor; catalytic Glu/His/Lys acid-base + EC 5.3.* (apo-confirmable)",
+      "estimated_admissible_diverse_bronze": 250,
+      "labels_per_distinct_reaction_upper_bound": 7.353,
+      "reviewed_entry_supply": 5273
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "molybdopterin_oxidoreductase",
+      "cofactor_ec_disambiguation_handle": "molybdopterin / Mo-cofactor + EC 1.1.3/1.2.3/1.8.3/1.97 (distinct Mo center)",
+      "estimated_admissible_diverse_bronze": 230,
+      "labels_per_distinct_reaction_upper_bound": 8.519,
+      "reviewed_entry_supply": 460
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "cytochrome_p450_monooxygenase",
+      "cofactor_ec_disambiguation_handle": "heme-thiolate (Cys ligand) + EC 1.14.14/1.14.15 (NOT EC 1.11.1 peroxidase, NOT flavin)",
+      "estimated_admissible_diverse_bronze": 150,
+      "labels_per_distinct_reaction_upper_bound": 3.75,
+      "reviewed_entry_supply": 780
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "atp_phosphotransferase_kinase",
+      "cofactor_ec_disambiguation_handle": "ATP + Mg2+ + EC 2.7.* (phosphoryl DONOR -> distinguishes from hydrolase P-O cleavage)",
+      "estimated_admissible_diverse_bronze": 150,
+      "labels_per_distinct_reaction_upper_bound": 6.25,
+      "reviewed_entry_supply": 21822
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "thiamine_diphosphate_enzyme",
+      "cofactor_ec_disambiguation_handle": "thiamine diphosphate (ThDP) + Mg2+ (distinguishes from PLP at shared EC 4.1.1)",
+      "estimated_admissible_diverse_bronze": 150,
+      "labels_per_distinct_reaction_upper_bound": 7.895,
+      "reviewed_entry_supply": 1262
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "zinc_lyase_hydratase",
+      "cofactor_ec_disambiguation_handle": "catalytic Zn2+ + EC 4.2.1.* (lyase, NOT hydrolase EC 3)",
+      "estimated_admissible_diverse_bronze": 150,
+      "labels_per_distinct_reaction_upper_bound": 11.538,
+      "reviewed_entry_supply": 488
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "class_ii_metal_aldolase",
+      "cofactor_ec_disambiguation_handle": "divalent metal (Zn/Co) + EC 4.1.2/4.1.3 (class-II aldol; not Schiff-base class-I)",
+      "estimated_admissible_diverse_bronze": 150,
+      "labels_per_distinct_reaction_upper_bound": 4.412,
+      "reviewed_entry_supply": 846
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "enolase_superfamily_lyase",
+      "cofactor_ec_disambiguation_handle": "Mg2+ + enolase-superfamily EC 4.2.1.11/5.1/4.2.1 (TIM-barrel)",
+      "estimated_admissible_diverse_bronze": 150,
+      "labels_per_distinct_reaction_upper_bound": 150.0,
+      "reviewed_entry_supply": 915
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "metal_racemase_epimerase_non_plp",
+      "cofactor_ec_disambiguation_handle": "Mg/Mn (or cofactorless) + EC 5.1.* AND NO PLP (distinguishes from PLP racemase 5.1.1)",
+      "estimated_admissible_diverse_bronze": 150,
+      "labels_per_distinct_reaction_upper_bound": 3.659,
+      "reviewed_entry_supply": 2141
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "copper_oxidoreductase",
+      "cofactor_ec_disambiguation_handle": "copper (type-1/2/3) + EC 1.10.3/1.4.3 (no heme, no flavin)",
+      "estimated_admissible_diverse_bronze": 111,
+      "labels_per_distinct_reaction_upper_bound": 9.25,
+      "reviewed_entry_supply": 222
+    }
+  ],
+  "counts": {
+    "candidate_families_probed": 18,
+    "clean_but_reaction_poor_ortholog_padded": 12,
+    "clean_families": 14,
+    "current_combined_positive_bronze": 6046,
+    "estimated_new_clean_bronze_diversity_discounted": 1504,
+    "estimated_new_clean_diverse_bronze": 2641,
+    "estimated_subfloor_distinct_bronze": 48,
+    "gap_to_10k_positive_bronze": 1313,
+    "mechanistically_distinct_but_floor_blocked": 3,
+    "projected_positive_bronze_clean_only": 8687,
+    "projected_positive_bronze_with_subfloor": 8735,
+    "redundant_with_existing": 1,
+    "weak_cofactor_handle_capture_lt_25pct": 8
+  },
+  "created_utc": "2026-06-14T01:03:48Z",
+  "family_probes": [
+    {
+      "applied_cap": 150,
+      "candidate_family": "nad_p_short_chain_dehydrogenase_reductase",
+      "chemistry": "SDR: NAD(P)(H)-dependent hydride transfer, Rossmann fold, Ser-Tyr-Lys-Asn tetrad",
+      "chemistry_confusable": true,
+      "clean_family": false,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "NAD(P)(+/H) bound + EC 1.1.1.* + Rossmann GxxxGxG (no metal/flavin/heme)",
+      "cofactor_handle_capture_ratio": 0.001,
+      "count_query": "(ec:1.1.1.*) AND (reviewed:true) AND ((cc_cofactor:nad) OR (cc_cofactor:nadp))",
+      "ec_class": "EC 1.1.1 (oxidoreductase, CH-OH donor, NAD(P) acceptor)",
+      "ec_only_supply_ceiling": 7804,
+      "ec_overlap_with_existing_fingerprints": [
+        "molybdopterin_oxidoreductase",
+        "nad_p_dehydrogenase"
+      ],
+      "ec_prefixes": [
+        "1.1.1"
+      ],
+      "estimated_admissible_diverse_bronze": 4,
+      "floor_reachable": false,
+      "labels_per_distinct_reaction_upper_bound": 4.0,
+      "mechanistically_distinct": true,
+      "notes": "Largest single oxidoreductase lane; confusable with MDR/AKR -> 150 cap.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 1,
+        "sample_rows": 7,
+        "sample_rows_with_full_ec": 3
+      },
+      "reaction_poor_warning": false,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 7,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "non_heme_iron_2og_dioxygenase",
+      "chemistry": "Non-heme Fe(II)/2-oxoglutarate dioxygenase, 2-His-1-carboxylate facial triad",
+      "chemistry_confusable": false,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "non-heme Fe(II) + 2-oxoglutarate + EC 1.14.11.* (HxD..H triad; not heme, not flavin)",
+      "cofactor_handle_capture_ratio": 0.995,
+      "count_query": "(ec:1.14.11.*) AND (reviewed:true) AND ((cc_cofactor:fe) OR (cc_cofactor:iron) OR (keyword:Dioxygenase))",
+      "ec_class": "EC 1.14.11 (oxidoreductase, 2-oxoglutarate as one donor)",
+      "ec_only_supply_ceiling": 874,
+      "ec_overlap_with_existing_fingerprints": [
+        "cytochrome_p450_monooxygenase",
+        "molybdopterin_oxidoreductase",
+        "non_heme_iron_2og_dioxygenase"
+      ],
+      "ec_prefixes": [
+        "1.14.11"
+      ],
+      "estimated_admissible_diverse_bronze": 250,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 8.929,
+      "mechanistically_distinct": true,
+      "notes": "Distinct non-heme-iron cofactor; clean facial-triad mechanism.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 28,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 65
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 870,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "cytochrome_p450_monooxygenase",
+      "chemistry": "Heme-thiolate (Cys axial) P450 monooxygenase, compound-I O insertion",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "heme-thiolate (Cys ligand) + EC 1.14.14/1.14.15 (NOT EC 1.11.1 peroxidase, NOT flavin)",
+      "cofactor_handle_capture_ratio": 0.681,
+      "count_query": "(ec:1.14.14.*) AND (reviewed:true) AND ((keyword:Heme) OR (cc_cofactor:heme)) AND (keyword:Monooxygenase)",
+      "ec_class": "EC 1.14.14/1.14.15 (oxidoreductase, monooxygenase)",
+      "ec_only_supply_ceiling": 1145,
+      "ec_overlap_with_existing_fingerprints": [
+        "cytochrome_p450_monooxygenase",
+        "flavin_monooxygenase",
+        "molybdopterin_oxidoreductase"
+      ],
+      "ec_prefixes": [
+        "1.14.14",
+        "1.14.15"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 3.75,
+      "mechanistically_distinct": true,
+      "notes": "EC 1.14.14 overlaps flavin_monooxygenase lane; cofactor (heme-thiolate vs flavin) separates.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 40,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 74
+      },
+      "reaction_poor_warning": false,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 780,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "copper_oxidoreductase",
+      "chemistry": "Type-1/2/3 copper oxidase (laccase / amine oxidase), O2 -> H2O / H2O2",
+      "chemistry_confusable": false,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "copper (type-1/2/3) + EC 1.10.3/1.4.3 (no heme, no flavin)",
+      "cofactor_handle_capture_ratio": 0.176,
+      "count_query": "(reviewed:true) AND ((ec:1.10.3.*) OR (ec:1.4.3.*)) AND ((cc_cofactor:copper) OR (keyword:Copper))",
+      "ec_class": "EC 1.10.3 / 1.4.3 (oxidoreductase, copper)",
+      "ec_only_supply_ceiling": 1264,
+      "ec_overlap_with_existing_fingerprints": [
+        "copper_oxidoreductase",
+        "molybdopterin_oxidoreductase"
+      ],
+      "ec_prefixes": [
+        "1.10.3",
+        "1.4.3"
+      ],
+      "estimated_admissible_diverse_bronze": 111,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 9.25,
+      "mechanistically_distinct": true,
+      "notes": "Distinct copper cofactor; small-to-moderate supply.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 12,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 75
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 222,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "molybdopterin_oxidoreductase",
+      "chemistry": "Mo-bis(MGD) oxotransferase (xanthine/sulfite/DMSO families), oxygen-atom transfer",
+      "chemistry_confusable": false,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "molybdopterin / Mo-cofactor + EC 1.1.3/1.2.3/1.8.3/1.97 (distinct Mo center)",
+      "cofactor_handle_capture_ratio": 0.589,
+      "count_query": "(reviewed:true) AND (ec:1.*) AND ((cc_cofactor:molybdopterin) OR (cc_cofactor:molybdenum) OR (keyword:Molybdenum))",
+      "ec_class": "EC 1.x (oxidoreductase, molybdopterin)",
+      "ec_only_supply_ceiling": 781,
+      "ec_overlap_with_existing_fingerprints": [
+        "molybdopterin_oxidoreductase",
+        "radical_sam_enzyme"
+      ],
+      "ec_prefixes": [
+        "1.1.3",
+        "1.2.3",
+        "1.8.3",
+        "1.97.1"
+      ],
+      "estimated_admissible_diverse_bronze": 230,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 8.519,
+      "mechanistically_distinct": true,
+      "notes": "Distinct Mo-pterin center; spans several EC 1 subclasses.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 27,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 70
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 460,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "manganese_iron_superoxide_dismutase",
+      "chemistry": "Mn/Fe superoxide dismutase, single-metal redox cycling",
+      "chemistry_confusable": false,
+      "clean_family": false,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "Mn or Fe (mononuclear, SOD fold) + EC 1.15.1.1",
+      "cofactor_handle_capture_ratio": 0.002,
+      "count_query": "(ec:1.15.1.1) AND (reviewed:true) AND ((cc_cofactor:manganese) OR (cc_cofactor:iron))",
+      "ec_class": "EC 1.15.1.1 (oxidoreductase, superoxide)",
+      "ec_only_supply_ceiling": 470,
+      "ec_overlap_with_existing_fingerprints": [
+        "manganese_iron_superoxide_dismutase",
+        "molybdopterin_oxidoreductase"
+      ],
+      "ec_prefixes": [
+        "1.15.1"
+      ],
+      "estimated_admissible_diverse_bronze": 0,
+      "floor_reachable": false,
+      "labels_per_distinct_reaction_upper_bound": 0.0,
+      "mechanistically_distinct": true,
+      "notes": "Narrow single-reaction lane; floor reach depends on ortholog breadth.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 1,
+        "sample_rows": 1,
+        "sample_rows_with_full_ec": 1
+      },
+      "reaction_poor_warning": false,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 1,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "sam_methyltransferase",
+      "chemistry": "Classical SAM-dependent methyltransferase, SN2 methyl transfer (Rossmann MTase fold)",
+      "chemistry_confusable": false,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "S-adenosyl-L-methionine + EC 2.1.1.* + NO [4Fe-4S] (distinguishes from radical-SAM)",
+      "cofactor_handle_capture_ratio": 0.048,
+      "count_query": "(ec:2.1.1.*) AND (reviewed:true) AND (cc_cofactor:s-adenosyl-l-methionine)",
+      "ec_class": "EC 2.1.1 (transferase, one-carbon methyl)",
+      "ec_only_supply_ceiling": 14325,
+      "ec_overlap_with_existing_fingerprints": [
+        "sam_methyltransferase"
+      ],
+      "ec_prefixes": [
+        "2.1.1"
+      ],
+      "estimated_admissible_diverse_bronze": 250,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 250.0,
+      "mechanistically_distinct": true,
+      "notes": "SAM but NOT radical-SAM (no Fe-S motif, EC 2.1.1 not 1.97/2.8.4/4.1.99). Huge, reaction-diverse.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 1,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 79
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 691,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "glycosyltransferase",
+      "chemistry": "Sugar-nucleotide-dependent glycosyltransferase (GT-A/GT-B), DxD-Mg or metal-independent",
+      "chemistry_confusable": false,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "sugar-nucleotide donor (UDP/GDP-sugar) + EC 2.4.* (acceptor-diverse)",
+      "cofactor_handle_capture_ratio": 0.935,
+      "count_query": "(ec:2.4.*) AND (reviewed:true) AND (keyword:Glycosyltransferase)",
+      "ec_class": "EC 2.4 (transferase, glycosyl)",
+      "ec_only_supply_ceiling": 10996,
+      "ec_overlap_with_existing_fingerprints": [
+        "glycosyltransferase"
+      ],
+      "ec_prefixes": [
+        "2.4.1",
+        "2.4.2",
+        "2.4.99"
+      ],
+      "estimated_admissible_diverse_bronze": 250,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 4.386,
+      "mechanistically_distinct": true,
+      "notes": "Distinct donor chemistry; very large supply.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 57,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 68
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 10281,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "atp_phosphotransferase_kinase",
+      "chemistry": "ATP-dependent kinase, in-line phosphoryl transfer (P-loop / catalytic-loop Asp + Mg)",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "ATP + Mg2+ + EC 2.7.* (phosphoryl DONOR -> distinguishes from hydrolase P-O cleavage)",
+      "cofactor_handle_capture_ratio": 0.639,
+      "count_query": "(ec:2.7.*) AND (reviewed:true) AND ((cc_cofactor:atp) OR (cc_cofactor:magnesium) OR (keyword:Kinase)) AND (keyword:Transferase)",
+      "ec_class": "EC 2.7 (transferase, phosphorus group)",
+      "ec_only_supply_ceiling": 34140,
+      "ec_overlap_with_existing_fingerprints": [
+        "askha_sugar_acetate_kinase",
+        "deoxynucleoside_kinase",
+        "ghmp_small_molecule_kinase",
+        "nucleoside_diphosphate_kinase",
+        "pfka_phosphofructokinase",
+        "pfkb_ribokinase_family"
+      ],
+      "ec_prefixes": [
+        "2.7.1",
+        "2.7.2",
+        "2.7.4",
+        "2.7.7",
+        "2.7.11"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 6.25,
+      "mechanistically_distinct": true,
+      "notes": "Mg overlaps metal hydrolases but the ATP donor + EC 2.7 (transfer, not hydrolysis) separates.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 24,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 80
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 21822,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "coa_acyltransferase",
+      "chemistry": "Coenzyme-A-dependent acyltransferase, His/Cys nucleophile, acyl-CoA intermediate",
+      "chemistry_confusable": false,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "coenzyme A / acyl-CoA + EC 2.3.1.*",
+      "cofactor_handle_capture_ratio": 0.774,
+      "count_query": "(ec:2.3.1.*) AND (reviewed:true) AND ((cc_cofactor:coa) OR (keyword:Acyltransferase))",
+      "ec_class": "EC 2.3.1 (transferase, acyl)",
+      "ec_only_supply_ceiling": 9981,
+      "ec_overlap_with_existing_fingerprints": [
+        "coa_acyltransferase"
+      ],
+      "ec_prefixes": [
+        "2.3.1"
+      ],
+      "estimated_admissible_diverse_bronze": 250,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 4.902,
+      "mechanistically_distinct": true,
+      "notes": "Distinct CoA chemistry; large supply.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 51,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 72
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 7728,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "thiamine_diphosphate_enzyme",
+      "chemistry": "Thiamine-diphosphate ylide catalysis (transketolase / decarboxylase), Mg-anchored ThDP",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "thiamine diphosphate (ThDP) + Mg2+ (distinguishes from PLP at shared EC 4.1.1)",
+      "cofactor_handle_capture_ratio": 0.18,
+      "count_query": "(reviewed:true) AND ((ec:2.2.1.*) OR (ec:4.1.1.*) OR (ec:1.2.4.*)) AND ((cc_cofactor:thiamine) OR (keyword:Thiamine\\ pyrophosphate))",
+      "ec_class": "EC 2.2.1 / 4.1.1 / 1.2 (ThDP-dependent)",
+      "ec_only_supply_ceiling": 7020,
+      "ec_overlap_with_existing_fingerprints": [
+        "molybdopterin_oxidoreductase",
+        "plp_dependent_enzyme",
+        "thiamine_diphosphate_enzyme"
+      ],
+      "ec_prefixes": [
+        "2.2.1",
+        "4.1.1",
+        "1.2.4"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 7.895,
+      "mechanistically_distinct": true,
+      "notes": "EC 4.1.1 overlaps PLP decarboxylase lane; cofactor (ThDP vs PLP) separates.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 19,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 79
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 1262,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "zinc_lyase_hydratase",
+      "chemistry": "Zn-dependent hydro-lyase (carbonic anhydrase / related), reversible H2O elimination",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "catalytic Zn2+ + EC 4.2.1.* (lyase, NOT hydrolase EC 3)",
+      "cofactor_handle_capture_ratio": 0.057,
+      "count_query": "(ec:4.2.1.*) AND (reviewed:true) AND ((cc_cofactor:zinc) OR (keyword:Zinc))",
+      "ec_class": "EC 4.2.1 (lyase, hydro-lyase)",
+      "ec_only_supply_ceiling": 8582,
+      "ec_overlap_with_existing_fingerprints": [
+        "cobalamin_radical_rearrangement",
+        "zinc_lyase_hydratase"
+      ],
+      "ec_prefixes": [
+        "4.2.1"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 11.538,
+      "mechanistically_distinct": true,
+      "notes": "Zn overlaps metal hydrolases but EC 4 (elimination) not EC 3 (hydrolysis) separates.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 13,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 78
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 488,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "class_ii_metal_aldolase",
+      "chemistry": "Class-II (metal-dependent) aldolase, divalent-metal-stabilized enolate",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "divalent metal (Zn/Co) + EC 4.1.2/4.1.3 (class-II aldol; not Schiff-base class-I)",
+      "cofactor_handle_capture_ratio": 0.44,
+      "count_query": "(reviewed:true) AND ((ec:4.1.2.*) OR (ec:4.1.3.*)) AND ((cc_cofactor:zinc) OR (cc_cofactor:cobalt) OR (keyword:Lyase) AND (keyword:Metal-binding))",
+      "ec_class": "EC 4.1.2 / 4.1.3 (lyase, aldehyde/oxo-acid)",
+      "ec_only_supply_ceiling": 1921,
+      "ec_overlap_with_existing_fingerprints": [
+        "class_ii_metal_aldolase"
+      ],
+      "ec_prefixes": [
+        "4.1.2",
+        "4.1.3"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 4.412,
+      "mechanistically_distinct": true,
+      "notes": "Metal aldolase; moderate supply, reaction-diverse acceptors.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 34,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 76
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 846,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "enolase_superfamily_lyase",
+      "chemistry": "Mg2+ enolase-superfamily lyase, metal-stabilized enolate intermediate",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "Mg2+ + enolase-superfamily EC 4.2.1.11/5.1/4.2.1 (TIM-barrel)",
+      "cofactor_handle_capture_ratio": 0.107,
+      "count_query": "(reviewed:true) AND (ec:4.2.1.11) AND ((cc_cofactor:magnesium) OR (keyword:Magnesium))",
+      "ec_class": "EC 4.2.1.11 + (lyase, Mg enolase superfamily)",
+      "ec_only_supply_ceiling": 8582,
+      "ec_overlap_with_existing_fingerprints": [
+        "cobalamin_radical_rearrangement",
+        "zinc_lyase_hydratase"
+      ],
+      "ec_prefixes": [
+        "4.2.1"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 150.0,
+      "mechanistically_distinct": true,
+      "notes": "Overlaps the zinc_lyase_hydratase EC 4.2.1 lane (different metal) -> confusable.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 1,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 80
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 915,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "cofactor_independent_isomerase",
+      "chemistry": "Cofactor-independent isomerase (ketol/aldose-ketose), general acid-base (TIM-barrel)",
+      "chemistry_confusable": false,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "no cofactor; catalytic Glu/His/Lys acid-base + EC 5.3.* (apo-confirmable)",
+      "cofactor_handle_capture_ratio": 1.037,
+      "count_query": "(ec:5.3.*) AND (reviewed:true) AND (keyword:Isomerase)",
+      "ec_class": "EC 5.3 (intramolecular oxidoreductase / isomerase)",
+      "ec_only_supply_ceiling": 5087,
+      "ec_overlap_with_existing_fingerprints": [
+        "cofactor_independent_isomerase"
+      ],
+      "ec_prefixes": [
+        "5.3.1",
+        "5.3.2",
+        "5.3.3"
+      ],
+      "estimated_admissible_diverse_bronze": 250,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 7.353,
+      "mechanistically_distinct": true,
+      "notes": "Cofactorless (like ser_his): apo-confirmable; corroborator is the active-site triad, not a cofactor.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 34,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 80
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 5273,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "metal_racemase_epimerase_non_plp",
+      "chemistry": "Metal- or cofactor-independent racemase/epimerase (e.g. mandelate racemase), 1,1-proton shift",
+      "chemistry_confusable": true,
+      "clean_family": true,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "Mg/Mn (or cofactorless) + EC 5.1.* AND NO PLP (distinguishes from PLP racemase 5.1.1)",
+      "cofactor_handle_capture_ratio": 0.923,
+      "count_query": "(ec:5.1.*) AND (reviewed:true) AND (keyword:Isomerase) NOT (cc_cofactor:pyridoxal)",
+      "ec_class": "EC 5.1 (racemase/epimerase, non-PLP)",
+      "ec_only_supply_ceiling": 2319,
+      "ec_overlap_with_existing_fingerprints": [
+        "metal_racemase_epimerase_non_plp",
+        "plp_dependent_enzyme"
+      ],
+      "ec_prefixes": [
+        "5.1.1",
+        "5.1.3",
+        "5.1.99"
+      ],
+      "estimated_admissible_diverse_bronze": 150,
+      "floor_reachable": true,
+      "labels_per_distinct_reaction_upper_bound": 3.659,
+      "mechanistically_distinct": true,
+      "notes": "EC 5.1.1 overlaps PLP racemase lane; the NO-PLP constraint separates the cofactor-independent ones.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 41,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 78
+      },
+      "reaction_poor_warning": false,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 2141,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 150,
+      "candidate_family": "atp_amide_ligase",
+      "chemistry": "ATP-dependent amide/peptide ligase (acyl-phosphate intermediate, ATP-grasp), Mg",
+      "chemistry_confusable": true,
+      "clean_family": false,
+      "cofactor_distinct_from_overlap": false,
+      "cofactor_ec_disambiguation_handle": "ATP + Mg2+ + EC 6.3.* (C-N ligation -> entirely outside the current EC 1-5 set)",
+      "cofactor_handle_capture_ratio": 1.06,
+      "count_query": "(ec:6.3.*) AND (reviewed:true) AND ((cc_cofactor:atp) OR (cc_cofactor:magnesium) OR (keyword:Ligase))",
+      "ec_class": "EC 6.3 (ligase, C-N bond, ATP)",
+      "ec_only_supply_ceiling": 12835,
+      "ec_overlap_with_existing_fingerprints": [
+        "atp_amide_ligase",
+        "biotin_dependent_carboxylase"
+      ],
+      "ec_prefixes": [
+        "6.3.1",
+        "6.3.2",
+        "6.3.4",
+        "6.3.5"
+      ],
+      "estimated_admissible_diverse_bronze": 0,
+      "floor_reachable": false,
+      "labels_per_distinct_reaction_upper_bound": 0.0,
+      "mechanistically_distinct": false,
+      "notes": "EC 6 uncovered today; ATP+Mg overlaps kinases by cofactor -> confusable WITHIN the new EC-6 lanes.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 49,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 62
+      },
+      "reaction_poor_warning": false,
+      "redundant_with_existing": true,
+      "reviewed_entry_supply": 13599,
+      "supply_keep_factor": 0.5
+    },
+    {
+      "applied_cap": 250,
+      "candidate_family": "biotin_dependent_carboxylase",
+      "chemistry": "Biotin-dependent carboxylase, CO2 transfer via carboxy-biotin, ATP + Mg",
+      "chemistry_confusable": false,
+      "clean_family": false,
+      "cofactor_distinct_from_overlap": true,
+      "cofactor_ec_disambiguation_handle": "biotin + ATP + Mg2+ + EC 6.4.1/6.3.4 (distinct biotin prosthetic group)",
+      "cofactor_handle_capture_ratio": 0.022,
+      "count_query": "(reviewed:true) AND ((ec:6.4.1.*) OR (ec:6.3.4.*)) AND ((cc_cofactor:biotin) OR (keyword:Biotin))",
+      "ec_class": "EC 6.4.1 / 6.3.4 (ligase, carboxylase, biotin)",
+      "ec_only_supply_ceiling": 4071,
+      "ec_overlap_with_existing_fingerprints": [
+        "atp_amide_ligase",
+        "biotin_dependent_carboxylase"
+      ],
+      "ec_prefixes": [
+        "6.4.1",
+        "6.3.4"
+      ],
+      "estimated_admissible_diverse_bronze": 44,
+      "floor_reachable": false,
+      "labels_per_distinct_reaction_upper_bound": 4.4,
+      "mechanistically_distinct": true,
+      "notes": "Distinct biotin prosthetic group; modest supply.",
+      "reaction_diversity_sample": {
+        "distinct_full_ec_in_sample": 10,
+        "sample_rows": 80,
+        "sample_rows_with_full_ec": 80
+      },
+      "reaction_poor_warning": true,
+      "redundant_with_existing": false,
+      "reviewed_entry_supply": 88,
+      "supply_keep_factor": 0.5
+    }
+  ],
+  "guardrails": {
+    "ec_cofactor_used_for_supply_and_scope_estimate_only_never_predictive": true,
+    "frozen_current702_benchmark_preserved": true,
+    "labels_created": false,
+    "network_via_injected_fetchers_offline_testable": true,
+    "registry_written": false
+  },
+  "method": {
+    "cap_math": "cap = 150 when chemistry is confusable with a sibling, else 250 (the Stage-2 lesson: filling confusable lanes to the ceiling manufactures redundancy)",
+    "reaction_diversity_probe": "distinct full-EC count over a <= 80-row sample (sampled LOWER bound on reaction diversity -> labels/reaction is a conservative UPPER bound on redundancy)",
+    "redundancy_check": "EC-prefix overlap vs coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES; an overlap is NOT redundant when a different annotated cofactor separates the lane at the import gate",
+    "supply_keep_factor": 0.5,
+    "supply_probe": "uniprot x-total-results header count per narrow EC/cofactor lane"
+  },
+  "purpose": "Replace the scaling-plan cap-math ESTIMATE with real reviewed-Swiss-Prot numbers, so the user can decide whether 10k diverse bronze is the right target before spending windows sourcing more.",
+  "schema_version": "breadth_feasibility_scout.v1",
+  "status": "non_destructive_recon_no_registry_or_labels_written",
+  "verdict": {
+    "honest_reading": "Current combined positive bronze is 6046 across 35 fingerprints. Beyond those, 14 candidate families are clean (distinct + floor-reachable + non-redundant), 3 are distinct but below the 100-floor on the cofactor-handle-reachable supply, and 1 are redundant with an existing lane. Adding the clean families' capped, novelty-discounted supply projects to ~8687 diverse POSITIVE bronze -- a gap of 1313 to 10k. Two honesty discounts shrink even this: 12 of the clean families are reaction-poor (ortholog padding -- many entries, few distinct reactions), so the diversity-discounted new bronze is only ~1504 (not the headline cap-sum); and 8 families have a weak cofactor handle (it reaches <25% of the EC supply ceiling -- NAD(P) dehydrogenases are the big one, since NAD is a cosubstrate, not a UniProt COFACTOR comment), so their large EC supply is NOT reachable by the current cofactor-anchored gate without a new sequence-motif/EC-only handle. Net: reviewed Swiss-Prot yields low thousands of diverse POSITIVE bronze, not 10k; closing the gap needs either diverse novelty-gated OOS + bronze->silver depth counted toward 10k, or sources beyond reviewed Swiss-Prot.",
+    "recommendation": "Re-target: reviewed Swiss-Prot alone does not yield 10k diverse POSITIVE bronze. Source the clean non-hydrolase families to broaden chemistry (non_heme_iron_2og_dioxygenase, cytochrome_p450_monooxygenase, copper_oxidoreductase, molybdopterin_oxidoreductase), and define 10k as positives + diverse novelty-gated OOS + bronze->silver depth, OR bring in sources beyond reviewed Swiss-Prot (TrEMBL/UniRef clusters, BRENDA, structure-anchored families). Keep the positive set diverse, not padded.",
+    "ten_k_diverse_positive_bronze_plausible": false,
+    "ten_k_target": 10000,
+    "verdict_code": "ten_k_diverse_positive_bronze_NOT_reachable_from_reviewed_swissprot_alone"
+  }
+}

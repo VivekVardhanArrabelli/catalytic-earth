@@ -13,6 +13,41 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: high-yield family scout + reusable lane factory built.** The
+latest run stopped replaying capped/tiny lanes and checked whether any existing fingerprint/source
+path could still admit a >=150 clean batch. Current evidence says no: remaining existing cap rooms
+are below threshold or source-exhausted. Therefore no registry apply was attempted.
+
+A refreshed reviewed-UniProt supply scout
+`artifacts/v3_high_yield_family_supply_scout_current702_20260614.json` probed **18** candidate
+families and found **14** clean/floor-reachable candidates under broad cap math, but projected only
+**8687** positive bronze from reviewed Swiss-Prot alone (gap **1313** to 10k even before applying
+newer current-count/cap-room constraints). The new factory artifact
+`artifacts/v3_high_yield_family_lane_factory_current702_20260614.json` then ranked **12** concrete
+family-lane specs against current counts and live non-EC corroborator-reachable supply. It found
+**0** existing lanes ready for >=150 and **8** blocked high-yield new-family lanes. Top ranked:
+`terpene_cyclase_synthase`, with reviewed scope supply **2335**, non-EC corroborator supply
+**2315**, estimated corroboration rate **0.991**, clean cap **250**, and projected clean admits
+**250**.
+
+Reusable infrastructure added: `src/catalytic_earth/high_yield_family_lane_factory.py`,
+`scripts/build_high_yield_family_lane_factory.py`, and
+`tests/test_high_yield_family_lane_factory.py`. The factory declarations include scope query,
+non-EC corroborator query, disambiguation holds, cap class, source tier, rationale, row guardrail
+requirement, and preview/apply command templates. Guardrails remain unchanged: EC is scope-only and
+never a counted corroborator; broadened handles are admission/source-planning evidence only;
+future labels must be bronze, automation-curated, `uniprot:*`, deduped against current702 and
+external bronze, novelty-gated, capped, and written only to the external bronze registry after
+explicit `--apply`.
+
+Counts are unchanged by this run: external bronze **7040**, combined label surface **7742**,
+combined seed-fingerprint surface **6046**, remaining gap to 10k seed surface **3954**. Frozen
+current702 stayed sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Next 10k-path work should
+build the `terpene_cyclase_synthase` fingerprint/source runner first: ontology node,
+OOS/fingerprint-universe preregistration, mechanism disambiguation rule, source runner,
+row-guardrail audit, non-destructive preview, targeted tests, then `--apply` only if all gates pass.
+
 **2026-06-14 automation update: Stage-1 radical-SAM post-prefix top-up applied.** Current handoff
 evidence showed the previously obvious continuation lanes were capped or exhausted: non-heme 2OG is
 **250/250**, current copper selectors have no post-prefix supply, SOD's guarded query had already

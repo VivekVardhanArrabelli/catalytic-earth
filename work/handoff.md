@@ -1,5 +1,62 @@
 # Handoff
 
+## Session run - High-yield family scout + lane factory built; no safe >=150 apply in current universe (2026-06-14, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. Current docs showed the recent
+  failure mode clearly: non-heme 2OG, CoA, P450, molybdopterin, PfkB, biotin, glycoside,
+  isomerase/racemase/kinase subfamilies, SAM MTase, glycosyltransferase, and several hydrolase
+  splits are capped; existing copper/SOD/zinc/FMO/heme selectors are exhausted or below the
+  150-row batch threshold. This run therefore did not spend time on tiny top-ups.
+- Non-destructive high-yield supply scout:
+  `artifacts/v3_high_yield_family_supply_scout_current702_20260614.json` /
+  `work/high_yield_family_supply_scout_current702_20260614.md` refreshed reviewed UniProt supply
+  across **18** broad candidate families. It found **14** clean/floor-reachable candidates under
+  old cap math, estimated **2641** capped clean bronze (**1504** diversity-discounted), and still
+  projected only **8687** positive bronze from reviewed Swiss-Prot alone, leaving **1313** to 10k
+  even before newer per-family caps/current-count limits are applied. This is recon only: no labels
+  or registries were written.
+- New reusable infrastructure: added `src/catalytic_earth/high_yield_family_lane_factory.py`,
+  `scripts/build_high_yield_family_lane_factory.py`, and
+  `tests/test_high_yield_family_lane_factory.py`. The factory lets future lanes declare scope
+  query, non-EC corroborator query, required mechanism axes, disambiguation holds, cap class,
+  source tier, rationale, row-guardrail requirement, and preview/apply command templates. It ranks
+  candidate families against live reviewed supply plus current registry cap room while preserving
+  the leakage wall: EC is scope-only, non-EC handles are source/admission-only, and no
+  `predictive_evidence` is created.
+- Factory scout artifact:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260614.json` /
+  `work/high_yield_family_lane_factory_current702_20260614.md` ranked **12** candidate families.
+  Result: **0** existing lanes are ready for a >=150-row preview/apply. **8** high-yield lanes are
+  blocked only because they require a new fingerprint / ontology node / OOS preregistration /
+  disambiguation rule before any registry mutation. Top ranked lane:
+  `terpene_cyclase_synthase` with reviewed scope supply **2335**, non-EC corroborator-reachable
+  supply **2315**, estimated corroboration rate **0.991**, clean non-confusable cap **250**, and
+  projected clean admits **250**. Next ranked high-yield blocked lanes are
+  `short_chain_dehydrogenase_reductase`, `aldo_keto_reductase`, `had_like_phosphatase`,
+  `protein_kinase_ser_thr_tyr`, `aldehyde_dehydrogenase`,
+  `alpha_beta_hydrolase_esterase_lipase`, and `ser_thr_protein_phosphatase`.
+- No registry apply was attempted. The factory evidence says a >=150 batch is not available under
+  the current fingerprint universe; applying top-ups would violate the run objective. Frozen
+  current702 remained byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; external bronze remains
+  **7040**; combined label surface remains **7742**; combined seed-fingerprint surface remains
+  **6046**, leaving **3954** to the 10k seed-surface target. External-only split remains **5816**
+  seed rows and **1224** OOS rows. Honest counters remain separate:
+  `positive_bronze_count=6029`, `oos_bronze_count=1696`, `silver_ready_count=0`,
+  `silver_confirmed_count=17`, `projected_provisional_count=0`.
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_high_yield_family_lane_factory.py tests/test_breadth_feasibility_scout.py tests/test_leakage_closure.py tests/test_source_only_contract.py -q`
+  -> **213 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels). JSON
+  parse checks for the new artifacts and both registries passed. `git diff --check` passed.
+- Next exact action: build `terpene_cyclase_synthase` as the first high-yield new-family lane:
+  add fingerprint + ontology node, preregister the OOS/fingerprint-universe change, add a
+  mechanism-first disambiguation rule requiring non-EC terpene/cyclase + Mg/Mn/diphosphate/Rhea
+  corroborators, hold prenyltransferase/lyase/multi-signal rows, add a source runner and row
+  guardrail audit, run a non-destructive preview, then apply only if dedup, novelty, cap,
+  trust-tier, leakage, and frozen-sha gates pass.
+
 ## Session run - Stage-1 radical-SAM post-prefix top-up applied; FMO/heme scouts no-yield (2026-06-14, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
