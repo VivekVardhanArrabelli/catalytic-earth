@@ -21,6 +21,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import sys
 from pathlib import Path
 from urllib.error import URLError
@@ -58,6 +59,13 @@ def _egress_ok() -> bool:
         return False
 
 
+def _frozen_sha() -> str:
+    path = Path(DEFAULT_FROZEN_BENCHMARK_PATH)
+    if not path.exists():
+        return "missing"
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -75,6 +83,18 @@ def main() -> int:
         ),
     )
     parser.add_argument("--max-records-per-lane", type=int, default=50)
+    parser.add_argument(
+        "--record-offset-per-lane",
+        type=int,
+        default=0,
+        help="skip this many fetched rows per lane before entry/Rhea fetch",
+    )
+    parser.add_argument(
+        "--record-limit-per-lane",
+        type=int,
+        default=None,
+        help="fetch at most this many rows per lane after the offset",
+    )
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
     parser.add_argument(
@@ -104,6 +124,8 @@ def main() -> int:
         report_path=Path(args.report),
         holes=tuple(args.holes),
         max_records_per_lane=args.max_records_per_lane,
+        record_offset_per_lane=args.record_offset_per_lane,
+        record_limit_per_lane=args.record_limit_per_lane,
     )
 
     c = audit["counts"]
@@ -112,6 +134,7 @@ def main() -> int:
         f"fetched {c['fetched_candidate_rows']} rows; "
         f"disambiguated {c['disambiguated_bronze_labels']}; "
         f"novelty-admitted {c['novelty_admitted_labels']}; "
+        f"window offset {c['record_offset_per_lane']} limit {c['record_limit_per_lane']}; "
         f"combined {c['current_combined_labels']} -> "
         f"{c['projected_combined_labels_if_merged']} if merged)."
     )
@@ -127,17 +150,26 @@ def main() -> int:
         if not audit["applied_labels"]:
             print("Nothing to apply (0 novelty-admitted labels).")
             return 0
+        sha_before = _frozen_sha()
+        print(f"  frozen current702 sha256 BEFORE apply: {sha_before}")
         summary = apply_external_annotation_anchored_import_to_registry(
             preview_path=Path(args.out),
             expansion_registry_path=DEFAULT_EXPANSION_REGISTRY_PATH,
             frozen_benchmark_registry_path=DEFAULT_FROZEN_BENCHMARK_PATH,
         )
+        sha_after = _frozen_sha()
         print(
             f"APPLIED: appended {summary['appended']} bronze "
             f"(skipped {summary['duplicate_skipped']} dup); expansion "
             f"{summary['expansion_registry_before']} -> {summary['expansion_registry_after']}; "
             f"combined total {summary['combined_total_labels']}; "
             f"frozen benchmark written: {summary['frozen_benchmark_registry_written']}."
+        )
+        print(f"  frozen current702 sha256 AFTER apply:  {sha_after}")
+        print(
+            "  frozen current702 UNCHANGED"
+            if sha_before == sha_after
+            else "  WARNING: frozen current702 sha CHANGED -- investigate before trusting"
         )
     return 0
 

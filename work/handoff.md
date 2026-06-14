@@ -1,5 +1,72 @@
 # Handoff
 
+## Session run - Stage-1 radical-SAM post-prefix top-up applied; FMO/heme scouts no-yield (2026-06-14, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. Latest repo state said
+  `non_heme_iron_2og_dioxygenase` was capped, current copper selectors were exhausted, and SOD/zinc
+  under-cap lanes had concrete no-yield/exhaustion evidence. This run therefore used the existing
+  Stage-1 cofactor mechanism-first pipeline for remaining non-confusable cofactor surface rather
+  than replaying capped or exhausted family lanes.
+- Implementation: added fetch-only window controls to `src/catalytic_earth/stage1_hole_sourcing.py`
+  and `scripts/stage1_source_holes.py`: `--record-offset-per-lane` and
+  `--record-limit-per-lane`. These controls are applied before entry/Rhea fetch and do not change
+  EC scope, disambiguation, trust-tier evaluation, novelty, caps, or predictive evidence. The
+  Stage-1 CLI `--apply` path now prints/verifies frozen current702 sha256 before and after append.
+- Applied gated source-tier-0 bronze rows:
+  - `artifacts/v3_stage1_radical_cobalamin_window100_40_sourcing_preview_current702_20260614.json`
+    / `work/stage1_radical_cobalamin_window100_40_sourcing_current702_20260614.md` used
+    `--holes radical_sam_enzyme cobalamin_radical_rearrangement --max-records-per-lane 180
+    --record-offset-per-lane 100 --record-limit-per-lane 40`.
+  - Fetched **160**, disambiguated **82**, applied **81** `radical_sam_enzyme` rows, held **78**
+    no-corroboration rows, skipped **0**, and cap-held **1** off-target `coa_acyltransferase` row.
+    `cobalamin_radical_rearrangement` stayed **144**. `radical_sam_enzyme` moved **133 -> 214**
+    combined, still under the non-confusable cap **250**.
+- Continuation scouts:
+  - `artifacts/v3_stage1_flavin_heme_window0_30_sourcing_preview_current702_20260614.json` /
+    `work/stage1_flavin_heme_window0_30_sourcing_current702_20260614.md`: fetched **125**,
+    disambiguated **12**, final novelty-admitted **0**.
+  - `artifacts/v3_stage1_flavin_heme_window30_30_sourcing_preview_current702_20260614.json` /
+    `work/stage1_flavin_heme_window30_30_sourcing_current702_20260614.md`: fetched **107**,
+    disambiguated **21**, final novelty-admitted **0**.
+  Do not apply those FMO/heme windows; they are redundant/cap-held under current gates.
+- Net registry change: external bronze **6959 -> 7040** (+81); combined label surface
+  **7661 -> 7742**. External-only split is **5816** seed-fingerprint rows and **1224** OOS rows.
+  Combined seed-fingerprint surface is **6046**, leaving **3954** to 10k by that surface
+  convention. Honest counters remain separate: `positive_bronze_count=6029`,
+  `oos_bronze_count=1696`, `silver_ready_count=0`, `silver_confirmed_count=17`,
+  `projected_provisional_count=0`.
+- Guardrails verified: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`; all **81** added rows are `tier=bronze`,
+  `review_status=automation_curated`, `uniprot:*`, `source_tier_0`, and have
+  `predictive_evidence []`. EC/name/prose/Rhea/cofactor/feature handles remain excluded-context
+  admission evidence only, and EC is never counted. Row audit
+  `artifacts/v3_stage1_radical_sam_window100_40_row_guardrail_audit_current702_20260614.json` /
+  `work/stage1_radical_sam_window100_40_row_guardrail_audit_current702_20260614.md` found **0**
+  problems across the **81** newly applied rows.
+- Fresh audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_stage1_radical_cobalamin_window100_40_applied.json`
+  / `work/coverage_redundancy_audit_current702_20260614_stage1_radical_cobalamin_window100_40_applied.md`:
+  **7742** combined, **7040** expansion, seed positives **6046**, fingerprint Gini **0.1385**,
+  holes `[]`, under-floor `[]`, next-batch floor deficit **0**, over-cap
+  `['metal_dependent_hydrolase']`. Novelty replay:
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260614_stage1_radical_cobalamin_window100_40_applied.json`
+  / `work/novelty_admission_gate_audit_current702_20260614_stage1_radical_cobalamin_window100_40_applied.md`:
+  **7040** expansion rows, decisions `{'admit': 6584, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0648).
+- Validation: focused pytest passed
+  (`PYTHONPATH=src pytest tests/test_stage1_hole_sourcing.py tests/test_external_source_ingestion.py tests/test_external_cofactor_ec_disambiguation.py tests/test_external_annotation_anchored_import.py tests/test_source_trust_tiers.py tests/test_novelty_admission_gate.py tests/test_coverage_redundancy_audit.py tests/test_leakage_closure.py tests/test_source_only_contract.py -q`
+  -> **316 passed, 14 subtests passed**). `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 35 fingerprints, 32 ontology families, 702 curated labels). JSON parse
+  checks for touched registry/artifacts and `git diff --check` passed.
+- Next exact action: do not replay non-heme 2OG, current copper selectors, SOD full-query, zinc
+  prefix, or the two FMO/heme windows above. The next bounded 10k-path action can continue Stage-1
+  `radical_sam_enzyme` carefully with `--record-offset-per-lane 140 --record-limit-per-lane 40`
+  only while cap room remains (radical-SAM is **214/250**), or run a clean source-supply scout/spec
+  for another under-cap family with explicit non-EC mechanism corroborators. Any continuation must
+  inspect preview gates before apply and hold off-target/multi-signal rows.
+
 ## Session run - Non-heme iron 2OG capped; copper post-prefix scout no-yield (2026-06-13/14, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

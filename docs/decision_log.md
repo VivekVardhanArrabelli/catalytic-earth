@@ -3,6 +3,65 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: STAGE-1 RADICAL-SAM POST-PREFIX TOP-UP APPLIED; FMO/HEME WINDOWS NO-YIELD
+
+Decision: do not replay capped or exhausted current lanes. The latest state showed
+`non_heme_iron_2og_dioxygenase` capped at **250/250**, current copper selectors exhausted beyond
+their fetched prefix, Mn/Fe SOD's guarded reviewed query already fully fetched at **252** rows, and
+zinc post-apply previews redundant/no-yield. Use the existing Stage-1 cofactor mechanism-first
+pipeline to process remaining non-confusable cofactor surface in bounded windows.
+
+Implementation: added fetch-only row-window controls to `src/catalytic_earth/stage1_hole_sourcing.py`
+and `scripts/stage1_source_holes.py`: `--record-offset-per-lane` and
+`--record-limit-per-lane`. These controls affect only source fetch slicing before entry/Rhea fetch;
+they do not alter disambiguation, source-trust tier evaluation, novelty, caps, or predictive
+evidence. The Stage-1 `--apply` path now prints frozen current702 sha256 before and after append.
+
+Apply result:
+`PYTHONPATH=src python scripts/stage1_source_holes.py --holes radical_sam_enzyme cobalamin_radical_rearrangement --max-records-per-lane 180 --record-offset-per-lane 100 --record-limit-per-lane 40 --out artifacts/v3_stage1_radical_cobalamin_window100_40_sourcing_preview_current702_20260614.json --report work/stage1_radical_cobalamin_window100_40_sourcing_current702_20260614.md --apply`.
+The preview fetched **160**, disambiguated **82**, applied **81** `radical_sam_enzyme` rows, held
+**78** no-corroboration rows, skipped **0**, and cap-held **1** off-target `coa_acyltransferase`
+row. `radical_sam_enzyme` moved **133 -> 214** combined; `cobalamin_radical_rearrangement` stayed
+**144**.
+
+Counts after apply: external bronze **6959 -> 7040**; combined label surface **7661 -> 7742**.
+External-only split is **5816** seed-fingerprint rows and **1224** OOS rows. Combined
+seed-fingerprint surface is **6046**, leaving **3954** to 10k by that surface convention. Strict
+counters remain separate: **positive_bronze_count 6029**, **oos_bronze_count 1696**,
+**silver_ready_count 0**, **silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+Guardrails held: all added rows are bronze, automation-curated, `uniprot:*`, `source_tier_0`, with
+`predictive_evidence []`; EC/name/prose/Rhea/cofactor/feature handles remain excluded-context
+admission evidence only; EC is never counted as a mechanism corroborator; dedup and novelty ran
+against frozen current702 and the external bronze registry; frozen current702 stayed byte-unchanged
+with sha256 `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Row audit found
+**0** problems across the **81** newly applied rows. Coverage audit reports **35** fingerprints,
+Gini **0.1385**, holes `[]`, under-floor `[]`, over-cap `['metal_dependent_hydrolase']`, and
+next-batch floor deficit **0**. Novelty replay reports **7040** expansion rows, decisions
+`{'admit': 6584, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0648).
+
+Follow-on scouts:
+- FMO/heme window `0:30` fetched **125**, disambiguated **12**, final novelty-admitted **0**.
+- FMO/heme window `30:30` fetched **107**, disambiguated **21**, final novelty-admitted **0**.
+Do not apply those two artifacts. If continuing Stage-1 cofactor surface, preview
+`radical_sam_enzyme` at `--record-offset-per-lane 140 --record-limit-per-lane 40` only while cap
+room remains (**214/250**), or choose a clean under-cap family/source scout with explicit non-EC
+mechanism corroborators.
+
+References:
+`artifacts/v3_stage1_radical_cobalamin_window100_40_sourcing_preview_current702_20260614.json`,
+`work/stage1_radical_cobalamin_window100_40_sourcing_current702_20260614.md`,
+`artifacts/v3_stage1_flavin_heme_window0_30_sourcing_preview_current702_20260614.json`,
+`work/stage1_flavin_heme_window0_30_sourcing_current702_20260614.md`,
+`artifacts/v3_stage1_flavin_heme_window30_30_sourcing_preview_current702_20260614.json`,
+`work/stage1_flavin_heme_window30_30_sourcing_current702_20260614.md`,
+`artifacts/v3_stage1_radical_sam_window100_40_row_guardrail_audit_current702_20260614.json`,
+`work/stage1_radical_sam_window100_40_row_guardrail_audit_current702_20260614.md`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260614_stage1_radical_cobalamin_window100_40_applied.json`,
+`work/coverage_redundancy_audit_current702_20260614_stage1_radical_cobalamin_window100_40_applied.md`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260614_stage1_radical_cobalamin_window100_40_applied.json`,
+and `work/novelty_admission_gate_audit_current702_20260614_stage1_radical_cobalamin_window100_40_applied.md`.
+
 ## 2026-06-13/14: NON-HEME IRON 2OG CAPPED; COPPER CURRENT LANES SOURCE-EXHAUSTED
 
 Decision: continue the documented `non_heme_iron_2og_dioxygenase` windowed path only while it

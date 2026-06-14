@@ -26,6 +26,51 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **STAGE-1 RADICAL-SAM POST-PREFIX TOP-UP APPLIED; FMO/HEME SCOUTS NO-YIELD (2026-06-14 automation).**
+  The latest run found the previously named continuation lanes either capped or exhausted:
+  non-heme 2OG is **250/250**, current copper selectors are exhausted beyond 153 laccase/oxidase
+  and 69 amine oxidase rows, Mn/Fe SOD's guarded query had already fetched its full **252** row
+  supply, and zinc post-apply previews were redundant/no-yield. The run therefore used the existing
+  Stage-1 cofactor mechanism-first path for remaining non-confusable cofactor surface.
+
+  Implementation added fetch-only Stage-1 row-window controls:
+  `scripts/stage1_source_holes.py --record-offset-per-lane --record-limit-per-lane` and matching
+  plumbing in `src/catalytic_earth/stage1_hole_sourcing.py`. These controls are applied before
+  entry/Rhea fetch only; they do not change disambiguation, source-trust evaluation, novelty, caps,
+  or leakage behavior. The Stage-1 `--apply` path now prints frozen current702 sha256 before and
+  after append.
+
+  Applied window:
+  `--holes radical_sam_enzyme cobalamin_radical_rearrangement --max-records-per-lane 180
+  --record-offset-per-lane 100 --record-limit-per-lane 40` fetched **160**, disambiguated **82**,
+  and applied **81** source-tier-0 `radical_sam_enzyme` bronze rows. One off-target
+  `coa_acyltransferase` row was held at cap; `cobalamin_radical_rearrangement` stayed **144**.
+  `radical_sam_enzyme` moved **133 -> 214** combined, under the non-confusable cap **250**.
+
+  External bronze is now **7040**; combined label surface is **7742**. External-only split is
+  **5816** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+  **6046**, leaving **3954** to 10k by that surface convention. Strict counters remain separate:
+  **positive_bronze_count 6029**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+  **silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+  Guardrails held: frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+  `data/registries/external_bronze_labels.json`; all **81** new rows are bronze,
+  automation-curated, `uniprot:*`, `source_tier_0`, and have `predictive_evidence []`.
+  EC/name/prose/Rhea/cofactor/feature handles remain excluded-context admission evidence only and
+  EC is never counted. Row audit
+  `artifacts/v3_stage1_radical_sam_window100_40_row_guardrail_audit_current702_20260614.json`
+  found **0** problems across the newly applied rows. Coverage audit reports **35** fingerprints,
+  Gini **0.1385**, holes `[]`, under-floor `[]`, next-batch floor deficit **0**, and only
+  `metal_dependent_hydrolase` over-cap. Novelty replay over **7040** expansion rows reports
+  decisions `{'admit': 6584, 'reject': 47, 'throttle': 409}` and would-not-readmit **456**
+  (0.0648).
+
+  Continuation scouts over `flavin_monooxygenase` and `heme_peroxidase_oxidase` windows `0:30` and
+  `30:30` no-yielded after final cap/novelty guards, so do not apply those artifacts. Next action:
+  if continuing Stage-1 cofactor surface, preview `radical_sam_enzyme` cautiously at
+  `--record-offset-per-lane 140 --record-limit-per-lane 40` while cap room remains (**214/250**),
+  or scout a clean under-cap family/source path with explicit non-EC mechanism corroborators.
 - **NON-HEME IRON 2OG CAPPED; COPPER POST-PREFIX SCOUT NO-YIELD (2026-06-13/14 automation).**
   The latest run continued the documented non-heme 2OG `140:10` slice and kept going through
   bounded windows until the family hit its cap. Applied windows `140:10`, `150:10`, `160:10`,

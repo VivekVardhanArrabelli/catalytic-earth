@@ -313,6 +313,52 @@ class Stage1HoleSourcingTest(unittest.TestCase):
         self.assertEqual(label["tier"], "bronze")
         self.assertEqual(label["evidence"]["predictive_evidence"], [])
 
+    def test_record_window_is_applied_before_entry_fetch(self):
+        accessions = ["FM0001", "FM0002", "FM0003"]
+        searches = [
+            _search_record(accession, ["1.14.13.8"], f"Flavin monooxygenase {accession}")
+            for accession in accessions
+        ]
+        entries = {
+            accession: _entry_record(accession, cofactor_names=["FAD"], rhea_id=f"RHEA:{idx}")
+            for idx, accession in enumerate(accessions, start=1)
+        }
+        fetched_entries: list[str] = []
+
+        def query_fetcher(query, size):
+            records = searches if "1.14.13" in query else []
+            return {"metadata": {"url": "test://uniprot", "query": query}, "records": records}
+
+        def entry_fetcher(accession):
+            fetched_entries.append(accession)
+            return {"metadata": {"url": f"test://{accession}"}, "record": entries[accession]}
+
+        audit = build_stage1_hole_sourcing(
+            holes=("flavin_monooxygenase",),
+            max_records_per_lane=10,
+            record_offset_per_lane=1,
+            record_limit_per_lane=1,
+            current_manifest_payload={"rows": []},
+            frozen_benchmark_payload=[],
+            expansion_payload=[],
+            created_utc="2026-06-10T00:00:00Z",
+            query_fetcher=query_fetcher,
+            entry_fetcher=entry_fetcher,
+            rhea_fetcher=_fake_rhea_fetcher,
+        )
+        self.assertEqual(fetched_entries, ["FM0002"])
+        self.assertEqual(audit["counts"]["record_offset_per_lane"], 1)
+        self.assertEqual(audit["counts"]["record_limit_per_lane"], 1)
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 1)
+        lane = next(
+            lane
+            for lane in audit["lane_summaries"]
+            if lane["lane_id"] == "fmo_ec_1_14_13"
+        )
+        self.assertEqual(lane["record_offset_per_lane"], 1)
+        self.assertEqual(lane["record_limit_per_lane"], 1)
+        self.assertEqual(lane["records_in_window_before_dedup"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
