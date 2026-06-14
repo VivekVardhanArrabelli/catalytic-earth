@@ -120,6 +120,59 @@ class EvaluateCandidateTests(unittest.TestCase):
         self.assertEqual(result["reason"], "over_cap_but_new_reaction_chemistry")
 
 
+class PerReactionCapTests(unittest.TestCase):
+    def _balanced_state_one_reaction(self, fp: str, n: int = 150) -> DiversityState:
+        s = DiversityState()
+        # n rows, all the SAME reaction, distinct organisms -> fp past floor, the
+        # single reaction is heavily saturated.
+        for i in range(n):
+            s.absorb(
+                _row(
+                    entry_id=f"s{i}",
+                    fp=fp,
+                    organism=f"org{i}",
+                    seq_len=200 + i % 5,
+                    rhea=("RHEA:1001",),
+                )
+            )
+        return s
+
+    def test_default_none_admits_new_organism_same_reaction(self) -> None:
+        state = self._balanced_state_one_reaction("plp_dependent_enzyme")
+        cand = _row(entry_id="new", fp="plp_dependent_enzyme", organism="brand_new", seq_len=999)
+        result = evaluate_candidate(cand, state)  # per_reaction_cap default None
+        self.assertEqual(result["decision"], "admit")
+
+    def test_cap_throttles_saturated_reaction_even_with_new_organism(self) -> None:
+        state = self._balanced_state_one_reaction("plp_dependent_enzyme")
+        cand = _row(entry_id="new", fp="plp_dependent_enzyme", organism="brand_new", seq_len=999)
+        result = evaluate_candidate(cand, state, per_reaction_cap=12)
+        self.assertEqual(result["decision"], "throttle")
+        self.assertEqual(result["reason"], "reaction_saturated_per_reaction_cap")
+        self.assertTrue(result["per_reaction_saturated"])
+
+    def test_cap_admits_a_genuinely_new_reaction(self) -> None:
+        state = self._balanced_state_one_reaction("plp_dependent_enzyme")
+        cand = _row(
+            entry_id="new",
+            fp="plp_dependent_enzyme",
+            organism="brand_new",
+            rhea=("RHEA:9999",),
+        )
+        result = evaluate_candidate(cand, state, per_reaction_cap=12)
+        self.assertEqual(result["decision"], "admit")
+
+    def test_cap_does_not_block_under_floor_reaching_floor(self) -> None:
+        # a single-reaction HOLE/under-floor family must still reach the floor even
+        # though its one reaction repeats -- the cap bounds depth ABOVE the floor only.
+        s = DiversityState()
+        for i in range(5):
+            s.absorb(_row(entry_id=f"u{i}", fp="cobalamin_radical_rearrangement", organism=f"o{i}"))
+        cand = _row(entry_id="u6", fp="cobalamin_radical_rearrangement", organism="o6")
+        result = evaluate_candidate(cand, s, per_reaction_cap=2)
+        self.assertEqual(result["decision"], "admit")
+
+
 class EvaluateBatchTests(unittest.TestCase):
     def test_within_batch_dedup_and_priority(self) -> None:
         state = DiversityState()

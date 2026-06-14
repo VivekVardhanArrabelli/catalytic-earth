@@ -264,6 +264,38 @@ DEFAULT_CAP_CEILING = 250
 # the floor) is a HOLE -- the sharpest acquisition priority.
 DEFAULT_HOLE_THRESHOLD = 25
 
+# Reaction-diversity-aware cap (2026-06-14). A flat 150/250 ceiling lets a
+# genuinely single-reaction mechanism (e.g. Mn/Fe SOD: 1 reaction, 160 organisms)
+# accumulate ~150 near-identical orthologs that add organism/sequence breadth but
+# NO reaction/mechanism diversity -- the lowest-quality organic growth. The fix is
+# to bound a family's depth ABOVE what its reaction diversity earns:
+#   cap(family) = clamp(rate * distinct_reactions, floor, ceiling)
+# A 1-reaction family earns only the floor; a 16+-reaction family earns up to the
+# ceiling. The floor is preserved so single-reaction mechanisms are bounded, not
+# dropped. ``rate`` and the bounds are parameters, not magic constants.
+DEFAULT_REACTION_CAP_RATE = 8
+# Reporting flag only: a family whose labels-per-distinct-reaction exceeds this is
+# called out as reaction-saturated in the audit. The trim/acquisition rule itself
+# keys on ``count > reaction_aware_cap`` (the durable cap above), not on this ratio.
+DEFAULT_SATURATION_RATIO_THRESHOLD = 10.0
+
+
+def reaction_aware_cap(
+    distinct_reactions: int,
+    *,
+    rate: int = DEFAULT_REACTION_CAP_RATE,
+    floor: int = DEFAULT_TARGET_FLOOR,
+    ceiling: int = DEFAULT_CAP_CEILING,
+) -> int:
+    """The reaction-diversity-earned cap for a family.
+
+    ``clamp(rate * distinct_reactions, floor, ceiling)`` -- headroom is earned by
+    mechanism diversity, never by raw organism/sequence padding. Single-reaction
+    mechanisms are bounded at the floor (not dropped); reaction-rich families reach
+    the ceiling. Coverage/acquisition accounting only -- never a predictive feature.
+    """
+    return max(floor, min(ceiling, rate * max(0, int(distinct_reactions))))
+
 
 def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -367,6 +399,7 @@ def build_coverage_redundancy_audit(
     cap_ceiling: int = DEFAULT_CAP_CEILING,
     hole_threshold: int = DEFAULT_HOLE_THRESHOLD,
     cluster_min_size: int = 3,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
 ) -> dict[str, Any]:
     combined = [
         {**row, "_registry": "frozen_current702"} for row in frozen
@@ -585,6 +618,7 @@ def build_coverage_redundancy_audit(
         target_floor=target_floor,
         cap_ceiling=cap_ceiling,
         hole_threshold=hole_threshold,
+        reaction_cap_rate=reaction_cap_rate,
     )
 
     return {
@@ -597,6 +631,7 @@ def build_coverage_redundancy_audit(
             "cap_ceiling_per_fingerprint": cap_ceiling,
             "hole_threshold": hole_threshold,
             "cluster_min_size": cluster_min_size,
+            "reaction_cap_rate": reaction_cap_rate,
         },
         "totals": totals,
         "fingerprint_distribution": fingerprint_distribution,
@@ -622,6 +657,7 @@ def _build_acquisition_targets(
     target_floor: int,
     cap_ceiling: int,
     hole_threshold: int,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
 ) -> dict[str, Any]:
     rows = []
     for fp in ALL_FINGERPRINTS:
@@ -630,6 +666,16 @@ def _build_acquisition_targets(
         diversity = per_fp_diversity.get(fp, {})
         distinct_rx = diversity.get("distinct_reactions") or 0
         redundancy_ratio = diversity.get("labels_per_distinct_reaction")
+        # depth this family's reaction diversity earns (never below the floor)
+        rxn_cap = reaction_aware_cap(
+            distinct_rx,
+            rate=reaction_cap_rate,
+            floor=target_floor,
+            ceiling=cap_ceiling,
+        )
+        expansion_seed = diversity.get("expansion_seed_labels") or 0
+        reaction_saturated = expansion_seed > rxn_cap
+        reaction_aware_surplus = max(0, expansion_seed - rxn_cap)
 
         if combined <= hole_threshold or dist["expansion"] == 0:
             status = "HOLE"
@@ -652,6 +698,13 @@ def _build_acquisition_targets(
                 f"CAP / PAUSE -- {surplus} over the {cap_ceiling} ceiling; dedup toward "
                 f"distinct reactions before adding any"
             )
+        elif reaction_saturated:
+            action = (
+                f"TRIM -- {reaction_aware_surplus} over the reaction-aware cap "
+                f"{rxn_cap} ({distinct_rx} distinct reactions x rate "
+                f"{reaction_cap_rate}); demote redundant orthologs toward reaction "
+                "diversity, do not source more"
+            )
         else:
             action = "HOLD -- at balance; only add if a new reaction/organism is gained"
 
@@ -668,6 +721,9 @@ def _build_acquisition_targets(
                 "surplus_over_cap": surplus,
                 "distinct_reactions": distinct_rx,
                 "labels_per_distinct_reaction": redundancy_ratio,
+                "reaction_aware_cap": rxn_cap,
+                "reaction_saturated": reaction_saturated,
+                "reaction_aware_surplus": reaction_aware_surplus,
                 "recommended_action": action,
                 "sourcing_hints": {
                     "ec_prefixes": signature["ec_prefixes"],
@@ -693,7 +749,11 @@ def _build_acquisition_targets(
     holes = [r["fingerprint"] for r in rows if r["status"] == "HOLE"]
     under = [r["fingerprint"] for r in rows if r["status"] == "UNDER"]
     caps = [r["fingerprint"] for r in rows if r["status"] == "OVER_CAP"]
+    reaction_saturated = sorted(
+        r["fingerprint"] for r in rows if r["reaction_saturated"]
+    )
     total_deficit = sum(r["deficit_to_floor"] for r in rows)
+    total_reaction_aware_surplus = sum(r["reaction_aware_surplus"] for r in rows)
 
     return {
         "policy_summary": (
@@ -705,9 +765,12 @@ def _build_acquisition_targets(
             "positive supply, not raw count."
         ),
         "next_batch_floor_deficit_total": total_deficit,
+        "reaction_cap_rate": reaction_cap_rate,
+        "reaction_aware_surplus_total": total_reaction_aware_surplus,
         "holes": holes,
         "under_floor": under,
         "over_cap": caps,
+        "reaction_saturated": reaction_saturated,
         "targets": rows,
     }
 
@@ -782,6 +845,9 @@ def _report(audit: dict[str, Any]) -> str:
             f"- Holes: {at['holes']}.",
             f"- Under floor: {at['under_floor']}.",
             f"- Over cap: {at['over_cap']}.",
+            f"- Reaction-saturated (over reaction-aware cap, rate "
+            f"{at['reaction_cap_rate']}): {at['reaction_saturated']} "
+            f"(surplus {at['reaction_aware_surplus_total']}).",
             f"- Total deficit to floor (next-batch positive target): "
             f"{at['next_batch_floor_deficit_total']}.",
             "",
@@ -837,6 +903,7 @@ def write_coverage_redundancy_audit(
     cap_ceiling: int = DEFAULT_CAP_CEILING,
     hole_threshold: int = DEFAULT_HOLE_THRESHOLD,
     cluster_min_size: int = 3,
+    reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
 ) -> dict[str, Any]:
     frozen = _load_json(frozen_benchmark_path)
     expansion_path = Path(expansion_registry_path)
@@ -848,6 +915,7 @@ def write_coverage_redundancy_audit(
         cap_ceiling=cap_ceiling,
         hole_threshold=hole_threshold,
         cluster_min_size=cluster_min_size,
+        reaction_cap_rate=reaction_cap_rate,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

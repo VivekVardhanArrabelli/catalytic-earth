@@ -94,6 +94,7 @@ from .external_annotation_anchored_import import (
 from .external_scaleout_bronze_import import write_scaleout_bronze_import
 from .external_cofactor_ec_disambiguation import write_cofactor_ec_disambiguation
 from .coverage_redundancy_audit import write_coverage_redundancy_audit
+from .reaction_saturation_trim import write_reaction_saturation_trim
 from .ser_his_triad_locator import write_ser_his_triad_locator_scan
 from .novelty_admission_gate import write_novelty_admission_gate_audit
 from .mechanism_representation_loop import write_mechanism_representation_loop
@@ -2876,6 +2877,31 @@ def cmd_build_coverage_redundancy_audit(args: argparse.Namespace) -> int:
         f"fingerprint Gini {ci['fingerprint_gini']}; holes {at['holes']}; "
         f"over-cap {at['over_cap']}; next-batch floor deficit "
         f"{at['next_batch_floor_deficit_total']}; no registry written)"
+    )
+    return 0
+
+
+def cmd_build_reaction_saturation_trim(args: argparse.Namespace) -> int:
+    audit = write_reaction_saturation_trim(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        reaction_cap_rate=args.reaction_cap_rate,
+        target_floor=args.target_floor,
+        cap_ceiling=args.cap_ceiling,
+        saturation_ratio_threshold=args.saturation_ratio_threshold,
+    )
+    t = audit["totals"]
+    pd = audit["projected_diversity"]
+    cb = audit["separate_honest_counters"]["before"]
+    ca = audit["separate_honest_counters"]["after"]
+    print(
+        "Wrote reaction-saturation trim preview to "
+        f"{args.out} ({audit['status']}; families trimmed {t['families_trimmed']}; "
+        f"rows demoted {t['rows_demoted']}; expansion {t['expansion_before']} -> "
+        f"{t['expansion_after']}; fingerprint Gini "
+        f"{pd['fingerprint_gini_before']} -> {pd['fingerprint_gini_after']}; "
+        f"positive_bronze {cb['positive_bronze_count']} -> "
+        f"{ca['positive_bronze_count']}; preview only, no registry written)"
     )
     return 0
 
@@ -22773,6 +22799,55 @@ def build_parser() -> argparse.ArgumentParser:
     )
     coverage_redundancy_audit.set_defaults(
         func=cmd_build_coverage_redundancy_audit
+    )
+
+    reaction_saturation_trim = subparsers.add_parser(
+        "build-reaction-saturation-trim",
+        help=(
+            "non-destructive backward cleanup: preview a reaction- and "
+            "sequence-diverse trim of reaction-saturated families down to their "
+            "reaction-aware cap (clamp(rate * distinct_reactions, floor, ceiling)); "
+            "emits per-family keep/demote lists, projected Gini/labels-per-reaction, "
+            "and the separate honest counters before/after; writes no registry"
+        ),
+    )
+    reaction_saturation_trim.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_reaction_saturation_trim_preview_current702_20260614.json"
+        ),
+    )
+    reaction_saturation_trim.add_argument(
+        "--report",
+        default="work/reaction_saturation_trim_preview_current702_20260614.md",
+    )
+    reaction_saturation_trim.add_argument(
+        "--reaction-cap-rate",
+        type=int,
+        default=8,
+        help="labels of depth earned per distinct reaction (cap = rate * distinct_reactions)",
+    )
+    reaction_saturation_trim.add_argument(
+        "--target-floor",
+        type=int,
+        default=100,
+        help="floor the reaction-aware cap never falls below (single-reaction safety)",
+    )
+    reaction_saturation_trim.add_argument(
+        "--cap-ceiling",
+        type=int,
+        default=250,
+        help="ceiling the reaction-aware cap never exceeds",
+    )
+    reaction_saturation_trim.add_argument(
+        "--saturation-ratio-threshold",
+        type=float,
+        default=10.0,
+        help="labels-per-distinct-reaction above which a family is trimmed",
+    )
+    reaction_saturation_trim.set_defaults(
+        func=cmd_build_reaction_saturation_trim
     )
 
     ser_his_triad_locator = subparsers.add_parser(

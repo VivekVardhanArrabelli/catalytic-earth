@@ -3,6 +3,91 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: REACTION-AWARE CAPS + REACTION-SATURATION TRIM PREVIEW (NO APPLY)
+
+Decision: pivot from volume growth to diversity-quality. Growth has become
+reaction-saturated in single-reaction families -- 9 of 37 families (1329 labels, ~21%
+of expansion positives) exceed 10 labels per distinct Rhea reaction. These are real,
+distinct, novelty-gated, leakage-clean orthologs, but they add organism/sequence
+breadth, not reaction/mechanism diversity ("chasing volume manufactures redundancy").
+The fix is to bound a family's depth ABOVE what its reaction diversity earns -- NOT to
+drop single-reaction mechanisms (the 100-floor itself forces ~100 labels/reaction on a
+genuinely single-reaction mechanism, so the floor is preserved).
+
+Engine changes (forward prevention):
+- Added `coverage_redundancy_audit.reaction_aware_cap(distinct_reactions, rate, floor,
+  ceiling)` = `clamp(rate * distinct_reactions, floor, ceiling)` (default rate 8, floor
+  100, ceiling 250). The governor's acquisition policy now computes a per-family
+  reaction-aware cap, sets `reaction_saturated` / `reaction_aware_surplus`, lists
+  `reaction_saturated` families (11 over the cap at rate 8; surplus 451), and emits a
+  TRIM recommendation. `rate` and the bounds are parameters, not magic constants.
+  Flagged gap: the governor's `FINGERPRINT_SOURCING_SIGNATURES` still lists 35 families,
+  so its `reaction_saturated` count excludes the two newest registry fingerprints
+  (`terpene_cyclase_synthase`, `protein_kinase_ser_thr_tyr`); the trim is data-driven
+  over all 37 registry fingerprints and is unaffected. Add the two to the signature list
+  next.
+- Added an opt-in `per_reaction_cap` to `novelty_admission_gate.evaluate_candidate` /
+  `evaluate_batch` / `self_audit` (default `None` = unchanged historical behavior, so
+  retrospective replays are byte-stable). When set (~10-15) it throttles a candidate
+  whose every reaction is already at the ceiling -- even with a new organism -- but
+  only once the fingerprint is at/above floor, so holes still reach the floor.
+  `DiversityState` tracks per-reaction occupancy per scope. This is the durable
+  systemic fix; forward callers opt in, the gate's own default stays conservative.
+
+Backward cleanup (the deliverable, PREVIEW ONLY -- no `--apply`, no registry write):
+new non-destructive module `src/catalytic_earth/reaction_saturation_trim.py` + runner
+`scripts/trim_reaction_saturation.py` + CLI `build-reaction-saturation-trim` + offline
+synthetic-registry tests `tests/test_reaction_saturation_trim.py`. For each
+reaction-saturated family (labels/rxn > `saturation_ratio_threshold` 10 AND over the
+reaction-aware cap) it keeps a reaction- and sequence-diverse subset down to the
+reaction-aware cap: `select_diverse_keep` keeps >=1 row per distinct reaction first
+(reaction diversity fully preserved), then maximizes organism/sequence-length/cluster
+spread via the governor's `(fingerprint, full-EC, organism, length-bin)` near-dup proxy
+(deterministic, diversity-ranked, never recency-ranked; the artifact notes local mmseqs
+sequence clustering is the stronger dedup when available). The apply path
+`apply_reaction_saturation_trim_to_registry` is a non-destructive expansion-registry
+REWRITE that drops only the demoted entry_ids and re-validates every kept label through
+`MechanismLabel.from_dict`; it was BUILT but NOT called this turn.
+
+Preview result (`artifacts/v3_reaction_saturation_trim_preview_current702_20260614.json`,
+`work/...md`; measured after rebasing onto the protein-kinase 37fp lane on main): 9
+families trimmed, 429 rows demoted, expansion 7363 -> 6934, combined 8065 -> 7636,
+positive_bronze 6352 -> 5923 (oos_bronze unchanged 1696; counters stay separate). Per
+family (all clamp to the floor because none earns >100 at rate 8): SOD 166->100 (1 rxn),
+pfka 150->100 (2), ghmp 150->100 (4), deoxynucleoside 150->100 (7),
+zinc_lyase_hydratase 113->100 (6), biotin 150->100 (8), askha 150->100 (9), ndp
+150->100 (10), protein_kinase_ser_thr_tyr 150->100 (10). Reaction diversity preserved in
+all 9 (every distinct reaction retained). Fingerprint Gini 0.1352 -> 0.1874 -- it RISES
+BY DESIGN: Gini measures count evenness, and depth is now proportional to reaction
+diversity; the true quality metric (labels-per-reaction) drops to the cap in every
+trimmed family. Near-saturated held (over the rate-8 cap but below the labels/rxn>10
+ratio, not trimmed at default threshold): cobalamin_radical_rearrangement,
+pfkb_ribokinase_family, radical_sam_enzyme.
+
+Discipline: frozen current702 NEVER written (sha256 `5eec9bef...` byte-unchanged);
+growth/shrink would go only to `data/registries/external_bronze_labels.json`; demoted
+rows are bronze, never frozen; leakage wall intact (EC/name/lane excluded-context;
+reaction accounting uses mechanism_evidence only); this is a diversity-quality lever,
+not reconstruction (the separate silver/deploy axis). `validate` ok (12 source / 37
+fingerprints / 34 ontology / 702 curated labels); `git diff --check` clean; registries
+byte-unchanged.
+
+Stale count-pins: the two trivial live-registry pins (`test_coverage_redundancy_audit`
+combined/expansion, `test_novelty_admission_gate` expansion_rows) are current at
+8065/7363 from the protein-kinase lane and pass; this run kept them through the rebase.
+Left FLAGGED, not fixed (pre-existing, broken by the expansion / SDR / epk work): epk
+readiness fingerprint-count, atp_amide_ligase disambiguation_hold, pfka_sourcing counts,
+bronze_silver_promotion, cofactor_channel_probe, cofactor_presence_calibration,
+generalization holdout pin, geometry_retrieval, mechanism_representation_loop,
+sequence_cofactor_channel, transfer_scope SDR; plus the numpy-missing collection error on
+`test_active_site_supervised_smoke`.
+
+Next decision: authorize `scripts/trim_reaction_saturation.py --apply` (prints frozen
+sha before/after) to demote the 429 saturated orthologs, optionally after tuning
+`--reaction-cap-rate` / `--saturation-ratio-threshold`; then re-run the governor +
+novelty audits, add the two newest fingerprints to the governor's signature list, and
+wire the reaction-aware cap + per-reaction cap into the live runners so the climb stays
+mechanism-diverse by construction.
 ## 2026-06-14: PROTEIN KINASE 37FP HIGH-YIELD LANE APPLIED
 
 Decision: after `terpene_cyclase_synthase` left only **77** cap slots, stop top-ups and build the

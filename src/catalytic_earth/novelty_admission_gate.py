@@ -64,6 +64,17 @@ DEFAULT_EXPANSION_REGISTRY_PATH = Path("data/registries/external_bronze_labels.j
 # additions to that cluster are throttled as redundant orthologs.
 DEFAULT_PER_CLUSTER_CAP = 3
 
+# Optional hard ceiling on labels per distinct Rhea reaction within a scope. This is
+# the durable systemic counterpart to the reaction-aware family cap: it stops a single
+# reaction from accumulating endless organism/sequence orthologs even when each new
+# row carries a new organism. ``None`` keeps the gate's historical behavior (no
+# per-reaction ceiling) so retrospective replays are unchanged; forward callers
+# (runners, the saturation trim) pass a concrete value (~10-15). It is enforced only
+# once a fingerprint is at/above the floor, so single-reaction mechanisms can still
+# reach the 100-floor before the ceiling bites -- it bounds depth ABOVE what reaction
+# diversity earns, it does not drop single-reaction mechanisms.
+DEFAULT_PER_REACTION_CAP: int | None = None
+
 
 def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -91,13 +102,18 @@ class DiversityState:
         self.fingerprint_counts: Counter = Counter()
         self.reactions_by_scope: dict[str, set[str]] = defaultdict(set)
         self.organisms_by_scope: dict[str, set[str]] = defaultdict(set)
+        # scope -> {reaction_id: occupancy} for the per-reaction ceiling
+        self.reaction_counts_by_scope: dict[str, Counter] = defaultdict(Counter)
 
     def absorb(self, row: dict[str, Any]) -> None:
         scope = _scope(row)
         self.cluster_counts[cluster_key(row)] += 1
         if row.get("label_type") == "seed_fingerprint" and row.get("fingerprint_id"):
             self.fingerprint_counts[row["fingerprint_id"]] += 1
-        self.reactions_by_scope[scope].update(_reaction_ids(row))
+        reactions = _reaction_ids(row)
+        self.reactions_by_scope[scope].update(reactions)
+        for rid in reactions:
+            self.reaction_counts_by_scope[scope][rid] += 1
         org = _organism(row)
         if org:
             self.organisms_by_scope[scope].add(org)
@@ -132,13 +148,16 @@ def evaluate_candidate(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
     hole_threshold: int = DEFAULT_HOLE_THRESHOLD,
+    per_reaction_cap: int | None = DEFAULT_PER_REACTION_CAP,
 ) -> dict[str, Any]:
     """Decide ADMIT / THROTTLE / REJECT for one candidate (post exact-dedup).
 
     Decisions (the gate never writes; this is an advisory partition):
     - ``admit``           -- adds diversity (new cluster, or hole/under-floor volume).
     - ``throttle``        -- a redundant ortholog: its cluster is already at the
-                             per-cluster cap and it brings no new reaction/organism.
+                             per-cluster cap and it brings no new reaction/organism;
+                             or every reaction it carries is already at the
+                             per-reaction ceiling (and the fingerprint is past floor).
     - ``reject``          -- an over-cap fingerprint with no new chemistry.
     """
     scope = _scope(candidate)
@@ -198,6 +217,26 @@ def evaluate_candidate(
         else:
             decision, reason = "throttle", "redundant_no_novelty_signal"
 
+    # --- per-reaction ceiling (durable systemic fix) ----------------------
+    # Once a fingerprint is at/above floor, a row that only deepens already-saturated
+    # reactions (no new reaction) is throttled even if its organism is new -- this is
+    # how "no single reaction dominates even when the organism is new" is enforced.
+    # Hole/under-floor families are exempt so they can still reach the floor.
+    reaction_occupancy = (
+        {r: state.reaction_counts_by_scope.get(scope, {}).get(r, 0) for r in reactions}
+        if reactions
+        else {}
+    )
+    per_reaction_saturated = (
+        per_reaction_cap is not None
+        and reactions
+        and not new_reaction
+        and balance not in ("hole", "under_floor")
+        and all(occ >= per_reaction_cap for occ in reaction_occupancy.values())
+    )
+    if per_reaction_saturated and decision == "admit":
+        decision, reason = "throttle", "reaction_saturated_per_reaction_cap"
+
     return {
         "entry_id": candidate.get("entry_id"),
         "decision": decision,
@@ -210,6 +249,11 @@ def evaluate_candidate(
         "new_reaction": new_reaction,
         "new_organism": new_organism,
         "novelty_score": novelty_score,
+        "per_reaction_cap": per_reaction_cap,
+        "per_reaction_saturated": per_reaction_saturated,
+        "max_reaction_occupancy_before": (
+            max(reaction_occupancy.values()) if reaction_occupancy else 0
+        ),
     }
 
 
@@ -221,6 +265,7 @@ def evaluate_batch(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
     hole_threshold: int = DEFAULT_HOLE_THRESHOLD,
+    per_reaction_cap: int | None = DEFAULT_PER_REACTION_CAP,
     update_state_on_admit: bool = True,
 ) -> dict[str, Any]:
     """Partition a candidate batch, updating state so within-batch dups also gate.
@@ -253,6 +298,7 @@ def evaluate_batch(
             target_floor=target_floor,
             cap_ceiling=cap_ceiling,
             hole_threshold=hole_threshold,
+            per_reaction_cap=per_reaction_cap,
         )
         decisions.append(result)
         counts[result["decision"]] += 1
@@ -279,6 +325,7 @@ def self_audit(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
     hole_threshold: int = DEFAULT_HOLE_THRESHOLD,
+    per_reaction_cap: int | None = DEFAULT_PER_REACTION_CAP,
 ) -> dict[str, Any]:
     """Replay the existing expansion through the gate (seeded with frozen only).
 
@@ -303,6 +350,7 @@ def self_audit(
             target_floor=target_floor,
             cap_ceiling=cap_ceiling,
             hole_threshold=hole_threshold,
+            per_reaction_cap=per_reaction_cap,
         )
         decisions[result["decision"]] += 1
         reason_counts[result["reason"]] += 1
@@ -332,6 +380,7 @@ def build_novelty_admission_gate_audit(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
     hole_threshold: int = DEFAULT_HOLE_THRESHOLD,
+    per_reaction_cap: int | None = DEFAULT_PER_REACTION_CAP,
 ) -> dict[str, Any]:
     state = build_diversity_state(frozen, expansion)
     audit = self_audit(
@@ -341,6 +390,7 @@ def build_novelty_admission_gate_audit(
         target_floor=target_floor,
         cap_ceiling=cap_ceiling,
         hole_threshold=hole_threshold,
+        per_reaction_cap=per_reaction_cap,
     )
     return {
         "audit": "novelty_admission_gate",
@@ -352,6 +402,7 @@ def build_novelty_admission_gate_audit(
             "target_floor": target_floor,
             "cap_ceiling": cap_ceiling,
             "hole_threshold": hole_threshold,
+            "per_reaction_cap": per_reaction_cap,
             "cluster_key": "(fingerprint_or_scope, full_ec, organism, sequence_length_bin)",
             "decision_model": (
                 "post exact-dedup gate: hole/under-floor admit unless redundant "
@@ -428,6 +479,7 @@ def write_novelty_admission_gate_audit(
     target_floor: int = DEFAULT_TARGET_FLOOR,
     cap_ceiling: int = DEFAULT_CAP_CEILING,
     hole_threshold: int = DEFAULT_HOLE_THRESHOLD,
+    per_reaction_cap: int | None = DEFAULT_PER_REACTION_CAP,
 ) -> dict[str, Any]:
     frozen = _load_json(frozen_benchmark_path)
     expansion_path = Path(expansion_registry_path)
@@ -439,6 +491,7 @@ def write_novelty_admission_gate_audit(
         target_floor=target_floor,
         cap_ceiling=cap_ceiling,
         hole_threshold=hole_threshold,
+        per_reaction_cap=per_reaction_cap,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
