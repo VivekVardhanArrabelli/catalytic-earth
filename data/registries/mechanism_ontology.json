@@ -471,6 +471,21 @@
         "Hold multi-fingerprint-signal rows rather than forcing an NDK label.",
         "The NTP/NDP cosubstrates, Mg2+, transient phosphohistidine, and nucleotide-binding pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "terpene_carbocation_cyclization",
+      "name": "Terpene carbocation cyclization chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "terpene_cyclase_synthase"
+      ],
+      "scope_note": "Reviewed EC 4.2.3 terpene cyclases/synthases using Mg2+/Mn2+-assisted diphosphate ionization and carbocation cyclization/rearrangement.",
+      "family_boundary_guardrails": [
+        "Membership is decided by terpene/cyclase/synthase family context plus Mg/Mn or diphosphate evidence and Rhea/reviewed diphosphate-release or terpene cyclization context where available; EC 4.2.3 is scope only.",
+        "Do not admit prenyltransferase chain-extension rows, generic zinc hydratase/dehydratase rows, class-II aldolases, isomerases, hydrolases, transferases, side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a terpene cyclase/synthase label.",
+        "The Mg2+/Mn2+ metal cluster, prenyl diphosphate substrate, diphosphate leaving group, carbocation intermediate, and final quench state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

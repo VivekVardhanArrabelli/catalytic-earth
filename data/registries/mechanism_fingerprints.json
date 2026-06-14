@@ -867,5 +867,31 @@
       "reconstruction_path": "Path A sequence->Mn/Fe SOD family plus metal-site/Rhea channel, or canonical Mn/Fe metal-solvent/superoxide graft (Path B)",
       "silver_reachability": "moderate; metal-site and Rhea evidence are common, but metal identity, protonation, and substrate-channel geometry require reconstruction"
     }
+  },
+  {
+    "id": "terpene_cyclase_synthase",
+    "name": "Terpene cyclase/synthase",
+    "enzyme_space": ["monoterpene synthases", "sesquiterpene synthases", "diterpene synthases", "triterpene cyclases", "terpene cyclization enzymes"],
+    "active_site_signature": [
+      {"role": "allylic_diphosphate_metal_cluster", "residue": "Mg2+/Mn2+ cluster coordinated by acidic DDxxD/NSE/DTE-like motifs", "constraints": ["positions and ionizes an allylic diphosphate or related prenyl diphosphate substrate to generate the initial carbocation"]},
+      {"role": "carbocation_contour_pocket", "residue": "hydrophobic/aromatic pocket residues", "constraints": ["shapes sequential cyclization, hydride shift, methyl shift, and quench steps while shielding reactive carbocations from bulk solvent"]},
+      {"role": "diphosphate_leaving_group_stabilizer", "residue": "basic/polar metal-coordinating residues and diphosphate-contacting side chains", "constraints": ["stabilizes diphosphate departure and may participate in final deprotonation or water capture"]}
+    ],
+    "cofactors": ["Mg2+", "Mn2+"],
+    "reaction_center": {
+      "bond_changes": ["allylic C-O diphosphate bond ionization followed by intramolecular C-C bond formation and carbocation rearrangement/quench"],
+      "chemical_operation": "metal-assisted terpene carbocation cyclization"
+    },
+    "substrate_constraints": ["EC 4.2.3 terpene cyclase/synthase scope present", "terpene/cyclase/synthase family context present", "Mg2+/Mn2+ or diphosphate substrate/product context present", "Rhea or reviewed catalytic activity text for diphosphate release, terpene cyclization, or olefin formation where available", "no prenyltransferase chain-extension, generic zinc hydratase/lyase, aldolase, isomerase, hydrolase, transferase, side-EC, EC-only, or multi-fingerprint boundary signal"],
+    "evidence_features": ["Terpene, terpene synthase, terpene cyclase, cyclase, or synthase keyword/name/domain text", "Rhea or reviewed catalytic activity text with diphosphate/pyrophosphate release and terpene/olefin product context under EC 4.2.3 scope", "Mg2+/Mn2+ cofactor, metal-site, or diphosphate binding-site annotation", "DDxxD, NSE/DTE, or related metal-binding active-site motif evidence where annotated"],
+    "counterevidence_features": ["prenyltransferase or EC 2.5.1 chain-extension chemistry", "zinc hydratase/dehydratase or carbonic anhydrase chemistry", "class-II aldolase, isomerase, hydrolase, oxidoreductase, kinase, or transferase side EC", "EC-only evidence with no terpene/cyclase, metal/diphosphate, Rhea, family, active-site, binding-site, or structure corroborator", "multi-fingerprint signal where an established lyase, metal, or transferase fingerprint independently fires"],
+    "uncertainty_axes": ["mono-, sesqui-, di-, or triterpene substrate length", "Mg2+ versus Mn2+ metal identity and stoichiometry", "carbocation rearrangement sequence", "final quench route by deprotonation or water capture"],
+    "seed_examples": ["bornyl diphosphate synthase", "ent-copalyl diphosphate synthase", "germacrene synthase", "squalene-hopene cyclase"],
+    "deploy_missing_active_site_context": {
+      "type": "metal_prenyl_diphosphate_and_carbocation_intermediate",
+      "detail": "the Mg2+/Mn2+ metal cluster, prenyl diphosphate substrate, diphosphate leaving group, and transient carbocation intermediate are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->terpene cyclase family plus metal/diphosphate/Rhea channel, or canonical Mg/Mn-prenyl-diphosphate graft in the closed terpene cyclase pocket (Path B)",
+      "silver_reachability": "moderate; EC/Rhea and metal/diphosphate evidence are common, but substrate pose and carbocation trajectory require reconstruction"
+    }
   }
 ]

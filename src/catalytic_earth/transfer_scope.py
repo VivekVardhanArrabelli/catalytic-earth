@@ -185,10 +185,15 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_33FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_34FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_34fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 35-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The re-frozen tranche pre-registration for the 35-fingerprint universe is historical after the
+# terpene cyclase/synthase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_35FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_35fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 36-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_36FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_36fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

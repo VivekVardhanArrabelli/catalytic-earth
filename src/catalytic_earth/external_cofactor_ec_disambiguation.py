@@ -862,6 +862,59 @@ _ZINC_LYASE_BOUNDARY_TEXT_TOKENS = (
     "aldolase",
     "isomerase",
 )
+# Terpene cyclase/synthase handles. EC 4.2.3 scopes terpene cyclase candidates only;
+# counted mechanism corroboration comes from terpene/cyclase family text, Mg/Mn or
+# diphosphate binding context, and Rhea/reviewed diphosphate-release or terpene product
+# participant text. Prenyltransferase chain-extension rows, generic hydratases/lyases,
+# and side-EC rows stay held.
+_TERPENE_FAMILY_TEXT_TOKENS = (
+    "terpene",
+    "terpenoid",
+    "terpene synthase",
+    "terpene cyclase",
+    "monoterpene",
+    "sesquiterpene",
+    "diterpene",
+    "triterpene",
+    "squalene-hopene cyclase",
+    "copalyl diphosphate synthase",
+    "cyclase",
+)
+_TERPENE_DIPHOSPHATE_TOKENS = (
+    "diphosphate",
+    "pyrophosphate",
+    "geranyl diphosphate",
+    "farnesyl diphosphate",
+    "geranylgeranyl diphosphate",
+    "copalyl diphosphate",
+    "dimethylallyl diphosphate",
+    "isopentenyl diphosphate",
+)
+_TERPENE_PRODUCT_TOKENS = (
+    "terpene",
+    "monoterpene",
+    "sesquiterpene",
+    "diterpene",
+    "triterpene",
+    "cyclo",
+    "ene",
+)
+_TERPENE_MG_MN_TOKENS = ("magnesium", "mg(2", "mg2", "manganese", "mn(", "mn2", "mn(2")
+_TERPENE_BOUNDARY_TOKENS = (
+    "prenyltransferase",
+    "prenyl transferase",
+    "dimethylallyltransferase",
+    "geranyltransferase",
+    "farnesyltransferase",
+    "transferase",
+    "hydratase",
+    "dehydratase",
+    "hydro-lyase",
+    "carbonic anhydrase",
+    "aldolase",
+    "isomerase",
+    "hydrolase",
+)
 # Feature codes that count as an annotated active-site / binding / metal residue role.
 _ACTIVE_OR_BINDING_FEATURE_CODES = frozenset({"ACT_SITE", "BINDING", "METAL"})
 
@@ -1254,6 +1307,24 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         keywords + [protein_name], *_ZINC_LYASE_BOUNDARY_TEXT_TOKENS
     )
     non_4_2_1_side_ec = any(ec and not ec.startswith("4.2.1") for ec in _ec_numbers(row))
+    terpene_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_TERPENE_FAMILY_TEXT_TOKENS,
+    )
+    terpene_mg_mn_context = in_any(
+        cofactor_names + feature_texts, *_TERPENE_MG_MN_TOKENS
+    )
+    terpene_diphosphate_context = in_any(
+        reactions + cofactor_names + feature_texts, *_TERPENE_DIPHOSPHATE_TOKENS
+    )
+    terpene_cyclization_reaction = in_any(
+        reactions, *_TERPENE_PRODUCT_TOKENS
+    ) and terpene_diphosphate_context
+    terpene_boundary_signal = (
+        _ec_has_prefix(row, ("2.5.1",))
+        or in_any(keywords + [protein_name], *_TERPENE_BOUNDARY_TOKENS)
+    ) and not terpene_family_text
+    non_4_2_3_side_ec = any(ec and not ec.startswith("4.2.3") for ec in _ec_numbers(row))
     non_thdp_scope_side_ec = any(
         ec
         and not (
@@ -1430,6 +1501,12 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "zinc_hydration_elimination_reaction": zinc_hydration_elimination_reaction,
             "zinc_lyase_boundary_text": zinc_lyase_boundary_text,
             "non_4_2_1_side_ec": non_4_2_1_side_ec,
+            "terpene_family_text": terpene_family_text,
+            "terpene_mg_mn_context": terpene_mg_mn_context,
+            "terpene_diphosphate_context": terpene_diphosphate_context,
+            "terpene_cyclization_reaction": terpene_cyclization_reaction,
+            "terpene_boundary_signal": terpene_boundary_signal,
+            "non_4_2_3_side_ec": non_4_2_3_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
             "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
@@ -1491,6 +1568,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("pfka_phosphoryl_reaction")
         or evidence.get("pfkb_atp_mg_context")
         or evidence.get("pfkb_phosphoryl_reaction")
+        or evidence.get("terpene_mg_mn_context")
+        or evidence.get("terpene_diphosphate_context")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -1527,6 +1606,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("dnk_phosphoryl_reaction")
         or evidence.get("pfka_phosphoryl_reaction")
         or evidence.get("pfkb_phosphoryl_reaction")
+        or evidence.get("terpene_cyclization_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -1563,6 +1643,10 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
             evidence.get("active_or_binding_site_present")
             and evidence.get("mn_fe_sod_family_or_name_context")
         )
+        or (
+            evidence.get("active_or_binding_site_present")
+            and evidence.get("terpene_family_text")
+        )
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -1593,6 +1677,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("pfka_family_text")
         or evidence.get("pfkb_family_text")
         or evidence.get("mn_fe_sod_family_text")
+        or evidence.get("terpene_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -1657,6 +1742,7 @@ _THIAMINE_DIPHOSPHATE_ENZYME_EC = (
     "1.2.4",
 )  # ThDP ylide/carbonyl chemistry; EC is scope only
 _ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
+_TERPENE_CYCLASE_SYNTHASE_EC = ("4.2.3",)  # terpene cyclases/synthases; EC is scope only
 _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
 _ASKHA_SUGAR_ACETATE_KINASE_EC = ("2.7.1",)  # ASKHA sugar/acetate kinase; EC scope only
 _GHMP_SMALL_MOLECULE_KINASE_EC = ("2.7.1",)  # GHMP small-molecule kinase; EC scope only
@@ -2026,6 +2112,22 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
             or c["active_or_binding_site_present"]
         ),
     ),
+    (
+        "terpene_cyclase_synthase",
+        lambda c, row: _ec_has_prefix(row, _TERPENE_CYCLASE_SYNTHASE_EC)
+        and c["terpene_family_text"]
+        and (c["terpene_mg_mn_context"] or c["terpene_diphosphate_context"])
+        and not c["plp_boundary_signal"]
+        and not c["thdp_boundary_signal"]
+        and not c["zinc_feature_or_ligand"]
+        and not c["hydrolase_side_ec"]
+        and not c["transferase_side_ec"]
+        and not c["oxidoreductase_side_ec"]
+        and not c["keyword_isomerase"]
+        and not c["terpene_boundary_signal"]
+        and not c["non_4_2_3_side_ec"]
+        and (c["terpene_cyclization_reaction"] or c["active_or_binding_site_present"]),
+    ),
 )
 
 
@@ -2115,6 +2217,10 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "ATP/Mg2+ PfkB/ribokinase-family phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
     elif fingerprint == "manganese_iron_superoxide_dismutase" and evidence.get("mn_fe_sod_metal_context"):
         records = [{"name": "manganese/iron catalytic redox metal", "cross_reference": {"id": None}}]
+    elif fingerprint == "terpene_cyclase_synthase" and (
+        evidence.get("terpene_mg_mn_context") or evidence.get("terpene_diphosphate_context")
+    ):
+        records = [{"name": "Mg2+/Mn2+ prenyl-diphosphate cyclization context", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

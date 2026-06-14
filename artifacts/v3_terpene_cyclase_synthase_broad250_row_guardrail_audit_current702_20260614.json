@@ -1,0 +1,17 @@
+{
+  "artifact_id": "v3_terpene_cyclase_synthase_broad250_row_guardrail_audit_current702_20260614",
+  "fingerprint_counts": {
+    "terpene_cyclase_synthase": 173
+  },
+  "guardrails": {
+    "all_automation_curated": true,
+    "all_bronze": true,
+    "all_predictive_evidence_empty": true,
+    "all_uniprot_namespace": true,
+    "ec_never_counted": true
+  },
+  "problem_count": 0,
+  "problems": [],
+  "rows_audited": 173,
+  "source_preview": "artifacts/v3_terpene_cyclase_synthase_broad250_sourcing_preview_current702_20260614.json"
+}

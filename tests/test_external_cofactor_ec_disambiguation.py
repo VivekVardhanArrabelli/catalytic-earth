@@ -1591,6 +1591,85 @@ class DisambiguateRowTests(unittest.TestCase):
             self.assertEqual(decision["fingerprint_id"], expected_fp)
             self.assertNotEqual(decision["fingerprint_id"], "pfkb_ribokinase_family")
 
+    def test_terpene_cyclase_requires_non_ec_mechanism_handles(self) -> None:
+        row = _row(ec=["4.2.3.10"])
+        row["protein_name"] = "Germacrene synthase"
+        row["keywords"] = ["Terpene biosynthesis"]
+        row["cofactor_provenance"] = [{"name": "magnesium"}]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:TP0001",
+                "reaction": "farnesyl diphosphate = germacrene A + diphosphate",
+                "ec_number": "4.2.3.10",
+            }
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(decision["fingerprint_id"], "terpene_cyclase_synthase")
+        self.assertIn(
+            "cofactor_or_cosubstrate",
+            decision["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            decision["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            decision["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_terpene_cyclase_active_site_fallback_remains_mechanism_only(self) -> None:
+        row = _row(ec=["4.2.3.20"])
+        row["protein_name"] = "Copalyl diphosphate synthase"
+        row["keywords"] = ["Terpene biosynthesis"]
+        row["residue_locators"] = [
+            {
+                "position": 312,
+                "feature_code": "BINDING",
+                "feature_type": "Binding site",
+                "ligand_name": "magnesium",
+                "ligand_id": "ChEBI:CHEBI:18420",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(decision["fingerprint_id"], "terpene_cyclase_synthase")
+        self.assertIn(
+            "active_site_motif_or_residue_role",
+            decision["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_terpene_ec_only_and_boundary_controls_hold(self) -> None:
+        ec_only = _row(ec=["4.2.3.10"])
+        ec_only["protein_name"] = "Uncharacterized EC 4.2.3 enzyme"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        prenyltransferase = _row(ec=["4.2.3.10", "2.5.1.1"])
+        prenyltransferase["protein_name"] = "Prenyltransferase-like terpene enzyme"
+        prenyltransferase["keywords"] = ["Terpene biosynthesis"]
+        prenyltransferase["cofactor_provenance"] = [{"name": "magnesium"}]
+        prenyltransferase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PT0001",
+                "reaction": "geranyl diphosphate + isopentenyl diphosphate = farnesyl diphosphate + diphosphate",
+                "ec_number": "2.5.1.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(prenyltransferase)["decision"], "hold")
+
+        hydratase = _row(ec=["4.2.3.10"])
+        hydratase["protein_name"] = "Generic hydratase"
+        hydratase["keywords"] = ["Hydratase"]
+        hydratase["cofactor_provenance"] = [{"name": "magnesium"}]
+        hydratase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:HY0001",
+                "reaction": "substrate + H2O = product",
+                "ec_number": "4.2.3.10",
+            }
+        ]
+        self.assertEqual(disambiguate_row(hydratase)["decision"], "hold")
+
     def test_multi_signal_conflict_holds(self) -> None:
         # Flavin + heme present, with a peroxidase EC and a flavin-monooxygenase
         # EC -> heme rule and (no, heme blocks flavin)... construct a true

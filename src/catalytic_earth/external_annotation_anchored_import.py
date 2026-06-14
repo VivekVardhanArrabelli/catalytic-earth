@@ -98,6 +98,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "pfka_phosphofructokinase": "atp_mg_fructose_6_phosphate_phosphoryl_transfer_context",
     "pfkb_ribokinase_family": "atp_mg_pfkb_ribokinase_family_phosphoryl_transfer_context",
     "manganese_iron_superoxide_dismutase": "mn_fe_superoxide_redox_dismutation_context",
+    "terpene_cyclase_synthase": "metal_prenyl_diphosphate_and_carbocation_intermediate",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

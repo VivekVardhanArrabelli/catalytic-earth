@@ -13,6 +13,34 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: terpene cyclase/synthase 36fp high-yield lane applied.** The
+latest run built the top-ranked factory lane instead of replaying capped/tiny top-ups. It added
+`terpene_cyclase_synthase` plus `terpene_carbocation_cyclization`, bumped the current positive
+universe to `label_factory_v1_36fp`, and re-froze OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_36fp_1025.json`.
+
+Admission is mechanism-first: reviewed EC 4.2.3 scopes candidates only; non-EC terpene/cyclase
+family context plus Mg/Mn or diphosphate context and Rhea/site evidence must corroborate. EC,
+keyword, Rhea, metal, and diphosphate handles remain excluded-context source/admission evidence,
+never predictive features, and EC is never a counted corroborator. Prenyltransferase
+chain-extension, generic hydratase/lyase, side-EC, EC-only, and multi-fingerprint rows stay held.
+
+The first narrow preview admitted **112** rows and was not applied. The broader preview
+`artifacts/v3_terpene_cyclase_synthase_broad250_sourcing_preview_current702_20260614.json` fetched
+**416**, mechanism-corroborated **188**, held **48** off-target rows, held **134** no-corroboration
+rows, novelty-admitted **173**, and held **0** at cap. Row audit found **0** problems. Applied rows:
+external bronze **7040 -> 7213** (+173), combined label surface **7742 -> 7915**,
+`terpene_cyclase_synthase` **0 -> 173** under cap **250**. Combined seed-fingerprint surface is now
+**6219**, leaving **3781** to 10k by that convention. Honest counters remain separate:
+**positive_bronze_count 6202**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+**silver_confirmed_count 17**, **projected_provisional_count 0**.
+
+Do not continue terpene as the next high-yield lane under the current objective: remaining cap room
+is **77**, below the >=150 batch gate. Next high-yield work should wire another new family through
+the same 36fp->37fp OOS preregistration, disambiguation, source-runner, preview, row-audit, and
+apply gates. The leading candidate is `short_chain_dehydrogenase_reductase` only if the SDR rule
+can separate it from capped `nad_p_dehydrogenase`, AKR/MDR, and flavin/metal redox boundaries.
+
 **2026-06-14 automation update: high-yield family scout + reusable lane factory built.** The
 latest run stopped replaying capped/tiny lanes and checked whether any existing fingerprint/source
 path could still admit a >=150 clean batch. Current evidence says no: remaining existing cap rooms

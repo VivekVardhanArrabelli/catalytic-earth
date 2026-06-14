@@ -1,5 +1,74 @@
 # Handoff
 
+## Session run - Terpene cyclase/synthase 36fp high-yield lane applied (2026-06-14, Codex automation)
+
+- Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at
+  `.git/catalytic-earth-automation.lock` on current `origin/main`. This run followed the latest
+  high-yield factory result rather than replaying capped/tiny lanes. It built the top ranked new
+  family lane, `terpene_cyclase_synthase`, through fingerprint, ontology, OOS preregistration,
+  mechanism-first rule, source runner, preview, row audit, apply, and validation.
+- Registry/universe wiring: added `terpene_cyclase_synthase` to
+  `data/registries/mechanism_fingerprints.json`, added ontology family
+  `terpene_carbocation_cyclization`, bumped
+  `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_36fp`, and re-froze OOS
+  preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_36fp_1025.json`.
+- Source/admission infrastructure: added
+  `src/catalytic_earth/terpene_cyclase_synthase_sourcing.py`,
+  `scripts/source_terpene_cyclase_synthase_family.py`, and
+  `tests/test_terpene_cyclase_synthase_sourcing.py`. The shared
+  `external_cofactor_ec_disambiguation` rule now admits reviewed EC 4.2.3 rows only when non-EC
+  terpene/cyclase family context plus Mg/Mn or diphosphate context and Rhea/site evidence are
+  present. Prenyltransferase chain-extension, generic hydratase/lyase, side-EC, EC-only, and
+  multi-fingerprint rows stay held. EC remains scope-only and never counts as a mechanism axis.
+- Preview/apply:
+  - Narrow preview
+    `artifacts/v3_terpene_cyclase_synthase_sourcing_preview_current702_20260614.json` fetched
+    **208**, mechanism-corroborated **114**, novelty-admitted **112**; below the >=150 batch gate,
+    so it was not applied.
+  - Broadened source preview
+    `artifacts/v3_terpene_cyclase_synthase_broad250_sourcing_preview_current702_20260614.json` /
+    `work/terpene_cyclase_synthase_broad250_sourcing_current702_20260614.md` fetched **416**,
+    mechanism-corroborated **188**, held **48** off-target rows
+    (`nad_p_dehydrogenase=47`, `cytochrome_p450_monooxygenase=1`), held **134**
+    no-corroboration rows, novelty-admitted **173**, and held **0** at cap. Row audit
+    `artifacts/v3_terpene_cyclase_synthase_broad250_row_guardrail_audit_current702_20260614.json`
+    found **0** problems across all **173** preview labels.
+  - Applied the audited broad250 preview exactly. External bronze **7040 -> 7213** (+173);
+    combined label surface **7742 -> 7915**; `terpene_cyclase_synthase` **0 -> 173** under clean
+    cap **250**. Frozen current702 stayed byte-unchanged with sha256
+    `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Guardrails verified: all added rows are `tier=bronze`, `review_status=automation_curated`,
+  `uniprot:*`, `source_tier_0`, and have `predictive_evidence []`. EC/name/prose/keyword/Rhea/
+  metal/diphosphate handles are excluded-context admission evidence only; EC is never a counted
+  corroborator. Growth went only to `data/registries/external_bronze_labels.json`.
+- Post-apply counts: external bronze **7213**; combined label surface **7915**. External-only split
+  is **5989** seed-fingerprint rows and **1224** OOS rows. Combined seed-fingerprint surface is
+  **6219**, leaving **3781** to the 10k seed-surface target. Honest counters remain separate:
+  `positive_bronze_count=6202`, `oos_bronze_count=1696`, `silver_ready_count=0`,
+  `silver_confirmed_count=17`, `projected_provisional_count=0`.
+- Fresh audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_terpene_broad250_applied.json` /
+  `work/coverage_redundancy_audit_current702_20260614_terpene_broad250_applied.md`: **7915**
+  combined, **7213** expansion, fingerprint Gini **0.1385**, holes `[]`, under-floor `[]`,
+  next-batch floor deficit **0**, over-cap `['metal_dependent_hydrolase']`. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260614_terpene_broad250_applied.json` /
+  `work/novelty_admission_gate_audit_current702_20260614_terpene_broad250_applied.md`: **7213**
+  expansion rows, decisions `{'admit': 6757, 'reject': 47, 'throttle': 409}`,
+  would-not-readmit **456** (0.0632).
+- Validation passed:
+  `PYTHONPATH=src pytest tests/test_terpene_cyclase_synthase_sourcing.py tests/test_external_cofactor_ec_disambiguation.py tests/test_leakage_closure.py tests/test_source_only_contract.py tests/test_fingerprints.py tests/test_ontology.py -q`
+  -> **278 passed, 14 subtests passed**. `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed (12 source records, 36 fingerprints, 33 ontology families, 702 curated labels). JSON parse
+  checks for touched registries/artifacts passed. `git diff --check` passed.
+- Next exact action: do **not** continue terpene as a high-yield run lane under current objective;
+  cap room is now only **77**, below the >=150 batch gate. Use the factory ranking to build the
+  next new-family lane, preferably `short_chain_dehydrogenase_reductase` only after an SDR-specific
+  rule separates it from the capped coarse `nad_p_dehydrogenase` fingerprint and AKR/MDR/flavin/
+  metal redox boundaries. If SDR is judged too confusable for an immediate apply, wire
+  `aldehyde_dehydrogenase` or `had_like_phosphatase` through the same 36fp->37fp OOS prereg,
+  rule, source runner, preview, row audit, and apply gates.
+
 ## Session run - High-yield family scout + lane factory built; no safe >=150 apply in current universe (2026-06-14, Codex automation)
 
 - Automation ID: `ce-nad-glyco-floor-expansion`; lock acquired at

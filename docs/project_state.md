@@ -26,6 +26,47 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **TERPENE CYCLASE/SYNTHASE 36FP HIGH-YIELD LANE APPLIED (2026-06-14 automation).**
+  The latest run used the high-yield family factory's top ranked new-family lane instead of
+  replaying capped/tiny top-ups. It added the `terpene_cyclase_synthase` fingerprint and
+  `terpene_carbocation_cyclization` ontology node, bumped the current positive universe to
+  `label_factory_v1_36fp`, and re-froze OOS preregistration as
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_36fp_1025.json`.
+
+  New infrastructure:
+  `src/catalytic_earth/terpene_cyclase_synthase_sourcing.py`,
+  `scripts/source_terpene_cyclase_synthase_family.py`, and
+  `tests/test_terpene_cyclase_synthase_sourcing.py`. The shared disambiguation rule admits
+  reviewed EC 4.2.3 rows only with non-EC terpene/cyclase family context plus Mg/Mn or
+  diphosphate context and Rhea/site evidence. Prenyltransferase chain-extension, generic
+  hydratase/lyase, side-EC, EC-only, and multi-fingerprint rows stay held. EC remains scope-only
+  and never counts as a mechanism axis.
+
+  The first narrow preview admitted **112** clean rows and was not applied because it missed the
+  >=150 batch gate. The broader audited preview
+  `artifacts/v3_terpene_cyclase_synthase_broad250_sourcing_preview_current702_20260614.json`
+  fetched **416**, mechanism-corroborated **188**, held **48** off-target rows, held **134**
+  no-corroboration rows, novelty-admitted **173**, and held **0** at cap. Row audit
+  `artifacts/v3_terpene_cyclase_synthase_broad250_row_guardrail_audit_current702_20260614.json`
+  found **0** problems. The audited preview was applied exactly: external bronze **7040 -> 7213**
+  (+173), combined label surface **7742 -> 7915**, and `terpene_cyclase_synthase` **0 -> 173**
+  under clean cap **250**. Frozen current702 stayed byte-unchanged with sha256
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+  Current counts: external bronze **7213**; combined label surface **7915**; external-only split
+  **5989** seed rows and **1224** OOS rows; combined seed-fingerprint surface **6219**, leaving
+  **3781** to the 10k seed-surface target. Honest counters remain separate:
+  **positive_bronze_count 6202**, **oos_bronze_count 1696**, **silver_ready_count 0**,
+  **silver_confirmed_count 17**, **projected_provisional_count 0**. Coverage audit reports
+  fingerprint Gini **0.1385**, holes `[]`, under-floor `[]`, next-batch floor deficit **0**, and
+  over-cap `['metal_dependent_hydrolase']`. Novelty replay over **7213** expansion rows reports
+  decisions `{'admit': 6757, 'reject': 47, 'throttle': 409}` and would-not-readmit **456**.
+
+  Next work should not continue terpene as a high-yield batch because only **77** cap slots remain.
+  Build the next new-family lane from the factory ranking, likely `short_chain_dehydrogenase_reductase`
+  after an SDR-specific rule separates it from capped coarse `nad_p_dehydrogenase` and AKR/MDR/
+  flavin/metal redox boundaries, or choose `aldehyde_dehydrogenase` / `had_like_phosphatase` if
+  SDR remains too confusable.
 - **HIGH-YIELD FAMILY SCOUT + LANE FACTORY BUILT; NO SAFE >=150 APPLY IN CURRENT UNIVERSE
   (2026-06-14 automation).** The latest run followed the updated 40-minute contract and did not
   continue capped/tiny lanes. Current counts show no existing fingerprint/source lane can admit a

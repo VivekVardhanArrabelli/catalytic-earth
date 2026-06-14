@@ -3,6 +3,53 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: TERPENE CYCLASE/SYNTHASE 36FP HIGH-YIELD LANE APPLIED
+
+Decision: build and apply the high-yield `terpene_cyclase_synthase` new-family lane from the
+factory ranking. Do not replay capped/tiny top-ups. EC 4.2.3 is scope-only; counted mechanism
+corroboration must come from non-EC terpene/cyclase family context plus Mg/Mn or diphosphate
+context and Rhea/site evidence. Prenyltransferase chain-extension, generic hydratase/lyase,
+side-EC, EC-only, off-target, and multi-fingerprint rows stay held.
+
+Implementation: added `terpene_cyclase_synthase` to the fingerprint registry, added
+`terpene_carbocation_cyclization` to the ontology, bumped
+`labels.CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` to `label_factory_v1_36fp`, and re-froze
+OOS preregistration as
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_36fp_1025.json`. Added
+`src/catalytic_earth/terpene_cyclase_synthase_sourcing.py`,
+`scripts/source_terpene_cyclase_synthase_family.py`, and
+`tests/test_terpene_cyclase_synthase_sourcing.py`; extended
+`external_cofactor_ec_disambiguation` with terpene-specific evidence axes and boundary holds.
+
+Apply result: the first narrow preview admitted **112** rows and was not applied because it missed
+the >=150 gate. The broader preview
+`artifacts/v3_terpene_cyclase_synthase_broad250_sourcing_preview_current702_20260614.json` fetched
+**416**, mechanism-corroborated **188**, held **48** off-target rows, held **134**
+no-corroboration rows, novelty-admitted **173**, and held **0** at cap. Row audit
+`artifacts/v3_terpene_cyclase_synthase_broad250_row_guardrail_audit_current702_20260614.json`
+found **0** problems. Applied **173** rows: external bronze **7040 -> 7213**; combined label
+surface **7742 -> 7915**; `terpene_cyclase_synthase` **0 -> 173** under clean cap **250**.
+
+Counts after apply: combined seed-fingerprint surface **6219**, remaining gap **3781** to 10k
+seed surface. Honest counters stay separate: **positive_bronze_count 6202**,
+**oos_bronze_count 1696**, **silver_ready_count 0**, **silver_confirmed_count 17**,
+**projected_provisional_count 0**. Frozen current702 stayed byte-unchanged with sha256
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth went only to
+`data/registries/external_bronze_labels.json`.
+
+Validation: focused pytest passed (**278 passed, 14 subtests passed**). `PYTHONPATH=src python -m
+catalytic_earth.cli validate` passed (12 source records, 36 fingerprints, 33 ontology families,
+702 curated labels). Coverage audit reports **7915** combined, **7213** expansion, fingerprint
+Gini **0.1385**, holes `[]`, under-floor `[]`, next-batch floor deficit **0**, and over-cap
+`['metal_dependent_hydrolase']`. Novelty replay reports **7213** expansion rows, decisions
+`{'admit': 6757, 'reject': 47, 'throttle': 409}`, and would-not-readmit **456** (0.0632).
+
+Next decision: do not continue terpene as a high-yield lane under the current objective because
+only **77** cap slots remain. Build the next new-family lane through the same OOS preregistration,
+rule, source runner, preview, row audit, and apply gates; `short_chain_dehydrogenase_reductase` is
+the leading candidate only after an SDR-specific rule separates it from capped
+`nad_p_dehydrogenase`, AKR/MDR, and flavin/metal redox boundaries.
+
 ## 2026-06-14: HIGH-YIELD FAMILY SCOUT + LANE FACTORY BUILT; NO CURRENT >=150 APPLY
 
 Decision: stop spending automation runs on exhausted/capped/tiny top-ups. Current existing
