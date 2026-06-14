@@ -1,0 +1,1404 @@
+{
+  "artifact_id": "v3_cohesion_threshold_calibration_current702_20260614_post_silver_apply",
+  "counts": {
+    "bronze_seed_labels": 5608,
+    "families_calibrated": 37,
+    "low_cohesion_holds": 1759,
+    "near_threshold_low_cohesion_ge_0_90": 232,
+    "recommendation_counts": {
+      "do_not_lower_threshold_representation_or_scope_gap_first": 9,
+      "keep_default_threshold_no_current_relaxation_signal": 21,
+      "near_threshold_but_hold_until_family_separation_review": 2,
+      "near_threshold_family_candidate_for_preregistered_calibration_design_only": 5
+    },
+    "seed_labels": 5638
+  },
+  "created_utc": "2026-06-14T18:34:04Z",
+  "families": [
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 3,
+      "decision_counts": {
+        "blocked_pending_structure": 96,
+        "review_chemistry_disagrees": 3,
+        "silver_ready_pending_geometry_run": 1
+      },
+      "fingerprint_id": "askha_sugar_acetate_kinase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.97
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 20,
+      "decision_counts": {
+        "blocked_pending_structure": 62,
+        "hold_low_chemistry_cohesion": 56,
+        "review_chemistry_disagrees": 20,
+        "silver_ready_pending_geometry_run": 12
+      },
+      "fingerprint_id": "atp_amide_ligase",
+      "low_cohesion_count": 56,
+      "low_cohesion_max": 0.8282,
+      "low_cohesion_median": 0.8116,
+      "low_cohesion_min": 0.5899,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8667
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 74,
+        "hold_low_chemistry_cohesion": 23,
+        "silver_ready_pending_geometry_run": 3
+      },
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "low_cohesion_count": 23,
+      "low_cohesion_max": 0.909,
+      "low_cohesion_median": 0.877,
+      "low_cohesion_min": 0.7279,
+      "low_cohesion_near_threshold_ge_0_90": 11,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 1.0
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 28,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 120,
+        "review_chemistry_disagrees": 28,
+        "silver_ready_pending_geometry_run": 2
+      },
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "low_cohesion_count": 120,
+      "low_cohesion_max": 0.8745,
+      "low_cohesion_median": 0.8733,
+      "low_cohesion_min": 0.7549,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8133
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 4,
+      "decision_counts": {
+        "blocked_pending_structure": 173,
+        "hold_low_chemistry_cohesion": 73,
+        "review_chemistry_disagrees": 4
+      },
+      "fingerprint_id": "coa_acyltransferase",
+      "low_cohesion_count": 73,
+      "low_cohesion_max": 0.8668,
+      "low_cohesion_median": 0.7954,
+      "low_cohesion_min": 0.7349,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.984
+    },
+    {
+      "bronze_seed_rows": 120,
+      "chemistry_disagree_count": 20,
+      "decision_counts": {
+        "blocked_pending_structure": 4,
+        "hold_low_chemistry_cohesion": 96,
+        "review_chemistry_disagrees": 20
+      },
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "low_cohesion_count": 96,
+      "low_cohesion_max": 0.9175,
+      "low_cohesion_median": 0.3555,
+      "low_cohesion_min": 0.1964,
+      "low_cohesion_near_threshold_ge_0_90": 11,
+      "low_cohesion_very_near_threshold_ge_0_91": 11,
+      "recommendation": "near_threshold_but_hold_until_family_separation_review",
+      "self_consistency": 0.825
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 23,
+      "decision_counts": {
+        "blocked_pending_structure": 66,
+        "hold_low_chemistry_cohesion": 61,
+        "review_chemistry_disagrees": 23
+      },
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "low_cohesion_count": 61,
+      "low_cohesion_max": 0.9111,
+      "low_cohesion_median": 0.9098,
+      "low_cohesion_min": 0.6683,
+      "low_cohesion_near_threshold_ge_0_90": 46,
+      "low_cohesion_very_near_threshold_ge_0_91": 30,
+      "recommendation": "near_threshold_but_hold_until_family_separation_review",
+      "self_consistency": 0.7933
+    },
+    {
+      "bronze_seed_rows": 140,
+      "chemistry_disagree_count": 15,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 125,
+        "review_chemistry_disagrees": 15
+      },
+      "fingerprint_id": "copper_oxidoreductase",
+      "low_cohesion_count": 125,
+      "low_cohesion_max": 0.8985,
+      "low_cohesion_median": 0.8383,
+      "low_cohesion_min": 0.8111,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8214
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 12,
+      "decision_counts": {
+        "blocked_pending_structure": 147,
+        "hold_low_chemistry_cohesion": 61,
+        "review_chemistry_disagrees": 12,
+        "silver_ready_pending_geometry_run": 30
+      },
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "low_cohesion_count": 61,
+      "low_cohesion_max": 0.8972,
+      "low_cohesion_median": 0.8431,
+      "low_cohesion_min": 0.6665,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.952
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 83,
+        "hold_low_chemistry_cohesion": 16,
+        "silver_ready_pending_geometry_run": 1
+      },
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "low_cohesion_count": 16,
+      "low_cohesion_max": 0.8611,
+      "low_cohesion_median": 0.8611,
+      "low_cohesion_min": 0.8596,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 1.0
+    },
+    {
+      "bronze_seed_rows": 190,
+      "chemistry_disagree_count": 9,
+      "decision_counts": {
+        "blocked_pending_structure": 69,
+        "hold_low_chemistry_cohesion": 91,
+        "review_chemistry_disagrees": 9,
+        "silver_ready_pending_geometry_run": 21
+      },
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "low_cohesion_count": 91,
+      "low_cohesion_max": 0.9064,
+      "low_cohesion_median": 0.7038,
+      "low_cohesion_min": 0.5048,
+      "low_cohesion_near_threshold_ge_0_90": 1,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.901
+    },
+    {
+      "bronze_seed_rows": 114,
+      "chemistry_disagree_count": 6,
+      "decision_counts": {
+        "blocked_pending_structure": 51,
+        "hold_low_chemistry_cohesion": 45,
+        "review_chemistry_disagrees": 6,
+        "silver_ready_pending_geometry_run": 12
+      },
+      "fingerprint_id": "flavin_monooxygenase",
+      "low_cohesion_count": 45,
+      "low_cohesion_max": 0.9112,
+      "low_cohesion_median": 0.8995,
+      "low_cohesion_min": 0.8536,
+      "low_cohesion_near_threshold_ge_0_90": 19,
+      "low_cohesion_very_near_threshold_ge_0_91": 10,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.9474
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 100,
+      "decision_counts": {
+        "review_chemistry_disagrees": 100
+      },
+      "fingerprint_id": "ghmp_small_molecule_kinase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.0
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 72,
+      "decision_counts": {
+        "blocked_pending_structure": 61,
+        "hold_low_chemistry_cohesion": 14,
+        "review_chemistry_disagrees": 72,
+        "silver_ready_pending_geometry_run": 3
+      },
+      "fingerprint_id": "glycoside_hydrolase",
+      "low_cohesion_count": 14,
+      "low_cohesion_max": 0.8898,
+      "low_cohesion_median": 0.8898,
+      "low_cohesion_min": 0.6832,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.52
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 84,
+      "decision_counts": {
+        "blocked_pending_structure": 125,
+        "hold_low_chemistry_cohesion": 33,
+        "review_chemistry_disagrees": 84,
+        "silver_ready_pending_geometry_run": 8
+      },
+      "fingerprint_id": "glycosyltransferase",
+      "low_cohesion_count": 33,
+      "low_cohesion_max": 0.813,
+      "low_cohesion_median": 0.6059,
+      "low_cohesion_min": 0.6019,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.664
+    },
+    {
+      "bronze_seed_rows": 99,
+      "chemistry_disagree_count": 11,
+      "decision_counts": {
+        "blocked_pending_structure": 35,
+        "hold_low_chemistry_cohesion": 51,
+        "review_chemistry_disagrees": 11,
+        "silver_ready_pending_geometry_run": 2
+      },
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "low_cohesion_count": 51,
+      "low_cohesion_max": 0.9108,
+      "low_cohesion_median": 0.8079,
+      "low_cohesion_min": 0.8054,
+      "low_cohesion_near_threshold_ge_0_90": 18,
+      "low_cohesion_very_near_threshold_ge_0_91": 10,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.8889
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 86,
+        "silver_ready_pending_geometry_run": 14
+      },
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 1.0
+    },
+    {
+      "bronze_seed_rows": 225,
+      "chemistry_disagree_count": 225,
+      "decision_counts": {
+        "review_chemistry_disagrees": 225
+      },
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.0
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 101,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 49,
+        "review_chemistry_disagrees": 101
+      },
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "low_cohesion_count": 49,
+      "low_cohesion_max": 0.8212,
+      "low_cohesion_median": 0.8147,
+      "low_cohesion_min": 0.6723,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.3267
+    },
+    {
+      "bronze_seed_rows": 133,
+      "chemistry_disagree_count": 40,
+      "decision_counts": {
+        "blocked_pending_structure": 58,
+        "hold_low_chemistry_cohesion": 25,
+        "review_chemistry_disagrees": 40,
+        "silver_ready_pending_geometry_run": 10
+      },
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "low_cohesion_count": 25,
+      "low_cohesion_max": 0.8661,
+      "low_cohesion_median": 0.8148,
+      "low_cohesion_min": 0.7178,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.7
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 117,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 33,
+        "review_chemistry_disagrees": 117
+      },
+      "fingerprint_id": "metallopeptidase",
+      "low_cohesion_count": 33,
+      "low_cohesion_max": 0.8161,
+      "low_cohesion_median": 0.8156,
+      "low_cohesion_min": 0.7101,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.2067
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 93,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 57,
+        "review_chemistry_disagrees": 93
+      },
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "low_cohesion_count": 57,
+      "low_cohesion_max": 0.8164,
+      "low_cohesion_median": 0.7873,
+      "low_cohesion_min": 0.7443,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.38
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 19,
+      "decision_counts": {
+        "blocked_pending_structure": 79,
+        "hold_low_chemistry_cohesion": 16,
+        "review_chemistry_disagrees": 19,
+        "silver_ready_pending_geometry_run": 36
+      },
+      "fingerprint_id": "metallophosphomonoesterase",
+      "low_cohesion_count": 16,
+      "low_cohesion_max": 0.8354,
+      "low_cohesion_median": 0.8337,
+      "low_cohesion_min": 0.7584,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8733
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 123,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 127,
+        "review_chemistry_disagrees": 123
+      },
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "low_cohesion_count": 127,
+      "low_cohesion_max": 0.909,
+      "low_cohesion_median": 0.909,
+      "low_cohesion_min": 0.6826,
+      "low_cohesion_near_threshold_ge_0_90": 109,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.508
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 91,
+        "hold_low_chemistry_cohesion": 46,
+        "silver_ready_pending_geometry_run": 13
+      },
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "low_cohesion_count": 46,
+      "low_cohesion_max": 0.8466,
+      "low_cohesion_median": 0.846,
+      "low_cohesion_min": 0.7362,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 1.0
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 7,
+      "decision_counts": {
+        "blocked_pending_structure": 101,
+        "hold_low_chemistry_cohesion": 134,
+        "review_chemistry_disagrees": 7,
+        "silver_ready_pending_geometry_run": 8
+      },
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "low_cohesion_count": 134,
+      "low_cohesion_max": 0.9071,
+      "low_cohesion_median": 0.8615,
+      "low_cohesion_min": 0.7061,
+      "low_cohesion_near_threshold_ge_0_90": 17,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.972
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 98,
+        "hold_low_chemistry_cohesion": 1,
+        "silver_ready_pending_geometry_run": 1
+      },
+      "fingerprint_id": "nucleoside_diphosphate_kinase",
+      "low_cohesion_count": 1,
+      "low_cohesion_max": 0.8699,
+      "low_cohesion_median": 0.8699,
+      "low_cohesion_min": 0.8699,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 1.0
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 96,
+        "silver_ready_pending_geometry_run": 4
+      },
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 1.0
+    },
+    {
+      "bronze_seed_rows": 128,
+      "chemistry_disagree_count": 128,
+      "decision_counts": {
+        "review_chemistry_disagrees": 128
+      },
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.0
+    },
+    {
+      "bronze_seed_rows": 115,
+      "chemistry_disagree_count": 8,
+      "decision_counts": {
+        "blocked_pending_structure": 19,
+        "hold_low_chemistry_cohesion": 88,
+        "review_chemistry_disagrees": 8
+      },
+      "fingerprint_id": "plp_dependent_enzyme",
+      "low_cohesion_count": 88,
+      "low_cohesion_max": 0.7933,
+      "low_cohesion_median": 0.7717,
+      "low_cohesion_min": 0.5794,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.9224
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 2,
+      "decision_counts": {
+        "blocked_pending_structure": 75,
+        "hold_low_chemistry_cohesion": 4,
+        "review_chemistry_disagrees": 2,
+        "silver_ready_pending_geometry_run": 19
+      },
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "low_cohesion_count": 4,
+      "low_cohesion_max": 0.8192,
+      "low_cohesion_median": 0.8086,
+      "low_cohesion_min": 0.7976,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.98
+    },
+    {
+      "bronze_seed_rows": 184,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 135,
+        "hold_low_chemistry_cohesion": 46,
+        "silver_ready_pending_geometry_run": 3
+      },
+      "fingerprint_id": "radical_sam_enzyme",
+      "low_cohesion_count": 46,
+      "low_cohesion_max": 0.8972,
+      "low_cohesion_median": 0.8968,
+      "low_cohesion_min": 0.5932,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 1.0
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 9,
+      "decision_counts": {
+        "blocked_pending_structure": 120,
+        "hold_low_chemistry_cohesion": 121,
+        "review_chemistry_disagrees": 9
+      },
+      "fingerprint_id": "sam_methyltransferase",
+      "low_cohesion_count": 121,
+      "low_cohesion_max": 0.887,
+      "low_cohesion_median": 0.8012,
+      "low_cohesion_min": 0.5966,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.964
+    },
+    {
+      "bronze_seed_rows": 87,
+      "chemistry_disagree_count": 8,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 79,
+        "review_chemistry_disagrees": 8
+      },
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "low_cohesion_count": 79,
+      "low_cohesion_max": 0.8546,
+      "low_cohesion_median": 0.8433,
+      "low_cohesion_min": 0.523,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.908
+    },
+    {
+      "bronze_seed_rows": 173,
+      "chemistry_disagree_count": 13,
+      "decision_counts": {
+        "blocked_pending_structure": 140,
+        "hold_low_chemistry_cohesion": 12,
+        "review_chemistry_disagrees": 13,
+        "silver_ready_pending_geometry_run": 8
+      },
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "low_cohesion_count": 12,
+      "low_cohesion_max": 0.8566,
+      "low_cohesion_median": 0.7956,
+      "low_cohesion_min": 0.7453,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.9249
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 32,
+      "decision_counts": {
+        "blocked_pending_structure": 56,
+        "hold_low_chemistry_cohesion": 56,
+        "review_chemistry_disagrees": 32,
+        "silver_ready_pending_geometry_run": 6
+      },
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "low_cohesion_count": 56,
+      "low_cohesion_max": 0.8873,
+      "low_cohesion_median": 0.8414,
+      "low_cohesion_min": 0.695,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.7867
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 12,
+      "decision_counts": {
+        "blocked_pending_structure": 75,
+        "review_chemistry_disagrees": 12,
+        "silver_ready_pending_geometry_run": 13
+      },
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.88
+    }
+  ],
+  "next_action": "Review near-threshold high-self-consistency families only through a pre-registered calibration split; handle low-self-consistency families as representation/scope gaps, not threshold relaxations.",
+  "policy": {
+    "default_cohesion_threshold": 0.92,
+    "ec_rhea_names_source_text_used_as_predictive_features": false,
+    "honesty_rule": "Do not lower thresholds to increase counts; representation-gap families require source-free mechanism separation or row-level review first.",
+    "registry_written": false,
+    "thresholds_changed": false,
+    "tier_changed": false
+  },
+  "representation_gap_families": [
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 100,
+      "decision_counts": {
+        "review_chemistry_disagrees": 100
+      },
+      "fingerprint_id": "ghmp_small_molecule_kinase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.0
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 72,
+      "decision_counts": {
+        "blocked_pending_structure": 61,
+        "hold_low_chemistry_cohesion": 14,
+        "review_chemistry_disagrees": 72,
+        "silver_ready_pending_geometry_run": 3
+      },
+      "fingerprint_id": "glycoside_hydrolase",
+      "low_cohesion_count": 14,
+      "low_cohesion_max": 0.8898,
+      "low_cohesion_median": 0.8898,
+      "low_cohesion_min": 0.6832,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.52
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 84,
+      "decision_counts": {
+        "blocked_pending_structure": 125,
+        "hold_low_chemistry_cohesion": 33,
+        "review_chemistry_disagrees": 84,
+        "silver_ready_pending_geometry_run": 8
+      },
+      "fingerprint_id": "glycosyltransferase",
+      "low_cohesion_count": 33,
+      "low_cohesion_max": 0.813,
+      "low_cohesion_median": 0.6059,
+      "low_cohesion_min": 0.6019,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.664
+    },
+    {
+      "bronze_seed_rows": 225,
+      "chemistry_disagree_count": 225,
+      "decision_counts": {
+        "review_chemistry_disagrees": 225
+      },
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.0
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 101,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 49,
+        "review_chemistry_disagrees": 101
+      },
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "low_cohesion_count": 49,
+      "low_cohesion_max": 0.8212,
+      "low_cohesion_median": 0.8147,
+      "low_cohesion_min": 0.6723,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.3267
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 117,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 33,
+        "review_chemistry_disagrees": 117
+      },
+      "fingerprint_id": "metallopeptidase",
+      "low_cohesion_count": 33,
+      "low_cohesion_max": 0.8161,
+      "low_cohesion_median": 0.8156,
+      "low_cohesion_min": 0.7101,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.2067
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 93,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 57,
+        "review_chemistry_disagrees": 93
+      },
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "low_cohesion_count": 57,
+      "low_cohesion_max": 0.8164,
+      "low_cohesion_median": 0.7873,
+      "low_cohesion_min": 0.7443,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.38
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 123,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 127,
+        "review_chemistry_disagrees": 123
+      },
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "low_cohesion_count": 127,
+      "low_cohesion_max": 0.909,
+      "low_cohesion_median": 0.909,
+      "low_cohesion_min": 0.6826,
+      "low_cohesion_near_threshold_ge_0_90": 109,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.508
+    },
+    {
+      "bronze_seed_rows": 128,
+      "chemistry_disagree_count": 128,
+      "decision_counts": {
+        "review_chemistry_disagrees": 128
+      },
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.0
+    }
+  ],
+  "schema_version": "cohesion_threshold_calibration.v1",
+  "source_artifacts": {
+    "promotion_preview": "artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_silver_apply.json",
+    "representation_loop": "artifacts/v3_mechanism_representation_loop_current702_20260614_post_silver_apply.json"
+  },
+  "status": "non_destructive_review_only",
+  "top_low_cohesion_families": [
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 7,
+      "decision_counts": {
+        "blocked_pending_structure": 101,
+        "hold_low_chemistry_cohesion": 134,
+        "review_chemistry_disagrees": 7,
+        "silver_ready_pending_geometry_run": 8
+      },
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "low_cohesion_count": 134,
+      "low_cohesion_max": 0.9071,
+      "low_cohesion_median": 0.8615,
+      "low_cohesion_min": 0.7061,
+      "low_cohesion_near_threshold_ge_0_90": 17,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.972
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 123,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 127,
+        "review_chemistry_disagrees": 123
+      },
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "low_cohesion_count": 127,
+      "low_cohesion_max": 0.909,
+      "low_cohesion_median": 0.909,
+      "low_cohesion_min": 0.6826,
+      "low_cohesion_near_threshold_ge_0_90": 109,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.508
+    },
+    {
+      "bronze_seed_rows": 140,
+      "chemistry_disagree_count": 15,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 125,
+        "review_chemistry_disagrees": 15
+      },
+      "fingerprint_id": "copper_oxidoreductase",
+      "low_cohesion_count": 125,
+      "low_cohesion_max": 0.8985,
+      "low_cohesion_median": 0.8383,
+      "low_cohesion_min": 0.8111,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8214
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 9,
+      "decision_counts": {
+        "blocked_pending_structure": 120,
+        "hold_low_chemistry_cohesion": 121,
+        "review_chemistry_disagrees": 9
+      },
+      "fingerprint_id": "sam_methyltransferase",
+      "low_cohesion_count": 121,
+      "low_cohesion_max": 0.887,
+      "low_cohesion_median": 0.8012,
+      "low_cohesion_min": 0.5966,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.964
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 28,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 120,
+        "review_chemistry_disagrees": 28,
+        "silver_ready_pending_geometry_run": 2
+      },
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "low_cohesion_count": 120,
+      "low_cohesion_max": 0.8745,
+      "low_cohesion_median": 0.8733,
+      "low_cohesion_min": 0.7549,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8133
+    },
+    {
+      "bronze_seed_rows": 120,
+      "chemistry_disagree_count": 20,
+      "decision_counts": {
+        "blocked_pending_structure": 4,
+        "hold_low_chemistry_cohesion": 96,
+        "review_chemistry_disagrees": 20
+      },
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "low_cohesion_count": 96,
+      "low_cohesion_max": 0.9175,
+      "low_cohesion_median": 0.3555,
+      "low_cohesion_min": 0.1964,
+      "low_cohesion_near_threshold_ge_0_90": 11,
+      "low_cohesion_very_near_threshold_ge_0_91": 11,
+      "recommendation": "near_threshold_but_hold_until_family_separation_review",
+      "self_consistency": 0.825
+    },
+    {
+      "bronze_seed_rows": 190,
+      "chemistry_disagree_count": 9,
+      "decision_counts": {
+        "blocked_pending_structure": 69,
+        "hold_low_chemistry_cohesion": 91,
+        "review_chemistry_disagrees": 9,
+        "silver_ready_pending_geometry_run": 21
+      },
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "low_cohesion_count": 91,
+      "low_cohesion_max": 0.9064,
+      "low_cohesion_median": 0.7038,
+      "low_cohesion_min": 0.5048,
+      "low_cohesion_near_threshold_ge_0_90": 1,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.901
+    },
+    {
+      "bronze_seed_rows": 115,
+      "chemistry_disagree_count": 8,
+      "decision_counts": {
+        "blocked_pending_structure": 19,
+        "hold_low_chemistry_cohesion": 88,
+        "review_chemistry_disagrees": 8
+      },
+      "fingerprint_id": "plp_dependent_enzyme",
+      "low_cohesion_count": 88,
+      "low_cohesion_max": 0.7933,
+      "low_cohesion_median": 0.7717,
+      "low_cohesion_min": 0.5794,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.9224
+    },
+    {
+      "bronze_seed_rows": 87,
+      "chemistry_disagree_count": 8,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 79,
+        "review_chemistry_disagrees": 8
+      },
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "low_cohesion_count": 79,
+      "low_cohesion_max": 0.8546,
+      "low_cohesion_median": 0.8433,
+      "low_cohesion_min": 0.523,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.908
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 4,
+      "decision_counts": {
+        "blocked_pending_structure": 173,
+        "hold_low_chemistry_cohesion": 73,
+        "review_chemistry_disagrees": 4
+      },
+      "fingerprint_id": "coa_acyltransferase",
+      "low_cohesion_count": 73,
+      "low_cohesion_max": 0.8668,
+      "low_cohesion_median": 0.7954,
+      "low_cohesion_min": 0.7349,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.984
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 23,
+      "decision_counts": {
+        "blocked_pending_structure": 66,
+        "hold_low_chemistry_cohesion": 61,
+        "review_chemistry_disagrees": 23
+      },
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "low_cohesion_count": 61,
+      "low_cohesion_max": 0.9111,
+      "low_cohesion_median": 0.9098,
+      "low_cohesion_min": 0.6683,
+      "low_cohesion_near_threshold_ge_0_90": 46,
+      "low_cohesion_very_near_threshold_ge_0_91": 30,
+      "recommendation": "near_threshold_but_hold_until_family_separation_review",
+      "self_consistency": 0.7933
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 12,
+      "decision_counts": {
+        "blocked_pending_structure": 147,
+        "hold_low_chemistry_cohesion": 61,
+        "review_chemistry_disagrees": 12,
+        "silver_ready_pending_geometry_run": 30
+      },
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "low_cohesion_count": 61,
+      "low_cohesion_max": 0.8972,
+      "low_cohesion_median": 0.8431,
+      "low_cohesion_min": 0.6665,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.952
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 93,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 57,
+        "review_chemistry_disagrees": 93
+      },
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "low_cohesion_count": 57,
+      "low_cohesion_max": 0.8164,
+      "low_cohesion_median": 0.7873,
+      "low_cohesion_min": 0.7443,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.38
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 20,
+      "decision_counts": {
+        "blocked_pending_structure": 62,
+        "hold_low_chemistry_cohesion": 56,
+        "review_chemistry_disagrees": 20,
+        "silver_ready_pending_geometry_run": 12
+      },
+      "fingerprint_id": "atp_amide_ligase",
+      "low_cohesion_count": 56,
+      "low_cohesion_max": 0.8282,
+      "low_cohesion_median": 0.8116,
+      "low_cohesion_min": 0.5899,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8667
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 32,
+      "decision_counts": {
+        "blocked_pending_structure": 56,
+        "hold_low_chemistry_cohesion": 56,
+        "review_chemistry_disagrees": 32,
+        "silver_ready_pending_geometry_run": 6
+      },
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "low_cohesion_count": 56,
+      "low_cohesion_max": 0.8873,
+      "low_cohesion_median": 0.8414,
+      "low_cohesion_min": 0.695,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.7867
+    }
+  ],
+  "top_near_threshold_families": [
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 123,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 127,
+        "review_chemistry_disagrees": 123
+      },
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "low_cohesion_count": 127,
+      "low_cohesion_max": 0.909,
+      "low_cohesion_median": 0.909,
+      "low_cohesion_min": 0.6826,
+      "low_cohesion_near_threshold_ge_0_90": 109,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "do_not_lower_threshold_representation_or_scope_gap_first",
+      "self_consistency": 0.508
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 23,
+      "decision_counts": {
+        "blocked_pending_structure": 66,
+        "hold_low_chemistry_cohesion": 61,
+        "review_chemistry_disagrees": 23
+      },
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "low_cohesion_count": 61,
+      "low_cohesion_max": 0.9111,
+      "low_cohesion_median": 0.9098,
+      "low_cohesion_min": 0.6683,
+      "low_cohesion_near_threshold_ge_0_90": 46,
+      "low_cohesion_very_near_threshold_ge_0_91": 30,
+      "recommendation": "near_threshold_but_hold_until_family_separation_review",
+      "self_consistency": 0.7933
+    },
+    {
+      "bronze_seed_rows": 114,
+      "chemistry_disagree_count": 6,
+      "decision_counts": {
+        "blocked_pending_structure": 51,
+        "hold_low_chemistry_cohesion": 45,
+        "review_chemistry_disagrees": 6,
+        "silver_ready_pending_geometry_run": 12
+      },
+      "fingerprint_id": "flavin_monooxygenase",
+      "low_cohesion_count": 45,
+      "low_cohesion_max": 0.9112,
+      "low_cohesion_median": 0.8995,
+      "low_cohesion_min": 0.8536,
+      "low_cohesion_near_threshold_ge_0_90": 19,
+      "low_cohesion_very_near_threshold_ge_0_91": 10,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.9474
+    },
+    {
+      "bronze_seed_rows": 99,
+      "chemistry_disagree_count": 11,
+      "decision_counts": {
+        "blocked_pending_structure": 35,
+        "hold_low_chemistry_cohesion": 51,
+        "review_chemistry_disagrees": 11,
+        "silver_ready_pending_geometry_run": 2
+      },
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "low_cohesion_count": 51,
+      "low_cohesion_max": 0.9108,
+      "low_cohesion_median": 0.8079,
+      "low_cohesion_min": 0.8054,
+      "low_cohesion_near_threshold_ge_0_90": 18,
+      "low_cohesion_very_near_threshold_ge_0_91": 10,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.8889
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 7,
+      "decision_counts": {
+        "blocked_pending_structure": 101,
+        "hold_low_chemistry_cohesion": 134,
+        "review_chemistry_disagrees": 7,
+        "silver_ready_pending_geometry_run": 8
+      },
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "low_cohesion_count": 134,
+      "low_cohesion_max": 0.9071,
+      "low_cohesion_median": 0.8615,
+      "low_cohesion_min": 0.7061,
+      "low_cohesion_near_threshold_ge_0_90": 17,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.972
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 74,
+        "hold_low_chemistry_cohesion": 23,
+        "silver_ready_pending_geometry_run": 3
+      },
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "low_cohesion_count": 23,
+      "low_cohesion_max": 0.909,
+      "low_cohesion_median": 0.877,
+      "low_cohesion_min": 0.7279,
+      "low_cohesion_near_threshold_ge_0_90": 11,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 1.0
+    },
+    {
+      "bronze_seed_rows": 120,
+      "chemistry_disagree_count": 20,
+      "decision_counts": {
+        "blocked_pending_structure": 4,
+        "hold_low_chemistry_cohesion": 96,
+        "review_chemistry_disagrees": 20
+      },
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "low_cohesion_count": 96,
+      "low_cohesion_max": 0.9175,
+      "low_cohesion_median": 0.3555,
+      "low_cohesion_min": 0.1964,
+      "low_cohesion_near_threshold_ge_0_90": 11,
+      "low_cohesion_very_near_threshold_ge_0_91": 11,
+      "recommendation": "near_threshold_but_hold_until_family_separation_review",
+      "self_consistency": 0.825
+    },
+    {
+      "bronze_seed_rows": 190,
+      "chemistry_disagree_count": 9,
+      "decision_counts": {
+        "blocked_pending_structure": 69,
+        "hold_low_chemistry_cohesion": 91,
+        "review_chemistry_disagrees": 9,
+        "silver_ready_pending_geometry_run": 21
+      },
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "low_cohesion_count": 91,
+      "low_cohesion_max": 0.9064,
+      "low_cohesion_median": 0.7038,
+      "low_cohesion_min": 0.5048,
+      "low_cohesion_near_threshold_ge_0_90": 1,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "near_threshold_family_candidate_for_preregistered_calibration_design_only",
+      "self_consistency": 0.901
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 3,
+      "decision_counts": {
+        "blocked_pending_structure": 96,
+        "review_chemistry_disagrees": 3,
+        "silver_ready_pending_geometry_run": 1
+      },
+      "fingerprint_id": "askha_sugar_acetate_kinase",
+      "low_cohesion_count": 0,
+      "low_cohesion_max": null,
+      "low_cohesion_median": null,
+      "low_cohesion_min": null,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.97
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 20,
+      "decision_counts": {
+        "blocked_pending_structure": 62,
+        "hold_low_chemistry_cohesion": 56,
+        "review_chemistry_disagrees": 20,
+        "silver_ready_pending_geometry_run": 12
+      },
+      "fingerprint_id": "atp_amide_ligase",
+      "low_cohesion_count": 56,
+      "low_cohesion_max": 0.8282,
+      "low_cohesion_median": 0.8116,
+      "low_cohesion_min": 0.5899,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8667
+    },
+    {
+      "bronze_seed_rows": 150,
+      "chemistry_disagree_count": 28,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 120,
+        "review_chemistry_disagrees": 28,
+        "silver_ready_pending_geometry_run": 2
+      },
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "low_cohesion_count": 120,
+      "low_cohesion_max": 0.8745,
+      "low_cohesion_median": 0.8733,
+      "low_cohesion_min": 0.7549,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8133
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 4,
+      "decision_counts": {
+        "blocked_pending_structure": 173,
+        "hold_low_chemistry_cohesion": 73,
+        "review_chemistry_disagrees": 4
+      },
+      "fingerprint_id": "coa_acyltransferase",
+      "low_cohesion_count": 73,
+      "low_cohesion_max": 0.8668,
+      "low_cohesion_median": 0.7954,
+      "low_cohesion_min": 0.7349,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.984
+    },
+    {
+      "bronze_seed_rows": 140,
+      "chemistry_disagree_count": 15,
+      "decision_counts": {
+        "hold_low_chemistry_cohesion": 125,
+        "review_chemistry_disagrees": 15
+      },
+      "fingerprint_id": "copper_oxidoreductase",
+      "low_cohesion_count": 125,
+      "low_cohesion_max": 0.8985,
+      "low_cohesion_median": 0.8383,
+      "low_cohesion_min": 0.8111,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.8214
+    },
+    {
+      "bronze_seed_rows": 250,
+      "chemistry_disagree_count": 12,
+      "decision_counts": {
+        "blocked_pending_structure": 147,
+        "hold_low_chemistry_cohesion": 61,
+        "review_chemistry_disagrees": 12,
+        "silver_ready_pending_geometry_run": 30
+      },
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "low_cohesion_count": 61,
+      "low_cohesion_max": 0.8972,
+      "low_cohesion_median": 0.8431,
+      "low_cohesion_min": 0.6665,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 0.952
+    },
+    {
+      "bronze_seed_rows": 100,
+      "chemistry_disagree_count": 0,
+      "decision_counts": {
+        "blocked_pending_structure": 83,
+        "hold_low_chemistry_cohesion": 16,
+        "silver_ready_pending_geometry_run": 1
+      },
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "low_cohesion_count": 16,
+      "low_cohesion_max": 0.8611,
+      "low_cohesion_median": 0.8611,
+      "low_cohesion_min": 0.8596,
+      "low_cohesion_near_threshold_ge_0_90": 0,
+      "low_cohesion_very_near_threshold_ge_0_91": 0,
+      "recommendation": "keep_default_threshold_no_current_relaxation_signal",
+      "self_consistency": 1.0
+    }
+  ]
+}

@@ -1,5 +1,66 @@
 # Handoff
 
+## Session run - Silver geometry confirmation apply (2026-06-14, Codex automation)
+
+- Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; registry safety
+  remains green after the tier flips: `data/registries/external_bronze_labels.json` is still a
+  small sharded manifest and shard files remain below the 45 MB scan threshold (largest ~17 MB).
+- Added and applied the separate silver geometry-confirmation lane:
+  `src/catalytic_earth/silver_geometry_confirmation_run.py`,
+  `scripts/run_silver_geometry_confirmation.py`, and
+  `tests/test_silver_geometry_confirmation_run.py`. The lane consumes only rows that pass the
+  existing silver runnability audit (sha-matched holo coordinate + explicit PDB residue mapping),
+  builds local geometry features from those mmCIF files, runs the existing geometry retrieval and
+  label-factory promotion rule, and writes only the external registry on explicit `--apply`.
+  UniProt binding-site/prose roles, EC, Rhea, names, and source text are not scoring features.
+- Real apply artifact:
+  `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_apply.json` /
+  `work/silver_geometry_confirmation_run_current702_20260614_apply.md`. Input **260**
+  silver-ready rows included **154** runnable rows; **152** local geometry rows were OK; **30**
+  passed geometry confirmation and were flipped from bronze to silver; **124** runnable rows were
+  held by the geometry/label-factory gate. Passing families: flavin dehydrogenase/reductase **12**,
+  metallo-amidohydrolase/deaminase **17**, PLP-dependent enzyme **1**.
+- Fixed the bronze->silver preview to exclude already silver-confirmed rows from the pending queue
+  while retaining them in seed centroids/counts. Post-apply artifacts now report the pending state
+  honestly: `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_geometry_apply.json`
+  found **230** pending silver-ready rows = **124** still runnable + **106** blocked; and
+  `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_post_apply_pending.json`
+  found **0** additional pass rows among the 124 remaining runnable holds.
+- Honest counters after apply: external registry **6862** rows = external positive bronze **5608**
+  + external OOS bronze **1224** + external silver-confirmed **30**. Combined label surface remains
+  **7564**; combined seed surface remains **5868**; combined positive bronze **5821**; combined OOS
+  bronze **1696**; combined silver_confirmed **47**; projected **0**. Frozen current702 sha stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Additional bounded quality/scaling artifacts from the same run:
+  `artifacts/v3_label_pdb_id_backfill_preview_current702_20260614_post_silver_apply_remaining.json`
+  closed the remaining PDB-ID preview surface (**4842** queried, **0** backfilled, **0** deferred);
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_silver_apply.json`
+  refreshed pending queues (**230** silver-ready, **1344** chemistry-disagree,
+  **1759** low-cohesion); and
+  `artifacts/v3_cohesion_threshold_calibration_current702_20260614_post_silver_apply.json`
+  kept the global threshold unchanged while identifying **232** near-threshold low-cohesion holds
+  for review-only calibration design.
+- Refreshed planning/scout artifacts:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_silver_apply.json`,
+  `artifacts/v3_evidence_handle_expansion_current702_20260614_post_silver_apply.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260614_post_silver_apply.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_silver_apply.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260614_post_silver_apply.json`.
+  The high-yield factory still selects `had_like_phosphatase` as the next new-family lane; the
+  design-only preregistration is
+  `artifacts/v3_had_like_phosphatase_lane_preregistration_current702_20260614_post_silver_apply.json`.
+  Fresh downstream eval design is documented at `docs/fresh_leakage_safe_downstream_eval_design.md`.
+  Rhea/metal annotation backfill remains mutation-blocked until a row-level preview/apply writer
+  exists; see `work/rhea_metal_annotation_backfill_blocker_current702_20260614_post_silver_apply.md`.
+- Validation: focused critical/silver/source suite **302 passed, 23 subtests passed**; full suite
+  **2252 passed, 1 warning, 244 subtests passed in 161.34s**; `python -m catalytic_earth.cli
+  validate` passed; JSON parse checks passed for generated artifacts/registries; `git diff
+  --check` passed; registry/coordinate file-size scan found no unsafe changed registry files.
+- Next concrete action: build the `had_like_phosphatase` ontology/fingerprint/source runner from
+  the preregistered guardrails, while continuing explicit PDB residue mapping for the **106** blocked
+  pending silver-ready rows. Treat the **124** runnable-held rows as geometry
+  representation/calibration gaps rather than silver.
+
 ## Session run - Silver coordinate materialization and explicit PDB residue mappings (2026-06-14, Codex automation)
 
 - Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start. The external

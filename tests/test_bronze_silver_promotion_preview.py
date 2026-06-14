@@ -170,11 +170,34 @@ class BuildPreviewTests(unittest.TestCase):
                              cofactors=["Zn(2+)"], coordinate_path=str(cif)))
             audit = build_bronze_silver_promotion_preview(seed, cohesion_threshold=0.5)
             self.assertEqual(audit["seed_labels"], len(seed))
+            self.assertEqual(audit["bronze_seed_labels"], len(seed))
+            self.assertEqual(audit["already_silver_confirmed_count"], 0)
             self.assertEqual(sum(audit["decision_counts"].values()), len(seed))
             self.assertEqual(audit["silver_ready_count"], 1)
             g = audit["guardrails"]
             self.assertFalse(g["registry_written"])
             self.assertFalse(g["geometry_confirmation_run_or_faked"])
+
+    def test_already_silver_rows_are_not_requeued_for_promotion(self) -> None:
+        with TemporaryDirectory() as tmp:
+            cif = Path(tmp) / "holo.cif"
+            cif.write_text(_cif(het_comps=["ZN"]))
+            seed = _seed_population()
+            silver = _row(
+                entry_id="already_silver",
+                fp="metal_dependent_hydrolase",
+                cofactors=["Zn(2+)"],
+                coordinate_path=str(cif),
+            )
+            silver["tier"] = "silver"
+            seed.append(silver)
+            audit = build_bronze_silver_promotion_preview(seed, cohesion_threshold=0.5)
+            self.assertEqual(audit["seed_labels"], len(seed))
+            self.assertEqual(audit["bronze_seed_labels"], len(seed) - 1)
+            self.assertEqual(audit["already_silver_confirmed_count"], 1)
+            self.assertEqual(audit["already_silver_confirmed_entry_ids"], ["already_silver"])
+            self.assertEqual(audit["silver_ready_count"], 0)
+            self.assertEqual(sum(audit["decision_counts"].values()), len(seed) - 1)
 
 
 class RealRegistryTests(unittest.TestCase):

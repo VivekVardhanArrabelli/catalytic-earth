@@ -13,6 +13,49 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+**2026-06-14 automation update: first external silver confirmations applied by the separate
+geometry gate.** Treat this as the newest operational state. The registry-size hard blocker remains
+clear: the external registry is still a small sharded manifest plus four shards below the per-file
+safety threshold. Frozen current702 remained byte-unchanged at sha `5eec9bef...`.
+
+The separate geometry-confirmation lane now exists:
+`src/catalytic_earth/silver_geometry_confirmation_run.py` and
+`scripts/run_silver_geometry_confirmation.py`. It consumes only rows that already pass the
+silver-runnability audit (recorded holo PDB confirmation, sha-matched local coordinate file, and
+explicit PDB chain/residue mappings), builds local geometry features from the mmCIF file, and reuses
+the existing geometry retrieval + label-factory promotion rule. It does not score from UniProt
+binding-site prose/roles, EC, Rhea, names, or source text.
+
+Applied result:
+`artifacts/v3_silver_geometry_confirmation_run_current702_20260614_apply.json` scored **154**
+runnable rows, promoted **30** to silver, and held **124**. Post-apply pending state is **230**
+silver-ready rows: **124** runnable but held by the geometry gate and **106** still blocked before
+geometry confirmation. `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_post_apply_pending.json`
+confirms **0** additional pass rows under the current gate. The preview/audit code now excludes
+already silver-confirmed rows from the pending queue.
+
+Current honest counters: external registry **6862** rows = **5608** external positive bronze +
+**1224** external OOS bronze + **30** external silver-confirmed. Combined label surface remains
+**7564**; combined seed surface remains **5868**; combined positive bronze **5821**; combined OOS
+bronze **1696**; silver_confirmed **47** including the frozen 17; projected **0**. Continue silver
+quality via explicit residue mapping for the 106 blockers and representation/calibration review for
+the 124 runnable holds, but resume high-yield bronze growth in parallel while safety stays green.
+
+Post-apply bounded follow-ups: the remaining UniProt PDB-ID preview queried **4842** missing-PDB
+rows and found **0** new xrefs, so the current PDB-ID lane is exhausted without a new source or
+no-xref policy. The refreshed bronze->silver preview reports **230** pending silver-ready rows,
+**1344** chemistry-disagree rows, and **1759** low-cohesion holds. Cohesion calibration changed no
+thresholds; **232** low-cohesion rows sit near the 0.92 threshold, but any family-specific
+relaxation must be pre-registered and cannot be used to inflate counts. Coverage and novelty were
+refreshed: fingerprint Gini **0.1891**, no floor holes, only `metal_dependent_hydrolase` over cap,
+and novelty replay decisions **6406** admit / **409** throttle / **47** reject.
+
+Next high-yield bronze action remains `had_like_phosphatase`. Use
+`artifacts/v3_had_like_phosphatase_lane_preregistration_current702_20260614_post_silver_apply.json`
+as the guardrail contract before creating the ontology node, fingerprint, source runner, and tests.
+The fresh downstream eval design is recorded in `docs/fresh_leakage_safe_downstream_eval_design.md`
+as design-only; do not treat it as an implemented or scored benchmark.
+
 **2026-06-14 automation update: silver-ready queue partially materialized for real geometry
 confirmation.** Treat this as the newest operational state. Registry file-size safety remains green:
 the external registry is still a sharded manifest (~1.2 KB) plus four shards (largest ~17 MB), and

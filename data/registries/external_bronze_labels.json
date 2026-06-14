@@ -1,35 +1,35 @@
 {
   "canonical_order": "preserved input order across shards",
-  "full_registry_canonical_bytes": 55000292,
-  "full_registry_canonical_sha256": "a7634eb679e05df92d9491a06104a3f6b32f8ace1fb62758474c13470e6b0be5",
-  "generated_utc": "2026-06-14T17:43:29Z",
+  "full_registry_canonical_bytes": 55031012,
+  "full_registry_canonical_sha256": "7d6370bb153ef29e1e66aea6923e0a866590e3d031197251b9867efea98d1f68",
+  "generated_utc": "2026-06-14T18:15:40Z",
   "row_count": 6862,
   "schema_version": "catalytic_earth.sharded_registry.v1",
   "shard_count": 4,
   "shards": [
     {
-      "bytes": 17994205,
+      "bytes": 17995470,
       "path": "external_bronze_labels.shards/part-00000.json",
-      "row_count": 2345,
-      "sha256": "1ce3038f8be44d327122d400005cd3f0d49967d81249334a0a3218d9d55637bc"
+      "row_count": 2343,
+      "sha256": "5d19092335c050fb81c7cecefc27847c438fdd8d7b59205bd0e3480f44a4e3c2"
     },
     {
-      "bytes": 17994475,
+      "bytes": 17998419,
       "path": "external_bronze_labels.shards/part-00001.json",
-      "row_count": 2141,
-      "sha256": "34efa777f029623d069ec9de23b7e2512a4f48871de82f85c6da3546315768a3"
+      "row_count": 2140,
+      "sha256": "30477635958abd593c2b7392c342ea6dd055ed42993d6cc738e083854a47b582"
     },
     {
-      "bytes": 17996937,
+      "bytes": 17999252,
       "path": "external_bronze_labels.shards/part-00002.json",
-      "row_count": 2275,
-      "sha256": "b58d3f016c4ce15aa445caf85df2ad5e8a1398135e8cb35a3ca8b614ee6ffad9"
+      "row_count": 2274,
+      "sha256": "84057524019ec88483f4262f883b3f053e0361fa3be0a026680581ca15879718"
     },
     {
-      "bytes": 1014684,
+      "bytes": 1037880,
       "path": "external_bronze_labels.shards/part-00003.json",
-      "row_count": 101,
-      "sha256": "a27170a905586f9909e40a3a48722ee78316dd0d88958f4dad635160b8df6cff"
+      "row_count": 105,
+      "sha256": "24d52bd78f20db5b5a7e1904c4607b42f39b9e8d729e40b600232dad261f6d50"
     }
   ]
 }

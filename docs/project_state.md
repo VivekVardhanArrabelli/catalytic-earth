@@ -26,6 +26,56 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SILVER GEOMETRY CONFIRMATION APPLIED (2026-06-14 automation).**
+  Newest operational state: the separate geometry-confirmation gate has now been implemented and
+  applied to the materialized silver-ready queue. Hard safety remains green: the external registry
+  is still a sharded manifest plus four shards below the per-file safety threshold, and frozen
+  current702 stayed sha `5eec9bef...`.
+
+  Added `src/catalytic_earth/silver_geometry_confirmation_run.py`,
+  `scripts/run_silver_geometry_confirmation.py`, and
+  `tests/test_silver_geometry_confirmation_run.py`. The lane starts only from rows that pass the
+  silver runnability audit (recorded holo PDB confirmation, sha-matched local coordinate file, and
+  explicit PDB chain/residue mappings), builds local geometry features from the mmCIF files, and
+  reuses the existing geometry retrieval + label-factory promotion rule. Source annotation roles,
+  UniProt prose, EC, Rhea, names, and binding-site text are not scoring features.
+
+  Real apply artifact
+  `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_apply.json` scored **154**
+  runnable rows, found **30** geometry-confirmed pass rows, held **124**, and flipped only the pass
+  rows to silver in the external registry. Post-apply pending state:
+  `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_geometry_apply.json`
+  reports **230** pending silver-ready rows, **124** runnable, **106** blocked, and
+  `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_post_apply_pending.json`
+  reports **0** additional pass rows among the remaining runnable holds. The bronze->silver preview
+  now excludes already silver-confirmed rows from the pending queue.
+
+  Honest counters after apply: external **6862** rows = positive bronze **5608**, OOS bronze
+  **1224**, external silver **30**. Combined label surface **7564**; combined seed surface **5868**;
+  combined positive bronze **5821**; combined OOS bronze **1696**; silver_confirmed tier count
+  **47** including the frozen 17; projected **0**.
+
+  Follow-on non-mutating artifacts from the same run closed or refreshed the remaining priority
+  lanes without overclaiming them. PDB-ID backfill preview
+  `artifacts/v3_label_pdb_id_backfill_preview_current702_20260614_post_silver_apply_remaining.json`
+  queried the remaining **4842** rows lacking PDB IDs and found **0** new UniProt xref PDB rows, so
+  the current UniProt-xref lane is exhausted. Bronze->silver preview
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_silver_apply.json` now
+  reports **230** pending silver-ready rows, **1344** chemistry-disagree rows, and **1759**
+  low-cohesion holds. Cohesion calibration
+  `artifacts/v3_cohesion_threshold_calibration_current702_20260614_post_silver_apply.json` changed
+  no thresholds; it identified **232** near-threshold low-cohesion holds, with any relaxation
+  limited to future pre-registered calibration design rather than count gaming.
+
+  Scaling context was also refreshed. Coverage audit reports **7564** combined labels, fingerprint
+  Gini **0.1891**, no holes, and only `metal_dependent_hydrolase` over cap. Novelty replay reports
+  **6406** admit, **409** throttle, and **47** reject decisions across the **6862** external rows.
+  The high-yield factory still selects `had_like_phosphatase` as the next >=150 lane, now backed by
+  design-only preregistration
+  `artifacts/v3_had_like_phosphatase_lane_preregistration_current702_20260614_post_silver_apply.json`.
+  Fresh leakage-safe downstream eval design is recorded in
+  `docs/fresh_leakage_safe_downstream_eval_design.md`; it is not an implemented benchmark.
+
 - **SILVER COORDINATE MATERIALIZATION + EXPLICIT PDB RESIDUE MAPPINGS (2026-06-14 automation).**
   Newest operational state: hard safety remains green and the first subset of the silver-ready
   queue is now actually runnable for the separate geometry-confirmation gate. The external registry

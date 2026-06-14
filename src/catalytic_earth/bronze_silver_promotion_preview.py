@@ -249,6 +249,10 @@ def build_bronze_silver_promotion_preview(
     cohesion_threshold: float = DEFAULT_PROMOTION_COHESION,
 ) -> dict[str, Any]:
     seed = [r for r in expansion if r.get("label_type") == "seed_fingerprint"]
+    bronze_seed = [r for r in seed if r.get("tier", "bronze") == "bronze"]
+    already_silver = [
+        r for r in seed if r.get("tier") in {"silver", "silver_confirmed"}
+    ]
     centroids = fingerprint_centroids(seed)
 
     het_cache: dict[str, set[str]] = {}
@@ -256,7 +260,7 @@ def build_bronze_silver_promotion_preview(
         assess_promotion(
             row, centroids, cohesion_threshold=cohesion_threshold, _het_cache=het_cache
         )
-        for row in seed
+        for row in bronze_seed
     ]
     decision_counts: Counter = Counter(d["decision"] for d in decisions)
     silver_ready = [d for d in decisions if d["decision"] == "silver_ready_pending_geometry_run"]
@@ -292,6 +296,11 @@ def build_bronze_silver_promotion_preview(
             ),
         },
         "seed_labels": len(seed),
+        "bronze_seed_labels": len(bronze_seed),
+        "already_silver_confirmed_count": len(already_silver),
+        "already_silver_confirmed_entry_ids": sorted(
+            str(row.get("entry_id")) for row in already_silver if row.get("entry_id")
+        ),
         "decision_counts": dict(sorted(decision_counts.items())),
         "decision_counts_by_fingerprint": {
             fp: dict(sorted(c.items())) for fp, c in sorted(by_fingerprint.items())
@@ -325,6 +334,10 @@ def _report(audit: dict[str, Any]) -> str:
         "confirmation, which are blocked, and which need review first.",
         "",
         f"- Seed labels: {audit['seed_labels']}.",
+        f"- Bronze seed labels still eligible for promotion: "
+        f"{audit.get('bronze_seed_labels', audit['seed_labels'])}.",
+        f"- Already silver-confirmed seed labels: "
+        f"{audit.get('already_silver_confirmed_count', 0)}.",
         f"- **Silver-ready (pending the geometry-confirmation run): "
         f"{audit['silver_ready_count']}**.",
         "",

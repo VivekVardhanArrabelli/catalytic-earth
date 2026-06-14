@@ -3,6 +3,47 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-14: SILVER GEOMETRY CONFIRMATION IS A LOCAL-GEOMETRY GATE, NOT ANNOTATION
+
+Decision: implement and apply the separate silver geometry-confirmation gate for rows that already
+passed silver runnability. Added `src/catalytic_earth/silver_geometry_confirmation_run.py` and
+`scripts/run_silver_geometry_confirmation.py`. The gate requires the prior runnability inputs
+(recorded holo PDB confirmation, sha-matched local coordinate, and explicit PDB residue mappings),
+then builds local geometry features from the mmCIF and uses the existing geometry retrieval plus
+label-factory promotion rule. UniProt binding-site prose/roles, EC, Rhea, names, and source text are
+not scoring features.
+
+Measured result: the apply artifact
+`artifacts/v3_silver_geometry_confirmation_run_current702_20260614_apply.json` scored **154**
+runnable rows; **30** passed and were flipped to silver; **124** were held. The pass rows were
+limited to flavin dehydrogenase/reductase (**12**), metallo-amidohydrolase/deaminase (**17**), and
+PLP-dependent enzyme (**1**) under the current geometry representation. Frozen current702 sha stayed
+`5eec9bef...`; `predictive_evidence` stayed unchanged; row count stayed **6862**.
+
+Decision: the bronze->silver preview must no longer requeue rows already promoted to silver. It now
+keeps all seed rows for centroid/count context, but only bronze seed rows are eligible for pending
+promotion decisions; already silver/silver_confirmed rows are counted separately. Post-apply audit
+therefore reports **230** pending silver-ready rows (**124** runnable and **106** blocked), not the
+pre-apply **260**.
+
+Decision: cohesion thresholds were reviewed but not relaxed. The non-destructive artifact
+`artifacts/v3_cohesion_threshold_calibration_current702_20260614_post_silver_apply.json` found
+**1759** low-cohesion holds and **232** near-threshold rows, but changed no thresholds and wrote no
+registry. Low-self-consistency families remain representation/scope-gap review, not candidates for
+count-driven threshold lowering.
+
+Decision: the next high-yield bronze lane is `had_like_phosphatase`, but it remains blocked on new
+fingerprint, OOS preregistration, and a source runner. The design-only preregistration artifact
+`artifacts/v3_had_like_phosphatase_lane_preregistration_current702_20260614_post_silver_apply.json`
+fixes the required non-EC corroborators, hard-negative holds, novelty/dedup gates, and excluded
+context/predictive-evidence separation before any implementation. No labels, ontology entries, or
+registry rows were written by that artifact.
+
+Decision: fresh downstream evaluation must be built as a new frozen surface, not by reusing the
+spent heldout one-shot. `docs/fresh_leakage_safe_downstream_eval_design.md` is a design artifact
+only: it defines train/cal development, a prospective shadow-eval queue, and a future frozen
+downstream eval surface with row/hash freeze requirements. It is not a benchmark result.
+
 ## 2026-06-14: SILVER GEOMETRY MATERIALS MUST BE SHA- AND ALIGNMENT-BACKED
 
 Decision: local holo coordinate files count toward silver geometry runnability only when their

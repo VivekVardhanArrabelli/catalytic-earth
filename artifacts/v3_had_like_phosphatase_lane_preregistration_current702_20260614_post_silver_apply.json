@@ -1,0 +1,79 @@
+{
+  "apply_command_shape": "Only after preview gates pass: rerun the same command with --apply; the runner must print frozen current702 sha256 before/after.",
+  "artifact_id": "v3_had_like_phosphatase_lane_preregistration_current702_20260614_post_silver_apply",
+  "created_utc": "2026-06-14T18:36:00Z",
+  "display_name": "HAD-like phosphatase",
+  "expected_scale": {
+    "cap_ceiling": 150,
+    "cap_class": "chemistry_confusable_cap_150",
+    "non_ec_mechanism_corroboration_rate_estimate": 0.78,
+    "projected_clean_admits": 150,
+    "reviewed_non_ec_corroborated_supply": 3477,
+    "reviewed_scope_supply": 4457
+  },
+  "family_id": "had_like_phosphatase",
+  "feature_contract": {
+    "admission_handles_are_excluded_context": [
+      "keyword HAD/phosphatase",
+      "binding-site presence",
+      "active-site presence",
+      "Rhea participant/equation",
+      "EC scope query",
+      "UniProt protein names/prose"
+    ],
+    "predictive_evidence_must_remain_empty": true,
+    "source_free_predictive_features_to_consider_only_under_tests": [
+      "future validated local chemistry/geometry axes after leakage tests"
+    ]
+  },
+  "first_safe_command_shape": "PYTHONPATH=src python scripts/source_<family>_family.py --max-records-per-lane <N> --out artifacts/<name>.json --report work/<name>.md",
+  "oos_preregistration": {
+    "dedup_against": [
+      "curated current702",
+      "external registries"
+    ],
+    "hard_negative_holds": [
+      "protein phosphatase rows without HAD/Asp-phosphoenzyme evidence",
+      "metal phosphomonoesterase rows without HAD-domain/name or Asp-nucleophile evidence",
+      "phosphodiesterase and nuclease rows even when EC scope overlaps",
+      "EC-only phosphatase rows with no mechanism corroborator"
+    ],
+    "multi_fingerprint_signal_holds_required": true,
+    "novelty_gate_required": true,
+    "oos_namespace": "uniprot reviewed phosphatase rows outside the HAD-like mechanism rule",
+    "per_fingerprint_cap": 150,
+    "positive_namespace": "uniprot reviewed HAD-like Asp-phosphoenzyme phosphatase rows passing mechanism corroboration",
+    "required": true
+  },
+  "required_runner_gates_before_apply": [
+    "ontology node and mechanism fingerprint entry added with tests",
+    "source runner preview emits bronze automation_curated uniprot rows only",
+    "source_trust_tiers.evaluate_corroboration admits no EC-only row",
+    "dedup/novelty gate checks current702 and external registries",
+    "governor/per-fingerprint caps enforced",
+    "row-level source-contract validation passes",
+    "predictive_evidence stays empty",
+    "frozen current702 sha printed and unchanged before/after apply"
+  ],
+  "schema_version": "new_family_lane_preregistration.v1",
+  "scope_and_admission": {
+    "corroborator_query": "(reviewed:true) AND (ec:3.1.3.*) AND ((protein_name:HAD) OR (protein_name:phosphatase) OR (keyword:Phosphatase) OR (cc_cofactor:magnesium))",
+    "disambiguation_holds": [
+      "protein phosphatase rows",
+      "metal phosphomonoesterase rows with no HAD signal",
+      "phosphodiesterase/nuclease side rows"
+    ],
+    "ec_scope_only_never_counted_corroborator": true,
+    "mechanism_first": true,
+    "required_non_ec_corroborators": [
+      "HAD family/domain/name handle",
+      "Asp nucleophile or Mg binding-site evidence",
+      "Rhea phosphomonoester hydrolysis equation where available"
+    ],
+    "scope_query": "(reviewed:true) AND (ec:3.1.3.*)",
+    "tier_0_requires_at_least_one_mechanism_corroborator": true
+  },
+  "source_artifact": "artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_silver_apply.json",
+  "status": "design_only_no_labels_no_registry_write",
+  "why_this_lane": "Large phosphatase lane; only useful at scale after a HAD-specific split separates Asp-phosphoenzyme chemistry from metal phosphatases."
+}

@@ -1,24 +1,24 @@
 # Automation Status
 
 - automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-14T16:58:56Z
-- started_local: Sun Jun 14 11:58:56 CDT 2026
+- started_at_utc: 2026-06-14T18:00:30Z
+- started_local: Sun Jun 14 13:00:30 CDT 2026
+- closeout_at_utc: 2026-06-14T18:49:45Z
 - budget_minutes: 55
 - planned_closeout_minute: 50
-- elapsed_minutes: 49.3
-- remaining_minutes: 5.7
-- state: validation_passed_ready_to_commit
+- elapsed_minutes: 49.2
+- remaining_minutes: 5.8
+- state: closeout_validation_passed_ready_to_commit_push
 - external_rows: 6862
-- positive_bronze: 5638
-- oos_bronze: 1224
+- external_positive_bronze: 5608
+- external_oos_bronze: 1224
+- external_silver_confirmed: 30
+- positive_bronze: 5821
+- oos_bronze: 1696
 - combined_label_surface: 7564
 - combined_seed_surface: 5868
-- holo_confirmed_rows: 260
-- verified_holo_coordinate_rows: 260
-- pdb_residue_mapped_rows: 162
-- silver_ready_input_rows: 260
-- ready_for_geometry_confirmation_run: 154
-- blocked_before_geometry_confirmation: 106
-- silver_flips_applied: 0
-- remaining_blockers: {"insufficient_exact_active_site_residues": 20, "missing_explicit_pdb_residue_mapping": 98}
-- validation: focused 291 passed + 14 subtests; full 2248 passed + 244 subtests + 1 warning in 161.34s; cli validate/json/diff/file-size checks passed
+- silver_confirmed: 47
+- silver_ready_pending_geometry_run: 230
+- projected: 0
+- validation: full suite 2252 passed, 1 warning, 244 subtests; focused affected suite 17 passed; cli validate/json/diff/file-size checks passed
+- next_action: build had_like_phosphatase fingerprint/source runner from preregistered guardrails while continuing residue mapping for 106 blocked silver-ready rows
