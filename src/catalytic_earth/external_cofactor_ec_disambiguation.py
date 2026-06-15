@@ -317,6 +317,11 @@ _N_RIBOSYL_HYDROLASE_FAMILY_TOKENS = (
     "nucleoside hydrolase",
     "n-ribosylhydrolase",
     "n-ribosidase",
+    "nucleosidase",
+    "uridine nucleosidase",
+    "purine nucleosidase",
+    "n-ribohydrolase",
+    "nucleoside n-ribohydrolase",
     "ribosyl hydrolase",
     "ribohydrolase",
 )

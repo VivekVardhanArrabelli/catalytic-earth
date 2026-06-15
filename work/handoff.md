@@ -1,5 +1,68 @@
 # Handoff
 
+## Session run - N-ribosyl hydrolase 42fp infrastructure built; aggregate blocked below batch gate (2026-06-15, Codex automation)
+
+- Hard blockers stayed clear. Started from current `origin/main`, acquired the automation lock, and
+  verified registry file-size safety: external bronze remains a sharded manifest plus shards about
+  **17 MB / 17 MB / 17 MB / 4.9 MB**, below the GitHub-safe threshold. Frozen current702 remains
+  byte-unchanged at sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+  No external bronze labels were applied and no frozen current702 rows were written.
+- Built `n_ribosyl_hydrolase` as the first 42nd positive fingerprint lane through the guarded
+  path: new fingerprint `n_ribosyl_hydrolase`, ontology family `n_glycosidic_bond_hydrolysis`,
+  reviewed-UniProt source runner `src/catalytic_earth/n_ribosyl_hydrolase_sourcing.py`, script
+  `scripts/source_n_ribosyl_hydrolase_family.py`, focused tests, high-yield-factory wiring, deploy
+  context, governor/coverage signatures, and the 42fp hard-negative preregistration
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json`. The current
+  positive universe is now `label_factory_v1_42fp`.
+- Mechanism discipline was preserved. EC 3.2.2 stays scope/fetch context only. Counted
+  corroboration for `n_ribosyl_hydrolase` requires mechanism-bearing non-EC evidence such as
+  N-ribosyl/nucleosidase family/name context plus N-glycosidic hydrolysis Rhea/reaction participant
+  evidence. Added synonym handles (`nucleosidase`, `uridine nucleosidase`, `purine nucleosidase`,
+  `N-ribohydrolase`, `nucleoside N-ribohydrolase`) as scope/admission handles only; they stay in
+  excluded/review-only context and `predictive_evidence` remains `[]`.
+- Non-destructive live previews show the lane is useful but not apply-ready. Initial source windows
+  were low yield; synonym-expanded windows reached **61** unique novelty-safe
+  `n_ribosyl_hydrolase` labels after aggregate dedup/novelty/cap replay. Row guardrails found
+  **0** problem rows, but the aggregate is below the **150** clean-admit batch gate. The
+  apply-candidate-named files were corrected in place to status
+  `non_destructive_aggregate_blocked_below_150_no_apply` /
+  `row_guardrails_pass_but_batch_gate_blocks_apply`; do not apply them.
+- Key artifacts:
+  `artifacts/v3_n_ribosyl_hydrolase_source_handle_scout_current702_20260615.json`,
+  `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_synonyms_current702_20260615.json`,
+  `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_synonym_aggregate.json`,
+  `work/n_ribosyl_hydrolase_synonym_aggregate_blocker_current702_20260615.md`,
+  `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_current702_20260615_apply_candidate.json`,
+  `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_apply_candidate.json`,
+  `work/n_ribosyl_hydrolase_apply_candidate_current702_20260615.md`, and
+  `work/n_ribosyl_hydrolase_next_source_strategy_current702_20260615.md`. Offset-paged UniProt
+  synonym windows produced a raw mechanism-corroborated window sum of **166**, but overlapped the
+  earlier accession set and left only **61** unique labels; treat reliable cursor pagination or a
+  stronger source path as the next source-handle task.
+- Planning/coverage refresh after the 42fp infrastructure:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_infra.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_n_ribosyl_infra.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_n_ribosyl_infra.json`.
+  Coverage reports **8122** combined labels, fingerprint Gini **0.2005**, `n_ribosyl_hydrolase`
+  as the lone under-floor/hole, and `metal_dependent_hydrolase` over cap. Novelty replay remains
+  **6959** admit / **414** throttle / **47** reject across **7420** external rows.
+- Honest counters are unchanged from the prior Ser/Thr apply: external rows **7420** = external
+  seed **6196** + external OOS **1224**, with external silver **30**. Combined label surface
+  **8122**; combined seed surface **6426**; positive bronze **6379**; OOS bronze **1696**;
+  silver_confirmed **47**; projected **0**.
+- Validation so far: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with **12**
+  source records, **42** mechanism fingerprints, **39** ontology families, and **702** curated
+  labels. Focused affected suite passed: **14 passed** across N-ribosyl sourcing, source-wall
+  boundary controls, 42fp/41fp OOS preregistration checks, factory import gate, and newest
+  governor signatures. Final full-suite/JSON/diff/file-size results are recorded in
+  `work/status.md` at closeout.
+- Next concrete action: do **not** apply the 61-row aggregate. First implement reliable UniProt
+  cursor pagination or another reviewed mechanism-bearing source path for N-ribosyl hydrolase, then
+  rebuild a non-destructive aggregate and apply only if >=150 clean unique rows pass novelty,
+  governor, dedup, cap, source-contract, leakage, and row guardrail gates. If N-ribosyl source
+  supply is exhausted, pivot to `metal_independent_phosphodiesterase` as the next new-fingerprint
+  lane with a fresh fingerprint-universe preregistration.
+
 ## Session run - Discovery-compass source walls ready; registry unchanged (2026-06-15, Codex automation)
 
 - Hard blockers stayed clear. Fetched/rebased onto current `origin/main` at start, acquired the

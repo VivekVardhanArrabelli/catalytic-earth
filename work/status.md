@@ -1,18 +1,18 @@
 # Automation status
 
 - automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-15T14:38:18Z
-- started_local: Mon Jun 15 09:38:18 CDT 2026
+- started_at_utc: 2026-06-15T15:38:45Z
+- started_local: Mon Jun 15 10:38:45 CDT 2026
 - budget_minutes: 55
 - planned_closeout_minute: 50
-- closeout_snapshot_utc: 2026-06-15T15:28:21Z
-- elapsed_minutes: 50.0
-- remaining_minutes: 5.0
-- current_task: discovery-compass source-wall scaleout infrastructure; no registry mutation
-- origin_sync: fetched origin during closeout; rebased over 37b47be6 (representation-separability fix spec, hand-off only)
-- registry_safety: green; external registry remains sharded, manifest is ~4 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is over 45 MB
+- closeout_snapshot_utc: 2026-06-15T16:29:16Z
+- elapsed_minutes: 50.5
+- remaining_minutes: 4.5
+- current_task: closeout after N-ribosyl hydrolase 42fp infrastructure and below-gate source aggregate
+- origin_sync: pending final fetch/rebase check and push
+- registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is over 45 MB
 - frozen_current702_sha256: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
-- registry_mutation: none; no labels, fingerprints, ontology nodes, or registries were written
+- registry_mutation: none; no external bronze labels were applied and frozen current702 was not written
 - honest_counters:
   - external_rows: 7420
   - external_seed: 6196
@@ -26,24 +26,37 @@
   - silver_confirmed: 47
   - projected: 0
 - scaling_summary:
-  - high_yield_ready_existing_lanes_ge_150: 0
-  - top_projected_clean_admits: n_ribosyl_hydrolase 150
-  - second_projected_clean_admits: metal_independent_phosphodiesterase 150
-  - source_wall_rule_status: both implemented_preview_only
-  - gating_status: both blocked_new_fingerprint_oos_prereg_and_runner_required
-  - upstream_constraint: representation separability fix should land before more ester-hydrolase, phosphatase, or NAD-redox-subtype sourcing
+  - current_positive_universe: label_factory_v1_42fp
+  - mechanism_fingerprints: 42
+  - ontology_families: 39
+  - new_lane: n_ribosyl_hydrolase
+  - new_lane_status: infrastructure built; non-destructive aggregate blocked below 150-row batch gate
+  - n_ribosyl_unique_novelty_safe_labels: 61
+  - n_ribosyl_raw_window_sum_mechanism_corroborated: 166
+  - n_ribosyl_row_guardrail_problem_rows: 0
+  - apply_authorized: false
+  - source_diagnostic: UniProt offset-paged synonym windows overlapped earlier accessions; use reliable cursor pagination or another reviewed mechanism-bearing source path before apply
 - validation:
-  - cli_validate: passed; 12 source records, 41 fingerprints, 38 ontology families, 702 curated labels
-  - focused_affected_post_rebase: 298 passed, 14 subtests passed in 0.35s
-  - full_suite_pre_rebase: 2298 passed, 1 warning, 244 subtests passed in 165.46s
-  - json_parse: passed for new JSON artifacts and progress_log JSONL
-  - diff_check: passed
-  - file_size_scan: passed; no `data/registries/` file over 45 MB
+  - cli_validate: passed; 12 source records, 42 fingerprints, 39 ontology families, 702 curated labels
+  - focused_affected_pre_full: 14 passed across N-ribosyl sourcing, source-wall boundary controls, 42fp/41fp OOS preregistration, factory import gate, and governor signatures
+  - stale_pin_rerun_after_full_failure: 4 passed after updating 42fp count/hole/status pins
+  - adapter_offset_and_stale_pin_rerun: 8 passed after adding offset regression coverage
+  - full_suite_final: 2308 passed, 1 warning, 244 subtests passed in 164.56s
+  - json_parse: passed for 25 new N-ribosyl/planning JSON artifacts and progress_log JSONL after closeout append
+  - diff_check: passed after closeout ledger update
+  - file_size_scan: passed; no `data/registries` file over 45 MB
+  - frozen_sha_check: passed; frozen current702 sha is 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 - artifacts:
-  - `artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json`
-  - `work/high_yield_family_lane_factory_current702_20260615_discovery_compass.md`
-  - `artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`
-  - `artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`
-  - `work/n_ribosyl_hydrolase_42fp_build_plan_current702_20260615.md`
-  - `work/metal_independent_phosphodiesterase_nextfp_build_plan_current702_20260615.md`
-- next_action: build `n_ribosyl_hydrolase` as the first 42fp lane through fingerprint, ontology, OOS preregistration refresh, reviewed-UniProt source runner, non-destructive preview, row guardrail audit, novelty/governor/dedup/cap replay, source-contract/leakage validation, and explicit apply only if all gates pass
+  - `artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_source_handle_scout_current702_20260615.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_synonyms_current702_20260615.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_synonym_aggregate.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_current702_20260615_apply_candidate.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_apply_candidate.json`
+  - `work/n_ribosyl_hydrolase_synonym_aggregate_blocker_current702_20260615.md`
+  - `work/n_ribosyl_hydrolase_apply_candidate_current702_20260615.md`
+  - `work/n_ribosyl_hydrolase_next_source_strategy_current702_20260615.md`
+  - `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_infra.json`
+  - `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_n_ribosyl_infra.json`
+  - `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_n_ribosyl_infra.json`
+- next_action: do not apply the 61-row N-ribosyl aggregate; implement reliable UniProt cursor pagination or another reviewed N-glycosidic hydrolysis source path, rebuild a non-destructive aggregate, and apply only if >=150 clean unique rows pass every gate; pivot to `metal_independent_phosphodiesterase` if N-ribosyl source supply is exhausted

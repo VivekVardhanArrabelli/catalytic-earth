@@ -1,0 +1,101 @@
+{
+  "artifact_id": "v3_n_ribosyl_hydrolase_source_handle_scout_current702_20260615",
+  "counts": {
+    "counted_queries": 6,
+    "max_counted_total_results": 2395,
+    "queries_tested": 6,
+    "timeout_queries": 0
+  },
+  "created_utc": "2026-06-15T15:57:47Z",
+  "family_id": "n_ribosyl_hydrolase",
+  "guardrails": {
+    "ec_scope_only_never_counted": true,
+    "handles_are_scope_or_admission_only_not_predictive": true,
+    "labels_created": false,
+    "registry_written": false,
+    "requires_preview_and_row_audit_before_apply": true
+  },
+  "interpretation": "Completed N-ribosyl windows admitted only 1/79 fetched rows. Count handles should be used to prioritize narrower family/reaction pages before another large preview; no handle here is predictive evidence or sufficient for apply.",
+  "rows": [
+    {
+      "handle_id": "current_broad_scope",
+      "metadata": {
+        "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.2.2.%2A%29+OR+%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))",
+      "rationale": "current runner broad scope; live windows show low admitted yield because EC 3.2.2 is heterogeneous",
+      "status": "counted",
+      "total_results": 1991
+    },
+    {
+      "handle_id": "family_name_only",
+      "metadata": {
+        "query": "(reviewed:true) AND ((protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND ((protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))",
+      "rationale": "removes generic EC 3.2.2 DNA glycosylase/no-reaction supply",
+      "status": "counted",
+      "total_results": 11
+    },
+    {
+      "handle_id": "family_name_plus_ribose_product",
+      "metadata": {
+        "query": "(reviewed:true) AND ((protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) AND ((cc_catalytic_activity:ribose) OR (cc_catalytic_activity:\"D-ribose\") OR (cc_catalytic_activity:hypoxanthine) OR (cc_catalytic_activity:uracil) OR (cc_catalytic_activity:adenine))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29+AND+%28%28cc_catalytic_activity%3Aribose%29+OR+%28cc_catalytic_activity%3A%22D-ribose%22%29+OR+%28cc_catalytic_activity%3Ahypoxanthine%29+OR+%28cc_catalytic_activity%3Auracil%29+OR+%28cc_catalytic_activity%3Aadenine%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND ((protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) AND ((cc_catalytic_activity:ribose) OR (cc_catalytic_activity:\"D-ribose\") OR (cc_catalytic_activity:hypoxanthine) OR (cc_catalytic_activity:uracil) OR (cc_catalytic_activity:adenine))",
+      "rationale": "directly targets the counted Rhea/reaction axis used by the source wall",
+      "status": "counted",
+      "total_results": 9
+    },
+    {
+      "handle_id": "nucleosidase_synonym",
+      "metadata": {
+        "query": "(reviewed:true) AND ((protein_name:nucleosidase) OR (protein_name:\"uridine nucleosidase\") OR (protein_name:\"purine nucleosidase\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3Anucleosidase%29+OR+%28protein_name%3A%22uridine+nucleosidase%22%29+OR+%28protein_name%3A%22purine+nucleosidase%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND ((protein_name:nucleosidase) OR (protein_name:\"uridine nucleosidase\") OR (protein_name:\"purine nucleosidase\"))",
+      "rationale": "tests common enzyme-name synonyms not present in the first runner",
+      "status": "counted",
+      "total_results": 219
+    },
+    {
+      "handle_id": "n_ribohydrolase_spelling",
+      "metadata": {
+        "query": "(reviewed:true) AND ((protein_name:\"N-ribohydrolase\") OR (protein_name:\"nucleoside N-ribohydrolase\") OR (protein_name:\"inosine-uridine preferring nucleoside hydrolase\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22N-ribohydrolase%22%29+OR+%28protein_name%3A%22nucleoside+N-ribohydrolase%22%29+OR+%28protein_name%3A%22inosine-uridine+preferring+nucleoside+hydrolase%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND ((protein_name:\"N-ribohydrolase\") OR (protein_name:\"nucleoside N-ribohydrolase\") OR (protein_name:\"inosine-uridine preferring nucleoside hydrolase\"))",
+      "rationale": "tests N-ribohydrolase spelling variants seen in curated names",
+      "status": "counted",
+      "total_results": 2
+    },
+    {
+      "handle_id": "ribose_reaction_without_ec",
+      "metadata": {
+        "query": "(reviewed:true) AND ((cc_catalytic_activity:ribose) OR (cc_catalytic_activity:\"D-ribose\") OR (cc_catalytic_activity:deoxyribose)) AND ((cc_catalytic_activity:hypoxanthine) OR (cc_catalytic_activity:uracil) OR (cc_catalytic_activity:adenine) OR (cc_catalytic_activity:guanine) OR (cc_catalytic_activity:thymine))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28cc_catalytic_activity%3Aribose%29+OR+%28cc_catalytic_activity%3A%22D-ribose%22%29+OR+%28cc_catalytic_activity%3Adeoxyribose%29%29+AND+%28%28cc_catalytic_activity%3Ahypoxanthine%29+OR+%28cc_catalytic_activity%3Auracil%29+OR+%28cc_catalytic_activity%3Aadenine%29+OR+%28cc_catalytic_activity%3Aguanine%29+OR+%28cc_catalytic_activity%3Athymine%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND ((cc_catalytic_activity:ribose) OR (cc_catalytic_activity:\"D-ribose\") OR (cc_catalytic_activity:deoxyribose)) AND ((cc_catalytic_activity:hypoxanthine) OR (cc_catalytic_activity:uracil) OR (cc_catalytic_activity:adenine) OR (cc_catalytic_activity:guanine) OR (cc_catalytic_activity:thymine))",
+      "rationale": "reaction-first handle that may recover entries lacking explicit family synonym in protein_name",
+      "status": "counted",
+      "total_results": 2395
+    }
+  ],
+  "schema_version": "source_handle_scout.v1",
+  "status": "count_scout_complete"
+}

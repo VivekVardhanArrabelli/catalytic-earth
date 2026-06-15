@@ -16,6 +16,43 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-15 automation update: N-ribosyl hydrolase 42fp infrastructure built; live aggregate
+blocked below batch gate.** Treat this as the newest operational state for bronze scaleout. Hard
+safety remains green, frozen current702 was not written, and no external bronze labels were
+applied. The current positive fingerprint universe is now `label_factory_v1_42fp` with **42**
+fingerprints and **39** ontology families. Counted label counters are unchanged from the prior
+Ser/Thr apply: external rows **7420**, combined label surface **8122**, combined seed surface
+**6426**, positive bronze **6379**, OOS bronze **1696**, silver_confirmed **47**, projected **0**.
+
+The `n_ribosyl_hydrolase` lane now has the missing infrastructure:
+`src/catalytic_earth/n_ribosyl_hydrolase_sourcing.py`,
+`scripts/source_n_ribosyl_hydrolase_family.py`, fingerprint `n_ribosyl_hydrolase`, ontology
+family `n_glycosidic_bond_hydrolysis`, 42fp OOS preregistration
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json`, factory wiring,
+coverage/governor signatures, deploy context, and focused tests. EC 3.2.2 remains scope-only;
+N-ribosyl/nucleosidase names and keyword handles are admission/source context only and are not
+predictive features. Counted corroboration requires non-EC mechanism evidence, especially
+N-glycosidic hydrolysis Rhea/reaction-participant evidence plus family/name context.
+
+Live non-destructive sourcing found **61** unique novelty-safe N-ribosyl rows after synonym-handle
+expansion and aggregate dedup/novelty/cap replay. Row guardrails passed with **0** problem rows, but
+the batch is below the **150** clean-admit mutation gate, so no apply was performed. Do not use the
+historical `apply_candidate` filenames as authority: their corrected statuses are
+`non_destructive_aggregate_blocked_below_150_no_apply` and
+`row_guardrails_pass_but_batch_gate_blocks_apply`. Offset-paged UniProt synonym windows had a raw
+mechanism-corroborated sum of **166** but overlapped earlier accessions, leaving only **61** unique
+labels; next source work should add reliable cursor pagination or a stronger reviewed source path
+before any registry mutation.
+
+Post-infrastructure planning artifacts:
+`artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_infra.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260615_post_n_ribosyl_infra.json`, and
+`artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_n_ribosyl_infra.json`.
+Coverage now shows `n_ribosyl_hydrolase` as the lone under-floor/hole until a clean >=150-row
+aggregate exists. If reliable N-ribosyl supply is exhausted, pivot to
+`metal_independent_phosphodiesterase` as the next new-fingerprint lane with a fresh preregistration
+for the then-current fingerprint universe.
+
 **2026-06-15 automation update: discovery-compass source walls added; registry unchanged.**
 Treat this as the newest operational state for bronze scaleout. Hard safety remains green, the
 current positive universe remains `label_factory_v1_41fp`, frozen current702 was not written, and

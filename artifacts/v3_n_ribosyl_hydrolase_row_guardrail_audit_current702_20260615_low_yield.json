@@ -1,0 +1,26 @@
+{
+  "artifact_id": "v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_low_yield",
+  "counts": {
+    "audited_labels": 1,
+    "batch_gate_min_preferred_clean_admits": 150,
+    "batch_gate_passed": false,
+    "problem_rows": 0,
+    "unique_novelty_admitted_labels": 1
+  },
+  "created_utc": "2026-06-15T15:57:02Z",
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_scope_only_never_counted": true,
+    "frozen_current702_benchmark_preserved": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "novelty_gated_against_both_registries": true,
+    "predictive_evidence_must_remain_empty": true,
+    "reason_apply_not_authorized": "aggregate admitted count below documented >=150 clean batch preference and far below 150 cap/floor target",
+    "registry_apply_authorized": false
+  },
+  "next_action": "Do not apply this 1-row aggregate. Improve N-ribosyl source handles/source tier, or pivot to the next >=150 lane after refreshing preview counts; keep EC 3.2.2 scope-only.",
+  "problem_rows": [],
+  "schema_version": "external_bronze_row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_current702_20260615.json",
+  "status": "row_guardrails_pass_but_batch_gate_blocks_apply"
+}

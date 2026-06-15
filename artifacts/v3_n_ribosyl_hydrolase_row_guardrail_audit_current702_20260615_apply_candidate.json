@@ -1,0 +1,46 @@
+{
+  "artifact_id": "v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_apply_candidate",
+  "counts": {
+    "audited_labels": 61,
+    "aggregate_batch_gate_min_clean_admits": 150,
+    "aggregate_batch_gate_passed": false,
+    "held_at_cap_ceiling": 0,
+    "novelty_admitted_labels": 61,
+    "problem_rows": 0,
+    "unique_labels_before_aggregate_gate": 61
+  },
+  "created_utc": "2026-06-15T16:13:28Z",
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "aggregate_batch_gate_min_clean_admits": 150,
+    "aggregate_batch_gate_passed": false,
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "nucleosidase_synonym_handles_scope_admission_only": true,
+    "o_glycosidase_phosphorylase_kinase_transferase_boundary_guard": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "n_ribosyl_hydrolase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "registry_apply_authorized_by_this_artifact": false,
+    "requires_explicit_apply_command_with_frozen_sha_checks": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "next_action": "Do not apply this aggregate: row guardrails pass, but only 61 unique n_ribosyl_hydrolase labels survived dedup/novelty, below the 150-row batch gate. Investigate reliable UniProt cursor pagination or a stronger source path first.",
+  "problem_rows": [],
+  "schema_version": "external_bronze_row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_current702_20260615_apply_candidate.json",
+  "status": "row_guardrails_pass_but_batch_gate_blocks_apply"
+}

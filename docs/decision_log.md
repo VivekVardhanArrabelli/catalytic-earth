@@ -3,6 +3,41 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: N-RIBOSYL HYDROLASE IS A GUARDED 42ND FINGERPRINT, BUT NOT APPLIED
+
+Decision: add `n_ribosyl_hydrolase` as the 42nd positive fingerprint and keep the source wall
+mechanism-first. EC 3.2.2 may scope/fetch candidate rows but is never a counted corroborator.
+Counted corroboration requires non-EC mechanism axes such as N-ribosyl/nucleosidase family or name
+context plus N-glycosidic hydrolysis Rhea/reaction-participant evidence. Broadened synonym handles
+(`nucleosidase`, `uridine nucleosidase`, `purine nucleosidase`, `N-ribohydrolase`,
+`nucleoside N-ribohydrolase`) are admission/source handles only, remain excluded/review-only
+context, and do not become predictive features.
+
+Implementation: added `src/catalytic_earth/n_ribosyl_hydrolase_sourcing.py`,
+`scripts/source_n_ribosyl_hydrolase_family.py`, the `n_ribosyl_hydrolase` fingerprint, ontology
+family `n_glycosidic_bond_hydrolysis`, deploy context, high-yield factory wiring,
+coverage/governor signatures, focused tests, optional process-based UniProt fetch timeouts, lane
+filtering, and the 42fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json`. Updated the
+current positive-fingerprint universe to `label_factory_v1_42fp`; frozen current702 labels stay
+stamped with their historical decision version and were not written.
+
+Measured result: no bronze rows were applied. Synonym-expanded non-destructive previews produced
+**61** unique novelty-safe `n_ribosyl_hydrolase` labels after aggregate dedup/novelty/cap replay
+and **0** row guardrail problems. This is below the **150** clean-row batch gate, so the aggregate
+is blocked from apply despite clean row-level checks. Offset-paged UniProt synonym probes produced
+a raw mechanism-corroborated window sum of **166**, but overlapped the earlier accession set and
+left only **61** unique labels. The historical `apply_candidate` filenames now carry corrected
+statuses that block apply:
+`non_destructive_aggregate_blocked_below_150_no_apply` and
+`row_guardrails_pass_but_batch_gate_blocks_apply`.
+
+Decision: do not apply the 61-row N-ribosyl aggregate and do not pad it with tiny topups. The next
+source action is reliable UniProt cursor pagination or another reviewed, mechanism-bearing source
+path that can produce a clean >=150-row aggregate. If that source is exhausted, pivot to
+`metal_independent_phosphodiesterase` as the next new-fingerprint lane with a fresh OOS
+preregistration for the then-current fingerprint universe.
+
 ## 2026-06-15: REPRESENTATION SEPARABILITY REGRESSED BY NEW LANES — validated fix spec written
 
 Finding (read-only health check before scaling further): the new family lanes

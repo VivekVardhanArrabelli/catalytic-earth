@@ -3197,5 +3197,84 @@
       "reconstruction_path": "Path A sequence->protein phosphatase family plus metal/Rhea channel, or grafted phosphopeptide/metal/water context in a PP fold (Path B)",
       "silver_reachability": "hard to moderate; family and metal annotations are common, but substrate pose and water/proton geometry require explicit reconstruction"
     }
+  },
+  {
+    "id": "n_ribosyl_hydrolase",
+    "name": "N-ribosyl / nucleoside hydrolase",
+    "enzyme_space": [
+      "nucleoside hydrolases",
+      "N-ribosylhydrolases",
+      "N-ribosidases",
+      "purine and pyrimidine nucleoside hydrolases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "acid_base_or_polarizer",
+        "residue": "Asp/Glu/His/Asn",
+        "constraints": [
+          "positions and polarizes the leaving base and catalytic water for N-glycosidic bond hydrolysis"
+        ]
+      },
+      {
+        "role": "ribose_binding_network",
+        "residue": "Asp/Glu/Asn/Thr/Ser",
+        "constraints": [
+          "binds ribose or deoxyribose hydroxyls and enforces hydrolytic, not phosphorolytic, cleavage geometry"
+        ]
+      },
+      {
+        "role": "base_binding_context",
+        "residue": "aromatic/polar pocket residues",
+        "constraints": [
+          "positions purine or pyrimidine base product during N-ribosyl bond cleavage"
+        ]
+      }
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": [
+        "N-glycosidic C-N bond hydrolysis to ribose/deoxyribose plus a purine or pyrimidine base"
+      ],
+      "chemical_operation": "water-mediated N-ribosyl bond hydrolysis"
+    },
+    "substrate_constraints": [
+      "EC 3.2.2 N-glycosylase/nucleoside hydrolase scope present but never counted as a corroborator",
+      "nucleoside hydrolase, N-ribosylhydrolase, or N-ribosidase family/name context present",
+      "Rhea or reviewed catalytic activity text for nucleoside plus water yielding ribose/deoxyribose and base product present",
+      "active-site acid/base or ribose/base-binding evidence present where available",
+      "no O-glycosidase, glycoside hydrolase, phosphorylase, kinase, nucleotidyltransferase, transferase, DNA glycosylase lyase, side-EC, EC-only, or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "nucleoside hydrolase, N-ribosylhydrolase, or N-ribosidase family/name/domain text",
+      "Rhea or reviewed catalytic activity text for N-glycosidic hydrolysis with ribose/deoxyribose product and base product",
+      "annotated active-site acid/base or ribose/base-binding residue context where available",
+      "EC 3.2.2 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "O-glycosidase or glycoside hydrolase context",
+      "nucleoside phosphorylase or phosphorolysis context",
+      "nucleoside kinase or nucleotidyltransferase context",
+      "DNA glycosylase lyase context without explicit hydrolytic N-ribosyl cleavage",
+      "EC-only evidence with no family or N-glycosidic hydrolysis corroborator",
+      "multi-fingerprint signal where another glycoside, kinase, or transferase fingerprint independently fires"
+    ],
+    "uncertainty_axes": [
+      "purine versus pyrimidine substrate specificity",
+      "ribose versus deoxyribose substrate state",
+      "water/base protonation state",
+      "closed/open nucleoside-binding loop conformation"
+    ],
+    "seed_examples": [
+      "inosine-uridine preferring nucleoside hydrolase",
+      "purine nucleoside hydrolase",
+      "uridine nucleosidase",
+      "N-ribosylhydrolase"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "n_glycosidic_bond_hydrolysis_context",
+      "detail": "the nucleoside substrate, ordered catalytic water, base product, ribose/deoxyribose product, and protonation state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->nucleoside hydrolase family plus Rhea/active-site channel, or canonical nucleoside/water/base-product graft in a nucleoside hydrolase pocket (Path B)",
+      "silver_reachability": "moderate; family and reaction annotations are common, but substrate/base/water geometry requires explicit reconstruction"
+    }
   }
 ]

@@ -277,6 +277,8 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
     _spec(
         family_id="n_ribosyl_hydrolase",
         display_name="N-ribosyl / nucleoside hydrolase",
+        existing_fingerprint_id="n_ribosyl_hydrolase",
+        current_runner="scripts/source_n_ribosyl_hydrolase_family.py",
         scope_query=(
             "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") "
             "OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))"

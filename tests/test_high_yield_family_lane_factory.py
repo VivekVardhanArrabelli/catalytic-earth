@@ -99,23 +99,48 @@ class HighYieldFamilyLaneFactoryTests(unittest.TestCase):
 
         self.assertIn("metal_independent_phosphodiesterase", specs)
         self.assertIn("n_ribosyl_hydrolase", specs)
-        for family_id in (
-            "metal_independent_phosphodiesterase",
+
+        phosphodiesterase_row = evaluate_family_lane_spec(
+            specs["metal_independent_phosphodiesterase"],
+            registry_counts={},
+            count_fetcher=lambda _query: {"total_results": 500},
+        )
+        self.assertEqual(
+            phosphodiesterase_row["batch_gate_status"],
+            "blocked_new_fingerprint_oos_prereg_and_runner_required",
+        )
+        self.assertFalse(phosphodiesterase_row["mechanism_rule_required"])
+        self.assertEqual(
+            phosphodiesterase_row["source_wall_rule_status"],
+            "implemented_preview_only",
+        )
+        self.assertTrue(phosphodiesterase_row["oos_preregistration_required"])
+        self.assertFalse(phosphodiesterase_row["passes_150_batch_gate_now"])
+
+        n_ribosyl_row = evaluate_family_lane_spec(
+            specs["n_ribosyl_hydrolase"],
+            registry_counts={},
+            count_fetcher=lambda _query: {"total_results": 500},
+        )
+        self.assertEqual(
+            n_ribosyl_row["batch_gate_status"],
+            "ready_for_preview_not_apply",
+        )
+        self.assertEqual(
+            n_ribosyl_row["existing_fingerprint_id"],
             "n_ribosyl_hydrolase",
-        ):
-            row = evaluate_family_lane_spec(
-                specs[family_id],
-                registry_counts={},
-                count_fetcher=lambda _query: {"total_results": 500},
-            )
-            self.assertEqual(
-                row["batch_gate_status"],
-                "blocked_new_fingerprint_oos_prereg_and_runner_required",
-            )
-            self.assertFalse(row["mechanism_rule_required"])
-            self.assertEqual(row["source_wall_rule_status"], "implemented_preview_only")
-            self.assertTrue(row["oos_preregistration_required"])
-            self.assertFalse(row["passes_150_batch_gate_now"])
+        )
+        self.assertEqual(
+            n_ribosyl_row["current_runner"],
+            "scripts/source_n_ribosyl_hydrolase_family.py",
+        )
+        self.assertFalse(n_ribosyl_row["mechanism_rule_required"])
+        self.assertEqual(
+            n_ribosyl_row["source_wall_rule_status"],
+            "implemented_preview_only",
+        )
+        self.assertTrue(n_ribosyl_row["oos_preregistration_required"])
+        self.assertTrue(n_ribosyl_row["passes_150_batch_gate_now"])
 
     def test_build_rollup_keeps_honest_counters_separate(self) -> None:
         audit = build_high_yield_family_lane_factory(

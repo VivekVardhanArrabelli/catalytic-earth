@@ -294,6 +294,24 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         ),
         "lanes": ["alpha_beta_hydrolase_esterase_lipase"],
     },
+    "ser_thr_protein_phosphatase": {
+        "ec_prefixes": ["3.1.3.16", "3.1.3.48"],
+        "cofactor": (
+            "dinuclear Mn/Fe/Mg protein-substrate phosphatase context; HAD-like, "
+            "Cys-PTP/DSP/PTEN, small-molecule phosphatase, kinase, and transferase "
+            "boundaries are held"
+        ),
+        "lanes": ["ser_thr_protein_phosphatase"],
+    },
+    "n_ribosyl_hydrolase": {
+        "ec_prefixes": ["3.2.2"],
+        "cofactor": (
+            "N-glycosidic bond hydrolysis context with nucleoside hydrolase family text, "
+            "ribose/deoxyribose and base products, and phosphorylase/kinase/transferase "
+            "boundaries held"
+        ),
+        "lanes": ["n_ribosyl_hydrolase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

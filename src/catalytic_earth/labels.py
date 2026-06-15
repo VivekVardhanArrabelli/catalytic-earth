@@ -76,12 +76,13 @@ DEFAULT_ONTOLOGY_VERSION_AT_DECISION = "label_factory_v1_8fp"
 # Ser/Thr/Tyr protein kinase lane expands it 36 -> 37; the HAD-like
 # phosphatase lane expands it 37 -> 38; the aldehyde dehydrogenase lane
 # expands it 38 -> 39; the alpha/beta hydrolase esterase/lipase lane
-# expands it 39 -> 40; the Ser/Thr protein phosphatase lane expands it 40 -> 41. A NEW
+# expands it 39 -> 40; the Ser/Thr protein phosphatase lane expands it 40 -> 41; the
+# N-ribosyl hydrolase lane expands it 41 -> 42. A NEW
 # OOS hard-negative tranche must be
 # pre-registered against THIS version (and the current fingerprint universe). This is
 # intentionally distinct from the historical label stamp above (which stays _8fp for existing
 # rows / spent contracts) -- bumping the historical stamp would rewrite history.
-CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_41fp"
+CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION = "label_factory_v1_42fp"
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,

@@ -1,0 +1,285 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q8RY23",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "N-glycosidic bond hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.2.2.1",
+            "3.2.2.2",
+            "3.2.2.7"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.2.2.1",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a purine D-ribonucleoside + H2O = a purine nucleobase + D-ribose",
+              "rhea_id": "RHEA:23344",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.2.2",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "inosine + H2O = hypoxanthine + D-ribose",
+              "rhea_id": "RHEA:16657",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.2.2.7",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "adenosine + H2O = D-ribose + adenine",
+              "rhea_id": "RHEA:18669",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: n_ribosyl_hydrolase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "dcf84d861a96b017f384d6baa42cb617452dbc3b2a894e86aa889eef37b26dad"
+          },
+          "retrieved_utc": "2026-06-15T15:50:58Z",
+          "sequence": "MLTSPTLKSLWFLFTILGLLGQNLPCVLSSSHRILVDTDVDTDDLFAILYLLKLNKSEFDLVGITLSANAWTNAGHAVNQVYDLLHMMDRDDIPVGVGGEGGISDDGTIHSDVGGYFPIIEQGMTTTGECRYRQAIPKGLGGLLDIDSNYGFRKQFLPQGNRRYTPLQQPTAQKVIVDKISEGPTTVILLGSHTNFALFLMSNPHLKHNIQHIYIMGGGVRSQNPTGCCPANSTVAECQPRQCGNRGNLFTDYTSNPYSEFNIFADPFAAYQVFHSGVPVTLVPLDATNTIPINQKFFETFENNYQRTYEAQYVFLSLKIARDTWFDDEFYKSYFMWDSFTAGVAVSIMRNSANKNNKNGENDFAEMEYMNITVVTSNKPYGRSDGSNPFFDNRRTPKFNLALGGVHSGHVQTGLRDPTCLPKSGIGRGKCKDGYTQEISGSDSVRVLVATRAKPNINIKSKLDREFYVDFLEVLNRPEETGRFNFSSQFPYYKEELFRPDLSKTRPGKPVVFDMDMSAGDFLSLFYLLKVPVDKIDLKAIIVSPTGWANAATIDVVYDLLHMMGRDDIPVGLGDMLALNQSDPIFPPVGGCKYVKAIPRGCGGFLDSDTLYGLARDLPRSPRRYTAENSVTHGAPRDTDRPELRQPLAIEVWQNLTKSGNGVSKITVLTNGPLTNLAKIISSDKKSSSLIKEVYIVGGHINREKSDKGNIFTIPSNAYAEFNMFLDPLAAKTVLESALNITLVPLATQHKLSSFQTMLDRLYSSTKTPEARFVKRLLVRLQALHQKHRRYTHIDMFLGEVLGAVLLGGDDASLKPKMRAEHIKVIAEGDESRDGKILIDKLRGKQIKILERVDLISISESFASRLDDKKQSAVIGSFEEQKKIWSTPPS",
+          "sequence_length": 890,
+          "sequence_sha256": "fca1e9af9bd7ac861a3c33cf3cc3198a8e26db9cd61ca680e461097d6f1ce454",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q8RY23"
+        },
+        "source_provenance": {
+          "accession": "Q8RY23",
+          "disambiguation_pool": "n_ribosyl_hydrolase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "n_ribosyl_hydrolase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_n_ribosyl_hydrolase_from_annotated_cofactor_and_ec_class_['3.2.2.1', '3.2.2.2', '3.2.2.7']",
+          "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+          "protein_name": "Nucleoside hydrolase 3 (Adenosine nucleosidase) (EC 3.2.2.7) (Inosine nucleosidase) (EC 3.2.2.2) (Purine nucleosidase) (EC 3.2.2.1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 890,
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "e88c11b8316b3a16c0daf8f4e93046e38fddc2de96aae8e4ef0c070920e67326",
+            "source_query_sha256": "dcf84d861a96b017f384d6baa42cb617452dbc3b2a894e86aa889eef37b26dad",
+            "uniprot_entry_record_sha256": "0098d327b511afff4d6acdb079e7fec8a6d3d0dd4e99b6b7f2aaac005e168dea",
+            "uniprot_search_row_sha256": "01aed2541ef8cc0c2196606b1ca2c1d4f8b82e3117396f04565e0e323180c586"
+          },
+          "target_family_lane": "n_ribosyl_hydrolase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q8RY23"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q8RY23-F1"
+        }
+      },
+      "evidence_score": 0.75,
+      "fingerprint_id": "n_ribosyl_hydrolase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q8RY23 imported as annotation-anchored bronze in-scope n_ribosyl_hydrolase: reviewed Swiss-Prot EC ['3.2.2.1', '3.2.2.2', '3.2.2.7']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_current702_20260615",
+  "counts": {
+    "batch_gate_min_preferred_clean_admits": 150,
+    "batch_gate_passed": false,
+    "completed_preview_windows": 2,
+    "current_combined_labels": 8122,
+    "disambiguation_hold_count": 66,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 66
+    },
+    "disambiguation_skip_count": 9,
+    "fetch_failure_count": 0,
+    "fetched_candidate_rows": 79,
+    "off_target_fingerprint_counts": {
+      "metallo_amidohydrolase_deaminase": 1,
+      "nad_p_dehydrogenase": 2
+    },
+    "off_target_fingerprint_matches_held": 3,
+    "projected_combined_labels_if_merged": 8123,
+    "target_mechanism_corroborated_window_sum": 1,
+    "unique_novelty_admitted_labels": 1
+  },
+  "created_utc": "2026-06-15T15:57:02Z",
+  "families_sourced": [
+    "n_ribosyl_hydrolase"
+  ],
+  "fetch_failures": [],
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_scope_only_never_counted": true,
+    "frozen_current702_benchmark_preserved": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "novelty_gated_against_both_registries": true,
+    "predictive_evidence_must_remain_empty": true,
+    "reason_apply_not_authorized": "aggregate admitted count below documented >=150 clean batch preference and far below 150 cap/floor target",
+    "registry_apply_authorized": false
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "n_ribosyl_hydrolase_ec_3_2_2_named",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))",
+      "record_count": 10,
+      "record_limit_per_lane": 10,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 10,
+      "records_returned_by_query": 40,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.2.2.%2A%29+OR+%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=40",
+      "status": "query_fetched",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    },
+    {
+      "lane_id": "n_ribosyl_hydrolase_non_ec_handles",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) AND ((protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\") OR (keyword:Hydrolase) OR (ft_act_site:*) OR (ft_binding:*))",
+      "record_count": 1,
+      "record_limit_per_lane": 10,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 10,
+      "records_returned_by_query": 40,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.2.2.%2A%29+OR+%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29+AND+%28%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29+OR+%28keyword%3AHydrolase%29+OR+%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=40",
+      "status": "query_fetched",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    },
+    {
+      "lane_id": "n_ribosyl_hydrolase_n_glycosidic_reaction",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) AND ((cc_catalytic_activity:ribose) OR (cc_catalytic_activity:\"D-ribose\") OR (cc_catalytic_activity:hypoxanthine) OR (cc_catalytic_activity:adenine) OR (cc_catalytic_activity:uracil))",
+      "record_count": 1,
+      "record_limit_per_lane": 10,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 10,
+      "records_returned_by_query": 40,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.2.2.%2A%29+OR+%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29+AND+%28%28cc_catalytic_activity%3Aribose%29+OR+%28cc_catalytic_activity%3A%22D-ribose%22%29+OR+%28cc_catalytic_activity%3Ahypoxanthine%29+OR+%28cc_catalytic_activity%3Aadenine%29+OR+%28cc_catalytic_activity%3Auracil%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=40",
+      "status": "query_fetched",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    },
+    {
+      "lane_id": "n_ribosyl_hydrolase_ec_3_2_2_named",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))",
+      "record_count": 40,
+      "record_limit_per_lane": 40,
+      "record_offset_per_lane": 10,
+      "records_in_window_before_dedup": 40,
+      "records_returned_by_query": 50,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.2.2.%2A%29+OR+%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=50",
+      "status": "query_fetched",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    },
+    {
+      "lane_id": "n_ribosyl_hydrolase_non_ec_handles",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) AND ((protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\") OR (keyword:Hydrolase) OR (ft_act_site:*) OR (ft_binding:*))",
+      "record_count": 6,
+      "record_limit_per_lane": 40,
+      "record_offset_per_lane": 10,
+      "records_in_window_before_dedup": 40,
+      "records_returned_by_query": 50,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.2.2.%2A%29+OR+%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29+AND+%28%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29+OR+%28keyword%3AHydrolase%29+OR+%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=50",
+      "status": "query_fetched",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    },
+    {
+      "lane_id": "n_ribosyl_hydrolase_n_glycosidic_reaction",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) AND ((cc_catalytic_activity:ribose) OR (cc_catalytic_activity:\"D-ribose\") OR (cc_catalytic_activity:hypoxanthine) OR (cc_catalytic_activity:adenine) OR (cc_catalytic_activity:uracil))",
+      "record_count": 21,
+      "record_limit_per_lane": 40,
+      "record_offset_per_lane": 10,
+      "records_in_window_before_dedup": 40,
+      "records_returned_by_query": 50,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.2.2.%2A%29+OR+%28protein_name%3A%22nucleoside+hydrolase%22%29+OR+%28protein_name%3A%22N-ribosylhydrolase%22%29+OR+%28protein_name%3A%22N-ribosidase%22%29%29+AND+%28%28cc_catalytic_activity%3Aribose%29+OR+%28cc_catalytic_activity%3A%22D-ribose%22%29+OR+%28cc_catalytic_activity%3Ahypoxanthine%29+OR+%28cc_catalytic_activity%3Aadenine%29+OR+%28cc_catalytic_activity%3Auracil%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=50",
+      "status": "query_fetched",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    }
+  ],
+  "next_action": "Do not apply this 1-row aggregate. Improve N-ribosyl source handles/source tier, or pivot to the next >=150 lane after refreshing preview counts; keep EC 3.2.2 scope-only.",
+  "schema_version": "external_annotation_anchored_import.aggregate.v1",
+  "source_previews": [
+    "artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_window00_10_current702_20260615.json",
+    "artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_window10_50_size50_current702_20260615.json"
+  ],
+  "status": "non_destructive_aggregate_blocked_low_batch_yield_no_apply"
+}
