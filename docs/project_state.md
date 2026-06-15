@@ -26,6 +26,51 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **METAL-INDEPENDENT PDE 43FP INFRASTRUCTURE BUILT; SOURCE HANDLES SUBSCALE, NO REGISTRY MUTATION
+  (2026-06-15 automation).**
+  Hard safety remains green. The current positive universe is now `label_factory_v1_43fp` with
+  **43** mechanism fingerprints and **40** ontology families, while frozen current702 remains
+  byte-unchanged at sha `5eec9bef...`. No external bronze labels were applied in this run, so
+  honest counters remain external rows **7570**, combined label surface **8272**, combined seed
+  surface **6576**, positive bronze **6529**, OOS bronze **1696**, silver_confirmed **47**, and
+  projected **0**.
+
+  Built the reusable 43fp lane infrastructure for `metal_independent_phosphodiesterase`: fingerprint
+  `metal_independent_phosphodiesterase`, ontology family
+  `metal_independent_phosphodiester_hydrolysis`, source runner
+  `src/catalytic_earth/metal_independent_phosphodiesterase_sourcing.py`, script
+  `scripts/source_metal_independent_phosphodiesterase_family.py`, deploy context, coverage/governor
+  signature, high-yield-factory wiring, focused tests, and 43fp hard-negative preregistration
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_43fp_1025.json`. EC 3.1.4 /
+  4.6.1 and keyword/name/source handles remain scope/admission-only excluded context. Metal absence
+  is only a filter, never evidence, and `predictive_evidence` remains `[]`.
+
+  Live non-destructive source work is useful but not apply-ready. The reviewed cursor preview
+  `artifacts/v3_metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.json`
+  fetched **265** rows, found **18** target mechanism-corroborated labels, and admitted only
+  **14** novelty-safe rows. Alternate reviewed handles fetched **130** rows with **0** target /
+  **0** admitted labels. Tier-2 unreviewed PDE handles have large raw counts, but the live tier-2
+  preview fetched **400** rows with **0** target / **0** admitted labels, **186** off-target holds,
+  and **197** `trust_tier_corroboration_insufficient` holds. Do not apply the 14 reviewed rows and
+  do not keep padding the same handles.
+
+  Current planning artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_pde_43fp_infra.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_pde_43fp_infra.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_pde_43fp_infra.json`, and
+  `work/metal_independent_phosphodiesterase_43fp_source_strategy_current702_20260615.md`.
+  Coverage reports `metal_independent_phosphodiesterase` as the lone hole/under-floor fingerprint,
+  Gini **0.1974**, and only `metal_dependent_hydrolase` over cap. Novelty replay across **7570**
+  expansion rows reports **7109** admit / **414** throttle / **47** reject. The high-yield factory
+  now finds **0** ready existing lanes >=150 and no high-yield blocked lanes; top projected clean
+  supply under current handles is `short_chain_dehydrogenase_reductase` at **84**.
+
+  Next action: stop retrying the same PDE UniProt handles as a mass-growth path. Either design a
+  materially sharper PDE source split, or move to a higher-yield source-handle/source-tier strategy
+  such as SDR/AKR with a family-specific source wall, OOS preregistration if the fingerprint
+  universe changes, non-destructive preview, row guardrail audit, novelty/governor/dedup/cap replay,
+  source-contract/leakage validation, and explicit apply only if the batch gate is met.
+
 - **N-RIBOSYL HYDROLASE CURSOR BATCH APPLIED; NEXT LANE IS METAL-INDEPENDENT PDE (2026-06-15 automation).**
   Hard safety remains green. The current positive universe stays `label_factory_v1_42fp` with
   **42** mechanism fingerprints and **39** ontology families, and frozen current702 remains

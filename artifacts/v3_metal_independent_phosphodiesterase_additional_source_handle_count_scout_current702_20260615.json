@@ -1,0 +1,121 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_additional_source_handle_count_scout_current702_20260615",
+  "created_utc": "2026-06-15T19:03:00Z",
+  "fingerprint_registry_written": false,
+  "next_action": "Use only handles that survive entry/Rhea source-wall preview; EC remains scope-only and metal absence remains a filter, not evidence.",
+  "registry_written": false,
+  "rows": [
+    {
+      "lane_id": "ec_3_1_4_17_cyclic_nucleotide",
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:3.1.4.17)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.17%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:3.1.4.17)",
+      "reviewed_count": 39
+    },
+    {
+      "lane_id": "ec_3_1_4_16_2_3_cyclic_nucleotide_2_pde",
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:3.1.4.16)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.16%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:3.1.4.16)",
+      "reviewed_count": 9
+    },
+    {
+      "lane_id": "ec_3_1_4_37_2_3_cyclic_nucleotide_3_pde",
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:3.1.4.37)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.37%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:3.1.4.37)",
+      "reviewed_count": 15
+    },
+    {
+      "lane_id": "protein_name_2_3_cyclic_nucleotide_pde",
+      "metadata": {
+        "query": "(reviewed:true) AND (protein_name:\"2',3'-cyclic-nucleotide\") AND (protein_name:phosphodiesterase)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28protein_name%3A%222%27%2C3%27-cyclic-nucleotide%22%29+AND+%28protein_name%3Aphosphodiesterase%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (protein_name:\"2',3'-cyclic-nucleotide\") AND (protein_name:phosphodiesterase)",
+      "reviewed_count": 23
+    },
+    {
+      "lane_id": "protein_name_cnpase",
+      "metadata": {
+        "query": "(reviewed:true) AND ((protein_name:CNPase) OR (gene:CNP))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3ACNPase%29+OR+%28gene%3ACNP%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND ((protein_name:CNPase) OR (gene:CNP))",
+      "reviewed_count": 24
+    },
+    {
+      "lane_id": "protein_name_phosphodiesterase_i_non_metal",
+      "metadata": {
+        "query": "(reviewed:true) AND (protein_name:\"phosphodiesterase I\") NOT (keyword:\"Metal-binding\")",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28protein_name%3A%22phosphodiesterase+I%22%29+NOT+%28keyword%3A%22Metal-binding%22%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (protein_name:\"phosphodiesterase I\") NOT (keyword:\"Metal-binding\")",
+      "reviewed_count": 0
+    },
+    {
+      "lane_id": "protein_name_sphingomyelin_phosphodiesterase_non_metal",
+      "metadata": {
+        "query": "(reviewed:true) AND (protein_name:\"sphingomyelin phosphodiesterase\") NOT (keyword:\"Metal-binding\")",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28protein_name%3A%22sphingomyelin+phosphodiesterase%22%29+NOT+%28keyword%3A%22Metal-binding%22%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (protein_name:\"sphingomyelin phosphodiesterase\") NOT (keyword:\"Metal-binding\")",
+      "reviewed_count": 8
+    },
+    {
+      "lane_id": "ec_3_1_4_non_metal_hydrolase",
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:3.1.4.*) AND (keyword:Hydrolase) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28keyword%3AHydrolase%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND (keyword:Hydrolase) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_count": 490
+    },
+    {
+      "lane_id": "ec_4_6_1_hydrolase_non_metal",
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:4.6.1.*) AND (keyword:Hydrolase) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A4.6.1.%2A%29+AND+%28keyword%3AHydrolase%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:4.6.1.*) AND (keyword:Hydrolase) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_count": 194
+    },
+    {
+      "lane_id": "ec_4_6_1_cyclase_boundary",
+      "metadata": {
+        "query": "(reviewed:true) AND (ec:4.6.1.*)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A4.6.1.%2A%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:true) AND (ec:4.6.1.*)",
+      "reviewed_count": 1641
+    }
+  ],
+  "schema_version": "source_handle_count_scout.v1",
+  "status": "non_destructive_source_handle_count_scout_no_registry_mutation"
+}

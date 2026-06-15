@@ -94,7 +94,7 @@ class HighYieldFamilyLaneFactoryTests(unittest.TestCase):
             "blocked_existing_cap_room_below_150",
         )
 
-    def test_discovery_compass_lanes_are_first_class_new_fingerprint_specs(self) -> None:
+    def test_discovery_compass_lanes_track_current_runner_state(self) -> None:
         specs = {spec["family_id"]: spec for spec in HIGH_YIELD_FAMILY_SPECS}
 
         self.assertIn("metal_independent_phosphodiesterase", specs)
@@ -107,14 +107,22 @@ class HighYieldFamilyLaneFactoryTests(unittest.TestCase):
         )
         self.assertEqual(
             phosphodiesterase_row["batch_gate_status"],
-            "blocked_new_fingerprint_oos_prereg_and_runner_required",
+            "blocked_projected_clean_admits_below_150",
+        )
+        self.assertEqual(
+            phosphodiesterase_row["existing_fingerprint_id"],
+            "metal_independent_phosphodiesterase",
+        )
+        self.assertEqual(
+            phosphodiesterase_row["current_runner"],
+            "scripts/source_metal_independent_phosphodiesterase_family.py",
         )
         self.assertFalse(phosphodiesterase_row["mechanism_rule_required"])
         self.assertEqual(
             phosphodiesterase_row["source_wall_rule_status"],
-            "implemented_preview_only",
+            "implemented_existing_fingerprint_runner_subscale_preview",
         )
-        self.assertTrue(phosphodiesterase_row["oos_preregistration_required"])
+        self.assertFalse(phosphodiesterase_row["oos_preregistration_required"])
         self.assertFalse(phosphodiesterase_row["passes_150_batch_gate_now"])
 
         n_ribosyl_row = evaluate_family_lane_spec(

@@ -3276,5 +3276,84 @@
       "reconstruction_path": "Path A sequence->nucleoside hydrolase family plus Rhea/active-site channel, or canonical nucleoside/water/base-product graft in a nucleoside hydrolase pocket (Path B)",
       "silver_reachability": "moderate; family and reaction annotations are common, but substrate/base/water geometry requires explicit reconstruction"
     }
+  },
+  {
+    "id": "metal_independent_phosphodiesterase",
+    "name": "Metal-independent phosphodiesterase",
+    "enzyme_space": [
+      "metal-independent phosphodiesterases",
+      "cyclic nucleotide phosphodiesterases",
+      "non-metallo phosphodiester hydrolases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "general_acid_base",
+        "residue": "His/Lys/Tyr/Arg",
+        "constraints": [
+          "activates water and protonates the leaving group during phosphodiester P-O cleavage without a catalytic metal requirement"
+        ]
+      },
+      {
+        "role": "phosphate_substrate_positioner",
+        "residue": "Arg/Lys/His/polar network",
+        "constraints": [
+          "positions cyclic nucleotide or phosphodiester substrate and stabilizes phosphate charge during hydrolysis"
+        ]
+      },
+      {
+        "role": "nucleotide_or_phosphodiester_binding_context",
+        "residue": "aromatic/polar pocket residues",
+        "constraints": [
+          "binds cyclic AMP/GMP or related phosphodiester substrate while excluding metal-dependent nuclease chemistry"
+        ]
+      }
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": [
+        "phosphodiester P-O bond hydrolysis to nucleotide or monoester products",
+        "cyclic 3',5'-nucleotide phosphodiester hydrolysis to nucleotide monophosphate"
+      ],
+      "chemical_operation": "water-mediated metal-independent phosphodiester hydrolysis"
+    },
+    "substrate_constraints": [
+      "EC 3.1.4/4.6.1 scope present but never counted as a corroborator",
+      "phosphodiesterase or cyclic-nucleotide phosphodiesterase family/name context present",
+      "Rhea or reviewed catalytic activity text for hydrolytic phosphodiester or cyclic-nucleotide cleavage present",
+      "active-site acid/base or substrate-binding evidence present where available",
+      "no catalytic-metal phosphodiesterase/nuclease, phosphomonoesterase, protein phosphatase, kinase, transferase, cyclase-only, side-EC, EC-only, or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "phosphodiesterase or cyclic nucleotide phosphodiesterase family/name/domain text",
+      "Rhea or reviewed catalytic activity text for phosphodiester hydrolysis with water and nucleotide or monoester products",
+      "annotated active-site acid/base or substrate-binding residue context where available",
+      "EC 3.1.4/4.6.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "Mg/Mn/Zn/metal-binding phosphodiesterase or nuclease context",
+      "phosphomonoesterase, protein phosphatase, or HAD-like phosphatase context",
+      "phospholipase C or cyclase/lyase context without explicit hydrolytic phosphodiester cleavage",
+      "kinase or phosphotransferase context",
+      "EC-only evidence with no family or phosphodiester hydrolysis corroborator",
+      "multi-fingerprint signal where a metal phosphoesterase, phosphatase, kinase, or transferase fingerprint independently fires"
+    ],
+    "uncertainty_axes": [
+      "cyclic nucleotide versus broader phosphodiester substrate specificity",
+      "water/protonation state",
+      "metal independence versus weak or adventitious metal binding annotation",
+      "open/closed nucleotide-binding loop conformation"
+    ],
+    "seed_examples": [
+      "cyclic nucleotide phosphodiesterase",
+      "cAMP phosphodiesterase",
+      "cGMP phosphodiesterase",
+      "non-metallo phosphodiesterase"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "metal_independent_phosphodiester_hydrolysis_context",
+      "detail": "the cyclic nucleotide or phosphodiester substrate, ordered catalytic water, leaving group, and protonation state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->phosphodiesterase family plus Rhea/active-site channel, or canonical cyclic nucleotide/water/product graft in a metal-independent PDE pocket (Path B)",
+      "silver_reachability": "moderate; family and reaction annotations are available, but metal-independent substrate/water geometry requires explicit reconstruction"
+    }
   }
 ]

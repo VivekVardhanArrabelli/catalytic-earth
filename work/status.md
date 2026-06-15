@@ -1,154 +1,73 @@
-# Automation status
+automation: ce-bronze-scaleout-pipeline
+automation_id: ce-nad-glyco-floor-expansion
+started_at: 2026-06-15T18:39:03Z
+started_local: Mon Jun 15 13:39:03 CDT 2026
+closeout_at: 2026-06-15T19:29:22Z
+elapsed_minutes: 50.3
+remaining_minutes: 4.7
+budget_minutes: 55
+planned_closeout_minute: 50
 
-- automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-15T15:38:45Z
-- started_local: Mon Jun 15 10:38:45 CDT 2026
-- budget_minutes: 55
-- planned_closeout_minute: 50
-- closeout_snapshot_utc: 2026-06-15T16:29:16Z
-- elapsed_minutes: 50.5
-- remaining_minutes: 4.5
-- current_task: closeout after N-ribosyl hydrolase 42fp infrastructure and below-gate source aggregate
-- origin_sync: direct push to `origin/main` completed after final fetch and ancestry check
-- registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is over 45 MB
-- frozen_current702_sha256: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
-- registry_mutation: none; no external bronze labels were applied and frozen current702 was not written
-- honest_counters:
-  - external_rows: 7420
-  - external_seed: 6196
-  - external_positive_bronze: 6166
-  - external_oos_bronze: 1224
-  - external_silver_confirmed: 30
-  - combined_label_surface: 8122
-  - combined_seed_surface: 6426
-  - positive_bronze: 6379
-  - oos_bronze: 1696
-  - silver_confirmed: 47
-  - projected: 0
-- scaling_summary:
-  - current_positive_universe: label_factory_v1_42fp
-  - mechanism_fingerprints: 42
-  - ontology_families: 39
-  - new_lane: n_ribosyl_hydrolase
-  - new_lane_status: infrastructure built; non-destructive aggregate blocked below 150-row batch gate
-  - n_ribosyl_unique_novelty_safe_labels: 61
-  - n_ribosyl_raw_window_sum_mechanism_corroborated: 166
-  - n_ribosyl_row_guardrail_problem_rows: 0
-  - apply_authorized: false
-  - source_diagnostic: UniProt offset-paged synonym windows overlapped earlier accessions; use reliable cursor pagination or another reviewed mechanism-bearing source path before apply
-- validation:
-  - cli_validate: passed; 12 source records, 42 fingerprints, 39 ontology families, 702 curated labels
-  - focused_affected_pre_full: 14 passed across N-ribosyl sourcing, source-wall boundary controls, 42fp/41fp OOS preregistration, factory import gate, and governor signatures
-  - stale_pin_rerun_after_full_failure: 4 passed after updating 42fp count/hole/status pins
-  - adapter_offset_and_stale_pin_rerun: 8 passed after adding offset regression coverage
-  - full_suite_final: 2308 passed, 1 warning, 244 subtests passed in 164.56s
-  - json_parse: passed for 25 new N-ribosyl/planning JSON artifacts and progress_log JSONL after closeout append
-  - diff_check: passed after closeout ledger update
-  - file_size_scan: passed; no `data/registries` file over 45 MB
-  - frozen_sha_check: passed; frozen current702 sha is 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
-- artifacts:
-  - `artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json`
-  - `artifacts/v3_n_ribosyl_hydrolase_source_handle_scout_current702_20260615.json`
-  - `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_synonyms_current702_20260615.json`
-  - `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_synonym_aggregate.json`
-  - `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_current702_20260615_apply_candidate.json`
-  - `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_apply_candidate.json`
-  - `work/n_ribosyl_hydrolase_synonym_aggregate_blocker_current702_20260615.md`
-  - `work/n_ribosyl_hydrolase_apply_candidate_current702_20260615.md`
-  - `work/n_ribosyl_hydrolase_next_source_strategy_current702_20260615.md`
-  - `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_infra.json`
-  - `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_n_ribosyl_infra.json`
-  - `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_n_ribosyl_infra.json`
-- next_action: do not apply the 61-row N-ribosyl aggregate; implement reliable UniProt cursor pagination or another reviewed N-glycosidic hydrolysis source path, rebuild a non-destructive aggregate, and apply only if >=150 clean unique rows pass every gate; pivot to `metal_independent_phosphodiesterase` if N-ribosyl source supply is exhausted
+state: metal-independent phosphodiesterase 43fp infrastructure built; registry unchanged
+lock: held by this run until post-push release
+branch: main
+base_at_start: 45be297288793783d0b8083d19d4323d628d9a71
 
-## Automation run start: 2026-06-15T16:39:18Z
-- automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-15T16:39:18Z
-- started_local: Mon Jun 15 11:39:18 CDT 2026
-- budget_minutes: 55
-- planned_closeout_minute: 50
+honest_counters:
+  external_rows: 7570
+  external_seed: 6346
+  external_positive_bronze: 6316
+  external_oos_bronze: 1224
+  external_silver_confirmed: 30
+  combined_label_surface: 8272
+  combined_seed_surface: 6576
+  positive_bronze: 6529
+  oos_bronze: 1696
+  silver_confirmed: 47
+  projected: 0
 
-## Automation run status: 2026-06-15T16:39:18Z
-- current_task: N-ribosyl hydrolase cursor source unlock and guarded bronze apply
-- registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 5.9 MB, and no `data/registries/` file is over 45 MB
-- frozen_current702_sha256: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
-- registry_mutation: applied 150 external bronze rows through explicit N-ribosyl reuse-preview apply; frozen current702 was not written
-- honest_counters:
-  - external_rows: 7570
-  - external_seed: 6346
-  - external_positive_bronze: 6316
-  - external_oos_bronze: 1224
-  - external_silver_confirmed: 30
-  - combined_label_surface: 8272
-  - combined_seed_surface: 6576
-  - positive_bronze: 6529
-  - oos_bronze: 1696
-  - silver_confirmed: 47
-  - projected: 0
-- scaling_summary:
-  - current_positive_universe: label_factory_v1_42fp
-  - applied_lane: n_ribosyl_hydrolase
-  - cursor_preview_fetched: 200
-  - cursor_preview_mechanism_corroborated: 181
-  - cursor_preview_novelty_admitted: 150
-  - cursor_preview_held_at_cap: 31
-  - row_guardrail_problem_rows: 0
-  - post_apply_coverage_gini: 0.1783
-  - coverage_holes: []
-  - next_lane: metal_independent_phosphodiesterase
-  - pde_targeted_scout: 157 fetched, 13 target, 11 novelty-admitted preview rows, 0 fetch failures
-  - pde_cursor_scout: 244 fetched, 18 target, 14 novelty-admitted preview rows, 0 fetch failures
-  - representation_fix: added leakage-safe `bc_n_glycosidic_hydrolysis` from Rhea ribose + nucleobase products after post-rebase full suite found overall LOO 0.7384
-  - representation_after_fix: overall LOO 0.7598; n_ribosyl_hydrolase 0.9933; glycoside_hydrolase 0.8133
-- artifacts:
-  - `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_cursor_synonym_pages3_size40_current702_20260615.json`
-  - `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_cursor_synonym_pages5_size40_current702_20260615.json`
-  - `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_cursor_synonym_pages5_size40.json`
-  - `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_n_ribosyl_apply.json`
-  - `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_n_ribosyl_apply.json`
-  - `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_apply.json`
-  - `work/metal_independent_phosphodiesterase_43fp_readiness_current702_20260615_post_n_ribosyl_apply.md`
-  - `artifacts/v3_metal_independent_phosphodiesterase_source_wall_scout_current702_20260615_post_n_ribosyl_apply.json`
-  - `artifacts/v3_metal_independent_phosphodiesterase_source_handle_count_scout_current702_20260615_post_n_ribosyl_apply.json`
-  - `artifacts/v3_metal_independent_phosphodiesterase_targeted_source_wall_scout_current702_20260615_post_n_ribosyl_apply.json`
-  - `artifacts/v3_metal_independent_phosphodiesterase_cursor_source_wall_scout_current702_20260615_post_n_ribosyl_apply.json`
-- validation_so_far:
-  - cli_validate: passed; 12 source records, 42 fingerprints, 39 ontology families, 702 curated labels
-  - focused_affected: 360 passed, 14 subtests passed
-  - stale_seed_pin_rerun: 2 passed
-  - full_suite_initial: 2 stale seed-count pins failed, then patched
-  - post_rebase_representation_leakage: 235 passed, 14 subtests passed
-  - final_full_suite_post_rebase: 2315 passed, 1 warning, 244 subtests passed in 167.24s
-  - json_parse: passed for progress log and new JSON artifacts
-  - diff_check: passed
-  - file_size_scan: passed; manifest 1207 bytes; shards 17.2 MB / 17.2 MB / 17.2 MB / 5.9 MB
-- next_action: build `metal_independent_phosphodiesterase` as a 43fp gated lane with sharper source handles than the tested broad/targeted/cursor previews; do not continue N-ribosyl now that it is capped at 150
+pde_43fp_summary:
+  current_positive_universe: label_factory_v1_43fp
+  mechanism_fingerprints: 43
+  ontology_families: 40
+  registry_mutation: none
+  reviewed_preview_fetched_rows: 265
+  reviewed_preview_target_labels: 18
+  reviewed_preview_novelty_admitted: 14
+  alternate_reviewed_preview_fetched_rows: 130
+  alternate_reviewed_preview_novelty_admitted: 0
+  tier2_preview_fetched_rows: 400
+  tier2_preview_target_labels: 0
+  tier2_preview_novelty_admitted: 0
+  tier2_trust_holds: 197
+  apply_authorized: false
 
-## Closeout - 2026-06-15T17:38:17Z
+planning_refresh:
+  coverage_combined: 8272
+  coverage_fingerprint_gini: 0.1974
+  coverage_holes:
+    - metal_independent_phosphodiesterase
+  coverage_over_cap:
+    - metal_dependent_hydrolase
+  novelty_replay:
+    admit: 7109
+    throttle: 414
+    reject: 47
+  ready_existing_lanes_ge_150: 0
+  top_projected_clean_admits:
+    family: short_chain_dehydrogenase_reductase
+    count: 84
 
-- elapsed_minutes: 59.0
-- remaining_minutes: -4.0
-- git_base_after_rebase: origin/main `cd8f2da7`
-- final_validation:
-  - cli_validate: passed; 12 source records, 42 fingerprints, 39 ontology families, 702 curated labels
-  - representation_leakage_focus: 235 passed, 14 subtests passed in 13.07s
-  - full_suite: 2315 passed, 1 warning, 244 subtests passed in 167.24s
-  - progress_jsonl: 3 passed
-  - json_parse: passed
-  - diff_check: passed
-  - registry_file_size_scan: passed; no file over 45 MB
-- final_next_action: build the 43fp `metal_independent_phosphodiesterase` lane with sharper source handles before any apply-sized preview
+validation:
+  cli_validate: passed: 12 source records, 43 fingerprints, 40 ontology families, 702 curated labels
+  focused_affected: 350 passed in 3.15s
+  failed_pin_rerun_after_update: 2 passed in 0.38s
+  full_suite_final: 2326 passed, 1 warning in 165.71s
+  progress_and_doc_reference: 5 passed
+  diff_check: passed
+  json_parse: passed for progress log and 15 new/current JSON artifacts
+  file_size_scan: passed: manifest 1.2K; shards 17M, 17M, 17M, 5.9M
+  frozen_sha: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+  preregistration_consistency: passed: 43 live fingerprints match 43fp artifact
 
-## Automation run start: 2026-06-15T17:38:44Z
-- automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-15T17:38:44Z
-- started_local: Mon Jun 15 12:38:44 CDT 2026
-- budget_minutes: 55
-- planned_closeout_minute: 50
-- current_task: acquire lock, verify hard blockers, then advance the next mechanism-first bronze lane from latest origin/main
-
-## Automation run blocked: 2026-06-15T17:39:52Z
-- elapsed_minutes: 1.1
-- remaining_minutes: 53.9
-- blocker: automation lock not acquired; `.git/catalytic-earth-automation.lock` reports active lock from PID 49227 started at 2026-06-15T16:39:18Z with age ~60.3 minutes, below the 75-minute stale threshold
-- action_taken: left the lock untouched and stopped before hard-blocker checks or scaling work to avoid concurrent mutation
+next_action: Design sharper PDE source splits or pivot to a higher-yield source-tier/family strategy such as SDR/AKR; do not apply the 14-row PDE preview.

@@ -38,6 +38,23 @@ ePK NO-GO learnings are archived (not in main): `git checkout archive/epk-<track
 | `README.md` | What is this repo and how do I get started? | Front door |
 | `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json` | Which Lever 2/3/4 mechanical gates are runnable now? | Current active-lever gate; 0 mechanical gates ready, 15 blockers, follow-up Lever 3 proxy axis fully scored but not closure-sufficient |
 
+## 2026-06-15 Metal-Independent PDE 43fp Infrastructure
+
+| Artifact | Answers | Status |
+| --- | --- | --- |
+| `artifacts/v3_external_hard_negative_next_tranche_preregistration_43fp_1025.json` | What hard-negative OOS preregistration is frozen for the live 43fp universe before new candidate admission? | Current gate; supersedes the 42fp preregistration for live imports |
+| `artifacts/v3_metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.json` | How many reviewed UniProt PDE rows pass the new 43fp source wall under cursor-paged source handles? | Diagnostic/current no-apply evidence; 14 novelty admits, below the 150-row batch gate |
+| `work/metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.md` | Human-readable reviewed PDE preview summary and guardrails | Diagnostic/current report; no registry mutation |
+| `artifacts/v3_metal_independent_phosphodiesterase_additional_source_handle_count_scout_current702_20260615.json` | Which additional reviewed UniProt handles were counted before alternate preview? | Diagnostic source-handle scout |
+| `artifacts/v3_metal_independent_phosphodiesterase_alternate_handle_preview_current702_20260615.json` | Did alternate reviewed handles unlock more PDE admits? | Diagnostic/current no-apply evidence; 0 target labels and 0 admits |
+| `artifacts/v3_metal_independent_phosphodiesterase_tier2_source_count_scout_current702_20260615.json` | Do unreviewed tier-2 PDE handles have raw source supply? | Diagnostic count-only scout; not admission evidence |
+| `artifacts/v3_metal_independent_phosphodiesterase_tier2_sourcing_preview_cursor_pages2_size100_current702_20260615.json` | Did unreviewed tier-2 PDE handles pass the stricter source-tier gate? | Diagnostic/current no-apply evidence; 0 targets, 0 admits, trust-tier holds dominate |
+| `artifacts/v3_high_yield_family_tier2_source_count_scout_current702_20260615_post_pde_infra.json` | Which high-yield families have large tier-2 raw source counts for future source-wall design? | Diagnostic count-only scout; requires family-specific source wall and OOS work before mutation |
+| `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_pde_43fp_infra.json` | What coverage state follows the 43fp PDE infrastructure with no registry mutation? | Current gate; PDE is the lone hole/under-floor fingerprint |
+| `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_pde_43fp_infra.json` | Does replay of current external rows remain stable after the 43fp infrastructure? | Current gate; replay 7109 admit / 414 throttle / 47 reject |
+| `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_pde_43fp_infra.json` | Which family/source lane is best after PDE was shown subscale? | Current gate; no ready >=150 lane, SDR top projected clean admits at 84 |
+| `work/metal_independent_phosphodiesterase_43fp_source_strategy_current702_20260615.md` | What should the next agent do after PDE reviewed/tier-2 handles proved subscale? | Current source-strategy handoff; do not pad the 14-row preview |
+
 ## 2026-06-15 Discovery-Compass Source-Wall Scaleout
 
 | Artifact | Answers | Status |

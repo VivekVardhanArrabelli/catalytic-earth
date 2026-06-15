@@ -693,6 +693,27 @@
         "Hold multi-fingerprint-signal rows rather than forcing an N-ribosyl hydrolase label.",
         "The nucleoside substrate, ordered water, base product, ribose/deoxyribose product, and protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "metal_independent_phosphodiester_hydrolysis",
+      "name": "Metal-independent phosphodiester hydrolysis",
+      "parent_id": "hydrolysis",
+      "fingerprint_ids": [
+        "metal_independent_phosphodiesterase"
+      ],
+      "scope_note": "Reviewed EC 3.1.4/4.6.1 phosphodiesterases that hydrolyze phosphodiester or cyclic-nucleotide P-O bonds without catalytic-metal phosphoesterase/nuclease context.",
+      "sibling_ids": [
+        "hydrolysis",
+        "dinuclear_metal_phosphoprotein_dephosphorylation",
+        "had_aspartyl_phosphoenzyme_hydrolysis",
+        "glycosidic_bond_hydrolysis"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by phosphodiesterase or cyclic-nucleotide phosphodiesterase family/name context plus Rhea/reviewed hydrolytic phosphodiester cleavage; EC 3.1.4/4.6.1 is scope only.",
+        "Do not admit catalytic-metal phosphodiesterase/nuclease rows, phosphomonoesterases, protein phosphatases, HAD-like phosphatases, phospholipase C or cyclase/lyase rows without hydrolytic cleavage, kinases, transferases, side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a metal-independent phosphodiesterase label.",
+        "The phosphodiester or cyclic-nucleotide substrate, ordered water, leaving group, nucleotide product, and protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

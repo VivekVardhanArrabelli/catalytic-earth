@@ -7704,6 +7704,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "glycosyltransferase",
                 "had_like_phosphatase",
                 "manganese_iron_superoxide_dismutase",
+                "metal_independent_phosphodiesterase",
                 "metal_racemase_epimerase_non_plp",
                 "molybdopterin_oxidoreductase",
                 "n_ribosyl_hydrolase",

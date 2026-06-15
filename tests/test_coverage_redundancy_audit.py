@@ -251,16 +251,19 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # alpha/beta hydrolase esterase/lipase aggregate preview applied 150
             # guarded bronze rows, closing the new 40th-fingerprint floor. The
             # 2026-06-15 N-ribosyl hydrolase cursor pagination applied 150
-            # guarded bronze rows, closing the new 42nd-fingerprint floor.
+            # guarded bronze rows, closing the new 42nd-fingerprint floor. The
+            # 2026-06-15 metal-independent phosphodiesterase infrastructure adds
+            # the 43rd fingerprint before any label apply, so it is the lone
+            # expected hole/under-floor family until a clean PDE batch is admitted.
             self.assertEqual(
                 audit["class_imbalance"]["expansion_holes"],
-                [],
+                ["metal_independent_phosphodiesterase"],
             )
             self.assertEqual(
                 audit["class_imbalance"]["fingerprints_below_floor"],
-                [],
+                ["metal_independent_phosphodiesterase"],
             )
-            self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 0)
+            self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 100)
             self.assertIn(
                 "metal_dependent_hydrolase",
                 audit["acquisition_targets"]["over_cap"],

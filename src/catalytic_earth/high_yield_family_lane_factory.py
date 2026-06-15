@@ -254,7 +254,10 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         ),
         cap_ceiling=DEFAULT_CONFUSABLE_CAP,
         chemistry_confusable=True,
-        novelty_keep_factor=0.45,
+        novelty_keep_factor=0.03,
+        existing_fingerprint_id="metal_independent_phosphodiesterase",
+        current_runner="scripts/source_metal_independent_phosphodiesterase_family.py",
+        oos_preregistration_required=False,
         ambiguity_with_existing=(
             "metallophosphoesterase_nuclease",
             "metallophosphomonoesterase",
@@ -265,10 +268,11 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
             "phosphodiesterase coverage gap, not world-new chemistry",
             "2026-06-15 source-wall rule exists in preview-only form and treats metal "
             "presence as a hold/filter, not metal absence as counted corroboration",
-            "requires fingerprint, ontology node, OOS preregistration, source runner, "
-            "bounded preview, row audit, and explicit apply gate before any labels",
+            "2026-06-15 43fp runner preview fetched 265 rows but admitted only 14; "
+            "additional CNPase/2',3'-cyclic-nucleotide/EC 4.6.1 handle preview "
+            "fetched 130 rows and admitted 0",
         ),
-        source_wall_rule_status="implemented_preview_only",
+        source_wall_rule_status="implemented_existing_fingerprint_runner_subscale_preview",
         rationale_template=(
             "Discovery-compass ontology gap: phosphodiester P-O cleavage without the "
             "two-metal architecture covered by the existing metal phosphoesterase family."

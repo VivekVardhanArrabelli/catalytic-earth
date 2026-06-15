@@ -16,6 +16,52 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-15 automation update: metal-independent PDE 43fp infrastructure built; tested source
+handles are below the apply gate.** Treat this as the newest operational state for bronze
+scaleout. Hard safety remains green, frozen current702 was not written, and no external bronze
+labels were applied. The current positive fingerprint universe is now `label_factory_v1_43fp` with
+**43** fingerprints and **40** ontology families. Counted label counters are unchanged from the
+N-ribosyl apply: external rows **7570**, combined label surface **8272**, combined seed surface
+**6576**, positive bronze **6529**, OOS bronze **1696**, silver_confirmed **47**, projected **0**.
+
+The `metal_independent_phosphodiesterase` lane now has the missing infrastructure:
+`src/catalytic_earth/metal_independent_phosphodiesterase_sourcing.py`,
+`scripts/source_metal_independent_phosphodiesterase_family.py`, fingerprint
+`metal_independent_phosphodiesterase`, ontology family
+`metal_independent_phosphodiester_hydrolysis`, deploy context, coverage/governor signature,
+factory wiring, focused tests, and 43fp hard-negative preregistration
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_43fp_1025.json`. EC 3.1.4 /
+4.6.1 and keyword/name/query handles are scope/admission context only; metal absence is a filter,
+not evidence; predictive evidence stays empty.
+
+Live source work shows this lane should not be applied under the currently tested handles. The
+reviewed cursor preview
+`artifacts/v3_metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.json`
+fetched **265** reviewed rows, found **18** target mechanism-corroborated labels, and admitted only
+**14** novelty-safe labels. Alternate reviewed handles fetched **130** rows with **0** targets and
+**0** admits. Tier-2 PDE count scouts were large, but the tier-2 preview
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_sourcing_preview_cursor_pages2_size100_current702_20260615.json`
+fetched **400** rows with **0** target labels, **0** admits, **186** off-target holds, and **197**
+`trust_tier_corroboration_insufficient` holds. Strategy note:
+`work/metal_independent_phosphodiesterase_43fp_source_strategy_current702_20260615.md`.
+
+Post-infrastructure planning artifacts:
+`artifacts/v3_coverage_redundancy_audit_current702_20260615_post_pde_43fp_infra.json`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_pde_43fp_infra.json`, and
+`artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_pde_43fp_infra.json`.
+Coverage now shows `metal_independent_phosphodiesterase` as the lone hole/under-floor fingerprint,
+Gini **0.1974**, and only `metal_dependent_hydrolase` over cap. Novelty replay is **7109** admit /
+**414** throttle / **47** reject across **7570** expansion rows. The factory reports **0** ready
+existing lanes >=150 and no high-yield blocked lanes under current handles; top projected clean
+admits are `short_chain_dehydrogenase_reductase` at **84**.
+
+Next action: do not retry the same PDE UniProt handles for mass growth and do not pad the 14-row
+preview. Either design a materially sharper PDE source split, or move to a higher-yield
+source-handle/source-tier strategy such as SDR/AKR with a family-specific mechanism-first source
+wall, fresh OOS preregistration if the fingerprint universe changes, non-destructive preview, row
+guardrail audit, novelty/governor/dedup/cap replay, leakage/source-contract validation, and apply
+only if the batch gate is met.
+
 **2026-06-15 automation update: N-ribosyl hydrolase cursor batch applied; next lane is
 metal-independent phosphodiesterase.** Treat this as the newest operational state for bronze
 scaleout. Hard safety remains green, frozen current702 was not written, and growth happened only in

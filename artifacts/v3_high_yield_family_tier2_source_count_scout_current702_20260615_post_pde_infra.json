@@ -1,0 +1,83 @@
+{
+  "artifact_id": "v3_high_yield_family_tier2_source_count_scout_current702_20260615_post_pde_infra",
+  "created_utc": "2026-06-15T19:15:00Z",
+  "guardrails": {
+    "ec_scope_only_never_counted": true,
+    "fingerprint_registry_written": false,
+    "next_action_requires_family_specific_source_wall_and_oos_preregistration": true,
+    "predictive_evidence_created": false,
+    "registry_written": false,
+    "source_tier_2_requires_three_independent_mechanism_axes": true
+  },
+  "interpretation": "Counts are only source-supply probes. A family is not apply-ready until fingerprint/ontology/OOS, source-wall tests, non-destructive preview, novelty/cap replay, row guardrails, and leakage/source-contract validation pass.",
+  "rows": [
+    {
+      "lane_id": "sdr_tier2_ec_1_1_1_nad_active_site",
+      "metadata": {
+        "query": "(reviewed:false) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:dehydrogenase)) AND ((cc_catalytic_activity:NAD) OR (cc_catalytic_activity:NADP) OR (cc_cofactor:NAD) OR (cc_cofactor:NADP)) AND ((ft_act_site:*) OR (ft_binding:*))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28ec%3A1.1.1.%2A%29+AND+%28%28protein_name%3A%22short-chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short+chain+dehydrogenase%22%29+OR+%28protein_name%3Adehydrogenase%29%29+AND+%28%28cc_catalytic_activity%3ANAD%29+OR+%28cc_catalytic_activity%3ANADP%29+OR+%28cc_cofactor%3ANAD%29+OR+%28cc_cofactor%3ANADP%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:dehydrogenase)) AND ((cc_catalytic_activity:NAD) OR (cc_catalytic_activity:NADP) OR (cc_cofactor:NAD) OR (cc_cofactor:NADP)) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "unreviewed_tier2_candidate_count": 252079
+    },
+    {
+      "lane_id": "serine_beta_lactamase_tier2_active_site_non_metallo",
+      "metadata": {
+        "query": "(reviewed:false) AND (ec:3.5.2.6) AND ((keyword:\"Beta-lactamase\") OR (protein_name:\"beta-lactamase\")) AND ((ft_act_site:*) OR (ft_binding:*)) NOT (protein_name:metallo)",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28ec%3A3.5.2.6%29+AND+%28%28keyword%3A%22Beta-lactamase%22%29+OR+%28protein_name%3A%22beta-lactamase%22%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29+NOT+%28protein_name%3Ametallo%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND (ec:3.5.2.6) AND ((keyword:\"Beta-lactamase\") OR (protein_name:\"beta-lactamase\")) AND ((ft_act_site:*) OR (ft_binding:*)) NOT (protein_name:metallo)",
+      "unreviewed_tier2_candidate_count": 1905
+    },
+    {
+      "lane_id": "aminoglycoside_phosphotransferase_tier2_atp_site",
+      "metadata": {
+        "query": "(reviewed:false) AND ((protein_name:\"aminoglycoside phosphotransferase\") OR (protein_name:\"aminoglycoside kinase\") OR (ec:2.7.1.*)) AND (protein_name:aminoglycoside) AND ((cc_catalytic_activity:ATP) OR (cc_cofactor:ATP) OR (ft_binding:ATP)) AND ((ft_act_site:*) OR (ft_binding:*))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28%28protein_name%3A%22aminoglycoside+phosphotransferase%22%29+OR+%28protein_name%3A%22aminoglycoside+kinase%22%29+OR+%28ec%3A2.7.1.%2A%29%29+AND+%28protein_name%3Aaminoglycoside%29+AND+%28%28cc_catalytic_activity%3AATP%29+OR+%28cc_cofactor%3AATP%29+OR+%28ft_binding%3AATP%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND ((protein_name:\"aminoglycoside phosphotransferase\") OR (protein_name:\"aminoglycoside kinase\") OR (ec:2.7.1.*)) AND (protein_name:aminoglycoside) AND ((cc_catalytic_activity:ATP) OR (cc_cofactor:ATP) OR (ft_binding:ATP)) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "unreviewed_tier2_candidate_count": 752
+    },
+    {
+      "lane_id": "aldo_keto_reductase_tier2_nadp_site",
+      "metadata": {
+        "query": "(reviewed:false) AND (ec:1.1.1.*) AND ((protein_name:\"aldo-keto reductase\") OR (protein_name:\"aldo keto reductase\") OR (keyword:Oxidoreductase)) AND ((cc_catalytic_activity:NADP) OR (cc_cofactor:NADP) OR (cc_catalytic_activity:NAD)) AND ((ft_act_site:*) OR (ft_binding:*))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28ec%3A1.1.1.%2A%29+AND+%28%28protein_name%3A%22aldo-keto+reductase%22%29+OR+%28protein_name%3A%22aldo+keto+reductase%22%29+OR+%28keyword%3AOxidoreductase%29%29+AND+%28%28cc_catalytic_activity%3ANADP%29+OR+%28cc_cofactor%3ANADP%29+OR+%28cc_catalytic_activity%3ANAD%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND (ec:1.1.1.*) AND ((protein_name:\"aldo-keto reductase\") OR (protein_name:\"aldo keto reductase\") OR (keyword:Oxidoreductase)) AND ((cc_catalytic_activity:NADP) OR (cc_cofactor:NADP) OR (cc_catalytic_activity:NAD)) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "unreviewed_tier2_candidate_count": 340655
+    },
+    {
+      "lane_id": "aminoglycoside_acetyltransferase_tier2_acetylcoa_site",
+      "metadata": {
+        "query": "(reviewed:false) AND ((protein_name:\"aminoglycoside acetyltransferase\") OR (ec:2.3.1.*)) AND (protein_name:aminoglycoside) AND ((cc_catalytic_activity:\"acetyl-CoA\") OR (cc_cofactor:\"acetyl-CoA\") OR (ft_binding:\"acetyl-CoA\")) AND ((ft_act_site:*) OR (ft_binding:*))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28%28protein_name%3A%22aminoglycoside+acetyltransferase%22%29+OR+%28ec%3A2.3.1.%2A%29%29+AND+%28protein_name%3Aaminoglycoside%29+AND+%28%28cc_catalytic_activity%3A%22acetyl-CoA%22%29+OR+%28cc_cofactor%3A%22acetyl-CoA%22%29+OR+%28ft_binding%3A%22acetyl-CoA%22%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND ((protein_name:\"aminoglycoside acetyltransferase\") OR (ec:2.3.1.*)) AND (protein_name:aminoglycoside) AND ((cc_catalytic_activity:\"acetyl-CoA\") OR (cc_cofactor:\"acetyl-CoA\") OR (ft_binding:\"acetyl-CoA\")) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "unreviewed_tier2_candidate_count": 19
+    },
+    {
+      "lane_id": "metallo_beta_lactamase_tier2_metal_active_site",
+      "metadata": {
+        "query": "(reviewed:false) AND (protein_name:\"metallo-beta-lactamase\") AND ((cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\")) AND ((ft_act_site:*) OR (ft_binding:*))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28protein_name%3A%22metallo-beta-lactamase%22%29+AND+%28%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND (protein_name:\"metallo-beta-lactamase\") AND ((cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\")) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "unreviewed_tier2_candidate_count": 49
+    }
+  ],
+  "schema_version": "source_handle_count_scout.v1",
+  "status": "non_destructive_tier2_source_count_scout_no_registry_mutation"
+}

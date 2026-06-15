@@ -1,0 +1,62 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_tier2_source_count_scout_current702_20260615",
+  "created_utc": "2026-06-15T19:08:00Z",
+  "guardrails": {
+    "ec_scope_only_never_counted": true,
+    "fingerprint_registry_written": false,
+    "metal_absence_filter_not_evidence": true,
+    "predictive_evidence_created": false,
+    "registry_written": false,
+    "tier2_min_independent_mechanism_axes": 3,
+    "tier2_would_require_source_trust_tiers_evaluate_corroboration": true
+  },
+  "next_action": "If a tier-2 lane is implemented, it must require unreviewed UniProt rows to carry at least family/name, Rhea/catalytic-activity reaction, and active/binding-site axes before novelty/cap admission.",
+  "rows": [
+    {
+      "lane_id": "trembl_pde_site_reaction_non_metal",
+      "metadata": {
+        "query": "(reviewed:false) AND (ec:3.1.4.*) AND (protein_name:phosphodiesterase) AND ((ft_act_site:*) OR (ft_binding:*)) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28protein_name%3Aphosphodiesterase%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29+AND+%28cc_catalytic_activity%3A%2A%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND (ec:3.1.4.*) AND (protein_name:phosphodiesterase) AND ((ft_act_site:*) OR (ft_binding:*)) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "unreviewed_count": 10891
+    },
+    {
+      "lane_id": "trembl_pde_cyclic_site_reaction_non_metal",
+      "metadata": {
+        "query": "(reviewed:false) AND (ec:3.1.4.*) AND ((protein_name:\"cyclic nucleotide phosphodiesterase\") OR (protein_name:\"cyclic-nucleotide phosphodiesterase\") OR (ec:3.1.4.17)) AND ((ft_act_site:*) OR (ft_binding:*)) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28protein_name%3A%22cyclic+nucleotide+phosphodiesterase%22%29+OR+%28protein_name%3A%22cyclic-nucleotide+phosphodiesterase%22%29+OR+%28ec%3A3.1.4.17%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29+AND+%28cc_catalytic_activity%3A%2A%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND (ec:3.1.4.*) AND ((protein_name:\"cyclic nucleotide phosphodiesterase\") OR (protein_name:\"cyclic-nucleotide phosphodiesterase\") OR (ec:3.1.4.17)) AND ((ft_act_site:*) OR (ft_binding:*)) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "unreviewed_count": 0
+    },
+    {
+      "lane_id": "trembl_pde_hydrolase_site_reaction_non_metal",
+      "metadata": {
+        "query": "(reviewed:false) AND (protein_name:phosphodiesterase) AND (keyword:Hydrolase) AND ((ft_act_site:*) OR (ft_binding:*)) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28protein_name%3Aphosphodiesterase%29+AND+%28keyword%3AHydrolase%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29+AND+%28cc_catalytic_activity%3A%2A%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND (protein_name:phosphodiesterase) AND (keyword:Hydrolase) AND ((ft_act_site:*) OR (ft_binding:*)) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "unreviewed_count": 10888
+    },
+    {
+      "lane_id": "trembl_pde_cyclic_reaction_non_metal",
+      "metadata": {
+        "query": "(reviewed:false) AND (ec:3.1.4.*) AND ((cc_catalytic_activity:\"cyclic AMP\") OR (cc_catalytic_activity:\"cyclic GMP\") OR (cc_catalytic_activity:cAMP) OR (cc_catalytic_activity:cGMP)) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+        "record_count": 1,
+        "source": "uniprot",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28cc_catalytic_activity%3A%22cyclic+AMP%22%29+OR+%28cc_catalytic_activity%3A%22cyclic+GMP%22%29+OR+%28cc_catalytic_activity%3AcAMP%29+OR+%28cc_catalytic_activity%3AcGMP%29%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+      },
+      "query": "(reviewed:false) AND (ec:3.1.4.*) AND ((cc_catalytic_activity:\"cyclic AMP\") OR (cc_catalytic_activity:\"cyclic GMP\") OR (cc_catalytic_activity:cAMP) OR (cc_catalytic_activity:cGMP)) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "unreviewed_count": 2561
+    }
+  ],
+  "schema_version": "source_handle_count_scout.v1",
+  "status": "non_destructive_tier2_count_scout_no_registry_mutation"
+}

@@ -220,10 +220,15 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_40FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_41FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_41fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 42-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The re-frozen tranche pre-registration for the 42-fingerprint universe is historical after the
+# metal-independent phosphodiesterase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_42FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 43-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_43FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_43fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

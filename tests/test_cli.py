@@ -6883,13 +6883,14 @@ class CliTests(unittest.TestCase):
             self.assertFalse(
                 packet["metadata"]["ready_to_expand_positive_fingerprint_universe"]
             )
-            # 42 after the 2026-06-12 through 2026-06-15 broadened-handle
+            # 43 after the 2026-06-12 through 2026-06-15 broadened-handle
             # batches plus the HAD-like phosphatase, aldehyde dehydrogenase, and
             # alpha/beta hydrolase esterase/lipase lanes, plus the Ser/Thr protein
-            # phosphatase and N-ribosyl hydrolase lanes: the readiness packet
+            # phosphatase, N-ribosyl hydrolase, and metal-independent PDE lanes:
+            # the readiness packet
             # counts the live positive fingerprint universe, not the historical
             # 15-fingerprint tranche.
-            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 42)
+            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 43)
             self.assertEqual(packet["metadata"]["epk_boundary_row_count"], 3)
             self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
             self.assertIn(

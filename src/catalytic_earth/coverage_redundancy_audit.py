@@ -316,6 +316,15 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         ),
         "lanes": ["n_ribosyl_hydrolase"],
     },
+    "metal_independent_phosphodiesterase": {
+        "ec_prefixes": ["3.1.4", "4.6.1"],
+        "cofactor": (
+            "metal-independent phosphodiester hydrolysis context with phosphodiesterase "
+            "family text, hydrolytic cyclic-nucleotide/phosphodiester Rhea evidence, "
+            "and metal phosphoesterase/nuclease boundaries held"
+        ),
+        "lanes": ["metal_independent_phosphodiesterase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

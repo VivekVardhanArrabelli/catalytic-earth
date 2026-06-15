@@ -3,6 +3,46 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: METAL-INDEPENDENT PDE IS A GUARDED 43RD FINGERPRINT, BUT NOT APPLIED
+
+Decision: add `metal_independent_phosphodiesterase` as the 43rd positive fingerprint and keep the
+source wall mechanism-first. EC 3.1.4 / 4.6.1 may scope/fetch candidate rows but is never a counted
+corroborator. Metal absence may filter out metal-dependent phosphoesterase/nuclease rows, but metal
+absence itself is not evidence. Counted corroboration requires mechanism-bearing axes such as
+phosphodiesterase family/name context, hydrolytic phosphodiester or cyclic-nucleotide Rhea/reaction
+evidence, active-site or binding-site context, and source-tier-appropriate independent axes.
+Keyword/name/query handles remain excluded source/admission context and do not become predictive
+features.
+
+Implementation: added `src/catalytic_earth/metal_independent_phosphodiesterase_sourcing.py`,
+`scripts/source_metal_independent_phosphodiesterase_family.py`, the
+`metal_independent_phosphodiesterase` fingerprint, ontology family
+`metal_independent_phosphodiester_hydrolysis`, deploy context, coverage/governor signature,
+high-yield factory wiring, focused tests, optional tier-2 lane support, and the 43fp OOS
+preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_43fp_1025.json`. Updated the
+current positive-fingerprint universe to `label_factory_v1_43fp`; frozen current702 labels stay
+stamped with their historical decision version and were not written.
+
+Measured result: no bronze rows were applied. The reviewed cursor preview
+`artifacts/v3_metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.json`
+fetched **265** reviewed rows, produced **18** target mechanism-corroborated labels, and admitted
+only **14** novelty-safe labels. Alternate reviewed handles fetched **130** rows with **0** target /
+**0** admitted labels. Tier-2 count scouts were large, but the live tier-2 preview
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_sourcing_preview_cursor_pages2_size100_current702_20260615.json`
+fetched **400** rows with **0** target labels, **0** admits, **186** off-target holds, and **197**
+`trust_tier_corroboration_insufficient` holds.
+
+Decision: do not apply the 14-row reviewed preview and do not pad the same PDE UniProt handles.
+Current planning artifacts after the 43fp infrastructure show `metal_independent_phosphodiesterase`
+as the lone hole/under-floor fingerprint, no ready existing lanes with >=150 projected clean admits,
+and top projected clean supply `short_chain_dehydrogenase_reductase` at **84** under current
+handles. The next mass-growth action should improve source handles/source tiers in a
+mechanism-first way before mutation: either design a materially sharper PDE split or move to a
+higher-yield family/source strategy with a family-specific source wall, fresh OOS preregistration if
+the fingerprint universe changes, non-destructive preview, row guardrail audit, novelty/governor
+replay, leakage/source-contract validation, and explicit apply only if the batch gate is met.
+
 ## 2026-06-15: N-RIBOSYL HYDROLASE CURSOR BATCH IS COUNTED BRONZE
 
 Decision: the `n_ribosyl_hydrolase` 42nd-fingerprint lane is now countable bronze after a
