@@ -3,6 +3,26 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: DISCOVERY & DE NOVO STRATEGY (see docs/discovery_and_de_novo_strategy.md)
+
+Decision (direction, conversation-derived; no code change): keep scaling the atlas via
+DIVERSE new families + silver grounding (= ontology completion), because that is precisely
+what unblocks mechanism discovery later. Key conclusions captured in the dedicated doc:
+(1) de novo splits into ENZYME DESIGN (model-central, far; atlas is grounding/eval only) vs
+MECHANISM DISCOVERY/annotation (atlas-central, near); (2) raw row count creates no capability
+— diversity x groundedness does (the novelty gate is an effective-sample-size gate);
+(3) a read-only evidence-quality-vs-family-match probe (2026-06-15) WORKS but its hits are
+dominated by OUR incompleteness (missing fingerprints + missing bond-change primitives), not
+world-new chemistry — e.g. it surfaced metal-INDEPENDENT phosphodiesterases (a coverage gap,
+not new chemistry) and known glycosidase/ester/N-ribosyl hydrolyses our classifier lacks a
+class for; (4) certifying WORLD-new chemistry requires a comprehensive reference (full Rhea/
+KEGG/MetaCyc/BRENDA) + experiment — "unlike our ~41 fingerprints" almost always means "known
+but unsampled". METHOD TRAP recorded: an evidence score that counts "has a recognised
+bond-change" as evidence bakes in the known-vocabulary bias and can only surface coverage gaps;
+evidence quality MUST be vocabulary-independent. Use the read-only probe as a COMPASS to aim
+scaling at the highest-evidence missing families; revisit new-chemistry seriously only once
+the ontology is broad enough that "novel" is a strong word.
+
 ## 2026-06-14: SER/THR PROTEIN PHOSPHATASE BATCH IS COUNTED BRONZE AFTER RHEA TOKEN FIX
 
 Decision: keep `ser_thr_protein_phosphatase` as the 41st positive fingerprint, but fix the
