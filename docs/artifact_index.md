@@ -38,6 +38,17 @@ ePK NO-GO learnings are archived (not in main): `git checkout archive/epk-<track
 | `README.md` | What is this repo and how do I get started? | Front door |
 | `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json` | Which Lever 2/3/4 mechanical gates are runnable now? | Current active-lever gate; 0 mechanical gates ready, 15 blockers, follow-up Lever 3 proxy axis fully scored but not closure-sufficient |
 
+## 2026-06-15 Discovery-Compass Source-Wall Scaleout
+
+| Artifact | Answers | Status |
+| --- | --- | --- |
+| `artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json` | Which high-yield families are best after adding the discovery-compass candidates and source-wall status? | Current gate; no labels/registries written; top two lanes are source-wall-ready but fingerprint/OOS/runner blocked |
+| `work/high_yield_family_lane_factory_current702_20260615_discovery_compass.md` | Human-readable ranking and next action for the discovery-compass factory refresh | Current report |
+| `artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json` | What exact mechanism contract and no-apply guardrails govern the top N-ribosyl hydrolase 42fp candidate? | Current design-only preregistration; source wall is preview-only, no registry mutation authorized |
+| `artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json` | What exact mechanism contract and no-apply guardrails govern the second metal-independent phosphodiesterase candidate? | Current design-only preregistration; source wall is preview-only, no registry mutation authorized |
+| `work/n_ribosyl_hydrolase_42fp_build_plan_current702_20260615.md` | What is the next concrete 42fp build sequence for the top lane? | Current build plan; requires fingerprint, ontology, OOS preregistration, source runner, preview, row audit, and apply gate |
+| `work/metal_independent_phosphodiesterase_nextfp_build_plan_current702_20260615.md` | What is the follow-on next-fingerprint build sequence for the second source-wall-ready lane? | Current follow-on build plan; do not count metal absence or apply before gated runner/OOS work |
+
 ## 2026-06-08 External Source Ingestion Pilot
 
 | Artifact | Answers | Status |

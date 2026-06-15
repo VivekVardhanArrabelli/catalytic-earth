@@ -3,6 +3,41 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: N-RIBOSYL HYDROLASE IS A GUARDED 42ND FINGERPRINT, BUT NOT APPLIED
+
+Decision: add `n_ribosyl_hydrolase` as the 42nd positive fingerprint and keep the source wall
+mechanism-first. EC 3.2.2 may scope/fetch candidate rows but is never a counted corroborator.
+Counted corroboration requires non-EC mechanism axes such as N-ribosyl/nucleosidase family or name
+context plus N-glycosidic hydrolysis Rhea/reaction-participant evidence. Broadened synonym handles
+(`nucleosidase`, `uridine nucleosidase`, `purine nucleosidase`, `N-ribohydrolase`,
+`nucleoside N-ribohydrolase`) are admission/source handles only, remain excluded/review-only
+context, and do not become predictive features.
+
+Implementation: added `src/catalytic_earth/n_ribosyl_hydrolase_sourcing.py`,
+`scripts/source_n_ribosyl_hydrolase_family.py`, the `n_ribosyl_hydrolase` fingerprint, ontology
+family `n_glycosidic_bond_hydrolysis`, deploy context, high-yield factory wiring,
+coverage/governor signatures, focused tests, optional process-based UniProt fetch timeouts, lane
+filtering, and the 42fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json`. Updated the
+current positive-fingerprint universe to `label_factory_v1_42fp`; frozen current702 labels stay
+stamped with their historical decision version and were not written.
+
+Measured result: no bronze rows were applied. Synonym-expanded non-destructive previews produced
+**61** unique novelty-safe `n_ribosyl_hydrolase` labels after aggregate dedup/novelty/cap replay
+and **0** row guardrail problems. This is below the **150** clean-row batch gate, so the aggregate
+is blocked from apply despite clean row-level checks. Offset-paged UniProt synonym probes produced
+a raw mechanism-corroborated window sum of **166**, but overlapped the earlier accession set and
+left only **61** unique labels. The historical `apply_candidate` filenames now carry corrected
+statuses that block apply:
+`non_destructive_aggregate_blocked_below_150_no_apply` and
+`row_guardrails_pass_but_batch_gate_blocks_apply`.
+
+Decision: do not apply the 61-row N-ribosyl aggregate and do not pad it with tiny topups. The next
+source action is reliable UniProt cursor pagination or another reviewed, mechanism-bearing source
+path that can produce a clean >=150-row aggregate. If that source is exhausted, pivot to
+`metal_independent_phosphodiesterase` as the next new-fingerprint lane with a fresh OOS
+preregistration for the then-current fingerprint universe.
+
 ## 2026-06-15: REPRESENTATION SEPARABILITY RESTORE LANDED (implements the spec below)
 
 Decision: implemented the validated fix from
@@ -26,9 +61,9 @@ reaction-equation representation cannot and should not force (narrowing to lipas
 not help — 22/87 ser_his rows are genuine lipase/phospholipase reactions). Also closed the
 governor coverage gap: `ser_thr_protein_phosphatase` was the one registry fingerprint missing
 from `coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES` (40/41); it is now registered
-(EC 3.1.3.16, scope-only/non-predictive) so the coverage/reaction-saturation view covers all
-41. Frozen current702 byte-unchanged; `validate` ok (702 / 41 fp); representation code only,
-no registry write. This unblocks the new ester-hydrolase / phosphatase / NAD-redox-subtype
+(EC 3.1.3.16/48, scope-only/non-predictive) so the coverage/reaction-saturation view covers
+all 42. Frozen current702 byte-unchanged; `validate` ok (702 / 41 fp); representation code
+only, no registry write. This unblocks the new ester-hydrolase / phosphatase / NAD-redox-subtype
 families to reach silver and be visible to the discovery probe.
 
 ## 2026-06-15: REPRESENTATION SEPARABILITY REGRESSED BY NEW LANES — validated fix spec written
@@ -51,6 +86,36 @@ ser_thr_protein_phosphatase missing from FINGERPRINT_SOURCING_SIGNATURES, 40/41)
 more ester-hydrolase / phosphatase / NAD-redox-subtype families, or that growth is un-promotable
 (piles up as review_chemistry_disagrees / low-cohesion bronze). One owner for the representation
 module at a time (the spec is the hand-off so two automations don't both edit it).
+
+## 2026-06-15: DISCOVERY-COMPASS LANES HAVE PREVIEW-ONLY SOURCE WALLS; REGISTRY STILL BLOCKED
+
+Decision: use the 2026-06-15 discovery/de novo compass as a scaleout guide, but do not treat its
+candidate lanes as registry-ready. Implemented preview-only source-wall rules for
+`n_ribosyl_hydrolase` and `metal_independent_phosphodiesterase` in
+`src/catalytic_earth/external_cofactor_ec_disambiguation.py`; no fingerprints, ontology nodes,
+labels, or registries were written.
+
+Mechanism discipline: EC 3.2.2 / 3.1.4 / 4.6.1 are scope/fetch context only and are never counted.
+N-ribosyl admission requires non-EC family/name text plus N-glycosidic hydrolysis reaction evidence,
+with phosphorylase, kinase, transferase, O-glycosidase, EC-only, and multi-signal rows held.
+Metal-independent phosphodiesterase admission requires non-EC phosphodiesterase family text plus
+hydrolytic phosphodiester/cyclic-nucleotide reaction evidence; metal presence is a hold/filter and
+metal absence is not counted as evidence.
+
+Measured planning result: refreshed factory artifact
+`artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json` ranks
+`n_ribosyl_hydrolase` first (**1991** reviewed non-EC-corroborated supply, projected **150**) and
+`metal_independent_phosphodiesterase` second (**1129** supply, projected **150**). Both are
+`blocked_new_fingerprint_oos_prereg_and_runner_required` with
+`source_wall_rule_status=implemented_preview_only`. Design-only preregistrations live at
+`artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`
+and
+`artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`.
+
+Decision: next registry mutation should build `n_ribosyl_hydrolase` through the full 42fp path:
+fingerprint + ontology node, OOS preregistration refresh, reviewed-UniProt source runner,
+non-destructive preview, row guardrail audit, novelty/governor/dedup/cap replay, and explicit
+apply. Do not apply labels from the preview-only source wall alone.
 
 ## 2026-06-15: DISCOVERY & DE NOVO STRATEGY (see docs/discovery_and_de_novo_strategy.md)
 

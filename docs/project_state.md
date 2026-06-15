@@ -26,6 +26,88 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **N-RIBOSYL HYDROLASE 42FP INFRASTRUCTURE BUILT; REGISTRY UNCHANGED (2026-06-15 automation).**
+  Hard safety remains green. The current positive universe is now `label_factory_v1_42fp` with
+  **42** mechanism fingerprints and **39** ontology families, while frozen current702 remains
+  byte-unchanged at sha `5eec9bef...`. No external bronze labels were applied in this run, so
+  honest counters remain external rows **7420**, combined label surface **8122**, combined seed
+  surface **6426**, positive bronze **6379**, OOS bronze **1696**, silver_confirmed **47**, and
+  projected **0**.
+
+  Built the guarded `n_ribosyl_hydrolase` lane: fingerprint `n_ribosyl_hydrolase`, ontology family
+  `n_glycosidic_bond_hydrolysis`, source runner
+  `src/catalytic_earth/n_ribosyl_hydrolase_sourcing.py`, script
+  `scripts/source_n_ribosyl_hydrolase_family.py`, focused tests, high-yield factory wiring,
+  coverage/governor signatures, deploy context, and hard-negative OOS preregistration
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json`. EC 3.2.2 is
+  scope/fetch context only. Counted mechanism corroboration must come from non-EC N-ribosyl or
+  nucleosidase family/name context plus N-glycosidic hydrolysis Rhea/reaction-participant evidence;
+  broadened synonym handles remain excluded/review-only context and `predictive_evidence` stays
+  empty.
+
+  Live non-destructive source work found useful but subscale supply. Synonym-expanded windows and
+  offset-paged probes produced **61** unique novelty-safe `n_ribosyl_hydrolase` labels after
+  aggregate dedup/novelty/cap replay; row guardrails found **0** problem rows, but the batch is
+  below the **150** clean-row apply gate. The corrected aggregate/audit artifacts are
+  `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_current702_20260615_apply_candidate.json`
+  and
+  `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_apply_candidate.json`;
+  despite their historical filenames, their status blocks any apply. Offset-paged UniProt synonym
+  windows had a raw mechanism-corroborated sum of **166** but overlapped earlier accessions, leaving
+  only **61** unique labels.
+
+  Current planning artifacts:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_infra.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_n_ribosyl_infra.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_n_ribosyl_infra.json`.
+  Coverage now lists `n_ribosyl_hydrolase` as the lone under-floor/hole until a clean >=150-row
+  aggregate can be built.
+
+  Next action: do not apply the 61-row N-ribosyl aggregate. First add reliable UniProt cursor
+  pagination or another reviewed mechanism-bearing source path, then rebuild a non-destructive
+  aggregate and apply only if novelty, governor, dedup, cap, source-contract, leakage, and row
+  guardrail gates pass. If that source is exhausted, pivot to `metal_independent_phosphodiesterase`
+  with a fresh fingerprint-universe preregistration.
+
+- **DISCOVERY-COMPASS SOURCE WALLS ADDED; NO REGISTRY MUTATION (2026-06-15 automation).**
+  Hard safety remains green, the current positive universe stays `label_factory_v1_41fp`, and no
+  labels, fingerprints, ontology nodes, or registries were written. Frozen current702 remains
+  byte-unchanged at sha `5eec9bef...`; the external registry remains sharded and below per-file
+  safety limits.
+
+  The 2026-06-15 discovery/de novo compass was converted into reusable, mechanism-first scaleout
+  infrastructure for the two top 150-row candidates. Added preview-only source-wall rules in
+  `src/catalytic_earth/external_cofactor_ec_disambiguation.py` for
+  `n_ribosyl_hydrolase` and `metal_independent_phosphodiesterase`. EC 3.2.2 / 3.1.4 / 4.6.1 are
+  scope/fetch context only and are never counted. N-ribosyl rows require non-EC family/name text
+  plus N-glycosidic hydrolysis reaction evidence and hold O-glycosidase, phosphorylase, kinase,
+  transferase, EC-only, and multi-signal rows. Metal-independent phosphodiesterase rows require
+  non-EC phosphodiesterase family text plus hydrolytic phosphodiester/cyclic-nucleotide reaction
+  evidence; metal presence is a hold/filter, not metal absence counted as evidence.
+
+  Refreshed factory artifact:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json`.
+  It ranks **14** candidates, finds **0** ready existing lanes >=150, and reports two
+  high-yield blocked lanes with source walls already implemented preview-only:
+  `n_ribosyl_hydrolase` (**1991** reviewed non-EC-corroborated supply, projected **150**) and
+  `metal_independent_phosphodiesterase` (**1129** reviewed non-EC-corroborated supply, projected
+  **150**). Design-only preregistrations are
+  `artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`
+  and
+  `artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`.
+  Next-lane build plans:
+  `work/n_ribosyl_hydrolase_42fp_build_plan_current702_20260615.md` and
+  `work/metal_independent_phosphodiesterase_nextfp_build_plan_current702_20260615.md`; both
+  identify the exact fingerprint/ontology registries, OOS preregistration constants, leakage
+  tests, and minimum validation commands for the next implementation pass.
+
+  Next action: build `n_ribosyl_hydrolase` as the first 42fp lane through fingerprint + ontology
+  node, OOS preregistration refresh, reviewed-UniProt source runner, non-destructive preview, row
+  guardrail audit, novelty/governor/dedup/cap replay, and explicit apply. Do not treat the
+  preview-only source-wall rule as sufficient for registry mutation.
+  Rebased context: `work/next_instance_representation_separability_fix_spec.md` upstream constraint
+  is now **RESOLVED** — see bullet below.
+
 - **REPRESENTATION SEPARABILITY RESTORED (2026-06-15, representation code only — no registry
   write).** The new family lanes had been added faster than the reaction-center vocabulary, so
   overall leave-one-out self-consistency had regressed **0.755 -> 0.713** and the regression was
@@ -40,13 +122,12 @@ artifact-backed mechanism diagnostics.
   `ser_his_acid_hydrolase` 0.91 -> 0.67 — a Ser-His-Asp serine-esterase FOLD overlap with the
   alpha/beta-hydrolases that `bc_ester_hydrolysis` correctly (and unavoidably) blurs; a
   reaction-equation representation cannot and should not force a fold-level split. Also registered
-  `ser_thr_protein_phosphatase` in `coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES` (it
-  was the one missing of 41; EC 3.1.3.16 scope-only/non-predictive) so the governor's
-  coverage/reaction-saturation view covers all 41 fingerprints. Frozen current702 byte-unchanged;
-  `validate` ok (702 / 41 fp).
+  `ser_thr_protein_phosphatase` in `coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES` (was
+  the one missing of 41/42; EC 3.1.3.16/48 scope-only/non-predictive). Frozen current702
+  byte-unchanged; `validate` ok (702 / 41 fp).
 
 - **SER/THR PROTEIN PHOSPHATASE BRONZE BATCH APPLIED (2026-06-14 automation).**
-  Newest operational state: hard safety remains green and the current positive universe stays
+  Previous counted-registry state: hard safety remains green and the current positive universe stays
   `label_factory_v1_41fp`. Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; growth
   happened only in the sharded external registry.
 

@@ -3,10 +3,12 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from catalytic_earth import adapters
 from catalytic_earth.adapters import (
     build_mcsa_entries_url,
     build_mcsa_page_url,
@@ -14,6 +16,7 @@ from catalytic_earth.adapters import (
     build_rhea_sample_url,
     build_uniprot_accessions_url,
     build_uniprot_query_url,
+    fetch_uniprot_query,
     normalize_mcsa_entries,
     normalize_rhea_tsv,
     normalize_uniprot_tsv,
@@ -91,6 +94,25 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(records[0]["length"], 254)
         self.assertEqual(records[0]["pdb_ids"], ["1B73", "1B74"])
         self.assertEqual(records[0]["alphafold_ids"], ["P56868"])
+
+    def test_fetch_uniprot_query_honors_initial_offset(self) -> None:
+        fetched_urls: list[str] = []
+
+        def fake_fetch(url: str) -> str:
+            fetched_urls.append(url)
+            accession = f"P{len(fetched_urls):05d}"
+            return (
+                "Entry\tEntry Name\tProtein names\tOrganism\tLength\tEC number\tPDB\tAlphaFoldDB\n"
+                f"{accession}\tENTRY_{len(fetched_urls)}\tExample\tOrganism\t10\t\t\t\n"
+            )
+
+        with patch.object(adapters, "_fetch_text", side_effect=fake_fetch):
+            payload = fetch_uniprot_query("reviewed:true", size=1, max_pages=2, offset=5)
+
+        self.assertEqual([page["offset"] for page in payload["metadata"]["pages"]], [5, 6])
+        self.assertIn("offset=5", fetched_urls[0])
+        self.assertIn("offset=6", fetched_urls[1])
+        self.assertEqual([record["accession"] for record in payload["records"]], ["P00001", "P00002"])
 
 
 if __name__ == "__main__":

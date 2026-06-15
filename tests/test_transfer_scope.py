@@ -7706,6 +7706,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "manganese_iron_superoxide_dismutase",
                 "metal_racemase_epimerase_non_plp",
                 "molybdopterin_oxidoreductase",
+                "n_ribosyl_hydrolase",
                 "nad_p_dehydrogenase",
                 "non_heme_iron_2og_dioxygenase",
                 "nucleoside_diphosphate_kinase",

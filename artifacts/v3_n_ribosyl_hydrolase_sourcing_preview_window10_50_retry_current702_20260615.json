@@ -1,0 +1,142 @@
+{
+  "applied_labels": [],
+  "artifact_id": "v3_n_ribosyl_hydrolase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {},
+    "current_combined_labels": 8122,
+    "disambiguation_hold_count": 0,
+    "disambiguation_hold_reason_counts": {},
+    "disambiguation_skip_count": 0,
+    "fetched_candidate_rows": 0,
+    "gate_admitted_before_cap_guard": 0,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 3,
+    "max_records_per_lane": 100,
+    "mechanism_corroborated_bronze_labels": 0,
+    "novelty_admitted_labels": 0,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8122,
+    "record_limit_per_lane": 40,
+    "record_offset_per_lane": 10
+  },
+  "created_utc": "2026-06-15T15:52:57Z",
+  "deploy_missing_active_site_context_per_family": {
+    "n_ribosyl_hydrolase": "n_glycosidic_bond_hydrolysis_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {},
+    "current_registry_labels": 7420,
+    "decision_counts": {},
+    "examined_rows": 0,
+    "fingerprint_counts": {},
+    "hold_count": 0,
+    "hold_reason_counts": {},
+    "importable_new_labels": 0,
+    "per_pool_decision_counts": {
+      "n_ribosyl_hydrolase_broadened_handle_fresh_fetch": {}
+    },
+    "projected_registry_labels_if_merged": 7420,
+    "skip_count": 0
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_n_glycosidic_hydrolysis_annotation",
+  "families_sourced": [
+    "n_ribosyl_hydrolase"
+  ],
+  "fetch_failure_count": 3,
+  "fetch_failures": [
+    {
+      "error": "fetch exceeded 25s timeout",
+      "error_type": "_FetchTimeout",
+      "lane_id": "n_ribosyl_hydrolase_ec_3_2_2_named",
+      "source": "uniprot_search"
+    },
+    {
+      "error": "fetch exceeded 25s timeout",
+      "error_type": "_FetchTimeout",
+      "lane_id": "n_ribosyl_hydrolase_non_ec_handles",
+      "source": "uniprot_search"
+    },
+    {
+      "error": "fetch exceeded 25s timeout",
+      "error_type": "_FetchTimeout",
+      "lane_id": "n_ribosyl_hydrolase_n_glycosidic_reaction",
+      "source": "uniprot_search"
+    }
+  ],
+  "floor_projection": {
+    "n_ribosyl_hydrolase": {
+      "admitted_this_run": 0,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 0,
+      "deficit_to_floor_after": 100,
+      "deficit_to_floor_before": 100,
+      "deploy_missing_active_site_context": "n_glycosidic_bond_hydrolysis_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 0,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "n_ribosyl_hydrolase_handles_scope_admission_only": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "o_glycosidase_phosphorylase_kinase_transferase_boundary_guard": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "n_ribosyl_hydrolase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "n_ribosyl_hydrolase_ec_3_2_2_named",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))",
+      "record_count": 0,
+      "status": "query_fetch_failed",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    },
+    {
+      "lane_id": "n_ribosyl_hydrolase_non_ec_handles",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) AND ((protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\") OR (keyword:Hydrolase) OR (ft_act_site:*) OR (ft_binding:*))",
+      "record_count": 0,
+      "status": "query_fetch_failed",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    },
+    {
+      "lane_id": "n_ribosyl_hydrolase_n_glycosidic_reaction",
+      "query": "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) AND ((cc_catalytic_activity:ribose) OR (cc_catalytic_activity:\"D-ribose\") OR (cc_catalytic_activity:hypoxanthine) OR (cc_catalytic_activity:adenine) OR (cc_catalytic_activity:uracil))",
+      "record_count": 0,
+      "status": "query_fetch_failed",
+      "target_family_lane": "n_ribosyl_hydrolase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {},
+    "reason_counts": {}
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_n_ribosyl_hydrolase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

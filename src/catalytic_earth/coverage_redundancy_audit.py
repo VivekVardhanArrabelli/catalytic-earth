@@ -299,13 +299,22 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
     # it was the one missing signature). Coverage-accounting metadata only; EC stays
     # scope-only, never predictive.
     "ser_thr_protein_phosphatase": {
-        "ec_prefixes": ["3.1.3.16"],
+        "ec_prefixes": ["3.1.3.16", "3.1.3.48"],
         "cofactor": (
-            "dinuclear Mn/Fe (PPM) or Fe/Zn (PPP) metallophosphatase removing phosphate "
-            "from phospho-Ser/Thr protein residues; small-molecule phosphomonoesterase and "
-            "Cys-based protein-tyrosine-phosphatase boundaries are held"
+            "dinuclear Mn/Fe/Mg protein-substrate phosphatase context; HAD-like, "
+            "Cys-PTP/DSP/PTEN, small-molecule phosphatase, kinase, and transferase "
+            "boundaries are held"
         ),
         "lanes": ["ser_thr_protein_phosphatase"],
+    },
+    "n_ribosyl_hydrolase": {
+        "ec_prefixes": ["3.2.2"],
+        "cofactor": (
+            "N-glycosidic bond hydrolysis context with nucleoside hydrolase family text, "
+            "ribose/deoxyribose and base products, and phosphorylase/kinase/transferase "
+            "boundaries held"
+        ),
+        "lanes": ["n_ribosyl_hydrolase"],
     },
 }
 
