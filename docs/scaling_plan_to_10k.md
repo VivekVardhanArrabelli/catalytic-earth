@@ -16,6 +16,54 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-15 automation update: APH tier-2 source-handle batch applied; PDE remains the lone
+hole.** Treat this as the newest operational state for bronze scaleout. Hard safety remains green,
+frozen current702 stayed byte-unchanged at sha `5eec9bef...`, and growth happened only through the
+sharded external bronze registry. The current positive fingerprint universe remains
+`label_factory_v1_44fp` with **44** fingerprints and **41** ontology families. Counted label
+counters are now: external rows **7720**, external seed **6496**, external OOS **1224**, external
+silver **30**, combined label surface **8422**, combined seed surface **6726**, positive bronze
+**6679**, OOS bronze **1696**, silver_confirmed **47**, projected **0**.
+
+APH tier-2 sourcing is guarded admission evidence, not predictive evidence. The APH runner now has
+unreviewed tier-2 lane switches and a fail-closed `source_tier_2` mode requiring at least three
+independent non-EC mechanism axes; EC, protein name, query handles, and reaction text stay in
+excluded context. The preview
+`artifacts/v3_aminoglycoside_phosphotransferase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260615.json`
+fetched **240** rows, found **239** target mechanism-corroborated labels, admitted **150** after
+novelty/cap replay, held **70** at cap, and had **0** off-target holds. Row audit
+`artifacts/v3_aminoglycoside_phosphotransferase_tier2_row_guardrail_audit_current702_20260615.json`
+found **0** problem rows. Explicit reuse-preview apply appended **150** rows (**7570 -> 7720**)
+and verified the frozen current702 sha before/after.
+
+Post-apply planning artifacts:
+`artifacts/v3_coverage_redundancy_audit_current702_20260615_post_aph_tier2_apply.json`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_aph_tier2_apply.json`,
+`artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_tier2_apply.json`, and
+`work/metal_independent_phosphodiesterase_post_aph_source_strategy_current702_20260615.md`.
+Coverage now shows `metal_independent_phosphodiesterase` as the lone hole/under-floor fingerprint,
+fingerprint Gini **0.1944**, and only `metal_dependent_hydrolase` over cap. Novelty replay is
+**7259** admit / **414** throttle / **47** reject across **7720** expansion rows. The factory has
+**0** ready existing lanes >=150; top projected clean admits are
+`short_chain_dehydrogenase_reductase` at **84**, and PDE projects only **34** under current handles.
+The post-APH PDE exact-EC distribution scout
+`artifacts/v3_metal_independent_phosphodiesterase_exact_ec_distribution_scout_current702_20260615_post_aph_apply.json`
+shows exact cyclic-nucleotide PDE splits remain subscale after the non-metal filter (largest exact
+cyclic split **18**) while broad EC/name windows are boundary-heavy.
+Fallback source-handle scout
+`artifacts/v3_evidence_handle_expansion_current702_20260615_post_aph_apply.json` probed **6**
+families and found **741** capped reachable positive-bronze uplift from better reviewed handles
+across **4** handle-blocked families. This is source-wall headroom, not additive supply: NAD(P) and
+broad oxidoreductase pools overlap and must be split into family-specific capped lanes before
+mutation.
+
+Next action: do not source more APH and do not pad the 14-row reviewed PDE preview or 0-row PDE
+tier-2 preview. The remaining safe bronze-scaleout path is either a new mechanism-bearing PDE
+source wall beyond EC/name counts, or a split high-yield source-tier/family strategy such as
+SDR/AKR or serine beta-lactamase that goes through OOS preregistration if needed, non-destructive
+preview, row guardrail audit, novelty/governor/dedup/cap replay, leakage/source-contract
+validation, and explicit apply only if the clean batch gate is met.
+
 **2026-06-15 automation update: APH 44fp infrastructure built; corrected source wall is
 subscale, no registry mutation.** Treat this as the newest operational state for bronze scaleout.
 Hard safety remains green, frozen current702 was not written, and no external bronze labels were

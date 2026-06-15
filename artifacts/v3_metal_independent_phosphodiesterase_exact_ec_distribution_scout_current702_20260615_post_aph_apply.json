@@ -1,0 +1,66 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_exact_ec_distribution_scout_current702_20260615_post_aph_apply",
+  "created_utc": "2026-06-15T21:41:30Z",
+  "status": "non_destructive_source_count_scout_no_registry_mutation",
+  "scope": "Reviewed UniProt EC 3.1.4 exact-EC distribution and candidate metal-independent PDE split counts after APH tier-2 apply.",
+  "method": {
+    "source": "UniProt REST reviewed:true query counts and cursor sample",
+    "registry_written": false,
+    "labels_created": false,
+    "predictive_features_added": false,
+    "ec_scope_only": true,
+    "notes": "Counts are source-strategy evidence only. They do not admit labels and do not count EC as a mechanism corroborator."
+  },
+  "broad_distribution_sample": {
+    "query": "(reviewed:true) AND (ec:3.1.4.*)",
+    "records_fetched": 1086,
+    "pages_fetched": 3,
+    "top_exact_ec_counts": {
+      "3.1.4.-": 570,
+      "3.1.4.11": 67,
+      "3.1.4.4": 58,
+      "3.1.4.35": 55,
+      "3.1.4.14": 51,
+      "3.1.4.53": 44,
+      "3.1.4.17": 39,
+      "3.1.4.12": 36,
+      "3.1.4.3": 32,
+      "3.1.4.46": 28,
+      "3.1.4.52": 23,
+      "3.1.4.1": 21,
+      "3.1.4.37": 15,
+      "3.1.4.58": 12,
+      "3.1.4.2": 10,
+      "3.1.4.41": 10,
+      "3.1.4.16": 9
+    },
+    "interpretation": "The reviewed EC 3.1.4 surface is dominated by generic 3.1.4.- records, phospholipase/phosphodiesterase boundary rows, sphingomyelinases, ENPP/pyrophosphatase rows, and small exact cyclic-nucleotide subfamilies."
+  },
+  "candidate_split_counts": {
+    "broad_ec_3_1_4_reviewed": 1086,
+    "broad_ec_3_1_4_non_metal": 490,
+    "cyclic_nucleotide_pde_3_1_4_17_non_metal": 6,
+    "cgmp_pde_3_1_4_35_non_metal": 7,
+    "camp_pde_3_1_4_53_non_metal": 2,
+    "cyclic_di_gmp_pde_3_1_4_52_non_metal": 18,
+    "cyclic_di_amp_pde_3_1_4_59_non_metal": 0,
+    "cnpase_3_1_4_37_non_metal": 15,
+    "rna_2_3_cyclic_pde_3_1_4_58_non_metal": 12,
+    "protein_name_cyclic_nucleotide_non_metal": 8,
+    "protein_name_cyclic_phosphodiesterase_non_metal": 44,
+    "avoid_phospholipase_name_non_metal": 178
+  },
+  "decision": {
+    "same_handle_retry_recommended": false,
+    "exact_ec_splits_apply_sized": false,
+    "broad_name_split_safe_for_apply": false,
+    "next_safe_action": "Do not retry broad EC/name PDE windows as a mass-growth path. A safe PDE lane needs a new mechanism-bearing source wall beyond exact EC/name counts, or the automation should pivot to a different high-yield family/source-tier strategy."
+  },
+  "guardrails": {
+    "registries_edited": false,
+    "labels_created": false,
+    "frozen_current702_written": false,
+    "count_scout_only": true,
+    "ec_never_counted_as_corroborator": true
+  }
+}

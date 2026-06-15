@@ -1,5 +1,82 @@
 # Handoff
 
+## Session run - APH tier-2 bronze batch applied; PDE remains lone hole (2026-06-15, Codex automation)
+
+- Hard blockers stayed clear. Started from current `origin/main` at
+  `f60617d6a1492cdf264689cdf3216bd428425250`, acquired the automation lock, and pulled
+  fast-forward before work. Frozen current702 sha before apply was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; after apply it was the
+  same. No frozen current702 rows were written.
+- Implemented guarded APH unreviewed tier-2 source-handle support in
+  `src/catalytic_earth/aminoglycoside_phosphotransferase_sourcing.py` and
+  `scripts/source_aminoglycoside_phosphotransferase_family.py`. The new path is fail-closed:
+  unreviewed tier-2 lanes require `source_tier_2`, at least three independent non-EC mechanism
+  axes, EC scope only, and empty `predictive_evidence`.
+- APH tier-2 non-destructive preview
+  `artifacts/v3_aminoglycoside_phosphotransferase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260615.json`
+  fetched **240** rows, found **239** target labels, admitted **150** novelty-safe rows, held
+  **19** by novelty replay, and held **70** more at cap. Row audit
+  `artifacts/v3_aminoglycoside_phosphotransferase_tier2_row_guardrail_audit_current702_20260615.json`
+  audited all **150** rows with **0** problems.
+- Explicit reuse-preview apply appended **150** APH bronze rows to the sharded external registry,
+  skipped **0** duplicates, changed external rows **7570 -> 7720**, and changed combined label
+  surface **8272 -> 8422**. Shard safety remains green: manifest about **1.2 KB**, shards about
+  **17 MB / 17 MB / 17 MB / 6.7 MB**, curated current702 about **496 KB**.
+- Honest counters after apply: external rows **7720** = external seed **6496** + external OOS
+  **1224**, with external silver **30**. Combined label surface **8422**; combined seed surface
+  **6726**; positive bronze **6679**; OOS bronze **1696**; silver_confirmed **47**; projected
+  **0**.
+- Post-apply planning refreshes:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_aph_tier2_apply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_aph_tier2_apply.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_tier2_apply.json`,
+  `artifacts/v3_family_set_expansion_targets_current702_20260615_post_aph_tier2_apply.json`,
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260615_post_aph_tier2_apply.json`,
+  and `artifacts/v3_mechanism_representation_loop_current702_20260615_post_aph_tier2_apply.json`.
+  Coverage reports **8422** combined labels, Gini **0.1944**, lone hole
+  `metal_independent_phosphodiesterase`, and over-cap `metal_dependent_hydrolase`. Novelty replay
+  reports **7259** admit / **414** throttle / **47** reject across **7720** expansion rows. Factory
+  reports **0** ready existing lanes >=150; top projected clean admits are
+  `short_chain_dehydrogenase_reductase` at **84** and PDE at **34** under current handles.
+- Added post-APH PDE source strategy:
+  `artifacts/v3_metal_independent_phosphodiesterase_post_aph_source_strategy_current702_20260615.json`
+  and `work/metal_independent_phosphodiesterase_post_aph_source_strategy_current702_20260615.md`.
+  The strategy records that the existing PDE previews remain blocked: **14** reviewed admits,
+  **0** alternate reviewed admits, and **0** tier-2 admits with **186** off-target plus **197**
+  trust-tier-insufficient holds. Do not pad or apply those previews.
+- Added a PDE exact-EC distribution scout:
+  `artifacts/v3_metal_independent_phosphodiesterase_exact_ec_distribution_scout_current702_20260615_post_aph_apply.json`
+  and `work/metal_independent_phosphodiesterase_exact_ec_distribution_scout_current702_20260615_post_aph_apply.md`.
+  Broad reviewed EC 3.1.4 has **1086** rows and **490** after the current non-metal filter, but the
+  exact cyclic-nucleotide splits are all subscale after filtering: 3.1.4.17 **6**, 3.1.4.35 **7**,
+  3.1.4.53 **2**, 3.1.4.52 **18**, 3.1.4.37 **15**, and 3.1.4.58 **12**. The broader windows are
+  boundary-heavy, so the next PDE attempt needs a new mechanism-bearing source wall beyond EC/name
+  counts.
+- Added fallback source-handle scout:
+  `artifacts/v3_evidence_handle_expansion_current702_20260615_post_aph_apply.json` and
+  `work/evidence_handle_expansion_current702_20260615_post_aph_apply.md`. It probed **6** families,
+  found **4** handle-blocked families unlocked by better reviewed handles, and estimates **741**
+  capped reachable positive-bronze uplift. This is source-wall headroom only: NAD(P)/oxidoreductase
+  pools overlap and must be split into family-specific capped lanes, not sourced as one broad
+  bucket.
+- Validation: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed before the APH apply.
+  Post-change focused critical suite passed **97 passed**; final full suite passed **2337 passed,
+  1 warning, 244 subtests passed in 169.68s**. `compileall`, JSON/JSONL parsing, file-size scan,
+  and `git diff --check` were clean before doc closeout; final doc-closeout validation is recorded
+  in `work/status.md`.
+- Closeout snapshot: **2026-06-15T21:46:55Z**, elapsed **33.6** minutes, remaining **21.4**
+  minutes. Closed before minute 50 because APH closed at cap and all remaining same-run mutation
+  paths are concretely blocked: reviewed PDE **14** admits, alternate reviewed PDE **0**, tier-2
+  PDE **0**, exact cyclic PDE splits at most **18** after the non-metal filter, and no ready
+  existing lane >=150. The next useful work is a new source-wall/OOS design, not a safe same-run
+  apply.
+- Next concrete action: do not source more APH, and do not retry the same PDE EC/name windows.
+  Build a new mechanism-bearing PDE source wall beyond EC/name counts, or pivot to a split
+  high-yield source-tier/family strategy such as SDR/AKR or serine beta-lactamase. Any mutation
+  must go through OOS preregistration if the fingerprint universe changes, non-destructive preview,
+  row audit, novelty/governor/dedup/cap replay, leakage/source-contract validation, and explicit
+  apply only if the clean batch gate is met.
+
 ## Session run - APH 44fp infrastructure built; corrected source wall subscale, no registry mutation (2026-06-15, Codex automation)
 
 - Hard blockers stayed clear. Started from current `origin/main` at

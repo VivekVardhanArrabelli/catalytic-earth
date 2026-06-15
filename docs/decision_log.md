@@ -3,6 +3,42 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: APH TIER-2 SOURCE-HANDLE BATCH IS COUNTED BRONZE
+
+Decision: APH unreviewed tier-2 source-handle expansion is allowed only as guarded bronze admission
+evidence, with stricter trust requirements than reviewed Swiss-Prot. EC may scope/fetch candidate
+rows but is never counted as mechanism evidence. Source tier 2 APH rows require at least three
+independent non-EC mechanism axes; for the applied batch every row had active/binding-site,
+cofactor/cosubstrate, family/domain, and Rhea/reaction-participant evidence. Protein names, EC,
+query handles, reaction text, and prose remain excluded context, and `predictive_evidence` remains
+empty.
+
+Implementation: extended `src/catalytic_earth/aminoglycoside_phosphotransferase_sourcing.py` and
+`scripts/source_aminoglycoside_phosphotransferase_family.py` with fail-closed unreviewed tier-2
+lane switches and `source_tier` plumbing into `source_trust_tiers.evaluate_corroboration`. Added
+focused tests proving tier-2 APH requires `source_tier_2`, has at least three non-EC mechanism
+axes, keeps EC out of counted corroboration, and leaves predictive evidence empty.
+
+Measured result: non-destructive preview
+`artifacts/v3_aminoglycoside_phosphotransferase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260615.json`
+fetched **240** rows, produced **239** target mechanism-corroborated labels, admitted **150**
+novelty-safe labels, held **19** by novelty replay, and held **70** more at the APH cap. Row audit
+`artifacts/v3_aminoglycoside_phosphotransferase_tier2_row_guardrail_audit_current702_20260615.json`
+checked all **150** admitted rows with **0** problems. Explicit reuse-preview apply appended
+**150** bronze APH rows to the external registry, skipped **0** duplicates, changed external rows
+**7570 -> 7720**, and changed combined label surface **8272 -> 8422**. Frozen current702 sha stayed
+`5eec9bef...` before and after apply.
+
+Decision: APH is now closed at the 150 cap and must not be padded further. Post-apply coverage
+shows `metal_independent_phosphodiesterase` as the lone remaining hole/under-floor fingerprint.
+Prior PDE previews remain below gate (**14** reviewed admits; **0** tier-2 admits), and post-APH
+exact-EC distribution scout
+`artifacts/v3_metal_independent_phosphodiesterase_exact_ec_distribution_scout_current702_20260615_post_aph_apply.json`
+shows exact cyclic-nucleotide PDE splits are also too small after the non-metal filter. The next
+mutation must not reuse those handles blindly. Build a new mechanism-bearing PDE source wall beyond
+EC/name counts, or a new high-yield family/source-tier strategy, through the full gated path before
+any apply.
+
 ## 2026-06-15: APH IS A GUARDED 44TH FINGERPRINT, BUT NOT APPLIED
 
 Decision: add `aminoglycoside_phosphotransferase` as the 44th positive fingerprint and keep the

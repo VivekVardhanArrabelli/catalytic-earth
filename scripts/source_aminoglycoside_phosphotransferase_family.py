@@ -121,6 +121,28 @@ def main() -> int:
         default=None,
         help="optional subset of APH lane ids to run for bounded deep paging",
     )
+    parser.add_argument(
+        "--include-unreviewed-tier2-lanes",
+        action="store_true",
+        help=(
+            "prepend unreviewed UniProt site/reaction-annotated APH lanes; requires "
+            "--source-tier source_tier_2 and the stricter three-axis trust gate"
+        ),
+    )
+    parser.add_argument(
+        "--only-unreviewed-tier2-lanes",
+        action="store_true",
+        help=(
+            "source only unreviewed UniProt site/reaction-annotated APH lanes; requires "
+            "--source-tier source_tier_2 and the stricter three-axis trust gate"
+        ),
+    )
+    parser.add_argument(
+        "--source-tier",
+        default="source_tier_0",
+        choices=("source_tier_0", "source_tier_2"),
+        help="trust tier passed to mechanism corroboration; tier 2 requires three axes",
+    )
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--report", default=DEFAULT_REPORT)
     parser.add_argument(
@@ -259,6 +281,9 @@ def main() -> int:
             record_offset_per_lane=effective_offset,
             record_limit_per_lane=effective_limit,
             lane_ids=tuple(args.lane_ids) if args.lane_ids else None,
+            include_unreviewed_tier2_lanes=args.include_unreviewed_tier2_lanes,
+            only_unreviewed_tier2_lanes=args.only_unreviewed_tier2_lanes,
+            source_tier=args.source_tier,
             cap_ceiling=args.cap_ceiling,
             query_fetcher=query_fetcher,
             entry_fetcher=entry_fetcher,

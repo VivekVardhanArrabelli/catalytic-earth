@@ -1,0 +1,58 @@
+{
+  "artifact_id": "v3_aminoglycoside_phosphotransferase_tier2_row_guardrail_audit_current702_20260615",
+  "counts": {
+    "audited_labels": 150,
+    "batch_gate_min_clean_admits": 150,
+    "batch_gate_passed": true,
+    "held_at_cap_ceiling": 70,
+    "mechanism_axis_counts": {
+      "active_site_motif_or_residue_role": 150,
+      "cofactor_or_cosubstrate": 150,
+      "domain_or_family_profile": 150,
+      "rhea_reaction_or_participant_pattern": 150
+    },
+    "mechanism_axis_set_counts": {
+      "('active_site_motif_or_residue_role', 'cofactor_or_cosubstrate', 'domain_or_family_profile', 'rhea_reaction_or_participant_pattern')": 150
+    },
+    "mechanism_corroborated_bronze_labels": 239,
+    "novelty_admitted_labels": 150,
+    "problem_rows": 0,
+    "review_status_counts": {
+      "automation_curated": 150
+    },
+    "source_tier_counts": {
+      "source_tier_2": 150
+    },
+    "tier_counts": {
+      "bronze": 150
+    },
+    "unique_labels_before_aggregate_gate": 150
+  },
+  "created_utc": "2026-06-15T21:21:23Z",
+  "guardrails": {
+    "all_rows_automation_curated": true,
+    "all_rows_bronze": true,
+    "all_rows_predictive_evidence_empty": true,
+    "all_rows_source_tier_2": true,
+    "all_rows_three_or_more_non_ec_mechanism_axes": true,
+    "all_rows_uniprot_namespace": true,
+    "aph_handles_scope_admission_only": true,
+    "batch_gate_min_clean_admits": 150,
+    "batch_gate_passed": true,
+    "curated_registry_written": false,
+    "ec_never_counted_as_mechanism_axis": true,
+    "frozen_current702_benchmark_preserved": true,
+    "protein_kinase_acetyltransferase_nucleotidyltransferase_boundary_guard": true,
+    "registry_apply_authorized_by_this_artifact": false,
+    "required_mechanism_axes": [
+      "domain_or_family_profile",
+      "at least one of cofactor_or_cosubstrate, active_site_motif_or_residue_role, rhea_reaction_or_participant_pattern"
+    ],
+    "requires_explicit_apply_command_with_frozen_sha_checks": true
+  },
+  "next_action": "Run the APH source script with --apply --reuse-preview against the source preview so frozen current702 SHA is printed before/after; then rerun validation, coverage, novelty, and source-contract tests.",
+  "problem_rows": [],
+  "schema_version": "external_bronze_row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_aminoglycoside_phosphotransferase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260615.json",
+  "status": "row_guardrails_pass_and_batch_gate_passed_ready_for_explicit_apply"
+}

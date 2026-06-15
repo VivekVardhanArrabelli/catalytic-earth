@@ -7690,6 +7690,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             [
                 "aldehyde_dehydrogenase",
                 "alpha_beta_hydrolase_esterase_lipase",
+                "aminoglycoside_phosphotransferase",
                 "askha_sugar_acetate_kinase",
                 "atp_amide_ligase",
                 "biotin_dependent_carboxylase",

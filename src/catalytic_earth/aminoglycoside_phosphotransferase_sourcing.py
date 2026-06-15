@@ -55,17 +55,40 @@ FAMILY_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
         },
     )
 }
+UNREVIEWED_TIER2_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
+    FAMILY: (
+        {
+            "lane_id": "aminoglycoside_phosphotransferase_unreviewed_tier2_atp_site",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:false) AND ("
+                '(protein_name:"aminoglycoside phosphotransferase") OR '
+                '(protein_name:"aminoglycoside kinase") OR '
+                "(ec:2.7.1.*)) AND (protein_name:aminoglycoside) AND ("
+                "(cc_catalytic_activity:ATP) OR (cc_cofactor:ATP) OR "
+                "(ft_binding:ATP)) AND ((ft_act_site:*) OR (ft_binding:*))"
+            ),
+        },
+    )
+}
 
 
 def _lane_queries_for(
     families: tuple[str, ...],
     lane_ids: tuple[str, ...] | None = None,
+    *,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
 ) -> tuple[dict[str, str], ...]:
     requested_lane_ids = set(lane_ids or ())
     lanes: list[dict[str, str]] = []
     for family in families:
         if family not in FAMILY_LANE_QUERIES:
             raise ValueError(f"{family!r} is not an aminoglycoside phosphotransferase family")
+        if include_unreviewed_tier2_lanes or only_unreviewed_tier2_lanes:
+            lanes.extend(UNREVIEWED_TIER2_LANE_QUERIES[family])
+        if only_unreviewed_tier2_lanes:
+            continue
         lanes.extend(FAMILY_LANE_QUERIES[family])
     if requested_lane_ids:
         lanes = [lane for lane in lanes if lane["lane_id"] in requested_lane_ids]
@@ -89,14 +112,24 @@ def build_aminoglycoside_phosphotransferase_sourcing(
     record_offset_per_lane: int = 0,
     record_limit_per_lane: int | None = None,
     lane_ids: tuple[str, ...] | None = None,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+    source_tier: str = "source_tier_0",
     query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
 ) -> dict[str, Any]:
     """Source APH labels; return a non-destructive preview."""
     created = created_utc or _utc_now_iso()
+    if (include_unreviewed_tier2_lanes or only_unreviewed_tier2_lanes) and source_tier != "source_tier_2":
+        raise ValueError("unreviewed tier-2 lanes must use source_tier='source_tier_2'")
     families = tuple(families)
-    lane_queries = _lane_queries_for(families, lane_ids=lane_ids)
+    lane_queries = _lane_queries_for(
+        families,
+        lane_ids=lane_ids,
+        include_unreviewed_tier2_lanes=include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=only_unreviewed_tier2_lanes,
+    )
     caps_by_family = {family: cap_ceiling for family in families}
 
     pilot = build_external_source_ingestion_pilot(
@@ -127,6 +160,7 @@ def build_aminoglycoside_phosphotransferase_sourcing(
         ],
         registry=expansion_payload,
         index=index,
+        source_tier=source_tier,
     )
 
     family_set = set(families)
@@ -195,7 +229,11 @@ def build_aminoglycoside_phosphotransferase_sourcing(
         "schema_version": SCHEMA_VERSION,
         "created_utc": created,
         "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
-        "evidence_basis": "reviewed_swissprot_exact_ec_rhea_atp_aminoglycoside_phosphoryl_transfer_annotation",
+        "evidence_basis": (
+            "unreviewed_uniprot_tier2_ec_rhea_atp_aminoglycoside_phosphoryl_transfer_annotation"
+            if source_tier == "source_tier_2"
+            else "reviewed_swissprot_exact_ec_rhea_atp_aminoglycoside_phosphoryl_transfer_annotation"
+        ),
         "stage": "scaling_plan_to_10k:wire_aminoglycoside_phosphotransferase_broadened_handle",
         "families_sourced": list(families),
         "deploy_missing_active_site_context_per_family": {
@@ -208,6 +246,10 @@ def build_aminoglycoside_phosphotransferase_sourcing(
             "predictive_features_use_ec_name_keyword_reaction_or_prose": False,
             "ec_used_for_scope_assignment_only_never_predictive": True,
             "aminoglycoside_phosphotransferase_handles_scope_admission_only": True,
+            "unreviewed_tier2_source_lanes_enabled": include_unreviewed_tier2_lanes,
+            "only_unreviewed_tier2_source_lanes_enabled": only_unreviewed_tier2_lanes,
+            "source_trust_tier": source_tier,
+            "source_tier_2_requires_three_independent_mechanism_axes": True,
             "broadened_handles_never_predictive_features": True,
             "ec_never_a_counted_corroborator": True,
             "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": True,
@@ -232,6 +274,9 @@ def build_aminoglycoside_phosphotransferase_sourcing(
             "max_records_per_lane": max_records_per_lane,
             "record_offset_per_lane": record_offset_per_lane,
             "record_limit_per_lane": record_limit_per_lane,
+            "unreviewed_tier2_lanes_enabled": include_unreviewed_tier2_lanes,
+            "only_unreviewed_tier2_lanes_enabled": only_unreviewed_tier2_lanes,
+            "source_trust_tier": source_tier,
             "lane_ids": [lane["lane_id"] for lane in lane_queries],
             "fetched_candidate_rows": pilot["candidate_count"],
             "mechanism_corroborated_bronze_labels": len(target_labels),
@@ -354,6 +399,9 @@ def write_aminoglycoside_phosphotransferase_sourcing(
     record_offset_per_lane: int = 0,
     record_limit_per_lane: int | None = None,
     lane_ids: tuple[str, ...] | None = None,
+    include_unreviewed_tier2_lanes: bool = False,
+    only_unreviewed_tier2_lanes: bool = False,
+    source_tier: str = "source_tier_0",
     cap_ceiling: int = 150,
     frozen_benchmark_path: Path = DEFAULT_FROZEN_BENCHMARK_PATH,
     expansion_registry_path: Path = DEFAULT_EXPANSION_REGISTRY_PATH,
@@ -369,6 +417,9 @@ def write_aminoglycoside_phosphotransferase_sourcing(
         record_offset_per_lane=record_offset_per_lane,
         record_limit_per_lane=record_limit_per_lane,
         lane_ids=lane_ids,
+        include_unreviewed_tier2_lanes=include_unreviewed_tier2_lanes,
+        only_unreviewed_tier2_lanes=only_unreviewed_tier2_lanes,
+        source_tier=source_tier,
         cap_ceiling=cap_ceiling,
         current_manifest_payload=_read_json(Path(current_manifest_path)),
         frozen_benchmark_payload=_read_json(Path(frozen_benchmark_path)),

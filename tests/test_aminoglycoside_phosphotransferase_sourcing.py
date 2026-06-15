@@ -59,6 +59,15 @@ _ROWS = {
         "Binding site",
         "CoA aminoglycoside acetyltransferase binding site",
     ),
+    "TAPH001": (
+        ["2.7.1.95"],
+        "Aminoglycoside phosphotransferase",
+        ["Kinase", "Transferase", "Antibiotic resistance"],
+        ["ATP", "Mg(2+)"],
+        "kanamycin + ATP = kanamycin 3'-phosphate + ADP",
+        "Active site",
+        "Catalytic aspartate in the aminoglycoside phosphotransferase active site",
+    ),
 }
 
 _QUERY_ORDER = ("EC0001", "APH001", "APH002", "PK0001", "AAC0001")
@@ -83,7 +92,7 @@ def _search_record(accession: str) -> dict:
         "ec_numbers": ec,
         "pdb_ids": [],
         "alphafold_ids": [accession],
-        "reviewed": "reviewed",
+        "reviewed": "unreviewed" if accession.startswith("T") else "reviewed",
         "evidence_level": "protein_cross_reference",
         "keywords": keywords,
     }
@@ -123,7 +132,11 @@ def _entry_record(accession: str) -> dict:
     return {
         "source": "uniprot",
         "accession": accession,
-        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "entry_type": (
+            "UniProtKB unreviewed (TrEMBL)"
+            if accession.startswith("T")
+            else "UniProtKB reviewed (Swiss-Prot)"
+        ),
         "sequence_length": len(_sequence(accession)),
         "keywords": keywords,
         "active_site_features": active_features,
@@ -150,7 +163,8 @@ def _entry_record(accession: str) -> dict:
 
 
 def _fake_query_fetcher(query: str, size: int) -> dict:
-    records = [_search_record(a) for a in _QUERY_ORDER]
+    order = ("TAPH001",) if "reviewed:false" in query else _QUERY_ORDER
+    records = [_search_record(a) for a in order]
     return {"metadata": {"url": "test://uniprot", "query": query}, "records": records[:size]}
 
 
@@ -269,6 +283,34 @@ class AminoglycosidePhosphotransferaseSourcingTest(unittest.TestCase):
     def test_unknown_family_rejected(self):
         with self.assertRaises(ValueError):
             self._run(families=("protein_kinase_ser_thr_tyr",))
+
+    def test_unreviewed_tier2_lane_requires_source_tier_2(self):
+        with self.assertRaises(ValueError):
+            self._run(only_unreviewed_tier2_lanes=True)
+
+    def test_unreviewed_tier2_lane_is_three_axis_and_leakage_safe(self):
+        audit = self._run(
+            only_unreviewed_tier2_lanes=True,
+            source_tier="source_tier_2",
+        )
+        self.assertEqual(audit["counts"]["lanes_queried"], 1)
+        self.assertEqual(audit["counts"]["source_trust_tier"], "source_tier_2")
+        self.assertTrue(audit["counts"]["only_unreviewed_tier2_lanes_enabled"])
+        self.assertTrue(audit["guardrails"]["only_unreviewed_tier2_source_lanes_enabled"])
+        self.assertTrue(
+            audit["guardrails"]["source_tier_2_requires_three_independent_mechanism_axes"]
+        )
+        self.assertEqual(
+            audit["counts"]["admitted_fingerprint_counts"],
+            {"aminoglycoside_phosphotransferase": 1},
+        )
+        label = audit["applied_labels"][0]
+        self.assertEqual(label["entry_id"], "uniprot:TAPH001")
+        self.assertEqual(label["evidence"]["predictive_evidence"], [])
+        tier = label["evidence"]["source_trust_tier"]
+        self.assertEqual(tier["source_tier"], "source_tier_2")
+        self.assertGreaterEqual(len(tier["mechanism_corroborator_axes_present"]), 3)
+        self.assertNotIn("ec_scope_hint", tier["mechanism_corroborator_axes_present"])
 
 
 if __name__ == "__main__":

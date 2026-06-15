@@ -1,0 +1,69 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_post_aph_source_strategy_current702_20260615",
+  "created_utc": "2026-06-15T21:37:27Z",
+  "status": "strategy_only_no_registry_mutation",
+  "scope": "Post-APH-apply source strategy for the lone remaining metal_independent_phosphodiesterase hole.",
+  "current_state": {
+    "combined_label_surface": 8422,
+    "combined_seed_surface": 6726,
+    "external_rows": 7720,
+    "mechanism_fingerprint_universe": "label_factory_v1_44fp",
+    "holes": [
+      "metal_independent_phosphodiesterase"
+    ],
+    "under_floor": [],
+    "ready_existing_lanes_ge_150": 0
+  },
+  "evidence_summary": {
+    "reviewed_pde_preview": {
+      "artifact": "artifacts/v3_metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.json",
+      "fetched_rows": 265,
+      "target_labels": 18,
+      "novelty_admitted": 14,
+      "apply_ready": false
+    },
+    "alternate_reviewed_pde_preview": {
+      "artifact": "artifacts/v3_metal_independent_phosphodiesterase_alternate_handle_preview_current702_20260615.json",
+      "fetched_rows": 130,
+      "target_labels": 0,
+      "novelty_admitted": 0,
+      "apply_ready": false
+    },
+    "tier2_pde_preview": {
+      "artifact": "artifacts/v3_metal_independent_phosphodiesterase_tier2_sourcing_preview_cursor_pages2_size100_current702_20260615.json",
+      "fetched_rows": 400,
+      "target_labels": 0,
+      "novelty_admitted": 0,
+      "off_target_holds": 186,
+      "trust_tier_corroboration_insufficient_holds": 197,
+      "apply_ready": false
+    },
+    "post_aph_factory_projection": {
+      "artifact": "artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_tier2_apply.json",
+      "pde_projected_clean_admits": 34,
+      "top_projected_family": "short_chain_dehydrogenase_reductase",
+      "top_projected_clean_admits": 84
+    },
+    "post_aph_exact_ec_distribution_scout": {
+      "artifact": "artifacts/v3_metal_independent_phosphodiesterase_exact_ec_distribution_scout_current702_20260615_post_aph_apply.json",
+      "broad_ec_3_1_4_reviewed": 1086,
+      "broad_ec_3_1_4_non_metal": 490,
+      "cyclic_nucleotide_exact_ec_splits_apply_sized": false,
+      "largest_exact_cyclic_split_after_non_metal_filter": 18,
+      "interpretation": "Exact cyclic-nucleotide PDE splits are too small for a 150-row clean batch, while broader EC/name windows are boundary-heavy."
+    }
+  },
+  "decision": {
+    "do_not_apply_existing_pde_previews": true,
+    "do_not_pad_same_pde_handles": true,
+    "next_safe_action": "Design a materially sharper PDE source split or pivot to a new high-yield source-tier/family strategy, then rerun OOS preregistration if the fingerprint universe changes, non-destructive preview, row audit, novelty/governor/dedup/cap replay, leakage/source-contract validation, and explicit apply only if the clean batch gate is met."
+  },
+  "guardrails": {
+    "proposal_only": true,
+    "registries_edited": false,
+    "labels_created": false,
+    "frozen_current702_written": false,
+    "ec_scope_only": true,
+    "predictive_features_added": false
+  }
+}

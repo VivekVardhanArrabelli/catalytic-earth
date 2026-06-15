@@ -26,6 +26,69 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **APH TIER-2 SOURCE-HANDLE BATCH APPLIED; PDE REMAINS THE LONE HOLE
+  (2026-06-15 automation).**
+  Hard safety remains green. Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`, and growth happened only
+  in the sharded external bronze registry. The current positive universe remains
+  `label_factory_v1_44fp` with **44** mechanism fingerprints and **41** ontology families. External
+  rows are now **7720** = external seed **6496** + external OOS **1224**, with external silver
+  **30**. Combined label surface is **8422**; combined seed surface **6726**; positive bronze
+  **6679**; OOS bronze **1696**; silver_confirmed **47**; projected **0**.
+
+  Added guarded unreviewed tier-2 APH source-handle support, not a new predictive feature path:
+  `src/catalytic_earth/aminoglycoside_phosphotransferase_sourcing.py` now supports
+  `source_tier_2` unreviewed APH lanes with a fail-closed three-non-EC-mechanism-axis trust gate,
+  and `scripts/source_aminoglycoside_phosphotransferase_family.py` exposes
+  `--include-unreviewed-tier2-lanes`, `--only-unreviewed-tier2-lanes`, and `--source-tier`.
+  EC, protein name, reaction text, and query handles remain scope/admission excluded context.
+  `predictive_evidence` remains `[]`.
+
+  Non-destructive APH tier-2 preview
+  `artifacts/v3_aminoglycoside_phosphotransferase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260615.json`
+  fetched **240** rows, found **239** target mechanism-corroborated labels, admitted **150**
+  novelty-safe labels, held **19** by novelty replay, and held **70** more at the cap. Row audit
+  `artifacts/v3_aminoglycoside_phosphotransferase_tier2_row_guardrail_audit_current702_20260615.json`
+  checked all **150** admitted rows with **0** problems: UniProt namespace, bronze,
+  `automation_curated`, `source_tier_2`, empty predictive evidence, and all rows had active/binding
+  site, cofactor/cosubstrate, family/domain, and Rhea/reaction-participant mechanism axes.
+
+  Explicit reuse-preview apply appended **150** APH bronze rows, skipped **0** duplicates, changed
+  the expansion registry **7570 -> 7720**, and changed the combined label surface **8272 -> 8422**.
+  The frozen benchmark sha printed before and after apply matched exactly.
+
+  Post-apply planning artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_aph_tier2_apply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_aph_tier2_apply.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_tier2_apply.json`, and
+  `work/metal_independent_phosphodiesterase_post_aph_source_strategy_current702_20260615.md`.
+  Coverage reports **8422** combined labels, fingerprint Gini **0.1944**,
+  `metal_independent_phosphodiesterase` as the lone hole/under-floor fingerprint, and only
+  `metal_dependent_hydrolase` over cap. APH is closed at 150 but reaction-saturated because these
+  rows all share one reaction family; do not source more APH without a reaction-diversity repair.
+  Novelty replay across **7720** expansion rows reports **7259** admit / **414** throttle /
+  **47** reject. The high-yield factory reports **0** ready existing lanes >=150; top projected
+  clean supply is `short_chain_dehydrogenase_reductase` at **84** and PDE at **34** under current
+  handles.
+  Fallback source-handle scout
+  `artifacts/v3_evidence_handle_expansion_current702_20260615_post_aph_apply.json` reports **6**
+  families probed, **4** handle-blocked families unlocked by better reviewed handles, and **741**
+  capped reachable positive-bronze uplift. Treat this as source-wall headroom, not additive labels:
+  NAD(P) and broad oxidoreductase pools overlap and must be split into family-specific, capped
+  lanes before any mutation.
+
+  Next action: do not pad APH, PDE, or any existing capped lane. For the lone PDE hole, do not
+  retry the same reviewed or tier-2 UniProt handles: reviewed PDE admitted only **14** rows and
+  tier-2 PDE admitted **0**. The post-APH exact-EC distribution scout
+  `artifacts/v3_metal_independent_phosphodiesterase_exact_ec_distribution_scout_current702_20260615_post_aph_apply.json`
+  confirms exact cyclic-nucleotide PDE splits are also subscale after the non-metal filter
+  (largest exact cyclic split **18**) while broad EC/name windows are boundary-heavy. The next safe
+  scaleout step is a new mechanism-bearing PDE source wall beyond EC/name counts, or a split
+  high-yield family/source-tier strategy such as SDR/AKR or serine beta-lactamase with OOS
+  preregistration if the fingerprint universe changes, non-destructive preview, row guardrail audit,
+  novelty/governor/dedup/cap replay, leakage/source-contract validation, and explicit apply only if
+  the batch gate is met.
+
 - **APH 44FP INFRASTRUCTURE BUILT; CORRECTED SOURCE WALL SUBSCALE, NO REGISTRY MUTATION
   (2026-06-15 automation).**
   Hard safety remains green. The current positive universe is now `label_factory_v1_44fp` with
