@@ -109,18 +109,19 @@ COSUBSTRATE_CLASSES = tuple(COSUBSTRATE_CLASS_PATTERNS.keys())
 # (lyase/transferase) chemistries -- e.g. cobalamin ammonia-lyases -- out of the bond
 # space and preserves the non-metal families' cofactor-based separability.
 #
-# ``bc_ester_hydrolysis`` and ``bc_glycoside_hydrolysis`` (added 2026-06-15) extend the same
-# hydrolysis basis to the new ester-/lipase- and glycoside-hydrolase family lanes, which
-# otherwise carried NO reaction-center class and collapsed: the alpha/beta-hydrolase lane
-# had nothing to separate on, and the glycoside-hydrolase lane spuriously tripped
-# ``bc_carbon_carbon_lyase``. Both read only the Rhea substrate->product equation.
+# ``bc_ester_hydrolysis``, ``bc_glycoside_hydrolysis``, and
+# ``bc_n_glycosidic_hydrolysis`` (added 2026-06-15) extend the same hydrolysis basis to the
+# new ester-/lipase-, carbohydrate glycoside-, and N-ribosyl-hydrolase family lanes, which
+# otherwise carried NO reaction-center class and collapsed. All read only the Rhea
+# substrate->product equation.
 BOND_CHANGE_CLASSES = (
     "bc_phosphomonoester",  # phosphomonoester P-O hydrolysis (free phosphate released)
     "bc_phosphodiester",    # phosphodiester P-O hydrolysis (nuclease / cyclic-nucleotide)
     "bc_peptide_cn",        # peptide C-N hydrolysis (peptide-fragment products, no Pi)
     "bc_amide_cn",          # non-peptide amide/amidine C-N hydrolysis / deamination
     "bc_ester_hydrolysis",  # ester/lipase C-O hydrolysis (acylglycerol/sterol-ester -> fatty acid + alcohol)
-    "bc_glycoside_hydrolysis",  # O-/N-glycoside hydrolysis (glycoside + H2O -> free sugar + aglycone)
+    "bc_glycoside_hydrolysis",  # carbohydrate O-glycoside hydrolysis (glycoside + H2O -> free sugar + aglycone)
+    "bc_n_glycosidic_hydrolysis",  # nucleoside/nucleotide N-glycosidic hydrolysis (ribose + nucleobase)
 )
 
 # Non-hydrolytic reaction-center bond-change classes (added 2026-06-14). The four
@@ -275,6 +276,13 @@ _GLYCOSIDE_FREE_SUGARS = (
     "d-glucose", "d-mannose", "d-galactose", "d-glucosamine", "n-acetyl",
     "d-xylose", "l-fucose", "d-fructose", "d-galactosamine",
 )
+_N_GLYCOSIDIC_RIBOSE_PRODUCTS = (
+    "d-ribose", "2-deoxy-d-ribose",
+)
+_N_GLYCOSIDIC_BASE_PRODUCTS = (
+    "adenine", "guanine", "cytosine", "uracil", "thymine", "hypoxanthine",
+    "xanthine", "nucleobase",
+)
 
 
 def classify_reaction_bond_change(reaction: str) -> set[str]:
@@ -362,10 +370,24 @@ def classify_reaction_bond_change(reaction: str) -> set[str]:
     ):
         classes.add("bc_ester_hydrolysis")
 
-    # O-/N-glycoside hydrolysis: a glycoside / oligosaccharide hydrolysed to a free sugar
-    # + aglycone. Fires on a free-monosaccharide product OR a glycosidic-linkage marker on
-    # the substrate side. (Also gives glycoside_hydrolase its defining feature so it stops
-    # spuriously firing bc_carbon_carbon_lyase.)
+    # N-glycosidic hydrolysis: a nucleoside/nucleotide hydrolysed to ribose (or
+    # ribose-phosphate) plus a nucleobase. This is source-free chemistry from Rhea; keeping
+    # it separate from carbohydrate O-glycoside hydrolysis prevents the new N-ribosyl lane
+    # from collapsing into the glycoside-hydrolase centroid.
+    ribose_product = any(
+        any(ribose in term for ribose in _N_GLYCOSIDIC_RIBOSE_PRODUCTS)
+        for term in rhs_terms
+    )
+    nucleobase_product = any(
+        any(base in term for base in _N_GLYCOSIDIC_BASE_PRODUCTS) for term in rhs_terms
+    )
+    if ribose_product and nucleobase_product:
+        classes.add("bc_n_glycosidic_hydrolysis")
+
+    # Carbohydrate O-glycoside hydrolysis: a glycoside / oligosaccharide hydrolysed to a
+    # free sugar + aglycone. Fires on a free-monosaccharide product OR a
+    # glycosidic-linkage marker on the substrate side. (Also gives glycoside_hydrolase its
+    # defining feature so it stops spuriously firing bc_carbon_carbon_lyase.)
     free_sugar_product = any(
         any(sugar in term for sugar in _GLYCOSIDE_FREE_SUGARS) for term in rhs_terms
     )

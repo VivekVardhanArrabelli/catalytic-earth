@@ -9,6 +9,7 @@ import json
 import multiprocessing as mp
 import sys
 from pathlib import Path
+from queue import Empty
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
@@ -16,7 +17,12 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from catalytic_earth.adapters import UNIPROT_SEARCH_URL, USER_AGENT  # noqa: E402
-from catalytic_earth.adapters import fetch_rhea_by_ec, fetch_uniprot_entry, fetch_uniprot_query  # noqa: E402
+from catalytic_earth.adapters import (  # noqa: E402
+    fetch_rhea_by_ec,
+    fetch_uniprot_entry,
+    fetch_uniprot_query,
+    fetch_uniprot_query_cursor,
+)
 from catalytic_earth.external_annotation_anchored_import import (  # noqa: E402
     apply_external_annotation_anchored_import_to_registry,
 )
@@ -51,14 +57,16 @@ def _with_timeout(timeout_seconds: int, func, *args):
     queue = ctx.Queue(maxsize=1)
     proc = ctx.Process(target=_child_fetch, args=(queue, func, args))
     proc.start()
-    proc.join(timeout_seconds)
-    if proc.is_alive():
+    try:
+        status, *payload = queue.get(timeout=timeout_seconds)
+    except Empty:
         proc.terminate()
         proc.join(2)
         raise _FetchTimeout(f"fetch exceeded {timeout_seconds}s timeout")
-    if queue.empty():
-        raise _FetchTimeout(f"fetch exited without payload within {timeout_seconds}s timeout")
-    status, *payload = queue.get()
+    proc.join(2)
+    if proc.is_alive():
+        proc.terminate()
+        proc.join(2)
     if status == "ok":
         return payload[0]
     error_type, message = payload
@@ -147,10 +155,33 @@ def main() -> int:
             "fetching offset + limit records and slicing locally"
         ),
     )
+    parser.add_argument(
+        "--use-query-cursor-pagination",
+        action="store_true",
+        help=(
+            "fetch UniProt search records through cursor pagination, following the REST "
+            "Link rel=next header for --query-pages-per-lane pages"
+        ),
+    )
+    parser.add_argument(
+        "--query-pages-per-lane",
+        type=int,
+        default=1,
+        help="bounded UniProt search pages to fetch when cursor pagination is enabled",
+    )
     args = parser.parse_args()
 
     if args.reuse_preview and not args.apply:
         print("ERROR: --reuse-preview is only valid together with --apply.", file=sys.stderr)
+        return 2
+    if args.use_query_offset_paging and args.use_query_cursor_pagination:
+        print(
+            "ERROR: --use-query-offset-paging and --use-query-cursor-pagination are mutually exclusive.",
+            file=sys.stderr,
+        )
+        return 2
+    if args.query_pages_per_lane < 1:
+        print("ERROR: --query-pages-per-lane must be positive.", file=sys.stderr)
         return 2
 
     if not args.reuse_preview and not args.skip_egress_check and not _egress_ok():
@@ -167,35 +198,55 @@ def main() -> int:
     else:
         query_size = (
             args.record_limit_per_lane
-            if args.use_query_offset_paging and args.record_limit_per_lane
+            if (
+                (args.use_query_offset_paging or args.use_query_cursor_pagination)
+                and args.record_limit_per_lane
+            )
             else args.max_records_per_lane
         )
         query_offset = args.record_offset_per_lane if args.use_query_offset_paging else 0
-        effective_offset = 0 if args.use_query_offset_paging else args.record_offset_per_lane
-        effective_limit = (
-            args.record_limit_per_lane if not args.use_query_offset_paging else None
+        effective_offset = (
+            0
+            if args.use_query_offset_paging or args.use_query_cursor_pagination
+            else args.record_offset_per_lane
         )
-        query_fetcher = (
-            (
+        effective_limit = (
+            args.record_limit_per_lane
+            if not args.use_query_offset_paging and not args.use_query_cursor_pagination
+            else None
+        )
+        if args.use_query_cursor_pagination:
+            query_fetcher = (
                 lambda query, size: _with_timeout(
                     args.fetch_timeout_seconds,
-                    fetch_uniprot_query,
+                    fetch_uniprot_query_cursor,
                     query,
                     query_size,
-                    1,
-                    query_offset,
+                    args.query_pages_per_lane,
                 )
-            )
-            if args.fetch_timeout_seconds
-            else (
-                lambda query, size: fetch_uniprot_query(
+                if args.fetch_timeout_seconds
+                else fetch_uniprot_query_cursor(
                     query,
                     size=query_size,
-                    max_pages=1,
-                    offset=query_offset,
+                    max_pages=args.query_pages_per_lane,
                 )
             )
-        )
+        elif args.fetch_timeout_seconds:
+            query_fetcher = lambda query, size: _with_timeout(
+                args.fetch_timeout_seconds,
+                fetch_uniprot_query,
+                query,
+                query_size,
+                1,
+                query_offset,
+            )
+        else:
+            query_fetcher = lambda query, size: fetch_uniprot_query(
+                query,
+                size=query_size,
+                max_pages=1,
+                offset=query_offset,
+            )
         entry_fetcher = (
             (lambda accession: _with_timeout(args.fetch_timeout_seconds, fetch_uniprot_entry, accession))
             if args.fetch_timeout_seconds

@@ -1,0 +1,77 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_targeted_source_wall_scout_current702_20260615_post_n_ribosyl_apply",
+  "counts": {
+    "disambiguation_hold_count": 35,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 35
+    },
+    "disambiguation_skip_count": 85,
+    "fetch_failure_count": 0,
+    "fetched_candidate_rows": 157,
+    "lanes_queried": 2,
+    "mechanism_axis_counts_for_admitted_preview": {
+      "cofactor_or_cosubstrate": 7,
+      "domain_or_family_profile": 11,
+      "rhea_reaction_or_participant_pattern": 11
+    },
+    "novelty_admitted_if_43fp_registered": 11,
+    "novelty_decisions": {
+      "admit": 11,
+      "throttle": 2
+    },
+    "off_target_labels_held": 24,
+    "target_mechanism_corroborated_labels": 13
+  },
+  "created_utc": "2026-06-15T17:11:21Z",
+  "fetch_failures": [],
+  "guardrails": {
+    "ec_scope_only_never_counted": true,
+    "fingerprint_registry_written": false,
+    "metal_absence_not_counted_as_evidence": true,
+    "not_apply_ready_until_43fp_oos_preregistration_and_runner": true,
+    "ontology_written": false,
+    "registry_written": false
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "metal_independent_pde_ec_3_1_4_cyclic_amp_gmp_window0_80",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND ((cc_catalytic_activity:\"cyclic AMP\") OR (cc_catalytic_activity:\"cyclic GMP\") OR (cc_catalytic_activity:cAMP) OR (cc_catalytic_activity:cGMP))",
+      "record_count": 80,
+      "record_limit_per_lane": 80,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 80,
+      "records_returned_by_query": 80,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28cc_catalytic_activity%3A%22cyclic+AMP%22%29+OR+%28cc_catalytic_activity%3A%22cyclic+GMP%22%29+OR+%28cc_catalytic_activity%3AcAMP%29+OR+%28cc_catalytic_activity%3AcGMP%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=80",
+      "status": "query_fetched",
+      "target_family_lane": "metal_independent_phosphodiesterase"
+    },
+    {
+      "lane_id": "metal_independent_pde_hydrolase_non_metal_window0_80",
+      "query": "(reviewed:true) AND (protein_name:phosphodiesterase) AND (keyword:Hydrolase) NOT (keyword:\"Metal-binding\")",
+      "record_count": 77,
+      "record_limit_per_lane": 80,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 80,
+      "records_returned_by_query": 80,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28protein_name%3Aphosphodiesterase%29+AND+%28keyword%3AHydrolase%29+NOT+%28keyword%3A%22Metal-binding%22%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=80",
+      "status": "query_fetched",
+      "target_family_lane": "metal_independent_phosphodiesterase"
+    }
+  ],
+  "next_action": "Use targeted lanes as source-wall evidence only; build 43fp fingerprint/OOS/runner before apply.",
+  "sample_admitted_entry_ids": [
+    "uniprot:P12019",
+    "uniprot:Q54HY0",
+    "uniprot:Q13956",
+    "uniprot:Q9FJ62",
+    "uniprot:Q9SZ11",
+    "uniprot:Q9FGT9",
+    "uniprot:O30405",
+    "uniprot:P61249",
+    "uniprot:F4I8H8",
+    "uniprot:Q9C907",
+    "uniprot:Q9SD81"
+  ],
+  "schema_version": "source_wall_scout.v1",
+  "status": "non_destructive_targeted_source_wall_scout_no_registry_or_fingerprint_mutation"
+}

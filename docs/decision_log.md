@@ -3,6 +3,60 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: N-RIBOSYL HYDROLASE CURSOR BATCH IS COUNTED BRONZE
+
+Decision: the `n_ribosyl_hydrolase` 42nd-fingerprint lane is now countable bronze after a
+Link-header UniProt cursor-pagination source fix produced an apply-sized, mechanism-first batch.
+The earlier 61-row aggregate remains historical and must not be applied, but it no longer blocks
+the family floor.
+
+Implementation: added reusable UniProt Link-header pagination in `src/catalytic_earth/adapters.py`
+and wired `scripts/source_n_ribosyl_hydrolase_family.py` with
+`--use-query-cursor-pagination` / `--query-pages-per-lane`. Also fixed the script timeout wrapper
+so large child-process fetch payloads are read from the queue before join, avoiding false timeout
+artifacts. The source handles remain admission/excluded context only; EC/name/prose stay outside
+predictive evidence.
+
+Measured result: cursor-paginated synonym preview
+`artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_cursor_synonym_pages5_size40_current702_20260615.json`
+fetched **200** reviewed Swiss-Prot rows, found **181** target mechanism-corroborated labels,
+admitted **150** novelty-safe labels, and held **31** at the per-fingerprint cap. Row audit
+`artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_cursor_synonym_pages5_size40.json`
+checked all **150** admitted rows with **0** problems; every row is UniProt namespace, bronze,
+`automation_curated`, source tier 0, `predictive_evidence: []`, and has non-EC domain/family plus
+Rhea reaction/participant mechanism axes. Applying through the explicit reuse-preview command
+changed external rows **7420 -> 7570** and combined label surface **8122 -> 8272**; frozen
+current702 sha stayed `5eec9bef...`.
+
+Post-apply audits: coverage reports **8272** combined labels, no holes or under-floor
+fingerprints, fingerprint Gini **0.1783**, and only `metal_dependent_hydrolase` over cap. Novelty
+replay reports **7109** admit / **414** throttle / **47** reject across **7570** external rows.
+Honest counters are now external rows **7570** = external seed **6346** + external OOS **1224**,
+with external silver **30**; combined seed surface **6576**; positive bronze **6529**; OOS bronze
+**1696**; silver_confirmed **47**; projected **0**.
+
+Decision: next mass-growth lane is `metal_independent_phosphodiesterase`, not more N-ribosyl.
+Build it as the 43rd fingerprint only through the full gated path: fingerprint + ontology node,
+43fp OOS preregistration before candidate selection, reviewed-UniProt runner, bounded preview,
+row guardrail audit, novelty/governor/dedup/cap replay, tests, and explicit apply.
+
+Source-wall caveat: broad and targeted PDE previews are not yet apply-sized. The broad first
+windows fetched **68** rows with **1** target label; targeted first windows fetched **157** rows
+with **13** target / **11** novelty-admitted preview labels; cursor-paged active/binding-site,
+hydrolase non-metal, and cyclic-nucleotide name handles fetched **244** rows with **18** target /
+**14** novelty-admitted preview labels. These artifacts are source-strategy evidence only and
+write no registry, fingerprint, or ontology state. The future 43fp runner needs sharper
+mechanism-bearing source handles before any registry mutation.
+
+Post-rebase representation safety: after `origin/main` merged the reaction-center separability
+restore, the applied N-ribosyl rows exposed a detector gap rather than a registry problem.
+N-ribosyl Rhea equations produce D-ribose or ribose-5-phosphate plus nucleobase, but the
+reaction-center feature space had no N-glycosidic hydrolysis class; those rows were initially
+pulled into the zero-feature hydrolase bucket and dropped real-registry leave-one-out
+self-consistency to **0.7384**. Added leakage-safe `bc_n_glycosidic_hydrolysis`, derived only from
+Rhea substrate/product strings, which restores overall self-consistency to **0.7598** while keeping
+carbohydrate `bc_glycoside_hydrolysis` distinct.
+
 ## 2026-06-15: N-RIBOSYL HYDROLASE IS A GUARDED 42ND FINGERPRINT, BUT NOT APPLIED
 
 Decision: add `n_ribosyl_hydrolase` as the 42nd positive fingerprint and keep the source wall

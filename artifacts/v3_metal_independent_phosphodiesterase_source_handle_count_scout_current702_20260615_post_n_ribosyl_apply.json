@@ -1,0 +1,143 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_source_handle_count_scout_current702_20260615_post_n_ribosyl_apply",
+  "created_utc": "2026-06-15T17:09:30Z",
+  "guardrails": {
+    "ec_scope_only": true,
+    "fingerprint_registry_written": false,
+    "metal_absence_not_counted_as_evidence": true,
+    "ontology_written": false,
+    "registry_written": false,
+    "samples_are_source_strategy_only": true
+  },
+  "lanes": [
+    {
+      "count_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22cyclic+nucleotide+phosphodiesterase%22%29+OR+%28protein_name%3A%22cyclic-nucleotide+phosphodiesterase%22%29%29&fields=accession&format=tsv&size=1",
+      "lane_id": "cyclic_nucleotide_pde_name",
+      "query": "(reviewed:true) AND ((protein_name:\"cyclic nucleotide phosphodiesterase\") OR (protein_name:\"cyclic-nucleotide phosphodiesterase\"))",
+      "reviewed_match_count": 40,
+      "sample_accessions": [
+        "P9WP65",
+        "Q14123",
+        "B7YZV4",
+        "Q01064",
+        "Q63421"
+      ],
+      "sample_protein_names": [
+        "cAMP/cGMP dual specificity phosphodiesterase Rv0805 (EC 3.1.4.16) (EC 3.1.4.17) (2',3'-cyclic-nucleotide phosphodiesterase) (3',5'-cyclic-nucleotide phosphodiesterase) (Cyclic nucleotide phosphodiesterase)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1C (Cam-PDE 1C) (EC 3.1.4.17) (Hcam3)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1 (PDE1) (EC 3.1.4.17)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1B (Cam-PDE 1B) (EC 3.1.4.17) (63 kDa Cam-PDE)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1C (Cam-PDE 1C) (EC 3.1.4.17)"
+      ],
+      "sample_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22cyclic+nucleotide+phosphodiesterase%22%29+OR+%28protein_name%3A%22cyclic-nucleotide+phosphodiesterase%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5"
+    },
+    {
+      "count_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.17%29+AND+%28%28protein_name%3Aphosphodiesterase%29+OR+%28protein_name%3A%22cyclic+nucleotide+phosphodiesterase%22%29%29&fields=accession&format=tsv&size=1",
+      "lane_id": "ec_3_1_4_17_cyclic_nucleotide_pde",
+      "query": "(reviewed:true) AND (ec:3.1.4.17) AND ((protein_name:phosphodiesterase) OR (protein_name:\"cyclic nucleotide phosphodiesterase\"))",
+      "reviewed_match_count": 39,
+      "sample_accessions": [
+        "P9WP65",
+        "Q14123",
+        "Q01064",
+        "B7YZV4",
+        "P54750"
+      ],
+      "sample_protein_names": [
+        "cAMP/cGMP dual specificity phosphodiesterase Rv0805 (EC 3.1.4.16) (EC 3.1.4.17) (2',3'-cyclic-nucleotide phosphodiesterase) (3',5'-cyclic-nucleotide phosphodiesterase) (Cyclic nucleotide phosphodiesterase)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1C (Cam-PDE 1C) (EC 3.1.4.17) (Hcam3)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1B (Cam-PDE 1B) (EC 3.1.4.17) (63 kDa Cam-PDE)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1 (PDE1) (EC 3.1.4.17)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1A (Cam-PDE 1A) (EC 3.1.4.17) (61 kDa Cam-PDE) (hCam-1)"
+      ],
+      "sample_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.17%29+AND+%28%28protein_name%3Aphosphodiesterase%29+OR+%28protein_name%3A%22cyclic+nucleotide+phosphodiesterase%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5"
+    },
+    {
+      "count_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28cc_catalytic_activity%3A%22cyclic+AMP%22%29+OR+%28cc_catalytic_activity%3A%22cyclic+GMP%22%29+OR+%28cc_catalytic_activity%3AcAMP%29+OR+%28cc_catalytic_activity%3AcGMP%29%29&fields=accession&format=tsv&size=1",
+      "lane_id": "ec_3_1_4_catalytic_cyclic_amp_gmp",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND ((cc_catalytic_activity:\"cyclic AMP\") OR (cc_catalytic_activity:\"cyclic GMP\") OR (cc_catalytic_activity:cAMP) OR (cc_catalytic_activity:cGMP))",
+      "reviewed_match_count": 121,
+      "sample_accessions": [
+        "Q9HCR9",
+        "Q9Y233",
+        "Q01064",
+        "P54750",
+        "Q14123"
+      ],
+      "sample_protein_names": [
+        "Dual 3',5'-cyclic-AMP and -GMP phosphodiesterase 11A (EC 3.1.4.35) (EC 3.1.4.53) (cAMP and cGMP phosphodiesterase 11A)",
+        "cAMP and cAMP-inhibited cGMP 3',5'-cyclic phosphodiesterase 10A (EC 3.1.4.17)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1B (Cam-PDE 1B) (EC 3.1.4.17) (63 kDa Cam-PDE)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1A (Cam-PDE 1A) (EC 3.1.4.17) (61 kDa Cam-PDE) (hCam-1)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1C (Cam-PDE 1C) (EC 3.1.4.17) (Hcam3)"
+      ],
+      "sample_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28cc_catalytic_activity%3A%22cyclic+AMP%22%29+OR+%28cc_catalytic_activity%3A%22cyclic+GMP%22%29+OR+%28cc_catalytic_activity%3AcAMP%29+OR+%28cc_catalytic_activity%3AcGMP%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5"
+    },
+    {
+      "count_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A4.6.1.%2A%29+AND+%28%28protein_name%3Acyclase%29+OR+%28cc_catalytic_activity%3A%22cyclic%22%29%29&fields=accession&format=tsv&size=1",
+      "lane_id": "ec_4_6_1_cyclase_boundary_probe",
+      "query": "(reviewed:true) AND (ec:4.6.1.*) AND ((protein_name:cyclase) OR (cc_catalytic_activity:\"cyclic\"))",
+      "reviewed_match_count": 1389,
+      "sample_accessions": [
+        "O43306",
+        "Q8NFM4",
+        "Q96PN6",
+        "Q08462",
+        "Q08828"
+      ],
+      "sample_protein_names": [
+        "Adenylate cyclase type 6 (EC 4.6.1.1) (ATP pyrophosphate-lyase 6) (Adenylate cyclase type VI) (Adenylyl cyclase 6) (Ca(2+)-inhibitable adenylyl cyclase)",
+        "Adenylate cyclase type 4 (EC 4.6.1.1) (ATP pyrophosphate-lyase 4) (Adenylate cyclase type IV) (Adenylyl cyclase 4)",
+        "Adenylate cyclase type 10 (EC 4.6.1.1) (AH-related protein) (Adenylate cyclase homolog) (Germ cell soluble adenylyl cyclase) (hsAC) (sAC) (Testicular soluble adenylyl cyclase)",
+        "Adenylate cyclase type 2 (EC 4.6.1.1) (ATP pyrophosphate-lyase 2) (Adenylate cyclase type II) (Adenylyl cyclase 2)",
+        "Adenylate cyclase type 1 (EC 4.6.1.1) (ATP pyrophosphate-lyase 1) (Adenylate cyclase type I) (Adenylyl cyclase 1) (Ca(2+)/calmodulin-activated adenylyl cyclase)"
+      ],
+      "sample_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A4.6.1.%2A%29+AND+%28%28protein_name%3Acyclase%29+OR+%28cc_catalytic_activity%3A%22cyclic%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5"
+    },
+    {
+      "count_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28protein_name%3Aphosphodiesterase%29+AND+%28keyword%3AHydrolase%29+NOT+%28keyword%3A%22Metal-binding%22%29&fields=accession&format=tsv&size=1",
+      "lane_id": "phosphodiesterase_hydrolase_non_metal_keyword",
+      "query": "(reviewed:true) AND (protein_name:phosphodiesterase) AND (keyword:Hydrolase) NOT (keyword:\"Metal-binding\")",
+      "reviewed_match_count": 224,
+      "sample_accessions": [
+        "Q8WTR4",
+        "Q9NUW8",
+        "P09543",
+        "P18545",
+        "Q13956"
+      ],
+      "sample_protein_names": [
+        "Glycerophosphodiester phosphodiesterase 2 (EC 3.1.4.-) (Glycerophosphocholine phosphodiesterase GDPD5) (EC 3.1.4.2) (Glycerophosphodiester phosphodiesterase domain-containing protein 5)",
+        "Tyrosyl-DNA phosphodiesterase 1 (Tyr-DNA phosphodiesterase 1) (EC 3.1.4.-)",
+        "2',3'-cyclic-nucleotide 3'-phosphodiesterase (CNP) (CNPase) (EC 3.1.4.37)",
+        "Rod cGMP 3',5'-cyclic phosphodiesterase subunit gamma (Rod GMP-PDE gamma)",
+        "Retinal cone rhodopsin-sensitive cGMP 3',5'-cyclic phosphodiesterase subunit gamma (GMP-PDE gamma) (EC 3.1.4.35)"
+      ],
+      "sample_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28protein_name%3Aphosphodiesterase%29+AND+%28keyword%3AHydrolase%29+NOT+%28keyword%3A%22Metal-binding%22%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5"
+    },
+    {
+      "count_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession&format=tsv&size=1",
+      "lane_id": "ec_3_1_4_act_or_binding_site",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "reviewed_match_count": 718,
+      "sample_accessions": [
+        "O14638",
+        "O76074",
+        "P09543",
+        "Q01064",
+        "Q13822"
+      ],
+      "sample_protein_names": [
+        "Ectonucleotide pyrophosphatase/phosphodiesterase family member 3 (E-NPP 3) (NPP3) (Alkaline phosphodiesterase I) (EC 3.1.4.1) (Dinucleoside polyphosphatase) (EC 3.6.1.-) (Nucleotide diphosphatase) (Nucleotide pyrophosphatase) (NPPase) (EC 3.6.1.9) (Phosphodiesterase I beta) (PD-Ibeta) (Phosphodiesterase I/nucleotide pyrophosphatase 3) (CD antigen CD203c)",
+        "cGMP-specific 3',5'-cyclic phosphodiesterase (EC 3.1.4.35) (cGMP-binding cGMP-specific phosphodiesterase) (CGB-PDE)",
+        "2',3'-cyclic-nucleotide 3'-phosphodiesterase (CNP) (CNPase) (EC 3.1.4.37)",
+        "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1B (Cam-PDE 1B) (EC 3.1.4.17) (63 kDa Cam-PDE)",
+        "Autotaxin (EC 3.1.4.39) (EC 3.1.4.4) (Ectonucleotide pyrophosphatase/phosphodiesterase family member 2) (E-NPP 2) (Extracellular lysophospholipase D) (LysoPLD)"
+      ],
+      "sample_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=5"
+    }
+  ],
+  "next_action": "Use high-count lanes only after 43fp fingerprint/OOS preregistration; pair counts with entry/Rhea source-wall preview before apply.",
+  "schema_version": "source_handle_count_scout.v1",
+  "status": "non_destructive_count_scout_no_registry_mutation"
+}

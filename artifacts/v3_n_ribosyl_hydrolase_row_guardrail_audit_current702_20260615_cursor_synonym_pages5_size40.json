@@ -1,0 +1,53 @@
+{
+  "artifact_id": "v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_cursor_synonym_pages5_size40",
+  "counts": {
+    "audited_labels": 150,
+    "batch_gate_min_clean_admits": 150,
+    "batch_gate_passed": true,
+    "held_at_cap_ceiling": 31,
+    "mechanism_axis_counts": {
+      "active_site_motif_or_residue_role": 143,
+      "cofactor_or_cosubstrate": 148,
+      "domain_or_family_profile": 150,
+      "rhea_reaction_or_participant_pattern": 150
+    },
+    "mechanism_corroborated_bronze_labels": 181,
+    "novelty_admitted_labels": 150,
+    "problem_rows": 0,
+    "review_status_counts": {
+      "automation_curated": 150
+    },
+    "source_tier_counts": {
+      "source_tier_0": 150
+    },
+    "tier_counts": {
+      "bronze": 150
+    },
+    "unique_labels_before_aggregate_gate": 150
+  },
+  "created_utc": "2026-06-15T16:52:06Z",
+  "guardrails": {
+    "all_rows_automation_curated": true,
+    "all_rows_bronze": true,
+    "all_rows_predictive_evidence_empty": true,
+    "all_rows_uniprot_namespace": true,
+    "batch_gate_min_clean_admits": 150,
+    "batch_gate_passed": true,
+    "curated_registry_written": false,
+    "ec_never_counted_as_mechanism_axis": true,
+    "frozen_current702_benchmark_preserved": true,
+    "nucleosidase_synonym_handles_scope_admission_only": true,
+    "o_glycosidase_phosphorylase_kinase_transferase_boundary_guard": true,
+    "registry_apply_authorized_by_this_artifact": false,
+    "required_mechanism_axes": [
+      "domain_or_family_profile",
+      "rhea_reaction_or_participant_pattern"
+    ],
+    "requires_explicit_apply_command_with_frozen_sha_checks": true
+  },
+  "next_action": "Run the N-ribosyl source script with --apply --reuse-preview against the source preview so frozen current702 SHA is printed before/after; then rerun validation, coverage, novelty, and source-contract tests.",
+  "problem_rows": [],
+  "schema_version": "external_bronze_row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_cursor_synonym_pages5_size40_current702_20260615.json",
+  "status": "row_guardrails_pass_and_batch_gate_passed_ready_for_explicit_apply"
+}

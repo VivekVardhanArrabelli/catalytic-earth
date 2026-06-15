@@ -107,13 +107,32 @@ class BondChangeFeatureTests(unittest.TestCase):
         )
 
     def test_glycoside_hydrolysis_class(self) -> None:
-        # O-/N-glycoside hydrolysis -> free monosaccharide + aglycone.
+        # Carbohydrate O-glycoside hydrolysis -> free monosaccharide + aglycone.
         self.assertIn(
             "bc_glycoside_hydrolysis",
             classify_reaction_bond_change(
                 "DIMBOA beta-D-glucoside + H2O = DIMBOA + D-glucose"
             ),
         )
+
+    def test_n_glycosidic_hydrolysis_class(self) -> None:
+        # Nucleoside/nucleotide hydrolysis -> ribose + nucleobase.
+        self.assertIn(
+            "bc_n_glycosidic_hydrolysis",
+            classify_reaction_bond_change("adenosine + H2O = D-ribose + adenine"),
+        )
+        self.assertIn(
+            "bc_n_glycosidic_hydrolysis",
+            classify_reaction_bond_change(
+                "AMP + H2O = D-ribose 5-phosphate + adenine"
+            ),
+        )
+        self.assertNotIn(
+            "bc_glycoside_hydrolysis",
+            classify_reaction_bond_change("adenosine + H2O = D-ribose + adenine"),
+        )
+
+    def test_phosphomonoester_is_not_glycoside_hydrolysis(self) -> None:
         # a phosphomonoester hydrolysis is not a glycoside hydrolysis.
         self.assertNotIn(
             "bc_glycoside_hydrolysis",
@@ -420,13 +439,12 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
     def test_build_on_real_registry_is_leakage_safe(self) -> None:
         expansion = load_json(EXPANSION_PATH)
         audit = build_mechanism_representation_loop(expansion)
-        # 5638 prior seed labels + 146 HAD-like phosphatase bronze rows
-        # + 150 aldehyde dehydrogenase bronze rows + 150 alpha/beta hydrolase
-        # esterase/lipase bronze rows + 112 Ser/Thr protein phosphatase
-        # bronze rows applied on 2026-06-14;
+        # 6196 prior seed labels + 150 N-ribosyl hydrolase bronze rows
+        # applied on 2026-06-15 through the cursor-paginated,
+        # mechanism-first lane;
         # the representation loop remains leakage-safe and still excludes
         # EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 6196)
+        self.assertEqual(audit["seed_labels"], 6346)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])

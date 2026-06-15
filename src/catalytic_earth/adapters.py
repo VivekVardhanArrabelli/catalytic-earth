@@ -6,7 +6,7 @@ import re
 from dataclasses import dataclass
 from io import StringIO
 from typing import Any
-from urllib.parse import urlencode
+from urllib.parse import parse_qs, urlencode, urlparse
 from urllib.request import Request, urlopen
 
 
@@ -39,6 +39,12 @@ def _fetch_text(url: str, timeout: int = 30) -> str:
     request = Request(url, headers={"User-Agent": USER_AGENT})
     with urlopen(request, timeout=timeout) as response:
         return response.read().decode("utf-8", errors="replace")
+
+
+def _fetch_text_with_headers(url: str, timeout: int = 30) -> tuple[str, Any]:
+    request = Request(url, headers={"User-Agent": USER_AGENT})
+    with urlopen(request, timeout=timeout) as response:
+        return response.read().decode("utf-8", errors="replace"), response.headers
 
 
 def _fetch_header_int(url: str, header: str, timeout: int = 30) -> int | None:
@@ -292,6 +298,7 @@ def build_uniprot_query_url(
     fields: str = UNIPROT_DISCOVERY_FIELDS,
     size: int = 100,
     offset: int = 0,
+    cursor: str | None = None,
 ) -> str:
     if not query.strip():
         raise ValueError("query is required")
@@ -299,6 +306,10 @@ def build_uniprot_query_url(
         raise ValueError("size must be between 1 and 500")
     if offset < 0:
         raise ValueError("offset must be non-negative")
+    if cursor is not None and offset:
+        raise ValueError("cursor pagination cannot be combined with offset pagination")
+    if cursor is not None and not cursor:
+        raise ValueError("cursor must be non-empty when provided")
     params = {
         "query": query,
         "fields": fields,
@@ -307,6 +318,8 @@ def build_uniprot_query_url(
     }
     if offset:
         params["offset"] = str(offset)
+    if cursor is not None:
+        params["cursor"] = cursor
     return f"{UNIPROT_SEARCH_URL}?{urlencode(params)}"
 
 
@@ -345,6 +358,75 @@ def fetch_uniprot_query(
             "pages_fetched": len(pages),
             "pages": pages,
             "url": pages[0]["url"] if pages else build_uniprot_query_url(query=query, size=size),
+        },
+        "records": records,
+    }
+
+
+def _next_link_url(headers: Any) -> str | None:
+    link = headers.get("Link") if headers is not None else None
+    if not link:
+        return None
+    for match in re.finditer(r"<([^>]+)>\s*;\s*rel=\"next\"", str(link)):
+        return match.group(1)
+    return None
+
+
+def _cursor_from_url(url: str) -> str | None:
+    values = parse_qs(urlparse(url).query).get("cursor")
+    return values[0] if values else None
+
+
+def fetch_uniprot_query_cursor(
+    query: str,
+    size: int = 100,
+    max_pages: int = 1,
+    cursor: str | None = None,
+) -> dict[str, Any]:
+    if max_pages < 1:
+        raise ValueError("max_pages must be positive")
+    if size < 1 or size > 500:
+        raise ValueError("size must be between 1 and 500")
+    if cursor is not None and not cursor:
+        raise ValueError("cursor must be non-empty")
+    records: list[dict[str, Any]] = []
+    pages: list[dict[str, Any]] = []
+    url = build_uniprot_query_url(query=query, size=size, cursor=cursor)
+    seen_urls: set[str] = set()
+    for _ in range(max_pages):
+        if url in seen_urls:
+            break
+        seen_urls.add(url)
+        text, headers = _fetch_text_with_headers(url)
+        page_records = normalize_uniprot_tsv(text)
+        records.extend(page_records)
+        pages.append(
+            {
+                "url": url,
+                "cursor": _cursor_from_url(url),
+                "record_count": len(page_records),
+            }
+        )
+        if len(page_records) < size:
+            break
+        next_url = _next_link_url(headers)
+        if not next_url:
+            break
+        url = next_url
+    return {
+        "metadata": {
+            **RetrievalMetadata("uniprot", UNIPROT_SEARCH_URL, len(records)).to_dict(),
+            "query": query,
+            "size": size,
+            "max_pages": max_pages,
+            "pages_fetched": len(pages),
+            "cursor_pagination": True,
+            "pages": pages,
+            "url": (
+                pages[0]["url"]
+                if pages
+                else build_uniprot_query_url(query=query, size=size, cursor=cursor)
+            ),
         },
         "records": records,
     }

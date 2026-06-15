@@ -215,13 +215,12 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             self.assertTrue(out.exists())
             self.assertTrue(report.exists())
             written = json.loads(out.read_text())
-            # 7564 prior combined labels + 146 HAD-like phosphatase bronze rows
-            # + 150 aldehyde dehydrogenase bronze rows + 150 alpha/beta
-            # hydrolase esterase/lipase bronze rows + 112 Ser/Thr protein
-            # phosphatase bronze rows applied on 2026-06-14.
-            self.assertEqual(written["totals"]["combined"], 8122)
+            # 8122 prior combined labels + 150 N-ribosyl hydrolase bronze
+            # rows applied on 2026-06-15 through the cursor-paginated,
+            # mechanism-first lane.
+            self.assertEqual(written["totals"]["combined"], 8272)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 7420)
+            self.assertEqual(written["totals"]["expansion_bronze"], 7570)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -251,17 +250,17 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # without reopening that intentional over-cap. The later 2026-06-14
             # alpha/beta hydrolase esterase/lipase aggregate preview applied 150
             # guarded bronze rows, closing the new 40th-fingerprint floor. The
-            # 2026-06-15 N-ribosyl hydrolase fingerprint is registered but has
-            # not yet reached the 150-row apply gate, so it is the live floor hole.
+            # 2026-06-15 N-ribosyl hydrolase cursor pagination applied 150
+            # guarded bronze rows, closing the new 42nd-fingerprint floor.
             self.assertEqual(
                 audit["class_imbalance"]["expansion_holes"],
-                ["n_ribosyl_hydrolase"],
+                [],
             )
             self.assertEqual(
                 audit["class_imbalance"]["fingerprints_below_floor"],
-                ["n_ribosyl_hydrolase"],
+                [],
             )
-            self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 100)
+            self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 0)
             self.assertIn(
                 "metal_dependent_hydrolase",
                 audit["acquisition_targets"]["over_cap"],

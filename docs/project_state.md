@@ -26,6 +26,77 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **N-RIBOSYL HYDROLASE CURSOR BATCH APPLIED; NEXT LANE IS METAL-INDEPENDENT PDE (2026-06-15 automation).**
+  Hard safety remains green. The current positive universe stays `label_factory_v1_42fp` with
+  **42** mechanism fingerprints and **39** ontology families, and frozen current702 remains
+  byte-unchanged at sha `5eec9bef...`. A real external bronze mutation was applied only through
+  the sharded external registry: external rows **7420 -> 7570**, combined label surface
+  **8122 -> 8272**.
+
+  The source unlock was durable UniProt Link-header pagination for the N-ribosyl runner. Added
+  cursor pagination support in `src/catalytic_earth/adapters.py` and script switches
+  `--use-query-cursor-pagination` / `--query-pages-per-lane` in
+  `scripts/source_n_ribosyl_hydrolase_family.py`; also fixed the process-timeout wrapper so large
+  fetch payloads do not falsely time out before the parent reads the queue. EC/name/prose and
+  synonym handles remain scope/admission-only excluded context, never predictive features.
+
+  Apply source:
+  `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_cursor_synonym_pages5_size40_current702_20260615.json`
+  fetched **200** reviewed rows, found **181** target mechanism-corroborated labels, admitted
+  **150** novelty-safe rows, and held **31** at cap. Row audit
+  `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_cursor_synonym_pages5_size40.json`
+  passed with **0** problem rows. The explicit `--apply --reuse-preview` command appended **150**
+  rows, skipped **0** duplicates, and printed the same frozen current702 sha before and after.
+
+  Honest counters: external rows **7570** = external seed **6346** + external OOS **1224**, with
+  external silver **30**. Combined seed surface **6576**; positive bronze **6529**; OOS bronze
+  **1696**; silver_confirmed **47**; projected **0**. Coverage refresh
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_n_ribosyl_apply.json` reports
+  no holes/under-floor fingerprints, Gini **0.1783**, and only `metal_dependent_hydrolase` over
+  cap. Novelty replay
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_n_ribosyl_apply.json`
+  reports **7109** admit / **414** throttle / **47** reject across **7570** external rows.
+  High-yield factory
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_apply.json`
+  finds **0** ready existing lanes >=150 and selects `metal_independent_phosphodiesterase` as the
+  next new-fingerprint lane with projected clean admits **150**.
+
+  Post-rebase test safety required one representation repair. `origin/main` merged the
+  reaction-center separability restore during this run; after rebasing, the new N-ribosyl rows
+  exposed a source-free feature gap because D-ribose/ribose-5-phosphate plus nucleobase products
+  were not represented as N-glycosidic hydrolysis. Added `bc_n_glycosidic_hydrolysis` from Rhea
+  substrate/product strings only. Real-registry leave-one-out self-consistency is now **0.7598**,
+  `n_ribosyl_hydrolase` self-consistency is **0.9933**, and carbohydrate
+  `glycoside_hydrolase` remains **0.8133**.
+
+  Bounded next-lane reconnaissance is recorded but not apply-ready:
+  `artifacts/v3_metal_independent_phosphodiesterase_source_wall_scout_current702_20260615_post_n_ribosyl_apply.json`
+  fetched **68** broad first-window rows with **1** target preview label, while
+  `artifacts/v3_metal_independent_phosphodiesterase_source_handle_count_scout_current702_20260615_post_n_ribosyl_apply.json`
+  found better source handles for a future 43fp runner:
+  `ec_3_1_4_catalytic_cyclic_amp_gmp` (**121** reviewed matches),
+  `phosphodiesterase_hydrolase_non_metal_keyword` (**224**), and
+  `ec_3_1_4_act_or_binding_site` (**718**). The high-count `ec_4_6_1` cyclase probe (**1389**)
+  is likely boundary-heavy and should be treated cautiously.
+
+  Two follow-up source-wall previews confirm that raw handle count is not enough. Targeted first
+  windows
+  `artifacts/v3_metal_independent_phosphodiesterase_targeted_source_wall_scout_current702_20260615_post_n_ribosyl_apply.json`
+  fetched **157** rows but produced only **13** target labels and **11** novelty-admitted preview
+  rows. Cursor-paged active/binding-site, hydrolase non-metal, and cyclic-nucleotide name handles
+  in
+  `artifacts/v3_metal_independent_phosphodiesterase_cursor_source_wall_scout_current702_20260615_post_n_ribosyl_apply.json`
+  fetched **244** rows, with **18** target labels and **14** novelty-admitted preview rows.
+  Therefore the 43fp runner should add sharper source splits or additional mechanism-bearing
+  handles before any apply-sized preview; do not assume the broad/source-count handles alone will
+  yield a >=150 clean batch.
+
+  Next action: build `metal_independent_phosphodiesterase` as the 43rd fingerprint only through the
+  gated path: fingerprint and ontology node, 43fp hard-negative OOS preregistration before
+  candidate selection, reviewed-UniProt runner with improved source handles, non-destructive
+  preview, row guardrail audit, novelty/governor/dedup/cap replay, source-contract/leakage
+  validation, and explicit apply.
+
 - **N-RIBOSYL HYDROLASE 42FP INFRASTRUCTURE BUILT; REGISTRY UNCHANGED (2026-06-15 automation).**
   Hard safety remains green. The current positive universe is now `label_factory_v1_42fp` with
   **42** mechanism fingerprints and **39** ontology families, while frozen current702 remains

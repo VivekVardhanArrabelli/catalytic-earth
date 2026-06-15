@@ -4,6 +4,7 @@ import sys
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -17,6 +18,7 @@ from catalytic_earth.adapters import (
     build_uniprot_accessions_url,
     build_uniprot_query_url,
     fetch_uniprot_query,
+    fetch_uniprot_query_cursor,
     normalize_mcsa_entries,
     normalize_rhea_tsv,
     normalize_uniprot_tsv,
@@ -86,6 +88,8 @@ class AdapterTests(unittest.TestCase):
         self.assertIn("format=tsv", url)
         paged_url = build_uniprot_query_url("reviewed:true", size=50, offset=100)
         self.assertIn("offset=100", paged_url)
+        cursor_url = build_uniprot_query_url("reviewed:true", size=50, cursor="*")
+        self.assertEqual(parse_qs(urlparse(cursor_url).query)["cursor"], ["*"])
         records = normalize_uniprot_tsv(
             "Entry\tEntry Name\tProtein names\tOrganism\tLength\tEC number\tPDB\tAlphaFoldDB\n"
             "P56868\tMURI_AQUPY\tGlutamate racemase\tAquifex pyrophilus\t254\t5.1.1.3\t1B73;1B74;\tP56868;\n"
@@ -113,6 +117,31 @@ class AdapterTests(unittest.TestCase):
         self.assertIn("offset=5", fetched_urls[0])
         self.assertIn("offset=6", fetched_urls[1])
         self.assertEqual([record["accession"] for record in payload["records"]], ["P00001", "P00002"])
+
+    def test_fetch_uniprot_query_cursor_follows_next_link(self) -> None:
+        fetched_urls: list[str] = []
+
+        def fake_fetch(url: str) -> tuple[str, dict[str, str]]:
+            fetched_urls.append(url)
+            page = len(fetched_urls)
+            text = (
+                "Entry\tEntry Name\tProtein names\tOrganism\tLength\tEC number\tPDB\tAlphaFoldDB\n"
+                f"C{page:05d}\tENTRY_{page}\tExample\tOrganism\t10\t\t\t\n"
+            )
+            if page == 1:
+                next_url = build_uniprot_query_url("reviewed:true", size=1, cursor="NEXT")
+                return text, {"Link": f'<{next_url}>; rel="next"'}
+            return text, {}
+
+        with patch.object(adapters, "_fetch_text_with_headers", side_effect=fake_fetch):
+            payload = fetch_uniprot_query_cursor("reviewed:true", size=1, max_pages=2)
+
+        self.assertEqual([record["accession"] for record in payload["records"]], ["C00001", "C00002"])
+        self.assertEqual(payload["metadata"]["pages_fetched"], 2)
+        self.assertTrue(payload["metadata"]["cursor_pagination"])
+        self.assertIsNone(payload["metadata"]["pages"][0]["cursor"])
+        self.assertEqual(payload["metadata"]["pages"][1]["cursor"], "NEXT")
+        self.assertNotIn("cursor=", fetched_urls[0])
 
 
 if __name__ == "__main__":
