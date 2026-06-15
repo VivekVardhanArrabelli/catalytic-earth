@@ -65,9 +65,10 @@ have experimental holo.
   a real-holo silver candidate is NOT a tier flip — give it its OWN decision string and its
   OWN counter. Do not inflate `silver_ready` by merging recovery into real-holo.
 - Measure first, non-destructive. Stop at the honest ceiling; do not game any metric.
-- NOTE before you touch the registry: `external_bronze_labels.json` is at GitHub's 51.5 MB
-  soft limit. Consider the LFS/split task first (it is a separate spec) so pushes do not
-  degrade.
+- NOTE: the registry is now SHARDED (`catalytic_earth.sharded_registry.v1`:
+  `external_bronze_labels.json` is a manifest over 4 shards; load rows with
+  `registry_io.load_json`, never a raw `json.load`). This already resolved the prior 51 MB
+  GitHub-limit concern, so the LFS/split pre-req below is DONE -- skip it.
 
 ---
 
@@ -175,8 +176,8 @@ Acceptance / definition of done:
 
 ## Suggested order
 
-1. (Pre-req, separate spec) registry LFS/split — so the gate-wiring apply does not push a
-   51 MB+ blob.
+1. (DONE — the parallel automation sharded the registry on 2026-06-14; just use
+   `registry_io.load_json`.)
 2. TASK A first (wiring) — it reuses everything that exists and yields `recovered_ready_count`
    immediately; it is the smaller, higher-certainty win.
 3. TASK B (real grafting) — upgrades Task A's condition 4 from "feasible" to "done" and gives
