@@ -3,6 +3,27 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: REPRESENTATION SEPARABILITY REGRESSED BY NEW LANES — validated fix spec written
+
+Finding (read-only health check before scaling further): the new family lanes
+(aldehyde_dehydrogenase, alpha_beta_hydrolase_esterase_lipase, ser_thr_protein_phosphatase,
+had_like_phosphatase) were added faster than the reaction-center vocabulary, so overall
+leave-one-out self-consistency regressed 0.755 -> 0.713 and the regression was ACCOMMODATED by
+lowering test thresholds (nad_p `>0.85->>0.5`; metallophosphomonoesterase flipped `>0.8`->`<0.4`)
+rather than fixed. ser_thr_protein_phosphatase collapsed to 0.0, alpha_beta_hydrolase to 0.2.
+A measure-first prototype VALIDATED a leakage-safe fix: add `bc_ester_hydrolysis`,
+`bc_glycoside_hydrolysis`, `bc_aldehyde_oxidation` + reuse `acc_protein` for protein
+dephosphorylation -> overall 0.713 -> 0.754, four families restored (alpha_beta_hydrolase 0.68,
+glycoside 0.81, nad_p 0.96 with aldehyde-DH staying ~1.0, ser_thr_protein_phosphatase 0.88), with
+one documented principled cost (ser_his_acid_hydrolase 0.91 -> 0.67 — a Ser-His-Asp serine-esterase
+FOLD overlap with alpha/beta-hydrolase, not hackable by reaction features). Full implement-ready
+spec (exact detectors, measured deltas, test re-baseline, + the governor signature gap:
+ser_thr_protein_phosphatase missing from FINGERPRINT_SOURCING_SIGNATURES, 40/41) is in
+`work/next_instance_representation_separability_fix_spec.md`. Decision: land this BEFORE sourcing
+more ester-hydrolase / phosphatase / NAD-redox-subtype families, or that growth is un-promotable
+(piles up as review_chemistry_disagrees / low-cohesion bronze). One owner for the representation
+module at a time (the spec is the hand-off so two automations don't both edit it).
+
 ## 2026-06-15: DISCOVERY & DE NOVO STRATEGY (see docs/discovery_and_de_novo_strategy.md)
 
 Decision (direction, conversation-derived; no code change): keep scaling the atlas via
