@@ -252,7 +252,7 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
     },
     # High-yield family lanes added 2026-06-13/14 (terpene cyclase, protein kinase).
     # Registered here so the governor's reaction_saturated / acquisition view covers
-    # all 37 registry fingerprints. Coverage-accounting metadata only -- EC stays
+    # all 41 registry fingerprints. Coverage-accounting metadata only -- EC stays
     # scope-only, never predictive.
     "terpene_cyclase_synthase": {
         "ec_prefixes": ["4.2.3"],
@@ -293,6 +293,19 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
             "metal-hydrolase, and EC-only boundaries are held"
         ),
         "lanes": ["alpha_beta_hydrolase_esterase_lipase"],
+    },
+    # Ser/Thr protein phosphatase (registered 2026-06-15 so the governor's
+    # reaction-saturation / coverage accounting covers all 41 registry fingerprints --
+    # it was the one missing signature). Coverage-accounting metadata only; EC stays
+    # scope-only, never predictive.
+    "ser_thr_protein_phosphatase": {
+        "ec_prefixes": ["3.1.3.16"],
+        "cofactor": (
+            "dinuclear Mn/Fe (PPM) or Fe/Zn (PPP) metallophosphatase removing phosphate "
+            "from phospho-Ser/Thr protein residues; small-molecule phosphomonoesterase and "
+            "Cys-based protein-tyrosine-phosphatase boundaries are held"
+        ),
+        "lanes": ["ser_thr_protein_phosphatase"],
     },
 }
 

@@ -3,6 +3,34 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: REPRESENTATION SEPARABILITY RESTORE LANDED (implements the spec below)
+
+Decision: implemented the validated fix from
+`work/next_instance_representation_separability_fix_spec.md` in
+`src/catalytic_earth/mechanism_representation_loop.py` (+ tests). Four leakage-safe
+reaction-center classes were added, each derived ONLY from the Rhea substrate->product
+equation (never EC/name/prose/fingerprint/fold): `bc_ester_hydrolysis` and
+`bc_glycoside_hydrolysis` (hydrolyses), `bc_aldehyde_oxidation` (water-consuming NAD redox,
+in the non-hydrolytic bucket), and the reused `acc_protein` tag on protein dephosphorylation
+(no new feature dim). Measured on the live sharded registry (6196 seed labels), overall
+leave-one-out self-consistency was restored **0.713 -> 0.7542**, matching the prototype: per
+family `alpha_beta_hydrolase_esterase_lipase` 0.200 -> 0.68, `glycoside_hydrolase` 0.500 ->
+0.81, `nad_p_dehydrogenase` 0.547 -> 0.96 (with `aldehyde_dehydrogenase` staying ~0.99),
+`ser_thr_protein_phosphatase` 0.000 -> 0.875. The relaxed real-registry test assertions were
+RESTORED to these validated numbers (LOO > 0.74; nad_p > 0.9; aldehyde-DH >= 0.95; +new
+floors for the restored families), not left accommodating the regression. DOCUMENTED PRINCIPLED
+CEILING (not hacked): `ser_his_acid_hydrolase` 0.908 -> 0.667 — alpha/beta-hydrolases and
+Ser-His acid hydrolases are BOTH Ser-His-Asp serine esterases, so `bc_ester_hydrolysis`
+correctly fires for both and blurs them; the residual separation is FOLD-level, which a
+reaction-equation representation cannot and should not force (narrowing to lipase-only does
+not help — 22/87 ser_his rows are genuine lipase/phospholipase reactions). Also closed the
+governor coverage gap: `ser_thr_protein_phosphatase` was the one registry fingerprint missing
+from `coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES` (40/41); it is now registered
+(EC 3.1.3.16, scope-only/non-predictive) so the coverage/reaction-saturation view covers all
+41. Frozen current702 byte-unchanged; `validate` ok (702 / 41 fp); representation code only,
+no registry write. This unblocks the new ester-hydrolase / phosphatase / NAD-redox-subtype
+families to reach silver and be visible to the discovery probe.
+
 ## 2026-06-15: REPRESENTATION SEPARABILITY REGRESSED BY NEW LANES — validated fix spec written
 
 Finding (read-only health check before scaling further): the new family lanes

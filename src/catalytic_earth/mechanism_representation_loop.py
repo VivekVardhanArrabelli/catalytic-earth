@@ -108,11 +108,19 @@ COSUBSTRATE_CLASSES = tuple(COSUBSTRATE_CLASS_PATTERNS.keys())
 # for HYDROLYSIS reactions (water on the substrate side), which keeps non-hydrolase
 # (lyase/transferase) chemistries -- e.g. cobalamin ammonia-lyases -- out of the bond
 # space and preserves the non-metal families' cofactor-based separability.
+#
+# ``bc_ester_hydrolysis`` and ``bc_glycoside_hydrolysis`` (added 2026-06-15) extend the same
+# hydrolysis basis to the new ester-/lipase- and glycoside-hydrolase family lanes, which
+# otherwise carried NO reaction-center class and collapsed: the alpha/beta-hydrolase lane
+# had nothing to separate on, and the glycoside-hydrolase lane spuriously tripped
+# ``bc_carbon_carbon_lyase``. Both read only the Rhea substrate->product equation.
 BOND_CHANGE_CLASSES = (
     "bc_phosphomonoester",  # phosphomonoester P-O hydrolysis (free phosphate released)
     "bc_phosphodiester",    # phosphodiester P-O hydrolysis (nuclease / cyclic-nucleotide)
     "bc_peptide_cn",        # peptide C-N hydrolysis (peptide-fragment products, no Pi)
     "bc_amide_cn",          # non-peptide amide/amidine C-N hydrolysis / deamination
+    "bc_ester_hydrolysis",  # ester/lipase C-O hydrolysis (acylglycerol/sterol-ester -> fatty acid + alcohol)
+    "bc_glycoside_hydrolysis",  # O-/N-glycoside hydrolysis (glycoside + H2O -> free sugar + aglycone)
 )
 
 # Non-hydrolytic reaction-center bond-change classes (added 2026-06-14). The four
@@ -136,6 +144,7 @@ NONHYDROLYTIC_BOND_CLASSES = (
     "bc_diphosphate_lyase",  # prenyl-diphosphate -> diphosphate + carbocation (terpene cyclase)
     "bc_isomerization",      # single substrate = single product, no cosubstrate (isomerase/racemase)
     "bc_carbon_carbon_lyase",  # one organic substrate cleaved into two organic fragments (aldol/C-C lyase)
+    "bc_aldehyde_oxidation",  # aldehyde + NAD(+) + H2O -> carboxylate + NADH (water-consuming NAD redox)
 )
 
 # Small inorganic / proton species that are NOT a carbon-skeleton fragment. Used only by
@@ -262,13 +271,20 @@ def _reaction_equations(row: dict[str, Any]) -> list[str]:
     ]
 
 
+_GLYCOSIDE_FREE_SUGARS = (
+    "d-glucose", "d-mannose", "d-galactose", "d-glucosamine", "n-acetyl",
+    "d-xylose", "l-fucose", "d-fructose", "d-galactosamine",
+)
+
+
 def classify_reaction_bond_change(reaction: str) -> set[str]:
     """Classify a single reaction string into reaction-center bond-change classes.
 
     Leakage-safe: reads only the substrate->product chemistry. Fires only for HYDROLYSIS
-    (water on the substrate side), which is what the four metal hydrolase sub-families do
-    and what distinguishes them; lyases/transferases (no water) yield no bond-change class,
-    keeping non-hydrolase chemistries out of this space.
+    (water on the substrate side), which is what the metal hydrolase sub-families and the
+    ester-/glycoside-hydrolase lanes do and what distinguishes them; lyases/transferases
+    (no water) yield no bond-change class, keeping non-hydrolase chemistries out of this
+    space.
     """
     low = reaction.lower()
     if "=" not in low:
@@ -278,6 +294,13 @@ def classify_reaction_bond_change(reaction: str) -> set[str]:
     rhs_tokens = [token.strip() for token in rhs.split("+")]
     if "h2o" not in lhs_tokens:  # hydrolases only
         return set()
+
+    # Rhea ' + '-separated product terms keep charged ions (H(+), NH4(+)) intact -- a bare
+    # '+' split shreds them -- and have stoichiometric coefficients stripped, so the
+    # ester/glycoside detectors below can test product-token suffixes/identities cleanly.
+    rhs_terms = [
+        re.sub(r"^\d+\s+", "", term.strip()) for term in re.split(r"\s\+\s", rhs.strip())
+    ]
 
     classes: set[str] = set()
     free_phosphate = any(
@@ -298,6 +321,18 @@ def classify_reaction_bond_change(reaction: str) -> set[str]:
     elif free_phosphate and phospho_substrate and not anhydride and not diester:
         classes.add("bc_phosphomonoester")
 
+    # protein dephosphorylation: a phosphomonoester hydrolysis that removes a phosphate
+    # from a [protein] residue (Ser/Thr/Tyr phosphatase). The acc_protein tag (reused from
+    # the kinase acceptor classes -- no new dim) separates it from small-molecule
+    # phosphomonoesterases, which share the same bc_phosphomonoester bond change.
+    if (
+        "bc_phosphomonoester" in classes
+        and "[protein]" in low
+        and "phospho" in lhs
+        and free_phosphate
+    ):
+        classes.add("acc_protein")
+
     peptide_like = bool(
         re.search(r"\bpeptide\b", lhs)
         or re.search(r"\(\d+-\d+\)", rhs)
@@ -310,6 +345,38 @@ def classify_reaction_bond_change(reaction: str) -> set[str]:
     amide_ring = "carbamoyl" in rhs or "formimidoyl" in rhs or "imidazolone" in lhs
     if (deamination or amide_ring) and not free_phosphate:
         classes.add("bc_amide_cn")
+
+    # ester / lipase hydrolysis: an acylglycerol / sterol-ester / phospholipid hydrolysed
+    # to an alcohol + carboxylate/fatty acid. Excludes the NAD(P)-dependent aldehyde
+    # dehydrogenase (which also makes a carboxylate), protein substrates, and any reaction
+    # that releases a free phosphate (those are phosphatases handled above).
+    ester_product = ("fatty acid" in rhs) or any(
+        term.endswith("oate") or term == "acetate" for term in rhs_terms
+    )
+    if (
+        "nad" not in low
+        and "nadp" not in low
+        and "[protein]" not in low
+        and not free_phosphate
+        and ester_product
+    ):
+        classes.add("bc_ester_hydrolysis")
+
+    # O-/N-glycoside hydrolysis: a glycoside / oligosaccharide hydrolysed to a free sugar
+    # + aglycone. Fires on a free-monosaccharide product OR a glycosidic-linkage marker on
+    # the substrate side. (Also gives glycoside_hydrolase its defining feature so it stops
+    # spuriously firing bc_carbon_carbon_lyase.)
+    free_sugar_product = any(
+        any(sugar in term for sugar in _GLYCOSIDE_FREE_SUGARS) for term in rhs_terms
+    )
+    glycosidic_marker = (
+        "(1->" in lhs
+        or "glucosid" in lhs
+        or "glycosid" in lhs
+        or "galactosid" in lhs
+    )
+    if free_sugar_product or glycosidic_marker:
+        classes.add("bc_glycoside_hydrolysis")
     return classes
 
 
@@ -369,6 +436,12 @@ def classify_reaction_nonhydrolytic(reaction: str) -> set[str]:
     )
     if (nad_ox and nad_red) or flavin_pair:
         classes.add("bc_redox_hydride")
+
+    # aldehyde oxidation: aldehyde + NAD(+) + H2O -> carboxylate + NADH. The water-CONSUMING
+    # NAD redox is the reaction-center signature of aldehyde dehydrogenase, separating it
+    # from generic NAD redox (alcohol -> ketone; no water) which fires only bc_redox_hydride.
+    if (nad_ox and nad_red) and "h2o" in lhs_tokens:
+        classes.add("bc_aldehyde_oxidation")
 
     # methyl transfer: S-adenosyl-L-methionine -> S-adenosyl-L-homocysteine
     if "s-adenosyl-l-methionine" in low and "s-adenosyl-l-homocysteine" in low:

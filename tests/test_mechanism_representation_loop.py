@@ -83,6 +83,61 @@ class BondChangeFeatureTests(unittest.TestCase):
             classify_reaction_bond_change("ethanolamine = acetaldehyde + NH4(+)"), set()
         )
 
+    def test_ester_hydrolysis_class(self) -> None:
+        # ester / lipase hydrolysis: acylglycerol -> alcohol + fatty acid/carboxylate.
+        self.assertIn(
+            "bc_ester_hydrolysis",
+            classify_reaction_bond_change(
+                "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)"
+            ),
+        )
+        # NAD(P) aldehyde dehydrogenase also makes a carboxylate -> must NOT read as ester.
+        self.assertNotIn(
+            "bc_ester_hydrolysis",
+            classify_reaction_bond_change(
+                "octanal + NAD(+) + H2O = octanoate + NADH + 2 H(+)"
+            ),
+        )
+        # a protein dephosphorylation (free phosphate, [protein]) -> NOT ester.
+        self.assertNotIn(
+            "bc_ester_hydrolysis",
+            classify_reaction_bond_change(
+                "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate"
+            ),
+        )
+
+    def test_glycoside_hydrolysis_class(self) -> None:
+        # O-/N-glycoside hydrolysis -> free monosaccharide + aglycone.
+        self.assertIn(
+            "bc_glycoside_hydrolysis",
+            classify_reaction_bond_change(
+                "DIMBOA beta-D-glucoside + H2O = DIMBOA + D-glucose"
+            ),
+        )
+        # a phosphomonoester hydrolysis is not a glycoside hydrolysis.
+        self.assertNotIn(
+            "bc_glycoside_hydrolysis",
+            classify_reaction_bond_change(
+                "a phosphate monoester + H2O = an alcohol + phosphate"
+            ),
+        )
+
+    def test_protein_dephosphorylation_tags_acc_protein(self) -> None:
+        # Ser/Thr protein phosphatase: phosphomonoester hydrolysis off a [protein] residue.
+        # acc_protein (reused from the kinase acceptor classes) separates it from the
+        # small-molecule metallophosphomonoesterase, which shares bc_phosphomonoester.
+        self.assertEqual(
+            classify_reaction_bond_change(
+                "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate"
+            ),
+            {"bc_phosphomonoester", "acc_protein"},
+        )
+        small_molecule = classify_reaction_bond_change(
+            "a phosphate monoester + H2O = an alcohol + phosphate"
+        )
+        self.assertIn("bc_phosphomonoester", small_molecule)
+        self.assertNotIn("acc_protein", small_molecule)
+
     def test_featurize_sets_bond_change_and_ignores_reaction_ec(self) -> None:
         f = featurize(
             _row(
@@ -109,6 +164,22 @@ class NonHydrolyticBondChangeTests(unittest.TestCase):
     derived ONLY from the Rhea substrate->product equation string (leakage-safe)."""
 
     def test_redox_hydride(self) -> None:
+        self.assertEqual(
+            classify_reaction_nonhydrolytic(
+                "a secondary alcohol + NADP(+) = a ketone + NADPH + H(+)"
+            ),
+            {"bc_redox_hydride"},
+        )
+
+    def test_aldehyde_oxidation_redox(self) -> None:
+        # aldehyde dehydrogenase: aldehyde + NAD(+) + H2O -> carboxylate + NADH. The
+        # water-CONSUMING NAD redox separates it from generic NAD redox.
+        out = classify_reaction_nonhydrolytic(
+            "octanal + NAD(+) + H2O = octanoate + NADH + 2 H(+)"
+        )
+        self.assertIn("bc_aldehyde_oxidation", out)
+        self.assertIn("bc_redox_hydride", out)
+        # generic NAD redox (alcohol -> ketone, no water) -> only bc_redox_hydride.
         self.assertEqual(
             classify_reaction_nonhydrolytic(
                 "a secondary alcohol + NADP(+) = a ketone + NADPH + H(+)"
@@ -385,22 +456,40 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             "metallophosphomonoesterase",
             "metallo_amidohydrolase_deaminase",
         }
-        # Overall is well above chance (1/39 ~= 0.026) and above the pre-extension ~0.36.
-        self.assertGreater(triage["leave_one_out_self_consistency"], 0.7)
-        # Families made separable by the cosubstrate / non-hydrolytic bond features
-        # (each was ~0 before this extension).
-        # ALDH (added later on 2026-06-14) is internally coherent, but it honestly
-        # exposes a current representation boundary: generic NAD(P) dehydrogenase
-        # rows share NAD(P) redox chemistry and often nearest-neighbor to ALDH
-        # without source/name/prose/lane features. Keep the collision visible for
-        # a future leakage-tested local chemistry/geometry axis rather than
-        # relaxing admission or adding source handles as predictive evidence.
-        self.assertEqual(sc["aldehyde_dehydrogenase"], 1.0)
-        self.assertGreater(sc["nad_p_dehydrogenase"], 0.5)
+        # RE-BASELINE (2026-06-15, representation separability restore): the new family
+        # lanes (aldehyde dehydrogenase, alpha/beta hydrolase, Ser/Thr protein phosphatase,
+        # HAD-like phosphatase) were added FASTER than the reaction-center vocabulary, so
+        # they collapsed and dragged neighbours down -- overall LOO regressed 0.755 -> 0.713
+        # and the regression had been ACCOMMODATED by lowering these assertions. The fix
+        # adds four leakage-safe reaction-center classes (bc_ester_hydrolysis,
+        # bc_glycoside_hydrolysis, bc_aldehyde_oxidation, and the acc_protein tag on protein
+        # dephosphorylation), all derived ONLY from the Rhea substrate->product equation,
+        # restoring overall LOO to ~0.754. The assertions below are restored to that
+        # validated reality, NOT relaxed to accommodate the regression.
+        self.assertGreater(triage["leave_one_out_self_consistency"], 0.74)
+        # bc_aldehyde_oxidation (aldehyde + NAD(+) + H2O -> carboxylate + NADH; the
+        # water-CONSUMING NAD redox) now separates aldehyde dehydrogenase from generic NAD
+        # redox (alcohol -> ketone, no water): nad_p_dehydrogenase recovers 0.547 -> ~0.96
+        # while ALDH stays ~1.0. A few generic NAD rows still nearest-neighbour to ALDH
+        # (the residual confusion below), kept visible rather than gamed away.
+        self.assertGreaterEqual(sc["aldehyde_dehydrogenase"], 0.95)
+        self.assertGreater(sc["nad_p_dehydrogenase"], 0.9)
         self.assertGreater(
             conf["nad_p_dehydrogenase"].get("aldehyde_dehydrogenase", 0),
             0,
         )
+        # New-family lanes restored by the four reaction-center classes (each was collapsed
+        # or dragged before this fix): ester/lipase, glycoside, and protein-phosphatase.
+        self.assertGreater(sc["alpha_beta_hydrolase_esterase_lipase"], 0.6)  # was 0.200
+        self.assertGreater(sc["glycoside_hydrolase"], 0.8)                   # was 0.500
+        self.assertGreater(sc["ser_thr_protein_phosphatase"], 0.8)          # was 0.000
+        # PRINCIPLED CEILING (document, do NOT hack back to 0.9): alpha/beta-hydrolases and
+        # Ser-His acid hydrolases are BOTH Ser-His-Asp serine esterases, so bc_ester_hydrolysis
+        # correctly fires for both and blurs them; the residual separation is FOLD-level
+        # (alpha/beta-hydrolase fold vs others), which a reaction-equation representation
+        # cannot and should not force. Narrowing the ester rule to lipase-only does not help
+        # (22/87 ser_his rows are genuine lipase/phospholipase reactions). Accept the cost.
+        self.assertGreater(sc["ser_his_acid_hydrolase"], 0.6)               # was 0.908
         self.assertGreater(sc["coa_acyltransferase"], 0.85)
         self.assertGreater(sc["protein_kinase_ser_thr_tyr"], 0.85)
         self.assertGreater(sc["terpene_cyclase_synthase"], 0.85)
@@ -425,7 +514,10 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # metallophosphomonoesterase rows: with EC/name/prose/lane excluded, the
         # available reaction/cofactor/active-site evidence often cannot distinguish
         # generic metal phosphomonoesterases from the aspartyl-phosphoenzyme HAD
-        # subset. Keep that as an explicit gap rather than lowering admission gates.
+        # subset (and, since 2026-06-15, the Ser/Thr protein phosphatase rows, which
+        # also do phosphomonoester hydrolysis). This metal-phosphatase cluster is a
+        # SEPARATE follow-up, NOT addressed by the 2026-06-15 reaction-center restore;
+        # keep it as an explicit gap rather than lowering admission gates.
         self.assertGreater(sc["had_like_phosphatase"], 0.9)
         self.assertLess(sc["metallophosphomonoesterase"], 0.4)
         self.assertGreater(

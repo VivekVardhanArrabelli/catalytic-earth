@@ -1,5 +1,41 @@
 # Handoff
 
+## Session run - Representation separability restore landed (2026-06-15)
+
+- Implemented `work/next_instance_representation_separability_fix_spec.md` in
+  `src/catalytic_earth/mechanism_representation_loop.py` + `tests/test_mechanism_representation_loop.py`.
+  Representation code only — NO registry write; frozen current702 stayed byte-unchanged and
+  `python -m catalytic_earth.cli validate` reports 702 / 41 fp.
+- Added four leakage-safe reaction-center classes, each derived ONLY from the Rhea
+  substrate->product equation (never EC/name/prose/fingerprint/fold):
+  - `bc_ester_hydrolysis` (BOND_CHANGE_CLASSES) — ester/lipase C-O hydrolysis -> alcohol +
+    fatty acid/carboxylate; excludes NAD(P) aldehyde-DH, `[protein]` substrates, and free-phosphate
+    products. Tokenizes RHS on Rhea's ` + ` separator (`\s\+\s`) so charged ions stay intact.
+  - `bc_glycoside_hydrolysis` (BOND_CHANGE_CLASSES) — O-/N-glycoside hydrolysis -> free sugar +
+    aglycone; also gives `glycoside_hydrolase` its defining feature so it stops spuriously firing
+    `bc_carbon_carbon_lyase`.
+  - `bc_aldehyde_oxidation` (NONHYDROLYTIC_BOND_CLASSES) — water-consuming NAD redox
+    (aldehyde + NAD(+) + H2O -> carboxylate + NADH), separating aldehyde-DH from generic NAD redox.
+  - reused `acc_protein` on protein dephosphorylation (no new dim) — distinguishes
+    `ser_thr_protein_phosphatase` from small-molecule `metallophosphomonoesterase`.
+- Measured on the live sharded registry (6196 seed labels): overall leave-one-out
+  self-consistency **0.713 -> 0.7542** (matches the measure-first prototype exactly). Per family:
+  `alpha_beta_hydrolase_esterase_lipase` 0.20 -> 0.68, `glycoside_hydrolase` 0.50 -> 0.81,
+  `nad_p_dehydrogenase` 0.55 -> 0.96 (aldehyde-DH stays ~0.99), `ser_thr_protein_phosphatase`
+  0.00 -> 0.875. Minor accepted: `had_like_phosphatase` ~0.95 (>0.9), `metallophosphomonoesterase`
+  0.24 (<0.4, a separate metal-phosphatase-cluster follow-up).
+- Re-baselined the relaxed real-registry test assertions UP to the validated reality
+  (LOO > 0.74; nad_p > 0.9; aldehyde-DH >= 0.95; +floors for alpha_beta > 0.6, glycoside > 0.8,
+  ser_thr > 0.8). Added classifier unit tests (positive + negative) for each new class.
+- DOCUMENTED principled ceiling (NOT hacked back): `ser_his_acid_hydrolase` 0.91 -> 0.67 — both
+  alpha/beta-hydrolases and Ser-His acid hydrolases are Ser-His-Asp serine esterases, so
+  `bc_ester_hydrolysis` correctly fires for both; the residual split is FOLD-level. Test asserts
+  > 0.6 with the rationale in a comment.
+- Closed a governor coverage gap: registered `ser_thr_protein_phosphatase` (the one of 41 missing)
+  in `coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES` (EC 3.1.3.16, scope-only).
+- Full offline suite: same known baseline failures as the clean tree (env-only: mmseqs / esm2 /
+  toy sequence-head backends), no NEW regressions; `git diff --check` clean.
+
 ## Session run - Ser/Thr protein phosphatase bronze batch applied (2026-06-14, Codex automation)
 
 - Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; registry safety

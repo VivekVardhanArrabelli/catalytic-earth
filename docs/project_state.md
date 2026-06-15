@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-14
+Last refreshed: 2026-06-15
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -25,6 +25,25 @@ biological design system. Current benchmark claims must be framed as local,
 artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
+
+- **REPRESENTATION SEPARABILITY RESTORED (2026-06-15, representation code only — no registry
+  write).** The new family lanes had been added faster than the reaction-center vocabulary, so
+  overall leave-one-out self-consistency had regressed **0.755 -> 0.713** and the regression was
+  accommodated by lowered test thresholds. Implemented the validated leakage-safe fix in
+  `src/catalytic_earth/mechanism_representation_loop.py`: four reaction-center classes derived ONLY
+  from the Rhea substrate->product equation — `bc_ester_hydrolysis`, `bc_glycoside_hydrolysis`,
+  `bc_aldehyde_oxidation`, and the reused `acc_protein` tag on protein dephosphorylation. Overall
+  LOO restored **0.713 -> 0.7542**; per family `alpha_beta_hydrolase_esterase_lipase` 0.20 -> 0.68,
+  `glycoside_hydrolase` 0.50 -> 0.81, `nad_p_dehydrogenase` 0.55 -> 0.96 (aldehyde-DH stays ~0.99),
+  `ser_thr_protein_phosphatase` 0.00 -> 0.88. The relaxed real-registry assertions were restored to
+  these validated numbers, not left accommodating the regression. One documented principled cost:
+  `ser_his_acid_hydrolase` 0.91 -> 0.67 — a Ser-His-Asp serine-esterase FOLD overlap with the
+  alpha/beta-hydrolases that `bc_ester_hydrolysis` correctly (and unavoidably) blurs; a
+  reaction-equation representation cannot and should not force a fold-level split. Also registered
+  `ser_thr_protein_phosphatase` in `coverage_redundancy_audit.FINGERPRINT_SOURCING_SIGNATURES` (it
+  was the one missing of 41; EC 3.1.3.16 scope-only/non-predictive) so the governor's
+  coverage/reaction-saturation view covers all 41 fingerprints. Frozen current702 byte-unchanged;
+  `validate` ok (702 / 41 fp).
 
 - **SER/THR PROTEIN PHOSPHATASE BRONZE BATCH APPLIED (2026-06-14 automation).**
   Newest operational state: hard safety remains green and the current positive universe stays
