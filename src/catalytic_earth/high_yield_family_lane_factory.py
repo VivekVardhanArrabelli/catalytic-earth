@@ -410,6 +410,10 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         cap_ceiling=DEFAULT_CONFUSABLE_CAP,
         chemistry_confusable=True,
         novelty_keep_factor=0.35,
+        existing_fingerprint_id="short_chain_dehydrogenase_reductase",
+        current_runner="scripts/source_short_chain_dehydrogenase_reductase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_existing_fingerprint_runner_subscale_preview",
         ambiguity_with_existing=("nad_p_dehydrogenase",),
         known_blockers=(
             "2026-05 SDR/AKR/NAD(P) control tranche is review-only with 0 import-ready rows",

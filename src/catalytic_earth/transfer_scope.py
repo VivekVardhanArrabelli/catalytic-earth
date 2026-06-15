@@ -77,8 +77,9 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
 # ThDP ylide enzyme, zinc lyase/hydratase, biotin-dependent carboxylase, nucleoside diphosphate
 # kinase, ASKHA sugar/acetate kinase, GHMP small-molecule kinase, deoxynucleoside kinase,
 # PfkA phosphofructokinase, PfkB/ribokinase-family, Mn/Fe superoxide dismutase, and glycoside
-# hydrolase, N-ribosyl hydrolase, metal-independent phosphodiesterase, and
-# aminoglycoside phosphotransferase universe bumps.
+# hydrolase, N-ribosyl hydrolase, metal-independent phosphodiesterase,
+# aminoglycoside phosphotransferase, and short-chain dehydrogenase/reductase
+# universe bumps.
 # They are kept on disk as records.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_12FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_12fp_1025.json"
@@ -231,10 +232,15 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_42FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_43FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_43fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 44-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The re-frozen tranche pre-registration for the 44-fingerprint universe is historical after the
+# short-chain dehydrogenase/reductase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_44FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_44fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 45-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_45FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_45fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

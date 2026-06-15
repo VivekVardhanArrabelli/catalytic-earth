@@ -231,6 +231,68 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertEqual(d["decision"], "hold")
 
+    def test_short_chain_dehydrogenase_reductase_requires_sdr_wall(self) -> None:
+        row = _row(ec=["1.1.1.100"])
+        row["protein_name"] = "Short-chain dehydrogenase/reductase SDR"
+        row["keywords"] = ["NAD", "NADP"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:SDR001",
+                "reaction": "secondary alcohol + NAD(+) = ketone + NADH + H(+)",
+                "ec_number": "1.1.1.100",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 153,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "description": "Ser-Tyr-Lys catalytic tetrad",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+
+        d = disambiguate_row(row)
+        self.assertEqual(d["fingerprint_id"], "short_chain_dehydrogenase_reductase")
+        self.assertIn(
+            "rhea_reaction_or_participant_pattern",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertIn(
+            "domain_or_family_profile",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+        self.assertNotIn(
+            "ec_scope_hint",
+            d["corroboration"]["distinct_corroborator_axes"],
+        )
+
+    def test_short_chain_dehydrogenase_reductase_ec_name_only_control_held(self) -> None:
+        row = _row(ec=["1.1.1.100"])
+        row["protein_name"] = "Short-chain dehydrogenase/reductase-like protein"
+        row["keywords"] = ["NAD"]
+
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_short_chain_dehydrogenase_reductase_akr_boundary_not_forced(self) -> None:
+        row = _row(ec=["1.1.1.21"])
+        row["protein_name"] = "Aldo-keto reductase"
+        row["keywords"] = ["NADP"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AKR001",
+                "reaction": "aldehyde + NADPH + H(+) = alcohol + NADP(+)",
+                "ec_number": "1.1.1.21",
+            }
+        ]
+
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "short_chain_dehydrogenase_reductase")
+        self.assertEqual(d.get("fingerprint_id"), "nad_p_dehydrogenase")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"

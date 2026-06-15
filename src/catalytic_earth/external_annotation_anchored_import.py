@@ -105,6 +105,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "had_like_phosphatase": "mg_aspartyl_phosphoenzyme_phosphomonoester_hydrolysis_context",
     "ser_thr_protein_phosphatase": "dinuclear_metal_phosphoprotein_dephosphorylation_context",
     "aldehyde_dehydrogenase": "nad_p_cys_glu_thiohemiacetal_hydride_transfer_context",
+    "short_chain_dehydrogenase_reductase": "nad_p_sdr_ser_tyr_lys_hydride_transfer_context",
     "alpha_beta_hydrolase_esterase_lipase": "ser_his_acid_ester_hydrolysis_context",
     "n_ribosyl_hydrolase": "n_glycosidic_bond_hydrolysis_context",
     "metal_independent_phosphodiesterase": "metal_independent_phosphodiester_hydrolysis_context",

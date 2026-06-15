@@ -3,6 +3,43 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: SDR IS A GUARDED 45TH FINGERPRINT AND COUNTED BRONZE
+
+Decision: add `short_chain_dehydrogenase_reductase` as the 45th positive fingerprint and keep the
+source wall mechanism-first. EC 1.1.1 may scope/fetch candidate rows but is never a counted
+corroborator. SDR family/name/source handles and UniProt prose remain excluded context. Counted
+corroboration comes from non-EC mechanism axes: SDR family/domain, NAD(P) cosubstrate, Rhea redox
+reaction/participant, and active/binding-site context when present. AKR/MDR/ALDH/flavin/metal
+redox boundary rows stay held, and `predictive_evidence` remains empty.
+
+Implementation: added `src/catalytic_earth/short_chain_dehydrogenase_reductase_sourcing.py`,
+`scripts/source_short_chain_dehydrogenase_reductase_family.py`, the
+`short_chain_dehydrogenase_reductase` fingerprint, ontology family
+`sdr_nicotinamide_hydride_transfer`, deploy context
+`nad_p_sdr_ser_tyr_lys_hydride_transfer_context`, disambiguation/source-trust rules, high-yield
+factory wiring, focused tests, and the 45fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_45fp_1025.json`. Updated the
+current positive-fingerprint universe to `label_factory_v1_45fp`; frozen current702 labels stay
+stamped with their historical decision version and were not written.
+
+Measured result: non-destructive preview
+`artifacts/v3_short_chain_dehydrogenase_reductase_sourcing_preview_named220_current702_20260615_run2213.json`
+fetched **220** reviewed rows, produced **103** target mechanism-corroborated labels, admitted
+**100** novelty-safe labels, held **0** off-target rows, and reached the **100** floor. Row audit
+`artifacts/v3_short_chain_dehydrogenase_reductase_row_guardrail_audit_current702_20260615_run2213.json`
+checked all **100** admitted rows with **0** problems. Explicit reuse-preview apply appended
+**100** bronze SDR rows to the external registry, skipped **0** duplicates, changed external rows
+**7720 -> 7820**, and changed combined label surface **8422 -> 8522**. Frozen current702 sha stayed
+`5eec9bef...` before and after apply.
+
+Decision: SDR is floor-closed at **100** rows and must not be padded without a fresh source split.
+Post-apply coverage still shows `metal_independent_phosphodiesterase` as the lone remaining
+hole/under-floor fingerprint. Representation loop remains leakage-safe; SDR is separable, but
+generic `nad_p_dehydrogenase` is now reaction-chemistry-confusable with SDR under source-free
+features. Do not repair that by injecting EC/name/prose/lane-derived predictors. The next mutation
+should build a sharper PDE source wall beyond EC/name counts or pursue a new high-yield
+family/source-tier strategy through the full gated path.
+
 ## 2026-06-15: APH TIER-2 SOURCE-HANDLE BATCH IS COUNTED BRONZE
 
 Decision: APH unreviewed tier-2 source-handle expansion is allowed only as guarded bronze admission

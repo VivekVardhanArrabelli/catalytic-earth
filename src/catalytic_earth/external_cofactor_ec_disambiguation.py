@@ -960,6 +960,69 @@ _ALDEHYDE_DEHYDROGENASE_BOUNDARY_TOKENS = (
     "oxidase",
     "monooxygenase",
 )
+# Short-chain dehydrogenase/reductase handles. EC 1.1.1 scopes the reviewed
+# candidate supply only; counted corroboration comes from SDR family/name text,
+# NAD(P) cosubstrate/binding context, and Rhea/reviewed NAD(P) hydride-transfer
+# reaction text. AKR, MDR/zinc alcohol dehydrogenase, ALDH, flavin/metal redox,
+# oxygenase, side-EC, EC-only, and generic NAD(P) rows stay held or routed away.
+_SDR_FAMILY_TEXT_TOKENS = (
+    "short-chain dehydrogenase",
+    "short chain dehydrogenase",
+    "short-chain dehydrogenase/reductase",
+    "short chain dehydrogenase/reductase",
+    "short-chain alcohol dehydrogenase",
+    "sdr family",
+    "sdr superfamily",
+    "sdr ",
+)
+_SDR_ACTIVE_SITE_TOKENS = (
+    "ser-tyr-lys",
+    "ser tyr lys",
+    "tyr-lys",
+    "tyrosine",
+    "lysine",
+    "serine",
+    "asn",
+    "asparagine",
+    "catalytic tetrad",
+)
+_SDR_REACTION_TOKENS = (
+    "nad(+)",
+    "nadp(+)",
+    "nadh",
+    "nadph",
+    "alcohol",
+    "hydroxy",
+    "hydroxyl",
+    "ketone",
+    "oxo",
+    "dehydrogenase",
+    "reductase",
+)
+_SDR_BOUNDARY_TOKENS = (
+    "aldo-keto reductase",
+    "aldo keto reductase",
+    "aldose reductase",
+    "akr",
+    "medium-chain dehydrogenase",
+    "medium chain dehydrogenase",
+    "mdr",
+    "zinc-containing alcohol dehydrogenase",
+    "zinc alcohol dehydrogenase",
+    "alcohol dehydrogenase class",
+    "aldehyde dehydrogenase",
+    "aldh",
+    "aldehyde oxidase",
+    "flavin",
+    "fad",
+    "fmn",
+    "molybdopterin",
+    "molybdenum",
+    "pqq",
+    "oxygenase",
+    "monooxygenase",
+    "oxidase",
+)
 # Alpha/beta hydrolase esterase/lipase handles. EC 3.1.1 scopes the candidate
 # supply only; counted corroboration comes from esterase/lipase family text,
 # Ser-His-Asp/Glu catalytic-site context, and Rhea/reviewed ester hydrolysis.
@@ -1984,6 +2047,33 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_aldehyde_dehydrogenase_scope_side_ec = any(
         ec and not ec.startswith("1.2.1") for ec in _ec_numbers(row)
     )
+    short_chain_dehydrogenase_reductase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_SDR_FAMILY_TEXT_TOKENS,
+    )
+    short_chain_dehydrogenase_reductase_nad_p_context = cosubstrate_nad_p or in_any(
+        feature_texts + cofactor_names, _NAD_P_COSUBSTRATE_TOKEN
+    )
+    short_chain_dehydrogenase_reductase_active_site_context = in_any(
+        feature_texts, *_SDR_ACTIVE_SITE_TOKENS
+    )
+    short_chain_dehydrogenase_reductase_reaction = in_any(
+        reactions, *_SDR_REACTION_TOKENS
+    ) and short_chain_dehydrogenase_reductase_nad_p_context
+    short_chain_dehydrogenase_reductase_boundary_signal = (
+        evidence.get("flavin", False)
+        or evidence.get("metal", False)
+        or molybdopterin_moco
+        or evidence.get("copper", False)
+        or peroxide_reaction
+        or in_any(
+            keywords + [protein_name] + feature_texts + cofactor_names,
+            *_SDR_BOUNDARY_TOKENS,
+        )
+    )
+    non_short_chain_dehydrogenase_reductase_scope_side_ec = any(
+        ec and not ec.startswith("1.1.1") for ec in _ec_numbers(row)
+    )
     alpha_beta_hydrolase_family_text = in_any(
         reactions + keywords + [protein_name] + feature_texts,
         *_ALPHA_BETA_HYDROLASE_FAMILY_TEXT_TOKENS,
@@ -2279,6 +2369,12 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "aldehyde_dehydrogenase_boundary_signal": aldehyde_dehydrogenase_boundary_signal,
             "generic_nad_p_dehydrogenase_boundary": generic_nad_p_dehydrogenase_boundary,
             "non_aldehyde_dehydrogenase_scope_side_ec": non_aldehyde_dehydrogenase_scope_side_ec,
+            "short_chain_dehydrogenase_reductase_family_text": short_chain_dehydrogenase_reductase_family_text,
+            "short_chain_dehydrogenase_reductase_nad_p_context": short_chain_dehydrogenase_reductase_nad_p_context,
+            "short_chain_dehydrogenase_reductase_active_site_context": short_chain_dehydrogenase_reductase_active_site_context,
+            "short_chain_dehydrogenase_reductase_reaction": short_chain_dehydrogenase_reductase_reaction,
+            "short_chain_dehydrogenase_reductase_boundary_signal": short_chain_dehydrogenase_reductase_boundary_signal,
+            "non_short_chain_dehydrogenase_reductase_scope_side_ec": non_short_chain_dehydrogenase_reductase_scope_side_ec,
             "alpha_beta_hydrolase_family_text": alpha_beta_hydrolase_family_text,
             "alpha_beta_hydrolase_ser_his_acid_context": alpha_beta_hydrolase_ser_his_acid_context,
             "alpha_beta_hydrolase_ester_hydrolysis_reaction": alpha_beta_hydrolase_ester_hydrolysis_reaction,
@@ -2351,6 +2447,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("had_like_phosphatase_asp_mg_context")
         or evidence.get("ser_thr_protein_phosphatase_metal_context")
         or evidence.get("aldehyde_dehydrogenase_nad_p_context")
+        or evidence.get("short_chain_dehydrogenase_reductase_nad_p_context")
         or (
             evidence.get("metal")
             and (evidence.get("class_ii_metal_aldolase_text") or evidence.get("class_ii_aldolase_cc_reaction"))
@@ -2395,6 +2492,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
         or evidence.get("ser_thr_protein_phosphatase_dephosphorylation_reaction")
         or evidence.get("aldehyde_dehydrogenase_reaction")
+        or evidence.get("short_chain_dehydrogenase_reductase_reaction")
         or evidence.get("alpha_beta_hydrolase_ester_hydrolysis_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
@@ -2457,6 +2555,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         )
         or evidence.get("ser_thr_protein_phosphatase_metal_context")
         or evidence.get("aldehyde_dehydrogenase_active_site_context")
+        or evidence.get("short_chain_dehydrogenase_reductase_active_site_context")
         or evidence.get("alpha_beta_hydrolase_ser_his_acid_context")
     ):
         axes.add("active_site_motif_or_residue_role")
@@ -2496,6 +2595,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("had_like_phosphatase_family_text")
         or evidence.get("ser_thr_protein_phosphatase_family_text")
         or evidence.get("aldehyde_dehydrogenase_family_text")
+        or evidence.get("short_chain_dehydrogenase_reductase_family_text")
         or evidence.get("alpha_beta_hydrolase_family_text")
     ):
         axes.add("domain_or_family_profile")
@@ -2535,6 +2635,7 @@ _METALLO_AMIDOHYDROLASE_DEAMINASE_EC = ("3.5.2", "3.5.4", "3.5.1")
 # corroborator (NAD(P) cosubstrate / sugar-nucleotide donor + keyword) confirms membership;
 # the EC prefix only selects the lane and stays in excluded_context (never predictive).
 _NAD_P_DEHYDROGENASE_EC = ("1.1.1",)  # CH-OH donor, NAD(P) acceptor
+_SHORT_CHAIN_DEHYDROGENASE_REDUCTASE_EC = ("1.1.1",)  # SDR subtype; EC scope only
 _GLYCOSYLTRANSFERASE_EC = ("2.4",)    # glycosyl/hexosyl/pentosyl/sialyl transferases
 _GLYCOSIDE_HYDROLASE_EC = ("3.2.1",)  # glycosidic bond hydrolysis; EC scope only
 _SAM_METHYLTRANSFERASE_EC = ("2.1.1",)  # methyl group transfer, mostly SAM/SAH donor/product
@@ -2663,7 +2764,18 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
     (
         "nad_p_dehydrogenase",
         lambda c, row: c["cosubstrate_nad_p"]
-        and _ec_has_prefix(row, _NAD_P_DEHYDROGENASE_EC),
+        and _ec_has_prefix(row, _NAD_P_DEHYDROGENASE_EC)
+        and not c["short_chain_dehydrogenase_reductase_family_text"],
+    ),
+    (
+        "short_chain_dehydrogenase_reductase",
+        lambda c, row: _ec_has_prefix(row, _SHORT_CHAIN_DEHYDROGENASE_REDUCTASE_EC)
+        and c["short_chain_dehydrogenase_reductase_family_text"]
+        and c["short_chain_dehydrogenase_reductase_nad_p_context"]
+        and c["short_chain_dehydrogenase_reductase_reaction"]
+        and not c["short_chain_dehydrogenase_reductase_boundary_signal"]
+        and not c["aldehyde_dehydrogenase_family_text"]
+        and not c["non_short_chain_dehydrogenase_reductase_scope_side_ec"],
     ),
     (
         "glycosyltransferase",
@@ -3196,6 +3308,16 @@ def _synthesize_cofactor_provenance(
         ]
     elif fingerprint == "aldehyde_dehydrogenase" and evidence.get("aldehyde_dehydrogenase_nad_p_context"):
         records = [{"name": "NAD(P)+ aldehyde dehydrogenase cosubstrate", "cross_reference": {"id": None}}]
+    elif fingerprint == "short_chain_dehydrogenase_reductase" and (
+        evidence.get("short_chain_dehydrogenase_reductase_nad_p_context")
+        or evidence.get("short_chain_dehydrogenase_reductase_reaction")
+    ):
+        records = [
+            {
+                "name": "NAD(P)+ short-chain dehydrogenase/reductase context",
+                "cross_reference": {"id": None},
+            }
+        ]
     elif fingerprint == "alpha_beta_hydrolase_esterase_lipase" and (
         evidence.get("alpha_beta_hydrolase_ser_his_acid_context")
         or evidence.get("alpha_beta_hydrolase_ester_hydrolysis_reaction")

@@ -440,11 +440,11 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         expansion = load_json(EXPANSION_PATH)
         audit = build_mechanism_representation_loop(expansion)
         # 6196 prior seed labels + 150 N-ribosyl hydrolase bronze rows
-        # + 150 APH tier-2 bronze rows applied on 2026-06-15 through
-        # cursor-paginated, mechanism-first lanes;
+        # + 150 APH tier-2 bronze rows + 100 SDR bronze rows applied on
+        # 2026-06-15 through cursor-paginated / mechanism-first lanes;
         # the representation loop remains leakage-safe and still excludes
         # EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 6496)
+        self.assertEqual(audit["seed_labels"], 6596)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
@@ -486,12 +486,21 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # validated reality, NOT relaxed to accommodate the regression.
         self.assertGreater(triage["leave_one_out_self_consistency"], 0.74)
         # bc_aldehyde_oxidation (aldehyde + NAD(+) + H2O -> carboxylate + NADH; the
-        # water-CONSUMING NAD redox) now separates aldehyde dehydrogenase from generic NAD
-        # redox (alcohol -> ketone, no water): nad_p_dehydrogenase recovers 0.547 -> ~0.96
-        # while ALDH stays ~1.0. A few generic NAD rows still nearest-neighbour to ALDH
-        # (the residual confusion below), kept visible rather than gamed away.
+        # water-CONSUMING NAD redox) still separates aldehyde dehydrogenase from the
+        # alcohol/ketone NAD redox surface. After adding the SDR family, generic
+        # nad_p_dehydrogenase and short_chain_dehydrogenase_reductase are intentionally
+        # reaction-chemistry confusable: both perform NAD(P)-linked hydride transfer,
+        # and their distinction is domain/fold-family evidence that the source-free
+        # representation loop must not synthesize from EC/name/prose/lane metadata.
         self.assertGreaterEqual(sc["aldehyde_dehydrogenase"], 0.95)
-        self.assertGreater(sc["nad_p_dehydrogenase"], 0.9)
+        self.assertGreater(sc["short_chain_dehydrogenase_reductase"], 0.9)
+        self.assertGreater(sc["nad_p_dehydrogenase"], 0.45)
+        self.assertGreater(
+            conf["nad_p_dehydrogenase"].get(
+                "short_chain_dehydrogenase_reductase", 0
+            ),
+            0,
+        )
         self.assertGreater(
             conf["nad_p_dehydrogenase"].get("aldehyde_dehydrogenase", 0),
             0,

@@ -1,111 +1,102 @@
 automation: ce-bronze-scaleout-pipeline
 automation_id: ce-nad-glyco-floor-expansion
-started_at: 2026-06-15T21:13:19Z
-started_local: Mon Jun 15 16:13:19 CDT 2026
-closeout_at: 2026-06-15T21:46:55Z
-elapsed_minutes: 33.6
-remaining_minutes: 21.4
+started_at: 2026-06-15T22:13:48Z
+started_local: Mon Jun 15 17:13:49 CDT 2026
+closeout_at: 2026-06-15T22:58:46Z
+elapsed_minutes: 45.0
+remaining_minutes: 10.0
 budget_minutes: 55
 planned_closeout_minute: 50
 
 state: ready_to_commit_push_and_release_lock
 lock: held by this run until post-push release
 branch: main
-base_at_start: f60617d6a1492cdf264689cdf3216bd428425250
-early_closeout_reason: >
-  APH closed cleanly at cap; the only remaining hole is PDE, and reviewed, alternate, tier-2,
-  exact-EC, and broad-name PDE source paths are all blocked below the clean batch gate or
-  boundary-heavy. The remaining high-yield work requires a new source-wall/OOS design, not a safe
-  same-run registry apply.
+base_at_start: 5e7c1006e7f4a0438bc3bc4943eedd78acded89f
+current_run_focus: >
+  Closed the high-yield SDR source-handle lane through the mechanism-first gated path after
+  documented PDE source walls remained subscale. No frozen current702 rows were written.
 
 honest_counters:
-  external_rows: 7720
-  external_seed: 6496
-  external_positive_bronze: 6466
+  external_rows: 7820
+  external_seed: 6596
+  external_positive_bronze: 6566
   external_oos_bronze: 1224
   external_silver_confirmed: 30
-  combined_label_surface: 8422
-  combined_seed_surface: 6726
-  positive_bronze: 6679
+  combined_label_surface: 8522
+  combined_seed_surface: 6826
+  positive_bronze: 6779
   oos_bronze: 1696
   silver_confirmed: 47
   projected: 0
 
-aph_tier2_apply_summary:
-  current_positive_universe: label_factory_v1_44fp
-  mechanism_fingerprints: 44
-  ontology_families: 41
+sdr_45fp_apply_summary:
+  current_positive_universe: label_factory_v1_45fp
+  mechanism_fingerprints: 45
+  ontology_families: 42
   registry_mutation: external_bronze_append_only
-  preview_fetched_rows: 240
-  preview_target_labels: 239
-  preview_novelty_admitted: 150
-  preview_novelty_throttled: 19
-  preview_held_at_cap: 70
+  source_family: short_chain_dehydrogenase_reductase
+  preview_fetched_rows: 220
+  preview_target_labels: 103
+  preview_novelty_admitted: 100
+  preview_off_target_held: 0
+  preview_held_at_cap: 0
   row_guardrail_problem_rows: 0
-  source_tier: source_tier_2
+  source_tier: source_tier_0
   required_non_ec_mechanism_axes: 3
   predictive_evidence_empty: true
-  external_rows_before: 7570
-  external_rows_after: 7720
-  combined_label_surface_after: 8422
+  external_rows_before: 7720
+  external_rows_after: 7820
+  combined_label_surface_after: 8522
   frozen_sha_before: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
   frozen_sha_after: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 
 planning_refresh:
-  coverage_combined: 8422
+  coverage_combined: 8522
   coverage_fingerprint_gini: 0.1944
   coverage_holes:
     - metal_independent_phosphodiesterase
   coverage_over_cap:
     - metal_dependent_hydrolase
   novelty_replay:
-    admit: 7259
+    admit: 7359
     throttle: 414
     reject: 47
   ready_existing_lanes_ge_150: 0
-  top_projected_clean_admits:
-    family: short_chain_dehydrogenase_reductase
-    count: 84
-
-post_aph_source_strategy:
-  pde_reviewed_preview_novelty_admitted: 14
-  pde_alternate_reviewed_preview_novelty_admitted: 0
-  pde_tier2_preview_novelty_admitted: 0
-  pde_exact_ec_largest_cyclic_split_after_non_metal_filter: 18
-  pde_exact_ec_broad_non_metal_count: 490
-  evidence_handle_families_probed: 6
-  evidence_handle_unlocked_families: 4
-  evidence_handle_reachable_positive_bronze_uplift: 741
+  top_projected_clean_admits: 77
+  mechanism_representation_loop:
+    leave_one_out_self_consistency: 0.7576
+    sdr_self_consistency: 0.95
+    note: generic_nad_p_dehydrogenase_sdr_reaction_chemistry_ceiling_documented
 
 validation:
-  cli_validate: passed: 12 source records, 44 fingerprints, 41 ontology families, 702 curated labels
-  focused_critical_after_code_changes: 97 passed
-  full_suite_after_code_changes: 2337 passed, 1 warning, 244 subtests passed in 169.68s
+  cli_validate: passed: 12 source records, 45 fingerprints, 42 ontology families, 702 curated labels
+  focused_sdr_leakage_import_suite: 106 passed in 0.18s
+  targeted_stale_invariant_rerun: 6 passed in 23.44s
+  full_suite_final: 2346 passed, 1 warning, 244 subtests passed in 166.99s
   compileall: passed
+  json_parse: passed
+  jsonl_parse: passed
   progress_and_doc_reference: 5 passed
-  json_parse: passed: 9394 JSON files checked
-  jsonl_parse: passed: 27 JSONL files, 8206 lines checked
-  diff_check: passed
+  diff_check: passed after doc closeout
   frozen_sha: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
-  file_size_scan: passed: manifest 1.2K; shards 17M, 17M, 17M, 6.7M; curated 496K
+  file_size_scan: passed: manifest 4K; shards 17M, 17M, 17M, 7.4M; curated 500K
 
 artifacts:
-  aph_preview: artifacts/v3_aminoglycoside_phosphotransferase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260615.json
-  aph_preview_report: work/aminoglycoside_phosphotransferase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260615.md
-  aph_row_guardrail: artifacts/v3_aminoglycoside_phosphotransferase_tier2_row_guardrail_audit_current702_20260615.json
-  coverage: artifacts/v3_coverage_redundancy_audit_current702_20260615_post_aph_tier2_apply.json
-  novelty: artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_aph_tier2_apply.json
-  factory: artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_tier2_apply.json
-  bronze_silver: artifacts/v3_bronze_silver_promotion_preview_current702_20260615_post_aph_tier2_apply.json
-  mechanism_representation: artifacts/v3_mechanism_representation_loop_current702_20260615_post_aph_tier2_apply.json
-  pde_strategy: artifacts/v3_metal_independent_phosphodiesterase_post_aph_source_strategy_current702_20260615.json
-  pde_exact_ec_scout: artifacts/v3_metal_independent_phosphodiesterase_exact_ec_distribution_scout_current702_20260615_post_aph_apply.json
-  evidence_handle_scout: artifacts/v3_evidence_handle_expansion_current702_20260615_post_aph_apply.json
+  sdr_preview: artifacts/v3_short_chain_dehydrogenase_reductase_sourcing_preview_named220_current702_20260615_run2213.json
+  sdr_preview_report: work/short_chain_dehydrogenase_reductase_sourcing_preview_named220_current702_20260615_run2213.md
+  sdr_row_guardrail: artifacts/v3_short_chain_dehydrogenase_reductase_row_guardrail_audit_current702_20260615_run2213.json
+  oos_preregistration_45fp: artifacts/v3_external_hard_negative_next_tranche_preregistration_45fp_1025.json
+  coverage: artifacts/v3_coverage_redundancy_audit_current702_20260615_run2213_post_sdr_apply.json
+  novelty: artifacts/v3_novelty_admission_gate_audit_current702_20260615_run2213_post_sdr_apply.json
+  factory: artifacts/v3_high_yield_family_lane_factory_current702_20260615_run2213_post_sdr_apply.json
+  mechanism_representation: artifacts/v3_mechanism_representation_loop_current702_20260615_run2213_post_sdr_apply.json
+  bronze_silver: artifacts/v3_bronze_silver_promotion_preview_current702_20260615_run2213_post_sdr_apply.json
+  family_set_targets: artifacts/v3_family_set_expansion_targets_current702_20260615_run2213_post_sdr_apply.json
 
 next_action: >
-  Do not source more APH or retry the same PDE EC/name windows. Build a new mechanism-bearing PDE
-  source wall beyond EC/name counts, or pivot to a split high-yield source-tier/family strategy
-  such as SDR/AKR or serine beta-lactamase. Any mutation must go through OOS preregistration if the
-  fingerprint universe changes, non-destructive preview, row audit, novelty/governor/dedup/cap
-  replay, leakage/source-contract validation, and explicit apply only if the clean batch gate is
-  met.
+  Do not source more SDR, APH, or retry the same PDE EC/name windows. The only current hole is
+  metal_independent_phosphodiesterase; build a materially sharper mechanism-bearing PDE source wall
+  beyond EC/name counts, or pivot to a new high-yield family/source-tier strategy. Any mutation
+  must go through OOS preregistration if the fingerprint universe changes, non-destructive preview,
+  row audit, novelty/governor/dedup/cap replay, leakage/source-contract validation, and explicit
+  apply only if the clean batch gate is met.

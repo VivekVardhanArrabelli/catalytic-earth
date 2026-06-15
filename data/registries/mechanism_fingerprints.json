@@ -3435,5 +3435,85 @@
       "reconstruction_path": "Path A sequence->APH family plus Rhea/active-site channel, or canonical ATP/Mg/aminoglycoside graft in an APH active-site pocket (Path B)",
       "silver_reachability": "moderate; exact reviewed APH EC and active/binding-site annotations are available, but substrate/ATP geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "short_chain_dehydrogenase_reductase",
+    "name": "Short-chain dehydrogenase/reductase",
+    "enzyme_space": [
+      "short-chain dehydrogenases/reductases",
+      "SDR-family oxidoreductases",
+      "NAD(P)-dependent alcohol/ketone reductases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "rossmann_nicotinamide_binder",
+        "residue": "Gly-rich TGxxxGxG / Rossmann-like dinucleotide-binding loop",
+        "constraints": [
+          "positions NAD(H) or NADP(H) so the nicotinamide C4 hydride donor/acceptor faces the substrate carbonyl or alcohol"
+        ]
+      },
+      {
+        "role": "ser_tyr_lys_catalytic_axis",
+        "residue": "Ser-Tyr-Lys/Asn catalytic tetrad",
+        "constraints": [
+          "polarizes the substrate hydroxyl/carbonyl and supports proton relay during hydride transfer"
+        ]
+      },
+      {
+        "role": "substrate_carbonyl_or_alcohol_positioner",
+        "residue": "family-specific pocket residues",
+        "constraints": [
+          "binds steroid, fatty-acyl, sugar, or small-molecule alcohol/ketone substrate opposite the nicotinamide ring"
+        ]
+      }
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": [
+        "substrate C-H/C-O hydride transfer to or from NAD(P) nicotinamide C4",
+        "alcohol/ketone or hydroxy/oxo interconversion"
+      ],
+      "chemical_operation": "NAD(P)-dependent SDR hydride transfer"
+    },
+    "substrate_constraints": [
+      "EC 1.1.1 scope present but never counted as a corroborator",
+      "short-chain dehydrogenase/reductase or SDR family/name context present",
+      "NAD(P)(+)/NAD(P)H participant, keyword, or binding context present",
+      "Rhea or reviewed catalytic activity text for NAD(P)-coupled alcohol/ketone redox present",
+      "no AKR, MDR/zinc alcohol dehydrogenase, ALDH, flavin, molybdopterin, PQQ, oxygenase, oxidase, side-EC, EC-only, generic NAD(P), or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "short-chain dehydrogenase/reductase / SDR family, name, keyword, or domain text",
+      "NAD(P)(+)/NAD(P)H Rhea participant, keyword, cofactor, or binding-site context",
+      "reviewed catalytic activity text showing alcohol/ketone or hydroxy/oxo NAD(P)-coupled redox",
+      "annotated Ser-Tyr-Lys/Asn catalytic-axis or NAD(P)-binding-site context where available",
+      "EC 1.1.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "aldo-keto reductase / AKR family context",
+      "medium-chain zinc alcohol dehydrogenase / MDR family or catalytic zinc context",
+      "aldehyde dehydrogenase / ALDH Cys-Glu aldehyde oxidation context",
+      "flavin, molybdopterin, PQQ, copper, heme, oxygenase, or oxidase redox context",
+      "EC-only evidence with no SDR family and NAD(P) redox corroboration",
+      "multi-fingerprint signal where a generic NAD(P), ALDH, flavin, metal, oxygenase, or hydrolase rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "NAD versus NADP preference",
+      "substrate class and stereospecificity",
+      "oxidation versus reduction direction",
+      "apo versus holo nicotinamide/substrate geometry"
+    ],
+    "seed_examples": [
+      "short-chain dehydrogenase/reductase SDR",
+      "3-oxoacyl-[acyl-carrier-protein] reductase",
+      "17-beta-hydroxysteroid dehydrogenase",
+      "dTDP-glucose 4,6-dehydratase-like SDR"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "nad_p_sdr_ser_tyr_lys_hydride_transfer_context",
+      "detail": "NAD(P) cosubstrate, substrate carbonyl/alcohol, nicotinamide hydride-transfer pose, and Ser-Tyr-Lys/Asn proton relay state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->SDR family plus NAD(P) reaction/active-site channel, or canonical NAD(P)/substrate graft in an SDR Rossmann pocket (Path B)",
+      "silver_reachability": "moderate; reviewed family and NAD(P) reaction annotations are common, but stereochemical hydride-transfer geometry needs explicit reconstruction"
+    }
   }
 ]

@@ -427,6 +427,27 @@
       ]
     },
     {
+      "id": "sdr_nicotinamide_hydride_transfer",
+      "name": "SDR-family NAD(P) hydride transfer",
+      "parent_id": "nicotinamide_redox",
+      "fingerprint_ids": [
+        "short_chain_dehydrogenase_reductase"
+      ],
+      "scope_note": "Reviewed EC 1.1.1 SDR-family oxidoreductases that use NAD(P)(H) and a Ser-Tyr-Lys/Asn catalytic axis for alcohol/ketone hydride transfer.",
+      "sibling_ids": [
+        "nicotinamide_redox",
+        "cys_thiohemiacetal_aldehyde_oxidation",
+        "flavin_redox",
+        "molybdopterin_redox"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by short-chain dehydrogenase/reductase or SDR family/name context plus NAD(P) cosubstrate or binding context and Rhea/reviewed NAD(P)-coupled alcohol/ketone redox; EC 1.1.1 is scope only.",
+        "Do not admit aldo-keto reductase, medium-chain zinc alcohol dehydrogenase, aldehyde dehydrogenase, flavin, molybdopterin, PQQ, oxygenase, oxidase, side-EC, EC-only, or generic NAD(P) rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing an SDR label.",
+        "The NAD(P) cosubstrate, substrate carbonyl/alcohol, Ser-Tyr-Lys/Asn proton relay, and hydride-transfer stereochemistry are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "glycosidic_bond_hydrolysis",
       "name": "Glycosidic bond hydrolysis chemistry",
       "parent_id": "mechanism",

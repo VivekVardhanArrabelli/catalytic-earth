@@ -26,6 +26,69 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SDR 45FP FLOOR BATCH APPLIED; PDE REMAINS THE LONE HOLE
+  (2026-06-15 automation).**
+  Hard safety remains green. Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`, and growth happened only
+  in the sharded external bronze registry. The current positive universe is now
+  `label_factory_v1_45fp` with **45** mechanism fingerprints and **42** ontology families.
+  External rows are now **7820** = external seed **6596** + external OOS **1224**, with external
+  silver **30**. Combined label surface is **8522**; combined seed surface **6826**; positive
+  bronze **6779**; OOS bronze **1696**; silver_confirmed **47**; projected **0**.
+
+  Added guarded `short_chain_dehydrogenase_reductase` infrastructure: fingerprint, ontology
+  family `sdr_nicotinamide_hydride_transfer`, deploy-missing context
+  `nad_p_sdr_ser_tyr_lys_hydride_transfer_context`, disambiguation/source-trust rule, high-yield
+  factory wiring, source runner
+  `src/catalytic_earth/short_chain_dehydrogenase_reductase_sourcing.py`, script
+  `scripts/source_short_chain_dehydrogenase_reductase_family.py`, focused tests, and 45fp OOS
+  preregistration `artifacts/v3_external_hard_negative_next_tranche_preregistration_45fp_1025.json`.
+  EC 1.1.1, SDR names, UniProt prose, and source handles remain scope/admission excluded context.
+  Counted corroboration is non-EC mechanism evidence: SDR family/domain, NAD(P) cosubstrate,
+  Rhea redox reaction/participant, and active/binding-site context when available.
+  AKR/MDR/ALDH/flavin/metal redox boundary rows are held; `predictive_evidence` stays `[]`.
+
+  Non-destructive SDR preview
+  `artifacts/v3_short_chain_dehydrogenase_reductase_sourcing_preview_named220_current702_20260615_run2213.json`
+  fetched **220** reviewed UniProt rows from the named NAD(P) SDR lane, found **103** target
+  mechanism-corroborated labels, admitted **100** novelty-safe labels, held **0** off-target rows,
+  and reached the **100** floor without exceeding the 150 cap. Row audit
+  `artifacts/v3_short_chain_dehydrogenase_reductase_row_guardrail_audit_current702_20260615_run2213.json`
+  checked all **100** admitted rows with **0** problems: UniProt namespace, bronze,
+  `automation_curated`, source tier 0, empty predictive evidence, EC excluded context, and at
+  least three non-EC mechanism axes per row.
+
+  Explicit reuse-preview apply appended **100** SDR bronze rows, skipped **0** duplicates, changed
+  the expansion registry **7720 -> 7820**, and changed the combined label surface **8422 -> 8522**.
+  The frozen benchmark sha printed before and after apply matched exactly. Shard safety remains
+  green: manifest about **4 KB**, shards about **17 MB / 17 MB / 17 MB / 7.4 MB**, curated
+  current702 about **500 KB**.
+
+  Post-apply planning artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_run2213_post_sdr_apply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_run2213_post_sdr_apply.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_run2213_post_sdr_apply.json`,
+  `artifacts/v3_mechanism_representation_loop_current702_20260615_run2213_post_sdr_apply.json`,
+  `artifacts/v3_bronze_silver_promotion_preview_current702_20260615_run2213_post_sdr_apply.json`,
+  and `artifacts/v3_family_set_expansion_targets_current702_20260615_run2213_post_sdr_apply.json`.
+  Coverage reports **8522** combined labels, fingerprint Gini **0.1944**,
+  `metal_independent_phosphodiesterase` as the lone hole/under-floor fingerprint, and only
+  `metal_dependent_hydrolase` over cap. Novelty replay across **7820** expansion rows reports
+  **7359** admit / **414** throttle / **47** reject. The high-yield factory reports **0** ready
+  existing lanes >=150; top projected clean supply is **77** under current handles. Representation
+  loop remains leakage-safe with leave-one-out self-consistency **0.7576**. The new SDR family is
+  self-consistent (**0.95**), while generic `nad_p_dehydrogenase` now confuses with SDR because
+  their source-free reaction chemistry overlaps; do not repair that with EC/name/prose/lane
+  features.
+
+  Next action: do not source more SDR until a fresh source split is justified. Do not pad APH or
+  retry the same PDE EC/name windows. The remaining documented hole is
+  `metal_independent_phosphodiesterase`; build a materially sharper mechanism-bearing PDE source
+  wall beyond EC/name counts, or use a new high-yield family/source-tier strategy through the full
+  gated path: OOS preregistration if the fingerprint universe changes, non-destructive preview,
+  row guardrail audit, novelty/governor/dedup/cap replay, leakage/source-contract validation, and
+  explicit apply only if the clean batch gate is met.
+
 - **APH TIER-2 SOURCE-HANDLE BATCH APPLIED; PDE REMAINS THE LONE HOLE
   (2026-06-15 automation).**
   Hard safety remains green. Frozen current702 stayed byte-unchanged at sha

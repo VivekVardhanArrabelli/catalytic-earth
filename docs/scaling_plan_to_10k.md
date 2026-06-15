@@ -16,6 +16,57 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-15 automation update: SDR 45fp floor batch applied; PDE remains the lone hole.** Treat
+this as the newest operational state for bronze scaleout. Hard safety remains green, frozen
+current702 stayed byte-unchanged at sha `5eec9bef...`, and growth happened only through the
+sharded external bronze registry. The current positive fingerprint universe is now
+`label_factory_v1_45fp` with **45** fingerprints and **42** ontology families. Counted label
+counters are now: external rows **7820**, external seed **6596**, external OOS **1224**, external
+silver **30**, combined label surface **8522**, combined seed surface **6826**, positive bronze
+**6779**, OOS bronze **1696**, silver_confirmed **47**, projected **0**.
+
+`short_chain_dehydrogenase_reductase` is now a guarded mechanism-first lane, not a predictive
+feature path. EC 1.1.1, SDR names, UniProt prose, and source handles are scope/admission excluded
+context. Counted corroboration is non-EC mechanism evidence: SDR family/domain, NAD(P)
+cosubstrate, Rhea redox reaction/participant, and active/binding-site context when present.
+AKR/MDR/ALDH/flavin/metal redox boundary rows are held, and `predictive_evidence` remains empty.
+The lane includes fingerprint/ontology/deploy context, source runner
+`src/catalytic_earth/short_chain_dehydrogenase_reductase_sourcing.py`, script
+`scripts/source_short_chain_dehydrogenase_reductase_family.py`, factory wiring, focused tests, and
+45fp hard-negative preregistration
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_45fp_1025.json`.
+
+Non-destructive preview
+`artifacts/v3_short_chain_dehydrogenase_reductase_sourcing_preview_named220_current702_20260615_run2213.json`
+fetched **220** reviewed UniProt rows, found **103** target mechanism-corroborated labels, admitted
+**100** after novelty/cap replay, held **0** off-target rows, and reached the **100** floor. Row
+audit
+`artifacts/v3_short_chain_dehydrogenase_reductase_row_guardrail_audit_current702_20260615_run2213.json`
+found **0** problem rows. Explicit reuse-preview apply appended **100** rows (**7720 -> 7820**)
+and verified the frozen current702 sha before/after.
+
+Post-apply planning artifacts:
+`artifacts/v3_coverage_redundancy_audit_current702_20260615_run2213_post_sdr_apply.json`,
+`artifacts/v3_novelty_admission_gate_audit_current702_20260615_run2213_post_sdr_apply.json`,
+`artifacts/v3_high_yield_family_lane_factory_current702_20260615_run2213_post_sdr_apply.json`, and
+`artifacts/v3_mechanism_representation_loop_current702_20260615_run2213_post_sdr_apply.json`, with
+non-mutating promotion/family-target refreshes in
+`artifacts/v3_bronze_silver_promotion_preview_current702_20260615_run2213_post_sdr_apply.json` and
+`artifacts/v3_family_set_expansion_targets_current702_20260615_run2213_post_sdr_apply.json`.
+Coverage still shows `metal_independent_phosphodiesterase` as the lone hole/under-floor
+fingerprint, fingerprint Gini **0.1944**, and only `metal_dependent_hydrolase` over cap. Novelty
+replay is **7359** admit / **414** throttle / **47** reject across **7820** expansion rows. The
+factory has **0** ready existing lanes >=150; top projected clean admits are **77** under current
+handles. Representation loop remains leakage-safe with LOO self-consistency **0.7576**; SDR is
+separable (**0.95**), while generic NAD(P) dehydrogenase now has a documented source-free
+reaction-chemistry ceiling against SDR.
+
+Next action: do not source more SDR, APH, or the same PDE windows. The remaining safe
+bronze-scaleout path is a materially sharper mechanism-bearing PDE source wall beyond EC/name
+counts, or a new high-yield family/source-tier strategy that goes through OOS preregistration if
+needed, non-destructive preview, row guardrail audit, novelty/governor/dedup/cap replay,
+leakage/source-contract validation, and explicit apply only if the clean batch gate is met.
+
 **2026-06-15 automation update: APH tier-2 source-handle batch applied; PDE remains the lone
 hole.** Treat this as the newest operational state for bronze scaleout. Hard safety remains green,
 frozen current702 stayed byte-unchanged at sha `5eec9bef...`, and growth happened only through the
